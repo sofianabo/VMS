@@ -48,46 +48,106 @@ class SideBarAdmin extends StatelessWidget {
                     ),
                   ],
                 ),
-                IconButton(
-                    onPressed: () {
+                PopupMenuButton(
+                  child: const Icon(Icons.table_chart),
+                  onSelected: (value) {
+                    if (value == "All Students") {
                       cont.updateContent("All Students");
-                    },
-                    icon: const Icon(Icons.book)),
-                IconButton(
-                    onPressed: () {
+                    }
+                    if (value == "Study Year Students") {
                       cont.updateContent("Study Year Students");
-                    },
-                    icon: const Icon(Icons.data_array)),
-                IconButton(
-                    onPressed: () {
+                    }
+                    if (value == "All Guardians") {
                       cont.updateContent("All Guardians");
-                    },
-                    icon: const Icon(Icons.person_sharp)),
-                IconButton(
-                    onPressed: () {
+                    }
+                    if (value == "Student Status") {
                       cont.updateContent("Student Status");
-                    },
-                    icon: const Icon(Icons.date_range)),
-                IconButton(
-                    onPressed: () {
+                    }
+                  },
+                  itemBuilder: (BuildContext context) =>
+                      <PopupMenuEntry<String>>[
+                    PopupMenuItem<String>(
+                      value: 'All Students',
+                      child: Text('All Students',
+                          style: Get.theme.primaryTextTheme.bodySmall),
+                    ),
+                    PopupMenuItem<String>(
+                      value: 'Study Year Students',
+                      child: Text('Study Year Students',
+                          style: Get.theme.primaryTextTheme.bodySmall),
+                    ),
+                    PopupMenuItem<String>(
+                      value: 'All Guardians',
+                      child: Text('All Guardians',
+                          style: Get.theme.primaryTextTheme.bodySmall),
+                    ),
+                    PopupMenuItem<String>(
+                      value: 'Student Status',
+                      child: Text('Student Status',
+                          style: Get.theme.primaryTextTheme.bodySmall),
+                    ),
+                  ],
+                ),
+
+                 PopupMenuButton(
+                  child: const Icon(Icons.table_chart),
+                  onSelected: (value) {
+                    if (value == "Teacher Management") {
                       cont.updateContent("Teacher Management");
-                    },
-                    icon: const Icon(Icons.manage_history)),
-                IconButton(
-                    onPressed: () {
+                    }
+                    if (value == "Teacher Status") {
                       cont.updateContent("Teacher Status");
-                    },
-                    icon: const Icon(Icons.date_range_sharp)),
-                IconButton(
-                    onPressed: () {
+                    }
+                    if (value == "Teacher Quorum") {
+                      cont.updateContent("Teacher Quorum");
+                    }
+                  },
+                  itemBuilder: (BuildContext context) =>
+                      <PopupMenuEntry<String>>[
+                    PopupMenuItem<String>(
+                      value: 'Teacher Management',
+                      child: Text('Teacher Management',
+                          style: Get.theme.primaryTextTheme.bodySmall),
+                    ),
+                    PopupMenuItem<String>(
+                      value: 'Teacher Status',
+                      child: Text('Teacher Status',
+                          style: Get.theme.primaryTextTheme.bodySmall),
+                    ),
+                      PopupMenuItem<String>(
+                      value: 'Teacher Quorum',
+                      child: Text('Teacher Quorum',
+                          style: Get.theme.primaryTextTheme.bodySmall),
+                    ),
+                  ],
+                ),
+                  PopupMenuButton(
+                  child: const Icon(Icons.table_chart),
+                  onSelected: (value) {
+                    if (value == "All Employee") {
                       cont.updateContent("All Employee");
-                    },
-                    icon: const Icon(Icons.work)),
-                IconButton(
-                    onPressed: () {
+                    }
+                    if (value == "Employee Status") {
                       cont.updateContent("Employee Status");
-                    },
-                    icon: const Icon(Icons.date_range)),
+                    }
+                    
+                  },
+                  itemBuilder: (BuildContext context) =>
+                      <PopupMenuEntry<String>>[
+                    PopupMenuItem<String>(
+                      value: 'All Employee',
+                      child: Text('All Employee',
+                          style: Get.theme.primaryTextTheme.bodySmall),
+                    ),
+                    PopupMenuItem<String>(
+                      value: 'Employee Status',
+                      child: Text('Employee Status',
+                          style: Get.theme.primaryTextTheme.bodySmall),
+                    ),
+                  ],
+                ),
+                
+              
               ],
             );
           }),
