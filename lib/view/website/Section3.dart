@@ -13,8 +13,10 @@ class Section3 extends StatelessWidget {
       child: Column(
         children: [
           Text("How I Can Enroll At Virtual Modern School",
-              style: Get.theme.primaryTextTheme.titleLarge),
-          Row(
+    style: Get.theme.primaryTextTheme.titleLarge!.copyWith(
+    fontSize: 24,
+    )),
+    Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Image.asset(
@@ -25,26 +27,41 @@ class Section3 extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(
-                      "Parents of our students can register their children in the Virtual Modern School ",
-                      style: Get.theme.primaryTextTheme.bodyMedium),
-                  Text("by the following steps:",
-                      style: Get.theme.primaryTextTheme.bodyMedium),
+                  Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: Text(
+                        "Parents of our students can register their children in the Virtual Modern School ",
+                        style: Get.theme.primaryTextTheme.bodyMedium),
+                  ),
+                  Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: Text(" by the following steps:",
+                        style: Get.theme.primaryTextTheme.bodyMedium),
+                  ),
                   const SizedBox(
                     height: 20,
                   ),
-                  Text("1. Enter the first and last name of the guardian",
-                      style: Get.theme.primaryTextTheme.bodySmall),
-                  const SizedBox(
-                    height: 10,
+                  Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: Text("1. Enter the first and last name of the guardian",
+                        style: Get.theme.primaryTextTheme.bodySmall),
                   ),
-                  Text("2. Enter the guardian's mobile phone number",
-                      style: Get.theme.primaryTextTheme.bodySmall),
                   const SizedBox(
-                    height: 10,
+                    height: 20,
                   ),
-                  Text("3. Enter the Syrian national number of the guardian",
-                      style: Get.theme.primaryTextTheme.bodySmall),
+                  Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: Text("2. Enter the guardian's mobile phone number",
+                        style: Get.theme.primaryTextTheme.bodySmall),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: Text("3. Enter the Syrian national number of the guardian",
+                        style: Get.theme.primaryTextTheme.bodySmall),
+                  ),
                   const SizedBox(
                     height: 40,
                   ),

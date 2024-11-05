@@ -9,43 +9,51 @@ class Section2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 100),
+      margin: const EdgeInsets.only(top: 80),
       child: Column(
         children: [
           Text("Who Can We Register At Virtual Modern School",
-              style: Get.theme.primaryTextTheme.titleLarge),
+              style: Get.theme.primaryTextTheme.titleLarge!.copyWith(
+                fontSize: 24,
+
+              )),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Column(
                 children: [
-                  Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                              "Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary",
-                              style: Get.theme.primaryTextTheme.bodySmall),
-                          Text(
-                              "to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted",
-                              style: Get.theme.primaryTextTheme.bodySmall),
-                          Text(
-                              "by the Ministry of Education at Syrian Arab Republic",
-                              style: Get.theme.primaryTextTheme.bodySmall),
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Container(
-                        height: 30,
-                        width: 30,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(1000),
-                            color: const Color(0xff47ccaa)),
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 18.0),
+                    child: Row(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                                "Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary",
+                                style: Get.theme.primaryTextTheme.bodySmall),
+                            Text(
+                                "to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted",
+                                style: Get.theme.primaryTextTheme.bodySmall),
+                            Text(
+                                "by the Ministry of Education at Syrian Arab Republic",
+                                style: Get.theme.primaryTextTheme.bodySmall),
+                          ],
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(1000),
+                              color: const Color(0xff47ccaa),
+                          ),
+                          child: Icon(Icons.emoji_emotions_outlined , color: Colors.white,),
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 20,
@@ -77,6 +85,7 @@ class Section2 extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(1000),
                             color: const Color(0xff946ffb)),
+                        child: Icon(Icons.emoji_events_outlined , color: Colors.white,),
                       ),
                     ],
                   )

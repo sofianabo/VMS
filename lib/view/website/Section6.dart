@@ -10,10 +10,13 @@ class Section6 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: Get.width,
-      margin:const EdgeInsets.only(top: 100),
+      margin:const EdgeInsets.only(top: 40),
       child: Column(
         children: [
-          Text("What Do We", style: Get.theme.primaryTextTheme.titleLarge),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20.0),
+            child: Text("What Do We", style: Get.theme.primaryTextTheme.titleLarge),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -21,15 +24,15 @@ class Section6 extends StatelessWidget {
                 children: [
                   Text(
                       "We develop a culture of excellence that includes a robust instructional program aligned to the",
-                      style: Get.theme.primaryTextTheme.bodyMedium),
+                      style: Get.theme.primaryTextTheme.bodySmall),
                   Text(
                       "highest standards with a focus on implementing balanced literacy through reading and writing",
-                      style: Get.theme.primaryTextTheme.bodyMedium),
+                      style: Get.theme.primaryTextTheme.bodySmall),
                   Text(
                       "workshops, while cultivating competency across all subject areas.",
-                      style: Get.theme.primaryTextTheme.bodyMedium),
+                      style: Get.theme.primaryTextTheme.bodySmall),
              const     SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
                   Container(
                     width: 750,
@@ -42,27 +45,18 @@ class Section6 extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  Text(
-                      "We are committed to developing well-rounded students who embody our core values: Be Safe, Be",
-                      style: Get.theme.primaryTextTheme.bodyMedium),
-                  Text(
-                      "Respectful, Be Responsible, and Be Mindful. Our vibrant learning environment encourages discovery",
-                      style: Get.theme.primaryTextTheme.bodyMedium),
-                  Text(
-                      "and creative expression, making every student feel valued.",
-                      style: Get.theme.primaryTextTheme.bodyMedium),
-                  const SizedBox(
-                    height: 10,
+                  Container(
+                    padding: const EdgeInsets.only(top: 18.0,bottom: 10.0),
+                    width:750 ,
+                    child: Column(
+                   children: [
+                     Text(
+                       textAlign: TextAlign.center,
+                         "We are committed to developing well-rounded students who embody our core values: Be Safe, Be Respectful, Be Responsible, and Be Mindful. Our vibrant learning environment encourages discovery and creative expression, making every student feel valued.\n\nWe provide our educators with robust professional development to enhance teaching practices and boost student success. Through collaboration and a community schools model, we align resources to ensure every student thrives. Join us in our journey towards excellence!",
+                         style: Get.theme.primaryTextTheme.bodySmall),
+                   ],
+                    ),
                   ),
-                  Text(
-                      "We provide our educators with robust professional development to enhance teaching practices and",
-                      style: Get.theme.primaryTextTheme.bodyMedium),
-                  Text(
-                      "boost student success. Through collaboration and a community schools model, we align resources to",
-                      style: Get.theme.primaryTextTheme.bodyMedium),
-                  Text(
-                      "ensure every student thrives. Join us in our journey towards excellence!",
-                      style: Get.theme.primaryTextTheme.bodyMedium),
                 ],
               )
             ],

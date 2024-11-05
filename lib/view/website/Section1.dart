@@ -36,15 +36,17 @@ class Section1 extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text("Take Your Learning",
+                        Text("We CARE ABOUT \n YOUR FUTURE",
+                            textAlign: TextAlign.left,
                             style: Get.theme.primaryTextTheme.labelLarge),
-                        Text("To The Next Level",
-                            style: Get.theme.primaryTextTheme.labelLarge),
-                        const SizedBox(
-                          height: 25,
+                        Container(
+                          padding: EdgeInsets.only(top: 10.0),
+                          width: 400,
+                          child: Text("Join us to enter a better world filled with advanced educational methods through Virtual Modern School",
+                              style: Get.theme.primaryTextTheme.labelLarge!.copyWith(fontSize: 14),
+                          textAlign: TextAlign.left,
+                          ),
                         ),
-                        Text("Virtual Modern School",
-                            style: Get.theme.primaryTextTheme.labelMedium),
                         const SizedBox(
                           height: 30,
                         ),
@@ -54,20 +56,20 @@ class Section1 extends StatelessWidget {
                                 color: const Color(0xff19478d),
                                 width: 1.0,
                               ),
-                              borderRadius: BorderRadius.circular(20)),
-                          height: 70,
-                          width: 300,
+                              borderRadius: BorderRadius.circular(12)),
+                          height: 50,
+                          width: 350,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               GestureDetector(
                                 child: Container(
-                                  width: 158,
+                                  width: 188,
                                   decoration: const BoxDecoration(
                                       color: Color(0xff19478d),
                                       borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(20),
-                                          bottomRight: Radius.circular(20))),
+                                          topRight: Radius.circular(11),
+                                          bottomRight: Radius.circular(11))),
                                   alignment: Alignment.center,
                                   child: Text('Enroll',
                                       style: Get.theme.primaryTextTheme
@@ -79,7 +81,8 @@ class Section1 extends StatelessWidget {
                               ),
                               GestureDetector(
                                 child: Container(
-                                  width: 140,
+                                  width: 160,
+                                  height: 50,
                                   alignment: Alignment.center,
                                   child: Text('Sign In',
                                       style: Get
@@ -95,15 +98,16 @@ class Section1 extends StatelessWidget {
                         ),
                         SizedBox(
                           height: 200,
-                          width: 300,
+                          width: 350,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Container(
                                 height: 120,
-                                width: 90,
+                                width: 100,
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
+                                    color: Color(0xffFFFDFB),
+                                    borderRadius: BorderRadius.circular(21),
                                     border: Border.all(
                                       color: Colors.grey,
                                       width: 2.0,
@@ -114,6 +118,7 @@ class Section1 extends StatelessWidget {
                                       padding: const EdgeInsets.only(top: 10),
                                       height: 40,
                                       width: 40,
+
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(100)),
@@ -124,24 +129,30 @@ class Section1 extends StatelessWidget {
                                       padding: const EdgeInsets.only(top: 8.0),
                                       child: Text("10 M",
                                           style: Get.theme.primaryTextTheme
-                                              .bodySmall),
+                                              .bodySmall!.copyWith(
+                                              fontSize: 16,
+                                            color: Get.theme.primaryColor
+                                          )),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(top: 8.0),
                                       child: Text(
                                         "Teachers",
                                         style: Get
-                                            .theme.primaryTextTheme.bodySmall,
+                                            .theme.primaryTextTheme.bodySmall!.copyWith(
+                                          fontSize: 14,
+                                          color: Get.theme.primaryColor),
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
                               Container(
+                                padding: EdgeInsets.only(left: 10,right: 10),
                                 height: 120,
-                                width: 90,
+                                width: 100,
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
+                                    borderRadius: BorderRadius.circular(21),
                                     border: Border.all(
                                       color: Colors.grey,
                                       width: 2.0,
@@ -162,22 +173,26 @@ class Section1 extends StatelessWidget {
                                       padding: const EdgeInsets.only(top: 8.0),
                                       child: Text("10 M",
                                           style: Get.theme.primaryTextTheme
-                                              .bodySmall),
+                                              .bodySmall!.copyWith(
+                                              fontSize: 16,
+                                              color: Get.theme.primaryColor)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(top: 8.0),
                                       child: Text("Students",
                                           style: Get.theme.primaryTextTheme
-                                              .bodySmall),
+                                              .bodySmall!.copyWith(
+                                              fontSize: 14,
+                                              color: Get.theme.primaryColor)),
                                     ),
                                   ],
                                 ),
                               ),
                               Container(
                                 height: 120,
-                                width: 90,
+                                width: 100,
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
+                                    borderRadius: BorderRadius.circular(21),
                                     border: Border.all(
                                       color: Colors.grey,
                                       width: 2.0,
@@ -198,13 +213,17 @@ class Section1 extends StatelessWidget {
                                       padding: const EdgeInsets.only(top: 8.0),
                                       child: Text("10 M",
                                           style: Get.theme.primaryTextTheme
-                                              .bodySmall),
+                                              .bodySmall!.copyWith(
+                                              fontSize: 16,
+                                              color: Get.theme.primaryColor)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(top: 8.0),
                                       child: Text("Visitors",
                                           style: Get.theme.primaryTextTheme
-                                              .bodySmall),
+                                               .bodySmall!.copyWith(
+                                              fontSize: 14,
+                                              color: Get.theme.primaryColor)),
                                     ),
                                   ],
                                 ),

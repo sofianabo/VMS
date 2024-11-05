@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 
 class Section7 extends StatelessWidget {
@@ -8,8 +9,9 @@ class Section7 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 500,
-      color: Get.theme.primaryColor,
+      color: Color(0xff21245D),
       margin: const EdgeInsets.only(top: 100),
+      padding: EdgeInsets.only(top: 20),
       child: Column(
         children: [
           Row(
@@ -17,10 +19,15 @@ class Section7 extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  SizedBox(
+                  Container(
+                    padding: EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(100))
+                    ),
                     height: 100,
                     width: 100,
-                    child: Image.asset("../../images/section5-image3.png"),
+                    child: Image.asset("../../images/section5-image3.png",width: 50,height: 50,).animate(onPlay: (controller) => controller.repeat()).rotate(duration: Duration(seconds: 10),delay: Duration(milliseconds: 1)),
                   ),
                   const SizedBox(
                     height: 5,
@@ -29,7 +36,10 @@ class Section7 extends StatelessWidget {
                     height: 10,
                   ),
                   Text("Virtual Modern School",
-                      style: Get.theme.primaryTextTheme.labelMedium),
+                      style: Get.theme.primaryTextTheme.labelMedium!.copyWith(
+                        fontSize: 20,
+                        color: Colors.white
+                      )),
                 ],
               )
             ],
@@ -45,9 +55,12 @@ class Section7 extends StatelessWidget {
                 Column(
                   children: [
                     Text("Openning Hours",
-                        style: Get.theme.primaryTextTheme.bodyMedium),
+                        style: Get.theme.primaryTextTheme.bodyMedium!.copyWith(
+                            fontSize: 16,
+                            color: Colors.white
+                        )),
                     const SizedBox(
-                      height: 8,
+                      height: 5,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -55,7 +68,10 @@ class Section7 extends StatelessWidget {
                         Row(
                           children: [
                             Text("8 AM -----> 1 PM",
-                                style: Get.theme.primaryTextTheme.bodyMedium),
+                                style: Get.theme.primaryTextTheme.bodyMedium!.copyWith(
+                                    fontSize: 16,
+                                    color: Colors.white
+                                )),
                             const SizedBox(
                               width: 5,
                             ),
@@ -67,12 +83,14 @@ class Section7 extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(
-                          height: 3,
+                          height: 20,
                         ),
                         Row(
                           children: [
                             Text("3 PM -----> 8 PM",
-                                style: Get.theme.primaryTextTheme.bodyMedium),
+                                style: Get.theme.primaryTextTheme.bodyMedium!.copyWith( fontSize: 16,
+                                    color: Colors.white
+                                )),
                             const SizedBox(
                               width: 5,
                             ),
@@ -86,7 +104,7 @@ class Section7 extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
                     Row(
                       children: [
@@ -116,13 +134,19 @@ class Section7 extends StatelessWidget {
                   ],
                 ),
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Contact Details",
-                            style: Get.theme.primaryTextTheme.bodyMedium),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 35.0),
+                      child: Row(
+                        children: [
+                          Text("Contact Details",
+                              style: Get.theme.primaryTextTheme.bodyMedium!.copyWith( fontSize: 16,
+                                  color: Colors.white
+                              )),
+                        ],
+                      ),
                     ),
                     const SizedBox(
                       height: 8,
@@ -132,53 +156,65 @@ class Section7 extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Text("SYR:00963 994 005157",
-                                style: Get.theme.primaryTextTheme.bodyMedium),
-                            const SizedBox(
-                              width: 8,
-                            ),
-                            Image.asset(
-                              "../../images/call-icon.png",
-                              height: 40,
-                              width: 40,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Row(
-                          children: [
-                            Text("USA:001 817 583 0666",
-                                style: Get.theme.primaryTextTheme.bodyMedium),
-                            const SizedBox(
-                              width: 8,
-                            ),
-                            Image.asset(
-                              "../../images/call-icon.png",
-                              height: 40,
-                              width: 40,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Row(
-                          children: [
-                            Text("virtualmodernschoolmedia@gmail.com",
-                                style: Get.theme.primaryTextTheme.bodyMedium),
+                            Text("SYR: 00963 994 005157",
+                                style: Get.theme.primaryTextTheme.bodyMedium!.copyWith( fontSize: 14,
+                                    color: Colors.white
+                                )),
                             const SizedBox(
                               width: 8,
                             ),
                             Container(
-                                width: 30,
-                                height: 30,
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(200),
-                                    color: Colors.white),
-                                child:
-                                    Image.asset("../../images/email-icon.png")),
+                                    borderRadius: BorderRadius.all(Radius.circular(50)),color: Colors.white
+                                ),
+                                height: 30,
+                                width: 30,
+                                child:  Icon(Icons.call , color: Get.theme.primaryColor,size: 16,)
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            Text("USA: 001 817 583 0666",
+                                style: Get.theme.primaryTextTheme.bodyMedium!.copyWith( fontSize: 14,
+                                    color: Colors.white
+                                )),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(50)),color: Colors.white
+                                ),
+                                height: 30,
+                                width: 30,
+                                child:  Icon(Icons.call , color: Get.theme.primaryColor,size: 16,)
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            Text("virtualmodernschoolmedia@gmail.com",
+                                style: Get.theme.primaryTextTheme.bodyMedium!.copyWith( fontSize: 16,
+                                    color: Colors.white
+                                )),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(50)),color: Colors.white
+                                ),
+                                height: 30,
+                                width: 30,
+                                child:  Icon(Icons.mail , color: Get.theme.primaryColor,size: 16,)
+                            ),
                           ],
                         ),
                       ],
@@ -196,27 +232,26 @@ class Section7 extends StatelessWidget {
             children: [
               Text(
                   "Shakib Arslan Street - Engineers Syndicate Building - 2nd Floor - AlSuwaidaa - Syria",
-                  style: Get.theme.primaryTextTheme.bodyMedium),
+                  style: Get.theme.primaryTextTheme.bodyMedium!.copyWith( fontSize: 16,
+                      color: Colors.white
+                  )),
               const SizedBox(
                 width: 15,
               ),
-              Image.asset("../../images/location-icon.png"),
+             Icon(Icons.location_on_rounded , color: Colors.white , size: 20,)
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("VMS . Powered by FSL Team",
-                  style: Get.theme.primaryTextTheme.bodyMedium),
-              const SizedBox(
-                width: 3,
-              ),
-              Image.asset("../../images/c-icon.png"),
+              Icon(Icons.copyright_outlined , color: Colors.white,size: 20,),
               const SizedBox(
                 width: 3,
               ),
                Text("All Rights reserved. Copyright",
-                  style: Get.theme.primaryTextTheme.bodyMedium),
+                  style: Get.theme.primaryTextTheme.bodyMedium!.copyWith( fontSize: 16,
+                      color: Colors.white
+                  )),
             ],
           ),
         ],

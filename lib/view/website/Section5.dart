@@ -13,7 +13,10 @@ class Section5 extends StatelessWidget {
       margin:const EdgeInsets.only(top: 100),
       child: Column(
         children: [
-          Text("Who Are We", style: Get.theme.primaryTextTheme.titleLarge),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 25.0),
+            child: Text("Who Are We", style: Get.theme.primaryTextTheme.titleLarge),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -23,17 +26,17 @@ class Section5 extends StatelessWidget {
                     children: [
                       Text(
                           "is a community of learners, including students, parents, and staff, dedicated to creating a rigorous and",
-                          style: Get.theme.primaryTextTheme.bodyMedium),
+                          style: Get.theme.primaryTextTheme.bodySmall),
                       Text("VIRTUAL MODERN SCHOOL (VMS)",
-                          style: Get.theme.primaryTextTheme.bodyLarge),
+                          style: Get.theme.primaryTextTheme.bodySmall),
                     ],
                   ),
                   Text(
                       " inclusive educational environment. VMS students are goal-oriented, critical thinkers, and community leaders ",
-                      style: Get.theme.primaryTextTheme.bodyMedium),
+                      style: Get.theme.primaryTextTheme.bodySmall),
                   Text(
                     "committed to achieving high levels of integrity and academic success.",
-                    style: Get.theme.primaryTextTheme.bodyMedium,
+                    style: Get.theme.primaryTextTheme.bodySmall,
                   ),
                   Column(
                     children: [
@@ -60,18 +63,18 @@ class Section5 extends StatelessWidget {
                                 Text(
                                     "VIRTUAL MODERN SCHOOL (VMS) staff aim to create a supportive",
                                     style:
-                                        Get.theme.primaryTextTheme.bodyMedium),
+                                        Get.theme.primaryTextTheme.bodySmall),
                                 Text(
                                     "and challenging environment for all students to reach their potential,",
                                     style:
-                                        Get.theme.primaryTextTheme.bodyMedium),
+                                        Get.theme.primaryTextTheme.bodySmall),
                                 Text(
                                     "engaging in continuous improvement through goal setting and",
                                     style:
-                                        Get.theme.primaryTextTheme.bodyMedium),
+                                        Get.theme.primaryTextTheme.bodySmall),
                                 Text("reflection",
                                     style:
-                                        Get.theme.primaryTextTheme.bodyMedium),
+                                        Get.theme.primaryTextTheme.bodySmall),
                                 const SizedBox(
                                   height: 20,
                                 ),
@@ -85,7 +88,9 @@ class Section5 extends StatelessWidget {
                                 ),
                                  Text("Virtual Modern School",
                                     style:
-                                        Get.theme.primaryTextTheme.titleSmall)
+                                        Get.theme.primaryTextTheme.titleSmall!.copyWith(
+                                          color: Colors.black
+                                        ))
                               ],
                             ),
                           ),
