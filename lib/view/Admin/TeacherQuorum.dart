@@ -14,7 +14,7 @@ class TeacherQuorum extends StatelessWidget {
       margin: const EdgeInsets.only(right: 100),
       width: MediaQuery.of(context).size.width * 0.8,
       child: Container(
-        margin: const EdgeInsets.only(top: 10),
+        margin: const EdgeInsets.only(top: 10   ),
         child: Column(
           children: [
             Row(
