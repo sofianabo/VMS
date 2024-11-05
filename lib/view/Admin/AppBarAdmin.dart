@@ -22,11 +22,7 @@ class AppbarAdmin extends StatelessWidget {
             GetBuilder<AdminHomeContentController>(builder: (cont) {
               return Row(
                 children: [
-                  IconButton(
-                      onPressed: () {
-                        cont.updateContent("Teacher Quorum");
-                      },
-                      icon: const Icon(Icons.logout)),
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.logout)),
                   IconButton(
                       onPressed: () {},
                       icon: const Icon(Icons.mode_night_outlined)),
