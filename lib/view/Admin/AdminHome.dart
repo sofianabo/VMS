@@ -63,8 +63,7 @@ class AdminHome extends StatelessWidget {
                                                             : cont.content ==
                                                                     "Teacher Quorum"
                                                                 ? TeacherQuorum()
-                                                                : const Text(
-                                                                    "data");
+                                                                : Container();
               })
             ],
           ),
