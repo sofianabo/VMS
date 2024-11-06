@@ -11,7 +11,7 @@ class SideBarAdmin extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.asset("../../images/sidebarAdmin.png", height: 550),
+        Image.asset("../../images/sidebarAdmin.png", height: 720),
         Container(
           margin: const EdgeInsets.only(top: 100, left: 20),
           child: GetBuilder<AdminHomeContentController>(builder: (cont) {
@@ -88,8 +88,7 @@ class SideBarAdmin extends StatelessWidget {
                     ),
                   ],
                 ),
-
-                 PopupMenuButton(
+                PopupMenuButton(
                   child: const Icon(Icons.table_chart),
                   onSelected: (value) {
                     if (value == "Teacher Management") {
@@ -114,14 +113,14 @@ class SideBarAdmin extends StatelessWidget {
                       child: Text('Teacher Status',
                           style: Get.theme.primaryTextTheme.bodySmall),
                     ),
-                      PopupMenuItem<String>(
+                    PopupMenuItem<String>(
                       value: 'Teacher Quorum',
                       child: Text('Teacher Quorum',
                           style: Get.theme.primaryTextTheme.bodySmall),
                     ),
                   ],
                 ),
-                  PopupMenuButton(
+                PopupMenuButton(
                   child: const Icon(Icons.table_chart),
                   onSelected: (value) {
                     if (value == "All Employee") {
@@ -130,7 +129,6 @@ class SideBarAdmin extends StatelessWidget {
                     if (value == "Employee Status") {
                       cont.updateContent("Employee Status");
                     }
-                    
                   },
                   itemBuilder: (BuildContext context) =>
                       <PopupMenuEntry<String>>[
@@ -146,8 +144,6 @@ class SideBarAdmin extends StatelessWidget {
                     ),
                   ],
                 ),
-                
-              
               ],
             );
           }),

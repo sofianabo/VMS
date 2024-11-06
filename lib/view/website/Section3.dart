@@ -8,76 +8,83 @@ class Section3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return Container(
-      margin: const EdgeInsets.only(top: 100),
+      margin: EdgeInsets.only(top: h / 6.84),
       child: Column(
         children: [
           Text("How I Can Enroll At Virtual Modern School",
-    style: Get.theme.primaryTextTheme.titleLarge!.copyWith(
-    fontSize: 24,
-    )),
-    Row(
+              style: Get.theme.primaryTextTheme.titleLarge!.copyWith(
+                fontSize: 24,
+              )),
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Image.asset(
                 "../../images/section3-image1.jpg",
-                height: 600,
-                width: 600,
+                height: h / 1.14,
+                width: w / 2.4,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Directionality(
-                    textDirection: TextDirection.rtl,
-                    child: Text(
-                        "Parents of our students can register their children in the Virtual Modern School ",
-                        style: Get.theme.primaryTextTheme.bodyMedium),
-                  ),
-                  Directionality(
-                    textDirection: TextDirection.ltr,
-                    child: Text(" by the following steps:",
-                        style: Get.theme.primaryTextTheme.bodyMedium),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Directionality(
-                    textDirection: TextDirection.ltr,
-                    child: Text("1. Enter the first and last name of the guardian",
-                        style: Get.theme.primaryTextTheme.bodySmall),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Directionality(
-                    textDirection: TextDirection.ltr,
-                    child: Text("2. Enter the guardian's mobile phone number",
-                        style: Get.theme.primaryTextTheme.bodySmall),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Directionality(
-                    textDirection: TextDirection.ltr,
-                    child: Text("3. Enter the Syrian national number of the guardian",
-                        style: Get.theme.primaryTextTheme.bodySmall),
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  Container(
-                    height: 50,
-                    width: 130,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: const Color(0xff19478d)),
-                        borderRadius: BorderRadius.circular(10),
-                        color: Get.theme.primaryColor),
-                    child: Center(
-                      child: Text("Read More",
-                          style: Get.theme.primaryTextTheme.headlineSmall),
+              Padding(
+                padding: EdgeInsets.only(left: w / 64),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: Text(
+                          "Parents of our students can register their children in the Virtual Modern School ",
+                          style: Get.theme.primaryTextTheme.bodyMedium),
                     ),
-                  )
-                ],
+                    Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: Text(" by the following steps:",
+                          style: Get.theme.primaryTextTheme.bodyMedium),
+                    ),
+                    SizedBox(
+                      height: h / 34.2,
+                    ),
+                    Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: Text(
+                          "1. Enter the first and last name of the guardian",
+                          style: Get.theme.primaryTextTheme.bodySmall),
+                    ),
+                    SizedBox(
+                      height: h / 34.2,
+                    ),
+                    Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: Text("2. Enter the guardian's mobile phone number",
+                          style: Get.theme.primaryTextTheme.bodySmall),
+                    ),
+                    SizedBox(
+                      height: h / 34.2,
+                    ),
+                    Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: Text(
+                          "3. Enter the Syrian national number of the guardian",
+                          style: Get.theme.primaryTextTheme.bodySmall),
+                    ),
+                    SizedBox(
+                      height: h / 17.1,
+                    ),
+                    Container(
+                      height: h / 13.68,
+                      width: w / 9.846,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: const Color(0xff19478d)),
+                          borderRadius: BorderRadius.circular(10),
+                          color: Get.theme.primaryColor),
+                      child: Center(
+                        child: Text("Read More",
+                            style: Get.theme.primaryTextTheme.headlineSmall),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ],
           ),

@@ -10,10 +10,12 @@ class TextFieldDialog extends StatelessWidget {
   String hinttext = "";
   @override
   Widget build(BuildContext context) {
+       double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return Container(
-      margin: const EdgeInsets.only(top: 5),
-      width: 240,
-      height: 36,
+      margin:  EdgeInsets.only(top: h/136.8),
+      width: w/5.333,
+      height: h/19,
       child: TextFormField(
         controller: controller,
         decoration: InputDecoration(

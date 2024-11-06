@@ -15,9 +15,11 @@ class ButtonsGrid extends StatelessWidget {
   String text;
   @override
   Widget build(BuildContext context) {
+      double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return Container(
-      width: 130,
-      height: 30,
+      width: w/9.846,
+      height: h/22.8,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
       child: MaterialButton(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),

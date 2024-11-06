@@ -13,12 +13,14 @@ SharedPreferences? Password;
 SharedPreferences? lang;
 SharedPreferences? mode;
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Username = await SharedPreferences.getInstance();
   Password = await SharedPreferences.getInstance();
   lang = await SharedPreferences.getInstance();
   mode = await SharedPreferences.getInstance();
+  
   runApp(const VMS());
 }
 
@@ -29,9 +31,6 @@ class VMS extends StatelessWidget {
     localeController loc = Get.put(localeController(), permanent: true);
     themeController th = Get.put(themeController(), permanent: true);
     final DropDownController controller = Get.put(DropDownController());
-
-
-
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,

@@ -10,29 +10,32 @@ class Section1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return SizedBox(
-      width: Get.width,
+      width: w,
+      height: h,
       child: Row(children: [
         Stack(
           children: [
             Image.asset(
               "../../images/Home-Background.png",
               fit: BoxFit.cover,
-              height: 500,
-              width: 1300,
+              height: h / 1.368,
+              width: w,
             ),
             SizedBox(
-              width: Get.width,
+              width: w,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Image.asset(
                     "../../images/Home-Background2.png",
-                    width: 450,
-                    height: 450,
+                    width: w / 2.84,
+                    height: h / 1.52,
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 50),
+                    margin: EdgeInsets.only(top: h/13.68),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
@@ -40,15 +43,17 @@ class Section1 extends StatelessWidget {
                             textAlign: TextAlign.left,
                             style: Get.theme.primaryTextTheme.labelLarge),
                         Container(
-                          padding: EdgeInsets.only(top: 10.0),
-                          width: 400,
-                          child: Text("Join us to enter a better world filled with advanced educational methods through Virtual Modern School",
-                              style: Get.theme.primaryTextTheme.labelLarge!.copyWith(fontSize: 14),
-                          textAlign: TextAlign.left,
+                          padding: EdgeInsets.only(top: h / 68.4),
+                          width: w / 3.2,
+                          child: Text(
+                            "Join us to enter a better world filled with advanced educational methods through Virtual Modern School",
+                            style: Get.theme.primaryTextTheme.labelLarge!
+                                .copyWith(fontSize: 14),
+                            textAlign: TextAlign.left,
                           ),
                         ),
-                        const SizedBox(
-                          height: 30,
+                        SizedBox(
+                          height: h / 22.8,
                         ),
                         Container(
                           decoration: BoxDecoration(
@@ -57,14 +62,14 @@ class Section1 extends StatelessWidget {
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(12)),
-                          height: 50,
-                          width: 350,
+                          height: h / 13.68,
+                          width: w / 3.657,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               GestureDetector(
                                 child: Container(
-                                  width: 188,
+                                  width: w / 6.808,
                                   decoration: const BoxDecoration(
                                       color: Color(0xff19478d),
                                       borderRadius: BorderRadius.only(
@@ -81,8 +86,8 @@ class Section1 extends StatelessWidget {
                               ),
                               GestureDetector(
                                 child: Container(
-                                  width: 160,
-                                  height: 50,
+                                  width: w / 8,
+                                  height: h / 13.68,
                                   alignment: Alignment.center,
                                   child: Text('Sign In',
                                       style: Get
@@ -97,14 +102,14 @@ class Section1 extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: 200,
-                          width: 350,
+                          height: h / 3.42,
+                          width: w / 3.657,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Container(
-                                height: 120,
-                                width: 100,
+                                height: h / 5.7,
+                                width: w / 12.8,
                                 decoration: BoxDecoration(
                                     color: Color(0xffFFFDFB),
                                     borderRadius: BorderRadius.circular(21),
@@ -115,10 +120,9 @@ class Section1 extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     Container(
-                                      padding: const EdgeInsets.only(top: 10),
-                                      height: 40,
-                                      width: 40,
-
+                                      padding: EdgeInsets.only(top: h / 68.4),
+                                      height: h / 17.1,
+                                      width: w / 32,
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(100)),
@@ -126,31 +130,34 @@ class Section1 extends StatelessWidget {
                                           "../../images/avatar1.png"),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(top: 8.0),
+                                      padding: EdgeInsets.only(top: h / 68.4),
                                       child: Text("10 M",
-                                          style: Get.theme.primaryTextTheme
-                                              .bodySmall!.copyWith(
-                                              fontSize: 16,
-                                            color: Get.theme.primaryColor
-                                          )),
+                                          style: Get
+                                              .theme.primaryTextTheme.bodySmall!
+                                              .copyWith(
+                                                  fontSize: 16,
+                                                  color:
+                                                      Get.theme.primaryColor)),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(top: 8.0),
+                                      padding: EdgeInsets.only(top: h / 68.4),
                                       child: Text(
                                         "Teachers",
                                         style: Get
-                                            .theme.primaryTextTheme.bodySmall!.copyWith(
-                                          fontSize: 14,
-                                          color: Get.theme.primaryColor),
+                                            .theme.primaryTextTheme.bodySmall!
+                                            .copyWith(
+                                                fontSize: 14,
+                                                color: Get.theme.primaryColor),
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.only(left: 10,right: 10),
-                                height: 120,
-                                width: 100,
+                                padding: EdgeInsets.only(
+                                    left: w / 128, right: w / 128),
+                                height: h / 5.7,
+                                width: w / 12.8,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(21),
                                     border: Border.all(
@@ -160,9 +167,9 @@ class Section1 extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     Container(
-                                      padding: const EdgeInsets.only(top: 10),
-                                      height: 40,
-                                      width: 40,
+                                      padding: EdgeInsets.only(top: h / 68.4),
+                                      height: h / 17.1,
+                                      width: w / 32,
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(100)),
@@ -170,27 +177,31 @@ class Section1 extends StatelessWidget {
                                           "../../images/avatar2.png"),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(top: 8.0),
+                                      padding: EdgeInsets.only(top: h / 68.4),
                                       child: Text("10 M",
-                                          style: Get.theme.primaryTextTheme
-                                              .bodySmall!.copyWith(
-                                              fontSize: 16,
-                                              color: Get.theme.primaryColor)),
+                                          style: Get
+                                              .theme.primaryTextTheme.bodySmall!
+                                              .copyWith(
+                                                  fontSize: 16,
+                                                  color:
+                                                      Get.theme.primaryColor)),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(top: 8.0),
+                                      padding: EdgeInsets.only(top: h / 68.4),
                                       child: Text("Students",
-                                          style: Get.theme.primaryTextTheme
-                                              .bodySmall!.copyWith(
-                                              fontSize: 14,
-                                              color: Get.theme.primaryColor)),
+                                          style: Get
+                                              .theme.primaryTextTheme.bodySmall!
+                                              .copyWith(
+                                                  fontSize: 14,
+                                                  color:
+                                                      Get.theme.primaryColor)),
                                     ),
                                   ],
                                 ),
                               ),
                               Container(
-                                height: 120,
-                                width: 100,
+                                height: h / 5.7,
+                                width: w / 12.8,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(21),
                                     border: Border.all(
@@ -200,9 +211,9 @@ class Section1 extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     Container(
-                                      padding: const EdgeInsets.only(top: 10),
-                                      height: 40,
-                                      width: 40,
+                                      padding: EdgeInsets.only(top: h / 68.4),
+                                      height: h / 17.1,
+                                      width: w / 32,
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(100)),
@@ -210,20 +221,24 @@ class Section1 extends StatelessWidget {
                                           "../../images/avatar3.png"),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(top: 8.0),
+                                      padding: EdgeInsets.only(top: h / 68.4),
                                       child: Text("10 M",
-                                          style: Get.theme.primaryTextTheme
-                                              .bodySmall!.copyWith(
-                                              fontSize: 16,
-                                              color: Get.theme.primaryColor)),
+                                          style: Get
+                                              .theme.primaryTextTheme.bodySmall!
+                                              .copyWith(
+                                                  fontSize: 16,
+                                                  color:
+                                                      Get.theme.primaryColor)),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(top: 8.0),
+                                      padding: EdgeInsets.only(top: h / 68.4),
                                       child: Text("Visitors",
-                                          style: Get.theme.primaryTextTheme
-                                               .bodySmall!.copyWith(
-                                              fontSize: 14,
-                                              color: Get.theme.primaryColor)),
+                                          style: Get
+                                              .theme.primaryTextTheme.bodySmall!
+                                              .copyWith(
+                                                  fontSize: 14,
+                                                  color:
+                                                      Get.theme.primaryColor)),
                                     ),
                                   ],
                                 ),

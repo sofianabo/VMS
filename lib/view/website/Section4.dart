@@ -6,10 +6,11 @@ class Section4 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return Container(
-      padding: EdgeInsets.only(bottom: 15.0),
-      width: Get.width/2,
-
+      padding: EdgeInsets.only(bottom: h / 45.6),
+      width: w / 2,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30), color: Color(0xffeaf0ff)),
       child: Column(
@@ -17,11 +18,12 @@ class Section4 extends StatelessWidget {
           Directionality(
               textDirection: TextDirection.ltr,
               child: Padding(
-                padding: const EdgeInsets.only(top: 18.0),
-                child: Text("Why Us?", style: Get.theme.primaryTextTheme.titleLarge),
+                padding: EdgeInsets.only(top: h / 38),
+                child: Text("Why Us?",
+                    style: Get.theme.primaryTextTheme.titleLarge),
               )),
-          const SizedBox(
-            height: 25,
+          SizedBox(
+            height: h / 27.36,
           ),
           Text(
               "Virtual Modern School is an online learning platform that helps students to learn the",
@@ -32,16 +34,16 @@ class Section4 extends StatelessWidget {
           Text(
               "for elementary school, middle school, and high school all in one place.",
               style: Get.theme.primaryTextTheme.bodySmall),
-          const SizedBox(
-            height: 20,
+          SizedBox(
+            height: h / 34.2,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Container(
-                padding: EdgeInsets.only(top: 10,bottom: 10.0),
-                height: 220,
-                width: 190,
+                padding: EdgeInsets.only(top: h / 68.4, bottom: h / 68.4),
+                height: h / 3.10909,
+                width: w / 6.736,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     color: Colors.white),
@@ -50,10 +52,10 @@ class Section4 extends StatelessWidget {
                   children: [
                     Image.asset(
                       "../../images/section4-image1.png",
-                      height: 90,
+                      height: h / 7.6,
                     ),
-                    const SizedBox(
-                      height: 10,
+                    SizedBox(
+                      height: h / 68.4,
                     ),
                     Text("Improving educational",
                         style: Get.theme.primaryTextTheme.bodySmall),
@@ -62,9 +64,9 @@ class Section4 extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(top: 10,bottom: 10.0),
-                height: 220,
-                width: 190,
+                padding: EdgeInsets.only(top: h / 68.4, bottom: h / 68.4),
+                height: h / 3.10909,
+                width: w / 6.736,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     color: Colors.white),
@@ -73,22 +75,21 @@ class Section4 extends StatelessWidget {
                   children: [
                     Image.asset(
                       "../../images/section4-image2.png",
-                      height: 90,
+                      height: h / 7.6,
                     ),
-                    const SizedBox(
-                      height: 10,
+                    SizedBox(
+                      height: h / 68.4,
                     ),
                     Text("Smart virtual",
                         style: Get.theme.primaryTextTheme.bodySmall),
-                    Text("meeting",
-                        style: Get.theme.primaryTextTheme.bodySmall)
+                    Text("meeting", style: Get.theme.primaryTextTheme.bodySmall)
                   ],
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(top: 10,bottom: 10.0),
-                height: 220,
-                width: 190,
+                padding: EdgeInsets.only(top: h / 68.4, bottom: h / 68.4),
+                height: h / 3.10909,
+                width: w / 6.736,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     color: Colors.white),
@@ -97,10 +98,10 @@ class Section4 extends StatelessWidget {
                   children: [
                     Image.asset(
                       "../../images/section4-image3.png",
-                      height: 90,
+                      height: h / 7.6,
                     ),
-                    const SizedBox(
-                      height: 10,
+                    SizedBox(
+                      height: h / 68.4,
                     ),
                     Text("Outstanding",
                         style: Get.theme.primaryTextTheme.bodySmall),
@@ -111,16 +112,16 @@ class Section4 extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(
-            height: 20,
+          SizedBox(
+            height: h / 34.2,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Container(
-                padding: EdgeInsets.only(top: 10,bottom: 10.0),
-                height: 220,
-                width: 190,
+                padding: EdgeInsets.only(top: h / 68.4, bottom: h / 68.4),
+                height: h / 3.10909,
+                width: w / 6.736,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     color: Colors.white),
@@ -129,22 +130,21 @@ class Section4 extends StatelessWidget {
                   children: [
                     Image.asset(
                       "../../images/section4-image4.png",
-                      height: 90,
+                      height: h / 7.6,
                     ),
-                    const SizedBox(
-                      height: 10,
+                    SizedBox(
+                      height: h / 68.4,
                     ),
                     Text("Instant live",
                         style: Get.theme.primaryTextTheme.bodySmall),
-                    Text("Lessons",
-                        style: Get.theme.primaryTextTheme.bodySmall)
+                    Text("Lessons", style: Get.theme.primaryTextTheme.bodySmall)
                   ],
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(top: 10,bottom: 10.0),
-                height: 220,
-                width: 190,
+                padding: EdgeInsets.only(top: h / 68.4, bottom: h / 68.4),
+                height: h / 3.10909,
+                width: w / 6.736,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     color: Colors.white),
@@ -153,10 +153,10 @@ class Section4 extends StatelessWidget {
                   children: [
                     Image.asset(
                       "../../images/section4-image5.png",
-                      height: 90,
+                      height: h / 7.6,
                     ),
-                    const SizedBox(
-                      height: 10,
+                    SizedBox(
+                      height: h / 68.4,
                     ),
                     Text("Focus on results",
                         style: Get.theme.primaryTextTheme.bodySmall)
@@ -164,9 +164,9 @@ class Section4 extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(top: 10,bottom: 10.0),
-                height: 220,
-                width: 190,
+                padding: EdgeInsets.only(top: h / 68.4, bottom: h / 68.4),
+                height: h / 3.10909,
+                width: w / 6.736,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     color: Colors.white),
@@ -175,15 +175,14 @@ class Section4 extends StatelessWidget {
                   children: [
                     Image.asset(
                       "../../images/section4-image6.png",
-                      height: 90,
+                      height: h / 7.6,
                     ),
-                    const SizedBox(
-                      height: 10,
+                    SizedBox(
+                      height: h / 68.4,
                     ),
                     Text("Multiple registration",
                         style: Get.theme.primaryTextTheme.bodySmall),
-                    Text("options",
-                        style: Get.theme.primaryTextTheme.bodySmall)
+                    Text("options", style: Get.theme.primaryTextTheme.bodySmall)
                   ],
                 ),
               ),

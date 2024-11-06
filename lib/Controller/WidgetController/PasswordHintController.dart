@@ -4,12 +4,12 @@ class PasswordHintController extends GetxController {
   bool isVisible = true;
 
   notHint() {
-    isVisible = false;
+    isVisible = true;
     update();
   }
 
   hint() {
-    isVisible = true;
+    isVisible = false;
     update();
   }
 }

@@ -8,14 +8,15 @@ class Section2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return Container(
-      margin: const EdgeInsets.only(top: 80),
+      margin:  EdgeInsets.only(top: h/8.55),
       child: Column(
         children: [
           Text("Who Can We Register At Virtual Modern School",
               style: Get.theme.primaryTextTheme.titleLarge!.copyWith(
                 fontSize: 24,
-
               )),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -23,7 +24,7 @@ class Section2 extends StatelessWidget {
               Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 18.0),
+                    padding: EdgeInsets.only(bottom: h / 38),
                     child: Row(
                       children: [
                         Column(
@@ -40,23 +41,26 @@ class Section2 extends StatelessWidget {
                                 style: Get.theme.primaryTextTheme.bodySmall),
                           ],
                         ),
-                        const SizedBox(
-                          width: 20,
+                        SizedBox(
+                          width: w / 64,
                         ),
                         Container(
-                          height: 30,
-                          width: 30,
+                          height: h / 22.8,
+                          width: w / 42.66,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(1000),
-                              color: const Color(0xff47ccaa),
+                            borderRadius: BorderRadius.circular(1000),
+                            color: const Color(0xff47ccaa),
                           ),
-                          child: Icon(Icons.emoji_emotions_outlined , color: Colors.white,),
+                          child: Icon(
+                            Icons.emoji_emotions_outlined,
+                            color: Colors.white,
+                          ),
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
+                  SizedBox(
+                    height: h / 34.2,
                   ),
                   Row(
                     children: [
@@ -80,12 +84,15 @@ class Section2 extends StatelessWidget {
                         width: 20,
                       ),
                       Container(
-                        height: 30,
-                        width: 30,
+                        height: h / 22.4,
+                        width: w / 42.66,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(1000),
                             color: const Color(0xff946ffb)),
-                        child: Icon(Icons.emoji_events_outlined , color: Colors.white,),
+                        child: Icon(
+                          Icons.emoji_events_outlined,
+                          color: Colors.white,
+                        ),
                       ),
                     ],
                   )
@@ -93,8 +100,8 @@ class Section2 extends StatelessWidget {
               ),
               Image.asset(
                 "../../images/section2-image1.png",
-                height: 450,
-                width: 500,
+                height: h / 1.52,
+                width: w / 2.56,
               )
             ],
           ),

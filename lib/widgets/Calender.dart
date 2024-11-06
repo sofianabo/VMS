@@ -6,12 +6,14 @@ import 'package:intl/intl.dart';
 class DatePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+      double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     final DatePickerController controller = Get.put(DatePickerController());
     return Center(
       child: Obx(
         () => Container(
-          width: 280,
-          height: 40,
+          width: w/4.57,
+          height: h/17.1,
           child: TextFormField(
             controller: TextEditingController(
               text: controller.selectedDate.value != null

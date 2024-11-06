@@ -13,8 +13,8 @@ class AppbarAdmin extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Container(
-        height: 100,
-        margin: const EdgeInsets.only(right: 60, left: 30),
+        height: 77,
+        margin: const EdgeInsets.only(right: 60, left: 30, top: 29),
         width: MediaQuery.of(context).size.width,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

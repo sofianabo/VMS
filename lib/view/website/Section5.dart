@@ -9,13 +9,16 @@ class Section5 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return Container(
-      margin:const EdgeInsets.only(top: 100),
+      margin: EdgeInsets.only(top: h / 6.84),
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 25.0),
-            child: Text("Who Are We", style: Get.theme.primaryTextTheme.titleLarge),
+            padding: EdgeInsets.only(bottom: h / 25),
+            child: Text("Who Are We",
+                style: Get.theme.primaryTextTheme.titleLarge),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -45,16 +48,16 @@ class Section5 extends StatelessWidget {
                         children: [
                           Image.asset(
                             "../../images/section5-image1.png",
-                            height: 400,
-                            width: 100,
+                            height: h / 1.71,
+                            width: w / 12.8,
                           ),
                           const SizedBox(
                             width: 50,
                           ),
                           Container(
-                            width: 800,
-                            height: 300,
-                            padding:const EdgeInsets.only(top: 30),
+                            width: w / 1.6,
+                            height: h / 2.28,
+                            padding: EdgeInsets.only(top: h / 22.8),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30),
                                 color: const Color(0xffeaf0ff)),
@@ -75,32 +78,31 @@ class Section5 extends StatelessWidget {
                                 Text("reflection",
                                     style:
                                         Get.theme.primaryTextTheme.bodySmall),
-                                const SizedBox(
-                                  height: 20,
+                                SizedBox(
+                                  height: h / 34.2,
                                 ),
                                 Image.asset(
                                   "../../images/section5-image3.png",
-                                  height: 100,
-                                  width: 100,
+                                  height: h / 6.84,
+                                  width: w / 12.8,
                                 ),
-                                const SizedBox(
-                                  height: 20,
+                                SizedBox(
+                                  height: h / 34.2,
                                 ),
-                                 Text("Virtual Modern School",
-                                    style:
-                                        Get.theme.primaryTextTheme.titleSmall!.copyWith(
-                                          color: Colors.black
-                                        ))
+                                Text("Virtual Modern School",
+                                    style: Get
+                                        .theme.primaryTextTheme.titleSmall!
+                                        .copyWith(color: Colors.black))
                               ],
                             ),
                           ),
-                          const SizedBox(
-                            width: 50,
+                          SizedBox(
+                            width: w / 25.6,
                           ),
                           Image.asset(
                             "../../images/section5-image2.png",
-                            height: 400,
-                            width: 100,
+                            height: h / 1.71,
+                            width: w / 12.8,
                           ),
                         ],
                       ),

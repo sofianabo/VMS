@@ -24,10 +24,12 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+        double w = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
-          width: Get.width,
+          width: w,
           child: const Column(
             children: [
               AppbarCustom(),

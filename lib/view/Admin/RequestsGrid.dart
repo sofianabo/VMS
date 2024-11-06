@@ -20,13 +20,15 @@ class RequestsGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return GridView.builder(
       padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           crossAxisSpacing: 20.0,
           mainAxisSpacing: 20.0,
-          childAspectRatio: 1.3),
+          childAspectRatio: (w / 20) / (h / 13)),
       itemCount: items.length, // عدد العناصر في الشبكة
       itemBuilder: (context, index) {
         return Container(

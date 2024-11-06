@@ -16,10 +16,12 @@ class DropDown extends StatelessWidget {
       required this.options});
   @override
   Widget build(BuildContext context) {
+      double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return GetBuilder<DropDownController>(builder: (cont) {
       return Container(
         width: width, //280
-        height: 45,
+        height: h/15.2,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
           border: Border.all(color: Colors.grey),

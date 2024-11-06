@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ButtonDialog extends StatelessWidget {
+  
   ButtonDialog(
       {super.key,
       required this.text,
@@ -15,9 +16,11 @@ class ButtonDialog extends StatelessWidget {
   String text;
   @override
   Widget build(BuildContext context) {
+     double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return Container(
-      width: 100,
-      height: 40,
+      width: w/12.8,
+      height: h/17.1,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
       child: MaterialButton(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),

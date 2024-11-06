@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LargeTextField extends StatelessWidget {
-  LargeTextField({super.key, required this.controller, required this.hinttext});
+class TextFieldAuth extends StatelessWidget {
+  TextFieldAuth({super.key, required this.controller, required this.hinttext});
   TextEditingController controller = TextEditingController();
   String hinttext = "";
   @override
@@ -12,22 +12,23 @@ class LargeTextField extends StatelessWidget {
        double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return Container(
+      color: Colors.white,
       margin:  EdgeInsets.only(top: h/136.8),
-      width: w/2.3703,
-      height: h/4.56,
+      width: w/2.56,
+      height: h/13.68,
       child: TextFormField(
         controller: controller,
         decoration: InputDecoration(
           hintText: hinttext,
           focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(5),
               borderSide:
                   BorderSide(color: Get.theme.colorScheme.primary, width: 2)),
           enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(5),
               borderSide: const BorderSide(color: Colors.grey)),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(5),
           ),
         ),
       ),
