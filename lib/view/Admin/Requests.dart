@@ -11,22 +11,26 @@ class Requests extends StatelessWidget {
   TextEditingController search = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return Container(
-      margin: const EdgeInsets.only(right: 100),
-      width: MediaQuery.of(context).size.width * 0.8,
+      margin: EdgeInsets.only(right: w / 12.8),
+      width: w * 0.8,
       child: Container(
-        margin: const EdgeInsets.only(top: 10),
+        margin: EdgeInsets.only(top: h / 68.4),
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 DropDown(
-                    title: "Status", width: 290, options: ['abbb', 'bfddfvd']),
+                    title: "Status",
+                    width: w / 4.4137,
+                    options: ['abbb', 'bfddfvd']),
                 DatePicker(),
                 SizedBox(
-                    width: 290,
-                    height: 40,
+                    width: w / 4.4137,
+                    height: h / 17.1,
                     child: TextFormSearch(
                       controller: search,
                       suffixIcon: Icons.search,
@@ -34,9 +38,10 @@ class Requests extends StatelessWidget {
               ],
             ),
             Container(
-              margin: const EdgeInsets.only(right: 20, left: 20, top: 20),
-              width: MediaQuery.of(context).size.width * 6,
-              height: MediaQuery.of(context).size.height * 0.63,
+              margin:
+                  EdgeInsets.only(right: w / 64, left: w / 64, top: h / 34.2),
+              width: w * 6,
+              height: h * 0.63,
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20),

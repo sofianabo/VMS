@@ -9,17 +9,17 @@ class ButtonsGrid extends StatelessWidget {
       {super.key,
       required this.text,
       required this.onPressed,
-      required this.color});
+      required this.color,required this.width,required this.height});
   final VoidCallback onPressed;
   Color color;
   String text;
+  double width;
+  double height;
   @override
   Widget build(BuildContext context) {
-      double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
     return Container(
-      width: w/9.846,
-      height: h/22.8,
+      width:width,//w / 9.846
+      height: height,// h / 22.8
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
       child: MaterialButton(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),

@@ -23,23 +23,25 @@ class RequestsGrid extends StatelessWidget {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return GridView.builder(
-      padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
+      padding: EdgeInsets.only(top: h / 34.2, left: w / 32, right: w / 32),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
-          crossAxisSpacing: 20.0,
-          mainAxisSpacing: 20.0,
-          childAspectRatio: (w / 20) / (h / 13)),
+          crossAxisSpacing: w / 64,
+          mainAxisSpacing: w / 64,
+          childAspectRatio: (h > 782 && w > 1033)
+              ? (w / 20) / (h / 12.5)
+              : (w / 20) / (h / 10)),
       itemCount: items.length, // عدد العناصر في الشبكة
       itemBuilder: (context, index) {
         return Container(
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.all(w / 100),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 border: Border.all(color: Colors.grey, width: 2),
                 color: Colors.white,
                 boxShadow: const [
                   BoxShadow(
-                      color: Colors.grey, offset: Offset(0, 10), blurRadius: 10)
+                      color: Colors.grey, offset: Offset(0, 3), blurRadius: 3)
                 ]),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -54,82 +56,117 @@ class RequestsGrid extends StatelessWidget {
                         style: Get.theme.primaryTextTheme.bodySmall)
                   ],
                 ),
-                Text("Name:", style: Get.theme.primaryTextTheme.bodySmall),
-                Text("Mobile:", style: Get.theme.primaryTextTheme.bodySmall),
-                Text("E-mail:", style: Get.theme.primaryTextTheme.bodySmall),
-                Text("National ID:",
-                    style: Get.theme.primaryTextTheme.bodySmall),
-                Text("Student Info:",
-                    style: Get.theme.primaryTextTheme.titleSmall),
-                Text("Name:", style: Get.theme.primaryTextTheme.bodySmall),
-                Text("Grade Level:",
-                    style: Get.theme.primaryTextTheme.bodySmall),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ButtonsGrid(
-                        text: "Manage",
-                        onPressed: () {
-                          Get.dialog(AlertDialog(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5)),
-                            backgroundColor: Colors.white,
-                            surfaceTintColor: Colors.white,
-                            title: Text(
-                              "Manage Student",
-                              style: Get.theme.primaryTextTheme.bodyLarge,
-                            ),
-                            content: SizedBox(
-                                width: 600,
-                                height: 120,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 15.0, right: 15),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          DropDown(
-                                            title: "Class",
-                                            width: 250,
-                                            options: [],
-                                          ),
-                                          DropDown(
-                                            title: "Division",
-                                            width: 250,
-                                            options: [],
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                )),
-                            actions: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  ButtonDialog(
-                                      text: "Reject",
-                                      onPressed: () {},
-                                      color: Colors.red),
-                                  Padding(padding: EdgeInsets.only(right: 20)),
-                                  ButtonDialog(
-                                      text: "Approve",
-                                      onPressed: () {},
-                                      color: Get.theme.colorScheme.primary)
-                                ],
-                              )
-                            ],
-                          ));
-                        },
-                        color: Get.theme.colorScheme.primary),
-                    Text("Pending",
-                        style:
-                            TextStyle(color: Get.theme.colorScheme.secondary))
-                  ],
+                Padding(
+                  padding: EdgeInsets.only(top: h / 136.8),
+                  child: Text("Name: Haitham Azzam",
+                      style: Get.theme.primaryTextTheme.bodySmall),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: h / 136.8),
+                  child: Text("Mobile: 0964213477",
+                      style: Get.theme.primaryTextTheme.bodySmall),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: h / 136.8),
+                  child: Text("E-mail: laithazzam@gmail.com",
+                      style: Get.theme.primaryTextTheme.bodySmall),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: h / 136.8),
+                  child: Text("National ID: 8746291876234",
+                      style: Get.theme.primaryTextTheme.bodySmall),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: h / 136.8),
+                  child: Text("Student Info:",
+                      style: Get.theme.primaryTextTheme.titleSmall),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: h / 136.8),
+                  child: Text("Name: Laith Azzam",
+                      style: Get.theme.primaryTextTheme.bodySmall),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: h / 136.8),
+                  child: Text("Grade Level: Bacholar",
+                      style: Get.theme.primaryTextTheme.bodySmall),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: h / 85.5),
+                  child: Row(
+                    children: [
+                      ButtonsGrid(
+                          text: "Manage",
+                          width: w / 7.5,
+                          height: h / 18,
+                          onPressed: () {
+                            Get.dialog(AlertDialog(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5)),
+                              backgroundColor: Colors.white,
+                              surfaceTintColor: Colors.white,
+                              title: Text(
+                                "Manage Student",
+                                style: Get.theme.primaryTextTheme.bodyLarge,
+                              ),
+                              content: SizedBox(
+                                  width: w / 2.1,
+                                  height: h / 5.2,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        left: w / 85.333, right: w / 85.333),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            DropDown(
+                                              title: "Class",
+                                              width: w / 5.12,
+                                              options: [],
+                                            ),
+                                            DropDown(
+                                              title: "Division",
+                                              width: w / 5.12,
+                                              options: [],
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  )),
+                              actions: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    ButtonDialog(
+                                        text: "Reject",
+                                        onPressed: () {},
+                                        color: Colors.red),
+                                    Padding(
+                                        padding:
+                                            EdgeInsets.only(right: w / 64)),
+                                    ButtonDialog(
+                                        text: "Approve",
+                                        onPressed: () {},
+                                        color: Get.theme.colorScheme.primary)
+                                  ],
+                                )
+                              ],
+                            ));
+                          },
+                          color: Get.theme.colorScheme.primary),
+                      Padding(
+                        padding: EdgeInsets.only(left: w / 128),
+                        child: Text("Pending",
+                            style: TextStyle(
+                                color: Get.theme.colorScheme.secondary)),
+                      )
+                    ],
+                  ),
                 )
               ],
             ));
