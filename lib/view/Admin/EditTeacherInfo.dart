@@ -145,7 +145,7 @@ EditTeacherDialog() {
                       children: [
                         Text("Birth Date",
                             style: Get.theme.primaryTextTheme.labelSmall),
-                        DatePicker()
+                        DatePicker(width: 210,)
                       ],
                     ),
                   ],
@@ -171,7 +171,7 @@ EditTeacherDialog() {
                       children: [
                         Text("Join Date",
                             style: Get.theme.primaryTextTheme.labelSmall),
-                        DatePicker()
+                        DatePicker(width: 210,)
                       ],
                     ),
                   ],

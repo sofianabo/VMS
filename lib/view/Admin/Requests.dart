@@ -25,16 +25,13 @@ class Requests extends StatelessWidget {
               children: [
                 DropDown(
                     title: "Status",
-                    width: w / 4.4137,
+                    width: w / 5,
                     options: ['abbb', 'bfddfvd']),
-                DatePicker(),
-                SizedBox(
-                    width: w / 4.4137,
-                    height: h / 17.1,
-                    child: TextFormSearch(
-                      controller: search,
-                      suffixIcon: Icons.search,
-                    ))
+                DatePicker(width:  w / 4.383,),
+                TextFormSearch(
+                  controller: search,
+                  suffixIcon: Icons.search,
+                )
               ],
             ),
             Container(

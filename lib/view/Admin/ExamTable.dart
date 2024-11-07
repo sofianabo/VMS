@@ -30,66 +30,76 @@ class ExamTable extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return Container(
       margin: const EdgeInsets.only(right: 100),
       width: MediaQuery.of(context).size.width * 0.8,
-      child: Container(
-        margin: const EdgeInsets.only(top: 10),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                DropDown(title: "Type", width: 200, options: ['advv', 'bnhn']),
-                DatePicker(),
-                DropDown(
-                    title: "Class", width: 200, options: ['adsds', 'bhgnhn']),
-                DropDown(
-                    title: "Curriculum Name",
-                    width: 200,
-                    options: ['dsva', 'gfnb']),
-              ],
-            ),
-            Container(
-              margin: const EdgeInsets.only(right: 20, left: 20, top: 20),
-              width: MediaQuery.of(context).size.width * 6,
-              height: MediaQuery.of(context).size.height * 0.63,
-              child: Container(
-                margin: const EdgeInsets.only(top: 20, left: 40),
-                width: Get.width,
-                child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: DataTable(
-                      border: TableBorder.all(
-                        color: Get.theme.primaryColor,
-                        width: 1.0,
-                      ),
-                      columns: [
-                        for (String key in tableData.first.keys)
-                          DataColumn(
-                            label: Text(key,
-                                style: Get.theme.primaryTextTheme.bodyMedium),
-                          ),
-                      ],
-                      rows: [
-                        for (Map<String, String> row in tableData)
-                          DataRow(
-                            cells: [
-                              for (String value in row.values)
-                                DataCell(
-                                  Text(value,
-                                      style:
-                                          Get.theme.primaryTextTheme.bodySmall),
-                                  onTap: () {},
-                                ),
-                            ],
-                          ),
-                      ],
-                    )),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              DropDown(
+                  title: "Type", width: w / 6.095, options: ['advv', 'bnhn']),
+              DatePicker(
+                width: w / 6.095,
               ),
+              DropDown(
+                  title: "Class",
+                  width: w / 6.095,
+                  options: ['adsds', 'bhgnhn']),
+              DropDown(
+                  title: "Curriculum Name",
+                  width: w / 6.095,
+                  options: ['dsva', 'gfnb']),
+              IconButton(
+                  onPressed: () {}, icon: const Icon(Icons.picture_as_pdf)),
+              IconButton(
+                  onPressed: () {}, icon: const Icon(Icons.picture_as_pdf)),
+            ],
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.63,
+            child: Container(
+              margin: const EdgeInsets.only(top: 20),
+              width: w,
+              child: SingleChildScrollView(
+                  child: DataTable(
+                headingRowColor:
+                    const WidgetStatePropertyAll(Color(0xffd4dfe5)),
+                border: TableBorder.all(
+                  color: Get.theme.primaryColor,
+                  width: 1.0,
+                ),
+                columns: [
+                  for (String key in tableData.first.keys)
+                    DataColumn(
+                      label: Text(key,
+                          style: Get.theme.primaryTextTheme.titleSmall),
+                    ),
+                ],
+                rows: [
+                  for (Map<String, String> row in tableData)
+                    DataRow(
+                      color: row.values == "Class"
+                          ? WidgetStatePropertyAll(Colors.blue)
+                          : WidgetStatePropertyAll(Colors.red),
+                      cells: [
+                        for (String value in row.values)
+                          DataCell(
+                            Text(value,
+                                style: Get.theme.primaryTextTheme.bodySmall),
+                            onTap: () {},
+                          ),
+                      ],
+                    ),
+                ],
+              )),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

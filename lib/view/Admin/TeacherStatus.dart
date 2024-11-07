@@ -22,7 +22,7 @@ class TeacherStatus extends StatelessWidget {
                 DropDown(title: "Status",width: 115,options: ['ddd','bfdb']),
                 DropDown(title: "Class",width: 115,options: ['fdb','gfn']),
                 DropDown(title: "Division",width: 115,options: ['asa','weg']),
-                DatePicker(),
+                DatePicker(width: 210,),
                 DropDown(title: "Teacher",width: 115,options: ['fgnfg','gfng']),
                 IconButton(onPressed: () {}, icon: const Icon(Icons.file_open)),
                 IconButton(

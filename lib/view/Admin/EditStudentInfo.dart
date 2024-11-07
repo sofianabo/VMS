@@ -101,7 +101,7 @@ EditStudentDialog() {
                       children: [
                         Text("Birth Date",
                             style: Get.theme.primaryTextTheme.labelSmall),
-                        DatePicker()
+                        DatePicker(width: 210,)
                       ],
                     ),
                     Column(

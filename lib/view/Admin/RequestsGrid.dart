@@ -88,7 +88,7 @@ class RequestsGrid extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: h / 136.8),
-                  child: Text("Grade Level: Bacholar",
+                  child: Text("Grade Level: Twelveth scientific grade",
                       style: Get.theme.primaryTextTheme.bodySmall),
                 ),
                 Padding(
@@ -105,13 +105,9 @@ class RequestsGrid extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(5)),
                               backgroundColor: Colors.white,
                               surfaceTintColor: Colors.white,
-                              title: Text(
-                                "Manage Student",
-                                style: Get.theme.primaryTextTheme.bodyLarge,
-                              ),
                               content: SizedBox(
-                                  width: w / 2.1,
-                                  height: h / 5.2,
+                                  width: w / 2.2,
+                                  height: h / 3,
                                   child: Padding(
                                     padding: EdgeInsets.only(
                                         left: w / 85.333, right: w / 85.333),
@@ -123,17 +119,49 @@ class RequestsGrid extends StatelessWidget {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            DropDown(
-                                              title: "Class",
-                                              width: w / 5.12,
-                                              options: [],
+                                            Text(
+                                              "Manage Student",
+                                              style: Get.theme.primaryTextTheme
+                                                  .bodyLarge,
                                             ),
-                                            DropDown(
-                                              title: "Division",
-                                              width: w / 5.12,
-                                              options: [],
+                                            IconButton(
+                                                onPressed: () {
+                                                  Get.back();
+                                                },
+                                                icon: const Icon(Icons
+                                                    .disabled_by_default_rounded))
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Manage Laith Azzam Student",
+                                              style: Get.theme.primaryTextTheme
+                                                  .bodyMedium,
                                             ),
                                           ],
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 50.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              DropDown(
+                                                title: "Class",
+                                                width: w / 5.12,
+                                                options: [],
+                                              ),
+                                              DropDown(
+                                                title: "Division",
+                                                width: w / 5.12,
+                                                options: [],
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -145,7 +173,7 @@ class RequestsGrid extends StatelessWidget {
                                     ButtonDialog(
                                         text: "Reject",
                                         onPressed: () {},
-                                        color: Colors.red),
+                                        color: Color(0xffb03d3d)),
                                     Padding(
                                         padding:
                                             EdgeInsets.only(right: w / 64)),

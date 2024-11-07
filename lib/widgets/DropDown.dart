@@ -16,12 +16,12 @@ class DropDown extends StatelessWidget {
       required this.options});
   @override
   Widget build(BuildContext context) {
-      double h = MediaQuery.of(context).size.height;
+    double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return GetBuilder<DropDownController>(builder: (cont) {
       return Container(
         width: width, //280
-        height: h/15.2,
+        height: 40,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
           border: Border.all(color: Colors.grey),
@@ -31,7 +31,7 @@ class DropDown extends StatelessWidget {
 
           underline: const Text(""),
           icon: const Icon(Icons.arrow_drop_down),
-          style: Get.theme.primaryTextTheme.bodySmall,
+          style: Get.theme.primaryTextTheme.titleMedium,
 
           onChanged: (newValue) {
             cont.selectval(newValue!);
@@ -40,7 +40,10 @@ class DropDown extends StatelessWidget {
             DropdownMenuItem<String>(
               value: "",
               enabled: false,
-              child: Text(title),
+              child: Text(
+                title,
+                style: Get.theme.primaryTextTheme.titleMedium,
+              ),
             ),
             ...cont.options.map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(

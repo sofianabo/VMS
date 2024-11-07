@@ -21,7 +21,7 @@ class EmployeeStatus extends StatelessWidget {
               children: [
                  DropDown(title: "Status",width: 115,options: ['asdvsd','bdfbfdb']),
                  DropDown(title: "job Title",width: 115,options: ['asdvsdv','hgngh']),
-                DatePicker(),
+                DatePicker(width: 210,),
                  DropDown(title: "Teacher",width: 115,options: ['asdsd','bewterg']),
                 IconButton(onPressed: () {}, icon: const Icon(Icons.file_open)),
                 IconButton(

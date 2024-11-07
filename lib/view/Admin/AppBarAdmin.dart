@@ -10,42 +10,105 @@ class AppbarAdmin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Container(
         height: 77,
         margin: const EdgeInsets.only(right: 60, left: 30, top: 29),
-        width: MediaQuery.of(context).size.width,
+        width: w,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             GetBuilder<AdminHomeContentController>(builder: (cont) {
               return Row(
                 children: [
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.logout)),
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.mode_night_outlined)),
-                  IconButton(
-                      onPressed: () {}, icon: const Icon(Icons.chat_bubble)),
                   Container(
-                    width: 150,
-                    decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Image.asset(
-                          "../../images/Home-Background2.png",
-                          height: 50,
-                          width: 50,
-                        ),
-                        Text(
-                          "Sofian",
-                          style: Get.theme.primaryTextTheme.bodySmall,
-                        )
-                      ],
+                      alignment: Alignment.center,
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: const Color(0xfff9f8fd),
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black38,
+                                offset: Offset(0, 3),
+                                blurRadius: 1)
+                          ]),
+                      child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.logout,
+                            size: 20,
+                          ))),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 5.0),
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: const Color(0xfff9f8fd),
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black38,
+                                offset: Offset(0, 3),
+                                blurRadius: 1)
+                          ]),
+                      child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.mode_night_outlined)),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 5.0),
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: const Color(0xfff9f8fd),
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black38,
+                                offset: Offset(0, 3),
+                                blurRadius: 1)
+                          ]),
+                      child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.chat_bubble)),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 5.0),
+                    child: Container(
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: const Color(0xfff9f8fd),
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black38,
+                                offset: Offset(0, 3),
+                                blurRadius: 1)
+                          ]),
+                      width: 150,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Image.asset(
+                            "../../images/Home-Background2.png",
+                            height: 50,
+                            width: 50,
+                          ),
+                          Text(
+                            "Laith Azzam",
+                            style: Get.theme.primaryTextTheme.bodySmall,
+                          )
+                        ],
+                      ),
                     ),
                   )
                 ],
