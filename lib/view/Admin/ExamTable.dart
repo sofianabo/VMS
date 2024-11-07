@@ -67,6 +67,8 @@ class ExamTable extends StatelessWidget {
               width: w,
               child: SingleChildScrollView(
                   child: DataTable(
+                dataRowColor: const WidgetStatePropertyAll(
+                    Color.fromARGB(255, 235, 224, 223)),
                 headingRowColor:
                     const WidgetStatePropertyAll(Color(0xffd4dfe5)),
                 border: TableBorder.all(
@@ -77,15 +79,17 @@ class ExamTable extends StatelessWidget {
                   for (String key in tableData.first.keys)
                     DataColumn(
                       label: Text(key,
-                          style: Get.theme.primaryTextTheme.titleSmall),
+                          style: key == "Class"
+                              ? Get.theme.primaryTextTheme.labelMedium
+                              : Get.theme.primaryTextTheme.displayMedium ),
                     ),
                 ],
                 rows: [
                   for (Map<String, String> row in tableData)
                     DataRow(
-                      color: row.values == "Class"
-                          ? WidgetStatePropertyAll(Colors.blue)
-                          : WidgetStatePropertyAll(Colors.red),
+                      // color: WidgetStatePropertyAll(
+                      //   row['Class'] == 'Value 1' ? Colors.blue : Colors.red,
+                      // ),
                       cells: [
                         for (String value in row.values)
                           DataCell(
