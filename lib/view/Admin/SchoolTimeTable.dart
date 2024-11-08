@@ -41,16 +41,31 @@ class SchoolTimeTable extends StatelessWidget {
         child: Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 DropDown(
-                    title: "Class", width: 280, options: ['adfbfdb', 'gfngfb']),
+                    title: "Class", width: 374, options: ['adfbfdb', 'gfngfb']),
                 DropDown(
                     title: "Division",
-                    width: 280,
+                    width: 374,
                     options: ['adssd', 'bngngfn']),
-                IconButton(onPressed: () {}, icon: Icon(Icons.picture_as_pdf)),
-                IconButton(onPressed: () {}, icon: Icon(Icons.picture_as_pdf))
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.picture_as_pdf,
+                          size: 30,
+                        )),
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.picture_as_pdf,
+                          size: 30,
+                        ))
+                  ],
+                )
               ],
             ),
             Container(

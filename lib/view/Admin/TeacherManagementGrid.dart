@@ -20,7 +20,6 @@ class TeacherManagementGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           crossAxisSpacing: 20.0,
@@ -45,13 +44,79 @@ class TeacherManagementGrid extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "Laith Azzam",
-                      style: Get.theme.primaryTextTheme.bodyMedium,
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: Colors.red[700]),
+                      child: Center(
+                          child: IconButton(
+                        onPressed: () {
+                          Get.dialog(AlertDialog(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                            backgroundColor: Colors.white,
+                            surfaceTintColor: Colors.white,
+                            title: Text(
+                              "Delete Teacher",
+                              style: Get.theme.primaryTextTheme.bodyLarge,
+                            ),
+                            content: SizedBox(
+                                width: 400,
+                                height: 40,
+                                child: Text(
+                                  "Do you want to delete Laith Azzam",
+                                  style: Get.theme.primaryTextTheme.bodySmall,
+                                )),
+                            actions: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  ButtonDialog(
+                                      text: "Delete",
+                                      onPressed: () {},
+                                      color: Colors.red),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  ButtonDialog(
+                                      text: "Cancel",
+                                      onPressed: () {},
+                                      color: Get.theme.colorScheme.primary),
+                                ],
+                              )
+                            ],
+                          ));
+                        },
+                        icon: const Icon(
+                          Icons.delete,
+                          size: 30,
+                        ),
+                        color: Colors.white,
+                      )),
                     ),
-                    Image.asset("../../images/Home-Background2.png",
-                        height: 70, width: 70)
+                    Image.asset("../../images/Rectangle66.png",
+                        height: 90, width: 90),
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: const Color(0xff19478d)),
+                      child: Center(
+                          child: IconButton(
+                        onPressed: () {
+                          EditTeacherDialog();
+                        },
+                        icon: const Icon(
+                          Icons.edit,
+                          size: 30,
+                        ),
+                        color: Colors.white,
+                      )),
+                    ),
                   ],
+                ),
+                Text(
+                  "Laith Haitham Azzam",
+                  style: Get.theme.primaryTextTheme.bodyMedium,
                 ),
                 Text(
                   "Full Time",
@@ -62,97 +127,13 @@ class TeacherManagementGrid extends StatelessWidget {
                   style: Get.theme.primaryTextTheme.displayMedium,
                 ),
                 Text(
-                  "Mobile:",
+                  "Mobile: 0932477659",
                   style: Get.theme.primaryTextTheme.bodySmall,
                 ),
                 Text(
-                  "E-mail:",
+                  "E-mail:LaithAzzam@gmail.com",
                   style: Get.theme.primaryTextTheme.bodySmall,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: Colors.red[700]),
-                        child: Center(
-                            child: IconButton(
-                          onPressed: () {
-                            Get.dialog(AlertDialog(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5)),
-                              backgroundColor: Colors.white,
-                              surfaceTintColor: Colors.white,
-                              title: Text(
-                                "Delete Teacher",
-                                style: Get.theme.primaryTextTheme.bodyLarge,
-                              ),
-                              content: SizedBox(
-                                  width: 400,
-                                  height: 40,
-                                  child: Text(
-                                    "Do you want to delete Laith Azzam",
-                                    style: Get.theme.primaryTextTheme.bodySmall,
-                                  )),
-                              actions: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                   ButtonDialog(text: "Delete", onPressed: (){}, color: Colors.red),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                   ButtonDialog(text: "Cancel", onPressed: (){}, color: Get.theme.colorScheme.primary),
-                                  ],
-                                )
-                              ],
-                            ));
-                          },
-                          icon: const Icon(Icons.delete),
-                          color: Colors.white,
-                        )),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: const Color(0xff19478d)),
-                        child: Center(
-                            child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.heart_broken),
-                          color: Colors.white,
-                        )),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: const Color(0xff19478d)),
-                        child: Center(
-                            child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.personal_injury_rounded),
-                          color: Colors.white,
-                        )),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: const Color(0xff19478d)),
-                        child: Center(
-                            child: IconButton(
-                          onPressed: () {
-                            EditTeacherDialog();
-                          },
-                          icon: const Icon(Icons.edit),
-                          color: Colors.white,
-                        )),
-                      ),
-                    ],
-                  ),
-                )
               ],
             ));
       },
