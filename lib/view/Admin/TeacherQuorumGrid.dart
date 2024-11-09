@@ -33,12 +33,12 @@ class TeacherQuorumGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
+      padding: const EdgeInsets.only(top: 20),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           crossAxisSpacing: 20.0,
           mainAxisSpacing: 20.0,
-          childAspectRatio: 1.6),
+          childAspectRatio: 2.1),
       itemCount: items.length,
       itemBuilder: (context, index) {
         return GestureDetector(
@@ -48,12 +48,19 @@ class TeacherQuorumGrid extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5)),
               backgroundColor: Colors.white,
               surfaceTintColor: Colors.white,
-              title: Text(
-                "Link Teacher to Curriculum",
-                style: Get.theme.primaryTextTheme.bodyLarge,
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Link Teacher to Curriculum",
+                    style: Get.theme.primaryTextTheme.bodyLarge,
+                  ),
+                  IconButton(
+                      onPressed: () {}, icon: Icon(Icons.highlight_remove))
+                ],
               ),
               content: SizedBox(
-                  width: 600,
+                  width: 565,
                   height: 120,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0, right: 15),
@@ -65,12 +72,12 @@ class TeacherQuorumGrid extends StatelessWidget {
                           children: [
                             DropDown(
                               title: "Class",
-                              width: 250,
+                              width: 235,
                               options: [],
                             ),
                             DropDown(
                               title: "Curriculum",
-                              width: 250,
+                              width: 243,
                               options: [],
                             ),
                           ],
@@ -83,6 +90,7 @@ class TeacherQuorumGrid extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ButtonDialog(
+                        width: 100,
                         text: "Save",
                         onPressed: () {},
                         color: Get.theme.colorScheme.primary)
@@ -95,13 +103,11 @@ class TeacherQuorumGrid extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  border: Border.all(color: Colors.grey, width: 2),
+                  border: Border.all(color: Colors.grey, width: 0.5),
                   color: Colors.white,
                   boxShadow: const [
                     BoxShadow(
-                        color: Colors.grey,
-                        offset: Offset(0, 10),
-                        blurRadius: 10)
+                        color: Colors.grey, offset: Offset(0, 3), blurRadius: 3)
                   ]),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -110,17 +116,30 @@ class TeacherQuorumGrid extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "Laith Azzam",
-                        style: Get.theme.primaryTextTheme.bodyMedium,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            "Laith Haitham \n Azzam",
+                            style: Get.theme.primaryTextTheme.bodyMedium,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 15.0),
+                            child: Text(
+                              "present",
+                              style: Get.theme.primaryTextTheme.displaySmall,
+                            ),
+                          ),
+                        ],
                       ),
                       Image.asset("../../images/Home-Background2.png",
-                          height: 70, width: 70)
+                          height: 97, width: 97)
                     ],
                   ),
                   Text(
-                    "present",
-                    style: Get.theme.primaryTextTheme.displaySmall,
+                    "Email: LaithAzzam@gmail.com",
+                    style: Get.theme.primaryTextTheme.bodySmall,
                   ),
                 ],
               )),

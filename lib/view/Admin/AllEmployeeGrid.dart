@@ -73,6 +73,7 @@ class AllEmployeeGrid extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   ButtonDialog(
+                                    width: 100,
                                       text: "Delete",
                                       color: Colors.red,
                                       onPressed: () {}),
@@ -80,6 +81,7 @@ class AllEmployeeGrid extends StatelessWidget {
                                     width: 10,
                                   ),
                                   ButtonDialog(
+                                    width: 100,
                                       text: "Cancel",
                                       color: Get.theme.colorScheme.primary,
                                       onPressed: () {

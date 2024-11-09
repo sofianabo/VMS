@@ -30,6 +30,7 @@ class AllEmployee extends StatelessWidget {
                     width: 750,
                     height: 40,
                     child: TextFormSearch(
+                      radius: 20,
                       controller: search,
                       suffixIcon: Icons.search,
                     )),
@@ -109,10 +110,15 @@ class AllEmployee extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                        DropDown(title: "Status",width: 115,options: ['a','b'],),
-                                      
-                                        DropDown(title: "Class",width: 115,options: ['acc','b']),
-                                      
+                                      DropDown(
+                                        title: "Status",
+                                        width: 115,
+                                        options: ['a', 'b'],
+                                      ),
+                                      DropDown(
+                                          title: "Class",
+                                          width: 115,
+                                          options: ['acc', 'b']),
                                     ],
                                   ),
                                 ),
@@ -123,6 +129,7 @@ class AllEmployee extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               ButtonDialog(
+                                  width: 100,
                                   text: "Add",
                                   color: Get.theme.colorScheme.primary,
                                   onPressed: () {})

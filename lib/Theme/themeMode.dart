@@ -48,20 +48,20 @@ class theme {
       // present & successful & full time
       displaySmall: TextStyle(
           fontFamily: "Sansation",
-          fontSize: 14,
-          fontWeight: FontWeight.w700,
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
           color: Colors.green),
       //Male
       displayMedium: TextStyle(
           fontFamily: "Sansation",
-          fontSize: 14,
-          fontWeight: FontWeight.w700,
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
           color: Color(0xff19478d)),
 //female
       displayLarge: TextStyle(
           fontFamily: "Sansation",
-          fontSize: 14,
-          fontWeight: FontWeight.w700,
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
           color: Color.fromARGB(255, 226, 37, 147)),
       // Main text in Home Screen
       labelLarge: TextStyle(

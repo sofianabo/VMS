@@ -31,12 +31,14 @@ class TeacherStatusGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
+      padding: const EdgeInsets.only(
+        top: 20,
+      ),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           crossAxisSpacing: 20.0,
           mainAxisSpacing: 20.0,
-          childAspectRatio: 1.6),
+          childAspectRatio: 2.1),
       itemCount: items.length,
       itemBuilder: (context, index) {
         return GestureDetector(
@@ -52,57 +54,73 @@ class TeacherStatusGrid extends StatelessWidget {
                 child: Column(
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              Get.back();
+                            },
+                            icon: Icon(Icons.highlight_remove_outlined)),
+                      ],
+                    ),
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Teacher Status",
+                          "Laith Azzam Teacher",
                           style: Get.theme.primaryTextTheme.bodyLarge,
                         ),
-                        Row(
-                          children: [
-                            IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.picture_as_pdf)),
-                            IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.picture_as_pdf))
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.only(right: 50.0),
+                          child: Row(
+                            children: [
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.picture_as_pdf)),
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.picture_as_pdf)),
+                            ],
+                          ),
                         ),
                       ],
                     ),
-                    SizedBox(
-                      width: Get.width,
-                      child: SingleChildScrollView(
-                          child: DataTable(
-                        border: TableBorder.all(
-                          color: Get.theme.primaryColor,
-                          width: 1.0,
-                        ),
-                        columns: [
-                          for (String key in tableData.first.keys)
-                            DataColumn(
-                              label: Text(
-                                key,
-                                style: Get.theme.primaryTextTheme.bodyMedium,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20.0),
+                      child: SizedBox(
+                        width: Get.width,
+                        child: SingleChildScrollView(
+                            child: DataTable(
+                          border: TableBorder.all(
+                            color: Get.theme.primaryColor,
+                            width: 1.0,
+                          ),
+                          columns: [
+                            for (String key in tableData.first.keys)
+                              DataColumn(
+                                label: Text(
+                                  key,
+                                  style: Get.theme.primaryTextTheme.bodyMedium,
+                                ),
                               ),
-                            ),
-                        ],
-                        rows: [
-                          for (Map<String, String> row in tableData)
-                            DataRow(
-                              cells: [
-                                for (String value in row.values)
-                                  DataCell(
-                                    Text(
-                                      value,
-                                      style:
-                                          Get.theme.primaryTextTheme.bodySmall,
+                          ],
+                          rows: [
+                            for (Map<String, String> row in tableData)
+                              DataRow(
+                                cells: [
+                                  for (String value in row.values)
+                                    DataCell(
+                                      Text(
+                                        value,
+                                        style: Get
+                                            .theme.primaryTextTheme.bodySmall,
+                                      ),
                                     ),
-                                  ),
-                              ],
-                            ),
-                        ],
-                      )),
+                                ],
+                              ),
+                          ],
+                        )),
+                      ),
                     ),
                   ],
                 ),
@@ -113,13 +131,11 @@ class TeacherStatusGrid extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  border: Border.all(color: Colors.grey, width: 2),
+                  border: Border.all(color: Colors.grey, width: 0.5),
                   color: Colors.white,
                   boxShadow: const [
                     BoxShadow(
-                        color: Colors.grey,
-                        offset: Offset(0, 10),
-                        blurRadius: 10)
+                        color: Colors.grey, offset: Offset(0, 3), blurRadius: 3)
                   ]),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -128,17 +144,30 @@ class TeacherStatusGrid extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "Laith Azzam",
-                        style: Get.theme.primaryTextTheme.bodyMedium,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            "Laith Haitham \n Azzam",
+                            style: Get.theme.primaryTextTheme.bodyMedium,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 15.0),
+                            child: Text(
+                              "present",
+                              style: Get.theme.primaryTextTheme.displaySmall,
+                            ),
+                          ),
+                        ],
                       ),
                       Image.asset("../../images/Home-Background2.png",
-                          height: 70, width: 70)
+                          height: 97, width: 97)
                     ],
                   ),
                   Text(
-                    "present",
-                    style: Get.theme.primaryTextTheme.displaySmall,
+                    "Email: LaithAzzam@gmail.com",
+                    style: Get.theme.primaryTextTheme.bodySmall,
                   ),
                 ],
               )),

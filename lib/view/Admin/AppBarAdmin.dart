@@ -129,7 +129,7 @@ class AppbarAdmin extends StatelessWidget {
                                       : cont.content == "All Guardians"
                                           ? "All Guardians"
                                           : cont.content == "Student Status"
-                                              ? "Students Status"
+                                              ? "Students Attendance"
                                               : cont.content == "All Employee"
                                                   ? "All Employees"
                                                   : cont.content ==
@@ -137,10 +137,10 @@ class AppbarAdmin extends StatelessWidget {
                                                       ? "Teachers Management"
                                                       : cont.content ==
                                                               "Teacher Status"
-                                                          ? "Teachers Status"
+                                                          ? "Teachers Attendance"
                                                           : cont.content ==
                                                                   "Employee Status"
-                                                              ? "Employees Status"
+                                                              ? "Employees Attendance"
                                                               : cont.content ==
                                                                       "Teacher Quorum"
                                                                   ? "Teacher Quorum"

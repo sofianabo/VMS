@@ -30,6 +30,7 @@ class AllGuardians extends StatelessWidget {
                     width: 700,
                     height: 40,
                     child: TextFormSearch(
+                      radius: 20,
                       controller: search,
                       suffixIcon: Icons.search,
                     )),
@@ -127,6 +128,7 @@ class AllGuardians extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               ButtonDialog(
+                                width: 100,
                                   text: "Add",
                                   onPressed: () {},
                                   color: Get.theme.colorScheme.primary)

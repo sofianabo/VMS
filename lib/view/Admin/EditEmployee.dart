@@ -541,6 +541,7 @@ EditEmployeeDialog() {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ButtonDialog(
+                      width: 100,
                         text: "Edit",
                         onPressed: () {},
                         color: Get.theme.colorScheme.primary)

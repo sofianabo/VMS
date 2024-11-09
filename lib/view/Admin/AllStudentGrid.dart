@@ -89,6 +89,7 @@ class AllStudentGrid extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     ButtonDialog(
+                                      width: 100,
                                         text: "Delete",
                                         onPressed: () {},
                                         color: Colors.red),
@@ -96,6 +97,7 @@ class AllStudentGrid extends StatelessWidget {
                                       width: 10,
                                     ),
                                     ButtonDialog(
+                                      width: 100,
                                         text: "Cancel",
                                         onPressed: () {
                                           Get.back();

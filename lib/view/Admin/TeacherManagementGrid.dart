@@ -24,30 +24,32 @@ class TeacherManagementGrid extends StatelessWidget {
           crossAxisCount: 3,
           crossAxisSpacing: 20.0,
           mainAxisSpacing: 20.0,
-          childAspectRatio: 1.1),
+          childAspectRatio: 4 / 3.5),
       itemCount: items.length, // عدد العناصر في الشبكة
       itemBuilder: (context, index) {
         return Container(
-            padding: const EdgeInsets.all(20),
+            padding:
+                const EdgeInsets.only(top: 10, left: 15, right: 15, bottom: 10),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
-                border: Border.all(color: Colors.grey, width: 2),
+                border: Border.all(color: Colors.grey, width: 0.5),
                 color: Colors.white,
                 boxShadow: const [
                   BoxShadow(
-                      color: Colors.grey, offset: Offset(0, 10), blurRadius: 10)
+                      color: Colors.grey, offset: Offset(0, 3), blurRadius: 3)
                 ]),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
-                          color: Colors.red[700]),
+                          color: const Color(0xffb03d3d)),
                       child: Center(
                           child: IconButton(
                         onPressed: () {
@@ -73,12 +75,14 @@ class TeacherManagementGrid extends StatelessWidget {
                                 children: [
                                   ButtonDialog(
                                       text: "Delete",
+                                      width: 100,
                                       onPressed: () {},
-                                      color: Colors.red),
+                                      color: Color(0xffb03d3d)),
                                   const SizedBox(
                                     width: 10,
                                   ),
                                   ButtonDialog(
+                                      width: 100,
                                       text: "Cancel",
                                       onPressed: () {},
                                       color: Get.theme.colorScheme.primary),

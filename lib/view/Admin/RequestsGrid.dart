@@ -171,6 +171,7 @@ class RequestsGrid extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     ButtonDialog(
+                                      width: 100,
                                         text: "Reject",
                                         onPressed: () {},
                                         color: Color(0xffb03d3d)),
@@ -178,6 +179,7 @@ class RequestsGrid extends StatelessWidget {
                                         padding:
                                             EdgeInsets.only(right: w / 64)),
                                     ButtonDialog(
+                                      width: 100,
                                         text: "Approve",
                                         onPressed: () {},
                                         color: Get.theme.colorScheme.primary)

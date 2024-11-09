@@ -134,6 +134,7 @@ class AllGuardianGrid extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   ButtonDialog(
+                                      width: 100,
                                       text: "Edit",
                                       onPressed: () {},
                                       color: Get.theme.colorScheme.primary)

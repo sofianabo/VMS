@@ -27,6 +27,7 @@ class AllStudent extends StatelessWidget {
                     width: 970,
                     height: 40,
                     child: TextFormSearch(
+                      radius: 20,
                       controller: search,
                       suffixIcon: Icons.search,
                     ))

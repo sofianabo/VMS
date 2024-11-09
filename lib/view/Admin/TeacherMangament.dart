@@ -14,6 +14,7 @@ class TeacherManagement extends StatelessWidget {
   TextEditingController username = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+  TextEditingController cPassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,6 +30,7 @@ class TeacherManagement extends StatelessWidget {
                 Container(
                   width: 900,
                   child: TextFormSearch(
+                    radius: 20,
                     controller: search,
                     suffixIcon: Icons.search,
                   ),
@@ -39,17 +41,32 @@ class TeacherManagement extends StatelessWidget {
                     IconButton(
                         onPressed: () {
                           Get.dialog(AlertDialog(
+                            title: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 20.0, right: 20),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Add Teacher",
+                                    style: Get.theme.primaryTextTheme.bodyLarge,
+                                  ),
+                                  const Icon(
+                                    Icons.highlight_remove_sharp,
+                                  ),
+                                ],
+                              ),
+                            ),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5)),
                             backgroundColor: Colors.white,
                             surfaceTintColor: Colors.white,
-                            title: Text(
-                              "Add Teacher",
-                              style: Get.theme.primaryTextTheme.bodyLarge,
-                            ),
-                            content: SizedBox(
-                                width: 600,
-                                height: 120,
+                            content: Container(
+                                margin: const EdgeInsets.only(
+                                    left: 20, right: 20, top: 10),
+                                width: 500,
+                                height: 160,
                                 child: Column(
                                   children: [
                                     Row(
@@ -65,9 +82,13 @@ class TeacherManagement extends StatelessWidget {
                                               style: Get.theme.primaryTextTheme
                                                   .labelSmall,
                                             ),
-                                            TextFieldDialog(
-                                                controller: username,
-                                                hinttext: "UserName")
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 5.0),
+                                              child: TextFieldDialog(
+                                                  controller: username,
+                                                  hinttext: "UserName"),
+                                            )
                                           ],
                                         ),
                                         Column(
@@ -79,32 +100,66 @@ class TeacherManagement extends StatelessWidget {
                                               style: Get.theme.primaryTextTheme
                                                   .labelSmall,
                                             ),
-                                            TextFieldDialog(
-                                                controller: email,
-                                                hinttext: "Email")
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 5.0),
+                                              child: TextFieldDialog(
+                                                  controller: email,
+                                                  hinttext: "Email"),
+                                            )
                                           ],
                                         ),
                                       ],
                                     ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "Password",
-                                              style: Get.theme.primaryTextTheme
-                                                  .labelSmall,
-                                            ),
-                                            TextFieldDialog(
-                                                controller: password,
-                                                hinttext: "Password")
-                                          ],
-                                        )
-                                      ],
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 20.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Password",
+                                                style: Get
+                                                    .theme
+                                                    .primaryTextTheme
+                                                    .labelSmall,
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 5.0),
+                                                child: TextFieldDialog(
+                                                    controller: password,
+                                                    hinttext: "Password"),
+                                              )
+                                            ],
+                                          ),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Confirm Password",
+                                                style: Get
+                                                    .theme
+                                                    .primaryTextTheme
+                                                    .labelSmall,
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 5.0),
+                                                child: TextFieldDialog(
+                                                    controller: cPassword,
+                                                    hinttext:
+                                                        "Confirm Password"),
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 )),
@@ -113,7 +168,8 @@ class TeacherManagement extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   ButtonDialog(
-                                      text: "Add",
+                                      width: 120,
+                                      text: "Add Teacher",
                                       onPressed: () {},
                                       color: Get.theme.colorScheme.primary)
                                 ],

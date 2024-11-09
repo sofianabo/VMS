@@ -29,6 +29,7 @@ class Requests extends StatelessWidget {
                     options: ['abbb', 'bfddfvd']),
                 DatePicker(width:  w / 4.383,),
                 TextFormSearch(
+                  radius: 5,
                   controller: search,
                   suffixIcon: Icons.search,
                 )

@@ -7,9 +7,9 @@ import 'package:get/get.dart';
 class TextFormSearch extends StatelessWidget {
   TextEditingController controller;
   IconData suffixIcon;
-
+  double radius;
   TextFormSearch(
-      {super.key, required this.controller, required this.suffixIcon});
+      {super.key, required this.controller, required this.suffixIcon,required this.radius});
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +28,14 @@ class TextFormSearch extends StatelessWidget {
               color: Get.theme.colorScheme.primary,
             ),
             focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
+                borderRadius: BorderRadius.circular(radius),
                 borderSide:
                     BorderSide(color: Get.theme.colorScheme.primary, width: 2)),
             enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
+                borderRadius: BorderRadius.circular(radius),
                 borderSide: const BorderSide(color: Colors.grey)),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5),
+              borderRadius: BorderRadius.circular(radius),
             ),
           )),
     );

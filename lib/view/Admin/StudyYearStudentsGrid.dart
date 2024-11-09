@@ -140,7 +140,9 @@ class StudyYearStudentGrid extends StatelessWidget {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    ButtonDialog(text: "Send", onPressed: (){}, color: Get.theme.colorScheme.primary)
+                                    ButtonDialog(
+                                      width: 100,
+                                      text: "Send", onPressed: (){}, color: Get.theme.colorScheme.primary)
                                   ],
                                 )
                               ],

@@ -43,7 +43,7 @@ EditTeacherDialog() {
       child: Container(
         margin: const EdgeInsets.only(bottom: 20),
         height: Get.height,
-        width: 600,
+        width: 554,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -76,8 +76,8 @@ EditTeacherDialog() {
                       children: [
                         Image.asset(
                           "../../images/Home-background2.png",
-                          height: 200,
-                          width: 200,
+                          height: 162,
+                          width: 162,
                         )
                       ],
                     ),
@@ -101,7 +101,7 @@ EditTeacherDialog() {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15, top: 10),
+                padding: const EdgeInsets.only(left: 15.0, right: 15, top: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -127,7 +127,7 @@ EditTeacherDialog() {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -145,14 +145,16 @@ EditTeacherDialog() {
                       children: [
                         Text("Birth Date",
                             style: Get.theme.primaryTextTheme.labelSmall),
-                        DatePicker(width: 210,)
+                        DatePicker(
+                          width: 240,
+                        )
                       ],
                     ),
                   ],
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -171,14 +173,16 @@ EditTeacherDialog() {
                       children: [
                         Text("Join Date",
                             style: Get.theme.primaryTextTheme.labelSmall),
-                        DatePicker(width: 210,)
+                        DatePicker(
+                          width: 240,
+                        )
                       ],
                     ),
                   ],
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15, top: 10),
+                padding: const EdgeInsets.only(left: 15.0, right: 15, top: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -205,7 +209,7 @@ EditTeacherDialog() {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15, top: 10),
+                padding: const EdgeInsets.only(left: 15.0, right: 15, top: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -230,7 +234,7 @@ EditTeacherDialog() {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15, top: 10),
+                padding: const EdgeInsets.only(left: 15.0, right: 15, top: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -255,39 +259,45 @@ EditTeacherDialog() {
                 ),
               ),
               Padding(
-                padding:  EdgeInsets.only(left: 15, right: 15, top: 10),
+                padding: EdgeInsets.only(left: 15, right: 15, top: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                                            DropDown(title: "Gender",width: 280,options: ['dda','dd']),
-
-                        DropDown(title: "Family Status",width: 280,options: ['dfdsa','bhgmgh']),
+                    DropDown(
+                        title: "Gender", width: 240, options: ['dda', 'dd']),
+                    DropDown(
+                        title: "Family Status",
+                        width: 240,
+                        options: ['dfdsa', 'bhgmgh']),
                   ],
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                                            DropDown(title: "Contract Type",width: 280,options: ['fbdfba','bdfb']),
-
+                    DropDown(
+                        title: "Contract Type",
+                        width: 240,
+                        options: ['fbdfba', 'bdfb']),
                     Container(
-                      width: 220,
+                      width: 240,
                       height: 40,
+                      alignment: Alignment.center,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         color: Colors.white,
                         border: Border.all(color: Colors.grey),
                         boxShadow: const [
                           BoxShadow(
-                              color: Colors.grey,
-                              offset: Offset(3, 3),
-                              blurRadius: 20,
-                              spreadRadius: 1),
+                            color: Colors.grey,
+                            offset: Offset(0, 3),
+                            blurRadius: 4,
+                          ),
                         ],
                       ),
-                      child: Text("Illness",
+                      child: Text("illness",
                           style: Get.theme.primaryTextTheme.labelSmall),
                     ),
                   ],
@@ -304,7 +314,7 @@ EditTeacherDialog() {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -330,7 +340,7 @@ EditTeacherDialog() {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -366,7 +376,7 @@ EditTeacherDialog() {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -393,7 +403,7 @@ EditTeacherDialog() {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -421,7 +431,7 @@ EditTeacherDialog() {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -438,7 +448,7 @@ EditTeacherDialog() {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -452,7 +462,7 @@ EditTeacherDialog() {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
                 child: Row(
                   children: [
                     Column(
@@ -469,7 +479,7 @@ EditTeacherDialog() {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -487,7 +497,7 @@ EditTeacherDialog() {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -504,7 +514,7 @@ EditTeacherDialog() {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
                 child: Row(
                   children: [
                     Column(
@@ -519,11 +529,12 @@ EditTeacherDialog() {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(right: 15, top: 10),
+                padding: EdgeInsets.only(right: 15, top: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ButtonDialog(
+                        width: 100,
                         text: "Edit",
                         onPressed: () {},
                         color: Get.theme.colorScheme.primary)
