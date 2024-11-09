@@ -1,13 +1,13 @@
 // ignore_for_file: file_names, must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:getx/Bindings/AdminContentBinding.dart';
 import 'package:getx/Theme/themeController.dart';
 import 'package:getx/view/Admin/AdminHome.dart';
 import 'package:getx/widgets/AuthButton.dart';
 import 'package:getx/widgets/TextFieldAuth.dart';
-import 'package:getx/widgets/TextFormSearch.dart';
 import 'package:getx/widgets/TextFieldPassword.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -39,7 +39,8 @@ class LoginScreen extends StatelessWidget {
                     "../../images/logo2.png",
                     height: h / 6.84,
                     width: w / 3.42,
-                  ),
+                  ).animate(onPlay: (controller) => controller.repeat()).shimmer(duration: Duration(seconds: 4),color: Colors.white.withOpacity(0.8))
+
                 ),
               ],
             ),
@@ -57,7 +58,18 @@ class LoginScreen extends StatelessWidget {
                           "../../images/section5-image2.png",
                           height: h / 1.9,
                           width: w / 6.095,
-                        )
+                        ).animate(onPlay: (controller) => controller.repeat())
+                            .moveY(
+                          begin: 1,
+                            end: 30,
+                            duration: Duration(seconds: 2),
+                            delay: Duration(milliseconds: 1)
+                  ,).then().moveY(
+                begin: 30,
+                end: 1,
+                duration: Duration(seconds: 2),
+                delay: Duration(milliseconds: 1)
+                ,)
                       ],
                     ),
                     Center(
@@ -75,7 +87,7 @@ class LoginScreen extends StatelessWidget {
                                       MainAxisAlignment.spaceAround,
                                   children: [
                                     Text(
-                                      "UserName",
+                                      "Username",
                                       style:
                                           Get.theme.primaryTextTheme.labelSmall,
                                     ),
@@ -83,7 +95,7 @@ class LoginScreen extends StatelessWidget {
                                       padding: const EdgeInsets.only(top: 5.0),
                                       child: TextFieldAuth(
                                         controller: username,
-                                        hinttext: "UserName",
+                                        hinttext: "Username",
                                       ),
                                     )
                                   ],
@@ -119,7 +131,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                      ),
+                      ).animate().fadeIn(duration: Duration(seconds: 1)),
                     ),
                     Column(
                       children: [
@@ -127,7 +139,18 @@ class LoginScreen extends StatelessWidget {
                           "../../images/section5-image1.png",
                           width: w / 5.845,
                           height: h / 1.814,
-                        )
+                        ) .animate(onPlay: (controller) => controller.repeat())
+                            .moveY(
+                          begin: 30,
+                          end: 1,
+                          duration: Duration(seconds: 2),
+                          delay: Duration(milliseconds: 1)
+                          ,).then().moveY(
+                          begin: 1,
+                          end: 30,
+                          duration: Duration(seconds: 2),
+                          delay: Duration(milliseconds: 1)
+                          ,)
                       ],
                     ),
                   ],
@@ -139,7 +162,7 @@ class LoginScreen extends StatelessWidget {
                 Get.to(() => AdminHome(), binding: AdminContentBinding());
               },
               text: "Login",
-            )
+            ).animate().fadeIn(duration: Duration(seconds: 1))
           ],
         ),
       ),

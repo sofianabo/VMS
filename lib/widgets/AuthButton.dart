@@ -26,11 +26,15 @@ class ButtonAuth extends StatelessWidget {
                   Text(
                     text,
                     style: Get.theme.primaryTextTheme.headlineSmall!
-                        .copyWith(fontSize: 20),
+                        .copyWith(fontSize: 15),
                   ),
-                  Icon(
-                    Icons.login,
-                    color: Colors.white,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0 , right: 8.0),
+                    child: Icon(
+                      Icons.login,
+                      color: Colors.white,
+                      size: 17,
+                    ),
                   ),
                 ],
               )),

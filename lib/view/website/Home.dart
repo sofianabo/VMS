@@ -1,4 +1,3 @@
-// ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,9 +21,11 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   localeController loc = Get.put(localeController(), permanent: true);
 
+
+
   @override
   Widget build(BuildContext context) {
-        double w = MediaQuery.of(context).size.width;
+    double w = MediaQuery.of(context).size.width;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -32,14 +33,14 @@ class _HomeState extends State<Home> {
           width: w,
           child: const Column(
             children: [
-              AppbarCustom(),
-              Section1(),
-              Section2(),
-              Section3(),
-              Section4(),
-              Section5(),
-              Section6(),
-              Section7()
+               AppbarCustom(),
+               Section1(),
+               Section2(),
+               Section3(),
+               Section4(),
+               Section5(),
+               Section6(),
+               Section7(),
             ],
           ),
         ),

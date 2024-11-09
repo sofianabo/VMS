@@ -29,12 +29,23 @@ class TextFormPassword extends StatelessWidget {
           obscureText: pass.isVisible,
           decoration: InputDecoration(
             hintText: hinttext,
-            suffixIcon: IconButton(
-              onPressed: () {
-                pass.isVisible ? pass.hint() : pass.notHint();
-              },
-              icon: Icon(
-                  pass.isVisible ? Icons.visibility : Icons.visibility_off),
+            hintStyle: TextStyle(
+                fontSize: 12,
+                color: Colors.grey
+            ),
+            suffixIcon: Padding(
+              padding: const EdgeInsets.only(left: 12.0 , right: 12.0),
+              child: IconButton(
+                onPressed: () {
+                  pass.isVisible ? pass.hint() : pass.notHint();
+                },
+                icon:  pass.isVisible ? Icon(
+                  Icons.visibility_off ,
+                  color: Colors.grey,
+                ) : Icon(Icons.visibility,
+                  color: Colors.grey,
+                ),
+              ),
             ),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),
