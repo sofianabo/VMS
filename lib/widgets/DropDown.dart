@@ -16,10 +16,10 @@ class DropDown extends StatelessWidget {
       required this.options});
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
     return GetBuilder<DropDownController>(builder: (cont) {
       return Container(
+        padding: EdgeInsets.all(6.0),
+        alignment: Alignment.centerLeft,
         width: width, //280
         height: 40,
         decoration: BoxDecoration(
@@ -27,11 +27,24 @@ class DropDown extends StatelessWidget {
           border: Border.all(color: Colors.grey),
         ),
         child: DropdownButton<String>(
+          focusColor: Colors.white,
+          dropdownColor: Colors.white,
+          iconDisabledColor: Colors.grey,
+          iconEnabledColor: Colors.black,
           value: cont.selectedIndex,
 
           underline: const Text(""),
-          icon: const Icon(Icons.arrow_drop_down),
-          style: Get.theme.primaryTextTheme.titleMedium,
+          icon: Expanded(
+            child: Row(
+              children: [
+                Spacer(),
+                const Icon(Icons.arrow_drop_down),
+              ],
+            ),
+          ),
+          style: Get.theme.primaryTextTheme.titleMedium!.copyWith(
+             fontSize: 16
+          ),
 
           onChanged: (newValue) {
             cont.selectval(newValue!);
@@ -42,7 +55,9 @@ class DropDown extends StatelessWidget {
               enabled: false,
               child: Text(
                 title,
-                style: Get.theme.primaryTextTheme.titleMedium,
+                style: Get.theme.primaryTextTheme.titleMedium!.copyWith(
+                     fontSize: 16
+                ),
               ),
             ),
             ...cont.options.map<DropdownMenuItem<String>>((String value) {
@@ -50,15 +65,15 @@ class DropDown extends StatelessWidget {
                 value: value,
                 child: Text(
                   value,
-                  style: Get.theme.primaryTextTheme.bodySmall,
+                  style: Get.theme.primaryTextTheme.titleMedium!.copyWith(
+                       fontSize: 16
+                  ),
                 ),
               );
             }).toList(),
           ],
 
           borderRadius: BorderRadius.circular(3),
-          padding: const EdgeInsets.symmetric(
-              horizontal: 16.0, vertical: 12.0), // إضافة بعض المسافة
         ),
       );
     });

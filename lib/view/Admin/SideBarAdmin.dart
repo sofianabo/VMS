@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/Controller/AdminController/AdminHomeContentController.dart';
+import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
 
 class SideBarAdmin extends StatelessWidget {
   SideBarAdmin({super.key});
@@ -20,28 +21,33 @@ class SideBarAdmin extends StatelessWidget {
           child: GetBuilder<AdminHomeContentController>(builder: (cont) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
                     onPressed: () {},
                     icon: const Icon(
-                      Icons.dashboard,
-                      size: 25,
+                      VMS_Icons.a1,
+                      size: 18,
+                      color: Colors.white,
                     )),
                 IconButton(
                   onPressed: () {
                     cont.updateContent("enroll requests");
                   },
-                  icon: const Icon(
-                    Icons.request_page,
-                    size: 25,
-                  ),
+                    icon: const Icon(
+                      VMS_Icons.a2,
+                      color: Colors.white,
+                      size: 18,
+
+                    )
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: h / 68.4),
                   child: PopupMenuButton(
                     child: const Icon(
-                      Icons.table_chart,
-                      size: 25,
+                      VMS_Icons.a3,
+                      color: Colors.white,
+                      size: 18,
                     ),
                     onSelected: (value) {
                       if (value == "Exam Table") {
@@ -70,8 +76,9 @@ class SideBarAdmin extends StatelessWidget {
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
                     child: const Icon(
-                      Icons.table_chart,
-                      size: 25,
+                      VMS_Icons.a4,
+                      color: Colors.white,
+                      size: 18,
                     ),
                     onSelected: (value) {
                       if (value == "All Students") {
@@ -116,8 +123,9 @@ class SideBarAdmin extends StatelessWidget {
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
                     child: const Icon(
-                      Icons.table_chart,
-                      size: 25,
+                      VMS_Icons.a5,
+                      color: Colors.white,
+                      size: 16,
                     ),
                     onSelected: (value) {
                       if (value == "Teacher Management") {
@@ -154,8 +162,9 @@ class SideBarAdmin extends StatelessWidget {
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
                     child: const Icon(
-                      Icons.table_chart,
-                      size: 25,
+                      VMS_Icons.a6,
+                      color: Colors.white,
+                      size: 20,
                     ),
                     onSelected: (value) {
                       if (value == "All Employee") {
@@ -184,8 +193,9 @@ class SideBarAdmin extends StatelessWidget {
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
                       child: Icon(
-                        Icons.table_chart,
-                        size: 25,
+                        VMS_Icons.a7,
+                      color: Colors.white,
+                        size: 20,
                       ),
                       itemBuilder: (BuildContext context) {
                         return <PopupMenuEntry<String>>[];
@@ -195,8 +205,9 @@ class SideBarAdmin extends StatelessWidget {
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
                       child: const Icon(
-                        Icons.table_chart,
-                        size: 25,
+                        VMS_Icons.a8,
+                      color: Colors.white,
+                        size: 20,
                       ),
                       itemBuilder: (BuildContext context) {
                         return <PopupMenuEntry<String>>[];

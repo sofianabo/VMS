@@ -2,9 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
 import 'package:getx/widgets/ButtonsDialog.dart';
 import 'package:getx/widgets/ButtonsGrid.dart';
 import 'package:getx/widgets/DropDown.dart';
+import 'package:getx/widgets/VMSAlertDialog.dart';
 
 class RequestsGrid extends StatelessWidget {
   List<String> items = [
@@ -100,86 +102,52 @@ class RequestsGrid extends StatelessWidget {
                           width: w / 7.5,
                           height: h / 18,
                           onPressed: () {
-                            Get.dialog(AlertDialog(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5)),
-                              backgroundColor: Colors.white,
-                              surfaceTintColor: Colors.white,
-                              content: SizedBox(
-                                  width: w / 2.2,
-                                  height: h / 3,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                        left: w / 85.333, right: w / 85.333),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "Manage Student",
-                                              style: Get.theme.primaryTextTheme
-                                                  .bodyLarge,
-                                            ),
-                                            IconButton(
-                                                onPressed: () {
-                                                  Get.back();
-                                                },
-                                                icon: const Icon(Icons
-                                                    .disabled_by_default_rounded))
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "Manage Laith Azzam Student",
-                                              style: Get.theme.primaryTextTheme
-                                                  .bodyMedium,
-                                            ),
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 50.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              DropDown(
-                                                title: "Class",
-                                                width: w / 5.12,
-                                                options: [],
-                                              ),
-                                              DropDown(
-                                                title: "Division",
-                                                width: w / 5.12,
-                                                options: [],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )),
-                              actions: [
+
+                            Get.dialog(
+                                VMSAlertDialog(
+                                  apptitle: "Manage Student",
+                                  subtitle: "Manage Laith Azzam Student",
+
+                              contents: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      DropDown(
+                                        title: "Class",
+                                        width: w / 5.12,
+                                        options: [],
+                                      ),
+                                      SizedBox(
+                                        width: 20.0,
+                                      ),
+                                      DropDown(
+                                        title: "Division",
+                                        width: w / 5.12,
+                                        options: [],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                                  action: [
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     ButtonDialog(
-                                      width: 100,
+                                        width: 100,
                                         text: "Reject",
                                         onPressed: () {},
                                         color: Color(0xffb03d3d)),
                                     Padding(
                                         padding:
-                                            EdgeInsets.only(right: w / 64)),
+                                        EdgeInsets.only(right: w / 64)),
                                     ButtonDialog(
-                                      width: 100,
+                                        width: 100,
                                         text: "Approve",
                                         onPressed: () {},
                                         color: Get.theme.colorScheme.primary)

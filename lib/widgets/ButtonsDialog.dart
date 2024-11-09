@@ -27,7 +27,9 @@ class ButtonDialog extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           onPressed: onPressed,
           color: color,
-          child: Text(text, style: Get.theme.primaryTextTheme.headlineSmall)),
+          child: Text(text, style: Get.theme.primaryTextTheme.headlineSmall!.copyWith(
+            fontFamily: "Cairo"
+          ))),
     );
   }
 }

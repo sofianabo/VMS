@@ -3,14 +3,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/widgets/DropDown.dart';
+import 'package:getx/widgets/Switcher.dart';
 
-class AppbarCustom extends StatelessWidget {
+class AppbarCustom extends StatefulWidget {
   const AppbarCustom({super.key});
+
+  @override
+  State<AppbarCustom> createState() => _AppbarCustomState();
+}
+
+class _AppbarCustomState extends State<AppbarCustom> {
+  bool isArabic = true;
 
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
+
     return Container(
       height: h / 6.84,
       margin: EdgeInsets.only(right: w / 21.33, left: w / 42.66),
@@ -20,10 +29,13 @@ class AppbarCustom extends StatelessWidget {
         children: [
           Row(
             children: [
-              DropDown(
-                  title: "Select Language",
-                  width: w / 7.11,
-                  options: ['en', 'ar']),
+               Row(
+                 children: [
+                   LanguageSwitcher(onLanguageToggle: (bool ) {
+                     print(bool);
+                   },)
+                 ],
+               ),
               Container(
                 width: w / 15.8,
                 height: h / 28.5,

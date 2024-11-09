@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:getx/Controller/AdminController/AdminHomeContentController.dart';
+import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
 
 class AppbarAdmin extends StatelessWidget {
   const AppbarAdmin({super.key});
 
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return Directionality(
       textDirection: TextDirection.rtl,
@@ -29,19 +29,26 @@ class AppbarAdmin extends StatelessWidget {
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                          color: const Color(0xfff9f8fd),
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(5),
                           boxShadow: const [
                             BoxShadow(
-                                color: Colors.black38,
-                                offset: Offset(0, 3),
+                                color: Colors.black12,
+                                offset:  Offset(0, 2),
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
+                          style: ButtonStyle(
+
+                              shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(5))
+                              ))
+                          ),
                           onPressed: () {},
-                          icon: const Icon(
-                            Icons.logout,
-                            size: 20,
+                          icon:  Icon(
+                            Icons.logout_rounded,
+                           size: 18,
+                            color: Get.theme.primaryColor,
                           ))),
                   Padding(
                     padding: const EdgeInsets.only(right: 5.0),
@@ -49,17 +56,26 @@ class AppbarAdmin extends StatelessWidget {
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                          color: const Color(0xfff9f8fd),
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(5),
                           boxShadow: const [
                             BoxShadow(
-                                color: Colors.black38,
-                                offset: Offset(0, 3),
+                                color: Colors.black12,
+                                offset:  Offset(0, 2),
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
+                          style: ButtonStyle(
+
+                              shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(5))
+                              ))
+                          ),
                           onPressed: () {},
-                          icon: const Icon(Icons.mode_night_outlined)),
+                          icon:  Icon(VMS_Icons.moon,
+                           size: 18,
+                              color:Get.theme.primaryColor
+                          )),
                     ),
                   ),
                   Padding(
@@ -68,17 +84,27 @@ class AppbarAdmin extends StatelessWidget {
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                          color: const Color(0xfff9f8fd),
+                          color:  Colors.white,
                           borderRadius: BorderRadius.circular(5),
                           boxShadow: const [
                             BoxShadow(
-                                color: Colors.black38,
-                                offset: Offset(0, 3),
+                                color: Colors.black12,
+                                offset:  Offset(0, 2),
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
+                        style: ButtonStyle(
+
+                          shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5))
+                          ))
+                        ),
                           onPressed: () {},
-                          icon: const Icon(Icons.chat_bubble)),
+                          icon:  Icon(Icons.notifications_none_outlined
+                          ,
+                             size: 18,
+                              color:Get.theme.primaryColor
+                          )),
                     ),
                   ),
                   Padding(
@@ -86,15 +112,15 @@ class AppbarAdmin extends StatelessWidget {
                     child: Container(
                       height: 40,
                       decoration: BoxDecoration(
-                          color: const Color(0xfff9f8fd),
+                          color:  Colors.white,
                           borderRadius: BorderRadius.circular(5),
                           boxShadow: const [
                             BoxShadow(
-                                color: Colors.black38,
-                                offset: Offset(0, 3),
+                                color: Colors.black12,
+                                offset:  Offset(0, 2),
                                 blurRadius: 1)
                           ]),
-                      width: 150,
+                      width: 200,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -104,7 +130,7 @@ class AppbarAdmin extends StatelessWidget {
                             width: 50,
                           ),
                           Text(
-                            "Laith Azzam",
+                            "Laith Haitham Azzam",
                             style: Get.theme.primaryTextTheme.bodySmall,
                           )
                         ],

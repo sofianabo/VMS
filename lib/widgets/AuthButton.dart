@@ -11,15 +11,17 @@ class ButtonAuth extends StatelessWidget {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return Container(
-      height: h / 10.532,
-      width: w / 4.671,
-      decoration: BoxDecoration(
-          color: Get.theme.colorScheme.primary,
-          borderRadius: BorderRadius.circular(10)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           MaterialButton(
+            color: Get.theme.primaryColor,
+            height: 60,
+              minWidth: 200,
+              splashColor:Get.theme.primaryColor,
+             shape: RoundedRectangleBorder(
+                 borderRadius: BorderRadius.circular(5),
+             ),
               onPressed: onpressed,
               child: Row(
                 children: [

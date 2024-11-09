@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
 import 'package:getx/widgets/DropDown.dart';
 
 class SchoolTimeTable extends StatelessWidget {
@@ -31,90 +32,192 @@ class SchoolTimeTable extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
-    return Container(
-      margin: const EdgeInsets.only(right: 100),
-      width: MediaQuery.of(context).size.width * 0.8,
-      child: Container(
-        margin: const EdgeInsets.only(top: 10),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                DropDown(
-                    title: "Class", width: 374, options: ['adfbfdb', 'gfngfb']),
-                DropDown(
+    double w = MediaQuery.of(context).size.width*0.9;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Container(
+          alignment: Alignment.center,
+          width: MediaQuery.of(context).size.width*0.9,
+          child: Row(
+            children: [
+              DropDown(
+                  title: "Class", width: Get.width/4, options: ['adfbfdb', 'gfngfb']),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0 , right: 10.0),
+                child: DropDown(
                     title: "Division",
-                    width: 374,
+                    width: Get.width/4,
                     options: ['adssd', 'bngngfn']),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+              ),
+              Spacer(),
+              Container(
+                width: Get.width/4,
+                child: Row(
                   children: [
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.picture_as_pdf,
-                          size: 30,
-                        )),
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.picture_as_pdf,
-                          size: 30,
-                        ))
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10.0),
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color:  Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset:  Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(5))
+                                ))
+                            ),
+                            onPressed: () {},
+                            icon:  Icon(
+                               VMS_Icons.xl
+                                ,
+                                size: 18,
+                                color:Get.theme.primaryColor
+                            )),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10.0),
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color:  Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset:  Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+
+                                shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(5))
+                                ))
+                            ),
+                            onPressed: () {},
+                            icon:  Icon(
+                                VMS_Icons.pdf
+                                ,
+                                size: 18,
+                                color:Get.theme.primaryColor
+                            )),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+        Container(
+          width: MediaQuery.of(context).size.width*0.8,
+          child: Container(
+            margin: const EdgeInsets.only(top: 20),
+            width: w,
+            child: SingleChildScrollView(
+                child:   Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Table(
+                      border: TableBorder.all(color: Get.theme.primaryColor),
+                      children: [
+                        TableRow(
+                          children: [
+                            Container(
+                              height: 50,
+                              alignment: Alignment.center,
+                              color: Color(0xffD4DFE5),
+                              child: Center(
+                                child: Text(
+                                  'Day',
+                                  style: Get.theme.textTheme.titleLarge!.copyWith(
+                                    color: Get.theme.primaryColor,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            ...tableData[0].keys
+                                .where((key) => key != 'Day')
+                                .map((key) => Container(
+                              height: 50,
+                              alignment: Alignment.center,
+                              color: Color(0xffD4DFE5),
+                              child: Center(
+                                child: Text(
+                                  textAlign: TextAlign.center,
+                                  key,
+                                  style: Get.theme.textTheme.titleLarge!.copyWith(
+                                    fontSize: 14,
+                                    color: Get.theme.primaryColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ))
+                                .toList(),
+                          ],
+                        ),
+
+                        for (var row in tableData)
+                          TableRow(
+                            children: [
+                              Container(
+                                alignment: Alignment.center,
+                                height: 50,
+                                color: Color(0xffD4DFE5),
+                                child: Center(
+                                  child: Text(
+                                    row['Day'] ?? '',
+                                    style:  Get.theme.textTheme.titleLarge!.copyWith(
+                                      fontSize: 14,
+                                      color: Get.theme.primaryColor,
+                                      fontWeight: FontWeight.bold,
+                                    )
+                                  ),
+                                ),
+                              ),
+                              ...row.entries
+                                  .where((entry) => entry.key != 'Day')
+                                  .map((entry) => Container(
+                                alignment: Alignment.center,
+                                height: 50,
+                                    child: Text(
+                                      textAlign: TextAlign.center,
+                                      entry.value,
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                  ))
+                                  .toList(),
+                            ],
+                          ),
+                      ],
+                    ),
                   ],
                 )
-              ],
+
+                              ],
+                )
             ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.63,
-              child: Container(
-                margin: const EdgeInsets.only(top: 20),
-                width: w,
-                child: SingleChildScrollView(
-                    child: DataTable(
-                  dataRowColor: const WidgetStatePropertyAll(
-                      Color.fromARGB(255, 235, 224, 223)),
-                  headingRowColor:
-                      const WidgetStatePropertyAll(Color(0xffd4dfe5)),
-                  border: TableBorder.all(
-                    color: Get.theme.primaryColor,
-                    width: 1.0,
-                  ),
-                  columns: [
-                    for (String key in tableData.first.keys)
-                      DataColumn(
-                        label: Text(key,
-                            style: key == "Day"
-                                ? Get.theme.primaryTextTheme.labelMedium
-                                : Get.theme.primaryTextTheme.displayMedium),
-                      ),
-                  ],
-                  rows: [
-                    for (Map<String, String> row in tableData)
-                      DataRow(
-                        // color: WidgetStatePropertyAll(
-                        //   row['Class'] == 'Value 1' ? Colors.blue : Colors.red,
-                        // ),
-                        cells: [
-                          for (String value in row.values)
-                            DataCell(
-                              Text(value,
-                                  style: Get.theme.primaryTextTheme.bodySmall),
-                              onTap: () {},
-                            ),
-                        ],
-                      ),
-                  ],
-                )),
-              ),
-            ),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }
