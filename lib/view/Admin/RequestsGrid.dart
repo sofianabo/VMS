@@ -9,166 +9,130 @@ import 'package:getx/widgets/DropDown.dart';
 import 'package:getx/widgets/VMSAlertDialog.dart';
 
 class RequestsGrid extends StatelessWidget {
-  List<String> items = [
-    'Item 1',
-    'Item 2',
-    'Item 3',
-    'Item 4',
-    'Item 5',
-    'Item 6'
-  ];
 
   RequestsGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
-    return GridView.builder(
-      padding: EdgeInsets.only(top: h / 34.2, left: w / 32, right: w / 32),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+     return
+    Container(
+      padding: EdgeInsets.only(left: 30.0 , right: 30.0),
+      child: GridView.builder(
+        shrinkWrap: true,
+          itemCount: 8,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
-          crossAxisSpacing: w / 64,
-          mainAxisSpacing: w / 64,
-          childAspectRatio: (h > 782 && w > 1033)
-              ? (w / 20) / (h / 12.5)
-              : (w / 20) / (h / 10)),
-      itemCount: items.length, // عدد العناصر في الشبكة
-      itemBuilder: (context, index) {
-        return Container(
-            padding: EdgeInsets.all(w / 100),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                border: Border.all(color: Colors.grey, width: 2),
-                color: Colors.white,
-                boxShadow: const [
-                  BoxShadow(
-                      color: Colors.grey, offset: Offset(0, 3), blurRadius: 3)
-                ]),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisSpacing: 25.0,
+          mainAxisSpacing: 25.0,
+          childAspectRatio: 1.3,
+        ),
+        itemBuilder: (context, index) {
+          return
+            Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.grey,width: 0.2),
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  boxShadow: const [
+                    BoxShadow(
+                        color: Colors.black12,
+                        offset:  Offset(0, 2),
+                        blurRadius: 1)
+                  ]
+              ),
+              child: Padding(
+                padding:const EdgeInsets.only(left: 8.0 , right: 8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Guardian Info :",
-                        style: Get.theme.primaryTextTheme.titleSmall),
-                    Text("2024-10-16",
-                        style: Get.theme.primaryTextTheme.bodySmall)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("Guardian Info:",style: Get.theme.primaryTextTheme.titleSmall!.copyWith(
+                            fontWeight: FontWeight.normal
+                          ),),
+                          Text("2024/1/13"),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5.0),
+                      child: Text("Name : Haitham Azzam",style: Get.theme.primaryTextTheme.titleSmall!.copyWith(
+                        color: Colors.black,
+                          fontWeight: FontWeight.normal
+                      ),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5.0),
+                      child: Text("Mobile: 0936119623",style: Get.theme.primaryTextTheme.titleSmall!.copyWith(
+                          color: Colors.black,
+                          fontWeight: FontWeight.normal
+                      ),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5.0),
+                      child: Text("Email: baraamarwan2005@gmail.com",style: Get.theme.primaryTextTheme.titleSmall!.copyWith(
+                          color: Colors.black,
+                          fontWeight: FontWeight.normal
+                      ),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5.0),
+                      child: Text("National ID: 130200192929",style: Get.theme.primaryTextTheme.titleSmall!.copyWith(
+                          color: Colors.black,
+                          fontWeight: FontWeight.normal
+                      ),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5.0),
+                      child: Text("Student Info:",style: Get.theme.primaryTextTheme.titleSmall!.copyWith(
+                      
+                          fontWeight: FontWeight.normal
+                      ),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5.0),
+                      child: Text("Name : Laith Azzam",style: Get.theme.primaryTextTheme.titleSmall!.copyWith(
+                          color: Colors.black,
+                          fontWeight: FontWeight.normal
+                      ),),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5.0 , bottom: 15.0),
+                      child: Text("Grade Level: Twelveth scientific grade",style: Get.theme.primaryTextTheme.titleSmall!.copyWith(
+                          color: Colors.black,
+                          fontWeight: FontWeight.normal
+                      ),),
+                    ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        ButtonsGrid(
+                          color: Get.theme.primaryColor,
+                          width: 100 ,
+                          height: 40,
+                          text: "Manage",
+                          onPressed: (){},
+                        ),
+                        Text("Pending",style: Get.theme.primaryTextTheme.titleSmall!.copyWith(
+                            color: Color(0xff779DB6),
+                            fontWeight: FontWeight.normal
+                        ),),
+                      ],
+                    )
                   ],
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: h / 136.8),
-                  child: Text("Name: Haitham Azzam",
-                      style: Get.theme.primaryTextTheme.bodySmall),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: h / 136.8),
-                  child: Text("Mobile: 0964213477",
-                      style: Get.theme.primaryTextTheme.bodySmall),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: h / 136.8),
-                  child: Text("E-mail: laithazzam@gmail.com",
-                      style: Get.theme.primaryTextTheme.bodySmall),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: h / 136.8),
-                  child: Text("National ID: 8746291876234",
-                      style: Get.theme.primaryTextTheme.bodySmall),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: h / 136.8),
-                  child: Text("Student Info:",
-                      style: Get.theme.primaryTextTheme.titleSmall),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: h / 136.8),
-                  child: Text("Name: Laith Azzam",
-                      style: Get.theme.primaryTextTheme.bodySmall),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: h / 136.8),
-                  child: Text("Grade Level: Twelveth scientific grade",
-                      style: Get.theme.primaryTextTheme.bodySmall),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: h / 85.5),
-                  child: Row(
-                    children: [
-                      ButtonsGrid(
-                          text: "Manage",
-                          width: w / 7.5,
-                          height: h / 18,
-                          onPressed: () {
-
-                            Get.dialog(
-                                VMSAlertDialog(
-                                  apptitle: "Manage Student",
-                                  subtitle: "Manage Laith Azzam Student",
-
-                              contents: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      DropDown(
-                                        title: "Class",
-                                        width: w / 5.12,
-                                        options: [],
-                                      ),
-                                      SizedBox(
-                                        width: 20.0,
-                                      ),
-                                      DropDown(
-                                        title: "Division",
-                                        width: w / 5.12,
-                                        options: [],
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                                  action: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    ButtonDialog(
-                                        width: 100,
-                                        text: "Reject",
-                                        onPressed: () {},
-                                        color: Color(0xffb03d3d)),
-                                    Padding(
-                                        padding:
-                                        EdgeInsets.only(right: w / 64)),
-                                    ButtonDialog(
-                                        width: 100,
-                                        text: "Approve",
-                                        onPressed: () {},
-                                        color: Get.theme.colorScheme.primary)
-                                  ],
-                                )
-                              ],
-                            ));
-                          },
-                          color: Get.theme.colorScheme.primary),
-                      Padding(
-                        padding: EdgeInsets.only(left: w / 128),
-                        child: Text("Pending",
-                            style: TextStyle(
-                                color: Get.theme.colorScheme.secondary)),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ));
-      },
+              ),
+            );
+        },
+      ),
     );
   }
 }
+
+

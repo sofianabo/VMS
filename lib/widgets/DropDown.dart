@@ -20,7 +20,7 @@ class DropDown extends StatelessWidget {
       return Container(
         padding: EdgeInsets.all(6.0),
         alignment: Alignment.centerLeft,
-        width: width, //280
+        width: width,
         height: 40,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
@@ -43,7 +43,7 @@ class DropDown extends StatelessWidget {
             ),
           ),
           style: Get.theme.primaryTextTheme.titleMedium!.copyWith(
-             fontSize: 16
+             fontSize: 14
           ),
 
           onChanged: (newValue) {
@@ -56,7 +56,7 @@ class DropDown extends StatelessWidget {
               child: Text(
                 title,
                 style: Get.theme.primaryTextTheme.titleMedium!.copyWith(
-                     fontSize: 16
+                     fontSize: 14
                 ),
               ),
             ),
@@ -66,7 +66,7 @@ class DropDown extends StatelessWidget {
                 child: Text(
                   value,
                   style: Get.theme.primaryTextTheme.titleMedium!.copyWith(
-                       fontSize: 16
+                       fontSize: 14
                   ),
                 ),
               );

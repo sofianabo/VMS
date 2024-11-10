@@ -8,7 +8,8 @@ class theme {
   static ThemeData lighttheme = ThemeData(
     canvasColor: Colors.white,
     colorScheme: const ColorScheme.light(
-        primary: Color(0xff19478d), secondary: Color(0xff7c9fb9)),
+        primary: Color(0xff19478d),
+        secondary: Color(0xff7c9fb9)),
     fontFamily: "Cairo",
     primaryTextTheme: const TextTheme(
       //normal Text & table cells & second title in dialog
@@ -37,7 +38,6 @@ class theme {
           fontSize: 16),
       // Roll & other info in dialog or grid & Home Section appbar && signin in home screen
       titleSmall: TextStyle(
-
           fontFamily: "Cairo",
           color: Color(0xff19478d),
           fontWeight: FontWeight.bold,

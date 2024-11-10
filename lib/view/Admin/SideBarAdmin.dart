@@ -13,11 +13,12 @@ class SideBarAdmin extends StatelessWidget {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return Stack(
+        alignment: Alignment.center,
       children: [
         Image.asset("../../images/sidebarAdmin.png",
             height: h > 635 ? h / 1.2 : h / 1.25),
         Container(
-          margin: EdgeInsets.only(top: h / 6.84, left: w / 64),
+          alignment: Alignment.center,
           child: GetBuilder<AdminHomeContentController>(builder: (cont) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.center,

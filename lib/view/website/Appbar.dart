@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx/view/Admin/SchoolTimeTable.dart';
 import 'package:getx/widgets/DropDown.dart';
 import 'package:getx/widgets/Switcher.dart';
 
@@ -51,7 +52,8 @@ class _AppbarCustomState extends State<AppbarCustom> {
                 width: w / 15.8,
                 height: h / 28.5,
                 child: MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                  },
                   child: Text(
                     "Courses",
                     style: Get.theme.primaryTextTheme.titleSmall,

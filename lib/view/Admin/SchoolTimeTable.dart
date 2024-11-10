@@ -32,61 +32,56 @@ class SchoolTimeTable extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    double w = MediaQuery.of(context).size.width*0.9;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Container(
-          alignment: Alignment.center,
-          width: MediaQuery.of(context).size.width*0.9,
-          child: Row(
-            children: [
-              DropDown(
-                  title: "Class", width: Get.width/4, options: ['adfbfdb', 'gfngfb']),
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0 , right: 10.0),
-                child: DropDown(
-                    title: "Division",
-                    width: Get.width/4,
-                    options: ['adssd', 'bngngfn']),
-              ),
-              Spacer(),
-              Container(
-                width: Get.width/4,
-                child: Row(
+    return Padding(
+      padding: const EdgeInsets.only(top: 38.0 , right: 25.0 , left: 25.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            width: Get.width*0.9,
+            child: Row(
+              children: [
+                DropDown(
+                    title: "Class", width: Get.width/4, options: ['adfbfdb', 'gfngfb']),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0 , right: 10.0),
+                  child: DropDown(
+                      title: "Division",
+                      width: Get.width/4,
+                      options: ['adssd', 'bngngfn']),
+                ),
+                Spacer(),
+                Row(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10.0),
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            color:  Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Colors.black12,
-                                  offset:  Offset(0, 2),
-                                  blurRadius: 1)
-                            ]),
-                        child: IconButton(
-                            style: ButtonStyle(
-                                shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(5))
-                                ))
-                            ),
-                            onPressed: () {},
-                            icon:  Icon(
-                               VMS_Icons.xl
-                                ,
-                                size: 18,
-                                color:Get.theme.primaryColor
-                            )),
-                      ),
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color:  Colors.white,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black12,
+                                offset:  Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: IconButton(
+                          style: ButtonStyle(
+                              shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(5))
+                              ))
+                          ),
+                          onPressed: () {},
+                          icon:  Icon(
+                             VMS_Icons.xl
+                              ,
+                              size: 18,
+                              color:Get.theme.primaryColor
+                          )),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 10.0),
+                      padding: const EdgeInsets.only(right: 10.0,left: 10.0),
                       child: Container(
                         width: 40,
                         height: 40,
@@ -116,16 +111,13 @@ class SchoolTimeTable extends StatelessWidget {
                       ),
                     ),
                   ],
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
-        ),
-        Container(
-          width: MediaQuery.of(context).size.width*0.8,
-          child: Container(
+          Container(
             margin: const EdgeInsets.only(top: 20),
-            width: w,
+            width: Get.width*0.9,
             child: SingleChildScrollView(
                 child:   Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -211,13 +203,12 @@ class SchoolTimeTable extends StatelessWidget {
                     ),
                   ],
                 )
-
-                              ],
+                  ],
                 )
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

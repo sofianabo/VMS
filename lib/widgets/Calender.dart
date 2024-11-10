@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/Controller/WidgetController/DateControler.dart';
+import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
 import 'package:intl/intl.dart';
 
 class DatePicker extends StatelessWidget {
@@ -12,14 +13,13 @@ DatePicker(
      });
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
+
     final DatePickerController controller = Get.put(DatePickerController());
     return Center(
       child: Obx(
         () => Container(
           width:width,
-          height: h / 17.1,
+          height: 40,
           alignment: Alignment.center,
           child: TextFormField(
             controller: TextEditingController(
@@ -32,7 +32,9 @@ DatePicker(
             onTap: () => controller.selectDate(context),
             decoration: InputDecoration(
               hintText: "Select Date",
-              hintStyle: Get.theme.primaryTextTheme.titleMedium,
+              hintStyle: Get.theme.primaryTextTheme.titleMedium!.copyWith(
+                fontSize: 14
+              ),
               focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5),
                   borderSide: BorderSide(
@@ -44,7 +46,7 @@ DatePicker(
                 borderRadius: BorderRadius.circular(5),
               ),
               suffixIcon: IconButton(
-                icon: Icon(Icons.calendar_today),
+                icon: Icon(VMS_Icons.calender,color: Get.theme.primaryColor, size: 16,),
                 onPressed: () => controller.selectDate(context),
               ),
             ),

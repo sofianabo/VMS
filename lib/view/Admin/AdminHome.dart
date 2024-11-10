@@ -29,43 +29,43 @@ class AdminHome extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const AppbarAdmin(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SideBarAdmin(),
-              GetBuilder<AdminHomeContentController>(builder: (cont) {
-                return cont.content == "enroll requests"
-                    ? Requests()
-                    : cont.content == "Exam Table"
-                        ? ExamTable()
-                        : cont.content == "School Time Table"
-                            ? SchoolTimeTable()
-                            : cont.content == "All Students"
-                                ? AllStudent()
-                                : cont.content == "Study Year Students"
-                                    ? const StudyTearStudents()
-                                    : cont.content == "All Guardians"
-                                        ? AllGuardians()
-                                        : cont.content == "Student Status"
-                                            ? const StudentStatus()
-                                            : cont.content ==
-                                                    "Teacher Management"
-                                                ? TeacherManagement()
-                                                : cont.content ==
-                                                        "Teacher Status"
-                                                    ? const TeacherStatus()
-                                                    : cont.content ==
-                                                            "All Employee"
-                                                        ? AllEmployee()
-                                                        : cont.content ==
-                                                                "Employee Status"
-                                                            ? const EmployeeStatus()
-                                                            : cont.content ==
-                                                                    "Teacher Quorum"
-                                                                ? TeacherQuorum()
-                                                                : Container();
-              })
-            ],
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SideBarAdmin(),
+                GetBuilder<AdminHomeContentController>(builder: (cont) {
+                  switch (cont.content) {
+                    case "enroll requests":
+                      return Requests();
+                    case "Exam Table":
+                      return ExamTable();
+                    case "School Time Table":
+                      return SchoolTimeTable();
+                    case "All Students":
+                      return AllStudent();
+                    case "Study Year Students":
+                      return const StudyTearStudents();
+                    case "All Guardians":
+                      return AllGuardians();
+                    case "Student Status":
+                      return const StudentStatus();
+                    case "Teacher Management":
+                      return TeacherManagement();
+                    case "Teacher Status":
+                      return const TeacherStatus();
+                    case "All Employee":
+                      return AllEmployee();
+                    case "Employee Status":
+                      return const EmployeeStatus();
+                    case "Teacher Quorum":
+                      return TeacherQuorum();
+                    default:
+                      return Container();
+                  }
+                })
+              ],
+            ),
           ),
           // Container(
           //   width: Get.width,

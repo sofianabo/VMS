@@ -17,7 +17,7 @@ class TextFormSearch extends StatelessWidget {
     double w = MediaQuery.of(context).size.width;
     return Container(
       width: w / 4.4137,
-      height: h / 17.1,
+      height: 40,
       child: TextFormField(
           controller: controller,
           decoration: InputDecoration(
