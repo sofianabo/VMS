@@ -3,8 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
-import 'package:getx/Controller/AdminController/AdminHomeContentController.dart';
+import 'package:getx/Link/Controller/AdminController/AdminHomeContentController.dart';
 import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
+import 'package:getx/Link/Controller/UserController.dart';
 
 class AppbarAdmin extends StatelessWidget {
   const AppbarAdmin({super.key});
@@ -34,20 +35,19 @@ class AppbarAdmin extends StatelessWidget {
                           boxShadow: const [
                             BoxShadow(
                                 color: Colors.black12,
-                                offset:  Offset(0, 2),
+                                offset: Offset(0, 2),
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
                           style: ButtonStyle(
-
-                              shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(5))
-                              ))
-                          ),
+                              shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5))))),
                           onPressed: () {},
-                          icon:  Icon(
+                          icon: Icon(
                             Icons.logout_rounded,
-                           size: 18,
+                            size: 18,
                             color: Get.theme.primaryColor,
                           ))),
                   Padding(
@@ -61,21 +61,18 @@ class AppbarAdmin extends StatelessWidget {
                           boxShadow: const [
                             BoxShadow(
                                 color: Colors.black12,
-                                offset:  Offset(0, 2),
+                                offset: Offset(0, 2),
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
                           style: ButtonStyle(
-
-                              shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(5))
-                              ))
-                          ),
+                              shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5))))),
                           onPressed: () {},
-                          icon:  Icon(VMS_Icons.moon,
-                           size: 18,
-                              color:Get.theme.primaryColor
-                          )),
+                          icon: Icon(VMS_Icons.moon,
+                              size: 18, color: Get.theme.primaryColor)),
                     ),
                   ),
                   Padding(
@@ -84,27 +81,23 @@ class AppbarAdmin extends StatelessWidget {
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                          color:  Colors.white,
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(5),
                           boxShadow: const [
                             BoxShadow(
                                 color: Colors.black12,
-                                offset:  Offset(0, 2),
+                                offset: Offset(0, 2),
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                        style: ButtonStyle(
-
-                          shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(5))
-                          ))
-                        ),
+                          style: ButtonStyle(
+                              shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5))))),
                           onPressed: () {},
-                          icon:  Icon(Icons.notifications_none_outlined
-                          ,
-                             size: 18,
-                              color:Get.theme.primaryColor
-                          )),
+                          icon: Icon(Icons.notifications_none_outlined,
+                              size: 18, color: Get.theme.primaryColor)),
                     ),
                   ),
                   Padding(
@@ -112,12 +105,12 @@ class AppbarAdmin extends StatelessWidget {
                     child: Container(
                       height: 40,
                       decoration: BoxDecoration(
-                          color:  Colors.white,
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(5),
                           boxShadow: const [
                             BoxShadow(
                                 color: Colors.black12,
-                                offset:  Offset(0, 2),
+                                offset: Offset(0, 2),
                                 blurRadius: 1)
                           ]),
                       width: 200,
@@ -129,10 +122,12 @@ class AppbarAdmin extends StatelessWidget {
                             height: 50,
                             width: 50,
                           ),
-                          Text(
-                            "Laith Haitham Azzam",
-                            style: Get.theme.primaryTextTheme.bodySmall,
-                          )
+                          GetBuilder<UserController>(builder: (control) {
+                            return Text(
+                              "${control.roll}",
+                              style: Get.theme.primaryTextTheme.bodySmall,
+                            );
+                          })
                         ],
                       ),
                     ),

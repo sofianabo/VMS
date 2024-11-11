@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx/Link/API/HomeScreenApI.dart';
 import 'package:getx/Translate/local_controller.dart';
 import 'package:getx/view/website/Appbar.dart';
 import 'package:getx/view/website/Section1.dart';
@@ -21,26 +21,24 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   localeController loc = Get.put(localeController(), permanent: true);
 
-
-
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
-
+    Homescreenapi(context).homescreen();
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
           width: w,
           child: const Column(
             children: [
-               AppbarCustom(),
-               Section1(),
-               Section2(),
-               Section3(),
-               Section4(),
-               Section5(),
-               Section6(),
-               Section7(),
+              AppbarCustom(),
+              Section1(),
+              Section2(),
+              Section3(),
+              Section4(),
+              Section5(),
+              Section6(),
+              Section7(),
             ],
           ),
         ),

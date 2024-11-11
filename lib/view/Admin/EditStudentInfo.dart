@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Controller/WidgetController/CheckBoxController.dart';
+import 'package:getx/Link/Controller/WidgetController/CheckBoxController.dart';
 import 'package:getx/widgets/ButtonsDialog.dart';
 import 'package:getx/widgets/Calender.dart';
 import 'package:getx/widgets/DropDown.dart';

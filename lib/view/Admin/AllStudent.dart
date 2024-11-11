@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Controller/WidgetController/CheckBoxController.dart';
+import 'package:getx/Link/Controller/WidgetController/CheckBoxController.dart';
 import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
 import 'package:getx/view/Admin/AllStudentGrid.dart';
 import 'package:getx/widgets/Calender.dart';

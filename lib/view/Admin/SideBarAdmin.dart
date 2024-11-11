@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Controller/AdminController/AdminHomeContentController.dart';
+import 'package:getx/Link/Controller/AdminController/AdminHomeContentController.dart';
 import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
 
 class SideBarAdmin extends StatelessWidget {

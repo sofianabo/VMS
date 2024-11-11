@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Bindings/PasswordBinding.dart';
+import 'package:getx/Link/Controller/HomeScreenController.dart';
 import 'package:getx/view/Auth/LoginScreen.dart';
 
 class Section1 extends StatelessWidget {
@@ -35,7 +35,7 @@ class Section1 extends StatelessWidget {
                     height: h / 1.52,
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: h/13.68),
+                    margin: EdgeInsets.only(top: h / 13.68),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
@@ -94,158 +94,162 @@ class Section1 extends StatelessWidget {
                                           .theme.primaryTextTheme.titleSmall),
                                 ),
                                 onTap: () {
-                                  Get.to(() => LoginScreen(),
-                                      binding: PasswordBinding());
+                                  Get.to(
+                                    () => LoginScreen(),
+                                  );
                                 },
                               ),
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: h / 3.42,
-                          width: w / 3.657,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Container(
-                                height: h / 5.7,
-                                width: w / 12.8,
-                                decoration: BoxDecoration(
-                                    color: Color(0xffFFFDFB),
-                                    borderRadius: BorderRadius.circular(21),
-                                    border: Border.all(
-                                      color: Colors.grey,
-                                      width: 2.0,
-                                    )),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      padding: EdgeInsets.only(top: h / 68.4),
-                                      height: h / 17.1,
-                                      width: w / 32,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(100)),
-                                      child: Image.asset(
-                                          "../../images/avatar1.png"),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: h / 68.4),
-                                      child: Text("10 M",
-                                          style: Get
-                                              .theme.primaryTextTheme.bodySmall!
-                                              .copyWith(
-                                                  fontSize: 16,
-                                                  color:
-                                                      Get.theme.primaryColor)),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: h / 68.4),
-                                      child: Text(
-                                        "Teachers",
-                                        style: Get
-                                            .theme.primaryTextTheme.bodySmall!
-                                            .copyWith(
-                                                fontSize: 14,
-                                                color: Get.theme.primaryColor),
+                        GetBuilder<Homescreencontroller>(builder: (control) {
+                          return SizedBox(
+                            height: h / 3.42,
+                            width: w / 3.657,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Container(
+                                  height: h / 5.7,
+                                  width: w / 12.8,
+                                  decoration: BoxDecoration(
+                                      color: Color(0xffFFFDFB),
+                                      borderRadius: BorderRadius.circular(21),
+                                      border: Border.all(
+                                        color: Colors.grey,
+                                        width: 2.0,
+                                      )),
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.only(top: h / 68.4),
+                                        height: h / 17.1,
+                                        width: w / 32,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(100)),
+                                        child: Image.asset(
+                                            "../../images/avatar1.png"),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(
-                                    left: w / 128, right: w / 128),
-                                height: h / 5.7,
-                                width: w / 12.8,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(21),
-                                    border: Border.all(
-                                      color: Colors.grey,
-                                      width: 2.0,
-                                    )),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      padding: EdgeInsets.only(top: h / 68.4),
-                                      height: h / 17.1,
-                                      width: w / 32,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(100)),
-                                      child: Image.asset(
-                                          "../../images/avatar2.png"),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: h / 68.4),
-                                      child: Text("10 M",
-                                          style: Get
-                                              .theme.primaryTextTheme.bodySmall!
-                                              .copyWith(
-                                                  fontSize: 16,
-                                                  color:
-                                                      Get.theme.primaryColor)),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: h / 68.4),
-                                      child: Text("Students",
+                                      Padding(
+                                        padding: EdgeInsets.only(top: h / 68.4),
+                                        child: Text("${control.teacher}",
+                                            style: Get.theme.primaryTextTheme
+                                                .bodySmall!
+                                                .copyWith(
+                                                    fontSize: 16,
+                                                    color: Get
+                                                        .theme.primaryColor)),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: h / 68.4),
+                                        child: Text(
+                                          "Teachers",
                                           style: Get
                                               .theme.primaryTextTheme.bodySmall!
                                               .copyWith(
                                                   fontSize: 14,
                                                   color:
-                                                      Get.theme.primaryColor)),
-                                    ),
-                                  ],
+                                                      Get.theme.primaryColor),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              Container(
-                                height: h / 5.7,
-                                width: w / 12.8,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(21),
-                                    border: Border.all(
-                                      color: Colors.grey,
-                                      width: 2.0,
-                                    )),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      padding: EdgeInsets.only(top: h / 68.4),
-                                      height: h / 17.1,
-                                      width: w / 32,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(100)),
-                                      child: Image.asset(
-                                          "../../images/avatar3.png"),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: h / 68.4),
-                                      child: Text("10 M",
-                                          style: Get
-                                              .theme.primaryTextTheme.bodySmall!
-                                              .copyWith(
-                                                  fontSize: 16,
-                                                  color:
-                                                      Get.theme.primaryColor)),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: h / 68.4),
-                                      child: Text("Visitors",
-                                          style: Get
-                                              .theme.primaryTextTheme.bodySmall!
-                                              .copyWith(
-                                                  fontSize: 14,
-                                                  color:
-                                                      Get.theme.primaryColor)),
-                                    ),
-                                  ],
+                                Container(
+                                  padding: EdgeInsets.only(
+                                      left: w / 128, right: w / 128),
+                                  height: h / 5.7,
+                                  width: w / 12.8,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(21),
+                                      border: Border.all(
+                                        color: Colors.grey,
+                                        width: 2.0,
+                                      )),
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.only(top: h / 68.4),
+                                        height: h / 17.1,
+                                        width: w / 32,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(100)),
+                                        child: Image.asset(
+                                            "../../images/avatar2.png"),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: h / 68.4),
+                                        child: Text("${control.student}",
+                                            style: Get.theme.primaryTextTheme
+                                                .bodySmall!
+                                                .copyWith(
+                                                    fontSize: 16,
+                                                    color: Get
+                                                        .theme.primaryColor)),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: h / 68.4),
+                                        child: Text("Students",
+                                            style: Get.theme.primaryTextTheme
+                                                .bodySmall!
+                                                .copyWith(
+                                                    fontSize: 14,
+                                                    color: Get
+                                                        .theme.primaryColor)),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        )
+                                Container(
+                                  height: h / 5.7,
+                                  width: w / 12.8,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(21),
+                                      border: Border.all(
+                                        color: Colors.grey,
+                                        width: 2.0,
+                                      )),
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.only(top: h / 68.4),
+                                        height: h / 17.1,
+                                        width: w / 32,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(100)),
+                                        child: Image.asset(
+                                            "../../images/avatar3.png"),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: h / 68.4),
+                                        child: Text("${control.visitor}",
+                                            style: Get.theme.primaryTextTheme
+                                                .bodySmall!
+                                                .copyWith(
+                                                    fontSize: 16,
+                                                    color: Get
+                                                        .theme.primaryColor)),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: h / 68.4),
+                                        child: Text("Visitors",
+                                            style: Get.theme.primaryTextTheme
+                                                .bodySmall!
+                                                .copyWith(
+                                                    fontSize: 14,
+                                                    color: Get
+                                                        .theme.primaryColor)),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        })
                       ],
                     ),
                   ),
