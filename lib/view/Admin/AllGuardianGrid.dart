@@ -8,6 +8,7 @@ import 'package:getx/widgets/TextFieldDialog.dart';
 import 'package:getx/widgets/VMSAlertDialog.dart';
 
 import '../../Icons_File/v_m_s__icons_icons.dart';
+import '../../widgets/GridAnimation.dart';
 
 class AllGuardianGrid extends StatelessWidget {
   List<Map<String, dynamic>> l = [
@@ -68,115 +69,118 @@ class AllGuardianGrid extends StatelessWidget {
                           : 1.8),
       itemCount: l.length,
       itemBuilder: (context, index) {
-        return GestureDetector(
-          onTap: () {
-            Get.dialog(VMSAlertDialog(
-                contents: SizedBox(
-                    child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Guardian UserName",
-                              style: Get.theme.primaryTextTheme.labelSmall,
-                            ),
-                            TextFieldDialog(
-                                controller: gUserName,
-                                hinttext: "Guardian UserName")
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Guardian National ID",
-                                style: Get.theme.primaryTextTheme.labelSmall,
-                              ),
-                              TextFieldDialog(
-                                  controller: gNationalID,
-                                  hinttext: "Guardian National ID")
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20.0),
-                      child: Row(
+        return HoverScaleCard(
+          child: GestureDetector(
+            onTap: () {
+              Get.dialog(VMSAlertDialog(
+                  contents: SizedBox(
+                      child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Guardian Email",
+                                "Guardian UserName",
                                 style: Get.theme.primaryTextTheme.labelSmall,
                               ),
                               TextFieldDialog(
-                                  controller: gEmail,
-                                  hinttext: "Guardian Email")
+                                  controller: gUserName,
+                                  hinttext: "Guardian UserName")
                             ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Guardian National ID",
+                                  style: Get.theme.primaryTextTheme.labelSmall,
+                                ),
+                                TextFieldDialog(
+                                    controller: gNationalID,
+                                    hinttext: "Guardian National ID")
+                              ],
+                            ),
                           )
                         ],
                       ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Guardian Email",
+                                  style: Get.theme.primaryTextTheme.labelSmall,
+                                ),
+                                TextFieldDialog(
+                                    controller: gEmail,
+                                    hinttext: "Guardian Email")
+                              ],
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  )),
+                  action: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        ButtonDialog(
+                            width: 80,
+                            text: "Edit",
+                            onPressed: () {},
+                            color: Get.theme.colorScheme.primary)
+                      ],
                     )
                   ],
+                  apptitle: "Edit Guardian",
+                  subtitle: "none"));
+            },
+            child: Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: Colors.grey, width: 0.5),
+                    color: Colors.white,
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 1)
+                    ]),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text("${l[index]['name']}",
+                              style: Get.theme.primaryTextTheme.bodyMedium!
+                                  .copyWith(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold)),
+                        ),
+                      ],
+                    ),
+                    Text("Email: ${l[index]['email']}",
+                        style: Get.theme.primaryTextTheme.bodySmall),
+                    Text("Mobile Number : ${l[index]['mobile']}",
+                        style: Get.theme.primaryTextTheme.bodySmall),
+                  ],
                 )),
-                action: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      ButtonDialog(
-                          width: 80,
-                          text: "Edit",
-                          onPressed: () {},
-                          color: Get.theme.colorScheme.primary)
-                    ],
-                  )
-                ],
-                apptitle: "Edit Guardian",
-                subtitle: "none"));
-          },
-          child: Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  border: Border.all(color: Colors.grey, width: 0.5),
-                  color: Colors.white,
-                  boxShadow: const [
-                    BoxShadow(
-                        color: Colors.black26,
-                        offset: Offset(0, 2),
-                        blurRadius: 1)
-                  ]),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Text("${l[index]['name']}",
-                            style: Get.theme.primaryTextTheme.bodyMedium!
-                                .copyWith(
-                                    fontSize: 20, fontWeight: FontWeight.bold)),
-                      ),
-                    ],
-                  ),
-                  Text("Email: ${l[index]['email']}",
-                      style: Get.theme.primaryTextTheme.bodySmall),
-                  Text("Mobile Number : ${l[index]['mobile']}",
-                      style: Get.theme.primaryTextTheme.bodySmall),
-                ],
-              )),
+          ),
         );
       },
     );
