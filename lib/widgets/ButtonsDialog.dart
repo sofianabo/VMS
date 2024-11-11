@@ -17,11 +17,10 @@ class ButtonDialog extends StatelessWidget {
   double width;
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
+
     return Container(
       width: width,
-      height: h / 17.1,
+      height: 40,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
       child: MaterialButton(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),

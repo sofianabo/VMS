@@ -6,10 +6,12 @@ import 'package:intl/intl.dart';
 
 class DatePicker extends StatelessWidget {
   double width;
-  
+  double? height;
+
 DatePicker(
       {super.key,
       required this.width,
+       this.height,
      });
   @override
   Widget build(BuildContext context) {
@@ -19,9 +21,10 @@ DatePicker(
       child: Obx(
         () => Container(
           width:width,
-          height: 40,
+          height: height != null ? height : 40,
           alignment: Alignment.center,
           child: TextFormField(
+            style: TextStyle(fontSize: 14),
             controller: TextEditingController(
               text: controller.selectedDate.value != null
                   ? DateFormat('yyyy-MM-dd')

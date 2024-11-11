@@ -22,7 +22,7 @@ class TextFormPassword extends StatelessWidget {
       color: Colors.white,
       margin:  EdgeInsets.only(top: h/136.8),
       width: w / 2.56,
-      height: h / 13.68,
+      height: 50,
       child: GetBuilder<PasswordHintController>(builder: (password) {
         return TextFormField(
           controller: controller,
