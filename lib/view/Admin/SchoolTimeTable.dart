@@ -28,6 +28,36 @@ class SchoolTimeTable extends StatelessWidget {
       'Sixth\n Semester': 'Value 7',
       'Seventh\n Semester': 'Value 7',
     },
+    {
+      'Day': 'Tuesday',
+      'First\n Semester': 'Value 2',
+      'second\n Semester': 'Value 3',
+      'Third\n Semester': 'Value 4',
+      'Forth\n Semester': 'Value 5',
+      'Fifth\n Semester': 'Value 6',
+      'Sixth\n Semester': 'Value 7',
+      'Seventh\n Semester': 'Value 7',
+    },
+    {
+      'Day': 'Wednesday',
+      'First\n Semester': 'Value 2',
+      'second\n Semester': 'Value 3',
+      'Third\n Semester': 'Value 4',
+      'Forth\n Semester': 'Value 5',
+      'Fifth\n Semester': 'Value 6',
+      'Sixth\n Semester': 'Value 7',
+      'Seventh\n Semester': 'Value 7',
+    },
+    {
+      'Day': 'Thursday',
+      'First\n Semester': 'Value 2',
+      'second\n Semester': 'Value 3',
+      'Third\n Semester': 'Value 4',
+      'Forth\n Semester': 'Value 5',
+      'Fifth\n Semester': 'Value 6',
+      'Sixth\n Semester': 'Value 7',
+      'Seventh\n Semester': 'Value 7',
+    },
     // يمكنك إضافة المزيد من الصفوف هنا
   ];
   @override

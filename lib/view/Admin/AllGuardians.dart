@@ -7,158 +7,246 @@ import 'package:getx/widgets/ButtonsDialog.dart';
 import 'package:getx/widgets/TextFieldDialog.dart';
 import 'package:getx/widgets/TextFormSearch.dart';
 
+import '../../Icons_File/v_m_s__icons_icons.dart';
+import '../../widgets/DropDown.dart';
+import '../../widgets/VMSAlertDialog.dart';
+
 class AllGuardians extends StatelessWidget {
   AllGuardians({super.key});
   TextEditingController search = TextEditingController();
-  TextEditingController gUserName = TextEditingController();
-  TextEditingController gNationalID = TextEditingController();
-  TextEditingController gEmail = TextEditingController();
-  TextEditingController password = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController username = TextEditingController();
+  TextEditingController pass = TextEditingController();
+  TextEditingController cpass = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(right: 100),
-      width: MediaQuery.of(context).size.width * 0.8,
-      child: Container(
-        margin: const EdgeInsets.only(top: 5),
+    double w = MediaQuery.of(context).size.width;
+    return Expanded(
         child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(
-                    width: 700,
-                    height: 40,
-                    child: TextFormSearch(
-                      radius: 20,
-                      controller: search,
-                      suffixIcon: Icons.search,
-                    )),
-                IconButton(
-                    onPressed: () {
-                      Get.dialog(AlertDialog(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        backgroundColor: Colors.white,
-                        surfaceTintColor: Colors.white,
-                        title: Text(
-                          "Add Guardian",
-                          style: Get.theme.primaryTextTheme.bodyLarge,
+      children: [
+        Container(
+          margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: TextFormSearch(
+                          width: w * 0.7,
+                          radius: 5,
+                          controller: search,
+                          suffixIcon: Icons.search,
                         ),
-                        content: SizedBox(
-                            width: 600,
-                            height: 160,
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "UserName",
-                                          style: Get.theme.primaryTextTheme
-                                              .labelSmall,
+                      ),
+                    ],
+                  ),
+                  Spacer(),
+                  Row(
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {
+                              Get.dialog(VMSAlertDialog(
+                                  contents: SizedBox(
+                                      child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 15.0),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Email",
+                                                  style: Get
+                                                      .theme
+                                                      .primaryTextTheme
+                                                      .labelSmall,
+                                                ),
+                                                TextFieldDialog(
+                                                    controller: email,
+                                                    hinttext: "Email")
+                                              ],
+                                            ),
+                                          ),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Guardian Username",
+                                                style: Get
+                                                    .theme
+                                                    .primaryTextTheme
+                                                    .labelSmall,
+                                              ),
+                                              TextFieldDialog(
+                                                  controller: username,
+                                                  hinttext: "Guardian Username")
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 20.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 15.0),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "Password",
+                                                    style: Get
+                                                        .theme
+                                                        .primaryTextTheme
+                                                        .labelSmall,
+                                                  ),
+                                                  TextFieldDialog(
+                                                      controller: email,
+                                                      hinttext: "Password")
+                                                ],
+                                              ),
+                                            ),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Confirm Password",
+                                                  style: Get
+                                                      .theme
+                                                      .primaryTextTheme
+                                                      .labelSmall,
+                                                ),
+                                                TextFieldDialog(
+                                                    controller: username,
+                                                    hinttext:
+                                                        "Confirm Password")
+                                              ],
+                                            )
+                                          ],
                                         ),
-                                        TextFieldDialog(
-                                            controller: gUserName,
-                                            hinttext: "User Name")
-                                      ],
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      ),
+                                    ],
+                                  )),
+                                  action: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
-                                        Text(
-                                          "National ID",
-                                          style: Get.theme.primaryTextTheme
-                                              .labelSmall,
-                                        ),
-                                        TextFieldDialog(
-                                            controller: gNationalID,
-                                            hinttext: "National ID")
+                                        ButtonDialog(
+                                            width: 150,
+                                            text: "Add Guardian",
+                                            onPressed: () {},
+                                            color:
+                                                Get.theme.colorScheme.primary)
                                       ],
                                     )
                                   ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 15.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Email",
-                                            style: Get.theme.primaryTextTheme
-                                                .labelSmall,
-                                          ),
-                                          TextFieldDialog(
-                                              controller: gEmail,
-                                              hinttext: "Email")
-                                        ],
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Password",
-                                            style: Get.theme.primaryTextTheme
-                                                .labelSmall,
-                                          ),
-                                          TextFieldDialog(
-                                              controller: password,
-                                              hinttext: "Password")
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            )),
-                        actions: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              ButtonDialog(
-                                width: 100,
-                                  text: "Add",
-                                  onPressed: () {},
-                                  color: Get.theme.colorScheme.primary)
-                            ],
-                          )
-                        ],
-                      ));
-                    },
-                    icon: const Icon(Icons.add)),
-                IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.picture_as_pdf)),
-                IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.picture_as_pdf)),
-              ],
-            ),
-            Container(
-              margin: const EdgeInsets.only(right: 20, left: 20, top: 20),
-              width: MediaQuery.of(context).size.width * 6,
-              height: MediaQuery.of(context).size.height * 0.63,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20)),
-                color: Colors.white,
+                                  apptitle: "Add Guardian",
+                                  subtitle: "none"));
+                            },
+                            icon: Icon(Icons.add,
+                                size: 18, color: Get.theme.primaryColor)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    offset: Offset(0, 2),
+                                    blurRadius: 1)
+                              ]),
+                          child: IconButton(
+                              style: ButtonStyle(
+                                  shape: WidgetStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))))),
+                              onPressed: () {},
+                              icon: Icon(VMS_Icons.pdf,
+                                  size: 18, color: Get.theme.primaryColor)),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    offset: Offset(0, 2),
+                                    blurRadius: 1)
+                              ]),
+                          child: IconButton(
+                              style: ButtonStyle(
+                                  shape: WidgetStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))))),
+                              onPressed: () {},
+                              icon: Icon(VMS_Icons.xl,
+                                  size: 18, color: Get.theme.primaryColor)),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
               ),
-              child: AllGuardianGrid(),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-    );
+        Expanded(
+            child: Padding(
+          padding: const EdgeInsets.only(top: 15.0),
+          child: AllGuardianGrid(),
+        )),
+      ],
+    ));
   }
 }

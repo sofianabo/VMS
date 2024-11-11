@@ -17,41 +17,42 @@ DatePicker(
   Widget build(BuildContext context) {
 
     final DatePickerController controller = Get.put(DatePickerController());
-    return Center(
-      child: Obx(
-        () => Container(
-          width:width,
-          height: height != null ? height : 40,
-          alignment: Alignment.center,
-          child: TextFormField(
-            style: TextStyle(fontSize: 14),
-            controller: TextEditingController(
-              text: controller.selectedDate.value != null
-                  ? DateFormat('yyyy-MM-dd')
-                      .format(controller.selectedDate.value!)
-                  : '',
-            ),
-            readOnly: true,
-            onTap: () => controller.selectDate(context),
-            decoration: InputDecoration(
-              hintText: "Select Date",
-              hintStyle: Get.theme.primaryTextTheme.titleMedium!.copyWith(
-                fontSize: 14
-              ),
-              focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5),
-                  borderSide: BorderSide(
-                      color: Get.theme.colorScheme.primary, width: 2)),
-              enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5),
-                  borderSide: const BorderSide(color: Colors.grey)),
-              border: OutlineInputBorder(
+    return Obx(
+      () => Container(
+        width: width,
+        height: height != null ? height : 40,
+        alignment: Alignment.center,
+        child: TextFormField(
+          style: TextStyle(fontSize: 14),
+          controller: TextEditingController(
+            text: controller.selectedDate.value != null
+                ? DateFormat('yyyy-MM-dd')
+                    .format(controller.selectedDate.value!)
+                : '',
+          ),
+          readOnly: true,
+          onTap: () => controller.selectDate(context),
+          decoration: InputDecoration(
+            hintText: "Select Date",
+            hintStyle:
+                Get.theme.primaryTextTheme.titleMedium!.copyWith(fontSize: 14),
+            focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),
+                borderSide:
+                    BorderSide(color: Get.theme.colorScheme.primary, width: 2)),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5),
+                borderSide: const BorderSide(color: Colors.grey)),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+            suffixIcon: IconButton(
+              icon: Icon(
+                VMS_Icons.calender,
+                color: Get.theme.primaryColor,
+                size: 16,
               ),
-              suffixIcon: IconButton(
-                icon: Icon(VMS_Icons.calender,color: Get.theme.primaryColor, size: 16,),
-                onPressed: () => controller.selectDate(context),
-              ),
+              onPressed: () => controller.selectDate(context),
             ),
           ),
         ),

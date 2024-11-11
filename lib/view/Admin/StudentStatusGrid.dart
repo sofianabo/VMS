@@ -2,15 +2,40 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx/widgets/VMSAlertDialog.dart';
 
 class StudentStatusGrid extends StatelessWidget {
-  List<String> items = [
-    'Item 1',
-    'Item 2',
-    'Item 3',
-    'Item 4',
-    'Item 5',
-    'Item 6'
+  List<Map<String, dynamic>> l = [
+    {
+      "name": "Laith Haitham Azzam",
+      "status": "Present",
+      "level": "Twelveth scientific grade"
+    },
+    {
+      "name": "Laith Haitham Azzam",
+      "status": "Truant",
+      "level": "Twelveth scientific grade"
+    },
+    {
+      "name": "Laith Haitham Azzam",
+      "status": "Late",
+      "level": "Twelveth scientific grade"
+    },
+    {
+      "name": "Laith Haitham Azzam",
+      "status": "Holiday",
+      "level": "Twelveth scientific grade"
+    },
+    {
+      "name": "Laith Haitham Azzam",
+      "status": "Late",
+      "level": "Twelveth scientific grade"
+    },
+    {
+      "name": "Laith Haitham Azzam",
+      "status": "Holiday",
+      "level": "Twelveth scientific grade"
+    },
   ];
 
   List<Map<String, String>> tableData = [
@@ -31,91 +56,74 @@ class StudentStatusGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      padding:const EdgeInsets.only(top: 20, left: 40, right: 40),
+      padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
+          crossAxisCount: 4,
           crossAxisSpacing: 20.0,
           mainAxisSpacing: 20.0,
-          childAspectRatio: 1.6),
-      itemCount: items.length,
+          childAspectRatio: 1.5),
+      itemCount: l.length, // عدد العناصر في الشبكة
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () {
-            Get.dialog(AlertDialog(
-              content: SizedBox(
-                width: 600,
-                height: Get.height,
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Student Status",
-                          style: Get.theme.primaryTextTheme.bodyLarge,
-                        ),
-                        Row(
-                          children: [
-                            IconButton(
-                                onPressed: () {},
-                                icon:const Icon(Icons.picture_as_pdf)),
-                            IconButton(
-                                onPressed: () {},
-                                icon:const Icon(Icons.picture_as_pdf))
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      width: Get.width,
-                      child: SingleChildScrollView(
-                          child: DataTable(
-                        border: TableBorder.all(
-                          color: Get.theme.primaryColor,
-                          width: 1.0,
-                        ),
-                        columns: [
-                          for (String key in tableData.first.keys)
-                            DataColumn(
-                              label: Text(
-                                key,
-                                style: Get.theme.primaryTextTheme.bodyMedium,
+            Get.dialog(VMSAlertDialog(
+                action: [Text("")],
+                contents: SizedBox(
+                  width: 600,
+                  height: Get.height,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: Get.width,
+                        child: SingleChildScrollView(
+                            child: DataTable(
+                          border: TableBorder.all(
+                            color: Get.theme.primaryColor,
+                            width: 1.0,
+                          ),
+                          columns: [
+                            for (String key in tableData.first.keys)
+                              DataColumn(
+                                label: Text(
+                                  key,
+                                  style: Get.theme.primaryTextTheme.bodyMedium,
+                                ),
                               ),
-                            ),
-                        ],
-                        rows: [
-                          for (Map<String, String> row in tableData)
-                            DataRow(
-                              cells: [
-                                for (String value in row.values)
-                                  DataCell(
-                                    Text(
-                                      value,
-                                      style:
-                                          Get.theme.primaryTextTheme.bodySmall,
+                          ],
+                          rows: [
+                            for (Map<String, String> row in tableData)
+                              DataRow(
+                                cells: [
+                                  for (String value in row.values)
+                                    DataCell(
+                                      Text(
+                                        value,
+                                        style: Get
+                                            .theme.primaryTextTheme.bodySmall,
+                                      ),
                                     ),
-                                  ),
-                              ],
-                            ),
-                        ],
-                      )),
-                    ),
-                  ],
+                                ],
+                              ),
+                          ],
+                        )),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ));
+                apptitle: "${l[index]['status']} Student Laith Haitham Azzam",
+                subtitle: "none"));
           },
           child: Container(
-              padding:const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  border: Border.all(color: Colors.grey, width: 2),
+                  border: Border.all(color: Colors.grey, width: 0.5),
                   color: Colors.white,
                   boxShadow: const [
                     BoxShadow(
-                        color: Colors.grey,
-                        offset: Offset(0, 10),
-                        blurRadius: 10)
+                        color: Colors.black26,
+                        offset: Offset(0, 2),
+                        blurRadius: 1)
                   ]),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -124,22 +132,28 @@ class StudentStatusGrid extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "Laith Azzam",
-                        style: Get.theme.primaryTextTheme.bodySmall,
+                      Expanded(
+                        child: Text("${l[index]['name']}",
+                            style: Get.theme.primaryTextTheme.bodyMedium!
+                                .copyWith(
+                                    fontSize: 20, fontWeight: FontWeight.bold)),
                       ),
-                      Image.asset("../../images/Home-Background2.png",
-                          height: 70, width: 70)
+                      Image.asset("../../images/Rectangle66.png",
+                          height: 100, width: 100)
                     ],
                   ),
-                  Text(
-                    "present",
-                    style: Get.theme.primaryTextTheme.displaySmall,
-                  ),
-                  Text(
-                    "Grade Level:",
-                    style: Get.theme.primaryTextTheme.bodySmall,
-                  ),
+                  Text("${l[index]['status']}",
+                      style: Get.theme.primaryTextTheme.bodySmall!.copyWith(
+                          fontSize: 16,
+                          color: l[index]['status'] == "Present"
+                              ? Color(0xff2F9742)
+                              : l[index]['status'] == "Truant"
+                                  ? Color(0xff972F2F)
+                                  : l[index]['status'] == "Late"
+                                      ? Color(0xff349393)
+                                      : Color(0xff134B70))),
+                  Text("Grade Level: ${l[index]['level']}",
+                      style: Get.theme.primaryTextTheme.bodySmall),
                 ],
               )),
         );

@@ -5,15 +5,19 @@ import 'package:get/get.dart';
 
 class TextFieldDialog extends StatelessWidget {
   TextFieldDialog(
-      {super.key, required this.controller, required this.hinttext});
+      {super.key,
+      required this.controller,
+      required this.hinttext,
+      this.width});
   TextEditingController controller = TextEditingController();
   String hinttext = "";
+  double? width;
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     return Container(
       margin: EdgeInsets.only(top:2.0),
-      width: 250,
+      width: width ?? 250,
       height: 40,
       child: TextFormField(
         controller: controller,
