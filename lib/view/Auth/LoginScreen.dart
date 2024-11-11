@@ -18,16 +18,10 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
-    print(h);
-    print(w);
     return Scaffold(
       backgroundColor: Color(0xfff9f8fd),
-      body: Container(
-        color: Color(0xfff9f8fd),
-        width: w,
-        height: h,
+      body: SingleChildScrollView(
         child: Column(
           children: [
             Row(
@@ -37,17 +31,15 @@ class LoginScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 62.0),
                   child: Image.asset(
                     "../../images/logo2.png",
-                    height: h / 6.84,
-                    width: w / 3.42,
+                    width:250,
                   ).animate(onPlay: (controller) => controller.repeat()).shimmer(duration: Duration(seconds: 4),color: Colors.white.withOpacity(0.8))
 
                 ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 35),
-              child: Container(
-                height: h / 1.8,
+              padding: const EdgeInsets.only(top: 0),
+              child: SizedBox(
                 width: w / 1.1,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -56,7 +48,6 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         Image.asset(
                           "../../images/section5-image2.png",
-                          height: h / 1.9,
                           width: w / 6.095,
                         ).animate(onPlay: (controller) => controller.repeat())
                             .moveY(
@@ -73,64 +64,60 @@ class LoginScreen extends StatelessWidget {
                       ],
                     ),
                     Center(
-                      child: Container(
-                        height: h / 2.886,
-                        width: w / 2.509,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Row(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text(
+                                    "Username",
+                                    style:
+                                        Get.theme.primaryTextTheme.labelSmall,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5.0),
+                                    child: TextFieldAuth(
+                                      controller: username,
+                                      hinttext: "Username",
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 25.0),
+                            child: Row(
                               children: [
                                 Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
                                   children: [
                                     Text(
-                                      "Username",
-                                      style:
-                                          Get.theme.primaryTextTheme.labelSmall,
+                                      "Password",
+                                      style: Get
+                                          .theme.primaryTextTheme.labelSmall,
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(top: 5.0),
-                                      child: TextFieldAuth(
-                                        controller: username,
-                                        hinttext: "Username",
-                                      ),
-                                    )
+                                      padding:
+                                          const EdgeInsets.only(top: 5.0),
+                                      child: TextFormPassword(
+                                          controller: password,
+                                          hinttext: "Password"),
+                                    ),
                                   ],
                                 )
                               ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 25.0),
-                              child: Row(
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Text(
-                                        "Password",
-                                        style: Get
-                                            .theme.primaryTextTheme.labelSmall,
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 5.0),
-                                        child: TextFormPassword(
-                                            controller: password,
-                                            hinttext: "Password"),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ).animate().fadeIn(duration: Duration(seconds: 1)),
                     ),
                     Column(
@@ -138,7 +125,6 @@ class LoginScreen extends StatelessWidget {
                         Image.asset(
                           "../../images/section5-image1.png",
                           width: w / 5.845,
-                          height: h / 1.814,
                         ) .animate(onPlay: (controller) => controller.repeat())
                             .moveY(
                           begin: 30,

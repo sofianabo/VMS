@@ -8,15 +8,16 @@ class TextFormSearch extends StatelessWidget {
   TextEditingController controller;
   IconData suffixIcon;
   double radius;
+  double? width;
   TextFormSearch(
-      {super.key, required this.controller, required this.suffixIcon,required this.radius});
+      {super.key, required this.controller, required this.suffixIcon,required this.radius , this.width});
 
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return Container(
-      width: w / 4.4137,
+      width: width!=null ? width :  w / 4.4137,
       height: 40,
       child: TextFormField(
           controller: controller,
@@ -40,9 +41,4 @@ class TextFormSearch extends StatelessWidget {
           )),
     );
   }
-  // @override
-  // void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  //   super.debugFillProperties(properties);
-  //   properties.add(IntProperty('maxlength', maxlength));
-  // }
 }

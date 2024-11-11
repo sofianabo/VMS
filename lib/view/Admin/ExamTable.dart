@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
 import 'package:getx/widgets/Calender.dart';
 import 'package:getx/widgets/DropDown.dart';
 
@@ -26,83 +27,144 @@ class ExamTable extends StatelessWidget {
       'Max Mark': 'Value 6',
       'Passing Mark': 'Value 7',
     },
-    // يمكنك إضافة المزيد من الصفوف هنا
   ];
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
-    return Container(
-      margin: const EdgeInsets.only(right: 100),
-      width: MediaQuery.of(context).size.width * 0.8,
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 38.0 , right: 25.0 , left: 25.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              DropDown(
-                  title: "Type", width: w / 6.095, options: ['advv', 'bnhn']),
-              DatePicker(
-                width: w / 6.095,
-              ),
-              DropDown(
-                  title: "Class",
-                  width: w / 6.095,
-                  options: ['adsds', 'bhgnhn']),
-              DropDown(
-                  title: "Curriculum Name",
-                  width: w / 6.095,
-                  options: ['dsva', 'gfnb']),
-              IconButton(
-                  onPressed: () {}, icon: const Icon(Icons.picture_as_pdf)),
-              IconButton(
-                  onPressed: () {}, icon: const Icon(Icons.picture_as_pdf)),
-            ],
-          ),
           Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.63,
-            child: Container(
-              margin: const EdgeInsets.only(top: 20),
-              width: w,
-              child: SingleChildScrollView(
-                  child: DataTable(
-                dataRowColor: const WidgetStatePropertyAll(
-                    Color.fromARGB(255, 235, 224, 223)),
-                headingRowColor:
-                    const WidgetStatePropertyAll(Color(0xffd4dfe5)),
-                border: TableBorder.all(
-                  color: Get.theme.primaryColor,
-                  width: 1.0,
+            width: Get.width*0.9,
+            child: Row(
+              children: [
+                DropDown(
+                    title: "Type", width: Get.width/4, options: ['adfbfdb', 'gfngfb']),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0 , right: 10.0),
+                  child: DropDown(
+                      title: "Class",
+                      width: Get.width/4,
+                      options: ['adssd', 'bngngfn']),
                 ),
-                columns: [
-                  for (String key in tableData.first.keys)
-                    DataColumn(
-                      label: Text(key,
-                          style: key == "Class"
-                              ? Get.theme.primaryTextTheme.labelMedium
-                              : Get.theme.primaryTextTheme.displayMedium ),
-                    ),
-                ],
-                rows: [
-                  for (Map<String, String> row in tableData)
-                    DataRow(
-                      // color: WidgetStatePropertyAll(
-                      //   row['Class'] == 'Value 1' ? Colors.blue : Colors.red,
-                      // ),
-                      cells: [
-                        for (String value in row.values)
-                          DataCell(
-                            Text(value,
-                                style: Get.theme.primaryTextTheme.bodySmall),
-                            onTap: () {},
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0 , right: 10.0),
+                  child: DropDown(
+                      title: "Division",
+                      width: Get.width/4,
+                      options: ['adssd', 'bngngfn']),
+                ),
+                Spacer(),
+                Row(
+                  children: [
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color:  Colors.white,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black12,
+                                offset:  Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: IconButton(
+                          style: ButtonStyle(
+                              shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(5))
+                              ))
                           ),
-                      ],
+                          onPressed: () {},
+                          icon:  Icon(
+                              VMS_Icons.xl
+                              ,
+                              size: 18,
+                              color:Get.theme.primaryColor
+                          )),
                     ),
-                ],
-              )),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10.0,left: 10.0),
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color:  Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset:  Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+
+                                shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(5))
+                                ))
+                            ),
+                            onPressed: () {},
+                            icon:  Icon(
+                                VMS_Icons.pdf
+                                ,
+                                size: 18,
+                                color:Get.theme.primaryColor
+                            )),
+                      ),
+                    ),
+                  ],
+                )
+              ],
             ),
           ),
+          Column(
+            children: [
+              Container(
+                width: Get.width*0.9,
+                margin: const EdgeInsets.only(top: 20),
+                child: SingleChildScrollView(
+                    child: DataTable(
+                      headingRowColor:
+                      const WidgetStatePropertyAll(Color(0xffd4dfe5)),
+                      border: TableBorder.all(
+                        color: Get.theme.primaryColor,
+                        width: 1.0,
+                      ),
+                      columns: [
+                        for (String key in tableData.first.keys)
+                          DataColumn(
+                            label: Text(
+                                textAlign: TextAlign.center,
+                                key,
+                                style: key == "Class"
+                                    ? Get.theme.primaryTextTheme.labelMedium
+                                    : Get.theme.primaryTextTheme.displayMedium ),
+                          ),
+                      ],
+                      rows: [
+                        for (Map<String, String> row in tableData)
+                          DataRow(
+                            cells: [
+                              for (String value in row.values)
+                                DataCell(
+                                  Text(
+                                      textAlign: TextAlign.center,
+                                      value,
+                                      style: Get.theme.primaryTextTheme.bodySmall),
+                                  onTap: () {},
+                                ),
+                            ],
+                          ),
+                      ],
+                    )),
+              ),
+            ],
+          )
+
         ],
       ),
     );

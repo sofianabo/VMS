@@ -11,23 +11,25 @@ class TextFieldDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
     return Container(
-      margin: EdgeInsets.only(top: h / 136.8),
-      width: 240,
-      height: h / 19,
+      margin: EdgeInsets.only(top:2.0),
+      width: 250,
+      height: 40,
       child: TextFormField(
         controller: controller,
         decoration: InputDecoration(
           hintText: hinttext,
-          hintStyle: Get.theme.primaryTextTheme.titleMedium,
+          hintStyle: Get.theme.primaryTextTheme.titleMedium!.copyWith(
+            fontSize: 14,
+            color: Color(0xffB3B3B3)
+          ),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
               borderSide:
                   BorderSide(color: Get.theme.colorScheme.primary, width: 2)),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
-              borderSide: const BorderSide(color: Colors.grey)),
+              borderSide: const BorderSide(color: Color(0xffD9D9D9))),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
           ),

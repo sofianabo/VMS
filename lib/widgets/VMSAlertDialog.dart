@@ -9,7 +9,7 @@ Widget VMSAlertDialog({
   required String subtitle,
 }) {
   return BackdropFilter(
-    filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2), // Keep the blur effect
+    filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
     child: AlertDialog(
       actions: action,
       shape: RoundedRectangleBorder(

@@ -87,7 +87,7 @@ class _LanguageSwitcherState extends State<LanguageSwitcher>
                   child: Text(
                     isArabic ? 'العربية' : 'English',
                     style:  TextStyle(
-                      fontFamily: "Sansation",
+                      fontFamily: "Cairo",
                       color: isArabic ? Get.theme.primaryColor : Colors.white,
                       fontSize: 10,
                     ),

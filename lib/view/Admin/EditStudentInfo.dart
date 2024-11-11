@@ -36,7 +36,7 @@ EditStudentDialog() {
       child: Container(
         margin: const EdgeInsets.only(bottom: 20),
         height: Get.height,
-        width: 600,
+        width: 560,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -45,48 +45,54 @@ EditStudentDialog() {
                   left: 20.0,
                   right: 20.0,
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Edit Student",
-                        style: Get.theme.primaryTextTheme.bodyLarge),
-                    IconButton(
-                        onPressed: () {
-                          Get.back();
-                        },
-                        icon: const Icon(Icons.highlight_remove))
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Edit Student",
+                          style: Get.theme.primaryTextTheme.bodyLarge),
+                      IconButton(
+                          onPressed: () {
+                            Get.back();
+                          },
+                          icon: const Icon(Icons.close))
+                    ],
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 15.0, right: 15),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Column(
                       children: [
                         Image.asset(
-                          "../../images/Home-background2.png",
+                          "../../images/Rectangle66.png",
                           height: 200,
                           width: 200,
                         )
                       ],
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("First Name",
-                            style: Get.theme.primaryTextTheme.labelSmall),
-                        TextFieldDialog(
-                            controller: firstName, hinttext: "First Name"),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 15.0),
-                          child: Text("Last Name",
+                    Padding(
+                      padding: const EdgeInsets.only(left: 65.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("First Name",
                               style: Get.theme.primaryTextTheme.labelSmall),
-                        ),
-                        TextFieldDialog(
-                            controller: lastName, hinttext: "Last Name"),
-                      ],
+                          TextFieldDialog(
+                              controller: firstName, hinttext: "First Name"),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 15.0),
+                            child: Text("Last Name",
+                                style: Get.theme.primaryTextTheme.labelSmall),
+                          ),
+                          TextFieldDialog(
+                              controller: lastName, hinttext: "Last Name"),
+                        ],
+                      ),
                     )
                   ],
                 ),
@@ -94,24 +100,30 @@ EditStudentDialog() {
               Padding(
                 padding: const EdgeInsets.only(left: 15.0, right: 15),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Birth Date",
                             style: Get.theme.primaryTextTheme.labelSmall),
-                        DatePicker(width: 210,)
+                        DatePicker(
+                          width: 250,
+                        height: 40,
+                        )
                       ],
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Session",
-                            style: Get.theme.primaryTextTheme.labelSmall),
-                        TextFieldDialog(
-                            controller: session, hinttext: "Session"),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Session",
+                              style: Get.theme.primaryTextTheme.labelSmall),
+                          TextFieldDialog(
+                              controller: session, hinttext: "Session"),
+                        ],
+                      ),
                     )
                   ],
                 ),
@@ -119,7 +131,8 @@ EditStudentDialog() {
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,15 +143,18 @@ EditStudentDialog() {
                             controller: phoneNumber, hinttext: "Phone Number"),
                       ],
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Place of Birth",
-                            style: Get.theme.primaryTextTheme.labelSmall),
-                        TextFieldDialog(
-                            controller: placeofBirth,
-                            hinttext: "Place of Birth"),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Place of Birth",
+                              style: Get.theme.primaryTextTheme.labelSmall),
+                          TextFieldDialog(
+                              controller: placeofBirth,
+                              hinttext: "Place of Birth"),
+                        ],
+                      ),
                     )
                   ],
                 ),
@@ -149,7 +165,7 @@ EditStudentDialog() {
                   right: 15,
                 ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -160,96 +176,111 @@ EditStudentDialog() {
                             controller: religion, hinttext: "Religion"),
                       ],
                     ),
-                    GetBuilder<CheckboxController>(builder: (controller) {
-                      return Container(
-                        margin: const EdgeInsets.only(top: 30),
-                        height: 60,
-                        width: 220,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              height: 20,
-                              child: Row(
-                                children: [
-                                  Checkbox(
-                                    value: controller.selectedIndex.value == 0,
-                                    onChanged: (bool? value) {
-                                      controller.selectcheck(0);
-                                    },
-                                  ),
-                                  Text("Special Needs",
-                                      style:
-                                          Get.theme.primaryTextTheme.bodySmall),
-                                ],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: GetBuilder<CheckboxController>(builder: (controller) {
+                        return Container(
+                          margin: const EdgeInsets.only(top: 30),
+                          height: 70,
+                          width: 220,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+
+                            children: [
+                              SizedBox(
+                                height: 20,
+                                child: Row(
+                                  children: [
+                                    Checkbox(
+                                      value: controller.selectedIndex.value == 0,
+                                      onChanged: (bool? value) {
+                                        controller.selectcheck(0);
+                                      },
+                                    ),
+                                    Text("Special Needs",
+                                        style:
+                                            Get.theme.primaryTextTheme.bodySmall),
+                                  ],
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                              child: Row(
-                                children: [
-                                  Checkbox(
-                                    value: controller.selectedIndex.value == 1,
-                                    onChanged: (bool? value) {
-                                      controller.selectcheck(1);
-                                    },
-                                  ),
-                                  Text("Martyr Son",
-                                      style:
-                                          Get.theme.primaryTextTheme.bodySmall),
-                                ],
+                              SizedBox(
+                                height: 20,
+                                child: Row(
+                                  children: [
+                                    Checkbox(
+                                      value: controller.selectedIndex.value == 1,
+                                      onChanged: (bool? value) {
+                                        controller.selectcheck(1);
+                                      },
+                                    ),
+                                    Text("Martyr Son",
+                                        style:
+                                            Get.theme.primaryTextTheme.bodySmall),
+                                  ],
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 16.0),
-                          ],
+                              const SizedBox(height: 16.0),
+                            ],
+                          ),
+                        );
+                      }),
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding:  EdgeInsets.only(left: 15, right: 15, top: 10),
+                child: Row(
+
+                  children: [
+
+                        DropDown(
+
+                            title: "Class",width: 250,options: ['asdsa','bwfw']),
+
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15.0),
+                          child: DropDown(title: "Division",width: 250,options: ['sdsb','fgng']),
                         ),
-                      );
-                    })
+
                   ],
                 ),
               ),
               Padding(
                 padding:  EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-               
-                        DropDown(title: "Class",width: 280,options: ['asdsa','bwfw']),
-                    
-                        DropDown(title: "Division",width: 280,options: ['sdsb','fgng']),
-                    
-                  ],
-                ),
-              ),
-              Padding(
-                padding:  EdgeInsets.only(left: 15, right: 15, top: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                                            DropDown(title: "Blood Type",width: 280,options: ['art','bhtg']),
 
-                                           DropDown(title: "Gender",width: 280,options: ['a']),
+                  children: [
+                                            DropDown(title: "Blood Type",width: 250,options: ['art','bhtg']),
+
+                                           Padding(
+                                             padding: const EdgeInsets.only(left: 15.0),
+                                             child: DropDown(title: "Gender",width: 250,options: ['a']),
+                                           ),
 
                   ],
                 ),
               ),
+
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                                        DropDown(title: "Location",width: 280,options: ['dfbfd','fdbb']),
+                                        DropDown(title: "Location",width: 250,options: ['dfbfd','fdbb']),
 
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Current Address",
-                            style: Get.theme.primaryTextTheme.labelSmall),
-                        TextFieldDialog(
-                            controller: currentAddress,
-                            hinttext: "Current Address"),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Current Address",
+                              style: Get.theme.primaryTextTheme.labelSmall),
+                          TextFieldDialog(
+                              controller: currentAddress,
+                              hinttext: "Current Address"),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -257,7 +288,7 @@ EditStudentDialog() {
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -269,14 +300,17 @@ EditStudentDialog() {
                             hinttext: "National Number"),
                       ],
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Local ID",
-                            style: Get.theme.primaryTextTheme.labelSmall),
-                        TextFieldDialog(
-                            controller: localID, hinttext: "Local ID"),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Local ID",
+                              style: Get.theme.primaryTextTheme.labelSmall),
+                          TextFieldDialog(
+                              controller: localID, hinttext: "Local ID"),
+                        ],
+                      ),
                     )
                   ],
                 ),
@@ -284,7 +318,7 @@ EditStudentDialog() {
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -313,7 +347,6 @@ EditStudentDialog() {
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -324,14 +357,17 @@ EditStudentDialog() {
                             controller: fatherName, hinttext: "Father Name"),
                       ],
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("His Job",
-                            style: Get.theme.primaryTextTheme.labelSmall),
-                        TextFieldDialog(
-                            controller: fatherJob, hinttext: "His Job"),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("His Job",
+                              style: Get.theme.primaryTextTheme.labelSmall),
+                          TextFieldDialog(
+                              controller: fatherJob, hinttext: "His Job"),
+                        ],
+                      ),
                     )
                   ],
                 ),
@@ -339,7 +375,7 @@ EditStudentDialog() {
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -366,10 +402,11 @@ EditStudentDialog() {
                   ],
                 ),
               ),
+
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -380,14 +417,17 @@ EditStudentDialog() {
                             controller: motherName, hinttext: "Mother Name"),
                       ],
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Her Job",
-                            style: Get.theme.primaryTextTheme.labelSmall),
-                        TextFieldDialog(
-                            controller: motherJob, hinttext: "Her Job"),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Her Job",
+                              style: Get.theme.primaryTextTheme.labelSmall),
+                          TextFieldDialog(
+                              controller: motherJob, hinttext: "Her Job"),
+                        ],
+                      ),
                     )
                   ],
                 ),
@@ -395,7 +435,7 @@ EditStudentDialog() {
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -423,7 +463,7 @@ EditStudentDialog() {
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -435,15 +475,18 @@ EditStudentDialog() {
                             hinttext: "Guardian Username"),
                       ],
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Guardian National ID",
-                            style: Get.theme.primaryTextTheme.labelSmall),
-                        TextFieldDialog(
-                            controller: guardianNationalID,
-                            hinttext: "Guardian National ID"),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Guardian National ID",
+                              style: Get.theme.primaryTextTheme.labelSmall),
+                          TextFieldDialog(
+                              controller: guardianNationalID,
+                              hinttext: "Guardian National ID"),
+                        ],
+                      ),
                     )
                   ],
                 ),
@@ -451,7 +494,7 @@ EditStudentDialog() {
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

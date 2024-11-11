@@ -7,12 +7,14 @@ import 'package:getx/Controller/WidgetController/DropDownController.dart';
 class DropDown extends StatelessWidget {
   double width;
   String title = "";
+  Color? COLOR;
   List<String> options = [];
 
   DropDown(
       {super.key,
       required this.width,
       required this.title,
+       this.COLOR,
       required this.options});
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class DropDown extends StatelessWidget {
         height: 40,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          border: Border.all(color: Colors.grey),
+          border: Border.all(color:  COLOR ?? Color(0xffD9D9D9)),
         ),
         child: DropdownButton<String>(
           focusColor: Colors.white,
