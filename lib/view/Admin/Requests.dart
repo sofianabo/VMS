@@ -59,7 +59,7 @@ class Requests extends StatelessWidget {
                                      blurRadius: 1)
                                ]),
                            child: IconButton(
-                               style: ButtonStyle(
+                               style: const ButtonStyle(
                                    shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                                        borderRadius: BorderRadius.all(Radius.circular(5))
                                    ))
