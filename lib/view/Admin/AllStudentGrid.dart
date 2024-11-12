@@ -24,13 +24,37 @@ class AllStudentGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(Get.width);
     return GridView.builder(
       padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: Get.width <= 1278 && Get.width >= 1000
+              ? 3
+              : Get.width <= 999 && Get.width >= 759
+                  ? 2
+                  : Get.width <= 758
+                      ? 1
+                      : 4,
           crossAxisSpacing: 20.0,
           mainAxisSpacing: 20.0,
-          childAspectRatio: 0.95),
+          childAspectRatio: Get.width <= 1410 && Get.width >= 1278
+              //THREE ITEMS
+              ? 0.8
+              : Get.width <= 1278 && Get.width >= 1149
+                  //THREE ITEMS
+                  ? 1.3
+                  : Get.width <= 1148 && Get.width >= 1045
+                      ? 1.16
+                      : Get.width <= 999 && Get.width >= 759
+                          ? 1.2
+                          : Get.width <= 758 && Get.width >= 714
+                              ? 2.0
+                              : Get.width <= 713 && Get.width >= 569
+                                  ? 1.6
+                                  : Get.width <= 570
+                                      ? 1.3
+                                      //NORMAL ITEMS
+                                      : 0.95),
       itemCount: items.length,
       itemBuilder: (context, index) {
         return HoverScaleCard(
@@ -77,16 +101,16 @@ class AllStudentGrid extends StatelessWidget {
                         IconButton(
                           style: ButtonStyle(
                               maximumSize:
-                                  MaterialStateProperty.all(Size(35, 35)),
+                                  WidgetStateProperty.all(Size(35, 35)),
                               minimumSize:
-                                  MaterialStateProperty.all(Size(35, 35)),
-                              iconSize: MaterialStateProperty.all(14),
-                              shape: MaterialStateProperty.all(
+                                  WidgetStateProperty.all(Size(35, 35)),
+                              iconSize: WidgetStateProperty.all(14),
+                              shape: WidgetStateProperty.all(
                                   RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5),
                               )),
                               backgroundColor:
-                                  MaterialStateProperty.all(Color(0xffB03D3D))),
+                                  WidgetStateProperty.all(Color(0xffB03D3D))),
                           onPressed: () {
                             Get.dialog(BackdropFilter(
                               filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
@@ -138,15 +162,15 @@ class AllStudentGrid extends StatelessWidget {
                         IconButton(
                           style: ButtonStyle(
                               maximumSize:
-                                  MaterialStateProperty.all(Size(35, 35)),
+                                  WidgetStateProperty.all(Size(35, 35)),
                               minimumSize:
-                                  MaterialStateProperty.all(Size(35, 35)),
-                              iconSize: MaterialStateProperty.all(14),
-                              shape: MaterialStateProperty.all(
+                                  WidgetStateProperty.all(Size(35, 35)),
+                              iconSize: WidgetStateProperty.all(14),
+                              shape: WidgetStateProperty.all(
                                   RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5),
                               )),
-                              backgroundColor: MaterialStateProperty.all(
+                              backgroundColor: WidgetStateProperty.all(
                                   Get.theme.primaryColor)),
                           onPressed: () {},
                           icon: const Icon(VMS_Icons.vir),
@@ -155,15 +179,15 @@ class AllStudentGrid extends StatelessWidget {
                         IconButton(
                           style: ButtonStyle(
                               maximumSize:
-                                  MaterialStateProperty.all(Size(35, 35)),
+                                  WidgetStateProperty.all(Size(35, 35)),
                               minimumSize:
-                                  MaterialStateProperty.all(Size(35, 35)),
-                              iconSize: MaterialStateProperty.all(14),
-                              shape: MaterialStateProperty.all(
+                                  WidgetStateProperty.all(Size(35, 35)),
+                              iconSize: WidgetStateProperty.all(14),
+                              shape: WidgetStateProperty.all(
                                   RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5),
                               )),
-                              backgroundColor: MaterialStateProperty.all(
+                              backgroundColor: WidgetStateProperty.all(
                                   Get.theme.primaryColor)),
                           onPressed: () {},
                           icon: const Icon(VMS_Icons.dose),
@@ -172,15 +196,15 @@ class AllStudentGrid extends StatelessWidget {
                         IconButton(
                           style: ButtonStyle(
                               maximumSize:
-                                  MaterialStateProperty.all(Size(35, 35)),
+                                  WidgetStateProperty.all(Size(35, 35)),
                               minimumSize:
-                                  MaterialStateProperty.all(Size(35, 35)),
-                              iconSize: MaterialStateProperty.all(14),
-                              shape: MaterialStateProperty.all(
+                                  WidgetStateProperty.all(Size(35, 35)),
+                              iconSize: WidgetStateProperty.all(14),
+                              shape: WidgetStateProperty.all(
                                   RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5),
                               )),
-                              backgroundColor: MaterialStateProperty.all(
+                              backgroundColor: WidgetStateProperty.all(
                                   Get.theme.primaryColor)),
                           onPressed: () {
                             EditStudentDialog();

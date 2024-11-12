@@ -1,11 +1,8 @@
-// ignore_for_file: must_be_immutable, file_names
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/Link/Controller/AdminController/AdminHomeContentController.dart';
 import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
-
-import '../../widgets/GridAnimation.dart';
 import '../../widgets/SidbarAnimation.dart';
 
 class SideBarAdmin extends StatelessWidget {
@@ -27,28 +24,31 @@ class SideBarAdmin extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SidbarAnimation(
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        VMS_Icons.a1,
-                        size: 18,
-                        color: Colors.white,
-                      )),
-                ),
+                    child: GestureDetector(
+                  onTap: () {},
+                  child: Icon(
+                    VMS_Icons.a1,
+                    size: 18,
+                    color: Colors.white,
+                  ),
+                )),
                 SidbarAnimation(
-                  child: IconButton(
-                      onPressed: () {
-                        cont.updateContent("enroll requests");
-                      },
-                      icon: const Icon(
-                        VMS_Icons.a2,
-                        color: Colors.white,
+                    child: Padding(
+                  padding: EdgeInsets.only(top: h / 34.2),
+                  child: GestureDetector(
+                    onTap: () {
+                      cont.updateContent("enroll requests");
+                    },
+                    child: const Icon(
+                      VMS_Icons.a2,
+                      color: Colors.white,
                         size: 18,
-                      )),
-                ),
+                    ),
+                  ),
+                )),
                 SidbarAnimation(
                   child: Padding(
-                    padding: EdgeInsets.only(top: h / 68.4),
+                    padding: EdgeInsets.only(top: h / 34.2),
                     child: PopupMenuButton(
                       tooltip: "",
                       child: const Icon(

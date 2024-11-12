@@ -24,7 +24,7 @@ class _SidbarAnimationState extends State<SidbarAnimation>
     );
 
     _scaleAnimation =
-        Tween<double>(begin: 1.0, end: 2.0).animate(CurvedAnimation(
+        Tween<double>(begin: 1.0, end: 1.5).animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.easeInOut,
     ));

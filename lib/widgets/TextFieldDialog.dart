@@ -14,7 +14,6 @@ class TextFieldDialog extends StatelessWidget {
   double? width;
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
     return Container(
       margin: EdgeInsets.only(top:2.0),
       width: width ?? 250,
