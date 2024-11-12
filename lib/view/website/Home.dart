@@ -20,11 +20,17 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   localeController loc = Get.put(localeController(), permanent: true);
+  @override
+  void initState() {
+    Homescreenapi(context).homescreen();
+
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
-    Homescreenapi(context).homescreen();
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(

@@ -6,6 +6,7 @@ import 'package:get/get_core/get_core.dart';
 import 'package:getx/Link/Controller/AdminController/AdminHomeContentController.dart';
 import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
 import 'package:getx/Link/Controller/UserController.dart';
+import 'package:getx/main.dart';
 
 class AppbarAdmin extends StatelessWidget {
   const AppbarAdmin({super.key});
@@ -124,7 +125,7 @@ class AppbarAdmin extends StatelessWidget {
                           ),
                           GetBuilder<UserController>(builder: (control) {
                             return Text(
-                              "${control.roll}",
+                              "${Username!.getString("username")}",
                               style: Get.theme.primaryTextTheme.bodySmall,
                             );
                           })

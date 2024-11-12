@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/Controller/WidgetController/DropDownController.dart';
 import 'package:getx/Translate/local_controller.dart' show localeController;
 import 'package:getx/Theme/themeController.dart';
 import 'package:getx/link/Bindings/UserBinding.dart';
-import 'package:getx/view/Auth/login.dart';
 import 'package:getx/view/website/Home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Translate/local.dart';
@@ -13,7 +11,7 @@ SharedPreferences? Username;
 SharedPreferences? Password;
 SharedPreferences? lang;
 SharedPreferences? mode;
-
+SharedPreferences? tokenPref;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +19,8 @@ void main() async {
   Password = await SharedPreferences.getInstance();
   lang = await SharedPreferences.getInstance();
   mode = await SharedPreferences.getInstance();
-  
+  tokenPref = await SharedPreferences.getInstance();
+
   runApp(const VMS());
 }
 

@@ -1,8 +1,7 @@
 import 'package:get/get.dart';
 import 'package:getx/Link/Model/UserModel.dart';
-import 'package:getx/main.dart';
 
-class UserController extends GetxController {
+class Requestscontroller extends GetxController {
   String? token;
   String? roll;
   bool? verified;
@@ -13,7 +12,6 @@ class UserController extends GetxController {
     roll = user.roll;
     verified = user.verified;
     hasData = user.hasData;
-    tokenPref!.setString("token", token!);
     update();
   }
 }
