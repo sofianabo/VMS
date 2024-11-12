@@ -6,7 +6,7 @@ import 'package:getx/Link/Model/UserModel.dart';
 import '../API.dart' as global;
 
 class LoginAPI {
-  final UserController u = Get.put(UserController());
+  final UserController u = Get.find<UserController>();
   LoginAPI(this.context);
   BuildContext context;
   Dio dio = Dio();
