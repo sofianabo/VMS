@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:getx/Link/Controller/AdminController/AdminHomeContentController.dart';
+import 'package:getx/Link/Controller/AdminController/AdminTeacherAttendens.dart';
 import 'package:getx/Link/Controller/AdminController/AllClassesController.dart';
 import 'package:getx/Link/Controller/AdminController/AllStudentsController.dart';
 import 'package:getx/Link/Controller/AdminController/allGaurdianController.dart';
@@ -18,7 +19,11 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => DropDownController(), fenix: true);
     Get.lazyPut(() => Allclassescontroller(), fenix: true);
     Get.lazyPut(() => Allgaurdiancontroller(), fenix: true);
+<<<<<<< HEAD
     Get.lazyPut(() => Allstudentscontroller(), fenix: true);
     Get.lazyPut(() => (), fenix: true);
+=======
+    Get.lazyPut(() => TeacherAttendensController(), fenix: true);
+>>>>>>> 61168e7a2fcfc55999ba7bf28834de0aa75d982b
   }
 }

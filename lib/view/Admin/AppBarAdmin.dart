@@ -163,8 +163,8 @@ class AppbarAdmin extends StatelessWidget {
                                                                   "Employee Status"
                                                               ? "Employees Attendance"
                                                               : cont.content ==
-                                                                      "Teacher Quorum"
-                                                                  ? "Teacher Quorum"
+                                                                      "Teacher Attendance Managment"
+                                                                  ? "Teacher Attendance Managment"
                                                                   : "data",
                   style: Get.theme.primaryTextTheme.titleLarge);
             }),

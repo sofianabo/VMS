@@ -15,8 +15,8 @@ import 'package:getx/view/Admin/Requests.dart';
 import 'package:getx/view/Admin/SideBarAdmin.dart';
 import 'package:getx/view/Admin/StudentStatus.dart';
 import 'package:getx/view/Admin/StudyYearStudent.dart';
+import 'package:getx/view/Admin/TeacherAttendanceManagment.dart';
 import 'package:getx/view/Admin/TeacherMangament.dart';
-import 'package:getx/view/Admin/TeacherQuorum.dart';
 import 'package:getx/view/Admin/TeacherStatus.dart';
 
 class AdminHome extends StatelessWidget {
@@ -55,13 +55,13 @@ class AdminHome extends StatelessWidget {
                     case "Teacher Management":
                       return TeacherManagement();
                     case "Teacher Status":
-                      return const TeacherStatus();
+                      return TeacherStatus();
                     case "All Employee":
                       return AllEmployee();
                     case "Employee Status":
                       return const EmployeeStatus();
-                    case "Teacher Quorum":
-                      return TeacherQuorum();
+                    case "Teacher Attendance Managment":
+                      return TeacherAttendanceManagment();
                     default:
                       return Container();
                   }

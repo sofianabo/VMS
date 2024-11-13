@@ -159,14 +159,14 @@ class LoginScreen extends StatelessWidget {
                 if (Get.isDarkMode) {
                   mode!.setBool("mode", true);
                   th.changebool();
-                  await LoginAPI(context).login(username.text, password.text);
-                   Get.to(
+                  //await LoginAPI(context).login(username.text, password.text);
+                  Get.to(
                     () => AdminHome(),
                   );
                 } else {
                   th.changebool();
-                  await LoginAPI(context).login(username.text, password.text);
-                   Get.to(
+                  //await LoginAPI(context).login(username.text, password.text);
+                  Get.to(
                     () => AdminHome(),
                   );
                 }
