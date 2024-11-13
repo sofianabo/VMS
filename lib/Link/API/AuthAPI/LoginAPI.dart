@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/Controller/UserController.dart';
-import 'package:getx/Link/Model/UserModel.dart';
+import 'package:getx/Link/Controller/AuthController/UserController.dart';
+import 'package:getx/Link/Model/AuthModel/UserModel.dart';
 import '../API.dart' as global;
 
 class LoginAPI {

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:getx/Link/Model/UserModel.dart';
+import 'package:getx/Link/Model/AuthModel/UserModel.dart';
 import 'package:getx/main.dart';
 
 class UserController extends GetxController {

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:getx/Link/Model/UserModel.dart';
+import 'package:getx/Link/Model/AuthModel/UserModel.dart';
 
 class Requestscontroller extends GetxController {
   String? token;

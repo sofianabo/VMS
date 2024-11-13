@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx/Link/API/AdminAPI/AddGuardianAPI.dart';
 import 'package:getx/view/Admin/AllGuardianGrid.dart';
 import 'package:getx/widgets/ButtonsDialog.dart';
 import 'package:getx/widgets/TextFieldDialog.dart';
@@ -18,6 +19,9 @@ class AllGuardians extends StatelessWidget {
   TextEditingController username = TextEditingController();
   TextEditingController pass = TextEditingController();
   TextEditingController cpass = TextEditingController();
+  TextEditingController name = TextEditingController();
+  TextEditingController phone = TextEditingController();
+  TextEditingController nationalId = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -131,15 +135,15 @@ class AllGuardians extends StatelessWidget {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    "Password",
+                                                    "Name",
                                                     style: Get
                                                         .theme
                                                         .primaryTextTheme
                                                         .labelSmall,
                                                   ),
                                                   TextFieldDialog(
-                                                      controller: email,
-                                                      hinttext: "Password")
+                                                      controller: name,
+                                                      hinttext: "Name")
                                                 ],
                                               ),
                                             ),
@@ -148,18 +152,94 @@ class AllGuardians extends StatelessWidget {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  "Confirm Password",
+                                                  "phone Number",
                                                   style: Get
                                                       .theme
                                                       .primaryTextTheme
                                                       .labelSmall,
                                                 ),
                                                 TextFieldDialog(
-                                                    controller: username,
-                                                    hinttext:
-                                                        "Confirm Password")
+                                                    controller: phone,
+                                                    hinttext: "Phone Number")
                                               ],
                                             )
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 20.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 15.0),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "National ID",
+                                                    style: Get
+                                                        .theme
+                                                        .primaryTextTheme
+                                                        .labelSmall,
+                                                  ),
+                                                  TextFieldDialog(
+                                                      controller: nationalId,
+                                                      hinttext: "National ID")
+                                                ],
+                                              ),
+                                            ),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Password",
+                                                  style: Get
+                                                      .theme
+                                                      .primaryTextTheme
+                                                      .labelSmall,
+                                                ),
+                                                TextFieldDialog(
+                                                    controller: pass,
+                                                    hinttext: "Password")
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 20.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 15.0),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "Confirm Password",
+                                                    style: Get
+                                                        .theme
+                                                        .primaryTextTheme
+                                                        .labelSmall,
+                                                  ),
+                                                  TextFieldDialog(
+                                                      controller: cpass,
+                                                      hinttext:
+                                                          "Confirm Password")
+                                                ],
+                                              ),
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -172,7 +252,16 @@ class AllGuardians extends StatelessWidget {
                                         ButtonDialog(
                                             width: 150,
                                             text: "Add Guardian",
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              Addguardianapi(context)
+                                                  .addguardian(
+                                                      name.text,
+                                                      email.text,
+                                                      nationalId.text,
+                                                      phone.text,
+                                                      username.text,
+                                                      pass.text,);
+                                            },
                                             color:
                                                 Get.theme.colorScheme.primary)
                                       ],

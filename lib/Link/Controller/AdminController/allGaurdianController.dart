@@ -4,7 +4,7 @@ import 'package:getx/Link/Model/AdminModel/allGuardianModel.dart';
 class Allgaurdiancontroller extends GetxController {
   List<Gaurdians> guardian = [];
 
-  void getallGaurdian(AllGuardianModel model) {
+  void setallGaurdian(AllGuardianModel model) {
     guardian = model.gaurdians!;
     update();
   }
@@ -17,4 +17,11 @@ class Allgaurdiancontroller extends GetxController {
     guardian[index].nationalId = nationalid;
     update();
   }
+
+  // void addGuardian(AllGuardianModel model) {
+  //   guardian = model.gaurdians!;
+  //   update();
+  // }
+
+  List<Gaurdians> get guardians => guardian.toList();
 }
