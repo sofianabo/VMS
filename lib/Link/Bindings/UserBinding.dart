@@ -18,7 +18,8 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Homescreencontroller(), fenix: true);
     Get.lazyPut(() => DropDownController(), fenix: true);
     Get.lazyPut(() => Allclassescontroller(), fenix: true);
-    Get.lazyPut(() => Allgaurdiancontroller(), fenix: true);    Get.lazyPut(() => Allstudentscontroller(), fenix: true);
+    Get.lazyPut(() => Allgaurdiancontroller(), fenix: true);  
+      Get.lazyPut(() => Allstudentscontroller(), fenix: true);
     Get.lazyPut(() => (), fenix: true);
 
     Get.lazyPut(() => TeacherAttendensController(), fenix: true);
