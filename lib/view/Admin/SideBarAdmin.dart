@@ -146,8 +146,8 @@ class SideBarAdmin extends StatelessWidget {
                         if (value == "Teacher Status") {
                           cont.updateContent("Teacher Status");
                         }
-                        if (value == "Teacher Quorum") {
-                          cont.updateContent("Teacher Quorum");
+                        if (value == "Teacher Attendance Managment") {
+                          cont.updateContent("Teacher Attendance Managment");
                         }
                       },
                       itemBuilder: (BuildContext context) =>
@@ -163,8 +163,8 @@ class SideBarAdmin extends StatelessWidget {
                               style: Get.theme.primaryTextTheme.bodySmall),
                         ),
                         PopupMenuItem<String>(
-                          value: 'Teacher Quorum',
-                          child: Text('Teacher Quorum',
+                          value: 'Teacher Attendance Managment',
+                          child: Text('Teacher Attendance Managment',
                               style: Get.theme.primaryTextTheme.bodySmall),
                         ),
                       ],
