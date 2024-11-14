@@ -102,6 +102,9 @@ class SideBarAdmin extends StatelessWidget {
                         if (value == "Student Status") {
                           cont.updateContent("Student Status");
                         }
+                        if (value == "Students Attendance Managment") {
+                          cont.updateContent("Students Attendance Managment");
+                        }
                       },
                       itemBuilder: (BuildContext context) =>
                           <PopupMenuEntry<String>>[
@@ -123,6 +126,11 @@ class SideBarAdmin extends StatelessWidget {
                         PopupMenuItem<String>(
                           value: 'Student Status',
                           child: Text('Student Status',
+                              style: Get.theme.primaryTextTheme.bodySmall),
+                        ),
+                        PopupMenuItem<String>(
+                          value: 'Students Attendance Managment',
+                          child: Text('Students Attendance Managment',
                               style: Get.theme.primaryTextTheme.bodySmall),
                         ),
                       ],
@@ -182,23 +190,31 @@ class SideBarAdmin extends StatelessWidget {
                         size: 20,
                       ),
                       onSelected: (value) {
-                        if (value == "All Employee") {
-                          cont.updateContent("All Employee");
+                        if (value == "Employee Management") {
+                          cont.updateContent("Employee Management");
                         }
-                        if (value == "Employee Status") {
-                          cont.updateContent("Employee Status");
+                        if (value == "Employee Attendance") {
+                          cont.updateContent("Employee Attendance");
+                        }
+                        if (value == "Employee Attendance Manage") {
+                          cont.updateContent("Employee Attendance Manage");
                         }
                       },
                       itemBuilder: (BuildContext context) =>
                           <PopupMenuEntry<String>>[
                         PopupMenuItem<String>(
-                          value: 'All Employee',
-                          child: Text('All Employee',
+                          value: 'Employee Management',
+                          child: Text('Employee Management',
                               style: Get.theme.primaryTextTheme.bodySmall),
                         ),
                         PopupMenuItem<String>(
-                          value: 'Employee Status',
-                          child: Text('Employee Status',
+                          value: 'Employee Attendance',
+                          child: Text('Employee Attendance',
+                              style: Get.theme.primaryTextTheme.bodySmall),
+                        ),
+                        PopupMenuItem<String>(
+                          value: 'Employee Attendance Manage',
+                          child: Text('Employee Attendance Manage',
                               style: Get.theme.primaryTextTheme.bodySmall),
                         ),
                       ],

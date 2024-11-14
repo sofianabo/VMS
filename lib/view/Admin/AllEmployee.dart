@@ -1,11 +1,12 @@
-// ignore_for_file: must_be_immutable, file_names
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/view/Admin/AllEmployeeGrid.dart';
 import 'package:getx/widgets/ButtonsDialog.dart';
 import 'package:getx/widgets/DropDown.dart';
 import 'package:getx/widgets/TextFormSearch.dart';
-import 'package:getx/widgets/TextFieldDialog.dart';
+import '../../Icons_File/v_m_s__icons_icons.dart';
+import '../../widgets/TextFildWithUpper.dart';
+import '../../widgets/VMSAlertDialog.dart';
 
 class AllEmployee extends StatelessWidget {
   AllEmployee({super.key});
@@ -14,145 +15,198 @@ class AllEmployee extends StatelessWidget {
   TextEditingController username = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+  TextEditingController cPassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(right: 100),
-      width: MediaQuery.of(context).size.width * 0.8,
-      child: Container(
-        margin: const EdgeInsets.only(top: 10),
+    double w = MediaQuery.of(context).size.width;
+    return Expanded(
         child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(
-                    width: 750,
-                    height: 40,
-                    child: TextFormSearch(
-                      radius: 20,
-                      controller: search,
-                      suffixIcon: Icons.search,
-                    )),
-                IconButton(
-                    onPressed: () {
-                      Get.dialog(AlertDialog(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        backgroundColor: Colors.white,
-                        surfaceTintColor: Colors.white,
-                        title: Text(
-                          "Add Empolyee",
-                          style: Get.theme.primaryTextTheme.bodyLarge,
+      children: [
+        Container(
+          margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: DropDown(
+                            title: "2024-2025",
+                            width: w / 5,
+                            options: ['abbb', 'bfddfvd']),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: DropDown(
+                            title: "Jop Title",
+                            width: w / 5,
+                            options: ['abbb', 'bfddfvd']),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: TextFormSearch(
+                          width: w / 3.5,
+                          radius: 5,
+                          controller: search,
+                          suffixIcon: Icons.search,
                         ),
-                        content: SizedBox(
-                            width: 600,
-                            height: 240,
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text("UserName",
-                                            style: Get.theme.primaryTextTheme
-                                                .labelSmall),
-                                        TextFieldDialog(
-                                          controller: username,
-                                          hinttext: "User Name",
-                                        )
-                                      ],
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text("Email",
-                                            style: Get.theme.primaryTextTheme
-                                                .labelSmall),
-                                        TextFieldDialog(
-                                          controller: email,
-                                          hinttext: "Email",
-                                        )
-                                      ],
-                                    ),
+                      ),
+                    ],
+                  ),
+                  Spacer(),
+                  Row(
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    WidgetStatePropertyAll(Color(0xffF9F8FD)),
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {
+                              Get.dialog(VMSAlertDialog(
+                                  action: [
+                                    ButtonDialog(
+                                        text: "Add Teacher",
+                                        onPressed: () {
+                                          Get.back();
+                                        },
+                                        color: Get.theme.primaryColor,
+                                        width: 120)
                                   ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 15.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                  contents: Column(
+                                    mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                      Row(
                                         children: [
-                                          Text("Password",
-                                              style: Get.theme.primaryTextTheme
-                                                  .labelSmall),
-                                          TextFieldDialog(
-                                            controller: password,
-                                            hinttext: "Password",
-                                          )
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 15.0),
+                                            child: Textfildwithupper(
+                                                Uptext: "Email",
+                                                width: 220,
+                                                controller: email,
+                                                hinttext: "Email"),
+                                          ),
+                                          Textfildwithupper(
+                                              Uptext: "Username",
+                                              width: 220,
+                                              controller: username,
+                                              hinttext: "Username")
                                         ],
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 15.0),
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 15.0),
+                                              child: Textfildwithupper(
+                                                  Uptext: "Password",
+                                                  width: 220,
+                                                  controller: password,
+                                                  hinttext: "Password"),
+                                            ),
+                                            Textfildwithupper(
+                                                Uptext: "Confirm Password",
+                                                width: 220,
+                                                controller: cPassword,
+                                                hinttext: "Confirm Password")
+                                          ],
+                                        ),
                                       )
                                     ],
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 25),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      DropDown(
-                                        title: "Status",
-                                        width: 115,
-                                        options: ['a', 'b'],
-                                      ),
-                                      DropDown(
-                                          title: "Class",
-                                          width: 115,
-                                          options: ['acc', 'b']),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            )),
-                        actions: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              ButtonDialog(
-                                  width: 100,
-                                  text: "Add",
-                                  color: Get.theme.colorScheme.primary,
-                                  onPressed: () {})
-                            ],
-                          )
-                        ],
-                      ));
-                    },
-                    icon: const Icon(Icons.add)),
-                IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.picture_as_pdf)),
-                IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.picture_as_pdf)),
-              ],
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 6,
-              height: MediaQuery.of(context).size.height * 0.63,
-              child: AllEmployeeGrid(),
-            ),
-          ],
+                                  apptitle: "Add Teacher",
+                                  subtitle: "none"));
+                            },
+                            icon: Icon(Icons.add,
+                                size: 18, color: Get.theme.primaryColor)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    offset: Offset(0, 2),
+                                    blurRadius: 1)
+                              ]),
+                          child: IconButton(
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      WidgetStatePropertyAll(Color(0xffF9F8FD)),
+                                  shape: WidgetStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))))),
+                              onPressed: () {},
+                              icon: Icon(VMS_Icons.pdf,
+                                  size: 18, color: Get.theme.primaryColor)),
+                        ),
+                      ),
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    WidgetStatePropertyAll(Color(0xffF9F8FD)),
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {},
+                            icon: Icon(VMS_Icons.xl,
+                                size: 18, color: Get.theme.primaryColor)),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+        Expanded(
+            child: Padding(
+          padding: const EdgeInsets.only(top: 15.0),
+          child: AllEmployeeGrid(),
+        )),
+      ],
+    ));
   }
 }

@@ -1,48 +1,129 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:getx/view/Admin/EmployeeStatusGrid.dart';
 import 'package:getx/widgets/Calender.dart';
 import 'package:getx/widgets/DropDown.dart';
 
+import '../../Icons_File/v_m_s__icons_icons.dart';
+import '../../widgets/TextFormSearch.dart';
+
 class EmployeeStatus extends StatelessWidget {
-  const EmployeeStatus({super.key});
+  EmployeeStatus({super.key});
+
+  TextEditingController serch = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(right: 100),
-      width: MediaQuery.of(context).size.width * 0.8,
-      child: Container(
-        margin: const EdgeInsets.only(top: 10),
+    double w = Get.width;
+    return Expanded(
         child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                 DropDown(title: "Status",width: 115,options: ['asdvsd','bdfbfdb']),
-                 DropDown(title: "job Title",width: 115,options: ['asdvsdv','hgngh']),
-                DatePicker(width: 210,),
-                 DropDown(title: "Teacher",width: 115,options: ['asdsd','bewterg']),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.file_open)),
-                IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.bookmark_remove)),
-              ],
-            ),
-            Container(
-              margin: const EdgeInsets.only(right: 20, left: 20, top: 20),
-              width: MediaQuery.of(context).size.width * 6,
-              height: MediaQuery.of(context).size.height * 0.63,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20)),
-                color: Colors.white,
+      children: [
+        Container(
+          margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: DropDown(
+                            title: "2024-2025",
+                            width: w / 6,
+                            options: ['abbb', 'bfddfvd']),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: DropDown(
+                            title: "Jop Title",
+                            width: w / 6,
+                            options: ['abbb', 'bfddfvd']),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: DatePicker(
+                          width: w / 6,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: TextFormSearch(
+                          width: w / 3.6,
+                          radius: 5,
+                          controller: serch,
+                          suffixIcon: Icons.search,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Spacer(),
+                  Row(
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {},
+                            icon: Icon(VMS_Icons.xl,
+                                size: 18, color: Get.theme.primaryColor)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    offset: Offset(0, 2),
+                                    blurRadius: 1)
+                              ]),
+                          child: IconButton(
+                              style: ButtonStyle(
+                                  shape: WidgetStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))))),
+                              onPressed: () {},
+                              icon: Icon(VMS_Icons.pdf,
+                                  size: 18, color: Get.theme.primaryColor)),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
               ),
-              child: EmpolyeeStatusGrid(),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-    );
+        Expanded(
+            child: Padding(
+          padding: const EdgeInsets.only(top: 15.0),
+          child: EmpolyeeStatusGrid(),
+        )),
+      ],
+    ));
   }
 }

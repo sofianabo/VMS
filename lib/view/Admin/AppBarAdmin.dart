@@ -165,7 +165,13 @@ class AppbarAdmin extends StatelessWidget {
                                                               : cont.content ==
                                                                       "Teacher Attendance Managment"
                                                                   ? "Teacher Attendance Managment"
-                                                                  : "data",
+                                                                  : cont.content ==
+                                                                          "Employee Attendance Manage"
+                                                                      ? "Employee Attendance Manage"
+                                                                      : cont.content ==
+                                                                              "Students Attendance Managment"
+                                                                          ? "Students Attendance Managment"
+                                                                          : "data",
                   style: Get.theme.primaryTextTheme.titleLarge);
             }),
             SizedBox(

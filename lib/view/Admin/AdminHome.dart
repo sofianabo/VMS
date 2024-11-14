@@ -8,12 +8,14 @@ import 'package:getx/view/Admin/AllEmployee.dart';
 import 'package:getx/view/Admin/AllGuardians.dart';
 import 'package:getx/view/Admin/AllStudent.dart';
 import 'package:getx/view/Admin/AppBarAdmin.dart';
+import 'package:getx/view/Admin/EmployeeAttendanceManagment.dart';
 import 'package:getx/view/Admin/EmployeeStatus.dart';
 import 'package:getx/view/Admin/ExamTable.dart';
 import 'package:getx/view/Admin/SchoolTimeTable.dart';
 import 'package:getx/view/Admin/Requests.dart';
 import 'package:getx/view/Admin/SideBarAdmin.dart';
 import 'package:getx/view/Admin/StudentStatus.dart';
+import 'package:getx/view/Admin/StudentsAttendanceManagment.dart';
 import 'package:getx/view/Admin/StudyYearStudent.dart';
 import 'package:getx/view/Admin/TeacherAttendanceManagment.dart';
 import 'package:getx/view/Admin/TeacherMangament.dart';
@@ -56,12 +58,16 @@ class AdminHome extends StatelessWidget {
                       return TeacherManagement();
                     case "Teacher Status":
                       return TeacherStatus();
-                    case "All Employee":
+                    case "Employee Management":
                       return AllEmployee();
-                    case "Employee Status":
-                      return const EmployeeStatus();
+                    case "Employee Attendance":
+                      return EmployeeStatus();
+                    case "Employee Attendance Manage":
+                      return EmployeeAttendanceManagment();
                     case "Teacher Attendance Managment":
                       return TeacherAttendanceManagment();
+                    case "Students Attendance Managment":
+                      return StudentsAttendanceManagment();
                     default:
                       return Container();
                   }
