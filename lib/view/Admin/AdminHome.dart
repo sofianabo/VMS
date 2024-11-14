@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/Link/API/AdminAPI/GetAllGuardiansAPI.dart';
+import 'package:getx/Link/API/AdminAPI/GetAllStudentAPI.dart';
+import 'package:getx/Link/API/AdminAPI/GetAllTeachersAPI.dart';
 import 'package:getx/Link/Controller/AdminController/AdminHomeContentController.dart';
 import 'package:getx/view/Admin/AllEmployee.dart';
 import 'package:getx/view/Admin/AllGuardians.dart';
@@ -46,6 +48,7 @@ class AdminHome extends StatelessWidget {
                     case "School Time Table":
                       return SchoolTimeTable();
                     case "All Students":
+                      Getallstudentapi(context).Getallstudent();
                       return AllStudent();
                     case "Study Year Students":
                       return StudyTearStudents();
@@ -55,6 +58,7 @@ class AdminHome extends StatelessWidget {
                     case "Student Status":
                       return StudentStatus();
                     case "Teacher Management":
+                      Getallteachersapi(context).Getallteachers();
                       return TeacherManagement();
                     case "Teacher Status":
                       return TeacherStatus();

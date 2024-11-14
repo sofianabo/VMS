@@ -12,6 +12,7 @@ class Getallstudentapi {
   Dio dio = Dio();
 
   Getallstudent() async {
+    Allstudentscontroller c = Get.find<Allstudentscontroller>();
     String myurl = "${global.hostPort}${global.getStudents}";
     var response = await dio.get(myurl,
         options: Options(headers: {

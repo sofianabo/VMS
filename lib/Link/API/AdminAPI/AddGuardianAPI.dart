@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx/Link/API/AdminAPI/GetAllGuardiansAPI.dart';
 import 'package:getx/Link/Controller/AdminController/allGaurdianController.dart';
 import 'package:getx/Link/Model/AdminModel/allGuardianModel.dart';
 import 'package:getx/main.dart';
@@ -29,8 +30,8 @@ class Addguardianapi {
             'authorization': 'Bearer ${tokenPref!.getString("token")}'
           }));
       if (response.statusCode == 200) {
-        AllGuardianModel model = AllGuardianModel.fromJson(response.data);
-        // u.addGuardian(model);
+        await GetAllGuardiansAPI(context).getAllGuardian();
+        Get.back();
       } else {
         return throw Exception("Failed");
       }
