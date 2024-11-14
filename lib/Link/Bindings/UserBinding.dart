@@ -9,6 +9,13 @@ import 'package:getx/Link/Controller/HomeScreenController.dart';
 import 'package:getx/Link/Controller/WidgetController/DropDownController.dart';
 import 'package:getx/Link/Controller/WidgetController/PasswordHintController.dart';
 
+import '../Controller/AdminController/AdminEmployeeAttendens.dart';
+import '../Controller/AdminController/AdminStudentsAttendens.dart';
+import '../Controller/AdminController/AllTeacherController.dart';
+import '../Controller/AdminController/RequestsController.dart';
+import '../Controller/WidgetController/CheckBoxController.dart';
+import '../Controller/WidgetController/DateControler.dart';
+
 class UserBiniding extends Bindings {
   @override
   void dependencies() {
