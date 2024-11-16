@@ -1,20 +1,11 @@
 import 'package:get/get.dart';
-import 'package:getx/Link/Model/AdminModel/allGuardianModel.dart';
+import 'package:getx/Link/Model/AdminModel/AllTeacherModel.dart';
 
 class Allteachercontroller extends GetxController {
-  List<Gaurdians> guardian = [];
+  List<Teachers> teachers = [];
 
-  void setAllteacher(AllGuardianModel model) {
-    guardian = model.gaurdians!;
+  void setAllteacher(AllTeacherModel model) {
+    teachers = model.teachers!;
     update();
   }
-
-  // void updateGuardian(
-  //     String name, int index, String phone, String email, String nationalid) {
-  //   guardian[index].name = name;
-  //   guardian[index].phone = phone;
-  //   guardian[index].email = email;
-  //   guardian[index].nationalId = nationalid;
-  //   update();
-  // }
 }

@@ -23,7 +23,7 @@ class Getallclassapi {
       AllClassesModel classes = AllClassesModel.fromJson(response.data);
       c.setAllClasses(classes);
     } else {
-      return throw Exception("Failed to load products");
+      return throw Exception("Failed to load classes");
     }
   }
 }

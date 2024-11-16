@@ -23,7 +23,7 @@ class GetAllGuardiansAPI {
       AllGuardianModel classes = AllGuardianModel.fromJson(response.data);
       c.setallGaurdian(classes);
     } else {
-      return throw Exception("Failed to load products");
+      return throw Exception("Failed to load Gurdians");
     }
   }
 }

@@ -6,7 +6,6 @@ import '../../widgets/SidbarAnimation.dart';
 
 class SideBarAdmin extends StatelessWidget {
   SideBarAdmin({super.key});
-  AdminHomeContentController adminContent = Get.find();
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;

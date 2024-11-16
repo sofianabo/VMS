@@ -23,7 +23,7 @@ class Getallstudentapi {
       // AllGuardianModel classes = AllGuardianModel.fromJson(response.data);
       // c.getallGaurdian(classes);
     } else {
-      return throw Exception("Failed to load products");
+      return throw Exception("Failed to load Students");
     }
   }
 }

@@ -8,33 +8,7 @@ import 'package:getx/widgets/VMSAlertDialog.dart';
 import '../../widgets/GridAnimation.dart';
 
 class AllGuardianGrid extends StatelessWidget {
-  List<Map<String, dynamic>> l = [
-    {
-      "name": "Laith Haitham Azzam",
-      "email": "ram_1@vmssyria.com",
-      "mobile": "0031684656703"
-    },
-    {
-      "name": "Laith Haitham Azzam",
-      "email": "ram_1@vmssyria.com",
-      "mobile": "0031684656703"
-    },
-    {
-      "name": "Sofian Abo Shdeed",
-      "email": "ram_1@vmssyria.com",
-      "mobile": "0031684656703"
-    },
-    {
-      "name": "Fadi Read Alsupot",
-      "email": "ram_1@vmssyria.com",
-      "mobile": "0031684656703"
-    },
-    {
-      "name": "Faiez Rakan ShamsAldeen",
-      "email": "ram_1@vmssyria.com",
-      "mobile": "0031684656703"
-    },
-  ];
+  
   TextEditingController gUserName = TextEditingController();
   TextEditingController gNationalID = TextEditingController();
   TextEditingController gEmail = TextEditingController();

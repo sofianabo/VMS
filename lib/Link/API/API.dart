@@ -15,3 +15,4 @@ String editGuardian = "updateGuardian";
 String getStudents = "getAllStudent";
 String addGuardian = "addenroll";
 String getTeachers = "getAllTeacher";
+String addEmpolyee = "addEmployee";
