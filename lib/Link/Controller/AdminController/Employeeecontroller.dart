@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class TeacherAttendensController extends GetxController {
-  var Teachers = [
+class EmployeeController extends GetxController {
+  var Employees = [
     {
       "name": "Laith Haitham Azzam",
       "status": "Present",
@@ -24,25 +24,24 @@ class TeacherAttendensController extends GetxController {
     },
   ].obs;
 
-
   var allHolidayChecked = false.obs; // حالة ال Checkbox
 
   void updateStatus(int index, String newStatus) {
-    Teachers[index]['status'] = newStatus;
-    Teachers.refresh();
+    Employees[index]['status'] = newStatus;
+    Employees.refresh();
     checkAllHolidayStatus();
   }
 
   void setAllAsHoliday(bool checked) {
     allHolidayChecked.value = checked;
-    for (var item in Teachers) {
+    for (var item in Employees) {
       item['status'] = checked ? 'Holiday' : 'Present';
     }
-    Teachers.refresh();
+    Employees.refresh();
   }
 
   void checkAllHolidayStatus() {
     allHolidayChecked.value =
-        Teachers.every((item) => item['status'] == 'Holiday');
+        Employees.every((item) => item['status'] == 'Holiday');
   }
 }

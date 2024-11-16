@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/Controller/AdminController/AdminTeacherAttendens.dart';
-import '../../link/Controller/AdminController/AdminEmployeeAttendenceManage.dart';
+
+import '../../Link/Controller/AdminController/Employeeecontroller.dart';
 
 class EmployeesAttendanceManagmentGrid extends StatelessWidget {
   const EmployeesAttendanceManagmentGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<TeacherAttendensController>(
+    return GetBuilder<EmployeeController>(
       builder: (controller) {
         return Padding(
           padding: const EdgeInsets.only(top: 10, left: 40, right: 40),

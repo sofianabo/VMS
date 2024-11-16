@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/Controller/AdminController/AdminTeacherAttendens.dart';
 import 'package:getx/view/Admin/EmployeeAttendenceManageGride.dart';
+
+import '../../Link/Controller/AdminController/Employeeecontroller.dart';
 
 class EmployeeAttendanceManagment extends StatelessWidget {
   EmployeeAttendanceManagment({super.key});
@@ -22,7 +23,7 @@ class EmployeeAttendanceManagment extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GetBuilder<TeacherAttendensController>(builder: (controller) {
+                  GetBuilder<EmployeeController>(builder: (controller) {
                     return Container(
                         width: w / 5.0,
                         child: Obx(() => Row(
@@ -31,9 +32,9 @@ class EmployeeAttendanceManagment extends StatelessWidget {
                                   shape: RoundedRectangleBorder(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(4))),
-                                  value: controller.allHolidayCheckede.value,
+                                  value: controller.allHolidayChecked.value,
                                   onChanged: (value) {
-                                    controller.setAllAsHolidaye(value!);
+                                    controller.setAllAsHoliday(value!);
                                   },
                                 ),
                                 Text("Set All As a Holiday"),
