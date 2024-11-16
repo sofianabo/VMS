@@ -16,9 +16,9 @@ class TeacherAttendanceManagmentGrid extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Column(
                   children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
                         Container(
                           width: Get.width / 3.5,
                           child: Row(

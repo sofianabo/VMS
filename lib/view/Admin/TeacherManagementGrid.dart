@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
-import 'package:getx/Link/Controller/AdminController/AllTeacherController.dart';
+import 'package:getx/link/Controller/AdminController/AllTeacherController.dart';
 import 'package:getx/widgets/ButtonsDialog.dart';
 import '../../widgets/DropDown.dart';
 import '../../widgets/GridAnimation.dart';
@@ -12,7 +12,7 @@ class TeacherManagementGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<Allteachercontroller>(builder: (controller) {
+    return GetBuilder<Allteachercontroller>(builder: (control) {
       return GridView.builder(
         padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -34,7 +34,7 @@ class TeacherManagementGrid extends StatelessWidget {
                         : Get.width <= 573
                             ? 3.0
                             : 0.9),
-        itemCount: controller.teachers.length, // عدد العناصر في الشبكة
+        itemCount: control.teachers.length, // عدد العناصر في الشبكة
         itemBuilder: (context, index) {
           return HoverScaleCard(
             child: GestureDetector(
@@ -90,7 +90,7 @@ class TeacherManagementGrid extends StatelessWidget {
                                             MainAxisAlignment.start,
                                         children: [
                                           Text(
-                                            "Do You Want To Delete ${controller.teachers[index].fullName} Teacher",
+                                            "Do You Want To Delete ${control.teachers[index].fullName} Teacher",
                                             style: Get.theme.primaryTextTheme
                                                 .bodyMedium!
                                                 .copyWith(
@@ -153,7 +153,7 @@ class TeacherManagementGrid extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 5.0),
-                        child: Text("${controller.teachers[index].fullName}",
+                        child: Text("${control.teachers[index].fullName}",
                             style: Get.theme.primaryTextTheme.bodyMedium!
                                 .copyWith(
                                     fontSize: 20, fontWeight: FontWeight.bold)),
@@ -165,11 +165,11 @@ class TeacherManagementGrid extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 5.0),
                             child: Text(
-                                "${controller.teachers[index].contractType}",
+                                "${control.teachers[index].contractType}",
                                 style: Get.theme.primaryTextTheme.bodySmall!
                                     .copyWith(
                                         fontSize: 16,
-                                        color: controller.teachers[index]
+                                        color: control.teachers[index]
                                                     .contractType ==
                                                 "Full Time"
                                             ? Color(0xff2F9742)
@@ -177,7 +177,7 @@ class TeacherManagementGrid extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 5.0),
-                            child: Text("${controller.teachers[index].gender}",
+                            child: Text("${control.teachers[index].gender}",
                                 style: Get.theme.primaryTextTheme.bodySmall!
                                     .copyWith(
                                         fontSize: 16,
@@ -187,8 +187,7 @@ class TeacherManagementGrid extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 5.0),
-                        child: Text(
-                            "Mobile : ${controller.teachers[index].phone}",
+                        child: Text("Mobile : ${control.teachers[index].phone}",
                             style:
                                 Get.theme.primaryTextTheme.bodySmall!.copyWith(
                               fontSize: 16,
@@ -196,8 +195,7 @@ class TeacherManagementGrid extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 5.0),
-                        child: Text(
-                            "Email : ${controller.teachers[index].email}",
+                        child: Text("Email : ${control.teachers[index].email}",
                             style:
                                 Get.theme.primaryTextTheme.bodySmall!.copyWith(
                               fontSize: 14,

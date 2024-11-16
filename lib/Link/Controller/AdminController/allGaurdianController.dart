@@ -18,6 +18,8 @@ class Allgaurdiancontroller extends GetxController {
     update();
   }
 
+  
+
   // void addGuardian(Gaurdians model) {
   //   guardian[guardian.length + 1] = model;
   //   update();

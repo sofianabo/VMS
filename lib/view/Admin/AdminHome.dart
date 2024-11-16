@@ -58,7 +58,7 @@ class AdminHome extends StatelessWidget {
                     case "Student Status":
                       return StudentStatus();
                     case "Teacher Management":
-                      Getallteachersapi(context).Getallteachers(null);
+                        Getallteachersapi(context).Getallteachers(null);
                       return TeacherManagement();
                     case "Teacher Status":
                       return TeacherStatus();

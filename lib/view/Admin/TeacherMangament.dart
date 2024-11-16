@@ -27,7 +27,7 @@ class TeacherManagement extends StatelessWidget {
   TextEditingController contractType = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController cPassword = TextEditingController();
-  
+
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
