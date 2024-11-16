@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx/Link/Controller/AdminController/AdminTeacherAttendens.dart';
 import 'package:getx/view/Admin/EmployeeAttendanceManagmentGrid.dart';
+import 'package:getx/view/Admin/TeacherAttendanceManagmentGrid.dart';
 
 import '../../Link/Controller/AdminController/AdminEmployeeAttendens.dart';
 
@@ -23,7 +25,7 @@ class EmployeeAttendanceManagment extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GetBuilder<EmployeeAttendensController>(
+                  GetBuilder<EmployeesAttendensMAnagments>(
                       builder: (controller) {
                     return Container(
                         width: w / 5.0,

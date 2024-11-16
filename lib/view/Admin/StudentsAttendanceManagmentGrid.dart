@@ -7,7 +7,7 @@ class StudentsAttendanceManagmentGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<StudentsAttendensController>(builder: (controller) {
+    return GetBuilder<Studentattcontroller>(builder: (controller) {
       return Padding(
         padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
         child: Obx(() => ListView.builder(

@@ -38,8 +38,7 @@ class StudentsAttendanceManagment extends StatelessWidget {
                       title: "Division",
                       width: w / 5.0,
                       options: ['abbb', 'bfddfvd']),
-                  GetBuilder<StudentsAttendensController>(
-                      builder: (controller) {
+                  GetBuilder<Studentattcontroller>(builder: (controller) {
                     return Container(
                         width: w / 5.0,
                         child: Obx(() => Row(

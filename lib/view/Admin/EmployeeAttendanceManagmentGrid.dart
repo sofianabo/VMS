@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../Link/Controller/AdminController/AdminEmployeeAttendens.dart';
 
 class EmployeeAttendanceManagmentGrid extends StatelessWidget {
@@ -8,7 +7,7 @@ class EmployeeAttendanceManagmentGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<EmployeeAttendensController>(builder: (controller) {
+    return GetBuilder<EmployeesAttendensMAnagments>(builder: (controller) {
       return Padding(
         padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
         child: Obx(() => ListView.builder(
