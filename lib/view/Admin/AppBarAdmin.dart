@@ -136,43 +136,31 @@ class AppbarAdmin extends StatelessWidget {
               );
             }),
             GetBuilder<AdminHomeContentController>(builder: (cont) {
+              // Define a mapping of content to display text
+              final contentMap = {
+                "enroll requests": "Enroll Requests",
+                "Exam Table": "Exam Table",
+                "School Time Table": "School Time Table",
+                "All Students": "All Students",
+                "Study Year Students": "Study Year Students",
+                "All Guardians": "All Guardians",
+                "Student Status": "Students Attendance",
+                "All Employee": "All Employees",
+                "Teacher Management": "Teachers Management",
+                "Teacher Status": "Teachers Attendance",
+                "Employee Status": "Employees Attendance",
+                "Teacher Attendance Managment": "Teacher Attendance Managment",
+                "Employee Attendance Manage": "Employee Attendance Manage",
+                "Students Attendance Managment":
+                    "Students Attendance Managment",
+              };
+
+              String displayText = contentMap[cont.content] ?? "data";
+
               return Text(
-                  cont.content == "enroll requests"
-                      ? "Enroll Requests"
-                      : cont.content == "Exam Table"
-                          ? "Exam Table"
-                          : cont.content == "School Time Table"
-                              ? "School Time Table"
-                              : cont.content == "All Students"
-                                  ? "All Students"
-                                  : cont.content == "Study Year Students"
-                                      ? "Study Year Students"
-                                      : cont.content == "All Guardians"
-                                          ? "All Guardians"
-                                          : cont.content == "Student Status"
-                                              ? "Students Attendance"
-                                              : cont.content == "All Employee"
-                                                  ? "All Employees"
-                                                  : cont.content ==
-                                                          "Teacher Management"
-                                                      ? "Teachers Management"
-                                                      : cont.content ==
-                                                              "Teacher Status"
-                                                          ? "Teachers Attendance"
-                                                          : cont.content ==
-                                                                  "Employee Status"
-                                                              ? "Employees Attendance"
-                                                              : cont.content ==
-                                                                      "Teacher Attendance Managment"
-                                                                  ? "Teacher Attendance Managment"
-                                                                  : cont.content ==
-                                                                          "Employee Attendance Manage"
-                                                                      ? "Employee Attendance Manage"
-                                                                      : cont.content ==
-                                                                              "Students Attendance Managment"
-                                                                          ? "Students Attendance Managment"
-                                                                          : "data",
-                  style: Get.theme.primaryTextTheme.titleLarge);
+                displayText,
+                style: Get.theme.primaryTextTheme.titleLarge,
+              );
             }),
             SizedBox(
               height: 400,

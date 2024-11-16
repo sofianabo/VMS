@@ -8,11 +8,26 @@ import 'package:getx/view/Admin/AllStudentGrid.dart';
 import 'package:getx/widgets/Calender.dart';
 import 'package:getx/widgets/TextFormSearch.dart';
 
+import '../../Link/API/AdminAPI/GetAllStudentAPI.dart';
 import '../../widgets/DropDown.dart';
 
-class AllStudent extends StatelessWidget {
+class AllStudent extends StatefulWidget {
   AllStudent({super.key});
+
+  @override
+  State<AllStudent> createState() => _AllStudentState();
+}
+
+class _AllStudentState extends State<AllStudent> {
+  @override
+  void initState() {
+    Getallstudentapi(context).Getallstudent();
+    // TODO: implement initState
+    super.initState();
+  }
+
   TextEditingController search = TextEditingController();
+
   final CheckboxController controller = Get.put(CheckboxController());
 
   @override

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/Link/Controller/AdminController/AdminTeacherAttendens.dart';
-import 'package:getx/view/Admin/EmployeeAttendanceManagmentGrid.dart';
-import 'package:getx/view/Admin/TeacherAttendanceManagmentGrid.dart';
-
-import '../../Link/Controller/AdminController/AdminEmployeeAttendens.dart';
+import 'package:getx/view/Admin/EmployeeAttendenceManageGride.dart';
 
 class EmployeeAttendanceManagment extends StatelessWidget {
   EmployeeAttendanceManagment({super.key});
@@ -25,8 +22,7 @@ class EmployeeAttendanceManagment extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GetBuilder<EmployeesAttendensMAnagments>(
-                      builder: (controller) {
+                  GetBuilder<TeacherAttendensController>(builder: (controller) {
                     return Container(
                         width: w / 5.0,
                         child: Obx(() => Row(
@@ -35,9 +31,9 @@ class EmployeeAttendanceManagment extends StatelessWidget {
                                   shape: RoundedRectangleBorder(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(4))),
-                                  value: controller.allHolidayChecked.value,
+                                  value: controller.allHolidayCheckede.value,
                                   onChanged: (value) {
-                                    controller.setAllAsHoliday(value!);
+                                    controller.setAllAsHolidaye(value!);
                                   },
                                 ),
                                 Text("Set All As a Holiday"),
@@ -76,7 +72,7 @@ class EmployeeAttendanceManagment extends StatelessWidget {
         Expanded(
             child: Padding(
           padding: const EdgeInsets.only(top: 15.0),
-          child: EmployeeAttendanceManagmentGrid(),
+          child: EmployeesAttendanceManagmentGrid(),
         )),
       ],
     ));

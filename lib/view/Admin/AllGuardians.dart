@@ -9,18 +9,39 @@ import 'package:getx/widgets/TextFieldDialog.dart';
 import 'package:getx/widgets/TextFormSearch.dart';
 
 import '../../Icons_File/v_m_s__icons_icons.dart';
+import '../../Link/API/AdminAPI/GetAllGuardiansAPI.dart';
 import '../../widgets/DropDown.dart';
 import '../../widgets/VMSAlertDialog.dart';
 
-class AllGuardians extends StatelessWidget {
+class AllGuardians extends StatefulWidget {
   AllGuardians({super.key});
+
+  @override
+  State<AllGuardians> createState() => _AllGuardiansState();
+}
+
+class _AllGuardiansState extends State<AllGuardians> {
+  @override
+  void initState() {
+    GetAllGuardiansAPI(context).getAllGuardian();
+    // TODO: implement initState
+    super.initState();
+  }
+
   TextEditingController search = TextEditingController();
+
   TextEditingController email = TextEditingController();
+
   TextEditingController username = TextEditingController();
+
   TextEditingController pass = TextEditingController();
+
   TextEditingController cpass = TextEditingController();
+
   TextEditingController name = TextEditingController();
+
   TextEditingController phone = TextEditingController();
+
   TextEditingController nationalId = TextEditingController();
 
   @override

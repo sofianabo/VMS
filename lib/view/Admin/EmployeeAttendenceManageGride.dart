@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../Link/Controller/AdminController/AdminEmployeeAttendens.dart';
+import 'package:getx/Link/Controller/AdminController/AdminTeacherAttendens.dart';
+import '../../link/Controller/AdminController/AdminEmployeeAttendenceManage.dart';
 
-class EmployeeAttendanceManagmentGrid extends StatelessWidget {
-  EmployeeAttendanceManagmentGrid({super.key});
+class EmployeesAttendanceManagmentGrid extends StatelessWidget {
+  const EmployeesAttendanceManagmentGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<EmployeesAttendensMAnagments>(builder: (controller) {
-      return Padding(
-        padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-        child: Obx(() => ListView.builder(
+    return GetBuilder<TeacherAttendensController>(
+      builder: (controller) {
+        return Padding(
+          padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
+          child: Obx(() {
+            return ListView.builder(
               itemCount: controller.Employees.length,
               itemBuilder: (context, index) {
                 return Column(
@@ -22,8 +25,11 @@ class EmployeeAttendanceManagmentGrid extends StatelessWidget {
                           width: Get.width / 3.5,
                           child: Row(
                             children: [
-                              Image.asset("../../images/Rectangle66.png",
-                                  height: 50, width: 50),
+                              Image.asset(
+                                "../../images/Rectangle66.png",
+                                height: 50,
+                                width: 50,
+                              ),
                               Padding(
                                 padding: const EdgeInsets.only(
                                     left: 8.0, right: 8.0),
@@ -70,8 +76,10 @@ class EmployeeAttendanceManagmentGrid extends StatelessWidget {
                   ],
                 );
               },
-            )),
-      );
-    });
+            );
+          }),
+        );
+      },
+    );
   }
 }
