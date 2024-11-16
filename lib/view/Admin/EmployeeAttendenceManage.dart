@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/Controller/AdminController/AdminTeacherAttendens.dart';
-import 'package:getx/view/Admin/EmployeeAttendanceManagmentGrid.dart';
-import 'package:getx/view/Admin/TeacherAttendanceManagmentGrid.dart';
+import 'package:getx/view/Admin/EmployeeAttendenceManageGride.dart';
 
-import '../../Link/Controller/AdminController/AdminEmployeeAttendens.dart';
+import '../../Link/Controller/AdminController/Employeeecontroller.dart';
 
 class EmployeeAttendanceManagment extends StatelessWidget {
   EmployeeAttendanceManagment({super.key});
@@ -25,8 +23,7 @@ class EmployeeAttendanceManagment extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GetBuilder<EmployeesAttendensMAnagments>(
-                      builder: (controller) {
+                  GetBuilder<EmployeeController>(builder: (controller) {
                     return Container(
                         width: w / 5.0,
                         child: Obx(() => Row(
@@ -76,7 +73,7 @@ class EmployeeAttendanceManagment extends StatelessWidget {
         Expanded(
             child: Padding(
           padding: const EdgeInsets.only(top: 15.0),
-          child: EmployeeAttendanceManagmentGrid(),
+          child: EmployeesAttendanceManagmentGrid(),
         )),
       ],
     ));

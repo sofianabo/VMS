@@ -1,12 +1,14 @@
 import 'package:get/get.dart';
 
 class AdminHomeContentController extends GetxController {
-  String content = 'dashboard';
+  String _content = 'dashboard';
 
-  String get contentt => content;
+  String get content => _content;
 
-  void updateContent(String c) {
-    content = c;
-    update();
+  void updateContent(String newContent) {
+    if (newContent != _content) {
+      _content = newContent;
+      update();
+    }
   }
 }

@@ -11,13 +11,27 @@ import 'package:getx/widgets/DropDown.dart';
 import 'package:getx/widgets/TextFormSearch.dart';
 import 'package:getx/widgets/VMSAlertDialog.dart';
 
+import '../../Link/API/AdminAPI/GetAllTeachersAPI.dart';
 import '../../widgets/TextFildWithUpper.dart';
 
-class TeacherManagement extends StatelessWidget {
+class TeacherManagement extends StatefulWidget {
   TeacherManagement({super.key});
 
+  @override
+  State<TeacherManagement> createState() => _TeacherManagementState();
+}
+
+class _TeacherManagementState extends State<TeacherManagement> {
+  @override
+  void initState() {
+    Getallteachersapi(context).Getallteachers();
+    super.initState();
+  }
+
   TextEditingController search = TextEditingController();
+
   TextEditingController username = TextEditingController();
+
   TextEditingController email = TextEditingController();
   TextEditingController firstName = TextEditingController();
   TextEditingController lastName = TextEditingController();
@@ -26,7 +40,9 @@ class TeacherManagement extends StatelessWidget {
   TextEditingController phone = TextEditingController();
   TextEditingController contractType = TextEditingController();
   TextEditingController password = TextEditingController();
+
   TextEditingController cPassword = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {

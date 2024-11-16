@@ -24,6 +24,7 @@ class TeacherAttendensController extends GetxController {
     },
   ].obs;
 
+
   var allHolidayChecked = false.obs; // حالة ال Checkbox
 
   void updateStatus(int index, String newStatus) {

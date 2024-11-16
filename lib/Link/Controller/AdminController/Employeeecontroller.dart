@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class EmployeesAttendensMAnagments extends GetxController {
+class EmployeeController extends GetxController {
   var Employees = [
     {
       "name": "Laith Haitham Azzam",
