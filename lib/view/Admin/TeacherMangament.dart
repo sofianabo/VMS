@@ -24,7 +24,7 @@ class TeacherManagement extends StatefulWidget {
 class _TeacherManagementState extends State<TeacherManagement> {
   @override
   void initState() {
-    Getallteachersapi(context).Getallteachers();
+    Getallteachersapi(context).Getallteachers(null);
     super.initState();
   }
 

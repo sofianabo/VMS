@@ -1,9 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/Controller/AdminController/AllStudentsController.dart';
+import 'package:getx/Link/Controller/AdminController/AllTeachersController.dart';
 import 'package:getx/Link/Model/AdminModel/AllTeacherModel.dart';
-import 'package:getx/link/Controller/AdminController/AllTeacherController.dart';
 import 'package:getx/main.dart';
 import '../API.dart' as global;
 
