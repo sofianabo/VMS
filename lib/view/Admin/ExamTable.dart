@@ -21,27 +21,6 @@ class ExamTable extends StatelessWidget {
     'Passing Mark'
   ];
 
-  // List<Map<String, String>> tableData = [
-  //   {
-  //     'Class': 'Value 1',
-  //     'Exam Name': 'Value 2',
-  //     'Curriculum Name': 'Value 3',
-  //     'Date': 'Value 4',
-  //     'Period': 'Value 5',
-  //     'Max Mark': 'Value 6',
-  //     'Passing Mark': 'Value 7',
-  //   },
-  //   {
-  //     'Class': 'Value 1',
-  //     'Exam Name': 'Value 2',
-  //     'Curriculum Name': 'Value 3',
-  //     'Date': 'Value 4',
-  //     'Period': 'Value 5',
-  //     'Max Mark': 'Value 6',
-  //     'Passing Mark': 'Value 7',
-  //   },
-  // ];
-
   @override
   Widget build(BuildContext context) {
     Getallclassapi(context).getAllClasses();
