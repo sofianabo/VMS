@@ -1,11 +1,8 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
 import 'package:getx/view/Admin/StudyYearStudentsGrid.dart';
-import 'package:getx/widgets/DropDown.dart';
-
+import 'package:getx/widgets/Admin_Students/DropDownStudyYearStudents.dart';
 import '../../widgets/TextFormSearch.dart';
 
 class StudyTearStudents extends StatelessWidget {
@@ -32,31 +29,35 @@ class StudyTearStudents extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
-                        child: DropDown(
-                            title: "2024-2025",
-                            width: w / 6.5,
-                            options: ['abbb', 'bfddfvd']),
+                        child: DropDownStudyYearStudents(
+                          title: "2024-2025",
+                          type: "session",
+                          width: w / 6.5,
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
-                        child: DropDown(
-                            title: "Grade",
-                            width: w / 6.5,
-                            options: ['abbb', 'bfddfvd']),
+                        child: DropDownStudyYearStudents(
+                          type: "grade",
+                          title: "Grade",
+                          width: w / 6.5,
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
-                        child: DropDown(
-                            title: "Class",
-                            width: w / 6.5,
-                            options: ['abbb', 'bfddfvd']),
+                        child: DropDownStudyYearStudents(
+                          type: "class",
+                          title: "Class",
+                          width: w / 6.5,
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
-                        child: DropDown(
-                            title: "Division",
-                            width: w / 6.5,
-                            options: ['abbb', 'bfddfvd']),
+                        child: DropDownStudyYearStudents(
+                          type: "division",
+                          title: "Division",
+                          width: w / 6.5,
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),

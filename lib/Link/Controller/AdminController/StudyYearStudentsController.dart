@@ -1,9 +1,7 @@
 import 'package:get/get.dart';
 import 'package:getx/Link/Model/AdminModel/allGuardianModel.dart';
 
-class Allstudentscontroller extends GetxController {
-  List<Gaurdians> guardian = [];
-
+class StudyYearStudentsController extends GetxController {
   String sessionIndex = "";
   String gradeIndex = "";
   String classIndex = "";
@@ -57,10 +55,4 @@ class Allstudentscontroller extends GetxController {
   String get selectedclassIndex => classIndex;
 
   String get selecteddivisionIndex => divisionIndex;
-
-  void setAllStudents(AllGuardianModel model) {
-    guardian = model.gaurdians!;
-    update();
-  }
-
 }
