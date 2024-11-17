@@ -1,17 +1,13 @@
 import 'package:get/get.dart';
+import 'package:getx/Link/Model/AdminModel/RequestsModel.dart';
 import 'package:getx/Link/Model/AuthModel/UserModel.dart';
 
 class Requestscontroller extends GetxController {
-  String? token;
-  String? roll;
-  bool? verified;
-  bool? hasData;
+  List<Registration> registration = [];
+  
 
-  void GetuserInfo(UserModel user) {
-    token = user.token;
-    roll = user.roll;
-    verified = user.verified;
-    hasData = user.hasData;
+  void setAllRequests(AllRequestsModel req) {
+    registration = req.registration!;
     update();
   }
 }

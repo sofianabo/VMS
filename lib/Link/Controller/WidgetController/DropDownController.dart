@@ -11,6 +11,7 @@ class DropDownController extends GetxController {
 
   void UpdateOpt(List<String> op) {
     options = op;
+    op.clear();
     update();
   }
 }

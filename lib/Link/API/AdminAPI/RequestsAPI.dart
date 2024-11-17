@@ -1,15 +1,32 @@
-// import '../Model/ProductsModel.dart';
-// import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
+import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:getx/Link/Controller/AdminController/RequestsController.dart';
+import 'package:getx/Link/Model/AdminModel/AllTeacherModel.dart';
+import 'package:getx/Link/Model/AdminModel/RequestsModel.dart';
+import 'package:getx/main.dart';
+import '../API.dart' as global;
 
-// class getAllProductsAPI {
-//   static Future<List<ProductsModel>> getAllProducts() async {
-//     var response =
-//         await http.get(Uri.parse("https://fakestoreapi.com/products"));
-//     if (response.statusCode == 200) {
-//       var jsondata = response.body;
-//       return profromjson(jsondata);
-//     } else {
-//       return throw Exception("Failed to load products");
-//     }
-//   } 
-// }
+class GetAllRequestsapi {
+  Requestscontroller c = Get.find<Requestscontroller>();
+  BuildContext context;
+  GetAllRequestsapi(this.context);
+  Dio dio = Dio();
+
+  GetAllRequests() async {
+    String myurl = "${global.hostPort}${global.getRequests}";
+    var response = await dio.get(myurl,
+        data: {
+        },
+        options: Options(headers: {
+          'accept': 'application/json',
+          'authorization': 'Bearer ${tokenPref!.getString("token")}'
+        }));
+    if (response.statusCode == 200) {
+      AllRequestsModel requests = AllRequestsModel.fromJson(response.data);
+     c.setAllRequests(requests);
+    } else {
+      return throw Exception("Failed to load requests");
+    }
+  }
+}

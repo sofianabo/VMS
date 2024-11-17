@@ -9,6 +9,7 @@ String Home = "homeScreen";
 String LOGIN = "login";
 
 //admin
+String getRequests = "getRegistration";
 String getclasses = "getClasses";
 String getguardians = "getAllGuardian";
 String editGuardian = "updateGuardian";
@@ -16,3 +17,5 @@ String getStudents = "getAllStudent";
 String addGuardian = "addenroll";
 String getTeachers = "getAllTeacher";
 String addEmpolyee = "addEmployee";
+String deleteStudent = "";
+String deleteTeacher = "deleteTeacher";

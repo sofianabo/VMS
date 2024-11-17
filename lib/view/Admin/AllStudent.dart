@@ -21,7 +21,7 @@ class AllStudent extends StatefulWidget {
 class _AllStudentState extends State<AllStudent> {
   @override
   void initState() {
-    Getallstudentapi(context).Getallstudent();
+    Getallstudentapi(context).Getallstudent(null);
     // TODO: implement initState
     super.initState();
   }

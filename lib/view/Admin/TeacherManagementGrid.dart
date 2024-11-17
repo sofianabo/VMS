@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
+import 'package:getx/Link/API/API.dart';
+import 'package:getx/Link/API/AdminAPI/DeleteTeacherAPI.dart';
 import 'package:getx/Link/Controller/AdminController/AllTeachersController.dart';
 import 'package:getx/widgets/ButtonsDialog.dart';
 import '../../widgets/DropDown.dart';
@@ -72,7 +74,11 @@ class TeacherManagementGrid extends StatelessWidget {
                                   action: [
                                     ButtonDialog(
                                         text: "Delete",
-                                        onPressed: () {},
+                                        onPressed: () async {
+                                          await Deleteteacherapi(context)
+                                              .Deleteteacher(
+                                                  control.teachers[index].id!);
+                                        },
                                         color: Color(0xffB03D3D),
                                         width: 80),
                                     ButtonDialog(

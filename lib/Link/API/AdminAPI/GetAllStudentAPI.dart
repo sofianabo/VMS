@@ -11,10 +11,13 @@ class Getallstudentapi {
   Getallstudentapi(this.context);
   Dio dio = Dio();
 
-  Getallstudent() async {
+  Getallstudent(String? name) async {
     Allstudentscontroller c = Get.find<Allstudentscontroller>();
     String myurl = "${global.hostPort}${global.getStudents}";
     var response = await dio.get(myurl,
+    data: {
+      "name":name,
+    },
         options: Options(headers: {
           'accept': 'application/json',
           'authorization': 'Bearer ${tokenPref!.getString("token")}'
