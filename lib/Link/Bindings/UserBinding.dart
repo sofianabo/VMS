@@ -12,6 +12,7 @@ import 'package:getx/Link/Controller/AuthController/UserController.dart';
 import 'package:getx/Link/Controller/HomeScreenController.dart';
 import 'package:getx/Link/Controller/WidgetController/DropDownController.dart';
 import 'package:getx/Link/Controller/WidgetController/PasswordHintController.dart';
+import 'package:getx/Link/Controller/AdminController/Admin_School_Time.dart';
 
 class UserBiniding extends Bindings {
   @override
@@ -29,5 +30,6 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => TeacherAttendensController(), fenix: true);
     Get.lazyPut(() => Studentattcontroller(), fenix: true);
     Get.lazyPut(() => EmployeeController(), fenix: true);
+    Get.lazyPut(() => AdminSchoolTimeController(), fenix: true);
   }
 }

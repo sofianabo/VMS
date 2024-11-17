@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
 import 'package:getx/Link/API/AdminAPI/GetAllClassAPI.dart';
 import 'package:getx/Link/Controller/AdminController/AllClassesController.dart';
+import 'package:getx/widgets/Admin_Table/DropDownTable.dart';
 import 'package:getx/widgets/Calender.dart';
 import 'package:getx/widgets/DropDown.dart';
 
@@ -34,23 +35,26 @@ class ExamTable extends StatelessWidget {
             width: Get.width * 0.9,
             child: Row(
               children: [
-                DropDown(
-                    title: "Type",
+                DropDownTable(
+                  title: "Type",
                     width: Get.width / 4,
-                    options: ['adfbfdb', 'gfngfb']),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: DropDown(
-                      title: "Class",
-                      width: Get.width / 4,
-                      options: ['adssd', 'bngngfn']),
+                  type: 'type',
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: DropDown(
-                      title: "Division",
+                  child: DropDownTable(
+                    type: 'class',
+                    title: "Class",
                       width: Get.width / 4,
-                      options: ['adssd', 'bngngfn']),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: DropDownTable(
+                    title: "Division",
+                      width: Get.width / 4,
+                    type: 'division',
+                  ),
                 ),
                 Spacer(),
                 Row(

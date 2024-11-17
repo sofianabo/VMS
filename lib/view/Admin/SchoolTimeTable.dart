@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
-import 'package:getx/widgets/DropDown.dart';
+import 'package:getx/widgets/Admin_Table/DropDownSchoolTime.dart';
 
 class SchoolTimeTable extends StatelessWidget {
   SchoolTimeTable({super.key});
@@ -58,7 +58,6 @@ class SchoolTimeTable extends StatelessWidget {
       'Sixth\n Semester': 'Value 7',
       'Seventh\n Semester': 'Value 7',
     },
-    // يمكنك إضافة المزيد من الصفوف هنا
   ];
   @override
   Widget build(BuildContext context) {
@@ -72,14 +71,18 @@ class SchoolTimeTable extends StatelessWidget {
             width: Get.width*0.9,
             child: Row(
               children: [
-                DropDown(
-                    title: "Class", width: Get.width/4, options: ['adfbfdb', 'gfngfb']),
+                DropDownSchoolTime(
+                  type: "class",
+                  title: "Class",
+                  width: Get.width / 4,
+                ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0 , right: 10.0),
-                  child: DropDown(
-                      title: "Division",
+                  child: DropDownSchoolTime(
+                    type: "division",
+                    title: "Division",
                       width: Get.width/4,
-                      options: ['adssd', 'bngngfn']),
+                  ),
                 ),
                 Spacer(),
                 Row(
