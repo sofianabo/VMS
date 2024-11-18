@@ -127,7 +127,7 @@ class AppbarAdmin extends StatelessWidget {
                           ),
                           GetBuilder<UserController>(builder: (control) {
                             return Text(
-                              "${Username!.getString("username")}",
+                              "${prefs!.getString("username")}",
                               style: Get.theme.primaryTextTheme.bodySmall,
                             );
                           })

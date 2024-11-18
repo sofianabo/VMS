@@ -13,7 +13,7 @@ class UserController extends GetxController {
     roll = user.roll;
     verified = user.verified;
     hasData = user.hasData;
-    tokenPref!.setString("token", token!);
+    prefs!.setString("token", token!);
     update();
   }
 }

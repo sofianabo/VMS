@@ -21,7 +21,7 @@ class Getallstudentapi {
     },
         options: Options(headers: {
           'accept': 'application/json',
-          'authorization': 'Bearer ${tokenPref!.getString("token")}'
+          'authorization': 'Bearer ${prefs!.getString("token")}'
         }));
     if (response.statusCode == 200) {
        AllStudentModel student = AllStudentModel.fromJson(response.data);

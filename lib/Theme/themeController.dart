@@ -7,12 +7,12 @@ import '../main.dart';
 class themeController extends GetxController {
   ThemeData? th;
   ThemeData changebool() {
-    if (mode!.getBool("mode") == null) {
-      mode!.setBool("mode", false);
+    if (prefs!.getBool("mode") == null) {
+      prefs!.setBool("mode", false);
       th = theme.lighttheme;
       Get.changeTheme(theme.lighttheme);
       return theme.lighttheme;
-    } else if (mode!.getBool("mode") == true) {
+    } else if (prefs!.getBool("mode") == true) {
       th = theme.darktheme;
 
       Get.changeTheme(theme.darktheme);
@@ -27,7 +27,7 @@ class themeController extends GetxController {
   }
 
   changetheme(bool val) {
-    mode!.setBool("mode", val);
+    prefs!.setBool("mode", val);
     changebool();
     update();
   }
