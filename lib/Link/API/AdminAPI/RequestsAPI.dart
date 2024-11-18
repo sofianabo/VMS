@@ -16,15 +16,14 @@ class GetAllRequestsapi {
   GetAllRequests() async {
     String myurl = "${global.hostPort}${global.getRequests}";
     var response = await dio.get(myurl,
-        data: {
-        },
+        data: {},
         options: Options(headers: {
           'accept': 'application/json',
           'authorization': 'Bearer ${tokenPref!.getString("token")}'
         }));
     if (response.statusCode == 200) {
       AllRequestsModel requests = AllRequestsModel.fromJson(response.data);
-     c.setAllRequests(requests);
+      c.setAllRequests(requests);
     } else {
       return throw Exception("Failed to load requests");
     }

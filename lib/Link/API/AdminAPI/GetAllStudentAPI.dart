@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:getx/Link/Controller/AdminController/AllStudentsController.dart';
+import 'package:getx/Link/Model/AdminModel/AllStudentModel.dart';
 import 'package:getx/main.dart';
 import '../API.dart' as global;
 
@@ -23,8 +24,8 @@ class Getallstudentapi {
           'authorization': 'Bearer ${tokenPref!.getString("token")}'
         }));
     if (response.statusCode == 200) {
-      // AllGuardianModel classes = AllGuardianModel.fromJson(response.data);
-      // c.getallGaurdian(classes);
+       AllStudentModel student = AllStudentModel.fromJson(response.data);
+       c.setAllStudents(student);
     } else {
       return throw Exception("Failed to load Students");
     }
