@@ -20,7 +20,7 @@ class Getsessionapi {
     var response = await dio.get(myurl,
         options: Options(headers: {
           'accept': 'application/json',
-          'authorization': 'Bearer ${tokenPref!.getString("token")}'
+          'authorization': 'Bearer ${prefs!.getString("token")}'
         }));
     if (response.statusCode == 200) {
       AllSessionModel session = AllSessionModel.fromJson(response.data);

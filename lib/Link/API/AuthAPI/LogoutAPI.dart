@@ -18,10 +18,10 @@ class Logoutapi {
       var response = await dio.get(myurl,
           options: Options(headers: {
             'accept': 'application/json',
-            'authorization': 'Bearer ${tokenPref!.getString("token")}'
+            'authorization': 'Bearer ${prefs!.getString("token")}'
           }));
       if (response.statusCode == 200) {
-        await tokenPref!.clear();
+        await prefs!.clear();
         
         Get.to(
           () => Directionality(textDirection: TextDirection.rtl, child: Home()),
