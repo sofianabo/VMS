@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/view/Admin/StudentStatusGrid.dart';
+import 'package:getx/widgets/Admin_Students/DropDownStudentsAttendence.dart';
 import 'package:getx/widgets/Calender.dart';
 import 'package:getx/widgets/DropDown.dart';
 
@@ -28,99 +29,95 @@ class StudentStatus extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: DropDown(
-                            title: "2024-2025",
-                            width: w / 6.5,
-                            options: ['abbb', 'bfddfvd']),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: DropDown(
-                            title: "Class",
-                            width: w / 6.5,
-                            options: ['abbb', 'bfddfvd']),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: DropDown(
-                            title: "Division",
-                            width: w / 6.5,
-                            options: ['abbb', 'bfddfvd']),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: DatePicker(
-                          width: w / 6.5,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: TextFormSearch(
-                          width: w / 6.5,
-                          radius: 5,
-                          controller: serch,
-                          suffixIcon: Icons.search,
-                        ),
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: DropDownStudentsAttendens(
+                        title: "session", width: w / 3.6, type: "session"),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: DropDownStudentsAttendens(
+                        title: "Grade", width: w / 3.6, type: "grade"),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: DropDownStudentsAttendens(
+                        title: "Class", width: w / 3.6, type: "class"),
                   ),
                   Spacer(),
-                  Row(
-                    children: [
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Colors.black12,
-                                  offset: Offset(0, 2),
-                                  blurRadius: 1)
-                            ]),
-                        child: IconButton(
-                            style: ButtonStyle(
-                                shape: WidgetStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5))))),
-                            onPressed: () {},
-                            icon: Icon(VMS_Icons.xl,
-                                size: 18, color: Get.theme.primaryColor)),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                        child: Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    offset: Offset(0, 2),
-                                    blurRadius: 1)
-                              ]),
-                          child: IconButton(
-                              style: ButtonStyle(
-                                  shape: WidgetStatePropertyAll(
-                                      RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))))),
-                              onPressed: () {},
-                              icon: Icon(VMS_Icons.pdf,
-                                  size: 18, color: Get.theme.primaryColor)),
-                        ),
-                      ),
-                    ],
-                  )
+                  Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(0, 2),
+                              blurRadius: 1)
+                        ]),
+                    child: IconButton(
+                        style: ButtonStyle(
+                            shape: WidgetStatePropertyAll(
+                                RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5))))),
+                        onPressed: () {},
+                        icon: Icon(VMS_Icons.pdf,
+                            size: 18, color: Get.theme.primaryColor)),
+                  ),
                 ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: DropDownStudentsAttendens(
+                          title: "Division", width: w / 3.6, type: "division"),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: DatePicker(
+                        width: w / 3.6,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: TextFormSearch(
+                        width: w / 3.6,
+                        radius: 5,
+                        controller: serch,
+                        suffixIcon: Icons.search,
+                      ),
+                    ),
+                    Spacer(),
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: IconButton(
+                          style: ButtonStyle(
+                              shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5))))),
+                          onPressed: () {},
+                          icon: Icon(VMS_Icons.xl,
+                              size: 18, color: Get.theme.primaryColor)),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

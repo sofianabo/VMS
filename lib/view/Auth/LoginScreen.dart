@@ -154,22 +154,15 @@ class LoginScreen extends StatelessWidget {
             ),
             ButtonAuth(
               onpressed: () async {
-                Username!.setString("username", username.text);
-                Password!.setString("pass", password.text);
+                prefs!.setString("username", username.text);
+                prefs!.setString("pass", password.text);
                 if (Get.isDarkMode) {
-                  mode!.setBool("mode", true);
+                  prefs!.setBool("mode", true);
                   th.changebool();
-                  await LoginAPI(context).login(username.text, password.text);
-                  Get.to(
-                    () => AdminHome(),
-                  );
                 } else {
                   th.changebool();
-                  await LoginAPI(context).login(username.text, password.text);
-                  Get.to(
-                    () => AdminHome(),
-                  );
                 }
+                await LoginAPI(context).login(username.text, password.text);
               },
               text: "Login",
             ).animate().fadeIn(duration: Duration(seconds: 1))

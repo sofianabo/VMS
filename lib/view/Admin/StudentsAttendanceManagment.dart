@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/Link/Controller/AdminController/AdminStudentsAttendens.dart';
 import 'package:getx/view/Admin/StudentsAttendanceManagmentGrid.dart';
+import 'package:getx/widgets/Admin_Students/DropDownStudentsAttendencemgmt.dart';
 import 'package:getx/widgets/DropDown.dart';
 
 class StudentsAttendanceManagment extends StatelessWidget {
@@ -23,21 +24,14 @@ class StudentsAttendanceManagment extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: DropDown(
-                        title: "2024-2025",
-                        width: w / 5.0,
-                        options: ['abbb', 'bfddfvd']),
-                  ),
-                  DropDown(
+                  DropDownStudentsAttendencemgmt(
+                      title: "Grade", width: w / 5.0, type: "grade"),
+                  DropDownStudentsAttendencemgmt(
                       title: "Class",
-                      width: w / 5.0,
-                      options: ['abbb', 'bfddfvd']),
-                  DropDown(
+                      width: w / 5.0, type: "class"),
+                  DropDownStudentsAttendencemgmt(
                       title: "Division",
-                      width: w / 5.0,
-                      options: ['abbb', 'bfddfvd']),
+                      width: w / 5.0, type: "class"),
                   GetBuilder<Studentattcontroller>(builder: (controller) {
                     return Container(
                         width: w / 5.0,

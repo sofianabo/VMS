@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/Link/Controller/AuthController/UserController.dart';
 import 'package:getx/Link/Model/AuthModel/UserModel.dart';
+import 'package:getx/main.dart';
+import 'package:getx/view/Admin/AdminHome.dart';
 import '../API.dart' as global;
 
 class LoginAPI {
@@ -25,6 +27,10 @@ class LoginAPI {
       if (response.statusCode == 200) {
         UserModel user = UserModel.fromJson(response.data);
         u.GetuserInfo(user);
+        prefs!.setBool("isLogin", true);
+        Get.to(
+          () => AdminHome(),
+        );
       } else {
         return throw Exception("Failed");
       }

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/Link/API/AdminAPI/GetAllGuardiansAPI.dart';
 import 'package:getx/Link/Controller/AdminController/allGaurdianController.dart';
-import 'package:getx/Link/Model/AdminModel/allGuardianModel.dart';
 import 'package:getx/main.dart';
 import '../API.dart' as global;
 
@@ -27,7 +26,7 @@ class Addguardianapi {
           },
           options: Options(headers: {
             'accept': 'application/json',
-            'authorization': 'Bearer ${tokenPref!.getString("token")}'
+            'authorization': 'Bearer ${prefs!.getString("token")}'
           }));
       if (response.statusCode == 200) {
         await GetAllGuardiansAPI(context).getAllGuardian();

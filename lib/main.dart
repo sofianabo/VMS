@@ -3,23 +3,16 @@ import 'package:get/get.dart';
 import 'package:getx/Translate/local_controller.dart' show localeController;
 import 'package:getx/Theme/themeController.dart';
 import 'package:getx/link/Bindings/UserBinding.dart';
+import 'package:getx/view/Admin/AdminHome.dart';
 import 'package:getx/view/website/Home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Translate/local.dart';
 
-SharedPreferences? Username;
-SharedPreferences? Password;
-SharedPreferences? lang;
-SharedPreferences? mode;
-SharedPreferences? tokenPref;
+SharedPreferences? prefs;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Username = await SharedPreferences.getInstance();
-  Password = await SharedPreferences.getInstance();
-  lang = await SharedPreferences.getInstance();
-  mode = await SharedPreferences.getInstance();
-  tokenPref = await SharedPreferences.getInstance();
+  prefs = await SharedPreferences.getInstance();
 
   runApp(const VMS());
 }
@@ -37,7 +30,9 @@ class VMS extends StatelessWidget {
       initialBinding: UserBiniding(),
       locale: loc.init,
       theme: th.changebool(),
-      home: Directionality(textDirection: TextDirection.rtl, child: Home()),
-    );
+        home: prefs!.getBool("isLogin") != null &&
+                prefs!.getBool("isLogin") == true
+            ? AdminHome()
+            : Directionality(textDirection: TextDirection.rtl, child: Home()));
   }
 }
