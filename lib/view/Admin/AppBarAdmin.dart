@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx/Link/API/AuthAPI/LogoutAPI.dart';
 import 'package:getx/Link/Controller/AdminController/AdminHomeContentController.dart';
 import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
 import 'package:getx/Link/Controller/AuthController/UserController.dart';
@@ -44,7 +45,9 @@ class AppbarAdmin extends StatelessWidget {
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
-                          onPressed: () {},
+                          onPressed: () async {
+                            await Logoutapi(context).Logout();
+                          },
                           icon: Icon(
                             Icons.logout_rounded,
                             size: 18,

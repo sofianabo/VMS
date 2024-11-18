@@ -1,15 +1,17 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/Model/AdminModel/allGuardianModel.dart';
+import 'package:getx/Link/Model/AdminModel/AllSessionModel.dart';
+import 'package:getx/Link/Model/AdminModel/AllStudentModel.dart';
 
 class Allstudentscontroller extends GetxController {
-  List<Gaurdians> guardian = [];
-
+  List<Students> stud = [];
+  late BuildContext context;
   String sessionIndex = "";
   String gradeIndex = "";
   String classIndex = "";
   String divisionIndex = "";
 
-  List<String> sessionlist = ["Quiz", "Exam", "Midterm"];
+  List<String> sessionlist = [];
   List<String> gradelist = ["first", "tow", "three"];
   List<String> classlist = ["one"];
   List<String> divisionlist = ["one"];
@@ -32,7 +34,20 @@ class Allstudentscontroller extends GetxController {
     update();
   }
 
-  void updateList(String type, List<String> options) {
+  void addToModel(AllSessionModel session) {
+    sessionlist.clear();
+    for (int i = 0; i < session.sessions!.length; i++) {
+      sessionlist.add(session.sessions![i].year.toString());
+      print(session.sessions![i].year.toString());
+    }
+    update();
+    updateList("session", sessionlist);
+  }
+
+  void updateList(
+    String type,
+    List<String> options,
+  ) {
     switch (type) {
       case 'session':
         sessionlist = options;
@@ -58,9 +73,8 @@ class Allstudentscontroller extends GetxController {
 
   String get selecteddivisionIndex => divisionIndex;
 
-  void setAllStudents(AllGuardianModel model) {
-    guardian = model.gaurdians!;
+  void setAllStudents(AllStudentModel model) {
+    stud = model.students!;
     update();
   }
-
 }

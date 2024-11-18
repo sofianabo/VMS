@@ -1,4 +1,4 @@
-//  http://192.168.231.56:8000/api/
+//  http://192.168.43.127:8000/api/
 //https://5e24-149-102-244-69.ngrok-free.app/api/
 String hostPort = "http://192.168.217.56:8000/api/";
 
@@ -7,6 +7,7 @@ String Home = "homeScreen";
 
 //auth
 String LOGIN = "login";
+String logout = "logout";
 
 //admin
 String getRequests = "getRegistration";
@@ -17,5 +18,6 @@ String getStudents = "getAllStudent";
 String addGuardian = "addenroll";
 String getTeachers = "getAllTeacher";
 String addEmpolyee = "addEmployee";
-String deleteStudent = "";
+String deleteStudent = "deleteStudent";
 String deleteTeacher = "deleteTeacher";
+String getSession = "getAllSession";
