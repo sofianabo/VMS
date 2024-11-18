@@ -7,12 +7,14 @@ class Textfildwithupper extends StatelessWidget {
       required this.controller,
       required this.Uptext,
       required this.hinttext,
-      this.width});
+      this.width,
+      this.icon});
 
   TextEditingController controller = TextEditingController();
   String Uptext;
   String hinttext = "";
   double? width;
+  Widget? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +34,7 @@ class Textfildwithupper extends StatelessWidget {
             child: TextFormField(
               controller: controller,
               decoration: InputDecoration(
+                suffixIcon: icon ?? Text(""),
                 hintText: hinttext,
                 hintStyle: Get.theme.primaryTextTheme.titleMedium!
                     .copyWith(fontSize: 14, color: Color(0xffB3B3B3)),

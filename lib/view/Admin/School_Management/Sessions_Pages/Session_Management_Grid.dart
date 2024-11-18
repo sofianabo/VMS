@@ -72,7 +72,7 @@ class SessionManagementGrid extends StatelessWidget {
                           "${control.Sessions[index]['name']!.replaceRange(4, 9, "").replaceRange(0, 2, "20\n")}",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              color: Color(0xff134B70).withOpacity(0.06),
+                              color: Color(0xff134B70).withOpacity(0.2),
                               fontWeight: FontWeight.bold,
                               fontSize: 60),
                         ),

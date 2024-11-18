@@ -10,6 +10,10 @@ import 'package:getx/view/Admin/EmployeeStatus.dart';
 import 'package:getx/view/Admin/ExamTable.dart';
 import 'package:getx/view/Admin/SchoolTimeTable.dart';
 import 'package:getx/view/Admin/Requests.dart';
+import 'package:getx/view/Admin/School_Management/Class_Pages/Class_Management.dart';
+import 'package:getx/view/Admin/School_Management/Curriculum_Pages/Curriculum_Management.dart';
+import 'package:getx/view/Admin/School_Management/Division_Pages/Division_Management.dart';
+import 'package:getx/view/Admin/School_Management/Grade_Pages/Grade_Management.dart';
 import 'package:getx/view/Admin/School_Management/Sessions_Pages/Session_Management.dart';
 import 'package:getx/view/Admin/SideBarAdmin.dart';
 import 'package:getx/view/Admin/StudentStatus.dart';
@@ -63,6 +67,14 @@ class AdminHome extends StatelessWidget {
                       return TeacherAttendanceManagment();
                     case "Students Attendance Managment":
                       return StudentsAttendanceManagment();
+                    case "Grade Management":
+                      return GradeManagement();
+                    case "Class Management":
+                      return ClassManagement();
+                    case "Division Management":
+                      return DivisionManagement();
+                    case "Curriculum Management":
+                      return Curriculum_Management();
                     case "Session Management":
                       return SessionManagement();
                     default:
