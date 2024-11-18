@@ -224,32 +224,102 @@ class SideBarAdmin extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.only(top: h / 34.2),
                     child: PopupMenuButton(
-                        tooltip: "",
-                        child: Icon(
-                          VMS_Icons.a7,
-                          color: Colors.white,
-                          size: 20,
+                      tooltip: "",
+                      child: const Icon(
+                        VMS_Icons.a7,
+                        color: Colors.white,
+                        size: 16,
+                      ),
+                      onSelected: (value) {
+                        if (value == "Session Management") {
+                          cont.updateContent("Session Management");
+                        }
+                        if (value == "Grade Management") {
+                          cont.updateContent("Grade Management");
+                        }
+                        if (value == "Class Management") {
+                          cont.updateContent("Class Management");
+                        }
+                        if (value == "Division Management") {
+                          cont.updateContent("Division Management");
+                        }
+                        if (value == "Curriculum Management") {
+                          cont.updateContent("Curriculum Management");
+                        }
+                      },
+                      itemBuilder: (BuildContext context) =>
+                          <PopupMenuEntry<String>>[
+                        PopupMenuItem<String>(
+                          value: 'Session Management',
+                          child: Text('Session Management',
+                              style: Get.theme.primaryTextTheme.bodySmall),
                         ),
-                        itemBuilder: (BuildContext context) {
-                          return <PopupMenuEntry<String>>[];
-                        }),
+                        PopupMenuItem<String>(
+                          value: 'Grade Management',
+                          child: Text('Grade Management',
+                              style: Get.theme.primaryTextTheme.bodySmall),
+                        ),
+                        PopupMenuItem<String>(
+                          value: 'Class Management',
+                          child: Text('Class Management',
+                              style: Get.theme.primaryTextTheme.bodySmall),
+                        ),
+                        PopupMenuItem<String>(
+                          value: 'Division Management',
+                          child: Text('Division Management',
+                              style: Get.theme.primaryTextTheme.bodySmall),
+                        ),
+                        PopupMenuItem<String>(
+                          value: 'Curriculum Management',
+                          child: Text('Curriculum Management',
+                              style: Get.theme.primaryTextTheme.bodySmall),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 SidbarAnimation(
                   child: Padding(
                     padding: EdgeInsets.only(top: h / 34.2),
                     child: PopupMenuButton(
-                        tooltip: "",
-                        child: const Icon(
-                          VMS_Icons.a8,
-                          color: Colors.white,
-                          size: 20,
+                      tooltip: "",
+                      child: const Icon(
+                        VMS_Icons.a8,
+                        color: Colors.white,
+                        size: 16,
+                      ),
+                      onSelected: (value) {
+                        if (value == "Teacher Management") {
+                          cont.updateContent("Teacher Management");
+                        }
+                        if (value == "Teacher Status") {
+                          cont.updateContent("Teacher Status");
+                        }
+                        if (value == "Teacher Attendance Managment") {
+                          cont.updateContent("Teacher Attendance Managment");
+                        }
+                      },
+                      itemBuilder: (BuildContext context) =>
+                          <PopupMenuEntry<String>>[
+                        PopupMenuItem<String>(
+                          value: 'Teacher Management',
+                          child: Text('Teacher Management',
+                              style: Get.theme.primaryTextTheme.bodySmall),
                         ),
-                        itemBuilder: (BuildContext context) {
-                          return <PopupMenuEntry<String>>[];
-                        }),
+                        PopupMenuItem<String>(
+                          value: 'Teacher Status',
+                          child: Text('Teacher Status',
+                              style: Get.theme.primaryTextTheme.bodySmall),
+                        ),
+                        PopupMenuItem<String>(
+                          value: 'Teacher Attendance Managment',
+                          child: Text('Teacher Attendance Managment',
+                              style: Get.theme.primaryTextTheme.bodySmall),
+                        ),
+                      ],
+                    ),
                   ),
-                )
+                ),
               ],
             );
           }),

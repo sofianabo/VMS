@@ -29,18 +29,12 @@ class _TeacherManagementState extends State<TeacherManagement> {
   }
 
   TextEditingController search = TextEditingController();
-
   TextEditingController username = TextEditingController();
-
   TextEditingController email = TextEditingController();
   TextEditingController firstName = TextEditingController();
   TextEditingController lastName = TextEditingController();
-  TextEditingController gender = TextEditingController();
-  TextEditingController joinDate = TextEditingController();
   TextEditingController phone = TextEditingController();
-  TextEditingController contractType = TextEditingController();
   TextEditingController password = TextEditingController();
-
   TextEditingController cPassword = TextEditingController();
 
 

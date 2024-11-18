@@ -151,6 +151,7 @@ class AppbarAdmin extends StatelessWidget {
                 "Employee Status": "Employees Attendance",
                 "Teacher Attendance Managment": "Teacher Attendance Managment",
                 "Employee Attendance Manage": "Employee Attendance Manage",
+                "Session Management": "Session Management",
                 "Students Attendance Managment":
                     "Students Attendance Managment",
               };
