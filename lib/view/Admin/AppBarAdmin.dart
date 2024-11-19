@@ -161,6 +161,8 @@ class AppbarAdmin extends StatelessWidget {
                 "Class Management": "Class Management",
                 "Division Management": "Division Management",
                 "Curriculum Management": "Curriculum Management",
+                "School Data Management": "School Data Management",
+                "Electronic Library": "Electronic Library",
               };
 
               String displayText = contentMap[cont.content] ?? "data";

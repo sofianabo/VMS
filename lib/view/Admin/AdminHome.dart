@@ -14,6 +14,7 @@ import 'package:getx/view/Admin/School_Management/Class_Pages/Class_Management.d
 import 'package:getx/view/Admin/School_Management/Curriculum_Pages/Curriculum_Management.dart';
 import 'package:getx/view/Admin/School_Management/Division_Pages/Division_Management.dart';
 import 'package:getx/view/Admin/School_Management/Grade_Pages/Grade_Management.dart';
+import 'package:getx/view/Admin/School_Management/School_Data/SchoolDataMGMT.dart';
 import 'package:getx/view/Admin/School_Management/Sessions_Pages/Session_Management.dart';
 import 'package:getx/view/Admin/SideBarAdmin.dart';
 import 'package:getx/view/Admin/StudentStatus.dart';
@@ -77,6 +78,13 @@ class AdminHome extends StatelessWidget {
                       return Curriculum_Management();
                     case "Session Management":
                       return SessionManagement();
+
+                    case "School Data Management":
+                      return MyCheckBoxScreen();
+
+                    case "Electronic Library":
+                      return Text("Electronic Library");
+
                     default:
                       return Container();
                   }

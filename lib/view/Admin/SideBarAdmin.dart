@@ -289,31 +289,23 @@ class SideBarAdmin extends StatelessWidget {
                         size: 16,
                       ),
                       onSelected: (value) {
-                        if (value == "Teacher Management") {
-                          cont.updateContent("Teacher Management");
+                        if (value == "School Data Management") {
+                          cont.updateContent("School Data Management");
                         }
-                        if (value == "Teacher Status") {
-                          cont.updateContent("Teacher Status");
-                        }
-                        if (value == "Teacher Attendance Managment") {
-                          cont.updateContent("Teacher Attendance Managment");
+                        if (value == "Electronic Library") {
+                          cont.updateContent("Electronic Library");
                         }
                       },
                       itemBuilder: (BuildContext context) =>
                           <PopupMenuEntry<String>>[
                         PopupMenuItem<String>(
-                          value: 'Teacher Management',
-                          child: Text('Teacher Management',
+                          value: 'School Data Management',
+                          child: Text('School Data Management',
                               style: Get.theme.primaryTextTheme.bodySmall),
                         ),
                         PopupMenuItem<String>(
-                          value: 'Teacher Status',
-                          child: Text('Teacher Status',
-                              style: Get.theme.primaryTextTheme.bodySmall),
-                        ),
-                        PopupMenuItem<String>(
-                          value: 'Teacher Attendance Managment',
-                          child: Text('Teacher Attendance Managment',
+                          value: 'Electronic Library',
+                          child: Text('Electronic Library',
                               style: Get.theme.primaryTextTheme.bodySmall),
                         ),
                       ],
