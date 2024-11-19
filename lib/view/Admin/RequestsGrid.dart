@@ -174,7 +174,7 @@ class RequestsGrid extends StatelessWidget {
                             },
                           ),
                           Text(
-                            "Pending",
+                            "${controller.registration[index].type}",
                             style: Get.theme.primaryTextTheme.titleSmall!
                                 .copyWith(
                                     color: Color(0xff779DB6),

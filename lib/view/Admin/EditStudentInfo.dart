@@ -109,7 +109,7 @@ EditStudentDialog() {
                             style: Get.theme.primaryTextTheme.labelSmall),
                         DatePicker(
                           width: 250,
-                        height: 40,
+                          height: 40,
                         )
                       ],
                     ),
@@ -132,7 +132,6 @@ EditStudentDialog() {
                 padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
-
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -165,7 +164,6 @@ EditStudentDialog() {
                   right: 15,
                 ),
                 child: Row(
-
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -178,28 +176,29 @@ EditStudentDialog() {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 15.0),
-                      child: GetBuilder<CheckboxController>(builder: (controller) {
+                      child:
+                          GetBuilder<CheckboxController>(builder: (controller) {
                         return Container(
                           margin: const EdgeInsets.only(top: 30),
                           height: 70,
                           width: 220,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-
                             children: [
                               SizedBox(
                                 height: 20,
                                 child: Row(
                                   children: [
                                     Checkbox(
-                                      value: controller.selectedIndex.value == 0,
+                                      value:
+                                          controller.selectedIndex.value == 0,
                                       onChanged: (bool? value) {
                                         controller.selectcheck(0);
                                       },
                                     ),
                                     Text("Special Needs",
-                                        style:
-                                            Get.theme.primaryTextTheme.bodySmall),
+                                        style: Get
+                                            .theme.primaryTextTheme.bodySmall),
                                   ],
                                 ),
                               ),
@@ -208,14 +207,15 @@ EditStudentDialog() {
                                 child: Row(
                                   children: [
                                     Checkbox(
-                                      value: controller.selectedIndex.value == 1,
+                                      value:
+                                          controller.selectedIndex.value == 1,
                                       onChanged: (bool? value) {
                                         controller.selectcheck(1);
                                       },
                                     ),
                                     Text("Martyr Son",
-                                        style:
-                                            Get.theme.primaryTextTheme.bodySmall),
+                                        style: Get
+                                            .theme.primaryTextTheme.bodySmall),
                                   ],
                                 ),
                               ),
@@ -229,46 +229,46 @@ EditStudentDialog() {
                 ),
               ),
               Padding(
-                padding:  EdgeInsets.only(left: 15, right: 15, top: 10),
+                padding: EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
-
                   children: [
-
-                        DropDown(
-
-                            title: "Class",width: 250,options: ['asdsa','bwfw']),
-
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15.0),
-                          child: DropDown(title: "Division",width: 250,options: ['sdsb','fgng']),
-                        ),
-
+                    DropDown(
+                        title: "Class", width: 250, options: ['asdsa', 'bwfw']),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: DropDown(
+                          title: "Division",
+                          width: 250,
+                          options: ['sdsb', 'fgng']),
+                    ),
                   ],
                 ),
               ),
               Padding(
-                padding:  EdgeInsets.only(left: 15, right: 15, top: 10),
+                padding: EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
-
                   children: [
-                                            DropDown(title: "Blood Type",width: 250,options: ['art','bhtg']),
-
-                                           Padding(
-                                             padding: const EdgeInsets.only(left: 15.0),
-                                             child: DropDown(title: "Gender",width: 250,options: ['a']),
-                                           ),
-
+                    DropDown(
+                        title: "Blood Type",
+                        width: 250,
+                        options: ['art', 'bhtg']),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child:
+                          DropDown(title: "Gender", width: 250, options: ['a']),
+                    ),
                   ],
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                                        DropDown(title: "Location",width: 250,options: ['dfbfd','fdbb']),
-
+                    DropDown(
+                        title: "Location",
+                        width: 250,
+                        options: ['dfbfd', 'fdbb']),
                     Padding(
                       padding: const EdgeInsets.only(left: 15.0),
                       child: Column(
@@ -288,7 +288,6 @@ EditStudentDialog() {
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
-
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -318,7 +317,6 @@ EditStudentDialog() {
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
-
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -375,7 +373,6 @@ EditStudentDialog() {
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
-
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -402,11 +399,9 @@ EditStudentDialog() {
                   ],
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
-
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -435,7 +430,6 @@ EditStudentDialog() {
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
-
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -463,7 +457,6 @@ EditStudentDialog() {
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
-
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -494,7 +487,6 @@ EditStudentDialog() {
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
-
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -515,7 +507,7 @@ EditStudentDialog() {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ButtonDialog(
-                      width: 100,
+                        width: 100,
                         text: "Edit",
                         onPressed: () {},
                         color: Get.theme.colorScheme.primary)

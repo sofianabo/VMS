@@ -2,16 +2,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx/Link/API/AdminAPI/GetAllClassAPI.dart';
+import 'package:getx/Link/API/AdminAPI/GetAllGradeAPI.dart';
 import 'package:getx/Link/API/AdminAPI/GetSessionAPI.dart';
 import 'package:getx/Link/Controller/WidgetController/CheckBoxController.dart';
 import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
 import 'package:getx/view/Admin/AllStudentGrid.dart';
 import 'package:getx/widgets/Admin_Students/DropDownAllStudents.dart';
-import 'package:getx/widgets/Calender.dart';
 import 'package:getx/widgets/TextFormSearch.dart';
 
 import '../../Link/API/AdminAPI/GetAllStudentAPI.dart';
-import '../../widgets/DropDown.dart';
 
 class AllStudent extends StatefulWidget {
   AllStudent({super.key});
@@ -23,8 +23,10 @@ class AllStudent extends StatefulWidget {
 class _AllStudentState extends State<AllStudent> {
   @override
   void initState() {
-        Getsessionapi(context).Getsession();
-
+    Getsessionapi(context).Getsession();
+    Getallgradeapi(context).Getallgrade();
+    Getallclassapi(context).getAllClasses();
+    Getallstudentapi(context).Getallstudent(null);
 
     // TODO: implement initState
     super.initState();

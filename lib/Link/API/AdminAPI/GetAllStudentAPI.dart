@@ -16,16 +16,16 @@ class Getallstudentapi {
     Allstudentscontroller c = Get.find<Allstudentscontroller>();
     String myurl = "${global.hostPort}${global.getStudents}";
     var response = await dio.get(myurl,
-    data: {
-      "name":name,
-    },
+        data: {
+          "name": name,
+        },
         options: Options(headers: {
           'accept': 'application/json',
           'authorization': 'Bearer ${prefs!.getString("token")}'
         }));
     if (response.statusCode == 200) {
-       AllStudentModel student = AllStudentModel.fromJson(response.data);
-       c.setAllStudents(student);
+      AllStudentModel student = AllStudentModel.fromJson(response.data);
+      c.setAllStudents(student);
     } else {
       return throw Exception("Failed to load Students");
     }

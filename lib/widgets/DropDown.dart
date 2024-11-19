@@ -14,7 +14,7 @@ class DropDown extends StatelessWidget {
       {super.key,
       required this.width,
       required this.title,
-       this.COLOR,
+      this.COLOR,
       required this.options});
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class DropDown extends StatelessWidget {
         height: 40,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          border: Border.all(color:  COLOR ?? Color(0xffD9D9D9)),
+          border: Border.all(color: COLOR ?? Color(0xffD9D9D9)),
         ),
         child: DropdownButton<String>(
           focusColor: Colors.white,
@@ -34,7 +34,6 @@ class DropDown extends StatelessWidget {
           iconDisabledColor: Colors.grey,
           iconEnabledColor: Colors.black,
           value: cont.selectedIndex,
-
           underline: const Text(""),
           icon: Expanded(
             child: Row(
@@ -44,10 +43,7 @@ class DropDown extends StatelessWidget {
               ],
             ),
           ),
-          style: Get.theme.primaryTextTheme.titleMedium!.copyWith(
-             fontSize: 14
-          ),
-
+          style: Get.theme.primaryTextTheme.titleMedium!.copyWith(fontSize: 14),
           onChanged: (newValue) {
             cont.selectval(newValue!);
           },
@@ -57,9 +53,8 @@ class DropDown extends StatelessWidget {
               enabled: false,
               child: Text(
                 title,
-                style: Get.theme.primaryTextTheme.titleMedium!.copyWith(
-                     fontSize: 14
-                ),
+                style: Get.theme.primaryTextTheme.titleMedium!
+                    .copyWith(fontSize: 14),
               ),
             ),
             ...cont.options.map<DropdownMenuItem<String>>((String value) {
@@ -67,14 +62,12 @@ class DropDown extends StatelessWidget {
                 value: value,
                 child: Text(
                   value,
-                  style: Get.theme.primaryTextTheme.titleMedium!.copyWith(
-                       fontSize: 14
-                  ),
+                  style: Get.theme.primaryTextTheme.titleMedium!
+                      .copyWith(fontSize: 14),
                 ),
               );
             }).toList(),
           ],
-
           borderRadius: BorderRadius.circular(3),
         ),
       );

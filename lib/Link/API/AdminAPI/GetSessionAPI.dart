@@ -1,11 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/API/AdminAPI/GetAllStudentAPI.dart';
 import 'package:getx/Link/Controller/AdminController/AllStudentsController.dart';
-import 'package:getx/Link/Controller/AdminController/AllTeachersController.dart';
+import 'package:getx/Link/Controller/WidgetController/DropDownController.dart';
 import 'package:getx/Link/Model/AdminModel/AllSessionModel.dart';
-import 'package:getx/Link/Model/AdminModel/AllTeacherModel.dart';
 import 'package:getx/main.dart';
 import '../API.dart' as global;
 
@@ -24,10 +22,10 @@ class Getsessionapi {
         }));
     if (response.statusCode == 200) {
       AllSessionModel session = AllSessionModel.fromJson(response.data);
-      c.addToModel(session);
-      await Getallstudentapi(context).Getallstudent(null);
+      c.setAllSession(session);
     } else {
       return throw Exception("Failed to load session");
     }
   }
 }
+ 

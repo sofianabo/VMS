@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx/Link/Model/AdminModel/AllClassesModel.dart';
+import 'package:getx/Link/Model/AdminModel/AllGradeModel.dart';
 import 'package:getx/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:getx/Link/Model/AdminModel/AllStudentModel.dart';
 
 class Allstudentscontroller extends GetxController {
   List<Students> stud = [];
-  late BuildContext context;
+
   String sessionIndex = "";
   String gradeIndex = "";
   String classIndex = "";
   String divisionIndex = "";
 
-  List<String> sessionlist = [];
   List<String> gradelist = ["first", "tow", "three"];
-  List<String> classlist = ["one"];
+  List<String> classlist = [];
   List<String> divisionlist = ["one"];
+  List<String> sessionlist = [];
 
   void selectIndex(String type, String? index) {
     switch (type) {
@@ -34,7 +36,14 @@ class Allstudentscontroller extends GetxController {
     update();
   }
 
-  void addToModel(AllSessionModel session) {
+  late BuildContext context;
+
+  void setAllStudents(AllStudentModel model) {
+    stud = model.students!;
+    update();
+  }
+
+  void setAllSession(AllSessionModel session) async {
     sessionlist.clear();
     for (int i = 0; i < session.sessions!.length; i++) {
       sessionlist.add(session.sessions![i].year.toString());
@@ -42,6 +51,24 @@ class Allstudentscontroller extends GetxController {
     }
     update();
     updateList("session", sessionlist);
+  }
+
+  void setAllClasses(AllClassesModel clas) {
+    classlist.clear();
+    for (int j = 0; j < clas.classes.length; j++) {
+      classlist.add(clas.classes[j].enName.toString());
+    }
+    update();
+    updateList("class", classlist);
+  }
+
+  void setAllGrades(AllGradesModel grade) {
+    gradelist.clear();
+    for (int k = 0; k < grade.grades!.length; k++) {
+      gradelist.add(grade.grades![k].enName.toString());
+    }
+    update();
+    updateList("grade", gradelist);
   }
 
   void updateList(
@@ -72,9 +99,4 @@ class Allstudentscontroller extends GetxController {
   String get selectedclassIndex => classIndex;
 
   String get selecteddivisionIndex => divisionIndex;
-
-  void setAllStudents(AllStudentModel model) {
-    stud = model.students!;
-    update();
-  }
 }

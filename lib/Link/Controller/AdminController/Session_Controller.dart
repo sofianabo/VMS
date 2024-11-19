@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:getx/Link/Model/AdminModel/AllSessionModel.dart';
 
 class SessionController extends GetxController {
   var Sessions = [
@@ -19,8 +20,15 @@ class SessionController extends GetxController {
     },
   ].obs;
 
+
+
+
   TextEditingController sessionController = TextEditingController();
   var borderColor = Color(0xffD9D9D9).obs; // Reactive border color
+
+
+
+  
 
   SessionController() {
     // Add listener to sessionController to update border color

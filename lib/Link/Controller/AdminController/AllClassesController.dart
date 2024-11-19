@@ -3,7 +3,10 @@ import 'package:getx/Link/Model/AdminModel/AllClassesModel.dart';
 
 class Allclassescontroller extends GetxController {
   List<Class> classes = [];
-
+     void setAllClasses(AllClassesModel cl) {
+    classes = cl.classes;
+    update();
+  }
   String examTypeIndex = "";
   String examClassIndex = "";
   String examDivisionIndex = "";
@@ -42,10 +45,7 @@ class Allclassescontroller extends GetxController {
     update();
   }
 
-  void setAllClasses(AllClassesModel cl) {
-    classes = cl.classes;
-    update();
-  }
+
 
   String get selectedExamType => examTypeIndex;
 

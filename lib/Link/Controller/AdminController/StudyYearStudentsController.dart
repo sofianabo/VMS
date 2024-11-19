@@ -1,4 +1,7 @@
 import 'package:get/get.dart';
+import 'package:getx/Link/Model/AdminModel/AllClassesModel.dart';
+import 'package:getx/Link/Model/AdminModel/AllGradeModel.dart';
+import 'package:getx/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:getx/Link/Model/AdminModel/allGuardianModel.dart';
 
 class StudyYearStudentsController extends GetxController {
@@ -28,6 +31,34 @@ class StudyYearStudentsController extends GetxController {
         break;
     }
     update();
+  }
+
+   void setAllSession(AllSessionModel session) async {
+    sessionlist.clear();
+    for (int i = 0; i < session.sessions!.length; i++) {
+      sessionlist.add(session.sessions![i].year.toString());
+      print(session.sessions![i].year.toString());
+    }
+    update();
+    updateList("session", sessionlist);
+  }
+
+    void setAllClasses(AllClassesModel clas) {
+    classlist.clear();
+    for (int j = 0; j < clas.classes.length; j++) {
+      classlist.add(clas.classes[j].enName.toString());
+    }
+    update();
+    updateList("class", classlist);
+  }
+
+    void setAllGrades(AllGradesModel grade) {
+    classlist.clear();
+    for (int j = 0; j < grade.grades!.length; j++) {
+      classlist.add(grade.grades![j].enName.toString());
+    }
+    update();
+    updateList("class", classlist);
   }
 
   void updateList(String type, List<String> options) {

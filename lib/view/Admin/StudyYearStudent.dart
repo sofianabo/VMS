@@ -5,8 +5,15 @@ import 'package:getx/view/Admin/StudyYearStudentsGrid.dart';
 import 'package:getx/widgets/Admin_Students/DropDownStudyYearStudents.dart';
 import '../../widgets/TextFormSearch.dart';
 
-class StudyTearStudents extends StatelessWidget {
-  StudyTearStudents({super.key});
+class StudyYearStudents extends StatefulWidget {
+  StudyYearStudents({super.key});
+
+  @override
+  State<StudyYearStudents> createState() => _StudyYearStudentsState();
+}
+
+class _StudyYearStudentsState extends State<StudyYearStudents> {
+ 
 
   TextEditingController search = TextEditingController();
 
@@ -30,7 +37,7 @@ class StudyTearStudents extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: DropDownStudyYearStudents(
-                          title: "2024-2025",
+                          title: "Session",
                           type: "session",
                           width: w / 6.5,
                         ),
