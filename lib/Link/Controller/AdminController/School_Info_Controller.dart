@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SchoolInfoController extends GetxController {
@@ -27,34 +28,75 @@ class SchoolInfoController extends GetxController {
   var Joint_Building = false.obs;
   var Industrial_Section = false.obs;
 
+  TextEditingController School_Name = TextEditingController();
+  TextEditingController License_Number = TextEditingController();
+  TextEditingController Address = TextEditingController();
+  TextEditingController Village = TextEditingController();
+  TextEditingController Region = TextEditingController();
+  TextEditingController Phone = TextEditingController();
+  TextEditingController Email = TextEditingController();
+  TextEditingController Creation_Year = TextEditingController();
+  TextEditingController Clinic_Name = TextEditingController();
+  TextEditingController Congregation_number = TextEditingController();
+  TextEditingController Previous_name = TextEditingController();
+  TextEditingController Town_Chip = TextEditingController();
+  TextEditingController Fax = TextEditingController();
+  TextEditingController Work_Begin_Year = TextEditingController();
+
+  initialdata() {
+    School_Name.text = SchoolInfo[0]["School_Name"];
+    License_Number.text = SchoolInfo[0]["License_Number"];
+    Address.text = SchoolInfo[0]["Address"];
+    Village.text = SchoolInfo[0]["Village"];
+    Region.text = SchoolInfo[0]["Region"];
+    Phone.text = SchoolInfo[0]["Phone"];
+    Email.text = SchoolInfo[0]["Email"];
+    Creation_Year.text = SchoolInfo[0]["Creation_Year"];
+    Clinic_Name.text = SchoolInfo[0]["Clinic_Name"];
+    Congregation_number.text = SchoolInfo[0]["Congregation_number"];
+    Previous_name.text = SchoolInfo[0]["Previous_name"];
+    Town_Chip.text = SchoolInfo[0]["Town_Chip"];
+    Fax.text = SchoolInfo[0]["Fax"];
+    Work_Begin_Year.text = SchoolInfo[0]["Work_Begin_Year"];
+    Outstanding_School.value = SchoolInfo[0]['Outstanding_School'];
+    Taken_OverSchool.value = SchoolInfo[0]['Taken_OverSchool'];
+    Reassignment_Teachers.value = SchoolInfo[0]['Reassignment_Teachers'];
+    Martyrs_Sons.value = SchoolInfo[0]['Martyrs_Sons'];
+    Internet_Connection.value = SchoolInfo[0]['Internet_Connection'];
+    Government_Connection.value = SchoolInfo[0]['Government_Connection'];
+    Joint_Building.value = SchoolInfo[0]['Joint_Building'];
+    Industrial_Section.value = SchoolInfo[0]['Industrial_Section'];
+  }
+
   List<Map<String, dynamic>> SchoolInfo = [
     {
-      "School_Name": "الفصل الأول",
-      "License_Number": "First Division",
-      "Address": "Twelfth Scientific Grade",
-      "Village": "يشفش",
-      "Region": "يشفش",
-      "Phone": "يشفش",
-      "Email": "يشفش",
-      "Creation_Year": "يشفش",
-      "Clinic_Name": "يشفش",
-      "Congregation_number": "يشفش",
-      "Previous_name": "يشفش",
-      "Town_Chip": "يشفش",
-      "Fax": "يشفش",
-      "Work_Begin_Year": "يشفش",
-      "Country": "يشفش",
-      "Work_Type": "يشفش",
-      "Outstanding_School": false,
+      "School_Name": "مدرسة الافتراضية الحديثة",
+      "License_Number": "12345789",
+      "Address": "السويداء - بناء المهندسين",
+      "Village": "السويداء",
+      "Region": "السويداء",
+      "Phone": "01112345678",
+      "Email": "info@school.com",
+      "Creation_Year": "1995",
+      "Clinic_Name": "عيادة الصحة المدرسية",
+      "Congregation_number": "120",
+      "Previous_name": "مدرسة الأمل",
+      "Town_Chip": "شريحة المدينة",
+      "Fax": "01187654321",
+      "Work_Begin_Year": "1995",
+      "Country": "الجمهورية العربية السورية",
+      "Work_Type": "تعليم حكومي",
+      "Outstanding_School": true,
       "Taken_OverSchool": false,
-      "Reassignment_Teachers": false,
+      "Reassignment_Teachers": true,
       "Martyrs_Sons": false,
-      "Internet_Connection": false,
-      "Government_Connection": false,
+      "Internet_Connection": true,
+      "Government_Connection": true,
       "Joint_Building": false,
       "Industrial_Section": false,
     },
   ];
+
   String CountryIndex = "";
   String Work_TypeIndex = "";
 
