@@ -6,6 +6,7 @@ import 'package:getx/Link/Controller/AdminController/AllClassesController.dart';
 import 'package:getx/Link/Controller/AdminController/AllStudentsController.dart';
 import 'package:getx/Link/Controller/AdminController/AllTeachersController.dart';
 import 'package:getx/Link/Controller/AdminController/Class_Mgmt_Controller.dart';
+import 'package:getx/Link/Controller/AdminController/DropDownCurriculumn_Controller.dart';
 import 'package:getx/Link/Controller/AdminController/DropDownDivisions_Controller.dart';
 import 'package:getx/Link/Controller/AdminController/Employeeecontroller.dart';
 import 'package:getx/Link/Controller/AdminController/Grade_Controller.dart';
@@ -43,5 +44,6 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Grade_Controller(), fenix: true);
     Get.lazyPut(() => ClassMgmtController(), fenix: true);
     Get.lazyPut(() => DropdownDivisions_Controller(), fenix: true);
+    Get.lazyPut(() => DropDownCurriculumn_Controller(), fenix: true);
   }
 }
