@@ -5,7 +5,8 @@ import 'package:getx/Link/Controller/AdminController/Class_Mgmt_Controller.dart'
 class DropDownClassMgmt extends StatelessWidget {
   final double width;
   final String title;
-  final String type; // تحديد نوع الـ DropDown
+  final String type;
+  final String? selectedValue; // إضافة هذه القيمة
   final Color? color;
 
   const DropDownClassMgmt({
@@ -14,40 +15,59 @@ class DropDownClassMgmt extends StatelessWidget {
     this.color,
     required this.width,
     required this.type,
+    this.selectedValue,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ClassMgmtController>(builder: (cont) {
-      // تعيين القيمة الافتراضية لـ selectedValue
-      String selectedValue = title;
+      String currentValue = selectedValue ?? title;
 
       switch (type) {
         case 'grade':
-          selectedValue = cont.selectedClassIndex.isNotEmpty
-              ? cont.selectedClassIndex
+          currentValue = cont.selectedgradeIndex.isNotEmpty
+              ? cont.selectedgradeIndex
               : title;
           break;
         case 'session':
-          selectedValue = cont.selectedDivisionIndex.isNotEmpty
-              ? cont.selectedDivisionIndex
+          currentValue = cont.selectedsessionIndex.isNotEmpty
+              ? cont.selectedsessionIndex
               : title;
           break;
 
-        case 'classdiag':
-          selectedValue = cont.selectedClassDiagIndex.isNotEmpty
-              ? cont.selectedClassDiagIndex
+        case 'gradediag':
+          currentValue = cont.selectedgradeDiagIndex.isNotEmpty
+              ? cont.selectedgradeDiagIndex
               : title;
           break;
-        case 'divisiondiag':
-          selectedValue = cont.selectedDivisionDiagIndex.isNotEmpty
-              ? cont.selectedDivisionDiagIndex
+
+        case 'sessiondag':
+          currentValue = cont.selectedsessionDiagIndex.isNotEmpty
+              ? cont.selectedsessionDiagIndex
               : title;
           break;
+
         case 'admin':
-          selectedValue = cont.selectedAdminDiagIndex.isNotEmpty
+          currentValue = cont.selectedAdminDiagIndex.isNotEmpty
               ? cont.selectedAdminDiagIndex
               : title;
+          break;
+
+        case 'editeGrade':
+          currentValue =
+              cont.editeGradeIndexs.isNotEmpty ? cont.editeGradeIndexs : title;
+          break;
+        case 'editeSession':
+          currentValue = cont.editeSessionIndexs.isNotEmpty
+              ? cont.editeSessionIndexs
+              : title;
+          break;
+        case 'editeAdmin':
+          currentValue =
+              cont.editeAdminIndexs.isNotEmpty ? cont.editeAdminIndexs : title;
+          break;
+
+        default:
           break;
       }
 
@@ -65,8 +85,7 @@ class DropDownClassMgmt extends StatelessWidget {
           dropdownColor: Colors.white,
           iconDisabledColor: Colors.grey,
           iconEnabledColor: Colors.black,
-          value: selectedValue,
-          // استخدم selectedValue مباشرة
+          value: currentValue,
           isExpanded: true,
           underline: const SizedBox(),
           icon: Row(
@@ -106,7 +125,7 @@ class DropDownClassMgmt extends StatelessWidget {
 
     switch (type) {
       case 'grade':
-        items.addAll(cont.listClass.map((String value) {
+        items.addAll(cont.listgradeNormal.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
@@ -118,7 +137,7 @@ class DropDownClassMgmt extends StatelessWidget {
         }).toList());
         break;
       case 'session':
-        items.addAll(cont.listDivision.map((String value) {
+        items.addAll(cont.listsessionNormal.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
@@ -130,8 +149,8 @@ class DropDownClassMgmt extends StatelessWidget {
         }).toList());
         break;
 
-      case 'classdiag':
-        items.addAll(cont.listClassDiag.map((String value) {
+      case 'gradediag':
+        items.addAll(cont.listgradeDiag.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
@@ -142,8 +161,8 @@ class DropDownClassMgmt extends StatelessWidget {
           );
         }).toList());
         break;
-      case 'divisiondiag':
-        items.addAll(cont.listDivisionDiag.map((String value) {
+      case 'sessiondag':
+        items.addAll(cont.listsessionDiag.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
@@ -156,6 +175,45 @@ class DropDownClassMgmt extends StatelessWidget {
         break;
       case 'admin':
         items.addAll(cont.listAdminDiag.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.primaryTextTheme.titleMedium!
+                  .copyWith(fontSize: 14),
+            ),
+          );
+        }).toList());
+        break;
+
+      case 'editeGrade':
+        items.addAll(cont.editeGrade.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.primaryTextTheme.titleMedium!
+                  .copyWith(fontSize: 14),
+            ),
+          );
+        }).toList());
+        break;
+
+      case 'editeSession':
+        items.addAll(cont.editeSession.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.primaryTextTheme.titleMedium!
+                  .copyWith(fontSize: 14),
+            ),
+          );
+        }).toList());
+        break;
+
+      case 'editeAdmin':
+        items.addAll(cont.editeAdmin.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(

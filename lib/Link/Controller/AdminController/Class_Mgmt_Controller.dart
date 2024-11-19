@@ -3,10 +3,11 @@ import 'package:get/get.dart';
 class ClassMgmtController extends GetxController {
   List<Map<String, dynamic>> Classes = [
     {
-      "arName": "First Class",
+      "arName": "الصف الأول",
       "enName": "First Class",
-      "class": "Twelveth scientific grade",
-      "division": "Twelveth scientific grade",
+      "grade": "Twelfth Scientific Grade",
+      "session": "First Semester",
+      "admin": "System Administration",
       "drive": "https://192.168.1.1",
     },
   ];
@@ -16,25 +17,95 @@ class ClassMgmtController extends GetxController {
       {
         "arName": "$arName",
         "enName": "$enName",
-        "class": "$selectedClassDiagIndex",
-        "division": "$selectedDivisionDiagIndex",
+        "grade": "$selectedgradeDiagIndex",
+        "session": "$selectedsessionDiagIndex",
+        "admin": "$selectedAdminDiagIndex",
         "drive": "$drive",
       }
     ]);
+    gradeDiagIndex = "";
+    sessionDiagIndex = "";
+    AdminDiagIndex = "";
+    update();
+  }
+
+  updatedata(int idx, String arName, String enName, String drive) {
+    Classes[idx] = {
+      "arName": "$arName",
+      "enName": "$enName",
+      "grade": "$editeGradeIndexs",
+      "session": "$editeSessionIndexs",
+      "admin": "$editeAdminIndexs",
+      "drive": "$drive",
+    };
     update();
   }
 
   String gradeIndex = "";
   String sessionIndex = "";
-  String ClassDiagIndex = "";
-  String DivisionDiagIndex = "";
+  String gradeDiagIndex = "";
+  String sessionDiagIndex = "";
   String AdminDiagIndex = "";
+  String editeGradeIndex = "";
+  String editeSessionIndex = "";
+  String editeAdminIndex = "";
 
-  List<String> listClass = ["first", "tow", "three"];
-  List<String> listDivision = ["one"];
-  List<String> listClassDiag = ["one"];
-  List<String> listDivisionDiag = ["one"];
-  List<String> listAdminDiag = ["one", "tow"];
+  List<String> listgradeNormal = [
+    "Twelfth Scientific Grade",
+    "Eleventh Scientific Grade",
+    "Tenth Scientific Grade",
+    "Ninth Scientific Grade",
+    "Eighth Scientific Grade",
+    "Seventh Scientific Grade"
+  ];
+
+  List<String> listsessionNormal = [
+    "First Semester",
+    "Second Semester",
+    "Summer Session"
+  ];
+
+  List<String> listgradeDiag = [
+    "Twelfth Scientific Grade",
+    "Eleventh Scientific Grade",
+    "Tenth Scientific Grade",
+    "Ninth Scientific Grade",
+    "Eighth Scientific Grade",
+    "Seventh Scientific Grade"
+  ];
+
+  List<String> listsessionDiag = [
+    "First Semester",
+    "Second Semester",
+    "Summer Session"
+  ];
+
+  List<String> listAdminDiag = [
+    "System Administration",
+    "Content Management",
+    "User Management"
+  ];
+
+  List<String> editeGrade = [
+    "Twelfth Scientific Grade",
+    "Eleventh Scientific Grade",
+    "Tenth Scientific Grade",
+    "Ninth Scientific Grade",
+    "Eighth Scientific Grade",
+    "Seventh Scientific Grade"
+  ];
+
+  List<String> editeSession = [
+    "First Semester",
+    "Second Semester",
+    "Summer Session"
+  ];
+
+  List<String> editeAdmin = [
+    "System Administration",
+    "Content Management",
+    "User Management"
+  ];
 
   void selectIndex(String type, String? index) {
     switch (type) {
@@ -44,15 +115,23 @@ class ClassMgmtController extends GetxController {
       case 'session':
         sessionIndex = index ?? "";
         break;
-
-      case 'classdiag':
-        ClassDiagIndex = index ?? "";
+      case 'gradediag':
+        gradeDiagIndex = index ?? "";
         break;
-      case 'divisiondiag':
-        DivisionDiagIndex = index ?? "";
+      case 'sessiondag':
+        sessionDiagIndex = index ?? "";
         break;
       case 'admin':
         AdminDiagIndex = index ?? "";
+        break;
+      case 'editeGrade':
+        editeGradeIndex = index ?? "";
+        break;
+      case 'editeSession':
+        editeSessionIndex = index ?? "";
+        break;
+      case 'editeAdmin':
+        editeAdminIndex = index ?? "";
         break;
     }
     update();
@@ -60,32 +139,50 @@ class ClassMgmtController extends GetxController {
 
   void updateList(String type, List<String> options) {
     switch (type) {
-      case 'class':
-        listClass = options;
+      case 'grade':
+        listgradeNormal = options;
         break;
-      case 'division':
-        listDivision = options;
+      case 'session':
+        listsessionNormal = options;
         break;
-      case 'classdiag':
-        listClass = options;
+      case 'gradediag':
+        listgradeDiag = options;
         break;
-      case 'divisiondiag':
-        listDivision = options;
+      case 'sessiondag':
+        listsessionDiag = options;
         break;
       case 'admin':
-        listClassDiag = options;
+        listAdminDiag = options;
+        break;
+
+      case 'editeGrade':
+        editeGrade = options;
+        break;
+
+      case 'editeSession':
+        editeSession = options;
+        break;
+
+      case 'editeAdmin':
+        editeAdmin = options;
         break;
     }
     update();
   }
 
-  String get selectedClassIndex => gradeIndex;
+  String get selectedgradeIndex => gradeIndex;
 
-  String get selectedDivisionIndex => sessionIndex;
+  String get selectedsessionIndex => sessionIndex;
 
-  String get selectedClassDiagIndex => ClassDiagIndex;
+  String get selectedgradeDiagIndex => gradeDiagIndex;
 
-  String get selectedDivisionDiagIndex => DivisionDiagIndex;
+  String get selectedsessionDiagIndex => sessionDiagIndex;
 
   String get selectedAdminDiagIndex => AdminDiagIndex;
+
+  String get editeGradeIndexs => editeGradeIndex;
+
+  String get editeSessionIndexs => editeSessionIndex;
+
+  String get editeAdminIndexs => editeAdminIndex;
 }

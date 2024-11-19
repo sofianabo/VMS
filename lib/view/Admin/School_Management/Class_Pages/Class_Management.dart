@@ -73,6 +73,9 @@ class ClassManagement extends StatelessWidget {
                                           enName.text,
                                           driveUrl.text,
                                         );
+                                        arName.clear();
+                                        enName.clear();
+                                        driveUrl.clear();
                                         Get.back();
                                       },
                                       color: Get.theme.primaryColor,
@@ -109,16 +112,16 @@ class ClassManagement extends StatelessWidget {
                                     Row(
                                       children: [
                                         DropDownClassMgmt(
-                                            title: "Class",
+                                            title: "Grade",
                                             width: 250,
-                                            type: "classdiag"),
+                                            type: "gradediag"),
                                         Padding(
                                           padding: EdgeInsets.only(
                                               left: 15.0, right: 15.0),
                                           child: DropDownClassMgmt(
-                                              title: "Division",
+                                              title: "Session",
                                               width: 250,
-                                              type: "divisiondiag"),
+                                              type: "sessiondag"),
                                         ),
                                       ],
                                     ),
