@@ -29,6 +29,11 @@ class ClassMgmtController extends GetxController {
     update();
   }
 
+  deleteclass(int idx) {
+    Classes.removeAt(idx);
+    update();
+  }
+
   updatedata(int idx, String arName, String enName, String drive) {
     Classes[idx] = {
       "arName": "$arName",
