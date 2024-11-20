@@ -3,15 +3,19 @@ import 'package:getx/Link/Controller/AdminController/AdminHomeContentController.
 import 'package:getx/Link/Controller/AdminController/AdminStudentsAttendens.dart';
 import 'package:getx/Link/Controller/AdminController/AdminTeacherAttendens.dart';
 import 'package:getx/Link/Controller/AdminController/AllClassesController.dart';
+import 'package:getx/Link/Controller/AdminController/AllEmpolyeeController.dart';
 import 'package:getx/Link/Controller/AdminController/AllStudentsController.dart';
 import 'package:getx/Link/Controller/AdminController/AllTeachersController.dart';
 import 'package:getx/Link/Controller/AdminController/Class_Mgmt_Controller.dart';
+import 'package:getx/Link/Controller/AdminController/DropDownClassesController.dart';
 import 'package:getx/Link/Controller/AdminController/DropDownCurriculumn_Controller.dart';
 import 'package:getx/Link/Controller/AdminController/DropDownDivisions_Controller.dart';
+import 'package:getx/Link/Controller/AdminController/DropDownGradeController.dart.dart';
 import 'package:getx/Link/Controller/AdminController/Employeeecontroller.dart';
 import 'package:getx/Link/Controller/AdminController/Grade_Controller.dart';
 import 'package:getx/Link/Controller/AdminController/RequestsController.dart';
 import 'package:getx/Link/Controller/AdminController/School_Info_Controller.dart';
+import 'package:getx/Link/Controller/AdminController/DropDownSessionController.dart.dart';
 import 'package:getx/Link/Controller/AdminController/Session_Controller.dart';
 import 'package:getx/Link/Controller/AdminController/Student_Attendenc_Controller.dart';
 import 'package:getx/Link/Controller/AdminController/StudyYearStudentsController.dart';
@@ -21,6 +25,7 @@ import 'package:getx/Link/Controller/HomeScreenController.dart';
 import 'package:getx/Link/Controller/WidgetController/DropDownController.dart';
 import 'package:getx/Link/Controller/WidgetController/PasswordHintController.dart';
 import 'package:getx/Link/Controller/AdminController/Admin_School_Time.dart';
+import 'package:getx/view/Admin/AllEmployee.dart';
 
 class UserBiniding extends Bindings {
   @override
@@ -34,7 +39,9 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => DropDownController(), fenix: true);
     Get.lazyPut(() => Allgaurdiancontroller(), fenix: true);
     Get.lazyPut(() => Allteachercontroller(), fenix: true);
-    Get.lazyPut(() => Allstudentscontroller(), fenix: true);
+    Get.lazyPut(
+      () => Allstudentscontroller(),
+    );
     Get.lazyPut(() => TeacherAttendensController(), fenix: true);
     Get.lazyPut(() => Studentattcontroller(), fenix: true);
     Get.lazyPut(() => EmployeeController(), fenix: true);
@@ -47,5 +54,9 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => DropdownDivisions_Controller(), fenix: true);
     Get.lazyPut(() => DropDownCurriculumn_Controller(), fenix: true);
     Get.lazyPut(() => SchoolInfoController(), fenix: true);
+    Get.lazyPut(() => Dropdownsessioncontroller(), fenix: true);
+    Get.lazyPut(() => Dropdowngradecontroller(), fenix: true);
+    Get.lazyPut(() => Dropdownclassescontroller(), fenix: true);
+    Get.lazyPut(() => Allempolyeecontroller(), fenix: true);
   }
 }

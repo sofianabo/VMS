@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
 import 'package:getx/Link/API/AdminAPI/AddTeacherAPI.dart';
 import 'package:getx/view/Admin/TeacherManagementGrid.dart';
+import 'package:getx/widgets/Admin_teachers/DropDownAllTeacher.dart';
 import 'package:getx/widgets/ButtonsDialog.dart';
 import 'package:getx/widgets/Calender.dart';
 import 'package:getx/widgets/DropDown.dart';
@@ -57,24 +58,15 @@ class _TeacherManagementState extends State<TeacherManagement> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
-                        child: DropDown(
-                            title: "2024-2025",
-                            width: w / 6,
-                            options: ['abbb', 'bfddfvd']),
+                        child: Dropdownallteacher(title: "Session", width: w/6.5, type: "session")
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
-                        child: DropDown(
-                            title: "Grade",
-                            width: w / 6,
-                            options: ['abbb', 'bfddfvd']),
+                        child:  Dropdownallteacher(title: "Grade", width: w/6.5, type: "grade")
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
-                        child: DropDown(
-                            title: "Class",
-                            width: w / 6,
-                            options: ['abbb', 'bfddfvd']),
+                        child: Dropdownallteacher(title: "Class", width: w/6.5, type: "class")
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),

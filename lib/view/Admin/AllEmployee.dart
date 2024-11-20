@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx/Link/API/AdminAPI/GetAllEmployeeAPI.dart';
 import 'package:getx/view/Admin/AllEmployeeGrid.dart';
+import 'package:getx/widgets/Admin_employee/DropDownAllEmployee.dart';
 import 'package:getx/widgets/ButtonsDialog.dart';
 import 'package:getx/widgets/DropDown.dart';
 import 'package:getx/widgets/TextFormSearch.dart';
@@ -8,14 +10,30 @@ import '../../Icons_File/v_m_s__icons_icons.dart';
 import '../../widgets/TextFildWithUpper.dart';
 import '../../widgets/VMSAlertDialog.dart';
 
-class AllEmployee extends StatelessWidget {
+class AllEmployee extends StatefulWidget {
   AllEmployee({super.key});
 
+  @override
+  State<AllEmployee> createState() => _AllEmployeeState();
+}
+
+class _AllEmployeeState extends State<AllEmployee> {
   TextEditingController search = TextEditingController();
+
   TextEditingController username = TextEditingController();
+
   TextEditingController email = TextEditingController();
+
   TextEditingController password = TextEditingController();
+
   TextEditingController cPassword = TextEditingController();
+
+  @override
+  void initState() {
+    Getallemployeeapi(context).Getallemployee(null);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -34,19 +52,17 @@ class AllEmployee extends StatelessWidget {
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: DropDown(
-                            title: "2024-2025",
-                            width: w / 5,
-                            options: ['abbb', 'bfddfvd']),
-                      ),
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Dropdownallemployee(
+                              title: "Session",
+                              width: w / 6.5,
+                              type: "session")),
                       Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: DropDown(
-                            title: "Jop Title",
-                            width: w / 5,
-                            options: ['abbb', 'bfddfvd']),
-                      ),
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Dropdownallemployee(
+                              title: "Job Title",
+                              width: w / 6.5,
+                              type: "jobTitle")),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: TextFormSearch(

@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
-import 'package:getx/Link/API/AdminAPI/GetAllClassAPI.dart';
+import 'package:getx/Link/API/AdminAPI/DropdownClassesAPI.dart';
 import 'package:getx/Link/Controller/AdminController/AllClassesController.dart';
 import 'package:getx/widgets/Admin_Table/DropDownTable.dart';
 import 'package:getx/widgets/Calender.dart';
@@ -37,7 +37,7 @@ class ExamTable extends StatelessWidget {
               children: [
                 DropDownTable(
                   title: "Type",
-                    width: Get.width / 4,
+                  width: Get.width / 4,
                   type: 'type',
                 ),
                 Padding(
@@ -45,14 +45,14 @@ class ExamTable extends StatelessWidget {
                   child: DropDownTable(
                     type: 'class',
                     title: "Class",
-                      width: Get.width / 4,
+                    width: Get.width / 4,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                   child: DropDownTable(
                     title: "Division",
-                      width: Get.width / 4,
+                    width: Get.width / 4,
                     type: 'division',
                   ),
                 ),
@@ -137,13 +137,15 @@ class ExamTable extends StatelessWidget {
                         ),
                     ],
                     rows: [
-                      for (int i = 0; i < control.classes.length; i++)
+                      for (int i = 0;
+                          i < tableData.length;
+                          i++) //control.classes.length
                         DataRow(
                           cells: [
                             DataCell(
                               Text(
                                   textAlign: TextAlign.center,
-                                  control.classes[i].enName!,
+                                  "", //control.classes[i].enName!
                                   style: Get.theme.primaryTextTheme.bodySmall),
                               onTap: () {},
                             ),

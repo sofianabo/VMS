@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/Link/API/AdminAPI/DropdownSessionsAPI.dart';
+import 'package:getx/Link/Controller/AdminController/AllEmpolyeeController.dart';
 import 'package:getx/Link/Controller/AdminController/AllStudentsController.dart';
+import 'package:getx/Link/Controller/AdminController/AllTeachersController.dart';
 import 'package:getx/Link/Controller/AdminController/Session_Controller.dart';
 import 'package:getx/Link/Controller/WidgetController/DropDownController.dart';
 
-class DropDownAllStudents extends StatelessWidget {
+class Dropdownallemployee extends StatelessWidget {
   final double width;
   final String title;
   final String type;
   final Color? color;
 
-  const DropDownAllStudents({
+  const Dropdownallemployee({
     Key? key,
     required this.title,
     this.color,
@@ -21,7 +23,7 @@ class DropDownAllStudents extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<Allstudentscontroller>(builder: (cont) {
+    return GetBuilder<Allempolyeecontroller>(builder: (cont) {
       String selectedValue = "";
 
       switch (type) {
@@ -31,21 +33,12 @@ class DropDownAllStudents extends StatelessWidget {
               : title;
 
           break;
-        case 'grade':
+        case 'jobTitle':
           selectedValue = cont.selectedgradeIndex.isNotEmpty
               ? cont.selectedgradeIndex
               : title;
           break;
-        case 'class':
-          selectedValue = cont.selectedclassIndex.isNotEmpty
-              ? cont.selectedclassIndex
-              : title;
-          break;
-        case 'division':
-          selectedValue = cont.selecteddivisionIndex.isNotEmpty
-              ? cont.selecteddivisionIndex
-              : title;
-          break;
+      
       }
 
       return Container(
@@ -98,7 +91,7 @@ class DropDownAllStudents extends StatelessWidget {
     });
   }
 
-  List<DropdownMenuItem<String>> _getDropdownItems(Allstudentscontroller cont) {
+  List<DropdownMenuItem<String>> _getDropdownItems(Allempolyeecontroller cont) {
     List<DropdownMenuItem<String>> items = [];
 
     switch (type) {
@@ -114,8 +107,8 @@ class DropDownAllStudents extends StatelessWidget {
           );
         }).toList());
         break;
-      case 'grade':
-        items.addAll(cont.gradelist.map((String value) {
+      case 'jobTitle':
+        items.addAll(cont.JobTitleList.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
@@ -126,30 +119,7 @@ class DropDownAllStudents extends StatelessWidget {
           );
         }).toList());
         break;
-      case 'class':
-        items.addAll(cont.classlist.map((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(
-              value,
-              style: Get.theme.primaryTextTheme.titleMedium!
-                  .copyWith(fontSize: 14),
-            ),
-          );
-        }).toList());
-        break;
-      case 'division':
-        items.addAll(cont.divisionlist.map((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(
-              value,
-              style: Get.theme.primaryTextTheme.titleMedium!
-                  .copyWith(fontSize: 14),
-            ),
-          );
-        }).toList());
-        break;
+    
     }
 
     return items;

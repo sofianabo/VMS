@@ -36,7 +36,6 @@ class Allstudentscontroller extends GetxController {
     update();
   }
 
-  late BuildContext context;
 
   void setAllStudents(AllStudentModel model) {
     stud = model.students!;

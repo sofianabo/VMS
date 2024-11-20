@@ -4,29 +4,29 @@ import 'package:get/get.dart';
 import 'package:getx/Link/API/AdminAPI/DropdownClassesAPI.dart';
 import 'package:getx/Link/API/AdminAPI/DropdownGradeAPI.dart';
 import 'package:getx/Link/API/AdminAPI/DropdownSessionsAPI.dart';
-import 'package:getx/Link/Controller/AdminController/AllTeachersController.dart';
+import 'package:getx/Link/Controller/AdminController/AllEmpolyeeController.dart';
+import 'package:getx/Link/Controller/AdminController/AllStudentsController.dart';
 import 'package:getx/Link/Model/AdminModel/AllClassesModel.dart';
+import 'package:getx/Link/Model/AdminModel/AllEmployeeModel.dart';
 import 'package:getx/Link/Model/AdminModel/AllGradeModel.dart';
 import 'package:getx/Link/Model/AdminModel/AllSessionModel.dart';
-import 'package:getx/Link/Model/AdminModel/AllTeacherModel.dart';
+import 'package:getx/Link/Model/AdminModel/AllStudentModel.dart';
 import 'package:getx/main.dart';
 import '../API.dart' as global;
 
-class Getallteachersapi {
-  Allteachercontroller c = Get.find<Allteachercontroller>();
-   
+class Getallemployeeapi {
+  final Allempolyeecontroller c = Get.find<Allempolyeecontroller>();
   BuildContext context;
-  Getallteachersapi(this.context);
+  Getallemployeeapi(this.context);
   Dio dio = Dio();
 
-  Getallteachers(String? name) async {
-      AllSessionModel s = await Getsessionapi(context).Getsession();
-    AllGradesModel g = await Getallgradeapi(context).Getallgrade();
-    AllClassesModel cl = await Getallclassapi(context).getAllClasses();
+  Getallemployee(String? name) async {
+    AllSessionModel s = await Getsessionapi(context).Getsession();
+    //  AllJobTilteModle j = await GetAllJobTitleAPI(context).GetAllJobTitle();
     c.setAllSession(s);
-    c.setAllGrades(g);
-    c.setAllClasses(cl);
-    String myurl = "${global.hostPort}${global.getTeachers}";
+    //c.setJobTitle(j);
+
+    String myurl = "${global.hostPort}${global.getEmployee}";
     var response = await dio.get(myurl,
         data: {
           "name": name,
@@ -36,10 +36,10 @@ class Getallteachersapi {
           'authorization': 'Bearer ${prefs!.getString("token")}'
         }));
     if (response.statusCode == 200) {
-      AllTeacherModel teacher = AllTeacherModel.fromJson(response.data);
-      c.setAllTeacher(teacher);
+      AllEmployeeModel emplyee = AllEmployeeModel.fromJson(response.data);
+      c.setEmployee(emplyee);
     } else {
-      return throw Exception("Failed to load Teachers");
+      return throw Exception("Failed to load employees");
     }
   }
 }
