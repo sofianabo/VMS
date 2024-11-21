@@ -33,7 +33,7 @@ class StudyYearStudentsController extends GetxController {
     update();
   }
 
-   void setAllSession(AllSessionModel session) async {
+  void setAllSession(AllSessionModel session) async {
     sessionlist.clear();
     for (int i = 0; i < session.sessions!.length; i++) {
       sessionlist.add(session.sessions![i].year.toString());
@@ -43,7 +43,7 @@ class StudyYearStudentsController extends GetxController {
     updateList("session", sessionlist);
   }
 
-    void setAllClasses(AllClassesModel clas) {
+  void setAllClasses(AllClassesModel clas) {
     classlist.clear();
     for (int j = 0; j < clas.classes.length; j++) {
       classlist.add(clas.classes[j].enName.toString());
@@ -52,13 +52,13 @@ class StudyYearStudentsController extends GetxController {
     updateList("class", classlist);
   }
 
-    void setAllGrades(AllGradesModel grade) {
-    classlist.clear();
+  void setAllGrades(AllGradesModel grade) {
+    gradelist.clear();
     for (int j = 0; j < grade.grades!.length; j++) {
-      classlist.add(grade.grades![j].enName.toString());
+      gradelist.add(grade.grades![j].enName.toString());
     }
     update();
-    updateList("class", classlist);
+    updateList("grade", gradelist);
   }
 
   void updateList(String type, List<String> options) {

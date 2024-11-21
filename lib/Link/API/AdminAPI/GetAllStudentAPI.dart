@@ -1,7 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:getx/Link/API/AdminAPI/DropdownClassesAPI.dart';
+import 'package:getx/Link/API/AdminAPI/DropdownGradeAPI.dart';
+import 'package:getx/Link/API/AdminAPI/DropdownSessionsAPI.dart';
 import 'package:getx/Link/Controller/AdminController/AllStudentsController.dart';
+import 'package:getx/Link/Model/AdminModel/AllClassesModel.dart';
+import 'package:getx/Link/Model/AdminModel/AllGradeModel.dart';
+import 'package:getx/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:getx/Link/Model/AdminModel/AllStudentModel.dart';
 import 'package:getx/main.dart';
 import '../API.dart' as global;
@@ -13,7 +19,13 @@ class Getallstudentapi {
   Dio dio = Dio();
 
   Getallstudent(String? name) async {
-    Allstudentscontroller c = Get.find<Allstudentscontroller>();
+    AllSessionModel s = await Getsessionapi(context).Getsession();
+    AllGradesModel g = await Getallgradeapi(context).Getallgrade();
+    AllClassesModel cl = await Getallclassapi(context).getAllClasses();
+    c.setAllSession(s);
+    c.setAllGrades(g);
+    c.setAllClasses(cl);
+
     String myurl = "${global.hostPort}${global.getStudents}";
     var response = await dio.get(myurl,
         data: {
