@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/Controller/AdminController/DropDownDivisions_Controller.dart';
+import 'package:getx/Link/Controller/AdminController/Divisions_Controller.dart';
 
 class DropDownDivisionMgmt extends StatelessWidget {
   final double width;

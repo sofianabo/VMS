@@ -23,4 +23,5 @@ String deleteStudent = "deleteStudent";
 String deleteTeacher = "deleteTeacher";
 String getSession = "getAllSession";
 String getGrade = "getGrade";
+String getDivision = "getDivisionByClass";
 String getStudyYearStudent = "";

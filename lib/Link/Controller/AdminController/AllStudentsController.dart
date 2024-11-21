@@ -1,13 +1,18 @@
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:getx/Link/Model/AdminModel/AllClassesModel.dart';
+import 'package:getx/Link/Model/AdminModel/AllDivisionModel.dart';
 import 'package:getx/Link/Model/AdminModel/AllGradeModel.dart';
 import 'package:getx/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:getx/Link/Model/AdminModel/AllStudentModel.dart';
+import 'package:pdf/widgets.dart';
+
+import '../../API/AdminAPI/DropdownDivisionAPI.dart';
 
 class Allstudentscontroller extends GetxController {
+  late BuildContext context;
   List<Students> stud = [];
   List<Students> filteredStudents = [];
-
   String sessionIndex = "";
   String gradeIndex = "";
   String classIndex = "";
@@ -28,14 +33,15 @@ class Allstudentscontroller extends GetxController {
         break;
       case 'class':
         classIndex = index ?? "";
+
         break;
       case 'division':
         divisionIndex = index ?? "";
+
         break;
     }
     update();
   }
-
 
   void setAllStudents(AllStudentModel model) {
     stud = model.students!;
@@ -83,9 +89,19 @@ class Allstudentscontroller extends GetxController {
     update();
     updateList("grade", gradelist);
   }
+  //   void setAllDivision(AllDivisionModel division) {
+  //   divisionlist.clear();
+  //   for (int k = 0; k < division.division!.length; k++) {
+  //     divisionlist.add(division.division![k].enName.toString());
+  //   }
+  //   update();
+  //   updateList("division", divisionlist);
+  // }
 
-  void updateList(String type,
-      List<String> options,) {
+  void updateList(
+    String type,
+    List<String> options,
+  ) {
     switch (type) {
       case 'session':
         sessionlist = options;

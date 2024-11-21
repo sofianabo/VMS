@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx/Link/API/AdminAPI/DropdownDivisionAPI.dart';
 import 'package:getx/Link/API/AdminAPI/DropdownSessionsAPI.dart';
 import 'package:getx/Link/Controller/AdminController/AllStudentsController.dart';
 import 'package:getx/Link/Controller/AdminController/Session_Controller.dart';
@@ -40,6 +41,7 @@ class DropDownAllStudents extends StatelessWidget {
           selectedValue = cont.selectedclassIndex.isNotEmpty
               ? cont.selectedclassIndex
               : title;
+
           break;
         case 'division':
           selectedValue = cont.selecteddivisionIndex.isNotEmpty
@@ -90,7 +92,7 @@ class DropDownAllStudents extends StatelessWidget {
                 ),
               ),
             ),
-            ..._getDropdownItems(cont),
+            ..._getDropdownItems(cont, context),
           ],
           borderRadius: BorderRadius.circular(3),
         ),
@@ -98,7 +100,8 @@ class DropDownAllStudents extends StatelessWidget {
     });
   }
 
-  List<DropdownMenuItem<String>> _getDropdownItems(Allstudentscontroller cont) {
+  List<DropdownMenuItem<String>> _getDropdownItems(
+      Allstudentscontroller cont, BuildContext context) {
     List<DropdownMenuItem<String>> items = [];
 
     switch (type) {
@@ -135,6 +138,12 @@ class DropDownAllStudents extends StatelessWidget {
               style: Get.theme.primaryTextTheme.titleMedium!
                   .copyWith(fontSize: 14),
             ),
+            onTap: () {
+              print(cont.classlist.indexOf(value));
+              Dropdowndivisionapi(context)
+                  .Dropdowndivision(cont.classlist.indexOf(value));
+                  
+            },
           );
         }).toList());
         break;
