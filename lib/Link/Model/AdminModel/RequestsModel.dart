@@ -10,13 +10,6 @@ class AllRequestsModel {
 		}
 	}
 
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		if (this.registration != null) {
-      data['registration'] = this.registration!.map((v) => v.toJson()).toList();
-    }
-		return data;
-	}
 }
 
 class Registration {
@@ -36,25 +29,12 @@ class Registration {
 		type = json['type'];
 	}
 
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		if (this.guardian != null) {
-      data['guardian'] = this.guardian!.toJson();
-    }
-		if (this.student != null) {
-      data['student'] = this.student!.toJson();
-    }
-		data['data'] = this.data;
-		data['id'] = this.id;
-		data['type'] = this.type;
-		return data;
-	}
 }
 
 class Guardian {
 	String? name;
-	Null? mobile;
-	String? email;
+  dynamic mobile;
+  String? email;
 	String? nationalId;
 
 	Guardian({this.name, this.mobile, this.email, this.nationalId});
@@ -66,21 +46,13 @@ class Guardian {
 		nationalId = json['nationalId'];
 	}
 
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['name'] = this.name;
-		data['mobile'] = this.mobile;
-		data['email'] = this.email;
-		data['nationalId'] = this.nationalId;
-		return data;
-	}
 }
 
 class Student {
 	String? name;
 	String? clas;
-	Null? previousClass;
-	int ?id;
+  dynamic previousClass;
+  int ?id;
 
 	Student({required this.name,required this.clas, this.previousClass,required this.id});
 
@@ -91,12 +63,4 @@ class Student {
 		id = json['id'];
 	}
 
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data =  Map<String, dynamic>();
-		data['name'] = name;
-		data['class'] = clas;
-		data['previousClass'] = previousClass;
-		data['id'] = id;
-		return data;
-	}
 }

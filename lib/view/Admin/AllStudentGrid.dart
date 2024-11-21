@@ -58,7 +58,7 @@ class AllStudentGrid extends StatelessWidget {
                                         ? 1.3
                                         //NORMAL ITEMS
                                         : 0.95),
-        itemCount: control.stud.length,
+        itemCount: control.filteredStudents.length,
         itemBuilder: (context, index) {
           return HoverScaleCard(
             child: Container(
@@ -81,7 +81,8 @@ class AllStudentGrid extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
-                          child: Text("${control.stud[index].fullName}",
+                          child: Text(
+                              "${control.filteredStudents[index].fullName}",
                               style: Get.theme.primaryTextTheme.bodyMedium!
                                   .copyWith(
                                       fontSize: 20,
@@ -91,11 +92,13 @@ class AllStudentGrid extends StatelessWidget {
                             height: 100, width: 100)
                       ],
                     ),
-                    Text("Mobile: ${control.stud[index].mobileNumber}",
+                    Text(
+                        "Mobile: ${control.filteredStudents[index].mobileNumber}",
                         style: Get.theme.primaryTextTheme.bodySmall),
-                    Text("Email: ${control.stud[index].email}",
+                    Text("Email: ${control.filteredStudents[index].email}",
                         style: Get.theme.primaryTextTheme.bodySmall),
-                    Text("Grade Level: ${control.stud[index].enName}",
+                    Text(
+                        "Grade Level: ${control.filteredStudents[index].enName}",
                         style: Get.theme.primaryTextTheme.bodySmall),
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
@@ -144,8 +147,9 @@ class AllStudentGrid extends StatelessWidget {
                                             text: "Delete",
                                             onPressed: () async {
                                               await Deletestudentapi(context)
-                                                  .Deletestudent(
-                                                      control.stud[index].id!);
+                                                  .Deletestudent(control
+                                                      .filteredStudents[index]
+                                                      .id!);
                                             },
                                             color: Colors.red),
                                         const SizedBox(

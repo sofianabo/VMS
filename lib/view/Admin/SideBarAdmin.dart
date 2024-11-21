@@ -13,6 +13,7 @@ class SideBarAdmin extends StatelessWidget {
         alignment: Alignment.center,
       children: [
         Image.asset("../../images/sidebarAdmin.png",
+            color: Get.theme.colorScheme.onPrimary,
             height: h > 635 ? h / 1.2 : h / 1.25),
         Container(
           alignment: Alignment.center,

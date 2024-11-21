@@ -15,7 +15,6 @@ class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
-  themeController th = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -156,12 +155,6 @@ class LoginScreen extends StatelessWidget {
               onpressed: () async {
                 prefs!.setString("username", username.text);
                 prefs!.setString("pass", password.text);
-                if (Get.isDarkMode) {
-                  prefs!.setBool("mode", true);
-                  th.changebool();
-                } else {
-                  th.changebool();
-                }
                 await LoginAPI(context).login(username.text, password.text);
               },
               text: "Login",

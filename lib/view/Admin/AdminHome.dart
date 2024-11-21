@@ -13,6 +13,7 @@ import 'package:getx/view/Admin/Requests.dart';
 import 'package:getx/view/Admin/School_Management/Class_Pages/Class_Management.dart';
 import 'package:getx/view/Admin/School_Management/Curriculum_Pages/Curriculum_Management.dart';
 import 'package:getx/view/Admin/School_Management/Division_Pages/Division_Management.dart';
+import 'package:getx/view/Admin/School_Management/Electronic_Pages/Electronic_Library.dart';
 import 'package:getx/view/Admin/School_Management/Grade_Pages/Grade_Management.dart';
 import 'package:getx/view/Admin/School_Management/School_Data/SchoolDataMGMT.dart';
 import 'package:getx/view/Admin/School_Management/Sessions_Pages/Session_Management.dart';
@@ -83,7 +84,7 @@ class AdminHome extends StatelessWidget {
                       return MyCheckBoxScreen();
 
                     case "Electronic Library":
-                      return Text("Electronic Library");
+                      return ElectronicBook();
 
                     default:
                       return Container();

@@ -14,22 +14,23 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   prefs = await SharedPreferences.getInstance();
 
-  runApp(const VMS());
+  runApp(VMS());
 }
 
 class VMS extends StatelessWidget {
-  const VMS({super.key});
+  VMS({super.key});
+
+  ThemeController th = Get.put(ThemeController(), permanent: true);
   @override
   Widget build(BuildContext context) {
     localeController loc = Get.put(localeController(), permanent: true);
-    themeController th = Get.put(themeController(), permanent: true);
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       translations: MyLocal(),
       initialBinding: UserBiniding(),
       locale: loc.init,
-      theme: th.changebool(),
+        theme: th.currentTheme,
         home: prefs!.getBool("isLogin") != null &&
                 prefs!.getBool("isLogin") == true
             ? AdminHome()

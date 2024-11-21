@@ -10,6 +10,7 @@ import 'package:getx/Link/Controller/AdminController/DropDownCurriculumn_Control
 import 'package:getx/Link/Controller/AdminController/DropDownDivisions_Controller.dart';
 import 'package:getx/Link/Controller/AdminController/Employeeecontroller.dart';
 import 'package:getx/Link/Controller/AdminController/Grade_Controller.dart';
+import 'package:getx/Link/Controller/AdminController/Labrary_Controller.dart';
 import 'package:getx/Link/Controller/AdminController/RequestsController.dart';
 import 'package:getx/Link/Controller/AdminController/School_Info_Controller.dart';
 import 'package:getx/Link/Controller/AdminController/Session_Controller.dart';
@@ -21,6 +22,7 @@ import 'package:getx/Link/Controller/HomeScreenController.dart';
 import 'package:getx/Link/Controller/WidgetController/DropDownController.dart';
 import 'package:getx/Link/Controller/WidgetController/PasswordHintController.dart';
 import 'package:getx/Link/Controller/AdminController/Admin_School_Time.dart';
+import 'package:getx/Theme/themeController.dart';
 
 class UserBiniding extends Bindings {
   @override
@@ -47,5 +49,6 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => DropdownDivisions_Controller(), fenix: true);
     Get.lazyPut(() => DropDownCurriculumn_Controller(), fenix: true);
     Get.lazyPut(() => SchoolInfoController(), fenix: true);
+    Get.lazyPut(() => Labrary_Controller(), fenix: true);
   }
 }

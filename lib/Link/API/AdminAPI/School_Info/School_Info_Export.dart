@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:getx/Link/Controller/AdminController/School_Info_Controller.dart';
 import 'dart:typed_data';
 import 'package:flutter/services.dart';
+import 'package:getx/Link/Model/AdminModel/RequestsModel.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:pdf/pdf.dart';
@@ -47,15 +48,11 @@ void exportToExcel(List<Map<String, dynamic>> data, List<String> headers) {
 }
 
 Future<void> exportToPdf(List<Map<String, dynamic>> schoolInfo) async {
-  // تحميل الصورة
-  ByteData bytes =
-      await rootBundle.load('../../images/Logo.png'); // تأكد من مسار الصورة
+  ByteData bytes = await rootBundle.load('../../images/Logo.png');
   Uint8List imageBytes = bytes.buffer.asUint8List();
   final image = pw.MemoryImage(imageBytes);
 
-  // تحميل الخط لدعم النصوص العربية
-  ByteData fontData = await rootBundle
-      .load('../../fonts/Cairo-Regular.ttf'); // تأكد من المسار الصحيح
+  ByteData fontData = await rootBundle.load('../../fonts/Cairo-Regular.ttf');
   final font = pw.Font.ttf(fontData);
 
   final pdf = pw.Document();
@@ -63,7 +60,6 @@ Future<void> exportToPdf(List<Map<String, dynamic>> schoolInfo) async {
   // عدد العناصر في كل صفحة
   const int itemsPerPage = 10;
 
-  // تقسيم البيانات إلى عدة صفحات
   for (int i = 0; i < schoolInfo.length; i += itemsPerPage) {
     pdf.addPage(
       pw.Page(
@@ -71,7 +67,6 @@ Future<void> exportToPdf(List<Map<String, dynamic>> schoolInfo) async {
           return pw.Column(
             crossAxisAlignment: pw.CrossAxisAlignment.start,
             children: [
-              // صورة الشعار في الأعلى
               pw.Row(
                 mainAxisAlignment: pw.MainAxisAlignment.center,
                 children: [
@@ -80,7 +75,6 @@ Future<void> exportToPdf(List<Map<String, dynamic>> schoolInfo) async {
               ),
               pw.SizedBox(height: 30),
 
-              // عنوان الصفحة
               pw.Center(
                 child: pw.Text(
                   'معلومات المدرسة',
@@ -94,7 +88,6 @@ Future<void> exportToPdf(List<Map<String, dynamic>> schoolInfo) async {
               ),
               pw.SizedBox(height: 20),
 
-              // إنشاء الجدول
               ...buildSchoolData(
                   schoolInfo.sublist(
                     i,
@@ -110,7 +103,6 @@ Future<void> exportToPdf(List<Map<String, dynamic>> schoolInfo) async {
     );
   }
 
-  // حفظ وتنزيل الملف
   final pdfBytes = await pdf.save();
   final blob = html.Blob([pdfBytes], 'application/pdf');
   final url = html.Url.createObjectUrlFromBlob(blob);
@@ -185,4 +177,114 @@ List<pw.Widget> buildSchoolData(
   }
 
   return rows;
+}
+
+void ExleRequestsExport(List<Registration> registrations) async {
+  List<Map<String, dynamic>> data = registrations.map((reg) {
+    return {
+      "Guardian Name": reg.guardian?.name ?? "",
+      "Guardian Email": reg.guardian?.email ?? "",
+      "Guardian Mobile": reg.guardian?.mobile.toString() ?? "",
+      "Guardian National ID": reg.guardian?.nationalId ?? "",
+      "Student Name": reg.student?.name ?? "",
+      "Student Class": reg.student?.clas ?? "",
+      "Previous Class": reg.student?.previousClass.toString() ?? "",
+      "Registration Date": reg.data ?? "",
+      "Registration Type": reg.type ?? "",
+    };
+  }).toList();
+
+  List<String> headers = [
+    "Guardian Name",
+    "Guardian Email",
+    "Guardian Mobile",
+    "Guardian National ID",
+    "Student Name",
+    "Student Class",
+    "Previous Class",
+    "Registration Date",
+    "Registration Type",
+  ];
+
+  exportToExcel(data, headers);
+}
+
+void exportRequestsToPDF(List<Registration> registrations) async {
+  // تحميل الصورة
+  ByteData bytes =
+      await rootBundle.load('../../images/Logo.png'); // تأكد من صحة مسار الصورة
+  Uint8List imageBytes = bytes.buffer.asUint8List();
+  final image = pw.MemoryImage(imageBytes);
+
+  // تحضير البيانات
+  List<List<String>> data = registrations.map((reg) {
+    return [
+      reg.guardian?.name ?? "",
+      reg.guardian?.email ?? "",
+      reg.guardian?.mobile?.toString() ?? "",
+      reg.guardian?.nationalId ?? "",
+      reg.student?.name ?? "",
+      reg.student?.clas ?? "",
+      reg.student?.previousClass?.toString() ?? "",
+      reg.data ?? "",
+      reg.type ?? "",
+    ];
+  }).toList();
+
+  List<String> headers = [
+    "Guardian Name",
+    "Guardian Email",
+    "Guardian Mobile",
+    "Guardian National ID",
+    "Student Name",
+    "Student Class",
+    "Previous Class",
+    "Registration Date",
+    "Registration Type",
+  ];
+
+  final pdf = pw.Document();
+
+  pdf.addPage(
+    pw.MultiPage(
+      pageFormat: PdfPageFormat.a4.landscape,
+      header: (pw.Context context) {
+        return pw.Center(
+            child: pw.Column(children: [
+          pw.Image(image, width: 150, height: 150),
+          pw.SizedBox(height: 10)
+        ]));
+      },
+      build: (pw.Context context) {
+        return [
+          pw.Table.fromTextArray(
+            headers: headers,
+            data: data,
+            border: pw.TableBorder.all(),
+            headerStyle: pw.TextStyle(
+              color: PdfColors.white,
+              fontWeight: pw.FontWeight.bold,
+            ),
+            headerDecoration: pw.BoxDecoration(
+              color: PdfColor.fromHex("#134B70"),
+            ),
+            cellAlignment: pw.Alignment.center,
+            cellHeight: 25,
+          ),
+        ];
+      },
+    ),
+  );
+
+  // حفظ PDF في ملف
+  final Uint8List pdfBytes = await pdf.save();
+
+  // إنشاء Blob وتنزيل الملف
+  final blob = html.Blob([pdfBytes], 'application/pdf');
+  final url = html.Url.createObjectUrlFromBlob(blob);
+  final anchor = html.AnchorElement(href: url)
+    ..target = '_blank'
+    ..download = 'RequestsExport.pdf'
+    ..click();
+  html.Url.revokeObjectUrl(url);
 }

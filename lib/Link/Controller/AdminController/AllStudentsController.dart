@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:getx/Link/Model/AdminModel/AllGradeModel.dart';
@@ -7,6 +6,7 @@ import 'package:getx/Link/Model/AdminModel/AllStudentModel.dart';
 
 class Allstudentscontroller extends GetxController {
   List<Students> stud = [];
+  List<Students> filteredStudents = [];
 
   String sessionIndex = "";
   String gradeIndex = "";
@@ -36,10 +36,24 @@ class Allstudentscontroller extends GetxController {
     update();
   }
 
-  late BuildContext context;
 
   void setAllStudents(AllStudentModel model) {
     stud = model.students!;
+    filteredStudents = List.from(stud);
+    update();
+  }
+
+  void searchStudentByName(String query) {
+    if (query.isEmpty) {
+      filteredStudents =
+          List.from(stud); // إرجاع القائمة الأصلية عند عدم وجود نص.
+    } else {
+      filteredStudents = stud
+          .where((student) =>
+              student.fullName != null &&
+              student.fullName!.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    }
     update();
   }
 
@@ -47,7 +61,6 @@ class Allstudentscontroller extends GetxController {
     sessionlist.clear();
     for (int i = 0; i < session.sessions!.length; i++) {
       sessionlist.add(session.sessions![i].year.toString());
-      print(session.sessions![i].year.toString());
     }
     update();
     updateList("session", sessionlist);
@@ -71,10 +84,8 @@ class Allstudentscontroller extends GetxController {
     updateList("grade", gradelist);
   }
 
-  void updateList(
-    String type,
-    List<String> options,
-  ) {
+  void updateList(String type,
+      List<String> options,) {
     switch (type) {
       case 'session':
         sessionlist = options;

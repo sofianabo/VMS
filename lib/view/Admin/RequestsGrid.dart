@@ -18,7 +18,7 @@ class RequestsGrid extends StatelessWidget {
         padding: EdgeInsets.only(left: 30.0, right: 30.0),
         child: GridView.builder(
           shrinkWrap: true,
-          itemCount: controller.registration.length,
+          itemCount: controller.filteredregistration.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
             crossAxisSpacing: 25.0,
@@ -54,14 +54,15 @@ class RequestsGrid extends StatelessWidget {
                               style: Get.theme.primaryTextTheme.titleSmall!
                                   .copyWith(fontWeight: FontWeight.normal),
                             ),
-                            Text("${controller.registration[index].data}"),
+                            Text(
+                                "${controller.filteredregistration[index].data}"),
                           ],
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 5.0),
                         child: Text(
-                          "Name : ${controller.registration[index].guardian?.name}",
+                          "Name : ${controller.filteredregistration[index].guardian?.name}",
                           style: Get.theme.primaryTextTheme.titleSmall!
                               .copyWith(
                                   color: Colors.black,
@@ -71,7 +72,7 @@ class RequestsGrid extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 5.0),
                         child: Text(
-                          "Mobile: ${controller.registration[index].guardian?.mobile}",
+                          "Mobile: ${controller.filteredregistration[index].guardian?.mobile}",
                           style: Get.theme.primaryTextTheme.titleSmall!
                               .copyWith(
                                   color: Colors.black,
@@ -81,7 +82,7 @@ class RequestsGrid extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 5.0),
                         child: Text(
-                          "Email: ${controller.registration[index].guardian?.email}",
+                          "Email: ${controller.filteredregistration[index].guardian?.email}",
                           style: Get.theme.primaryTextTheme.titleSmall!
                               .copyWith(
                                   color: Colors.black,
@@ -91,7 +92,7 @@ class RequestsGrid extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 5.0),
                         child: Text(
-                          "National ID: ${controller.registration[index].guardian?.nationalId}",
+                          "National ID: ${controller.filteredregistration[index].guardian?.nationalId}",
                           style: Get.theme.primaryTextTheme.titleSmall!
                               .copyWith(
                                   color: Colors.black,
@@ -109,7 +110,7 @@ class RequestsGrid extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 5.0),
                         child: Text(
-                          "Name : ${controller.registration[index].student?.name}",
+                          "Name : ${controller.filteredregistration[index].student?.name}",
                           style: Get.theme.primaryTextTheme.titleSmall!
                               .copyWith(
                                   color: Colors.black,
@@ -119,7 +120,7 @@ class RequestsGrid extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 5.0, bottom: 15.0),
                         child: Text(
-                          "Grade Level: ${controller.registration[index].student?.clas}",
+                          "Grade Level: ${controller.filteredregistration[index].student?.clas}",
                           style: Get.theme.primaryTextTheme.titleSmall!
                               .copyWith(
                                   color: Colors.black,
@@ -174,7 +175,7 @@ class RequestsGrid extends StatelessWidget {
                             },
                           ),
                           Text(
-                            "${controller.registration[index].type}",
+                            "${controller.filteredregistration[index].type}",
                             style: Get.theme.primaryTextTheme.titleSmall!
                                 .copyWith(
                                     color: Color(0xff779DB6),

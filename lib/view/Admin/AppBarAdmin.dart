@@ -1,11 +1,10 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/Link/API/AuthAPI/LogoutAPI.dart';
 import 'package:getx/Link/Controller/AdminController/AdminHomeContentController.dart';
 import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
 import 'package:getx/Link/Controller/AuthController/UserController.dart';
+import 'package:getx/Theme/themeController.dart';
 import 'package:getx/main.dart';
 
 class AppbarAdmin extends StatelessWidget {
@@ -67,15 +66,20 @@ class AppbarAdmin extends StatelessWidget {
                                 offset: Offset(0, 2),
                                 blurRadius: 1)
                           ]),
-                      child: IconButton(
-                          style: ButtonStyle(
-                              shape: WidgetStatePropertyAll(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(5))))),
-                          onPressed: () {},
-                          icon: Icon(VMS_Icons.moon,
-                              size: 18, color: Get.theme.primaryColor)),
+                      child: GetBuilder<ThemeController>(builder: (controller) {
+                        return IconButton(
+                            style: ButtonStyle(
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {
+                              bool? mood = prefs!.getBool("mode");
+                              controller.toggleTheme();
+                            },
+                            icon: Icon(VMS_Icons.moon,
+                                size: 18, color: Get.theme.primaryColor));
+                      }),
                     ),
                   ),
                   Padding(
