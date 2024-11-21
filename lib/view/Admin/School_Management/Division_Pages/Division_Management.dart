@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
-import 'package:getx/Link/Controller/AdminController/DropDownDivisions_Controller.dart';
+import 'package:getx/Link/Controller/AdminController/Divisions_Controller.dart';
 import 'package:getx/view/Admin/School_Management/Division_Pages/Division_Grid.dart';
 import 'package:getx/widgets/Admin_School/DropDownDivisionMgmt.dart';
 import 'package:getx/widgets/ButtonsDialog.dart';
