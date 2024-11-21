@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:getx/Link/API/AuthAPI/LogoutAPI.dart';
 import 'package:getx/Link/Controller/AdminController/AdminHomeContentController.dart';
@@ -20,10 +21,10 @@ class AppbarAdmin extends StatelessWidget {
         margin: const EdgeInsets.only(right: 60, left: 30, top: 29),
         width: w,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             GetBuilder<AdminHomeContentController>(builder: (cont) {
               return Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Container(
                       alignment: Alignment.center,
@@ -142,50 +143,29 @@ class AppbarAdmin extends StatelessWidget {
                 ],
               );
             }),
-            GetBuilder<AdminHomeContentController>(builder: (cont) {
-              // Define a mapping of content to display text
-              final contentMap = {
-                "enroll requests": "Enroll Requests",
-                "Exam Table": "Exam Table",
-                "School Time Table": "School Time Table",
-                "All Students": "All Students",
-                "Study Year Students": "Study Year Students",
-                "All Guardians": "All Guardians",
-                "Student Status": "Students Attendance",
-                "All Employee": "All Employees",
-                "Teacher Management": "Teachers Management",
-                "Teacher Status": "Teachers Attendance",
-                "Employee Status": "Employees Attendance",
-                "Teacher Attendance Managment": "Teacher Attendance Managment",
-                "Employee Attendance Manage": "Employee Attendance Manage",
-                "Session Management": "Session Management",
-                "Students Attendance Managment":
-                    "Students Attendance Managment",
-                "Grade Management": "Grade Management",
-                "Class Management": "Class Management",
-                "Division Management": "Division Management",
-                "Curriculum Management": "Curriculum Management",
-                "School Data Management": "School Data Management",
-                "Electronic Library": "Electronic Library",
-              };
-
-              String displayText = contentMap[cont.content] ?? "data";
-
-              return Text(
-                displayText,
-                style: Get.theme.primaryTextTheme.titleLarge,
-              );
-            }),
-            SizedBox(
-              height: 400,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Image.asset(
-                    "../../images/Logo.png",
-                  )
-                ],
-              ),
+            Expanded(
+              child: GetBuilder<AdminHomeContentController>(builder: (cont) {
+                return Center(
+                  child: Text(
+                    cont.content,
+                    style: Get.theme.primaryTextTheme.titleLarge,
+                  ),
+                );
+              }),
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                GetBuilder<ThemeController>(builder: (controller) {
+                  return Obx(() => SvgPicture.asset(
+                        controller.isDarkMode.value
+                            ? "../../images/logodark.svg"
+                            : "../../images/logolight.svg",
+                        width: 250,
+                      ));
+                })
+              ],
             )
           ],
         ),

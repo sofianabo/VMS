@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/API/AdminAPI/DropdownSessionsAPI.dart';
 import 'package:getx/Link/Controller/AdminController/AllEmpolyeeController.dart';
-import 'package:getx/Link/Controller/AdminController/AllStudentsController.dart';
-import 'package:getx/Link/Controller/AdminController/AllTeachersController.dart';
-import 'package:getx/Link/Controller/AdminController/Session_Controller.dart';
-import 'package:getx/Link/Controller/WidgetController/DropDownController.dart';
 
 class Dropdownallemployee extends StatelessWidget {
   final double width;
@@ -38,7 +33,15 @@ class Dropdownallemployee extends StatelessWidget {
               ? cont.selectedgradeIndex
               : title;
           break;
-      
+        case 'roll':
+          selectedValue =
+              cont.selecterollIndex.isNotEmpty ? cont.selecterollIndex : title;
+          break;
+        case 'rolldialog':
+          selectedValue = cont.selectedrolldialogIndex.isNotEmpty
+              ? cont.selectedrolldialogIndex
+              : title;
+          break;
       }
 
       return Container(
@@ -109,6 +112,30 @@ class Dropdownallemployee extends StatelessWidget {
         break;
       case 'jobTitle':
         items.addAll(cont.JobTitleList.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.primaryTextTheme.titleMedium!
+                  .copyWith(fontSize: 14),
+            ),
+          );
+        }).toList());
+        break;
+      case 'roll':
+        items.addAll(cont.rolllist.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.primaryTextTheme.titleMedium!
+                  .copyWith(fontSize: 14),
+            ),
+          );
+        }).toList());
+        break;
+      case 'rolldialog':
+        items.addAll(cont.rolldialoglist.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(

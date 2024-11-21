@@ -7,6 +7,7 @@ import 'package:getx/view/Admin/AllStudent.dart';
 import 'package:getx/view/Admin/AppBarAdmin.dart';
 import 'package:getx/view/Admin/EmployeeAttendenceManage.dart';
 import 'package:getx/view/Admin/EmployeeStatus.dart';
+import 'package:getx/view/Admin/Employee_Manager/Virtual_User_Management.dart';
 import 'package:getx/view/Admin/ExamTable.dart';
 import 'package:getx/view/Admin/SchoolTimeTable.dart';
 import 'package:getx/view/Admin/Requests.dart';
@@ -85,6 +86,8 @@ class AdminHome extends StatelessWidget {
 
                     case "Electronic Library":
                       return ElectronicBook();
+                    case "Virtual User Management":
+                      return Virtual_User_Management();
 
                     default:
                       return Container();

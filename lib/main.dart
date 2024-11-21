@@ -23,17 +23,19 @@ class VMS extends StatelessWidget {
   ThemeController th = Get.put(ThemeController(), permanent: true);
   @override
   Widget build(BuildContext context) {
+    ThemeController themeController =
+        Get.put(ThemeController(), permanent: true);
     localeController loc = Get.put(localeController(), permanent: true);
 
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      translations: MyLocal(),
-      initialBinding: UserBiniding(),
-      locale: loc.init,
-        theme: th.currentTheme,
+    return Obx(() => GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        translations: MyLocal(),
+        initialBinding: UserBiniding(),
+        locale: loc.init,
+        theme: themeController.currentTheme,
         home: prefs!.getBool("isLogin") != null &&
                 prefs!.getBool("isLogin") == true
             ? AdminHome()
-            : Directionality(textDirection: TextDirection.rtl, child: Home()));
+            : Directionality(textDirection: TextDirection.rtl, child: Home())));
   }
 }

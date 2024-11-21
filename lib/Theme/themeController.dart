@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Theme/themeMode.dart';
 
 import '../main.dart';
 
 class ThemeController extends GetxController {
-  ThemeData? th;
+  RxBool isDarkMode = false.obs;
 
   static ThemeData lighttheme = ThemeData(
-    canvasColor: Colors.white,
+    scaffoldBackgroundColor: Colors.white,
     colorScheme: const ColorScheme.light(
         primary: Color(0xff19478d),
         onPrimary: Color(0xff134B70),
         secondary: Color(0xff7c9fb9)),
     fontFamily: "Cairo",
-    primaryTextTheme: const TextTheme(
+    primaryTextTheme: TextTheme(
       //normal Text & table cells & second title in dialog
       bodySmall: TextStyle(
           fontFamily: "Cairo",
@@ -99,13 +98,13 @@ class ThemeController extends GetxController {
   );
 
   static ThemeData darktheme = ThemeData(
-    scaffoldBackgroundColor: Color(0xff2B2B2B),
-    colorScheme: const ColorScheme.dark(
-        primary: Color(0xff19478d), // الأزرق الداكن
-        secondary: Color(0xff7c9fb9),
-        onPrimary: Color(0xff3C3F41)),
     fontFamily: "Cairo",
-    primaryTextTheme: const TextTheme(
+    scaffoldBackgroundColor: Color(0xff2B2B2B),
+    colorScheme: ColorScheme.dark(
+        primary: Color(0xff19478d),
+        onPrimary: Color(0xff7c9fb9),
+        secondary: Color(0xff7c9fb9)),
+    primaryTextTheme: TextTheme(
       //normal Text & table cells & second title in dialog
       bodySmall: TextStyle(
           fontFamily: "Cairo",
@@ -189,27 +188,21 @@ class ThemeController extends GetxController {
     ),
   );
 
-  // استرداد الثيم الحالي
   ThemeData get currentTheme {
-    final isDarkMode = prefs?.getBool("mode") ?? false;
-    return isDarkMode ? darktheme : lighttheme;
+    return isDarkMode.value ? darktheme : lighttheme;
   }
 
-  // تبديل الثيم
   void toggleTheme() {
-    final isDarkMode = prefs?.getBool("mode") ?? false;
-    prefs?.setBool("mode", !isDarkMode);
+    isDarkMode.value = !isDarkMode.value;
 
-    th = !isDarkMode ? darktheme : lighttheme;
-    Get.changeTheme(th!);
-    update();
+    prefs?.setBool("mode", isDarkMode.value);
+
+    Get.changeTheme(currentTheme);
   }
 
   @override
   void onInit() {
     super.onInit();
-    // ضبط الثيم عند بدء التطبيق
-    th = currentTheme;
-    Get.changeTheme(th!);
+    isDarkMode.value = prefs?.getBool("mode") ?? false;
   }
 }

@@ -7,6 +7,8 @@ class Allempolyeecontroller extends GetxController {
   List<Employees> employee = [];
   String sessionIndex = "";
   String jobTitleIndex = "";
+  String rollIndex = "";
+  String rolldialogIndex = "";
   void setEmployee(AllEmployeeModel model) {
     employee = model.employees!;
     update();
@@ -15,6 +17,8 @@ class Allempolyeecontroller extends GetxController {
 
  List<String> JobTitleList = [];
   List<String> sessionlist = [];
+  List<String> rolllist = ['Class', 'Observer'];
+  List<String> rolldialoglist = ['Class', 'Observer'];
 
   void selectIndex(String type, String? index) {
     switch (type) {
@@ -24,7 +28,13 @@ class Allempolyeecontroller extends GetxController {
       case 'jobTitle':
         jobTitleIndex = index ?? "";
         break;
-     
+
+      case 'roll':
+        rollIndex = index ?? "";
+        break;
+      case 'rolldialog':
+        rolldialogIndex = index ?? "";
+        break;
     }
     update();
   }
@@ -61,7 +71,12 @@ class Allempolyeecontroller extends GetxController {
       case 'jobTitle':
         JobTitleList = options;
         break;
-    
+      case 'roll':
+        rolllist = options;
+        break;
+      case 'rolldialog':
+        rolldialoglist = options;
+        break;
     }
     update();
   }
@@ -70,7 +85,9 @@ class Allempolyeecontroller extends GetxController {
 
   String get selectedgradeIndex => jobTitleIndex;
 
+  String get selecterollIndex => rollIndex;
 
+  String get selectedrolldialogIndex => rolldialogIndex;
 
   // void updateGuardian(
   //     String name, int index, String phone, String email, String nationalid) {
