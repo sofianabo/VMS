@@ -20,8 +20,5 @@ class Dropdownclassescontroller extends GetxController {
     update();
   }
 
-  // setToDivision() {
-  //   studentcontroller.setAllDivision(division!);
-  //   update();
-  // }
+
 }

@@ -21,7 +21,7 @@ class Deletestudentapi {
             'authorization': 'Bearer ${prefs!.getString("token")}'
           }));
       if (response.statusCode == 200) {
-        await Getallstudentapi(context).Getallstudent(null);
+        await Getallstudentapi(context).Getallstudent(null,null,null,null);
         Get.back();
       } else {
         return throw Exception("Failed");

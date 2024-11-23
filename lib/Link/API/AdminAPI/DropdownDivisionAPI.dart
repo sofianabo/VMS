@@ -19,7 +19,7 @@ class Dropdowndivisionapi {
   Dropdowndivision(int idx) async {
     int? id = class_controller.Allclass[idx].id;
     String myurl = "${global.hostPort}${global.getDivision}";
-    var response = await dio.get(myurl,
+    var response = await dio.post(myurl,
         data: {"classId": id},
         options: Options(headers: {
           'accept': 'application/json',
@@ -28,8 +28,6 @@ class Dropdowndivisionapi {
     if (response.statusCode == 200) {
       AllDivisionModel division = AllDivisionModel.fromJson(response.data);
       c.setDivision(division);
-      print(response.data);
-      print(id);
       return division;
     } else {
       return throw Exception("Failed to load grade");
