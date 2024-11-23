@@ -19,7 +19,7 @@ class Dropdowndivisionapi {
   Dropdowndivision(int idx) async {
     int? id = class_controller.Allclass[idx].id;
     String myurl = "${global.hostPort}${global.getDivision}";
-    var response = await dio.post(myurl,
+    var response = await dio.get(myurl,
         data: {"classId": id},
         options: Options(headers: {
           'accept': 'application/json',
