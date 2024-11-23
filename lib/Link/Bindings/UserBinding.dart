@@ -14,6 +14,7 @@ import 'package:getx/Link/Controller/AdminController/DropDownDivisionController.
 import 'package:getx/Link/Controller/AdminController/DropDownGradeController.dart.dart';
 import 'package:getx/Link/Controller/AdminController/Employeeecontroller.dart';
 import 'package:getx/Link/Controller/AdminController/Grade_Controller.dart';
+import 'package:getx/Link/Controller/AdminController/Illness_Controller.dart';
 import 'package:getx/Link/Controller/AdminController/Labrary_Controller.dart';
 import 'package:getx/Link/Controller/AdminController/RequestsController.dart';
 import 'package:getx/Link/Controller/AdminController/School_Info_Controller.dart';
@@ -24,6 +25,7 @@ import 'package:getx/Link/Controller/AdminController/StudyYearStudentsController
 import 'package:getx/Link/Controller/AdminController/allGaurdianController.dart';
 import 'package:getx/Link/Controller/AuthController/UserController.dart';
 import 'package:getx/Link/Controller/HomeScreenController.dart';
+import 'package:getx/Link/Controller/WidgetController/DateControler.dart';
 import 'package:getx/Link/Controller/WidgetController/DropDownController.dart';
 import 'package:getx/Link/Controller/WidgetController/PasswordHintController.dart';
 import 'package:getx/Link/Controller/AdminController/Admin_School_Time.dart';
@@ -59,5 +61,7 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Allempolyeecontroller(), fenix: true);
     Get.lazyPut(() => Labrary_Controller(), fenix: true);
     Get.lazyPut(() => Dropdowndivisioncontroller(), fenix: true);
+    Get.lazyPut(() => DatePickerController(), fenix: true);
+    Get.lazyPut(() => IllnessController(), fenix: true);
   }
 }

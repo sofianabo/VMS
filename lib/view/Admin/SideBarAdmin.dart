@@ -27,7 +27,9 @@ class SideBarAdmin extends StatelessWidget {
             children: [
               SidbarAnimation(
                   child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  cont.updateContent("Dashboard");
+                },
                 child: Icon(
                   VMS_Icons.a1,
                   size: 18,
@@ -39,7 +41,7 @@ class SideBarAdmin extends StatelessWidget {
                 padding: EdgeInsets.only(top: h / 34.2),
                 child: GestureDetector(
                   onTap: () {
-                    cont.updateContent("enroll requests");
+                    cont.updateContent("Enroll Requests");
                   },
                   child: const Icon(
                     VMS_Icons.a2,

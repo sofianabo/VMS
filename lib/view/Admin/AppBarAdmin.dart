@@ -75,7 +75,6 @@ class AppbarAdmin extends StatelessWidget {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
                             onPressed: () {
-                              bool? mood = prefs!.getBool("mode");
                               controller.toggleTheme();
                             },
                             icon: Icon(VMS_Icons.moon,

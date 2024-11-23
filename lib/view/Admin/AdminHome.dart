@@ -5,6 +5,7 @@ import 'package:getx/view/Admin/AllEmployee.dart';
 import 'package:getx/view/Admin/AllGuardians.dart';
 import 'package:getx/view/Admin/AllStudent.dart';
 import 'package:getx/view/Admin/AppBarAdmin.dart';
+import 'package:getx/view/Admin/Dashboardc/Admin_Dashboard.dart';
 import 'package:getx/view/Admin/EmployeeAttendenceManage.dart';
 import 'package:getx/view/Admin/EmployeeStatus.dart';
 import 'package:getx/view/Admin/Employee_Manager/Virtual_User_Management.dart';
@@ -25,6 +26,7 @@ import 'package:getx/view/Admin/StudyYearStudent.dart';
 import 'package:getx/view/Admin/TeacherAttendanceManagment.dart';
 import 'package:getx/view/Admin/TeacherMangament.dart';
 import 'package:getx/view/Admin/TeacherStatus.dart';
+
 class AdminHome extends StatelessWidget {
   @override
   AdminHome({super.key});
@@ -42,10 +44,12 @@ class AdminHome extends StatelessWidget {
                 SideBarAdmin(),
                 GetBuilder<AdminHomeContentController>(builder: (cont) {
                   switch (cont.content) {
-                    case "enroll requests":
+                    case "Enroll Requests":
                       return Requests();
                     case "Exam Table":
                       return ExamTable();
+                    case "Dashboard":
+                      return AdminDashboard();
                     case "School Time Table":
                       return SchoolTimeTable();
                     case "All Students":
@@ -86,11 +90,12 @@ class AdminHome extends StatelessWidget {
 
                     case "Electronic Library":
                       return ElectronicBook();
+
                     case "Virtual User Management":
                       return Virtual_User_Management();
 
                     default:
-                      return Container();
+                      return AdminDashboard();
                   }
                 })
               ],

@@ -44,7 +44,8 @@ dependencies:
   intl: ^0.19.0
   excel: ^2.0.5
   pdf: ^3.11.1
-
+  dashed_circular_progress_bar: ^0.0.6
+  d_chart: ^2.10.2
 
 
 dev_dependencies:

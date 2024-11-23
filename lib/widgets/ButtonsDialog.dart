@@ -10,9 +10,13 @@ class ButtonDialog extends StatelessWidget {
       required this.text,
       required this.onPressed,
       required this.color,
+      this.textcolor,
+      this.bordercolor,
       required this.width});
   final VoidCallback onPressed;
   Color color;
+  Color? bordercolor;
+  Color? textcolor;
   String text;
   double width;
   @override
@@ -23,12 +27,13 @@ class ButtonDialog extends StatelessWidget {
       height: 40,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
       child: MaterialButton(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+              side: BorderSide(color: bordercolor ?? Colors.transparent)),
           onPressed: onPressed,
           color: color,
           child: Text(text, style: Get.theme.primaryTextTheme.headlineSmall!.copyWith(
-            fontFamily: "Cairo"
-          ))),
+                  fontFamily: "Cairo", color: textcolor ?? Colors.white))),
     );
   }
 }
