@@ -42,6 +42,21 @@ class Dropdownallemployee extends StatelessWidget {
               ? cont.selectedrolldialogIndex
               : title;
           break;
+        case 'dialogjobTitle':
+          selectedValue = cont.selecteddialogjobTitleIndex.isNotEmpty
+              ? cont.selecteddialogjobTitleIndex
+              : title;
+          break;
+        case 'Gender':
+          selectedValue = cont.selecteGenderIndex.isNotEmpty
+              ? cont.selecteGenderIndex
+              : title;
+          break;
+        case 'Family_Status':
+          selectedValue = cont.selecteFamily_StatusIndex.isNotEmpty
+              ? cont.selecteFamily_StatusIndex
+              : title;
+          break;
       }
 
       return Container(
@@ -124,6 +139,42 @@ class Dropdownallemployee extends StatelessWidget {
         break;
       case 'roll':
         items.addAll(cont.rolllist.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.primaryTextTheme.titleMedium!
+                  .copyWith(fontSize: 14),
+            ),
+          );
+        }).toList());
+        break;
+      case 'dialogjobTitle':
+        items.addAll(cont.dialogjobTitleList.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.primaryTextTheme.titleMedium!
+                  .copyWith(fontSize: 14),
+            ),
+          );
+        }).toList());
+        break;
+      case 'Gender':
+        items.addAll(cont.GenderList.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.primaryTextTheme.titleMedium!
+                  .copyWith(fontSize: 14),
+            ),
+          );
+        }).toList());
+        break;
+      case 'Family_Status':
+        items.addAll(cont.Family_StatusList.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(

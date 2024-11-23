@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/Link/API/AdminAPI/GetAllEmployeeAPI.dart';
 import 'package:getx/view/Admin/AllEmployeeGrid.dart';
+import 'package:getx/view/Admin/Employee_Manager/Add_Full_Employee.dart';
 import 'package:getx/widgets/Admin_employee/DropDownAllEmployee.dart';
 import 'package:getx/widgets/ButtonsDialog.dart';
-import 'package:getx/widgets/DropDown.dart';
 import 'package:getx/widgets/TextFormSearch.dart';
 import '../../Icons_File/v_m_s__icons_icons.dart';
 import '../../widgets/TextFildWithUpper.dart';
@@ -81,7 +81,7 @@ class _AllEmployeeState extends State<AllEmployee> {
                         width: 40,
                         height: 40,
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Color(0xffF9F8FD),
                             borderRadius: BorderRadius.circular(5),
                             boxShadow: const [
                               BoxShadow(
@@ -89,19 +89,23 @@ class _AllEmployeeState extends State<AllEmployee> {
                                   offset: Offset(0, 2),
                                   blurRadius: 1)
                             ]),
-                        child: IconButton(
-                            style: ButtonStyle(
-                                backgroundColor:
-                                    WidgetStatePropertyAll(Color(0xffF9F8FD)),
-                                shape: WidgetStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5))))),
-                            onPressed: () {
+                        child: PopupMenuButton(
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  WidgetStatePropertyAll(Color(0xffF9F8FD)),
+                              shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5))))),
+                          tooltip: "",
+                          child: Icon(Icons.add,
+                              size: 18, color: Get.theme.primaryColor),
+                          onSelected: (value) {
+                            if (value == "Add Employee") {
                               Get.dialog(VMSAlertDialog(
                                   action: [
                                     ButtonDialog(
-                                        text: "Add Teacher",
+                                        text: "Add Employee",
                                         onPressed: () {
                                           Get.back();
                                         },
@@ -153,11 +157,27 @@ class _AllEmployeeState extends State<AllEmployee> {
                                       )
                                     ],
                                   ),
-                                  apptitle: "Add Teacher",
+                                  apptitle: "Add Employee",
                                   subtitle: "none"));
-                            },
-                            icon: Icon(Icons.add,
-                                size: 18, color: Get.theme.primaryColor)),
+                            }
+                            if (value == "Add Full Employee") {
+                              Add_Full_Employee();
+                            }
+                          },
+                          itemBuilder: (BuildContext context) =>
+                              <PopupMenuEntry<String>>[
+                            PopupMenuItem<String>(
+                              value: 'Add Employee',
+                              child: Text('Add Employee',
+                                  style: Get.theme.primaryTextTheme.bodySmall),
+                            ),
+                            PopupMenuItem<String>(
+                              value: 'Add Full Employee',
+                              child: Text('Add Full Employee',
+                                  style: Get.theme.primaryTextTheme.bodySmall),
+                            ),
+                          ],
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 10.0, left: 10.0),

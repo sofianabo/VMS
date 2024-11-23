@@ -9,13 +9,19 @@ class Allempolyeecontroller extends GetxController {
   String jobTitleIndex = "";
   String rollIndex = "";
   String rolldialogIndex = "";
+  String dialogjobTitleIndex = "";
+  String GenderListIndex = "";
+  String Family_StatusIndex = "";
   void setEmployee(AllEmployeeModel model) {
     employee = model.employees!;
     update();
   }
 
+  List<String> GenderList = ["Male", "Female"];
+  List<String> Family_StatusList = ["Widow", "Single", "Married", "Divorced"];
 
- List<String> JobTitleList = [];
+  List<String> JobTitleList = [];
+  List<String> dialogjobTitleList = ["Dustman", "Guard"];
   List<String> sessionlist = [];
   List<String> rolllist = ['Class', 'Observer'];
   List<String> rolldialoglist = ['Class', 'Observer'];
@@ -34,6 +40,15 @@ class Allempolyeecontroller extends GetxController {
         break;
       case 'rolldialog':
         rolldialogIndex = index ?? "";
+        break;
+      case 'dialogjobTitle':
+        dialogjobTitleIndex = index ?? "";
+        break;
+      case 'Gender':
+        GenderListIndex = index ?? "";
+        break;
+      case 'Family_Status':
+        Family_StatusIndex = index ?? "";
         break;
     }
     update();
@@ -77,6 +92,15 @@ class Allempolyeecontroller extends GetxController {
       case 'rolldialog':
         rolldialoglist = options;
         break;
+      case 'dialogjobTitle':
+        dialogjobTitleList = options;
+        break;
+      case 'Gender':
+        GenderList = options;
+        break;
+      case 'Family_Status':
+        Family_StatusList = options;
+        break;
     }
     update();
   }
@@ -87,7 +111,13 @@ class Allempolyeecontroller extends GetxController {
 
   String get selecterollIndex => rollIndex;
 
+  String get selecteGenderIndex => GenderListIndex;
+
+  String get selecteFamily_StatusIndex => Family_StatusIndex;
+
   String get selectedrolldialogIndex => rolldialogIndex;
+
+  String get selecteddialogjobTitleIndex => dialogjobTitleIndex;
 
   // void updateGuardian(
   //     String name, int index, String phone, String email, String nationalid) {

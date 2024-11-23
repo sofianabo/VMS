@@ -265,6 +265,7 @@ class MyCheckBoxScreen extends StatelessWidget {
                                         Obx(() => Row(
                                               children: [
                                                 Checkbox(
+                                                  checkColor: Colors.white,
                                                   value: controller
                                                       .Outstanding_School.value,
                                                   onChanged: (value) {
@@ -279,6 +280,7 @@ class MyCheckBoxScreen extends StatelessWidget {
                                         Obx(() => Row(
                                               children: [
                                                 Checkbox(
+                                                  checkColor: Colors.white,
                                                   value: controller
                                                       .Taken_OverSchool.value,
                                                   onChanged: (value) {
@@ -292,6 +294,7 @@ class MyCheckBoxScreen extends StatelessWidget {
                                         Obx(() => Row(
                                               children: [
                                                 Checkbox(
+                                                  checkColor: Colors.white,
                                                   value: controller
                                                       .Reassignment_Teachers
                                                       .value,
@@ -307,6 +310,7 @@ class MyCheckBoxScreen extends StatelessWidget {
                                         Obx(() => Row(
                                               children: [
                                                 Checkbox(
+                                                  checkColor: Colors.white,
                                                   value: controller
                                                       .Martyrs_Sons.value,
                                                   onChanged: (value) {
@@ -330,6 +334,7 @@ class MyCheckBoxScreen extends StatelessWidget {
                                           Obx(() => Row(
                                                 children: [
                                                   Checkbox(
+                                                    checkColor: Colors.white,
                                                     value: controller
                                                         .Internet_Connection
                                                         .value,
@@ -345,6 +350,7 @@ class MyCheckBoxScreen extends StatelessWidget {
                                           Obx(() => Row(
                                                 children: [
                                                   Checkbox(
+                                                    checkColor: Colors.white,
                                                     value: controller
                                                         .Government_Connection
                                                         .value,
@@ -360,6 +366,7 @@ class MyCheckBoxScreen extends StatelessWidget {
                                           Obx(() => Row(
                                                 children: [
                                                   Checkbox(
+                                                    checkColor: Colors.white,
                                                     value: controller
                                                         .Joint_Building.value,
                                                     onChanged: (value) {
@@ -373,6 +380,7 @@ class MyCheckBoxScreen extends StatelessWidget {
                                           Obx(() => Row(
                                                 children: [
                                                   Checkbox(
+                                                    checkColor: Colors.white,
                                                     value: controller
                                                         .Industrial_Section
                                                         .value,

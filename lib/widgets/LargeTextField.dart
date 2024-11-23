@@ -9,27 +9,35 @@ class LargeTextField extends StatelessWidget {
   String hinttext = "";
   @override
   Widget build(BuildContext context) {
-       double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
     return Container(
-      margin:  EdgeInsets.only(top: h/136.8),
-      width: w/2.3703,
-      height: h/4.56,
-      child: TextFormField(
-        controller: controller,
-        decoration: InputDecoration(
-          hintText: hinttext,
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide:
-                  BorderSide(color: Get.theme.colorScheme.primary, width: 2)),
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: const BorderSide(color: Colors.grey)),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+      width: 500,
+      height: 300,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 5.0),
+            child: Text("$hinttext"),
           ),
-        ),
+          TextFormField(
+            maxLines: 10,
+            controller: controller,
+            decoration: InputDecoration(
+              hintText: hinttext,
+              hintStyle: TextStyle(color: Color(0xffD9D9D9)),
+              focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: Color(0xffD9D9D9), width: 1)),
+              enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: const BorderSide(color: Color(0xffD9D9D9))),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
