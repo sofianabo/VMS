@@ -28,7 +28,6 @@ import 'package:getx/view/Admin/TeacherMangament.dart';
 import 'package:getx/view/Admin/TeacherStatus.dart';
 
 class AdminHome extends StatelessWidget {
-  @override
   AdminHome({super.key});
   @override
   Widget build(BuildContext context) {
@@ -41,7 +40,7 @@ class AdminHome extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SideBarAdmin(),
+                SizedBox(width: 70, child: SideBarAdmin()),
                 GetBuilder<AdminHomeContentController>(builder: (cont) {
                   switch (cont.content) {
                     case "Enroll Requests":
