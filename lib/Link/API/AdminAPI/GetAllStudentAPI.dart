@@ -18,7 +18,8 @@ class Getallstudentapi {
   Getallstudentapi(this.context);
   Dio dio = Dio();
 
-  Getallstudent(String? name) async {
+  Getallstudent(
+      int? sessionID, int? gradeId, int? classId, int? divisionID) async {
     AllSessionModel s = await Getsessionapi(context).Getsession();
     AllGradesModel g = await Getallgradeapi(context).Getallgrade();
     AllClassesModel cl = await Getallclassapi(context).getAllClasses();
@@ -27,9 +28,12 @@ class Getallstudentapi {
     c.setAllClasses(cl);
 
     String myurl = "${global.hostPort}${global.getStudents}";
-    var response = await dio.get(myurl,
+    var response = await dio.post(myurl,
         data: {
-          "name": name,
+          "sessionId": sessionID,
+          "gradeId": gradeId,
+          "classId": classId,
+          "divisionId": divisionID
         },
         options: Options(headers: {
           'accept': 'application/json',

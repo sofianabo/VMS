@@ -23,7 +23,7 @@ class AllStudent extends StatefulWidget {
 class _AllStudentState extends State<AllStudent> {
   @override
   void initState() {
-    Getallstudentapi(context).Getallstudent(null);
+    Getallstudentapi(context).Getallstudent(null, null, null, null);
     super.initState();
   }
 

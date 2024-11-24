@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/Link/API/AdminAPI/DropdownDivisionAPI.dart';
 import 'package:getx/Link/API/AdminAPI/DropdownSessionsAPI.dart';
+import 'package:getx/Link/API/AdminAPI/GetAllStudentAPI.dart';
 import 'package:getx/Link/Controller/AdminController/AllStudentsController.dart';
 import 'package:getx/Link/Controller/AdminController/Session_Controller.dart';
 import 'package:getx/Link/Controller/WidgetController/DropDownController.dart';
+import 'package:getx/Link/Model/AdminModel/AllDivisionModel.dart';
 
 class DropDownAllStudents extends StatelessWidget {
   final double width;
@@ -103,6 +105,10 @@ class DropDownAllStudents extends StatelessWidget {
   List<DropdownMenuItem<String>> _getDropdownItems(
       Allstudentscontroller cont, BuildContext context) {
     List<DropdownMenuItem<String>> items = [];
+    String sessionSelected = "";
+    String gradeSelected = "";
+    String classSelected = "";
+    String divisionSelected = "";
 
     switch (type) {
       case 'session':
@@ -114,6 +120,14 @@ class DropDownAllStudents extends StatelessWidget {
               style: Get.theme.primaryTextTheme.titleMedium!
                   .copyWith(fontSize: 14),
             ),
+            onTap: () async {
+              sessionSelected = value;
+              await Getallstudentapi(context).Getallstudent(
+                  cont.sessionlist.indexOf(sessionSelected),
+                  cont.gradelist.indexOf(gradeSelected),
+                  cont.classlist.indexOf(classSelected),
+                  cont.divisionlist.indexOf(divisionSelected));
+            },
           );
         }).toList());
         break;
@@ -126,6 +140,14 @@ class DropDownAllStudents extends StatelessWidget {
               style: Get.theme.primaryTextTheme.titleMedium!
                   .copyWith(fontSize: 14),
             ),
+            onTap: () async {
+              gradeSelected = value;
+              await Getallstudentapi(context).Getallstudent(
+                  cont.sessionlist.indexOf(sessionSelected),
+                  cont.gradelist.indexOf(gradeSelected),
+                  cont.classlist.indexOf(classSelected),
+                  cont.divisionlist.indexOf(divisionSelected));
+            },
           );
         }).toList());
         break;
@@ -138,11 +160,17 @@ class DropDownAllStudents extends StatelessWidget {
               style: Get.theme.primaryTextTheme.titleMedium!
                   .copyWith(fontSize: 14),
             ),
-            onTap: () {
-              print(cont.classlist.indexOf(value));
-              Dropdowndivisionapi(context)
+            onTap: () async {
+              classSelected = value;
+              AllDivisionModel division = await Dropdowndivisionapi(context)
                   .Dropdowndivision(cont.classlist.indexOf(value));
-                  
+              cont.setAllDivision(division);
+              await Getallstudentapi(context).Getallstudent(
+                  cont.sessionlist.indexOf(sessionSelected),
+                  cont.gradelist.indexOf(gradeSelected),
+                  cont.classlist.indexOf(classSelected),
+                  cont.divisionlist.indexOf(divisionSelected));
+              print(cont.classlist.indexOf(classSelected));
             },
           );
         }).toList());
@@ -156,6 +184,14 @@ class DropDownAllStudents extends StatelessWidget {
               style: Get.theme.primaryTextTheme.titleMedium!
                   .copyWith(fontSize: 14),
             ),
+            onTap: () async {
+              divisionSelected = value;
+              await Getallstudentapi(context).Getallstudent(
+                  cont.sessionlist.indexOf(sessionSelected),
+                  cont.gradelist.indexOf(gradeSelected),
+                  cont.classlist.indexOf(classSelected),
+                  cont.divisionlist.indexOf(divisionSelected));
+            },
           );
         }).toList());
         break;

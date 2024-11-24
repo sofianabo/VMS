@@ -28,8 +28,6 @@ class Dropdowndivisionapi {
     if (response.statusCode == 200) {
       AllDivisionModel division = AllDivisionModel.fromJson(response.data);
       c.setDivision(division);
-      print(response.data);
-      print(id);
       return division;
     } else {
       return throw Exception("Failed to load grade");

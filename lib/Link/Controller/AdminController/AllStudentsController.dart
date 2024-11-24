@@ -89,14 +89,15 @@ class Allstudentscontroller extends GetxController {
     update();
     updateList("grade", gradelist);
   }
-  //   void setAllDivision(AllDivisionModel division) {
-  //   divisionlist.clear();
-  //   for (int k = 0; k < division.division!.length; k++) {
-  //     divisionlist.add(division.division![k].enName.toString());
-  //   }
-  //   update();
-  //   updateList("division", divisionlist);
-  // }
+
+  void setAllDivision(AllDivisionModel division) {
+    divisionlist.clear();
+    for (int k = 0; k < division.division!.length; k++) {
+      divisionlist.add(division.division![k].enName.toString());
+    }
+    update();
+    updateList("division", divisionlist);
+  }
 
   void updateList(
     String type,
