@@ -45,8 +45,7 @@ dependencies:
   excel: ^2.0.5
   pdf: ^3.11.1
   dashed_circular_progress_bar: ^0.0.6
-  d_chart: ^2.10.2
-
+  fl_chart: ^0.69.2
 
 dev_dependencies:
   flutter_test:

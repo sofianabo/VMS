@@ -5,7 +5,7 @@ import 'package:getx/view/Admin/AllEmployee.dart';
 import 'package:getx/view/Admin/AllGuardians.dart';
 import 'package:getx/view/Admin/AllStudent.dart';
 import 'package:getx/view/Admin/AppBarAdmin.dart';
-import 'package:getx/view/Admin/Dashboardc/Admin_Dashboard.dart';
+import 'package:getx/view/Admin/Dashboard/Admin_Dashboard.dart';
 import 'package:getx/view/Admin/EmployeeAttendenceManage.dart';
 import 'package:getx/view/Admin/EmployeeStatus.dart';
 import 'package:getx/view/Admin/Employee_Manager/Virtual_User_Management.dart';
