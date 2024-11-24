@@ -22,8 +22,9 @@ class Allstudentscontroller extends GetxController {
   List<String> classlist = [];
   List<String> divisionlist = ["one"];
   List<String> sessionlist = [];
-
   void selectIndex(String type, String? index) {
+    print("");
+
     switch (type) {
       case 'session':
         sessionIndex = index ?? "";
