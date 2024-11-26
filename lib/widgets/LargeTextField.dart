@@ -1,16 +1,22 @@
-// ignore_for_file: must_be_immutable, file_names
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class LargeTextField extends StatelessWidget {
-  LargeTextField({super.key, required this.controller, required this.hinttext});
-  TextEditingController controller = TextEditingController();
-  String hinttext = "";
+  LargeTextField({
+    super.key,
+    required this.controller,
+    required this.hinttext,
+    this.isRequired = false, // إضافة متغير لتحديد ما إذا كان الحقل مطلوبًا.
+  });
+
+  final TextEditingController controller;
+  final String hinttext;
+  final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 500,
+      width: 515,
       height: 300,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -18,7 +24,20 @@ class LargeTextField extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(bottom: 5.0),
-            child: Text("$hinttext"),
+            child: RichText(
+              text: TextSpan(
+                text: hinttext,
+                style: TextStyle(color: Colors.black, fontSize: 16),
+                children: isRequired
+                    ? [
+                        TextSpan(
+                          text: " *",
+                          style: TextStyle(color: Colors.red, fontSize: 14),
+                        ),
+                      ]
+                    : [],
+              ),
+            ),
           ),
           TextFormField(
             maxLines: 10,

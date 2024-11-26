@@ -5,56 +5,85 @@ import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
 import 'package:intl/intl.dart';
 
 class DatePicker extends StatelessWidget {
-  double width;
-  double? height;
+  final double width;
+  final double? height;
+  final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
 
-DatePicker(
-      {super.key,
-      required this.width,
-       this.height,
-     });
+  DatePicker({
+    super.key,
+    required this.width,
+    this.height,
+    this.isRequired = false, // افتراضي الحقل غير مطلوب.
+  });
+
   @override
   Widget build(BuildContext context) {
-
     final DatePickerController controller = Get.put(DatePickerController());
     return Obx(
       () => Container(
         width: width,
-        height: height != null ? height : 40,
+        height: height ?? 40,
         alignment: Alignment.center,
-        child: TextFormField(
-          style: TextStyle(fontSize: 14),
-          controller: TextEditingController(
-            text: controller.selectedDate.value != null
-                ? DateFormat('yyyy-MM-dd')
-                    .format(controller.selectedDate.value!)
-                : '',
-          ),
-          readOnly: true,
-          onTap: () => controller.selectDate(context),
-          decoration: InputDecoration(
-            hintText: "Select Date",
-            hintStyle:
-                Get.theme.primaryTextTheme.titleMedium!.copyWith(fontSize: 14),
-            focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
-                borderSide:
-                    BorderSide(color: Get.theme.colorScheme.primary, width: 2)),
-            enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
-                borderSide: const BorderSide(color: Colors.grey)),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5),
-            ),
-            suffixIcon: IconButton(
-              icon: Icon(
-                VMS_Icons.calender,
-                color: Get.theme.primaryColor,
-                size: 16,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (isRequired) // عرض النجمة الحمراء إذا كان الحقل مطلوبًا.
+              Padding(
+                padding: const EdgeInsets.only(bottom: 5.0),
+                child: RichText(
+                  text: TextSpan(
+                    text: "Select Date",
+                    style: TextStyle(color: Colors.black, fontSize: 14),
+                    children: [
+                      TextSpan(
+                        text: " *",
+                        style: TextStyle(color: Colors.red, fontSize: 14),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              onPressed: () => controller.selectDate(context),
+            SizedBox(
+              height: height ?? 40,
+              child: TextFormField(
+                style: TextStyle(fontSize: 14),
+                controller: TextEditingController(
+                  text: controller.selectedDate.value != null
+                      ? DateFormat('yyyy-MM-dd')
+                          .format(controller.selectedDate.value!)
+                      : '',
+                ),
+                readOnly: true,
+                onTap: () => controller.selectDate(context),
+                decoration: InputDecoration(
+                  hintText: "Select Date",
+                  hintStyle: Get.theme.primaryTextTheme.titleMedium!
+                      .copyWith(fontSize: 14),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                        color: Get.theme.colorScheme.primary, width: 2),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: const BorderSide(color: Colors.grey),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      VMS_Icons.calender,
+                      color: Get.theme.primaryColor,
+                      size: 16,
+                    ),
+                    onPressed: () => controller.selectDate(context),
+                  ),
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
@@ -62,15 +91,17 @@ DatePicker(
 }
 
 class DatePickerupper extends StatelessWidget {
-  double width;
-  String Uptext;
-  double? height;
+  final double width;
+  final String Uptext;
+  final double? height;
+  final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
 
   DatePickerupper({
     super.key,
     required this.width,
     required this.Uptext,
     this.height,
+    this.isRequired = false, // افتراضي الحقل غير مطلوب.
   });
 
   @override
@@ -86,10 +117,23 @@ class DatePickerupper extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(bottom: 5.0),
-              child: Text("$Uptext"),
+              child: RichText(
+                text: TextSpan(
+                  text: Uptext,
+                  style: TextStyle(color: Colors.black, fontSize: 14),
+                  children: isRequired
+                      ? [
+                          TextSpan(
+                            text: " *",
+                            style: TextStyle(color: Colors.red, fontSize: 14),
+                          ),
+                        ]
+                      : [],
+                ),
+              ),
             ),
             SizedBox(
-              height: height != null ? height : 40,
+              height: height ?? 40,
               child: TextFormField(
                 style: TextStyle(fontSize: 14),
                 controller: TextEditingController(
@@ -105,12 +149,13 @@ class DatePickerupper extends StatelessWidget {
                   hintStyle: Get.theme.primaryTextTheme.titleMedium!
                       .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                      borderSide:
-                          BorderSide(color: Color(0xffD9D9D9), width: 2)),
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(color: Color(0xffD9D9D9), width: 2),
+                  ),
                   enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                      borderSide: const BorderSide(color: Color(0xffD9D9D9))),
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: const BorderSide(color: Color(0xffD9D9D9)),
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
                   ),

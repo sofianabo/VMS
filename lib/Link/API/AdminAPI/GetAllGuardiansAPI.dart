@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:getx/Link/API/Error_API.dart';
 import 'package:getx/Link/Controller/AdminController/allGaurdianController.dart';
 import 'package:getx/Link/Model/AdminModel/allGuardianModel.dart';
 import 'package:getx/main.dart';
@@ -13,17 +14,31 @@ class GetAllGuardiansAPI {
   Dio dio = Dio();
 
   getAllGuardian() async {
-    String myurl = "${global.hostPort}${global.getguardians}";
-    var response = await dio.get(myurl,
-        options: Options(headers: {
-          'accept': 'application/json',
-          'authorization': 'Bearer ${prefs!.getString("token")}'
-        }));
-    if (response.statusCode == 200) {
-      AllGuardianModel classes = AllGuardianModel.fromJson(response.data);
-      c.setallGaurdian(classes);
-    } else {
-      return throw Exception("Failed to load Gurdians");
+    try {
+      String myurl = "${global.hostPort}${global.getguardians}";
+      var response = await dio.get(myurl,
+          options: Options(headers: {
+            'accept': 'application/json',
+            'authorization': 'Bearer ${prefs!.getString("token")}'
+          }));
+      if (response.statusCode == 200) {
+        AllGuardianModel classes = AllGuardianModel.fromJson(response.data);
+        c.setallGaurdian(classes);
+      } else {
+        ErrorHandler.handleDioError(DioError(
+          requestOptions: response.requestOptions,
+          response: response,
+          type: DioErrorType.badResponse,
+        ));
+      }
+    } catch (e) {
+      if (e is DioError) {
+        ErrorHandler.handleDioError(e);
+      } else if (e is Exception) {
+        ErrorHandler.handleException(e);
+      } else {
+        ErrorHandler.handleException(Exception(e.toString()));
+      }
     }
   }
 }

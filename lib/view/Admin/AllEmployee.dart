@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/API/AdminAPI/GetAllEmployeeAPI.dart';
+import 'package:getx/Link/API/AdminAPI/Get_All_Employee_API.dart';
 import 'package:getx/view/Admin/AllEmployeeGrid.dart';
 import 'package:getx/view/Admin/Employee_Manager/Add_Full_Employee.dart';
 import 'package:getx/widgets/Admin_employee/DropDownAllEmployee.dart';
@@ -30,7 +30,7 @@ class _AllEmployeeState extends State<AllEmployee> {
 
   @override
   void initState() {
-    Getallemployeeapi(context).Getallemployee(null);
+    Get_All_Employee_API(context).Get_All_Employee();
     super.initState();
   }
 
@@ -41,6 +41,7 @@ class _AllEmployeeState extends State<AllEmployee> {
         child: Column(
       children: [
         Container(
+
           margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           alignment: Alignment.center,
           child: Column(
@@ -161,9 +162,10 @@ class _AllEmployeeState extends State<AllEmployee> {
                                   subtitle: "none"));
                             }
                             if (value == "Add Full Employee") {
-                              Add_Full_Employee();
+                              Add_Full_Employee(context);
                             }
                           },
+
                           itemBuilder: (BuildContext context) =>
                               <PopupMenuEntry<String>>[
                             PopupMenuItem<String>(

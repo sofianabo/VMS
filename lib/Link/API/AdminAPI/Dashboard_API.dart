@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/Link/API/API.dart';
+import 'package:getx/Link/API/Error_API.dart';
 import 'package:getx/Link/Controller/AdminController/Dashboard_Controller.dart';
 import 'package:getx/Link/Model/AdminModel/Dashboard_Model.dart';
 import 'package:getx/main.dart';
@@ -27,11 +28,20 @@ class Dashboard_API {
         DashboardModel dashboardModel = DashboardModel.fromJson(response.data);
         controller.AddData(dashboardModel);
       } else {
-        return throw Exception("Failed");
+        ErrorHandler.handleDioError(DioError(
+          requestOptions: response.requestOptions,
+          response: response,
+          type: DioErrorType.badResponse,
+        ));
       }
-      return response.statusCode;
     } catch (e) {
-      print('$e');
+      if (e is DioError) {
+        ErrorHandler.handleDioError(e);
+      } else if (e is Exception) {
+        ErrorHandler.handleException(e);
+      } else {
+        ErrorHandler.handleException(Exception(e.toString()));
+      }
     }
   }
 }

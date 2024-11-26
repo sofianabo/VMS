@@ -2,28 +2,31 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/Link/API/API.dart';
-import 'package:getx/Link/API/AdminAPI/GetAllStudentAPI.dart';
+import 'package:getx/Link/API/AdminAPI/GetAllTeachersAPI.dart';
 import 'package:getx/Link/API/Error_API.dart';
+import 'package:getx/Link/Controller/AdminController/AllEmpolyeeController.dart';
+import 'package:getx/Link/Model/AdminModel/All_Employee_Model.dart';
 import 'package:getx/main.dart';
 
-class Deletestudentapi {
-  Deletestudentapi(this.context);
+class Get_All_Employee_API {
+  Get_All_Employee_API(this.context);
+
   BuildContext context;
   Dio dio = Dio();
-  Deletestudent(int id) async {
-    String myurl = "${hostPort}${deleteStudent}";
+
+  Get_All_Employee() async {
+    final Allempolyeecontroller controller = Get.find<Allempolyeecontroller>();
+    String myurl = "${hostPort}${getAllEmployee}";
     try {
       var response = await dio.get(myurl,
-          data: {
-            "id":id
-          },
           options: Options(headers: {
             'accept': 'application/json',
             'authorization': 'Bearer ${prefs!.getString("token")}'
           }));
       if (response.statusCode == 200) {
-        await Getallstudentapi(context).Getallstudent(null,null,null,null);
-        Get.back();
+        AllEmployeeModel allEmployeeModel =
+            AllEmployeeModel.fromJson(response.data);
+        controller.setEmployee(allEmployeeModel);
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,

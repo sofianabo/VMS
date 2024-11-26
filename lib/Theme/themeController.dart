@@ -8,6 +8,7 @@ class ThemeController extends GetxController {
 
   static ThemeData lighttheme = ThemeData(
     scaffoldBackgroundColor: Colors.white,
+    canvasColor: Color(0xff134B70),
     colorScheme: const ColorScheme.light(
         primary: Color(0xff19478d),
         onPrimary: Color(0xff134B70),
@@ -99,6 +100,7 @@ class ThemeController extends GetxController {
 
   static ThemeData darktheme = ThemeData(
     fontFamily: "Cairo",
+    canvasColor: Color(0xff3C3F41),
     scaffoldBackgroundColor: Color(0xff2B2B2B),
     colorScheme: ColorScheme.dark(
         primary: Color(0xff19478d),

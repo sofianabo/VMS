@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:getx/Link/Controller/AdminController/AdminHomeContentController.dart';
 import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
 import 'package:getx/Theme/themeController.dart';
+import 'package:getx/view/Admin/SideBar_Path.dart';
 import '../../widgets/SidbarAnimation.dart';
 
 class SideBarAdmin extends StatelessWidget {
@@ -13,13 +14,9 @@ class SideBarAdmin extends StatelessWidget {
     return Stack(
         alignment: Alignment.center,
       children: [
-        GetBuilder<ThemeController>(builder: (controller) {
-          return Image.asset("../../images/sidebarAdmin.png",
-              color: controller.isDarkMode.value
-                  ? Color(0xff3C3F41)
-                  : Color(0xff134B70),
-              height: h > 635 ? h / 1.2 : h / 1.25);
-        }),
+        CustomPaint(
+            painter: MyPainter(),
+            child: SizedBox(width: 90, height: h > 635 ? h / 1.2 : h / 1.25)),
         GetBuilder<AdminHomeContentController>(builder: (cont) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.center,

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx/Link/API/Error_API.dart';
 import 'package:getx/Link/Controller/AdminController/allGaurdianController.dart';
 import 'package:getx/main.dart';
 import '../API.dart' as global;
@@ -29,11 +30,21 @@ class Editguardianapi {
       if (response.statusCode == 200) {
         u.updateGuardian(name, index, phone, email, nationalid);
       } else {
-        return throw Exception("Failed");
+        ErrorHandler.handleDioError(DioError(
+          requestOptions: response.requestOptions,
+          response: response,
+          type: DioErrorType.badResponse,
+        ));
       }
       return response.statusCode;
     } catch (e) {
-      print('Edit field');
+      if (e is DioError) {
+        ErrorHandler.handleDioError(e);
+      } else if (e is Exception) {
+        ErrorHandler.handleException(e);
+      } else {
+        ErrorHandler.handleException(Exception(e.toString()));
+      }
     }
   }
 }
