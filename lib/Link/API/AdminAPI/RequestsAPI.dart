@@ -16,6 +16,7 @@ class GetAllRequestsapi {
 
   GetAllRequests() async {
     try {
+      c.restor();
       String myurl = "${global.hostPort}${global.getRequests}";
       var response = await dio.get(myurl,
           data: {},

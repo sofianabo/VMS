@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 class DatePickerController extends GetxController {
   Rx<DateTime?> selectedDate = Rx<DateTime?>(null);
 
+
   void selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -15,4 +16,5 @@ class DatePickerController extends GetxController {
       selectedDate.value = picked;
     }
   }
+
 }

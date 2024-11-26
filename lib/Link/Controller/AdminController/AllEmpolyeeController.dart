@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/All_Employee_Model.dart';
@@ -75,7 +76,33 @@ class Allempolyeecontroller extends GetxController {
   //   updateList("session", sessionlist);
   // }
 
+  Rx<DateTime?> Birthdate = Rx<DateTime?>(null);
+  Rx<DateTime?> Joindate = Rx<DateTime?>(null);
 
+
+  void selectBirthDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: Birthdate.value ?? DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+    if (picked != null) {
+      Birthdate.value = picked;
+    }
+  }
+
+  void selectJoinDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: Joindate.value ?? DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+    if (picked != null) {
+      Joindate.value = picked;
+    }
+  }
 
    void updateList(
     String type,
