@@ -2,15 +2,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
-import 'package:getx/Link/API/AdminAPI/AddTeacherAPI.dart';
-import 'package:getx/view/Admin/TeacherManagementGrid.dart';
-import 'package:getx/widgets/Admin_teachers/DropDownAllTeacher.dart';
-import 'package:getx/widgets/ButtonsDialog.dart';
-import 'package:getx/widgets/Calender.dart';
-import 'package:getx/widgets/DropDown.dart';
-import 'package:getx/widgets/TextFormSearch.dart';
-import 'package:getx/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/API/AdminAPI/AddTeacherAPI.dart';
+import 'package:vms_school/view/Admin/TeacherManagementGrid.dart';
+import 'package:vms_school/widgets/Admin_teachers/DropDownAllTeacher.dart';
+import 'package:vms_school/widgets/ButtonsDialog.dart';
+import 'package:vms_school/widgets/Calender.dart';
+import 'package:vms_school/widgets/DropDown.dart';
+import 'package:vms_school/widgets/TextFormSearch.dart';
+import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 import '../../Link/API/AdminAPI/GetAllTeachersAPI.dart';
 import '../../widgets/TextFildWithUpper.dart';

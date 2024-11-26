@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
-import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
-import 'package:getx/widgets/ButtonsDialog.dart';
-import 'package:getx/widgets/GridAnimation.dart';
-import 'package:getx/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/widgets/ButtonsDialog.dart';
+import 'package:vms_school/widgets/GridAnimation.dart';
+import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class Virtual_User_Management_Grid extends StatelessWidget {
   List<Map<String, dynamic>> l = [

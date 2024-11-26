@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/Controller/HomeScreenController.dart';
-import 'package:getx/view/Auth/LoginScreen.dart';
+import 'package:vms_school/Link/Controller/HomeScreenController.dart';
+import 'package:vms_school/view/Auth/LoginScreen.dart';
 
 class Section1 extends StatelessWidget {
   const Section1({super.key});

@@ -1,11 +1,11 @@
 {
-    "name": "getx",
-    "short_name": "getx",
+    "name": "vms_school",
+    "short_name": "vms_school",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Virtual Modern School",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

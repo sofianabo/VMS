@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
-import 'package:getx/Link/Controller/AdminController/Divisions_Controller.dart';
-import 'package:getx/widgets/Admin_School/DropDownDivisionMgmt.dart';
-import 'package:getx/widgets/ButtonsDialog.dart';
-import 'package:getx/widgets/GridAnimation.dart';
-import 'package:getx/widgets/TextFildWithUpper.dart';
-import 'package:getx/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/Controller/AdminController/Divisions_Controller.dart';
+import 'package:vms_school/widgets/Admin_School/DropDownDivisionMgmt.dart';
+import 'package:vms_school/widgets/ButtonsDialog.dart';
+import 'package:vms_school/widgets/GridAnimation.dart';
+import 'package:vms_school/widgets/TextFildWithUpper.dart';
+import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class DivisionGrid extends StatelessWidget {
   DivisionGrid({super.key});

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:getx/Link/Model/AuthModel/UserModel.dart';
-import 'package:getx/main.dart';
+import 'package:vms_school/Link/Model/AuthModel/UserModel.dart';
+import 'package:vms_school/main.dart';
 
 class UserController extends GetxController {
   String? token;

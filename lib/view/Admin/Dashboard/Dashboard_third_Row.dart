@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/Controller/AdminController/Dashboard_Controller.dart';
-import 'package:getx/widgets/GridAnimation.dart';
+import 'package:vms_school/Link/Controller/AdminController/Dashboard_Controller.dart';
+import 'package:vms_school/widgets/GridAnimation.dart';
 
 class DashboardThirdRow extends StatelessWidget {
   final Dashboard_Controller controller = Get.put(Dashboard_Controller());
@@ -91,8 +91,6 @@ class DashboardThirdRow extends StatelessWidget {
             ),
           );
         }
-
-        // بناء الشبكة لعرض البيانات
         return Padding(
           padding: const EdgeInsets.only(right: 20.0),
           child: GridView.builder(

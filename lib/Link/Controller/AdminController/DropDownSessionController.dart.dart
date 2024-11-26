@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:getx/Link/Model/AdminModel/AllSessionModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 
 class Dropdownsessioncontroller extends GetxController {
   List<String> sessions = [];

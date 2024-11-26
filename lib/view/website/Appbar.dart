@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/view/Admin/SchoolTimeTable.dart';
-import 'package:getx/widgets/DropDown.dart';
-import 'package:getx/widgets/Switcher.dart';
+import 'package:vms_school/view/Admin/SchoolTimeTable.dart';
+import 'package:vms_school/widgets/DropDown.dart';
+import 'package:vms_school/widgets/Switcher.dart';
 
 class AppbarCustom extends StatefulWidget {
   const AppbarCustom({super.key});

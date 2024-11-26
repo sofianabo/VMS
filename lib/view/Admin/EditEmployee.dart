@@ -3,11 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
-import 'package:getx/widgets/ButtonsDialog.dart';
-import 'package:getx/widgets/Calender.dart';
-import 'package:getx/widgets/DropDown.dart';
-import 'package:getx/widgets/LargeTextField.dart';
-import 'package:getx/widgets/TextFieldDialog.dart';
+import 'package:vms_school/widgets/ButtonsDialog.dart';
+import 'package:vms_school/widgets/Calender.dart';
+import 'package:vms_school/widgets/DropDown.dart';
+import 'package:vms_school/widgets/LargeTextField.dart';
+import 'package:vms_school/widgets/TextFieldDialog.dart';
 
 EditEmployeeDialog() {
   TextEditingController firstName = TextEditingController();

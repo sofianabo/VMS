@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/Controller/AdminController/Add_Full_Employee_Controller.dart';
-import 'package:getx/Link/Controller/AdminController/Illness_Controller.dart';
-import 'package:getx/widgets/ButtonsDialog.dart';
-import 'package:getx/widgets/Calender.dart';
-import 'package:getx/widgets/LargeTextField.dart';
-import 'package:getx/widgets/TextFildWithUpper.dart';
-import 'package:getx/widgets/VMSAlertDialog.dart';
-import 'package:getx/widgets/Admin_employee/DropDownAllEmployee.dart';
+import 'package:vms_school/Link/Controller/AdminController/Add_Full_Employee_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Illness_Controller.dart';
+import 'package:vms_school/widgets/ButtonsDialog.dart';
+import 'package:vms_school/widgets/Calender.dart';
+import 'package:vms_school/widgets/LargeTextField.dart';
+import 'package:vms_school/widgets/TextFildWithUpper.dart';
+import 'package:vms_school/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/widgets/Admin_employee/DropDownAllEmployee.dart';
 
 Add_Full_Employee(BuildContext context) {
   TextEditingController First_Name = TextEditingController();

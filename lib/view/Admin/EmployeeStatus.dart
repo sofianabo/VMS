@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/view/Admin/EmployeeStatusGrid.dart';
-import 'package:getx/widgets/Calender.dart';
-import 'package:getx/widgets/DropDown.dart';
+import 'package:vms_school/view/Admin/EmployeeStatusGrid.dart';
+import 'package:vms_school/widgets/Calender.dart';
+import 'package:vms_school/widgets/DropDown.dart';
 
 import '../../Icons_File/v_m_s__icons_icons.dart';
 import '../../widgets/TextFormSearch.dart';

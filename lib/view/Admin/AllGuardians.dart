@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/API/AdminAPI/AddGuardianAPI.dart';
-import 'package:getx/view/Admin/AllGuardianGrid.dart';
-import 'package:getx/widgets/ButtonsDialog.dart';
-import 'package:getx/widgets/TextFieldDialog.dart';
-import 'package:getx/widgets/TextFormSearch.dart';
+import 'package:vms_school/Link/API/AdminAPI/AddGuardianAPI.dart';
+import 'package:vms_school/view/Admin/AllGuardianGrid.dart';
+import 'package:vms_school/widgets/ButtonsDialog.dart';
+import 'package:vms_school/widgets/TextFieldDialog.dart';
+import 'package:vms_school/widgets/TextFormSearch.dart';
 
 import '../../Icons_File/v_m_s__icons_icons.dart';
 import '../../Link/API/AdminAPI/GetAllGuardiansAPI.dart';

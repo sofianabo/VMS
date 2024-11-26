@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
-import 'package:getx/Link/API/AdminAPI/DeleteTeacherAPI.dart';
-import 'package:getx/Link/Controller/AdminController/AllTeachersController.dart';
-import 'package:getx/widgets/ButtonsDialog.dart';
+import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/API/AdminAPI/DeleteTeacherAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/AllTeachersController.dart';
+import 'package:vms_school/widgets/ButtonsDialog.dart';
 import '../../widgets/DropDown.dart';
 import '../../widgets/GridAnimation.dart';
 import '../../widgets/VMSAlertDialog.dart';

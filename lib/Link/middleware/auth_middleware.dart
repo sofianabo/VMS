@@ -1,7 +1,7 @@
 
 import 'package:flutter/src/widgets/navigator.dart';
 import 'package:get/get.dart';
-import 'package:getx/main.dart';
+import 'package:vms_school/main.dart';
 
 class AuthMidlleware extends GetMiddleware {
   @override

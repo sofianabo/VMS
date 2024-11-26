@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/API/AdminAPI/Get_All_Employee_API.dart';
-import 'package:getx/view/Admin/AllEmployeeGrid.dart';
-import 'package:getx/view/Admin/Employee_Manager/Add_Full_Employee.dart';
-import 'package:getx/widgets/Admin_employee/DropDownAllEmployee.dart';
-import 'package:getx/widgets/ButtonsDialog.dart';
-import 'package:getx/widgets/TextFormSearch.dart';
+import 'package:vms_school/Link/API/AdminAPI/Get_All_Employee_API.dart';
+import 'package:vms_school/view/Admin/AllEmployeeGrid.dart';
+import 'package:vms_school/view/Admin/Employee_Manager/Add_Full_Employee.dart';
+import 'package:vms_school/widgets/Admin_employee/DropDownAllEmployee.dart';
+import 'package:vms_school/widgets/ButtonsDialog.dart';
+import 'package:vms_school/widgets/TextFormSearch.dart';
 import '../../Icons_File/v_m_s__icons_icons.dart';
 import '../../widgets/TextFildWithUpper.dart';
 import '../../widgets/VMSAlertDialog.dart';

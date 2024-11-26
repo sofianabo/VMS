@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/main.dart';
+import 'package:vms_school/main.dart';
 
 // ignore: camel_case_types
 class localeController extends GetxController {

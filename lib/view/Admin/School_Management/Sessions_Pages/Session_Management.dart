@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
-import 'package:getx/Link/Controller/AdminController/Session_Controller.dart';
-import 'package:getx/view/Admin/School_Management/Sessions_Pages/Session_Management_Grid.dart';
-import 'package:getx/widgets/ButtonsDialog.dart';
-import 'package:getx/widgets/Calender.dart';
-import 'package:getx/widgets/TextFildWithUpper_Num.dart';
-import 'package:getx/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/Controller/AdminController/Session_Controller.dart';
+import 'package:vms_school/view/Admin/School_Management/Sessions_Pages/Session_Management_Grid.dart';
+import 'package:vms_school/widgets/ButtonsDialog.dart';
+import 'package:vms_school/widgets/Calender.dart';
+import 'package:vms_school/widgets/TextFildWithUpper_Num.dart';
+import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class SessionManagement extends StatelessWidget {
   SessionManagement({super.key});

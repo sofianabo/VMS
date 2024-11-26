@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/API/API.dart';
-import 'package:getx/Link/API/AdminAPI/GetAllTeachersAPI.dart';
-import 'package:getx/Link/API/Error_API.dart';
-import 'package:getx/Link/Controller/AdminController/AllEmpolyeeController.dart';
-import 'package:getx/Link/Model/AdminModel/All_Employee_Model.dart';
-import 'package:getx/main.dart';
+import 'package:vms_school/Link/API/API.dart';
+import 'package:vms_school/Link/API/AdminAPI/GetAllTeachersAPI.dart';
+import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/AllEmpolyeeController.dart';
+import 'package:vms_school/Link/Model/AdminModel/All_Employee_Model.dart';
+import 'package:vms_school/main.dart';
 
 class Get_All_Employee_API {
   Get_All_Employee_API(this.context);

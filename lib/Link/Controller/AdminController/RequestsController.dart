@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:getx/Link/Model/AdminModel/RequestsModel.dart';
-import 'package:getx/Link/Model/AuthModel/UserModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/RequestsModel.dart';
+import 'package:vms_school/Link/Model/AuthModel/UserModel.dart';
 
 class Requestscontroller extends GetxController {
   List<Registration> registration = [];

@@ -2,12 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
-import 'package:getx/Link/API/AdminAPI/DropdownClassesAPI.dart';
-import 'package:getx/Link/Controller/AdminController/AllClassesController.dart';
-import 'package:getx/widgets/Admin_Table/DropDownTable.dart';
-import 'package:getx/widgets/Calender.dart';
-import 'package:getx/widgets/DropDown.dart';
+import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/API/AdminAPI/DropdownClassesAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/AllClassesController.dart';
+import 'package:vms_school/widgets/Admin_Table/DropDownTable.dart';
+import 'package:vms_school/widgets/Calender.dart';
+import 'package:vms_school/widgets/DropDown.dart';
 
 class ExamTable extends StatelessWidget {
   ExamTable({super.key});

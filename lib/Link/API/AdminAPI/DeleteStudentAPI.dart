@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/API/API.dart';
-import 'package:getx/Link/API/AdminAPI/GetAllStudentAPI.dart';
-import 'package:getx/Link/API/Error_API.dart';
-import 'package:getx/main.dart';
+import 'package:vms_school/Link/API/API.dart';
+import 'package:vms_school/Link/API/AdminAPI/GetAllStudentAPI.dart';
+import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/main.dart';
 
 class Deletestudentapi {
   Deletestudentapi(this.context);

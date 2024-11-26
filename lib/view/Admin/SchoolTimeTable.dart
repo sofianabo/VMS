@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
-import 'package:getx/widgets/Admin_Table/DropDownSchoolTime.dart';
+import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/widgets/Admin_Table/DropDownSchoolTime.dart';
 
 class SchoolTimeTable extends StatelessWidget {
   SchoolTimeTable({super.key});

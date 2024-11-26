@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/view/Admin/TeacherAttendanceManagmentGrid.dart';
-import 'package:getx/widgets/DropDown.dart';
+import 'package:vms_school/view/Admin/TeacherAttendanceManagmentGrid.dart';
+import 'package:vms_school/widgets/DropDown.dart';
 
 import '../../Link/Controller/AdminController/AdminTeacherAttendens.dart';
 

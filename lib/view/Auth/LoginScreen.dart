@@ -3,13 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/API/AuthAPI/LoginAPI.dart';
-import 'package:getx/Theme/themeController.dart';
-import 'package:getx/main.dart';
-import 'package:getx/view/Admin/AdminHome.dart';
-import 'package:getx/widgets/AuthButton.dart';
-import 'package:getx/widgets/TextFieldAuth.dart';
-import 'package:getx/widgets/TextFieldPassword.dart';
+import 'package:vms_school/Link/API/AuthAPI/LoginAPI.dart';
+import 'package:vms_school/Theme/themeController.dart';
+import 'package:vms_school/main.dart';
+import 'package:vms_school/view/Admin/AdminHome.dart';
+import 'package:vms_school/widgets/AuthButton.dart';
+import 'package:vms_school/widgets/TextFieldAuth.dart';
+import 'package:vms_school/widgets/TextFieldPassword.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});

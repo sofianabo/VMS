@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import 'package:getx/Link/Model/AdminModel/AllClassesModel.dart';
-import 'package:getx/Link/Model/AdminModel/AllGradeModel.dart';
-import 'package:getx/Link/Model/AdminModel/AllSessionModel.dart';
-import 'package:getx/Link/Model/AdminModel/allGuardianModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllGradeModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/allGuardianModel.dart';
 
 class StudyYearStudentsController extends GetxController {
   String sessionIndex = "";

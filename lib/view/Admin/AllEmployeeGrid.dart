@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
-import 'package:getx/Link/API/API.dart';
-import 'package:getx/Link/Controller/AdminController/AllEmpolyeeController.dart';
-import 'package:getx/widgets/ButtonsDialog.dart';
+import 'package:vms_school/Link/API/API.dart';
+import 'package:vms_school/Link/Controller/AdminController/AllEmpolyeeController.dart';
+import 'package:vms_school/widgets/ButtonsDialog.dart';
 import '../../Icons_File/v_m_s__icons_icons.dart';
 import '../../widgets/GridAnimation.dart';
 import '../../widgets/VMSAlertDialog.dart';

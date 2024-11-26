@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/Controller/AdminController/Session_Controller.dart';
-import 'package:getx/widgets/ButtonsDialog.dart';
-import 'package:getx/widgets/GridAnimation.dart';
-import 'package:getx/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/Link/Controller/AdminController/Session_Controller.dart';
+import 'package:vms_school/widgets/ButtonsDialog.dart';
+import 'package:vms_school/widgets/GridAnimation.dart';
+import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class SessionManagementGrid extends StatelessWidget {
   SessionManagementGrid({super.key});

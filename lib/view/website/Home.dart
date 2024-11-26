@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/API/HomeScreenApI.dart';
-import 'package:getx/Translate/local_controller.dart';
-import 'package:getx/view/website/Appbar.dart';
-import 'package:getx/view/website/Section1.dart';
-import 'package:getx/view/website/Section2.dart';
-import 'package:getx/view/website/Section3.dart';
-import 'package:getx/view/website/Section4.dart';
-import 'package:getx/view/website/Section5.dart';
-import 'package:getx/view/website/Section6.dart';
-import 'package:getx/view/website/Section7.dart';
+import 'package:vms_school/Link/API/HomeScreenApI.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/view/website/Appbar.dart';
+import 'package:vms_school/view/website/Section1.dart';
+import 'package:vms_school/view/website/Section2.dart';
+import 'package:vms_school/view/website/Section3.dart';
+import 'package:vms_school/view/website/Section4.dart';
+import 'package:vms_school/view/website/Section5.dart';
+import 'package:vms_school/view/website/Section6.dart';
+import 'package:vms_school/view/website/Section7.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

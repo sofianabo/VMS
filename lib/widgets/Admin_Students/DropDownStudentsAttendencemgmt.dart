@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/Controller/AdminController/Student_Attendenc_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Student_Attendenc_Controller.dart';
 
 class DropDownStudentsAttendencemgmt extends StatelessWidget {
   final double width;

@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:getx/Link/Model/AdminModel/Dashboard_Model.dart';
+import 'package:vms_school/Link/Model/AdminModel/Dashboard_Model.dart';
 
 class BarChartSample1 extends StatefulWidget {
   BarChartSample1({Key? key, required this.data, required this.headerText})
