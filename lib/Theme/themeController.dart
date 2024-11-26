@@ -7,6 +7,7 @@ class ThemeController extends GetxController {
   RxBool isDarkMode = false.obs;
 
   static ThemeData lighttheme = ThemeData(
+    primaryColor: Color(0xff19478d),
     scaffoldBackgroundColor: Colors.white,
     canvasColor: Color(0xff134B70),
     colorScheme: const ColorScheme.light(
@@ -100,6 +101,7 @@ class ThemeController extends GetxController {
 
   static ThemeData darktheme = ThemeData(
     fontFamily: "Cairo",
+    primaryColor: Color(0xff19478d),
     canvasColor: Color(0xff3C3F41),
     scaffoldBackgroundColor: Color(0xff2B2B2B),
     colorScheme: ColorScheme.dark(
