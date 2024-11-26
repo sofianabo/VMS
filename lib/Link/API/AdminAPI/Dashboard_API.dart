@@ -19,6 +19,7 @@ class Dashboard_API {
 
     String myurl = "${hostPort}${dashboard}";
     try {
+      controller.resetLoading();
       var response = await dio.get(myurl,
                    options: getDioOptions());
 
