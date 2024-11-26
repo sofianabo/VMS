@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/RequestsController.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
@@ -97,7 +98,11 @@ class RequestsGrid extends StatelessWidget {
                           ],
                         ),
                       ),
-                    ),
+                    ).animate(onPlay: (controller) => controller.repeat()).shimmer(
+                  angle: 1,
+                  color: Colors.white,
+                  duration: Duration(seconds: 1),
+                  delay: Duration(seconds: 1)),
                     Center(child: CircularProgressIndicator(
                       color:Color(0xffe6e7ea),
                       strokeCap: StrokeCap.round,
