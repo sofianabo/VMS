@@ -5,6 +5,7 @@ import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/allGaurdianController.dart';
 import 'package:vms_school/main.dart';
 import '../API.dart' as global;
+import 'package:vms_school/Link/API/DioOption.dart';
 
 class Editguardianapi {
   final Allgaurdiancontroller u = Get.find<Allgaurdiancontroller>();
@@ -23,10 +24,7 @@ class Editguardianapi {
             "guardianId": id,
             "email":email
           },
-          options: Options(headers: {
-            'accept': 'application/json',
-            'authorization': 'Bearer ${prefs!.getString("token")}'
-          }));
+options: getDioOptions());
       if (response.statusCode == 200) {
         u.updateGuardian(name, index, phone, email, nationalid);
       } else {

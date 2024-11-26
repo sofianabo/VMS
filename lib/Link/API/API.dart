@@ -1,6 +1,7 @@
 //  http://192.168.43.127:8000/api/
 //https://5e24-149-102-244-69.ngrok-free.app/api/
-String hostPort = "http://192.168.43.127:8000/api/";
+// String hostPort = "http://192.168.43.127:8000/api/";
+String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
 
 //home
 String Home = "homeScreen";

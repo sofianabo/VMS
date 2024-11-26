@@ -1,3 +1,4 @@
+import 'package:vms_school/Link/API/DioOption.dart';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
@@ -18,10 +19,7 @@ class Getsessionapi {
     try {
       String myurl = "${global.hostPort}${global.getSession}";
       var response = await dio.get(myurl,
-          options: Options(headers: {
-            'accept': 'application/json',
-            'authorization': 'Bearer ${prefs!.getString("token")}'
-          }));
+options: getDioOptions());
       if (response.statusCode == 200) {
         AllSessionModel session = AllSessionModel.fromJson(response.data);
         c.setSession(session);

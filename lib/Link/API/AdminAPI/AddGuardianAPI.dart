@@ -4,8 +4,9 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/GetAllGuardiansAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/allGaurdianController.dart';
-import 'package:vms_school/main.dart';
 import '../API.dart' as global;
+import 'package:vms_school/Link/API/DioOption.dart';
+
 
 class Addguardianapi {
   final Allgaurdiancontroller u = Get.find<Allgaurdiancontroller>();
@@ -25,10 +26,8 @@ class Addguardianapi {
             "userName": username,
             "password": password
           },
-          options: Options(headers: {
-            'accept': 'application/json',
-            'authorization': 'Bearer ${prefs!.getString("token")}'
-          }));
+          options: getDioOptions());
+
       if (response.statusCode == 200) {
         await GetAllGuardiansAPI(context).getAllGuardian();
         Get.back();

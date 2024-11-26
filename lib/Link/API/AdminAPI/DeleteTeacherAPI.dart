@@ -5,6 +5,7 @@ import 'package:vms_school/Link/API/AdminAPI/GetAllTeachersAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/main.dart';
 import '../API.dart' as global;
+import 'package:vms_school/Link/API/DioOption.dart';
 
 class Deleteteacherapi {
   Deleteteacherapi(this.context);
@@ -15,10 +16,7 @@ class Deleteteacherapi {
     try {
       var response = await dio.post(myurl,
           data: {"id": id},
-          options: Options(headers: {
-            'accept': 'application/json',
-            'authorization': 'Bearer ${prefs!.getString("token")}'
-          }));
+options: getDioOptions());
       if (response.statusCode == 200) {
         await Getallteachersapi(context).Getallteachers(null);
         Get.back();

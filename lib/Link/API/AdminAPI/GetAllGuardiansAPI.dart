@@ -6,6 +6,7 @@ import 'package:vms_school/Link/Controller/AdminController/allGaurdianController
 import 'package:vms_school/Link/Model/AdminModel/allGuardianModel.dart';
 import 'package:vms_school/main.dart';
 import '../API.dart' as global;
+import 'package:vms_school/Link/API/DioOption.dart';
 
 class GetAllGuardiansAPI {
   final Allgaurdiancontroller c = Get.find<Allgaurdiancontroller>();
@@ -17,10 +18,7 @@ class GetAllGuardiansAPI {
     try {
       String myurl = "${global.hostPort}${global.getguardians}";
       var response = await dio.get(myurl,
-          options: Options(headers: {
-            'accept': 'application/json',
-            'authorization': 'Bearer ${prefs!.getString("token")}'
-          }));
+options: getDioOptions());
       if (response.statusCode == 200) {
         AllGuardianModel classes = AllGuardianModel.fromJson(response.data);
         c.setallGaurdian(classes);

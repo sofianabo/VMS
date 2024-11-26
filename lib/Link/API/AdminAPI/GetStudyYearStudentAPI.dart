@@ -11,6 +11,8 @@ import 'package:vms_school/Link/Model/AdminModel/AllGradeModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:vms_school/main.dart';
 import '../API.dart' as global;
+import 'package:vms_school/Link/API/DioOption.dart';
+
 
 class Getstudyyearstudentapi {
   final StudyYearStudentsController c = Get.find<StudyYearStudentsController>();
@@ -31,10 +33,7 @@ class Getstudyyearstudentapi {
           data: {
             "name": name,
           },
-          options: Options(headers: {
-            'accept': 'application/json',
-            'authorization': 'Bearer ${prefs!.getString("token")}'
-          }));
+options: getDioOptions());
       if (response.statusCode == 200) {
         //  AllStudentModel student = AllStudentModel.fromJson(response.data);
         //  c.setAllStudents(student);

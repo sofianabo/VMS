@@ -6,6 +6,7 @@ import 'package:vms_school/Link/Controller/AdminController/DropDownClassesContro
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/main.dart';
 import '../API.dart' as global;
+import 'package:vms_school/Link/API/DioOption.dart';
 
 class Getallclassapi {
   Dropdownclassescontroller c = Get.find<Dropdownclassescontroller>();
@@ -16,10 +17,7 @@ class Getallclassapi {
     try {
       String myurl = "${global.hostPort}${global.getclasses}";
       var response = await dio.get(myurl,
-          options: Options(headers: {
-            'accept': 'application/json',
-            'authorization': 'Bearer ${prefs!.getString("token")}'
-          }));
+options: getDioOptions());
       if (response.statusCode == 200) {
         AllClassesModel classes = AllClassesModel.fromJson(response.data);
         c.setClasses(classes);
