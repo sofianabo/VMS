@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx/Link/API/AdminAPI/GetAllTeachersAPI.dart';
+import 'package:getx/Link/API/Error_API.dart';
 import 'package:getx/Link/Controller/AdminController/AllTeachersController.dart';
 import 'package:getx/main.dart';
 import '../API.dart' as global;
@@ -48,11 +49,21 @@ class Addteacherapi {
         await Getallteachersapi(context).Getallteachers(null);
         Get.back();
       } else {
-        return throw Exception("Failed");
+        ErrorHandler.handleDioError(DioError(
+          requestOptions: response.requestOptions,
+          response: response,
+          type: DioErrorType.badResponse,
+        ));
       }
       return response.statusCode;
     } catch (e) {
-      print('Add Field');
+      if (e is DioError) {
+        ErrorHandler.handleDioError(e);
+      } else if (e is Exception) {
+        ErrorHandler.handleException(e);
+      } else {
+        ErrorHandler.handleException(Exception(e.toString()));
+      }
     }
   }
 }

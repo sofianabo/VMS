@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:getx/Link/Controller/AdminController/Add_Full_Employee_Controller.dart';
 import 'package:getx/Link/Controller/AdminController/AdminHomeContentController.dart';
 import 'package:getx/Link/Controller/AdminController/AdminStudentsAttendens.dart';
 import 'package:getx/Link/Controller/AdminController/AdminTeacherAttendens.dart';
@@ -65,5 +66,6 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => DatePickerController(), fenix: true);
     Get.lazyPut(() => IllnessController(), fenix: true);
     Get.lazyPut(() => Dashboard_Controller(), fenix: true);
+    Get.lazyPut(() => AddFullEmployeeController(), fenix: true);
   }
 }

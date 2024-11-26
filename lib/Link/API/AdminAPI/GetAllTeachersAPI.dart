@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:getx/Link/API/AdminAPI/DropdownClassesAPI.dart';
 import 'package:getx/Link/API/AdminAPI/DropdownGradeAPI.dart';
 import 'package:getx/Link/API/AdminAPI/DropdownSessionsAPI.dart';
+import 'package:getx/Link/API/Error_API.dart';
 import 'package:getx/Link/Controller/AdminController/AllTeachersController.dart';
 import 'package:getx/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:getx/Link/Model/AdminModel/AllGradeModel.dart';
@@ -26,20 +27,35 @@ class Getallteachersapi {
     c.setAllSession(s);
     c.setAllGrades(g);
     c.setAllClasses(cl);
-    String myurl = "${global.hostPort}${global.getTeachers}";
-    var response = await dio.get(myurl,
-        data: {
-          "name": name,
-        },
-        options: Options(headers: {
-          'accept': 'application/json',
-          'authorization': 'Bearer ${prefs!.getString("token")}'
-        }));
-    if (response.statusCode == 200) {
-      AllTeacherModel teacher = AllTeacherModel.fromJson(response.data);
-      c.setAllTeacher(teacher);
-    } else {
-      return throw Exception("Failed to load Teachers");
+
+    try {
+      String myurl = "${global.hostPort}${global.getTeachers}";
+      var response = await dio.get(myurl,
+          data: {
+            "name": name,
+          },
+          options: Options(headers: {
+            'accept': 'application/json',
+            'authorization': 'Bearer ${prefs!.getString("token")}'
+          }));
+      if (response.statusCode == 200) {
+        AllTeacherModel teacher = AllTeacherModel.fromJson(response.data);
+        c.setAllTeacher(teacher);
+      } else {
+        ErrorHandler.handleDioError(DioError(
+          requestOptions: response.requestOptions,
+          response: response,
+          type: DioErrorType.badResponse,
+        ));
+      }
+    } catch (e) {
+      if (e is DioError) {
+        ErrorHandler.handleDioError(e);
+      } else if (e is Exception) {
+        ErrorHandler.handleException(e);
+      } else {
+        ErrorHandler.handleException(Exception(e.toString()));
+      }
     }
   }
 }

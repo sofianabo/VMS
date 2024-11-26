@@ -1,10 +1,11 @@
 import 'package:get/get.dart';
-import 'package:getx/Link/Model/AdminModel/AllEmployeeModel.dart';
 import 'package:getx/Link/Model/AdminModel/AllSessionModel.dart';
-import 'package:getx/Link/Model/AdminModel/allGuardianModel.dart';
+import 'package:getx/Link/Model/AdminModel/All_Employee_Model.dart';
 
 class Allempolyeecontroller extends GetxController {
+
   List<Employees> employee = [];
+
   String sessionIndex = "";
   String jobTitleIndex = "";
   String rollIndex = "";
@@ -12,6 +13,7 @@ class Allempolyeecontroller extends GetxController {
   String dialogjobTitleIndex = "";
   String GenderListIndex = "";
   String Family_StatusIndex = "";
+
   void setEmployee(AllEmployeeModel model) {
     employee = model.employees!;
     update();
