@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/Controller/AdminController/AdminHomeContentController.dart';
-import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
-import 'package:getx/Theme/themeController.dart';
-import 'package:getx/view/Admin/SideBar_Path.dart';
+import 'package:vms_school/Link/Controller/AdminController/AdminHomeContentController.dart';
+import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Theme/themeController.dart';
+import 'package:vms_school/view/Admin/SideBar_Path.dart';
 import '../../widgets/SidbarAnimation.dart';
 
 class SideBarAdmin extends StatelessWidget {

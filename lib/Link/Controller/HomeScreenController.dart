@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:getx/Link/Model/HomeModel.dart';
-import 'package:getx/Link/Model/AuthModel/UserModel.dart';
+import 'package:vms_school/Link/Model/HomeModel.dart';
+import 'package:vms_school/Link/Model/AuthModel/UserModel.dart';
 
 class Homescreencontroller extends GetxController {
   int teacher =0;

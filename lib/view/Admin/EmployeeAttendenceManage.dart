@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/view/Admin/EmployeeAttendenceManageGride.dart';
+import 'package:vms_school/view/Admin/EmployeeAttendenceManageGride.dart';
 
 import '../../Link/Controller/AdminController/Employeeecontroller.dart';
 

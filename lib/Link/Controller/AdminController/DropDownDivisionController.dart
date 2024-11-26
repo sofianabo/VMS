@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:getx/Link/Model/AdminModel/AllDivisionModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 
 class Dropdowndivisioncontroller extends GetxController {
   List<String> division = [];

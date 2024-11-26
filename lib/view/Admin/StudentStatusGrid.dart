@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 import '../../widgets/GridAnimation.dart';
 

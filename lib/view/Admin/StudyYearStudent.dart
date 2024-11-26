@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
-import 'package:getx/Link/API/AdminAPI/DropdownSessionsAPI.dart';
-import 'package:getx/Link/API/AdminAPI/GetStudyYearStudentAPI.dart';
-import 'package:getx/view/Admin/StudyYearStudentsGrid.dart';
-import 'package:getx/widgets/Admin_Students/DropDownStudyYearStudents.dart';
+import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/API/AdminAPI/DropdownSessionsAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/GetStudyYearStudentAPI.dart';
+import 'package:vms_school/view/Admin/StudyYearStudentsGrid.dart';
+import 'package:vms_school/widgets/Admin_Students/DropDownStudyYearStudents.dart';
 import '../../widgets/TextFormSearch.dart';
 
 class StudyYearStudents extends StatefulWidget {

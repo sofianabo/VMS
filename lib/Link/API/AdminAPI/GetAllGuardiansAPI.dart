@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/API/Error_API.dart';
-import 'package:getx/Link/Controller/AdminController/allGaurdianController.dart';
-import 'package:getx/Link/Model/AdminModel/allGuardianModel.dart';
-import 'package:getx/main.dart';
+import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/allGaurdianController.dart';
+import 'package:vms_school/Link/Model/AdminModel/allGuardianModel.dart';
+import 'package:vms_school/main.dart';
 import '../API.dart' as global;
 
 class GetAllGuardiansAPI {

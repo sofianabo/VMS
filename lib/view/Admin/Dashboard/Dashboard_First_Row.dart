@@ -1,8 +1,8 @@
 import 'package:dashed_circular_progress_bar/dashed_circular_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/widgets/ButtonsDialog.dart';
-import 'package:getx/widgets/GridAnimation.dart';
+import 'package:vms_school/widgets/ButtonsDialog.dart';
+import 'package:vms_school/widgets/GridAnimation.dart';
 
 class DashboardFirstRow extends StatelessWidget {
   const DashboardFirstRow({super.key});

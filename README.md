@@ -1,6 +1,6 @@
-# getx
+# vms_school
 
-A new Flutter project.
+Virtual Modern School
 
 ## Getting Started
 

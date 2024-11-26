@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/API/AuthAPI/LogoutAPI.dart';
-import 'package:getx/Link/Controller/AdminController/AdminHomeContentController.dart';
-import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
-import 'package:getx/Link/Controller/AuthController/UserController.dart';
-import 'package:getx/Theme/themeController.dart';
-import 'package:getx/main.dart';
+import 'package:vms_school/Link/API/AuthAPI/LogoutAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/AdminHomeContentController.dart';
+import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/Controller/AuthController/UserController.dart';
+import 'package:vms_school/Theme/themeController.dart';
+import 'package:vms_school/main.dart';
 
 class AppbarAdmin extends StatelessWidget {
   const AppbarAdmin({super.key});

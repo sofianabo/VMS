@@ -1,9 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/widgets/DropDown.dart';
-import 'package:getx/widgets/TextFieldDialog.dart';
-import 'package:getx/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/widgets/DropDown.dart';
+import 'package:vms_school/widgets/TextFieldDialog.dart';
+import 'package:vms_school/widgets/VMSAlertDialog.dart';
 import '../../Icons_File/v_m_s__icons_icons.dart';
 import '../../widgets/ButtonsDialog.dart';
 import '../../widgets/Calender.dart';

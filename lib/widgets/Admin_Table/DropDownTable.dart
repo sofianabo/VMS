@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/Controller/AdminController/AllClassesController.dart';
+import 'package:vms_school/Link/Controller/AdminController/AllClassesController.dart';
 
 class DropDownTable extends StatelessWidget {
   final double width;

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/Controller/AdminController/RequestsController.dart';
-import 'package:getx/widgets/ButtonsDialog.dart';
-import 'package:getx/widgets/ButtonsGrid.dart';
-import 'package:getx/widgets/DropDown.dart';
-import 'package:getx/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/Link/Controller/AdminController/RequestsController.dart';
+import 'package:vms_school/widgets/ButtonsDialog.dart';
+import 'package:vms_school/widgets/ButtonsGrid.dart';
+import 'package:vms_school/widgets/DropDown.dart';
+import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 import '../../widgets/GridAnimation.dart';
 

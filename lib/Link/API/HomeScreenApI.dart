@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/Controller/HomeScreenController.dart';
-import 'package:getx/Link/Model/HomeModel.dart';
+import 'package:vms_school/Link/Controller/HomeScreenController.dart';
+import 'package:vms_school/Link/Model/HomeModel.dart';
 import 'API.dart' as global;
 
 class Homescreenapi {

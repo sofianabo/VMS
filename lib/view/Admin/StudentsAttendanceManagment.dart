@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/Controller/AdminController/AdminStudentsAttendens.dart';
-import 'package:getx/view/Admin/StudentsAttendanceManagmentGrid.dart';
-import 'package:getx/widgets/Admin_Students/DropDownStudentsAttendencemgmt.dart';
-import 'package:getx/widgets/DropDown.dart';
+import 'package:vms_school/Link/Controller/AdminController/AdminStudentsAttendens.dart';
+import 'package:vms_school/view/Admin/StudentsAttendanceManagmentGrid.dart';
+import 'package:vms_school/widgets/Admin_Students/DropDownStudentsAttendencemgmt.dart';
+import 'package:vms_school/widgets/DropDown.dart';
 
 class StudentsAttendanceManagment extends StatelessWidget {
   StudentsAttendanceManagment({super.key});

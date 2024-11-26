@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/Controller/WidgetController/DateControler.dart';
-import 'package:getx/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DateControler.dart';
+import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:intl/intl.dart';
 
 class DatePicker extends StatelessWidget {

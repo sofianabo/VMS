@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:getx/Link/Model/AdminModel/AllSessionModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 
 class SessionController extends GetxController {
   var Sessions = [

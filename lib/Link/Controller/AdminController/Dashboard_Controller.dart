@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:getx/Link/Model/AdminModel/Dashboard_Model.dart';
+import 'package:vms_school/Link/Model/AdminModel/Dashboard_Model.dart';
 
 class Dashboard_Controller extends GetxController {
   DashboardModel? dsh;
@@ -11,8 +11,4 @@ class Dashboard_Controller extends GetxController {
     update();
   }
 
-  void resetLoading() {
-    Isloading = true;
-    update();
-  }
 }

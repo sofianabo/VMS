@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:getx/Link/Model/AdminModel/allGuardianModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/allGuardianModel.dart';
 
 class Allgaurdiancontroller extends GetxController {
   List<Gaurdians> guardian = [];

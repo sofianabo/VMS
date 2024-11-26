@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "getx" "\0"
+            VALUE "CompanyName", "com.vms" "\0"
+            VALUE "FileDescription", "vms_school" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "getx" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "getx.exe" "\0"
-            VALUE "ProductName", "getx" "\0"
+            VALUE "InternalName", "vms_school" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 com.vms. All rights reserved." "\0"
+            VALUE "OriginalFilename", "vms_school.exe" "\0"
+            VALUE "ProductName", "vms_school" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

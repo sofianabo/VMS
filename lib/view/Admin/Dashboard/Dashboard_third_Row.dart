@@ -2,57 +2,57 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:getx/Link/Controller/AdminController/Dashboard_Controller.dart';
-import 'package:getx/widgets/GridAnimation.dart';
+import 'package:vms_school/Link/Controller/AdminController/Dashboard_Controller.dart';
+import 'package:vms_school/widgets/GridAnimation.dart';
 
 class DashboardThirdRow extends StatelessWidget {
-  final Dashboard_Controller controller = Get.put(Dashboard_Controller());
 
   DashboardThirdRow({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> dashed = [
-      {
-        'name': 'Total Students',
-        'color': const Color(0xffF3F4F8),
-        'upIcon': 'stu.svg',
-        'avg': '${controller.dsh?.allStudents ?? 0}',
-      },
-      {
-        'name': 'Total Teacher',
-        'color': const Color(0xffF9E5EA),
-        'upIcon': 'tech.svg',
-        'avg': '${controller.dsh?.allTeachers ?? 0}',
-      },
-      {
-        'name': 'Total Employee',
-        'color': const Color(0xffB8D8BA),
-        'upIcon': 'emp.svg',
-        'avg': '${controller.dsh?.allEmplooyes ?? 0}',
-      },
-      {
-        'name': 'Total Visitor',
-        'color': const Color(0xffDFEDF7),
-        'upIcon': 'vist.svg',
-        'avg': '${controller.dsh?.visitor ?? 0}',
-      },
-      {
-        'name': 'Total Library',
-        'color': const Color(0xffFBEDD9),
-        'upIcon': 'divi.svg',
-        'avg': '${controller.dsh?.elibraryCount ?? 0}',
-      },
-      {
-        'name': 'Total Division',
-        'color': const Color(0xffE7E6FB),
-        'upIcon': 'divi.svg',
-        'avg': '${controller.dsh?.divisin ?? 0}',
-      },
-    ];
+
 
     return GetBuilder<Dashboard_Controller>(
       builder: (controller) {
+        List<Map<String, dynamic>> dashed = [
+          {
+            'name': 'Total Students',
+            'color': const Color(0xffF3F4F8),
+            'upIcon': 'stu.svg',
+            'avg': '${controller.dsh?.allStudents ?? 0}',
+          },
+          {
+            'name': 'Total Teacher',
+            'color': const Color(0xffF9E5EA),
+            'upIcon': 'tech.svg',
+            'avg': '${controller.dsh?.allTeachers ?? 0}',
+          },
+          {
+            'name': 'Total Employee',
+            'color': const Color(0xffB8D8BA),
+            'upIcon': 'emp.svg',
+            'avg': '${controller.dsh?.allEmplooyes ?? 0}',
+          },
+          {
+            'name': 'Total Visitor',
+            'color': const Color(0xffDFEDF7),
+            'upIcon': 'vist.svg',
+            'avg': '${controller.dsh?.visitor ?? 0}',
+          },
+          {
+            'name': 'Total Library',
+            'color': const Color(0xffFBEDD9),
+            'upIcon': 'divi.svg',
+            'avg': '${controller.dsh?.elibraryCount ?? 0}',
+          },
+          {
+            'name': 'Total Division',
+            'color': const Color(0xffE7E6FB),
+            'upIcon': 'divi.svg',
+            'avg': '${controller.dsh?.divisin ?? 0}',
+          },
+        ];
         if (controller.Isloading) {
           return Padding(
             padding: const EdgeInsets.only(right: 20.0),
@@ -91,8 +91,6 @@ class DashboardThirdRow extends StatelessWidget {
             ),
           );
         }
-
-        // بناء الشبكة لعرض البيانات
         return Padding(
           padding: const EdgeInsets.only(right: 20.0),
           child: GridView.builder(
