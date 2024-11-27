@@ -6,15 +6,17 @@ import 'package:vms_school/Link/Model/AuthModel/UserModel.dart';
 class Requestscontroller extends GetxController {
   List<Registration> registration = [];
   List<Registration> filteredregistration = [];
-
+  String statusindex = "";
+  List<String> statusList = [];
+  bool IsLoading = true;
   void setAllRequests(AllRequestsModel req) {
     registration = req.registration!;
     filteredregistration = List.from(req.registration!);
     IsLoading = false;
-      String statusindex = "";
-  List<String> statusList = [];
+
     update();
   }
+
   void restor() {
     registration.clear();
     filteredregistration.clear();
