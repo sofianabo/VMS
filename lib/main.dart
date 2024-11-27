@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Translate/local_controller.dart' show localeController;
+import 'package:vms_school/Translate/local_controller.dart'
+    show localeController;
 import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/link/Bindings/UserBinding.dart';
 import 'package:vms_school/view/Admin/AdminHome.dart';
@@ -39,10 +40,9 @@ class _VMSState extends State<VMS> {
         initialBinding: UserBiniding(),
         locale: loc.init,
         theme: themeController.currentTheme,
-         home: AdminHome()));
-    // prefs!.getBool("isLogin") != null &&
-        //         prefs!.getBool("isLogin") == true
-        //     ? AdminHome()
-        //     : Directionality(textDirection: TextDirection.rtl, child: Home())));
+        home: prefs!.getBool("isLogin") != null &&
+                prefs!.getBool("isLogin") == true
+            ? AdminHome()
+            : Directionality(textDirection: TextDirection.rtl, child: Home())));
   }
 }
