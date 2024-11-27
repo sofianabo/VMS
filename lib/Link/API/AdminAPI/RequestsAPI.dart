@@ -18,13 +18,12 @@ class GetAllRequestsapi {
 
   GetAllRequests() async {
     try {
+      c.restor();
       AllStatusModel statusModel =
           await Dropdownstatusapi(context).Dropdownstatus();
       c.setAllStatus(statusModel);
       String myurl = "${global.hostPort}${global.getRequests}";
-      var response = await dio.get(myurl,
-          data: {},
-options: getDioOptions());
+      var response = await dio.get(myurl, data: {}, options: getDioOptions());
       if (response.statusCode == 200) {
         AllRequestsModel requests = AllRequestsModel.fromJson(response.data);
         c.setAllRequests(requests);
