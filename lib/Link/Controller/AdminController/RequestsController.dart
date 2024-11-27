@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllStatusModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/RequestsModel.dart';
@@ -38,29 +39,40 @@ class Requestscontroller extends GetxController {
     update();
   }
 
-   void selectIndex(String type, String? index) {
-   
-        statusindex = index ?? "";
-      
+  void selectIndex(String type, String? index) {
+    statusindex = index ?? "";
   }
 
-    void setAllStatus(AllStatusModel stat) async {
+  void setAllStatus(AllStatusModel stat) async {
     statusList.clear();
     for (int i = 0; i < stat.type!.length; i++) {
       statusList.add(stat.type![i].toString());
     }
     update();
-    updateList("session", statusList);
+    updateList( statusList);
   }
 
   void updateList(
-    String type,
     List<String> options,
   ) {
-        statusList = options;
-    
+    statusList = options;
+
     update();
   }
-    String get selectedStatusIndex => statusindex;
 
+  Rx<DateTime?> requestDate = Rx<DateTime?>(null);
+
+  void selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: requestDate.value ?? DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+    if (picked != null) {
+      requestDate.value = picked;
+    }
+  }
+
+  String get selectedStatusIndex => statusindex;
 }

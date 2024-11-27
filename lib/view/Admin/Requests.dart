@@ -51,8 +51,9 @@ class _RequestsState extends State<Requests> {
                         Padding(
                           padding:
                               const EdgeInsets.only(left: 20.0, right: 20.0),
-                          child: DatePicker(
+                          child: selectDateRequest(
                             width: w / 4.383,
+                           
                           ),
                         ),
                         TextFormSearch(

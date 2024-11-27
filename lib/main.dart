@@ -40,8 +40,7 @@ class _VMSState extends State<VMS> {
         initialBinding: UserBiniding(),
         locale: loc.init,
         theme: themeController.currentTheme,
-         home:
-    prefs!.getBool("isLogin") != null &&
+        home: prefs!.getBool("isLogin") != null &&
                 prefs!.getBool("isLogin") == true
             ? AdminHome()
             : Directionality(textDirection: TextDirection.rtl, child: Home())));
