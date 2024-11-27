@@ -5,6 +5,7 @@ import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/GetAllStudentAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/main.dart';
+import 'package:vms_school/Link/API/DioOption.dart';
 
 class Deletestudentapi {
   Deletestudentapi(this.context);
@@ -17,10 +18,7 @@ class Deletestudentapi {
           data: {
             "id":id
           },
-          options: Options(headers: {
-            'accept': 'application/json',
-            'authorization': 'Bearer ${prefs!.getString("token")}'
-          }));
+    options: getDioOptions());
       if (response.statusCode == 200) {
         await Getallstudentapi(context).Getallstudent(null,null,null,null);
         Get.back();

@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/DropDownStatusAPI.dart';
@@ -9,6 +8,7 @@ import 'package:vms_school/Link/Model/AdminModel/AllStatusModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/RequestsModel.dart';
 import 'package:vms_school/main.dart';
 import '../API.dart' as global;
+import 'package:vms_school/Link/API/DioOption.dart';
 
 class GetAllRequestsapi {
   Requestscontroller c = Get.find<Requestscontroller>();
@@ -24,10 +24,7 @@ class GetAllRequestsapi {
       String myurl = "${global.hostPort}${global.getRequests}";
       var response = await dio.get(myurl,
           data: {},
-          options: Options(headers: {
-            'accept': 'application/json',
-            'authorization': 'Bearer ${prefs!.getString("token")}'
-          }));
+options: getDioOptions());
       if (response.statusCode == 200) {
         AllRequestsModel requests = AllRequestsModel.fromJson(response.data);
         c.setAllRequests(requests);

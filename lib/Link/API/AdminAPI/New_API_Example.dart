@@ -1,25 +1,28 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:vms_school/Link/API/AdminAPI/GetAllTeachersAPI.dart';
+import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
-import 'package:vms_school/main.dart';
-import '../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';
 
-class Deleteteacherapi {
-  Deleteteacherapi(this.context);
+
+class Renamed {
+  Renamed(this.context);
   BuildContext context;
   Dio dio = Dio();
-  Deleteteacher(int id) async {
-    String myurl = "${global.hostPort}${global.deleteTeacher}";
+  add(
+
+
+      ) async {
+    String myURI = "${hostPort}${addFullEmployee}";
     try {
-      var response = await dio.post(myurl,
-          data: {"id": id},
-options: getDioOptions());
+      var response = await dio.post(myURI,
+          data: {
+
+          },
+          options: getDioOptions());
+
       if (response.statusCode == 200) {
-        await Getallteachersapi(context).Getallteachers(null);
-        Get.back();
+
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,

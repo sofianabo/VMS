@@ -7,6 +7,7 @@ import 'package:vms_school/Link/Controller/AdminController/DropDownDivisionContr
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 import 'package:vms_school/main.dart';
 import '../API.dart' as global;
+import 'package:vms_school/Link/API/DioOption.dart';
 
 class Dropdowndivisionapi {
   Dropdowndivisioncontroller c = Get.find<Dropdowndivisioncontroller>();
@@ -23,10 +24,7 @@ class Dropdowndivisionapi {
       String myurl = "${global.hostPort}${global.getDivision}";
       var response = await dio.post(myurl,
           data: {"classId": id},
-          options: Options(headers: {
-            'accept': 'application/json',
-            'authorization': 'Bearer ${prefs!.getString("token")}'
-          }));
+options: getDioOptions());
       if (response.statusCode == 200) {
         AllDivisionModel division = AllDivisionModel.fromJson(response.data);
         c.setDivision(division);

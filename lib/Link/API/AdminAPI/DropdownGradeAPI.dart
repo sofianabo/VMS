@@ -2,14 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
-import 'package:vms_school/Link/Controller/AdminController/AllClassesController.dart';
-import 'package:vms_school/Link/Controller/AdminController/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/DropDownGradeController.dart.dart';
-import 'package:vms_school/Link/Controller/WidgetController/DropDownController.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllGradeModel.dart';
 import 'package:vms_school/main.dart';
 import '../API.dart' as global;
+import 'package:vms_school/Link/API/DioOption.dart';
 
 class Getallgradeapi {
   Dropdowngradecontroller c = Get.find<Dropdowngradecontroller>();
@@ -21,10 +18,7 @@ class Getallgradeapi {
     try {
       String myurl = "${global.hostPort}${global.getGrade}";
       var response = await dio.get(myurl,
-          options: Options(headers: {
-            'accept': 'application/json',
-            'authorization': 'Bearer ${prefs!.getString("token")}'
-          }));
+options: getDioOptions());
       if (response.statusCode == 200) {
         AllGradesModel grade = AllGradesModel.fromJson(response.data);
         c.setGrades(grade);

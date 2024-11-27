@@ -12,6 +12,7 @@ import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllTeacherModel.dart';
 import 'package:vms_school/main.dart';
 import '../API.dart' as global;
+import 'package:vms_school/Link/API/DioOption.dart';
 
 class Getallteachersapi {
   Allteachercontroller c = Get.find<Allteachercontroller>();
@@ -34,10 +35,7 @@ class Getallteachersapi {
           data: {
             "name": name,
           },
-          options: Options(headers: {
-            'accept': 'application/json',
-            'authorization': 'Bearer ${prefs!.getString("token")}'
-          }));
+options: getDioOptions());
       if (response.statusCode == 200) {
         AllTeacherModel teacher = AllTeacherModel.fromJson(response.data);
         c.setAllTeacher(teacher);
