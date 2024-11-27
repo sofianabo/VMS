@@ -16,10 +16,8 @@ class Dashboard_API {
   Dio dio = Dio();
 
   initDashboard() async {
-
     String myurl = "${hostPort}${dashboard}";
     try {
-      controller.resetLoading();
       var response = await dio.get(myurl,
           options: Options(headers: {
             'accept': 'application/json',

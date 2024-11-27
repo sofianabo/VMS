@@ -14,6 +14,7 @@ import 'package:vms_school/Link/Controller/AdminController/DropDownClassesContro
 import 'package:vms_school/Link/Controller/AdminController/DropDownCurriculumn_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/DropDownDivisionController.dart';
 import 'package:vms_school/Link/Controller/AdminController/DropDownGradeController.dart.dart';
+import 'package:vms_school/Link/Controller/AdminController/DropDownStatusController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employeeecontroller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Grade_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Illness_Controller.dart';
@@ -67,5 +68,6 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => IllnessController(), fenix: true);
     Get.lazyPut(() => Dashboard_Controller(), fenix: true);
     Get.lazyPut(() => AddFullEmployeeController(), fenix: true);
+    Get.lazyPut(() => Dropdownstatuscontroller(), fenix: true);
   }
 }

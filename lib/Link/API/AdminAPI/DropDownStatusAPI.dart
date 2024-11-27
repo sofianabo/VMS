@@ -1,36 +1,32 @@
 import 'package:dio/dio.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/API/AdminAPI/DropDownStatusAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
-import 'package:vms_school/Link/Controller/AdminController/RequestsController.dart';
+import 'package:vms_school/Link/Controller/AdminController/DropDownSessionController.dart.dart';
+import 'package:vms_school/Link/Controller/AdminController/DropDownStatusController.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllStatusModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/RequestsModel.dart';
 import 'package:vms_school/main.dart';
-import '../API.dart' as global;
+import '../API.dart';
 
-class GetAllRequestsapi {
-  Requestscontroller c = Get.find<Requestscontroller>();
+class Dropdownstatusapi {
+  Dropdownstatuscontroller c = Get.find<Dropdownstatuscontroller>();
   BuildContext context;
-  GetAllRequestsapi(this.context);
+  Dropdownstatusapi(this.context);
   Dio dio = Dio();
 
-  GetAllRequests() async {
+  Dropdownstatus() async {
     try {
-      AllStatusModel statusModel =
-          await Dropdownstatusapi(context).Dropdownstatus();
-      c.setAllStatus(statusModel);
-      String myurl = "${global.hostPort}${global.getRequests}";
+      String myurl = "${hostPort}${getAllStatusRequest}";
       var response = await dio.get(myurl,
-          data: {},
           options: Options(headers: {
             'accept': 'application/json',
             'authorization': 'Bearer ${prefs!.getString("token")}'
           }));
       if (response.statusCode == 200) {
-        AllRequestsModel requests = AllRequestsModel.fromJson(response.data);
-        c.setAllRequests(requests);
+        AllStatusModel status = AllStatusModel.fromJson(response.data);
+        c.setStatus(status);
+        return status;
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,
