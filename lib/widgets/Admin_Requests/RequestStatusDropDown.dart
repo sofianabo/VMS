@@ -23,8 +23,8 @@ class Requeststatusdropdown extends StatelessWidget {
     return GetBuilder<Requestscontroller>(builder: (cont) {
       String selectedValue = "";
 
-      selectedValue = cont.selectedstatusIndex.isNotEmpty
-          ? cont.selectedstatusIndex
+      selectedValue = cont.selectedStatusIndex.isNotEmpty
+          ? cont.selectedStatusIndex
           : title;
 
       return Container(

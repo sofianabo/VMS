@@ -37,4 +37,30 @@ class Requestscontroller extends GetxController {
     }
     update();
   }
+
+   void selectIndex(String type, String? index) {
+   
+        statusindex = index ?? "";
+      
+  }
+
+    void setAllStatus(AllStatusModel stat) async {
+    statusList.clear();
+    for (int i = 0; i < stat.type!.length; i++) {
+      statusList.add(stat.type![i].toString());
+    }
+    update();
+    updateList("session", statusList);
+  }
+
+  void updateList(
+    String type,
+    List<String> options,
+  ) {
+        statusList = options;
+    
+    update();
+  }
+    String get selectedStatusIndex => statusindex;
+
 }
