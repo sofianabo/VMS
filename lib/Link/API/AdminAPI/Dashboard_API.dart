@@ -16,7 +16,6 @@ class Dashboard_API {
   Dio dio = Dio();
 
   initDashboard() async {
-
     String myurl = "${hostPort}${dashboard}";
     try {
       var response = await dio.get(myurl,

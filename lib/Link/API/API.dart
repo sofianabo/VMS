@@ -29,3 +29,4 @@ String addFullEmployee = "addFullEmployee";
 String getAllEmployee = "getAllEmployee";
 String getimage = "$hostPort" + "getFile/";
 String getStudyYearStudent = "";
+String getAllStatusRequest = "getTypeRegistration";
