@@ -3,32 +3,31 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/DeleteStudentAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/AllStudentsController.dart';
+import 'package:vms_school/view/Admin/AllEmployeeGrid.dart';
 import 'package:vms_school/view/Admin/EditStudentInfo.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
+import 'package:vms_school/widgets/Schema_Widget.dart';
 
 import '../../widgets/GridAnimation.dart';
 
 class AllStudentGrid extends StatelessWidget {
-  List<String> items = [
-    'Item 1',
-    'Item 2',
-    'Item 3',
-    'Item 4',
-    'Item 5',
-    'Item 6'
-  ];
+
 
   AllStudentGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Allstudentscontroller>(builder: (control) {
-      return GridView.builder(
+      return
+            control.isLoading == false?
+            control.stud.isNotEmpty?
+        GridView.builder(
         padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: Get.width <= 1278 && Get.width >= 1000
@@ -232,7 +231,120 @@ class AllStudentGrid extends StatelessWidget {
                 )),
           );
         },
-      );
-    });
+      ):
+            Center(child: Text(  "No Students"  , style: Get.theme.primaryTextTheme.titleLarge!.copyWith(
+                fontSize: 22,
+                fontWeight: FontWeight.normal
+            ))):
+      GridView.builder(
+              padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: Get.width <= 1278 && Get.width >= 1000
+                      ? 3
+                      : Get.width <= 999 && Get.width >= 759
+                      ? 2
+                      : Get.width <= 758
+                      ? 1
+                      : 4,
+                  crossAxisSpacing: 20.0,
+                  mainAxisSpacing: 20.0,
+                  childAspectRatio: Get.width <= 1410 && Get.width >= 1278
+                  //THREE ITEMS
+                      ? 0.8
+                      : Get.width <= 1278 && Get.width >= 1149
+                  //THREE ITEMS
+                      ? 1.3
+                      : Get.width <= 1148 && Get.width >= 1045
+                      ? 1.16
+                      : Get.width <= 999 && Get.width >= 759
+                      ? 1.2
+                      : Get.width <= 758 && Get.width >= 714
+                      ? 2.0
+                      : Get.width <= 713 && Get.width >= 569
+                      ? 1.6
+                      : Get.width <= 570
+                      ? 1.3
+                  //NORMAL ITEMS
+                      : 0.95),
+              itemCount: 8,
+              itemBuilder: (context, index) {
+                return HoverScaleCard(
+                  child: Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(color: Colors.grey, width: 0.5),
+                          color: Colors.white,
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black26,
+                                offset: Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: SchemaWidget(
+                                    width: 50,
+                                    height: 10,
+                                )
+                              ),
+                              SchemaWidget(
+                                width: 100,
+                                height: 100,
+                              )
+                            ],
+                          ),
+                          SchemaWidget(
+                            width: 60,
+                            height: 10,
+                          ),
+                          SchemaWidget(
+                            width: 55,
+                            height: 10,
+                          ),
+                          SchemaWidget(
+                            width: 30,
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SchemaWidget(
+                                  width: 35,
+                                  height: 35,
+                                ),
+                                SchemaWidget(
+                                  width: 35,
+                                  height: 35,
+                                ),
+                                SchemaWidget(
+                                  width: 35,
+                                  height: 35,
+                                ),
+                                SchemaWidget(
+                                  width: 35,
+                                  height: 35,
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      )),
+                ).animate(onPlay: (controller) => controller.repeat()).shimmer(
+                    angle: 1,
+                    color: Colors.white,
+                    duration: Duration(milliseconds: 600),
+                    delay: Duration(milliseconds: 200));;
+              },
+            );
+         });
   }
 }

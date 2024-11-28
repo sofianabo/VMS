@@ -10,7 +10,6 @@ import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllGradeModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllStudentModel.dart';
-import 'package:vms_school/main.dart';
 import '../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';
 
@@ -25,6 +24,7 @@ class Getallstudentapi {
   Getallstudent(
       int? sessionID, int? gradeId, int? classId, int? divisionID) async {
     try {
+      c.setIsLoading(true);
       AllSessionModel s = await Getsessionapi(context).Getsession();
       AllGradesModel g = await Getallgradeapi(context).Getallgrade();
     AllClassesModel cl = await Getallclassapi(context).getAllClasses();
@@ -42,6 +42,7 @@ class Getallstudentapi {
           },
 options: getDioOptions());
       if (response.statusCode == 200) {
+        c.setIsLoading(false);
         AllStudentModel student = AllStudentModel.fromJson(response.data);
         c.setAllStudents(student);
       } else {

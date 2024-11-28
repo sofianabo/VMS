@@ -17,7 +17,7 @@ class Allstudentscontroller extends GetxController {
   String gradeIndex = "";
   String classIndex = "";
   String divisionIndex = "";
-
+  bool isLoading = true;
   List<String> gradelist = ["first", "tow", "three"];
   List<String> classlist = [];
   List<String> divisionlist = ["one"];
@@ -47,13 +47,18 @@ class Allstudentscontroller extends GetxController {
   void setAllStudents(AllStudentModel model) {
     stud = model.students!;
     filteredStudents = List.from(stud);
+    setIsLoading(false);
     update();
   }
 
+  setIsLoading(bool value){
+    isLoading = value;
+    update();
+  }
   void searchStudentByName(String query) {
     if (query.isEmpty) {
       filteredStudents =
-          List.from(stud); // إرجاع القائمة الأصلية عند عدم وجود نص.
+          List.from(stud);
     } else {
       filteredStudents = stud
           .where((student) =>
