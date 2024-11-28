@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllGradeModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 
@@ -58,6 +59,15 @@ class StudyYearStudentsController extends GetxController {
     }
     update();
     updateList("grade", gradelist);
+  }
+
+   void setAllDivision(AllDivisionModel division) {
+    divisionlist.clear();
+    for (int j = 0; j < division.division!.length; j++) {
+      divisionlist.add(division.division![j].enName.toString());
+    }
+    update();
+    updateList("division", divisionlist);
   }
 
   void updateList(String type, List<String> options) {

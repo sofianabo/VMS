@@ -1,16 +1,22 @@
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllExamTypeModel.dart';
 
-class AdminSchoolTimeController extends GetxController {
+class ExamTableController extends GetxController {
+  String examTypeIndex = "";
   String examClassIndex = "";
   String examDivisionIndex = "";
 
+  List<String> examType = [];
   List<String> examClass = [];
   List<String> examDivision = [];
 
   void selectIndex(String type, String? index) {
     switch (type) {
+      case 'type':
+        examTypeIndex = index ?? "";
+        break;
       case 'class':
         examClassIndex = index ?? "";
         break;
@@ -19,6 +25,15 @@ class AdminSchoolTimeController extends GetxController {
         break;
     }
     update();
+  }
+
+  void setAllTypes(AllExamTypeModel types) {
+    examType.clear();
+    for (int j = 0; j < types.type!.length; j++) {
+      examType.add(types.type![j].enName.toString());
+    }
+    update();
+    updateList("type", examType);
   }
 
   void setAllClasses(AllClassesModel clas) {
@@ -30,11 +45,10 @@ class AdminSchoolTimeController extends GetxController {
     updateList("class", examClass);
   }
 
-
-   void setAllDivision(AllDivisionModel division) {
+  void setAllDivision(AllDivisionModel division) {
     examDivision.clear();
-    for (int j = 0; j < division.division!.length; j++) {
-      examDivision.add(division.division![j].enName.toString());
+    for (int k = 0; k < division.division!.length; k++) {
+      examDivision.add(division.division![k].enName.toString());
     }
     update();
     updateList("division", examDivision);
@@ -42,6 +56,9 @@ class AdminSchoolTimeController extends GetxController {
 
   void updateList(String type, List<String> options) {
     switch (type) {
+      case 'type':
+        examType = options;
+        break;
       case 'class':
         examClass = options;
         break;
@@ -51,6 +68,8 @@ class AdminSchoolTimeController extends GetxController {
     }
     update();
   }
+
+  String get selectedExamType => examTypeIndex;
 
   String get selectedExamClass => examClassIndex;
 

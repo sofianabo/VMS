@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/DropdownClassesAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/RejectEnrollRequestAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/RequestsController.dart';
+import 'package:vms_school/widgets/Admin_Requests/DropDownRequestEnroll.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/ButtonsGrid.dart';
 import 'package:vms_school/widgets/DropDown.dart';
@@ -16,7 +19,7 @@ class RequestsGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Requestscontroller>(builder: (controller) {
-      if(controller.IsLoading == true){
+      if (controller.IsLoading == true) {
         return Container(
           padding: EdgeInsets.only(left: 30.0, right: 30.0),
           child: GridView.builder(
@@ -52,59 +55,98 @@ class RequestsGrid extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(top: 10.0),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  SchemaWidget(width: 200,height: 20,),
-                                  SchemaWidget(width: 100,height: 20,)
+                                  SchemaWidget(
+                                    width: 200,
+                                    height: 20,
+                                  ),
+                                  SchemaWidget(
+                                    width: 100,
+                                    height: 20,
+                                  )
                                 ],
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 5.0),
-                              child:  SchemaWidget(width: 150,height: 20,),
+                              child: SchemaWidget(
+                                width: 150,
+                                height: 20,
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 5.0),
-                              child:  SchemaWidget(width: 100,height: 20,),
+                              child: SchemaWidget(
+                                width: 100,
+                                height: 20,
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 5.0),
-                              child:  SchemaWidget(width: 125,height: 20,),
+                              child: SchemaWidget(
+                                width: 125,
+                                height: 20,
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 5.0),
-                              child:  SchemaWidget(width: 120,height: 20,),
+                              child: SchemaWidget(
+                                width: 120,
+                                height: 20,
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 5.0),
-                              child:  SchemaWidget(width: 115,height: 20,),
+                              child: SchemaWidget(
+                                width: 115,
+                                height: 20,
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 5.0),
-                              child:  SchemaWidget(width: 110,height: 20,),
+                              child: SchemaWidget(
+                                width: 110,
+                                height: 20,
+                              ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 5.0, bottom: 15.0),
-                              child:  SchemaWidget(width: 105,height: 20,),
+                              padding:
+                                  const EdgeInsets.only(top: 5.0, bottom: 15.0),
+                              child: SchemaWidget(
+                                width: 105,
+                                height: 20,
+                              ),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                SchemaWidget(width: 150,height: 40,radius: 10,),
-                            SchemaWidget(width: 100,height: 20,),
+                                SchemaWidget(
+                                  width: 150,
+                                  height: 40,
+                                  radius: 10,
+                                ),
+                                SchemaWidget(
+                                  width: 100,
+                                  height: 20,
+                                ),
                               ],
                             )
                           ],
                         ),
                       ),
-                    ).animate(onPlay: (controller) => controller.repeat()).shimmer(
-                  angle: 1,
-                  color: Colors.white,
-                  duration: Duration(seconds: 1),
-                  delay: Duration(seconds: 1)),
-                    Center(child: CircularProgressIndicator(
-                      color:Color(0xffe6e7ea),
+                    )
+                        .animate(onPlay: (controller) => controller.repeat())
+                        .shimmer(
+                            angle: 1,
+                            color: Colors.white,
+                            duration: Duration(seconds: 1),
+                            delay: Duration(seconds: 1)),
+                    Center(
+                        child: CircularProgressIndicator(
+                      color: Color(0xffe6e7ea),
                       strokeCap: StrokeCap.round,
                     )),
                   ],
@@ -113,8 +155,7 @@ class RequestsGrid extends StatelessWidget {
             },
           ),
         );
-      }
-      else{
+      } else {
         return Container(
           padding: EdgeInsets.only(left: 30.0, right: 30.0),
           child: GridView.builder(
@@ -166,8 +207,8 @@ class RequestsGrid extends StatelessWidget {
                             "Name : ${controller.filteredregistration[index].guardian?.name}",
                             style: Get.theme.primaryTextTheme.titleSmall!
                                 .copyWith(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal),
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.normal),
                           ),
                         ),
                         Padding(
@@ -176,8 +217,8 @@ class RequestsGrid extends StatelessWidget {
                             "Mobile: ${controller.filteredregistration[index].guardian?.mobile}",
                             style: Get.theme.primaryTextTheme.titleSmall!
                                 .copyWith(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal),
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.normal),
                           ),
                         ),
                         Padding(
@@ -186,8 +227,8 @@ class RequestsGrid extends StatelessWidget {
                             "Email: ${controller.filteredregistration[index].guardian?.email}",
                             style: Get.theme.primaryTextTheme.titleSmall!
                                 .copyWith(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal),
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.normal),
                           ),
                         ),
                         Padding(
@@ -196,8 +237,8 @@ class RequestsGrid extends StatelessWidget {
                             "National ID: ${controller.filteredregistration[index].guardian?.nationalId}",
                             style: Get.theme.primaryTextTheme.titleSmall!
                                 .copyWith(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal),
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.normal),
                           ),
                         ),
                         Padding(
@@ -214,18 +255,19 @@ class RequestsGrid extends StatelessWidget {
                             "Name : ${controller.filteredregistration[index].student?.name}",
                             style: Get.theme.primaryTextTheme.titleSmall!
                                 .copyWith(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal),
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.normal),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 5.0, bottom: 15.0),
+                          padding:
+                              const EdgeInsets.only(top: 5.0, bottom: 15.0),
                           child: Text(
                             "Grade Level: ${controller.filteredregistration[index].student?.clas}",
                             style: Get.theme.primaryTextTheme.titleSmall!
                                 .copyWith(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal),
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.normal),
                           ),
                         ),
                         Row(
@@ -237,12 +279,17 @@ class RequestsGrid extends StatelessWidget {
                               width: 150,
                               height: 40,
                               text: "Manage",
-                              onPressed: () {
+                              onPressed: () async {
                                 Get.dialog(VMSAlertDialog(
                                     action: [
                                       ButtonDialog(
                                         text: 'Reject',
-                                        onPressed: () {},
+                                        onPressed: ()async {
+                                        await  Rejectenrollrequestapi(context)
+                                              .Rejectenrollrequest(controller
+                                                  .registration[index].id!);
+                                          Get.back();
+                                        },
                                         width: 80,
                                         color: Color(0xffB03D3D),
                                       ),
@@ -255,17 +302,17 @@ class RequestsGrid extends StatelessWidget {
                                     ],
                                     contents: Row(
                                       children: [
-                                        DropDown(
+                                        Dropdownrequestenroll(
                                           width: Get.width / 5.2,
-                                          options: ["ads"],
+                                          type: "class",
                                           title: 'Class',
                                         ),
                                         Padding(
                                           padding:
-                                          const EdgeInsets.only(left: 20.0),
-                                          child: DropDown(
+                                              const EdgeInsets.only(left: 20.0),
+                                          child: Dropdownrequestenroll(
                                             width: Get.width / 5.2,
-                                            options: ["ads"],
+                                            type: "division",
                                             title: 'Division',
                                           ),
                                         )
@@ -279,8 +326,8 @@ class RequestsGrid extends StatelessWidget {
                               "${controller.filteredregistration[index].type}",
                               style: Get.theme.primaryTextTheme.titleSmall!
                                   .copyWith(
-                                  color: Color(0xff779DB6),
-                                  fontWeight: FontWeight.normal),
+                                      color: Color(0xff779DB6),
+                                      fontWeight: FontWeight.normal),
                             ),
                           ],
                         )

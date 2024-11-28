@@ -53,3 +53,7 @@ String dashboard = "DashBoard";
 //..................... File ...................//
 
 String getimage = "$hostPort" + "getFile/";
+String getStudyYearStudent = "";
+String getAllStatusRequest = "getTypeRegistration";
+String rejectrequest = "unacceptable";
+String examType = "getExamType";

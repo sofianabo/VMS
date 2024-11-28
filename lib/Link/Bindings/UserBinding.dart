@@ -3,7 +3,6 @@ import 'package:vms_school/Link/Controller/AdminController/Add_Full_Employee_Con
 import 'package:vms_school/Link/Controller/AdminController/AdminHomeContentController.dart';
 import 'package:vms_school/Link/Controller/AdminController/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/AdminTeacherAttendens.dart';
-import 'package:vms_school/Link/Controller/AdminController/AllClassesController.dart';
 import 'package:vms_school/Link/Controller/AdminController/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/AdminController/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/AllTeachersController.dart';
@@ -13,9 +12,11 @@ import 'package:vms_school/Link/Controller/AdminController/Divisions_Controller.
 import 'package:vms_school/Link/Controller/AdminController/DropDownClassesController.dart';
 import 'package:vms_school/Link/Controller/AdminController/DropDownCurriculumn_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/DropDownDivisionController.dart';
+import 'package:vms_school/Link/Controller/AdminController/DropDownExamTypeController.dart';
 import 'package:vms_school/Link/Controller/AdminController/DropDownGradeController.dart.dart';
 import 'package:vms_school/Link/Controller/AdminController/DropDownStatusController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employeeecontroller.dart';
+import 'package:vms_school/Link/Controller/AdminController/ExamTableController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Grade_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Illness_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Labrary_Controller.dart';
@@ -41,7 +42,7 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => PasswordHintController(), fenix: true);
     Get.lazyPut(() => AdminHomeContentController(), fenix: true);
     Get.lazyPut(() => Homescreencontroller(), fenix: true);
-    Get.lazyPut(() => Allclassescontroller(), fenix: true);
+    Get.lazyPut(() => ExamTableController(), fenix: true);
     Get.lazyPut(() => Requestscontroller(), fenix: true);
     Get.lazyPut(() => DropDownController(), fenix: true);
     Get.lazyPut(() => Allgaurdiancontroller(), fenix: true);
@@ -71,5 +72,6 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => AddFullEmployeeController(), fenix: true);
     Get.lazyPut(() => Dropdownstatuscontroller(), fenix: true);
     Get.lazyPut(() => All_Screen_Sessions_Controller(), fenix: true);
+    Get.lazyPut(() => Dropdownexamtypecontroller(), fenix: true);
   }
 }

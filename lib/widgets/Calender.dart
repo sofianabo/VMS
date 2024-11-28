@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/AllEmpolyeeController.dart';
+import 'package:vms_school/Link/Controller/AdminController/RequestsController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DateControler.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:intl/intl.dart';
@@ -254,6 +255,74 @@ class JoinDate extends StatelessWidget {
                       size: 16,
                     ),
                     onPressed: () => controller.selectJoinDate(context),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class selectDateRequest extends StatelessWidget {
+  final double width;
+  final double? height;
+  final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
+
+  selectDateRequest({
+    super.key,
+    required this.width,
+    this.height,
+    this.isRequired = false, // افتراضي الحقل غير مطلوب.
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final Requestscontroller controller = Get.put(Requestscontroller());
+    return Obx(
+      () => Container(
+        width: width,
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: height ?? 40,
+              child: TextFormField(
+                style: TextStyle(fontSize: 14),
+                controller: TextEditingController(
+                  text: controller.requestDate.value != null
+                      ? DateFormat('yyyy-MM-dd')
+                          .format(controller.requestDate.value!)
+                      : '',
+                ),
+                readOnly: true,
+                onTap: () => controller.selectDate(context),
+                decoration: InputDecoration(
+                  hintText: "yyyy-MM-dd",
+                  hintStyle: Get.theme.primaryTextTheme.titleMedium!
+                      .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(color: Color(0xffD9D9D9), width: 2),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: const BorderSide(color: Color(0xffD9D9D9)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      VMS_Icons.calender,
+                      color: Get.theme.primaryColor,
+                      size: 16,
+                    ),
+                    onPressed: () => controller.selectDate(context),
                   ),
                 ),
               ),
