@@ -21,7 +21,6 @@ class Dropdownstatusapi {
       String myurl = "${hostPort}${getAllStatusRequest}";
       var response = await dio.get(myurl,
           options: getDioOptions());
-      var response = await dio.get(myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         AllStatusModel status = AllStatusModel.fromJson(response.data);
         c.setStatus(status);
