@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/DropdownDivisionAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDownController.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 
 class DropDownStudyYearStudents extends StatelessWidget {
   final double width;
@@ -87,7 +89,7 @@ class DropDownStudyYearStudents extends StatelessWidget {
                 ),
               ),
             ),
-            ..._getDropdownItems(cont),
+            ..._getDropdownItems(cont, context),
           ],
           borderRadius: BorderRadius.circular(3),
         ),
@@ -95,7 +97,8 @@ class DropDownStudyYearStudents extends StatelessWidget {
     });
   }
 
-  List<DropdownMenuItem<String>> _getDropdownItems(StudyYearStudentsController cont) {
+  List<DropdownMenuItem<String>> _getDropdownItems(
+      StudyYearStudentsController cont, BuildContext context) {
     List<DropdownMenuItem<String>> items = [];
 
     switch (type) {
@@ -132,6 +135,11 @@ class DropDownStudyYearStudents extends StatelessWidget {
               style: Get.theme.primaryTextTheme.titleMedium!
                   .copyWith(fontSize: 14),
             ),
+            onTap: () async {
+              AllDivisionModel division = await Dropdowndivisionapi(context)
+                  .Dropdowndivision(cont.classlist.indexOf(value));
+              cont.setAllDivision(division);
+            },
           );
         }).toList());
         break;

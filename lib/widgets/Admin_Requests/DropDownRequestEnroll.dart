@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Controller/AdminController/AllClassesController.dart';
+import 'package:vms_school/Link/API/AdminAPI/DropdownDivisionAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/RequestsController.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 
-class DropDownTable extends StatelessWidget {
+class  Dropdownrequestenroll 
+ extends StatelessWidget {
   final double width;
   final String title;
-  final String type; // تحديد نوع الـ DropDown
+  final String type;
   final Color? color;
 
-  const DropDownTable({
+  const  Dropdownrequestenroll 
+({
     Key? key,
     required this.title,
     this.color,
@@ -18,24 +22,26 @@ class DropDownTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<Allclassescontroller>(builder: (cont) {
-      // القيمة الافتراضية تكون العنوان، وبالاعتماد على النوع نقوم بالتغيير عند الاختيار
+    return GetBuilder<Requestscontroller>(builder: (cont) {
       String selectedValue = "";
 
-      // تحديد القيمة المختارة بناءً على النوع
       switch (type) {
-        case 'type':
-          selectedValue =
-              cont.selectedExamType.isNotEmpty ? cont.selectedExamType : title;
-          break;
-        case 'class':
-          selectedValue = cont.selectedExamClass.isNotEmpty
-              ? cont.selectedExamClass
+        case 'status':
+          selectedValue = cont.selectedStatusIndex.isNotEmpty
+              ? cont.selectedStatusIndex
               : title;
+
+          break;
+      
+        case 'class':
+          selectedValue = cont.selectedClassIndex.isNotEmpty
+              ? cont.selectedClassIndex
+              : title;
+
           break;
         case 'division':
-          selectedValue = cont.selectedExamDivision.isNotEmpty
-              ? cont.selectedExamDivision
+          selectedValue = cont.selectedDivisionIndex.isNotEmpty
+              ? cont.selectedDivisionIndex
               : title;
           break;
       }
@@ -82,7 +88,7 @@ class DropDownTable extends StatelessWidget {
                 ),
               ),
             ),
-            ..._getDropdownItems(cont),
+            ..._getDropdownItems(cont, context),
           ],
           borderRadius: BorderRadius.circular(3),
         ),
@@ -90,12 +96,17 @@ class DropDownTable extends StatelessWidget {
     });
   }
 
-  List<DropdownMenuItem<String>> _getDropdownItems(Allclassescontroller cont) {
+  List<DropdownMenuItem<String>> _getDropdownItems(
+      Requestscontroller cont, BuildContext context) {
     List<DropdownMenuItem<String>> items = [];
+    String sessionSelected = "";
+    String gradeSelected = "";
+    String classSelected = "";
+    String divisionSelected = "";
 
     switch (type) {
-      case 'type':
-        items.addAll(cont.examType.map((String value) {
+      case 'status':
+        items.addAll(cont.statusList.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
@@ -103,11 +114,16 @@ class DropDownTable extends StatelessWidget {
               style: Get.theme.primaryTextTheme.titleMedium!
                   .copyWith(fontSize: 14),
             ),
+            onTap: () async {
+              sessionSelected = value;
+           
+            },
           );
         }).toList());
         break;
+    
       case 'class':
-        items.addAll(cont.examClass.map((String value) {
+        items.addAll(cont.classlist.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
@@ -115,11 +131,19 @@ class DropDownTable extends StatelessWidget {
               style: Get.theme.primaryTextTheme.titleMedium!
                   .copyWith(fontSize: 14),
             ),
+            onTap: () async {
+              classSelected = value;
+                    AllDivisionModel division = await Dropdowndivisionapi(context)
+                  .Dropdowndivision(cont.classlist.indexOf(value));
+                                cont.setAllDivisionDialog(division);
+
+            
+            },
           );
         }).toList());
         break;
       case 'division':
-        items.addAll(cont.examDivision.map((String value) {
+        items.addAll(cont.divisionlist.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
@@ -127,6 +151,10 @@ class DropDownTable extends StatelessWidget {
               style: Get.theme.primaryTextTheme.titleMedium!
                   .copyWith(fontSize: 14),
             ),
+            onTap: () async {
+              divisionSelected = value;
+             
+            },
           );
         }).toList());
         break;
@@ -135,3 +163,4 @@ class DropDownTable extends StatelessWidget {
     return items;
   }
 }
+

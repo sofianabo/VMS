@@ -30,3 +30,5 @@ String getAllEmployee = "getAllEmployee";
 String getimage = "$hostPort" + "getFile/";
 String getStudyYearStudent = "";
 String getAllStatusRequest = "getTypeRegistration";
+String rejectrequest = "unacceptable";
+String examType = "getExamType";

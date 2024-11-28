@@ -3,14 +3,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/API/AdminAPI/DropDownExamTypeAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/DropdownClassesAPI.dart';
-import 'package:vms_school/Link/Controller/AdminController/AllClassesController.dart';
-import 'package:vms_school/widgets/Admin_Table/DropDownTable.dart';
-import 'package:vms_school/widgets/Calender.dart';
-import 'package:vms_school/widgets/DropDown.dart';
+import 'package:vms_school/Link/API/AdminAPI/ExamTableAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/ExamTableController.dart';
+import 'package:vms_school/widgets/Admin_Table/DropDownExamTable.dart';
 
-class ExamTable extends StatelessWidget {
+class ExamTable extends StatefulWidget {
   ExamTable({super.key});
+
+  @override
+  State<ExamTable> createState() => _ExamTableState();
+}
+
+class _ExamTableState extends State<ExamTable> {
+  @override
+  @override
+  void initState() {
+    Examtableapi(context).Examtable();
+    super.initState();
+  }
 
   List<String> tableData = [
     'Class',
@@ -24,7 +36,6 @@ class ExamTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Getallclassapi(context).getAllClasses();
     return Padding(
       padding: const EdgeInsets.only(top: 38.0, right: 25.0, left: 25.0),
       child: Column(
@@ -35,14 +46,14 @@ class ExamTable extends StatelessWidget {
             width: Get.width * 0.9,
             child: Row(
               children: [
-                DropDownTable(
+                DropDownexamTable(
                   title: "Type",
                   width: Get.width / 4,
                   type: 'type',
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: DropDownTable(
+                  child: DropDownexamTable(
                     type: 'class',
                     title: "Class",
                     width: Get.width / 4,
@@ -50,7 +61,7 @@ class ExamTable extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: DropDownTable(
+                  child: DropDownexamTable(
                     title: "Division",
                     width: Get.width / 4,
                     type: 'division',
@@ -117,7 +128,7 @@ class ExamTable extends StatelessWidget {
                 width: Get.width * 0.9,
                 margin: const EdgeInsets.only(top: 20),
                 child: SingleChildScrollView(
-                    child: GetBuilder<Allclassescontroller>(builder: (control) {
+                    child: GetBuilder<ExamTableController>(builder: (control) {
                   return DataTable(
                     headingRowColor:
                         const WidgetStatePropertyAll(Color(0xffd4dfe5)),

@@ -2,8 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/DropDownStatusAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/DropdownClassesAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/RequestsController.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllStatusModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/RequestsModel.dart';
 import 'package:vms_school/main.dart';
@@ -20,7 +22,10 @@ class GetAllRequestsapi {
     try {
       AllStatusModel statusModel =
           await Dropdownstatusapi(context).Dropdownstatus();
+      AllClassesModel classesModel =
+          await Getallclassapi(context).getAllClasses();
       c.setAllStatus(statusModel);
+      c.setAllClassDialog(classesModel);
       c.restor();
 
       String myurl = "${global.hostPort}${global.getRequests}";

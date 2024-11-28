@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/DropdownDivisionAPI.dart';
-import 'package:vms_school/Link/Controller/AdminController/Admin_School_Time.dart';
+import 'package:vms_school/Link/Controller/AdminController/ExamTableController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 
-class DropDownSchoolTime extends StatelessWidget {
+class DropDownexamTable extends StatelessWidget {
   final double width;
   final String title;
   final String type; // تحديد نوع الـ DropDown
   final Color? color;
 
-  const DropDownSchoolTime({
+  const DropDownexamTable({
     Key? key,
     required this.title,
     this.color,
@@ -20,11 +20,16 @@ class DropDownSchoolTime extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AdminSchoolTimeController>(builder: (cont) {
-      // تعيين القيمة الافتراضية لـ selectedValue
-      String selectedValue = title;
+    return GetBuilder<ExamTableController>(builder: (cont) {
+      // القيمة الافتراضية تكون العنوان، وبالاعتماد على النوع نقوم بالتغيير عند الاختيار
+      String selectedValue = "";
 
+      // تحديد القيمة المختارة بناءً على النوع
       switch (type) {
+        case 'type':
+          selectedValue =
+              cont.selectedExamType.isNotEmpty ? cont.selectedExamType : title;
+          break;
         case 'class':
           selectedValue = cont.selectedExamClass.isNotEmpty
               ? cont.selectedExamClass
@@ -52,9 +57,9 @@ class DropDownSchoolTime extends StatelessWidget {
           iconDisabledColor: Colors.grey,
           iconEnabledColor: Colors.black,
           value: selectedValue,
-          // استخدم selectedValue مباشرة
           isExpanded: true,
           underline: const SizedBox(),
+          // تأكيد عدم وجود خط تحت الـ Dropdown
           icon: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -75,7 +80,7 @@ class DropDownSchoolTime extends StatelessWidget {
                 title,
                 style: Get.theme.primaryTextTheme.titleMedium!.copyWith(
                   fontSize: 14,
-                  color: Colors.black,
+                  color: Colors.black, // لون العنوان
                 ),
               ),
             ),
@@ -88,10 +93,23 @@ class DropDownSchoolTime extends StatelessWidget {
   }
 
   List<DropdownMenuItem<String>> _getDropdownItems(
-      AdminSchoolTimeController cont, BuildContext context) {
+      ExamTableController cont, BuildContext context) {
     List<DropdownMenuItem<String>> items = [];
 
     switch (type) {
+      case 'type':
+        items.addAll(cont.examType.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.primaryTextTheme.titleMedium!
+                  .copyWith(fontSize: 14),
+            ),
+            onTap: () {},
+          );
+        }).toList());
+        break;
       case 'class':
         items.addAll(cont.examClass.map((String value) {
           return DropdownMenuItem<String>(
@@ -104,7 +122,7 @@ class DropDownSchoolTime extends StatelessWidget {
             onTap: () async {
               AllDivisionModel division = await Dropdowndivisionapi(context)
                   .Dropdowndivision(cont.examClass.indexOf(value));
-              cont.setAllDivision(division);
+                   cont.setAllDivision(division);
             },
           );
         }).toList());
