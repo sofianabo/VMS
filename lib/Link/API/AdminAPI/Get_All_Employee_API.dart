@@ -11,10 +11,12 @@ class Get_All_Employee_API {
   Get_All_Employee_API(this.context);
 
   BuildContext context;
-  Dio dio = Dio();
 
-  Get_All_Employee() async {
+
+    static Get_All_Employee() async {
+    Dio dio = Dio();
     final Allempolyeecontroller controller = Get.find<Allempolyeecontroller>();
+    controller.setIsLoading(true);
     String myurl = "${hostPort}${getAllEmployee}";
     try {
       var response = await dio.get(
@@ -25,6 +27,7 @@ class Get_All_Employee_API {
         AllEmployeeModel allEmployeeModel =
         AllEmployeeModel.fromJson(response.data);
         controller.setEmployee(allEmployeeModel);
+
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,

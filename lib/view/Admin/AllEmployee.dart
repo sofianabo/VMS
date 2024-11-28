@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Get_All_Employee_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/AllEmpolyeeController.dart';
 import 'package:vms_school/view/Admin/AllEmployeeGrid.dart';
 import 'package:vms_school/view/Admin/Employee_Manager/Add_Full_Employee.dart';
+import 'package:vms_school/widgets/Admin_Employee/Export_Data.dart';
+import 'package:vms_school/widgets/Admin_School/All_Screen_Sessions.dart';
 import 'package:vms_school/widgets/Admin_employee/DropDownAllEmployee.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
@@ -30,18 +33,17 @@ class _AllEmployeeState extends State<AllEmployee> {
 
   @override
   void initState() {
-    Get_All_Employee_API(context).Get_All_Employee();
+    Get_All_Employee_API.Get_All_Employee();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    double w = MediaQuery.of(context).size.width;
+        double w = MediaQuery.of(context).size.width;
     return Expanded(
         child: Column(
       children: [
         Container(
-
           margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           alignment: Alignment.center,
           child: Column(
@@ -54,7 +56,7 @@ class _AllEmployeeState extends State<AllEmployee> {
                     children: [
                       Padding(
                           padding: const EdgeInsets.only(left: 8.0),
-                          child: Dropdownallemployee(
+                          child: DropDownAllSessions(
                               title: "Session",
                               width: w / 6.5,
                               type: "session")),
@@ -64,14 +66,25 @@ class _AllEmployeeState extends State<AllEmployee> {
                               title: "Job Title",
                               width: w / 6.5,
                               type: "jobTitle")),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: TextFormSearch(
-                          width: w / 3.5,
-                          radius: 5,
-                          controller: search,
-                          suffixIcon: Icons.search,
-                        ),
+                      GetBuilder<Allempolyeecontroller>(
+                          builder: (controller) {
+                            return Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: TextFormSearch(
+                                click: () {
+                                  controller.clearFilter();
+                                  print("Filter cleared");
+                                },
+                                width: w / 3.5,
+                                radius: 5,
+                                controller: search,
+                                onchange: (value) {
+                                  controller.searchRequestByName( value ,controller.jobTitleIndex);
+                                },
+                                suffixIcon: search.text.isNotEmpty ? Icons.close : Icons.search,
+                              ),
+                            );
+                          }
                       ),
                     ],
                   ),
@@ -103,6 +116,7 @@ class _AllEmployeeState extends State<AllEmployee> {
                               size: 18, color: Get.theme.primaryColor),
                           onSelected: (value) {
                             if (value == "Add Employee") {
+
                               Get.dialog(VMSAlertDialog(
                                   action: [
                                     ButtonDialog(
@@ -162,6 +176,7 @@ class _AllEmployeeState extends State<AllEmployee> {
                                   subtitle: "none"));
                             }
                             if (value == "Add Full Employee") {
+
                               Add_Full_Employee(context);
                             }
                           },
@@ -203,7 +218,10 @@ class _AllEmployeeState extends State<AllEmployee> {
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
-                              onPressed: () {},
+                              onPressed: () {
+                                exportEmployeesToPDF(Get.find<Allempolyeecontroller>().filteredreemployees);
+
+                              },
                               icon: Icon(VMS_Icons.pdf,
                                   size: 18, color: Get.theme.primaryColor)),
                         ),
@@ -228,7 +246,9 @@ class _AllEmployeeState extends State<AllEmployee> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportEmployeesToExcel(Get.find<Allempolyeecontroller>().filteredreemployees);
+                            },
                             icon: Icon(VMS_Icons.xl,
                                 size: 18, color: Get.theme.primaryColor)),
                       ),

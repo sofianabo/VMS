@@ -2,14 +2,16 @@ import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart' as gets;
 import 'package:vms_school/Link/API/API.dart';
+import 'package:vms_school/Link/API/AdminAPI/Get_All_Employee_API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/Controller/AdminController/AllEmpolyeeController.dart';
+import 'package:vms_school/widgets/Loading_Dialog.dart';
 
-class AddFullEmployee {
+class EditEmployeeApi {
   static Dio dio = Dio();
-
-  static Future<dynamic> addFullEmployees({
+  static Future<dynamic> EditEmployee({
+    required String employeeId,
     required String First_Name,
     required String Last_Name,
     required String Father_Name,
@@ -20,7 +22,6 @@ class AddFullEmployee {
     required String Current_Address,
     required String Birth_Date,
     required String Join_Date,
-    required String Jop_Title,
     required String Gender,
     required String Family_State,
     Uint8List? selectedImage,
@@ -39,10 +40,12 @@ class AddFullEmployee {
     String? Experience,
     String? Note,
   }) async {
-    String myURI = "${hostPort}${addFullEmployee}";
+    CancelToken cancelToken = CancelToken();
+    String myURI = "${hostPort}${updateEmployee}";
     try {
-      // Prepare form data
+      Loading_Dialog(cancelToken: cancelToken);
       FormData formData = FormData.fromMap({
+        "employeeId": employeeId,
         "firstName": First_Name,
         "lastName": Last_Name,
         "fatherName": Father_Name,
@@ -57,8 +60,8 @@ class AddFullEmployee {
         "address": Address,
         "qualification": Qualification,
         "experience": Experience,
-        "jobTitle": Jop_Title,
         "note": Note,
+        "salary": Salary,
         "bankAccountTitle": Bank_Account_Title,
         "bankName": Bank_Name,
         "bankBranchName": Bank_Branch_Name,
@@ -69,26 +72,27 @@ class AddFullEmployee {
         "lenkedinUrl": Linkedin_URL,
         "instagramUrl": Instagram_URL,
         "careerHistory": Career_History,
+        'ownData':true
       });
 
-      // Add image file if available
       if (selectedImage != null) {
         formData.files.add(MapEntry(
           "file",
-          MultipartFile.fromBytes(selectedImage, filename: "profile.jpg"),
+          MultipartFile.fromBytes(selectedImage, filename: "$employeeId"+"ProfileImage"),
         ));
       }
 
-      // Send POST request
       var response = await dio.post(
+        cancelToken: cancelToken,
         myURI,
         data: formData,
         options: getDioOptions(),
       );
-
       if (response.statusCode == 200) {
+        await Get_All_Employee_API.Get_All_Employee();
         gets.Get.find<Allempolyeecontroller>().SetDefualtValue();
-
+        gets.Get.back();
+        gets.Get.back();
         return response.statusCode;
       } else {
         ErrorHandler.handleDioError(DioError(

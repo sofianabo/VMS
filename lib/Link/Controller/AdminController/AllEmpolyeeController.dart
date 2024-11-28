@@ -2,10 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/All_Employee_Model.dart';
+import 'package:vms_school/Link/Model/AdminModel/One_Employee_Model.dart';
 
 class Allempolyeecontroller extends GetxController {
 
-  List<Employees> employee = [];
+  List<Employees> employees = [];
+  List<Employees> filteredreemployees = [];
+
+
+
+  Employee? employee;
+  String? Value;
+  bool isLoading = true;
 
   String sessionIndex = "";
   String jobTitleIndex = "";
@@ -15,15 +23,69 @@ class Allempolyeecontroller extends GetxController {
   String GenderListIndex = "";
   String Family_StatusIndex = "";
 
+  SetDefualtValue(){
+    GenderListIndex="";
+    Family_StatusIndex="";
+    update();
+  }
+
+  void clearFilter() {
+    searchRequestByName("",jobTitleIndex);
+    update();
+  }
   void setEmployee(AllEmployeeModel model) {
-    employee = model.employees!;
+    employees = model.employees!;
+    filteredreemployees = List.from(employees);
+    if (Value != null && Value!.isNotEmpty) {
+      searchRequestByName(Value.toString(), jobTitleIndex);
+    }
+
+    if (jobTitleIndex.isNotEmpty) {
+      filteredreemployees = filteredreemployees.where((emp) {
+        return emp.jobTitle == jobTitleIndex;
+      }).toList();
+    }
+
+    setIsLoading(false);
+    update();
+  }
+
+setIsLoading(bool value){
+  isLoading = value;
+  update();
+}
+  void searchRequestByName(String query, String jobindexed) {
+    List<Employees> tempFilteredList = List.from(employees);
+    if (query != null && query.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((emp) {
+        final empName = emp.userName?.toLowerCase() ?? '';
+        final empFullName = emp.fullName?.toLowerCase() ?? '';
+        return empName.contains(query.toLowerCase()) ||
+            empFullName.contains(query.toLowerCase());
+      }).toList();
+    }
+    Value = query;
+    if (jobindexed.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((emp) {
+        return emp.jobTitle == jobindexed;
+      }).toList();
+    }
+
+    filteredreemployees = tempFilteredList;
+    update();
+  }
+
+  void setOneEmployee(One_Employee_Model onEmployee) {
+    employee = onEmployee.employee;
+    GenderListIndex = employee?.gender ?? "";
+    Family_StatusIndex = employee?.familystatus ?? "";
     update();
   }
 
   List<String> GenderList = ["Male", "Female"];
   List<String> Family_StatusList = ["Widow", "Single", "Married", "Divorced"];
 
-  List<String> JobTitleList = [];
+  List<String> JobTitleList = ["Manager","Dustman", "Guard","Registration","Secretariat","Secretary","Supervisor","Accountant","Technical Support", "Technical Support Manager",];
   List<String> dialogjobTitleList = ["Dustman", "Guard"];
   List<String> sessionlist = [];
   List<String> rolllist = ['Class', 'Observer'];
@@ -53,6 +115,11 @@ class Allempolyeecontroller extends GetxController {
       case 'Family_Status':
         Family_StatusIndex = index ?? "";
         break;
+    }
+    if(type == "jobTitle" && Value!=null){
+      searchRequestByName(Value.toString(),jobTitleIndex);
+    }else if(type == "jobTitle" && Value ==null) {
+      searchRequestByName("",jobTitleIndex);
     }
     update();
   }
@@ -113,6 +180,7 @@ class Allempolyeecontroller extends GetxController {
         sessionlist = options;
         break;
       case 'jobTitle':
+
         JobTitleList = options;
         break;
       case 'roll':
@@ -136,7 +204,7 @@ class Allempolyeecontroller extends GetxController {
 
   String get selectedsessionIndex => sessionIndex;
 
-  String get selectedgradeIndex => jobTitleIndex;
+  String get selectejobTitleIndex => jobTitleIndex;
 
   String get selecterollIndex => rollIndex;
 

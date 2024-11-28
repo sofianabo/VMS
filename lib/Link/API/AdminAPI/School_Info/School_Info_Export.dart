@@ -286,3 +286,5 @@ void exportRequestsToPDF(List<Registration> registrations) async {
     ..click();
   html.Url.revokeObjectUrl(url);
 }
+
+

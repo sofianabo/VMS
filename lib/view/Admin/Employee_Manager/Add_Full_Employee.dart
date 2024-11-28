@@ -12,6 +12,7 @@ import 'package:vms_school/widgets/VMSAlertDialog.dart';
 import 'package:vms_school/widgets/Admin_employee/DropDownAllEmployee.dart';
 
 Add_Full_Employee(BuildContext context) {
+
   TextEditingController First_Name = TextEditingController();
   TextEditingController Last_Name = TextEditingController();
   TextEditingController Father_Name = TextEditingController();
@@ -38,12 +39,13 @@ Add_Full_Employee(BuildContext context) {
   Get.dialog(
       GetBuilder<Allempolyeecontroller>(
         builder: (controller) {
+
           return VMSAlertDialog(
           action: [
             ButtonDialog(
                 text: "Add Employee",
                 onPressed: () async {
-                   await AddFullEmployee.addFullEmployee(
+                   await AddFullEmployee.addFullEmployees(
                      First_Name:First_Name.text,
                      Last_Name:Last_Name.text,
                      Father_Name:Father_Name.text,
@@ -58,6 +60,7 @@ Add_Full_Employee(BuildContext context) {
                      Gender: controller.GenderListIndex,
                      Family_State:controller.Family_StatusIndex,
                      Salary:Salary.text,
+                     selectedImage: Get.find<AddFullEmployeeController>().selectedImage.value,
                      Facebook_URL:Facebook_URL.text,
                      X_Platform_URL:X_Platform_URL.text,
                      Linkedin_URL:Linkedin_URL.text,
@@ -79,6 +82,7 @@ Add_Full_Employee(BuildContext context) {
           ],
           contents: GetBuilder<AddFullEmployeeController>(
               builder: (controller) {
+
                 return Container(
                   width: 520,
                   child: SingleChildScrollView(

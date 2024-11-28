@@ -1,46 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 import 'package:vms_school/Link/API/API.dart';
+import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Delete_Employee.dart';
+import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_Employee_By_Id_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/AllEmpolyeeController.dart';
+import 'package:vms_school/view/Auth/LoginScreen.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
+import 'package:vms_school/widgets/Schema_Widget.dart';
 import '../../Icons_File/v_m_s__icons_icons.dart';
 import '../../widgets/GridAnimation.dart';
 import '../../widgets/VMSAlertDialog.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class AllEmployeeGrid extends StatelessWidget {
-  List<Map<String, dynamic>> l = [
-    {
-      "name": "Laith Haitham Azzam",
-      "roll": "ADMIN",
-      "jop": "IT Support",
-      "salary": "150.0000000",
-    },
-    {
-      "name": "Laith Haitham Azzam",
-      "roll": "Sub Admin",
-      "jop": "IT Support",
-      "salary": "150.0000000",
-    },
-    {
-      "name": "Laith Haitham Azzam",
-      "roll": "Registration",
-      "jop": "IT Support",
-      "salary": "150.0000000",
-    },
-    {
-      "name": "Laith Haitham Azzam",
-      "roll": "Supervisor",
-      "jop": "IT Support",
-      "salary": "150.0000000",
-    },
-    {
-      "name": "Laith Haitham Azzam",
-      "roll": "Accountant",
-      "jop": "IT Support",
-      "salary": "150.0000000",
-    },
-  ];
+
 
   AllEmployeeGrid({super.key});
 
@@ -48,18 +23,125 @@ class AllEmployeeGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<Allempolyeecontroller>(
         builder: (controller) {
-          return GridView.builder(
+          return  controller.isLoading ?
+          GridView.builder(
             padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,
                 crossAxisSpacing: 20.0,
                 mainAxisSpacing: 20.0,
                 childAspectRatio: 1.4),
-            itemCount: controller.employee.length, // عدد العناصر في الشبكة
+            itemCount: 8, // عدد العناصر في الشبكة
+            itemBuilder: (context, index) {
+              return HoverScaleCard(
+                child: Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: Colors.grey, width: 0.5),
+                      color: Colors.white,
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(0, 2),
+                            blurRadius: 1)
+                      ]),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SchemaWidget(
+                            width: 80,
+                            height: 80,
+                          ),
+                          Expanded(
+                              child: Center(
+                                  child:  SchemaWidget(
+                                    width: 100,
+                                    height: 20,
+                                  ),
+                              ))
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment
+                                .spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                              Row(
+                                children: [
+                                  SchemaWidget(
+                                    width: 20,
+                                    height: 20,
+                                  ),
+                                  SchemaWidget(
+                                    width: 100,
+                                    height: 20,
+                                  ),
+                                ],
+                              )
+
+                                ],
+                              ),
+                      SchemaWidget(
+                        width: 100,
+                        height: 20,
+                      ),
+                              SchemaWidget(
+                                width: 100,
+                                height: 20,
+                              ),
+                            ],
+                          ),
+
+
+                          SchemaWidget(
+                            width: 60,
+                            height: 60,
+                             radius: 60,
+                          ),
+
+
+
+
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ).animate(
+                  onPlay: (controller) => controller.repeat()).shimmer(
+                  angle: 1,
+                  color: Colors.white,
+                  duration: Duration(milliseconds: 600),
+                  delay: Duration(milliseconds: 200)
+              );
+            },
+          ):
+          controller.filteredreemployees.isNotEmpty ? GridView.builder(
+            padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+                crossAxisSpacing: 20.0,
+                mainAxisSpacing: 20.0,
+                childAspectRatio: 1.4),
+            itemCount: controller.filteredreemployees.length, // عدد العناصر في الشبكة
             itemBuilder: (context, index) {
               return HoverScaleCard(
                 child: GestureDetector(
-                    onTap: () {},
+                    onTap: () async {
+                      await GetEmployeeByIdApi.GetEmployeeById(employeeID: controller.filteredreemployees[index].id.toString(),context: context,index: index);
+                    },
                     child: Container(
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
@@ -93,13 +175,14 @@ class AllEmployeeGrid extends StatelessWidget {
                                       action: [
                                         ButtonDialog(
                                             text: "Delete",
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              DeleteEmployee.DeleteEmployeeByID(employeeID: controller.filteredreemployees[index].id.toString() );
+                                            },
                                             color: Color(0xffB03D3D),
                                             width: 80),
                                         ButtonDialog(
                                             text: "Cancel",
                                             onPressed: () {
-                                              Get.back();
                                             },
                                             color: Get.theme.primaryColor,
                                             width: 80)
@@ -112,7 +195,7 @@ class AllEmployeeGrid extends StatelessWidget {
                                             children: [
                                               Text(
                                                 "Do You Want To Delete ${controller
-                                                    .employee[index]
+                                                    .employees[index]
                                                     .fullName} Employee",
                                                 style: Get.theme
                                                     .primaryTextTheme
@@ -133,7 +216,7 @@ class AllEmployeeGrid extends StatelessWidget {
                               Expanded(
                                   child: Center(
                                       child: Text(
-                                        "${controller.employee[index]
+                                        "${controller.filteredreemployees[index]
                                             .fullName}",
                                         style: Get.theme.primaryTextTheme
                                             .bodyMedium!
@@ -155,21 +238,21 @@ class AllEmployeeGrid extends StatelessWidget {
                                   Row(
                                     children: [
                                       Text(
-                                        "${controller.employee[index].roll}",
+                                        "${controller.filteredreemployees[index].roll}",
                                         style: Get.theme.primaryTextTheme
                                             .bodyMedium!
                                             .copyWith(
-                                            color: controller.employee[index]
+                                            color: controller.filteredreemployees[index]
                                                 .roll ==
                                                 "Accountant"
                                                 ? Color(0xff2684FC)
-                                                : l[index]['roll'] ==
+                                                : controller.filteredreemployees[index].roll ==
                                                 "Sub Admin"
                                                 ? Color(0xff297686)
-                                                : l[index]['roll'] ==
+                                                : controller.filteredreemployees[index].roll ==
                                                 "Registration"
                                                 ? Color(0xffB27671)
-                                                : l[index]['roll'] ==
+                                                : controller.filteredreemployees[index].roll ==
                                                 "Supervisor"
                                                 ? Color(0xff2F9742)
                                                 : Get.theme
@@ -180,30 +263,30 @@ class AllEmployeeGrid extends StatelessWidget {
                                       Padding(
                                         padding: const EdgeInsets.all(5.0),
                                         child: Icon(
-                                          controller.employee[index].roll ==
+                                          controller.filteredreemployees[index].roll ==
                                               "Accountant"
                                               ? Icons
                                               .account_balance_wallet_outlined
-                                              : l[index]['roll'] == "Sub Admin"
+                                              : controller.filteredreemployees[index].roll == "Sub Admin"
                                               ? Icons.manage_accounts_outlined
-                                              : l[index]['roll'] ==
+                                              : controller.filteredreemployees[index].roll ==
                                               "Registration"
                                               ? Icons.app_registration
-                                              : l[index]['roll'] ==
+                                              : controller.filteredreemployees[index].roll ==
                                               "Supervisor"
                                               ? Icons
                                               .supervised_user_circle_outlined
                                               : Icons
                                               .admin_panel_settings_outlined,
-                                          color: controller.employee[index]
+                                          color: controller.filteredreemployees[index]
                                               .roll == "Accountant"
                                               ? Color(0xff2684FC)
-                                              : l[index]['roll'] == "Sub Admin"
+                                              : controller.filteredreemployees[index].roll == "Sub Admin"
                                               ? Color(0xff297686)
-                                              : l[index]['roll'] ==
+                                              : controller.filteredreemployees[index].roll ==
                                               "Registration"
                                               ? Color(0xffB27671)
-                                              : l[index]['roll'] ==
+                                              : controller.filteredreemployees[index].roll ==
                                               "Supervisor"
                                               ? Color(0xff2F9742)
                                               : Get.theme.primaryColor,
@@ -212,7 +295,7 @@ class AllEmployeeGrid extends StatelessWidget {
                                     ],
                                   ),
                                   Text(
-                                    "${controller.employee[index].jobTitle}",
+                                    "${controller.filteredreemployees[index].jobTitle}",
                                     style: Get.theme.primaryTextTheme
                                         .bodyMedium!
                                         .copyWith(
@@ -221,7 +304,7 @@ class AllEmployeeGrid extends StatelessWidget {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
-                                    "${controller.employee[index].salary}",
+                                    "${controller.filteredreemployees[index].salary}",
                                     style: Get.theme.primaryTextTheme
                                         .bodyMedium!
                                         .copyWith(
@@ -231,10 +314,44 @@ class AllEmployeeGrid extends StatelessWidget {
                                   )
                                 ],
                               ),
-                              Image.network(
-                                  "$getimage${controller.employee[index]
-                                      .imageId}",
-                                  height: 100, width: 100),
+
+
+                              FutureBuilder(
+                                future: precacheImage(NetworkImage("$getimage${controller.filteredreemployees[index].imageId}"), context),
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState == ConnectionState.done) {
+                                    return  CircleAvatar(
+                                      maxRadius: 60,
+                                      backgroundColor: const Color(0xffC4C4C4),
+                                      backgroundImage:
+                                      controller.filteredreemployees[index].imageId != null
+                                          ? NetworkImage("$getimage${controller.filteredreemployees[index].imageId}") :
+                                      null,
+
+                                      child: controller.filteredreemployees[index].imageId == null
+                                          ? const Icon(
+                                        Icons.image_outlined,
+                                        color: Colors.white,
+                                        size: 35,
+                                      )
+                                          : null,
+                                    );
+                                  } else {
+                                    return CircleAvatar(
+                                      maxRadius: 60,
+                                      backgroundColor: const Color(0xffC4C4C4),
+                                      child: LoadingAnimationWidget.inkDrop(
+                                        color: Theme.of(context).primaryColor,
+                                        size: 30,
+                                      ),
+                                    );
+                                  }
+                                },
+                              ),
+
+
+
+
                             ],
                           )
                         ],
@@ -242,7 +359,12 @@ class AllEmployeeGrid extends StatelessWidget {
                     )),
               );
             },
-          );
+          ):
+
+          Center(child: Text("No Employees" , style: Get.theme.primaryTextTheme.titleLarge!.copyWith(
+            fontSize: 22,
+            fontWeight: FontWeight.normal
+          )));
         }
     );
   }

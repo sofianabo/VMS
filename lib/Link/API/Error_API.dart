@@ -56,7 +56,7 @@ class ErrorHandler {
     } else if (error.type == DioErrorType.cancel) {
       message = "تم إلغاء الطلب. حاول مرة أخرى.";
     } else {
-      message = "خطأ غير متوقع: ${error.message}.";
+      message = "حدث خطأ أثناء معالجة الطلب. يرجى المحاولة لاحقًا.";
     }
 
     Get.snackbar(
@@ -72,11 +72,9 @@ class ErrorHandler {
   static void handleException(Exception e) {
     String message = "حدث خطأ أثناء معالجة الطلب. يرجى المحاولة لاحقًا.";
 
-    // Check if the exception contains a message
-    if (e.toString().isNotEmpty) {
-      message = "خطأ: ${e.toString()}";
-    }
+  if(Get.isSnackbarOpen){
 
+  }else{
     Get.snackbar(
       "خطأ",
       message,
@@ -85,5 +83,6 @@ class ErrorHandler {
       colorText: Colors.white,
       duration: Duration(seconds: 3),
     );
+  }
   }
 }

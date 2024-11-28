@@ -29,8 +29,8 @@ class Dropdownallemployee extends StatelessWidget {
 
           break;
         case 'jobTitle':
-          selectedValue = cont.selectedgradeIndex.isNotEmpty
-              ? cont.selectedgradeIndex
+          selectedValue = cont.selectejobTitleIndex.isNotEmpty
+              ? cont.selectejobTitleIndex
               : title;
           break;
         case 'roll':
@@ -68,44 +68,52 @@ class Dropdownallemployee extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
           border: Border.all(color: color ?? Color(0xffD9D9D9)),
         ),
-        child: DropdownButton<String>(
-          focusColor: Colors.white,
-          dropdownColor: Colors.white,
-          iconDisabledColor: Colors.grey,
-          iconEnabledColor: Colors.black,
-          value: selectedValue,
-          isExpanded: true,
-          underline: const SizedBox(),
-          // تأكيد عدم وجود خط تحت الـ Dropdown
-          icon: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              const Icon(Icons.arrow_drop_down),
-            ],
-          ),
-          style: Get.theme.primaryTextTheme.titleMedium!.copyWith(fontSize: 14),
-          onChanged: (newValue) {
-            if (newValue != null) {
-              cont.selectIndex(type, newValue);
-            }
-          },
-          items: [
-            DropdownMenuItem<String>(
-              value: title,
-              enabled: false,
-              child: Text(
-                title,
-                style: Get.theme.primaryTextTheme.titleMedium!.copyWith(
-                  fontSize: 14,
-                  color: Colors.black, // لون العنوان
-                ),
+        child: Row(
+          children: [
+            Expanded(
+              child: DropdownButton<String>(
+                icon:  selectedValue != title ?
+          GestureDetector(
+          onTap: () {
+        cont.selectIndex(type, "");
+      },
+      child: const Icon(
+      Icons.close,
+      ),):Icon(Icons.arrow_drop_down_outlined),
+                focusColor: Colors.white,
+                dropdownColor: Colors.white,
+                iconDisabledColor: Colors.grey,
+                iconEnabledColor: Colors.black,
+                value: selectedValue,
+                isExpanded: true,
+                underline: const SizedBox(),
+                style: Get.theme.primaryTextTheme.titleMedium!.copyWith(fontSize: 14),
+                onChanged: (newValue) {
+                  if (newValue != null) {
+                    cont.selectIndex(type, newValue);
+                  }
+                },
+                items: [
+                  DropdownMenuItem<String>(
+                    value: title,
+                    enabled: false,
+                    child: Text(
+                      title,
+                      style: Get.theme.primaryTextTheme.titleMedium!.copyWith(
+                        fontSize: 14,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  ..._getDropdownItems(cont),
+                ],
+                borderRadius: BorderRadius.circular(3),
               ),
             ),
-            ..._getDropdownItems(cont),
           ],
-          borderRadius: BorderRadius.circular(3),
         ),
       );
+
     });
   }
 

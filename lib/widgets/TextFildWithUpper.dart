@@ -8,8 +8,9 @@ class Textfildwithupper extends StatelessWidget {
     required this.Uptext,
     required this.hinttext,
     this.width,
+    this.readOnly = false,
     this.icon,
-    this.isRequired = false, // إضافة متغير لتحديد ما إذا كان الحقل مطلوبًا.
+    this.isRequired = false,
   });
 
   final TextEditingController controller;
@@ -17,7 +18,8 @@ class Textfildwithupper extends StatelessWidget {
   final String hinttext;
   final double? width;
   final Widget? icon;
-  final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
+  final bool isRequired;
+  final bool readOnly;
 
   @override
   Widget build(BuildContext context) {
@@ -47,12 +49,14 @@ class Textfildwithupper extends StatelessWidget {
           SizedBox(
             height: 40,
             child: TextFormField(
+              enabled: !readOnly,
+              readOnly: readOnly,
               controller: controller,
               decoration: InputDecoration(
                 suffixIcon: icon ?? Text(""),
                 hintText: hinttext,
                 hintStyle: Get.theme.primaryTextTheme.titleMedium!
-                    .copyWith(fontSize: 14, color: Color(0xffB3B3B3)),
+                    .copyWith(fontSize: 14, color: Color(0xffB3B3B3),fontWeight: FontWeight.normal),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5),
                   borderSide: BorderSide(

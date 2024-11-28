@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-// ignore: must_be_immutable
 class TextFormSearch extends StatelessWidget {
   final TextEditingController controller;
   final IconData suffixIcon;
   final double radius;
   final double? width;
-  final ValueChanged<String>? onchange; // تعديل النوع هنا لتلقي النص
+  final ValueChanged<String>? onchange;
+  final VoidCallback? click;
 
   TextFormSearch({
     super.key,
@@ -15,6 +15,7 @@ class TextFormSearch extends StatelessWidget {
     required this.suffixIcon,
     required this.radius,
     this.width,
+    this.click,
     this.onchange,
   });
 
@@ -26,17 +27,27 @@ class TextFormSearch extends StatelessWidget {
       width: width ?? w / 4.4137,
       height: 40,
       child: TextFormField(
-        onChanged: onchange, // تمرير القيمة إلى الدالة هنا
+        onChanged: onchange,
         style: const TextStyle(fontSize: 14),
         controller: controller,
         decoration: InputDecoration(
           hintText: "Search By Name",
           hintStyle: Get.theme.primaryTextTheme.titleMedium!
               .copyWith(fontSize: 12, color: const Color(0xffB3B3B3)),
-          suffixIcon: Icon(
-            suffixIcon,
-            color: const Color(0xffB3B3B3),
-            size: 16,
+          suffixIcon: GestureDetector(
+            onTap: () {
+              if (controller.text.isNotEmpty) {
+                controller.clear();
+                if (click != null) {
+                  click!();
+                }
+              }
+            },
+            child: Icon(
+              suffixIcon,
+              color: controller.text.isEmpty ? const Color(0xffB3B3B3) : Colors.black,
+              size: 16,
+            ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(radius),
@@ -57,3 +68,4 @@ class TextFormSearch extends StatelessWidget {
     );
   }
 }
+

@@ -32,6 +32,7 @@ import 'package:vms_school/Link/Controller/WidgetController/DateControler.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDownController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/PasswordHintController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Admin_School_Time.dart';
+import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 
 class UserBiniding extends Bindings {
   @override
@@ -69,5 +70,6 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Dashboard_Controller(), fenix: true);
     Get.lazyPut(() => AddFullEmployeeController(), fenix: true);
     Get.lazyPut(() => Dropdownstatuscontroller(), fenix: true);
+    Get.lazyPut(() => All_Screen_Sessions_Controller(), fenix: true);
   }
 }
