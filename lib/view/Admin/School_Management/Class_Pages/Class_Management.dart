@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
-import 'package:vms_school/Link/Controller/AdminController/Class_Mgmt_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Class_Mgmt_Controller.dart';
 import 'package:vms_school/view/Admin/School_Management/Class_Pages/Classes_Grid.dart';
 import 'package:vms_school/widgets/Admin_School/DropDownClassMgmt.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';

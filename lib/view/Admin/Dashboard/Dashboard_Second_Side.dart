@@ -2,7 +2,7 @@ import 'package:dashed_circular_progress_bar/dashed_circular_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Controller/AdminController/Dashboard_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Dashboard_Controller.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 
 class DashboardSecondSide extends StatelessWidget {

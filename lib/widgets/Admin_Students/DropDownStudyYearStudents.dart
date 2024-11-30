@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/API/AdminAPI/DropdownDivisionAPI.dart';
-import 'package:vms_school/Link/Controller/AdminController/StudyYearStudentsController.dart';
-import 'package:vms_school/Link/Controller/WidgetController/DropDownController.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownDivisionAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 
 class DropDownStudyYearStudents extends StatelessWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
-import 'package:vms_school/Link/API/AdminAPI/School_Info/School_Info_Export.dart';
-import 'package:vms_school/Link/Controller/AdminController/School_Info_Controller.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Info_Export.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/School_Info_Controller.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 
 class MyCheckBoxScreen extends StatelessWidget {

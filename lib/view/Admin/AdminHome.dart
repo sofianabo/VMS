@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Controller/AdminController/AdminHomeContentController.dart';
-import 'package:vms_school/view/Admin/AllEmployee.dart';
-import 'package:vms_school/view/Admin/AllGuardians.dart';
-import 'package:vms_school/view/Admin/AllStudent.dart';
+import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
+import 'package:vms_school/view/Admin/School_Management/ExamTable.dart';
+import 'package:vms_school/view/Admin/School_Management/SchoolTimeTable.dart';
+import 'package:vms_school/view/Admin/Students_Manager/AllGuardians.dart';
+import 'package:vms_school/view/Admin/Students_Manager/AllStudent.dart';
 import 'package:vms_school/view/Admin/AppBarAdmin.dart';
 import 'package:vms_school/view/Admin/Dashboard/Admin_Dashboard.dart';
-import 'package:vms_school/view/Admin/EmployeeAttendenceManage.dart';
-import 'package:vms_school/view/Admin/EmployeeStatus.dart';
+import 'package:vms_school/view/Admin/Employee_Manager/AllEmployee.dart';
+import 'package:vms_school/view/Admin/Employee_Manager/EmployeeAttendenceManage.dart';
+import 'package:vms_school/view/Admin/Employee_Manager/EmployeeStatus.dart';
 import 'package:vms_school/view/Admin/Employee_Manager/Virtual_User_Management.dart';
-import 'package:vms_school/view/Admin/ExamTable.dart';
-import 'package:vms_school/view/Admin/SchoolTimeTable.dart';
-import 'package:vms_school/view/Admin/Requests.dart';
+import 'package:vms_school/view/Admin/Students_Manager//Requests.dart';
 import 'package:vms_school/view/Admin/School_Management/Class_Pages/Class_Management.dart';
 import 'package:vms_school/view/Admin/School_Management/Curriculum_Pages/Curriculum_Management.dart';
 import 'package:vms_school/view/Admin/School_Management/Division_Pages/Division_Management.dart';
@@ -20,12 +20,12 @@ import 'package:vms_school/view/Admin/School_Management/Grade_Pages/Grade_Manage
 import 'package:vms_school/view/Admin/School_Management/School_Data/SchoolDataMGMT.dart';
 import 'package:vms_school/view/Admin/School_Management/Sessions_Pages/Session_Management.dart';
 import 'package:vms_school/view/Admin/SideBarAdmin.dart';
-import 'package:vms_school/view/Admin/StudentStatus.dart';
-import 'package:vms_school/view/Admin/StudentsAttendanceManagment.dart';
-import 'package:vms_school/view/Admin/StudyYearStudent.dart';
-import 'package:vms_school/view/Admin/TeacherAttendanceManagment.dart';
-import 'package:vms_school/view/Admin/TeacherMangament.dart';
-import 'package:vms_school/view/Admin/TeacherStatus.dart';
+import 'package:vms_school/view/Admin/Students_Manager/StudentStatus.dart';
+import 'package:vms_school/view/Admin/Students_Manager/StudentsAttendanceManagment.dart';
+import 'package:vms_school/view/Admin/Students_Manager/StudyYearStudent.dart';
+import 'package:vms_school/view/Admin/Teacher_Manager/TeacherAttendanceManagment.dart';
+import 'package:vms_school/view/Admin/Teacher_Manager/TeacherMangament.dart';
+import 'package:vms_school/view/Admin/Teacher_Manager/TeacherStatus.dart';
 
 class AdminHome extends StatelessWidget {
   AdminHome({super.key});
