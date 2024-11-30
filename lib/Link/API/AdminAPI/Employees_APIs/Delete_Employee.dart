@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
+import 'package:vms_school/Link/API/AdminAPI/Get_All_Employee_API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
+import 'package:vms_school/widgets/Loading_Dialog.dart';
 
 class DeleteEmployee {
   static Dio dio = Dio();
@@ -11,8 +13,11 @@ class DeleteEmployee {
     required String employeeID,
   }) async {
     String myURI = "${hostPort}${deleteEmployee}";
+    CancelToken cancelToken = CancelToken();
     try {
+    Loading_Dialog(cancelToken: cancelToken);
       var response = await dio.post(
+        cancelToken: cancelToken,
         myURI,
         data: {
           'id':employeeID
@@ -21,7 +26,8 @@ class DeleteEmployee {
       );
 
       if (response.statusCode == 200) {
-        Get.back();
+       await Get_All_Employee_API.Get_All_Employee();
+
         return response.statusCode;
       } else {
         ErrorHandler.handleDioError(DioError(
@@ -38,6 +44,9 @@ class DeleteEmployee {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
+    }finally{
+      Get.back();
+      Get.back();
     }
     return true;
   }

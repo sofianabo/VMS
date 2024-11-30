@@ -7,6 +7,12 @@ class ThemeController extends GetxController {
   RxBool isDarkMode = false.obs;
 
   static ThemeData lighttheme = ThemeData(
+    checkboxTheme: CheckboxThemeData(
+      checkColor: WidgetStatePropertyAll(Colors.white),
+    ),
+    datePickerTheme: DatePickerThemeData(
+      surfaceTintColor: Colors.white
+    ),
     primaryColor: Color(0xff19478d),
     scaffoldBackgroundColor: Colors.white,
     canvasColor: Color(0xff134B70),
@@ -57,7 +63,7 @@ class ThemeController extends GetxController {
           fontFamily: "Cairo",
           fontSize: 16,
           fontWeight: FontWeight.bold,
-          color: Colors.green),
+          color: Color(0xff19478d)),
       //Male
       displayMedium: TextStyle(
           fontFamily: "Cairo",
@@ -69,7 +75,7 @@ class ThemeController extends GetxController {
           fontFamily: "Cairo",
           fontSize: 16,
           fontWeight: FontWeight.bold,
-          color: Color.fromARGB(255, 226, 37, 147)),
+          color: Color(0xff19478d)),
       // Main text in Home Screen
       labelLarge: TextStyle(
           fontFamily: "Cairo",
@@ -150,7 +156,7 @@ class ThemeController extends GetxController {
           fontFamily: "Cairo",
           fontSize: 16,
           fontWeight: FontWeight.bold,
-          color: Colors.green),
+          color: Color(0xff19478d)),
       //Male
       displayMedium: TextStyle(
           fontFamily: "Cairo",
@@ -162,7 +168,7 @@ class ThemeController extends GetxController {
           fontFamily: "Cairo",
           fontSize: 16,
           fontWeight: FontWeight.bold,
-          color: Color.fromARGB(255, 226, 37, 147)),
+          color: Color(0xff19478d)),
       // Main text in Home Screen
       labelLarge: TextStyle(
           fontFamily: "Cairo",

@@ -2,9 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart' as gets;
 import 'package:vms_school/Link/API/API.dart';
+import 'package:vms_school/Link/API/AdminAPI/Get_All_Employee_API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/Controller/AdminController/AllEmpolyeeController.dart';
+import 'package:vms_school/widgets/Loading_Dialog.dart';
+
 
 class AddFullEmployee {
   static Dio dio = Dio();
@@ -40,6 +43,9 @@ class AddFullEmployee {
     String? Note,
   }) async {
     String myURI = "${hostPort}${addFullEmployee}";
+    CancelToken cancelToken = CancelToken();
+
+    Loading_Dialog(cancelToken: cancelToken);
     try {
       // Prepare form data
       FormData formData = FormData.fromMap({
@@ -71,7 +77,6 @@ class AddFullEmployee {
         "careerHistory": Career_History,
       });
 
-      // Add image file if available
       if (selectedImage != null) {
         formData.files.add(MapEntry(
           "file",
@@ -81,6 +86,7 @@ class AddFullEmployee {
 
       // Send POST request
       var response = await dio.post(
+        cancelToken: cancelToken,
         myURI,
         data: formData,
         options: getDioOptions(),
@@ -88,6 +94,7 @@ class AddFullEmployee {
 
       if (response.statusCode == 200) {
         gets.Get.find<Allempolyeecontroller>().SetDefualtValue();
+        await Get_All_Employee_API.Get_All_Employee();
 
         return response.statusCode;
       } else {
@@ -105,6 +112,8 @@ class AddFullEmployee {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
+    } finally{
+      gets.Get.back();
     }
     return null;
   }

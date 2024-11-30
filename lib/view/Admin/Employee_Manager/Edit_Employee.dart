@@ -121,7 +121,7 @@ EditEmployee(BuildContext context , int idx , String employeeID) {
                                                  NetworkImage("$getimage"+"${empolyeecontroller.employees[idx].imageId}"):
                                                  null,
                                                  child: controller.selectedImage.value ==
-                                                     null
+                                                     null &&    empolyeecontroller.employees[idx].imageId ==null
                                                      ? const Icon(
                                                    Icons.image_outlined,
                                                    color: Colors.white,
