@@ -21,6 +21,7 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AdminTeacherAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Years_Controllers/Divisions_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/oneStudentAttendenceController.dart';
 import 'package:vms_school/Link/Controller/AuthController/UserController.dart';
 import 'package:vms_school/Link/Controller/HomeScreenController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DateControler.dart';
@@ -75,5 +76,6 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Dropdownstatuscontroller(), fenix: true);
     Get.lazyPut(() => All_Screen_Sessions_Controller(), fenix: true);
     Get.lazyPut(() => Dropdownexamtypecontroller(), fenix: true);
+    Get.lazyPut(() => Onestudentattendencecontroller(), fenix: true);
   }
 }
