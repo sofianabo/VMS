@@ -1,9 +1,5 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/view/Admin/SchoolTimeTable.dart';
-import 'package:vms_school/widgets/DropDown.dart';
 import 'package:vms_school/widgets/Switcher.dart';
 
 class AppbarCustom extends StatefulWidget {

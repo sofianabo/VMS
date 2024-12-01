@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/API/AdminAPI/DropdownDivisionAPI.dart';
-import 'package:vms_school/Link/API/AdminAPI/DropdownSessionsAPI.dart';
-import 'package:vms_school/Link/API/AdminAPI/GetAllStudentAPI.dart';
-import 'package:vms_school/Link/Controller/AdminController/AllStudentsController.dart';
-import 'package:vms_school/Link/Controller/AdminController/Session_Controller.dart';
-import 'package:vms_school/Link/Controller/WidgetController/DropDownController.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownDivisionAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students_APIs/GetAllStudentAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 
 class DropDownAllStudents extends StatelessWidget {

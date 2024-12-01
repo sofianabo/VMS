@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Edit_Employee_API.dart';
-import 'package:vms_school/Link/Controller/AdminController/Add_Full_Employee_Controller.dart';
-import 'package:vms_school/Link/Controller/AdminController/AllEmpolyeeController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Full_Employee_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Illness_Controller.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
@@ -121,7 +121,7 @@ EditEmployee(BuildContext context , int idx , String employeeID) {
                                                  NetworkImage("$getimage"+"${empolyeecontroller.employees[idx].imageId}"):
                                                  null,
                                                  child: controller.selectedImage.value ==
-                                                     null
+                                                     null &&    empolyeecontroller.employees[idx].imageId ==null
                                                      ? const Icon(
                                                    Icons.image_outlined,
                                                    color: Colors.white,

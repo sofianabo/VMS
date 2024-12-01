@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/API/AdminAPI/DropdownDivisionAPI.dart';
-import 'package:vms_school/Link/Controller/AdminController/ExamTableController.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownDivisionAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/ExamTableController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 
 class DropDownexamTable extends StatelessWidget {

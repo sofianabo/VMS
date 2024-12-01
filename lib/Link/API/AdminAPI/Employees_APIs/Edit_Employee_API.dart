@@ -2,10 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart' as gets;
 import 'package:vms_school/Link/API/API.dart';
-import 'package:vms_school/Link/API/AdminAPI/Get_All_Employee_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_All_Employee_API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
-import 'package:vms_school/Link/Controller/AdminController/AllEmpolyeeController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 
 class EditEmployeeApi {
@@ -72,13 +72,13 @@ class EditEmployeeApi {
         "lenkedinUrl": Linkedin_URL,
         "instagramUrl": Instagram_URL,
         "careerHistory": Career_History,
-        'ownData':true
+        'ownData': true
       });
 
       if (selectedImage != null) {
         formData.files.add(MapEntry(
           "file",
-          MultipartFile.fromBytes(selectedImage, filename: "$employeeId"+"ProfileImage"),
+          MultipartFile.fromBytes(selectedImage, filename: "$employeeId" + "ProfileImage"),
         ));
       }
 
@@ -88,11 +88,10 @@ class EditEmployeeApi {
         data: formData,
         options: getDioOptions(),
       );
+
       if (response.statusCode == 200) {
         await Get_All_Employee_API.Get_All_Employee();
         gets.Get.find<Allempolyeecontroller>().SetDefualtValue();
-        gets.Get.back();
-        gets.Get.back();
         return response.statusCode;
       } else {
         ErrorHandler.handleDioError(DioError(
@@ -109,8 +108,10 @@ class EditEmployeeApi {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
+    } finally {
+      gets.Get.back();
+      gets.Get.back();
     }
     return null;
   }
-
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Controller/AdminController/Dashboard_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Dashboard_Controller.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 
 class DashboardThirdRow extends StatelessWidget {
