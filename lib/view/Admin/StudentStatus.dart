@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/StudentAttendenceAPI.dart';
 import 'package:vms_school/view/Admin/StudentStatusGrid.dart';
 import 'package:vms_school/widgets/Admin_Students/DropDownStudentsAttendence.dart';
 import 'package:vms_school/widgets/Calender.dart';
@@ -10,10 +11,22 @@ import 'package:vms_school/widgets/DropDown.dart';
 import '../../Icons_File/v_m_s__icons_icons.dart';
 import '../../widgets/TextFormSearch.dart';
 
-class StudentStatus extends StatelessWidget {
+class StudentStatus extends StatefulWidget {
   StudentStatus({super.key});
 
+  @override
+  State<StudentStatus> createState() => _StudentStatusState();
+}
+
+class _StudentStatusState extends State<StudentStatus> {
   TextEditingController serch = TextEditingController();
+
+  @override
+  void initState() {
+    Studentattendenceapi(context).Studentattendence(null, null, null, null,null);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double w = Get.width;
