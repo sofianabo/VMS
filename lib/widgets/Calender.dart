@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DateControler.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:intl/intl.dart';
@@ -333,3 +334,74 @@ class selectDateRequest extends StatelessWidget {
     );
   }
 }
+
+
+
+class selectDateAttendence extends StatelessWidget {
+  final double width;
+  final double? height;
+  final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
+
+  selectDateAttendence({
+    super.key,
+    required this.width,
+    this.height,
+    this.isRequired = false, // افتراضي الحقل غير مطلوب.
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final StudentAttendencController controller = Get.put(StudentAttendencController());
+    return Obx(
+      () => Container(
+        width: width,
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: height ?? 40,
+              child: TextFormField(
+                style: TextStyle(fontSize: 14),
+                controller: TextEditingController(
+                  text: controller.AttendencetDate.value != null
+                      ? DateFormat('yyyy-MM-dd')
+                          .format(controller.AttendencetDate.value!)
+                      : '',
+                ),
+                readOnly: true,
+                onTap: () => controller.selectDate(context),
+                decoration: InputDecoration(
+                  hintText: "yyyy-MM-dd",
+                  hintStyle: Get.theme.primaryTextTheme.titleMedium!
+                      .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(color: Color(0xffD9D9D9), width: 2),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: const BorderSide(color: Color(0xffD9D9D9)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      VMS_Icons.calender,
+                      color: Get.theme.primaryColor,
+                      size: 16,
+                    ),
+                    onPressed: () => controller.selectDate(context),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownDivisionAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 
 class DropDownStudentsAttendens extends StatelessWidget {
   final double width;
@@ -86,7 +88,7 @@ class DropDownStudentsAttendens extends StatelessWidget {
                 ),
               ),
             ),
-            ..._getDropdownItems(cont),
+            ..._getDropdownItems(cont, context),
           ],
           borderRadius: BorderRadius.circular(3),
         ),
@@ -95,7 +97,7 @@ class DropDownStudentsAttendens extends StatelessWidget {
   }
 
   List<DropdownMenuItem<String>> _getDropdownItems(
-      StudentAttendencController cont) {
+      StudentAttendencController cont, BuildContext context) {
     List<DropdownMenuItem<String>> items = [];
 
     switch (type) {
@@ -132,6 +134,11 @@ class DropDownStudentsAttendens extends StatelessWidget {
               style: Get.theme.primaryTextTheme.titleMedium!
                   .copyWith(fontSize: 14),
             ),
+            onTap: () async {
+              AllDivisionModel division = await Dropdowndivisionapi(context)
+                  .Dropdowndivision(cont.classlist.indexOf(value));
+              cont.setAllDivision(division);
+            },
           );
         }).toList());
         break;

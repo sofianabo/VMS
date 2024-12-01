@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
@@ -9,7 +10,6 @@ import 'package:vms_school/Link/Model/AdminModel/AllStudentModel.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vms_school/Link/Model/AdminModel/RequestsModel.dart';
 
-import '../../API/AdminAPI/DropdownDivisionAPI.dart';
 
 class StudentAttendencController extends GetxController {
   late BuildContext context;
@@ -24,6 +24,13 @@ class StudentAttendencController extends GetxController {
   List<String> classlist = [];
   List<String> divisionlist = [];
   List<String> sessionlist = [];
+
+    void restor() {
+    stud.clear();
+    filteredStudents.clear();
+    isLoading = true;
+    update();
+  }
   void selectIndex(String type, String? index) {
     print("");
 
@@ -58,7 +65,7 @@ class StudentAttendencController extends GetxController {
     update();
   }
 
-  void searchStudentByName(String query) {
+  void searchattendenceByName(String query) {
     if (query.isEmpty) {
       filteredStudents = List.from(stud);
     } else {
@@ -128,6 +135,20 @@ class StudentAttendencController extends GetxController {
     update();
   }
 
+    Rx<DateTime?> AttendencetDate = Rx<DateTime?>(null);
+
+  void selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: AttendencetDate.value ?? DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+    if (picked != null) {
+      AttendencetDate.value = picked;
+    }
+  }
+
   String get selectedsessionIndex => sessionIndex;
 
   String get selectedgradeIndex => gradeIndex;
@@ -135,4 +156,6 @@ class StudentAttendencController extends GetxController {
   String get selectedclassIndex => classIndex;
 
   String get selecteddivisionIndex => divisionIndex;
+    Rx<DateTime?> get selectDateindex => AttendencetDate;
+
 }

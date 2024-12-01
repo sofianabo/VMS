@@ -8,8 +8,6 @@ import 'package:vms_school/Link/Model/AdminModel/AllStudentModel.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vms_school/Link/Model/AdminModel/OneStudentAttendenceModel.dart';
 
-import '../../API/AdminAPI/DropdownDivisionAPI.dart';
-
 class Onestudentattendencecontroller extends GetxController {
   late BuildContext context;
   List<StudentAt> studentAtt = [];
