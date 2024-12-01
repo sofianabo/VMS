@@ -41,13 +41,13 @@ class Section1 extends StatelessWidget {
                       children: [
                         Text("We CARE ABOUT \n YOUR FUTURE",
                             textAlign: TextAlign.left,
-                            style: Get.theme.primaryTextTheme.labelLarge),
+                            style: Get.theme.textTheme.bodyMedium!),
                         Container(
                           padding: EdgeInsets.only(top: h / 68.4),
                           width: w / 3.2,
                           child: Text(
                             "Join us to enter a better world filled with advanced educational methods through Virtual Modern School",
-                            style: Get.theme.primaryTextTheme.labelLarge!
+                            style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(fontSize: 14),
                             textAlign: TextAlign.left,
                           ),
@@ -77,8 +77,7 @@ class Section1 extends StatelessWidget {
                                           bottomRight: Radius.circular(11))),
                                   alignment: Alignment.center,
                                   child: Text('Enroll',
-                                      style: Get.theme.primaryTextTheme
-                                          .headlineSmall),
+                                      style: Get.theme.textTheme.bodyMedium!),
                                 ),
                                 onTap: () {
                                   // Get.to(() => Registration());
@@ -134,8 +133,7 @@ class Section1 extends StatelessWidget {
                                       Padding(
                                         padding: EdgeInsets.only(top: h / 68.4),
                                         child: Text("${control.teacher}",
-                                            style: Get.theme.primaryTextTheme
-                                                .bodySmall!
+                                            style: Get.theme.textTheme.bodyMedium!
                                                 .copyWith(
                                                     fontSize: 16,
                                                     color: Get
@@ -182,8 +180,7 @@ class Section1 extends StatelessWidget {
                                       Padding(
                                         padding: EdgeInsets.only(top: h / 68.4),
                                         child: Text("${control.student}",
-                                            style: Get.theme.primaryTextTheme
-                                                .bodySmall!
+                                            style: Get.theme.textTheme.bodyMedium!
                                                 .copyWith(
                                                     fontSize: 16,
                                                     color: Get
@@ -192,8 +189,7 @@ class Section1 extends StatelessWidget {
                                       Padding(
                                         padding: EdgeInsets.only(top: h / 68.4),
                                         child: Text("Students",
-                                            style: Get.theme.primaryTextTheme
-                                                .bodySmall!
+                                            style: Get.theme.textTheme.bodyMedium!
                                                 .copyWith(
                                                     fontSize: 14,
                                                     color: Get
@@ -226,8 +222,7 @@ class Section1 extends StatelessWidget {
                                       Padding(
                                         padding: EdgeInsets.only(top: h / 68.4),
                                         child: Text("${control.visitor}",
-                                            style: Get.theme.primaryTextTheme
-                                                .bodySmall!
+                                            style: Get.theme.textTheme.bodyMedium!
                                                 .copyWith(
                                                     fontSize: 16,
                                                     color: Get
@@ -236,8 +231,7 @@ class Section1 extends StatelessWidget {
                                       Padding(
                                         padding: EdgeInsets.only(top: h / 68.4),
                                         child: Text("Visitors",
-                                            style: Get.theme.primaryTextTheme
-                                                .bodySmall!
+                                            style: Get.theme.textTheme.bodyMedium!
                                                 .copyWith(
                                                     fontSize: 14,
                                                     color: Get

@@ -16,7 +16,7 @@ class DashboardFirstRow extends StatelessWidget {
             padding:
                 EdgeInsets.only(top: 20.0, left: 32.0, right: 32.0, bottom: 20),
             decoration: BoxDecoration(
-                color: Color(0xffF3F4F8),
+                color: Get.theme.cardColor,
                 border: Border.all(color: Colors.grey, width: 0.2),
                 borderRadius: BorderRadius.all(Radius.circular(5)),
                 boxShadow: const [

@@ -56,21 +56,19 @@ class  Dropdownrequestenroll
           border: Border.all(color: color ?? Color(0xffD9D9D9)),
         ),
         child: DropdownButton<String>(
-          focusColor: Colors.white,
-          dropdownColor: Colors.white,
+          dropdownColor: Get.theme.cardColor,
           iconDisabledColor: Colors.grey,
-          iconEnabledColor: Colors.black,
+          iconEnabledColor: Get.theme.cardColor,
           value: selectedValue,
           isExpanded: true,
           underline: const SizedBox(),
-          // تأكيد عدم وجود خط تحت الـ Dropdown
           icon: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              const Icon(Icons.arrow_drop_down),
+              Icon(Icons.arrow_drop_down , color: Get.theme.secondaryHeaderColor),
             ],
           ),
-          style: Get.theme.primaryTextTheme.titleMedium!.copyWith(fontSize: 14),
+          style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
           onChanged: (newValue) {
             if (newValue != null) {
               cont.selectIndex(type, newValue);
@@ -82,9 +80,8 @@ class  Dropdownrequestenroll
               enabled: false,
               child: Text(
                 title,
-                style: Get.theme.primaryTextTheme.titleMedium!.copyWith(
+                style: Get.theme.textTheme.bodyMedium!.copyWith(
                   fontSize: 14,
-                  color: Colors.black, // لون العنوان
                 ),
               ),
             ),
@@ -111,12 +108,12 @@ class  Dropdownrequestenroll
             value: value,
             child: Text(
               value,
-              style: Get.theme.primaryTextTheme.titleMedium!
+              style: Get.theme.textTheme.bodyMedium!
                   .copyWith(fontSize: 14),
             ),
             onTap: () async {
               sessionSelected = value;
-           
+
             },
           );
         }).toList());
@@ -128,7 +125,7 @@ class  Dropdownrequestenroll
             value: value,
             child: Text(
               value,
-              style: Get.theme.primaryTextTheme.titleMedium!
+              style: Get.theme.textTheme.bodyMedium!
                   .copyWith(fontSize: 14),
             ),
             onTap: () async {
@@ -148,12 +145,12 @@ class  Dropdownrequestenroll
             value: value,
             child: Text(
               value,
-              style: Get.theme.primaryTextTheme.titleMedium!
+              style: Get.theme.textTheme.bodyMedium!
                   .copyWith(fontSize: 14),
             ),
             onTap: () async {
               divisionSelected = value;
-             
+
             },
           );
         }).toList());

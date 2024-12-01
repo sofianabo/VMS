@@ -73,7 +73,7 @@ class StudyYearStudentGrid extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text("${l[index]['name']}",
-                            style: Get.theme.primaryTextTheme.bodyMedium!
+                            style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(
                                     fontSize: 20, fontWeight: FontWeight.bold)),
                       ),
@@ -82,7 +82,7 @@ class StudyYearStudentGrid extends StatelessWidget {
                     ],
                   ),
                   Text("${l[index]['result']}",
-                      style: Get.theme.primaryTextTheme.bodySmall!.copyWith(
+                      style: Get.theme.textTheme.bodyMedium!.copyWith(
                           fontSize: 16,
                           color: l[index]['result'] == "Successful"
                               ? Color(0xff2F9742)
@@ -90,7 +90,7 @@ class StudyYearStudentGrid extends StatelessWidget {
                                   ? Color(0xff972F2F)
                                   : Color(0xff134B70))),
                   Text("Grade Level: ${l[index]['level']}",
-                      style: Get.theme.primaryTextTheme.bodySmall),
+                      style: Get.theme.textTheme.bodyMedium),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0),
                     child: Row(
@@ -201,8 +201,7 @@ class StudyYearStudentGrid extends StatelessWidget {
                                             MainAxisAlignment.start,
                                         children: [
                                           Text("End Date",
-                                              style: Get.theme.primaryTextTheme
-                                                  .labelSmall),
+                                              style: Get.theme.textTheme.bodyMedium!),
                                           DatePicker(
                                             width: 350,
                                             height: 40,

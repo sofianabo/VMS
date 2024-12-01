@@ -185,13 +185,11 @@ class _AllEmployeeState extends State<AllEmployee> {
                               <PopupMenuEntry<String>>[
                             PopupMenuItem<String>(
                               value: 'Add Employee',
-                              child: Text('Add Employee',
-                                  style: Get.theme.primaryTextTheme.bodySmall),
+                              child: Text('Add Employee',)
                             ),
                             PopupMenuItem<String>(
                               value: 'Add Full Employee',
-                              child: Text('Add Full Employee',
-                                  style: Get.theme.primaryTextTheme.bodySmall),
+                              child: Text('Add Full Employee')
                             ),
                           ],
                         ),

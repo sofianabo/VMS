@@ -184,8 +184,7 @@ class DivisionGrid extends StatelessWidget {
                                         children: [
                                           Text(
                                             "Do You Want To Delete (${control.Division[index]['enName']}) Division",
-                                            style: Get.theme.primaryTextTheme
-                                                .bodyMedium!
+                                            style: Get.theme.textTheme.bodyMedium!
                                                 .copyWith(
                                                     fontSize: 16,
                                                     fontWeight:
@@ -206,20 +205,20 @@ class DivisionGrid extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text("${control.Division[index]['enName']}",
-                              style: Get.theme.primaryTextTheme.titleLarge!
+                              style: Get.theme.textTheme.bodyMedium!
                                   .copyWith(
                                 fontSize: 20,
                               )),
                         ],
                       ),
                       Text("${control.Division[index]['class']}",
-                          style: Get.theme.primaryTextTheme.titleLarge!
+                          style: Get.theme.textTheme.bodyMedium!
                               .copyWith(fontSize: 14, color: Colors.black)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text("Meet URL",
-                              style: Get.theme.primaryTextTheme.titleLarge!
+                              style: Get.theme.textTheme.bodyMedium!
                                   .copyWith(
                                 fontSize: 16,
                               )),

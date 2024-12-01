@@ -80,7 +80,7 @@ class EmpolyeeStatusGrid extends StatelessWidget {
                                   label: Text(
                                     key,
                                     style:
-                                        Get.theme.primaryTextTheme.bodyMedium,
+                                    Get.theme.textTheme.bodyMedium!,
                                   ),
                                 ),
                             ],
@@ -128,7 +128,7 @@ class EmpolyeeStatusGrid extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text("${l[index]['name']}",
-                              style: Get.theme.primaryTextTheme.bodyMedium!
+                              style: Get.theme.textTheme.bodyMedium!
                                   .copyWith(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold)),
@@ -138,7 +138,7 @@ class EmpolyeeStatusGrid extends StatelessWidget {
                       ],
                     ),
                     Text("${l[index]['status']}",
-                        style: Get.theme.primaryTextTheme.bodySmall!.copyWith(
+                        style: Get.theme.textTheme.bodyMedium!.copyWith(
                             fontSize: 16,
                             color: l[index]['status'] == "Present"
                                 ? Color(0xff2F9742)
@@ -150,7 +150,7 @@ class EmpolyeeStatusGrid extends StatelessWidget {
                                             ? Color(0xff349393)
                                             : Color(0xff134B70))),
                     Text("${l[index]['jopTitle']}",
-                        style: Get.theme.primaryTextTheme.bodySmall),
+                        style: Get.theme.textTheme.bodyMedium!),
                   ],
                 )),
           ),

@@ -25,7 +25,7 @@ class ButtonAuth extends StatelessWidget {
                 children: [
                   Text(
                     text,
-                    style: Get.theme.primaryTextTheme.headlineSmall!
+                    style: Get.theme.textTheme.bodyMedium!
                         .copyWith(fontSize: 15),
                   ),
                   Padding(

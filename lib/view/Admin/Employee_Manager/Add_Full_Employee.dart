@@ -352,8 +352,7 @@ Add_Full_Employee(BuildContext context) {
                             children: [
                               Text(
                                 "Social Media Info :",
-                                style: Get.theme.primaryTextTheme.labelMedium!
-                                    .copyWith(fontSize: 20),
+                                style:Get.theme.textTheme.titleLarge!.copyWith(fontSize: 20),
                               )
                             ],
                           ),
@@ -405,8 +404,7 @@ Add_Full_Employee(BuildContext context) {
                             children: [
                               Text(
                                 "Teacher Bank Info :",
-                                style: Get.theme.primaryTextTheme.labelMedium!
-                                    .copyWith(fontSize: 20),
+                                style:Get.theme.textTheme.titleLarge!.copyWith(fontSize: 20),
                               )
                             ],
                           ),

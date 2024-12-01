@@ -34,7 +34,7 @@ class RequestsGrid extends StatelessWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Get.theme.cardColor,
                           border: Border.all(color: Colors.grey, width: 0.2),
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           boxShadow: const [
@@ -138,7 +138,7 @@ class RequestsGrid extends StatelessWidget {
                         .animate(onPlay: (controller) => controller.repeat())
                         .shimmer(
                             angle: 1,
-                            color: Colors.white,
+                            color: Get.theme.dialogBackgroundColor,
                             duration: Duration(seconds: 1),
                             delay: Duration(seconds: 1)),
                     Center(
@@ -168,7 +168,7 @@ class RequestsGrid extends StatelessWidget {
               return HoverScaleCard(
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Get.theme.cardColor,
                       border: Border.all(color: Colors.grey, width: 0.2),
                       borderRadius: BorderRadius.all(Radius.circular(5)),
                       boxShadow: const [
@@ -190,7 +190,7 @@ class RequestsGrid extends StatelessWidget {
                             children: [
                               Text(
                                 "Guardian Info:",
-                                style: Get.theme.primaryTextTheme.titleSmall!
+                                style: Get.theme.textTheme.bodyMedium!
                                     .copyWith(fontWeight: FontWeight.normal),
                               ),
                               Text(
@@ -202,7 +202,7 @@ class RequestsGrid extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 5.0),
                           child: Text(
                             "Name : ${controller.filteredregistration[index].guardian?.name}",
-                            style: Get.theme.primaryTextTheme.titleSmall!
+                            style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(
                                     color: Colors.black,
                                     fontWeight: FontWeight.normal),
@@ -212,7 +212,7 @@ class RequestsGrid extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 5.0),
                           child: Text(
                             "Mobile: ${controller.filteredregistration[index].guardian?.mobile}",
-                            style: Get.theme.primaryTextTheme.titleSmall!
+                            style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(
                                     color: Colors.black,
                                     fontWeight: FontWeight.normal),
@@ -222,7 +222,7 @@ class RequestsGrid extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 5.0),
                           child: Text(
                             "Email: ${controller.filteredregistration[index].guardian?.email}",
-                            style: Get.theme.primaryTextTheme.titleSmall!
+                            style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(
                                     color: Colors.black,
                                     fontWeight: FontWeight.normal),
@@ -232,7 +232,7 @@ class RequestsGrid extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 5.0),
                           child: Text(
                             "National ID: ${controller.filteredregistration[index].guardian?.nationalId}",
-                            style: Get.theme.primaryTextTheme.titleSmall!
+                            style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(
                                     color: Colors.black,
                                     fontWeight: FontWeight.normal),
@@ -242,7 +242,7 @@ class RequestsGrid extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 5.0),
                           child: Text(
                             "Student Info:",
-                            style: Get.theme.primaryTextTheme.titleSmall!
+                            style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(fontWeight: FontWeight.normal),
                           ),
                         ),
@@ -250,7 +250,7 @@ class RequestsGrid extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 5.0),
                           child: Text(
                             "Name : ${controller.filteredregistration[index].student?.name}",
-                            style: Get.theme.primaryTextTheme.titleSmall!
+                            style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(
                                     color: Colors.black,
                                     fontWeight: FontWeight.normal),
@@ -261,7 +261,7 @@ class RequestsGrid extends StatelessWidget {
                               const EdgeInsets.only(top: 5.0, bottom: 15.0),
                           child: Text(
                             "Grade Level: ${controller.filteredregistration[index].student?.clas}",
-                            style: Get.theme.primaryTextTheme.titleSmall!
+                            style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(
                                     color: Colors.black,
                                     fontWeight: FontWeight.normal),
@@ -321,7 +321,7 @@ class RequestsGrid extends StatelessWidget {
                             ),
                             Text(
                               "${controller.filteredregistration[index].type}",
-                              style: Get.theme.primaryTextTheme.titleSmall!
+                              style: Get.theme.textTheme.bodyMedium!
                                   .copyWith(
                                       color: Color(0xff779DB6),
                                       fontWeight: FontWeight.normal),

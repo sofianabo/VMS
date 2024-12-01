@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Controller/AdminController/AllEmpolyeeController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 
 class Dropdownallemployee extends StatelessWidget {
   final double width;
@@ -59,6 +59,7 @@ class Dropdownallemployee extends StatelessWidget {
           break;
       }
 
+
       return Container(
         padding: EdgeInsets.all(6.0),
         alignment: Alignment.centerLeft,
@@ -77,17 +78,17 @@ class Dropdownallemployee extends StatelessWidget {
           onTap: () {
         cont.selectIndex(type, "");
       },
-      child: const Icon(
+      child:  Icon(
       Icons.close,
-      ),):Icon(Icons.arrow_drop_down_outlined),
-                focusColor: Colors.white,
-                dropdownColor: Colors.white,
-                iconDisabledColor: Colors.grey,
-                iconEnabledColor: Colors.black,
+        color: Get.theme.secondaryHeaderColor,
+      ),):Icon(Icons.arrow_drop_down_outlined,color: Get.theme.secondaryHeaderColor),
+      dropdownColor: Get.theme.cardColor,
+      iconDisabledColor: Colors.grey,
+      iconEnabledColor: Get.theme.cardColor,
                 value: selectedValue,
                 isExpanded: true,
                 underline: const SizedBox(),
-                style: Get.theme.primaryTextTheme.titleMedium!.copyWith(fontSize: 14),
+                style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
                 onChanged: (newValue) {
                   if (newValue != null) {
                     cont.selectIndex(type, newValue);
@@ -99,9 +100,8 @@ class Dropdownallemployee extends StatelessWidget {
                     enabled: false,
                     child: Text(
                       title,
-                      style: Get.theme.primaryTextTheme.titleMedium!.copyWith(
+                      style: Get.theme.textTheme.bodyMedium!.copyWith(
                         fontSize: 14,
-                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -127,7 +127,7 @@ class Dropdownallemployee extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.primaryTextTheme.titleMedium!
+              style: Get.theme.textTheme.bodyMedium!
                   .copyWith(fontSize: 14),
             ),
           );
@@ -139,7 +139,7 @@ class Dropdownallemployee extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.primaryTextTheme.titleMedium!
+              style: Get.theme.textTheme.bodyMedium!
                   .copyWith(fontSize: 14),
             ),
           );
@@ -151,7 +151,7 @@ class Dropdownallemployee extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.primaryTextTheme.titleMedium!
+              style: Get.theme.textTheme.bodyMedium!
                   .copyWith(fontSize: 14),
             ),
           );
@@ -163,7 +163,7 @@ class Dropdownallemployee extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.primaryTextTheme.titleMedium!
+              style: Get.theme.textTheme.bodyMedium!
                   .copyWith(fontSize: 14),
             ),
           );
@@ -175,7 +175,7 @@ class Dropdownallemployee extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.primaryTextTheme.titleMedium!
+              style: Get.theme.textTheme.bodyMedium!
                   .copyWith(fontSize: 14),
             ),
           );
@@ -187,7 +187,7 @@ class Dropdownallemployee extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.primaryTextTheme.titleMedium!
+              style: Get.theme.textTheme.bodyMedium!
                   .copyWith(fontSize: 14),
             ),
           );
@@ -199,7 +199,7 @@ class Dropdownallemployee extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.primaryTextTheme.titleMedium!
+              style: Get.theme.textTheme.bodyMedium!
                   .copyWith(fontSize: 14),
             ),
           );

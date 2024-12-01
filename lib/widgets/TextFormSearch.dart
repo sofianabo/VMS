@@ -32,7 +32,7 @@ class TextFormSearch extends StatelessWidget {
         controller: controller,
         decoration: InputDecoration(
           hintText: "Search By Name",
-          hintStyle: Get.theme.primaryTextTheme.titleMedium!
+          hintStyle: Get.theme.textTheme.bodyMedium!
               .copyWith(fontSize: 12, color: const Color(0xffB3B3B3)),
           suffixIcon: GestureDetector(
             onTap: () {
@@ -45,7 +45,7 @@ class TextFormSearch extends StatelessWidget {
             },
             child: Icon(
               suffixIcon,
-              color: controller.text.isEmpty ? const Color(0xffB3B3B3) : Colors.black,
+              color:  Color(0xffB3B3B3),
               size: 16,
             ),
           ),

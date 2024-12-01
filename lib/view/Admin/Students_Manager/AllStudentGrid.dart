@@ -79,7 +79,7 @@ class AllStudentGrid extends StatelessWidget {
                         Expanded(
                           child: Text(
                               "${control.filteredStudents[index].fullName}",
-                              style: Get.theme.primaryTextTheme.bodyMedium!
+                              style: Get.theme.textTheme.bodyMedium!
                                   .copyWith(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold)),
@@ -90,12 +90,12 @@ class AllStudentGrid extends StatelessWidget {
                     ),
                     Text(
                         "Mobile: ${control.filteredStudents[index].mobileNumber}",
-                        style: Get.theme.primaryTextTheme.bodySmall),
+                        style: Get.theme.textTheme.bodyMedium!),
                     Text("Email: ${control.filteredStudents[index].email}",
-                        style: Get.theme.primaryTextTheme.bodySmall),
+                        style: Get.theme.textTheme.bodyMedium!),
                     Text(
                         "Grade Level: ${control.filteredStudents[index].enName}",
-                        style: Get.theme.primaryTextTheme.bodySmall),
+                        style: Get.theme.textTheme.bodyMedium!),
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Row(
@@ -124,7 +124,7 @@ class AllStudentGrid extends StatelessWidget {
                                   surfaceTintColor: Colors.white,
                                   title: Text(
                                     "Delete Student",
-                                    style: Get.theme.primaryTextTheme.bodyLarge,
+                                    style: Get.theme.textTheme.bodyMedium!,
                                   ),
                                   content: SizedBox(
                                       width: 400,
@@ -229,7 +229,7 @@ class AllStudentGrid extends StatelessWidget {
           );
         },
       ):
-            Center(child: Text(  "No Students"  , style: Get.theme.primaryTextTheme.titleLarge!.copyWith(
+            Center(child: Text(  "No Students"  , style: Get.theme.textTheme.bodyMedium!.copyWith(
                 fontSize: 22,
                 fontWeight: FontWeight.normal
             ))):

@@ -57,7 +57,7 @@ EditTeacherDialog() {
                   children: [
                     Text(
                       "Edit Student",
-                      style: Get.theme.primaryTextTheme.bodyLarge,
+                      style: Get.theme.textTheme.bodyMedium!,
                     ),
                     IconButton(
                         onPressed: () {
@@ -85,13 +85,13 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("First Name",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: firstName, hinttext: "First Name"),
                         Padding(
                           padding: const EdgeInsets.only(top: 15.0),
                           child: Text("Last Name",
-                              style: Get.theme.primaryTextTheme.labelSmall),
+                              style: Get.theme.textTheme.bodyMedium!),
                         ),
                         TextFieldDialog(
                             controller: lastName, hinttext: "last Name"),
@@ -109,7 +109,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Father Name",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: fatherName, hinttext: "Father Name"),
                       ],
@@ -118,7 +118,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Mother Name",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: motherName, hinttext: "Mother Name"),
                       ],
@@ -135,7 +135,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Phone Number",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: phoneNumber, hinttext: "Phone Number"),
                       ],
@@ -144,7 +144,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Birth Date",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         DatePicker(
                           width: 240,
                         )
@@ -162,7 +162,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Emergency Number",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: emergency,
                             hinttext: "Emergency Number"),
@@ -172,7 +172,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Join Date",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         DatePicker(
                           width: 240,
                         )
@@ -190,7 +190,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Address",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: address, hinttext: "Address"),
                       ],
@@ -199,7 +199,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Current Address",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: currentAddress,
                             hinttext: "Current Address"),
@@ -217,7 +217,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("E-mail",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(controller: email, hinttext: "E-mail"),
                       ],
                     ),
@@ -225,7 +225,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("User Name",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: username, hinttext: "User Name"),
                       ],
@@ -242,7 +242,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Salary",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(controller: salary, hinttext: "Salary"),
                       ],
                     ),
@@ -250,7 +250,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Job Title",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: jobTitle, hinttext: "Job Title"),
                       ],
@@ -298,7 +298,7 @@ EditTeacherDialog() {
                         ],
                       ),
                       child: Text("illness",
-                          style: Get.theme.primaryTextTheme.labelSmall),
+                          style: Get.theme.textTheme.bodyMedium!),
                     ),
                   ],
                 ),
@@ -309,7 +309,7 @@ EditTeacherDialog() {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text("Social Media Info:",
-                        style: Get.theme.primaryTextTheme.titleSmall),
+                        style: Get.theme.textTheme.bodyMedium!),
                   ],
                 ),
               ),
@@ -322,7 +322,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Facebook URL",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: facebook, hinttext: "Facebook URL"),
                       ],
@@ -331,7 +331,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("X Platform URL",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: x, hinttext: "X Platform URL"),
                       ],
@@ -348,7 +348,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Linkedin URL",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: linkedin, hinttext: "Linkedin URL"),
                       ],
@@ -357,7 +357,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Instagram URL",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: insta, hinttext: "Instagram URL"),
                       ],
@@ -371,7 +371,7 @@ EditTeacherDialog() {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text("Teacher Bank Info:",
-                        style: Get.theme.primaryTextTheme.titleSmall),
+                        style: Get.theme.textTheme.bodyMedium!),
                   ],
                 ),
               ),
@@ -384,7 +384,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Bank Account title",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: bankAccountTitle,
                             hinttext: "Bank Account Title"),
@@ -394,7 +394,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Bank Name",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: bankName, hinttext: "Bank Name"),
                       ],
@@ -411,7 +411,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Bank Branch Name",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: bankBranchName,
                             hinttext: "Bank Branch Name"),
@@ -421,7 +421,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Bank Account Number",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: bankAccountNumber,
                             hinttext: "Bank Account Number"),
@@ -439,7 +439,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("IFSC Code",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: ifsc, hinttext: "IFSC Code"),
                       ],
@@ -469,7 +469,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Career History",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         LargeTextField(
                             controller: careerHistory,
                             hinttext: "Career History")
@@ -487,7 +487,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Qualification",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         LargeTextField(
                             controller: qualification,
                             hinttext: "Qualification")
@@ -505,7 +505,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Experience",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         LargeTextField(
                             controller: experience, hinttext: "Experience")
                       ],
@@ -521,7 +521,7 @@ EditTeacherDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Note",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         LargeTextField(controller: note, hinttext: "Note")
                       ],
                     ),

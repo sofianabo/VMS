@@ -61,7 +61,7 @@ class AllGuardianGrid extends StatelessWidget {
                               children: [
                                 Text(
                                   "Guardian Name",
-                                  style: Get.theme.primaryTextTheme.labelSmall,
+                                  style: Get.theme.textTheme.bodyMedium!,
                                 ),
                                 TextFieldDialog(
                                     controller: gUserName,
@@ -76,7 +76,7 @@ class AllGuardianGrid extends StatelessWidget {
                                   Text(
                                     "Guardian National ID",
                                     style:
-                                        Get.theme.primaryTextTheme.labelSmall,
+                                        Get.theme.textTheme.bodyMedium!,
                                   ),
                                   TextFieldDialog(
                                       controller: gNationalID,
@@ -98,7 +98,7 @@ class AllGuardianGrid extends StatelessWidget {
                                   Text(
                                     "Guardian Email",
                                     style:
-                                        Get.theme.primaryTextTheme.labelSmall,
+                                        Get.theme.textTheme.bodyMedium!,
                                   ),
                                   TextFieldDialog(
                                       controller: gEmail,
@@ -114,7 +114,7 @@ class AllGuardianGrid extends StatelessWidget {
                                     Text(
                                       "Guardian Phone Number",
                                       style:
-                                          Get.theme.primaryTextTheme.labelSmall,
+                                          Get.theme.textTheme.bodyMedium!,
                                     ),
                                     TextFieldDialog(
                                         controller: gphone,
@@ -173,7 +173,7 @@ class AllGuardianGrid extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text("${control.guardian[index].name}",
-                                style: Get.theme.primaryTextTheme.bodyMedium!
+                                style: Get.theme.textTheme.bodyMedium!
                                     .copyWith(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold)),
@@ -181,9 +181,9 @@ class AllGuardianGrid extends StatelessWidget {
                         ],
                       ),
                       Text("Email: ${control.guardian[index].email}",
-                          style: Get.theme.primaryTextTheme.bodySmall),
+                          style: Get.theme.textTheme.bodyMedium!),
                       Text("Mobile Number : ${control.guardian[index].phone}",
-                          style: Get.theme.primaryTextTheme.bodySmall),
+                          style: Get.theme.textTheme.bodyMedium!),
                     ],
                   )),
             ),

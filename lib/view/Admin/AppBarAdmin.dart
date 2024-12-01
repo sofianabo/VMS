@@ -132,7 +132,7 @@ class AppbarAdmin extends StatelessWidget {
                           GetBuilder<UserController>(builder: (control) {
                             return Text(
                               "${prefs!.getString("username")}",
-                              style: Get.theme.primaryTextTheme.bodySmall,
+                              style: Get.theme.textTheme.bodyMedium!,
                             );
                           })
                         ],
@@ -147,7 +147,10 @@ class AppbarAdmin extends StatelessWidget {
                 return Center(
                   child: Text(
                     cont.content,
-                    style: Get.theme.primaryTextTheme.titleLarge,
+                    style: Get.theme.textTheme.titleLarge!.copyWith(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold
+                    ),
                   ),
                 );
               }),

@@ -55,7 +55,7 @@ class Textfildwithupper extends StatelessWidget {
               decoration: InputDecoration(
                 suffixIcon: icon ?? Text(""),
                 hintText: hinttext,
-                hintStyle: Get.theme.primaryTextTheme.titleMedium!
+                hintStyle: Get.theme.textTheme.bodyMedium!
                     .copyWith(fontSize: 14, color: Color(0xffB3B3B3),fontWeight: FontWeight.normal),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5),

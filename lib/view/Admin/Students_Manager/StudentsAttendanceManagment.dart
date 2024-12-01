@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students_APIs/IncreaseAttendanceAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/view/Admin/Students_Manager/StudentsAttendanceManagmentGrid.dart';
 import 'package:vms_school/widgets/Admin_Students/DropDownStudentsAttendencemgmt.dart';
 
-class StudentsAttendanceManagment extends StatelessWidget {
+class StudentsAttendanceManagment extends StatefulWidget {
   StudentsAttendanceManagment({super.key});
+
+  @override
+  State<StudentsAttendanceManagment> createState() => _StudentsAttendanceManagmentState();
+}
+
+class _StudentsAttendanceManagmentState extends State<StudentsAttendanceManagment> {
+
+  @override
+  void initState() {
+    IncreaseAttendanceAPI(context).GetIncreaseAttendance();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +44,7 @@ class StudentsAttendanceManagment extends StatelessWidget {
                   DropDownStudentsAttendencemgmt(
                       title: "Division",
                       width: w / 5.0, type: "class"),
-                  GetBuilder<Studentattcontroller>(builder: (controller) {
+                  GetBuilder<Student_attendence_controller>(builder: (controller) {
                     return Container(
                         width: w / 5.0,
                         child: Obx(() => Row(

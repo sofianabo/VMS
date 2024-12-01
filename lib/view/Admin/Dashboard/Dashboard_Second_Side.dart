@@ -24,7 +24,7 @@ class DashboardSecondSide extends StatelessWidget {
                     height: 500,
                     padding: EdgeInsets.all(15.0),
                     decoration: BoxDecoration(
-                        color: Color(0xffFBFBFB),
+                        color: Get.theme.cardColor,
                         border: Border.all(color: Colors.grey, width: 0.2),
                         borderRadius: BorderRadius.all(Radius.circular(5)),
                         boxShadow: const [
@@ -54,7 +54,7 @@ class DashboardSecondSide extends StatelessWidget {
                     child: Container(
                         padding: EdgeInsets.all(13.0),
                         decoration: BoxDecoration(
-                            color: Color(0xffFBFBFB),
+                            color: Get.theme.cardColor,
                             border: Border.all(color: Colors.grey, width: 0.2),
                             borderRadius: BorderRadius.all(Radius.circular(5)),
                             boxShadow: const [

@@ -136,8 +136,7 @@ class CurriculumGrid extends StatelessWidget {
                                           children: [
                                             Text(
                                               "Do You Want To Delete (${control.Curriculum[index]['name']}) Curriculum",
-                                              style: Get.theme.primaryTextTheme
-                                                  .bodyMedium!
+                                              style: Get.theme.textTheme.bodyMedium!
                                                   .copyWith(
                                                       fontSize: 16,
                                                       fontWeight:

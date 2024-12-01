@@ -14,9 +14,8 @@ class EmployeeController extends GetxController {
     Employee.clear();
 
     for (var emp in employees!) {
-      // إضافة بيانات الموظف إلى القائمة Employee
       Employee.add({
-        'stuid': emp.id!,
+        'employeeId': emp.id!,
         'status': 'Present',
         'cause': null,
         'name': emp.fullName!,

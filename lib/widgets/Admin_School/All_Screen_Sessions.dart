@@ -54,7 +54,7 @@ class DropDownAllSessions extends StatelessWidget {
               const Icon(Icons.arrow_drop_down),
             ],
           ),
-          style: Get.theme.primaryTextTheme.titleMedium!.copyWith(fontSize: 14),
+          style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
           onChanged: (newValue) {
             if (newValue != null) {
               cont.selectIndex(type, newValue);
@@ -66,7 +66,7 @@ class DropDownAllSessions extends StatelessWidget {
               enabled: false,
               child: Text(
                 title,
-                style: Get.theme.primaryTextTheme.titleMedium!.copyWith(
+                style: Get.theme.textTheme.bodyMedium!.copyWith(
                   fontSize: 14,
                   color: Colors.black, // لون العنوان
                 ),
@@ -90,7 +90,7 @@ class DropDownAllSessions extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.primaryTextTheme.titleMedium!
+              style: Get.theme.textTheme.bodyMedium!
                   .copyWith(fontSize: 14),
             ),
           );

@@ -20,20 +20,20 @@ class Section4 extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(top: h / 38),
                 child: Text("Why Us?",
-                    style: Get.theme.primaryTextTheme.titleLarge),
+                    style: Get.theme.textTheme.bodyMedium!),
               )),
           SizedBox(
             height: h / 27.36,
           ),
           Text(
               "Virtual Modern School is an online learning platform that helps students to learn the",
-              style: Get.theme.primaryTextTheme.bodySmall),
+              style: Get.theme.textTheme.bodyMedium!),
           Text(
               "Syrian Education Curriculum from home. The courses of this platform are designed",
-              style: Get.theme.primaryTextTheme.bodySmall),
+              style: Get.theme.textTheme.bodyMedium!),
           Text(
               "for elementary school, middle school, and high school all in one place.",
-              style: Get.theme.primaryTextTheme.bodySmall),
+              style: Get.theme.textTheme.bodyMedium!),
           SizedBox(
             height: h / 34.2,
           ),
@@ -58,8 +58,8 @@ class Section4 extends StatelessWidget {
                       height: h / 68.4,
                     ),
                     Text("Improving educational",
-                        style: Get.theme.primaryTextTheme.bodySmall),
-                    Text("Skills", style: Get.theme.primaryTextTheme.bodySmall)
+                        style: Get.theme.textTheme.bodyMedium!),
+                    Text("Skills", style: Get.theme.textTheme.bodyMedium!)
                   ],
                 ),
               ),
@@ -81,8 +81,8 @@ class Section4 extends StatelessWidget {
                       height: h / 68.4,
                     ),
                     Text("Smart virtual",
-                        style: Get.theme.primaryTextTheme.bodySmall),
-                    Text("meeting", style: Get.theme.primaryTextTheme.bodySmall)
+                        style: Get.theme.textTheme.bodyMedium!),
+                    Text("meeting", style: Get.theme.textTheme.bodyMedium!)
                   ],
                 ),
               ),
@@ -104,9 +104,9 @@ class Section4 extends StatelessWidget {
                       height: h / 68.4,
                     ),
                     Text("Outstanding",
-                        style: Get.theme.primaryTextTheme.bodySmall),
+                        style: Get.theme.textTheme.bodyMedium!),
                     Text("user - friendliness",
-                        style: Get.theme.primaryTextTheme.bodySmall)
+                        style: Get.theme.textTheme.bodyMedium!)
                   ],
                 ),
               ),
@@ -136,8 +136,8 @@ class Section4 extends StatelessWidget {
                       height: h / 68.4,
                     ),
                     Text("Instant live",
-                        style: Get.theme.primaryTextTheme.bodySmall),
-                    Text("Lessons", style: Get.theme.primaryTextTheme.bodySmall)
+                        style: Get.theme.textTheme.bodyMedium!),
+                    Text("Lessons", style: Get.theme.textTheme.bodyMedium!)
                   ],
                 ),
               ),
@@ -159,7 +159,7 @@ class Section4 extends StatelessWidget {
                       height: h / 68.4,
                     ),
                     Text("Focus on results",
-                        style: Get.theme.primaryTextTheme.bodySmall)
+                        style: Get.theme.textTheme.bodyMedium!)
                   ],
                 ),
               ),
@@ -181,8 +181,8 @@ class Section4 extends StatelessWidget {
                       height: h / 68.4,
                     ),
                     Text("Multiple registration",
-                        style: Get.theme.primaryTextTheme.bodySmall),
-                    Text("options", style: Get.theme.primaryTextTheme.bodySmall)
+                        style: Get.theme.textTheme.bodyMedium!),
+                    Text("options", style: Get.theme.textTheme.bodyMedium!)
                   ],
                 ),
               ),

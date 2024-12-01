@@ -32,9 +32,6 @@ class Dashboard_API {
         );
 
         if (response.statusCode == 200) {
-          print("Request successful!");
-          print(response.data);
-
           DashboardModel dashboardModel =
           DashboardModel.fromJson(response.data);
           controller.AddData(dashboardModel);

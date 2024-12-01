@@ -40,7 +40,7 @@ class _AppbarCustomState extends State<AppbarCustom> {
                   onPressed: () {},
                   child: Text(
                     "Classes",
-                    style: Get.theme.primaryTextTheme.titleSmall,
+                    style:Get.theme.textTheme.bodyMedium!,
                   ),
                 ),
               ),
@@ -52,7 +52,7 @@ class _AppbarCustomState extends State<AppbarCustom> {
                   },
                   child: Text(
                     "Courses",
-                    style: Get.theme.primaryTextTheme.titleSmall,
+                    style: Get.theme.textTheme.bodyMedium!,
                   ),
                 ),
               ),
@@ -63,7 +63,7 @@ class _AppbarCustomState extends State<AppbarCustom> {
                   onPressed: () {},
                   child: Text(
                     "News",
-                    style: Get.theme.primaryTextTheme.titleSmall,
+                    style: Get.theme.textTheme.bodyMedium!,
                   ),
                 ),
               ),
@@ -74,7 +74,7 @@ class _AppbarCustomState extends State<AppbarCustom> {
                   onPressed: () {},
                   child: Text(
                     "About Us",
-                    style: Get.theme.primaryTextTheme.titleSmall,
+                    style: Get.theme.textTheme.bodyMedium!,
                   ),
                 ),
               ),
@@ -85,7 +85,7 @@ class _AppbarCustomState extends State<AppbarCustom> {
                   onPressed: () {},
                   child: Text(
                     "Contact Us",
-                    style: Get.theme.primaryTextTheme.titleSmall,
+                    style: Get.theme.textTheme.bodyMedium!,
                   ),
                 ),
               ),

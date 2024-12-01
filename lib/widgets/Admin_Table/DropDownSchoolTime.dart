@@ -47,21 +47,19 @@ class DropDownSchoolTime extends StatelessWidget {
           border: Border.all(color: color ?? Color(0xffD9D9D9)),
         ),
         child: DropdownButton<String>(
-          focusColor: Colors.white,
-          dropdownColor: Colors.white,
+          dropdownColor: Get.theme.cardColor,
           iconDisabledColor: Colors.grey,
-          iconEnabledColor: Colors.black,
+          iconEnabledColor: Get.theme.cardColor,
           value: selectedValue,
-          // استخدم selectedValue مباشرة
           isExpanded: true,
           underline: const SizedBox(),
           icon: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              const Icon(Icons.arrow_drop_down),
+              Icon(Icons.arrow_drop_down , color: Get.theme.secondaryHeaderColor),
             ],
           ),
-          style: Get.theme.primaryTextTheme.titleMedium!.copyWith(fontSize: 14),
+          style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
           onChanged: (newValue) {
             if (newValue != null) {
               cont.selectIndex(type, newValue);
@@ -73,13 +71,12 @@ class DropDownSchoolTime extends StatelessWidget {
               enabled: false,
               child: Text(
                 title,
-                style: Get.theme.primaryTextTheme.titleMedium!.copyWith(
+                style: Get.theme.textTheme.bodyMedium!.copyWith(
                   fontSize: 14,
-                  color: Colors.black,
                 ),
               ),
             ),
-            ..._getDropdownItems(cont, context),
+            ..._getDropdownItems(cont,context),
           ],
           borderRadius: BorderRadius.circular(3),
         ),
@@ -98,7 +95,7 @@ class DropDownSchoolTime extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.primaryTextTheme.titleMedium!
+              style: Get.theme.textTheme.bodyMedium!
                   .copyWith(fontSize: 14),
             ),
             onTap: () async {
@@ -115,7 +112,7 @@ class DropDownSchoolTime extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.primaryTextTheme.titleMedium!
+              style: Get.theme.textTheme.bodyMedium!
                   .copyWith(fontSize: 14),
             ),
           );

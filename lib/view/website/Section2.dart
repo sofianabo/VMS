@@ -15,7 +15,7 @@ class Section2 extends StatelessWidget {
       child: Column(
         children: [
           Text("Who Can We Register At Virtual Modern School",
-              style: Get.theme.primaryTextTheme.titleLarge!.copyWith(
+              style: Get.theme.textTheme.bodyMedium!.copyWith(
                 fontSize: 24,
               )),
           Row(
@@ -32,13 +32,13 @@ class Section2 extends StatelessWidget {
                           children: [
                             Text(
                                 "Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary",
-                                style: Get.theme.primaryTextTheme.bodySmall),
+                                style: Get.theme.textTheme.bodyMedium!),
                             Text(
                                 "to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted",
-                                style: Get.theme.primaryTextTheme.bodySmall),
+                                style: Get.theme.textTheme.bodyMedium!),
                             Text(
                                 "by the Ministry of Education at Syrian Arab Republic",
-                                style: Get.theme.primaryTextTheme.bodySmall),
+                                style: Get.theme.textTheme.bodyMedium!),
                           ],
                         ),
                         SizedBox(
@@ -69,15 +69,15 @@ class Section2 extends StatelessWidget {
                         children: [
                           Text(
                               "People with special needs who are residing in Syria are uncapable to study in regular schools uncapable",
-                              style: Get.theme.primaryTextTheme.bodySmall),
+                              style: Get.theme.textTheme.bodyMedium!),
                           Text(
                               "to study uncapable to study in regular schools and exceptional students cases determined by the",
-                              style: Get.theme.primaryTextTheme.bodySmall),
+                              style: Get.theme.textTheme.bodyMedium!),
                           Text(
                               "Ministry of Education at Syrian Arab Diploma granted by the Ministry of Education at Syrian Arab",
-                              style: Get.theme.primaryTextTheme.bodySmall),
+                              style: Get.theme.textTheme.bodyMedium!),
                           Text("Republic",
-                              style: Get.theme.primaryTextTheme.bodySmall),
+                              style: Get.theme.textTheme.bodyMedium!),
                         ],
                       ),
                       const SizedBox(

@@ -398,7 +398,7 @@ EditEmployee(BuildContext context , int idx , String employeeID) {
                                    children: [
                                      Text(
                                        "Social Media Info :",
-                                       style: Get.theme.primaryTextTheme.labelMedium!
+                                       style: Get.theme.textTheme.titleLarge!
                                            .copyWith(fontSize: 20),
                                      )
                                    ],
@@ -451,7 +451,7 @@ EditEmployee(BuildContext context , int idx , String employeeID) {
                                    children: [
                                      Text(
                                        "Teacher Bank Info :",
-                                       style: Get.theme.primaryTextTheme.labelMedium!
+                                       style: Get.theme.textTheme.titleLarge!
                                            .copyWith(fontSize: 20),
                                      )
                                    ],

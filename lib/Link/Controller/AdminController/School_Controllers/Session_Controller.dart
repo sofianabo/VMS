@@ -5,7 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 
 class SessionController extends GetxController {
-  var Sessions = [
+
+
+  var Sessionss = <Map<String, dynamic>>[
     {
       "name": "2025-2024",
       "status": "Opening",
@@ -21,37 +23,44 @@ class SessionController extends GetxController {
   ].obs;
 
 
+  List<Sessions>? sessions;
+
+
+
+  bool isLoading = true;
+
+  setData(AllSessionModel sessions) {
+    sessions = sessions;
+    Sessionss.clear();
+    setIsLoading(false);
+    for (var stu in sessions.sessions!) {
+      Sessionss.add({
+        'id': stu.id,
+        'name': stu.year,
+        'status': stu.status,
+        'startDate': stu.startDate,
+        'endDate': stu.endDate,
+      });
+    }
+    update();
+  }
+
+  setIsLoading(bool isload) {
+    isLoading = isload;
+    update();
+  }
 
 
   TextEditingController sessionController = TextEditingController();
   var borderColor = Color(0xffD9D9D9).obs; // Reactive border color
 
 
-
-  
-
-  SessionController() {
-    // Add listener to sessionController to update border color
-    sessionController.addListener(() {
-      updateBorderColor();
-    });
-  }
-
   void updateStatus(int index, String newStatus) {
-    Sessions[index]['status'] = newStatus;
+    Sessionss[index]['status'] = newStatus;
     update();
   }
-
-  void updateBorderColor() {
-    int? year = int.tryParse(sessionController.text);
-    if (year == null || year < 2024 || year >= 2099) {
-      borderColor.value = Colors.red; // Set border color to red
-    } else {
-      borderColor.value = Color(0xffD9D9D9); // Reset to default
-    }
-  }
-
-  var currentYear = 0.obs; // متغير ملاحظ لحفظ السنة
+  
+  var currentYear = 0.obs;
 
   void updateYear(String year) {
     int? parsedYear = int.tryParse(year);

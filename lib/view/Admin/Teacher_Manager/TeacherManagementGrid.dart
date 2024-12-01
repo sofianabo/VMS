@@ -97,8 +97,7 @@ class TeacherManagementGrid extends StatelessWidget {
                                         children: [
                                           Text(
                                             "Do You Want To Delete ${control.teachers[index].fullName} Teacher",
-                                            style: Get.theme.primaryTextTheme
-                                                .bodyMedium!
+                                            style: Get.theme.textTheme.bodyMedium!
                                                 .copyWith(
                                                     fontSize: 16,
                                                     fontWeight:
@@ -160,7 +159,7 @@ class TeacherManagementGrid extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 5.0),
                         child: Text("${control.teachers[index].fullName}",
-                            style: Get.theme.primaryTextTheme.bodyMedium!
+                            style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(
                                     fontSize: 20, fontWeight: FontWeight.bold)),
                       ),
@@ -172,7 +171,7 @@ class TeacherManagementGrid extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 5.0),
                             child: Text(
                                 "${control.teachers[index].contractType}",
-                                style: Get.theme.primaryTextTheme.bodySmall!
+                                style: Get.theme.textTheme.bodyMedium!
                                     .copyWith(
                                         fontSize: 16,
                                         color: control.teachers[index]
@@ -184,7 +183,7 @@ class TeacherManagementGrid extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 5.0),
                             child: Text("${control.teachers[index].gender}",
-                                style: Get.theme.primaryTextTheme.bodySmall!
+                                style: Get.theme.textTheme.bodyMedium!
                                     .copyWith(
                                         fontSize: 16,
                                         color: Get.theme.primaryColor)),
@@ -195,7 +194,7 @@ class TeacherManagementGrid extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 5.0),
                         child: Text("Mobile : ${control.teachers[index].phone}",
                             style:
-                                Get.theme.primaryTextTheme.bodySmall!.copyWith(
+                                Get.theme.textTheme.bodyMedium!.copyWith(
                               fontSize: 16,
                             )),
                       ),
@@ -203,7 +202,7 @@ class TeacherManagementGrid extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 5.0),
                         child: Text("Email : ${control.teachers[index].email}",
                             style:
-                                Get.theme.primaryTextTheme.bodySmall!.copyWith(
+                                Get.theme.textTheme.bodyMedium!.copyWith(
                               fontSize: 14,
                             )),
                       ),

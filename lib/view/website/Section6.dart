@@ -18,7 +18,7 @@ class Section6 extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(bottom: h / 34.2),
             child: Text("What Do We",
-                style: Get.theme.primaryTextTheme.titleLarge),
+                style: Get.theme.textTheme.bodyMedium!),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -27,13 +27,13 @@ class Section6 extends StatelessWidget {
                 children: [
                   Text(
                       "We develop a culture of excellence that includes a robust instructional program aligned to the",
-                      style: Get.theme.primaryTextTheme.bodySmall),
+                      style: Get.theme.textTheme.bodyMedium!),
                   Text(
                       "highest standards with a focus on implementing balanced literacy through reading and writing",
-                      style: Get.theme.primaryTextTheme.bodySmall),
+                      style: Get.theme.textTheme.bodyMedium!),
                   Text(
                       "workshops, while cultivating competency across all subject areas.",
-                      style: Get.theme.primaryTextTheme.bodySmall),
+                      style: Get.theme.textTheme.bodyMedium!),
                   SizedBox(
                     height: h / 34.2,
                   ),
@@ -56,7 +56,7 @@ class Section6 extends StatelessWidget {
                         Text(
                             textAlign: TextAlign.center,
                             "We are committed to developing well-rounded students who embody our core values: Be Safe, Be Respectful, Be Responsible, and Be Mindful. Our vibrant learning environment encourages discovery and creative expression, making every student feel valued.\n\nWe provide our educators with robust professional development to enhance teaching practices and boost student success. Through collaboration and a community schools model, we align resources to ensure every student thrives. Join us in our journey towards excellence!",
-                            style: Get.theme.primaryTextTheme.bodySmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                       ],
                     ),
                   ),

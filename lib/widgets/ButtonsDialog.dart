@@ -32,7 +32,7 @@ class ButtonDialog extends StatelessWidget {
               side: BorderSide(color: bordercolor ?? Colors.transparent)),
           onPressed: onPressed,
           color: color,
-          child: Text(text, style: Get.theme.primaryTextTheme.headlineSmall!.copyWith(
+          child: Text(text, style: Get.theme.textTheme.displayMedium!.copyWith(
                   fontFamily: "Cairo", color: textcolor ?? Colors.white))),
     );
   }
@@ -69,7 +69,7 @@ class ButtonDashboard extends StatelessWidget {
           onPressed: onPressed,
           color: color,
           child: Text(text,
-              style: Get.theme.primaryTextTheme.headlineSmall!.copyWith(
+              style: Get.theme.textTheme.displayMedium!.copyWith(
                   fontFamily: "Cairo",
                   color: textcolor ?? Colors.white,
                   fontSize: 12))),

@@ -22,7 +22,7 @@ class TextFieldDialog extends StatelessWidget {
         controller: controller,
         decoration: InputDecoration(
           hintText: hinttext,
-          hintStyle: Get.theme.primaryTextTheme.titleMedium!.copyWith(
+          hintStyle: Get.theme.textTheme.bodyMedium!.copyWith(
             fontSize: 14,
             color: Color(0xffB3B3B3)
           ),

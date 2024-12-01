@@ -49,7 +49,7 @@ class DashboardSecondRow extends StatelessWidget {
                 padding: EdgeInsets.all(13.0),
                 margin: EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
                 decoration: BoxDecoration(
-                  color: Color(0xffF3F4F8),
+                  color: Get.theme.cardColor,
                   border: Border.all(color: Colors.grey, width: 0.2),
                   borderRadius: BorderRadius.all(Radius.circular(5)),
                   boxShadow: const [
@@ -72,7 +72,7 @@ class DashboardSecondRow extends StatelessWidget {
                 padding: EdgeInsets.all(13.0),
                 margin: EdgeInsets.only(bottom: 15.0),
                 decoration: BoxDecoration(
-                    color: Color(0xffF3F4F8),
+                    color: Get.theme.cardColor,
                     border: Border.all(color: Colors.grey, width: 0.2),
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                     boxShadow: const [
@@ -261,7 +261,7 @@ class DashboardSecondRow extends StatelessWidget {
               padding: EdgeInsets.all(13.0),
               margin: EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
               decoration: BoxDecoration(
-                color: Color(0xffF3F4F8),
+                color: Get.theme.cardColor,
                 border: Border.all(color: Colors.grey, width: 0.2),
                 borderRadius: BorderRadius.all(Radius.circular(5)),
                 boxShadow: const [
@@ -292,7 +292,7 @@ class DashboardSecondRow extends StatelessWidget {
               padding: EdgeInsets.all(13.0),
               margin: EdgeInsets.only(bottom: 15.0),
               decoration: BoxDecoration(
-                  color: Color(0xffF3F4F8),
+                  color: Get.theme.cardColor,
                   border: Border.all(color: Colors.grey, width: 0.2),
                   borderRadius: BorderRadius.all(Radius.circular(5)),
                   boxShadow: const [

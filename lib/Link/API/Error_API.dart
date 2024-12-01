@@ -10,6 +10,9 @@ class ErrorHandler {
       int statusCode = error.response?.statusCode ?? 0;
 
       switch (statusCode) {
+        case 232:
+          message = "عذرا لقد تم رفع الحضور لهذا اليوم سابقاً.";
+          break;
         case 400:
           message = "طلب غير صحيح. يرجى المحاولة مرة أخرى.";
           break;

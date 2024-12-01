@@ -83,7 +83,7 @@ class LoginScreen extends StatelessWidget {
                                   Text(
                                     "Username",
                                     style:
-                                        Get.theme.primaryTextTheme.labelSmall,
+                                        Get.theme.textTheme.bodyMedium!,
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 5.0),
@@ -108,7 +108,7 @@ class LoginScreen extends StatelessWidget {
                                     Text(
                                       "Password",
                                       style:
-                                          Get.theme.primaryTextTheme.labelSmall,
+                                      Get.theme.textTheme.bodyMedium!,
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(top: 5.0),

@@ -18,12 +18,12 @@ class SessionManagementGrid extends StatelessWidget {
             crossAxisSpacing: 20.0,
             mainAxisSpacing: 20.0,
             childAspectRatio: 1.1),
-        itemCount: control.Sessions.length,
+        itemCount: control.Sessionss.length,
         itemBuilder: (context, index) {
           return HoverScaleCard(
             child: GestureDetector(
               onTap: () {
-                if (control.Sessions[index]['status'] != "Closed") {
+                if (control.Sessionss[index]['status'] != "Closed") {
                   Get.dialog(VMSAlertDialog(
                       action: [
                         ButtonDialog(
@@ -45,7 +45,7 @@ class SessionManagementGrid extends StatelessWidget {
                       contents: Container(
                           width: 400,
                           child: Text(
-                            "Close ${control.Sessions[index]['name']}",
+                            "Close ${control.Sessionss[index]['name']}",
                             style: TextStyle(fontSize: 16),
                           )),
                       apptitle: "Close Session",
@@ -69,7 +69,7 @@ class SessionManagementGrid extends StatelessWidget {
                     children: [
                       Center(
                         child: Text(
-                          "${control.Sessions[index]['name']!.replaceRange(4, 9, "").replaceRange(0, 2, "20\n")}",
+                          "${control.Sessionss[index]['name']!.replaceRange(4, 9, "").replaceRange(0, 2, "20\n")}",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Color(0xff134B70).withOpacity(0.2),
@@ -81,13 +81,13 @@ class SessionManagementGrid extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text("${control.Sessions[index]['name']}",
-                              style: Get.theme.primaryTextTheme.titleLarge!
+                          Text("${control.Sessionss[index]['name']}",
+                              style: Get.theme.textTheme.bodyMedium!
                                   .copyWith(fontSize: 20, color: Colors.black)),
-                          Text("${control.Sessions[index]['status']}",
-                              style: Get.theme.primaryTextTheme.titleLarge!
+                          Text("${control.Sessionss[index]['status']}",
+                              style: Get.theme.textTheme.bodyMedium!
                                   .copyWith(
-                                color: control.Sessions[index]['status'] ==
+                                color: control.Sessionss[index]['status'] ==
                                         "Closed"
                                     ? Color(0xffB03D3D)
                                     : Color(0xff2F9742),
@@ -99,7 +99,7 @@ class SessionManagementGrid extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
-                                      "Start Date : ${control.Sessions[index]['startDate']}",
+                                      "Start Date : ${control.Sessionss[index]['startDate']}",
                                       style: Get
                                           .theme.primaryTextTheme.titleLarge!
                                           .copyWith(
@@ -107,7 +107,7 @@ class SessionManagementGrid extends StatelessWidget {
                                               fontWeight: FontWeight.normal,
                                               color: Colors.black)),
                                   Text(
-                                      "End Date : ${control.Sessions[index]['endDate']}",
+                                      "End Date : ${control.Sessionss[index]['endDate']}",
                                       style: Get
                                           .theme.primaryTextTheme.titleLarge!
                                           .copyWith(

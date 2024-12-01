@@ -51,7 +51,7 @@ EditStudentDialog() {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text("Edit Student",
-                          style: Get.theme.primaryTextTheme.bodyLarge),
+                          style: Get.theme.textTheme.bodyMedium!),
                       IconButton(
                           onPressed: () {
                             Get.back();
@@ -81,13 +81,13 @@ EditStudentDialog() {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("First Name",
-                              style: Get.theme.primaryTextTheme.labelSmall),
+                              style: Get.theme.textTheme.bodyMedium!),
                           TextFieldDialog(
                               controller: firstName, hinttext: "First Name"),
                           Padding(
                             padding: const EdgeInsets.only(top: 15.0),
                             child: Text("Last Name",
-                                style: Get.theme.primaryTextTheme.labelSmall),
+                                style: Get.theme.textTheme.bodyMedium!),
                           ),
                           TextFieldDialog(
                               controller: lastName, hinttext: "Last Name"),
@@ -106,7 +106,7 @@ EditStudentDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Birth Date",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         DatePicker(
                           width: 250,
                           height: 40,
@@ -119,7 +119,7 @@ EditStudentDialog() {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("Session",
-                              style: Get.theme.primaryTextTheme.labelSmall),
+                              style: Get.theme.textTheme.bodyMedium!),
                           TextFieldDialog(
                               controller: session, hinttext: "Session"),
                         ],
@@ -137,7 +137,7 @@ EditStudentDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Phone Number",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: phoneNumber, hinttext: "Phone Number"),
                       ],
@@ -148,7 +148,7 @@ EditStudentDialog() {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("Place of Birth",
-                              style: Get.theme.primaryTextTheme.labelSmall),
+                              style: Get.theme.textTheme.bodyMedium!),
                           TextFieldDialog(
                               controller: placeofBirth,
                               hinttext: "Place of Birth"),
@@ -169,7 +169,7 @@ EditStudentDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Religion",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: religion, hinttext: "Religion"),
                       ],
@@ -275,7 +275,7 @@ EditStudentDialog() {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("Current Address",
-                              style: Get.theme.primaryTextTheme.labelSmall),
+                              style: Get.theme.textTheme.bodyMedium!),
                           TextFieldDialog(
                               controller: currentAddress,
                               hinttext: "Current Address"),
@@ -293,7 +293,7 @@ EditStudentDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("National Number",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: nationalNumber,
                             hinttext: "National Number"),
@@ -305,7 +305,7 @@ EditStudentDialog() {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("Local ID",
-                              style: Get.theme.primaryTextTheme.labelSmall),
+                              style: Get.theme.textTheme.bodyMedium!),
                           TextFieldDialog(
                               controller: localID, hinttext: "Local ID"),
                         ],
@@ -322,7 +322,7 @@ EditStudentDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Fee Discount",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: feeDiscount, hinttext: "Fee Discount"),
                       ],
@@ -337,7 +337,7 @@ EditStudentDialog() {
                   children: [
                     Text(
                       "Student's Father Info:",
-                      style: Get.theme.primaryTextTheme.titleSmall,
+                      style: Get.theme.textTheme.bodyMedium!,
                     ),
                   ],
                 ),
@@ -350,7 +350,7 @@ EditStudentDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Father Name",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: fatherName, hinttext: "Father Name"),
                       ],
@@ -361,7 +361,7 @@ EditStudentDialog() {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("His Job",
-                              style: Get.theme.primaryTextTheme.labelSmall),
+                              style: Get.theme.textTheme.bodyMedium!),
                           TextFieldDialog(
                               controller: fatherJob, hinttext: "His Job"),
                         ],
@@ -378,7 +378,7 @@ EditStudentDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Phone Number",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: fatherPhoneNumber,
                             hinttext: "Phone Number"),
@@ -394,7 +394,7 @@ EditStudentDialog() {
                   children: [
                     Text(
                       "Student's Mother Info:",
-                      style: Get.theme.primaryTextTheme.titleSmall,
+                      style: Get.theme.textTheme.bodyMedium!,
                     ),
                   ],
                 ),
@@ -407,7 +407,7 @@ EditStudentDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Mother Name",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: motherName, hinttext: "Mother Name"),
                       ],
@@ -418,7 +418,7 @@ EditStudentDialog() {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("Her Job",
-                              style: Get.theme.primaryTextTheme.labelSmall),
+                              style: Get.theme.textTheme.bodyMedium!),
                           TextFieldDialog(
                               controller: motherJob, hinttext: "Her Job"),
                         ],
@@ -435,7 +435,7 @@ EditStudentDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Phone Number",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: motherPhoneNumber,
                             hinttext: "Phone Number"),
@@ -450,7 +450,7 @@ EditStudentDialog() {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text("Student's Guardian Info:",
-                        style: Get.theme.primaryTextTheme.titleSmall),
+                        style: Get.theme.textTheme.bodyMedium!),
                   ],
                 ),
               ),
@@ -462,7 +462,7 @@ EditStudentDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Guardian Username",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: guardianUserName,
                             hinttext: "Guardian Username"),
@@ -474,7 +474,7 @@ EditStudentDialog() {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("Guardian National ID",
-                              style: Get.theme.primaryTextTheme.labelSmall),
+                              style: Get.theme.textTheme.bodyMedium!),
                           TextFieldDialog(
                               controller: guardianNationalID,
                               hinttext: "Guardian National ID"),
@@ -492,7 +492,7 @@ EditStudentDialog() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Guardian E-mail",
-                            style: Get.theme.primaryTextTheme.labelSmall),
+                            style: Get.theme.textTheme.bodyMedium!),
                         TextFieldDialog(
                             controller: guardianEmail,
                             hinttext: "Guardian E-mail"),

@@ -43,7 +43,7 @@ class DropDown extends StatelessWidget {
               ],
             ),
           ),
-          style: Get.theme.primaryTextTheme.titleMedium!.copyWith(fontSize: 14),
+          style:Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
           onChanged: (newValue) {
             cont.selectval(newValue!);
           },
@@ -53,7 +53,7 @@ class DropDown extends StatelessWidget {
               enabled: false,
               child: Text(
                 title,
-                style: Get.theme.primaryTextTheme.titleMedium!
+                style: Get.theme.textTheme.bodyMedium!
                     .copyWith(fontSize: 14),
               ),
             ),
@@ -62,7 +62,7 @@ class DropDown extends StatelessWidget {
                 value: value,
                 child: Text(
                   value,
-                  style: Get.theme.primaryTextTheme.titleMedium!
+                  style: Get.theme.textTheme.bodyMedium!
                       .copyWith(fontSize: 14),
                 ),
               );

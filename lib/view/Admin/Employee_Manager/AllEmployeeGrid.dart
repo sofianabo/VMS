@@ -217,8 +217,7 @@ class AllEmployeeGrid extends StatelessWidget {
                                       child: Text(
                                         "${controller.filteredreemployees[index]
                                             .fullName}",
-                                        style: Get.theme.primaryTextTheme
-                                            .bodyMedium!
+                                        style: Get.theme.textTheme.bodyMedium!
                                             .copyWith(
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold),
@@ -238,8 +237,7 @@ class AllEmployeeGrid extends StatelessWidget {
                                     children: [
                                       Text(
                                         "${controller.filteredreemployees[index].roll}",
-                                        style: Get.theme.primaryTextTheme
-                                            .bodyMedium!
+                                        style: Get.theme.textTheme.bodyMedium!
                                             .copyWith(
                                             color: controller.filteredreemployees[index]
                                                 .roll ==
@@ -295,8 +293,7 @@ class AllEmployeeGrid extends StatelessWidget {
                                   ),
                                   Text(
                                     "${controller.filteredreemployees[index].jobTitle}",
-                                    style: Get.theme.primaryTextTheme
-                                        .bodyMedium!
+                                    style: Get.theme.textTheme.bodyMedium!
                                         .copyWith(
                                         color: Colors.black,
                                         fontSize: 14,
@@ -304,8 +301,7 @@ class AllEmployeeGrid extends StatelessWidget {
                                   ),
                                   Text(
                                     "${controller.filteredreemployees[index].salary}",
-                                    style: Get.theme.primaryTextTheme
-                                        .bodyMedium!
+                                    style: Get.theme.textTheme.bodyMedium!
                                         .copyWith(
                                         fontSize: 14,
                                         color: Colors.black,
@@ -359,7 +355,7 @@ class AllEmployeeGrid extends StatelessWidget {
             },
           ):
 
-          Center(child: Text("No Employees" , style: Get.theme.primaryTextTheme.titleLarge!.copyWith(
+          Center(child: Text("No Employees" , style: Get.theme.textTheme.titleLarge!.copyWith(
             fontSize: 22,
             fontWeight: FontWeight.normal
           )));

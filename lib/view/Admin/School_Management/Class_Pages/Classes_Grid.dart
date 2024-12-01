@@ -203,8 +203,7 @@ class ClassesGrid extends StatelessWidget {
                                         children: [
                                           Text(
                                             "Do You Want To Delete (${control.Classes[index]['enName']}) Division",
-                                            style: Get.theme.primaryTextTheme
-                                                .bodyMedium!
+                                            style: Get.theme.textTheme.bodyMedium!
                                                 .copyWith(
                                                     fontSize: 16,
                                                     fontWeight:
@@ -225,23 +224,23 @@ class ClassesGrid extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text("${control.Classes[index]['enName']}",
-                              style: Get.theme.primaryTextTheme.titleLarge!
+                              style: Get.theme.textTheme.bodyMedium!
                                   .copyWith(
                                 fontSize: 20,
                               )),
                         ],
                       ),
                       Text("${control.Classes[index]['grade']}",
-                          style: Get.theme.primaryTextTheme.titleLarge!
+                          style: Get.theme.textTheme.bodyMedium!
                               .copyWith(fontSize: 14, color: Colors.black)),
                       Text("${control.Classes[index]['session']}",
-                          style: Get.theme.primaryTextTheme.titleLarge!
+                          style: Get.theme.textTheme.bodyMedium!
                               .copyWith(fontSize: 14, color: Colors.black)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text("Drive URL",
-                              style: Get.theme.primaryTextTheme.titleLarge!
+                              style: Get.theme.textTheme.bodyMedium!
                                   .copyWith(
                                 fontSize: 16,
                               )),

@@ -18,7 +18,7 @@ class Section5 extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(bottom: h / 25),
             child: Text("Who Are We",
-                style: Get.theme.primaryTextTheme.titleLarge),
+                style: Get.theme.textTheme.bodyMedium!),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -29,17 +29,17 @@ class Section5 extends StatelessWidget {
                     children: [
                       Text(
                           "is a community of learners, including students, parents, and staff, dedicated to creating a rigorous and",
-                          style: Get.theme.primaryTextTheme.bodySmall),
+                          style: Get.theme.textTheme.bodyMedium!),
                       Text("VIRTUAL MODERN SCHOOL (VMS)",
-                          style: Get.theme.primaryTextTheme.bodySmall),
+                          style: Get.theme.textTheme.bodyMedium!),
                     ],
                   ),
                   Text(
                       " inclusive educational environment. VMS students are goal-oriented, critical thinkers, and community leaders ",
-                      style: Get.theme.primaryTextTheme.bodySmall),
+                      style: Get.theme.textTheme.bodyMedium!),
                   Text(
                     "committed to achieving high levels of integrity and academic success.",
-                    style: Get.theme.primaryTextTheme.bodySmall,
+                    style: Get.theme.textTheme.bodyMedium!,
                   ),
                   Column(
                     children: [
@@ -66,18 +66,18 @@ class Section5 extends StatelessWidget {
                                 Text(
                                     "VIRTUAL MODERN SCHOOL (VMS) staff aim to create a supportive",
                                     style:
-                                        Get.theme.primaryTextTheme.bodySmall),
+                                        Get.theme.textTheme.bodyMedium!),
                                 Text(
                                     "and challenging environment for all students to reach their potential,",
                                     style:
-                                        Get.theme.primaryTextTheme.bodySmall),
+                                        Get.theme.textTheme.bodyMedium!),
                                 Text(
                                     "engaging in continuous improvement through goal setting and",
                                     style:
-                                        Get.theme.primaryTextTheme.bodySmall),
+                                        Get.theme.textTheme.bodyMedium!),
                                 Text("reflection",
                                     style:
-                                        Get.theme.primaryTextTheme.bodySmall),
+                                        Get.theme.textTheme.bodyMedium!),
                                 SizedBox(
                                   height: h / 34.2,
                                 ),

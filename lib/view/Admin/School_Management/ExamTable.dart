@@ -129,7 +129,7 @@ class _ExamTableState extends State<ExamTable> {
                     child: GetBuilder<ExamTableController>(builder: (control) {
                   return DataTable(
                     headingRowColor:
-                        const WidgetStatePropertyAll(Color(0xffd4dfe5)),
+                         WidgetStatePropertyAll(Get.theme.colorScheme.secondary),
                     border: TableBorder.all(
                       color: Get.theme.primaryColor,
                       width: 1.0,
@@ -141,8 +141,8 @@ class _ExamTableState extends State<ExamTable> {
                               textAlign: TextAlign.center,
                               key,
                               style: key == "Class"
-                                  ? Get.theme.primaryTextTheme.labelMedium
-                                  : Get.theme.primaryTextTheme.displayMedium),
+                                  ? Get.theme.textTheme.titleLarge
+                                  : Get.theme.textTheme.titleLarge),
                         ),
                     ],
                     rows: [
@@ -155,7 +155,7 @@ class _ExamTableState extends State<ExamTable> {
                               Text(
                                   textAlign: TextAlign.center,
                                   "", //control.classes[i].enName!
-                                  style: Get.theme.primaryTextTheme.bodySmall),
+                                  style: Get.theme.textTheme.titleLarge),
                               onTap: () {},
                             ),
                             for (int j = 0; j < 6; j++)
@@ -164,7 +164,7 @@ class _ExamTableState extends State<ExamTable> {
                                     textAlign: TextAlign.center,
                                     "ss",
                                     style:
-                                        Get.theme.primaryTextTheme.bodySmall),
+                                    Get.theme.textTheme.titleLarge),
                                 onTap: () {},
                               ),
                           ],

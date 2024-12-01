@@ -1,24 +1,38 @@
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Model/AdminModel/Students_Models/Stu_Attendence.dart';
 
-class Studentattcontroller extends GetxController {
-  var Students = [
-    {
-      "name": "Laith Haitham Azzam",
-      "status": "Present",
-    },
-    {
-      "name": "Sofian Abo Shdeed",
-      "status": "Truant",
-    },
-    {
-      "name": "Fadi Alsopot",
-      "status": "Late",
-    },
-    {
-      "name": "Laith Haitham Azzam",
-      "status": "Holiday",
-    },
-  ].obs;
+class Student_attendence_controller extends GetxController {
+
+ var students = <Map<String, dynamic>>[].obs;
+ List<Students>? AllStudents;
+  bool isLoading = true;
+
+ setData(StuAttendence stud) {
+
+   AllStudents = stud.students;
+   students.clear();
+   setIsLoading(false);
+   for (var stu in AllStudents!) {
+     students.add({
+       'stuid': stu.studentId ?? 0,
+       'status': 'Present',
+       'cause': null,
+       'name': stu.fullName,
+       'imgid': stu.fileId,
+     });
+   }
+   update();
+ }
+
+  setIsLoading(bool isload) {
+    isLoading = isload;
+    update();
+  }
+
+
+
+
+
 
   var allHolidayChecked = false.obs; // حالة ال Checkbox
 
@@ -67,21 +81,21 @@ class Studentattcontroller extends GetxController {
   String get selecteddivisionIndex => divisionIndex;
 
   void updateStatus(int index, String newStatus) {
-    Students[index]['status'] = newStatus;
-    Students.refresh();
+    students[index]['status'] = newStatus;
+    students.refresh();
     checkAllHolidayStatus();
   }
 
   void setAllAsHoliday(bool checked) {
     allHolidayChecked.value = checked;
-    for (var item in Students) {
+    for (var item in students) {
       item['status'] = checked ? 'Holiday' : 'Present';
     }
-    Students.refresh();
+    students.refresh();
   }
 
   void checkAllHolidayStatus() {
     allHolidayChecked.value =
-        Students.every((item) => item['status'] == 'Holiday');
+        students.every((item) => item['status'] == 'Holiday');
   }
 }

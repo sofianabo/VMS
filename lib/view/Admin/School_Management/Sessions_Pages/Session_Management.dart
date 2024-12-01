@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/SessionAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Session_Controller.dart';
 import 'package:vms_school/view/Admin/School_Management/Sessions_Pages/Session_Management_Grid.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
@@ -8,12 +9,23 @@ import 'package:vms_school/widgets/Calender.dart';
 import 'package:vms_school/widgets/TextFildWithUpper_Num.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
-class SessionManagement extends StatelessWidget {
+class SessionManagement extends StatefulWidget {
   SessionManagement({super.key});
+
+  @override
+  State<SessionManagement> createState() => _SessionManagementState();
+}
+
+class _SessionManagementState extends State<SessionManagement> {
+
 
   TextEditingController search = TextEditingController();
   TextEditingController yearController = TextEditingController();
-
+  @override
+  void initState() {
+    Get_Session_Screen_API(context).Getsession();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Expanded(

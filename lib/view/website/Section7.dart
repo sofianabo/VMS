@@ -43,7 +43,7 @@ class Section7 extends StatelessWidget {
                     height: 10,
                   ),
                   Text("Virtual Modern School",
-                      style: Get.theme.primaryTextTheme.labelMedium!
+                      style: Get.theme.textTheme.bodyMedium!
                           .copyWith(fontSize: 20, color: Colors.white)),
                 ],
               )
@@ -60,7 +60,7 @@ class Section7 extends StatelessWidget {
                 Column(
                   children: [
                     Text("Openning Hours",
-                        style: Get.theme.primaryTextTheme.bodyMedium!
+                        style: Get.theme.textTheme.bodyMedium!
                             .copyWith(fontSize: 16, color: Colors.white)),
                     const SizedBox(
                       height: 5,
@@ -71,7 +71,7 @@ class Section7 extends StatelessWidget {
                         Row(
                           children: [
                             Text("8 AM -----> 1 PM",
-                                style: Get.theme.primaryTextTheme.bodyMedium!
+                                style: Get.theme.textTheme.bodyMedium!
                                     .copyWith(
                                         fontSize: 16, color: Colors.white)),
                             const SizedBox(
@@ -90,7 +90,7 @@ class Section7 extends StatelessWidget {
                         Row(
                           children: [
                             Text("3 PM -----> 8 PM",
-                                style: Get.theme.primaryTextTheme.bodyMedium!
+                                style: Get.theme.textTheme.bodyMedium!
                                     .copyWith(
                                         fontSize: 16, color: Colors.white)),
                             const SizedBox(
@@ -144,7 +144,7 @@ class Section7 extends StatelessWidget {
                       child: Row(
                         children: [
                           Text("Contact Details",
-                              style: Get.theme.primaryTextTheme.bodyMedium!
+                              style: Get.theme.textTheme.bodyMedium!
                                   .copyWith(fontSize: 16, color: Colors.white)),
                         ],
                       ),
@@ -158,7 +158,7 @@ class Section7 extends StatelessWidget {
                         Row(
                           children: [
                             Text("SYR: 00963 994 005157",
-                                style: Get.theme.primaryTextTheme.bodyMedium!
+                                style: Get.theme.textTheme.bodyMedium!
                                     .copyWith(
                                         fontSize: 14, color: Colors.white)),
                             const SizedBox(
@@ -184,7 +184,7 @@ class Section7 extends StatelessWidget {
                         Row(
                           children: [
                             Text("USA: 001 817 583 0666",
-                                style: Get.theme.primaryTextTheme.bodyMedium!
+                                style: Get.theme.textTheme.bodyMedium!
                                     .copyWith(
                                         fontSize: 14, color: Colors.white)),
                             const SizedBox(
@@ -210,7 +210,7 @@ class Section7 extends StatelessWidget {
                         Row(
                           children: [
                             Text("virtualmodernschoolmedia@gmail.com",
-                                style: Get.theme.primaryTextTheme.bodyMedium!
+                                style: Get.theme.textTheme.bodyMedium!
                                     .copyWith(
                                         fontSize: 16, color: Colors.white)),
                             const SizedBox(
@@ -245,7 +245,7 @@ class Section7 extends StatelessWidget {
             children: [
               Text(
                   "Shakib Arslan Street - Engineers Syndicate Building - 2nd Floor - AlSuwaidaa - Syria",
-                  style: Get.theme.primaryTextTheme.bodyMedium!
+                  style: Get.theme.textTheme.bodyMedium!
                       .copyWith(fontSize: 16, color: Colors.white)),
               const SizedBox(
                 width: 15,
@@ -269,7 +269,7 @@ class Section7 extends StatelessWidget {
                 width: 3,
               ),
               Text("All Rights reserved. Copyright",
-                  style: Get.theme.primaryTextTheme.bodyMedium!
+                  style: Get.theme.textTheme.bodyMedium!
                       .copyWith(fontSize: 16, color: Colors.white)),
             ],
           ),

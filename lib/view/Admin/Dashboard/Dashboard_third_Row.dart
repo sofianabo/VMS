@@ -18,7 +18,7 @@ class DashboardThirdRow extends StatelessWidget {
         List<Map<String, dynamic>> dashed = [
           {
             'name': 'Total Students',
-            'color': const Color(0xffF3F4F8),
+            'color':  Get.theme.cardColor,
             'upIcon': 'stu.svg',
             'avg': '${controller.dsh?.allStudents ?? 0}',
           },

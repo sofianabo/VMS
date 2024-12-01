@@ -60,7 +60,7 @@ class DatePicker extends StatelessWidget {
                 onTap: () => controller.selectDate(context),
                 decoration: InputDecoration(
                   hintText: "Select Date",
-                  hintStyle: Get.theme.primaryTextTheme.titleMedium!
+                  hintStyle: Get.theme.textTheme.bodyMedium!
                       .copyWith(fontSize: 14),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -148,7 +148,7 @@ class BirthDate extends StatelessWidget {
                 onTap: () => controller.selectBirthDate(context),
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
-                  hintStyle: Get.theme.primaryTextTheme.titleMedium!
+                  hintStyle: Get.theme.textTheme.bodyMedium!
                       .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -235,7 +235,7 @@ class JoinDate extends StatelessWidget {
                 onTap: () => controller.selectJoinDate(context),
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
-                  hintStyle: Get.theme.primaryTextTheme.titleMedium!
+                  hintStyle: Get.theme.textTheme.bodyMedium!
                       .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -303,7 +303,7 @@ class selectDateRequest extends StatelessWidget {
                 onTap: () => controller.selectDate(context),
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
-                  hintStyle: Get.theme.primaryTextTheme.titleMedium!
+                  hintStyle:Get.theme.textTheme.bodyMedium!
                       .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),

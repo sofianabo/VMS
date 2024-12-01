@@ -43,7 +43,7 @@ class Textfildwithupper_num extends StatelessWidget {
                 },
                 decoration: InputDecoration(
                   hintText: hinttext,
-                  hintStyle: Get.theme.primaryTextTheme.titleMedium?.copyWith(
+                  hintStyle: Get.theme.textTheme.bodyMedium!.copyWith(
                     fontSize: 14,
                     color: Color(0xffB3B3B3),
                   ),
