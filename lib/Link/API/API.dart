@@ -4,7 +4,7 @@ String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
 
 // String hostPort = "http://192.168.217.56:8000/api/";
 
-String getStudyYearStudent = "";
+String getStudyYearStudent = "getStudent";
 
 //..................... All ...................//
 
@@ -36,6 +36,7 @@ String deleteEmployee = "deleteEmployee";
 String getEmployeeById = "getEmployeeById";
 String addEmployeeAttendance = "addEmployeeAttendance";
 String rejectrequest = "unacceptable";
+String allPenalty = "getPenalty";
 
 //..................... Teachers ...................//
 

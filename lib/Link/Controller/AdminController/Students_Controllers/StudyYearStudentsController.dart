@@ -2,18 +2,25 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllGradeModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllPenaltyModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllStudyYearModel.dart';
 
 class StudyYearStudentsController extends GetxController {
   String sessionIndex = "";
   String gradeIndex = "";
   String classIndex = "";
   String divisionIndex = "";
+  String penaltyIndex = "";
+  bool isLoading = true;
 
-  List<String> sessionlist = ["Quiz", "Exam", "Midterm"];
-  List<String> gradelist = ["first", "tow", "three"];
-  List<String> classlist = ["one"];
-  List<String> divisionlist = ["one"];
+  List<String> sessionlist = [];
+  List<String> gradelist = [];
+  List<String> classlist = [];
+  List<String> divisionlist = [];
+  List<String> penaltyList = [];
+    List<Students> stud = [];
+  List<Students> filteredStudents = [];
 
   void selectIndex(String type, String? index) {
     switch (type) {
@@ -23,12 +30,41 @@ class StudyYearStudentsController extends GetxController {
       case 'grade':
         gradeIndex = index ?? "";
         break;
-      case 'class':
+      case 'class': 
         classIndex = index ?? "";
         break;
       case 'division':
         divisionIndex = index ?? "";
         break;
+      case 'penalty':
+        penaltyIndex = index ?? "";
+        break;
+    }
+    update();
+  }
+
+  
+  void setAllStudents(AllStudyYearModel model) {
+    stud = model.students!;
+    filteredStudents = List.from(stud);
+    setIsLoading(false);
+    update();
+  }
+
+   setIsLoading(bool value){
+    isLoading = value;
+    update();
+  }
+  void searchStudentByName(String query) {
+    if (query.isEmpty) {
+      filteredStudents =
+          List.from(stud);
+    } else {
+      filteredStudents = stud
+          .where((student) =>
+              student.fullName != null &&
+              student.fullName!.toLowerCase().contains(query.toLowerCase()))
+          .toList();
     }
     update();
   }
@@ -61,13 +97,22 @@ class StudyYearStudentsController extends GetxController {
     updateList("grade", gradelist);
   }
 
-   void setAllDivision(AllDivisionModel division) {
+  void setAllDivision(AllDivisionModel division) {
     divisionlist.clear();
     for (int j = 0; j < division.division!.length; j++) {
       divisionlist.add(division.division![j].enName.toString());
     }
     update();
     updateList("division", divisionlist);
+  }
+
+  void setAllPenalty(AllPenaltyModel penalty) {
+    penaltyList.clear();
+    for (int j = 0; j < penalty.penalty!.length; j++) {
+      penaltyList.add(penalty.penalty![j].type.toString());
+    }
+    update();
+    updateList("penalty", penaltyList);
   }
 
   void updateList(String type, List<String> options) {
@@ -84,6 +129,9 @@ class StudyYearStudentsController extends GetxController {
       case 'division':
         divisionlist = options;
         break;
+      case 'penalty':
+        penaltyList = options;
+        break;
     }
     update();
   }
@@ -95,4 +143,6 @@ class StudyYearStudentsController extends GetxController {
   String get selectedclassIndex => classIndex;
 
   String get selecteddivisionIndex => divisionIndex;
+
+  String get selectedPenaltyIndex => penaltyIndex;
 }
