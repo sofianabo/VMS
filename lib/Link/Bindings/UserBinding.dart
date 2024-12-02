@@ -31,6 +31,7 @@ import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownExamTypeController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownGradeController.dart.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownPenaltyController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownSessionController.dart.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownStatusController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/PasswordHintController.dart';
@@ -40,7 +41,10 @@ import 'package:vms_school/Theme/themeController.dart';
 class UserBiniding extends Bindings {
   @override
   void dependencies() {
-    Get.put(() => ThemeController(),builder: () => ThemeController(),);
+    Get.put(
+      () => ThemeController(),
+      builder: () => ThemeController(),
+    );
     Get.lazyPut(() => UserController(), fenix: true);
     Get.lazyPut(() => PasswordHintController(), fenix: true);
     Get.lazyPut(() => AdminHomeContentController(), fenix: true);
@@ -77,5 +81,7 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => All_Screen_Sessions_Controller(), fenix: true);
     Get.lazyPut(() => Dropdownexamtypecontroller(), fenix: true);
     Get.lazyPut(() => Onestudentattendencecontroller(), fenix: true);
+    Get.lazyPut(() => Dropdownpenaltycontroller(), fenix: true);
   }
 }
+  

@@ -44,6 +44,11 @@ class DropDownStudyYearStudents extends StatelessWidget {
               ? cont.selecteddivisionIndex
               : title;
           break;
+        case 'penalty':
+          selectedValue = cont.selectedPenaltyIndex.isNotEmpty
+              ? cont.selectedPenaltyIndex
+              : title;
+          break;
       }
 
       return Container(
@@ -65,7 +70,8 @@ class DropDownStudyYearStudents extends StatelessWidget {
           icon: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Icon(Icons.arrow_drop_down , color: Get.theme.secondaryHeaderColor),
+              Icon(Icons.arrow_drop_down,
+                  color: Get.theme.secondaryHeaderColor),
             ],
           ),
           style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
@@ -85,7 +91,7 @@ class DropDownStudyYearStudents extends StatelessWidget {
                 ),
               ),
             ),
-            ..._getDropdownItems(cont,context),
+            ..._getDropdownItems(cont, context),
           ],
           borderRadius: BorderRadius.circular(3),
         ),
@@ -104,8 +110,7 @@ class DropDownStudyYearStudents extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());
@@ -116,8 +121,7 @@ class DropDownStudyYearStudents extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());
@@ -128,8 +132,7 @@ class DropDownStudyYearStudents extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
             onTap: () async {
               AllDivisionModel division = await Dropdowndivisionapi(context)
@@ -145,8 +148,18 @@ class DropDownStudyYearStudents extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+            ),
+          );
+        }).toList());
+        break;
+      case 'penalty':
+        items.addAll(cont.penaltyList.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());
