@@ -10,6 +10,7 @@ class Allempolyeecontroller extends GetxController {
   List<Employees> filteredreemployees = [];
 
 
+  bool isUploaded = false;
 
   Employee? employee;
   String? Value;
@@ -47,6 +48,11 @@ class Allempolyeecontroller extends GetxController {
     }
 
     setIsLoading(false);
+    update();
+  }
+
+   setIsUploaded (bool isupload){
+    isUploaded = isupload ;
     update();
   }
 

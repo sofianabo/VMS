@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Grade_Screen/Delete_Grade_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Grade_Screen/Edit_Grade_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Grade_Controller.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
@@ -9,7 +11,7 @@ import 'package:vms_school/widgets/VMSAlertDialog.dart';
 class GradeTable extends StatelessWidget {
   GradeTable({super.key});
 
-  TextEditingController arName = TextEditingController();
+  TextEditingController name = TextEditingController();
   TextEditingController enName = TextEditingController();
   TextEditingController feeCount = TextEditingController();
 
@@ -38,7 +40,7 @@ class GradeTable extends StatelessWidget {
                     for (var row in controller.Grades.asMap().entries)
                       TableRow(
                         children: [
-                          _operationColumn(row.value, controller, row.key),
+                          _operationColumn(row.value, controller, row.key,context),
                           _dataColumn(row.value['feeCount']),
                           _dataColumn(row.value['enName']),
                         ],
@@ -70,7 +72,7 @@ class GradeTable extends StatelessWidget {
     );
   }
 
-  Widget _operationColumn(Map row, Grade_Controller controller, int index) {
+  Widget _operationColumn(Map row, Grade_Controller controller, int index , BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 5.0),
       child: Row(
@@ -86,7 +88,10 @@ class GradeTable extends StatelessWidget {
                     ButtonDialog(
                         text: "Delete",
                         onPressed: () {
-                          controller.DeleteGrade(index);
+                          Delete_Grade_API(context).Delete_Grade(
+                            gradeId: controller.Grades[index]['id'],
+                            index:index,
+                          );
                           Get.back();
                         },
                         color: Color(0xffB03D3D),
@@ -121,7 +126,7 @@ class GradeTable extends StatelessWidget {
             iconData: Icons.edit_note_outlined,
             color: Get.theme.primaryColor,
             onPressed: () {
-              arName.text = "${row['arName']}";
+              name.text = "${row['name']}";
               enName.text = "${row['enName']}";
               feeCount.text = "${row['feeCount']}";
               Get.dialog(
@@ -130,11 +135,12 @@ class GradeTable extends StatelessWidget {
                       ButtonDialog(
                           text: "Edit",
                           onPressed: () {
-                            controller.UpdateGrade(
-                              index,
-                              arName.text,
-                              enName.text,
-                              feeCount.text,
+                            Edit_Grade_API(context).Edit_Grade(
+                              gradeId: controller.Grades[index]['id'],
+                              index: index,
+                              feeCount: feeCount.text,
+                              enName: enName.text,
+                              name: name.text,
                             );
                             Get.back();
                           },
@@ -154,7 +160,7 @@ class GradeTable extends StatelessWidget {
                                   hinttext: "Grade En - Name"),
                             ),
                             Textfildwithupper(
-                                controller: arName,
+                                controller: name,
                                 Uptext: "Grade Ar - Name",
                                 hinttext: "Grade Ar - Name"),
                           ],

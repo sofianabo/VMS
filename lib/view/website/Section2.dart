@@ -15,7 +15,7 @@ class Section2 extends StatelessWidget {
       child: Column(
         children: [
           Text("Who Can We Register At Virtual Modern School",
-              style: Get.theme.textTheme.bodyMedium!.copyWith(
+              style: Get.theme.textTheme.titleMedium!.copyWith(
                 fontSize: 24,
               )),
           Row(

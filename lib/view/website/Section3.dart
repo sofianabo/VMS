@@ -15,7 +15,7 @@ class Section3 extends StatelessWidget {
       child: Column(
         children: [
           Text("How I Can Enroll At Virtual Modern School",
-              style: Get.theme.textTheme.bodyMedium!.copyWith(
+              style: Get.theme.textTheme.titleMedium!.copyWith(
                 fontSize: 24,
               )),
           Row(
@@ -35,12 +35,16 @@ class Section3 extends StatelessWidget {
                       textDirection: TextDirection.rtl,
                       child: Text(
                           "Parents of our students can register their children in the Virtual Modern School ",
-                          style: Get.theme.textTheme.bodyMedium!),
+                          style: Get.theme.textTheme.bodyMedium!.copyWith(
+                            fontSize: 16
+                          )),
                     ),
                     Directionality(
                       textDirection: TextDirection.ltr,
                       child: Text(" by the following steps:",
-                          style: Get.theme.textTheme.bodyMedium!),
+                          style: Get.theme.textTheme.bodyMedium!.copyWith(
+                            fontSize: 16
+                          )),
                     ),
                     SizedBox(
                       height: h / 34.2,
@@ -49,7 +53,9 @@ class Section3 extends StatelessWidget {
                       textDirection: TextDirection.ltr,
                       child: Text(
                           "1. Enter the first and last name of the guardian",
-                          style: Get.theme.textTheme.bodyMedium!),
+                          style: Get.theme.textTheme.bodyMedium!.copyWith(
+                            fontSize: 16
+                          )),
                     ),
                     SizedBox(
                       height: h / 34.2,
@@ -57,7 +63,9 @@ class Section3 extends StatelessWidget {
                     Directionality(
                       textDirection: TextDirection.ltr,
                       child: Text("2. Enter the guardian's mobile phone number",
-                          style: Get.theme.textTheme.bodyMedium!),
+                          style: Get.theme.textTheme.bodyMedium!.copyWith(
+                            fontSize: 16
+                          )),
                     ),
                     SizedBox(
                       height: h / 34.2,
@@ -66,7 +74,9 @@ class Section3 extends StatelessWidget {
                       textDirection: TextDirection.ltr,
                       child: Text(
                           "3. Enter the Syrian national number of the guardian",
-                          style: Get.theme.textTheme.bodyMedium!),
+                          style: Get.theme.textTheme.bodyMedium!.copyWith(
+                            fontSize: 16
+                          )),
                     ),
                     SizedBox(
                       height: h / 17.1,
@@ -80,7 +90,7 @@ class Section3 extends StatelessWidget {
                           color: Get.theme.primaryColor),
                       child: Center(
                         child: Text("Read More",
-                            style: Get.theme.textTheme.bodyMedium!),
+                            style: Get.theme.textTheme.displayMedium!),
                       ),
                     )
                   ],

@@ -3,6 +3,7 @@ import 'package:vms_school/Link/Model/AdminModel/All_Employee_Model.dart';
 
 class EmployeeController extends GetxController {
   bool Isloading = true;
+  bool Isuploaded = false;
 
 
   List<Employees>? employees;
@@ -31,6 +32,11 @@ class EmployeeController extends GetxController {
   // تعيين حالة التحميل
   setIsload(bool value) {
     Isloading = value;
+    update();
+  }
+
+  setIsIsuploaded(bool value) {
+    Isuploaded = value;
     update();
   }
 

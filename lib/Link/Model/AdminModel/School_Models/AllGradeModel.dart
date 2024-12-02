@@ -26,14 +26,16 @@ class Grades {
   String? name;
   String? enName;
   int? feeCount;
+  int? hasStudent;
 
-  Grades({this.id, this.name, this.enName, this.feeCount});
+  Grades({this.id, this.name, this.enName, this.feeCount, this.hasStudent});
 
   Grades.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     enName = json['enName'];
     feeCount = json['feeCount'];
+    hasStudent = json['hasStudent'];
   }
 
   Map<String, dynamic> toJson() {
@@ -42,6 +44,7 @@ class Grades {
     data['name'] = this.name;
     data['enName'] = this.enName;
     data['feeCount'] = this.feeCount;
+    data['hasStudent'] = this.hasStudent;
     return data;
   }
 }

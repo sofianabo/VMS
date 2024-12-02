@@ -1,17 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Grade_Screen/Add_Grade_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Grade_Screen/Grade_Screen_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Grade_Controller.dart';
 import 'package:vms_school/view/Admin/School_Management/Grade_Pages/GradeManagementGrid.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
-class GradeManagement extends StatelessWidget {
+class GradeManagement extends StatefulWidget {
   GradeManagement({super.key});
 
-  TextEditingController search = TextEditingController();
+  @override
+  State<GradeManagement> createState() => _GradeManagementState();
+}
 
+class _GradeManagementState extends State<GradeManagement> {
+
+  @override
+  void initState() {
+    Get_All_Grade_API(context).Get_All_Grade();
+    super.initState();
+  }
+
+  TextEditingController search = TextEditingController();
   TextEditingController arName = TextEditingController();
   TextEditingController enName = TextEditingController();
   TextEditingController feeCount = TextEditingController();
@@ -58,11 +71,11 @@ class GradeManagement extends StatelessWidget {
                                 action: [
                                   ButtonDialog(
                                       text: "Add",
-                                      onPressed: () {
-                                        controller.addData(
-                                          arName.text,
-                                          enName.text,
-                                          feeCount.text,
+                                      onPressed: () async {
+                                        await Add_Grade_API(context).Add_Grade(
+                                          name: arName.text,
+                                          enName: enName.text,
+                                          feeCount: feeCount.text,
                                         );
                                         Get.back();
                                       },

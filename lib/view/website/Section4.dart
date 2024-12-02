@@ -12,7 +12,7 @@ class Section4 extends StatelessWidget {
       padding: EdgeInsets.only(bottom: h / 45.6),
       width: w / 2,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30), color: Color(0xffeaf0ff)),
+          borderRadius: BorderRadius.circular(30), color: Get.theme.colorScheme.onPrimary),
       child: Column(
         children: [
           Directionality(
@@ -20,7 +20,7 @@ class Section4 extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(top: h / 38),
                 child: Text("Why Us?",
-                    style: Get.theme.textTheme.bodyMedium!),
+                    style: Get.theme.textTheme.titleMedium!),
               )),
           SizedBox(
             height: h / 27.36,
@@ -46,7 +46,7 @@ class Section4 extends StatelessWidget {
                 width: w / 6.736,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: Colors.white),
+                    color: Get.theme.scaffoldBackgroundColor),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -69,7 +69,7 @@ class Section4 extends StatelessWidget {
                 width: w / 6.736,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: Colors.white),
+                    color: Get.theme.scaffoldBackgroundColor),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -92,7 +92,7 @@ class Section4 extends StatelessWidget {
                 width: w / 6.736,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: Colors.white),
+                    color: Get.theme.scaffoldBackgroundColor),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -124,7 +124,7 @@ class Section4 extends StatelessWidget {
                 width: w / 6.736,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: Colors.white),
+                    color: Get.theme.scaffoldBackgroundColor),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -147,7 +147,7 @@ class Section4 extends StatelessWidget {
                 width: w / 6.736,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: Colors.white),
+                    color: Get.theme.scaffoldBackgroundColor),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -169,7 +169,7 @@ class Section4 extends StatelessWidget {
                 width: w / 6.736,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: Colors.white),
+                    color: Get.theme.scaffoldBackgroundColor),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [

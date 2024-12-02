@@ -32,7 +32,6 @@ import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownExamTypeController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownGradeController.dart.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownSessionController.dart.dart';
-import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownStatusController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/PasswordHintController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/Theme/themeController.dart';
@@ -73,7 +72,6 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => IllnessController(), fenix: true);
     Get.lazyPut(() => Dashboard_Controller(), fenix: true);
     Get.lazyPut(() => AddFullEmployeeController(), fenix: true);
-    Get.lazyPut(() => Dropdownstatuscontroller(), fenix: true);
     Get.lazyPut(() => All_Screen_Sessions_Controller(), fenix: true);
     Get.lazyPut(() => Dropdownexamtypecontroller(), fenix: true);
     Get.lazyPut(() => Onestudentattendencecontroller(), fenix: true);

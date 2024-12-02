@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Add_Employee_Attendence.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_All_Employee_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Employeeecontroller.dart';
 import 'package:vms_school/view/Admin/Employee_Manager/EmployeeAttendenceManageGride.dart';
@@ -72,7 +73,8 @@ class _EmployeeAttendanceManagmentState extends State<EmployeeAttendanceManagmen
                                     RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.all(Radius.circular(5))))),
-                            onPressed: () {
+                            onPressed: ()async {
+                              await Add_Employee_Attendence_API.Add_Employee_Attendence(employees: controller.Employee);
                               print(controller.Employee);
                             },
                             icon: Icon(Icons.file_upload_outlined,

@@ -55,39 +55,48 @@ class  Dropdownrequestenroll
           borderRadius: BorderRadius.circular(5),
           border: Border.all(color: color ?? Color(0xffD9D9D9)),
         ),
-        child: DropdownButton<String>(
-          dropdownColor: Get.theme.cardColor,
-          iconDisabledColor: Colors.grey,
-          iconEnabledColor: Get.theme.cardColor,
-          value: selectedValue,
-          isExpanded: true,
-          underline: const SizedBox(),
-          icon: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Icon(Icons.arrow_drop_down , color: Get.theme.secondaryHeaderColor),
-            ],
-          ),
-          style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-          onChanged: (newValue) {
-            if (newValue != null) {
-              cont.selectIndex(type, newValue);
-            }
-          },
-          items: [
-            DropdownMenuItem<String>(
-              value: title,
-              enabled: false,
-              child: Text(
-                title,
-                style: Get.theme.textTheme.bodyMedium!.copyWith(
-                  fontSize: 14,
-                ),
+        child: Row(
+          children: [
+            Expanded(
+              child: DropdownButton<String>(
+                icon:  selectedValue != title ?
+                GestureDetector(
+                  onTap: () {
+                    cont.selectIndex(type, "");
+                  },
+                  child:  Icon(
+                    Icons.close,
+                    color: Get.theme.secondaryHeaderColor,
+                  ),):Icon(Icons.arrow_drop_down_outlined,color: Get.theme.secondaryHeaderColor),
+                dropdownColor: Get.theme.cardColor,
+                iconDisabledColor: Colors.grey,
+                iconEnabledColor: Get.theme.cardColor,
+                value: selectedValue,
+                isExpanded: true,
+                underline: const SizedBox(),
+                style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+                onChanged: (newValue) {
+                  if (newValue != null) {
+                    cont.selectIndex(type, newValue);
+                  }
+                },
+                items: [
+                  DropdownMenuItem<String>(
+                    value: title,
+                    enabled: false,
+                    child: Text(
+                      title,
+                      style: Get.theme.textTheme.bodyMedium!.copyWith(
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                  ..._getDropdownItems(cont,context),
+                ],
+                borderRadius: BorderRadius.circular(3),
               ),
             ),
-            ..._getDropdownItems(cont, context),
           ],
-          borderRadius: BorderRadius.circular(3),
         ),
       );
     });

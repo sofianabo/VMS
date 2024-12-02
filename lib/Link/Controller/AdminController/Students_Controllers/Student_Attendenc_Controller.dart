@@ -3,12 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllGradeModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllStudentAttendenceModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllStudentModel.dart';
-import 'package:pdf/widgets.dart';
-import 'package:vms_school/Link/Model/AdminModel/RequestsModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dart';
 
 
 class StudentAttendencController extends GetxController {
@@ -156,6 +153,7 @@ class StudentAttendencController extends GetxController {
   String get selectedclassIndex => classIndex;
 
   String get selecteddivisionIndex => divisionIndex;
+
     Rx<DateTime?> get selectDateindex => AttendencetDate;
 
 }

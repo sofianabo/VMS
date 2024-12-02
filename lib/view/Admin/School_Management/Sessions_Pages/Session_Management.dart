@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/SessionAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Sessions/Add_Session_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Sessions/SessionAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Session_Controller.dart';
 import 'package:vms_school/view/Admin/School_Management/Sessions_Pages/Session_Management_Grid.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
@@ -66,7 +67,12 @@ class _SessionManagementState extends State<SessionManagement> {
                               action: [
                                 ButtonDialog(
                                     text: "Add",
-                                    onPressed: () {},
+                                    onPressed: () async {
+                                     await Add_Session_API(context).Add_Session(
+                                        "${Get.find<SessionController>().sessionController.text}-${Get.find<SessionController>().currentYear.value}",
+                                         Get.find<SessionController>().startDate.value.toString(),
+                                         Get.find<SessionController>().endDate.value.toString());
+                                    },
                                     color: Get.theme.primaryColor,
                                     width: 90)
                               ],
@@ -94,7 +100,7 @@ class _SessionManagementState extends State<SessionManagement> {
                                                 controllers.borderColor,
                                           ),
                                         ),
-                                        // عرض السنة المعدلة
+
                                         Obx(() {
                                           return Padding(
                                             padding: const EdgeInsets.only(
@@ -106,7 +112,7 @@ class _SessionManagementState extends State<SessionManagement> {
                                                 "/${controllers.currentYear.value}",
                                                 style: Get
                                                     .theme
-                                                    .primaryTextTheme
+                                                    .textTheme
                                                     .titleLarge!
                                                     .copyWith(
                                                   fontSize: 22,
@@ -133,8 +139,9 @@ class _SessionManagementState extends State<SessionManagement> {
                                                   bottom: 5.0),
                                               child: Text("Start Date"),
                                             ),
-                                            DatePicker(
+                                            selectstart(
                                               width: 220,
+                                              isRequired: true,
                                             ),
                                           ],
                                         ),
@@ -152,8 +159,9 @@ class _SessionManagementState extends State<SessionManagement> {
                                                     bottom: 5.0),
                                                 child: Text("End Date"),
                                               ),
-                                              DatePicker(
+                                              selectend(
                                                 width: 220,
+                                                isRequired: true,
                                               ),
                                             ],
                                           ),

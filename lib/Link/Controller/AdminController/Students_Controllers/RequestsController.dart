@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllStatusModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/RequestsModel.dart';
-import 'package:vms_school/Link/Model/AuthModel/UserModel.dart';
 
 class Requestscontroller extends GetxController {
   List<Registration> registration = [];
@@ -12,10 +10,12 @@ class Requestscontroller extends GetxController {
   String statusindex = "";
   String classIndex = "";
   String divisionIndex = "";
-  List<String> statusList = [];
+  List<String> statusList = ['acceptable','unacceptable','Partially acceptable','hanging'];
   List<String> classlist = [];
   List<String> divisionlist = ["one"];
   bool IsLoading = true;
+
+
   void setAllRequests(AllRequestsModel req) {
     registration = req.registration!;
     filteredregistration = List.from(req.registration!);
@@ -31,19 +31,54 @@ class Requestscontroller extends GetxController {
     update();
   }
 
-  void searchRequestByName(String query) {
-    if (query.isEmpty) {
-      filteredregistration = List.from(registration);
-    } else {
-      filteredregistration = registration.where((requests) {
-        final studentName = requests.student?.name?.toLowerCase() ?? '';
-        final guardianName = requests.guardian?.name?.toLowerCase() ?? '';
-        return studentName.contains(query.toLowerCase()) ||
-            guardianName.contains(query.toLowerCase());
-      }).toList();
-    }
+  void applyFilters() {
+
+    filteredregistration = registration.where((requests) {
+      final studentName = requests.student?.name?.toLowerCase() ?? '';
+      final guardianName = requests.guardian?.name?.toLowerCase() ?? '';
+      final status = requests.type?.toLowerCase() ?? '';
+      final date = requests.data;
+
+      final matchesName = searchQuery.isEmpty || studentName.contains(searchQuery) || guardianName.contains(searchQuery);
+      final matchesStatus = statusindex.isEmpty || status == statusindex.toLowerCase();
+      final matchesDate = requestDate.value == null || date == "${requestDate.value!.year}-${requestDate.value!.month}-${requestDate.value!.day}";
+
+
+      return matchesName && matchesStatus && matchesDate;
+    }).toList();
+
+
     update();
   }
+
+  String searchQuery = "";
+
+  void searchRequestByName(String query) {
+    searchQuery = query.toLowerCase();
+    applyFilters();
+  }
+
+  void searchRequestByStatus(String status) {
+    statusindex = status.toLowerCase();
+    applyFilters();
+
+  }
+
+
+  void setRequestDate(DateTime? date) {
+    requestDate.value = date;
+    applyFilters();
+    update();
+  }
+
+  void resetFilters() {
+    searchQuery = "";
+    statusindex = "";
+    requestDate.value = null;
+    filteredregistration = List.from(registration);
+    update();
+  }
+
 
   void selectIndex(String type, String? index) {
     print("");
@@ -59,17 +94,13 @@ class Requestscontroller extends GetxController {
         divisionIndex = index ?? "";
         break;
     }
+
+    if(type == "status"){
+      searchRequestByStatus(index!);
+    }
     update();
   }
 
-  void setAllStatus(AllStatusModel stat) async {
-    statusList.clear();
-    for (int i = 0; i < stat.type!.length; i++) {
-      statusList.add(stat.type![i].toString());
-    }
-    update();
-    updateList("status", statusList);
-  }
 
   void setAllClassDialog(AllClassesModel clas) async {
     classlist.clear();
@@ -120,6 +151,14 @@ class Requestscontroller extends GetxController {
     if (picked != null) {
       requestDate.value = picked;
     }
+    setRequestDate(picked);
+    update();
+  }
+
+  removedate(){
+    requestDate.value = null;
+    setRequestDate(null);
+    update();
   }
 
   String get selectedStatusIndex => statusindex;

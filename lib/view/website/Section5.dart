@@ -18,7 +18,7 @@ class Section5 extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(bottom: h / 25),
             child: Text("Who Are We",
-                style: Get.theme.textTheme.bodyMedium!),
+                style: Get.theme.textTheme.titleMedium!),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

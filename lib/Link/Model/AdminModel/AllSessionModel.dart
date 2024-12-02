@@ -12,7 +12,7 @@ class AllSessionModel {
       });
     }
     current =
-        json['current'] != null ? new Sessions.fromJson(json['current']) : null;
+    json['current'] != null ? new Sessions.fromJson(json['current']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -33,8 +33,15 @@ class Sessions {
   String? status;
   String? startDate;
   String? endDate;
+  int? hasStudent;
 
-  Sessions({this.id, this.year, this.status, this.startDate, this.endDate});
+  Sessions(
+      {this.id,
+        this.year,
+        this.status,
+        this.startDate,
+        this.endDate,
+        this.hasStudent});
 
   Sessions.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -42,6 +49,7 @@ class Sessions {
     status = json['status'];
     startDate = json['startDate'];
     endDate = json['endDate'];
+    hasStudent = json['hasStudent'];
   }
 
   Map<String, dynamic> toJson() {
@@ -51,6 +59,7 @@ class Sessions {
     data['status'] = this.status;
     data['startDate'] = this.startDate;
     data['endDate'] = this.endDate;
+    data['hasStudent'] = this.hasStudent;
     return data;
   }
 }

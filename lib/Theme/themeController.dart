@@ -25,6 +25,12 @@ class ThemeController extends GetxController {
             fontFamily: "Cairo",
             fontSize: 14
         ),
+        titleMedium:TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Color(0xff134B70),
+            fontFamily: "Cairo",
+            fontSize: 24
+        ) ,
         displayMedium: TextStyle(
             color: Colors.white,
             fontFamily: "Cairo",
@@ -35,7 +41,7 @@ class ThemeController extends GetxController {
     focusColor: Colors.white,
     colorScheme: const ColorScheme.light(
         primary: Color(0xff19478d),
-        onPrimary: Color(0xff134B70),
+        onPrimary: Color(0xffEAF0FF),
         secondary: Color(0xff7c9fb9)),
     popupMenuTheme: const PopupMenuThemeData(
         color:Colors.white,
@@ -71,6 +77,12 @@ class ThemeController extends GetxController {
               fontFamily: "Cairo",
               fontSize: 14
           ),
+          titleMedium:TextStyle(
+            fontWeight: FontWeight.bold,
+              color: Colors.white,
+              fontFamily: "Cairo",
+              fontSize: 24
+          ) ,
           titleLarge: TextStyle(
               color: Colors.white,
               fontFamily: "Cairo",
@@ -88,7 +100,7 @@ class ThemeController extends GetxController {
           )),
     colorScheme: const ColorScheme.dark(
         primary: Color(0xff19478d),
-        onPrimary: Color(0xff134B70),
+        onPrimary: Color(0xff464646),
         secondary: Color(0xff252323)),
   );
 

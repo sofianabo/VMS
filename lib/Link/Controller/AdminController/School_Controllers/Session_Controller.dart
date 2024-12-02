@@ -8,19 +8,10 @@ class SessionController extends GetxController {
 
 
   var Sessionss = <Map<String, dynamic>>[
-    {
-      "name": "2025-2024",
-      "status": "Opening",
-      "startDate": "13/1/2003",
-      "endDate": "13/1/2003",
-    },
-    {
-      "name": "2024-2023",
-      "status": "Closed",
-      "startDate": "13/1/2003",
-      "endDate": "13/1/2003",
-    },
   ].obs;
+
+
+
 
 
   List<Sessions>? sessions;
@@ -38,8 +29,9 @@ class SessionController extends GetxController {
         'id': stu.id,
         'name': stu.year,
         'status': stu.status,
-        'startDate': stu.startDate,
+        'startDate': stu.startDate, 
         'endDate': stu.endDate,
+        'hasStudents': stu.hasStudent==1 ? true :  false,
       });
     }
     update();
@@ -71,4 +63,35 @@ class SessionController extends GetxController {
       currentYear.value = parsedYear + 1;
     }
   }
+
+
+
+  Rx<DateTime?> startDate = Rx<DateTime?>(null);
+  Rx<DateTime?> endDate = Rx<DateTime?>(null);
+
+  void SelectStartDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: startDate.value ?? DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+    if (picked != null) {
+      startDate.value = picked;
+    }
+  }
+  void SelectEndDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: endDate.value ?? DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+    if (picked != null) {
+      endDate.value = picked;
+    }
+  }
+  Rx<DateTime?> get selectStartDateindex => startDate;
+  Rx<DateTime?> get selectEndDateindex => endDate;
+
 }

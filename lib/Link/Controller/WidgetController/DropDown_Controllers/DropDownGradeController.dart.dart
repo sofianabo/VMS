@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllGradeModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dart';
 
 class Dropdowngradecontroller extends GetxController {
   List<String> grades = [];

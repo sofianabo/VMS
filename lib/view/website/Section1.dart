@@ -39,15 +39,17 @@ class Section1 extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text("We CARE ABOUT \n YOUR FUTURE",
+                        Text("WE CARE ABOUT \n YOUR FUTURE",
                             textAlign: TextAlign.left,
-                            style: Get.theme.textTheme.bodyMedium!),
+                            style: Get.theme.textTheme.titleLarge!.copyWith(
+                              fontSize: 60
+                            )),
                         Container(
                           padding: EdgeInsets.only(top: h / 68.4),
                           width: w / 3.2,
                           child: Text(
                             "Join us to enter a better world filled with advanced educational methods through Virtual Modern School",
-                            style: Get.theme.textTheme.bodyMedium!
+                            style: Get.theme.textTheme.titleLarge!
                                 .copyWith(fontSize: 14),
                             textAlign: TextAlign.left,
                           ),
@@ -58,7 +60,7 @@ class Section1 extends StatelessWidget {
                         Container(
                           decoration: BoxDecoration(
                               border: Border.all(
-                                color: const Color(0xff19478d),
+                                color: Get.theme.primaryColor,
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(12)),
@@ -70,14 +72,16 @@ class Section1 extends StatelessWidget {
                               GestureDetector(
                                 child: Container(
                                   width: w / 6.808,
-                                  decoration: const BoxDecoration(
-                                      color: Color(0xff19478d),
+                                  decoration:  BoxDecoration(
+                                      color: Get.theme.primaryColor,
                                       borderRadius: BorderRadius.only(
                                           topRight: Radius.circular(11),
                                           bottomRight: Radius.circular(11))),
                                   alignment: Alignment.center,
                                   child: Text('Enroll',
-                                      style: Get.theme.textTheme.bodyMedium!),
+                                      style: Get.theme.textTheme.displayMedium!.copyWith(
+                                        fontSize: 16
+                                      )),
                                 ),
                                 onTap: () {
                                   // Get.to(() => Registration());
@@ -90,7 +94,9 @@ class Section1 extends StatelessWidget {
                                   alignment: Alignment.center,
                                   child: Text('Sign In',
                                       style: Get
-                                          .theme.primaryTextTheme.titleSmall),
+                                          .theme.textTheme.titleLarge!.copyWith(
+                                          fontSize: 16
+                                      )),
                                 ),
                                 onTap: () {
                                   Get.to(

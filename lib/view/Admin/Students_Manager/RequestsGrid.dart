@@ -189,9 +189,11 @@ class RequestsGrid extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Guardian Info:",
-                                style: Get.theme.textTheme.bodyMedium!
-                                    .copyWith(fontWeight: FontWeight.normal),
+                                "Guardian Info :",
+                                style: Get.theme.textTheme.titleLarge!
+                                    .copyWith(fontWeight: FontWeight.normal,
+                                  fontSize: 18
+                                ),
                               ),
                               Text(
                                   "${controller.filteredregistration[index].data}"),
@@ -204,6 +206,7 @@ class RequestsGrid extends StatelessWidget {
                             "Name : ${controller.filteredregistration[index].guardian?.name}",
                             style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(
+                              fontSize: 16,
                                     color: Colors.black,
                                     fontWeight: FontWeight.normal),
                           ),
@@ -214,6 +217,7 @@ class RequestsGrid extends StatelessWidget {
                             "Mobile: ${controller.filteredregistration[index].guardian?.mobile}",
                             style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(
+                                fontSize: 16,
                                     color: Colors.black,
                                     fontWeight: FontWeight.normal),
                           ),
@@ -224,6 +228,7 @@ class RequestsGrid extends StatelessWidget {
                             "Email: ${controller.filteredregistration[index].guardian?.email}",
                             style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(
+                                fontSize: 16,
                                     color: Colors.black,
                                     fontWeight: FontWeight.normal),
                           ),
@@ -234,6 +239,7 @@ class RequestsGrid extends StatelessWidget {
                             "National ID: ${controller.filteredregistration[index].guardian?.nationalId}",
                             style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(
+                                fontSize: 16,
                                     color: Colors.black,
                                     fontWeight: FontWeight.normal),
                           ),
@@ -242,8 +248,10 @@ class RequestsGrid extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 5.0),
                           child: Text(
                             "Student Info:",
-                            style: Get.theme.textTheme.bodyMedium!
-                                .copyWith(fontWeight: FontWeight.normal),
+                            style: Get.theme.textTheme.titleLarge!
+                                .copyWith(
+                                fontSize: 18,
+                                fontWeight: FontWeight.normal),
                           ),
                         ),
                         Padding(
@@ -252,6 +260,7 @@ class RequestsGrid extends StatelessWidget {
                             "Name : ${controller.filteredregistration[index].student?.name}",
                             style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(
+                                fontSize: 16,
                                     color: Colors.black,
                                     fontWeight: FontWeight.normal),
                           ),
@@ -263,6 +272,7 @@ class RequestsGrid extends StatelessWidget {
                             "Grade Level: ${controller.filteredregistration[index].student?.clas}",
                             style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(
+                                fontSize: 16,
                                     color: Colors.black,
                                     fontWeight: FontWeight.normal),
                           ),
@@ -323,6 +333,7 @@ class RequestsGrid extends StatelessWidget {
                               "${controller.filteredregistration[index].type}",
                               style: Get.theme.textTheme.bodyMedium!
                                   .copyWith(
+                                fontSize: 16,
                                       color: Color(0xff779DB6),
                                       fontWeight: FontWeight.normal),
                             ),

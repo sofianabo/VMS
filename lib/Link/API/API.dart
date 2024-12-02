@@ -22,7 +22,6 @@ String getguardians = "getAllGuardian";
 String editGuardian = "updateGuardian";
 String getStudents = "getAllStudent";
 String deleteStudent = "deleteStudent";
-String getAllStatusRequest = "getTypeRegistration";
 String studentAttenendnce = "getStudentAttendance";
 String studentAttendenceById = "getStudentAttendanceById";
 String studentsAttendance = "IncreaseAttendance";
@@ -35,6 +34,7 @@ String updateEmployee = "updateEmployee";
 String getAllEmployee = "getAllEmployee";
 String deleteEmployee = "deleteEmployee";
 String getEmployeeById = "getEmployeeById";
+String addEmployeeAttendance = "addEmployeeAttendance";
 String rejectrequest = "unacceptable";
 
 //..................... Teachers ...................//
@@ -45,7 +45,15 @@ String deleteTeacher = "deleteTeacher";
 //..................... Schools ...................//
 
 String getSession = "getAllSession";
+String addSession = "addSession";
+String updateSession = "updateSession";
+String destroy = "destroy";
+
 String getGrade = "getGrade";
+String createGrade = "createGrade";
+String updateGrade = "updateGrade";
+String destroyGrede = "destroyGrede";
+
 String getDivision = "getDivisionByClass";
 String getRequests = "getRegistration";
 String getclasses = "getClasses";
