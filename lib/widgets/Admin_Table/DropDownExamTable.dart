@@ -40,6 +40,11 @@ class DropDownexamTable extends StatelessWidget {
               ? cont.selectedExamDivision
               : title;
           break;
+           case 'season':
+          selectedValue = cont.selectedExamSeason.isNotEmpty
+              ? cont.selectedExamSeason
+              : title;
+          break;
       }
 
       return Container(
@@ -126,6 +131,18 @@ class DropDownexamTable extends StatelessWidget {
         break;
       case 'division':
         items.addAll(cont.examDivision.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.textTheme.bodyMedium!
+                  .copyWith(fontSize: 14),
+            ),
+          );
+        }).toList());
+        break;
+          case 'season':
+        items.addAll(cont.examSeason.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(

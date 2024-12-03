@@ -45,23 +45,31 @@ class _ExamTableState extends State<ExamTable> {
             child: Row(
               children: [
                 DropDownexamTable(
-                  title: "Type",
-                  width: Get.width / 4,
-                  type: 'type',
+                  title: "Semester",
+                  width: Get.width / 6.5,
+                  type: 'season',
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: DropDownexamTable(
+                    title: "Type",
+                    width: Get.width / 6.5,
+                    type: 'type',
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                   child: DropDownexamTable(
                     type: 'class',
                     title: "Class",
-                    width: Get.width / 4,
+                    width: Get.width / 6.5,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                   child: DropDownexamTable(
                     title: "Division",
-                    width: Get.width / 4,
+                    width: Get.width / 5.5,
                     type: 'division',
                   ),
                 ),
@@ -129,7 +137,7 @@ class _ExamTableState extends State<ExamTable> {
                     child: GetBuilder<ExamTableController>(builder: (control) {
                   return DataTable(
                     headingRowColor:
-                         WidgetStatePropertyAll(Get.theme.colorScheme.secondary),
+                        WidgetStatePropertyAll(Get.theme.colorScheme.secondary),
                     border: TableBorder.all(
                       color: Get.theme.primaryColor,
                       width: 1.0,
@@ -163,8 +171,7 @@ class _ExamTableState extends State<ExamTable> {
                                 Text(
                                     textAlign: TextAlign.center,
                                     "ss",
-                                    style:
-                                    Get.theme.textTheme.titleLarge),
+                                    style: Get.theme.textTheme.titleLarge),
                                 onTap: () {},
                               ),
                           ],

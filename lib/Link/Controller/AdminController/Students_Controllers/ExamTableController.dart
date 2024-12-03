@@ -2,15 +2,18 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllExamTypeModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllSemesterModel.dart';
 
 class ExamTableController extends GetxController {
   String examTypeIndex = "";
   String examClassIndex = "";
   String examDivisionIndex = "";
+  String examSeasonIndex = "";
 
   List<String> examType = [];
   List<String> examClass = [];
   List<String> examDivision = [];
+  List<String> examSeason = [];
 
   void selectIndex(String type, String? index) {
     switch (type) {
@@ -21,6 +24,9 @@ class ExamTableController extends GetxController {
         examClassIndex = index ?? "";
         break;
       case 'division':
+        examDivisionIndex = index ?? "";
+        break;
+         case 'season':
         examDivisionIndex = index ?? "";
         break;
     }
@@ -53,6 +59,15 @@ class ExamTableController extends GetxController {
     update();
     updateList("division", examDivision);
   }
+  
+  void setAllSeason(AllSemesterModel semster) {
+    examSeason.clear();
+    for (int k = 0; k < semster.semester!.length; k++) {
+      examSeason.add(semster.semester![k].enName.toString());
+    }
+    update();
+    updateList("season", examSeason);
+  }
 
   void updateList(String type, List<String> options) {
     switch (type) {
@@ -65,6 +80,9 @@ class ExamTableController extends GetxController {
       case 'division':
         examDivision = options;
         break;
+         case 'season':
+        examSeason = options;
+        break;
     }
     update();
   }
@@ -74,4 +92,5 @@ class ExamTableController extends GetxController {
   String get selectedExamClass => examClassIndex;
 
   String get selectedExamDivision => examDivisionIndex;
+  String get selectedExamSeason => examSeasonIndex;
 }

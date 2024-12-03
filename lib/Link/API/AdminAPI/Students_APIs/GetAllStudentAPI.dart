@@ -8,10 +8,10 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownSess
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllGradeModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllStudentModel.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dart';
 
 class Getallstudentapi {
   final Allstudentscontroller c = Get.find<Allstudentscontroller>();

@@ -1,10 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllGradeModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllPenaltyModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllStudyYearModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dart';
 
 class StudyYearStudentsController extends GetxController {
   String sessionIndex = "";
@@ -19,7 +20,7 @@ class StudyYearStudentsController extends GetxController {
   List<String> classlist = [];
   List<String> divisionlist = [];
   List<String> penaltyList = [];
-    List<Students> stud = [];
+  List<Students> stud = [];
   List<Students> filteredStudents = [];
 
   void selectIndex(String type, String? index) {
@@ -30,7 +31,7 @@ class StudyYearStudentsController extends GetxController {
       case 'grade':
         gradeIndex = index ?? "";
         break;
-      case 'class': 
+      case 'class':
         classIndex = index ?? "";
         break;
       case 'division':
@@ -43,7 +44,6 @@ class StudyYearStudentsController extends GetxController {
     update();
   }
 
-  
   void setAllStudents(AllStudyYearModel model) {
     stud = model.students!;
     filteredStudents = List.from(stud);
@@ -51,14 +51,14 @@ class StudyYearStudentsController extends GetxController {
     update();
   }
 
-   setIsLoading(bool value){
+  setIsLoading(bool value) {
     isLoading = value;
     update();
   }
+
   void searchStudentByName(String query) {
     if (query.isEmpty) {
-      filteredStudents =
-          List.from(stud);
+      filteredStudents = List.from(stud);
     } else {
       filteredStudents = stud
           .where((student) =>
@@ -133,6 +133,38 @@ class StudyYearStudentsController extends GetxController {
         penaltyList = options;
         break;
     }
+    update();
+  }
+
+  Rx<DateTime?> startdate = Rx<DateTime?>(null);
+
+  void selectStartDatePenalty(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: startdate.value ?? DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+    if (picked != null) {
+      startdate.value = picked;
+    }
+    // setRequestDate(picked);
+    update();
+  }
+
+  Rx<DateTime?> enddate = Rx<DateTime?>(null);
+
+  void selectEndDatePenalty(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: startdate.value ?? DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+    if (picked != null) {
+      enddate.value = picked;
+    }
+    // setRequestDate(picked);
     update();
   }
 

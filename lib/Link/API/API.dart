@@ -4,8 +4,6 @@ String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
 
 // String hostPort = "http://192.168.217.56:8000/api/";
 
-String getStudyYearStudent = "getStudent";
-
 //..................... All ...................//
 
 String Home = "homeScreen";
@@ -25,7 +23,11 @@ String deleteStudent = "deleteStudent";
 String studentAttenendnce = "getStudentAttendance";
 String studentAttendenceById = "getStudentAttendanceById";
 String studentsAttendance = "IncreaseAttendance";
-
+String getStudyYearStudent = "getStudent";
+String rejectrequest = "unacceptable";
+String acceptARequest = "AcceptARequest";
+String allPenalty = "getPenalty";
+String addStudentPenalty = "addStudentPenalty";
 //..................... Employees ...................//
 
 String addEmpolyee = "addEmployee";
@@ -35,8 +37,6 @@ String getAllEmployee = "getAllEmployee";
 String deleteEmployee = "deleteEmployee";
 String getEmployeeById = "getEmployeeById";
 String addEmployeeAttendance = "addEmployeeAttendance";
-String rejectrequest = "unacceptable";
-String allPenalty = "getPenalty";
 
 //..................... Teachers ...................//
 
@@ -70,3 +70,4 @@ String getimage = "$hostPort" + "getFile/";
 //..................... Tables ...................//
 
 String examType = "getExamType";
+String getSemester = "getSemester";
