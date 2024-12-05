@@ -133,8 +133,8 @@ class _ExamTableState extends State<ExamTable> {
               Container(
                 width: Get.width * 0.9,
                 margin: const EdgeInsets.only(top: 20),
-                child: SingleChildScrollView(
-                    child: GetBuilder<ExamTableController>(builder: (control) {
+                child: SingleChildScrollView(child:
+                    GetBuilder<ExamTableController>(builder: (controller) {
                   return DataTable(
                     headingRowColor:
                         WidgetStatePropertyAll(Get.theme.colorScheme.secondary),
@@ -143,40 +143,29 @@ class _ExamTableState extends State<ExamTable> {
                       width: 1.0,
                     ),
                     columns: [
-                      for (String key in tableData)
-                        DataColumn(
-                          label: Text(
-                              textAlign: TextAlign.center,
-                              key,
-                              style: key == "Class"
-                                  ? Get.theme.textTheme.titleLarge
-                                  : Get.theme.textTheme.titleLarge),
-                        ),
+                      DataColumn(
+                        label: Text("Class",
+                            textAlign: TextAlign.center,
+                            style: Get.theme.textTheme.titleLarge),
+                      ),
+                      DataColumn(label: Text('Exam Name')),
+                      DataColumn(label: Text('Curriculum Name')),
+                      DataColumn(label: Text('Date')),
+                      DataColumn(label: Text('Period')),
+                      DataColumn(label: Text('Max Mark')),
+                      DataColumn(label: Text('Passing Mark')),
                     ],
-                    rows: [
-                      for (int i = 0;
-                          i < tableData.length;
-                          i++) //control.classes.length
-                        DataRow(
-                          cells: [
-                            DataCell(
-                              Text(
-                                  textAlign: TextAlign.center,
-                                  "", //control.classes[i].enName!
-                                  style: Get.theme.textTheme.titleLarge),
-                              onTap: () {},
-                            ),
-                            for (int j = 0; j < 6; j++)
-                              DataCell(
-                                Text(
-                                    textAlign: TextAlign.center,
-                                    "ss",
-                                    style: Get.theme.textTheme.titleLarge),
-                                onTap: () {},
-                              ),
-                          ],
-                        ),
-                    ],
+                    rows: controller.quizList.map((exam) {
+                      return DataRow(cells: [
+                        DataCell(Text(exam.classes?.enName ?? '')),
+                        DataCell(Text(exam.name ?? '')),
+                        DataCell(Text(exam.curriculumEnName ?? '')),
+                        DataCell(Text(exam.startDate ?? '')),
+                        DataCell(Text(exam.period ?? '')),
+                        DataCell(Text(exam.maxMark?.toString() ?? '')),
+                        DataCell(Text(exam.passingMark?.toString() ?? '')),
+                      ]);
+                    }).toList(),
                   );
                 })),
               ),

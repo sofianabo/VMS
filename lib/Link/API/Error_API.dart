@@ -75,17 +75,16 @@ class ErrorHandler {
   static void handleException(Exception e) {
     String message = "حدث خطأ أثناء معالجة الطلب. يرجى المحاولة لاحقًا.";
 
-  if(Get.isSnackbarOpen){
-
-  }else{
-    Get.snackbar(
-      "خطأ",
-      message,
-      snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: Colors.red,
-      colorText: Colors.white,
-      duration: Duration(seconds: 3),
-    );
-  }
+    if (Get.isSnackbarOpen) {
+    } else {
+      Get.snackbar(
+        "خطأ",
+        message,
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+        duration: Duration(seconds: 3),
+      );
+    }
   }
 }

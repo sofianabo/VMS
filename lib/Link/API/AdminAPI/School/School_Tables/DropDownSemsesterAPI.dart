@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownExamTypeController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownSemsterController.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllExamTypeModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSemesterModel.dart';
 import '../../../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';

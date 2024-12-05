@@ -71,3 +71,4 @@ String getimage = "$hostPort" + "getFile/";
 
 String examType = "getExamType";
 String getSemester = "getSemester";
+String examTable = "getQuiz";
