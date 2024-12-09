@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownDivisionAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/DropDownExamTypeAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/ExamTableController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/ExamTypeModel.dart';
 
 class DropDownexamTable extends StatelessWidget {
   final double width;
@@ -40,6 +42,11 @@ class DropDownexamTable extends StatelessWidget {
               ? cont.selectedExamDivision
               : title;
           break;
+        case 'season':
+          selectedValue = cont.selectedExamSeason.isNotEmpty
+              ? cont.selectedExamSeason
+              : title;
+          break;
       }
 
       return Container(
@@ -61,7 +68,8 @@ class DropDownexamTable extends StatelessWidget {
           icon: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Icon(Icons.arrow_drop_down , color: Get.theme.secondaryHeaderColor),
+              Icon(Icons.arrow_drop_down,
+                  color: Get.theme.secondaryHeaderColor),
             ],
           ),
           style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
@@ -81,7 +89,7 @@ class DropDownexamTable extends StatelessWidget {
                 ),
               ),
             ),
-            ..._getDropdownItems(cont,context),
+            ..._getDropdownItems(cont, context),
           ],
           borderRadius: BorderRadius.circular(3),
         ),
@@ -92,6 +100,7 @@ class DropDownexamTable extends StatelessWidget {
   List<DropdownMenuItem<String>> _getDropdownItems(
       ExamTableController cont, BuildContext context) {
     List<DropdownMenuItem<String>> items = [];
+    String seasonindex;
 
     switch (type) {
       case 'type':
@@ -100,8 +109,7 @@ class DropDownexamTable extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
             onTap: () {},
           );
@@ -113,13 +121,12 @@ class DropDownexamTable extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
             onTap: () async {
               AllDivisionModel division = await Dropdowndivisionapi(context)
                   .Dropdowndivision(cont.examClass.indexOf(value));
-                   cont.setAllDivision(division);
+              cont.setAllDivision(division);
             },
           );
         }).toList());
@@ -130,9 +137,25 @@ class DropDownexamTable extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
+          );
+        }).toList());
+        break;
+      case 'season':
+        items.addAll(cont.examSeason.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+            ),
+            onTap: () async {
+              seasonindex = value;
+              AllExamTypeModel types = await Dropdownexamtypeapi(context)
+                  .Dropdownexamtype(cont.examSeason.indexOf(seasonindex));
+              cont.setAllTypes(types);
+            },
           );
         }).toList());
         break;

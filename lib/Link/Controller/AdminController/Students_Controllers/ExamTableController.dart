@@ -1,16 +1,28 @@
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllExamTypeModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllSemesterModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/ExamTableModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/ExamTypeModel.dart';
 
 class ExamTableController extends GetxController {
   String examTypeIndex = "";
   String examClassIndex = "";
   String examDivisionIndex = "";
+  String examSeasonIndex = "";
 
   List<String> examType = [];
   List<String> examClass = [];
   List<String> examDivision = [];
+  List<String> examSeason = [];
+
+  List<Quiz> quizList = [];
+
+  void setAllQuiz(ExamTableModel model) {
+    quizList.clear();
+    quizList = model.quiz!;
+    update();
+  }
 
   void selectIndex(String type, String? index) {
     switch (type) {
@@ -22,6 +34,9 @@ class ExamTableController extends GetxController {
         break;
       case 'division':
         examDivisionIndex = index ?? "";
+        break;
+      case 'season':
+        examSeasonIndex = index ?? "";
         break;
     }
     update();
@@ -54,6 +69,15 @@ class ExamTableController extends GetxController {
     updateList("division", examDivision);
   }
 
+  void setAllSeason(AllSemesterModel semster) {
+    examSeason.clear();
+    for (int l = 0; l < semster.semester!.length; l++) {
+      examSeason.add(semster.semester![l].enName.toString());
+    }
+    update();
+    updateList("season", examSeason);
+  }
+
   void updateList(String type, List<String> options) {
     switch (type) {
       case 'type':
@@ -65,6 +89,9 @@ class ExamTableController extends GetxController {
       case 'division':
         examDivision = options;
         break;
+      case 'season':
+        examSeason = options;
+        break;
     }
     update();
   }
@@ -74,4 +101,5 @@ class ExamTableController extends GetxController {
   String get selectedExamClass => examClassIndex;
 
   String get selectedExamDivision => examDivisionIndex;
+  String get selectedExamSeason => examSeasonIndex;
 }

@@ -1,13 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownClassesAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/DropDownExamTypeAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/DropDownSemsesterAPI.dart';
+import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/ExamTableController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllExamTypeModel.dart';
-
+import 'package:vms_school/Link/Model/AdminModel/AllSemesterModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/ExamTableModel.dart';
 
 class Examtableapi {
   final ExamTableController c = Get.find<ExamTableController>();
@@ -15,35 +18,29 @@ class Examtableapi {
 
   Examtableapi(this.context);
 
- // Dio dio = Dio();
+  Dio dio = Dio();
 
-  Examtable(
-      ) async {
+  Examtable() async {
     try {
-      AllExamTypeModel s = await Dropdownexamtypeapi(context).Dropdownexamtype();
-    AllClassesModel cl = await Getallclassapi(context).getAllClasses();
-    c.setAllTypes(s);
-    c.setAllClasses(cl);
+      AllSemesterModel semester =
+          await Dropdownsemsesterapi(context).Dropdownsemsester();
+      AllClassesModel cl = await Getallclassapi(context).getAllClasses();
+      c.setAllClasses(cl);
+      c.setAllSeason(semester);
 
-//       String myurl = "${global.hostPort}${global.getStudents}";
-//       var response = await dio.post(myurl,
-//           data: {
-//             "sessionId": sessionID,
-//             "gradeId": gradeId,
-//             "classId": classId,
-//             "divisionId": divisionID
-//           },
-// options: getDioOptions());
-      // if (response.statusCode == 200) {
-      //   AllStudentModel student = AllStudentModel.fromJson(response.data);
-      //   c.setAllStudents(student);
-      // } else {
-      //   ErrorHandler.handleDioError(DioError(
-      //     requestOptions: response.requestOptions,
-      //     response: response,
-      //     type: DioErrorType.badResponse,
-      //   ));
-      // }
+      String myurl = "${hostPort}${examTable}";
+      var response =
+          await dio.post(myurl, data: {"typeId": 1}, options: getDioOptions());
+      if (response.statusCode == 200) {
+        ExamTableModel student = ExamTableModel.fromJson(response.data);
+        c.setAllQuiz(student);
+      } else {
+        ErrorHandler.handleDioError(DioError(
+          requestOptions: response.requestOptions,
+          response: response,
+          type: DioErrorType.badResponse,
+        ));
+      }
     } catch (e) {
       if (e is DioError) {
         ErrorHandler.handleDioError(e);

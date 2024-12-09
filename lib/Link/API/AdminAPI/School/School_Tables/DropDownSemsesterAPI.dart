@@ -4,27 +4,24 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownExamTypeController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownSemsterController.dart';
-import 'package:vms_school/Link/Model/AdminModel/ExamTypeModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllSemesterModel.dart';
 import '../../../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';
 
-class Dropdownexamtypeapi {
-  Dropdownexamtypecontroller c = Get.find<Dropdownexamtypecontroller>();
-  Dropdownsemstercontroller semster = Get.find<Dropdownsemstercontroller>();
+class Dropdownsemsesterapi {
+  Dropdownsemstercontroller c = Get.find<Dropdownsemstercontroller>();
   BuildContext context;
-
-  Dropdownexamtypeapi(this.context);
+  Dropdownsemsesterapi(this.context);
   Dio dio = Dio();
 
-  Dropdownexamtype(int ids) async {
+  Dropdownsemsester() async {
     try {
-      int? id = semster.allSemester[ids].id;
-      String myurl = "${global.hostPort}${global.examType}/$id";
+      String myurl = "${global.hostPort}${global.getSemester}";
       var response = await dio.get(myurl, options: getDioOptions());
       if (response.statusCode == 200) {
-        AllExamTypeModel types = AllExamTypeModel.fromJson(response.data);
-        c.setTypes(types);
-        return types;
+        AllSemesterModel sem = AllSemesterModel.fromJson(response.data);
+        c.setsemester(sem);
+        return sem;
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,

@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students_APIs/StudentPunishAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/widgets/Admin_Students/DropDownStudyYearStudents.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
@@ -38,8 +39,6 @@ class StudyYearStudentGrid extends StatelessWidget {
       "level": "Twelveth scientific grade"
     },
   ];
-
-  TextEditingController phoneNumber = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +138,17 @@ class StudyYearStudentGrid extends StatelessWidget {
                                     action: [
                                       ButtonDialog(
                                         width: 90,
-                                        onPressed: () {},
+                                        onPressed: () async {
+                                          await Studentpunishapi(context)
+                                              .Studentpunish(
+                                                  1,
+                                                  reason.text,
+                                                  controller.startdate.value
+                                                      .toString(),
+                                                  controller.enddate.value
+                                                      .toString(),
+                                                  controller.stud[index].id!);
+                                        },
                                         color: Get.theme.primaryColor,
                                         text: "Send",
                                       )
@@ -173,7 +182,7 @@ class StudyYearStudentGrid extends StatelessWidget {
                                                       .labelSmall),
                                               TextFieldDialog(
                                                   width: w / 3.6,
-                                                  controller: phoneNumber,
+                                                  controller: reason,
                                                   hinttext: "The Reason"),
                                             ],
                                           ),
@@ -184,33 +193,31 @@ class StudyYearStudentGrid extends StatelessWidget {
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
                                             children: [
                                               Text("Start Date",
-                                                  style: Get
-                                                      .theme
-                                                      .primaryTextTheme
-                                                      .labelSmall),
-                                              DatePicker(
-                                                width: w / 3.6,
-                                                height: 40,
-                                              )
+                                                  style: Get.theme.textTheme
+                                                      .bodyMedium!),
+                                              penaltyStartDate(width: w / 3.6)
                                             ],
                                           ),
                                         ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Text("End Date",
-                                                style: Get.theme.textTheme
-                                                    .bodyMedium!),
-                                            DatePicker(
-                                              width: w / 3.6,
-                                              height: 40,
-                                            )
-                                          ],
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 15.0, bottom: 15.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Text("End Date",
+                                                  style: Get.theme.textTheme
+                                                      .bodyMedium!),
+                                              PenaltyEndDate(width: w / 3.6)
+                                            ],
+                                          ),
                                         ),
                                       ],
                                     ),

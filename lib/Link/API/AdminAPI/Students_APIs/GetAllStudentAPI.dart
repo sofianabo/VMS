@@ -12,6 +12,7 @@ import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dar
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllStudentModel.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dart';
 
 class Getallstudentapi {
   final Allstudentscontroller c = Get.find<Allstudentscontroller>();

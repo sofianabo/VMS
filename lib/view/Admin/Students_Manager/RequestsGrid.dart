@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students_APIs/ApproveRequestAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/RejectEnrollRequestAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
 import 'package:vms_school/widgets/Admin_Requests/DropDownRequestEnroll.dart';
@@ -190,10 +191,9 @@ class RequestsGrid extends StatelessWidget {
                             children: [
                               Text(
                                 "Guardian Info :",
-                                style: Get.theme.textTheme.titleLarge!
-                                    .copyWith(fontWeight: FontWeight.normal,
-                                  fontSize: 18
-                                ),
+                                style: Get.theme.textTheme.titleLarge!.copyWith(
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 18),
                               ),
                               Text(
                                   "${controller.filteredregistration[index].data}"),
@@ -204,65 +204,58 @@ class RequestsGrid extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 5.0),
                           child: Text(
                             "Name : ${controller.filteredregistration[index].guardian?.name}",
-                            style: Get.theme.textTheme.bodyMedium!
-                                .copyWith(
-                              fontSize: 16,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.normal),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5.0),
-                          child: Text(
-                            "Mobile: ${controller.filteredregistration[index].guardian?.mobile}",
-                            style: Get.theme.textTheme.bodyMedium!
-                                .copyWith(
+                            style: Get.theme.textTheme.bodyMedium!.copyWith(
                                 fontSize: 16,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.normal),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5.0),
-                          child: Text(
-                            "Email: ${controller.filteredregistration[index].guardian?.email}",
-                            style: Get.theme.textTheme.bodyMedium!
-                                .copyWith(
-                                fontSize: 16,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.normal),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5.0),
-                          child: Text(
-                            "National ID: ${controller.filteredregistration[index].guardian?.nationalId}",
-                            style: Get.theme.textTheme.bodyMedium!
-                                .copyWith(
-                                fontSize: 16,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.normal),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5.0),
-                          child: Text(
-                            "Student Info:",
-                            style: Get.theme.textTheme.titleLarge!
-                                .copyWith(
-                                fontSize: 18,
+                                color: Colors.black,
                                 fontWeight: FontWeight.normal),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 5.0),
                           child: Text(
-                            "Name : ${controller.filteredregistration[index].student?.name}",
-                            style: Get.theme.textTheme.bodyMedium!
-                                .copyWith(
+                            "Mobile: ${controller.filteredregistration[index].guardian?.mobile}",
+                            style: Get.theme.textTheme.bodyMedium!.copyWith(
                                 fontSize: 16,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.normal),
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5.0),
+                          child: Text(
+                            "Email: ${controller.filteredregistration[index].guardian?.email}",
+                            style: Get.theme.textTheme.bodyMedium!.copyWith(
+                                fontSize: 16,
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5.0),
+                          child: Text(
+                            "National ID: ${controller.filteredregistration[index].guardian?.nationalId}",
+                            style: Get.theme.textTheme.bodyMedium!.copyWith(
+                                fontSize: 16,
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5.0),
+                          child: Text(
+                            "Student Info:",
+                            style: Get.theme.textTheme.titleLarge!.copyWith(
+                                fontSize: 18, fontWeight: FontWeight.normal),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5.0),
+                          child: Text(
+                            "Name : ${controller.filteredregistration[index].student?.name}",
+                            style: Get.theme.textTheme.bodyMedium!.copyWith(
+                                fontSize: 16,
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal),
                           ),
                         ),
                         Padding(
@@ -270,11 +263,10 @@ class RequestsGrid extends StatelessWidget {
                               const EdgeInsets.only(top: 5.0, bottom: 15.0),
                           child: Text(
                             "Grade Level: ${controller.filteredregistration[index].student?.clas}",
-                            style: Get.theme.textTheme.bodyMedium!
-                                .copyWith(
+                            style: Get.theme.textTheme.bodyMedium!.copyWith(
                                 fontSize: 16,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.normal),
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal),
                           ),
                         ),
                         Row(
@@ -291,8 +283,8 @@ class RequestsGrid extends StatelessWidget {
                                     action: [
                                       ButtonDialog(
                                         text: 'Reject',
-                                        onPressed: ()async {
-                                        await  Rejectenrollrequestapi(context)
+                                        onPressed: () async {
+                                          await Rejectenrollrequestapi(context)
                                               .Rejectenrollrequest(controller
                                                   .registration[index].id!);
                                           Get.back();
@@ -302,7 +294,16 @@ class RequestsGrid extends StatelessWidget {
                                       ),
                                       ButtonDialog(
                                         text: 'Approve',
-                                        onPressed: () {},
+                                        onPressed: () async {
+                                          await Approverequestapi(context)
+                                              .Approverequest(
+                                                  controller
+                                                      .registration[index].id!,
+                                                  controller.registration[index]
+                                                      .student!.id!,
+                                                  2,
+                                                  4);
+                                        },
                                         width: 80,
                                         color: Get.theme.primaryColor,
                                       )
@@ -331,11 +332,10 @@ class RequestsGrid extends StatelessWidget {
                             ),
                             Text(
                               "${controller.filteredregistration[index].type}",
-                              style: Get.theme.textTheme.bodyMedium!
-                                  .copyWith(
-                                fontSize: 16,
-                                      color: Color(0xff779DB6),
-                                      fontWeight: FontWeight.normal),
+                              style: Get.theme.textTheme.bodyMedium!.copyWith(
+                                  fontSize: 16,
+                                  color: Color(0xff779DB6),
+                                  fontWeight: FontWeight.normal),
                             ),
                           ],
                         )
