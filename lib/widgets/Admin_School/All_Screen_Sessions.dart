@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_All_Employee_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students_APIs/GetAllStudentAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetAllTeachersAPI.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 
 
 class DropDownAllSessions extends StatelessWidget {
   final double width;
   final String title;
+  final String API;
   final String type;
   final Color? color;
 
   const DropDownAllSessions({
     Key? key,
     required this.title,
+    required this.API,
     this.color,
     required this.width,
     required this.type,
@@ -47,7 +52,6 @@ class DropDownAllSessions extends StatelessWidget {
           value: selectedValue,
           isExpanded: true,
           underline: const SizedBox(),
-          // تأكيد عدم وجود خط تحت الـ Dropdown
           icon: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -58,6 +62,21 @@ class DropDownAllSessions extends StatelessWidget {
           onChanged: (newValue) {
             if (newValue != null) {
               cont.selectIndex(type, newValue);
+              var sessionId = cont.sessions!.sessions!.firstWhere((session) => session.year == newValue).id;
+              switch (API) {
+                case 'AllStudents':
+                  Getallstudentapi.Getallstudent(sessionID: sessionId);
+                  break;
+                case 'TeacherManagement':
+                  Getallteachersapi(context).Getallteachers();
+                  break;
+                case 'AllEmployee':
+                  Get_All_Employee_API.Get_All_Employee();
+                  break;
+                case 'AllStudents':
+                  Getallstudentapi.Getallstudent(sessionID: sessionId);
+                  break;
+              }
             }
           },
           items: [
@@ -68,7 +87,7 @@ class DropDownAllSessions extends StatelessWidget {
                 title,
                 style: Get.theme.textTheme.bodyMedium!.copyWith(
                   fontSize: 14,
-                  color: Colors.black, // لون العنوان
+                  color: Colors.black,
                 ),
               ),
             ),

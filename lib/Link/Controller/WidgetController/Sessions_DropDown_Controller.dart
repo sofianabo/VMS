@@ -2,8 +2,9 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 
 class All_Screen_Sessions_Controller extends GetxController {
-
+  AllSessionModel? sessions;
   String sessionIndex = "";
+
   List<String> sessionlist = ["Quiz", "Exam", "Midterm"];
 
   void selectIndex(String type, String? index) {
@@ -16,6 +17,7 @@ class All_Screen_Sessions_Controller extends GetxController {
   }
 
   void setAllSession(AllSessionModel session) async {
+    sessions = session;
     sessionlist.clear();
     for (int i = 0; i < session.sessions!.length; i++) {
       sessionlist.add(session.sessions![i].year.toString());
@@ -23,9 +25,8 @@ class All_Screen_Sessions_Controller extends GetxController {
     }
     update();
     updateList("session", sessionlist);
-    sessionIndex = "${session.current!.year}";
+    setSessionDefult();
   }
-
 
   void updateList(String type, List<String> options) {
     switch (type) {
@@ -37,5 +38,10 @@ class All_Screen_Sessions_Controller extends GetxController {
   }
 
   String get selectedsessionIndex => sessionIndex;
+
+   setSessionDefult() {
+     sessionIndex = sessions!.current!.year!;
+     update();
+   }
 
 }

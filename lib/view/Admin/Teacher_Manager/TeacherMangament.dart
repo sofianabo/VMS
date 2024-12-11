@@ -4,6 +4,7 @@ import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/AddTeacherAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetAllTeachersAPI.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherManagementGrid.dart';
+import 'package:vms_school/widgets/Admin_School/All_Screen_Sessions.dart';
 import 'package:vms_school/widgets/Admin_teachers/DropDownAllTeacher.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
@@ -24,7 +25,7 @@ class TeacherManagement extends StatefulWidget {
 class _TeacherManagementState extends State<TeacherManagement> {
   @override
   void initState() {
-    Getallteachersapi(context).Getallteachers(null);
+    Getallteachersapi(context).Getallteachers();
     super.initState();
   }
 
@@ -57,7 +58,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
-                        child: Dropdownallteacher(title: "Session", width: w/6.5, type: "session")
+                        child: DropDownAllSessions(title: "Session", width: w/6.5, type: "session",API: "TeacherManagement",)
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),

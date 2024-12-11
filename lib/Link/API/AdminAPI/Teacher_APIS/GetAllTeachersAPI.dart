@@ -14,30 +14,31 @@ import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dart';
 
 class Getallteachersapi {
-  Allteachercontroller c = Get.find<Allteachercontroller>();
+  Allteachercontroller controller = Get.find<Allteachercontroller>();
    
   BuildContext context;
   Getallteachersapi(this.context);
   Dio dio = Dio();
 
-  Getallteachers(String? name) async {
-      AllSessionModel s = await Getsessionapi(context).Getsession();
-    AllGradesModel g = await Getallgradeapi(context).Getallgrade();
-    AllClassesModel cl = await Getallclassapi(context).getAllClasses();
-    c.setAllSession(s);
-    c.setAllGrades(g);
-    c.setAllClasses(cl);
+  Getallteachers({
+    String? Session ,
+    String? Grade ,
+    String? Class ,
+}) async {
+
+    controller.setIsLoading(true);
+
 
     try {
       String myurl = "${hostPort}${getTeachers}";
       var response = await dio.get(myurl,
-          data: {
-            "name": name,
-          },
-options: getDioOptions());
+      data: {
+
+      },
+      options: getDioOptions());
       if (response.statusCode == 200) {
         AllTeacherModel teacher = AllTeacherModel.fromJson(response.data);
-        c.setAllTeacher(teacher);
+        controller.setAllTeacher(teacher);
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,

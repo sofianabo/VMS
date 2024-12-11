@@ -10,6 +10,7 @@ import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dar
 class Allstudentscontroller extends GetxController {
   late BuildContext context;
   List<Students> stud = [];
+  String? Value;
   List<Students> filteredStudents = [];
   String sessionIndex = "";
   String gradeIndex = "";
@@ -20,6 +21,7 @@ class Allstudentscontroller extends GetxController {
   List<String> classlist = [];
   List<String> divisionlist = ["one"];
   List<String> sessionlist = [];
+
   void selectIndex(String type, String? index) {
     print("");
 
@@ -39,12 +41,29 @@ class Allstudentscontroller extends GetxController {
 
         break;
     }
+
+    if(type == "grade" && Value!=null){
+      searchStudentByName(Value!,gradeIndex);
+    }else if(type == "grade" && Value ==null) {
+      searchStudentByName("",gradeIndex);
+    }
+
     update();
   }
 
   void setAllStudents(AllStudentModel model) {
     stud = model.students!;
     filteredStudents = List.from(stud);
+    if (Value != null && Value!.isNotEmpty) {
+      searchStudentByName(Value.toString(), gradeIndex);
+    }
+
+    if (gradeIndex.isNotEmpty) {
+      filteredStudents = filteredStudents.where((emp) {
+        return emp.enName == gradeIndex;
+      }).toList();
+    }
+
     setIsLoading(false);
     update();
   }
@@ -53,19 +72,36 @@ class Allstudentscontroller extends GetxController {
     isLoading = value;
     update();
   }
-  void searchStudentByName(String query) {
-    if (query.isEmpty) {
-      filteredStudents =
-          List.from(stud);
-    } else {
-      filteredStudents = stud
-          .where((student) =>
-              student.fullName != null &&
-              student.fullName!.toLowerCase().contains(query.toLowerCase()))
-          .toList();
+
+
+
+  void searchStudentByName(String query, String grade) {
+    List<Students> tempFilteredList = List.from(stud);
+    if (query != null && query.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((st) {
+        final empFullName = st.fullName?.toLowerCase() ?? '';
+        final mobile = st.mobileNumber?.toLowerCase() ?? '';
+        final email = st.email?.toLowerCase() ?? '';
+        return email.contains(query.toLowerCase()) ||
+            empFullName.contains(query.toLowerCase())|| mobile.contains(query.toLowerCase());
+      }).toList();
     }
+
+    if (grade.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((emp) {
+        return emp.enName == grade;
+      }).toList();
+    }
+
+    filteredStudents = tempFilteredList;
     update();
   }
+
+
+
+
+
+
 
   void setAllSession(AllSessionModel session) async {
     sessionlist.clear();

@@ -7,12 +7,11 @@ import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dar
 
 class Allteachercontroller extends GetxController {
   List<Teachers> teachers = [];
-
+  bool isLoading = true;
   String sessionIndex = "";
   String gradeIndex = "";
   String classIndex = "";
   String divisionIndex = "";
-
   List<String> gradelist = ["first", "tow", "three"];
   List<String> classlist = [];
   List<String> divisionlist = ["one"];
@@ -38,8 +37,14 @@ class Allteachercontroller extends GetxController {
 
   late BuildContext context;
 
+  setIsLoading(bool value){
+    isLoading = value;
+    update();
+  }
+
   void setAllTeacher(AllTeacherModel model) {
     teachers = model.teachers!;
+    setIsLoading(false);
     update();
   }
     void setAllSession(AllSessionModel session) async {
