@@ -15,7 +15,7 @@ class GetAllRequestsapi {
   GetAllRequestsapi(this.context);
   Dio dio = Dio();
 
-  GetAllRequests() async { 
+  GetAllRequests() async {
     try {
       AllClassesModel classesModel =
           await Getallclassapi(context).getAllClasses();

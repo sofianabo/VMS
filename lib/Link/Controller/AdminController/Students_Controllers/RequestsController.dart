@@ -10,11 +10,16 @@ class Requestscontroller extends GetxController {
   String statusindex = "";
   String classIndex = "";
   String divisionIndex = "";
-  List<String> statusList = ['acceptable','unacceptable','Partially acceptable','hanging'];
+  List<String> statusList = [
+    'acceptable',
+    'unacceptable',
+    'Partially acceptable',
+    'hanging'
+  ];
   List<String> classlist = [];
+  List<Class> allClass = [];
   List<String> divisionlist = ["one"];
   bool IsLoading = true;
-
 
   void setAllRequests(AllRequestsModel req) {
     registration = req.registration!;
@@ -23,6 +28,21 @@ class Requestscontroller extends GetxController {
 
     update();
   }
+void approveRequest(int index) {  
+  // تحقق من أن الفهرس صالح  
+  if (index >= 0 && index < registration.length) {  
+    // احذف الطلب من قائمة التسجيل  
+    registration.removeAt(index);  
+    
+    // تحديث قائمة الطلبات المصفاة  
+    filteredregistration = List.from(registration);  
+    
+    // تحديث الواجهة  
+    update();  
+  } else {  
+    print("Invalid index: $index");  
+  }  
+} 
 
   void restor() {
     registration.clear();
@@ -32,21 +52,23 @@ class Requestscontroller extends GetxController {
   }
 
   void applyFilters() {
-
     filteredregistration = registration.where((requests) {
       final studentName = requests.student?.name?.toLowerCase() ?? '';
       final guardianName = requests.guardian?.name?.toLowerCase() ?? '';
       final status = requests.type?.toLowerCase() ?? '';
       final date = requests.data;
 
-      final matchesName = searchQuery.isEmpty || studentName.contains(searchQuery) || guardianName.contains(searchQuery);
-      final matchesStatus = statusindex.isEmpty || status == statusindex.toLowerCase();
-      final matchesDate = requestDate.value == null || date == "${requestDate.value!.year}-${requestDate.value!.month}-${requestDate.value!.day}";
-
+      final matchesName = searchQuery.isEmpty ||
+          studentName.contains(searchQuery) ||
+          guardianName.contains(searchQuery);
+      final matchesStatus =
+          statusindex.isEmpty || status == statusindex.toLowerCase();
+      final matchesDate = requestDate.value == null ||
+          date ==
+              "${requestDate.value!.year}-${requestDate.value!.month}-${requestDate.value!.day}";
 
       return matchesName && matchesStatus && matchesDate;
     }).toList();
-
 
     update();
   }
@@ -61,9 +83,7 @@ class Requestscontroller extends GetxController {
   void searchRequestByStatus(String status) {
     statusindex = status.toLowerCase();
     applyFilters();
-
   }
-
 
   void setRequestDate(DateTime? date) {
     requestDate.value = date;
@@ -78,7 +98,6 @@ class Requestscontroller extends GetxController {
     filteredregistration = List.from(registration);
     update();
   }
-
 
   void selectIndex(String type, String? index) {
     print("");
@@ -95,15 +114,15 @@ class Requestscontroller extends GetxController {
         break;
     }
 
-    if(type == "status"){
+    if (type == "status") {
       searchRequestByStatus(index!);
     }
     update();
   }
 
-
   void setAllClassDialog(AllClassesModel clas) async {
     classlist.clear();
+    allClass = clas.classes;
     for (int i = 0; i < clas.classes.length; i++) {
       classlist.add(clas.classes[i].enName.toString());
     }
@@ -155,7 +174,7 @@ class Requestscontroller extends GetxController {
     update();
   }
 
-  removedate(){
+  removedate() {
     requestDate.value = null;
     setRequestDate(null);
     update();

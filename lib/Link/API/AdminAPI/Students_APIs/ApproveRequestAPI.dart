@@ -3,12 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/GetAllGuardiansAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/allGaurdianController.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
 import '../../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';
 
 class Approverequestapi {
   Approverequestapi(this.context);
+  Requestscontroller requestscontroller = Get.find<Requestscontroller>();
+  Dropdownclassescontroller classControl =
+      Get.find<Dropdownclassescontroller>();
+  Dropdowndivisioncontroller divisionControl =
+      Get.find<Dropdowndivisioncontroller>();
   BuildContext context;
   Dio dio = Dio();
   Approverequest(
@@ -17,12 +25,14 @@ class Approverequestapi {
     int classid,
     int divisionId,
   ) async {
-    String myurl = "${global.hostPort}${global.acceptARequest}";
     try {
+      int? cID = classControl.Allclass[classid].id;
+      int? dID = divisionControl.allDivision[divisionId].id;
+      String myurl = "${global.hostPort}${global.acceptARequest}";
       var response = await dio.get(myurl,
           data: {
-            "classId": classid,
-            "divisionId": divisionId,
+            "classId": cID,
+            "divisionId": dID,
             "studentId": studentId,
             "id": requestId
           },

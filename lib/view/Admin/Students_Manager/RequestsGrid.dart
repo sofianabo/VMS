@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/ApproveRequestAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/RejectEnrollRequestAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/widgets/Admin_Requests/DropDownRequestEnroll.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/ButtonsGrid.dart';
@@ -262,7 +263,7 @@ class RequestsGrid extends StatelessWidget {
                           padding:
                               const EdgeInsets.only(top: 5.0, bottom: 15.0),
                           child: Text(
-                            "Grade Level: ${controller.filteredregistration[index].student?.clas}",
+                            "previous Class: ${controller.filteredregistration[index].student?.previousClass}",
                             style: Get.theme.textTheme.bodyMedium!.copyWith(
                                 fontSize: 16,
                                 color: Colors.black,
@@ -301,8 +302,13 @@ class RequestsGrid extends StatelessWidget {
                                                       .registration[index].id!,
                                                   controller.registration[index]
                                                       .student!.id!,
-                                                  2,
-                                                  4);
+                                                  controller.classlist.indexOf(
+                                                      controller
+                                                          .selectedClassIndex),
+                                                  controller.divisionlist
+                                                      .indexOf(controller
+                                                          .selectedDivisionIndex));
+                                          controller.approveRequest(index);
                                         },
                                         width: 80,
                                         color: Get.theme.primaryColor,
