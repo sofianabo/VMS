@@ -17,7 +17,7 @@ class Schooltimetableapi {
 
   Schooltimetable() async {
     try {
-      AllClassesModel cl = await Getallclassapi(context).getAllClasses();
+      AllClassModel cl = await Getallclassapi(context).getAllClasses();
       c.setAllClasses(cl);
 
 //       String myurl = "${global.hostPort}${global.getStudents}";

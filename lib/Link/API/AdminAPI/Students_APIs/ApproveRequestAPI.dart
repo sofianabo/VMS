@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/GetAllGuardiansAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students_APIs/RequestsAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/allGaurdianController.dart';
@@ -39,6 +40,7 @@ class Approverequestapi {
           options: getDioOptions());
 
       if (response.statusCode == 200) {
+        await GetAllRequestsapi(context).GetAllRequests();
         Get.back();
       } else {
         ErrorHandler.handleDioError(DioError(

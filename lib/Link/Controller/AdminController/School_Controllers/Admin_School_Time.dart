@@ -21,10 +21,10 @@ class AdminSchoolTimeController extends GetxController {
     update();
   }
 
-  void setAllClasses(AllClassesModel clas) {
+  void setAllClasses(AllClassModel clas) {
     examClass.clear();
-    for (int j = 0; j < clas.classes.length; j++) {
-      examClass.add(clas.classes[j].enName.toString());
+    for (int j = 0; j < clas.classes!.length; j++) {
+      examClass.add(clas.classes![j].enName.toString());
     }
     update();
     updateList("class", examClass);

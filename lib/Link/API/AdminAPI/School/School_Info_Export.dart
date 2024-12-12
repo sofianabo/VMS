@@ -72,7 +72,6 @@ Future<void> exportToPdf(List<Map<String, dynamic>> schoolInfo) async {
                 ],
               ),
               pw.SizedBox(height: 30),
-
               pw.Center(
                 child: pw.Text(
                   'معلومات المدرسة',
@@ -85,7 +84,6 @@ Future<void> exportToPdf(List<Map<String, dynamic>> schoolInfo) async {
                 ),
               ),
               pw.SizedBox(height: 20),
-
               ...buildSchoolData(
                   schoolInfo.sublist(
                     i,
@@ -182,12 +180,12 @@ void ExleRequestsExport(List<Registration> registrations) async {
     return {
       "Guardian Name": reg.guardian?.name ?? "",
       "Guardian Email": reg.guardian?.email ?? "",
-      "Guardian Mobile": reg.guardian?.mobile.toString() ?? "",
+      "Guardian Mobile": reg.guardian?.phone.toString() ?? "",
       "Guardian National ID": reg.guardian?.nationalId ?? "",
       "Student Name": reg.student?.name ?? "",
       "Student Class": reg.student?.clas ?? "",
       "Previous Class": reg.student?.previousClass.toString() ?? "",
-      "Registration Date": reg.data ?? "",
+      "Registration Date": reg.date ?? "",
       "Registration Type": reg.type ?? "",
     };
   }).toList();
@@ -219,12 +217,12 @@ void exportRequestsToPDF(List<Registration> registrations) async {
     return [
       reg.guardian?.name ?? "",
       reg.guardian?.email ?? "",
-      reg.guardian?.mobile?.toString() ?? "",
+      reg.guardian?.phone?.toString() ?? "",
       reg.guardian?.nationalId ?? "",
       reg.student?.name ?? "",
       reg.student?.clas ?? "",
       reg.student?.previousClass?.toString() ?? "",
-      reg.data ?? "",
+      reg.date ?? "",
       reg.type ?? "",
     ];
   }).toList();
@@ -286,5 +284,3 @@ void exportRequestsToPDF(List<Registration> registrations) async {
     ..click();
   html.Url.revokeObjectUrl(url);
 }
-
-

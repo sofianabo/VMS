@@ -24,7 +24,7 @@ class Examtableapi {
     try {
       AllSemesterModel semester =
           await Dropdownsemsesterapi(context).Dropdownsemsester();
-      AllClassesModel cl = await Getallclassapi(context).getAllClasses();
+      AllClassModel cl = await Getallclassapi(context).getAllClasses();
       c.setAllClasses(cl);
       c.setAllSeason(semester);
 

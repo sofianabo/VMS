@@ -17,7 +17,7 @@ class Requestscontroller extends GetxController {
     'hanging'
   ];
   List<String> classlist = [];
-  List<Class> allClass = [];
+  List<Classes> allClass = [];
   List<String> divisionlist = ["one"];
   bool IsLoading = true;
 
@@ -28,21 +28,7 @@ class Requestscontroller extends GetxController {
 
     update();
   }
-void approveRequest(int index) {  
-  // تحقق من أن الفهرس صالح  
-  if (index >= 0 && index < registration.length) {  
-    // احذف الطلب من قائمة التسجيل  
-    registration.removeAt(index);  
-    
-    // تحديث قائمة الطلبات المصفاة  
-    filteredregistration = List.from(registration);  
-    
-    // تحديث الواجهة  
-    update();  
-  } else {  
-    print("Invalid index: $index");  
-  }  
-} 
+
 
   void restor() {
     registration.clear();
@@ -56,7 +42,7 @@ void approveRequest(int index) {
       final studentName = requests.student?.name?.toLowerCase() ?? '';
       final guardianName = requests.guardian?.name?.toLowerCase() ?? '';
       final status = requests.type?.toLowerCase() ?? '';
-      final date = requests.data;
+      final date = requests.date;
 
       final matchesName = searchQuery.isEmpty ||
           studentName.contains(searchQuery) ||
@@ -120,11 +106,11 @@ void approveRequest(int index) {
     update();
   }
 
-  void setAllClassDialog(AllClassesModel clas) async {
+  void setAllClassDialog(AllClassModel clas) async {
     classlist.clear();
-    allClass = clas.classes;
-    for (int i = 0; i < clas.classes.length; i++) {
-      classlist.add(clas.classes[i].enName.toString());
+    allClass = clas.classes!;
+    for (int i = 0; i < clas.classes!.length; i++) {
+      classlist.add(clas.classes![i].enName.toString());
     }
     update();
     updateList("class", classlist);

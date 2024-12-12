@@ -197,7 +197,7 @@ class RequestsGrid extends StatelessWidget {
                                     fontSize: 18),
                               ),
                               Text(
-                                  "${controller.filteredregistration[index].data}"),
+                                  "${controller.filteredregistration[index].date}"),
                             ],
                           ),
                         ),
@@ -214,7 +214,7 @@ class RequestsGrid extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 5.0),
                           child: Text(
-                            "Mobile: ${controller.filteredregistration[index].guardian?.mobile}",
+                            "Mobile: ${controller.filteredregistration[index].guardian?.phone}",
                             style: Get.theme.textTheme.bodyMedium!.copyWith(
                                 fontSize: 16,
                                 color: Colors.black,
@@ -287,7 +287,8 @@ class RequestsGrid extends StatelessWidget {
                                         onPressed: () async {
                                           await Rejectenrollrequestapi(context)
                                               .Rejectenrollrequest(controller
-                                                  .registration[index].id!);
+                                                  .registration[index]
+                                                  .acceptanceNumber!);
                                           Get.back();
                                         },
                                         width: 80,
@@ -298,8 +299,8 @@ class RequestsGrid extends StatelessWidget {
                                         onPressed: () async {
                                           await Approverequestapi(context)
                                               .Approverequest(
-                                                  controller
-                                                      .registration[index].id!,
+                                                  controller.registration[index]
+                                                      .acceptanceNumber!,
                                                   controller.registration[index]
                                                       .student!.id!,
                                                   controller.classlist.indexOf(
@@ -308,7 +309,6 @@ class RequestsGrid extends StatelessWidget {
                                                   controller.divisionlist
                                                       .indexOf(controller
                                                           .selectedDivisionIndex));
-                                          controller.approveRequest(index);
                                         },
                                         width: 80,
                                         color: Get.theme.primaryColor,

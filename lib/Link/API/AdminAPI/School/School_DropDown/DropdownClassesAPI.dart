@@ -15,10 +15,9 @@ class Getallclassapi {
   getAllClasses() async {
     try {
       String myurl = "${global.hostPort}${global.getclasses}";
-      var response = await dio.get(myurl,
-options: getDioOptions());
+      var response = await dio.post(myurl, options: getDioOptions());
       if (response.statusCode == 200) {
-        AllClassesModel classes = AllClassesModel.fromJson(response.data);
+        AllClassModel classes = AllClassModel.fromJson(response.data);
         c.setClasses(classes);
         return classes;
       } else {

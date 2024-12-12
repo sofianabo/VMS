@@ -17,7 +17,7 @@ class GetAllRequestsapi {
 
   GetAllRequests() async {
     try {
-      AllClassesModel classesModel =
+      AllClassModel classesModel =
           await Getallclassapi(context).getAllClasses();
       c.setAllClassDialog(classesModel);
       c.restor();

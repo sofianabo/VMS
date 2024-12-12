@@ -26,7 +26,7 @@ class Getstudyyearstudentapi {
     try {
       AllSessionModel s = await Getsessionapi(context).Getsession();
       AllGradesModel g = await Getallgradeapi(context).Getallgrade();
-      AllClassesModel cl = await Getallclassapi(context).getAllClasses();
+      AllClassModel cl = await Getallclassapi(context).getAllClasses();
       AllPenaltyModel p =await  Dropdownpenaltyapi(context).Dropdownpenalty();
       c.setAllClasses(cl);
       c.setAllSession(s);

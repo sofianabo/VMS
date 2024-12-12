@@ -112,10 +112,10 @@ class Allstudentscontroller extends GetxController {
     updateList("session", sessionlist);
   }
 
-  void setAllClasses(AllClassesModel clas) {
+  void setAllClasses(AllClassModel clas) {
     classlist.clear();
-    for (int j = 0; j < clas.classes.length; j++) {
-      classlist.add(clas.classes[j].enName.toString());
+    for (int j = 0; j < clas.classes!.length; j++) {
+      classlist.add(clas.classes![j].enName.toString());
     }
     update();
     updateList("class", classlist);
