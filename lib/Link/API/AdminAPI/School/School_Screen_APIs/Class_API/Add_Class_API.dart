@@ -1,38 +1,51 @@
 import 'package:vms_school/Link/API/API.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Grade_Screen/Grade_Screen_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Class_API/Get_All_Classes.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
-import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Grade_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Class_Mgmt_Controller.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownGradeController.dart.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 
-class Delete_Grade_API {
+class Add_Class_API {
   BuildContext context;
-  Delete_Grade_API(this.context);
+  Add_Class_API(this.context);
   Dio dio = Dio();
 
-  Delete_Grade(
-      {
-        index,
-        gradeId,
-      }
+  Add_Class(
+  {
+    userId,
+    sessionId,
+    gradeId,
+    driveUrl,
+    name,
+    enName
+}
       ) async {
+
     CancelToken cancelToken = CancelToken();
     Loading_Dialog(cancelToken: cancelToken);
     try {
-      Loading_Dialog(cancelToken: cancelToken);
-      final controller = Get.find<Grade_Controller>();
-      String myurl = "${hostPort}${destroyGrede}/$gradeId";
-
-      var response = await dio.delete(
+      String myurl = "${hostPort}${addClass}";
+      var response = await dio.post(
         cancelToken: cancelToken,
           myurl,
+          data: {
+             'userId':'$userId',
+             'sessionId':'$sessionId',
+             'gradeId':'$gradeId',
+             'driveUrl':'$driveUrl',
+             'name':'$name',
+             'enName':'$enName',
+          },
           options: getDioOptions());
       if (response.statusCode == 200) {
-        controller.DeleteGrade(index);
+        await Get_All_Classes_API(context).Get_All_Classes();
         Get.back();
+        Get.find<ClassMgmtController>().selectIndex("admin", "");
+        Get.find<ClassMgmtController>().selectIndex("gradediag", "");
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,

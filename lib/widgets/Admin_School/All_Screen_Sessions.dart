@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_All_Employee_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Class_API/Get_All_Classes.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/GetAllStudentAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetAllTeachersAPI.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
@@ -62,10 +63,10 @@ class DropDownAllSessions extends StatelessWidget {
           onChanged: (newValue) {
             if (newValue != null) {
               cont.selectIndex(type, newValue);
-              var sessionId = cont.sessions!.sessions!.firstWhere((session) => session.year == newValue).id;
+              cont.setsessionid(cont.sessions!.sessions!.firstWhere((session) => session.year == newValue).id);
               switch (API) {
                 case 'AllStudents':
-                  Getallstudentapi.Getallstudent(sessionID: sessionId);
+                  Getallstudentapi.Getallstudent(sessionID: cont.sessionId);
                   break;
                 case 'TeacherManagement':
                   Getallteachersapi(context).Getallteachers();
@@ -74,7 +75,10 @@ class DropDownAllSessions extends StatelessWidget {
                   Get_All_Employee_API.Get_All_Employee();
                   break;
                 case 'AllStudents':
-                  Getallstudentapi.Getallstudent(sessionID: sessionId);
+                  Getallstudentapi.Getallstudent(sessionID: cont.sessionId);
+                  break;
+                  case 'class':
+                    Get_All_Classes_API(context).Get_All_Classes(sessionID: cont.sessionId);
                   break;
               }
             }

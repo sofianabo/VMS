@@ -88,6 +88,7 @@ class LoginScreen extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(top: 5.0),
                                     child: TextFieldAuth(
+                                      autofill: [AutofillHints.username],
                                       controller: username,
                                       hinttext: "Username",
                                     ),
@@ -113,6 +114,7 @@ class LoginScreen extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(top: 5.0),
                                       child: TextFormPassword(
+                                          autofill: [AutofillHints.password],
                                           controller: password,
                                           hinttext: "Password"),
                                     ),

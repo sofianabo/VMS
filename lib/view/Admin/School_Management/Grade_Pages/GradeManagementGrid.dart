@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Grade_Screen/Delete_Grade_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Grade_Screen/Edit_Grade_API.dart';
@@ -22,7 +23,12 @@ class GradeTable extends StatelessWidget {
         return Container(
           margin: const EdgeInsets.only(top: 20),
           width: Get.width * 0.9,
-          child: SingleChildScrollView(
+          child: controller.isLoading == true ?
+          LoadingAnimationWidget.inkDrop(
+            color: Theme.of(context).primaryColor,
+            size: 60,
+          )
+              :SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -137,12 +143,10 @@ class GradeTable extends StatelessWidget {
                           onPressed: () {
                             Edit_Grade_API(context).Edit_Grade(
                               gradeId: controller.Grades[index]['id'],
-                              index: index,
                               feeCount: feeCount.text,
                               enName: enName.text,
                               name: name.text,
                             );
-                            Get.back();
                           },
                           color: Get.theme.primaryColor,
                           width: 120),

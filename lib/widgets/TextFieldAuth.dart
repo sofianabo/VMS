@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TextFieldAuth extends StatelessWidget {
-  TextFieldAuth({super.key, required this.controller, required this.hinttext});
+  TextFieldAuth({super.key, required this.controller, required this.hinttext , required this.autofill});
   TextEditingController controller = TextEditingController();
   String hinttext = "";
+  Iterable<String> autofill;
   @override
   Widget build(BuildContext context) {
        double h = MediaQuery.of(context).size.height;
@@ -17,6 +18,8 @@ class TextFieldAuth extends StatelessWidget {
       width: w/2.56,
       height: 50,
       child: TextFormField(
+        autofillHints: autofill,
+        autofocus: true,
         controller: controller,
         decoration: InputDecoration(
           hintText: hinttext,

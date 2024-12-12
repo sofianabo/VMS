@@ -15,9 +15,7 @@ class Edit_Grade_API {
   Dio dio = Dio();
 
   Edit_Grade(
-
   {
-    index,
     name,
     gradeId,
     enName,
@@ -25,10 +23,11 @@ class Edit_Grade_API {
 }
 
       ) async {
-    CancelToken cancelToken = CancelToken();
-    Loading_Dialog(cancelToken: cancelToken);
+
+
     try {
-      final controller = Get.find<Grade_Controller>();
+      CancelToken cancelToken = CancelToken();
+      Loading_Dialog(cancelToken: cancelToken);
       String myurl = "${hostPort}${updateGrade}";
       var response = await dio.post(
         cancelToken: cancelToken,
@@ -41,12 +40,7 @@ class Edit_Grade_API {
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
-        controller.UpdateGrade(
-          index,
-          name.text,
-          enName.text,
-          feeCount.text,
-        );
+        await Get_All_Grade_API(context).Get_All_Grade();
         Get.back();
       } else {
         ErrorHandler.handleDioError(DioError(

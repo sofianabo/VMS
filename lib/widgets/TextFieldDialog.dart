@@ -8,10 +8,13 @@ class TextFieldDialog extends StatelessWidget {
       {super.key,
       required this.controller,
       required this.hinttext,
-      this.width});
+      this.width,
+      this.readonly,
+      });
   TextEditingController controller = TextEditingController();
   String hinttext = "";
   double? width;
+  bool? readonly;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,6 +22,7 @@ class TextFieldDialog extends StatelessWidget {
       width: width ?? 250,
       height: 40,
       child: TextFormField(
+        readOnly: readonly??false,
         controller: controller,
         decoration: InputDecoration(
           hintText: hinttext,

@@ -36,11 +36,8 @@ class Add_Grade_API {
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
-        controller.addData(
-          name.text,
-          enName.text,
-          feeCount.text,
-        );
+        await Get_All_Grade_API(context).Get_All_Grade();
+        print(response.statusCode);
         Get.back();
       } else {
         ErrorHandler.handleDioError(DioError(

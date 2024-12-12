@@ -7,11 +7,12 @@ class TextFormPassword extends StatelessWidget {
 
   TextEditingController controller;
   String hinttext;
+  Iterable<String> autofill ;
 
   TextFormPassword({
     super.key,
     required this.controller,
-    required this.hinttext,
+    required this.hinttext, required this.autofill,
   });
 
   @override
@@ -25,6 +26,7 @@ class TextFormPassword extends StatelessWidget {
       height: 50,
       child: GetBuilder<PasswordHintController>(builder: (password) {
         return TextFormField(
+          autofillHints: autofill,
           controller: controller,
           obscureText: pass.isVisible,
           decoration: InputDecoration(

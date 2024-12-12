@@ -41,21 +41,4 @@ class Grade_Controller extends GetxController {
     update();
   }
 
-  UpdateGrade(int index, String arName, String enName, String feeCount) {
-    Grades[index]['arName'] = arName;
-    Grades[index]['enName'] = enName;
-    Grades[index]['feeCount'] = feeCount;
-    update();
-  }
-
-  addData(String arName, String enName, String feeCount) {
-    Grades.addAll([
-      {
-        "arName": "$arName",
-        "enName": "$enName",
-        "feeCount": "$feeCount",
-      }
-    ]);
-    update();
-  }
 }

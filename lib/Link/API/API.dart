@@ -57,7 +57,14 @@ String destroyGrede = "destroyGrede";
 
 String getDivision = "getDivisionByClass";
 String getRequests = "getRegistration";
+
 String getclasses = "getClasses";
+String addClass = "addClass";
+String updateClass = "updateClass";
+String deleteClass = "deleteClass";
+String getVirtualUser = "getVirtualUser";
+
+String getClassUser = "getClassUser";
 
 //..................... Admin ...................//
 

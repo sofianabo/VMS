@@ -1,23 +1,93 @@
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/Classes_Model.dart';
 
 class ClassMgmtController extends GetxController {
-  List<Map<String, dynamic>> Classes = [
-    {
-      "arName": "الصف الأول",
-      "enName": "First Class",
-      "grade": "Twelfth Scientific Grade",
-      "session": "First Semester",
-      "admin": "System Administration",
-      "drive": "https://192.168.1.1",
-    },
-  ];
+
+  var Class = <Map<String, dynamic>>[
+  ].obs;
+
+  bool isLoading = true;
+
+  var grades;
+
+  List<Classes>? classes;
+
+  List<Classes>? filteredreclasses = [];
+
+
+  setGeidx(vale){
+     grades = vale;
+     update();
+  }
+
+  addGradeList(List<String> values){
+    listgradeDiag = values;
+    listgradeNormal = values;
+    update();
+  }
+
+
+  addAdminList(List<String> values){
+    listAdminDiag = values;
+    update();
+  }
+
+  SetClasses(Classes_Model cls){
+   classes = cls.classes;
+   Class.clear();
+
+   filteredreclasses = List.from(classes!);
+
+   if (gradeIndex.isNotEmpty) {
+     filteredreclasses = filteredreclasses!.where((emp) {
+       return emp.grade!.enName == gradeIndex || emp.grade!.name == gradeIndex;
+     }).toList();
+   }
+
+
+   for (var stu in cls.classes!) {
+     Class.add({
+       "id": stu.id,
+       "arName": stu.name,
+       "enName": stu.enName,
+       "argrade": stu.grade!.name,
+       "engrade": stu.grade!.enName,
+       "session": stu.session!.year,
+       "admin": stu.admin!.userName,
+       "drive": stu.driveUrl,
+     });
+   }
+   SetIsLoading(false);
+   update();
+  }
+
+
+
+
+
+
+  void searchRequestByName(String gradeindexed) {
+    List<Classes> tempFilteredList = List.from(classes!);
+
+    if (gradeindexed.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((emp) {
+        return emp.grade!.name == gradeindexed || emp.grade!.enName == gradeindexed ;
+      }).toList();
+    }
+
+    filteredreclasses = tempFilteredList;
+    update();
+  }
+
+
+
 
   addData(String arName, String enName, String drive) {
-    Classes.addAll([
+    Class.addAll([
       {
         "arName": "$arName",
         "enName": "$enName",
-        "grade": "$selectedgradeDiagIndex",
+        "engrade": "$selectedgradeDiagIndex",
         "session": "$selectedsessionDiagIndex",
         "admin": "$selectedAdminDiagIndex",
         "drive": "$drive",
@@ -29,22 +99,7 @@ class ClassMgmtController extends GetxController {
     update();
   }
 
-  deleteclass(int idx) {
-    Classes.removeAt(idx);
-    update();
-  }
 
-  updatedata(int idx, String arName, String enName, String drive) {
-    Classes[idx] = {
-      "arName": "$arName",
-      "enName": "$enName",
-      "grade": "$editeGradeIndexs",
-      "session": "$editeSessionIndexs",
-      "admin": "$editeAdminIndexs",
-      "drive": "$drive",
-    };
-    update();
-  }
 
   String gradeIndex = "";
   String sessionIndex = "";
@@ -56,60 +111,33 @@ class ClassMgmtController extends GetxController {
   String editeAdminIndex = "";
 
   List<String> listgradeNormal = [
-    "Twelfth Scientific Grade",
-    "Eleventh Scientific Grade",
-    "Tenth Scientific Grade",
-    "Ninth Scientific Grade",
-    "Eighth Scientific Grade",
-    "Seventh Scientific Grade"
   ];
 
   List<String> listsessionNormal = [
-    "First Semester",
-    "Second Semester",
-    "Summer Session"
   ];
 
   List<String> listgradeDiag = [
-    "Twelfth Scientific Grade",
-    "Eleventh Scientific Grade",
-    "Tenth Scientific Grade",
-    "Ninth Scientific Grade",
-    "Eighth Scientific Grade",
-    "Seventh Scientific Grade"
+
   ];
 
   List<String> listsessionDiag = [
-    "First Semester",
-    "Second Semester",
-    "Summer Session"
+
   ];
 
   List<String> listAdminDiag = [
-    "System Administration",
-    "Content Management",
-    "User Management"
+
   ];
 
   List<String> editeGrade = [
-    "Twelfth Scientific Grade",
-    "Eleventh Scientific Grade",
-    "Tenth Scientific Grade",
-    "Ninth Scientific Grade",
-    "Eighth Scientific Grade",
-    "Seventh Scientific Grade"
+
   ];
 
   List<String> editeSession = [
-    "First Semester",
-    "Second Semester",
-    "Summer Session"
+
   ];
 
   List<String> editeAdmin = [
-    "System Administration",
-    "Content Management",
-    "User Management"
+
   ];
 
   void selectIndex(String type, String? index) {
@@ -139,7 +167,12 @@ class ClassMgmtController extends GetxController {
         editeAdminIndex = index ?? "";
         break;
     }
+
+    if(type == "grade"){
+      searchRequestByName(gradeIndex);
+    }
     update();
+
   }
 
   void updateList(String type, List<String> options) {
@@ -190,4 +223,9 @@ class ClassMgmtController extends GetxController {
   String get editeSessionIndexs => editeSessionIndex;
 
   String get editeAdminIndexs => editeAdminIndex;
+
+  void SetIsLoading(bool value) {
+    isLoading = value;
+    update();
+  }
 }
