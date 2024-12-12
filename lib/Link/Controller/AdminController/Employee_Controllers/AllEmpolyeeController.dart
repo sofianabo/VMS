@@ -34,6 +34,7 @@ class Allempolyeecontroller extends GetxController {
     searchRequestByName("",jobTitleIndex);
     update();
   }
+
   void setEmployee(AllEmployeeModel model) {
     employees = model.employees!;
     filteredreemployees = List.from(employees);
@@ -60,6 +61,8 @@ setIsLoading(bool value){
   isLoading = value;
   update();
 }
+
+
   void searchRequestByName(String query, String jobindexed) {
     List<Employees> tempFilteredList = List.from(employees);
     if (query != null && query.isNotEmpty) {

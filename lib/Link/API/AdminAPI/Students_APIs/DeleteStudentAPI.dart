@@ -19,7 +19,7 @@ class Deletestudentapi {
           },
     options: getDioOptions());
       if (response.statusCode == 200) {
-        await Getallstudentapi(context).Getallstudent(null,null,null,null);
+        await Getallstudentapi.Getallstudent();
         Get.back();
       } else {
         ErrorHandler.handleDioError(DioError(

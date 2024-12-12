@@ -47,6 +47,10 @@ class DropDownAllStudents extends StatelessWidget {
               ? cont.selecteddivisionIndex
               : title;
           break;
+
+
+
+
       }
 
       return Container(
@@ -58,39 +62,48 @@ class DropDownAllStudents extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
           border: Border.all(color: color ?? Color(0xffD9D9D9)),
         ),
-        child: DropdownButton<String>(
-          dropdownColor: Get.theme.cardColor,
-          iconDisabledColor: Colors.grey,
-          iconEnabledColor: Get.theme.cardColor,
-          value: selectedValue,
-          isExpanded: true,
-          underline: const SizedBox(),
-          icon: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Icon(Icons.arrow_drop_down , color: Get.theme.secondaryHeaderColor),
-            ],
-          ),
-          style:Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-          onChanged: (newValue) {
-            if (newValue != null) {
-              cont.selectIndex(type, newValue);
-            }
-          },
-          items: [
-            DropdownMenuItem<String>(
-              value: title,
-              enabled: false,
-              child: Text(
-                title,
-                style: Get.theme.textTheme.bodyMedium!.copyWith(
-                  fontSize: 14,
-                ),
+        child: Row(
+          children: [
+            Expanded(
+              child: DropdownButton<String>(
+                icon:  selectedValue != title ?
+                GestureDetector(
+                  onTap: () {
+                    cont.selectIndex(type, "");
+                  },
+                  child:  Icon(
+                    Icons.close,
+                    color: Get.theme.secondaryHeaderColor,
+                  ),):Icon(Icons.arrow_drop_down_outlined,color: Get.theme.secondaryHeaderColor),
+                dropdownColor: Get.theme.cardColor,
+                iconDisabledColor: Colors.grey,
+                iconEnabledColor: Get.theme.cardColor,
+                value: selectedValue,
+                isExpanded: true,
+                underline: const SizedBox(),
+                style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+                onChanged: (newValue) {
+                  if (newValue != null) {
+                    cont.selectIndex(type, newValue);
+                  }
+                },
+                items: [
+                  DropdownMenuItem<String>(
+                    value: title,
+                    enabled: false,
+                    child: Text(
+                      title,
+                      style: Get.theme.textTheme.bodyMedium!.copyWith(
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                  ..._getDropdownItems(cont,context),
+                ],
+                borderRadius: BorderRadius.circular(3),
               ),
             ),
-            ..._getDropdownItems(cont,context),
           ],
-          borderRadius: BorderRadius.circular(3),
         ),
       );
     });
@@ -105,26 +118,6 @@ class DropDownAllStudents extends StatelessWidget {
     String divisionSelected = "";
 
     switch (type) {
-      case 'session':
-        items.addAll(cont.sessionlist.map((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(
-              value,
-              style:Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
-            ),
-            onTap: () async {
-              sessionSelected = value;
-              await Getallstudentapi(context).Getallstudent(
-                  cont.sessionlist.indexOf(sessionSelected),
-                  cont.gradelist.indexOf(gradeSelected),
-                  cont.classlist.indexOf(classSelected),
-                  cont.divisionlist.indexOf(divisionSelected));
-            },
-          );
-        }).toList());
-        break;
       case 'grade':
         items.addAll(cont.gradelist.map((String value) {
           return DropdownMenuItem<String>(
@@ -134,14 +127,6 @@ class DropDownAllStudents extends StatelessWidget {
               style:Get.theme.textTheme.bodyMedium!
                   .copyWith(fontSize: 14),
             ),
-            onTap: () async {
-              gradeSelected = value;
-              await Getallstudentapi(context).Getallstudent(
-                  cont.sessionlist.indexOf(sessionSelected),
-                  cont.gradelist.indexOf(gradeSelected),
-                  cont.classlist.indexOf(classSelected),
-                  cont.divisionlist.indexOf(divisionSelected));
-            },
           );
         }).toList());
         break;
@@ -159,12 +144,6 @@ class DropDownAllStudents extends StatelessWidget {
               AllDivisionModel division = await Dropdowndivisionapi(context)
                   .Dropdowndivision(cont.classlist.indexOf(value));
               cont.setAllDivision(division);
-              await Getallstudentapi(context).Getallstudent(
-                  cont.sessionlist.indexOf(sessionSelected),
-                  cont.gradelist.indexOf(gradeSelected),
-                  cont.classlist.indexOf(classSelected),
-                  cont.divisionlist.indexOf(divisionSelected));
-              print(cont.classlist.indexOf(classSelected));
             },
           );
         }).toList());
@@ -180,11 +159,6 @@ class DropDownAllStudents extends StatelessWidget {
             ),
             onTap: () async {
               divisionSelected = value;
-              await Getallstudentapi(context).Getallstudent(
-                  cont.sessionlist.indexOf(sessionSelected),
-                  cont.gradelist.indexOf(gradeSelected),
-                  cont.classlist.indexOf(classSelected),
-                  cont.divisionlist.indexOf(divisionSelected));
             },
           );
         }).toList());

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/GetAllStudentAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/CheckBoxController.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/view/Admin/Students_Manager/AllStudentGrid.dart';
+import 'package:vms_school/widgets/Admin_School/All_Screen_Sessions.dart';
 import 'package:vms_school/widgets/Admin_Students/DropDownAllStudents.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 
@@ -18,7 +20,7 @@ class AllStudent extends StatefulWidget {
 class _AllStudentState extends State<AllStudent> {
   @override
   void initState() {
-    Getallstudentapi(context).Getallstudent(null, null, null, null);
+    Getallstudentapi.Getallstudent();
     super.initState();
   }
 
@@ -45,10 +47,11 @@ class _AllStudentState extends State<AllStudent> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
-                        child: DropDownAllStudents(
+                        child: DropDownAllSessions(
                           title: "Session",
                           type: "session",
                           width: w / 6.5,
+                          API: "AllStudents",
                         ),
                       ),
                       Padding(
@@ -77,11 +80,21 @@ class _AllStudentState extends State<AllStudent> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
-                        child: TextFormSearch(
-                          width: w / 6.5,
-                          radius: 5,
-                          controller: search,
-                          suffixIcon: Icons.search,
+                        child: GetBuilder<Allstudentscontroller>(
+                          builder: (controller) {
+                            return TextFormSearch(
+                              click: () {
+                                controller.searchStudentByName("",controller.gradeIndex);
+                              },
+                              onchange: (value) {
+                                controller.searchStudentByName(value,controller.gradeIndex);
+                              },
+                              width: w / 6.5,
+                              radius: 5,
+                              controller: search,
+                              suffixIcon: search.text.isNotEmpty ? Icons.close :  Icons.search,
+                            );
+                          }
                         ),
                       ),
                     ],

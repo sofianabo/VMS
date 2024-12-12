@@ -23,6 +23,8 @@ class StudyYearStudentsController extends GetxController {
   List<Students> stud = [];
   List<Students> filteredStudents = [];
 
+
+
   void selectIndex(String type, String? index) {
     switch (type) {
       case 'session':

@@ -59,7 +59,9 @@ class _AllEmployeeState extends State<AllEmployee> {
                           child: DropDownAllSessions(
                               title: "Session",
                               width: w / 6.5,
-                              type: "session")),
+                              type: "session",
+                               API: "AllEmployee",
+                          )),
                       Padding(
                           padding: const EdgeInsets.only(left: 8.0),
                           child: Dropdownallemployee(
