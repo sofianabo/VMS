@@ -22,8 +22,13 @@ class Studentattendenceapi {
   Dio dio = Dio();
 
   Studentattendence(
-      int? sessionID, int? gradeId, int? classId, int? divisionID,String? date) async {
+      {int? sessionID,
+      int? gradeId,
+      int? classId,
+      int? divisionID,
+      String? date}) async {
     try {
+      c.setIsLoading(true);
      c.setIsLoading(true);
       AllSessionModel s = await Getsessionapi(context).Getsession();
       AllGradesModel g = await Getallgradeapi(context).Getallgrade();
@@ -43,7 +48,6 @@ c.setAllClasses(cl);
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
-         c.setIsLoading(false);
            AllStudentAttendenceModel student = AllStudentAttendenceModel.fromJson(response.data);
         c.setAllStudents(student);
       } else {

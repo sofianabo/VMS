@@ -8,6 +8,7 @@ import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dar
 
 
 class Allstudentscontroller extends GetxController {
+
   late BuildContext context;
   List<Students> stud = [];
   String? Value;
@@ -23,7 +24,6 @@ class Allstudentscontroller extends GetxController {
   List<String> sessionlist = [];
 
   void selectIndex(String type, String? index) {
-    print("");
 
     switch (type) {
       case 'session':
@@ -60,7 +60,7 @@ class Allstudentscontroller extends GetxController {
 
     if (gradeIndex.isNotEmpty) {
       filteredStudents = filteredStudents.where((emp) {
-        return emp.enName == gradeIndex;
+        return emp.grade == gradeIndex;
       }).toList();
     }
 
@@ -72,7 +72,6 @@ class Allstudentscontroller extends GetxController {
     isLoading = value;
     update();
   }
-
 
 
   void searchStudentByName(String query, String grade) {
@@ -89,18 +88,13 @@ class Allstudentscontroller extends GetxController {
 
     if (grade.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((emp) {
-        return emp.enName == grade;
+        return emp.grade == grade;
       }).toList();
     }
 
     filteredStudents = tempFilteredList;
     update();
   }
-
-
-
-
-
 
 
   void setAllSession(AllSessionModel session) async {

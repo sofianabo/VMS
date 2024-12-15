@@ -94,7 +94,7 @@ class AllStudentGrid extends StatelessWidget {
                     Text("Email: ${control.filteredStudents[index].email}",
                         style: Get.theme.textTheme.bodyMedium!),
                     Text(
-                        "Grade Level: ${control.filteredStudents[index].enName}",
+                        "Grade Level: ${control.filteredStudents[index].grade}",
                         style: Get.theme.textTheme.bodyMedium!),
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),

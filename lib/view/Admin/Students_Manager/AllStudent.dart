@@ -103,6 +103,29 @@ class _AllStudentState extends State<AllStudent> {
                   Row(
                     children: [
                       Container(
+                        margin: EdgeInsets.only(right: 10.0),
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {},
+                            icon: Icon(Icons.add,
+                                size: 18, color: Get.theme.primaryColor)),
+                      ),
+                      Container(
                         width: 40,
                         height: 40,
                         decoration: BoxDecoration(
@@ -123,8 +146,7 @@ class _AllStudentState extends State<AllStudent> {
                             onPressed: () {},
                             icon: Icon(VMS_Icons.xl,
                                 size: 18, color: Get.theme.primaryColor)),
-                      ),
-                      Padding(
+                      ), Padding(
                         padding: const EdgeInsets.only(right: 10.0, left: 10.0),
                         child: Container(
                           width: 40,

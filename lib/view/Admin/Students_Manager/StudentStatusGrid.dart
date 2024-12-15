@@ -1,12 +1,14 @@
 // ignore_for_file: must_be_immutable, file_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/StudentAttendenceByIdAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/oneStudentAttendenceController.dart';
 import 'package:vms_school/Link/Model/AdminModel/OneStudentAttendenceModel.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
+import 'package:vms_school/widgets/Schema_Widget.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class StudentStatusGrid extends StatefulWidget {
@@ -23,7 +25,53 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
   Widget build(BuildContext context) {
     return GetBuilder<StudentAttendencController>(
       builder: (control) {
-        return GridView.builder(
+        return control.isLoading == true ?
+        GridView.builder(
+          padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4,
+              crossAxisSpacing: 20.0,
+              mainAxisSpacing: 20.0,
+              childAspectRatio: 1.5),
+          itemCount: 8,
+          itemBuilder: (context, index) {
+            return HoverScaleCard(
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: Colors.grey, width: 0.5),
+                    color: Colors.white,
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 1)
+                    ]),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                              child: SchemaWidget(width: 20, height: 15)
+
+                          ),
+                        ]  ),
+                    SchemaWidget(width: 20, height: 15),
+                  ],
+                ),
+              ),
+            );
+          },
+        ).animate(onPlay: (controller) => controller.repeat()).shimmer(
+            angle: 1,
+            color: Colors.grey.withOpacity(0.2),
+            duration: Duration(seconds: 1),
+            delay: Duration(seconds: 1))
+            : GridView.builder(
           padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 4,

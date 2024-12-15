@@ -31,7 +31,7 @@ class DivisionGrid extends StatelessWidget {
           return HoverScaleCard(
             child: GestureDetector(
               onTap: () {
-                control.ClassDiagIndex = control.Division[index]['class'];
+
                 arName.text = "${control.Division[index]['arName']}";
                 enName.text = "${control.Division[index]['enName']}";
                 meetUrl.text = "${control.Division[index]['meet']}";
@@ -82,12 +82,16 @@ class DivisionGrid extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          DropDownDivisionMgmt(
-                            title: "Class",
-                            width: 250,
-                            type: "classDiag",
-                            selectedValue: control.selectClassDiagIndex,
-                          ),
+                          // GetBuilder<DropdownDivisions_Controller>(
+                          //   builder: (controller) {
+                          //     return DropDownDivisionMgmt(
+                          //       title: "Class",
+                          //       width: 250,
+                          //       type: "",
+                          //       selectedValue: "", isLoading: controller.isLoading,
+                          //     );
+                          //   }
+                          // ),
                           Padding(
                             padding: const EdgeInsets.only(left: 15.0),
                             child: Row(

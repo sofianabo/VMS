@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/EditGuardianAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/allGaurdianController.dart';
+import 'package:vms_school/view/Admin/Dashboard/Dashboard_Second_Row.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
+import 'package:vms_school/widgets/Schema_Widget.dart';
 import 'package:vms_school/widgets/TextFieldDialog.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 import '../../../widgets/GridAnimation.dart';
@@ -18,7 +21,73 @@ class AllGuardianGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Allgaurdiancontroller>(builder: (control) {
-      return GridView.builder(
+      return control.isLoading == true ?
+      GridView.builder(
+        padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: Get.width <= 1226 && Get.width >= 988
+                ? 3
+                : Get.width <= 987 && Get.width >= 759
+                ? 2
+                : Get.width <= 758
+                ? 1
+                : 4,
+            crossAxisSpacing: 20.0,
+            mainAxisSpacing: 20.0,
+            childAspectRatio: Get.width <= 1226 && Get.width >= 988
+                ? 2.2
+                : Get.width <= 987 && Get.width >= 759
+                ? 2.7
+                : Get.width <= 758 && Get.width >= 573
+                ? 3.8
+                : Get.width <= 573
+                ? 3.0
+                : 1.8),
+        itemCount: Get.width <= 1226 && Get.width >= 988
+            ? 9
+            : Get.width <= 987 && Get.width >= 759
+            ? 6
+            : Get.width <= 758
+            ? 4
+            : 12,
+        itemBuilder: (context, index) {
+          return HoverScaleCard(
+            child: Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: Colors.grey, width: 0.5),
+                    color: Colors.white,
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 1)
+                    ]),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child:SchemaWidget(width: 30, height: 15),
+                        ),
+                      ],
+                    ),
+                    SchemaWidget(width: 40, height: 15),
+                    SchemaWidget(width: 40, height: 15),
+                  ],
+                )),
+          );
+        },
+      ).animate(onPlay: (controller) => controller.repeat()).shimmer(
+          angle: 1,
+          color: Colors.grey.withOpacity(0.2),
+          duration: Duration(seconds: 1),
+          delay: Duration(seconds: 1))
+          : GridView.builder(
         padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: Get.width <= 1226 && Get.width >= 988

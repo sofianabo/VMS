@@ -4,8 +4,15 @@ import 'package:vms_school/Link/Model/AdminModel/allGuardianModel.dart';
 class Allgaurdiancontroller extends GetxController {
   List<Gaurdians> guardian = [];
 
+  bool isLoading = true;
+  setIsLoading(bool value){
+    isLoading = value ;
+    update();
+  }
+
   void setallGaurdian(AllGuardianModel model) {
     guardian = model.gaurdians!;
+    setIsLoading(false);
     update();
   }
 

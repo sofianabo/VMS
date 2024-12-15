@@ -8,6 +8,7 @@ class DropDownDivisionMgmt extends StatelessWidget {
   final String type;
   final String? selectedValue; // إضافة هذه القيمة
   final Color? color;
+  final bool? isLoading;
 
   const DropDownDivisionMgmt({
     Key? key,
@@ -16,6 +17,7 @@ class DropDownDivisionMgmt extends StatelessWidget {
     required this.width,
     required this.type,
     this.selectedValue,
+    required this.isLoading,
   }) : super(key: key);
 
   @override
@@ -24,12 +26,6 @@ class DropDownDivisionMgmt extends StatelessWidget {
       String currentValue = selectedValue ?? title;
 
       switch (type) {
-        case 'session':
-          currentValue = cont.selectSessionIndex.isNotEmpty
-              ? cont.selectSessionIndex
-              : title;
-          break;
-
         case 'class':
           currentValue =
               cont.selectClassIndex.isNotEmpty ? cont.selectClassIndex : title;
@@ -52,41 +48,77 @@ class DropDownDivisionMgmt extends StatelessWidget {
         height: 40,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          border: Border.all(color: color ?? Color(0xffD9D9D9)),
+          border: Border.all(color: color ?? const Color(0xffD9D9D9)),
         ),
-        child: DropdownButton<String>(
-          dropdownColor: Get.theme.cardColor,
-          iconDisabledColor: Colors.grey,
-          iconEnabledColor: Get.theme.cardColor,
-          value: selectedValue,
-          isExpanded: true,
-          underline: const SizedBox(),
-          icon: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Icon(Icons.arrow_drop_down , color: Get.theme.secondaryHeaderColor),
-            ],
+        child: isLoading == true
+            ? Center(
+          child: SizedBox(
+            width: 20,
+            height: 20,
+            child: CircularProgressIndicator(strokeWidth: 3),
           ),
-          style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-          onChanged: (newValue) {
-            if (newValue != null) {
-              cont.selectIndex(type, newValue);
-            }
-          },
-          items: [
-            DropdownMenuItem<String>(
-              value: title,
-              enabled: false,
-              child: Text(
-                title,
-                style: Get.theme.textTheme.bodyMedium!.copyWith(
-                  fontSize: 14,
+        )
+            : Row(
+          children: [
+            Expanded(
+              child: DropdownButton<String>(
+                onChanged: (newValue) {
+                  if (newValue != null && newValue != title) {
+                    cont.selectIndex(type, newValue);
+                    cont.selectIndex(type, newValue);
+                    switch (type) {
+                      case 'class':
+                        cont.SetClassIdx(cont.Classmodel!.classes!.firstWhere((clas) => clas.enName  == newValue || clas.name  == newValue).id);
+                        print(cont.dropclasses);
+
+                        break;
+                      case 'classDiag':
+                        cont.SetClassDiagIdx(cont.Classmodel!.classes!.firstWhere((clas) => clas.enName  == newValue || clas.name  == newValue).id);
+                        print(cont.dropDiagClasses);
+                        break;
+                    }
+                  }
+                },
+                dropdownColor: Get.theme.cardColor,
+                iconDisabledColor: Colors.grey,
+                iconEnabledColor: Get.theme.cardColor,
+                value: currentValue,
+                isExpanded: true,
+                underline: const SizedBox(),
+                icon: currentValue != title
+                    ? GestureDetector(
+                  onTap: () {
+                    // إعادة تعيين القيمة إلى الافتراضية
+                    cont.selectIndex(type, "");
+                    cont.update(); // تحديث واجهة المستخدم
+                  },
+                  child: Icon(
+                    Icons.close,
+                    color: Get.theme.secondaryHeaderColor,
+                  ),
+                )
+                    : Icon(
+                  Icons.arrow_drop_down,
+                  color: Get.theme.secondaryHeaderColor,
                 ),
+                style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+                items: [
+                  DropdownMenuItem<String>(
+                    value: title,
+                    enabled: false,
+                    child: Text(
+                      title,
+                      style: Get.theme.textTheme.bodyMedium!.copyWith(
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                  ..._getDropdownItems(cont),
+                ],
+                borderRadius: BorderRadius.circular(3),
               ),
             ),
-            ..._getDropdownItems(cont),
           ],
-          borderRadius: BorderRadius.circular(3),
         ),
       );
     });
@@ -97,18 +129,6 @@ class DropDownDivisionMgmt extends StatelessWidget {
     List<DropdownMenuItem<String>> items = [];
 
     switch (type) {
-      case 'session':
-        items.addAll(cont.listSession.map((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
-            ),
-          );
-        }).toList());
-        break;
       case 'class':
         items.addAll(cont.listClass.map((String value) {
           return DropdownMenuItem<String>(

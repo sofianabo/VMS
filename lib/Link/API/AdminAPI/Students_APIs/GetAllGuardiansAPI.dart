@@ -15,6 +15,7 @@ class GetAllGuardiansAPI {
 
   getAllGuardian() async {
     try {
+      c.setIsLoading(true);
       String myurl = "${global.hostPort}${global.getguardians}";
       var response = await dio.get(myurl,
 options: getDioOptions());

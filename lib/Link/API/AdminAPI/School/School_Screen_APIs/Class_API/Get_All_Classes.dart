@@ -18,7 +18,7 @@ class Get_All_Classes_API {
     try {
       controller.SetIsLoading(true);
       String myurl = "${hostPort}${getclasses}";
-      var response = await dio.post(myurl,
+      var response = await dio.get(myurl,
           data: {
             "sessionId": sessionID,
           },

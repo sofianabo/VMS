@@ -9,6 +9,8 @@ class DashboardFirstRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+   
     return Row(
       children: [
         HoverScaleCard(
@@ -129,7 +131,7 @@ class DashboardFirstRow extends StatelessWidget {
         ),
         HoverScaleCard(
           child: Container(
-              width: 320,
+               width:width/3.95,
               height: 160,
               padding: EdgeInsets.all(13.0),
               margin: EdgeInsets.all(15.0),
@@ -189,7 +191,7 @@ class DashboardFirstRow extends StatelessWidget {
         ),
         HoverScaleCard(
           child: Container(
-              width: 320,
+               width:width/3.95,
               height: 160,
               padding: EdgeInsets.all(13.0),
               decoration: BoxDecoration(

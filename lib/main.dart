@@ -42,12 +42,12 @@ class _VMSState extends State<VMS> {
         darkTheme: themeController.Dark_Theme,
         theme: ThemeController.Light_Theme ,
         themeMode: themeController.currentTheme,
-        home:
-        prefs!.getBool("isLogin") != null &&
-                prefs!.getBool("isLogin") == true
+        home: prefs!.getBool("isLogin") != null &&
+            prefs!.getBool("isLogin") == true
             ? AdminHome()
             : Directionality(textDirection: TextDirection.rtl, child: Home())
 
+        // home: AdminHome()
 
     ));
   }

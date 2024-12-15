@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCurriculumn_Controller.dart';
 import 'package:vms_school/view/Admin/School_Management/Curriculum_Pages/Curriculum_Grid.dart';
+import 'package:vms_school/widgets/Admin_School/All_Screen_Sessions.dart';
 import 'package:vms_school/widgets/Admin_School/DropDownCurriMgmt.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
@@ -36,7 +37,8 @@ class Curriculum_Management extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
-                        child: DropDownCurriMgmt(
+                        child: DropDownAllSessions(
+                          API: "Curriculum",
                           title: "Session",
                           width: w / 6,
                           type: "session",

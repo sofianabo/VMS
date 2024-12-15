@@ -11,6 +11,7 @@ class DashboardSecondRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return GetBuilder<Dashboard_Controller>(
       builder: (controller) {
         if (controller.Isloading) {
@@ -44,7 +45,7 @@ class DashboardSecondRow extends StatelessWidget {
                   delay: Duration(seconds: 1)),
               HoverScaleCard(
                   child: Container(
-                width: 320,
+                    width:width/3.95,
                 height: 170,
                 padding: EdgeInsets.all(13.0),
                 margin: EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
@@ -67,7 +68,7 @@ class DashboardSecondRow extends StatelessWidget {
                   delay: Duration(seconds: 1)),
               HoverScaleCard(
                   child: Container(
-                width: 320,
+                    width:width/3.95,
                 height: 170,
                 padding: EdgeInsets.all(13.0),
                 margin: EdgeInsets.only(bottom: 15.0),
@@ -256,7 +257,7 @@ class DashboardSecondRow extends StatelessWidget {
             ),
             HoverScaleCard(
                 child: Container(
-              width: 320,
+                  width:width/3.95,
               height: 170,
               padding: EdgeInsets.all(13.0),
               margin: EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
@@ -287,7 +288,7 @@ class DashboardSecondRow extends StatelessWidget {
             )),
             HoverScaleCard(
                 child: Container(
-              width: 320,
+                  width:width/3.95,
               height: 170,
               padding: EdgeInsets.all(13.0),
               margin: EdgeInsets.only(bottom: 15.0),

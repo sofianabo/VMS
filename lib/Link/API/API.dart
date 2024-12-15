@@ -1,6 +1,6 @@
 String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
-
-// String hostPort = "http://192.168.213.56:8000/api/";
+// String hostPort = "http://192.168.139.115:8000/api/";
+// String hostPort = "http://127.0.0.1:8000/api/";
 
 // String hostPort = "http://192.168.217.56:8000/api/";
 

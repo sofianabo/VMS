@@ -98,7 +98,7 @@ class DropDownCurriMgmt extends StatelessWidget {
 
     switch (type) {
       case 'session':
-        items.addAll(cont.listSession.map((String value) {
+        items.addAll(cont.arlistSession.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(

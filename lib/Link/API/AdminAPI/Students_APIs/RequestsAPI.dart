@@ -25,8 +25,6 @@ class GetAllRequestsapi {
       String myurl = "${hostPort}${getRequests}";
       var response = await dio.get(myurl, options: getDioOptions());
 
-      String myurl = "${hostPort}${getRequests}";
-      var response = await dio.get(myurl, data: {}, options: getDioOptions());
       if (response.statusCode == 200) {
         AllRequestsModel requests = AllRequestsModel.fromJson(response.data);
         c.setAllRequests(requests);

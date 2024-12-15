@@ -24,10 +24,13 @@ class DropDownCurriculumn_Controller extends GetxController {
   String ClassIndex = "";
   String semesterIndex = "";
 
-  List<String> listSession = [
+  List<String> arlistSession = [
     "First Semester",
     "Second Semester",
-    "Summer Session",
+  ];
+  List<String> enlistSession = [
+    "الفصل الأول",
+    "الفصل الثاني",
   ];
 
   List<String> listClass = [
@@ -90,7 +93,7 @@ class DropDownCurriculumn_Controller extends GetxController {
   void updateList(String type, List<String> options) {
     switch (type) {
       case 'session':
-        listSession = options;
+        enlistSession = options;
         break;
       case 'class':
         listClass = options;
