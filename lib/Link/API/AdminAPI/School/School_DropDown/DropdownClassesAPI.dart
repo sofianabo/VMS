@@ -19,7 +19,7 @@ class Getallclassapi {
       final controller = Get.find<DropdownDivisions_Controller>();
       controller.SetIsloading(true);
       String myurl = "${global.hostPort}${global.getclasses}";
-      var response = await dio.get(myurl, options: getDioOptions());
+      var response = await dio.post(myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         AllClassModel classes = AllClassModel.fromJson(response.data);
         c.setClasses(classes);

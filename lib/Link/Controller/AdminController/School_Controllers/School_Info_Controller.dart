@@ -28,6 +28,7 @@ class SchoolInfoController extends GetxController {
   var Joint_Building = false.obs;
   var Industrial_Section = false.obs;
 
+
   TextEditingController School_Name = TextEditingController();
   TextEditingController License_Number = TextEditingController();
   TextEditingController Address = TextEditingController();
@@ -42,6 +43,7 @@ class SchoolInfoController extends GetxController {
   TextEditingController Town_Chip = TextEditingController();
   TextEditingController Fax = TextEditingController();
   TextEditingController Work_Begin_Year = TextEditingController();
+
 
   initialdata() {
     School_Name.text = SchoolInfo[0]["School_Name"];

@@ -4,7 +4,7 @@
 // String hostPort = "http://192.168.213.226:8000/api/";
 String hostPort = "http://192.168.43.21:8000/api/";
 
-// String hostPort = "http://192.168.217.56:8000/api/";
+String hostPort = "http://192.168.213.226:8000/api/";
 
 //..................... All ...................//
 
@@ -66,6 +66,10 @@ String addClass = "addClass";
 String updateClass = "updateClass";
 String deleteClass = "deleteClass";
 String getVirtualUser = "getVirtualUser";
+
+
+String getAllDivision = "getAllDivision";
+String createDivision = "createDivision";
 
 String getClassUser = "getClassUser";
 
