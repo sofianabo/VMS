@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/Controller/AdminController/Years_Controllers/Divisions_Controller.dart';
-import 'package:vms_school/widgets/Admin_School/DropDownDivisionMgmt.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
+import 'package:vms_school/widgets/Schema_Widget.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
@@ -19,33 +20,87 @@ class DivisionGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DropdownDivisions_Controller>(builder: (control) {
-      return GridView.builder(
+      return control.Isapiloading == true ?
+      GridView.builder(
         padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 5,
             crossAxisSpacing: 20.0,
             mainAxisSpacing: 20.0,
             childAspectRatio: 1.1),
-        itemCount: control.Division.length,
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return HoverScaleCard(
+            child: Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: Colors.grey, width: 0.5),
+                    color: Colors.white,
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 1)
+                    ]),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SchemaWidget(width: 35, height: 35),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SchemaWidget(width: 30, height: 15),
+                      ],
+                    ),
+                    SchemaWidget(width: 30, height: 15),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SchemaWidget(width: 30, height: 15),
+                        SchemaWidget(width: 25, height: 25),
+                      ],
+                    )
+                  ],
+                )),
+          ).animate(onPlay: (controller) => controller.repeat()).shimmer(
+              angle: 1,
+              color: Colors.grey.withOpacity(0.2),
+              duration: Duration(seconds: 1),
+              delay: Duration(seconds: 1));
+        },
+      )
+          :
+      GridView.builder(
+        padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 5,
+            crossAxisSpacing: 20.0,
+            mainAxisSpacing: 20.0,
+            childAspectRatio: 1.1),
+        itemCount: control.Divisions.length,
         itemBuilder: (context, index) {
           return HoverScaleCard(
             child: GestureDetector(
               onTap: () {
 
-                arName.text = "${control.Division[index]['arName']}";
-                enName.text = "${control.Division[index]['enName']}";
-                meetUrl.text = "${control.Division[index]['meet']}";
+                arName.text = "${control.Divisions[index]['arName']}";
+                enName.text = "${control.Divisions[index]['enName']}";
+                meetUrl.text = "${control.Divisions[index]['meet']}";
                 Get.dialog(VMSAlertDialog(
                   action: [
                     ButtonDialog(
                       text: "Edit",
                       onPressed: () {
-                        control.updatedata(
-                          index,
-                          arName.text,
-                          enName.text,
-                          meetUrl.text,
-                        );
+                        // control.updatedata(
+                        //   index,
+                        //   arName.text,
+                        //   enName.text,
+                        //   meetUrl.text,
+                        // );
+                        //
                         Get.back();
                       },
                       color: Get.theme.primaryColor,
@@ -187,7 +242,7 @@ class DivisionGrid extends StatelessWidget {
                                       Row(
                                         children: [
                                           Text(
-                                            "Do You Want To Delete (${control.Division[index]['enName']}) Division",
+                                            "Do You Want To Delete (${control.Divisions[index]['enName']}) Division",
                                             style: Get.theme.textTheme.bodyMedium!
                                                 .copyWith(
                                                     fontSize: 16,
@@ -208,14 +263,14 @@ class DivisionGrid extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text("${control.Division[index]['enName']}",
+                          Text("${control.Divisions[index]['enName']}",
                               style: Get.theme.textTheme.bodyMedium!
                                   .copyWith(
                                 fontSize: 20,
                               )),
                         ],
                       ),
-                      Text("${control.Division[index]['class']}",
+                      Text("${control.Divisions[index]['classenname']}",
                           style: Get.theme.textTheme.bodyMedium!
                               .copyWith(fontSize: 14, color: Colors.black)),
                       Row(

@@ -1,17 +1,12 @@
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/Division_Model.dart';
 
 class DropdownDivisions_Controller extends GetxController {
-  List<Map<String, dynamic>> Division = [
-    {
-      "arName": "الفصل الأول",
-      "enName": "First Division",
-      "class": "Twelfth Scientific Grade",
-      "meet": "https://192.168.1.1",
-    },
-  ];
+  List<Map<String, dynamic>> Divisions= [];
 
   AllClassModel? Classmodel;
+  List<Division>? division;
 
   String ClassIndex = "";
   String ClassDiagIndex = "";
@@ -32,6 +27,9 @@ class DropdownDivisions_Controller extends GetxController {
     listClassDiag = values;
     update();
   }
+  setDivision(){
+
+  }
   void setClass(AllClassModel cls) {
     Classmodel = cls;
     List<String> classess = [];
@@ -48,32 +46,9 @@ class DropdownDivisions_Controller extends GetxController {
 
   List<String> listClassDiag = [];
 
-  addData(String arName, String enName, String drive) {
-    Division.addAll([
-      {
-        "arName": "$arName",
-        "enName": "$enName",
-        "class": "$selectClassDiagIndex",
-        "meet": "$drive",
-      }
-    ]);
-    ClassDiagIndex = "";
-    update();
-  }
-
-  updatedata(int idx, String arName, String enName, String drive) {
-    Division[idx] = {
-      "arName": "$arName",
-      "enName": "$enName",
-      "class": "$selectClassDiagIndex",
-      "meet": "$drive",
-    };
-    ClassDiagIndex = "";
-    update();
-  }
 
   deleteDivision(int index) {
-    Division.removeAt(index);
+    Divisions.removeAt(index);
     update();
   }
 
@@ -105,8 +80,32 @@ class DropdownDivisions_Controller extends GetxController {
 
   String get selectClassDiagIndex => ClassDiagIndex;
 bool isLoading = true;
+
+bool Isapiloading = true;
   void SetIsloading(bool value) {
     isLoading = value;
     update();
   }
+  void SetIsapiloading(bool value) {
+    Isapiloading = value;
+    update();
+  }
+
+   setDivisions(Division_Model allDivisionModel) {
+    Divisions.clear();
+    division = allDivisionModel.division;
+    for (var div in division!) {
+      Divisions.add({
+        'arName': div.name.toString(),
+        'enName': div.enName.toString(),
+        'classname': div.classes!.name.toString(),
+        'classenname': div.classes!.enName.toString(),
+        'meet': div.meetUrl.toString(),
+        // 'hasStudent': stu.hasStudent==1 ? true :  false,
+      });
+    }
+    SetIsapiloading(false);
+    update();
+   }
+
 }

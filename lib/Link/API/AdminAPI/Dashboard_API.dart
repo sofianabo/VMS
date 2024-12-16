@@ -32,15 +32,14 @@ class Dashboard_API {
         );
 
         if (response.statusCode == 200) {
+
           DashboardModel dashboardModel =
           DashboardModel.fromJson(response.data);
           controller.AddData(dashboardModel);
-
           AllSessionModel allSessionModel =
           AllSessionModel.fromJson(response.data['session']);
           sessionCont.setAllSession(allSessionModel);
-
-          isSuccessful = true; // إنهاء المحاولات عند نجاح الطلب
+          isSuccessful = true;
         } else {
           print(
               "Request failed with status: ${response.statusCode}. Retrying...");
@@ -51,14 +50,12 @@ class Dashboard_API {
         retryCount++;
       }
 
-      // إضافة تأخير بين المحاولات (اختياري)
       if (!isSuccessful && retryCount < maxRetries) {
         await Future.delayed(const Duration(seconds: 2));
       }
     }
 
     if (!isSuccessful) {
-      // إذا انتهت المحاولات ولم يتحقق النجاح
       print("Failed to fetch data after $maxRetries attempts.");
       Get.snackbar(
         "Error",

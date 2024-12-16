@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownClassesAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Division_API/Add_Division_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Division_API/Get_All_Division.dart';
 import 'package:vms_school/Link/Controller/AdminController/Years_Controllers/Divisions_Controller.dart';
 import 'package:vms_school/view/Admin/School_Management/Division_Pages/Division_Grid.dart';
 import 'package:vms_school/widgets/Admin_School/All_Screen_Sessions.dart';
@@ -26,6 +28,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
   TextEditingController driveUrl = TextEditingController();
 @override
   void initState() {
+  Get_All_Division_API(context).Get_All_Division();
    Getallclassapi(context).getAllClasses();
     super.initState();
   }
@@ -85,15 +88,13 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                   ButtonDialog(
                                       text: "Add",
                                       onPressed: () {
-                                        controller.addData(
-                                          arName.text,
-                                          enName.text,
-                                          driveUrl.text,
+                                        Add_Division_API(context).Add_Division(
+                                          classId: controller.dropDiagClasses,
+                                          enName:enName.text ,
+                                          name: arName.text,
+                                          meetUrl: driveUrl.text,
                                         );
-                                        arName.clear();
-                                        enName.clear();
-                                        driveUrl.clear();
-                                        Get.back();
+
                                       },
                                       color: Get.theme.primaryColor,
                                       width: 120),
