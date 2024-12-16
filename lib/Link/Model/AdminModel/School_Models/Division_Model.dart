@@ -26,15 +26,23 @@ class Division {
   String? name;
   String? enName;
   String? meetUrl;
+  bool? hasStudent;
   Classes? classes;
 
-  Division({this.id, this.name, this.enName, this.meetUrl, this.classes});
+  Division(
+      {this.id,
+        this.name,
+        this.enName,
+        this.meetUrl,
+        this.hasStudent,
+        this.classes});
 
   Division.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     enName = json['enName'];
     meetUrl = json['meetUrl'];
+    hasStudent = json['hasStudent'];
     classes =
     json['classes'] != null ? new Classes.fromJson(json['classes']) : null;
   }
@@ -45,6 +53,7 @@ class Division {
     data['name'] = this.name;
     data['enName'] = this.enName;
     data['meetUrl'] = this.meetUrl;
+    data['hasStudent'] = this.hasStudent;
     if (this.classes != null) {
       data['classes'] = this.classes!.toJson();
     }

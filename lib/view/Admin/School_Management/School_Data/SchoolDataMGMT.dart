@@ -2,15 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Info_Export.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/School_Data_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Update_School_Data.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/School_Info_Controller.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 
-class MyCheckBoxScreen extends StatelessWidget {
+class SchoolDataMgmt extends StatefulWidget {
   @override
+  State<SchoolDataMgmt> createState() => _SchoolDataMgmtState();
+}
+
+class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
+  @override
+  void initState() {
+    School_Data_API(context).School_Data();
+    super.initState();
+  }
   Widget build(BuildContext context) {
     return Expanded(
         child: GetBuilder<SchoolInfoController>(builder: (controller) {
-      return Column(
+      return controller.isLoading == true ?
+          Center()
+          :Column(
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 18.0),
@@ -35,7 +48,9 @@ class MyCheckBoxScreen extends StatelessWidget {
                           shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5))))),
-                      onPressed: () {},
+                      onPressed: () {
+                        Update_School_Data_API(context).Update_School_Data();
+                      },
                       icon: Icon(Icons.save,
                           size: 18, color: Get.theme.primaryColor)),
                 ),
@@ -119,7 +134,6 @@ class MyCheckBoxScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     GetBuilder<SchoolInfoController>(builder: (controller) {
-                      controller.initialdata();
                       return Container(
                           padding: EdgeInsets.all(15.0),
                           decoration: BoxDecoration(

@@ -1,23 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/School_Data_Model.dart';
 
 class SchoolInfoController extends GetxController {
-  List<String> listCountry = [
-    "Twelfth Scientific Grade",
-    "Eleventh Scientific Grade",
-    "Tenth Scientific Grade",
-    "Ninth Scientific Grade",
-    "Eighth Scientific Grade",
-    "Seventh Scientific Grade"
-  ];
-  List<String> listWork_Type = [
-    "Twelfth Scientific Grade",
-    "Eleventh Scientific Grade",
-    "Tenth Scientific Grade",
-    "Ninth Scientific Grade",
-    "Eighth Scientific Grade",
-    "Seventh Scientific Grade"
-  ];
+  bool isLoading = true;
 
   var Outstanding_School = false.obs;
   var Taken_OverSchool = false.obs;
@@ -44,107 +30,90 @@ class SchoolInfoController extends GetxController {
   TextEditingController Fax = TextEditingController();
   TextEditingController Work_Begin_Year = TextEditingController();
 
-
-  initialdata() {
-    School_Name.text = SchoolInfo[0]["School_Name"];
-    License_Number.text = SchoolInfo[0]["License_Number"];
-    Address.text = SchoolInfo[0]["Address"];
-    Village.text = SchoolInfo[0]["Village"];
-    Region.text = SchoolInfo[0]["Region"];
-    Phone.text = SchoolInfo[0]["Phone"];
-    Email.text = SchoolInfo[0]["Email"];
-    Creation_Year.text = SchoolInfo[0]["Creation_Year"];
-    Clinic_Name.text = SchoolInfo[0]["Clinic_Name"];
-    Congregation_number.text = SchoolInfo[0]["Congregation_number"];
-    Previous_name.text = SchoolInfo[0]["Previous_name"];
-    Town_Chip.text = SchoolInfo[0]["Town_Chip"];
-    Fax.text = SchoolInfo[0]["Fax"];
-    Work_Begin_Year.text = SchoolInfo[0]["Work_Begin_Year"];
-    Outstanding_School.value = SchoolInfo[0]['Outstanding_School'];
-    Taken_OverSchool.value = SchoolInfo[0]['Taken_OverSchool'];
-    Reassignment_Teachers.value = SchoolInfo[0]['Reassignment_Teachers'];
-    Martyrs_Sons.value = SchoolInfo[0]['Martyrs_Sons'];
-    Internet_Connection.value = SchoolInfo[0]['Internet_Connection'];
-    Government_Connection.value = SchoolInfo[0]['Government_Connection'];
-    Joint_Building.value = SchoolInfo[0]['Joint_Building'];
-    Industrial_Section.value = SchoolInfo[0]['Industrial_Section'];
-  }
-
-  List<Map<String, dynamic>> SchoolInfo = [
-    {
-      "School_Name": "مدرسة الافتراضية الحديثة",
-      "License_Number": "12345789",
-      "Address": "السويداء - بناء المهندسين",
-      "Village": "السويداء",
-      "Region": "السويداء",
-      "Phone": "01112345678",
-      "Email": "info@school.com",
-      "Creation_Year": "1995",
-      "Clinic_Name": "عيادة الصحة المدرسية",
-      "Congregation_number": "120",
-      "Previous_name": "مدرسة الأمل",
-      "Town_Chip": "شريحة المدينة",
-      "Fax": "01187654321",
-      "Work_Begin_Year": "1995",
-      "Country": "الجمهورية العربية السورية",
-      "Work_Type": "تعليم حكومي",
-      "Outstanding_School": true,
-      "Taken_OverSchool": false,
-      "Reassignment_Teachers": true,
-      "Martyrs_Sons": false,
-      "Internet_Connection": true,
-      "Government_Connection": true,
-      "Joint_Building": false,
-      "Industrial_Section": false,
-    },
-  ];
-
   String CountryIndex = "";
   String Work_TypeIndex = "";
 
-  updatedat(
-      School_Name,
-      License_Number,
-      Address,
-      Village,
-      Region,
-      Phone,
-      Email,
-      Creation_Year,
-      Clinic_Name,
-      Congregation_number,
-      Previous_name,
-      Town_Chip,
-      Fax,
-      Work_Begin_Year) {
-    SchoolInfo[0] = {
-      "School_Name": "$School_Name",
-      "License_Number": "$License_Number",
-      "Address": "$Address",
-      "Village": "$Village",
-      "Region": "$Region",
-      "Phone": "$Phone",
-      "Email": "$Email",
-      "Creation_Year": "$Creation_Year",
-      "Clinic_Name": "$Clinic_Name",
-      "Congregation_number": "$Congregation_number",
-      "Previous_name": "$Previous_name",
-      "Town_Chip": "$Town_Chip",
-      "Fax": "$Fax",
-      "Work_Begin_Year": "$Work_Begin_Year",
+  List<Map<String, dynamic>> SchoolInfo = [];
+
+  void setData(Data? datas) {
+    if (datas == null) return;
+
+    School_Name.text = datas.schoolName!;
+    License_Number.text = datas.licenseNumber!;
+    Address.text = datas.address!;
+    Village.text = datas.village!;
+    Region.text = datas.region!;
+    Phone.text = datas.phone!;
+    Email.text = datas.email!;
+    Creation_Year.text = datas.creatYear.toString();
+    Clinic_Name.text = datas.clinicName ?? "";
+    Congregation_number.text = datas.congregationNumber!;
+    Previous_name.text = datas.previousName ?? "";
+    Town_Chip.text = datas.township!;
+    Fax.text = datas.fax ?? "";
+    Work_Begin_Year.text = datas.workBeginYear.toString();
+    CountryIndex = datas.country!.enName!;
+    Work_TypeIndex = datas.workType!;
+    Outstanding_School.value = datas.outstandingSchool == 1 ? true : false;
+    Taken_OverSchool.value = datas.takenOverSchool == 1 ? true : false;
+    Reassignment_Teachers.value = datas.reassignmentTeachers == 1 ? true : false;
+    Martyrs_Sons.value = datas.martyrsSons == 1 ? true : false;
+    Internet_Connection.value = datas.internetConnection == 1 ? true : false;
+    Government_Connection.value = datas.governmentConnection == 1 ? true : false;
+    Joint_Building.value = datas.jointBuilding == 1 ? true : false;
+    Industrial_Section.value = datas.industrialSection == 1 ? true : false;
+
+    Map<String, dynamic> newSchoolInfo = {
+      "School_Name": School_Name.text,
+      "License_Number": License_Number.text,
+      "Address": Address.text,
+      "Village": Village.text,
+      "Region": Region.text,
+      "Phone": Phone.text,
+      "Email": Email.text,
+      "Creation_Year": int.parse(Creation_Year.text),
+      "Clinic_Name": Clinic_Name.text,
+      "Congregation_number": Congregation_number.text,
+      "Previous_name": Previous_name.text,
+      "Town_Chip": Town_Chip.text,
+      "Fax": Fax.text,
+      "Work_Begin_Year": int.parse(Work_Begin_Year.text),
       "Country": CountryIndex,
       "Work_Type": Work_TypeIndex,
-      "Outstanding_School": Outstanding_School.toString(),
-      "Taken_OverSchool": Taken_OverSchool.toString(),
-      "Reassignment_Teachers": Reassignment_Teachers.toString(),
-      "Martyrs_Sons": Martyrs_Sons.toString(),
-      "Internet_Connection": Internet_Connection.toString(),
-      "Government_Connection": Government_Connection.toString(),
-      "Joint_Building": Joint_Building.toString(),
-      "Industrial_Section": Industrial_Section.toString(),
+      "Outstanding_School": Outstanding_School.value,
+      "Taken_OverSchool": Taken_OverSchool.value,
+      "Reassignment_Teachers": Reassignment_Teachers.value,
+      "Martyrs_Sons": Martyrs_Sons.value,
+      "Internet_Connection": Internet_Connection.value,
+      "Government_Connection": Government_Connection.value,
+      "Joint_Building": Joint_Building.value,
+      "Industrial_Section": Industrial_Section.value,
     };
+    SchoolInfo.clear();
+    SchoolInfo.add(newSchoolInfo);
+    setIsLoading(false);
     update();
   }
+
+
+  List<String> listCountry = [
+    "Twelfth Scientific Grade",
+    "Eleventh Scientific Grade",
+    "Tenth Scientific Grade",
+    "Ninth Scientific Grade",
+    "Eighth Scientific Grade",
+    "Seventh Scientific Grade"
+  ];
+  List<String> listWork_Type = [
+    "Twelfth Scientific Grade",
+    "Eleventh Scientific Grade",
+    "Tenth Scientific Grade",
+    "Ninth Scientific Grade",
+    "Eighth Scientific Grade",
+    "Seventh Scientific Grade"
+  ];
+
+
 
   void selectIndex(String type, String? index) {
     switch (type) {
@@ -173,4 +142,9 @@ class SchoolInfoController extends GetxController {
   String get selectCountryIndex => CountryIndex;
 
   String get selectWork_TypeIndex => Work_TypeIndex;
+
+  void setIsLoading(bool value) {
+    isLoading = value;
+    update();
+  }
 }

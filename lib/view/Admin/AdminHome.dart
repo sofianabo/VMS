@@ -85,7 +85,7 @@ class AdminHome extends StatelessWidget {
                       return SessionManagement();
 
                     case "School Data Management":
-                      return MyCheckBoxScreen();
+                      return SchoolDataMgmt();
 
                     case "Electronic Library":
                       return ElectronicBook();

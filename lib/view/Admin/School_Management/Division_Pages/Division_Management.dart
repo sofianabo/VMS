@@ -51,7 +51,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
                       title: "Session", width: Get.width / 3, type: "session"),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
-                    child: GetBuilder<DropdownDivisions_Controller>(
+                    child: GetBuilder<Divisions_Controller>(
                       builder: (controller) {
                         return DropDownDivisionMgmt(
                           isLoading: controller.isLoading,
@@ -81,7 +81,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5))))),
                         onPressed: () {
-                          Get.dialog(GetBuilder<DropdownDivisions_Controller>(
+                          Get.dialog(GetBuilder<Divisions_Controller>(
                               builder: (controller) {
                             return VMSAlertDialog(
                                 action: [
@@ -133,7 +133,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        GetBuilder<DropdownDivisions_Controller>(
+                                        GetBuilder<Divisions_Controller>(
                                           builder: (controller) {
                                             return DropDownDivisionMgmt(
                                               isLoading: controller.isLoading,

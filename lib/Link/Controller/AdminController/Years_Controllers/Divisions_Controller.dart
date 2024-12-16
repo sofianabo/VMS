@@ -2,11 +2,12 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Division_Model.dart';
 
-class DropdownDivisions_Controller extends GetxController {
+class Divisions_Controller extends GetxController {
   List<Map<String, dynamic>> Divisions= [];
 
   AllClassModel? Classmodel;
   List<Division>? division;
+  List<Division>? filteredDivision;
 
   String ClassIndex = "";
   String ClassDiagIndex = "";
@@ -27,9 +28,6 @@ class DropdownDivisions_Controller extends GetxController {
     listClassDiag = values;
     update();
   }
-  setDivision(){
-
-  }
   void setClass(AllClassModel cls) {
     Classmodel = cls;
     List<String> classess = [];
@@ -48,7 +46,7 @@ class DropdownDivisions_Controller extends GetxController {
 
 
   deleteDivision(int index) {
-    Divisions.removeAt(index);
+    filteredDivision!.removeAt(index);
     update();
   }
 
@@ -60,6 +58,10 @@ class DropdownDivisions_Controller extends GetxController {
       case 'classDiag':
         ClassDiagIndex = index ?? "";
         break;
+    }
+    if(type == "class"){
+      print(ClassIndex);
+      searchRequestByName(ClassIndex);
     }
     update();
   }
@@ -94,6 +96,14 @@ bool Isapiloading = true;
    setDivisions(Division_Model allDivisionModel) {
     Divisions.clear();
     division = allDivisionModel.division;
+    filteredDivision = List.from(division!);
+
+    if (ClassIndex.isNotEmpty) {
+      filteredDivision = filteredDivision!.where((emp) {
+        return emp.classes!.enName == ClassIndex || emp.classes!.enName == ClassIndex;
+      }).toList();
+    }
+
     for (var div in division!) {
       Divisions.add({
         'arName': div.name.toString(),
@@ -101,11 +111,26 @@ bool Isapiloading = true;
         'classname': div.classes!.name.toString(),
         'classenname': div.classes!.enName.toString(),
         'meet': div.meetUrl.toString(),
-        // 'hasStudent': stu.hasStudent==1 ? true :  false,
+        'hasStudent': div.hasStudent,
       });
     }
     SetIsapiloading(false);
     update();
    }
+
+
+  void searchRequestByName(String classindexed) {
+    List<Division> tempFilteredList = List.from(division!);
+
+    if (classindexed.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((cls) {
+        return cls.classes!.name == classindexed || cls.classes!.enName == classindexed ;
+      }).toList();
+    }
+
+    filteredDivision = tempFilteredList;
+    update();
+  }
+
 
 }

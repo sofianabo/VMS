@@ -16,7 +16,7 @@ class Getallclassapi {
   Dio dio = Dio();
   getAllClasses() async {
     try {
-      final controller = Get.find<DropdownDivisions_Controller>();
+      final controller = Get.find<Divisions_Controller>();
       controller.SetIsloading(true);
       String myurl = "${global.hostPort}${global.getclasses}";
       var response = await dio.post(myurl, options: getDioOptions());

@@ -67,8 +67,13 @@ String getVirtualUser = "getVirtualUser";
 
 String getAllDivision = "getAllDivision";
 String createDivision = "createDivision";
+String deleteDivision = "deleteDivision";
+String updateDivision = "updateDivision";
 
 String getClassUser = "getClassUser";
+
+String getSchoolData = "getSchoolData";
+String updatSchoolData = "updatSchoolData";
 
 //..................... Admin ...................//
 

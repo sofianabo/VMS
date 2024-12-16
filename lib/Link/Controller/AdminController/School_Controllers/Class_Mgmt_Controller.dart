@@ -3,8 +3,7 @@ import 'package:vms_school/Link/Model/AdminModel/School_Models/Classes_Model.dar
 
 class ClassMgmtController extends GetxController {
 
-  var Class = <Map<String, dynamic>>[
-  ].obs;
+  var Class = <Map<String, dynamic>>[].obs;
 
   bool isLoading = true;
 
