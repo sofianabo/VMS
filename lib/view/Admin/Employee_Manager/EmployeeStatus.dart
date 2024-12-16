@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/GetEmployeeAttendenceAPI.dart';
 import 'package:vms_school/view/Admin/Employee_Manager/EmployeeStatusGrid.dart';
 import 'package:vms_school/widgets/Calender.dart';
 import 'package:vms_school/widgets/DropDown.dart';
@@ -9,10 +10,21 @@ import 'package:vms_school/widgets/DropDown.dart';
 import '../../../Icons_File/v_m_s__icons_icons.dart';
 import '../../../widgets/TextFormSearch.dart';
 
-class EmployeeStatus extends StatelessWidget {
+class EmployeeStatus extends StatefulWidget {
   EmployeeStatus({super.key});
 
+  @override
+  State<EmployeeStatus> createState() => _EmployeeStatusState();
+}
+
+class _EmployeeStatusState extends State<EmployeeStatus> {
   TextEditingController serch = TextEditingController();
+  @override
+  void initState() {
+    Getemployeeattendenceapi(context).Getemployeeattendence(null);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double w = Get.width;

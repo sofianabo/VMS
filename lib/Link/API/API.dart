@@ -1,6 +1,8 @@
-String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
+// String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
 // String hostPort = "http://192.168.139.115:8000/api/";
 // String hostPort = "http://127.0.0.1:8000/api/";
+// String hostPort = "http://192.168.213.226:8000/api/";
+String hostPort = "http://192.168.43.21:8000/api/";
 
 // String hostPort = "http://192.168.217.56:8000/api/";
 
@@ -37,7 +39,8 @@ String getAllEmployee = "getAllEmployee";
 String deleteEmployee = "deleteEmployee";
 String getEmployeeById = "getEmployeeById";
 String addEmployeeAttendance = "addEmployeeAttendance";
-
+String employeeAttendence = "getAllEmployeeAttendance";
+String getEmployeeAttendance="getEmployeeAttendance";
 //..................... Teachers ...................//
 
 String getTeachers = "getAllTeacher";
