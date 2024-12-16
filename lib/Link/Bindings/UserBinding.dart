@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Full_Employee_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/EmployeeAttendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Virtual_Employee_Class_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Virtual_Employee_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/oneEmployeeAttendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Illness_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Dashboard_Controller.dart';
@@ -86,5 +88,7 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Dropdownsemstercontroller(), fenix: true);
     Get.lazyPut(() => Virtual_Employee_Controller(), fenix: true);
     Get.lazyPut(() => Virtual_Employee_Class_Controller(), fenix: true);
+    Get.lazyPut(() => Employeeattendencecontroller(), fenix: true);
+    Get.lazyPut(() => Oneemployeeattendencecontroller(), fenix: true);
   }
 }

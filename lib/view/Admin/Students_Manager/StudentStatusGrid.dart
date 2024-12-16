@@ -113,6 +113,13 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                                               .bodyMedium,
                                         ),
                                       ),
+                                       DataColumn(
+                                        label: Text(
+                                          'Status',
+                                          style: Get.theme.primaryTextTheme
+                                              .bodyMedium,
+                                        ),
+                                      ),
                                       DataColumn(
                                         label: Text(
                                           'Cause',
@@ -130,6 +137,15 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                                             DataCell(
                                               Text(
                                                 studentAttendance.date ?? 'N/A',
+                                                style: Get.theme
+                                                    .primaryTextTheme.bodySmall,
+                                              ),
+                                            ),
+                                            //status
+                                             DataCell(
+                                              Text(
+                                                studentAttendance.cause ??
+                                                    'N/A',
                                                 style: Get.theme
                                                     .primaryTextTheme.bodySmall,
                                               ),
