@@ -4,7 +4,7 @@
 // String hostPort = "http://192.168.213.226:8000/api/";
 String hostPort = "http://192.168.43.21:8000/api/";
 
-String hostPort = "http://192.168.213.226:8000/api/";
+// String hostPort = "http://192.168.213.226:8000/api/";
 
 //..................... All ...................//
 
@@ -40,7 +40,7 @@ String deleteEmployee = "deleteEmployee";
 String getEmployeeById = "getEmployeeById";
 String addEmployeeAttendance = "addEmployeeAttendance";
 String employeeAttendence = "getAllEmployeeAttendance";
-String getEmployeeAttendance="getEmployeeAttendance";
+String getEmployeeAttendance = "getEmployeeAttendance";
 //..................... Teachers ...................//
 
 String getTeachers = "getAllTeacher";
@@ -66,7 +66,6 @@ String addClass = "addClass";
 String updateClass = "updateClass";
 String deleteClass = "deleteClass";
 String getVirtualUser = "getVirtualUser";
-
 
 String getAllDivision = "getAllDivision";
 String createDivision = "createDivision";
