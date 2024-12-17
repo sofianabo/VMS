@@ -152,6 +152,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Textfildwithupper(
+                                    isRequired: true,
                                       width: Get.width / 2.5,
                                       controller: controller.School_Name,
                                       Uptext: "School Name",
@@ -160,6 +161,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                     padding: const EdgeInsets.only(
                                         left: 20.0, right: 20.0),
                                     child: Textfildwithupper(
+                                        isRequired: true,
                                         width: Get.width / 2.5,
                                         controller: controller.License_Number,
                                         Uptext: "License Number",
@@ -172,6 +174,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Textfildwithupper(
+                                      isRequired: true,
                                       width: Get.width / 2.5,
                                       controller: controller.Address,
                                       Uptext: "Address",
@@ -180,6 +183,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                     padding: const EdgeInsets.only(
                                         left: 20.0, right: 20.0),
                                     child: Textfildwithupper(
+                                        isRequired: true,
                                         width: Get.width / 2.5,
                                         controller: controller.Village,
                                         Uptext: "Village",
@@ -192,6 +196,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Textfildwithupper(
+                                      isRequired: true,
                                       width: Get.width / 2.5,
                                       controller: controller.Region,
                                       Uptext: "Region",
@@ -200,6 +205,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                     padding: const EdgeInsets.only(
                                         left: 20.0, right: 20.0),
                                     child: Textfildwithupper(
+                                        isRequired: true,
                                         width: Get.width / 2.5,
                                         controller: controller.Phone,
                                         Uptext: "Phone",
@@ -212,6 +218,30 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Textfildwithupper(
+                                      isRequired: true,
+                                      width: Get.width / 2.5,
+                                      controller: controller.Work_Begin_Year,
+                                      Uptext: "Work Begin Year",
+                                      hinttext: "Work Begin Year"),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 20.0, right: 20.0),
+                                    child: Textfildwithupper(
+                                        isRequired: true,
+                                        width: Get.width / 2.5,
+                                        controller: controller.Creation_Year,
+                                        Uptext: "Creation Year",
+                                        hinttext: "Creation Year"),
+                                  )
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+
+                                  Textfildwithupper(
+                                      isRequired: true,
                                       width: Get.width / 2.5,
                                       controller: controller.Email,
                                       Uptext: "Email",
@@ -221,9 +251,9 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                         left: 20.0, right: 20.0),
                                     child: Textfildwithupper(
                                         width: Get.width / 2.5,
-                                        controller: controller.Creation_Year,
-                                        Uptext: "Creation Year",
-                                        hinttext: "Creation Year"),
+                                        controller: controller.Fax,
+                                        Uptext: "Fax",
+                                        hinttext: "Fax"),
                                   )
                                 ],
                               ),
@@ -240,6 +270,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                     padding: const EdgeInsets.only(
                                         left: 20.0, right: 20.0),
                                     child: Textfildwithupper(
+                                        isRequired: true,
                                         width: Get.width / 2.5,
                                         controller:
                                             controller.Congregation_number,
@@ -261,6 +292,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                     padding: const EdgeInsets.only(
                                         left: 20.0, right: 20.0),
                                     child: Textfildwithupper(
+                                        isRequired: true,
                                         width: Get.width / 2.5,
                                         controller: controller.Town_Chip,
                                         Uptext: "Town Chip",

@@ -69,7 +69,7 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Grade_Controller(), fenix: true);
     Get.lazyPut(() => ClassMgmtController(), fenix: true);
     Get.lazyPut(() => Divisions_Controller(), fenix: true);
-    Get.lazyPut(() => DropDownCurriculumn_Controller(), fenix: true);
+    Get.lazyPut(() => Curriculumn_Controller(), fenix: true);
     Get.lazyPut(() => SchoolInfoController(), fenix: true);
     Get.lazyPut(() => Dropdownsessioncontroller(), fenix: true);
     Get.lazyPut(() => Dropdowngradecontroller(), fenix: true);

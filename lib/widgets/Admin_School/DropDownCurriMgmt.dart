@@ -20,7 +20,7 @@ class DropDownCurriMgmt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DropDownCurriculumn_Controller>(builder: (cont) {
+    return GetBuilder<Curriculumn_Controller>(builder: (cont) {
       String currentValue = selectedValue ?? title;
 
       switch (type) {
@@ -93,7 +93,7 @@ class DropDownCurriMgmt extends StatelessWidget {
   }
 
   List<DropdownMenuItem<String>> _getDropdownItems(
-      DropDownCurriculumn_Controller cont) {
+      Curriculumn_Controller cont) {
     List<DropdownMenuItem<String>> items = [];
 
     switch (type) {

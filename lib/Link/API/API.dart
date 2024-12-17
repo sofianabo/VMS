@@ -2,8 +2,8 @@
 // String hostPort = "http://192.168.139.115:8000/api/";
 // String hostPort = "http://127.0.0.1:8000/api/";
 // String hostPort = "http://192.168.213.226:8000/api/";
-String hostPort = "http://192.168.43.21:8000/api/";
-
+// String hostPort = "http://192.168.43.21:8000/api/";
+//
 String hostPort = "http://192.168.213.226:8000/api/";
 
 //..................... All ...................//
@@ -77,6 +77,12 @@ String getClassUser = "getClassUser";
 
 String getSchoolData = "getSchoolData";
 String updatSchoolData = "updatSchoolData";
+
+
+String getCurriculum = "getCurriculum";
+String createCurriculum = "createCurriculum";
+
+
 
 //..................... Admin ...................//
 

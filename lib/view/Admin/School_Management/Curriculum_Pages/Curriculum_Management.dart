@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Curriculm_API/Add_Curriculm_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Curriculm_API/Get_All_Curriculm.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCurriculumn_Controller.dart';
 import 'package:vms_school/view/Admin/School_Management/Curriculum_Pages/Curriculum_Grid.dart';
 import 'package:vms_school/widgets/Admin_School/All_Screen_Sessions.dart';
@@ -10,14 +13,28 @@ import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
-class Curriculum_Management extends StatelessWidget {
+class Curriculum_Management extends StatefulWidget {
   Curriculum_Management({super.key});
 
+  @override
+  State<Curriculum_Management> createState() => _Curriculum_ManagementState();
+}
+
+class _Curriculum_ManagementState extends State<Curriculum_Management> {
   TextEditingController search = TextEditingController();
+
   TextEditingController name = TextEditingController();
+
   TextEditingController max = TextEditingController();
+
   TextEditingController Passing = TextEditingController();
 
+  DropzoneViewController? ctrl;
+   @override
+  void initState() {
+     Get_All_Curriculm_API(context).Get_All_Curriculm();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -37,18 +54,9 @@ class Curriculum_Management extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
-                        child: DropDownAllSessions(
-                          API: "Curriculum",
-                          title: "Session",
-                          width: w / 6,
-                          type: "session",
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
                         child: DropDownCurriMgmt(
                           title: "Class",
-                          width: w / 6,
+                          width: w / 4,
                           type: "class",
                         ),
                       ),
@@ -56,7 +64,7 @@ class Curriculum_Management extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 8.0),
                         child: DropDownCurriMgmt(
                           title: "Semester",
-                          width: w / 6,
+                          width: w / 4,
                           type: "semester",
                         ),
                       ),
@@ -96,22 +104,33 @@ class Curriculum_Management extends StatelessWidget {
                                             Radius.circular(5))))),
                             onPressed: () {
                               Get.dialog(
-                                  GetBuilder<DropDownCurriculumn_Controller>(
+                                  GetBuilder<Curriculumn_Controller>(
                                       builder: (controller) {
                                 return VMSAlertDialog(
                                     action: [
                                       ButtonDialog(
                                           text: "Add",
-                                          onPressed: () {
-                                            controller.addData(
-                                              name.text,
-                                              max.text,
-                                              Passing.text,
+                                          onPressed: () async {
+                                           await Add_Curriculm_API(context).Add_Curriculm(
+                                              name: name.text,
+                                              file: controller.selectedFile.value,
+                                              Image: controller.selectedImage.value,
+                                              maxMark: max.text ,
+                                              PassingMark: Passing.text,
+                                              semesterId:1 ,
+                                              subjectId: 1,
+                                              type: controller.isFailingSubject,
                                             );
-                                            Get.back();
-                                            name.clear();
-                                            max.clear();
-                                            Passing.clear();
+
+                                            // controller.addData(
+                                            //   name.text,
+                                            //   max.text,
+                                            //   Passing.text,
+                                            // );
+                                            // Get.back();
+                                            // name.clear();
+                                            // max.clear();
+                                            // Passing.clear();
                                           },
                                           color: Get.theme.primaryColor,
                                           width: 90)
@@ -206,55 +225,135 @@ class Curriculum_Management extends StatelessWidget {
                                           ],
                                         ),
                                         Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 15.0),
+                                          padding: const EdgeInsets.only(top: 15.0),
                                           child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
                                             children: [
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                      Radius.circular(5),
-                                                    ),
-                                                    border: Border.all(
-                                                        color:
-                                                            Color(0xffD9D9D9))),
-                                                alignment: Alignment.center,
-                                                width: 250,
-                                                height: 100,
-                                                child: Text(
-                                                  textAlign: TextAlign.center,
-                                                  "Click To Add File\nOr\nDrag And Drop File Here",
-                                                  style: TextStyle(
-                                                      color: Color(0xffCBBFBF)),
+                                              // Dropzone area
+                                              GestureDetector(
+                                                onTap: () {
+                                                  controller.pickPDFFile();
+                                                },
+                                                child: AnimatedContainer(
+                                                  duration: Duration(milliseconds: 500),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                                                    border: Border.all(color: Color(0xffD9D9D9)),
+                                                    color: controller.isHoveringFile ? Get.theme.primaryColor : Colors.white,
+                                                  ),
+                                                  alignment: Alignment.center,
+                                                  width: 250,
+                                                  height: 100,
+                                                  child: Stack(
+                                                    children: [
+                                                      DropzoneView(
+                                                        operation: DragOperation.copy,
+                                                        cursor: CursorType.Default,
+                                                        onCreated: (DropzoneViewController controller) {
+                                                          ctrl = controller;
+                                                        },
+                                                        onHover: () {
+                                                          controller.updateHoverFile(true);
+                                                        },
+                                                        onLeave: () {
+                                                          controller.updateHoverFile(false);
+                                                        },
+                                                        onDropFiles: (List<DropzoneFileInterface>? files) async {
+                                                          if (files != null && files.length == 1) {
+                                                            final file = files.first;
+                                                            final mimeType = await ctrl?.getFileMIME(file);
+                                                            final fileName = await ctrl?.getFilename(file);
+
+                                                            if (mimeType == 'application/pdf' || fileName!.toLowerCase().endsWith('.pdf')) {
+                                                              controller.DragedFile(file);
+                                                              controller.updateTextFile("PDF File Successfully Dropped!");
+                                                            } else {
+                                                              controller.updateTextFile("Error: Only PDF Files Are Allowed.");
+                                                            }
+                                                          } else {
+                                                            controller.updateTextFile("Error: Only One File Is Allowed.");
+                                                          }
+                                                        },
+                                                      ),
+                                                      Center(
+                                                        child: Text(
+                                                          textAlign: TextAlign.center,
+                                                          controller.fileStatus,
+                                                          style: TextStyle(
+                                                            color: controller.isHoveringFile ? Colors.white : Color(0xffCBBFBF),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                      Radius.circular(5),
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 30.0),
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    controller.pickImage();
+                                                  },
+                                                  child: AnimatedContainer(
+                                                    duration: Duration(milliseconds: 500),
+                                                    decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                                                      border: Border.all(color: Color(0xffD9D9D9)),
+                                                      color: controller.isHoveringimage ? Get.theme.primaryColor : Colors.white,
                                                     ),
-                                                    border: Border.all(
-                                                        color:
-                                                            Color(0xffD9D9D9))),
-                                                alignment: Alignment.center,
-                                                width: 250,
-                                                height: 100,
-                                                child: Text(
-                                                  textAlign: TextAlign.center,
-                                                  "Click To Add File\nOr\nDrag And Drop File Here",
-                                                  style: TextStyle(
-                                                      color: Color(0xffCBBFBF)),
+                                                    alignment: Alignment.center,
+                                                    width: 250,
+                                                    height: 100,
+                                                    child: Stack(
+                                                      children: [
+                                                        DropzoneView(
+                                                          operation: DragOperation.copy,
+                                                          cursor: CursorType.Default,
+                                                          onCreated: (DropzoneViewController controller) {
+                                                            ctrl = controller;
+                                                          },
+                                                          onHover: () {
+                                                            controller.updateHoverImage(true);
+                                                          },
+                                                          onLeave: () {
+                                                            controller.updateHoverImage(false);
+                                                          },
+                                                          onDropFiles: (List<DropzoneFileInterface>? files) async {
+                                                            if (files != null && files.length == 1) {
+                                                              final file = files.first;
+                                                              final mimeType = await ctrl?.getFileMIME(file);
+                                                              final fileName = await ctrl?.getFilename(file);
+
+                                                              if (mimeType == 'image/jpeg' || mimeType == 'image/png' ||
+                                                                  fileName!.toLowerCase().endsWith('.jpg') ||
+                                                                  fileName.toLowerCase().endsWith('.jpeg') ||
+                                                                  fileName.toLowerCase().endsWith('.png')) {
+                                                                controller.Dragedimage(file);
+                                                                controller.updateTextImage("Image Successfully Dropped!");
+                                                              } else {
+                                                                controller.updateTextImage("Error: Only JPG, JPEG, or PNG Files Are Allowed.");
+                                                              }
+                                                            } else {
+                                                              controller.updateTextImage("Error: Only One File Is Allowed.");
+                                                            }
+                                                          },
+                                                        ),
+                                                        Center(
+                                                          child: Text(
+                                                            textAlign: TextAlign.center,
+                                                            controller.imageStatus,
+                                                            style: TextStyle(
+                                                              color: controller.isHoveringimage ? Colors.white : Color(0xffCBBFBF),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
                                                 ),
-                                              )
+                                              ),
                                             ],
                                           ),
-                                        )
+                                        ),
                                       ],
                                     ),
                                     apptitle: "Add Curriculum",
