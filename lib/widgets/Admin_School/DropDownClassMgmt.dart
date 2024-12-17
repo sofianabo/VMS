@@ -67,8 +67,6 @@ class DropDownClassMgmt extends StatelessWidget {
           currentValue =
           cont.editeAdminIndexs.isNotEmpty ? cont.editeAdminIndexs : title;
           break;
-        default:
-          break;
       }
 
       return Container(
@@ -116,9 +114,8 @@ class DropDownClassMgmt extends StatelessWidget {
                 icon: currentValue != title
                     ? GestureDetector(
                   onTap: () {
-                    // إعادة تعيين القيمة إلى الافتراضية
                     cont.selectIndex(type, "");
-                    cont.update(); // تحديث واجهة المستخدم
+                    cont.update();
                   },
                   child: Icon(
                     Icons.close,

@@ -22,7 +22,7 @@ class DropDownDivisionMgmt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DropdownDivisions_Controller>(builder: (cont) {
+    return GetBuilder<Divisions_Controller>(builder: (cont) {
       String currentValue = selectedValue ?? title;
 
       switch (type) {
@@ -125,7 +125,7 @@ class DropDownDivisionMgmt extends StatelessWidget {
   }
 
   List<DropdownMenuItem<String>> _getDropdownItems(
-      DropdownDivisions_Controller cont) {
+      Divisions_Controller cont) {
     List<DropdownMenuItem<String>> items = [];
 
     switch (type) {

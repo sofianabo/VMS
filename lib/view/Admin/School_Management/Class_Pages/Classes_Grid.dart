@@ -139,7 +139,7 @@ class ClassGrid extends StatelessWidget {
 
                           Textfildwithupper(
                             width: 250,
-                            controller: TextEditingController(text: "${control.filteredreclasses![index].grade!.name}"),
+                            controller: TextEditingController(text: "${control.filteredreclasses![index].grade!.enName}"),
                             Uptext: "Grade",
                             hinttext: "Grade",readOnly: true,
                           ),

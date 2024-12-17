@@ -1,29 +1,27 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
-import 'package:vms_school/Link/Controller/AdminController/Years_Controllers/Divisions_Controller.dart';
-import 'package:vms_school/Link/Model/AdminModel/School_Models/Division_Model.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/School_Info_Controller.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/School_Data_Model.dart';
 
-class Get_All_Division_API {
+
+class School_Data_API {
+  School_Data_API(this.context);
   BuildContext context;
-  Get_All_Division_API(this.context);
   Dio dio = Dio();
-  Get_All_Division({sessionId}) async {
-    final controller = Get.find<Divisions_Controller>();
-    controller.SetIsapiloading(true);
+  School_Data() async {
+    String myURI = "${hostPort}${getSchoolData}";
     try {
-      String myurl = "${hostPort}${getAllDivision}";
-      var response = await dio.post(myurl,
-          data: {
-            'sessionId':sessionId
-          },
+      final controller = Get.find<SchoolInfoController>();
+      controller.setIsLoading(true);
+      var response = await dio.get(myURI,
           options: getDioOptions());
       if (response.statusCode == 200) {
-       Division_Model allDivisionModel = Division_Model.fromJson(response.data);
-       controller.setDivisions(allDivisionModel);
+        School_Data_Model school_data_model = School_Data_Model.fromJson(response.data);
+        controller.setData(school_data_model.data);
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,
@@ -31,6 +29,7 @@ class Get_All_Division_API {
           type: DioErrorType.badResponse,
         ));
       }
+      return response.statusCode;
     } catch (e) {
       if (e is DioError) {
         ErrorHandler.handleDioError(e);

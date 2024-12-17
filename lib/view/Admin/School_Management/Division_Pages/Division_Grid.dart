@@ -3,6 +3,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Division_API/Delete_Division_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Division_API/Edit_Division_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Years_Controllers/Divisions_Controller.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
@@ -19,7 +21,7 @@ class DivisionGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DropdownDivisions_Controller>(builder: (control) {
+    return GetBuilder<Divisions_Controller>(builder: (control) {
       return control.Isapiloading == true ?
       GridView.builder(
         padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
@@ -73,6 +75,7 @@ class DivisionGrid extends StatelessWidget {
         },
       )
           :
+      control.filteredDivision!.isNotEmpty?
       GridView.builder(
         padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -80,28 +83,26 @@ class DivisionGrid extends StatelessWidget {
             crossAxisSpacing: 20.0,
             mainAxisSpacing: 20.0,
             childAspectRatio: 1.1),
-        itemCount: control.Divisions.length,
+        itemCount: control.filteredDivision!.length,
         itemBuilder: (context, index) {
           return HoverScaleCard(
             child: GestureDetector(
               onTap: () {
 
-                arName.text = "${control.Divisions[index]['arName']}";
-                enName.text = "${control.Divisions[index]['enName']}";
-                meetUrl.text = "${control.Divisions[index]['meet']}";
+                arName.text = "${control.filteredDivision![index].name}";
+                enName.text = "${control.filteredDivision![index].enName}";
+                meetUrl.text = "${control.filteredDivision![index].meetUrl}";
                 Get.dialog(VMSAlertDialog(
                   action: [
                     ButtonDialog(
                       text: "Edit",
                       onPressed: () {
-                        // control.updatedata(
-                        //   index,
-                        //   arName.text,
-                        //   enName.text,
-                        //   meetUrl.text,
-                        // );
-                        //
-                        Get.back();
+                        Edit_Division_API(context).Edit_Division(
+                          name: arName.text ,
+                          enName: enName.text,
+                          gradeId: control.filteredDivision![index].id,
+                          meeturl: meetUrl.text,
+                        );
                       },
                       color: Get.theme.primaryColor,
                       width: 120,
@@ -137,16 +138,13 @@ class DivisionGrid extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          // GetBuilder<DropdownDivisions_Controller>(
-                          //   builder: (controller) {
-                          //     return DropDownDivisionMgmt(
-                          //       title: "Class",
-                          //       width: 250,
-                          //       type: "",
-                          //       selectedValue: "", isLoading: controller.isLoading,
-                          //     );
-                          //   }
-                          // ),
+                          Textfildwithupper(
+                            readOnly: true,
+                            width: 250,
+                            controller: TextEditingController(text: control.filteredDivision![index].classes!.enName),
+                            Uptext: "Class",
+                            hinttext: "Class",
+                          ),
                           Padding(
                             padding: const EdgeInsets.only(left: 15.0),
                             child: Row(
@@ -194,7 +192,9 @@ class DivisionGrid extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      control.filteredDivision![index].hasStudent == true ?
+                          Text("")
+                          : Container(
                         width: 35,
                         height: 35,
                         decoration: BoxDecoration(
@@ -219,9 +219,8 @@ class DivisionGrid extends StatelessWidget {
                                   action: [
                                     ButtonDialog(
                                         text: "Delete",
-                                        onPressed: () {
-                                          control.deleteDivision(index);
-                                          Get.back();
+                                        onPressed: () async {
+                                         await Delete_Division_API(context).Delete_Division(index: index , Id: control.filteredDivision![index].id);
                                         },
                                         color: Color(0xffB03D3D),
                                         width: 80),
@@ -242,7 +241,7 @@ class DivisionGrid extends StatelessWidget {
                                       Row(
                                         children: [
                                           Text(
-                                            "Do You Want To Delete (${control.Divisions[index]['enName']}) Division",
+                                            "Do You Want To Delete (${control.filteredDivision![index].enName}) Division",
                                             style: Get.theme.textTheme.bodyMedium!
                                                 .copyWith(
                                                     fontSize: 16,
@@ -263,14 +262,14 @@ class DivisionGrid extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text("${control.Divisions[index]['enName']}",
+                          Text("${control.filteredDivision![index].enName}",
                               style: Get.theme.textTheme.bodyMedium!
                                   .copyWith(
                                 fontSize: 20,
                               )),
                         ],
                       ),
-                      Text("${control.Divisions[index]['classenname']}",
+                      Text("${control.filteredDivision![index].classes!.enName}",
                           style: Get.theme.textTheme.bodyMedium!
                               .copyWith(fontSize: 14, color: Colors.black)),
                       Row(
@@ -292,7 +291,10 @@ class DivisionGrid extends StatelessWidget {
             ),
           );
         },
-      );
+      ) : Center(child: Text("No Divisions" , style: Get.theme.textTheme.titleLarge!.copyWith(
+          fontSize: 22,
+          fontWeight: FontWeight.normal
+      )));
     });
   }
 }
