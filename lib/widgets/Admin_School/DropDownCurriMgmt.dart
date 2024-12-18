@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Subject_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCurriculumn_Controller.dart';
 
 class DropDownCurriMgmt extends StatelessWidget {
@@ -8,6 +9,7 @@ class DropDownCurriMgmt extends StatelessWidget {
   final String type;
   final String? selectedValue;
   final Color? color;
+  final bool? Isloading;
 
   const DropDownCurriMgmt({
     Key? key,
@@ -16,6 +18,7 @@ class DropDownCurriMgmt extends StatelessWidget {
     required this.width,
     required this.type,
     this.selectedValue,
+    this.Isloading,
   }) : super(key: key);
 
   @override
@@ -24,15 +27,9 @@ class DropDownCurriMgmt extends StatelessWidget {
       String currentValue = selectedValue ?? title;
 
       switch (type) {
-        case 'session':
-          currentValue = cont.selectSessionIndex.isNotEmpty
-              ? cont.selectSessionIndex
-              : title;
-          break;
-
-        case 'class':
+        case 'Subject':
           currentValue =
-              cont.selectClassIndex.isNotEmpty ? cont.selectClassIndex : title;
+              cont.selectsubjectIndex.isNotEmpty ? cont.selectsubjectIndex : title;
           break;
 
         case 'semester':
@@ -41,7 +38,16 @@ class DropDownCurriMgmt extends StatelessWidget {
               : title;
           break;
 
-        default:
+          case 'Dialog_Subject':
+          currentValue = cont.selectdialog_SubjectIndex.isNotEmpty
+              ? cont.selectdialog_SubjectIndex
+              : title;
+          break;
+
+          case 'Dialog_semester':
+          currentValue = cont.selectdialog_SemesterIndex.isNotEmpty
+              ? cont.selectdialog_SemesterIndex
+              : title;
           break;
       }
 
@@ -52,41 +58,82 @@ class DropDownCurriMgmt extends StatelessWidget {
         height: 40,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          border: Border.all(color: color ?? Color(0xffD9D9D9)),
+          border: Border.all(color: color ?? const Color(0xffD9D9D9)),
         ),
-        child: DropdownButton<String>(
-          dropdownColor: Get.theme.cardColor,
-          iconDisabledColor: Colors.grey,
-          iconEnabledColor: Get.theme.cardColor,
-          value: selectedValue,
-          isExpanded: true,
-          underline: const SizedBox(),
-          icon: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Icon(Icons.arrow_drop_down , color: Get.theme.secondaryHeaderColor),
-            ],
+        child: Isloading == true
+            ? Center(
+          child: SizedBox(
+            width: 20,
+            height: 20,
+            child: CircularProgressIndicator(strokeWidth: 3),
           ),
-          style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-          onChanged: (newValue) {
-            if (newValue != null) {
-              cont.selectIndex(type, newValue);
-            }
-          },
-          items: [
-            DropdownMenuItem<String>(
-              value: title,
-              enabled: false,
-              child: Text(
-                title,
-                style: Get.theme.textTheme.bodyMedium!.copyWith(
-                  fontSize: 14,
+        )
+            : Row(
+          children: [
+            Expanded(
+              child: DropdownButton<String>(
+                onChanged: (newValue) {
+
+                  if (newValue != null && newValue != title) {
+                    cont.selectIndex(type, newValue);
+                    cont.selectIndex(type, newValue);
+                    switch (type) {
+                      case 'Dialog_Subject':
+                       cont.set_subjectIdx(Get.find<Subject_Controller>().subject!.firstWhere((subg) => subg.enName  == newValue || subg.name  == newValue).id);
+                        break;
+                      case 'Dialog_semester':
+                        if(newValue == "The First Semester"){
+                          cont.set_semesteridx(1);
+                        }
+                        if(newValue == "The Second Semester"){
+                          cont.set_semesteridx(2);
+                        }
+                        if(newValue == "The Third Semester"){
+                          cont.set_semesteridx(3);
+                        }
+                        break;
+                    }
+                  }
+                },
+                dropdownColor: Get.theme.cardColor,
+                iconDisabledColor: Colors.grey,
+                iconEnabledColor: Get.theme.cardColor,
+                value: currentValue,
+                isExpanded: true,
+                underline: const SizedBox(),
+                icon: currentValue != title
+                    ? GestureDetector(
+                  onTap: () {
+                    cont.selectIndex(type, "");
+                    cont.update();
+                  },
+                  child: Icon(
+                    Icons.close,
+                    color: Get.theme.secondaryHeaderColor,
+                  ),
+                )
+                    : Icon(
+                  Icons.arrow_drop_down,
+                  color: Get.theme.secondaryHeaderColor,
                 ),
+                style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+                items: [
+                  DropdownMenuItem<String>(
+                    value: title,
+                    enabled: false,
+                    child: Text(
+                      title,
+                      style: Get.theme.textTheme.bodyMedium!.copyWith(
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                  ..._getDropdownItems(cont),
+                ],
+                borderRadius: BorderRadius.circular(3),
               ),
             ),
-            ..._getDropdownItems(cont),
           ],
-          borderRadius: BorderRadius.circular(3),
         ),
       );
     });
@@ -97,20 +144,8 @@ class DropDownCurriMgmt extends StatelessWidget {
     List<DropdownMenuItem<String>> items = [];
 
     switch (type) {
-      case 'session':
-        items.addAll(cont.arlistSession.map((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
-            ),
-          );
-        }).toList());
-        break;
-      case 'class':
-        items.addAll(cont.listClass.map((String value) {
+      case 'Subject':
+        items.addAll(cont.listsubject.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
@@ -134,6 +169,33 @@ class DropDownCurriMgmt extends StatelessWidget {
           );
         }).toList());
         break;
+
+      case 'Dialog_Subject':
+        items.addAll(cont.list_Dialog_Subject.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.textTheme.bodyMedium!
+                  .copyWith(fontSize: 14),
+            ),
+          );
+        }).toList());
+        break;
+
+      case 'Dialog_semester':
+        items.addAll(cont.list_Dialog_semester.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.textTheme.bodyMedium!
+                  .copyWith(fontSize: 14),
+            ),
+          );
+        }).toList());
+        break;
+
     }
 
     return items;

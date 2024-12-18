@@ -61,10 +61,9 @@ class Add_Curriculm_API {
           options: getDioOptions());
 
       if (response.statusCode == 200) {
+        gets.Get.back();
+        gets.Get.back();
         await Get_All_Curriculm_API(context).Get_All_Curriculm();
-        // Get.back();
-        // Get.find<ClassMgmtController>().selectIndex("admin", "");
-        // Get.find<ClassMgmtController>().selectIndex("gradediag", "");
       } else {
 
         ErrorHandler.handleDioError(DioError(
@@ -81,8 +80,6 @@ class Add_Curriculm_API {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    }finally{
-     gets.Get.back();
     }
   }
 }

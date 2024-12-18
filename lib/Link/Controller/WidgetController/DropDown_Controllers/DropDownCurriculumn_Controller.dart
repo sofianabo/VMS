@@ -1,6 +1,5 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Curriculum_Model.dart';
@@ -8,6 +7,49 @@ import 'package:vms_school/Link/Model/AdminModel/School_Models/Curriculum_Model.
 class Curriculumn_Controller extends GetxController {
 
   List<Curriculum>? curriculum;
+  String? filterName = '';
+  String? filterSemester = '';
+  String? filterSubject = '';
+  List<Curriculum> filteredCurriculum = [];
+   int? semesterId ;
+   int? subjectId ;
+
+
+  void clearFilter() {
+    searchByName("",semesterIndex , subjectIndex);
+    update();
+  }
+
+  void searchByName(String? nameQuery, String? semester, String? subject) {
+    List<Curriculum> tempFilteredList = List.from(curriculum!);
+
+    if (nameQuery != null && nameQuery.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((cur) {
+        final curName = cur.name?.toLowerCase() ?? '';
+        return curName.contains(nameQuery.toLowerCase());
+      }).toList();
+    }
+
+    if (semester != null && semester.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((cur) {
+        return cur.semester!.enName == semester || cur.semester!.name == semester;
+      }).toList();
+    }
+
+
+    if (subject != null && subject.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((cur) {
+        return cur.subject!.enName == subject || cur.subject!.name == subject;
+      }).toList();
+    }
+
+    filteredCurriculum = tempFilteredList;
+    update();
+  }
+
+
+
+
   bool isFailingSubject = false;
   bool isLoading = true;
   bool isHoveringFile = false;
@@ -35,24 +77,6 @@ class Curriculumn_Controller extends GetxController {
     }
   }
 
-
-
-  Dragedimage(DropzoneFileInterface pickedFile) async {
-    // Uint8List fileBytes = await pickedFile.readAsBytes();
-    // selectedImage.value = fileBytes;
-    // updateTextImage("Image Successfully Dropped!");
-  }
-
-
-  DragedFile(DropzoneFileInterface pickedFile) async {
-    // final fileBytes = await pickedFile.getFileBytes ();
-    // selectedFile.value = fileBytes;
-    // updateTextFile("PDF File Successfully Dropped!");
-  }
-
-
-
-
   Future<void> pickPDFFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
@@ -66,8 +90,6 @@ class Curriculumn_Controller extends GetxController {
       updateTextFile("Done Selected File");
     }
   }
-
-
 
   void updateHoverFile(bool value) {
     isHoveringFile = value;
@@ -91,105 +113,119 @@ class Curriculumn_Controller extends GetxController {
     update();
   }
 
-  String SessionIndex = "";
-  String ClassIndex = "";
+  String subjectIndex = "";
   String semesterIndex = "";
+  String dialog_SubjectIndex = "";
+  String dialog_SemesterIndex = "";
 
-  List<String> arlistSession = [
-    "First Semester",
-    "Second Semester",
-  ];
-  List<String> enlistSession = [
-    "الفصل الأول",
-    "الفصل الثاني",
-  ];
 
-  List<String> listClass = [
-    "Twelfth Scientific Grade",
-    "Eleventh Scientific Grade",
-    "Tenth Scientific Grade",
-    "Ninth Scientific Grade",
-    "Eighth Scientific Grade",
-    "Seventh Scientific Grade"
+  List<String> listsubject = [];
+  List<String> list_Dialog_Subject = [];
+  List<String> list_Dialog_semester = [
+    "The First Semester",
+    "The Second Semester",
+    "The Third Semester",
   ];
-
   List<String> listSemester = [
-    "Twelfth Scientific Grade",
-    "Eleventh Scientific Grade",
-    "Tenth Scientific Grade",
-    "Ninth Scientific Grade",
-    "Eighth Scientific Grade",
-    "Seventh Scientific Grade"
+     "The First Semester",
+     "The Second Semester",
+     "The Third Semester",
   ];
 
-  // addData(String Name, String max, String passing) {
-  //   Curriculum.addAll([
-  //     {
-  //       "name": "$Name",
-  //       "img": "First Division",
-  //       "max": "$max",
-  //       "passing": "$passing",
-  //       "class": "$selectClassIndex",
-  //       "semester": "$selectsemesterIndex",
-  //       "isFulling": "$isFailingSubject",
-  //     }
-  //   ]);
-  //   ClassIndex = "";
-  //   semesterIndex = "";
-  //   SessionIndex = "";
-  //   isFailingSubject = false;
-  //   update();
-  // }
-
-  // deleteCurriculum(int index) {
-  //   Curriculum.removeAt(index);
-  //   update();
-  // }
 
   void selectIndex(String type, String? index) {
     switch (type) {
-      case 'session':
-        SessionIndex = index ?? "";
+      case 'Subject':
+        subjectIndex = index ?? "";
         break;
-      case 'class':
-        ClassIndex = index ?? "";
+      case 'Dialog_Subject':
+        dialog_SubjectIndex = index ?? "";
         break;
       case 'semester':
         semesterIndex = index ?? "";
         break;
+      case 'Dialog_semester':
+        dialog_SemesterIndex = index ?? "";
+        break;
     }
+    searchByName(filterName, semesterIndex, subjectIndex);
     update();
   }
+
+
+
+
+  void SetCurriculum(Curriculum_Model curriculum_model) {
+    curriculum = curriculum_model.curriculum;
+    filteredCurriculum = List.from(curriculum!);
+    if (filterName != null && filterName!.isNotEmpty) {
+      searchByName(filterName.toString(), semesterIndex,subjectIndex);
+    }
+
+    if (semesterIndex.isNotEmpty) {
+      filteredCurriculum = filteredCurriculum.where((emp) {
+        return emp.semester!.name == semesterIndex || emp.semester!.enName == semesterIndex;
+      }).toList();
+    }
+    if (subjectIndex.isNotEmpty) {
+      filteredCurriculum = filteredCurriculum.where((emp) {
+        return emp.subject!.name == subjectIndex || emp.subject!.enName == subjectIndex;
+      }).toList();
+    }
+
+    SetIsLoading(false);
+    update();
+  }
+
+  void addlistsubject(List<String> data) {
+    listsubject.clear();
+    list_Dialog_Subject.clear();
+    subjectIndex="";
+    listsubject.addAll(data);
+    list_Dialog_Subject.addAll(data);
+    update();
+  }
+
 
   void updateList(String type, List<String> options) {
     switch (type) {
-      case 'session':
-        enlistSession = options;
+      case 'Subject':
+        listsubject = options;
         break;
-      case 'class':
-        listClass = options;
+        case 'Dialog_Subject':
+          list_Dialog_Subject = options;
         break;
       case 'semester':
-        listSemester = options;
+        listSemester  = options;
+        break;
+        case 'Dialog_semester':
+        list_Dialog_semester = options;
         break;
     }
     update();
   }
 
-  String get selectSessionIndex => SessionIndex;
 
-  String get selectClassIndex => ClassIndex;
+  String get selectsubjectIndex => subjectIndex;
 
   String get selectsemesterIndex => semesterIndex;
+
+  String get selectdialog_SubjectIndex => dialog_SubjectIndex;
+  String get selectdialog_SemesterIndex => dialog_SemesterIndex;
 
   void SetIsLoading(bool value) {
     isLoading = value;
     update();
   }
 
-  void SetCurriculum(Curriculum_Model curriculum_model) {
-    curriculum = curriculum_model.curriculum;
-    SetIsLoading(false);
+  void set_subjectIdx(id) {
+    subjectId = id;
     update();
   }
+  void set_semesteridx(id) {
+    semesterId = id;
+    update();
+  }
+
+
 }

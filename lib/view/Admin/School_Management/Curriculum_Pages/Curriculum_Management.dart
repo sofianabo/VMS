@@ -4,9 +4,10 @@ import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Curriculm_API/Add_Curriculm_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Curriculm_API/Get_All_Curriculm.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Subjects_API/Get_Subjects_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Subject_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCurriculumn_Controller.dart';
 import 'package:vms_school/view/Admin/School_Management/Curriculum_Pages/Curriculum_Grid.dart';
-import 'package:vms_school/widgets/Admin_School/All_Screen_Sessions.dart';
 import 'package:vms_school/widgets/Admin_School/DropDownCurriMgmt.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
@@ -33,6 +34,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
    @override
   void initState() {
      Get_All_Curriculm_API(context).Get_All_Curriculm();
+     Get_Subject_Screen_API(context).Get_Subject_Screen();
     super.initState();
   }
   @override
@@ -52,30 +54,46 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                 children: [
                   Row(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: DropDownCurriMgmt(
-                          title: "Class",
-                          width: w / 4,
-                          type: "class",
-                        ),
+                      GetBuilder<Subject_Controller>(
+                        builder: (controller) {
+                          return Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: DropDownCurriMgmt(
+                              Isloading: controller.isLoading,
+                              title: "Subject",
+                              width: w / 4,
+                              type: "Subject",
+                            ),
+                          );
+                        }
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: DropDownCurriMgmt(
+                          Isloading: false,
                           title: "Semester",
                           width: w / 4,
                           type: "semester",
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: TextFormSearch(
-                          width: w / 4,
-                          radius: 5,
-                          controller: search,
-                          suffixIcon: Icons.search,
-                        ),
+                      GetBuilder<Curriculumn_Controller>(
+                        builder: (controller) {
+                          return Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: TextFormSearch(
+                              click: () {
+                                controller.clearFilter();
+                              },
+                              onchange: (value){
+                                controller.searchByName(value,controller.semesterIndex , controller.subjectIndex);
+                              },
+                              width: w / 4,
+                              radius: 5,
+                              controller: search,
+                              suffixIcon: search.text != "" ? Icons.clear: Icons.search,
+                            ),
+                          );
+                        }
                       ),
                     ],
                   ),
@@ -117,20 +135,15 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                               Image: controller.selectedImage.value,
                                               maxMark: max.text ,
                                               PassingMark: Passing.text,
-                                              semesterId:1 ,
-                                              subjectId: 1,
+                                              semesterId:controller.semesterId ,
+                                              subjectId: controller.subjectId,
                                               type: controller.isFailingSubject,
                                             );
-
-                                            // controller.addData(
-                                            //   name.text,
-                                            //   max.text,
-                                            //   Passing.text,
-                                            // );
-                                            // Get.back();
-                                            // name.clear();
-                                            // max.clear();
-                                            // Passing.clear();
+                                            name.clear();
+                                            max.clear();
+                                            Passing.clear();
+                                            controller.selectedFile.value!.clear();
+                                            controller.selectedImage.value!.clear();
                                           },
                                           color: Get.theme.primaryColor,
                                           width: 90)
@@ -147,14 +160,19 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            DropDownCurriMgmt(
-                                                title: "Class",
-                                                width: 250,
-                                                type: "class"),
+                                            GetBuilder<Subject_Controller>(
+                                              builder: (controller) {
+                                                return DropDownCurriMgmt(
+                                                  Isloading: controller.isLoading,
+                                                    title: "Subject",
+                                                    width: 250,
+                                                    type: "Dialog_Subject");
+                                              }
+                                            ),
                                             DropDownCurriMgmt(
                                                 title: "Semester",
                                                 width: 250,
-                                                type: "semester")
+                                                type: "Dialog_semester")
                                           ],
                                         ),
                                         Padding(
@@ -228,7 +246,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                           padding: const EdgeInsets.only(top: 15.0),
                                           child: Row(
                                             children: [
-                                              // Dropzone area
+                                              // Dropzone area for files and PDFs
                                               GestureDetector(
                                                 onTap: () {
                                                   controller.pickPDFFile();
@@ -262,12 +280,14 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                             final file = files.first;
                                                             final mimeType = await ctrl?.getFileMIME(file);
                                                             final fileName = await ctrl?.getFilename(file);
+                                                            final fileBytes = await ctrl?.getFileData(file);
 
                                                             if (mimeType == 'application/pdf' || fileName!.toLowerCase().endsWith('.pdf')) {
-                                                              controller.DragedFile(file);
+                                                              controller.selectedFile.value = fileBytes;
+                                                              controller.fileName.value = fileName!;
                                                               controller.updateTextFile("PDF File Successfully Dropped!");
-                                                            } else {
-                                                              controller.updateTextFile("Error: Only PDF Files Are Allowed.");
+                                                            }else {
+                                                              controller.updateTextFile("Error: Unsupported File Type.");
                                                             }
                                                           } else {
                                                             controller.updateTextFile("Error: Only One File Is Allowed.");
@@ -322,15 +342,15 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                               final file = files.first;
                                                               final mimeType = await ctrl?.getFileMIME(file);
                                                               final fileName = await ctrl?.getFilename(file);
-
+                                                              final fileBytes = await ctrl?.getFileData(file);
                                                               if (mimeType == 'image/jpeg' || mimeType == 'image/png' ||
                                                                   fileName!.toLowerCase().endsWith('.jpg') ||
                                                                   fileName.toLowerCase().endsWith('.jpeg') ||
                                                                   fileName.toLowerCase().endsWith('.png')) {
-                                                                controller.Dragedimage(file);
+                                                                controller.selectedImage.value = fileBytes;
                                                                 controller.updateTextImage("Image Successfully Dropped!");
                                                               } else {
-                                                                controller.updateTextImage("Error: Only JPG, JPEG, or PNG Files Are Allowed.");
+                                                                controller.updateTextImage("Error: Unsupported File Type.");
                                                               }
                                                             } else {
                                                               controller.updateTextImage("Error: Only One File Is Allowed.");

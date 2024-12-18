@@ -1,40 +1,30 @@
 import 'package:vms_school/Link/API/API.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Curriculm_API/Get_All_Curriculm.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Session_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Subject_Controller.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/Subject_Model.dart';
 
-class Delete_Curriculm_API {
+class Get_Subject_Screen_API {
   BuildContext context;
-  Delete_Curriculm_API(this.context);
+  Get_Subject_Screen_API(this.context);
   Dio dio = Dio();
 
-  Delete_Curriculm(
-      {
-        required cid,
-      }
-      ) async {
-
+  Get_Subject_Screen() async {
+    final controller = Get.find<Subject_Controller>();
+    controller.setIsLoading(true);
     try {
-      CancelToken cancelToken = CancelToken();
-      Loading_Dialog(cancelToken: cancelToken);
-      String myurl = "${hostPort}${deleteCurriculum}";
-
-      var response = await dio.post(
-        cancelToken: cancelToken,
-          myurl,
-          data: {
-          "id":cid
-          },
+      String myurl = "${hostPort}${getSubject}";
+      var response = await dio.get(myurl,
           options: getDioOptions());
       if (response.statusCode == 200) {
-        Get.back();
-      Get.back();
-        await Get_All_Curriculm_API(context).Get_All_Curriculm();
-
+        Subject_Model subjects = Subject_Model.fromJson(response.data);
+        controller.setData(subjects);
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,

@@ -5,7 +5,6 @@
 // String hostPort = "http://192.168.43.21:8000/api/";
 //
 String hostPort = "http://192.168.213.226:8000/api/";
-String hostPort = "http://192.168.43.21:8000/api/";
 
 // String hostPort = "http://192.168.213.226:8000/api/";
 
@@ -83,6 +82,13 @@ String updatSchoolData = "updatSchoolData";
 
 String getCurriculum = "getCurriculum";
 String createCurriculum = "createCurriculum";
+String deleteCurriculum = "deleteCurriculum";
+
+String getSubject = "getSubject";
+
+ String addBook = "addBook";
+ String getBook = "getBook";
+ String deleteBook = "deleteBook";
 
 
 

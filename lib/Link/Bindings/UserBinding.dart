@@ -14,6 +14,7 @@ import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Gr
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Labrary_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/School_Info_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Session_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Subject_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Employeeecontroller.dart';
@@ -90,5 +91,6 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Virtual_Employee_Class_Controller(), fenix: true);
     Get.lazyPut(() => Employeeattendencecontroller(), fenix: true);
     Get.lazyPut(() => Oneemployeeattendencecontroller(), fenix: true);
+    Get.lazyPut(() => Subject_Controller(), fenix: true);
   }
 }
