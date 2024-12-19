@@ -18,9 +18,9 @@ class Allstudentscontroller extends GetxController {
   String classIndex = "";
   String divisionIndex = "";
   bool isLoading = true;
-  List<String> gradelist = ["first", "tow", "three"];
+  List<String> gradelist = [];
   List<String> classlist = [];
-  List<String> divisionlist = ["one"];
+  List<String> divisionlist = [];
   List<String> sessionlist = [];
 
   void selectIndex(String type, String? index) {
@@ -95,17 +95,9 @@ class Allstudentscontroller extends GetxController {
     filteredStudents = tempFilteredList;
     update();
   }
+ 
 
-
-  void setAllSession(AllSessionModel session) async {
-    sessionlist.clear();
-    for (int i = 0; i < session.sessions!.length; i++) {
-      sessionlist.add(session.sessions![i].year.toString());
-    }
-    update();
-    updateList("session", sessionlist);
-  }
-
+ 
   void setAllClasses(AllClassModel clas) {
     classlist.clear();
     for (int j = 0; j < clas.classes!.length; j++) {

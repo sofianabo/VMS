@@ -16,7 +16,7 @@ class EmployeesAttendanceManagmentGrid extends StatelessWidget {
       builder: (controller) {
         return controller.Isloading == false ?
         controller.Isuploaded == true ?
-        Center(child: Text("d")):
+        Center(child: Text("Attendence Done")):
         Obx((){
           return Column(
             children: [

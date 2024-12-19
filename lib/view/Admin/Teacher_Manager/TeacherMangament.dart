@@ -25,7 +25,7 @@ class TeacherManagement extends StatefulWidget {
 class _TeacherManagementState extends State<TeacherManagement> {
   @override
   void initState() {
-    Getallteachersapi(context).Getallteachers();
+    Getallteachersapi.Getallteachers();
     super.initState();
   }
 
@@ -101,7 +101,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                 shape: WidgetStatePropertyAll(
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
-                                            Radius.circular(5))))),
+                                            Radius.circular(5))))), 
                             onPressed: () {
                               Get.dialog(VMSAlertDialog(
                                   action: [

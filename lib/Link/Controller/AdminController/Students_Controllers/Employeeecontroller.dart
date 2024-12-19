@@ -1,19 +1,18 @@
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllTeacherModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/All_Employee_Model.dart';
 
 class EmployeeController extends GetxController {
   bool Isloading = true;
   bool Isuploaded = false;
 
-
   List<Employees>? employees;
-
+  List<Teachers>? teachers;
   var Employee = <Map<String, dynamic>>[].obs;
 
   setData(AllEmployeeModel employee) {
     employees = employee.employees;
     Employee.clear();
-
     for (var emp in employees!) {
       Employee.add({
         'employeeId': emp.id!,
@@ -22,9 +21,26 @@ class EmployeeController extends GetxController {
         'name': emp.fullName!,
         'imgid': emp.imageId!,
       });
-
     }
 
+    setIsload(false);
+    update();
+  }
+
+  setTeacherData(AllTeacherModel teach) {
+    teachers =teach.teachers;
+    Employee.clear();
+
+    for (var t in teachers!) {
+      Employee.add({
+        'employeeId': t.id!,
+        'status': 'Present',
+        'cause': null,
+        'name': t.fullName!,
+        'imgid': t.imageId!,
+      });
+    }
+    print(Employee);
     setIsload(false);
     update();
   }

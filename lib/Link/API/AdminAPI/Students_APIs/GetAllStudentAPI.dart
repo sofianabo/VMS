@@ -12,17 +12,13 @@ import 'package:vms_school/Link/Model/AdminModel/AllStudentModel.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 
 class Getallstudentapi {
-
   BuildContext context;
 
   Getallstudentapi(this.context);
 
-
-
-  static Getallstudent(
-  {
-    int? sessionID, int? gradeId, int? classId, int? divisionID
-}) async {
+  static Getallstudent({
+    int? sessionID,
+  }) async {
     try {
       final Allstudentscontroller c = Get.find<Allstudentscontroller>();
       Dio dio = Dio();
@@ -32,11 +28,8 @@ class Getallstudentapi {
       var response = await dio.post(myurl,
           data: {
             "sessionId": sessionID,
-            "gradeId": gradeId,
-            "classId": classId,
-            "divisionId": divisionID
           },
-options: getDioOptions());
+          options: getDioOptions());
       if (response.statusCode == 200) {
         c.setIsLoading(false);
         AllStudentModel student = AllStudentModel.fromJson(response.data);

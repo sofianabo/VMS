@@ -17,7 +17,7 @@ class Deleteteacherapi {
           data: {"id": id},
 options: getDioOptions());
       if (response.statusCode == 200) {
-        await Getallteachersapi(context).Getallteachers();
+        await Getallteachersapi.Getallteachers();
         Get.back();
       } else {
         ErrorHandler.handleDioError(DioError(

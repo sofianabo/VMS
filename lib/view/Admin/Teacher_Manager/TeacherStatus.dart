@@ -1,15 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Add_Employee_Attendence.dart';
+import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/GetEmployeeAttendenceAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetAllTeachersAPI.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherStatusGrid.dart';
 import 'package:vms_school/widgets/Calender.dart';
 import 'package:vms_school/widgets/DropDown.dart';
 import '../../../Icons_File/v_m_s__icons_icons.dart';
 import '../../../widgets/TextFormSearch.dart';
 
-class TeacherStatus extends StatelessWidget {
+class TeacherStatus extends StatefulWidget {
   TeacherStatus({super.key});
 
+  @override
+  State<TeacherStatus> createState() => _TeacherStatusState();
+}
+
+class _TeacherStatusState extends State<TeacherStatus> {
   TextEditingController serch = TextEditingController();
+  @override
+  void initState() {
+    Getallteachersapi.Getallteachers();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double w = Get.width;

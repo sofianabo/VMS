@@ -9,7 +9,6 @@ import 'package:vms_school/Link/API/AdminAPI/Students_APIs/StudentAttendenceAPI.
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetAllTeachersAPI.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 
-
 class DropDownAllSessions extends StatelessWidget {
   final double width;
   final String title;
@@ -66,26 +65,30 @@ class DropDownAllSessions extends StatelessWidget {
           onChanged: (newValue) {
             if (newValue != null) {
               cont.selectIndex(type, newValue);
-              cont.setsessionid(cont.sessions!.sessions!.firstWhere((session) => session.year == newValue).id);
+              cont.setsessionid(cont.sessions!.sessions!
+                  .firstWhere((session) => session.year == newValue)
+                  .id);
               switch (API) {
                 case 'AllStudents':
                   Getallstudentapi.Getallstudent(sessionID: cont.sessionId);
                   break;
                 case 'TeacherManagement':
-                  Getallteachersapi(context).Getallteachers();
+                  Getallteachersapi.Getallteachers();
                   break;
                 case 'AllEmployee':
                   Get_All_Employee_API.Get_All_Employee();
                   break;
-                  case 'class':
-                    Get_All_Classes_API(context).Get_All_Classes(sessionID: cont.sessionId);
+                case 'class':
+                  Get_All_Classes_API(context)
+                      .Get_All_Classes(sessionID: cont.sessionId);
                   break;
-                  case 'division':
-                    Get_All_Division_API(context).Get_All_Division(sessionId: cont.sessionId);
+                case 'division':
+                  Get_All_Division_API(context)
+                      .Get_All_Division(sessionId: cont.sessionId);
                   break;
-                  case 'StudentState':
-                    Studentattendenceapi(context)
-                        .Studentattendence(sessionID: cont.sessionId);
+                case 'StudentState':
+                  Studentattendenceapi(context)
+                      .Studentattendence(sessionID: cont.sessionId);
                   break;
               }
             }
@@ -110,7 +113,8 @@ class DropDownAllSessions extends StatelessWidget {
     });
   }
 
-  List<DropdownMenuItem<String>> _getDropdownItems(All_Screen_Sessions_Controller cont) {
+  List<DropdownMenuItem<String>> _getDropdownItems(
+      All_Screen_Sessions_Controller cont) {
     List<DropdownMenuItem<String>> items = [];
 
     switch (type) {
@@ -120,8 +124,7 @@ class DropDownAllSessions extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());

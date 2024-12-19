@@ -25,7 +25,7 @@ class Teachers {
   int? id;
   String? contractType;
   String? gender;
-  String? phone;
+  String? phone; 
   int? imageId;
   String? jobTitle;
   String? fullName;

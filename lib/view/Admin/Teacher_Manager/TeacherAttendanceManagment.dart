@@ -1,12 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetAllTeachersAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Employeeecontroller.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherAttendanceManagmentGrid.dart';
 import 'package:vms_school/widgets/DropDown.dart';
 
 import '../../../Link/Controller/AdminController/Teacher_Controllers/AdminTeacherAttendens.dart';
 
-class TeacherAttendanceManagment extends StatelessWidget {
+class TeacherAttendanceManagment extends StatefulWidget {
   TeacherAttendanceManagment({super.key});
+
+  @override
+  State<TeacherAttendanceManagment> createState() =>
+      _TeacherAttendanceManagmentState();
+}
+
+class _TeacherAttendanceManagmentState
+    extends State<TeacherAttendanceManagment> {
+  @override
+  void initState() {
+    Getallteachersapi.Getallteachers();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -38,7 +54,7 @@ class TeacherAttendanceManagment extends StatelessWidget {
                       title: "Division",
                       width: w / 5.0,
                       options: ['abbb', 'bfddfvd']),
-                  GetBuilder<TeacherAttendensController>(builder: (controller) {
+                  GetBuilder<EmployeeController>(builder: (controller) {
                     return Container(
                         width: w / 5.0,
                         child: Obx(() => Row(
