@@ -84,22 +84,6 @@ setIsLoading(bool value){
     update();
   }
 
-  void setOneEmployee(One_Employee_Model onEmployee) {
-    employee = onEmployee.employee;
-    GenderListIndex = employee?.gender ?? "";
-    Family_StatusIndex = employee?.familystatus ?? "";
-    update();
-  }
-
-  List<String> GenderList = ["Male", "Female"];
-  List<String> Family_StatusList = ["Widow", "Single", "Married", "Divorced"];
-
-  List<String> JobTitleList = ["Manager","Dustman", "Guard","Registration","Secretariat","Secretary","Supervisor","Accountant","Technical Support", "Technical Support Manager",];
-  List<String> dialogjobTitleList = ["Dustman", "Guard"];
-  List<String> sessionlist = [];
-  List<String> rolllist = ['Class', 'Observer'];
-  List<String> rolldialoglist = ['Class', 'Observer'];
-
   void selectIndex(String type, String? index) {
     switch (type) {
       case 'session':
@@ -132,25 +116,25 @@ setIsLoading(bool value){
     }
     update();
   }
-  void setAllSession(AllSessionModel session) async {
-    sessionlist.clear();
-    for (int i = 0; i < session.sessions!.length; i++) {
-      sessionlist.add(session.sessions![i].year.toString());
-      print(session.sessions![i].year.toString());
-    }
+
+
+  void setOneEmployee(One_Employee_Model onEmployee) {
+    employee = onEmployee.employee;
+    GenderListIndex = employee?.gender ?? "";
+    Family_StatusIndex = employee?.familystatus ?? "";
     update();
-    updateList("session", sessionlist);
   }
 
+  List<String> GenderList = ["Male", "Female"];
+  List<String> Family_StatusList = ["Widow", "Single", "Married", "Divorced"];
 
-  //   void setAllJobTitle(AllJobTitleModel job) async {
-  //   JobTitleList.clear();
-  //   for (int i = 0; i < job.sessions!.length; i++) {
-  //     sessionlist.add(job.sessions![i].year.toString());
-  //   }
-  //   update();
-  //   updateList("session", sessionlist);
-  // }
+  List<String> JobTitleList = ["Manager","Dustman", "Guard","Registration","Secretariat","Secretary","Supervisor","Accountant","Technical Support", "Technical Support Manager",];
+  List<String> dialogjobTitleList = ["Dustman", "Guard"];
+  List<String> sessionlist = [];
+  List<String> rolllist = ['Class', 'Observer'];
+  List<String> rolldialoglist = ['Class', 'Observer'];
+
+
 
   Rx<DateTime?> Birthdate = Rx<DateTime?>(null);
   Rx<DateTime?> Joindate = Rx<DateTime?>(null);
@@ -225,12 +209,4 @@ setIsLoading(bool value){
 
   String get selecteddialogjobTitleIndex => dialogjobTitleIndex;
 
-  // void updateGuardian(
-  //     String name, int index, String phone, String email, String nationalid) {
-  //   guardian[index].name = name;
-  //   guardian[index].phone = phone;
-  //   guardian[index].email = email;
-  //   guardian[index].nationalId = nationalid;
-  //   update();
-  // }
 }

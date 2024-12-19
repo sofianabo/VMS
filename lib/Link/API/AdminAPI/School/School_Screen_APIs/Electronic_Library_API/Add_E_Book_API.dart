@@ -1,47 +1,56 @@
 import 'package:vms_school/Link/API/API.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Class_API/Get_All_Classes.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Curriculm_API/Get_All_Curriculm.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Electronic_Library_API/Get_All_E_Book.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' as gets;
 import 'package:vms_school/Link/API/Error_API.dart';
-import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 
-class Edit_Class_API {
+class Add_E_Book_API {
   BuildContext context;
-  Edit_Class_API(this.context);
+  Add_E_Book_API(this.context);
   Dio dio = Dio();
 
-  Edit_Class(
+  Add_E_Book(
   {
-    classId,
-    driveUrl,
     name,
-    enName
+    file,
+    enName,
 }
-
       ) async {
 
-
+    CancelToken cancelToken = CancelToken();
+    Loading_Dialog(cancelToken: cancelToken);
     try {
-      CancelToken cancelToken = CancelToken();
-      Loading_Dialog(cancelToken: cancelToken);
-      String myurl = "${hostPort}${updateClass}";
+
+      FormData formData = FormData.fromMap({
+        'name':'$name',
+        'enName':'$enName',
+      });
+
+      if (file != null) {
+        formData.files.add(MapEntry(
+          "file",
+          MultipartFile.fromBytes(file, filename: "ElectronicFile.pdf"),
+        ));
+      }
+
+      String myurl = "${hostPort}${addBook}";
+
       var response = await dio.post(
+        data: formData,
         cancelToken: cancelToken,
           myurl,
-             data: {
-             'classId':'$classId',
-             'driveUrl':'$driveUrl',
-             'name':'$name',
-             'enName':'$enName',
-          },
           options: getDioOptions());
+
       if (response.statusCode == 200) {
-        await Get_All_Classes_API(context).Get_All_Classes(sessionID: Get.find<All_Screen_Sessions_Controller>().sessionId);
-        Get.back();
+        gets.Get.back();
+        gets.Get.back();
+        await Get_All_E_Book_API(context).Get_All_E_Book();
       } else {
+
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,
           response: response,
@@ -56,8 +65,6 @@ class Edit_Class_API {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    }finally{
-     Get.back();
     }
   }
 }

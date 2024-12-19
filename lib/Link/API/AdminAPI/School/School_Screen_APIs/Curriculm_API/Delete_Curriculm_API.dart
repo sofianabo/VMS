@@ -1,46 +1,40 @@
 import 'package:vms_school/Link/API/API.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Class_API/Get_All_Classes.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Curriculm_API/Get_All_Curriculm.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
-import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 
-class Edit_Class_API {
+class Delete_Curriculm_API {
   BuildContext context;
-  Edit_Class_API(this.context);
+  Delete_Curriculm_API(this.context);
   Dio dio = Dio();
 
-  Edit_Class(
-  {
-    classId,
-    driveUrl,
-    name,
-    enName
-}
-
+  Delete_Curriculm(
+      {
+        required cid,
+      }
       ) async {
-
 
     try {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
-      String myurl = "${hostPort}${updateClass}";
+      String myurl = "${hostPort}${deleteCurriculum}";
+
       var response = await dio.post(
         cancelToken: cancelToken,
           myurl,
-             data: {
-             'classId':'$classId',
-             'driveUrl':'$driveUrl',
-             'name':'$name',
-             'enName':'$enName',
+          data: {
+          "id":cid
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
-        await Get_All_Classes_API(context).Get_All_Classes(sessionID: Get.find<All_Screen_Sessions_Controller>().sessionId);
         Get.back();
+      Get.back();
+        await Get_All_Curriculm_API(context).Get_All_Curriculm();
+
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,
@@ -56,8 +50,6 @@ class Edit_Class_API {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    }finally{
-     Get.back();
     }
   }
 }

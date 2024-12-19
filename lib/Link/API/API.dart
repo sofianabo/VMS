@@ -78,6 +78,19 @@ String getClassUser = "getClassUser";
 String getSchoolData = "getSchoolData";
 String updatSchoolData = "updatSchoolData";
 
+
+String getCurriculum = "getCurriculum";
+String createCurriculum = "createCurriculum";
+String deleteCurriculum = "deleteCurriculum";
+
+String getSubject = "getSubject";
+
+ String addBook = "addBook";
+ String getBook = "getBook";
+ String deleteBook = "deleteBook";
+
+
+
 //..................... Admin ...................//
 
 String dashboard = "DashBoard";

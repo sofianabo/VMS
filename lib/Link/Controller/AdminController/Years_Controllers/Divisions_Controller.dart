@@ -45,11 +45,6 @@ class Divisions_Controller extends GetxController {
   List<String> listClassDiag = [];
 
 
-  deleteDivision(int index) {
-    filteredDivision!.removeAt(index);
-    update();
-  }
-
   void selectIndex(String type, String? index) {
     switch (type) {
       case 'class':
