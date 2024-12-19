@@ -335,7 +335,7 @@ class selectDateRequest extends StatelessWidget {
                               color: Get.theme.primaryColor,
                               size: 16,
                             ),
-                            onPressed: () => controller.removedate(),
+                            onPressed: () => controller.removeDate(),
                           )),
               ),
             ),

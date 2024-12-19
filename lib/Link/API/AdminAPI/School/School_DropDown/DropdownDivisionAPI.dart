@@ -19,6 +19,7 @@ class Dropdowndivisionapi {
 
   Dropdowndivision(int idx) async {
     try {
+      c.setIsLoading(true);
       int? id = class_controller.Allclass[idx].id;
       String myurl = "${hostPort}${getDivision}";
       var response = await dio.post(myurl,
@@ -27,7 +28,7 @@ options: getDioOptions());
       if (response.statusCode == 200) {
         AllDivisionModel division = AllDivisionModel.fromJson(response.data);
         c.setDivision(division);
-        return division;
+
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,
