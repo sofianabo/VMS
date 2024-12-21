@@ -30,21 +30,12 @@ class Studentattendenceapi {
     try {
       c.setIsLoading(true);
      c.setIsLoading(true);
-      AllSessionModel s = await Getsessionapi(context).Getsession();
-      AllGradesModel g = await Getallgradeapi(context).Getallgrade();
-    AllClassModel cl = await Getallclassapi(context).getAllClasses();
-   c.setAllSession(s);
-   c.setAllGrades(g);
-c.setAllClasses(cl);
+    
 
       String myurl = "${global.hostPort}${global.studentAttenendnce}";
       var response = await dio.post(myurl,
           data: {
-            "sessionId": sessionID,
-            "gradeId": gradeId,
-            "classId": classId,
-            "divisionId": divisionID,
-            "date":date
+          
           },
           options: getDioOptions());
       if (response.statusCode == 200) {

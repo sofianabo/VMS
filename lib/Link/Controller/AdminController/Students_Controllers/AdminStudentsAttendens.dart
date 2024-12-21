@@ -2,37 +2,30 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/Stu_Attendence.dart';
 
 class Student_attendence_controller extends GetxController {
-
- var students = <Map<String, dynamic>>[].obs;
- List<Students>? AllStudents;
+  var students = <Map<String, dynamic>>[].obs;
+  List<Studentss>? AllStudents;
   bool isLoading = true;
 
- setData(StuAttendence stud) {
-
-   AllStudents = stud.students;
-   students.clear();
-   setIsLoading(false);
-   for (var stu in AllStudents!) {
-     students.add({
-       'stuid': stu.studentId ?? 0,
-       'status': 'Present',
-       'cause': null,
-       'name': stu.fullName,
-       'imgid': stu.fileId,
-     });
-   }
-   update();
- }
+  setData(StuAttendence stud) {
+    AllStudents = stud.students;
+    students.clear();
+    setIsLoading(false);
+    for (var stu in AllStudents!) {
+      students.add({
+        'studentId': stu.studentId ?? 0,
+        'status': 'Present',
+        'cause': null,
+        'name': stu.fullName,
+        // 'imgid': stu.fileId,
+      });
+    }
+    update();
+  }
 
   setIsLoading(bool isload) {
     isLoading = isload;
     update();
   }
-
-
-
-
-
 
   var allHolidayChecked = false.obs; // حالة ال Checkbox
 

@@ -1,8 +1,8 @@
-String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
+// String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
 // String hostPort = "http://192.168.139.115:8000/api/";
 // String hostPort = "http://127.0.0.1:8000/api/";
 // String hostPort = "http://192.168.213.226:8000/api/";
-// String hostPort = "http://192.168.43.21:8000/api/";
+String hostPort = "http://192.168.43.21:8000/api/";
 
 // String hostPort = "http://192.168.213.226:8000/api/";
 
@@ -30,6 +30,7 @@ String rejectrequest = "unacceptable";
 String acceptARequest = "AcceptARequest";
 String allPenalty = "getPenalty";
 String addStudentPenalty = "addStudentPenalty";
+String addStudentAttendance = "addStudentAttendance";
 //..................... Employees ...................//
 
 String addEmpolyee = "addEmployee";
@@ -78,18 +79,15 @@ String getClassUser = "getClassUser";
 String getSchoolData = "getSchoolData";
 String updatSchoolData = "updatSchoolData";
 
-
 String getCurriculum = "getCurriculum";
 String createCurriculum = "createCurriculum";
 String deleteCurriculum = "deleteCurriculum";
 
 String getSubject = "getSubject";
 
- String addBook = "addBook";
- String getBook = "getBook";
- String deleteBook = "deleteBook";
-
-
+String addBook = "addBook";
+String getBook = "getBook";
+String deleteBook = "deleteBook";
 
 //..................... Admin ...................//
 

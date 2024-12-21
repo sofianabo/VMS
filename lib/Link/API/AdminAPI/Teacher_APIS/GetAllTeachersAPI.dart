@@ -20,7 +20,7 @@ class Getallteachersapi {
         Get.find<EmployeeController>();
     controller.setIsLoading(true);
     AttendenceController.setIsload(true);
-
+ 
     try {
       String myurl = "${hostPort}${getTeachers}";
       var response = await dio.get(myurl, options: getDioOptions());

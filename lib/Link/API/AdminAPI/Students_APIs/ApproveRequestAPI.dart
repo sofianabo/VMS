@@ -30,7 +30,7 @@ class Approverequestapi {
       int? cID = classControl.Allclass[classid].id;
       int? dID = divisionControl.allDivision[divisionId].id;
       String myurl = "${global.hostPort}${global.acceptARequest}";
-      var response = await dio.get(myurl,
+      var response = await dio.post(myurl,
           data: {
             "classId": cID,
             "divisionId": dID,

@@ -60,7 +60,7 @@ class _EmployeeAttendanceManagmentState extends State<EmployeeAttendanceManagmen
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(5),
                             boxShadow: const [
-                              BoxShadow(
+                              BoxShadow( 
                                   color: Colors.black12,
                                   offset: Offset(0, 2),
                                   blurRadius: 1)
