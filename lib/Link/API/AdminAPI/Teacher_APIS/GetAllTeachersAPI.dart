@@ -12,7 +12,7 @@ class Getallteachersapi {
   BuildContext context;
   Getallteachersapi(this.context);
 
-  static Getallteachers() async {
+  static Getallteachers({sessionID}) async {
       Dio dio = Dio();
 
    final Allteachercontroller controller = Get.find<Allteachercontroller>();
@@ -23,7 +23,11 @@ class Getallteachersapi {
 
     try {
       String myurl = "${hostPort}${getTeachers}";
-      var response = await dio.get(myurl, options: getDioOptions());
+      var response = await dio.get(
+        data: {
+          'sessionId':sessionID
+        },
+          myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         AllTeacherModel teacher = AllTeacherModel.fromJson(response.data);
         controller.setAllTeacher(teacher);

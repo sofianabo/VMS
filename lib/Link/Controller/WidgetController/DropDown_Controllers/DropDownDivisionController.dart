@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 
@@ -22,9 +23,12 @@ class Dropdowndivisioncontroller extends GetxController {
     Get.find<Requestscontroller>().clearDivision();
     division.clear();
     allDivision = div.division!;
+    List<String> newList = [];
     for (int i = 0; i < div.division!.length; i++) {
       division.add(div.division![i].enName.toString());
+      newList.add(div.division![i].enName.toString());
     }
+    Get.find<Allstudentscontroller>().setDivisionList(newList);
     setIsLoading(false);
     update();
   }

@@ -24,13 +24,13 @@ class AllStudentModel {
 class Students {
   int? id;
   String? mobileNumber;
-  Null? fileId;
+  int? fileId;
   String? fullName;
   String? email;
-  String? division;
-  List<Location>? location;
-  String? classes;
-  String? grade;
+  Division? division;
+  Division? location;
+  Division? classes;
+  Division? grade;
   Guardians? guardians;
 
   Students(
@@ -51,15 +51,15 @@ class Students {
     fileId = json['fileId'];
     fullName = json['fullName'];
     email = json['email'];
-    division = json['division'];
-    if (json['location'] != null) {
-      location = <Location>[];
-      json['location'].forEach((v) {
-        location!.add(new Location.fromJson(v));
-      });
-    }
-    classes = json['classes'];
-    grade = json['grade'];
+    division = json['division'] != null
+        ? new Division.fromJson(json['division'])
+        : null;
+    location = json['location'] != null
+        ? new Division.fromJson(json['location'])
+        : null;
+    classes =
+    json['classes'] != null ? new Division.fromJson(json['classes']) : null;
+    grade = json['grade'] != null ? new Division.fromJson(json['grade']) : null;
     guardians = json['guardians'] != null
         ? new Guardians.fromJson(json['guardians'])
         : null;
@@ -72,12 +72,18 @@ class Students {
     data['fileId'] = this.fileId;
     data['fullName'] = this.fullName;
     data['email'] = this.email;
-    data['division'] = this.division;
-    if (this.location != null) {
-      data['location'] = this.location!.map((v) => v.toJson()).toList();
+    if (this.division != null) {
+      data['division'] = this.division!.toJson();
     }
-    data['classes'] = this.classes;
-    data['grade'] = this.grade;
+    if (this.location != null) {
+      data['location'] = this.location!.toJson();
+    }
+    if (this.classes != null) {
+      data['classes'] = this.classes!.toJson();
+    }
+    if (this.grade != null) {
+      data['grade'] = this.grade!.toJson();
+    }
     if (this.guardians != null) {
       data['guardians'] = this.guardians!.toJson();
     }
@@ -85,13 +91,13 @@ class Students {
   }
 }
 
-class Location {
+class Division {
   String? name;
   String? enName;
 
-  Location({this.name, this.enName});
+  Division({this.name, this.enName});
 
-  Location.fromJson(Map<String, dynamic> json) {
+  Division.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     enName = json['EnName'];
   }

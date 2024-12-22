@@ -23,7 +23,7 @@ class AllStudentGrid extends StatelessWidget {
     return GetBuilder<Allstudentscontroller>(builder: (control) {
       return
             control.isLoading == false?
-            control.stud.isNotEmpty?
+            control.filteredStudents.isNotEmpty?
         GridView.builder(
         padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -94,7 +94,7 @@ class AllStudentGrid extends StatelessWidget {
                     Text("Email: ${control.filteredStudents[index].email}",
                         style: Get.theme.textTheme.bodyMedium!),
                     Text(
-                        "Grade Level: ${control.filteredStudents[index].grade}",
+                        "Grade Level: ${control.filteredStudents[index].grade!.enName}",
                         style: Get.theme.textTheme.bodyMedium!),
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
@@ -115,7 +115,8 @@ class AllStudentGrid extends StatelessWidget {
                                 backgroundColor:
                                     WidgetStateProperty.all(Color(0xffB03D3D))),
                             onPressed: () {
-                              Get.dialog(BackdropFilter(
+                              Get.dialog(
+                                  BackdropFilter(
                                 filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
                                 child: AlertDialog(
                                   shape: RoundedRectangleBorder(
@@ -229,7 +230,7 @@ class AllStudentGrid extends StatelessWidget {
           );
         },
       ):
-            Center(child: Text(  "No Students"  , style: Get.theme.textTheme.bodyMedium!.copyWith(
+            Center(child: Text("No Students" , style: Get.theme.textTheme.titleLarge!.copyWith(
                 fontSize: 22,
                 fontWeight: FontWeight.normal
             ))):

@@ -93,7 +93,7 @@ class DropDownClassMgmt extends StatelessWidget {
                 onChanged: (newValue) {
                   if (newValue != null && newValue != title) {
                     cont.selectIndex(type, newValue);
-                    cont.selectIndex(type, newValue);
+
                     switch (type) {
                       case 'gradediag':
                         cont.setGeidx(Get.find<Dropdowngradecontroller>().gradess!.grades!.firstWhere((grad) => grad.enName  == newValue || grad.name  == newValue).id);

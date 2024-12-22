@@ -31,7 +31,7 @@ class Studentattendenceapi {
       c.setIsLoading(true);
      c.setIsLoading(true);
       AllSessionModel s = await Getsessionapi(context).Getsession();
-      AllGradesModel g = await Getallgradeapi(context).Getallgrade();
+      AllGradesModel g = await Getallgradeapi.Getallgrade();
     AllClassModel cl = await Getallclassapi(context).getAllClasses();
    c.setAllSession(s);
    c.setAllGrades(g);

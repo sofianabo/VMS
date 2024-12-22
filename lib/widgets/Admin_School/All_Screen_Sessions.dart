@@ -8,6 +8,7 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Division_
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/GetAllStudentAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/StudentAttendenceAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetAllTeachersAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 
 class DropDownAllSessions extends StatelessWidget {
@@ -72,9 +73,10 @@ class DropDownAllSessions extends StatelessWidget {
               switch (API) {
                 case 'AllStudents':
                   Getallstudentapi.Getallstudent(sessionID: cont.sessionId);
+                  Get.find<Allstudentscontroller>().resetOnSessionChange();
                   break;
                 case 'TeacherManagement':
-                  Getallteachersapi.Getallteachers();
+                  Getallteachersapi.Getallteachers(sessionID: cont.sessionId);
                   break;
                 case 'AllEmployee':
                   Get_All_Employee_API.Get_All_Employee();

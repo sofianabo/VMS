@@ -34,6 +34,7 @@ class Getallstudentapi {
         c.setIsLoading(false);
         AllStudentModel student = AllStudentModel.fromJson(response.data);
         c.setAllStudents(student);
+        Getallgradeapi.Getallgrade();
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,

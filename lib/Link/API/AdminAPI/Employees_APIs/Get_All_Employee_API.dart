@@ -9,10 +9,9 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Model/AdminModel/All_Employee_Model.dart';
 
 class Get_All_Employee_API {
+
   Get_All_Employee_API(this.context);
-
   BuildContext context;
-
 
     static Get_All_Employee() async {
     Dio dio = Dio();
