@@ -23,7 +23,7 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/allGaurdianController.dart';
-import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AdminTeacherAttendens.dart';
+import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeacherAtendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Years_Controllers/Divisions_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/oneStudentAttendenceController.dart';
@@ -60,7 +60,6 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Allgaurdiancontroller(), fenix: true);
     Get.lazyPut(() => Allteachercontroller(), fenix: true);
     Get.lazyPut(() => Allstudentscontroller(), fenix: true);
-    Get.lazyPut(() => TeacherAttendensController(), fenix: true);
     Get.lazyPut(() => Student_attendence_controller(), fenix: true);
     Get.lazyPut(() => EmployeeController(), fenix: true);
     Get.lazyPut(() => AdminSchoolTimeController(), fenix: true);
@@ -92,5 +91,6 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Employeeattendencecontroller(), fenix: true);
     Get.lazyPut(() => Oneemployeeattendencecontroller(), fenix: true);
     Get.lazyPut(() => Subject_Controller(), fenix: true);
+    Get.lazyPut(() => Allteacheratendencecontroller(), fenix: true);
   }
 }

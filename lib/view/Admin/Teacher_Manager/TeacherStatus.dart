@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Add_Employee_Attendence.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/GetEmployeeAttendenceAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetAllTeachersAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetTeacherAttendenceAPI.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherStatusGrid.dart';
 import 'package:vms_school/widgets/Calender.dart';
 import 'package:vms_school/widgets/DropDown.dart';
@@ -20,7 +21,7 @@ class _TeacherStatusState extends State<TeacherStatus> {
   TextEditingController serch = TextEditingController();
   @override
   void initState() {
-    Getallteachersapi.Getallteachers();
+    Getteacherattendenceapi(context).Getteacherattendence();
     super.initState();
   }
 

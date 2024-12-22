@@ -27,7 +27,7 @@ class Attendance {
   String? cause;
   int? id;
   int? divisionId;
-  Null? fileId;
+  int? fileId;
   int? studentId;
   String? fullName;
 

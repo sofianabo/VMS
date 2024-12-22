@@ -5,7 +5,7 @@ StuAttendence stuAttendenceFromJson(String str) => StuAttendence.fromJson(json.d
 String stuAttendenceToJson(StuAttendence data) => json.encode(data.toJson());
 class StuAttendence {
   StuAttendence({
-      List<Students>? students,}){
+      List<Studentss>? students,}){
     _students = students;
 }
 
@@ -13,15 +13,15 @@ class StuAttendence {
     if (json['students'] != null) {
       _students = [];
       json['students'].forEach((v) {
-        _students?.add(Students.fromJson(v));
+        _students?.add(Studentss.fromJson(v));
       });
     }
   }
-  List<Students>? _students;
-StuAttendence copyWith({  List<Students>? students,
+  List<Studentss>? _students;
+StuAttendence copyWith({  List<Studentss>? students,
 }) => StuAttendence(  students: students ?? _students,
 );
-  List<Students>? get students => _students;
+  List<Studentss>? get students => _students;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -38,9 +38,9 @@ StuAttendence copyWith({  List<Students>? students,
 /// studentId : 9
 /// fileId : 25
 
-Students studentsFromJson(String str) => Students.fromJson(json.decode(str));
-String studentsToJson(Students data) => json.encode(data.toJson());
-class Students {
+Studentss studentsFromJson(String str) => Studentss.fromJson(json.decode(str));
+String studentsToJson(Studentss data) => json.encode(data.toJson());
+class Studentss {
   Students({
       String? fullName, 
       num? id, 
@@ -52,7 +52,7 @@ class Students {
     _fileId = fileId;
 }
 
-  Students.fromJson(dynamic json) {
+  Studentss.fromJson(dynamic json) {
     _fullName = json['fullName'];
     _id = json['id'];
     _studentId = json['studentId'];
@@ -62,7 +62,7 @@ class Students {
   num? _id;
   num? _studentId;
   num? _fileId;
-Students copyWith({  String? fullName,
+Studentss copyWith({  String? fullName,
   num? id,
   num? studentId,
   num? fileId,

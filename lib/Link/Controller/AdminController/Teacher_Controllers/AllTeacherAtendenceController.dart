@@ -3,21 +3,21 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllEmployeeAttendeceModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllTeacherAttendenceModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dart';
 
-class Employeeattendencecontroller extends GetxController {
+class Allteacheratendencecontroller extends GetxController {
   late BuildContext context;
-  List<Attendance> employee = [];
-  List<Attendance> filteredEmpolyee = [];
+  List<Teacherattendance> teacher = [];
+  List<Teacherattendance> filteredteacher = [];
   String sessionIndex = "";
   bool isLoading = true;
   List<String> sessionlist = [];
 
   void restor() {
-    employee.clear();
-    filteredEmpolyee.clear();
+    teacher.clear();
+    filteredteacher.clear();
     isLoading = true;
     update();
   }
@@ -33,10 +33,10 @@ class Employeeattendencecontroller extends GetxController {
     update();
   }
 
-  void setAllEmployee(AllEmployeeAttendeceModel model) {
-    employee = model.attendance!;
-    filteredEmpolyee = List.from(employee);
-    setIsLoading(false); 
+  void setAllteachers(AllTeacherAttendenceModel model) {
+    teacher = model.teacherattendance!;
+    filteredteacher = List.from(teacher);
+    setIsLoading(false);
     update();
   }
 
@@ -47,9 +47,9 @@ class Employeeattendencecontroller extends GetxController {
 
   void searchattendenceByName(String query) {
     if (query.isEmpty) {
-      filteredEmpolyee = List.from(employee);
+      filteredteacher = List.from(teacher);
     } else {
-      filteredEmpolyee = employee
+      filteredteacher = teacher
           .where((student) =>
               student.fullName != null &&
               student.fullName!.toLowerCase().contains(query.toLowerCase()))

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllStudentModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllTeacherModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/All_Employee_Model.dart';
 
@@ -28,22 +29,31 @@ class EmployeeController extends GetxController {
   }
 
   setTeacherData(AllTeacherModel teach) {
-    teachers =teach.teachers;
+    teachers = teach.teachers;
     Employee.clear();
 
     for (var t in teachers!) {
-      Employee.add({
-        'employeeId': t.id!,
-        'status': 'Present',
-        'cause': null,
-        'name': t.fullName!,
-        'imgid': t.imageId!,
-      });
+      try {
+        Employee.add({
+          'employeeId': t.id!,
+          'status': 'Present',
+          'cause': "null",
+          'name': t.fullName!,
+          // 'imgid': t.imageId!,
+        });
+      } catch (e) {
+        print(t.id);
+        print(t.fullName);
+        print(t.imageId);
+        print(e);
+      }
     }
     print(Employee);
     setIsload(false);
     update();
   }
+
+ 
 
   // تعيين حالة التحميل
   setIsload(bool value) {

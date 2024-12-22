@@ -21,7 +21,7 @@ class Get_All_Employee_API {
     AttendenceController.setIsload(true);
     String myurl = "${hostPort}${getAllEmployee}";
     try {
-      var response = await dio.get(
+      var response = await dio.get( 
         myurl,
         options: getDioOptions(),
       );

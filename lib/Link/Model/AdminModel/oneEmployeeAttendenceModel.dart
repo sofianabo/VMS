@@ -25,7 +25,7 @@ class oneEmployeeAttendenceModel {
 class EmployeeAttendance {
   String? date;
   String? status;
-  Null? cause;
+  String? cause;
 
   EmployeeAttendance({this.date, this.status, this.cause});
 
