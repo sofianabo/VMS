@@ -16,10 +16,9 @@ class Addstudentattendenceapi {
     final controller = Get.find<EmployeeController>();
     CancelToken cancelToken = CancelToken();
     Loading_Dialog(cancelToken: cancelToken);
-    String myURI = "$hostPort$addStudentAttendance";
 
     try {
-
+      String myURI = "$hostPort$addStudentAttendance";
       var response = await dio.post(
         cancelToken: cancelToken,
         myURI,

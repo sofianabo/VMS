@@ -28,6 +28,8 @@ String rejectrequest = "unacceptable";
 String acceptARequest = "AcceptARequest";
 String allPenalty = "getPenalty";
 String addStudentPenalty = "addStudentPenalty";
+String addStudentAttendance = "addStudentAttendance";
+
 //..................... Employees ...................//
 
 String addEmpolyee = "addEmployee";
