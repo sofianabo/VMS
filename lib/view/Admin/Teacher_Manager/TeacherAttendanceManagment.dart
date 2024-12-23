@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Add_Employee_Attendence.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetAllTeachersAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/IncreaseTeacherAttendenceAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Employeeecontroller.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherAttendanceManagmentGrid.dart';
 import 'package:vms_school/widgets/DropDown.dart';
@@ -19,7 +20,7 @@ class _TeacherAttendanceManagmentState
   @override
   void initState() {
     super.initState();
-    Getallteachersapi.Getallteachers();
+    Increaseteacherattendenceapi.Increaseteacherattendence();
   }
 
   @override

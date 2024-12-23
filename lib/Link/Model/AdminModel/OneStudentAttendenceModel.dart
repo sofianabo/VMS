@@ -22,20 +22,23 @@ class OneStudentAttendenceModel {
 }
 
 class StudentAt {
-  String? cause;
+  Null? cause;
   String? date;
+  String? status;
 
-  StudentAt({this.cause, this.date});
+  StudentAt({this.cause, this.date, this.status});
 
   StudentAt.fromJson(Map<String, dynamic> json) {
     cause = json['cause'];
     date = json['date'];
+    status = json['status'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['cause'] = this.cause;
     data['date'] = this.date;
+    data['status'] = this.status;
     return data;
   }
 }

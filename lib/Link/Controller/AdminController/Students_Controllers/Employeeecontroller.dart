@@ -1,18 +1,18 @@
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllStudentModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllTeacherModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/All_Employee_Model.dart';
+import 'package:vms_school/Link/Model/AdminModel/IncreaseEmpolyeeAttendenceModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/IncreaseTeacherAttendenceModel.dart';
+
 
 class EmployeeController extends GetxController {
   bool Isloading = true;
   bool Isuploaded = false;
 
-  List<Employees>? employees;
-  List<Teachers>? teachers;
+  List<Employeee>? employees;
+  List<Teacher>? teachers;
   var Employee = <Map<String, dynamic>>[].obs;
 
-  setData(AllEmployeeModel employee) {
-    employees = employee.employees;
+  setData(IncreaseEmpolyeeAttendenceModel employee) {
+    employees = employee.employee;
     Employee.clear();
     for (var emp in employees!) {
       Employee.add({
@@ -28,8 +28,8 @@ class EmployeeController extends GetxController {
     update();
   }
 
-  setTeacherData(AllTeacherModel teach) {
-    teachers = teach.teachers;
+  setTeacherData(IncreaseTeacherAttendenceModel teach) {
+    teachers = teach.teacher;
     Employee.clear();
 
     for (var t in teachers!) {
@@ -52,8 +52,6 @@ class EmployeeController extends GetxController {
     setIsload(false);
     update();
   }
-
- 
 
   // تعيين حالة التحميل
   setIsload(bool value) {
