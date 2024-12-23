@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/ApproveRequestAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/RejectEnrollRequestAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/widgets/Admin_Requests/DropDownRequestEnroll.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
@@ -18,7 +20,7 @@ class RequestsGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Requestscontroller>(builder: (controller) {
-      if (controller.IsLoading == true) {
+      if (controller.isLoading == true) {
         return Container(
           padding: EdgeInsets.only(left: 30.0, right: 30.0),
           child: GridView.builder(
@@ -261,9 +263,20 @@ class RequestsGrid extends StatelessWidget {
                         ),
                         Padding(
                           padding:
-                              const EdgeInsets.only(top: 5.0, bottom: 15.0),
+                              const EdgeInsets.only(top: 5.0),
                           child: Text(
-                            "previous Class: ${controller.filteredregistration[index].student?.previousClass}",
+                            "Current Class: ${controller.filteredregistration[index].student?.clas ?? "No Class"}",
+                            style: Get.theme.textTheme.bodyMedium!.copyWith(
+                                fontSize: 16,
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal),
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                          const EdgeInsets.only(top: 5.0, bottom: 15.0),
+                          child: Text(
+                            "Previous Class: ${controller.filteredregistration[index].student?.previousClass ?? "No Class"}",
                             style: Get.theme.textTheme.bodyMedium!.copyWith(
                                 fontSize: 16,
                                 color: Colors.black,
@@ -280,6 +293,9 @@ class RequestsGrid extends StatelessWidget {
                               height: 40,
                               text: "Manage",
                               onPressed: () async {
+                                Get.find<Dropdowndivisioncontroller>().setIsDisiabled(true);
+                                controller.classIndex = "";
+                                controller.divisionIndex = "";
                                 Get.dialog(VMSAlertDialog(
                                     action: [
                                       ButtonDialog(
@@ -287,7 +303,7 @@ class RequestsGrid extends StatelessWidget {
                                         onPressed: () async {
                                           await Rejectenrollrequestapi(context)
                                               .Rejectenrollrequest(controller
-                                                  .registration[index]
+                                                  .filteredregistration[index]
                                                   .acceptanceNumber!);
                                           Get.back();
                                         },
@@ -299,9 +315,9 @@ class RequestsGrid extends StatelessWidget {
                                         onPressed: () async {
                                           await Approverequestapi(context)
                                               .Approverequest(
-                                                  controller.registration[index]
+                                                  controller.filteredregistration[index]
                                                       .acceptanceNumber!,
-                                                  controller.registration[index]
+                                                  controller.filteredregistration[index]
                                                       .student!.id!,
                                                   controller.classlist.indexOf(
                                                       controller
@@ -316,18 +332,29 @@ class RequestsGrid extends StatelessWidget {
                                     ],
                                     contents: Row(
                                       children: [
-                                        Dropdownrequestenroll(
-                                          width: Get.width / 5.2,
-                                          type: "class",
-                                          title: 'Class',
+                                        GetBuilder<Dropdownclassescontroller>(
+                                          builder: (controller) {
+                                            return Dropdownrequestenroll(
+                                              isLoading:controller.Isloading ,
+                                              width: Get.width / 5.2,
+                                              type: "class",
+                                              title: 'Class',
+                                            );
+                                          }
                                         ),
                                         Padding(
                                           padding:
                                               const EdgeInsets.only(left: 20.0),
-                                          child: Dropdownrequestenroll(
-                                            width: Get.width / 5.2,
-                                            type: "division",
-                                            title: 'Division',
+                                          child: GetBuilder<Dropdowndivisioncontroller>(
+                                            builder: (controller) {
+                                              return Dropdownrequestenroll(
+                                                isDisabled : controller.isDisiabled,
+                                                isLoading: controller.isLoading,
+                                                width: Get.width / 5.2,
+                                                type: "division",
+                                                title: 'Division',
+                                              );
+                                            }
                                           ),
                                         )
                                       ],
@@ -336,13 +363,46 @@ class RequestsGrid extends StatelessWidget {
                                     subtitle: 'Manage Laith Azzam Student'));
                               },
                             ),
-                            Text(
-                              "${controller.filteredregistration[index].type}",
-                              style: Get.theme.textTheme.bodyMedium!.copyWith(
-                                  fontSize: 16,
-                                  color: Color(0xff779DB6),
-                                  fontWeight: FontWeight.normal),
-                            ),
+                           Padding(
+                             padding: const EdgeInsets.only(right: 8.0),
+                             child: Row(
+                               children: [
+                                 Padding(
+                             padding: const EdgeInsets.only(right: 8.0),
+                                   child: Text(
+                                     "${controller.filteredregistration[index].type}",
+                                     style: Get.theme.textTheme.bodyMedium!.copyWith(
+                                         fontSize: 16,
+                                         color:
+                                         controller.filteredregistration[index].type == "Rejected" ?
+                                         Color(0xffB27671):
+                                         controller.filteredregistration[index].type == "Pending" ?
+                                         Color(0xff297686)
+                                             :
+                                         Color(0xff779DB6)
+                                         ,
+                                         fontWeight: FontWeight.normal),
+                                   ),
+                                 ),
+                               Icon(
+                                   controller.filteredregistration[index].type == "Rejected" ?
+                                  Icons.close:
+                                   controller.filteredregistration[index].type == "Pending" ?
+                                   Icons.timelapse_outlined
+                                       :
+                                   Icons.timer
+
+                                   ,color:
+                                   controller.filteredregistration[index].type == "Rejected" ?
+                                   Color(0xffB27671):
+                                                 controller.filteredregistration[index].type == "Pending" ?
+                                                 Color(0xff297686)
+                                                   :
+                                               Color(0xff779DB6)
+                               )
+                               ],
+                             ),
+                           )
                           ],
                         )
                       ],

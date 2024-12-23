@@ -45,6 +45,7 @@ class _RequestsState extends State<Requests> {
                     Row(
                       children: [
                         Dropdownrequestenroll(
+                          isLoading: false,
                             title: "Status", width: w / 5, type: "status"),
                         Padding(
                           padding:
@@ -54,12 +55,15 @@ class _RequestsState extends State<Requests> {
                           ),
                         ),
                         TextFormSearch(
+                          click: () {
+                            controller.clearName();
+                          },
                           onchange: (value) {
-                            controller.searchRequestByName(value);
+                           controller.searchByName(value,controller.statusindex , controller.filterDate);
                           },
                           radius: 5,
                           controller: search,
-                          suffixIcon: Icons.search,
+                          suffixIcon: search.text.isNotEmpty ? Icons.close :  Icons.search,
                         ),
                       ],
                     ),

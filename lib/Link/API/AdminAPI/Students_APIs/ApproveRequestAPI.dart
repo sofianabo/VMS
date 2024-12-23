@@ -8,6 +8,7 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/allGaurdianController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
+import 'package:vms_school/widgets/Loading_Dialog.dart';
 import '../../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';
 
@@ -27,10 +28,13 @@ class Approverequestapi {
     int divisionId,
   ) async {
     try {
+        CancelToken cancelToken = CancelToken();
+      Loading_Dialog(cancelToken: cancelToken);
       int? cID = classControl.Allclass[classid].id;
       int? dID = divisionControl.allDivision[divisionId].id;
       String myurl = "${global.hostPort}${global.acceptARequest}";
       var response = await dio.post(myurl,
+      cancelToken: cancelToken,
           data: {
             "classId": cID,
             "divisionId": dID,
@@ -40,8 +44,9 @@ class Approverequestapi {
           options: getDioOptions());
 
       if (response.statusCode == 200) {
-        await GetAllRequestsapi(context).GetAllRequests();
         Get.back();
+        Get.back();
+        await GetAllRequestsapi(context).GetAllRequests();
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,

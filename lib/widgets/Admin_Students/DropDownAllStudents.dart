@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownClassesAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownDivisionAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/GetAllStudentAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownGradeController.dart.dart';
+import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 
 class DropDownAllStudents extends StatelessWidget {
@@ -10,14 +13,17 @@ class DropDownAllStudents extends StatelessWidget {
   final String title;
   final String type;
   final Color? color;
-
-  const DropDownAllStudents({
-    Key? key,
+  bool isDisabled;
+  bool isLoading;
+   DropDownAllStudents({
+    super.key,
     required this.title,
     this.color,
+    this.isDisabled = false,
+    this.isLoading = false,
     required this.width,
     required this.type,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -60,37 +66,87 @@ class DropDownAllStudents extends StatelessWidget {
         height: 40,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          border: Border.all(color: color ?? Color(0xffD9D9D9)),
+          border: Border.all(color: color ?? const Color(0xffD9D9D9)),
         ),
-        child: Row(
+        child: isDisabled == true?
+        Row(
+          children: [
+            Text("$title" , style: TextStyle(color: Colors.grey),),
+          ],
+        ):
+        isLoading == true
+            ? Center(
+          child: SizedBox(
+            width: 20,
+            height: 20,
+            child: CircularProgressIndicator(strokeWidth: 3),
+          ),
+        )
+            : Row(
           children: [
             Expanded(
               child: DropdownButton<String>(
-                icon:  selectedValue != title ?
-                GestureDetector(
-                  onTap: () {
-                    cont.selectIndex(type, "");
-                  },
-                  child:  Icon(
-                    Icons.close,
-                    color: Get.theme.secondaryHeaderColor,
-                  ),):Icon(Icons.arrow_drop_down_outlined,color: Get.theme.secondaryHeaderColor),
+                onChanged: (newValue) {
+                  if (newValue != null && newValue != title) {
+                    cont.selectIndex(type, newValue);
+                    if(type == 'grade'){
+                      print(newValue);
+                      if(newValue != title){
+                          cont.resetOnGradeChange();
+                        Getallclassapi(context).getAllClasses(
+                          sessionID:Get.find<All_Screen_Sessions_Controller>().sessionId,
+                          Gradeid: Get.find<Dropdowngradecontroller>().gradess!.grades!
+                              .firstWhere((grad) => grad.enName == newValue||grad.name == newValue).id ,
+                        );
+                      }
+                    }
+                    if(type == 'class'){
+                      if(newValue != title){
+                        AllDivisionModel division =  Dropdowndivisionapi(context)
+                            .Dropdowndivision(cont.classlist.indexOf(newValue));
+                        cont.setAllDivision(division);
+
+                      }
+                    }
+                    // switch (type) {
+                    //   case 'gradediag':
+                    //     cont.setGeidx(Get.find<Dropdowngradecontroller>().gradess!.grades!.firstWhere((grad) => grad.enName  == newValue || grad.name  == newValue).id);
+                    //     print(cont.grades);
+                    //     break;
+                    //   case 'admin':
+                    //     Get.find<Virtual_Employee_Controller>().setVECUserID(Get.find<Virtual_Employee_Controller>().viraulClasses!.firstWhere((admin) => admin.userName  == newValue).id);
+                    //     break;
+                    // }
+                  }
+                },
                 dropdownColor: Get.theme.cardColor,
                 iconDisabledColor: Colors.grey,
                 iconEnabledColor: Get.theme.cardColor,
                 value: selectedValue,
                 isExpanded: true,
                 underline: const SizedBox(),
+                icon:  selectedValue.isNotEmpty && selectedValue != title
+                    ? GestureDetector(
+                  onTap: () {
+                    cont.selectIndex(type, "");
+                    if(type == "grade"){
+                      cont.resetOnGradeChange();
+                    }
+                    cont.update();
+                  },
+                  child: Icon(
+                    Icons.close,
+                    color: Get.theme.secondaryHeaderColor,
+                  ),
+                )
+                    : Icon(
+                  Icons.arrow_drop_down,
+                  color: Get.theme.secondaryHeaderColor,
+                ),
                 style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-                onChanged: (newValue) {
-                  if (newValue != null) {
-                    cont.selectIndex(type, newValue);
-                  }
-                },
                 items: [
                   DropdownMenuItem<String>(
                     value: title,
-                    enabled: false,
                     child: Text(
                       title,
                       style: Get.theme.textTheme.bodyMedium!.copyWith(
@@ -141,9 +197,7 @@ class DropDownAllStudents extends StatelessWidget {
             ),
             onTap: () async {
               classSelected = value;
-              AllDivisionModel division = await Dropdowndivisionapi(context)
-                  .Dropdowndivision(cont.classlist.indexOf(value));
-              cont.setAllDivision(division);
+
             },
           );
         }).toList());

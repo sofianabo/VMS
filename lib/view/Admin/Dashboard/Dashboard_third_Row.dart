@@ -41,7 +41,7 @@ class DashboardThirdRow extends StatelessWidget {
             'avg': '${controller.dsh?.visitor ?? 0}',
           },
           {
-            'name': 'Total Library',
+            'name': 'Total Books',
             'color': const Color(0xffFBEDD9),
             'upIcon': 'divi.svg',
             'avg': '${controller.dsh?.elibraryCount ?? 0}',

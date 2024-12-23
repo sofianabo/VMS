@@ -17,16 +17,15 @@ class GetAllRequestsapi {
 
   GetAllRequests() async {
     try {
-      AllClassModel classesModel =
-          await Getallclassapi(context).getAllClasses();
-      c.setAllClassDialog(classesModel);
-      c.restor();
-
+      c.SetIsloading(true);
       String myurl = "${hostPort}${getRequests}";
       var response = await dio.get(myurl, options: getDioOptions());
 
       if (response.statusCode == 200) {
         AllRequestsModel requests = AllRequestsModel.fromJson(response.data);
+        AllClassModel classesModel =
+        await Getallclassapi(context).getAllClasses();
+        c.setAllClassDialog(classesModel);
         c.setAllRequests(requests);
       } else {
         ErrorHandler.handleDioError(DioError(

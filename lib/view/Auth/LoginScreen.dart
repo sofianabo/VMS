@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Link/API/AuthAPI/LoginAPI.dart';
+import 'package:vms_school/Link/Controller/AuthController/UserController.dart';
 import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/AdminHome.dart';
@@ -153,14 +155,48 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
             ),
-            ButtonAuth(
-              onpressed: () async {
-                prefs!.setString("username", username.text);
-                prefs!.setString("pass", password.text);
-                await LoginAPI(context).login(username.text, password.text);
-              },
-              text: "Login",
-            ).animate().fadeIn(duration: Duration(seconds: 1))
+            GetBuilder<UserController>(
+              builder: (controller) {
+                return TextButton(
+                  style: ButtonStyle(shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),)
+                  ,backgroundColor: WidgetStatePropertyAll(Get.theme.primaryColor),
+                    maximumSize: WidgetStatePropertyAll(Size(200 , 60)),
+                    minimumSize: WidgetStatePropertyAll(Size(200 , 60)),
+                  ),
+                    onPressed: () async {
+                    if(controller.Isloading == false){
+                      prefs!.setString("username", username.text);
+                      await LoginAPI(context).login(username.text, password.text);
+                    }
+                    },
+                    child: controller.Isloading == true ?
+                    LoadingAnimationWidget.inkDrop(
+                      color: Colors.white,
+                      size: 25,
+                    )
+                    : Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Login",
+                          style: Get.theme.textTheme.displayMedium!
+                              .copyWith(fontSize: 15),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0 , right: 8.0),
+                          child: Icon(
+                            Icons.login,
+                            color: Colors.white,
+                            size: 17,
+                          ),
+                        ),
+                      ],
+                    )).animate().fadeIn(duration: Duration(seconds: 1));
+              }
+            )
           ],
         ),
       ),

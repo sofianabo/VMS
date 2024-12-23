@@ -92,5 +92,6 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Oneemployeeattendencecontroller(), fenix: true);
     Get.lazyPut(() => Subject_Controller(), fenix: true);
     Get.lazyPut(() => Allteacheratendencecontroller(), fenix: true);
+
   }
 }

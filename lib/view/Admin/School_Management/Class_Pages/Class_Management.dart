@@ -30,7 +30,7 @@ class _ClassManagementState extends State<ClassManagement> {
   @override
   void initState() {
     Get_All_Classes_API(context).Get_All_Classes();
-    Getallgradeapi(context).Getallgrade();
+    Getallgradeapi.Getallgrade();
     super.initState();
   }
 

@@ -4,7 +4,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/DeleteStudentAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/view/Admin/Students_Manager/EditStudentInfo.dart';
@@ -23,7 +25,7 @@ class AllStudentGrid extends StatelessWidget {
     return GetBuilder<Allstudentscontroller>(builder: (control) {
       return
             control.isLoading == false?
-            control.stud.isNotEmpty?
+            control.filteredStudents.isNotEmpty?
         GridView.builder(
         padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -84,8 +86,39 @@ class AllStudentGrid extends StatelessWidget {
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold)),
                         ),
-                        Image.asset("../../images/Rectangle66.png",
-                            height: 100, width: 100)
+                        FutureBuilder(
+                          future: precacheImage(NetworkImage("$getimage${control.filteredStudents[index].fileId}"), context),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState == ConnectionState.done) {
+                              return  CircleAvatar(
+                                maxRadius: 60,
+                                backgroundColor: const Color(0xffC4C4C4),
+                                backgroundImage:
+                                control.filteredStudents[index].fileId != null
+                                    ? NetworkImage("$getimage${control.filteredStudents[index].fileId}") :
+                                null,
+
+                                child: control.filteredStudents[index].fileId == null
+                                    ? const Icon(
+                                  Icons.image_outlined,
+                                  color: Colors.white,
+                                  size: 35,
+                                )
+                                    : null,
+                              );
+                            } else {
+                              return CircleAvatar(
+                                maxRadius: 60,
+                                backgroundColor: const Color(0xffC4C4C4),
+                                child: LoadingAnimationWidget.inkDrop(
+                                  color: Theme.of(context).primaryColor,
+                                  size: 30,
+                                ),
+                              );
+                            }
+                          },
+                        ),
+
                       ],
                     ),
                     Text(
@@ -94,7 +127,7 @@ class AllStudentGrid extends StatelessWidget {
                     Text("Email: ${control.filteredStudents[index].email}",
                         style: Get.theme.textTheme.bodyMedium!),
                     Text(
-                        "Grade Level: ${control.filteredStudents[index].grade}",
+                        "Grade Level: ${control.filteredStudents[index].grade!.enName}",
                         style: Get.theme.textTheme.bodyMedium!),
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
@@ -115,7 +148,8 @@ class AllStudentGrid extends StatelessWidget {
                                 backgroundColor:
                                     WidgetStateProperty.all(Color(0xffB03D3D))),
                             onPressed: () {
-                              Get.dialog(BackdropFilter(
+                              Get.dialog(
+                                  BackdropFilter(
                                 filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
                                 child: AlertDialog(
                                   shape: RoundedRectangleBorder(
@@ -229,7 +263,7 @@ class AllStudentGrid extends StatelessWidget {
           );
         },
       ):
-            Center(child: Text(  "No Students"  , style: Get.theme.textTheme.bodyMedium!.copyWith(
+            Center(child: Text("No Students" , style: Get.theme.textTheme.titleLarge!.copyWith(
                 fontSize: 22,
                 fontWeight: FontWeight.normal
             ))):
