@@ -3,17 +3,22 @@ import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
+import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
+import 'package:vms_school/widgets/TextFildWithUpper.dart';
+import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class StudentsAttendanceManagmentGrid extends StatelessWidget {
   StudentsAttendanceManagmentGrid({super.key});
+
+  TextEditingController cuse = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Student_attendence_controller>(builder: (controller) {
       return controller.isLoading == false
-          ? controller.isLoading == true
-              ? Center(child: Text("Attendence Done"))
+          ? controller.isUploaded == true
+              ? Center(child: Text("${controller.title}" , style: Get.textTheme.titleLarge,))
               : Obx(() {
                   return Column(
                     children: [
@@ -99,7 +104,6 @@ class StudentsAttendanceManagmentGrid extends StatelessWidget {
                                           'Present',
                                           'Truant',
                                           'Late',
-                                          'Vacation',
                                           'Holiday'
                                         ]
                                             .map((status) => Row(
@@ -112,9 +116,51 @@ class StudentsAttendanceManagmentGrid extends StatelessWidget {
                                                       activeColor:
                                                           Color(0xff134B70),
                                                       onChanged: (value) {
+                                                    if(value == "Holiday"){
+
+                                                    }else{
+                                                      if(value == "Truant" || value == "Late"){
+                                                        Get.dialog(VMSAlertDialog(
+                                                            action: [
+                                                              ButtonDialog(
+                                                                  text: "Done",
+                                                                  onPressed: (){
+                                                                    controller.updateStatus(
+                                                                        index,
+                                                                        value.toString(),
+                                                                        cuse.text
+                                                                    );
+                                                                    Get.back();
+                                                                  },
+                                                                  color: Get.theme.primaryColor,
+                                                                  width: 65)
+                                                            ],
+                                                            contents: Container(
+                                                              width: 500,
+                                                              child: Column(
+                                                                mainAxisSize: MainAxisSize.min,
+                                                                children: [
+                                                                  Textfildwithupper(
+                                                                      width: 250,
+                                                                      controller: cuse,
+                                                                      Uptext: "Cause",
+                                                                      hinttext: "Cause")
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            apptitle: "Enter The Reason For Absence",
+                                                            subtitle: "The reason for the absence of the student ${controller
+                                                                .students[index]
+                                                            ['name']}"));
+                                                      }
+                                                      else{
                                                         controller.updateStatus(
                                                             index,
-                                                            value.toString());
+                                                            value.toString(),
+                                                            null
+                                                        );
+                                                      }
+                                                    }
                                                       },
                                                     ),
                                                     Text(
@@ -130,10 +176,6 @@ class StudentsAttendanceManagmentGrid extends StatelessWidget {
                                                                         'Late'
                                                                     ? Color(
                                                                         0xff349393)
-                                                                    : status ==
-                                                                            'Vacation'
-                                                                        ? Color(
-                                                                            0xffB27671)
                                                                         : Color(
                                                                             0xff134B70),
                                                       ),

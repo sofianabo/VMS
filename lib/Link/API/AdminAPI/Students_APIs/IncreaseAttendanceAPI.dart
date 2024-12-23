@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownGradeAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/Increase_Attendance_Model.dart';
@@ -15,20 +16,33 @@ class IncreaseAttendanceAPI {
   BuildContext context;
   IncreaseAttendanceAPI(this.context);
   Dio dio = Dio();
+  final Student_attendence_controller  controller = Get.find<Student_attendence_controller>();
 
-  GetIncreaseAttendance() async {
+  GetIncreaseAttendance({
+    String? gradeid , String? classId ,String? divisionId,required isserch
+}) async {
     try {
-      final Student_attendence_controller  controller = Get.find<Student_attendence_controller>();
+
       controller.setIsLoading(true);
+      controller.setIsUploded(false,"Attendance Today Has Been Uploaded");
       String myurl = "${hostPort}${studentsAttendance}";
-      var response = await dio.post(myurl,
+      var response = await dio.post(
+          data: {
+            "gradeId":gradeid,
+            "classId":classId,
+            "divisionId":divisionId,
+          },
+          myurl,
       options: getDioOptions());
+      print("${response.statusCode}");
       if (response.statusCode == 200) {
-        print(response.data);
         StuAttendence stu = StuAttendence.fromJson(response.data);
         controller.setData(stu);
-        print(stu.students![0].fullName);
-      } else {
+      } else if(response.statusCode == 232) {
+        controller.setIsLoading(false);
+        controller.setIsUploded(true,"Attendance Today Has Been Uploaded");
+      }
+      else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,
           response: response,
@@ -36,8 +50,23 @@ class IncreaseAttendanceAPI {
         ));
       }
     } catch (e) {
+
       if (e is DioError) {
-        ErrorHandler.handleDioError(e);
+       if( e.response?.statusCode == 404){
+
+         controller.setIsLoading(false);
+         if(divisionId != null){
+           controller.setIsUploded(true,"There Are No Students In This Division");
+         } else  if(classId != null){
+           controller.setIsUploded(true,"There Are No Students In This Class");
+         } else {
+           controller.setIsUploded(true,"There Are No Students In This Grade");
+         }
+
+
+       }else{
+         ErrorHandler.handleDioError(e);
+       }
       } else if (e is Exception) {
         ErrorHandler.handleException(e);
       } else {

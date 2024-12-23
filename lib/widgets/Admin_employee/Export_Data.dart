@@ -3,6 +3,7 @@ import 'package:excel/excel.dart';
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'package:vms_school/Link/Model/AdminModel/AllStudentModel.dart';
 import 'dart:html' as html;
 
 import 'package:vms_school/Link/Model/AdminModel/All_Employee_Model.dart';
@@ -69,6 +70,31 @@ void exportEmployeesToExcel(List<Employees> employees) async {
 
   exportToExcel(data, headers);
 }
+
+//
+// void exportStudintToExcel(List<Students> allStudents) async {
+//   List<Map<String, dynamic>> data = allStudents.map((emp) {
+//     return {
+//       "Username": emp. ?? "",
+//       "Full Name": emp.fullName ?? "",
+//       "Email": emp.email ?? "",
+//       "Job Title": emp.jobTitle ?? "",
+//       "Salary": emp.salary?.toString() ?? "",
+//       "Role": emp.roll ?? "",
+//     };
+//   }).toList();
+//
+//   List<String> headers = [
+//     "Username",
+//     "Full Name",
+//     "Email",
+//     "Job Title",
+//     "Salary",
+//     "Role",
+//   ];
+//
+//   exportToExcel(data, headers);
+// }
 
 
 

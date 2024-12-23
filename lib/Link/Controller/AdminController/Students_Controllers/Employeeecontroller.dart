@@ -66,14 +66,14 @@ class EmployeeController extends GetxController {
 
   var allHolidayChecked = false.obs;
 
-  // تحديث الحالة
+
   void updateStatus(int index, String newStatus) {
     Employee[index]['status'] = newStatus;
     Employee.refresh();
     checkAllHolidayStatus();
   }
 
-  // تعيين الجميع كعطلة
+
   void setAllAsHoliday(bool checked) {
     allHolidayChecked.value = checked;
     for (var item in Employee) {
