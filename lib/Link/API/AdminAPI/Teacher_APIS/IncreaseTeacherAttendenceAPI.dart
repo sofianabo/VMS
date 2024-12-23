@@ -4,30 +4,27 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Employeeecontroller.dart';
-import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllTeacherModel.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
+import 'package:vms_school/Link/Model/AdminModel/IncreaseTeacherAttendenceModel.dart';
 
-class Getallteachersapi {
+class Increaseteacherattendenceapi {
   BuildContext context;
-  Getallteachersapi(this.context);
+  Increaseteacherattendenceapi(this.context);
 
-  static Getallteachers({sessionID}) async {
-      Dio dio = Dio();
+  static Increaseteacherattendence() async {
+    Dio dio = Dio();
 
-   final Allteachercontroller controller = Get.find<Allteachercontroller>();
-    controller.setIsLoading(true);
- 
+    final EmployeeController AttendenceController =
+        Get.find<EmployeeController>();
+    AttendenceController.setIsload(true);
+
     try {
-      String myurl = "${hostPort}${getTeachers}";
-      var response = await dio.get(
-        data: {
-          'sessionId':sessionID
-        },
-          myurl, options: getDioOptions());
+      String myurl = "${hostPort}${teacherIncreaseAttendance}";
+      var response = await dio.get(data: {}, myurl, options: getDioOptions());
       if (response.statusCode == 200) {
-        AllTeacherModel teacher = AllTeacherModel.fromJson(response.data);
-        controller.setAllTeacher(teacher);
+        IncreaseTeacherAttendenceModel teacher =
+            IncreaseTeacherAttendenceModel.fromJson(response.data);
+        AttendenceController.setTeacherData(teacher);
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,
