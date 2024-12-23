@@ -39,7 +39,7 @@ class _AllEmployeeState extends State<AllEmployee> {
 
   @override
   Widget build(BuildContext context) {
-        double w = MediaQuery.of(context).size.width;
+    double w = MediaQuery.of(context).size.width;
     return Expanded(
         child: Column(
       children: [
@@ -57,10 +57,10 @@ class _AllEmployeeState extends State<AllEmployee> {
                       Padding(
                           padding: const EdgeInsets.only(left: 8.0),
                           child: DropDownAllSessions(
-                              title: "Session",
-                              width: w / 6.5,
-                              type: "session",
-                               API: "AllEmployee",
+                            title: "Session",
+                            width: w / 6.5,
+                            type: "session",
+                            API: "AllEmployee",
                           )),
                       Padding(
                           padding: const EdgeInsets.only(left: 8.0),
@@ -68,26 +68,27 @@ class _AllEmployeeState extends State<AllEmployee> {
                               title: "Job Title",
                               width: w / 6.5,
                               type: "jobTitle")),
-                      GetBuilder<Allempolyeecontroller>(
-                          builder: (controller) {
-                            return Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: TextFormSearch(
-                                click: () {
-                                  controller.clearFilter();
-                                  print("Filter cleared");
-                                },
-                                width: w / 3.5,
-                                radius: 5,
-                                controller: search,
-                                onchange: (value) {
-                                  controller.searchRequestByName( value ,controller.jobTitleIndex);
-                                },
-                                suffixIcon: search.text.isNotEmpty ? Icons.close : Icons.search,
-                              ),
-                            );
-                          }
-                      ),
+                      GetBuilder<Allempolyeecontroller>(builder: (controller) {
+                        return Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: TextFormSearch(
+                            click: () {
+                              controller.clearFilter();
+                              print("Filter cleared");
+                            },
+                            width: w / 3.5,
+                            radius: 5,
+                            controller: search,
+                            onchange: (value) {
+                              controller.searchRequestByName(
+                                  value, controller.jobTitleIndex);
+                            },
+                            suffixIcon: search.text.isNotEmpty
+                                ? Icons.close
+                                : Icons.search,
+                          ),
+                        );
+                      }),
                     ],
                   ),
                   Spacer(),
@@ -118,13 +119,12 @@ class _AllEmployeeState extends State<AllEmployee> {
                               size: 18, color: Get.theme.primaryColor),
                           onSelected: (value) {
                             if (value == "Add Employee") {
-
                               Get.dialog(VMSAlertDialog(
                                   action: [
                                     ButtonDialog(
                                         text: "Add Employee",
                                         onPressed: () {
-                                          Get.back();
+                                          //api
                                         },
                                         color: Get.theme.primaryColor,
                                         width: 120)
@@ -178,21 +178,19 @@ class _AllEmployeeState extends State<AllEmployee> {
                                   subtitle: "none"));
                             }
                             if (value == "Add Full Employee") {
-
                               Add_Full_Employee(context);
                             }
                           },
-
                           itemBuilder: (BuildContext context) =>
                               <PopupMenuEntry<String>>[
                             PopupMenuItem<String>(
-                              value: 'Add Employee',
-                              child: Text('Add Employee',)
-                            ),
+                                value: 'Add Employee',
+                                child: Text(
+                                  'Add Employee',
+                                )),
                             PopupMenuItem<String>(
-                              value: 'Add Full Employee',
-                              child: Text('Add Full Employee')
-                            ),
+                                value: 'Add Full Employee',
+                                child: Text('Add Full Employee')),
                           ],
                         ),
                       ),
@@ -219,8 +217,9 @@ class _AllEmployeeState extends State<AllEmployee> {
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
                               onPressed: () {
-                                exportEmployeesToPDF(Get.find<Allempolyeecontroller>().filteredreemployees);
-
+                                exportEmployeesToPDF(
+                                    Get.find<Allempolyeecontroller>()
+                                        .filteredreemployees);
                               },
                               icon: Icon(VMS_Icons.pdf,
                                   size: 18, color: Get.theme.primaryColor)),
@@ -247,7 +246,9 @@ class _AllEmployeeState extends State<AllEmployee> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
                             onPressed: () {
-                              exportEmployeesToExcel(Get.find<Allempolyeecontroller>().filteredreemployees);
+                              exportEmployeesToExcel(
+                                  Get.find<Allempolyeecontroller>()
+                                      .filteredreemployees);
                             },
                             icon: Icon(VMS_Icons.xl,
                                 size: 18, color: Get.theme.primaryColor)),
