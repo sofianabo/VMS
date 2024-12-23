@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 
 class Dropdowndivisioncontroller extends GetxController {
@@ -29,6 +30,7 @@ class Dropdowndivisioncontroller extends GetxController {
       newList.add(div.division![i].enName.toString());
     }
     Get.find<Allstudentscontroller>().setDivisionList(newList);
+    Get.find<StudyYearStudentsController>().setDivisionList(newList);
     setIsLoading(false);
     update();
   }

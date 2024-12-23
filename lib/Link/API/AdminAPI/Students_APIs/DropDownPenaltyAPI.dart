@@ -7,14 +7,15 @@ import 'package:vms_school/Link/Model/AdminModel/AllPenaltyModel.dart';
 import '../../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';
 
-class Dropdownpenaltyapi {
+class Get_All_Benality_API {
   Dropdownpenaltycontroller c = Get.find<Dropdownpenaltycontroller>();
   BuildContext context;
-  Dropdownpenaltyapi(this.context);
+  Get_All_Benality_API(this.context);
   Dio dio = Dio();
 
-  Dropdownpenalty() async {
+  Get_All_Benality() async {
     try {
+      c.setIsLoading(true);
       String myurl = "${global.hostPort}${global.allPenalty}";
       var response = await dio.get(myurl, options: getDioOptions());
       if (response.statusCode == 200) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Translate/local_controller.dart'
-    show localeController;
+show localeController;
 import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/link/Bindings/UserBinding.dart';
 import 'package:vms_school/view/Admin/AdminHome.dart';

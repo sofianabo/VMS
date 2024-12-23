@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Years_Controllers/Divisions_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
@@ -15,6 +16,7 @@ class Getallclassapi {
   Dropdownclassescontroller ClassController = Get.find<Dropdownclassescontroller>();
   final DivisionControllers = Get.find<Dropdowndivisioncontroller>();
   final Studentcontroller = Get.find<Allstudentscontroller>();
+  final StudyYearStudents = Get.find<StudyYearStudentsController>();
 
   BuildContext context;
   Getallclassapi(this.context);
@@ -24,6 +26,7 @@ class Getallclassapi {
 
       ClassController.setIsLoading(true);
       Studentcontroller.setClassLoading(true);
+      StudyYearStudents.setClassLoading(true);
       final controller = Get.find<Divisions_Controller>();
       controller.SetIsloading(true);
       String myurl = "${global.hostPort}${global.getclasses}";

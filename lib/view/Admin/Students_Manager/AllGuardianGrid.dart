@@ -108,15 +108,17 @@ class AllGuardianGrid extends StatelessWidget {
                         : Get.width <= 573
                             ? 3.0
                             : 1.8),
-        itemCount: control.guardian.length,
+        itemCount: control.filteredregaurdians!.length,
         itemBuilder: (context, index) {
-          gUserName.text = control.guardian[index].name!;
-          gNationalID.text = control.guardian[index].nationalId!;
-          gEmail.text = control.guardian[index].email!;
-          gphone.text = control.guardian[index].phone!;
+
           return HoverScaleCard(
             child: GestureDetector(
               onTap: () {
+                gUserName.text = control.filteredregaurdians![index].name!;
+                gNationalID.text = control.filteredregaurdians![index].nationalId!;
+                gEmail.text = control.filteredregaurdians![index].email!;
+                gphone.text = control.filteredregaurdians![index].phone!;
+
                 Get.dialog(VMSAlertDialog(
                     contents: SizedBox(
                         child: Column(
@@ -134,7 +136,7 @@ class AllGuardianGrid extends StatelessWidget {
                                 ),
                                 TextFieldDialog(
                                     controller: gUserName,
-                                    hinttext: "${control.guardian[index].name}")
+                                    hinttext: "${control.filteredregaurdians![index].name}")
                               ],
                             ),
                             Padding(
@@ -150,7 +152,7 @@ class AllGuardianGrid extends StatelessWidget {
                                   TextFieldDialog(
                                       controller: gNationalID,
                                       hinttext:
-                                          "${control.guardian[index].nationalId}")
+                                          "${control.filteredregaurdians![index].nationalId}")
                                 ],
                               ),
                             )
@@ -172,7 +174,7 @@ class AllGuardianGrid extends StatelessWidget {
                                   TextFieldDialog(
                                       controller: gEmail,
                                       hinttext:
-                                          "${control.guardian[index].email}")
+                                          "${control.filteredregaurdians![index].email}")
                                 ],
                               ),
                               Padding(
@@ -188,7 +190,7 @@ class AllGuardianGrid extends StatelessWidget {
                                     TextFieldDialog(
                                         controller: gphone,
                                         hinttext:
-                                            "${control.guardian[index].phone}")
+                                            "${control.filteredregaurdians![index].phone}")
                                   ],
                                 ),
                               )
@@ -206,7 +208,7 @@ class AllGuardianGrid extends StatelessWidget {
                               text: "Edit",
                               onPressed: () async {
                                 await Editguardianapi(context).Editguardian(
-                                    control.guardian[index].id!,
+                                    control.filteredregaurdians![index].id!,
                                     gUserName.text,
                                     gEmail.text,
                                     gNationalID.text,
@@ -241,17 +243,19 @@ class AllGuardianGrid extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
-                            child: Text("${control.guardian[index].name}",
+                            child: Text("${control.filteredregaurdians![index].name}",
                                 style: Get.theme.textTheme.bodyMedium!
                                     .copyWith(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold)),
                           ),
+                          Text("${control.filteredregaurdians![index].userName}",
+                              style: Get.theme.textTheme.titleLarge!),
                         ],
                       ),
-                      Text("Email: ${control.guardian[index].email}",
+                      Text("Email: ${control.filteredregaurdians![index].email}",
                           style: Get.theme.textTheme.bodyMedium!),
-                      Text("Mobile Number : ${control.guardian[index].phone}",
+                      Text("Mobile Number : ${control.filteredregaurdians![index].phone}",
                           style: Get.theme.textTheme.bodyMedium!),
                     ],
                   )),

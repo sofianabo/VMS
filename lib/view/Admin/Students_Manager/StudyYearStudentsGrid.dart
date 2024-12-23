@@ -2,9 +2,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/StudentPunishAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownPenaltyController.dart';
 import 'package:vms_school/widgets/Admin_Students/DropDownStudyYearStudents.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
@@ -12,35 +15,19 @@ import 'package:vms_school/widgets/DropDown.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
 import 'package:vms_school/widgets/TextFieldDialog.dart';
+import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
-class StudyYearStudentGrid extends StatelessWidget {
-  TextEditingController reason = TextEditingController();
+class StudyYearStudentGrid extends StatefulWidget {
 
   StudyYearStudentGrid({super.key});
 
-  List<Map<String, dynamic>> l = [
-    {
-      "name": "Laith Haitham Azzam",
-      "result": "Successful",
-      "level": "Twelveth scientific grade"
-    },
-    {
-      "name": "Laith Haitham Azzam",
-      "result": "Passing",
-      "level": "Twelveth scientific grade"
-    },
-    {
-      "name": "Laith Haitham Azzam",
-      "result": "No Result",
-      "level": "Twelveth scientific grade"
-    },
-    {
-      "name": "Laith Haitham Azzam",
-      "result": "Successful",
-      "level": "Twelveth scientific grade"
-    },
-  ];
+  @override
+  State<StudyYearStudentGrid> createState() => _StudyYearStudentGridState();
+}
+
+class _StudyYearStudentGridState extends State<StudyYearStudentGrid> {
+  TextEditingController reason = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +99,7 @@ class StudyYearStudentGrid extends StatelessWidget {
             crossAxisSpacing: 20.0,
             mainAxisSpacing: 20.0,
             childAspectRatio: 1.2),
-        itemCount: controller.stud.length,
+        itemCount: controller.filteredStudents!.length,
         itemBuilder: (context, index) {
           return HoverScaleCard(
             child: Container(
@@ -135,23 +122,53 @@ class StudyYearStudentGrid extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
-                          child: Text("${controller.stud[index].fullName}",
+                          child: Text("${controller.filteredStudents![index].fullName}",
                               style: Get.theme.textTheme.bodyMedium!.copyWith(
                                   fontSize: 20, fontWeight: FontWeight.bold)),
                         ),
-                        Image.asset("../../images/Rectangle66.png",
-                            height: 100, width: 100)
+                        FutureBuilder(
+                          future: precacheImage(NetworkImage("$getimage${controller.filteredStudents![index].fileId}"), context),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState == ConnectionState.done) {
+                              return  CircleAvatar(
+                                maxRadius: 60,
+                                backgroundColor: const Color(0xffC4C4C4),
+                                backgroundImage:
+                                controller.filteredStudents![index].fileId != null
+                                    ? NetworkImage("$getimage${controller.filteredStudents![index].fileId}") :
+                                null,
+
+                                child: controller.filteredStudents![index].fileId == null
+                                    ? const Icon(
+                                  Icons.image_outlined,
+                                  color: Colors.white,
+                                  size: 35,
+                                )
+                                    : null,
+                              );
+                            } else {
+                              return CircleAvatar(
+                                maxRadius: 60,
+                                backgroundColor: const Color(0xffC4C4C4),
+                                child: LoadingAnimationWidget.inkDrop(
+                                  color: Theme.of(context).primaryColor,
+                                  size: 30,
+                                ),
+                              );
+                            }
+                          },
+                        ),
                       ],
                     ),
-                    Text("${controller.stud[index].status}",
+                    Text("${controller.filteredStudents![index].state}",
                         style: Get.theme.textTheme.bodyMedium!.copyWith(
                             fontSize: 16,
-                            color: controller.stud[index].status == "sucssful"
+                            color: controller.filteredStudents![index].state == "Passing"
                                 ? Color(0xff2F9742)
-                                : controller.stud[index].status == "Passing"
+                                : controller.filteredStudents![index].state == "Failed"
                                     ? Color(0xff972F2F)
                                     : Color(0xff134B70))),
-                    Text("Grade Level: ${controller.stud[index].classes}",
+                    Text("Grade Level: ${controller.filteredStudents![index].grade!.enName}",
                         style: Get.theme.textTheme.bodyMedium),
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
@@ -208,7 +225,7 @@ class StudyYearStudentGrid extends StatelessWidget {
                                                       .toString(),
                                                   controller.enddate.value
                                                       .toString(),
-                                                  controller.stud[index].id!);
+                                                  controller.filteredStudents![index].id!);
                                         },
                                         color: Get.theme.primaryColor,
                                         text: "Send",
@@ -224,10 +241,15 @@ class StudyYearStudentGrid extends StatelessWidget {
                                         SizedBox(
                                           width: 350,
                                         ),
-                                        DropDownStudyYearStudents(
-                                          title: "Penalty",
-                                          type: "penalty",
-                                          width: w / 3.6,
+                                        GetBuilder<Dropdownpenaltycontroller>(
+                                          builder: (PController) {
+                                            return DropDownStudyYearStudents(
+                                              isLoading: PController.Isloading,
+                                              title: "Penalty",
+                                              type: "penalty",
+                                              width: w / 3.6,
+                                            );
+                                          }
                                         ),
                                         Padding(
                                           padding:
@@ -241,7 +263,9 @@ class StudyYearStudentGrid extends StatelessWidget {
                                                       .theme
                                                       .primaryTextTheme
                                                       .labelSmall),
-                                              TextFieldDialog(
+                                              Textfildwithupper(
+                                                Uptext: "The Reason",
+                                                  isRequired: true,
                                                   width: w / 3.6,
                                                   controller: reason,
                                                   hinttext: "The Reason"),
@@ -257,9 +281,22 @@ class StudyYearStudentGrid extends StatelessWidget {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
                                             children: [
-                                              Text("Start Date",
-                                                  style: Get.theme.textTheme
-                                                      .bodyMedium!),
+                                              Padding(
+                                                padding: const EdgeInsets.only(bottom: 5.0),
+                                                child: RichText(
+                                                  text: TextSpan(
+                                                      text: "Start Date",
+                                                    style: Get.theme.textTheme.bodyMedium!
+                                                        .copyWith(fontSize: 14,fontWeight: FontWeight.normal),
+                                                      children: [
+                                                        TextSpan(
+                                                          text: " *",
+                                                          style: TextStyle(color: Colors.red, fontSize: 16),
+                                                        ),
+                                                      ]
+                                                  ),
+                                                ),
+                                              ),
                                               penaltyStartDate(width: w / 3.6)
                                             ],
                                           ),

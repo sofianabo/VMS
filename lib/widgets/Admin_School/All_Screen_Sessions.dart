@@ -6,9 +6,11 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Class_API
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Curriculm_API/Get_All_Curriculm.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Division_API/Get_All_Division.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/GetAllStudentAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students_APIs/GetStudyYearStudentAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/StudentAttendenceAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetAllTeachersAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 
 class DropDownAllSessions extends StatelessWidget {
@@ -92,6 +94,10 @@ class DropDownAllSessions extends StatelessWidget {
                 case 'StudentState':
                   Studentattendenceapi(context)
                       .Studentattendence(sessionID: cont.sessionId);
+                  break;
+                  case 'SYStudent':
+                    Study_Year_Students_API(context).Study_Year_Students(sessionId: cont.sessionId);
+                    Get.find<StudyYearStudentsController>().resetOnSessionChange();
                   break;
               }
             }

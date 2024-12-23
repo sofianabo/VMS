@@ -554,13 +554,13 @@ class selectend extends StatelessWidget {
 class penaltyStartDate extends StatelessWidget {
   final double width;
   final double? height;
-  final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
+  final bool isRequired;
 
   penaltyStartDate({
     super.key,
     required this.width,
     this.height,
-    this.isRequired = false, // افتراضي الحقل غير مطلوب.
+    this.isRequired = false,
   });
 
   @override

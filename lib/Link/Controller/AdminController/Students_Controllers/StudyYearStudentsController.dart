@@ -1,28 +1,137 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllPenaltyModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllStudyYearModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dart';
 
 class StudyYearStudentsController extends GetxController {
+  String penaltyIndex = "";
+  List<String> penaltyList = [];
+  bool isLoading = true;
+
+  List<Students>? stud;
+  List<Students>? filteredStudents;
   String sessionIndex = "";
   String gradeIndex = "";
   String classIndex = "";
   String divisionIndex = "";
-  String penaltyIndex = "";
-  bool isLoading = true;
 
-  List<String> sessionlist = [];
+
+  String? filterName = '';
+
   List<String> gradelist = [];
+  bool isGradeLoading = true;
   List<String> classlist = [];
+  bool isClassLoading = true;
   List<String> divisionlist = [];
-  List<String> penaltyList = [];
-  List<Students> stud = [];
-  List<Students> filteredStudents = [];
+  bool isDivisionLoading = true;
+  List<String> sessionlist = [];
 
+
+
+  void clearFilter() {
+    searchByName("",gradeIndex , classIndex,divisionIndex);
+    update();
+  }
+
+  void searchByName(String? nameQuery, String? grade, String? classs, String? division) {
+    List<Students> tempFilteredList = List.from(stud!);
+    filterName=nameQuery;
+    if (nameQuery != null && nameQuery.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((cur) {
+        final email = cur.email?.toLowerCase() ?? '';
+        final name = cur.fullName?.toLowerCase() ?? '';
+        final gname = cur.guardians!.name?.toLowerCase() ?? '';
+        final guname = cur.guardians!.userName?.toLowerCase() ?? '';
+        final gemail = cur.guardians!.email?.toLowerCase() ?? '';
+        final gnationalid = cur.guardians!.nationalId?.toLowerCase() ?? '';
+        return email.contains(nameQuery.toLowerCase())||name.contains(nameQuery.toLowerCase())||gname.contains(nameQuery.toLowerCase())||guname.contains(nameQuery.toLowerCase())||gemail.contains(nameQuery.toLowerCase())||gnationalid.contains(nameQuery.toLowerCase());
+      }).toList();
+    }
+
+    if (grade != null && grade.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((cur) {
+        return cur.grade!.enName == grade || cur.grade!.enName == grade;
+      }).toList();
+    }
+
+
+    if (classs != null && classs.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((cur) {
+        return cur.classes!.enName == classs || cur.classes!.name == classs;
+      }).toList();
+    }
+    if (division != null && division.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((cur) {
+        return cur.division!.enName == division || cur.division!.name == division;
+      }).toList();
+    }
+
+    filteredStudents = tempFilteredList;
+    update();
+  }
+
+
+
+
+
+
+
+
+
+  setGradeList(List<String> value){
+    gradeIndex="";
+    gradelist.clear();
+    gradelist = value;
+    setGradeLoading(false);
+    update();
+  }
+  setClassList(List<String> value){
+    classIndex="";
+    classlist.clear();
+    classlist = value;
+    setClassLoading(false);
+    update();
+  }
+  setDivisionList(List<String> value){
+    setDivisionLoading(false);
+    divisionlist.clear();
+    divisionIndex="";
+    divisionlist = value;
+    update();
+  }
+
+
+
+  setGradeLoading(bool value){
+    isGradeLoading = value;
+    update();
+  }
+  setClassLoading(bool value){
+    isClassLoading = value;
+    update();
+  }
+  setDivisionLoading(bool value){
+    isDivisionLoading = value;
+    update();
+  }
+
+  resetOnSessionChange(){
+    gradeIndex = "";
+    classIndex = "";
+    divisionIndex = "";
+    update();
+  }
+
+  resetOnGradeChange(){
+    classIndex = "";
+    divisionIndex = "";
+    print("lkdssdf");
+    update();
+  }
+  resetOnclassChange(){
+    divisionIndex = "";
+    update();
+  }
 
 
   void selectIndex(String type, String? index) {
@@ -43,12 +152,13 @@ class StudyYearStudentsController extends GetxController {
         penaltyIndex = index ?? "";
         break;
     }
+    searchByName(filterName, gradeIndex, classIndex, divisionIndex);
     update();
   }
 
   void setAllStudents(AllStudyYearModel model) {
     stud = model.students!;
-    filteredStudents = List.from(stud);
+    filteredStudents = List.from(stud!);
     setIsLoading(false);
     update();
   }
@@ -58,63 +168,22 @@ class StudyYearStudentsController extends GetxController {
     update();
   }
 
-  void searchStudentByName(String query) {
-    if (query.isEmpty) {
-      filteredStudents = List.from(stud);
-    } else {
-      filteredStudents = stud
-          .where((student) =>
-              student.fullName != null &&
-              student.fullName!.toLowerCase().contains(query.toLowerCase()))
-          .toList();
-    }
-    update();
-  }
 
-  void setAllSession(AllSessionModel session) async {
-    sessionlist.clear();
-    for (int i = 0; i < session.sessions!.length; i++) {
-      sessionlist.add(session.sessions![i].year.toString());
-      print(session.sessions![i].year.toString());
-    }
-    update();
-    updateList("session", sessionlist);
-  }
-
-  void setAllClasses(AllClassModel clas) {
-    classlist.clear();
-    for (int j = 0; j < clas.classes!.length; j++) {
-      classlist.add(clas.classes![j].enName.toString());
-    }
-    update();
-    updateList("class", classlist);
-  }
-
-  void setAllGrades(AllGradesModel grade) {
-    gradelist.clear();
-    for (int j = 0; j < grade.grades!.length; j++) {
-      gradelist.add(grade.grades![j].enName.toString());
-    }
-    update();
-    updateList("grade", gradelist);
-  }
 
   void setAllDivision(AllDivisionModel division) {
     divisionlist.clear();
-    for (int j = 0; j < division.division!.length; j++) {
-      divisionlist.add(division.division![j].enName.toString());
+    print(division.division!.length);
+    for (int k = 0; k < division.division!.length; k++) {
+      divisionlist.add(division.division![k].enName.toString());
     }
     update();
     updateList("division", divisionlist);
   }
 
-  void setAllPenalty(AllPenaltyModel penalty) {
+  setAllPenalty(List<String> value){
     penaltyList.clear();
-    for (int j = 0; j < penalty.penalty!.length; j++) {
-      penaltyList.add(penalty.penalty![j].type.toString());
-    }
+    penaltyList = value;
     update();
-    updateList("penalty", penaltyList);
   }
 
   void updateList(String type, List<String> options) {

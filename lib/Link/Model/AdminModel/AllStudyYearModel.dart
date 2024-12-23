@@ -23,37 +23,126 @@ class AllStudyYearModel {
 
 class Students {
   int? id;
-  String? status;
+  int? fileId;
+  String? state;
   String? fullName;
-  String? divisionclass;
-  String? classes;
-  Null? rigesterRecord;
+  String? email;
+  Division? division;
+  Division? location;
+  Division? classes;
+  Division? grade;
+  Guardians? guardians;
 
   Students(
       {this.id,
-      this.status,
-      this.fullName,
-      this.divisionclass,
-      this.classes,
-      this.rigesterRecord});
+        this.fileId,
+        this.state,
+        this.fullName,
+        this.email,
+        this.division,
+        this.location,
+        this.classes,
+        this.grade,
+        this.guardians});
 
   Students.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    status = json['status'];
+    fileId = json['fileId'];
+    state = json['state'];
     fullName = json['fullName'];
-    divisionclass = json['divisionclass'];
-    classes = json['classes'];
-    rigesterRecord = json['rigester_record'];
+    email = json['email'];
+    division = json['division'] != null
+        ? new Division.fromJson(json['division'])
+        : null;
+    location = json['location'] != null
+        ? new Division.fromJson(json['location'])
+        : null;
+    classes =
+    json['classes'] != null ? new Division.fromJson(json['classes']) : null;
+    grade = json['grade'] != null ? new Division.fromJson(json['grade']) : null;
+    guardians = json['guardians'] != null
+        ? new Guardians.fromJson(json['guardians'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['status'] = this.status;
+    data['fileId'] = this.fileId;
+    data['state'] = this.state;
     data['fullName'] = this.fullName;
-    data['divisionclass'] = this.divisionclass;
-    data['classes'] = this.classes;
-    data['rigester_record'] = this.rigesterRecord;
+    data['email'] = this.email;
+    if (this.division != null) {
+      data['division'] = this.division!.toJson();
+    }
+    if (this.location != null) {
+      data['location'] = this.location!.toJson();
+    }
+    if (this.classes != null) {
+      data['classes'] = this.classes!.toJson();
+    }
+    if (this.grade != null) {
+      data['grade'] = this.grade!.toJson();
+    }
+    if (this.guardians != null) {
+      data['guardians'] = this.guardians!.toJson();
+    }
+    return data;
+  }
+}
+
+class Division {
+  String? name;
+  String? enName;
+
+  Division({this.name, this.enName});
+
+  Division.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    enName = json['EnName'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['EnName'] = this.enName;
+    return data;
+  }
+}
+
+class Guardians {
+  int? id;
+  String? name;
+  String? phone;
+  String? nationalId;
+  String? email;
+  String? userName;
+
+  Guardians(
+      {this.id,
+        this.name,
+        this.phone,
+        this.nationalId,
+        this.email,
+        this.userName});
+
+  Guardians.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    phone = json['phone'];
+    nationalId = json['nationalId'];
+    email = json['email'];
+    userName = json['userName'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['phone'] = this.phone;
+    data['nationalId'] = this.nationalId;
+    data['email'] = this.email;
+    data['userName'] = this.userName;
     return data;
   }
 }

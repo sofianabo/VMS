@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Class_Mgmt_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dart';
 
 class Dropdowngradecontroller extends GetxController {
@@ -32,6 +33,7 @@ class Dropdowngradecontroller extends GetxController {
     }
     Get.find<ClassMgmtController>().addGradeList(gradeNames);
     Get.find<Allstudentscontroller>().setGradeList(gradeNames);
+    Get.find<StudyYearStudentsController>().setGradeList(gradeNames);
     SetIsLoading(false);
     update();
   }
