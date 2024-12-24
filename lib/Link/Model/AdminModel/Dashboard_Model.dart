@@ -71,7 +71,7 @@ class NumberOfStudentsYear {
   });
 
   final String? countryName;
-  final int? percent;
+  final double? percent;
 
   factory NumberOfStudentsYear.fromJson(Map<String, dynamic> json) {
     return NumberOfStudentsYear(

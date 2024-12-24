@@ -99,7 +99,7 @@ Add_Full_Employee(BuildContext context) {
                                       GestureDetector(
                                         onTap: () async {
                                           await controller.pickImage(
-                                              context); // الضغط لفتح منتقي الصور
+                                              context);
                                         },
                                         child: CircleAvatar(
                                           backgroundColor: const Color(0xffC4C4C4),

@@ -65,6 +65,7 @@ class AddFullEmployee {
         "experience": Experience,
         "jobTitle": Jop_Title,
         "note": Note,
+        "salary": Salary,
         "bankAccountTitle": Bank_Account_Title,
         "bankName": Bank_Name,
         "bankBranchName": Bank_Branch_Name,

@@ -77,8 +77,8 @@ class DashboardSecondSide extends StatelessWidget {
                                       controller.dsh!.percentageStudents == null
                                           ? 0
                                           : double.tryParse(controller
-                                                  .dsh!.percentageStudents
-                                                  .toString()) ??
+                                          .dsh!.percentageStudents
+                                          .toString()) ??
                                               0,
                                   maxProgress: 100,
                                   startAngle: -27.5,

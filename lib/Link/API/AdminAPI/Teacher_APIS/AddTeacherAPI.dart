@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_All_Employee_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetAllTeachersAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
@@ -47,6 +48,11 @@ class Addteacherapi {
           options: getDioOptions());
       if (response.statusCode == 200) {
         Get.back();
+        Get.back();
+
+        Get_All_Employee_API
+            .Get_All_Employee();
+
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,

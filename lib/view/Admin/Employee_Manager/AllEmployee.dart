@@ -144,12 +144,9 @@ class _AllEmployeeState extends State<AllEmployee> {
                                                     cont.GenderListIndex,
                                                     cont.ContractTypeIndex
                                                         .trim(),
-                                                    cont.rolldialogIndex,
-                                                    cont.dialogjobTitleIndex,
+                                                    cont.ferollIndex == "Sub Admin" ? "subAdmin" : cont.ferollIndex,
+                                                    cont.fejopIndex,
                                                     password.text);
-                                            Get.back();
-                                            Get_All_Employee_API
-                                                .Get_All_Employee();
                                           },
                                           color: Get.theme.primaryColor,
                                           width: 120)
@@ -237,12 +234,12 @@ class _AllEmployeeState extends State<AllEmployee> {
                                                 child: Dropdownallemployee(
                                                     title: "Job Title",
                                                     width: 220,
-                                                    type: "dialogjobTitle"),
+                                                    type: "fejop"),
                                               ),
                                               Dropdownallemployee(
                                                   title: "Roll",
                                                   width: 220,
-                                                  type: "rolldialog"),
+                                                  type: "feroll"),
                                             ],
                                           ),
                                         ),

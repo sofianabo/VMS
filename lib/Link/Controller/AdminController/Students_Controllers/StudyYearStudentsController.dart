@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllPenaltyModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllStudyYearModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dart';
 
 class StudyYearStudentsController extends GetxController {
   String penaltyIndex = "";

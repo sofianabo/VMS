@@ -117,11 +117,11 @@ EditEmployee(BuildContext context , int idx , String employeeID) {
                                                      ? MemoryImage(
                                                      controller.selectedImage.value!)
                                                      :
-                                                 empolyeecontroller.employees[idx].imageId !=null ?
-                                                 NetworkImage("$getimage"+"${empolyeecontroller.employees[idx].imageId}"):
+                                                 empolyeecontroller.filteredreemployees[idx].imageId !=null ?
+                                                 NetworkImage("$getimage"+"${empolyeecontroller.filteredreemployees[idx].imageId}"):
                                                  null,
                                                  child: controller.selectedImage.value ==
-                                                     null &&    empolyeecontroller.employees[idx].imageId ==null
+                                                     null &&    empolyeecontroller.filteredreemployees[idx].imageId ==null
                                                      ? const Icon(
                                                    Icons.image_outlined,
                                                    color: Colors.white,

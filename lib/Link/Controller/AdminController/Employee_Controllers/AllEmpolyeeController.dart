@@ -20,6 +20,8 @@ class Allempolyeecontroller extends GetxController {
   String sessionIndex = "";
   String jobTitleIndex = "";
   String rollIndex = "";
+  String ferollIndex = "";
+  String fejopIndex = "";
   String rolldialogIndex = "";
   String dialogjobTitleIndex = "";
   String GenderListIndex = "";
@@ -98,6 +100,12 @@ setIsLoading(bool value){
       case 'roll':
         rollIndex = index ?? "";
         break;
+        case 'feroll':
+        ferollIndex = index ?? "";
+        break;
+        case 'fejop':
+        fejopIndex = index ?? "";
+        break;
       case 'rolldialog':
         rolldialogIndex = index ?? "";
         break;
@@ -137,11 +145,19 @@ setIsLoading(bool value){
   List<String> Family_StatusList = ["Widow", "Single", "Married", "Divorced"];
 
   List<String> JobTitleList = ["Manager","Dustman", "Guard","Registration","Secretariat","Secretary","Supervisor","Accountant","Technical Support", "Technical Support Manager",];
-  List<String> dialogjobTitleList = ["Manager","Dustman", "Guard","Registration","Secretariat","Secretary","Supervisor","Accountant","Technical Support", "Technical Support Manager"];
-  List<String> sessionlist = [];
+  List<String> dialogjobTitleList = ["Dustman", "Guard"];
+
+
   List<String> rolllist = ['Class', 'Observer'];
   List<String> rolldialoglist = ['Class', 'Observer'];
+
   List<String> contractList = ['Full Time', 'Hours'];
+
+
+
+  List<String> feRoll = ['Admin', 'Sub Admin', 'Registration', 'Supervisor', 'Accountant'];
+  List<String> feJoptitle = ["Manager","Registration","Secretariat","Secretary","Supervisor","Accountant","Technical Support", "Technical Support Manager",];
+
 
 
 
@@ -179,15 +195,18 @@ setIsLoading(bool value){
     List<String> options,
   ) {
     switch (type) {
-      case 'session':
-        sessionlist = options;
-        break;
       case 'jobTitle':
 
         JobTitleList = options;
         break;
       case 'roll':
         rolllist = options;
+        break;
+        case 'feroll':
+        feRoll = options;
+        break;
+        case 'fejop':
+        feJoptitle = options;
         break;
       case 'rolldialog':
         rolldialoglist = options;
@@ -213,6 +232,8 @@ setIsLoading(bool value){
   String get selectejobTitleIndex => jobTitleIndex;
 
   String get selecterollIndex => rollIndex;
+  String get selecteferollIndex => ferollIndex;
+  String get selectefejopIndex => fejopIndex;
 
   String get selecteGenderIndex => GenderListIndex;
 

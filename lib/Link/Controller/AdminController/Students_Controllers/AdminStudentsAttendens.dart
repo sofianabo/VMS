@@ -92,7 +92,7 @@ class Student_attendence_controller extends GetxController {
     students.clear();
     for (var stu in AllStudents!) {
       students.add({
-        'studentId': stu.studentId ?? 0,
+        'studentId': stu.id,
         'status': 'Present',
         'cause': "",
         'name': stu.fullName,

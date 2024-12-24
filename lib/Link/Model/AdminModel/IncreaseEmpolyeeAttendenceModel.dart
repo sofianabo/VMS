@@ -27,7 +27,7 @@ class IncreaseEmpolyeeAttendenceModel {
 class Employee {
   int? id;
   String? fullName;
-  dynamic imageId;
+  int? imageId;
 
   Employee({this.id, this.fullName, this.imageId});
 

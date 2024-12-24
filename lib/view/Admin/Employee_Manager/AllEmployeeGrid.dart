@@ -139,8 +139,18 @@ class AllEmployeeGrid extends StatelessWidget {
               return HoverScaleCard(
                 child: GestureDetector(
                     onTap: () async {
+                    if(controller.filteredreemployees[index].hasEmployee == true){
                       await GetEmployeeByIdApi.GetEmployeeById(employeeID: controller.filteredreemployees[index].id.toString(),context: context,index: index);
-                    },
+                    }else{
+                      Get.dialog(
+                        VMSAlertDialog(
+                            action: [],
+                            contents: Text("This Employee Not Have Data"),
+                            apptitle: "This Employee Not Uploaded his/her Data",
+                          subtitle: "none",)
+                      );
+                    }
+                     },
                     child: Container(
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(

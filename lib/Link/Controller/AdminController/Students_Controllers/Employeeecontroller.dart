@@ -20,7 +20,7 @@ class EmployeeController extends GetxController {
         'status': 'Present',
         'cause': null,
         'name': emp.fullName!,
-        'imgid': emp.imageId!,
+        'imgid': emp.imageId??"",
       });
     }
 
@@ -39,7 +39,7 @@ class EmployeeController extends GetxController {
           'status': 'Present',
           'cause': "null",
           'name': t.fullName!,
-          'imgid': t.imageId!,
+          'imgid': t.imageId??"",
         });
       } catch (e) {
         print(t.id);
