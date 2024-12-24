@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/All_Virtual_Employee_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/All_Employee_Model.dart';
 import 'package:vms_school/Link/Model/AdminModel/One_Employee_Model.dart';
@@ -113,6 +114,9 @@ setIsLoading(bool value){
       searchRequestByName(Value.toString(),jobTitleIndex);
     }else if(type == "jobTitle" && Value ==null) {
       searchRequestByName("",jobTitleIndex);
+    }
+    if(type == "roll"){
+      Get.find<All_Virtual_Employee_Controller>().searchRequestByName(Get.find<All_Virtual_Employee_Controller>().filteredName, rollIndex);
     }
     update();
   }

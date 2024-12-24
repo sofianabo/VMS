@@ -4,6 +4,7 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownClas
 import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownDivisionAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownGradeController.dart.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownPenaltyController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 
@@ -108,15 +109,11 @@ class DropDownStudyYearStudents extends StatelessWidget {
 
                       }
                     }
-                    // switch (type) {
-                    //   case 'gradediag':
-                    //     cont.setGeidx(Get.find<Dropdowngradecontroller>().gradess!.grades!.firstWhere((grad) => grad.enName  == newValue || grad.name  == newValue).id);
-                    //     print(cont.grades);
-                    //     break;
-                    //   case 'admin':
-                    //     Get.find<Virtual_Employee_Controller>().setVECUserID(Get.find<Virtual_Employee_Controller>().viraulClasses!.firstWhere((admin) => admin.userName  == newValue).id);
-                    //     break;
-                    // }
+                    switch (type) {
+                      case 'penalty':
+                        Get.find<Dropdownpenaltycontroller>().setVECUserID(Get.find<Dropdownpenaltycontroller>().penalty!.firstWhere((admin) => admin.enName  == newValue || admin.name  == newValue).id);
+                        break;
+                    }
                   }
                 },
                 dropdownColor: Get.theme.cardColor,

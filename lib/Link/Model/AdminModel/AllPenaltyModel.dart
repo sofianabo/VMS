@@ -22,19 +22,22 @@ class AllPenaltyModel {
 }
 
 class Penalty {
-  String? type;
+  String? name;
+  String? enName;
   int? id;
 
-  Penalty({this.type, this.id});
+  Penalty({this.name, this.enName, this.id});
 
   Penalty.fromJson(Map<String, dynamic> json) {
-    type = json['type'];
+    name = json['name'];
+    enName = json['enName'];
     id = json['id'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['type'] = this.type;
+    data['name'] = this.name;
+    data['enName'] = this.enName;
     data['id'] = this.id;
     return data;
   }

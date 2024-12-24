@@ -22,7 +22,7 @@ class OneStudentAttendenceModel {
 }
 
 class StudentAt {
-  Null? cause;
+  dynamic cause;
   String? date;
   String? status;
 

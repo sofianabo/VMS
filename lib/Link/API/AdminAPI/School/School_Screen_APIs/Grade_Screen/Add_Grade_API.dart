@@ -37,8 +37,6 @@ class Add_Grade_API {
           options: getDioOptions());
       if (response.statusCode == 200) {
         await Get_All_Grade_API(context).Get_All_Grade();
-        print(response.statusCode);
-        Get.back();
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,
@@ -55,7 +53,8 @@ class Add_Grade_API {
         ErrorHandler.handleException(Exception(e.toString()));
       }
     }finally{
-     Get.back();
+      Get.back();
+      Get.back();
     }
   }
 }

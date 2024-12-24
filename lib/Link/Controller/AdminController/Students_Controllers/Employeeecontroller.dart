@@ -53,7 +53,7 @@ class EmployeeController extends GetxController {
     update();
   }
 
-  // تعيين حالة التحميل
+
   setIsload(bool value) {
     Isloading = value;
     update();

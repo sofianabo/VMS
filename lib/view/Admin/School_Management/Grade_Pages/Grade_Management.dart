@@ -77,7 +77,6 @@ class _GradeManagementState extends State<GradeManagement> {
                                           enName: enName.text,
                                           feeCount: feeCount.text,
                                         );
-                                        Get.back();
                                       },
                                       color: Get.theme.primaryColor,
                                       width: 120),

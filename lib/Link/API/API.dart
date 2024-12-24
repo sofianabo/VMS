@@ -1,11 +1,6 @@
 // String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
-// String hostPort = "http://192.168.139.115:8000/api/";
+String hostPort = "http://192.168.172.56:8000/api/";
 // String hostPort = "http://127.0.0.1:8000/api/";
-// String hostPort = "http://192.168.213.226:8000/api/";
-// String hostPort = "http://192.168.43.21:8000/api/";
-
-// String hostPort = "http://192.168.213.226:8000/api/";
-String hostPort = "http://192.168.172.226:8000/api/";
 // String hostPort = "http://192.168.43.21:8000/api/";
 
 //..................... All ...................//
@@ -15,7 +10,7 @@ String Home = "homeScreen";
 //..................... Auth ...................//
 
 String LOGIN = "login";
-String logout = "logout";
+String logout = "logoutF";
 
 //..................... Students ...................//
 
@@ -46,6 +41,11 @@ String addEmployeeAttendance = "addEmployeeAttendance";
 String employeeAttendence = "getAllEmployeeAttendance";
 String getEmployeeAttendance = "getEmployeeAttendance";
 String employeeIncreaseAttendance = "employeeIncreaseAttendance";
+
+String addVirtualUser = "addVirtualUser";
+String getVirtualUser = "getVirtualUser";
+String deleteVirtualEmployee = "deleteVirtualUser";
+
 //..................... Teachers ...................//
 
 String getTeachers = "getAllTeacher";
@@ -72,7 +72,6 @@ String getclasses = "getClasses";
 String addClass = "addClass";
 String updateClass = "updateClass";
 String deleteClass = "deleteClass";
-String getVirtualUser = "getVirtualUser";
 
 String getAllDivision = "getAllDivision";
 String createDivision = "createDivision";

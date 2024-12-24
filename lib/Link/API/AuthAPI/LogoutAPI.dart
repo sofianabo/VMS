@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AuthController/UserController.dart';
-import 'package:vms_school/Link/Model/AuthModel/UserModel.dart';
 import 'package:vms_school/main.dart';
+import 'package:vms_school/view/Auth/LoginScreen.dart';
 import '../../../view/website/Home.dart';
 import '../API.dart' as global;
 
@@ -13,6 +13,10 @@ class Logoutapi {
   BuildContext context;
   Dio dio = Dio();
   Logout() async {
+    Get.to(
+          () => Directionality(textDirection: TextDirection.rtl, child: LoginScreen()),
+    );
+    await prefs!.clear();
     String myurl = "${global.hostPort}${global.logout}";
     try {
       var response = await dio.get(myurl,

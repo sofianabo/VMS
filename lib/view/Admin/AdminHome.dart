@@ -57,7 +57,7 @@ class AdminHome extends StatelessWidget {
                       return StudyYearStudents();
                     case "All Guardians":
                       return AllGuardians();
-                    case "Student Status":
+                    case "Student Attendance":
                       return StudentStatus();
                     case "Teacher Management":
                       return TeacherManagement();

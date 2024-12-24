@@ -91,10 +91,6 @@ class DropDownAllSessions extends StatelessWidget {
                   Get_All_Division_API(context)
                       .Get_All_Division(sessionId: cont.sessionId);
                   break;
-                case 'StudentState':
-                  Studentattendenceapi(context)
-                      .Studentattendence(sessionID: cont.sessionId);
-                  break;
                   case 'SYStudent':
                     Study_Year_Students_API(context).Study_Year_Students(sessionId: cont.sessionId);
                     Get.find<StudyYearStudentsController>().resetOnSessionChange();

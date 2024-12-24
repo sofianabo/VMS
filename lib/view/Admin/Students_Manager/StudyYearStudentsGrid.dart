@@ -219,7 +219,7 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid> {
                                         onPressed: () async {
                                           await Studentpunishapi(context)
                                               .Studentpunish(
-                                                  1,
+                                              Get.find<Dropdownpenaltycontroller>().penid!,
                                                   reason.text,
                                                   controller.startdate.value
                                                       .toString(),

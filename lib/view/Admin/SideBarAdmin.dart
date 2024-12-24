@@ -100,8 +100,8 @@ class SideBarAdmin extends StatelessWidget {
                       if (value == "All Guardians") {
                         cont.updateContent("All Guardians");
                       }
-                      if (value == "Student Status") {
-                        cont.updateContent("Student Status");
+                      if (value == "Student Attendance") {
+                        cont.updateContent("Student Attendance");
                       }
                       if (value == "Students Attendance Managment") {
                         cont.updateContent("Students Attendance Managment");
@@ -125,8 +125,8 @@ class SideBarAdmin extends StatelessWidget {
                           ),
                       ),
                       PopupMenuItem<String>(
-                        value: 'Student Status',
-                        child: Text('Student Status',
+                        value: 'Student Attendance',
+                        child: Text('Student Attendance',
                           ),
                       ),
                       PopupMenuItem<String>(

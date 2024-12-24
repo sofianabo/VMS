@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/StudentAttendenceByIdAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/oneStudentAttendenceController.dart';
@@ -203,6 +205,54 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                                                   fontSize: 20,
                                                   fontWeight:
                                                       FontWeight.bold))),
+                                  FutureBuilder(
+                                    future: precacheImage(
+                                        NetworkImage(
+                                            "$getimage${control.stud[index].fileId}"),
+                                        context),
+                                    builder: (context, snapshot) {
+                                      if (snapshot
+                                          .connectionState ==
+                                          ConnectionState.done) {
+                                        return CircleAvatar(
+                                          maxRadius: 55,
+                                          backgroundColor:
+                                          const Color(
+                                              0xffC4C4C4),
+                                          backgroundImage: control.stud[index].fileId !=
+                                              null
+                                              ? NetworkImage(
+                                              "$getimage${control.stud[index].fileId}")
+                                              : null,
+                                          child: control.stud[index].fileId ==
+                                              null
+                                              ? const Icon(
+                                            Icons
+                                                .image_outlined,
+                                            color:
+                                            Colors.white,
+                                            size: 30,
+                                          )
+                                              : null,
+                                        );
+                                      } else {
+                                        return CircleAvatar(
+                                          maxRadius: 55,
+                                          backgroundColor:
+                                          const Color(
+                                              0xffC4C4C4),
+                                          child:
+                                          LoadingAnimationWidget
+                                              .inkDrop(
+                                            color: Theme.of(context)
+                                                .primaryColor,
+                                            size: 25,
+                                          ),
+                                        );
+                                      }
+                                    },
+                                  ),
+
                                 ]),
                             Text("${control.stud[index].status}",
                                 style: Get.theme.textTheme.bodyMedium!.copyWith(
