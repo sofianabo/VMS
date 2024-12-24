@@ -24,7 +24,7 @@ class EmployeesAttendanceManagmentGrid extends StatelessWidget {
                 child: Padding(
                     padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
                     child:ListView.builder(
-                      itemCount: controller.Employee.length,
+                      itemCount: controller.Employees.length,
                       itemBuilder: (context, index) {
                         return Column(
                           children: [
@@ -36,18 +36,18 @@ class EmployeesAttendanceManagmentGrid extends StatelessWidget {
                                   child: Row(
                                     children: [
                                       FutureBuilder(
-                                        future: precacheImage(NetworkImage("$getimage${controller.Employee[index]["imgid"]}"), context),
+                                        future: precacheImage(NetworkImage("$getimage${controller.Employees[index]["imgid"]}"), context),
                                         builder: (context, snapshot) {
                                           if (snapshot.connectionState == ConnectionState.done) {
                                             return  CircleAvatar(
                                               maxRadius: 25,
                                               backgroundColor: const Color(0xffC4C4C4),
                                               backgroundImage:
-                                              controller.Employee[index]["imgid"] != null
-                                                  ? NetworkImage("$getimage${controller.Employee[index]["imgid"]}") :
+                                              controller.Employees[index]["imgid"] != null
+                                                  ? NetworkImage("$getimage${controller.Employees[index]["imgid"]}") :
                                               null,
 
-                                              child: controller.Employee[index]["imgid"] == null
+                                              child: controller.Employees[index]["imgid"] == null
                                                   ? const Icon(
                                                 Icons.image_outlined,
                                                 color: Colors.white,
@@ -72,7 +72,7 @@ class EmployeesAttendanceManagmentGrid extends StatelessWidget {
                                         padding: const EdgeInsets.only(
                                             left: 8.0, right: 8.0),
                                         child: Text(
-                                            "${controller.Employee[index]['name']}"),
+                                            "${controller.Employees[index]['name']}"),
                                       ),
                                     ],
                                   ),
@@ -82,7 +82,7 @@ class EmployeesAttendanceManagmentGrid extends StatelessWidget {
                                   children: [
                                     Radio(
                                       value: status,
-                                      groupValue: controller.Employee[index]
+                                      groupValue: controller.Employees[index]
                                       ['status'],
                                       activeColor: Color(0xff134B70),
                                       onChanged: (value) {

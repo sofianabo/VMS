@@ -29,7 +29,6 @@ class Studentattendenceapi {
       String? date}) async {
     try {
       c.setIsLoading(true);
-     c.setIsLoading(true);
     
 
       String myurl = "${global.hostPort}${global.studentAttenendnce}";

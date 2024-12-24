@@ -57,6 +57,11 @@ class Dropdownallemployee extends StatelessWidget {
               ? cont.selecteFamily_StatusIndex
               : title;
           break;
+           case 'Contract':
+          selectedValue = cont.selecteContractTypeIndex.isNotEmpty
+              ? cont.selecteContractTypeIndex
+              : title;
+          break;
       }
 
 
@@ -195,6 +200,18 @@ class Dropdownallemployee extends StatelessWidget {
         break;
       case 'rolldialog':
         items.addAll(cont.rolldialoglist.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.textTheme.bodyMedium!
+                  .copyWith(fontSize: 14),
+            ),
+          );
+        }).toList());
+        break;
+           case 'Contract':
+        items.addAll(cont.contractList.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(

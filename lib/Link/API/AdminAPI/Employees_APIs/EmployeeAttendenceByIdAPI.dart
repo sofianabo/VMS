@@ -6,6 +6,7 @@ import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/oneStudentAttendenceController.dart';
 import 'package:vms_school/Link/Model/AdminModel/OneStudentAttendenceModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/oneEmployeeAttendenceModel.dart';
+import 'package:vms_school/widgets/Loading_Dialog.dart';
 import '../../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';
 
@@ -18,6 +19,8 @@ class Employeeattendencebyidapi {
 
   Employeeattendencebyid(int id) async {
     try {
+      CancelToken cancelToken = CancelToken();
+      Loading_Dialog(cancelToken: cancelToken);
       String myurl = "${global.hostPort}${global.getEmployeeAttendance}";
       var response = await dio.post(myurl,
           data: {"employeeId": id}, options: getDioOptions());
@@ -41,6 +44,8 @@ class Employeeattendencebyidapi {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
+    } finally {
+      Get.back();
     }
   }
 }

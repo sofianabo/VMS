@@ -4,12 +4,12 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetAllTeachersAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
+import 'package:vms_school/widgets/Loading_Dialog.dart';
 import '../../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';
 
-
 class Addteacherapi {
-   Allteachercontroller u = Get.find<Allteachercontroller>();
+  Allteachercontroller u = Get.find<Allteachercontroller>();
   Addteacherapi(this.context);
   BuildContext context;
   Dio dio = Dio();
@@ -28,6 +28,8 @@ class Addteacherapi {
   ) async {
     String myurl = "${global.hostPort}${global.addEmpolyee}";
     try {
+      CancelToken cancelToken = CancelToken();
+      Loading_Dialog(cancelToken: cancelToken);
       var response = await dio.post(myurl,
           data: {
             "firstName": firstName,
@@ -44,7 +46,6 @@ class Addteacherapi {
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
-        await Getallteachersapi.Getallteachers();
         Get.back();
       } else {
         ErrorHandler.handleDioError(DioError(

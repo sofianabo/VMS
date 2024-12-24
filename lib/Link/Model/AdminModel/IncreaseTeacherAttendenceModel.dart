@@ -1,7 +1,8 @@
 class IncreaseTeacherAttendenceModel {
   List<Teacher>? teacher;
+  List<String>? noAttendanceDatas;
 
-  IncreaseTeacherAttendenceModel({this.teacher});
+  IncreaseTeacherAttendenceModel({this.teacher, this.noAttendanceDatas});
 
   IncreaseTeacherAttendenceModel.fromJson(Map<String, dynamic> json) {
     if (json['teacher'] != null) {
@@ -10,6 +11,7 @@ class IncreaseTeacherAttendenceModel {
         teacher!.add(new Teacher.fromJson(v));
       });
     }
+    noAttendanceDatas = json['noAttendanceDatas'].cast<String>();
   }
 
   Map<String, dynamic> toJson() {
@@ -17,6 +19,7 @@ class IncreaseTeacherAttendenceModel {
     if (this.teacher != null) {
       data['teacher'] = this.teacher!.map((v) => v.toJson()).toList();
     }
+    data['noAttendanceDatas'] = this.noAttendanceDatas;
     return data;
   }
 }
@@ -24,7 +27,7 @@ class IncreaseTeacherAttendenceModel {
 class Teacher {
   int? id;
   String? fullName;
-  int? imageId;
+  dynamic imageId;
 
   Teacher({this.id, this.fullName, this.imageId});
 

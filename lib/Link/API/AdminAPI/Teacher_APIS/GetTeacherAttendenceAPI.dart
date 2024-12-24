@@ -18,8 +18,7 @@ class Getteacherattendenceapi {
 
   Getteacherattendence() async {
     try {
-     
-
+      c.setIsLoading(true);
       String myurl = "${global.hostPort}${global.getTeacherAttendance}";
       var response = await dio.get(myurl, options: getDioOptions());
       if (response.statusCode == 200) {

@@ -78,8 +78,8 @@ class _EmployeeAttendanceManagmentState
                           onPressed: () async {
                             await Add_Employee_Attendence_API
                                 .Add_Employee_Attendence(
-                                    employees: controller.Employee);
-                            print(controller.Employee);
+                                    employees: controller.Employees);
+                            print(controller.Employees);
                           },
                           icon: Icon(Icons.file_upload_outlined,
                               size: 22, color: Get.theme.primaryColor)),
