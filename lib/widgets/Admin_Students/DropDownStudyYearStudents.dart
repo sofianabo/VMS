@@ -135,6 +135,7 @@ class DropDownStudyYearStudents extends StatelessWidget {
                     if(type == "class"){
                       cont.resetOnclassChange();
                     }
+                    cont.searchByName(cont.filterName, cont.gradeIndex, cont.classIndex, cont.divisionIndex);
                     cont.update();
                   },
                   child: Icon(

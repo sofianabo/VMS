@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownGradeController.dart.dart';
@@ -21,8 +22,12 @@ class Getallgradeapi {
       Dropdowngradecontroller c = Get.find<Dropdowngradecontroller>();
       final Allstudentscontroller controller = Allstudentscontroller();
       final  SYStudentsController = StudyYearStudentsController();
+      final  stuattendence = Student_attendence_controller();
+
       controller.setGradeLoading(true);
       SYStudentsController.setGradeLoading(true);
+      stuattendence.setGradeLoading(true);
+
       String myurl = "${global.hostPort}${global.getGrade}";
       var response = await dio.get(myurl,
 options: getDioOptions());

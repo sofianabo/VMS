@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
@@ -17,6 +18,7 @@ class Getallclassapi {
   final DivisionControllers = Get.find<Dropdowndivisioncontroller>();
   final Studentcontroller = Get.find<Allstudentscontroller>();
   final StudyYearStudents = Get.find<StudyYearStudentsController>();
+  final Student_attendence = Get.find<Student_attendence_controller>();
 
   BuildContext context;
   Getallclassapi(this.context);
@@ -27,6 +29,9 @@ class Getallclassapi {
       ClassController.setIsLoading(true);
       Studentcontroller.setClassLoading(true);
       StudyYearStudents.setClassLoading(true);
+      Student_attendence.setClassLoading(true);
+
+
       final controller = Get.find<Divisions_Controller>();
       controller.SetIsloading(true);
       String myurl = "${global.hostPort}${global.getclasses}";

@@ -159,6 +159,7 @@ class StudyYearStudentsController extends GetxController {
   void setAllStudents(AllStudyYearModel model) {
     stud = model.students!;
     filteredStudents = List.from(stud!);
+    searchByName(filterName,gradeIndex,classIndex,divisionIndex);
     setIsLoading(false);
     update();
   }

@@ -18,7 +18,7 @@ class Study_Year_Students_API {
     try {
       final controller = Get.find<StudyYearStudentsController>();
       controller.setIsLoading(true);
-      var response = await dio.get(myURI,
+      var response = await dio.post(myURI,
           data: {
           "sessionId":sessionId
           },
