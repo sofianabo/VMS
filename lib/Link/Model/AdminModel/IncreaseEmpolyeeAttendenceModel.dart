@@ -1,15 +1,17 @@
 class IncreaseEmpolyeeAttendenceModel {
-  List<Employeee>? employee;
+  List<Employee>? employee;
+  List<String>? noAttendanceDatas;
 
-  IncreaseEmpolyeeAttendenceModel({this.employee});
+  IncreaseEmpolyeeAttendenceModel({this.employee, this.noAttendanceDatas});
 
   IncreaseEmpolyeeAttendenceModel.fromJson(Map<String, dynamic> json) {
     if (json['employee'] != null) {
-      employee = <Employeee>[];
+      employee = <Employee>[];
       json['employee'].forEach((v) {
-        employee!.add(new Employeee.fromJson(v));
+        employee!.add(new Employee.fromJson(v));
       });
     }
+    noAttendanceDatas = json['noAttendanceDatas'].cast<String>();
   }
 
   Map<String, dynamic> toJson() {
@@ -17,18 +19,19 @@ class IncreaseEmpolyeeAttendenceModel {
     if (this.employee != null) {
       data['employee'] = this.employee!.map((v) => v.toJson()).toList();
     }
+    data['noAttendanceDatas'] = this.noAttendanceDatas;
     return data;
   }
 }
 
-class Employeee {
+class Employee {
   int? id;
   String? fullName;
-  int? imageId;
+  dynamic imageId;
 
-  Employeee({this.id, this.fullName, this.imageId});
+  Employee({this.id, this.fullName, this.imageId});
 
-  Employeee.fromJson(Map<String, dynamic> json) {
+  Employee.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     fullName = json['fullName'];
     imageId = json['imageId'];

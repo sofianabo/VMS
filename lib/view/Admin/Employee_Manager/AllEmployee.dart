@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_All_Employee_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/AddTeacherAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/view/Admin/Employee_Manager/Add_Full_Employee.dart';
 import 'package:vms_school/view/Admin/Employee_Manager/AllEmployeeGrid.dart';
@@ -8,6 +9,8 @@ import 'package:vms_school/widgets/Admin_Employee/Export_Data.dart';
 import 'package:vms_school/widgets/Admin_School/All_Screen_Sessions.dart';
 import 'package:vms_school/widgets/Admin_employee/DropDownAllEmployee.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
+import 'package:vms_school/widgets/Calender.dart';
+import 'package:vms_school/widgets/DropDown.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 import '../../../Icons_File/v_m_s__icons_icons.dart';
 import '../../../widgets/TextFildWithUpper.dart';
@@ -30,6 +33,10 @@ class _AllEmployeeState extends State<AllEmployee> {
   TextEditingController password = TextEditingController();
 
   TextEditingController cPassword = TextEditingController();
+
+  TextEditingController firstName = TextEditingController();
+  TextEditingController lastName = TextEditingController();
+  TextEditingController phone = TextEditingController();
 
   @override
   void initState() {
@@ -119,63 +126,173 @@ class _AllEmployeeState extends State<AllEmployee> {
                               size: 18, color: Get.theme.primaryColor),
                           onSelected: (value) {
                             if (value == "Add Employee") {
-                              Get.dialog(VMSAlertDialog(
-                                  action: [
-                                    ButtonDialog(
-                                        text: "Add Employee",
-                                        onPressed: () {
-                                          //api
-                                        },
-                                        color: Get.theme.primaryColor,
-                                        width: 120)
-                                  ],
-                                  contents: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 15.0),
-                                            child: Textfildwithupper(
-                                                Uptext: "Email",
-                                                width: 220,
-                                                controller: email,
-                                                hinttext: "Email"),
-                                          ),
-                                          Textfildwithupper(
-                                              Uptext: "Username",
-                                              width: 220,
-                                              controller: username,
-                                              hinttext: "Username")
-                                        ],
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 15.0),
-                                        child: Row(
+                              Get.dialog(GetBuilder<Allempolyeecontroller>(
+                                  builder: (cont) {
+                                return VMSAlertDialog(
+                                    action: [
+                                      ButtonDialog(
+                                          text: "Add Employee",
+                                          onPressed: () async {
+                                            await Addteacherapi(context)
+                                                .Addteacher(
+                                                    firstName.text,
+                                                    lastName.text,
+                                                    email.text,
+                                                    username.text,
+                                                    cont.Joindate.toString(),
+                                                    phone.text,
+                                                    cont.GenderListIndex,
+                                                    cont.ContractTypeIndex
+                                                        .trim(),
+                                                    cont.rolldialogIndex,
+                                                    cont.dialogjobTitleIndex,
+                                                    password.text);
+                                            Get.back();
+                                            Get_All_Employee_API
+                                                .Get_All_Employee();
+                                          },
+                                          color: Get.theme.primaryColor,
+                                          width: 120)
+                                    ],
+                                    contents: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Row(
                                           children: [
                                             Padding(
                                               padding: const EdgeInsets.only(
                                                   right: 15.0),
                                               child: Textfildwithupper(
-                                                  Uptext: "Password",
+                                                  Uptext: "First Name",
                                                   width: 220,
-                                                  controller: password,
-                                                  hinttext: "Password"),
+                                                  controller: firstName,
+                                                  hinttext: "First Name"),
                                             ),
                                             Textfildwithupper(
-                                                Uptext: "Confirm Password",
+                                                Uptext: "Last Name",
                                                 width: 220,
-                                                controller: cPassword,
-                                                hinttext: "Confirm Password")
+                                                controller: lastName,
+                                                hinttext: "Last Name")
                                           ],
                                         ),
-                                      )
-                                    ],
-                                  ),
-                                  apptitle: "Add Employee",
-                                  subtitle: "none"));
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 15.0),
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 15.0),
+                                                child: Textfildwithupper(
+                                                    Uptext: "Email",
+                                                    width: 220,
+                                                    controller: email,
+                                                    hinttext: "Email"),
+                                              ),
+                                              Textfildwithupper(
+                                                  Uptext: "Username",
+                                                  width: 220,
+                                                  controller: username,
+                                                  hinttext: "Username")
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 15.0),
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 15.0),
+                                                child: Textfildwithupper(
+                                                    Uptext: "Phone Number",
+                                                    width: 220,
+                                                    controller: phone,
+                                                    hinttext: "Phone Number"),
+                                              ),
+                                              Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  JoinDate(
+                                                    width: 220,
+                                                    Uptext: "Join Date",
+                                                  )
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 15.0),
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 15.0),
+                                                child: Dropdownallemployee(
+                                                    title: "Job Title",
+                                                    width: 220,
+                                                    type: "dialogjobTitle"),
+                                              ),
+                                              Dropdownallemployee(
+                                                  title: "Roll",
+                                                  width: 220,
+                                                  type: "rolldialog"),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 15.0),
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 15.0),
+                                                child: Dropdownallemployee(
+                                                    title: "Gender",
+                                                    width: 220,
+                                                    type: "Gender"),
+                                              ),
+                                              Dropdownallemployee(
+                                                  title: "Contract Type",
+                                                  width: 220,
+                                                  type: "Contract"),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 15.0),
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 15.0),
+                                                child: Textfildwithupper(
+                                                    Uptext: "Password",
+                                                    width: 220,
+                                                    controller: password,
+                                                    hinttext: "Password"),
+                                              ),
+                                              Textfildwithupper(
+                                                  Uptext: "Confirm Password",
+                                                  width: 220,
+                                                  controller: cPassword,
+                                                  hinttext: "Confirm Password")
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    apptitle: "Add Employee",
+                                    subtitle: "none");
+                              }));
                             }
                             if (value == "Add Full Employee") {
                               Add_Full_Employee(context);

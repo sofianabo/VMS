@@ -23,6 +23,7 @@ class Allempolyeecontroller extends GetxController {
   String dialogjobTitleIndex = "";
   String GenderListIndex = "";
   String Family_StatusIndex = "";
+  String ContractTypeIndex = "";
 
   SetDefualtValue(){
     GenderListIndex="";
@@ -108,6 +109,9 @@ setIsLoading(bool value){
       case 'Family_Status':
         Family_StatusIndex = index ?? "";
         break;
+        case 'Contract':
+        ContractTypeIndex = index ?? "";
+        break;
     }
     if(type == "jobTitle" && Value!=null){
       searchRequestByName(Value.toString(),jobTitleIndex);
@@ -129,10 +133,12 @@ setIsLoading(bool value){
   List<String> Family_StatusList = ["Widow", "Single", "Married", "Divorced"];
 
   List<String> JobTitleList = ["Manager","Dustman", "Guard","Registration","Secretariat","Secretary","Supervisor","Accountant","Technical Support", "Technical Support Manager",];
-  List<String> dialogjobTitleList = ["Dustman", "Guard"];
+  List<String> dialogjobTitleList = ["Manager","Dustman", "Guard","Registration","Secretariat","Secretary","Supervisor","Accountant","Technical Support", "Technical Support Manager"];
   List<String> sessionlist = [];
   List<String> rolllist = ['Class', 'Observer'];
   List<String> rolldialoglist = ['Class', 'Observer'];
+  List<String> contractList = ['Full Time', 'Hours'];
+
 
 
 
@@ -191,6 +197,9 @@ setIsLoading(bool value){
       case 'Family_Status':
         Family_StatusList = options;
         break;
+         case 'Contract':
+        contractList = options;
+        break;
     }
     update();
   }
@@ -202,6 +211,8 @@ setIsLoading(bool value){
   String get selecterollIndex => rollIndex;
 
   String get selecteGenderIndex => GenderListIndex;
+
+  String get selecteContractTypeIndex => ContractTypeIndex;
 
   String get selecteFamily_StatusIndex => Family_StatusIndex;
 

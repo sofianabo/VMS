@@ -22,7 +22,7 @@ class TeacherAttendanceManagmentGrid extends StatelessWidget {
                             padding: const EdgeInsets.only(
                                 top: 10, left: 40, right: 40),
                             child: ListView.builder(
-                              itemCount: controller.Employee.length,
+                              itemCount: controller.Employees.length,
                               itemBuilder: (context, index) {
                                 return Column(
                                   children: [
@@ -37,7 +37,7 @@ class TeacherAttendanceManagmentGrid extends StatelessWidget {
                                               FutureBuilder(
                                                 future: precacheImage(
                                                     NetworkImage(
-                                                        "$getimage${controller.Employee[index]["imgid"]}"),
+                                                        "$getimage${controller.Employees[index]["imgid"]}"),
                                                     context),
                                                 builder: (context, snapshot) {
                                                   if (snapshot
@@ -48,26 +48,29 @@ class TeacherAttendanceManagmentGrid extends StatelessWidget {
                                                       backgroundColor:
                                                           const Color(
                                                               0xffC4C4C4),
-                                                      backgroundImage: controller
-                                                                          .Employee[
-                                                                      index]
-                                                                  ["imgid"] !=
-                                                              null
-                                                          ? NetworkImage(
-                                                              "$getimage${controller.Employee[index]["imgid"]}")
-                                                          : null,
-                                                      child: controller.Employee[
-                                                                      index]
-                                                                  ["imgid"] ==
-                                                              null
-                                                          ? const Icon(
-                                                              Icons
-                                                                  .image_outlined,
-                                                              color:
-                                                                  Colors.white,
-                                                              size: 15,
-                                                            )
-                                                          : null,
+                                                      backgroundImage:
+                                                          controller.Employees[
+                                                                          index]
+                                                                      [
+                                                                      "imgid"] !=
+                                                                  null
+                                                              ? NetworkImage(
+                                                                  "$getimage${controller.Employees[index]["imgid"]}")
+                                                              : null,
+                                                      child:
+                                                          controller.Employees[
+                                                                          index]
+                                                                      [
+                                                                      "imgid"] ==
+                                                                  null
+                                                              ? const Icon(
+                                                                  Icons
+                                                                      .image_outlined,
+                                                                  color: Colors
+                                                                      .white,
+                                                                  size: 15,
+                                                                )
+                                                              : null,
                                                     );
                                                   } else {
                                                     return CircleAvatar(
@@ -90,7 +93,7 @@ class TeacherAttendanceManagmentGrid extends StatelessWidget {
                                                 padding: const EdgeInsets.only(
                                                     left: 8.0, right: 8.0),
                                                 child: Text(
-                                                    "${controller.Employee[index]['name']}"),
+                                                    "${controller.Employees[index]['name']}"),
                                               ),
                                             ],
                                           ),
@@ -107,7 +110,7 @@ class TeacherAttendanceManagmentGrid extends StatelessWidget {
                                                     Radio(
                                                       value: status,
                                                       groupValue: controller
-                                                              .Employee[index]
+                                                              .Employees[index]
                                                           ['status'],
                                                       activeColor:
                                                           Color(0xff134B70),
