@@ -102,7 +102,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                               width: w / 4,
                               radius: 5,
                               controller: search,
-                              suffixIcon: Icons.search,
+                              suffixIcon: search.text != "" ? Icons.clear: Icons.search,
                             ),
                           ),
                         ],

@@ -73,6 +73,7 @@ class Allteachercontroller extends GetxController {
           SubjectIndex = index ?? "";
         break;
     }
+    searchRequestByName(filteredName,classIndex,SubjectIndex);
     update();
   }
 
@@ -89,32 +90,40 @@ class Allteachercontroller extends GetxController {
     searchRequestByName(filteredName , classIndex , SubjectIndex);
     update();
   }
-  void searchRequestByName(String query, String classes , String subjects) {
-    List<Teachers> tempFilteredList = List.from(teachers);
+  void searchRequestByName(String query, String classes, String subjects) {
+    List<Teachers> tempFilteredList = List.from(teachers ?? []);
+
     if (query != null && query.isNotEmpty) {
-      tempFilteredList = tempFilteredList.where((emp) {
-        final empName = emp.fullName?.toLowerCase() ?? '';
-        final phone = emp.phone?.toLowerCase() ?? '';
-        final email = emp.email?.toLowerCase() ?? '';
-        return empName.contains(query.toLowerCase()) || phone.contains(query.toLowerCase()) || email.contains(query.toLowerCase());
+      tempFilteredList = tempFilteredList.where((teacher) {
+        final empName = teacher.fullName?.toLowerCase() ?? '';
+        final phone = teacher.phone?.toLowerCase() ?? '';
+        final email = teacher.email?.toLowerCase() ?? '';
+        return empName.contains(query.toLowerCase()) ||
+            phone.contains(query.toLowerCase()) ||
+            email.contains(query.toLowerCase());
       }).toList();
     }
-    filteredName = query;
-    // if (classes.isNotEmpty) {
-    //   tempFilteredList = tempFilteredList.where((emp) {
-    //     return emp.!.toLowerCase() == jobindexed.toLowerCase();
-    //   }).toList();
-    // }
-    // if (classes.isNotEmpty) {
-    //   tempFilteredList = tempFilteredList.where((emp) {
-    //     return emp.!.toLowerCase() == jobindexed.toLowerCase();
-    //   }).toList();
-    // }
 
+    if (classes.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((teacher) {
+        return teacher.classes?.any((cls) =>
+        cls.name?.toLowerCase() == classes.toLowerCase() ||
+            cls.enName?.toLowerCase() == classes.toLowerCase()) ?? false;
+      }).toList();
+    }
+
+    if (subjects.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((teacher) {
+        return teacher.subject?.any((subj) =>
+        subj.name?.toLowerCase() == subjects.toLowerCase() ||
+            subj.enName?.toLowerCase() == subjects.toLowerCase()) ?? false;
+      }).toList();
+    }
+
+    filteredName = query;
     filteredTeacher = tempFilteredList;
     update();
   }
-
 
   void clearFilter() {
     searchRequestByName("" , classIndex , SubjectIndex);
