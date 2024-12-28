@@ -8,28 +8,69 @@ import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dar
 class Allteachercontroller extends GetxController {
   List<Teachers> teachers = [];
   bool isLoading = true;
-  String sessionIndex = "";
-  String gradeIndex = "";
+  List<Teachers>? filteredTeacher;
+  String filteredName = "";
   String classIndex = "";
-  String divisionIndex = "";
-  List<String> gradelist = ["first", "tow", "three"];
+  String SubjectIndex = "";
+  String CurriculumIndex = "";
   List<String> classlist = [];
-  List<String> divisionlist = ["one"];
-  List<String> sessionlist = [];
+  List<String> Curriculumlist = [];
+  List<String> Subjectlist = [];
+
+
+
+
+  SetSubject(List<String> subjects){
+    Subjectlist = subjects;
+    setSubjectLoading(false);
+    update();
+  }
+  SetClass(List<String> classes){
+    classlist = classes;
+    setClassLoading(false);
+    update();
+  }
+  SetCurriculum(List<String> Curriculums){
+    Curriculumlist = Curriculums;
+    setCurriculumLoading(false);
+    update();
+  }
+
+
+  bool isSubjectLoading = true;
+  bool isClassLoading = true;
+  bool isCurriculumLoading = true;
+
+  setSubjectLoading(bool value){
+    isSubjectLoading = value;
+    update();
+  }
+  setClassLoading(bool value){
+    isClassLoading = value;
+    update();
+  }
+  setCurriculumLoading(bool value){
+    isCurriculumLoading = value;
+    update();
+  }
+
+  resetOnClassChange(){
+    SubjectIndex = "";
+    update();
+  }
+
+
 
   void selectIndex(String type, String? index) {
     switch (type) {
-      case 'session':
-        sessionIndex = index ?? "";
-        break;
-      case 'grade':
-        gradeIndex = index ?? "";
-        break;
-      case 'class':
+      case 'Class':
         classIndex = index ?? "";
         break;
-      case 'division':
-        divisionIndex = index ?? "";
+      case 'Curriculum':
+        CurriculumIndex = index ?? "";
+        break;
+        case 'Subject':
+          SubjectIndex = index ?? "";
         break;
     }
     update();
@@ -45,62 +86,62 @@ class Allteachercontroller extends GetxController {
   void setAllTeacher(AllTeacherModel model) {
     teachers = model.teachers!;
     setIsLoading(false);
+    searchRequestByName(filteredName , classIndex , SubjectIndex);
     update();
   }
-    void setAllSession(AllSessionModel session) async {
-    sessionlist.clear();
-    for (int i = 0; i < session.sessions!.length; i++) {
-      sessionlist.add(session.sessions![i].year.toString());
-      print(session.sessions![i].year.toString());
+  void searchRequestByName(String query, String classes , String subjects) {
+    List<Teachers> tempFilteredList = List.from(teachers);
+    if (query != null && query.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((emp) {
+        final empName = emp.fullName?.toLowerCase() ?? '';
+        final phone = emp.phone?.toLowerCase() ?? '';
+        final email = emp.email?.toLowerCase() ?? '';
+        return empName.contains(query.toLowerCase()) || phone.contains(query.toLowerCase()) || email.contains(query.toLowerCase());
+      }).toList();
     }
+    filteredName = query;
+    // if (classes.isNotEmpty) {
+    //   tempFilteredList = tempFilteredList.where((emp) {
+    //     return emp.!.toLowerCase() == jobindexed.toLowerCase();
+    //   }).toList();
+    // }
+    // if (classes.isNotEmpty) {
+    //   tempFilteredList = tempFilteredList.where((emp) {
+    //     return emp.!.toLowerCase() == jobindexed.toLowerCase();
+    //   }).toList();
+    // }
+
+    filteredTeacher = tempFilteredList;
     update();
-    updateList("session", sessionlist);
   }
 
-  void setAllClasses(AllClassModel clas) {
-    classlist.clear();
-    for (int j = 0; j < clas.classes!.length; j++) {
-      classlist.add(clas.classes![j].enName.toString());
-    }
+
+  void clearFilter() {
+    searchRequestByName("" , classIndex , SubjectIndex);
     update();
-    updateList("class", classlist);
   }
 
-  void setAllGrades(AllGradesModel grade) {
-    gradelist.clear();
-    for (int k = 0; k < grade.grades!.length; k++) {
-      gradelist.add(grade.grades![k].enName.toString());
-    }
-    update();
-    updateList("grade", gradelist);
-  }
 
    void updateList(
     String type,
     List<String> options,
   ) {
     switch (type) {
-      case 'session':
-        sessionlist = options;
-        break;
-      case 'grade':
-        gradelist = options;
-        break;
-      case 'class':
+      case 'Class':
         classlist = options;
         break;
-      case 'division':
-        divisionlist = options;
+      case 'Curriculum':
+        Curriculumlist = options;
+        break;
+        case 'Subject':
+          Subjectlist = options;
         break;
     }
     update();
   }
 
-  String get selectedsessionIndex => sessionIndex;
-
-  String get selectedgradeIndex => gradeIndex;
 
   String get selectedclassIndex => classIndex;
-
-  String get selecteddivisionIndex => divisionIndex;
+  String get selectedSubjectIndex => SubjectIndex;
+  String get selectedCurriculumIndex => CurriculumIndex;
 }

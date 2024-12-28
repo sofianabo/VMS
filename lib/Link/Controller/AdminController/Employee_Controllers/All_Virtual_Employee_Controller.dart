@@ -10,6 +10,7 @@ class All_Virtual_Employee_Controller extends GetxController{
 
   SetIsLoading (bool value){
     isLoading = value;
+    update();
   }
   setData(Virtual_Employee_Model vem){
     viraulUser = vem.viraulUser;

@@ -38,9 +38,6 @@ class Get_Virtual_Employee_API {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    }finally{
-      Get.back();
-      Get.back();
     }
     return true;
   }

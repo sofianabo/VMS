@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownClassesAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Subjects_API/Get_Subjects_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/AddTeacherAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetAllTeachersAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
+import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherManagementGrid.dart';
 import 'package:vms_school/widgets/Admin_School/All_Screen_Sessions.dart';
 import 'package:vms_school/widgets/Admin_employee/DropDownAllEmployee.dart';
@@ -26,6 +30,11 @@ class _TeacherManagementState extends State<TeacherManagement> {
   @override
   void initState() {
     Getallteachersapi.Getallteachers();
+    Get_Subject_Screen_API(context).Get_Subject_Screen();
+    Getallclassapi(context).getAllClasses(
+      sessionID:Get.find<All_Screen_Sessions_Controller>().sessionId,
+    );
+
     super.initState();
   }
 
@@ -53,34 +62,52 @@ class _TeacherManagementState extends State<TeacherManagement> {
             children: [
               Row(
                 children: [
-                  Row(
-                    children: [
-                      Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: DropDownAllSessions(
-                            title: "Session",
-                            width: w / 6.5,
-                            type: "session",
-                            API: "TeacherManagement",
-                          )),
-                      Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Dropdownallteacher(
-                              title: "Grade", width: w / 6.5, type: "grade")),
-                      Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Dropdownallteacher(
-                              title: "Class", width: w / 6.5, type: "class")),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: TextFormSearch(
-                          width: w / 4,
-                          radius: 5,
-                          controller: search,
-                          suffixIcon: Icons.search,
-                        ),
-                      ),
-                    ],
+                  GetBuilder<Allteachercontroller>(
+                    builder: (controller) {
+                      return Row(
+                        children: [
+                          Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: DropDownAllSessions(
+                                title: "Session",
+                                width: w / 6.5,
+                                type: "session",
+                                API: "TeacherManagement",
+                              )),
+                          Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child:   Dropdownallteacher(
+                                isLoading: controller.isClassLoading,
+                                width: w / 6.5,
+                                title: "Class",
+                                type: 'Class',
+                              ),),
+                          Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child:   Dropdownallteacher(
+                                isLoading: controller.isSubjectLoading,
+                                width: w / 6.5,
+                                title: "Subject",
+                                type: 'Subject',
+                              ),),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: TextFormSearch(
+                              click: (){
+                                controller.clearFilter();
+                              },
+                              onchange: (value) {
+                                controller.searchRequestByName(value, controller.classIndex, controller.SubjectIndex);
+                              },
+                              width: w / 4,
+                              radius: 5,
+                              controller: search,
+                              suffixIcon: Icons.search,
+                            ),
+                          ),
+                        ],
+                      );
+                    }
                   ),
                   Spacer(),
                   Row(

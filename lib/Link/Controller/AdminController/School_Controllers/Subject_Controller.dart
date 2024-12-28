@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCurriculumn_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Subject_Model.dart';
 
@@ -28,6 +29,7 @@ class Subject_Controller extends GetxController {
       subjectNames.add(subg.enName!);
     }
     Get.find<Curriculumn_Controller>().addlistsubject(subjectNames);
+    Get.find<Allteachercontroller>().SetSubject(subjectNames);
     setIsLoading(false);
     update();
   }

@@ -94,7 +94,7 @@ class Student_attendence_controller extends GetxController {
       students.add({
         'studentId': stu.id,
         'status': 'Present',
-        'cause': "",
+        'cause': null,
         'name': stu.fullName,
         // 'imgid': stu.fileId,
       });
