@@ -6,6 +6,7 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownClas
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Division_API/Add_Division_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Division_API/Get_All_Division.dart';
 import 'package:vms_school/Link/Controller/AdminController/Years_Controllers/Divisions_Controller.dart';
+import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/view/Admin/School_Management/Division_Pages/Division_Grid.dart';
 import 'package:vms_school/widgets/Admin_School/All_Screen_Sessions.dart';
 import 'package:vms_school/widgets/Admin_School/DropDownDivisionMgmt.dart';
@@ -28,6 +29,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
   TextEditingController driveUrl = TextEditingController();
 @override
   void initState() {
+  Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
   Get_All_Division_API(context).Get_All_Division();
    Getallclassapi(context).getAllClasses();
     super.initState();

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/StudentAttendenceAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
+import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/view/Admin/Students_Manager/StudentStatusGrid.dart';
 import 'package:vms_school/widgets/Admin_School/All_Screen_Sessions.dart';
 import 'package:vms_school/widgets/Admin_Students/DropDownStudentsAttendence.dart';
@@ -23,6 +24,7 @@ class _StudentStatusState extends State<StudentStatus> {
   TextEditingController serch = TextEditingController();
   @override
   void initState() {
+    Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
     Studentattendenceapi(context)
         .Studentattendence();
     super.initState();
@@ -98,7 +100,7 @@ class _StudentStatusState extends State<StudentStatus> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
-                        child: selectDateAttendence(
+                        child: selectStudentsDateAttendence(
                           width: w / 3.6,
                         ),
                       ),

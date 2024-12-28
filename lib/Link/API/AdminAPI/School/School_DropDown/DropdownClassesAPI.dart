@@ -6,6 +6,7 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeacherAtendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Years_Controllers/Divisions_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
@@ -21,6 +22,7 @@ class Getallclassapi {
   final StudyYearStudents = Get.find<StudyYearStudentsController>();
   final Student_attendence = Get.find<Student_attendence_controller>();
   final Allteachercontrolle = Get.find<Allteachercontroller>();
+  final Allteacheratendencecontrolle = Get.find<Allteacheratendencecontroller>();
 
   BuildContext context;
   Getallclassapi(this.context);
@@ -33,6 +35,7 @@ class Getallclassapi {
       StudyYearStudents.setClassLoading(true);
       Student_attendence.setClassLoading(true);
       Allteachercontrolle.setClassLoading(true);
+      Allteacheratendencecontrolle.setClassLoading(true);
 
 
       final controller = Get.find<Divisions_Controller>();

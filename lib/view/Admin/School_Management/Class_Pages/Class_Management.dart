@@ -29,6 +29,7 @@ class _ClassManagementState extends State<ClassManagement> {
 
   @override
   void initState() {
+    Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
     Get_All_Classes_API(context).Get_All_Classes();
     Getallgradeapi.Getallgrade();
     super.initState();

@@ -4,6 +4,8 @@ import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 class All_Screen_Sessions_Controller extends GetxController {
   AllSessionModel? sessions;
   String sessionIndex = "";
+  String startSessionDate = "";
+  String endSessionDate = "";
   var sessionId ;
   List<String> sessionlist = [];
 
@@ -41,12 +43,17 @@ class All_Screen_Sessions_Controller extends GetxController {
 
    setSessionDefult() {
      sessionIndex = sessions!.current!.year!;
+     startSessionDate = sessions!.current!.startDate!;
+     endSessionDate = sessions!.current!.endDate!;
      update();
    }
 
   void setsessionid(id) {
      sessionId = id;
-     update();
+     var session = sessions!.sessions!.firstWhere((session) => session.id == id);
+     startSessionDate = session.startDate!;
+     endSessionDate = session.endDate!;
+    update();
   }
 
 }

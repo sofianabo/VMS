@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/GetAllStudentAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/view/Admin/Students_Manager/AllStudentGrid.dart';
 import 'package:vms_school/widgets/Admin_School/All_Screen_Sessions.dart';
 import 'package:vms_school/widgets/Admin_Students/DropDownAllStudents.dart';
@@ -19,6 +20,7 @@ class AllStudent extends StatefulWidget {
 class _AllStudentState extends State<AllStudent> {
   @override
   void initState() {
+    Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
     Getallstudentapi.Getallstudent();
     super.initState();
   }

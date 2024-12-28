@@ -111,6 +111,7 @@ class StudyYearStudentsController extends GetxController {
   }
   setClassLoading(bool value){
     isClassLoading = value;
+    classIndex = "";
     update();
   }
   setDivisionLoading(bool value){

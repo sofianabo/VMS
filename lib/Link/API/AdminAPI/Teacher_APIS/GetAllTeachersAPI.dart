@@ -23,7 +23,7 @@ class Getallteachersapi {
 
     try {
       String myurl = "${hostPort}${getTeachers}";
-      var response = await dio.get(
+      var response = await dio.post(
         data: {
           'sessionId':sessionID
         },

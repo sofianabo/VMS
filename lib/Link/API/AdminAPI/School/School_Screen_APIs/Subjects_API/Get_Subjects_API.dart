@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Session_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Subject_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeacherAtendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Subject_Model.dart';
@@ -19,8 +20,10 @@ class Get_Subject_Screen_API {
   Get_Subject_Screen() async {
     final controller = Get.find<Subject_Controller>();
     final controllers = Get.find<Allteachercontroller>();
+    final controllers1 = Get.find<Allteacheratendencecontroller>();
     controller.setIsLoading(true);
     controllers.setSubjectLoading(true);
+    controllers1.setSubjectLoading(true);
     try {
       String myurl = "${hostPort}${getSubject}";
       var response = await dio.get(myurl,

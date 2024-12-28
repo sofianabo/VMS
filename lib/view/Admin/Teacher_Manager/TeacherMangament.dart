@@ -14,7 +14,6 @@ import 'package:vms_school/widgets/Admin_employee/DropDownAllEmployee.dart';
 import 'package:vms_school/widgets/Admin_teachers/DropDownAllTeacher.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
-import 'package:vms_school/widgets/DropDown.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
@@ -29,12 +28,10 @@ class TeacherManagement extends StatefulWidget {
 class _TeacherManagementState extends State<TeacherManagement> {
   @override
   void initState() {
+    Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
     Getallteachersapi.Getallteachers();
     Get_Subject_Screen_API(context).Get_Subject_Screen();
-    Getallclassapi(context).getAllClasses(
-      sessionID:Get.find<All_Screen_Sessions_Controller>().sessionId,
-    );
-
+    Getallclassapi(context).getAllClasses();
     super.initState();
   }
 
@@ -102,7 +99,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                               width: w / 4,
                               radius: 5,
                               controller: search,
-                              suffixIcon: search.text != "" ? Icons.clear: Icons.search,
+                              suffixIcon: search.text.isNotEmpty ? Icons.close :  Icons.search,
                             ),
                           ),
                         ],

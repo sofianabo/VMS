@@ -16,6 +16,7 @@ class Dropdownclassescontroller extends GetxController {
   }
 
    setIsLoading(bool value) {
+
     Isloading = value;
     update();
    }

@@ -114,6 +114,7 @@ class Allstudentscontroller extends GetxController {
   }
   setClassLoading(bool value){
     isClassLoading = value;
+    classIndex = "";
     update();
   }
   setDivisionLoading(bool value){

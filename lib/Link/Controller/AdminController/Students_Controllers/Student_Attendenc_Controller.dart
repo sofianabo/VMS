@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetTeacherAttendenceAPI.dart';
+import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
@@ -21,6 +24,15 @@ class StudentAttendencController extends GetxController {
   List<String> classlist = [];
   List<String> divisionlist = [];
   List<String> sessionlist = [];
+  Rx<DateTime?> AttendencetDate = Rx<DateTime?>(null);
+  TextEditingController textEditingController = TextEditingController();
+  StudentAttendencController(){
+
+    textEditingController.text = AttendencetDate.value != null
+        ? DateFormat('yyyy-MM-dd')
+        .format(AttendencetDate.value!)
+        : '';
+  }
 
     void restor() {
     stud.clear();
@@ -132,7 +144,7 @@ class StudentAttendencController extends GetxController {
     update();
   }
 
-    Rx<DateTime?> AttendencetDate = Rx<DateTime?>(null);
+
 
   void selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -142,6 +154,7 @@ class StudentAttendencController extends GetxController {
       lastDate: DateTime(2100),
     );
     if (picked != null) {
+      print("object");
       AttendencetDate.value = picked;
     }
   }

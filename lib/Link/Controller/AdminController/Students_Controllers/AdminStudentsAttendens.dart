@@ -56,6 +56,7 @@ class Student_attendence_controller extends GetxController {
   }
   setClassLoading(bool value){
     isClassLoading = value;
+    classIndex = "";
     update();
   }
   setDivisionLoading(bool value){

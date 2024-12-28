@@ -74,7 +74,7 @@ class _TeacherStatusGridState extends State<TeacherStatusGrid> {
                   crossAxisSpacing: 20.0,
                   mainAxisSpacing: 20.0,
                   childAspectRatio: 1.4),
-              itemCount: controller.teacher.length, // عدد العناصر في الشبكة
+              itemCount: controller.filteredTeacher!.length, // عدد العناصر في الشبكة
               itemBuilder: (context, index) {
                 return HoverScaleCard(
                   child: GestureDetector(
@@ -82,7 +82,7 @@ class _TeacherStatusGridState extends State<TeacherStatusGrid> {
                       oneEmployeeAttendenceModel empModel =
                           await Employeeattendencebyidapi(context)
                               .Employeeattendencebyid(
-                                  controller.teacher[index].id!);
+                                  controller.filteredTeacher![index].id!);
                       Get.dialog(GetBuilder<Oneemployeeattendencecontroller>(
                         builder: (oneControl) {
                           return VMSAlertDialog(
@@ -162,7 +162,7 @@ class _TeacherStatusGridState extends State<TeacherStatusGrid> {
                               ),
                             ),
                             apptitle:
-                                "${controller.teacher[index].fullName} Attendence ",
+                                "${controller.filteredTeacher![index].fullName} Attendence ",
                             subtitle: "none",
                           );
                         },
@@ -189,7 +189,7 @@ class _TeacherStatusGridState extends State<TeacherStatusGrid> {
                               children: [
                                 Expanded(
                                   child: Text(
-                                      "${controller.teacher[index].fullName}",
+                                      "${controller.filteredTeacher![index].fullName}",
                                       style: Get.theme.textTheme.bodyMedium!
                                           .copyWith(
                                               fontSize: 20,
@@ -199,25 +199,25 @@ class _TeacherStatusGridState extends State<TeacherStatusGrid> {
                                     height: 100, width: 100)
                               ],
                             ),
-                            Text("${controller.teacher[index].status}",
+                            Text("${controller.filteredTeacher![index].status}",
                                 style: Get.theme.textTheme.bodyMedium!.copyWith(
                                     fontSize: 16,
-                                    color: controller.teacher[index].status ==
+                                    color: controller.filteredTeacher![index].status ==
                                             "Present"
                                         ? Color(0xff2F9742)
-                                        : controller.teacher[index].status ==
+                                        : controller.filteredTeacher![index].status ==
                                                 "Truant"
                                             ? Color(0xff972F2F)
-                                            : controller.teacher[index]
+                                            : controller.filteredTeacher![index]
                                                         .status ==
                                                     "Vacation"
                                                 ? Color(0xffB27671)
-                                                : controller.teacher[index]
+                                                : controller.filteredTeacher![index]
                                                             .status ==
                                                         "Late"
                                                     ? Color(0xff349393)
                                                     : Color(0xff134B70))),
-                            Text("Email: ${controller.teacher[index].email}",
+                            Text("Email: ${controller.filteredTeacher![index].email}",
                                 style: Get.theme.textTheme.bodyMedium!),
                           ],
                         )),

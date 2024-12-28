@@ -43,22 +43,18 @@ class Allteachercontroller extends GetxController {
 
   setSubjectLoading(bool value){
     isSubjectLoading = value;
+
     update();
   }
   setClassLoading(bool value){
     isClassLoading = value;
+    classIndex = "";
     update();
   }
   setCurriculumLoading(bool value){
     isCurriculumLoading = value;
     update();
   }
-
-  resetOnClassChange(){
-    SubjectIndex = "";
-    update();
-  }
-
 
 
   void selectIndex(String type, String? index) {
@@ -77,7 +73,6 @@ class Allteachercontroller extends GetxController {
     update();
   }
 
-  late BuildContext context;
 
   setIsLoading(bool value){
     isLoading = value;
