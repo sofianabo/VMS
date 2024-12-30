@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students_APIs/StudentAttendenceAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetTeacherAttendenceAPI.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
@@ -10,43 +11,127 @@ import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllStudentAttendenceModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dart';
 
-
 class StudentAttendencController extends GetxController {
-  late BuildContext context;
   List<Attendance> stud = [];
   List<Attendance> filteredStudents = [];
-  String sessionIndex = "";
   String gradeIndex = "";
   String classIndex = "";
   String divisionIndex = "";
   bool isLoading = true;
+
+  String? filterName = '';
+  String? filterGrade = '';
+  String? filterClass = '';
+  String? filterDivision = '';
+
   List<String> gradelist = [];
+  bool isGradeLoading = true;
   List<String> classlist = [];
+  bool isClassLoading = true;
   List<String> divisionlist = [];
+  bool isDivisionLoading = true;
   List<String> sessionlist = [];
-  Rx<DateTime?> AttendencetDate = Rx<DateTime?>(null);
-  TextEditingController textEditingController = TextEditingController();
-  StudentAttendencController(){
 
-    textEditingController.text = AttendencetDate.value != null
-        ? DateFormat('yyyy-MM-dd')
-        .format(AttendencetDate.value!)
-        : '';
-  }
-
-    void restor() {
-    stud.clear();
-    filteredStudents.clear();
-    isLoading = true;
+  void clearFilter() {
+    searchByName("", gradeIndex, classIndex, divisionIndex);
     update();
   }
-  void selectIndex(String type, String? index) {
-    print("");
 
+  removeAttendence() {
+    AttendencetDate.value = null;
+    Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
+    update();
+  }
+
+  void searchByName(
+      String? nameQuery, String? grade, String? classs, String? division) {
+    List<Attendance> tempFilteredList = List.from(stud);
+    filterName = nameQuery;
+    if (nameQuery != null && nameQuery.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((cur) {
+        final name = cur.fullName?.toLowerCase() ?? '';
+        return name.contains(nameQuery.toLowerCase());
+      }).toList();
+    }
+
+    if (grade != null && grade.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((cur) {
+        return cur.grade!.enName == grade || cur.grade!.enName == grade;
+      }).toList();
+    }
+
+    if (classs != null && classs.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((cur) {
+        return cur.classes!.enName == classs || cur.classes!.name == classs;
+      }).toList();
+    }
+    if (division != null && division.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((cur) {
+        return cur.division!.enName == division ||
+            cur.division!.name == division;
+      }).toList();
+    }
+
+    filteredStudents = tempFilteredList;
+    update();
+  }
+
+  setGradeList(List<String> value) {
+    gradeIndex = "";
+    gradelist.clear();
+    gradelist = value;
+    setGradeLoading(false);
+    update();
+  }
+
+  setClassList(List<String> value) {
+    classIndex = "";
+    classlist.clear();
+    classlist = value;
+    setClassLoading(false);
+    update();
+  }
+
+  setDivisionList(List<String> value) {
+    setDivisionLoading(false);
+    divisionlist.clear();
+    divisionIndex = "";
+    divisionlist = value;
+    update();
+  }
+
+  setGradeLoading(bool value) {
+    isGradeLoading = value;
+    update();
+  }
+
+  setClassLoading(bool value) {
+    isClassLoading = value;
+    classIndex = "";
+    update();
+  }
+
+  setDivisionLoading(bool value) {
+    isDivisionLoading = value;
+    update();
+  }
+
+  resetOnSessionChange() {
+    gradeIndex = "";
+    classIndex = "";
+    divisionIndex = "";
+    update();
+  }
+
+  resetOnGradeChange() {
+    classIndex = "";
+    divisionIndex = "";
+    print("lkdssdf");
+    update();
+  }
+
+  void selectIndex(String type, String? index) {
     switch (type) {
-      case 'session':
-        sessionIndex = index ?? "";
-        break;
       case 'grade':
         gradeIndex = index ?? "";
         break;
@@ -59,12 +144,38 @@ class StudentAttendencController extends GetxController {
 
         break;
     }
+
+    searchByName(filterName, gradeIndex, classIndex, divisionIndex);
+
     update();
   }
 
   void setAllStudents(AllStudentAttendenceModel model) {
     stud = model.attendance!;
     filteredStudents = List.from(stud);
+    if (filterName != null && filterName!.isNotEmpty) {
+      searchByName(
+          filterName.toString(), gradeIndex, classIndex, divisionIndex);
+    }
+
+    if (gradeIndex.isNotEmpty) {
+      filteredStudents = filteredStudents.where((emp) {
+        return emp.grade!.name == gradeIndex || emp.grade!.enName == gradeIndex;
+      }).toList();
+    }
+    if (classIndex.isNotEmpty) {
+      filteredStudents = filteredStudents.where((emp) {
+        return emp.classes!.enName == classIndex ||
+            emp.classes!.name == classIndex;
+      }).toList();
+    }
+    if (divisionIndex.isNotEmpty) {
+      filteredStudents = filteredStudents.where((emp) {
+        return emp.division!.enName == divisionIndex ||
+            emp.division!.name == divisionIndex;
+      }).toList();
+    }
+
     setIsLoading(false);
     update();
   }
@@ -74,63 +185,11 @@ class StudentAttendencController extends GetxController {
     update();
   }
 
-  void searchattendenceByName(String query) {
-    if (query.isEmpty) {
-      filteredStudents = List.from(stud);
-    } else {
-      filteredStudents = stud
-          .where((student) =>
-              student.fullName != null &&
-              student.fullName!.toLowerCase().contains(query.toLowerCase()))
-          .toList();
-    }
-    update();
-  }
-
-  void setAllSession(AllSessionModel session) async {
-    sessionlist.clear();
-    for (int i = 0; i < session.sessions!.length; i++) {
-      sessionlist.add(session.sessions![i].year.toString());
-    }
-    update();
-    updateList("session", sessionlist);
-  }
-
-  void setAllClasses(AllClassModel clas) {
-    classlist.clear();
-    for (int j = 0; j < clas.classes!.length; j++) {
-      classlist.add(clas.classes![j].enName.toString());
-    }
-    update();
-    updateList("class", classlist);
-  }
-
-  void setAllGrades(AllGradesModel grade) {
-    gradelist.clear();
-    for (int k = 0; k < grade.grades!.length; k++) {
-      gradelist.add(grade.grades![k].enName.toString());
-    }
-    update();
-    updateList("grade", gradelist);
-  }
-
-  void setAllDivision(AllDivisionModel division) {
-    divisionlist.clear();
-    for (int k = 0; k < division.division!.length; k++) {
-      divisionlist.add(division.division![k].enName.toString());
-    }
-    update();
-    updateList("division", divisionlist);
-  }
-
   void updateList(
     String type,
     List<String> options,
   ) {
     switch (type) {
-      case 'session':
-        sessionlist = options;
-        break;
       case 'grade':
         gradelist = options;
         break;
@@ -144,22 +203,41 @@ class StudentAttendencController extends GetxController {
     update();
   }
 
+  Rx<DateTime?> AttendencetDate = Rx<DateTime?>(null);
 
+  Future<bool> selectDate({required BuildContext context}) async {
+    String rawStartDate =
+        Get.find<All_Screen_Sessions_Controller>().startSessionDate;
+    String rawEndDate =
+        Get.find<All_Screen_Sessions_Controller>().endSessionDate;
 
-  void selectDate(BuildContext context) async {
+    print("Raw Start Date: $rawStartDate");
+    print("Raw End Date: $rawEndDate");
+
+    rawStartDate = rawStartDate.trim();
+    rawEndDate = rawEndDate.trim();
+
+    DateFormat format = DateFormat("yyyy-MM-dd");
+
+    DateTime startDate = format.parse(rawStartDate);
+    DateTime endDate = format.parse(rawEndDate);
+
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: AttendencetDate.value ?? DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
+      firstDate: startDate,
+      lastDate: endDate,
     );
+
     if (picked != null) {
-      print("object");
       AttendencetDate.value = picked;
+      Studentattendenceapi(context).Studentattendence(
+        date: picked.toString(),
+      );
+      return true;
+    } else {
+      return false;
     }
   }
-
-  String get selectedsessionIndex => sessionIndex;
 
   String get selectedgradeIndex => gradeIndex;
 
@@ -167,6 +245,5 @@ class StudentAttendencController extends GetxController {
 
   String get selecteddivisionIndex => divisionIndex;
 
-    Rx<DateTime?> get selectDateindex => AttendencetDate;
-
+  Rx<DateTime?> get selectDateindex => AttendencetDate;
 }

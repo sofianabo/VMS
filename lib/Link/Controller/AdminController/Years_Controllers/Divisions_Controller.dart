@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeacherAtendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
@@ -49,6 +50,7 @@ class Divisions_Controller extends GetxController {
     Get.find<Student_attendence_controller>().setClassList(classess);
     Get.find<Allteachercontroller>().SetClass(classess);
     Get.find<Allteacheratendencecontroller>().SetClass(classess);
+    Get.find<StudentAttendencController>().setClassList(classess);
 
     update();
   }

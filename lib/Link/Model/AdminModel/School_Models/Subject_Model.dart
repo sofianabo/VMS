@@ -11,34 +11,20 @@ class Subject_Model {
       });
     }
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.subject != null) {
-      data['subject'] = this.subject!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
 }
 
 class Subject {
   int? id;
   String? name;
   String? enName;
+  bool? hasCurriculum;
 
-  Subject({this.id, this.name, this.enName});
+  Subject({this.id, this.name, this.enName, this.hasCurriculum});
 
   Subject.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     enName = json['enName'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['enName'] = this.enName;
-    return data;
+    hasCurriculum = json['hasCurriculum'];
   }
 }

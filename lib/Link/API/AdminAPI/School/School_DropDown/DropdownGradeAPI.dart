@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownGradeController.dart.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dart';
@@ -20,13 +21,17 @@ class Getallgradeapi {
     Dio dio = Dio();
     try {
       Dropdowngradecontroller c = Get.find<Dropdowngradecontroller>();
-      final Allstudentscontroller controller = Allstudentscontroller();
-      final  SYStudentsController = StudyYearStudentsController();
-      final  stuattendence = Student_attendence_controller();
+      final StudentAttendencControlle = Get.find<StudentAttendencController>();
+      final controller = Get.find<Allstudentscontroller>();
+      final SYStudentsController = Get.find<StudyYearStudentsController>();
+      final stuattendence = Get.find<Student_attendence_controller>();
+
+
 
       controller.setGradeLoading(true);
       SYStudentsController.setGradeLoading(true);
       stuattendence.setGradeLoading(true);
+      StudentAttendencControlle.setGradeLoading(true);
 
       String myurl = "${global.hostPort}${global.getGrade}";
       var response = await dio.get(myurl,

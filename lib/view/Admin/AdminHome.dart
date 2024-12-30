@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
 import 'package:vms_school/view/Admin/School_Management/ExamTable.dart';
 import 'package:vms_school/view/Admin/School_Management/SchoolTimeTable.dart';
+import 'package:vms_school/view/Admin/School_Management/Subject_Pages/Subject_Management.dart';
 import 'package:vms_school/view/Admin/Students_Manager/AllGuardians.dart';
 import 'package:vms_school/view/Admin/Students_Manager/AllStudent.dart';
 import 'package:vms_school/view/Admin/AppBarAdmin.dart';
@@ -35,7 +36,7 @@ class AdminHome extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           AppbarAdmin(),
+          AppbarAdmin(),
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,6 +76,8 @@ class AdminHome extends StatelessWidget {
                       return StudentsAttendanceManagment();
                     case "Grade Management":
                       return GradeManagement();
+                    case "Subject Management":
+                      return Subject_Management();
                     case "Class Management":
                       return ClassManagement();
                     case "Division Management":
@@ -83,13 +86,10 @@ class AdminHome extends StatelessWidget {
                       return Curriculum_Management();
                     case "Session Management":
                       return SessionManagement();
-
                     case "School Data Management":
                       return SchoolDataMgmt();
-
                     case "Electronic Library":
                       return ElectronicBook();
-
                     case "Virtual User Management":
                       return Virtual_User_Management();
 

@@ -5,20 +5,19 @@ import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Subject_Model.dart';
 
 class Subject_Controller extends GetxController {
-
-
-  var Subjects = <Map<String, dynamic>>[
-  ].obs;
-
+  var Subjects = <Map<String, dynamic>>[].obs;
 
   List<Subject>? subject;
 
+  DeleteSubject(int index) {
+    Subjects.removeAt(index);
+    update();
+  }
 
   bool isLoading = true;
   setData(Subject_Model Subject) {
     subject = Subject.subject;
     Subjects.clear();
-
 
     List<String> subjectNames = [];
     for (var subg in Subject.subject!) {
@@ -26,6 +25,7 @@ class Subject_Controller extends GetxController {
         'id': subg.id,
         'name': subg.name,
         'enName': subg.enName,
+        'hasCurriculum': subg.hasCurriculum,
       });
       subjectNames.add(subg.enName!);
     }
@@ -40,5 +40,4 @@ class Subject_Controller extends GetxController {
     isLoading = isload;
     update();
   }
-
 }

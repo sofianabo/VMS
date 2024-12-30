@@ -78,7 +78,7 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                     crossAxisSpacing: 20.0,
                     mainAxisSpacing: 20.0,
                     childAspectRatio: 1.5),
-                itemCount: control.stud.length,
+                itemCount: control.filteredStudents.length,
                 itemBuilder: (context, index) {
                   return HoverScaleCard(
                     child: GestureDetector(
@@ -86,12 +86,11 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                         OneStudentAttendenceModel attendanceModel =
                             await Studentattendencebyidapi(context)
                                 .Studentattendencebyid(
-                                    control.stud[index].studentId!);
-
+                                    control.filteredStudents[index].studentId!);
                         Get.dialog(GetBuilder<Onestudentattendencecontroller>(
                           builder: (oneControl) {
                             return VMSAlertDialog(
-                              action: [Text("")],
+                              action: [],
                               contents: SizedBox(
                                 width: 600,
                                 height: Get.height,
@@ -129,7 +128,6 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                                             ),
                                           ],
                                           rows: [
-                                            // هنا نقوم بملئ الصفوف ببيانات الطالب
                                             for (var studentAttendance
                                                 in attendanceModel.studentAt ??
                                                     [])
@@ -171,7 +169,7 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                                 ),
                               ),
                               apptitle:
-                                  "${control.stud[index].fullName} Attendence ",
+                                  "${control.filteredStudents[index].fullName} Attendence ",
                               subtitle: "none",
                             );
                           },
@@ -199,7 +197,7 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                                 children: [
                                   Expanded(
                                       child: Text(
-                                          "${control.stud[index].fullName}",
+                                          "${control.filteredStudents[index].fullName}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 20,
@@ -208,71 +206,77 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                                   FutureBuilder(
                                     future: precacheImage(
                                         NetworkImage(
-                                            "$getimage${control.stud[index].fileId}"),
+                                            "$getimage${control.filteredStudents[index].fileId}"),
                                         context),
                                     builder: (context, snapshot) {
-                                      if (snapshot
-                                          .connectionState ==
+                                      if (snapshot.connectionState ==
                                           ConnectionState.done) {
                                         return CircleAvatar(
                                           maxRadius: 55,
                                           backgroundColor:
-                                          const Color(
-                                              0xffC4C4C4),
-                                          backgroundImage: control.stud[index].fileId !=
-                                              null
+                                              const Color(0xffC4C4C4),
+                                          backgroundImage: control
+                                                      .filteredStudents[index]
+                                                      .fileId !=
+                                                  null
                                               ? NetworkImage(
-                                              "$getimage${control.stud[index].fileId}")
+                                                  "$getimage${control.filteredStudents[index].fileId}")
                                               : null,
-                                          child: control.stud[index].fileId ==
-                                              null
+                                          child: control.filteredStudents[index]
+                                                      .fileId ==
+                                                  null
                                               ? const Icon(
-                                            Icons
-                                                .image_outlined,
-                                            color:
-                                            Colors.white,
-                                            size: 30,
-                                          )
+                                                  Icons.image_outlined,
+                                                  color: Colors.white,
+                                                  size: 30,
+                                                )
                                               : null,
                                         );
                                       } else {
                                         return CircleAvatar(
                                           maxRadius: 55,
                                           backgroundColor:
-                                          const Color(
-                                              0xffC4C4C4),
-                                          child:
-                                          LoadingAnimationWidget
-                                              .inkDrop(
-                                            color: Theme.of(context)
-                                                .primaryColor,
+                                              const Color(0xffC4C4C4),
+                                          child: LoadingAnimationWidget.inkDrop(
+                                            color:
+                                                Theme.of(context).primaryColor,
                                             size: 25,
                                           ),
                                         );
                                       }
                                     },
                                   ),
-
                                 ]),
-                            Text("${control.stud[index].status}",
+                            Text("${control.filteredStudents[index].status}",
                                 style: Get.theme.textTheme.bodyMedium!.copyWith(
                                     fontSize: 16,
-                                    color: control.stud[index].status ==
+                                    color: control.filteredStudents[index]
+                                                .status ==
                                             "Present"
                                         ? Color(0xff2F9742)
-                                        : control.stud[index].status == "Truant"
+                                        : control.filteredStudents[index]
+                                                    .status ==
+                                                "Truant"
                                             ? Color(0xff972F2F)
-                                            : control.stud[index].status ==
+                                            : control.filteredStudents[index]
+                                                        .status ==
                                                     "Vacation"
                                                 ? Color(0xffB27671)
-                                                : control.stud[index].status ==
+                                                : control
+                                                            .filteredStudents[
+                                                                index]
+                                                            .status ==
                                                         "Late"
                                                     ? Color(0xff349393)
                                                     : Color(0xff134B70))),
-                            Text("Grade Level: ${control.stud[index].date}",
-                                style: Get.theme.textTheme.bodyMedium!.copyWith(
-                                  fontSize: 18,
-                                )),
+                            Expanded(
+                              child: Text(
+                                  "Grade Level: ${control.filteredStudents[index].grade!.enName}",
+                                  style:
+                                      Get.theme.textTheme.bodyMedium!.copyWith(
+                                    fontSize: 16,
+                                  )),
+                            )
                           ],
                         ),
                       ),

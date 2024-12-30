@@ -194,7 +194,7 @@ class BarChartSample1State extends State<BarChartSample1> {
 }
 
 List<Map<String, dynamic>> convertNumberOfStudentsPerYearToWidgetData(
-    NumberOfStudentsYear? numberOfStudentsPerYear) {
+    NumberOfStudentsThisYear? numberOfStudentsPerYear) {
   if (numberOfStudentsPerYear == null) {
     return [];
   }

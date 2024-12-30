@@ -37,6 +37,7 @@ class Dropdowngradecontroller extends GetxController {
     Get.find<Allstudentscontroller>().setGradeList(gradeNames);
     Get.find<StudyYearStudentsController>().setGradeList(gradeNames);
     Get.find<Student_attendence_controller>().setGradeList(gradeNames);
+    Get.find<StudentAttendencController>().setGradeList(gradeNames);
     SetIsLoading(false);
     update();
   }

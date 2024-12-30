@@ -122,6 +122,7 @@ class StudyYearStudentsController extends GetxController {
   resetOnSessionChange(){
     gradeIndex = "";
     classIndex = "";
+    setGradeLoading(true);
     divisionIndex = "";
     update();
   }

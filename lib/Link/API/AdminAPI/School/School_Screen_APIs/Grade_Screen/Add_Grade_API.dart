@@ -5,7 +5,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
-import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Grade_Controller.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 
 class Add_Grade_API {
@@ -13,26 +12,18 @@ class Add_Grade_API {
   Add_Grade_API(this.context);
   Dio dio = Dio();
 
-  Add_Grade(
-  {
-    name,
-    enName,
-    feeCount
-}
-      ) async {
-
-    final controller = Get.find<Grade_Controller>();
-    CancelToken cancelToken = CancelToken();
-    Loading_Dialog(cancelToken: cancelToken);
+  Add_Grade({name, enName, feeCount}) async {
     try {
+      CancelToken cancelToken = CancelToken();
+      Loading_Dialog(cancelToken: cancelToken);
       String myurl = "${hostPort}${createGrade}";
       var response = await dio.post(
-        cancelToken: cancelToken,
+          cancelToken: cancelToken,
           myurl,
           data: {
-             'name':'$name',
-             'enName':'$enName',
-             'feeCount':'$feeCount',
+            'name': '$name',
+            'enName': '$enName',
+            'feeCount': '$feeCount',
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
@@ -52,7 +43,7 @@ class Add_Grade_API {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    }finally{
+    } finally {
       Get.back();
       Get.back();
     }

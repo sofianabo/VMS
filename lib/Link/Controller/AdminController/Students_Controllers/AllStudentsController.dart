@@ -9,7 +9,6 @@ import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dar
 
 class Allstudentscontroller extends GetxController {
 
-  late BuildContext context;
   List<Students> stud = [];
   List<Students> filteredStudents = [];
   String sessionIndex = "";
@@ -76,14 +75,6 @@ class Allstudentscontroller extends GetxController {
     update();
   }
 
-
-
-
-
-
-
-
-
   setGradeList(List<String> value){
     gradeIndex="";
     gradelist.clear();
@@ -91,6 +82,7 @@ class Allstudentscontroller extends GetxController {
     setGradeLoading(false);
     update();
   }
+
   setClassList(List<String> value){
     classIndex="";
     classlist.clear();
@@ -98,6 +90,7 @@ class Allstudentscontroller extends GetxController {
     setClassLoading(false);
     update();
   }
+
   setDivisionList(List<String> value){
     setDivisionLoading(false);
     divisionlist.clear();
@@ -106,17 +99,17 @@ class Allstudentscontroller extends GetxController {
     update();
   }
 
-
-
   setGradeLoading(bool value){
     isGradeLoading = value;
     update();
   }
+
   setClassLoading(bool value){
     isClassLoading = value;
     classIndex = "";
     update();
   }
+
   setDivisionLoading(bool value){
     isDivisionLoading = value;
     update();
@@ -125,6 +118,7 @@ class Allstudentscontroller extends GetxController {
   resetOnSessionChange(){
     gradeIndex = "";
     classIndex = "";
+    setGradeLoading(true);
     divisionIndex = "";
     update();
   }
@@ -193,39 +187,7 @@ class Allstudentscontroller extends GetxController {
     update();
   }
 
-
- 
-  void setAllClasses(AllClassModel clas) {
-    classlist.clear();
-    for (int j = 0; j < clas.classes!.length; j++) {
-      classlist.add(clas.classes![j].enName.toString());
-    }
-    update();
-    updateList("class", classlist);
-  }
-
-  void setAllGrades(AllGradesModel grade) {
-    gradelist.clear();
-    for (int k = 0; k < grade.grades!.length; k++) {
-      gradelist.add(grade.grades![k].enName.toString());
-    }
-    update();
-    updateList("grade", gradelist);
-  }
-
-  void setAllDivision(AllDivisionModel division) {
-    divisionlist.clear();
-    for (int k = 0; k < division.division!.length; k++) {
-      divisionlist.add(division.division![k].enName.toString());
-    }
-    update();
-    updateList("division", divisionlist);
-  }
-
-  void updateList(
-    String type,
-    List<String> options,
-  ) {
+  void updateList(String type, List<String> options,) {
     switch (type) {
       case 'session':
         sessionlist = options;
@@ -242,6 +204,18 @@ class Allstudentscontroller extends GetxController {
     }
     update();
   }
+
+
+  void setAllDivision(AllDivisionModel division) {
+    divisionlist.clear();
+    for (int k = 0; k < division.division!.length; k++) {
+      divisionlist.add(division.division![k].enName.toString());
+    }
+    update();
+    updateList("division", divisionlist);
+  }
+
+
 
   String get selectedsessionIndex => sessionIndex;
 

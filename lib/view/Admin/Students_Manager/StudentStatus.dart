@@ -1,9 +1,7 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownGradeAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/StudentAttendenceAPI.dart';
-import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/view/Admin/Students_Manager/StudentStatusGrid.dart';
@@ -21,12 +19,13 @@ class StudentStatus extends StatefulWidget {
 }
 
 class _StudentStatusState extends State<StudentStatus> {
-  TextEditingController serch = TextEditingController();
+  TextEditingController search = TextEditingController();
   @override
   void initState() {
     Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
-    Studentattendenceapi(context)
-        .Studentattendence();
+    Get.find<StudentAttendencController>().AttendencetDate.value = null;
+    Studentattendenceapi(context).Studentattendence();
+    Getallgradeapi.Getallgrade();
     super.initState();
   }
 
@@ -39,7 +38,7 @@ class _StudentStatusState extends State<StudentStatus> {
         Container(
           margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           alignment: Alignment.center,
-          child: GetBuilder<StudentAttendencController>(builder: (controler) {
+          child: GetBuilder<StudentAttendencController>(builder: (controller) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,18 +48,29 @@ class _StudentStatusState extends State<StudentStatus> {
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: DropDownAllSessions(
-                        API: "StudentState",
-                          title: "session", width: w / 3.6, type: "session"),
+                          API: "StudentState",
+                          title: "session",
+                          width: w / 3.6,
+                          type: "session"),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: DropDownStudentsAttendens(
-                          title: "Grade", width: w / 3.6, type: "grade"),
+                        isLoading: controller.isGradeLoading,
+                        type: "grade",
+                        title: "Grade",
+                        width: w / 3.6,
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: DropDownStudentsAttendens(
-                          title: "Class", width: w / 3.6, type: "class"),
+                        isDisabled: controller.gradeIndex == "" ? true : false,
+                        isLoading: controller.isClassLoading,
+                        type: "class",
+                        title: "Class",
+                        width: w / 3.6,
+                      ),
                     ),
                     Spacer(),
                     Container(
@@ -94,9 +104,13 @@ class _StudentStatusState extends State<StudentStatus> {
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: DropDownStudentsAttendens(
-                            title: "Division",
-                            width: w / 3.6,
-                            type: "division"),
+                          isLoading: controller.isDivisionLoading,
+                          isDisabled:
+                              controller.classIndex == "" ? true : false,
+                          type: "division",
+                          title: "Division",
+                          width: w / 3.6,
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
@@ -106,15 +120,27 @@ class _StudentStatusState extends State<StudentStatus> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
-                        child: TextFormSearch(
-                          onchange: (value) {
-                            controler.searchattendenceByName(value);
-                          },
-                          width: w / 3.6,
-                          radius: 5,
-                          controller: serch,
-                          suffixIcon: Icons.search,
-                        ),
+                        child: GetBuilder<StudentAttendencController>(
+                            builder: (controller) {
+                          return TextFormSearch(
+                            click: () {
+                              controller.clearFilter();
+                            },
+                            onchange: (value) {
+                              controller.searchByName(
+                                  value,
+                                  controller.gradeIndex,
+                                  controller.classIndex,
+                                  controller.divisionIndex);
+                            },
+                            width: w / 3.6,
+                            radius: 5,
+                            controller: search,
+                            suffixIcon: search.text.isNotEmpty
+                                ? Icons.close
+                                : Icons.search,
+                          );
+                        }),
                       ),
                       Spacer(),
                       Container(

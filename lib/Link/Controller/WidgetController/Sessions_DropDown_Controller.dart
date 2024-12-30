@@ -42,10 +42,24 @@ class All_Screen_Sessions_Controller extends GetxController {
   String get selectedsessionIndex => sessionIndex;
 
    setSessionDefult() {
-     sessionIndex = sessions!.current!.year!;
-     startSessionDate = sessions!.current!.startDate!;
-     endSessionDate = sessions!.current!.endDate!;
-     update();
+    try{
+      sessionIndex = sessions!.current!.year!;
+      startSessionDate = sessions!.current!.startDate!;
+      endSessionDate = sessions!.current!.endDate!;
+      update();
+    }catch(e){
+      print(e);
+    }
+   }
+
+   setSessiondatepick() {
+    try{
+      startSessionDate = sessions!.current!.startDate!;
+      endSessionDate = sessions!.current!.endDate!;
+      update();
+    }catch(e){
+      print(e);
+    }
    }
 
   void setsessionid(id) {
