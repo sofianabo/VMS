@@ -24,15 +24,12 @@ class Getemployeeattendenceapi {
 
   Dio dio = Dio();
 
-  Getemployeeattendence(String? jobTitle) async {
+  Getemployeeattendence({date}) async {
     try {
       c.setIsLoading(true);
-      AllSessionModel s = await Getsessionapi(context).Getsession();
-      c.setAllSession(s);
-
       String myurl = "${global.hostPort}${global.employeeAttendence}";
-      var response = await dio.post(myurl,
-          data: {"jobTitle": jobTitle}, options: getDioOptions());
+      var response =
+          await dio.post(data: {'date': date}, myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         AllEmployeeAttendeceModel emp =
             AllEmployeeAttendeceModel.fromJson(response.data);

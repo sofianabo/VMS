@@ -6,10 +6,8 @@ import 'package:vms_school/Link/Model/AdminModel/All_Employee_Model.dart';
 import 'package:vms_school/Link/Model/AdminModel/One_Employee_Model.dart';
 
 class Allempolyeecontroller extends GetxController {
-
   List<Employees> employees = [];
   List<Employees> filteredreemployees = [];
-
 
   bool isUploaded = false;
 
@@ -27,15 +25,57 @@ class Allempolyeecontroller extends GetxController {
   String GenderListIndex = "";
   String Family_StatusIndex = "";
   String ContractTypeIndex = "";
+  List<String> GenderList = ["Male", "Female"];
+  List<String> Family_StatusList = ["Widow", "Single", "Married", "Divorced"];
+  List<String> JobTitleList = [
+    "Manager",
+    "Dustman",
+    "Guard",
+    "Registration",
+    "Secretariat",
+    "Secretary",
+    "Supervisor",
+    "Accountant",
+    "Technical Support",
+    "Technical Support Manager",
+  ];
+  List<String> dialogjobTitleList = ["Dustman", "Guard"];
+  List<String> rolllist = ['Class', 'Observer'];
+  List<String> rolldialoglist = ['Class', 'Observer'];
+  List<String> contractList = ['Full Time', 'Hours'];
+  List<String> feRoll = [
+    'Admin',
+    'Sub Admin',
+    'Registration',
+    'Supervisor',
+    'Accountant'
+  ];
+  List<String> feJoptitle = [
+    "Manager",
+    "Registration",
+    "Secretariat",
+    "Secretary",
+    "Supervisor",
+    "Accountant",
+    "Technical Support",
+    "Technical Support Manager",
+  ];
+  Rx<DateTime?> Birthdate = Rx<DateTime?>(null);
+  Rx<DateTime?> Joindate = Rx<DateTime?>(null);
 
-  SetDefualtValue(){
-    GenderListIndex="";
-    Family_StatusIndex="";
+  SetDefualtValue() {
+    GenderListIndex = "";
+    Family_StatusIndex = "";
     update();
   }
 
-  void clearFilter() {
-    searchRequestByName("",jobTitleIndex);
+  setIsUploaded(bool isupload) {
+    isUploaded = isupload;
+    update();
+  }
+
+  setIsLoading(bool value) {
+    isLoading = value;
     update();
   }
 
@@ -56,16 +96,10 @@ class Allempolyeecontroller extends GetxController {
     update();
   }
 
-   setIsUploaded (bool isupload){
-    isUploaded = isupload ;
+  void clearFilter() {
+    searchRequestByName("", jobTitleIndex);
     update();
   }
-
-setIsLoading(bool value){
-  isLoading = value;
-  update();
-}
-
 
   void searchRequestByName(String query, String jobindexed) {
     List<Employees> tempFilteredList = List.from(employees);
@@ -100,10 +134,10 @@ setIsLoading(bool value){
       case 'roll':
         rollIndex = index ?? "";
         break;
-        case 'feroll':
+      case 'feroll':
         ferollIndex = index ?? "";
         break;
-        case 'fejop':
+      case 'fejop':
         fejopIndex = index ?? "";
         break;
       case 'rolldialog':
@@ -118,21 +152,57 @@ setIsLoading(bool value){
       case 'Family_Status':
         Family_StatusIndex = index ?? "";
         break;
-        case 'Contract':
+      case 'Contract':
         ContractTypeIndex = index ?? "";
         break;
     }
-    if(type == "jobTitle" && Value!=null){
-      searchRequestByName(Value.toString(),jobTitleIndex);
-    }else if(type == "jobTitle" && Value ==null) {
-      searchRequestByName("",jobTitleIndex);
+    if (type == "jobTitle" && Value != null) {
+      searchRequestByName(Value.toString(), jobTitleIndex);
+    } else if (type == "jobTitle" && Value == null) {
+      searchRequestByName("", jobTitleIndex);
     }
-    if(type == "roll"){
-      Get.find<All_Virtual_Employee_Controller>().searchRequestByName(Get.find<All_Virtual_Employee_Controller>().filteredName, rollIndex);
+    if (type == "roll") {
+      Get.find<All_Virtual_Employee_Controller>().searchRequestByName(
+          Get.find<All_Virtual_Employee_Controller>().filteredName, rollIndex);
     }
     update();
   }
 
+  void updateList(
+    String type,
+    List<String> options,
+  ) {
+    switch (type) {
+      case 'jobTitle':
+        JobTitleList = options;
+        break;
+      case 'roll':
+        rolllist = options;
+        break;
+      case 'feroll':
+        feRoll = options;
+        break;
+      case 'fejop':
+        feJoptitle = options;
+        break;
+      case 'rolldialog':
+        rolldialoglist = options;
+        break;
+      case 'dialogjobTitle':
+        dialogjobTitleList = options;
+        break;
+      case 'Gender':
+        GenderList = options;
+        break;
+      case 'Family_Status':
+        Family_StatusList = options;
+        break;
+      case 'Contract':
+        contractList = options;
+        break;
+    }
+    update();
+  }
 
   void setOneEmployee(One_Employee_Model onEmployee) {
     employee = onEmployee.employee;
@@ -140,31 +210,6 @@ setIsLoading(bool value){
     Family_StatusIndex = employee?.familystatus ?? "";
     update();
   }
-
-  List<String> GenderList = ["Male", "Female"];
-  List<String> Family_StatusList = ["Widow", "Single", "Married", "Divorced"];
-
-  List<String> JobTitleList = ["Manager","Dustman", "Guard","Registration","Secretariat","Secretary","Supervisor","Accountant","Technical Support", "Technical Support Manager",];
-  List<String> dialogjobTitleList = ["Dustman", "Guard"];
-
-
-  List<String> rolllist = ['Class', 'Observer'];
-  List<String> rolldialoglist = ['Class', 'Observer'];
-
-  List<String> contractList = ['Full Time', 'Hours'];
-
-
-
-  List<String> feRoll = ['Admin', 'Sub Admin', 'Registration', 'Supervisor', 'Accountant'];
-  List<String> feJoptitle = ["Manager","Registration","Secretariat","Secretary","Supervisor","Accountant","Technical Support", "Technical Support Manager",];
-
-
-
-
-
-  Rx<DateTime?> Birthdate = Rx<DateTime?>(null);
-  Rx<DateTime?> Joindate = Rx<DateTime?>(null);
-
 
   void selectBirthDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -190,43 +235,6 @@ setIsLoading(bool value){
     }
   }
 
-   void updateList(
-    String type,
-    List<String> options,
-  ) {
-    switch (type) {
-      case 'jobTitle':
-
-        JobTitleList = options;
-        break;
-      case 'roll':
-        rolllist = options;
-        break;
-        case 'feroll':
-        feRoll = options;
-        break;
-        case 'fejop':
-        feJoptitle = options;
-        break;
-      case 'rolldialog':
-        rolldialoglist = options;
-        break;
-      case 'dialogjobTitle':
-        dialogjobTitleList = options;
-        break;
-      case 'Gender':
-        GenderList = options;
-        break;
-      case 'Family_Status':
-        Family_StatusList = options;
-        break;
-         case 'Contract':
-        contractList = options;
-        break;
-    }
-    update();
-  }
-
   String get selectedsessionIndex => sessionIndex;
 
   String get selectejobTitleIndex => jobTitleIndex;
@@ -244,5 +252,4 @@ setIsLoading(bool value){
   String get selectedrolldialogIndex => rolldialogIndex;
 
   String get selecteddialogjobTitleIndex => dialogjobTitleIndex;
-
 }

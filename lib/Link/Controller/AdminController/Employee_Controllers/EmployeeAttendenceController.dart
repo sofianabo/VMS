@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/GetEmployeeAttendenceAPI.dart';
+import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllEmployeeAttendeceModel.dart';
@@ -10,24 +13,78 @@ import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dar
 class Employeeattendencecontroller extends GetxController {
   late BuildContext context;
   List<Attendance> employee = [];
-  List<Attendance> filteredEmpolyee = [];
-  String sessionIndex = "";
+  List<Attendance> filteredreemployees = [];
+  String JopTitleIndex = "";
   bool isLoading = true;
-  List<String> sessionlist = [];
+  List<String> JobTitleList = [
+    "Manager",
+    "Dustman",
+    "Guard",
+    "Registration",
+    "Secretariat",
+    "Secretary",
+    "Supervisor",
+    "Accountant",
+    "Technical Support",
+    "Technical Support Manager",
+  ];
+  String filteredName = "";
+  void setEmployee(AllEmployeeAttendeceModel model) {
+    employee = model.attendance!;
+    filteredreemployees = List.from(employee);
+    setIsLoading(false);
+    update();
+  }
 
-  void restor() {
-    employee.clear();
-    filteredEmpolyee.clear();
-    isLoading = true;
+  void clearFilter() {
+    searchRequestByName("", JopTitleIndex);
+    update();
+  }
+
+  removeAttendence() {
+    AttendencetDate.value = null;
+    Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
+    update();
+  }
+
+  void searchRequestByName(String query, String jopindex) {
+    List<Attendance> tempFilteredList = List.from(employee);
+
+    if (query != null && query.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((emp) {
+        final empName = emp.fullName?.toLowerCase() ?? '';
+        return empName.contains(query.toLowerCase());
+      }).toList();
+    }
+
+    if (jopindex.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((emp) {
+        return emp.jobTitle?.toLowerCase() == jopindex.toLowerCase();
+      }).toList();
+    }
+
+    filteredName = query;
+    filteredreemployees = tempFilteredList;
     update();
   }
 
   void selectIndex(String type, String? index) {
-    print("");
-
     switch (type) {
-      case 'session':
-        sessionIndex = index ?? "";
+      case 'jobTitle':
+        JopTitleIndex = index ?? "";
+        break;
+    }
+    searchRequestByName(filteredName, JopTitleIndex);
+    update();
+  }
+
+  void updateList(
+    String type,
+    List<String> options,
+  ) {
+    switch (type) {
+      case 'jobTitle':
+        JobTitleList = options;
         break;
     }
     update();
@@ -35,8 +92,9 @@ class Employeeattendencecontroller extends GetxController {
 
   void setAllEmployee(AllEmployeeAttendeceModel model) {
     employee = model.attendance!;
-    filteredEmpolyee = List.from(employee);
-    setIsLoading(false); 
+    setIsLoading(false);
+    searchRequestByName(filteredName, JopTitleIndex);
+    setIsLoading(false);
     update();
   }
 
@@ -45,55 +103,42 @@ class Employeeattendencecontroller extends GetxController {
     update();
   }
 
-  void searchattendenceByName(String query) {
-    if (query.isEmpty) {
-      filteredEmpolyee = List.from(employee);
-    } else {
-      filteredEmpolyee = employee
-          .where((student) =>
-              student.fullName != null &&
-              student.fullName!.toLowerCase().contains(query.toLowerCase()))
-          .toList();
-    }
-    update();
-  }
-
-  void setAllSession(AllSessionModel session) async {
-    sessionlist.clear();
-    for (int i = 0; i < session.sessions!.length; i++) {
-      sessionlist.add(session.sessions![i].year.toString());
-    }
-    update();
-    updateList("session", sessionlist);
-  }
-
-  void updateList(
-    String type,
-    List<String> options,
-  ) {
-    switch (type) {
-      case 'session':
-        sessionlist = options;
-        break;
-    }
-    update();
-  }
-
   Rx<DateTime?> AttendencetDate = Rx<DateTime?>(null);
 
-  void selectDate(BuildContext context) async {
+  Future<bool> selectDate({required BuildContext context}) async {
+    String rawStartDate =
+        Get.find<All_Screen_Sessions_Controller>().startSessionDate;
+    String rawEndDate =
+        Get.find<All_Screen_Sessions_Controller>().endSessionDate;
+
+    print("Raw Start Date: $rawStartDate");
+    print("Raw End Date: $rawEndDate");
+
+    rawStartDate = rawStartDate.trim();
+    rawEndDate = rawEndDate.trim();
+
+    DateFormat format = DateFormat("yyyy-MM-dd");
+
+    DateTime startDate = format.parse(rawStartDate);
+    DateTime endDate = format.parse(rawEndDate);
+
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: AttendencetDate.value ?? DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
+      firstDate: startDate,
+      lastDate: endDate,
     );
+
     if (picked != null) {
       AttendencetDate.value = picked;
+      Getemployeeattendenceapi(context).Getemployeeattendence(
+        date: picked.toString(),
+      );
+      return true;
+    } else {
+      return false;
     }
   }
 
-  String get selectedsessionIndex => sessionIndex;
-
+  String get selectejobTitleIndex => JopTitleIndex;
   Rx<DateTime?> get selectDateindex => AttendencetDate;
 }

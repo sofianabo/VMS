@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Grade_Screen/Delete_Grade_API.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Grade_Screen/Edit_Grade_API.dart';
-import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Grade_Controller.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Subject_Screen/Delete_Subject_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Subject_Screen/Edit_Subject_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Subject_Controller.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
+import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
-class GradeTable extends StatelessWidget {
-  GradeTable({super.key});
+class Subject_Management_Grid extends StatelessWidget {
+  Subject_Management_Grid({super.key});
 
   TextEditingController name = TextEditingController();
   TextEditingController enName = TextEditingController();
-  TextEditingController feeCount = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<Grade_Controller>(
+    return GetBuilder<Subject_Controller>(
       builder: (controller) {
         return Container(
           margin: const EdgeInsets.only(top: 20),
@@ -39,16 +39,14 @@ class GradeTable extends StatelessWidget {
                             decoration: BoxDecoration(color: Color(0xffD4DFE5)),
                             children: [
                               _tableHeader('Operation'),
-                              _tableHeader('Fee Count'),
-                              _tableHeader('Grade Name'),
+                              _tableHeader('Subject Name'),
                             ],
                           ),
-                          for (var row in controller.Grades.asMap().entries)
+                          for (var row in controller.Subjects.asMap().entries)
                             TableRow(
                               children: [
                                 _operationColumn(
                                     row.value, controller, row.key, context),
-                                _dataColumn(row.value['feeCount']),
                                 _dataColumn(row.value['enName']),
                               ],
                             ),
@@ -80,71 +78,75 @@ class GradeTable extends StatelessWidget {
   }
 
   Widget _operationColumn(
-      Map row, Grade_Controller controller, int index, BuildContext context) {
+      Map row, Subject_Controller controller, int index, BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 5.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          _iconButton(
-            iconData: VMS_Icons.bin,
-            color: Color(0xffB03D3D),
-            onPressed: () {
-              Get.dialog(
-                VMSAlertDialog(
-                  action: [
-                    ButtonDialog(
-                        text: "Delete",
-                        onPressed: () {
-                          Delete_Grade_API(context).Delete_Grade(
-                            gradeId: controller.Grades[index]['id'],
-                            index: index,
-                          );
-                        },
-                        color: Color(0xffB03D3D),
-                        width: 120),
-                    ButtonDialog(
-                        text: "Cancel",
-                        onPressed: () {
-                          Get.back();
-                        },
-                        color: Get.theme.primaryColor,
-                        width: 120)
-                  ],
-                  contents: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        width: 400,
-                        child: Text(
-                          "Do You Want To Delete (${row['enName']}) Grade",
-                          style: TextStyle(fontSize: 16),
+          controller.Subjects[index]['hasCurriculum'] == false
+              ? _iconButton(
+                  iconData: VMS_Icons.bin,
+                  color: Color(0xffB03D3D),
+                  onPressed: () {
+                    Get.dialog(
+                      VMSAlertDialog(
+                        action: [
+                          ButtonDialog(
+                              text: "Delete",
+                              onPressed: () {
+                                Delete_Subject_API(context).Delete_Subject(
+                                  id: controller.Subjects[index]['id'],
+                                  index: index,
+                                );
+                              },
+                              color: Color(0xffB03D3D),
+                              width: 120),
+                          ButtonDialog(
+                              text: "Cancel",
+                              onPressed: () {
+                                Get.back();
+                              },
+                              color: Get.theme.primaryColor,
+                              width: 120)
+                        ],
+                        contents: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              width: 400,
+                              child: Text(
+                                "Do You Want To Delete (${row['enName']}) Subject",
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ),
+                          ],
                         ),
+                        apptitle: "Delete Subject",
+                        subtitle: "none",
                       ),
-                    ],
-                  ),
-                  apptitle: "Delete Grade",
-                  subtitle: "none",
+                    );
+                  },
+                )
+              : _iconButton(
+                  iconData: VMS_Icons.bin,
+                  color: Get.theme.disabledColor,
+                  onPressed: () {},
                 ),
-              );
-            },
-          ),
           _iconButton(
             iconData: Icons.edit_note_outlined,
             color: Get.theme.primaryColor,
             onPressed: () {
               name.text = "${row['name']}";
               enName.text = "${row['enName']}";
-              feeCount.text = "${row['feeCount']}";
               Get.dialog(
                 VMSAlertDialog(
                     action: [
                       ButtonDialog(
                           text: "Edit",
                           onPressed: () {
-                            Edit_Grade_API(context).Edit_Grade(
-                              gradeId: controller.Grades[index]['id'],
-                              feeCount: feeCount.text,
+                            Edit_Subject_API(context).Edit_Subject(
+                              SubjectId: controller.Subjects[index]['id'],
                               enName: enName.text,
                               name: name.text,
                             );
@@ -161,33 +163,18 @@ class GradeTable extends StatelessWidget {
                               padding: EdgeInsets.only(left: 15.0, right: 15.0),
                               child: Textfildwithupper(
                                   controller: enName,
-                                  Uptext: "Grade En - Name",
-                                  hinttext: "Grade En - Name"),
+                                  Uptext: "Subject En - Name",
+                                  hinttext: "Subject En - Name"),
                             ),
                             Textfildwithupper(
                                 controller: name,
-                                Uptext: "Grade Ar - Name",
-                                hinttext: "Grade Ar - Name"),
-                          ],
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: 15.0, right: 15.0, top: 15.0),
-                              child: Textfildwithupper(
-                                  controller: feeCount,
-                                  Uptext: "Fee Count",
-                                  hinttext: "Fee Count"),
-                            ),
+                                Uptext: "Subject Ar - Name",
+                                hinttext: "Subject Ar - Name"),
                           ],
                         ),
                       ],
                     ),
-                    apptitle: "Edit Grade",
+                    apptitle: "Edit Subject",
                     subtitle: "none"),
               );
             },

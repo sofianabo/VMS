@@ -56,6 +56,7 @@ class Student_attendence_controller extends GetxController {
   }
   setClassLoading(bool value){
     isClassLoading = value;
+    classIndex = "";
     update();
   }
   setDivisionLoading(bool value){
@@ -94,7 +95,7 @@ class Student_attendence_controller extends GetxController {
       students.add({
         'studentId': stu.id,
         'status': 'Present',
-        'cause': "",
+        'cause': null,
         'name': stu.fullName,
         // 'imgid': stu.fileId,
       });

@@ -18,6 +18,7 @@ class Increaseemployeattendenceapi {
     final EmployeeController AttendenceController =
         Get.find<EmployeeController>();
     AttendenceController.setIsload(true);
+    AttendenceController.setIsIsuploaded(false);
 
     try {
       String myurl = "${hostPort}${employeeIncreaseAttendance}";

@@ -5,6 +5,9 @@ import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_All_Employee_API
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/IncreaseEmployeAttendenceAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Employeeecontroller.dart';
 import 'package:vms_school/view/Admin/Employee_Manager/EmployeeAttendenceManageGride.dart';
+import 'package:vms_school/widgets/ButtonsDialog.dart';
+import 'package:vms_school/widgets/TextFildWithUpper.dart';
+import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class EmployeeAttendanceManagment extends StatefulWidget {
   EmployeeAttendanceManagment({super.key});
@@ -21,7 +24,7 @@ class _EmployeeAttendanceManagmentState
     super.initState();
     Increaseemployeattendenceapi.Increaseemployeattendence();
   }
-
+  TextEditingController cuse = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -42,19 +45,52 @@ class _EmployeeAttendanceManagmentState
                     Container(
                         width: w / 5.0,
                         child: Obx(() => Row(
-                              children: [
-                                Checkbox(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(4))),
-                                  value: controller.allHolidayChecked.value,
-                                  onChanged: (value) {
-                                    controller.setAllAsHoliday(value!);
-                                  },
-                                ),
-                                Text("Set All As a Holiday"),
-                              ],
-                            ))),
+                          children: [
+                            Checkbox(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(4))),
+                              value: controller.allHolidayChecked.value,
+                              onChanged: (value) {
+                                if(controller.Isuploaded == true||controller.Isloading == true){
+
+                                }else{
+                                  if(value == true){
+                                    Get.dialog(VMSAlertDialog(
+                                        action: [
+                                          ButtonDialog(
+                                              text: "Done",
+                                              onPressed: (){
+                                                controller.setAllAsHoliday(value!,cuse.text);
+                                                Get.back();
+                                              },
+                                              color: Get.theme.primaryColor,
+                                              width: 65)
+                                        ],
+                                        contents: Container(
+                                          width: 500,
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Textfildwithupper(
+                                                  width: 250,
+                                                  controller: cuse,
+                                                  Uptext: "Cause",
+                                                  hinttext: "Cause")
+                                            ],
+                                          ),
+                                        ),
+                                        apptitle: "Enter The Reason For Absence",
+                                        subtitle: "The reason for the absence of the all students"));
+                                  }else{
+                                    controller.setAllAsHoliday(value!,null);
+                                  }
+                                }
+                              },
+                            ),
+                            Text("Set All As a Holiday"),
+                          ],
+                        ))),
                     Container(
                       width: 40,
                       height: 40,
@@ -76,10 +112,15 @@ class _EmployeeAttendanceManagmentState
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
                           onPressed: () async {
-                            await Add_Employee_Attendence_API
-                                .Add_Employee_Attendence(
+                            if(controller.Isloading == false)
+                            {
+                              if(controller.Isuploaded == false){
+                                await Add_Employee_Attendence_API
+                                    .Add_Employee_Attendence(
                                     employees: controller.Employees);
-                            print(controller.Employees);
+                                print(controller.Employees);
+                              }
+                            }
                           },
                           icon: Icon(Icons.file_upload_outlined,
                               size: 22, color: Get.theme.primaryColor)),

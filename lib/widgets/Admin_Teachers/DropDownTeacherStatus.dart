@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownClassesAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeacherAtendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 
-class Dropdownallteacher extends StatelessWidget {
+class DropDownTeacherStatus extends StatelessWidget {
   final double width;
   final String title;
   final String type;
   final Color? color;
   bool isDisabled;
   bool isLoading;
-   Dropdownallteacher({
+  DropDownTeacherStatus({
     Key? key,
     required this.title,
     this.color,
@@ -23,7 +24,7 @@ class Dropdownallteacher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<Allteachercontroller>(builder: (cont) {
+    return GetBuilder<Allteacheratendencecontroller>(builder: (cont) {
       String selectedValue = "";
 
       switch (type) {
@@ -32,14 +33,15 @@ class Dropdownallteacher extends StatelessWidget {
               ? cont.selectedclassIndex
               : title;
           break;
-          case 'Curriculum':
-        selectedValue = cont.selectedCurriculumIndex.isNotEmpty
-            ? cont.selectedCurriculumIndex
-            : title;
-        break;
         case 'Subject':
         selectedValue = cont.selectedSubjectIndex.isNotEmpty
             ? cont.selectedSubjectIndex
+            : title;
+
+        break;
+        case 'Type':
+        selectedValue = cont.selectedTypeIndex.isNotEmpty
+            ? cont.selectedTypeIndex
             : title;
 
         break;
@@ -120,7 +122,7 @@ class Dropdownallteacher extends StatelessWidget {
     });
   }
 
-  List<DropdownMenuItem<String>> _getDropdownItems(Allteachercontroller cont) {
+  List<DropdownMenuItem<String>> _getDropdownItems(Allteacheratendencecontroller cont) {
     List<DropdownMenuItem<String>> items = [];
 
     switch (type) {
@@ -137,8 +139,8 @@ class Dropdownallteacher extends StatelessWidget {
           );
         }).toList());
         break;
-        case 'Curriculum':
-        items.addAll(cont.Curriculumlist.map((String value) {
+        case 'Type':
+        items.addAll(cont.Typelist.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(

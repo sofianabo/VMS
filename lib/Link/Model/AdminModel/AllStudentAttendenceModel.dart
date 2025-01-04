@@ -30,16 +30,22 @@ class Attendance {
   int? fileId;
   int? studentId;
   String? fullName;
+  Division? division;
+  Division? classes;
+  Division? grade;
 
   Attendance(
       {this.status,
-      this.date,
-      this.cause,
-      this.id,
-      this.divisionId,
-      this.fileId,
-      this.studentId,
-      this.fullName});
+        this.date,
+        this.cause,
+        this.id,
+        this.divisionId,
+        this.fileId,
+        this.studentId,
+        this.fullName,
+        this.division,
+        this.classes,
+        this.grade});
 
   Attendance.fromJson(Map<String, dynamic> json) {
     status = json['status'];
@@ -50,6 +56,12 @@ class Attendance {
     fileId = json['fileId'];
     studentId = json['studentId'];
     fullName = json['fullName'];
+    division = json['division'] != null
+        ? new Division.fromJson(json['division'])
+        : null;
+    classes =
+    json['classes'] != null ? new Division.fromJson(json['classes']) : null;
+    grade = json['grade'] != null ? new Division.fromJson(json['grade']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -62,6 +74,34 @@ class Attendance {
     data['fileId'] = this.fileId;
     data['studentId'] = this.studentId;
     data['fullName'] = this.fullName;
+    if (this.division != null) {
+      data['division'] = this.division!.toJson();
+    }
+    if (this.classes != null) {
+      data['classes'] = this.classes!.toJson();
+    }
+    if (this.grade != null) {
+      data['grade'] = this.grade!.toJson();
+    }
+    return data;
+  }
+}
+
+class Division {
+  String? name;
+  String? enName;
+
+  Division({this.name, this.enName});
+
+  Division.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    enName = json['enName'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['enName'] = this.enName;
     return data;
   }
 }

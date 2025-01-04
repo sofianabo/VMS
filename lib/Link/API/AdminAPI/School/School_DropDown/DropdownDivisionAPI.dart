@@ -5,6 +5,7 @@ import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
@@ -16,6 +17,7 @@ class Dropdowndivisionapi {
   final Allstudentscontroller stuc = Get.find<Allstudentscontroller>();
   final  StudyYearController = Get.find<StudyYearStudentsController>();
   final  Student_attendence = Get.find<Student_attendence_controller>();
+  final  StudentAttendencControlle = Get.find<StudentAttendencController>();
 
   Dropdownclassescontroller class_controller =
       Get.find<Dropdownclassescontroller>();
@@ -29,6 +31,7 @@ class Dropdowndivisionapi {
       stuc.setDivisionLoading(true);
       StudyYearController.setDivisionLoading(true);
       Student_attendence.setDivisionLoading(true);
+      StudentAttendencControlle.setDivisionLoading(true);
       int? id = class_controller.Allclass[idx].id;
       String myurl = "${hostPort}${getDivision}";
       var response = await dio.post(myurl,

@@ -111,6 +111,7 @@ class StudyYearStudentsController extends GetxController {
   }
   setClassLoading(bool value){
     isClassLoading = value;
+    classIndex = "";
     update();
   }
   setDivisionLoading(bool value){
@@ -121,6 +122,7 @@ class StudyYearStudentsController extends GetxController {
   resetOnSessionChange(){
     gradeIndex = "";
     classIndex = "";
+    setGradeLoading(true);
     divisionIndex = "";
     update();
   }

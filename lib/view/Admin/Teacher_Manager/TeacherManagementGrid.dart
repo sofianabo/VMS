@@ -4,9 +4,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/DeleteTeacherAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
-import 'package:vms_school/view/Admin/Dashboard/Dashboard_Second_Row.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
-import 'package:vms_school/widgets/DropDown.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
@@ -65,7 +63,6 @@ class TeacherManagementGrid extends StatelessWidget {
                       children: [
                        SchemaWidget(width: 40, height: 40),
                         SchemaWidget(width: 100, height: 100 , radius: 100,),
-                        SchemaWidget(width: 40, height: 40),
                       ],
                     ),
                     SchemaWidget(width: 80, height: 20),
@@ -121,7 +118,7 @@ class TeacherManagementGrid extends StatelessWidget {
                 : Get.width <= 573
                 ? 3.0
                 : 0.9),
-        itemCount: control.teachers.length, // عدد العناصر في الشبكة
+        itemCount: control.filteredTeacher!.length, // عدد العناصر في الشبكة
         itemBuilder: (context, index) {
           return HoverScaleCard(
             child: GestureDetector(
@@ -162,7 +159,7 @@ class TeacherManagementGrid extends StatelessWidget {
                                         onPressed: () async {
                                           await Deleteteacherapi(context)
                                               .Deleteteacher(
-                                              control.teachers[index].id!);
+                                              control.filteredTeacher![index].id!);
                                         },
                                         color: Color(0xffB03D3D),
                                         width: 80),
@@ -181,7 +178,7 @@ class TeacherManagementGrid extends StatelessWidget {
                                         MainAxisAlignment.start,
                                         children: [
                                           Text(
-                                            "Do You Want To Delete ${control.teachers[index].fullName} Teacher",
+                                            "Do You Want To Delete ${control.filteredTeacher![index].fullName} Teacher",
                                             style: Get.theme.textTheme.bodyMedium!
                                                 .copyWith(
                                                 fontSize: 16,
@@ -198,52 +195,12 @@ class TeacherManagementGrid extends StatelessWidget {
                                   size: 16, color: Colors.white)),
                           Image.asset("../../images/Rectangle66.png",
                               height: 100, width: 100),
-                          IconButton(
-                              style: ButtonStyle(
-                                  backgroundColor: WidgetStatePropertyAll(
-                                      Get.theme.primaryColor),
-                                  shape: WidgetStatePropertyAll(
-                                      RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))))),
-                              onPressed: () {
-                                Get.dialog(VMSAlertDialog(
-                                    contents: Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        DropDown(
-                                            width: 220,
-                                            title: "Class",
-                                            options: []),
-                                        Padding(
-                                          padding:
-                                          const EdgeInsets.only(left: 15.0),
-                                          child: DropDown(
-                                              width: 220,
-                                              title: "Curriculum",
-                                              options: []),
-                                        ),
-                                      ],
-                                    ),
-                                    action: [
-                                      ButtonDialog(
-                                          width: 120,
-                                          text: "Save",
-                                          onPressed: () {},
-                                          color: Get.theme.primaryColor)
-                                    ],
-                                    apptitle: "Link Teacher To Curriculum",
-                                    subtitle: "none"));
-                              },
-                              icon: Icon(Icons.link,
-                                  size: 18, color: Colors.white)),
+
                         ],
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 5.0),
-                        child: Text("${control.teachers[index].fullName}",
+                        child: Text("${control.filteredTeacher![index].fullName}",
                             style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(
                                 fontSize: 20, fontWeight: FontWeight.bold)),
@@ -255,11 +212,11 @@ class TeacherManagementGrid extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 5.0),
                             child: Text(
-                                "${control.teachers[index].contractType}",
+                                "${control.filteredTeacher![index].contractType}",
                                 style: Get.theme.textTheme.bodyMedium!
                                     .copyWith(
                                     fontSize: 16,
-                                    color: control.teachers[index]
+                                    color: control.filteredTeacher![index]
                                         .contractType ==
                                         "Full Time"
                                         ? Color(0xff2F9742)
@@ -267,7 +224,7 @@ class TeacherManagementGrid extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 5.0),
-                            child: Text("${control.teachers[index].gender}",
+                            child: Text("${control.filteredTeacher![index].gender}",
                                 style: Get.theme.textTheme.bodyMedium!
                                     .copyWith(
                                     fontSize: 16,
@@ -277,7 +234,7 @@ class TeacherManagementGrid extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 5.0),
-                        child: Text("Mobile : ${control.teachers[index].phone}",
+                        child: Text("Mobile : ${control.filteredTeacher![index].phone}",
                             style:
                             Get.theme.textTheme.bodyMedium!.copyWith(
                               fontSize: 16,
@@ -285,7 +242,7 @@ class TeacherManagementGrid extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 5.0),
-                        child: Text("Email : ${control.teachers[index].email}",
+                        child: Text("Email : ${control.filteredTeacher![index].email}",
                             style:
                             Get.theme.textTheme.bodyMedium!.copyWith(
                               fontSize: 14,

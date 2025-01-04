@@ -7,6 +7,8 @@ class EmployeeController extends GetxController {
   bool Isloading = true;
   bool Isuploaded = false;
 
+
+
   List<Employee>? employees;
   List<Teacher>? teachers;
   var Employees = <Map<String, dynamic>>[].obs;
@@ -24,6 +26,9 @@ class EmployeeController extends GetxController {
       });
     }
 
+    if(employees!.isEmpty){
+      setIsIsuploaded(true);
+    }
     setIsload(false);
     update();
   }
@@ -33,22 +38,17 @@ class EmployeeController extends GetxController {
     Employees.clear();
 
     for (var t in teachers!) {
-      try {
         Employees.add({
           'employeeId': t.id!,
           'status': 'Present',
-          'cause': "null",
+          'cause': null,
           'name': t.fullName!,
-          'imgid': t.imageId??"",
+          'imgid': t.imageId ?? "",
         });
-      } catch (e) {
-        print(t.id);
-        print(t.fullName);
-        print(t.imageId);
-        print(e);
-      }
     }
-    print(Employee);
+    if(teachers!.isEmpty){
+      setIsIsuploaded(true);
+    }
     setIsload(false);
     update();
   }
@@ -67,23 +67,24 @@ class EmployeeController extends GetxController {
   var allHolidayChecked = false.obs;
 
 
-  void updateStatus(int index, String newStatus) {
+  void updateStatus(int index, String newStatus, String? cause) {
+    Employees[index]['cause'] = cause;
     Employees[index]['status'] = newStatus;
     Employees.refresh();
     checkAllHolidayStatus();
   }
 
 
-  void setAllAsHoliday(bool checked) {
+  void setAllAsHoliday(bool checked, String? holiday) {
     allHolidayChecked.value = checked;
     for (var item in Employees) {
       item['status'] = checked ? 'Holiday' : 'Present';
+      item['cause'] = checked ? holiday : null;
     }
 
     Employees.refresh();
   }
 
-  // التحقق من حالة العطلة للجميع
   void checkAllHolidayStatus() {
     allHolidayChecked.value =
         Employees.every((item) => item['status'] == 'Holiday');

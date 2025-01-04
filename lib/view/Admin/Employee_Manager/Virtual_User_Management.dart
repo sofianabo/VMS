@@ -67,7 +67,7 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                               width: w / 2,
                               radius: 5,
                               controller: search,
-                              suffixIcon: Icons.search,
+                              suffixIcon: search.text.isNotEmpty ? Icons.close :  Icons.search,
                             ),
                           ),
                         ],

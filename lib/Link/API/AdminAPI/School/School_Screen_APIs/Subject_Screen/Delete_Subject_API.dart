@@ -6,27 +6,31 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Grade_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Subject_Controller.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 
-class Delete_Grade_API {
+class Delete_Subject_API {
   BuildContext context;
-  Delete_Grade_API(this.context);
+  Delete_Subject_API(this.context);
   Dio dio = Dio();
 
-  Delete_Grade({
+  Delete_Subject({
     index,
-    gradeId,
+    id,
   }) async {
     try {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
-      final controller = Get.find<Grade_Controller>();
-      String myurl = "${hostPort}${destroyGrede}/$gradeId";
+      final controller = Get.find<Subject_Controller>();
+      String myurl = "${hostPort}${deleteSubject}";
 
-      var response = await dio.delete(
-          cancelToken: cancelToken, myurl, options: getDioOptions());
+      var response = await dio.post(
+          cancelToken: cancelToken,
+          myurl,
+          data: {"id": id},
+          options: getDioOptions());
       if (response.statusCode == 200) {
-        controller.DeleteGrade(index);
+        controller.DeleteSubject(index);
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_All_Employee_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/AddTeacherAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
+import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/view/Admin/Employee_Manager/Add_Full_Employee.dart';
 import 'package:vms_school/view/Admin/Employee_Manager/AllEmployeeGrid.dart';
 import 'package:vms_school/widgets/Admin_Employee/Export_Data.dart';
@@ -40,6 +41,7 @@ class _AllEmployeeState extends State<AllEmployee> {
 
   @override
   void initState() {
+    Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
     Get_All_Employee_API.Get_All_Employee();
     super.initState();
   }

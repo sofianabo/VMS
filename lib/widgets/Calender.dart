@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/GetEmployeeAttendenceAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students_APIs/StudentAttendenceAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetTeacherAttendenceAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/EmployeeAttendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Session_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/ExamTableController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeacherAtendenceController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DateControler.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:intl/intl.dart';
+import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
+import 'package:vms_school/widgets/Admin_School/All_Screen_Sessions.dart';
 
 class DatePicker extends StatelessWidget {
   final double width;
@@ -347,72 +354,252 @@ class selectDateRequest extends StatelessWidget {
   }
 }
 
-class selectDateAttendence extends StatelessWidget {
+class selectTeacherDateAttendence extends StatelessWidget {
   final double width;
   final double? height;
-  final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
+  final bool isRequired;
 
-  selectDateAttendence({
+  selectTeacherDateAttendence({
     super.key,
     required this.width,
     this.height,
-    this.isRequired = false, // افتراضي الحقل غير مطلوب.
+    this.isRequired = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    final StudentAttendencController controller =
-        Get.put(StudentAttendencController());
-    return Obx(
-      () => Container(
-        width: width,
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: height ?? 40,
-              child: TextFormField(
-                style: TextStyle(fontSize: 14),
-                controller: TextEditingController(
-                  text: controller.AttendencetDate.value != null
-                      ? DateFormat('yyyy-MM-dd')
-                          .format(controller.AttendencetDate.value!)
-                      : '',
-                ),
-                readOnly: true,
-                onTap: () => controller.selectDate(context),
-                decoration: InputDecoration(
-                  hintText: "yyyy-MM-dd",
-                  hintStyle: Get.theme.primaryTextTheme.titleMedium!
-                      .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide(color: Color(0xffD9D9D9), width: 2),
+    return GetBuilder<Allteacheratendencecontroller>(builder: (controller) {
+      return Obx(
+        () => Container(
+          width: width,
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: height ?? 40,
+                child: TextFormField(
+                  style: TextStyle(fontSize: 14),
+                  controller: TextEditingController(
+                    text: controller.AttendencetDate.value != null
+                        ? DateFormat('yyyy-MM-dd')
+                            .format(controller.AttendencetDate.value!)
+                        : '',
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(color: Color(0xffD9D9D9)),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      VMS_Icons.calender,
-                      color: Get.theme.primaryColor,
-                      size: 16,
-                    ),
-                    onPressed: () => controller.selectDate(context),
-                  ),
+                  readOnly: true,
+                  onTap: () => controller.selectDate(context),
+                  decoration: InputDecoration(
+                      hintText: "yyyy-MM-dd",
+                      hintStyle: Get.theme.primaryTextTheme.titleMedium!
+                          .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide:
+                            BorderSide(color: Color(0xffD9D9D9), width: 2),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: const BorderSide(color: Color(0xffD9D9D9)),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      suffixIcon: controller.selectDateindex.value == null
+                          ? IconButton(
+                              icon: Icon(
+                                VMS_Icons.calender,
+                                color: Get.theme.primaryColor,
+                                size: 16,
+                              ),
+                              onPressed: () => controller.selectDate(context),
+                            )
+                          : IconButton(
+                              icon: Icon(
+                                Icons.clear,
+                                color: Get.theme.primaryColor,
+                                size: 16,
+                              ),
+                              onPressed: () {
+                                controller.removeAttendence();
+                                Getteacherattendenceapi(context)
+                                    .Getteacherattendence(
+                                        sessionID: Get.find<
+                                                All_Screen_Sessions_Controller>()
+                                            .sessionId);
+                              },
+                            )),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    });
+  }
+}
+
+class selectEmployeeDateAttendence extends StatelessWidget {
+  final double width;
+  final double? height;
+  final bool isRequired;
+
+  selectEmployeeDateAttendence({
+    super.key,
+    required this.width,
+    this.height,
+    this.isRequired = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<Employeeattendencecontroller>(builder: (controller) {
+      return Obx(
+        () => Container(
+          width: width,
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: height ?? 40,
+                child: TextFormField(
+                  style: TextStyle(fontSize: 14),
+                  controller: TextEditingController(
+                    text: controller.AttendencetDate.value != null
+                        ? DateFormat('yyyy-MM-dd')
+                            .format(controller.AttendencetDate.value!)
+                        : '',
+                  ),
+                  readOnly: true,
+                  onTap: () => controller.selectDate(context: context),
+                  decoration: InputDecoration(
+                      hintText: "yyyy-MM-dd",
+                      hintStyle: Get.theme.primaryTextTheme.titleMedium!
+                          .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide:
+                            BorderSide(color: Color(0xffD9D9D9), width: 2),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: const BorderSide(color: Color(0xffD9D9D9)),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      suffixIcon: controller.AttendencetDate.value == null
+                          ? IconButton(
+                              icon: Icon(
+                                VMS_Icons.calender,
+                                color: Get.theme.primaryColor,
+                                size: 16,
+                              ),
+                              onPressed: () =>
+                                  controller.selectDate(context: context),
+                            )
+                          : IconButton(
+                              icon: Icon(
+                                Icons.clear,
+                                color: Get.theme.primaryColor,
+                                size: 16,
+                              ),
+                              onPressed: () {
+                                controller.removeAttendence();
+                                Getemployeeattendenceapi(context)
+                                    .Getemployeeattendence();
+                              })),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    });
+  }
+}
+
+class selectStudentsDateAttendence extends StatelessWidget {
+  final double width;
+  final double? height;
+  final bool isRequired;
+
+  selectStudentsDateAttendence({
+    super.key,
+    required this.width,
+    this.height,
+    this.isRequired = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<StudentAttendencController>(builder: (controller) {
+      return Obx(
+        () => Container(
+          width: width,
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: height ?? 40,
+                child: TextFormField(
+                  style: TextStyle(fontSize: 14),
+                  controller: TextEditingController(
+                    text: controller.AttendencetDate.value != null
+                        ? DateFormat('yyyy-MM-dd')
+                            .format(controller.AttendencetDate.value!)
+                        : '',
+                  ),
+                  readOnly: true,
+                  onTap: () => controller.selectDate(context: context),
+                  decoration: InputDecoration(
+                      hintText: "yyyy-MM-dd",
+                      hintStyle: Get.theme.primaryTextTheme.titleMedium!
+                          .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide:
+                            BorderSide(color: Color(0xffD9D9D9), width: 2),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: const BorderSide(color: Color(0xffD9D9D9)),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      suffixIcon: controller.AttendencetDate.value == null
+                          ? IconButton(
+                              icon: Icon(
+                                VMS_Icons.calender,
+                                color: Get.theme.primaryColor,
+                                size: 16,
+                              ),
+                              onPressed: () =>
+                                  controller.selectDate(context: context),
+                            )
+                          : IconButton(
+                              icon: Icon(
+                                Icons.clear,
+                                color: Get.theme.primaryColor,
+                                size: 16,
+                              ),
+                              onPressed: () {
+                                controller.removeAttendence();
+                                Studentattendenceapi(context)
+                                    .Studentattendence();
+                              })),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    });
   }
 }
 
@@ -487,13 +674,13 @@ class selectstart extends StatelessWidget {
 class selectend extends StatelessWidget {
   final double width;
   final double? height;
-  final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
+  final bool isRequired;
 
   selectend({
     super.key,
     required this.width,
     this.height,
-    this.isRequired = false, // افتراضي الحقل غير مطلوب.
+    this.isRequired = false,
   });
 
   @override

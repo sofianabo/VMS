@@ -5,6 +5,7 @@ import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/DropDownPenaltyAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/GetStudyYearStudentAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
+import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/view/Admin/Students_Manager/StudyYearStudentsGrid.dart';
 import 'package:vms_school/widgets/Admin_School/All_Screen_Sessions.dart';
 import 'package:vms_school/widgets/Admin_Students/DropDownStudyYearStudents.dart';
@@ -20,6 +21,7 @@ class StudyYearStudents extends StatefulWidget {
 class _StudyYearStudentsState extends State<StudyYearStudents> {
   @override
   initState() {
+    Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
     Study_Year_Students_API(context).Study_Year_Students();
     Get_All_Benality_API(context).Get_All_Benality();
     super.initState();

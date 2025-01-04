@@ -5,8 +5,10 @@ import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
-import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/ExamTableController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeacherAtendenceController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Years_Controllers/Divisions_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
@@ -22,7 +24,10 @@ class Getallclassapi {
   final Studentcontroller = Get.find<Allstudentscontroller>();
   final StudyYearStudents = Get.find<StudyYearStudentsController>();
   final Student_attendence = Get.find<Student_attendence_controller>();
-  final ExamTableControl = Get.find<ExamTableController>();
+  final Allteachercontrolle = Get.find<Allteachercontroller>();
+  final Allteacheratendencecontrolle = Get.find<Allteacheratendencecontroller>();
+  final StudentAttendencControlle = Get.find<StudentAttendencController>();
+
   BuildContext context;
   Getallclassapi(this.context);
   Dio dio = Dio();
@@ -32,6 +37,10 @@ class Getallclassapi {
       Studentcontroller.setClassLoading(true);
       StudyYearStudents.setClassLoading(true);
       Student_attendence.setClassLoading(true);
+      Allteachercontrolle.setClassLoading(true);
+      Allteacheratendencecontrolle.setClassLoading(true);
+      StudentAttendencControlle.setClassLoading(true);
+
 
       final controller = Get.find<Divisions_Controller>();
       controller.SetIsloading(true);

@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/GetEmployeeAttendenceAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_All_Employee_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownClassesAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Class_API/Get_All_Classes.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Curriculm_API/Get_All_Curriculm.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Division_API/Get_All_Division.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/GetAllStudentAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/GetStudyYearStudentAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students_APIs/StudentAttendenceAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetAllTeachersAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetTeacherAttendenceAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/EmployeeAttendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 
@@ -66,7 +69,7 @@ class DropDownAllSessions extends StatelessWidget {
             ],
           ),
           style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-          onChanged: (newValue) {
+          onChanged: (newValue) async {
             if (newValue != null) {
               cont.selectIndex(type, newValue);
               cont.setsessionid(cont.sessions!.sessions!
@@ -79,21 +82,105 @@ class DropDownAllSessions extends StatelessWidget {
                   break;
                 case 'TeacherManagement':
                   Getallteachersapi.Getallteachers(sessionID: cont.sessionId);
+                  Getallclassapi(context)
+                      .getAllClasses(sessionID: cont.sessionId);
+                  break;
+                case 'Teachersts':
+                  Getteacherattendenceapi(context)
+                      .Getteacherattendence(sessionID: cont.sessionId);
+                  Getallclassapi(context)
+                      .getAllClasses(sessionID: cont.sessionId);
                   break;
                 case 'AllEmployee':
+                  cont.selectIndex(type, newValue);
+                  cont.setsessionid(cont.sessions!.sessions!
+                      .firstWhere((session) => session.year == newValue)
+                      .id);
                   Get_All_Employee_API.Get_All_Employee();
                   break;
                 case 'class':
+                  cont.selectIndex(type, newValue);
+                  cont.setsessionid(cont.sessions!.sessions!
+                      .firstWhere((session) => session.year == newValue)
+                      .id);
                   Get_All_Classes_API(context)
                       .Get_All_Classes(sessionID: cont.sessionId);
                   break;
                 case 'division':
+                  cont.selectIndex(type, newValue);
+                  cont.setsessionid(cont.sessions!.sessions!
+                      .firstWhere((session) => session.year == newValue)
+                      .id);
                   Get_All_Division_API(context)
                       .Get_All_Division(sessionId: cont.sessionId);
                   break;
-                  case 'SYStudent':
-                    Study_Year_Students_API(context).Study_Year_Students(sessionId: cont.sessionId);
-                    Get.find<StudyYearStudentsController>().resetOnSessionChange();
+                case 'SYStudent':
+                  Study_Year_Students_API(context)
+                      .Study_Year_Students(sessionId: cont.sessionId);
+                  Get.find<StudyYearStudentsController>()
+                      .resetOnSessionChange();
+                  break;
+                case 'StudentState':
+                  if (cont.sessions!.sessions!
+                          .firstWhere((session) => session.year == newValue)
+                          .id ==
+                      cont.sessions!.current!.id) {
+                    Get.find<StudentAttendencController>()
+                        .selectDateindex
+                        .value = null;
+                    Studentattendenceapi(context).Studentattendence(
+                      sessionID: cont.sessionId,
+                    );
+                    Get.find<StudentAttendencController>()
+                        .resetOnSessionChange();
+                  } else {
+                    if (await Get.find<StudentAttendencController>().selectDate(
+                          context: context,
+                        ) ==
+                        true) {
+                      Studentattendenceapi(context).Studentattendence(
+                          date: Get.find<StudentAttendencController>()
+                              .selectDateindex
+                              .value
+                              .toString()
+                              .replaceAll("00:00:00.000", "")
+                              .trim());
+                      Get.find<StudentAttendencController>()
+                          .resetOnSessionChange();
+                    } else {
+                      cont.setSessionDefult();
+                      return;
+                    }
+                  }
+                  break;
+
+                case 'EmpState':
+                  if (cont.sessions!.sessions!
+                          .firstWhere((session) => session.year == newValue)
+                          .id ==
+                      cont.sessions!.current!.id) {
+                    Get.find<Employeeattendencecontroller>()
+                        .selectDateindex
+                        .value = null;
+                    Getemployeeattendenceapi(context).Getemployeeattendence();
+                  } else {
+                    if (await Get.find<Employeeattendencecontroller>()
+                            .selectDate(
+                          context: context,
+                        ) ==
+                        true) {
+                      Studentattendenceapi(context).Studentattendence(
+                          date: Get.find<Employeeattendencecontroller>()
+                              .selectDateindex
+                              .value
+                              .toString()
+                              .replaceAll("00:00:00.000", "")
+                              .trim());
+                    } else {
+                      cont.setSessionDefult();
+                      return;
+                    }
+                  }
                   break;
               }
             }

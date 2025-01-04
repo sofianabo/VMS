@@ -3,17 +3,29 @@ import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Employeeecontroller.dart';
+import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
+import 'package:vms_school/widgets/TextFildWithUpper.dart';
+import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
-class TeacherAttendanceManagmentGrid extends StatelessWidget {
+class TeacherAttendanceManagmentGrid extends StatefulWidget {
   TeacherAttendanceManagmentGrid({super.key});
 
+  @override
+  State<TeacherAttendanceManagmentGrid> createState() => _TeacherAttendanceManagmentGridState();
+}
+
+class _TeacherAttendanceManagmentGridState extends State<TeacherAttendanceManagmentGrid> {
+  TextEditingController cuse = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return GetBuilder<EmployeeController>(builder: (controller) {
       return controller.Isloading == false
           ? controller.Isuploaded == true
-              ? Center(child: Text("Attendence Done"))
+              ? Center(child: Text("Attendance Today Has Been Uploaded", style: Get.theme.textTheme.titleLarge!.copyWith(
+          fontSize: 16,
+          fontWeight: FontWeight.normal
+      )))
               : Obx(() {
                   return Column(
                     children: [
@@ -115,9 +127,51 @@ class TeacherAttendanceManagmentGrid extends StatelessWidget {
                                                       activeColor:
                                                           Color(0xff134B70),
                                                       onChanged: (value) {
-                                                        controller.updateStatus(
-                                                            index,
-                                                            value.toString());
+                                                        if(value == "Holiday"){
+
+                                                        }else{
+                                                          if(value == "Truant" || value == "Late"|| value == "Vacation"){
+                                                            Get.dialog(VMSAlertDialog(
+                                                                action: [
+                                                                  ButtonDialog(
+                                                                      text: "Done",
+                                                                      onPressed: (){
+                                                                        controller.updateStatus(
+                                                                            index,
+                                                                            value.toString(),
+                                                                            cuse.text
+                                                                        );
+                                                                        Get.back();
+                                                                      },
+                                                                      color: Get.theme.primaryColor,
+                                                                      width: 65)
+                                                                ],
+                                                                contents: Container(
+                                                                  width: 500,
+                                                                  child: Column(
+                                                                    mainAxisSize: MainAxisSize.min,
+                                                                    children: [
+                                                                      Textfildwithupper(
+                                                                          width: 250,
+                                                                          controller: cuse,
+                                                                          Uptext: "Cause",
+                                                                          hinttext: "Cause")
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                apptitle: "Enter The Reason For Absence",
+                                                                subtitle: "The reason for the absence of the student ${controller
+                                                                    .Employees[index]
+                                                                ['name']}"));
+                                                          }
+                                                          else{
+                                                            controller.updateStatus(
+                                                                index,
+                                                                value.toString(),
+                                                                null
+                                                            );
+                                                          }
+                                                        }
                                                       },
                                                     ),
                                                     Text(

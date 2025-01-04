@@ -86,6 +86,9 @@ String createCurriculum = "createCurriculum";
 String deleteCurriculum = "deleteCurriculum";
 
 String getSubject = "getSubject";
+String addSubject = "addSubject";
+String deleteSubject = "deleteSubject";
+String updateSubject = "updateSubject";
 
 String addBook = "addBook";
 String getBook = "getBook";

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
 import 'package:vms_school/view/Admin/SideBar_Path.dart';
-import '../../widgets/SidbarAnimation.dart';
+import 'package:vms_school/widgets/GridAnimation.dart';
 
 class SideBarAdmin extends StatelessWidget {
   SideBarAdmin({super.key});
@@ -11,7 +11,7 @@ class SideBarAdmin extends StatelessWidget {
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     return Stack(
-        alignment: Alignment.center,
+      alignment: Alignment.center,
       children: [
         CustomPaint(
             painter: MyPainter(),
@@ -21,7 +21,7 @@ class SideBarAdmin extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SidbarAnimation(
+              hhh(
                   child: GestureDetector(
                 onTap: () {
                   cont.updateContent("Dashboard");
@@ -32,7 +32,7 @@ class SideBarAdmin extends StatelessWidget {
                   color: Colors.white,
                 ),
               )),
-              SidbarAnimation(
+              hhh(
                   child: Padding(
                 padding: EdgeInsets.only(top: h / 34.2),
                 child: GestureDetector(
@@ -46,7 +46,7 @@ class SideBarAdmin extends StatelessWidget {
                   ),
                 ),
               )),
-              SidbarAnimation(
+              hhh(
                 child: Padding(
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
@@ -68,19 +68,21 @@ class SideBarAdmin extends StatelessWidget {
                         <PopupMenuEntry<String>>[
                       PopupMenuItem<String>(
                         value: 'Exam Table',
-                        child: Text('Exam Table',
-                          ),
+                        child: Text(
+                          'Exam Table',
+                        ),
                       ),
                       PopupMenuItem<String>(
                         value: 'School Time Table',
-                        child: Text('School Time Table',
-                          ),
+                        child: Text(
+                          'School Time Table',
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
-              SidbarAnimation(
+              hhh(
                 child: Padding(
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
@@ -111,34 +113,39 @@ class SideBarAdmin extends StatelessWidget {
                         <PopupMenuEntry<String>>[
                       PopupMenuItem<String>(
                         value: 'All Students',
-                        child: Text('All Students',
-                          ),
+                        child: Text(
+                          'All Students',
+                        ),
                       ),
                       PopupMenuItem<String>(
                         value: 'Study Year Students',
-                        child: Text('Study Year Students',
-                          ),
+                        child: Text(
+                          'Study Year Students',
+                        ),
                       ),
                       PopupMenuItem<String>(
                         value: 'All Guardians',
-                        child: Text('All Guardians',
-                          ),
+                        child: Text(
+                          'All Guardians',
+                        ),
                       ),
                       PopupMenuItem<String>(
                         value: 'Student Attendance',
-                        child: Text('Student Attendance',
-                          ),
+                        child: Text(
+                          'Student Attendance',
+                        ),
                       ),
                       PopupMenuItem<String>(
                         value: 'Students Attendance Managment',
-                        child: Text('Students Attendance Managment',
-                          ),
+                        child: Text(
+                          'Students Attendance Managment',
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
-              SidbarAnimation(
+              hhh(
                 child: Padding(
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
@@ -163,24 +170,27 @@ class SideBarAdmin extends StatelessWidget {
                         <PopupMenuEntry<String>>[
                       PopupMenuItem<String>(
                         value: 'Teacher Management',
-                        child: Text('Teacher Management',
-                          ),
+                        child: Text(
+                          'Teacher Management',
+                        ),
                       ),
                       PopupMenuItem<String>(
                         value: 'Teacher Status',
-                        child: Text('Teacher Status',
-                          ),
+                        child: Text(
+                          'Teacher Status',
+                        ),
                       ),
                       PopupMenuItem<String>(
                         value: 'Teacher Attendance Managment',
-                        child: Text('Teacher Attendance Managment',
-                          ),
+                        child: Text(
+                          'Teacher Attendance Managment',
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
-              SidbarAnimation(
+              hhh(
                 child: Padding(
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
@@ -208,29 +218,33 @@ class SideBarAdmin extends StatelessWidget {
                         <PopupMenuEntry<String>>[
                       PopupMenuItem<String>(
                         value: 'Employee Management',
-                        child: Text('Employee Management',
-                          ),
+                        child: Text(
+                          'Employee Management',
+                        ),
                       ),
                       PopupMenuItem<String>(
                         value: 'Employee Attendance',
-                        child: Text('Employee Attendance',
-                          ),
+                        child: Text(
+                          'Employee Attendance',
+                        ),
                       ),
                       PopupMenuItem<String>(
                         value: 'Employee Attendance Manage',
-                        child: Text('Employee Attendance Manage',
-                          ),
+                        child: Text(
+                          'Employee Attendance Manage',
+                        ),
                       ),
                       PopupMenuItem<String>(
                         value: 'Virtual User Management',
-                        child: Text('Virtual User Management',
-                          ),
+                        child: Text(
+                          'Virtual User Management',
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
-              SidbarAnimation(
+              hhh(
                 child: Padding(
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
@@ -247,6 +261,9 @@ class SideBarAdmin extends StatelessWidget {
                       if (value == "Grade Management") {
                         cont.updateContent("Grade Management");
                       }
+                      if (value == "Subject Management") {
+                        cont.updateContent("Subject Management");
+                      }
                       if (value == "Class Management") {
                         cont.updateContent("Class Management");
                       }
@@ -261,34 +278,45 @@ class SideBarAdmin extends StatelessWidget {
                         <PopupMenuEntry<String>>[
                       PopupMenuItem<String>(
                         value: 'Session Management',
-                        child: Text('Session Management',
-                          ),
+                        child: Text(
+                          'Session Management',
+                        ),
                       ),
                       PopupMenuItem<String>(
                         value: 'Grade Management',
-                        child: Text('Grade Management',
-                          ),
+                        child: Text(
+                          'Grade Management',
+                        ),
                       ),
                       PopupMenuItem<String>(
                         value: 'Class Management',
-                        child: Text('Class Management',
-                          ),
+                        child: Text(
+                          'Class Management',
+                        ),
                       ),
                       PopupMenuItem<String>(
                         value: 'Division Management',
-                        child: Text('Division Management',
-                          ),
+                        child: Text(
+                          'Division Management',
+                        ),
+                      ),
+                      PopupMenuItem<String>(
+                        value: 'Subject Management',
+                        child: Text(
+                          'Subject Management',
+                        ),
                       ),
                       PopupMenuItem<String>(
                         value: 'Curriculum Management',
-                        child: Text('Curriculum Management',
-                          ),
+                        child: Text(
+                          'Curriculum Management',
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
-              SidbarAnimation(
+              hhh(
                 child: Padding(
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
@@ -310,13 +338,15 @@ class SideBarAdmin extends StatelessWidget {
                         <PopupMenuEntry<String>>[
                       PopupMenuItem<String>(
                         value: 'School Data Management',
-                        child: Text('School Data Management',
-                          ),
+                        child: Text(
+                          'School Data Management',
+                        ),
                       ),
                       PopupMenuItem<String>(
                         value: 'Electronic Library',
-                        child: Text('Electronic Library',
-                          ),
+                        child: Text(
+                          'Electronic Library',
+                        ),
                       ),
                     ],
                   ),
