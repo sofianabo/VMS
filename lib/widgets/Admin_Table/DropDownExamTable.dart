@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownDivisionAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/DropDownExamCuriculmAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/DropDownExamTypeAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/ExamTableController.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/DropDownCuriculmModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/ExamTypeModel.dart';
 
 class DropDownexamTable extends StatelessWidget {
@@ -37,14 +37,30 @@ class DropDownexamTable extends StatelessWidget {
               ? cont.selectedExamClass
               : title;
           break;
-        case 'division':
-          selectedValue = cont.selectedExamDivision.isNotEmpty
-              ? cont.selectedExamDivision
-              : title;
-          break;
+       
         case 'season':
           selectedValue = cont.selectedExamSeason.isNotEmpty
               ? cont.selectedExamSeason
+              : title;
+          break;
+        case 'typeDialog':
+          selectedValue = cont.selectedTypeDialog.isNotEmpty
+              ? cont.selectedTypeDialog
+              : title;
+          break;
+        case 'classDialog':
+          selectedValue = cont.selectedClassDailog.isNotEmpty
+              ? cont.selectedClassDailog
+              : title;
+          break;
+        case 'curiculmDialog':
+          selectedValue = cont.selectedCuriculmDialog.isNotEmpty
+              ? cont.selectedCuriculmDialog
+              : title;
+          break;
+        case 'semesterDialog':
+          selectedValue = cont.selectedSemesterDialog.isNotEmpty
+              ? cont.selectedSemesterDialog
               : title;
           break;
       }
@@ -101,6 +117,7 @@ class DropDownexamTable extends StatelessWidget {
       ExamTableController cont, BuildContext context) {
     List<DropdownMenuItem<String>> items = [];
     String seasonindex;
+    String classindex;
 
     switch (type) {
       case 'type':
@@ -124,24 +141,12 @@ class DropDownexamTable extends StatelessWidget {
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
             onTap: () async {
-              AllDivisionModel division = await Dropdowndivisionapi(context)
-                  .Dropdowndivision(cont.examClass.indexOf(value));
-              cont.setAllDivision(division);
+             
             },
           );
         }).toList());
         break;
-      case 'division':
-        items.addAll(cont.examDivision.map((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
-          );
-        }).toList());
-        break;
+    
       case 'season':
         items.addAll(cont.examSeason.map((String value) {
           return DropdownMenuItem<String>(
@@ -156,6 +161,63 @@ class DropDownexamTable extends StatelessWidget {
                   .Dropdownexamtype(cont.examSeason.indexOf(seasonindex));
               cont.setAllTypes(types);
             },
+          );
+        }).toList());
+        break;
+      case 'semesterDialog':
+        items.addAll(cont.semesterDialogList.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+            ),
+            onTap: () async {
+              seasonindex = value;
+              AllExamTypeModel types = await Dropdownexamtypeapi(context)
+                  .Dropdownexamtype(cont.examSeason.indexOf(seasonindex));
+              cont.setAllTypesDialog(types);
+            },
+          );
+        }).toList());
+        break;
+      case 'classDialog':
+        items.addAll(cont.classDialogList.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+            ),
+            onTap: () async {
+              classindex = value;
+              DropDowmCuriculmModel curi =
+                  await Dropdownexamcuriculmapi(context).Dropdownexamcuriculm(
+                      cont.classDialogList.indexOf(classindex));
+              cont.setAllCuriculm(curi);
+            },
+          );
+        }).toList());
+        break;
+      case 'curiculmDialog':
+        items.addAll(cont.curiculmDialogList.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+            ),
+          );
+        }).toList());
+        break;
+      case 'typeDialog':
+        items.addAll(cont.typeDialogList.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+            ),
           );
         }).toList());
         break;

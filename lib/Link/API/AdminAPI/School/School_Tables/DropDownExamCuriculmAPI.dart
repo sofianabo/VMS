@@ -1,0 +1,53 @@
+import 'package:dio/dio.dart';
+import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/ExamTableController.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCuriculmController.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownExamTypeController.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownSemsterController.dart';
+import 'package:vms_school/Link/Model/AdminModel/DropDownCuriculmModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/ExamTypeModel.dart';
+import 'package:vms_school/widgets/Loading_Dialog.dart';
+import '../../../API.dart' as global;
+import 'package:vms_school/Link/API/DioOption.dart';
+
+class Dropdownexamcuriculmapi {
+  Dropdowncuriculmcontroller c = Get.find<Dropdowncuriculmcontroller>();
+  Dropdownclassescontroller class_controller =
+      Get.find<Dropdownclassescontroller>();
+  BuildContext context;
+
+  Dropdownexamcuriculmapi(this.context);
+  Dio dio = Dio();
+
+  Dropdownexamcuriculm(int idx) async {
+    try {
+      int? id = class_controller.Allclass[idx].id;
+
+      String myurl = "${global.hostPort}${global.getCurriculumbyClass}/$id";
+      var response = await dio.get(myurl, options: getDioOptions());
+      if (response.statusCode == 200) {
+        DropDowmCuriculmModel curi =
+            DropDowmCuriculmModel.fromJson(response.data);
+        c.setCuriculm(curi);
+        return curi;
+      } else {
+        ErrorHandler.handleDioError(DioError(
+          requestOptions: response.requestOptions,
+          response: response,
+          type: DioErrorType.badResponse,
+        ));
+      }
+    } catch (e) {
+      if (e is DioError) {
+        ErrorHandler.handleDioError(e);
+      } else if (e is Exception) {
+        ErrorHandler.handleException(e);
+      } else {
+        ErrorHandler.handleException(Exception(e.toString()));
+      }
+    }
+  }
+}
