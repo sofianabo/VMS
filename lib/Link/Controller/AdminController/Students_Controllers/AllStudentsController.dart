@@ -194,23 +194,9 @@ class Allstudentscontroller extends GetxController {
 
 
  
-  void setAllClasses(AllClassModel clas) {
-    classlist.clear();
-    for (int j = 0; j < clas.classes!.length; j++) {
-      classlist.add(clas.classes![j].enName.toString());
-    }
-    update();
-    updateList("class", classlist);
-  }
+ 
 
-  void setAllGrades(AllGradesModel grade) {
-    gradelist.clear();
-    for (int k = 0; k < grade.grades!.length; k++) {
-      gradelist.add(grade.grades![k].enName.toString());
-    }
-    update();
-    updateList("grade", gradelist);
-  }
+
 
   void setAllDivision(AllDivisionModel division) {
     divisionlist.clear();

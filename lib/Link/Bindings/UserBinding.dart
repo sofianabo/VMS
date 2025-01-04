@@ -32,6 +32,7 @@ import 'package:vms_school/Link/Controller/HomeScreenController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DateControler.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDownController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCuriculmController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCurriculumn_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownExamTypeController.dart';
@@ -92,6 +93,6 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Oneemployeeattendencecontroller(), fenix: true);
     Get.lazyPut(() => Subject_Controller(), fenix: true);
     Get.lazyPut(() => Allteacheratendencecontroller(), fenix: true);
-
+    Get.lazyPut(() => Dropdowncuriculmcontroller(), fenix: true);
   }
 }

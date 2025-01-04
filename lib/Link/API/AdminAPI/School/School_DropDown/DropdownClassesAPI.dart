@@ -5,40 +5,43 @@ import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/ExamTableController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Years_Controllers/Divisions_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
+import 'package:vms_school/widgets/Loading_Dialog.dart';
 import '../../../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';
 
 class Getallclassapi {
-  Dropdownclassescontroller ClassController = Get.find<Dropdownclassescontroller>();
+  Dropdownclassescontroller ClassController =
+      Get.find<Dropdownclassescontroller>();
   final DivisionControllers = Get.find<Dropdowndivisioncontroller>();
   final Studentcontroller = Get.find<Allstudentscontroller>();
   final StudyYearStudents = Get.find<StudyYearStudentsController>();
   final Student_attendence = Get.find<Student_attendence_controller>();
-
+  final ExamTableControl = Get.find<ExamTableController>();
   BuildContext context;
   Getallclassapi(this.context);
   Dio dio = Dio();
-  getAllClasses( {int? sessionID,int? Gradeid}) async {
+  getAllClasses({int? sessionID, int? Gradeid}) async {
     try {
-
       ClassController.setIsLoading(true);
       Studentcontroller.setClassLoading(true);
       StudyYearStudents.setClassLoading(true);
       Student_attendence.setClassLoading(true);
 
-
       final controller = Get.find<Divisions_Controller>();
       controller.SetIsloading(true);
       String myurl = "${global.hostPort}${global.getclasses}";
-      var response = await dio.post(myurl, options: getDioOptions(),
+      var response = await dio.post(
+        myurl,
+        options: getDioOptions(),
         data: {
-        "sessionId": sessionID,
-        "gradeId": Gradeid,
+          "sessionId": sessionID,
+          "gradeId": Gradeid,
         },
       );
       if (response.statusCode == 200) {

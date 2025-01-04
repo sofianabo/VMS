@@ -24,13 +24,12 @@ class Examtableapi {
     try {
       AllSemesterModel semester =
           await Dropdownsemsesterapi(context).Dropdownsemsester();
+      c.setAllSeason(semester);
       AllClassModel cl = await Getallclassapi(context).getAllClasses();
       c.setAllClasses(cl);
-      c.setAllSeason(semester);
-
+      c.setAllClassesDialog(cl);
       String myurl = "${hostPort}${examTable}";
-      var response =
-          await dio.post(myurl, data: {"typeId": 1}, options: getDioOptions());
+      var response = await dio.post(myurl, data: {}, options: getDioOptions());
       if (response.statusCode == 200) {
         ExamTableModel student = ExamTableModel.fromJson(response.data);
         c.setAllQuiz(student);

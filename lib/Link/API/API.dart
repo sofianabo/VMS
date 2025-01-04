@@ -1,6 +1,5 @@
 // String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
-String hostPort = "http://192.168.172.56:8000/api/";
-
+String hostPort = "http://192.168.43.127:8000/api/";
 
 //..................... All ...................//
 
@@ -105,3 +104,6 @@ String getimage = "$hostPort" + "getFile/";
 String examType = "getExamType";
 String getSemester = "getSemester";
 String examTable = "getQuiz";
+String getCurriculumbyClass = "getCurriculumbyClass";
+String addQuiz = "addQuiz";
+String deletetQuiz = "deleteQuiz";

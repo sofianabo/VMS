@@ -25,11 +25,12 @@ class Quiz {
   int? id;
   String? startDate;
   String? period;
-  String? name;
+  Null? name;
   int? maxMark;
   int? passingMark;
-  Classes? classes;
-  List<Division>? division;
+  Classese? classes;
+  Classese? type;
+  Classese? semester;
   String? curriculumName;
   Null? curriculumEnName;
 
@@ -41,7 +42,8 @@ class Quiz {
       this.maxMark,
       this.passingMark,
       this.classes,
-      this.division,
+      this.type,
+      this.semester,
       this.curriculumName,
       this.curriculumEnName});
 
@@ -53,13 +55,11 @@ class Quiz {
     maxMark = json['maxMark'];
     passingMark = json['PassingMark'];
     classes =
-        json['classes'] != null ? new Classes.fromJson(json['classes']) : null;
-    if (json['division'] != null) {
-      division = <Division>[];
-      json['division'].forEach((v) {
-        division!.add(new Division.fromJson(v));
-      });
-    }
+        json['classes'] != null ? new Classese.fromJson(json['classes']) : null;
+    type = json['Type'] != null ? new Classese.fromJson(json['Type']) : null;
+    semester = json['semester'] != null
+        ? new Classese.fromJson(json['semester'])
+        : null;
     curriculumName = json['curriculumName'];
     curriculumEnName = json['curriculumEnName'];
   }
@@ -75,8 +75,11 @@ class Quiz {
     if (this.classes != null) {
       data['classes'] = this.classes!.toJson();
     }
-    if (this.division != null) {
-      data['division'] = this.division!.map((v) => v.toJson()).toList();
+    if (this.type != null) {
+      data['Type'] = this.type!.toJson();
+    }
+    if (this.semester != null) {
+      data['semester'] = this.semester!.toJson();
     }
     data['curriculumName'] = this.curriculumName;
     data['curriculumEnName'] = this.curriculumEnName;
@@ -84,14 +87,14 @@ class Quiz {
   }
 }
 
-class Classes {
+class Classese {
   String? name;
   String? enName;
   int? id;
 
-  Classes({this.name, this.enName, this.id});
+  Classese({this.name, this.enName, this.id});
 
-  Classes.fromJson(Map<String, dynamic> json) {
+  Classese.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     enName = json['enName'];
     id = json['id'];
@@ -102,31 +105,6 @@ class Classes {
     data['name'] = this.name;
     data['enName'] = this.enName;
     data['id'] = this.id;
-    return data;
-  }
-}
-
-class Division {
-  String? name;
-  String? enName;
-  int? id;
-  Null? clas;
-
-  Division({this.name, this.enName, this.id, this.clas});
-
-  Division.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    enName = json['enName'];
-    id = json['id'];
-    clas = json['class'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['enName'] = this.enName;
-    data['id'] = this.id;
-    data['class'] = this.clas;
     return data;
   }
 }
