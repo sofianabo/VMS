@@ -101,6 +101,10 @@ flutter:
       fonts:
         - asset: fonts/VMS_Icons.ttf
 
+    - family: Ficons
+      fonts:
+        - asset: fonts/Ficons.ttf
+
     - family: Cairo
       fonts:
         - asset: fonts/Cairo-Regular.ttf

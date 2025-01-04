@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
 import 'package:vms_school/view/Admin/SideBar_Path.dart';
-import 'package:vms_school/widgets/GridAnimation.dart';
+import '../../widgets/SidbarAnimation.dart';
 
 class SideBarAdmin extends StatelessWidget {
   SideBarAdmin({super.key});
@@ -21,7 +21,7 @@ class SideBarAdmin extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              hhh(
+              SidbarAnimation(
                   child: GestureDetector(
                 onTap: () {
                   cont.updateContent("Dashboard");
@@ -32,7 +32,7 @@ class SideBarAdmin extends StatelessWidget {
                   color: Colors.white,
                 ),
               )),
-              hhh(
+              SidbarAnimation(
                   child: Padding(
                 padding: EdgeInsets.only(top: h / 34.2),
                 child: GestureDetector(
@@ -46,7 +46,7 @@ class SideBarAdmin extends StatelessWidget {
                   ),
                 ),
               )),
-              hhh(
+              SidbarAnimation(
                 child: Padding(
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
@@ -82,7 +82,7 @@ class SideBarAdmin extends StatelessWidget {
                   ),
                 ),
               ),
-              hhh(
+              SidbarAnimation(
                 child: Padding(
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
@@ -145,7 +145,7 @@ class SideBarAdmin extends StatelessWidget {
                   ),
                 ),
               ),
-              hhh(
+              SidbarAnimation(
                 child: Padding(
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
@@ -190,7 +190,7 @@ class SideBarAdmin extends StatelessWidget {
                   ),
                 ),
               ),
-              hhh(
+              SidbarAnimation(
                 child: Padding(
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
@@ -244,7 +244,7 @@ class SideBarAdmin extends StatelessWidget {
                   ),
                 ),
               ),
-              hhh(
+              SidbarAnimation(
                 child: Padding(
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
@@ -316,7 +316,7 @@ class SideBarAdmin extends StatelessWidget {
                   ),
                 ),
               ),
-              hhh(
+              SidbarAnimation(
                 child: Padding(
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
@@ -333,6 +333,9 @@ class SideBarAdmin extends StatelessWidget {
                       if (value == "Electronic Library") {
                         cont.updateContent("Electronic Library");
                       }
+                      if (value == "Transaction") {
+                        cont.updateContent("Transaction");
+                      }
                     },
                     itemBuilder: (BuildContext context) =>
                         <PopupMenuEntry<String>>[
@@ -346,6 +349,12 @@ class SideBarAdmin extends StatelessWidget {
                         value: 'Electronic Library',
                         child: Text(
                           'Electronic Library',
+                        ),
+                      ),
+                      PopupMenuItem<String>(
+                        value: 'Transaction',
+                        child: Text(
+                          'Transaction',
                         ),
                       ),
                     ],

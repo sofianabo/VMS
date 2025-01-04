@@ -11,7 +11,7 @@
 ///      fonts:
 ///       - asset: fonts/VMS_Icons.ttf
 ///
-/// 
+///
 /// * MFG Labs, Copyright (C) 2012 by Daniel Bruce
 ///         Author:    MFG Labs
 ///         License:   SIL (http://scripts.sil.org/OFL)
@@ -45,28 +45,78 @@ class VMS_Icons {
   static const _kFontFam = 'VMS_Icons';
   static const String? _kFontPkg = null;
 
-  static const IconData cancel = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData dose = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData edit = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData notifications = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData logout_1 = IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData pdf = IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData pinned = IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData moon = IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData upload = IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData vir = IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData xl = IconData(0xe80b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData a1 = IconData(0xe80c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData a2 = IconData(0xe80d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData a3 = IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData a4 = IconData(0xe80f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData a5 = IconData(0xe810, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData a7 = IconData(0xe811, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData bin = IconData(0xe812, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData a8 = IconData(0xe813, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData calender = IconData(0xe814, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData vcard = IconData(0xe815, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData search_1 = IconData(0xe816, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData a6 = IconData(0xe817, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData credit_card = IconData(0xf09d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData cancel =
+      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData dose =
+      IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData edit =
+      IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData notifications =
+      IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData logout_1 =
+      IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData pdf =
+      IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData pinned =
+      IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData moon =
+      IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData upload =
+      IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData vir =
+      IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData xl =
+      IconData(0xe80b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData a1 =
+      IconData(0xe80c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData a2 =
+      IconData(0xe80d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData a3 =
+      IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData a4 =
+      IconData(0xe80f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData a5 =
+      IconData(0xe810, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData a7 =
+      IconData(0xe811, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData bin =
+      IconData(0xe812, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData a8 =
+      IconData(0xe813, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData calender =
+      IconData(0xe814, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData vcard =
+      IconData(0xe815, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData search_1 =
+      IconData(0xe816, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData a6 =
+      IconData(0xe817, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData credit_card =
+      IconData(0xf09d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData desktop =
+      IconData(0xe800, fontFamily: "Ficons", fontPackage: _kFontPkg);
+  static const IconData Chrome =
+      IconData(0xe801, fontFamily: "Ficons", fontPackage: _kFontPkg);
+  static const IconData ip =
+      IconData(0xe802, fontFamily: "Ficons", fontPackage: _kFontPkg);
+  static const IconData apple =
+      IconData(0xe803, fontFamily: "Ficons", fontPackage: _kFontPkg);
+  static const IconData android =
+      IconData(0xe804, fontFamily: "Ficons", fontPackage: _kFontPkg);
+  static const IconData tablet =
+      IconData(0xe805, fontFamily: "Ficons", fontPackage: _kFontPkg);
+  static const IconData phone =
+      IconData(0xe806, fontFamily: "Ficons", fontPackage: _kFontPkg);
+  static const IconData firefox =
+      IconData(0xe807, fontFamily: "Ficons", fontPackage: _kFontPkg);
+  static const IconData opera =
+      IconData(0xe808, fontFamily: "Ficons", fontPackage: _kFontPkg);
+  static const IconData edge =
+      IconData(0xe80a, fontFamily: "Ficons", fontPackage: _kFontPkg);
+  static const IconData windows =
+      IconData(0xe80b, fontFamily: "Ficons", fontPackage: _kFontPkg);
+  static const IconData admin =
+      IconData(0xe80c, fontFamily: "Ficons", fontPackage: _kFontPkg);
+  static const IconData safari =
+      IconData(0xe80d, fontFamily: "Ficons", fontPackage: _kFontPkg);
 }

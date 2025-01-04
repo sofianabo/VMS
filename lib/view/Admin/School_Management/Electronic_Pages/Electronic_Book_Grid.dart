@@ -125,7 +125,7 @@ class ElectronicBookGrid extends StatelessWidget {
                                       : 1.8),
                   itemCount: control.filteredEbook!.length,
                   itemBuilder: (context, index) {
-                    return hhh(
+                    return HoverScaleCard(
                       child: GestureDetector(
                         onTap: () {
                           final url =

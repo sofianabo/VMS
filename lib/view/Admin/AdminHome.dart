@@ -4,6 +4,7 @@ import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller
 import 'package:vms_school/view/Admin/School_Management/ExamTable.dart';
 import 'package:vms_school/view/Admin/School_Management/SchoolTimeTable.dart';
 import 'package:vms_school/view/Admin/School_Management/Subject_Pages/Subject_Management.dart';
+import 'package:vms_school/view/Admin/School_Management/Transactions/Transaction_Management.dart';
 import 'package:vms_school/view/Admin/Students_Manager/AllGuardians.dart';
 import 'package:vms_school/view/Admin/Students_Manager/AllStudent.dart';
 import 'package:vms_school/view/Admin/AppBarAdmin.dart';
@@ -90,6 +91,8 @@ class AdminHome extends StatelessWidget {
                       return SchoolDataMgmt();
                     case "Electronic Library":
                       return ElectronicBook();
+                    case "Transaction":
+                      return Transaction_Management();
                     case "Virtual User Management":
                       return Virtual_User_Management();
 
