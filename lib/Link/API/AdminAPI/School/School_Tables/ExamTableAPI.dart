@@ -22,6 +22,7 @@ class Examtableapi {
 
   Examtable() async {
     try {
+      c.setIsLoading(true);
       AllSemesterModel semester =
           await Dropdownsemsesterapi(context).Dropdownsemsester();
       c.setAllSeason(semester);

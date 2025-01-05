@@ -34,6 +34,13 @@ class ExamTableController extends GetxController {
   void setAllQuiz(ExamTableModel model) {
     quizList.clear();
     quizList = model.quiz!;
+        setIsLoading(false);
+
+    update();
+  }
+
+   setIsLoading(bool value) {
+    isLoading = value;
     update();
   }
 
@@ -124,10 +131,7 @@ class ExamTableController extends GetxController {
     update();
   }
 
-  setIsLoading(bool value) {
-    isLoading = value;
-    update();
-  }
+  
 
   void setAllSeason(AllSemesterModel semster) {
     examSeason.clear();

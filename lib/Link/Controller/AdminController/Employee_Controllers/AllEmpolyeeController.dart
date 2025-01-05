@@ -12,7 +12,7 @@ class Allempolyeecontroller extends GetxController {
   bool isUploaded = false;
 
   Employee? employee;
-  String? Value;
+  String? Value; 
   bool isLoading = true;
 
   String sessionIndex = "";

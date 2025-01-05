@@ -2,6 +2,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
@@ -17,6 +18,7 @@ import 'package:vms_school/Link/Model/AdminModel/AllSemesterModel.dart';
 import 'package:vms_school/widgets/Admin_Table/DropDownExamTable.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
+import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
@@ -303,190 +305,300 @@ class _ExamTableState extends State<ExamTable> {
                 ],
               ),
             ),
-            Column(
-              children: [
-                Container(
-                  width: Get.width * 0.9,
-                  margin: const EdgeInsets.only(top: 20),
-                  child: SingleChildScrollView(child:
-                      GetBuilder<ExamTableController>(builder: (controller) {
-                    return DataTable(
-                      headingRowColor: WidgetStatePropertyAll(
-                          Get.theme.colorScheme.secondary),
-                      border: TableBorder.all(
-                        color: Get.theme.primaryColor,
-                        width: 1.0,
-                      ),
-                      columns: [
-                        DataColumn(
-                          label: Text("Class",
+            controller.isLoading
+                ? HoverScaleCard(
+                    child: Container(
+                      width: Get.width * 0.9,
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(boxShadow: const [
+                        BoxShadow(
+                            color: Colors.white,
+                            offset: Offset(0, 2),
+                            blurRadius: 1)
+                      ]),
+                      child: DataTable(
+                        headingRowColor:
+                            WidgetStatePropertyAll(Colors.blueGrey),
+                        border: TableBorder.all(
+                          color: Colors.grey,
+                          width: 1.0,
+                        ),
+                        columns: [
+                          DataColumn(
+                            label: Text(
+                              "Class",
                               textAlign: TextAlign.center,
-                              style: Get.theme.textTheme.titleLarge),
+                            ),
+                          ),
+                          DataColumn(label: Text('Type')),
+                          DataColumn(label: Text('Curriculum Name')),
+                          DataColumn(label: Text('Date')),
+                          DataColumn(label: Text('Period')),
+                          DataColumn(label: Text('Max Mark')),
+                          DataColumn(
+                            label: Text('Passing Mark'),
+                          ),
+                          DataColumn(
+                            label: Text('Operations'),
+                          ),
+                        ],
+                        rows: List.generate(
+                          5, // عدد الصفوف في واجهة الانتظار
+                          (index) => DataRow(
+                            cells: [
+                              DataCell(Text('')),
+                              DataCell(Text('')),
+                              DataCell(Text('')),
+                              DataCell(Text('')),
+                              DataCell(Text('')),
+                              DataCell(Text('')),
+                              DataCell(Text('')),
+                              DataCell(Text('')),
+                            ],
+                          ),
                         ),
-                        DataColumn(label: Text('Type')),
-                        DataColumn(label: Text('Curriculum Name')),
-                        DataColumn(label: Text('Date')),
-                        DataColumn(label: Text('Period')),
-                        DataColumn(label: Text('Max Mark')),
-                        DataColumn(
-                          label: Text('Passing Mark'),
-                        ),
-                        DataColumn(
-                          label: Text('Operations'),
-                        ),
-                      ],
-                      rows: controller.quizList.map((exam) {
-                        return DataRow(cells: [
-                          DataCell(Text(exam.classes?.enName ?? '')),
-                          DataCell(Text(exam.type?.enName ?? '')),
-                          DataCell(Text(exam.curriculumName ?? '')),
-                          DataCell(Text(exam.startDate ?? '')),
-                          DataCell(Text(exam.period ?? '')),
-                          DataCell(Text(exam.maxMark?.toString() ?? '')),
-                          DataCell(Text(exam.passingMark?.toString() ?? '')),
-                          DataCell(Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              IconButton(
-                                icon: Icon(VMS_Icons.bin),
-                                iconSize: 16,
-                                color: Colors.red,
-                                onPressed: () async {
-                                  await DeletequizAPI(context).Deletequiz(
-                                      controller
-                                          .quizList[
-                                              controller.quizList.indexOf(exam)]
-                                          .id
-                                          .toString());
-                                },
+                      ),
+                    ),
+                  )
+                    .animate(onPlay: (controller) => controller.repeat())
+                    .shimmer(
+                        angle: 1,
+                        color: Colors.white,
+                        duration: Duration(milliseconds: 600),
+                        delay: Duration(milliseconds: 200))
+                : Column(
+                    children: [
+                      Container(
+                        width: Get.width * 0.9,
+                        margin: const EdgeInsets.only(top: 20),
+                        child: SingleChildScrollView(child:
+                            GetBuilder<ExamTableController>(
+                                builder: (controller) {
+                          return DataTable(
+                            headingRowColor: WidgetStatePropertyAll(
+                                Get.theme.colorScheme.secondary),
+                            border: TableBorder.all(
+                              color: Get.theme.primaryColor,
+                              width: 1.0,
+                            ),
+                            columns: [
+                              DataColumn(
+                                label: Text("Class",
+                                    textAlign: TextAlign.center,
+                                    style: Get.theme.textTheme.titleLarge),
                               ),
-                              IconButton(
-                                icon: Icon(VMS_Icons.edit),
-                                iconSize: 16,
-                                color: Colors.green,
-                                onPressed: () async {
-                                  CancelToken cancelToken = CancelToken();
-                                  Loading_Dialog(cancelToken: cancelToken);
-                                  maxDialog.text = controller
-                                      .quizList[
-                                          controller.quizList.indexOf(exam)]
-                                      .maxMark
-                                      .toString();
-                                  minDialog.text = controller
-                                      .quizList[
-                                          controller.quizList.indexOf(exam)]
-                                      .passingMark
-                                      .toString();
-                                  periodDialog.text = controller
-                                      .quizList[
-                                          controller.quizList.indexOf(exam)]
-                                      .period
-                                      .toString();
-                                  AllSemesterModel semester =
-                                      await Dropdownsemsesterapi(context)
-                                          .Dropdownsemsester();
-                                  controller.setAllSemesterDialog(semester);
+                              DataColumn(label: Text('Type')),
+                              DataColumn(label: Text('Curriculum Name')),
+                              DataColumn(label: Text('Date')),
+                              DataColumn(label: Text('Period')),
+                              DataColumn(label: Text('Max Mark')),
+                              DataColumn(
+                                label: Text('Passing Mark'),
+                              ),
+                              DataColumn(
+                                label: Text('Operations'),
+                              ),
+                            ],
+                            rows: controller.quizList.map((exam) {
+                              return DataRow(cells: [
+                                DataCell(Text(exam.classes?.enName ?? '')),
+                                DataCell(Text(exam.type?.enName ?? '')),
+                                DataCell(Text(exam.curriculumName ?? '')),
+                                DataCell(Text(exam.startDate ?? '')),
+                                DataCell(Text(exam.period ?? '')),
+                                DataCell(Text(exam.maxMark?.toString() ?? '')),
+                                DataCell(
+                                    Text(exam.passingMark?.toString() ?? '')),
+                                DataCell(Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    IconButton(
+                                      style: ButtonStyle(
+                                          maximumSize: WidgetStateProperty.all(
+                                              Size(35, 35)),
+                                          minimumSize: WidgetStateProperty.all(
+                                              Size(35, 35)),
+                                          iconSize: WidgetStateProperty.all(14),
+                                          shape: WidgetStateProperty.all(
+                                              RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          )),
+                                          backgroundColor:
+                                              WidgetStateProperty.all(
+                                                  Color(0xffB03D3D))),
+                                      icon: Icon(VMS_Icons.bin),
+                                      iconSize: 16,
+                                      color: Colors.white,
+                                      onPressed: () async {
+                                        await DeletequizAPI(context).Deletequiz(
+                                            controller
+                                                .quizList[controller.quizList
+                                                    .indexOf(exam)]
+                                                .id
+                                                .toString());
+                                      },
+                                    ),
+                                    IconButton(
+                                      style: ButtonStyle(
+                                          maximumSize: WidgetStateProperty.all(
+                                              Size(35, 35)),
+                                          minimumSize: WidgetStateProperty.all(
+                                              Size(35, 35)),
+                                          iconSize: WidgetStateProperty.all(14),
+                                          shape: WidgetStateProperty.all(
+                                              RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          )),
+                                          backgroundColor:
+                                              WidgetStateProperty.all(
+                                                  Color.fromARGB(
+                                                      255, 2, 124, 49))),
+                                      icon: Icon(VMS_Icons.edit),
+                                      iconSize: 16,
+                                      color: Colors.white,
+                                      onPressed: () async {
+                                        CancelToken cancelToken = CancelToken();
+                                        Loading_Dialog(
+                                            cancelToken: cancelToken);
+                                        maxDialog.text = controller
+                                            .quizList[controller.quizList
+                                                .indexOf(exam)]
+                                            .maxMark
+                                            .toString();
+                                        minDialog.text = controller
+                                            .quizList[controller.quizList
+                                                .indexOf(exam)]
+                                            .passingMark
+                                            .toString();
+                                        periodDialog.text = controller
+                                            .quizList[controller.quizList
+                                                .indexOf(exam)]
+                                            .period
+                                            .toString();
+                                        AllSemesterModel semester =
+                                            await Dropdownsemsesterapi(context)
+                                                .Dropdownsemsester();
+                                        controller
+                                            .setAllSemesterDialog(semester);
 
-                                  Get.back();
-                                  Get.dialog(VMSAlertDialog(
-                                      action: [
-                                        ButtonDialog(
-                                            text: "Edit Exam",
-                                            onPressed: () async {
-                                              await Editquizapi(context)
-                                                  .Editquiz(
-                                                      controller
-                                                          .quizList[controller
-                                                              .quizList
-                                                              .indexOf(exam)]
-                                                          .id
-                                                          .toString(),
-                                                      controller.dateindex
-                                                          .toString(),
-                                                      periodDialog.text,
-                                                      maxDialog.text,
-                                                      minDialog.text);
-                                              Get.back();
-                                            },
-                                            color: Get.theme.primaryColor,
-                                            width: 120)
-                                      ],
-                                      contents: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 15.0),
-                                            child: Row(
+                                        Get.back();
+                                        Get.dialog(VMSAlertDialog(
+                                            action: [
+                                              ButtonDialog(
+                                                  text: "Edit Exam",
+                                                  onPressed: () async {
+                                                    await Editquizapi(
+                                                            context)
+                                                        .Editquiz(
+                                                            controller
+                                                                .quizList[controller
+                                                                    .quizList
+                                                                    .indexOf(
+                                                                        exam)]
+                                                                .id
+                                                                .toString(),
+                                                            controller.dateindex
+                                                                .toString(),
+                                                            periodDialog.text,
+                                                            maxDialog.text,
+                                                            minDialog.text);
+                                                    Get.back();
+                                                  },
+                                                  color: Get.theme.primaryColor,
+                                                  width: 120)
+                                            ],
+                                            contents: Column(
+                                              mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 Padding(
                                                   padding:
                                                       const EdgeInsets.only(
-                                                          right: 15.0),
-                                                  child: Textfildwithupper(
-                                                      Uptext: "Max Mark",
-                                                      width: 220,
-                                                      controller: maxDialog,
-                                                      hinttext: "Max Mark"),
+                                                          top: 15.0),
+                                                  child: Row(
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                                right: 15.0),
+                                                        child:
+                                                            Textfildwithupper(
+                                                                Uptext:
+                                                                    "Max Mark",
+                                                                width: 220,
+                                                                controller:
+                                                                    maxDialog,
+                                                                hinttext:
+                                                                    "Max Mark"),
+                                                      ),
+                                                      Textfildwithupper(
+                                                          Uptext: "Min Mark",
+                                                          width: 220,
+                                                          controller: minDialog,
+                                                          hinttext: "Min Mark")
+                                                    ],
+                                                  ),
                                                 ),
-                                                Textfildwithupper(
-                                                    Uptext: "Min Mark",
-                                                    width: 220,
-                                                    controller: minDialog,
-                                                    hinttext: "Min Mark")
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 15.0),
-                                            child: Row(
-                                              children: [
                                                 Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            right: 15.0),
-                                                    child: Textfildwithupper(
-                                                        Uptext: "Period",
-                                                        width: 220,
-                                                        controller:
-                                                            periodDialog,
-                                                        hinttext: "00:00:00")),
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              bottom: 5.0),
-                                                      child: RichText(
-                                                          text: TextSpan(
-                                                              text: "Date")),
-                                                    ),
-                                                    examDate(
-                                                      width: 220,
-                                                    ),
-                                                  ],
-                                                )
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 15.0),
+                                                  child: Row(
+                                                    children: [
+                                                      Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                                  right: 15.0),
+                                                          child: Textfildwithupper(
+                                                              Uptext: "Period",
+                                                              width: 220,
+                                                              controller:
+                                                                  periodDialog,
+                                                              hinttext:
+                                                                  "00:00:00")),
+                                                      Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    bottom:
+                                                                        5.0),
+                                                            child: RichText(
+                                                                text: TextSpan(
+                                                                    text:
+                                                                        "Date")),
+                                                          ),
+                                                          examDate(
+                                                            width: 220,
+                                                          ),
+                                                        ],
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
                                               ],
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                      apptitle: "Edit Exam",
-                                      subtitle: "none"));
-                                },
-                              ),
-                            ],
-                          )),
-                        ]);
-                      }).toList(),
-                    );
-                  })),
-                ),
-              ],
-            )
+                                            apptitle: "Edit Exam",
+                                            subtitle: "none"));
+                                      },
+                                    ),
+                                  ],
+                                )),
+                              ]);
+                            }).toList(),
+                          );
+                        })),
+                      ),
+                    ],
+                  )
           ],
         ),
       );
