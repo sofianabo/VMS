@@ -179,8 +179,11 @@ class DashboardFirstRow extends StatelessWidget {
                                 padding: const EdgeInsets.only(top: 8.0),
                                 child: ButtonDashboard(
                                     bordercolor: Colors.white,
-                                    text: "Epidemics",
-                                    onPressed: () {},
+                                    text: "Vaccines",
+                                    onPressed: () {
+                                      Get.find<AdminHomeContentController>()
+                                          .updateContent("Vaccine Screen");
+                                    },
                                     color: Color(0xff4C779F),
                                     width: 150),
                               ),
