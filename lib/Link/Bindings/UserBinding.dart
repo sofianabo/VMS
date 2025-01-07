@@ -26,6 +26,7 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/allGaurdianController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AddTeacherController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeacherAtendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Years_Controllers/Divisions_Controller.dart';
@@ -97,8 +98,11 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Subject_Controller(), fenix: true);
     Get.lazyPut(() => Allteacheratendencecontroller(), fenix: true);
     Get.lazyPut(() => Dropdowncuriculmcontroller(), fenix: true);
-    Get.lazyPut(() => Transaction_Controller(), fenix: true);
+     Get.lazyPut(() => Transaction_Controller(), fenix: true);
     Get.lazyPut(() => Add_Students_Controller(), fenix: true);
     Get.lazyPut(() => Location_controller(), fenix: true);
+        Get.lazyPut(() => Addteachercontroller(), fenix: true);
+
+ 
   }
 }

@@ -4,6 +4,7 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownClas
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 
+// ignore: must_be_immutable
 class Dropdownallteacher extends StatelessWidget {
   final double width;
   final String title;
@@ -41,7 +42,21 @@ class Dropdownallteacher extends StatelessWidget {
         selectedValue = cont.selectedSubjectIndex.isNotEmpty
             ? cont.selectedSubjectIndex
             : title;
-
+        break;
+          case 'GenderDialog':
+        selectedValue = cont.selectedGenderDialogIndex.isNotEmpty
+            ? cont.selectedGenderDialogIndex
+            : title;
+        break;
+        case 'FamilyStatusDialog':
+        selectedValue = cont.selectedFamilyStatusDialogIndex.isNotEmpty
+            ? cont.selectedFamilyStatusDialogIndex
+            : title;
+        break;
+          case 'ContractTypeDialog':
+        selectedValue = cont.selectedContarctTypeDialogIndex.isNotEmpty
+            ? cont.selectedContarctTypeDialogIndex
+            : title;
         break;
       }
 
@@ -151,6 +166,42 @@ class Dropdownallteacher extends StatelessWidget {
         break;
         case 'Subject':
         items.addAll(cont.Subjectlist.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.textTheme.bodyMedium!
+                  .copyWith(fontSize: 14),
+            ),
+          );
+        }).toList());
+        break;
+        case 'GenderDialog':
+        items.addAll(cont.genderDialogList.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.textTheme.bodyMedium!
+                  .copyWith(fontSize: 14),
+            ),
+          );
+        }).toList());
+        break;
+         case 'FamilyStatusDialog':
+        items.addAll(cont.familyStatusDialogList.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.textTheme.bodyMedium!
+                  .copyWith(fontSize: 14),
+            ),
+          );
+        }).toList());
+        break;
+         case 'ContractTypeDialog':
+        items.addAll(cont.contractTypeDialogList.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(

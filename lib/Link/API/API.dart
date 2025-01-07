@@ -52,6 +52,8 @@ String getTeachers = "getAllTeacher";
 String deleteTeacher = "deleteTeacher";
 String getTeacherAttendance = "getTeacherAttendance";
 String teacherIncreaseAttendance = "teacherIncreaseAttendance";
+String getTeacherById = "getTeacherById";
+String updateTeacher = "updateTeacher";
 
 //..................... Schools ...................//
 
