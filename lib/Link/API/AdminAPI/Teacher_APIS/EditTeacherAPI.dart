@@ -47,7 +47,7 @@ class Editteacherapi {
     try {
       Loading_Dialog(cancelToken: cancelToken);
       FormData formData = FormData.fromMap({
-        "id": employeeId,
+        "TeacherId": employeeId,
         "firstName": First_Name,
         "lastName": Last_Name,
         "fatherName": Father_Name,
