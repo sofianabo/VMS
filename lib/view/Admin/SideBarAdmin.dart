@@ -336,6 +336,12 @@ class SideBarAdmin extends StatelessWidget {
                       if (value == "Transaction") {
                         cont.updateContent("Transaction");
                       }
+                      if (value == "Illness Screen") {
+                        cont.updateContent("Illness Screen");
+                      }
+                      if (value == "Vaccine Screen") {
+                        cont.updateContent("Vaccine Screen");
+                      }
                     },
                     itemBuilder: (BuildContext context) =>
                         <PopupMenuEntry<String>>[
@@ -355,6 +361,18 @@ class SideBarAdmin extends StatelessWidget {
                         value: 'Transaction',
                         child: Text(
                           'Transaction',
+                        ),
+                      ),
+                      PopupMenuItem<String>(
+                        value: 'Illness Screen',
+                        child: Text(
+                          'Illness Screen',
+                        ),
+                      ),
+                      PopupMenuItem<String>(
+                        value: 'Vaccine Screen',
+                        child: Text(
+                          'Vaccine Screen',
                         ),
                       ),
                     ],

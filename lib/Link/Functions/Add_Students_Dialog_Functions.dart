@@ -80,6 +80,7 @@ All_Gurdians_Dialog() {
   TextEditingController Last_School_Detail = TextEditingController();
   TextEditingController LocalID = TextEditingController();
   TextEditingController Note = TextEditingController();
+  TextEditingController Fee_Discount = TextEditingController();
   final addStudentsController = Get.put(Add_Students_Controller());
   final class_controller = Get.find<Dropdownclassescontroller>();
   addStudentsController.resetData();
@@ -140,6 +141,7 @@ All_Gurdians_Dialog() {
                           localID: LocalID.text,
                           lastSchoolDetail: Last_School_Detail.text,
                           note: Note.text,
+                          Fee_Discount: Fee_Discount.text,
                           specialNeeds:
                               addStudentsController.isSpecialNeed.value,
                           martyrSon: addStudentsController.isMartySon.value,
@@ -288,6 +290,7 @@ All_Gurdians_Dialog() {
               Last_School_Detail: Last_School_Detail,
               Note: Note,
               LocalID: LocalID,
+              Fee_Discount: Fee_Discount,
             ),
           ],
         ),
@@ -317,6 +320,7 @@ class Add_Students_page extends StatefulWidget {
     required this.LocalID,
     required this.Last_School_Detail,
     required this.Note,
+    required this.Fee_Discount,
   });
 
   TextEditingController First_Name;
@@ -335,6 +339,7 @@ class Add_Students_page extends StatefulWidget {
   TextEditingController Mother_Work;
   TextEditingController Last_School_Detail;
   TextEditingController Note;
+  TextEditingController Fee_Discount;
 
   @override
   State<Add_Students_page> createState() => _Add_Students_pageState();
@@ -537,7 +542,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                     Padding(
                         padding: const EdgeInsets.only(top: 22.0),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Column(
@@ -571,6 +576,26 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(fontSize: 16)),
                                     ],
+                                  ),
+                                ]),
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ButtonDialog(
+                                      height: 60,
+                                      text: "Student Illness (99)",
+                                      onPressed: () {},
+                                      color: Get.theme.primaryColor,
+                                      width: 145),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10.0),
+                                    child: ButtonDialog(
+                                        height: 60,
+                                        text: "Student Vaccines (99)",
+                                        onPressed: () {},
+                                        color: Get.theme.primaryColor,
+                                        width: 145),
                                   ),
                                 ]),
                           ],
@@ -641,6 +666,19 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                 Uptext: "Password",
                                 hinttext: "Password"),
                           )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        children: [
+                          Textfildwithupper(
+                              isRequired: false,
+                              width: 300,
+                              controller: widget.Fee_Discount,
+                              Uptext: "Fee Discount",
+                              hinttext: "Fee Discount")
                         ],
                       ),
                     ),

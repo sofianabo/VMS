@@ -21,7 +21,7 @@ class Get_Vaccines_API {
 
     try {
       controller.SetIsLoading(true);
-      String myurl = "${hostPort}${getVaccines}";
+      String myurl = "${hostPort}${getVaccine}";
       var response = await dio.get(myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         Vaccines_Model Vaccines_model = Vaccines_Model.fromJson(response.data);

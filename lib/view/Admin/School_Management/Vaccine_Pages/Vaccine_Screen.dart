@@ -1,32 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Illness_APIs/Add_Illness_API.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Illness_APIs/Get_All_Illness_API.dart';
-import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
-import 'package:vms_school/view/Admin/School_Management/Illness_Pages/Illness_Grid.dart';
+import 'package:vms_school/Link/API/AdminAPI/Location_API/Locations_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Vaccines_APIs/Add_Vaccines_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Vaccines_APIs/Get_All_Vaccines_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Location_controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
+import 'package:vms_school/view/Admin/School_Management/Vaccine_Pages/Vaccine_Grid.dart';
+import 'package:vms_school/widgets/Admin_Students/DropDown_Add_Students.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
-class Ilness_Screen extends StatefulWidget {
-  Ilness_Screen({super.key});
+class Vaccine_Screen extends StatefulWidget {
+  Vaccine_Screen({super.key});
 
   @override
-  State<Ilness_Screen> createState() => _Ilness_ScreenState();
+  State<Vaccine_Screen> createState() => _Vaccine_ScreenState();
 }
 
-class _Ilness_ScreenState extends State<Ilness_Screen> {
+class _Vaccine_ScreenState extends State<Vaccine_Screen> {
   TextEditingController search = TextEditingController();
 
   TextEditingController name = TextEditingController();
   TextEditingController enName = TextEditingController();
-  DropzoneViewController? ctrl;
   @override
   void initState() {
-    Get_Illness_API(context).Get_Illness();
+    Get_Vaccines_API(context).Get_Vaccines();
+    Get_Location_API.Get_Locations();
     super.initState();
   }
 
@@ -47,7 +49,7 @@ class _Ilness_ScreenState extends State<Ilness_Screen> {
                 children: [
                   Row(
                     children: [
-                      GetBuilder<Illness_Controller>(builder: (controller) {
+                      GetBuilder<Vaccines_Controller>(builder: (controller) {
                         return Padding(
                           padding: const EdgeInsets.only(left: 8.0),
                           child: TextFormSearch(
@@ -90,7 +92,7 @@ class _Ilness_ScreenState extends State<Ilness_Screen> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
                             onPressed: () {
-                              Get.dialog(GetBuilder<Illness_Controller>(
+                              Get.dialog(GetBuilder<Vaccines_Controller>(
                                   builder: (controller) {
                                 return VMSAlertDialog(
                                     contents: Column(
@@ -118,18 +120,12 @@ class _Ilness_ScreenState extends State<Ilness_Screen> {
                                               const EdgeInsets.only(top: 10.0),
                                           child: Row(
                                             children: [
-                                              Obx(() => Checkbox(
-                                                    value: controller
-                                                        .chronic.value,
-                                                    onChanged: (value) {
-                                                      controller.togglechronic(
-                                                          value!);
-                                                    },
-                                                  )),
-                                              Text("Is Chronic",
-                                                  style: Get.theme.textTheme
-                                                      .bodyMedium!
-                                                      .copyWith(fontSize: 16)),
+                                              DropdownAddStudents(
+                                                  isLoading: controller
+                                                      .isLoadingLocation,
+                                                  title: "Location",
+                                                  width: 300,
+                                                  type: "Location"),
                                             ],
                                           ),
                                         ),
@@ -142,14 +138,15 @@ class _Ilness_ScreenState extends State<Ilness_Screen> {
                                         children: [
                                           ButtonDialog(
                                               width: 150,
-                                              text: "Add Illness",
+                                              text: "Add Vaccine",
                                               onPressed: () async {
-                                                await Add_Illness_API(context)
-                                                    .Add_Illness(
+                                                await Add_Vaccines_API(context)
+                                                    .Add_Vaccines(
                                                   name: name.text,
                                                   enName: enName.text,
-                                                  chronic:
-                                                      controller.chronic.value,
+                                                  locationId: Get.find<
+                                                          Location_controller>()
+                                                      .Locationsid,
                                                 );
                                               },
                                               color:
@@ -157,7 +154,7 @@ class _Ilness_ScreenState extends State<Ilness_Screen> {
                                         ],
                                       )
                                     ],
-                                    apptitle: "Add Illness",
+                                    apptitle: "Add Vaccine",
                                     subtitle: "none");
                               }));
                             },
@@ -224,7 +221,7 @@ class _Ilness_ScreenState extends State<Ilness_Screen> {
         Expanded(
             child: Padding(
           padding: const EdgeInsets.only(top: 15.0),
-          child: Illness_Grid(),
+          child: Vaccine_Grid(),
         )),
       ],
     ));

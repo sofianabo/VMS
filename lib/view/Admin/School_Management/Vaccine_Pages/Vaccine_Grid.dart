@@ -2,24 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
-import 'package:vms_school/Link/API/API.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Illness_APIs/Delete_Illness_API.dart';
-import 'package:vms_school/Link/API/DownloadFiles.dart';
-import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
-import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Labrary_Controller.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Vaccines_APIs/Delete_Vaccines_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
-import '../../../../Link/API/AdminAPI/School/School_Screen_APIs/Electronic_Library_API/Delete_Curriculm_API.dart';
-
-class Illness_Grid extends StatelessWidget {
-  Illness_Grid({super.key});
+class Vaccine_Grid extends StatelessWidget {
+  Vaccine_Grid({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<Illness_Controller>(builder: (control) {
+    return GetBuilder<Vaccines_Controller>(builder: (control) {
       return control.isLoading == true
           ? GridView.builder(
               padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
@@ -90,8 +85,8 @@ class Illness_Grid extends StatelessWidget {
                       Align(
                           alignment: Alignment(-1.5, 1),
                           child: Image.asset(
-                            "../../images/Illness.png",
-                            height: 120,
+                            "../../images/Vaction.png",
+                            height: 150,
                             color: Colors.grey.shade400,
                           )),
                     ],
@@ -103,7 +98,7 @@ class Illness_Grid extends StatelessWidget {
                     delay: Duration(seconds: 1));
               },
             )
-          : control.filteredIllness!.isNotEmpty
+          : control.filteredvaccine!.isNotEmpty
               ? GridView.builder(
                   padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -125,7 +120,7 @@ class Illness_Grid extends StatelessWidget {
                                   : Get.width <= 573
                                       ? 3.0
                                       : 1.8),
-                  itemCount: control.filteredIllness!.length,
+                  itemCount: control.filteredvaccine!.length,
                   itemBuilder: (context, index) {
                     return HoverScaleCard(
                       child: GestureDetector(
@@ -163,26 +158,16 @@ class Illness_Grid extends StatelessWidget {
                                               child: Column(children: [
                                             Text(
                                               textAlign: TextAlign.center,
-                                              "${control.filteredIllness![index].enName}",
+                                              "${control.filteredvaccine![index].enName}",
                                               style: TextStyle(fontSize: 26),
                                             ),
-                                            control.filteredIllness![index]
-                                                        .chronic ==
-                                                    1
-                                                ? Text(
-                                                    textAlign: TextAlign.center,
-                                                    "Is chronic : Yes",
-                                                    style: TextStyle(
-                                                        fontSize: 14,
-                                                        color:
-                                                            Color(0xffB03D3D)),
-                                                  )
-                                                : Text(
-                                                    textAlign: TextAlign.center,
-                                                    "Is chronic : No",
-                                                    style:
-                                                        TextStyle(fontSize: 14),
-                                                  )
+                                            Text(
+                                              textAlign: TextAlign.center,
+                                              "Location : ${control.filteredvaccine![index].location!.enName}",
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  color: Color(0xffDAC43B)),
+                                            )
                                           ])),
                                         )
                                       ],
@@ -210,11 +195,11 @@ class Illness_Grid extends StatelessWidget {
                                                   ButtonDialog(
                                                       text: "Delete",
                                                       onPressed: () async {
-                                                        await Delete_Illness_API(
+                                                        await Delete_Vaccines_API(
                                                                 context)
-                                                            .Delete_Illness(
+                                                            .Delete_Vaccines(
                                                                 Eid: control
-                                                                    .filteredIllness![
+                                                                    .filteredvaccine![
                                                                         index]
                                                                     .id);
                                                       },
@@ -237,7 +222,7 @@ class Illness_Grid extends StatelessWidget {
                                                               .start,
                                                       children: [
                                                         Text(
-                                                          "Do You Want To Delete ( ${control.filteredIllness![index].enName} ) Illness",
+                                                          "Do You Want To Delete ( ${control.filteredvaccine![index].enName} ) Vaccine",
                                                           style: Get
                                                               .theme
                                                               .textTheme
@@ -250,7 +235,7 @@ class Illness_Grid extends StatelessWidget {
                                                         ),
                                                       ],
                                                     )),
-                                                apptitle: "Delete Illness",
+                                                apptitle: "Delete Vaccine",
                                                 subtitle: "none",
                                               ));
                                             },
@@ -262,8 +247,8 @@ class Illness_Grid extends StatelessWidget {
                                 )),
                             Align(
                                 alignment: Alignment(-1.5, 1),
-                                child: Image.asset("../../images/Illness.png",
-                                    height: 120)),
+                                child: Image.asset("../../images/Vaction.png",
+                                    height: 150)),
                           ],
                         ),
                       ),
@@ -271,7 +256,7 @@ class Illness_Grid extends StatelessWidget {
                   },
                 )
               : Center(
-                  child: Text("No Illness",
+                  child: Text("No Vaccine",
                       style: Get.theme.textTheme.titleLarge!.copyWith(
                           fontSize: 22, fontWeight: FontWeight.normal)));
     });

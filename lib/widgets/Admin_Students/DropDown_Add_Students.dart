@@ -109,8 +109,6 @@ class DropdownAddStudents extends StatelessWidget {
                                   Get.find<Location_controller>()
                                       .setLocationsid(
                                           cont.Locationlist.indexOf(newValue));
-                                  print(cont.Classlist.indexOf(newValue)
-                                      .toString());
                                 }
                               }
                             }

@@ -5,6 +5,7 @@ import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/Controller/AdminController/Location_controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/Location_Model.dart';
 
 class Get_Location_API {
@@ -17,7 +18,9 @@ class Get_Location_API {
 
     try {
       final controller = Get.find<Location_controller>();
+      final vcontroller = Get.find<Vaccines_Controller>();
       controller.setIsLoading(true);
+      vcontroller.SetIsLoadingLocation(true);
       var response = await dio.get(myURI, options: getDioOptions());
       if (response.statusCode == 200) {
         Location_Model location_model = Location_Model.fromJson(response.data);

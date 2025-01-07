@@ -15,7 +15,7 @@ class Add_Vaccines_API {
   Add_Vaccines({
     name,
     enName,
-    chronic,
+    locationId,
   }) async {
     CancelToken cancelToken = CancelToken();
     Loading_Dialog(cancelToken: cancelToken);
@@ -23,7 +23,7 @@ class Add_Vaccines_API {
       FormData formData = FormData.fromMap({
         'name': '$name',
         'enName': '$enName',
-        'chronic': '${chronic == true ? 1 : 0}',
+        'locationId': '$locationId',
       });
 
       String myurl = "${hostPort}${addVaccines}";
