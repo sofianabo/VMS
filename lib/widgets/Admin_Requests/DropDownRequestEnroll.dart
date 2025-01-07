@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownDivisionAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
-import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 
 class Dropdownrequestenroll extends StatelessWidget {
@@ -19,8 +18,8 @@ class Dropdownrequestenroll extends StatelessWidget {
     this.color,
     required this.width,
     required this.type,
-    required this.isLoading, 
-     this.isDisabled = false,
+    required this.isLoading,
+    this.isDisabled = false,
   }) : super(key: key);
 
   @override
@@ -55,71 +54,75 @@ class Dropdownrequestenroll extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
           border: Border.all(color: color ?? const Color(0xffD9D9D9)),
         ),
-        child: isDisabled == true?
-        Row(
-          children: [
-            Text("Division" , style: TextStyle(color: Colors.grey),),
-          ],
-        ):
-        isLoading == true
-            ? Center(
-          child: SizedBox(
-            width: 20,
-            height: 20,
-            child: CircularProgressIndicator(strokeWidth: 3),
-          ),
-        )
-            : Row(
-          children: [
-            Expanded(
-              child: DropdownButton<String>(
-                onChanged: (newValue) {
-                  if (newValue != null && newValue != title) {
-                    cont.selectIndex(type, newValue);
-                    cont.selectIndex(type, newValue);
-                  }
-                },
-                dropdownColor: Get.theme.cardColor,
-                iconDisabledColor: Colors.grey,
-                iconEnabledColor: Get.theme.cardColor,
-                value: selectedValue,
-                isExpanded: true,
-                underline: const SizedBox(),
-                icon:  selectedValue.isNotEmpty && selectedValue != title
-                    ? GestureDetector(
-                  onTap: () {
-                    cont.selectIndex(type, "");
-                    cont.update();
-                  },
-                  child: Icon(
-                    Icons.close,
-                    color: Get.theme.secondaryHeaderColor,
+        child: isDisabled == true
+            ? Row(
+                children: [
+                  Text(
+                    "Division",
+                    style: TextStyle(color: Colors.grey),
                   ),
-                )
-                    : Icon(
-                  Icons.arrow_drop_down,
-                  color: Get.theme.secondaryHeaderColor,
-                ),
-                style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-                items: [
-                  DropdownMenuItem<String>(
-                    value: title,
-                    child: Text(
-                      title,
-                      style: Get.theme.textTheme.bodyMedium!.copyWith(
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
-                  ..._getDropdownItems(cont,context),
                 ],
-                borderRadius: BorderRadius.circular(3),
-              ),
-            ),
-          ],
-        ),
+              )
+            : isLoading == true
+                ? Center(
+                    child: SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(strokeWidth: 3),
+                    ),
+                  )
+                : Row(
+                    children: [
+                      Expanded(
+                        child: DropdownButton<String>(
+                          onChanged: (newValue) {
+                            if (newValue != null && newValue != title) {
+                              cont.selectIndex(type, newValue);
+                              cont.selectIndex(type, newValue);
+                            }
+                          },
+                          dropdownColor: Get.theme.cardColor,
+                          iconDisabledColor: Colors.grey,
+                          iconEnabledColor: Get.theme.cardColor,
+                          value: selectedValue,
+                          isExpanded: true,
+                          underline: const SizedBox(),
+                          icon:
+                              selectedValue.isNotEmpty && selectedValue != title
+                                  ? GestureDetector(
+                                      onTap: () {
+                                        cont.selectIndex(type, "");
+                                        cont.update();
+                                      },
+                                      child: Icon(
+                                        Icons.close,
+                                        color: Get.theme.secondaryHeaderColor,
+                                      ),
+                                    )
+                                  : Icon(
+                                      Icons.arrow_drop_down,
+                                      color: Get.theme.secondaryHeaderColor,
+                                    ),
+                          style: Get.theme.textTheme.bodyMedium!
+                              .copyWith(fontSize: 14),
+                          items: [
+                            DropdownMenuItem<String>(
+                              value: title,
+                              child: Text(
+                                title,
+                                style: Get.theme.textTheme.bodyMedium!.copyWith(
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                            ..._getDropdownItems(cont, context),
+                          ],
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                      ),
+                    ],
+                  ),
       );
-
     });
   }
 
@@ -152,7 +155,7 @@ class Dropdownrequestenroll extends StatelessWidget {
             ),
             onTap: () async {
               AllDivisionModel division =
-              await Dropdowndivisionapi(context).Dropdowndivision(
+                  await Dropdowndivisionapi(context).Dropdowndivision(
                 cont.classlist.indexOf(value),
               );
               print(cont.classlist.indexOf(value));

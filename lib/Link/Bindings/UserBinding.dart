@@ -6,6 +6,7 @@ import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Virtual_Employee_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/oneEmployeeAttendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Illness_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Location_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Dashboard_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
@@ -15,6 +16,8 @@ import 'package:vms_school/Link/Controller/AdminController/School_Controllers/La
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/School_Info_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Session_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Subject_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Transaction_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Employeeecontroller.dart';
@@ -94,5 +97,8 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Subject_Controller(), fenix: true);
     Get.lazyPut(() => Allteacheratendencecontroller(), fenix: true);
     Get.lazyPut(() => Dropdowncuriculmcontroller(), fenix: true);
+    Get.lazyPut(() => Transaction_Controller(), fenix: true);
+    Get.lazyPut(() => Add_Students_Controller(), fenix: true);
+    Get.lazyPut(() => Location_controller(), fenix: true);
   }
 }

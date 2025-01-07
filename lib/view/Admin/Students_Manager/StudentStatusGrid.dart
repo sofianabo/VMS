@@ -225,10 +225,14 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                                           child: control.filteredStudents[index]
                                                       .fileId ==
                                                   null
-                                              ? const Icon(
-                                                  Icons.image_outlined,
-                                                  color: Colors.white,
-                                                  size: 30,
+                                              ? Text(
+                                                  "${control.filteredStudents[index].fullName!.substring(0, 1).toUpperCase()}",
+                                                  style: Get
+                                                      .textTheme.titleLarge!
+                                                      .copyWith(
+                                                          fontSize: 26,
+                                                          fontWeight:
+                                                              FontWeight.bold),
                                                 )
                                               : null,
                                         );

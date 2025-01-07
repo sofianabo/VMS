@@ -23,8 +23,7 @@ class GetAllRequestsapi {
 
       if (response.statusCode == 200) {
         AllRequestsModel requests = AllRequestsModel.fromJson(response.data);
-        AllClassModel classesModel =
-        await Getallclassapi(context).getAllClasses();
+        AllClassModel classesModel = await Getallclassapi.getAllClasses();
         c.setAllClassDialog(classesModel);
         c.setAllRequests(requests);
       } else {

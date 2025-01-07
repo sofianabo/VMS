@@ -1,5 +1,5 @@
 // String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
-String hostPort = "http://192.168.43.127:8000/api/";
+String hostPort = "http://192.168.223.226:8000/api/";
 
 //..................... All ...................//
 
@@ -12,7 +12,7 @@ String logout = "logoutF";
 
 //..................... Students ...................//
 
-String addGuardian = "addenroll";
+String addGuardian = "addGuardian";
 String getguardians = "getAllGuardian";
 String editGuardian = "updateGuardian";
 String getStudents = "getAllStudent";
@@ -26,6 +26,7 @@ String acceptARequest = "AcceptARequest";
 String allPenalty = "getPenalty";
 String addStudentPenalty = "addStudentPenalty";
 String addStudentAttendance = "addStudentAttendance";
+String addStudentInfo = "addStudentInfo";
 
 //..................... Employees ...................//
 
@@ -94,9 +95,12 @@ String addBook = "addBook";
 String getBook = "getBook";
 String deleteBook = "deleteBook";
 
+String getTransaction = "getTransaction";
+
 //..................... Admin ...................//
 
 String dashboard = "DashBoard";
+String getLocation = "getLocation";
 
 //..................... File ...................//
 

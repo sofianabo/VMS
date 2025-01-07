@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
@@ -9,7 +10,7 @@ import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Division_Model.dart';
 
 class Divisions_Controller extends GetxController {
-  List<Map<String, dynamic>> Divisions= [];
+  List<Map<String, dynamic>> Divisions = [];
 
   AllClassModel? Classmodel;
   List<Division>? division;
@@ -20,21 +21,23 @@ class Divisions_Controller extends GetxController {
 
   var dropclasses;
   var dropDiagClasses;
-  SetClassIdx(vale){
+  SetClassIdx(vale) {
     dropclasses = vale;
     update();
   }
 
-  SetClassDiagIdx(vale){
+  SetClassDiagIdx(vale) {
     dropDiagClasses = vale;
     update();
   }
-  addclassList(List<String> values){
+
+  addclassList(List<String> values) {
     listClass.clear();
     listClass = values;
     listClassDiag = values;
     update();
   }
+
   void setClass(AllClassModel cls) {
     Classmodel = cls;
     List<String> classess = [];
@@ -51,13 +54,13 @@ class Divisions_Controller extends GetxController {
     Get.find<Allteachercontroller>().SetClass(classess);
     Get.find<Allteacheratendencecontroller>().SetClass(classess);
     Get.find<StudentAttendencController>().setClassList(classess);
-
+    Get.find<Add_Students_Controller>().SetClasslist(classess);
     update();
   }
+
   List<String> listClass = [];
 
   List<String> listClassDiag = [];
-
 
   void selectIndex(String type, String? index) {
     switch (type) {
@@ -68,7 +71,7 @@ class Divisions_Controller extends GetxController {
         ClassDiagIndex = index ?? "";
         break;
     }
-    if(type == "class"){
+    if (type == "class") {
       print(ClassIndex);
       searchRequestByName(ClassIndex);
     }
@@ -90,26 +93,28 @@ class Divisions_Controller extends GetxController {
   String get selectClassIndex => ClassIndex;
 
   String get selectClassDiagIndex => ClassDiagIndex;
-bool isLoading = true;
+  bool isLoading = true;
 
-bool Isapiloading = true;
+  bool Isapiloading = true;
   void SetIsloading(bool value) {
     isLoading = value;
     update();
   }
+
   void SetIsapiloading(bool value) {
     Isapiloading = value;
     update();
   }
 
-   setDivisions(Division_Model allDivisionModel) {
+  setDivisions(Division_Model allDivisionModel) {
     Divisions.clear();
     division = allDivisionModel.division;
     filteredDivision = List.from(division!);
 
     if (ClassIndex.isNotEmpty) {
       filteredDivision = filteredDivision!.where((emp) {
-        return emp.classes!.enName == ClassIndex || emp.classes!.enName == ClassIndex;
+        return emp.classes!.enName == ClassIndex ||
+            emp.classes!.enName == ClassIndex;
       }).toList();
     }
 
@@ -125,21 +130,19 @@ bool Isapiloading = true;
     }
     SetIsapiloading(false);
     update();
-   }
-
+  }
 
   void searchRequestByName(String classindexed) {
     List<Division> tempFilteredList = List.from(division!);
 
     if (classindexed.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((cls) {
-        return cls.classes!.name == classindexed || cls.classes!.enName == classindexed ;
+        return cls.classes!.name == classindexed ||
+            cls.classes!.enName == classindexed;
       }).toList();
     }
 
     filteredDivision = tempFilteredList;
     update();
   }
-
-
 }

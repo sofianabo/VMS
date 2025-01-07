@@ -2,14 +2,16 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/allGuardianModel.dart';
 
 class Allgaurdiancontroller extends GetxController {
-  List<Gaurdians>? guardian ;
+  List<Gaurdians>? guardian;
   List<Gaurdians>? filteredregaurdians;
   String? filteredName = "";
+  String? garduansid = "";
   bool isLoading = true;
-  setIsLoading(bool value){
-    isLoading = value ;
+  setIsLoading(bool value) {
+    isLoading = value;
     update();
   }
+
   void clearFilter() {
     searchGaurdian("");
     update();
@@ -20,15 +22,17 @@ class Allgaurdiancontroller extends GetxController {
     filteredName = Query;
     if (Query.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((emp) {
-        return emp.name!.contains(Query.toLowerCase()) || emp.nationalId!.contains(Query.toLowerCase())|| emp.email!.contains(Query.toLowerCase())|| emp.userName!.contains(Query.toLowerCase())|| emp.phone!.contains(Query.toLowerCase()) ;
+        return emp.name!.contains(Query.toLowerCase()) ||
+            emp.nationalId!.contains(Query.toLowerCase()) ||
+            emp.email!.contains(Query.toLowerCase()) ||
+            emp.userName!.contains(Query.toLowerCase()) ||
+            emp.phone!.contains(Query.toLowerCase());
       }).toList();
     }
 
     filteredregaurdians = tempFilteredList;
     update();
   }
-
-
 
   void setallGaurdian(AllGuardianModel model) {
     guardian = model.gaurdians!;
@@ -38,14 +42,12 @@ class Allgaurdiancontroller extends GetxController {
     update();
   }
 
-  void updateGuardian(String name, int index, String phone, String email, String nationalId) {
+  void updateGuardian(
+      String name, int index, String phone, String email, String nationalId) {
     filteredregaurdians![index].name = name;
-     filteredregaurdians![index].phone = phone;
-     filteredregaurdians![index].email = email;
-     filteredregaurdians![index].nationalId = nationalId;
+    filteredregaurdians![index].phone = phone;
+    filteredregaurdians![index].email = email;
+    filteredregaurdians![index].nationalId = nationalId;
     update();
   }
-
-  
-
 }

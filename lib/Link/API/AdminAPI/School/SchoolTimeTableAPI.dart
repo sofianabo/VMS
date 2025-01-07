@@ -6,7 +6,6 @@ import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 
-
 class Schooltimetableapi {
   final AdminSchoolTimeController c = Get.find<AdminSchoolTimeController>();
   BuildContext context;
@@ -17,7 +16,7 @@ class Schooltimetableapi {
 
   Schooltimetable() async {
     try {
-      AllClassModel cl = await Getallclassapi(context).getAllClasses();
+      AllClassModel cl = await Getallclassapi.getAllClasses();
       c.setAllClasses(cl);
 
 //       String myurl = "${global.hostPort}${global.getStudents}";

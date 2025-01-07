@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
@@ -13,11 +14,12 @@ class Dropdowndivisioncontroller extends GetxController {
 
   bool isDisiabled = true;
 
-  setIsLoading(bool value){
+  setIsLoading(bool value) {
     isLoading = value;
     update();
   }
-  setIsDisiabled(bool value){
+
+  setIsDisiabled(bool value) {
     isDisiabled = value;
     update();
   }
@@ -35,8 +37,8 @@ class Dropdowndivisioncontroller extends GetxController {
     Get.find<StudyYearStudentsController>().setDivisionList(newList);
     Get.find<Student_attendence_controller>().setDivisionList(newList);
     Get.find<StudentAttendencController>().setDivisionList(newList);
+    Get.find<Add_Students_Controller>().SetDivisionlist(newList);
     setIsLoading(false);
     update();
   }
-
 }

@@ -15,7 +15,7 @@ class DropDownAllStudents extends StatelessWidget {
   final Color? color;
   bool isDisabled;
   bool isLoading;
-   DropDownAllStudents({
+  DropDownAllStudents({
     super.key,
     required this.title,
     this.color,
@@ -53,10 +53,6 @@ class DropDownAllStudents extends StatelessWidget {
               ? cont.selecteddivisionIndex
               : title;
           break;
-
-
-
-
       }
 
       return Container(
@@ -68,99 +64,112 @@ class DropDownAllStudents extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
           border: Border.all(color: color ?? const Color(0xffD9D9D9)),
         ),
-        child: isDisabled == true?
-        Row(
-          children: [
-            Text("$title" , style: TextStyle(color: Colors.grey),),
-          ],
-        ):
-        isLoading == true
-            ? Center(
-          child: SizedBox(
-            width: 20,
-            height: 20,
-            child: CircularProgressIndicator(strokeWidth: 3),
-          ),
-        )
-            : Row(
-          children: [
-            Expanded(
-              child: DropdownButton<String>(
-                onChanged: (newValue) {
-                  if (newValue != null && newValue != title) {
-                    cont.selectIndex(type, newValue);
-                    if(type == 'grade'){
-                      print(newValue);
-                      if(newValue != title){
-                          cont.resetOnGradeChange();
-                        Getallclassapi(context).getAllClasses(
-                          sessionID:Get.find<All_Screen_Sessions_Controller>().sessionId,
-                          Gradeid: Get.find<Dropdowngradecontroller>().gradess!.grades!
-                              .firstWhere((grad) => grad.enName == newValue||grad.name == newValue).id ,
-                        );
-                      }
-                    }
-                    if(type == 'class'){
-                      if(newValue != title){
-                        AllDivisionModel division =  Dropdowndivisionapi(context)
-                            .Dropdowndivision(cont.classlist.indexOf(newValue));
-                        cont.setAllDivision(division);
-
-                      }
-                    }
-                    // switch (type) {
-                    //   case 'gradediag':
-                    //     cont.setGeidx(Get.find<Dropdowngradecontroller>().gradess!.grades!.firstWhere((grad) => grad.enName  == newValue || grad.name  == newValue).id);
-                    //     print(cont.grades);
-                    //     break;
-                    //   case 'admin':
-                    //     Get.find<Virtual_Employee_Controller>().setVECUserID(Get.find<Virtual_Employee_Controller>().viraulClasses!.firstWhere((admin) => admin.userName  == newValue).id);
-                    //     break;
-                    // }
-                  }
-                },
-                dropdownColor: Get.theme.cardColor,
-                iconDisabledColor: Colors.grey,
-                iconEnabledColor: Get.theme.cardColor,
-                value: selectedValue,
-                isExpanded: true,
-                underline: const SizedBox(),
-                icon:  selectedValue.isNotEmpty && selectedValue != title
-                    ? GestureDetector(
-                  onTap: () {
-                    cont.selectIndex(type, "");
-                    if(type == "grade"){
-                      cont.resetOnGradeChange();
-                    }
-                    cont.update();
-                  },
-                  child: Icon(
-                    Icons.close,
-                    color: Get.theme.secondaryHeaderColor,
+        child: isDisabled == true
+            ? Row(
+                children: [
+                  Text(
+                    "$title",
+                    style: TextStyle(color: Colors.grey),
                   ),
-                )
-                    : Icon(
-                  Icons.arrow_drop_down,
-                  color: Get.theme.secondaryHeaderColor,
-                ),
-                style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-                items: [
-                  DropdownMenuItem<String>(
-                    value: title,
-                    child: Text(
-                      title,
-                      style: Get.theme.textTheme.bodyMedium!.copyWith(
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
-                  ..._getDropdownItems(cont,context),
                 ],
-                borderRadius: BorderRadius.circular(3),
-              ),
-            ),
-          ],
-        ),
+              )
+            : isLoading == true
+                ? Center(
+                    child: SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(strokeWidth: 3),
+                    ),
+                  )
+                : Row(
+                    children: [
+                      Expanded(
+                        child: DropdownButton<String>(
+                          onChanged: (newValue) {
+                            if (newValue != null && newValue != title) {
+                              cont.selectIndex(type, newValue);
+                              if (type == 'grade') {
+                                print(newValue);
+                                if (newValue != title) {
+                                  cont.resetOnGradeChange();
+                                  Getallclassapi.getAllClasses(
+                                    sessionID: Get.find<
+                                            All_Screen_Sessions_Controller>()
+                                        .sessionId,
+                                    Gradeid: Get.find<Dropdowngradecontroller>()
+                                        .gradess!
+                                        .grades!
+                                        .firstWhere((grad) =>
+                                            grad.enName == newValue ||
+                                            grad.name == newValue)
+                                        .id,
+                                  );
+                                }
+                              }
+                              if (type == 'class') {
+                                if (newValue != title) {
+                                  AllDivisionModel division =
+                                      Dropdowndivisionapi(context)
+                                          .Dropdowndivision(
+                                              cont.classlist.indexOf(newValue));
+                                  cont.setAllDivision(division);
+                                }
+                              }
+                              // switch (type) {
+                              //   case 'gradediag':
+                              //     cont.setGeidx(Get.find<Dropdowngradecontroller>().gradess!.grades!.firstWhere((grad) => grad.enName  == newValue || grad.name  == newValue).id);
+                              //     print(cont.grades);
+                              //     break;
+                              //   case 'admin':
+                              //     Get.find<Virtual_Employee_Controller>().setVECUserID(Get.find<Virtual_Employee_Controller>().viraulClasses!.firstWhere((admin) => admin.userName  == newValue).id);
+                              //     break;
+                              // }
+                            }
+                          },
+                          dropdownColor: Get.theme.cardColor,
+                          iconDisabledColor: Colors.grey,
+                          iconEnabledColor: Get.theme.cardColor,
+                          value: selectedValue,
+                          isExpanded: true,
+                          underline: const SizedBox(),
+                          icon:
+                              selectedValue.isNotEmpty && selectedValue != title
+                                  ? GestureDetector(
+                                      onTap: () {
+                                        cont.selectIndex(type, "");
+                                        if (type == "grade") {
+                                          cont.resetOnGradeChange();
+                                        }
+                                        cont.update();
+                                      },
+                                      child: Icon(
+                                        Icons.close,
+                                        color: Get.theme.secondaryHeaderColor,
+                                      ),
+                                    )
+                                  : Icon(
+                                      Icons.arrow_drop_down,
+                                      color: Get.theme.secondaryHeaderColor,
+                                    ),
+                          style: Get.theme.textTheme.bodyMedium!
+                              .copyWith(fontSize: 14),
+                          items: [
+                            DropdownMenuItem<String>(
+                              value: title,
+                              child: Text(
+                                title,
+                                style: Get.theme.textTheme.bodyMedium!.copyWith(
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                            ..._getDropdownItems(cont, context),
+                          ],
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                      ),
+                    ],
+                  ),
       );
     });
   }
@@ -180,8 +189,7 @@ class DropDownAllStudents extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style:Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());
@@ -192,12 +200,10 @@ class DropDownAllStudents extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style:Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
             onTap: () async {
               classSelected = value;
-
             },
           );
         }).toList());
@@ -208,8 +214,7 @@ class DropDownAllStudents extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style:Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
             onTap: () async {
               divisionSelected = value;

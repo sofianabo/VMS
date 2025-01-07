@@ -25,7 +25,7 @@ class Examtableapi {
       AllSemesterModel semester =
           await Dropdownsemsesterapi(context).Dropdownsemsester();
       c.setAllSeason(semester);
-      AllClassModel cl = await Getallclassapi(context).getAllClasses();
+      AllClassModel cl = await Getallclassapi.getAllClasses();
       c.setAllClasses(cl);
       c.setAllClassesDialog(cl);
       String myurl = "${hostPort}${examTable}";

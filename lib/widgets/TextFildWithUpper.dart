@@ -11,6 +11,8 @@ class Textfildwithupper extends StatelessWidget {
     this.readOnly = false,
     this.icon,
     this.isRequired = false,
+    this.onChanged,
+    this.enabled = true,
   });
 
   final TextEditingController controller;
@@ -20,6 +22,8 @@ class Textfildwithupper extends StatelessWidget {
   final Widget? icon;
   final bool isRequired;
   final bool readOnly;
+  final Function(String)? onChanged;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +39,8 @@ class Textfildwithupper extends StatelessWidget {
             child: RichText(
               text: TextSpan(
                 text: Uptext,
+                style: Get.theme.textTheme.bodyMedium!
+                    .copyWith(fontSize: 14, color: Colors.black),
                 children: isRequired
                     ? [
                         TextSpan(
@@ -49,14 +55,38 @@ class Textfildwithupper extends StatelessWidget {
           SizedBox(
             height: 40,
             child: TextFormField(
-              enabled: !readOnly,
+              enabled: enabled,
               readOnly: readOnly,
               controller: controller,
+              onChanged: (value) {
+                if (Uptext == 'Username') {
+                  // حفظ موقع المؤشر الحالي
+                  final cursorPosition = controller.selection.baseOffset;
+
+                  // إزالة المسافات وتحويل النص إلى حروف صغيرة
+                  String updatedValue = value.replaceAll(' ', '').toLowerCase();
+
+                  // تعيين النص الجديد مع تعديل موقع المؤشر
+                  controller.value = TextEditingValue(
+                    text: updatedValue,
+                    selection: TextSelection.collapsed(
+                      offset: cursorPosition > updatedValue.length
+                          ? updatedValue.length
+                          : cursorPosition,
+                    ),
+                  );
+                }
+
+                // استدعاء الدالة إذا كانت غير null
+                if (onChanged != null) {
+                  onChanged!(controller.text);
+                }
+              },
               decoration: InputDecoration(
                 suffixIcon: icon ?? Text(""),
                 hintText: hinttext,
                 hintStyle: Get.theme.textTheme.bodyMedium!
-                    .copyWith(fontSize: 14, color: Color(0xffB3B3B3),fontWeight: FontWeight.normal),
+                    .copyWith(fontSize: 14, color: Color(0xffB3B3B3)),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5),
                   borderSide: BorderSide(

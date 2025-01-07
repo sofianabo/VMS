@@ -1,22 +1,23 @@
-
 import 'package:flutter/material.dart';
 
 class LargeTextField extends StatelessWidget {
   LargeTextField({
     super.key,
     required this.controller,
+    this.width,
     required this.hinttext,
     this.isRequired = false, // إضافة متغير لتحديد ما إذا كان الحقل مطلوبًا.
   });
 
   final TextEditingController controller;
   final String hinttext;
+  final double? width;
   final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 515,
+      width: width ?? 515,
       height: 300,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

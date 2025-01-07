@@ -6,6 +6,7 @@ import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetTeacherAttendenceAP
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/EmployeeAttendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Session_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Transaction_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/ExamTableController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
@@ -603,6 +604,86 @@ class selectStudentsDateAttendence extends StatelessWidget {
   }
 }
 
+class selectTransactionDate extends StatelessWidget {
+  final double width;
+  final double? height;
+  final bool isRequired;
+
+  selectTransactionDate({
+    super.key,
+    required this.width,
+    this.height,
+    this.isRequired = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<Transaction_Controller>(builder: (controller) {
+      return Obx(
+        () => Container(
+          width: width,
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: height ?? 40,
+                child: TextFormField(
+                  style: TextStyle(fontSize: 14),
+                  controller: TextEditingController(
+                    text: controller.AttendencetDate.value != null
+                        ? DateFormat('yyyy-MM-dd')
+                            .format(controller.AttendencetDate.value!)
+                        : '',
+                  ),
+                  readOnly: true,
+                  onTap: () => controller.selectDate(context: context),
+                  decoration: InputDecoration(
+                      hintText: "yyyy-MM-dd",
+                      hintStyle: Get.theme.primaryTextTheme.titleMedium!
+                          .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide:
+                            BorderSide(color: Color(0xffD9D9D9), width: 2),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: const BorderSide(color: Color(0xffD9D9D9)),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      suffixIcon: controller.AttendencetDate.value == null
+                          ? IconButton(
+                              icon: Icon(
+                                VMS_Icons.calender,
+                                color: Get.theme.primaryColor,
+                                size: 16,
+                              ),
+                              onPressed: () =>
+                                  controller.selectDate(context: context),
+                            )
+                          : IconButton(
+                              icon: Icon(
+                                Icons.clear,
+                                color: Get.theme.primaryColor,
+                                size: 16,
+                              ),
+                              onPressed: () {
+                                controller.removeAttendence();
+                              })),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    });
+  }
+}
+
 class selectstart extends StatelessWidget {
   final double width;
   final double? height;
@@ -877,7 +958,6 @@ class PenaltyEndDate extends StatelessWidget {
   }
 }
 
-
 class examDate extends StatelessWidget {
   final double width;
   final double? height;
@@ -892,8 +972,7 @@ class examDate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ExamTableController controller =
-        Get.put(ExamTableController());
+    final ExamTableController controller = Get.put(ExamTableController());
     return Obx(
       () => Container(
         width: width,

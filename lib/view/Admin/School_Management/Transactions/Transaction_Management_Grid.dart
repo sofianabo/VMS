@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Class_API/Delete_Class_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Class_API/Edit_Class_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Class_Mgmt_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Transaction_Controller.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
@@ -17,16 +18,17 @@ class Transaction_Management_Grid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ClassMgmtController>(builder: (control) {
+    return GetBuilder<Transaction_Controller>(builder: (control) {
+      double size = 15;
       return control.isLoading == true
           ? GridView.builder(
               padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 5,
+                  crossAxisCount: 4,
                   crossAxisSpacing: 20.0,
                   mainAxisSpacing: 20.0,
                   childAspectRatio: 1.1),
-              itemCount: 10,
+              itemCount: 12,
               itemBuilder: (context, index) {
                 return HoverScaleCard(
                   child: Container(
@@ -45,23 +47,50 @@ class Transaction_Management_Grid extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SchemaWidget(width: 35, height: 35),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SchemaWidget(width: 70, height: 10),
+                              SchemaWidget(width: 70, height: 10)
+                            ],
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SchemaWidget(width: 20, height: 15),
-                            ],
+                            children: [SchemaWidget(width: 70, height: 10)],
                           ),
-                          SchemaWidget(width: 25, height: 15),
-                          SchemaWidget(width: 25, height: 15),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [SchemaWidget(width: 70, height: 10)],
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              SchemaWidget(width: 25, height: 15),
-                              SchemaWidget(width: 20, height: 20),
+                              SchemaWidget(width: 40, height: 10),
+                              SchemaWidget(width: 70, height: 10),
+                              SchemaWidget(width: 40, height: 10),
                             ],
-                          )
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SchemaWidget(width: 70, height: 10),
+                              SchemaWidget(width: 70, height: 10),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SchemaWidget(width: 70, height: 10),
+                              SchemaWidget(width: 70, height: 10),
+                              SchemaWidget(width: 70, height: 10),
+                            ],
+                          ),
                         ],
                       )),
                 ).animate(onPlay: (controller) => controller.repeat()).shimmer(
@@ -71,15 +100,15 @@ class Transaction_Management_Grid extends StatelessWidget {
                     delay: Duration(seconds: 1));
               },
             )
-          : control.filteredreclasses!.isNotEmpty
+          : control.filteredTransaction!.isNotEmpty
               ? GridView.builder(
                   padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 5,
+                      crossAxisCount: 4,
                       crossAxisSpacing: 20.0,
                       mainAxisSpacing: 20.0,
                       childAspectRatio: 1.1),
-                  itemCount: control.filteredreclasses!.length,
+                  itemCount: control.filteredTransaction!.length,
                   itemBuilder: (context, index) {
                     return HoverScaleCard(
                       child: Container(
@@ -100,49 +129,250 @@ class Transaction_Management_Grid extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.date_range,
+                                        size: 16,
+                                      ),
+                                      Text(
+                                          " ${control.filteredTransaction![index].date}",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                            fontSize: 14,
+                                          )),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.access_time_rounded,
+                                        size: 16,
+                                      ),
+                                      Text(
+                                          " ${control.filteredTransaction![index].time}",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                            fontSize: 14,
+                                          )),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
-                                      "${control.filteredreclasses![index].enName}",
+                                      "${control.filteredTransaction![index].userName}",
                                       style: Get.theme.textTheme.bodyMedium!
                                           .copyWith(
-                                        fontSize: 20,
+                                        fontSize: 14,
                                       )),
                                 ],
                               ),
-                              Text(
-                                  "${control.filteredreclasses![index].grade!.enName}",
-                                  style: Get.theme.textTheme.bodyMedium!
-                                      .copyWith(
-                                          fontSize: 14, color: Colors.black)),
-                              Text(
-                                  "${control.filteredreclasses![index].session!.year}",
-                                  style: Get.theme.textTheme.bodyMedium!
-                                      .copyWith(
-                                          fontSize: 14, color: Colors.black)),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: Get.size.width / 6,
+                                    child: Text(
+                                        textAlign: TextAlign.center,
+                                        "${control.filteredTransaction![index].detail}",
+                                        style: Get.theme.textTheme.bodyMedium!
+                                            .copyWith(
+                                          fontSize: 14,
+                                        )),
+                                  ),
+                                ],
+                              ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Text("Drive URL",
+                                  SvgPicture.asset("images/line.svg"),
+                                  Text("Device Info",
                                       style: Get.theme.textTheme.bodyMedium!
                                           .copyWith(
-                                        fontSize: 16,
+                                        fontSize: 14,
                                       )),
-                                  SvgPicture.asset(
-                                    "../../images/drive.svg",
-                                    width: 20,
-                                  )
+                                  SvgPicture.asset("images/line.svg"),
                                 ],
-                              )
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        VMS_Icons.ip,
+                                        size: size,
+                                      ),
+                                      Text(
+                                          " ${control.filteredTransaction![index].ip}",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                            fontSize: 14,
+                                          )),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                          control.filteredTransaction![index]
+                                                  .browserVersion!
+                                                  .toLowerCase()
+                                                  .contains("edge")
+                                              ? VMS_Icons.edge
+                                              : control
+                                                      .filteredTransaction![
+                                                          index]
+                                                      .browserVersion!
+                                                      .contains("chrome")
+                                                  ? VMS_Icons.Chrome
+                                                  : control
+                                                          .filteredTransaction![
+                                                              index]
+                                                          .browserVersion!
+                                                          .contains("opera")
+                                                      ? VMS_Icons.opera
+                                                      : control
+                                                              .transaction![
+                                                                  index]
+                                                              .browserVersion!
+                                                              .contains(
+                                                                  "safari")
+                                                          ? VMS_Icons.safari
+                                                          : control
+                                                                  .transaction![
+                                                                      index]
+                                                                  .browserVersion!
+                                                                  .contains(
+                                                                      "fox")
+                                                              ? VMS_Icons
+                                                                  .firefox
+                                                              : Icons.eco,
+                                          size: size),
+                                      Text(
+                                          control.filteredTransaction![index]
+                                                      .browserVersion!
+                                                      .trim() !=
+                                                  ""
+                                              ? " ${control.filteredTransaction![index].browserVersion}"
+                                              : "Unknow Browser",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                            fontSize: 14,
+                                          )),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(
+                                          control.filteredTransaction![index]
+                                                  .platform!
+                                                  .toLowerCase()
+                                                  .contains("windows")
+                                              ? VMS_Icons.windows
+                                              : control
+                                                      .filteredTransaction![
+                                                          index]
+                                                      .platform!
+                                                      .toLowerCase()
+                                                      .contains("android")
+                                                  ? VMS_Icons.android
+                                                  : control
+                                                              .filteredTransaction![
+                                                                  index]
+                                                              .platform!
+                                                              .toLowerCase()
+                                                              .contains(
+                                                                  "ios") ||
+                                                          control
+                                                              .transaction![
+                                                                  index]
+                                                              .platform!
+                                                              .toLowerCase()
+                                                              .contains(
+                                                                  "apple") ||
+                                                          control
+                                                              .transaction![
+                                                                  index]
+                                                              .platform!
+                                                              .toLowerCase()
+                                                              .contains("mac")
+                                                      ? VMS_Icons.apple
+                                                      : Icons
+                                                          .running_with_errors,
+                                          size: size),
+                                      Text(
+                                          " ${control.filteredTransaction![index].platform}",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                            fontSize: 14,
+                                          )),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                          control.filteredTransaction![index]
+                                                  .deviceType!
+                                                  .toLowerCase()
+                                                  .contains("phone")
+                                              ? VMS_Icons.phone
+                                              : control
+                                                      .filteredTransaction![
+                                                          index]
+                                                      .deviceType!
+                                                      .toLowerCase()
+                                                      .contains("tablet")
+                                                  ? VMS_Icons.tablet
+                                                  : VMS_Icons.desktop,
+                                          size: size),
+                                      Text(
+                                          " ${control.filteredTransaction![index].deviceType}",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                            fontSize: 14,
+                                          )),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(VMS_Icons.admin, size: size),
+                                      Text(
+                                          " ${control.filteredTransaction![index].roll}",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                            fontSize: 14,
+                                          )),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ],
                           )),
                     );
                   },
                 )
               : Center(
-                  child: Text("No Classes",
+                  child: Text("No Transactions",
                       style: Get.theme.textTheme.titleLarge!.copyWith(
                           fontSize: 22, fontWeight: FontWeight.normal)));
     });

@@ -31,7 +31,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
     Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
     Getallteachersapi.Getallteachers();
     Get_Subject_Screen_API(context).Get_Subject_Screen();
-    Getallclassapi(context).getAllClasses();
+    Getallclassapi.getAllClasses();
     super.initState();
   }
 
@@ -59,53 +59,58 @@ class _TeacherManagementState extends State<TeacherManagement> {
             children: [
               Row(
                 children: [
-                  GetBuilder<Allteachercontroller>(
-                    builder: (controller) {
-                      return Row(
-                        children: [
-                          Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: DropDownAllSessions(
-                                title: "Session",
-                                width: w / 6.5,
-                                type: "session",
-                                API: "TeacherManagement",
-                              )),
-                          Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child:   Dropdownallteacher(
-                                isLoading: controller.isClassLoading,
-                                width: w / 6.5,
-                                title: "Class",
-                                type: 'Class',
-                              ),),
-                          Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child:   Dropdownallteacher(
-                                isLoading: controller.isSubjectLoading,
-                                width: w / 6.5,
-                                title: "Subject",
-                                type: 'Subject',
-                              ),),
-                          Padding(
+                  GetBuilder<Allteachercontroller>(builder: (controller) {
+                    return Row(
+                      children: [
+                        Padding(
                             padding: const EdgeInsets.only(left: 8.0),
-                            child: TextFormSearch(
-                              click: (){
-                                controller.clearFilter();
-                              },
-                              onchange: (value) {
-                                controller.searchRequestByName(value, controller.classIndex, controller.SubjectIndex);
-                              },
-                              width: w / 4,
-                              radius: 5,
-                              controller: search,
-                              suffixIcon: search.text.isNotEmpty ? Icons.close :  Icons.search,
-                            ),
+                            child: DropDownAllSessions(
+                              title: "Session",
+                              width: w / 6.5,
+                              type: "session",
+                              API: "TeacherManagement",
+                            )),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Dropdownallteacher(
+                            isLoading: controller.isClassLoading,
+                            width: w / 6.5,
+                            title: "Class",
+                            type: 'Class',
                           ),
-                        ],
-                      );
-                    }
-                  ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Dropdownallteacher(
+                            isLoading: controller.isSubjectLoading,
+                            width: w / 6.5,
+                            title: "Subject",
+                            type: 'Subject',
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: TextFormSearch(
+                            click: () {
+                              controller.clearFilter();
+                            },
+                            onchange: (value) {
+                              controller.searchRequestByName(
+                                  value,
+                                  controller.classIndex,
+                                  controller.SubjectIndex);
+                            },
+                            width: w / 4,
+                            radius: 5,
+                            controller: search,
+                            suffixIcon: search.text.isNotEmpty
+                                ? Icons.close
+                                : Icons.search,
+                          ),
+                        ),
+                      ],
+                    );
+                  }),
                   Spacer(),
                   Row(
                     children: [

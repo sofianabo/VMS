@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownGradeAPI.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Class_API/Get_All_Classes.dart';
-import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownGradeController.dart.dart';
-import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Transaction_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Transaction_Controller.dart';
 import 'package:vms_school/view/Admin/School_Management/Transactions/Transaction_Management_Grid.dart';
-import 'package:vms_school/widgets/Admin_School/All_Screen_Sessions.dart';
-import 'package:vms_school/widgets/Admin_School/DropDownClassMgmt.dart';
+import 'package:vms_school/widgets/Admin_School/DropDowTransaction.dart';
+import 'package:vms_school/widgets/Calender.dart';
+import 'package:vms_school/widgets/TextFormSearch.dart';
 
 class Transaction_Management extends StatefulWidget {
   Transaction_Management({super.key});
@@ -17,11 +16,11 @@ class Transaction_Management extends StatefulWidget {
 }
 
 class _Transaction_ManagementState extends State<Transaction_Management> {
+  TextEditingController search = TextEditingController();
+
   @override
   void initState() {
-    Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
-    Get_All_Classes_API(context).Get_All_Classes();
-    Getallgradeapi.Getallgrade();
+    Get_Transaction_Screen_API.Get_Transaction_Screen(rows: "25");
     super.initState();
   }
 
@@ -37,28 +36,85 @@ class _Transaction_ManagementState extends State<Transaction_Management> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  DropDownAllSessions(
-                    title: "Session",
-                    width: Get.width / 3,
-                    type: "session",
-                    API: 'class',
-                  ),
-                  Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: GetBuilder<Dropdowngradecontroller>(
-                          builder: (controller) {
-                        return DropDownClassMgmt(
+              GetBuilder<Transaction_Controller>(builder: (controller) {
+                return Row(
+                  children: [
+                    Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: DropDowTransaction(
+                            isLoading: false,
+                            title: "Roll",
+                            width: Get.size.width / 6,
+                            type: "roll")),
+                    Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: DropDowTransaction(
                             isLoading: controller.isLoading,
-                            title: "Grade",
-                            width: Get.width / 3,
-                            type: "grade");
-                      })),
-                  Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                    child: Container(
+                            title: "Action",
+                            width: Get.size.width / 6,
+                            type: "action")),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: selectTransactionDate(
+                        width: Get.size.width / 6,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: TextFormSearch(
+                        click: () {
+                          controller.clearFilter();
+                        },
+                        onchange: (value) {
+                          controller.searchRequestByName(
+                              value,
+                              controller.rollIndex,
+                              controller.AttendencetDate.value.toString(),
+                              controller.actionIndex);
+                        },
+                        width: Get.size.width / 5,
+                        radius: 5,
+                        controller: search,
+                        suffixIcon:
+                            search.text.isNotEmpty ? Icons.close : Icons.search,
+                      ),
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: DropDowTransaction(
+                            isLoading: false,
+                            title: "Rows",
+                            width: 100,
+                            type: "rows")),
+                    Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    WidgetStatePropertyAll(Color(0xffF9F8FD)),
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {},
+                            icon: Icon(VMS_Icons.pdf,
+                                size: 18, color: Get.theme.primaryColor)),
+                      ),
+                    ),
+                    Container(
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
@@ -79,36 +135,12 @@ class _Transaction_ManagementState extends State<Transaction_Management> {
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
                           onPressed: () {},
-                          icon: Icon(VMS_Icons.pdf,
+                          icon: Icon(VMS_Icons.xl,
                               size: 18, color: Get.theme.primaryColor)),
                     ),
-                  ),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(5),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Colors.black12,
-                              offset: Offset(0, 2),
-                              blurRadius: 1)
-                        ]),
-                    child: IconButton(
-                        style: ButtonStyle(
-                            backgroundColor:
-                                WidgetStatePropertyAll(Color(0xffF9F8FD)),
-                            shape: WidgetStatePropertyAll(
-                                RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))))),
-                        onPressed: () {},
-                        icon: Icon(VMS_Icons.xl,
-                            size: 18, color: Get.theme.primaryColor)),
-                  ),
-                ],
-              ),
+                  ],
+                );
+              }),
             ],
           ),
         ),

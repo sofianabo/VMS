@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
@@ -18,21 +19,22 @@ import '../../../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';
 
 class Getallclassapi {
-  Dropdownclassescontroller ClassController =
-      Get.find<Dropdownclassescontroller>();
-  final DivisionControllers = Get.find<Dropdowndivisioncontroller>();
-  final Studentcontroller = Get.find<Allstudentscontroller>();
-  final StudyYearStudents = Get.find<StudyYearStudentsController>();
-  final Student_attendence = Get.find<Student_attendence_controller>();
-  final Allteachercontrolle = Get.find<Allteachercontroller>();
-  final Allteacheratendencecontrolle = Get.find<Allteacheratendencecontroller>();
-  final StudentAttendencControlle = Get.find<StudentAttendencController>();
-
   BuildContext context;
   Getallclassapi(this.context);
-  Dio dio = Dio();
-  getAllClasses({int? sessionID, int? Gradeid}) async {
+  static getAllClasses({int? sessionID, int? Gradeid}) async {
     try {
+      Dio dio = Dio();
+      Dropdownclassescontroller ClassController =
+          Get.find<Dropdownclassescontroller>();
+      final Studentcontroller = Get.find<Allstudentscontroller>();
+      final StudyYearStudents = Get.find<StudyYearStudentsController>();
+      final Student_attendence = Get.find<Student_attendence_controller>();
+      final Allteachercontrolle = Get.find<Allteachercontroller>();
+      final Allteacheratendencecontrolle =
+          Get.find<Allteacheratendencecontroller>();
+      final StudentAttendencControlle = Get.find<StudentAttendencController>();
+      final Add_Students_Controlle = Get.find<Add_Students_Controller>();
+
       ClassController.setIsLoading(true);
       Studentcontroller.setClassLoading(true);
       StudyYearStudents.setClassLoading(true);
@@ -40,7 +42,7 @@ class Getallclassapi {
       Allteachercontrolle.setClassLoading(true);
       Allteacheratendencecontrolle.setClassLoading(true);
       StudentAttendencControlle.setClassLoading(true);
-
+      Add_Students_Controlle.SetIsLoadingClass(true);
 
       final controller = Get.find<Divisions_Controller>();
       controller.SetIsloading(true);

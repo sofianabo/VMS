@@ -82,14 +82,12 @@ class DropDownAllSessions extends StatelessWidget {
                   break;
                 case 'TeacherManagement':
                   Getallteachersapi.Getallteachers(sessionID: cont.sessionId);
-                  Getallclassapi(context)
-                      .getAllClasses(sessionID: cont.sessionId);
+                  Getallclassapi.getAllClasses(sessionID: cont.sessionId);
                   break;
                 case 'Teachersts':
                   Getteacherattendenceapi(context)
                       .Getteacherattendence(sessionID: cont.sessionId);
-                  Getallclassapi(context)
-                      .getAllClasses(sessionID: cont.sessionId);
+                  Getallclassapi.getAllClasses(sessionID: cont.sessionId);
                   break;
                 case 'AllEmployee':
                   cont.selectIndex(type, newValue);
