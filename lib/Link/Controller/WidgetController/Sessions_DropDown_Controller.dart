@@ -42,7 +42,7 @@ class All_Screen_Sessions_Controller extends GetxController {
   String get selectedsessionIndex => sessionIndex;
 
    setSessionDefult() {
-    try{
+    try{ 
       sessionIndex = sessions!.current!.year!;
       startSessionDate = sessions!.current!.startDate!;
       endSessionDate = sessions!.current!.endDate!;
