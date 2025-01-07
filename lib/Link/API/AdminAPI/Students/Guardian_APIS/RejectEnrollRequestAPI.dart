@@ -14,13 +14,11 @@ class Rejectenrollrequestapi {
 
   Rejectenrollrequest(int id) async {
     try {
-
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
       String myurl = "${global.hostPort}${global.rejectrequest}/$id";
       var response = await dio.get(
-          cancelToken: cancelToken,
-          myurl, options: getDioOptions());
+          cancelToken: cancelToken, myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         Get.back();
         Get.back();

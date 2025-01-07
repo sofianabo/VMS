@@ -7,7 +7,6 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import '../../../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';
 
-
 class Addguardianapi {
   final Allgaurdiancontroller u = Get.find<Allgaurdiancontroller>();
   Addguardianapi(this.context);

@@ -22,7 +22,8 @@ class Studentattendencebyidapi {
       String myurl = "${hostPort}${studentAttendenceById}";
       var response = await dio.post(myurl,
           cancelToken: cancelToken,
-          data: {"studentId": id}, options: getDioOptions());
+          data: {"studentId": id},
+          options: getDioOptions());
       if (response.statusCode == 200) {
         OneStudentAttendenceModel st =
             OneStudentAttendenceModel.fromJson(response.data);
@@ -43,7 +44,7 @@ class Studentattendencebyidapi {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    }finally{
+    } finally {
       Get.back();
     }
   }

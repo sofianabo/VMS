@@ -28,7 +28,6 @@ class Studentpunishapi {
           options: getDioOptions());
 
       if (response.statusCode == 200) {
-
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,
@@ -45,7 +44,7 @@ class Studentpunishapi {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    }finally{
+    } finally {
       Get.back();
       Get.back();
     }

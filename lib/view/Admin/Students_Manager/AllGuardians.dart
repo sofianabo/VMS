@@ -10,8 +10,6 @@ import 'package:vms_school/widgets/TextFieldDialog.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
-
-
 class AllGuardians extends StatefulWidget {
   AllGuardians({super.key});
 
@@ -63,21 +61,22 @@ class _AllGuardiansState extends State<AllGuardians> {
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: GetBuilder<Allgaurdiancontroller>(
-                          builder: (controller) {
-                            return TextFormSearch(
-                              click: () {
-                                controller.clearFilter();
-                              },
-                              onchange: (value){
-                                controller.searchGaurdian(value);
-                              },
-                              width: w * 0.7,
-                              radius: 5,
-                              controller: search,
-                              suffixIcon: search.text.isNotEmpty ? Icons.close :  Icons.search,
-                            );
-                          }
-                        ),
+                            builder: (controller) {
+                          return TextFormSearch(
+                            click: () {
+                              controller.clearFilter();
+                            },
+                            onchange: (value) {
+                              controller.searchGaurdian(value);
+                            },
+                            width: w * 0.7,
+                            radius: 5,
+                            controller: search,
+                            suffixIcon: search.text.isNotEmpty
+                                ? Icons.close
+                                : Icons.search,
+                          );
+                        }),
                       ),
                     ],
                   ),

@@ -49,11 +49,11 @@ class _AdminDashboardState extends State<AdminDashboard> {
                     children: [
                       DashboardSecondSide(),
                     ],
-              ),
+                  ),
                 ),
               ],
             ),
-                  ),
+          ),
         ],
       ),
     ));

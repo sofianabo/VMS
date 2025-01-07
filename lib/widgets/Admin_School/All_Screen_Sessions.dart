@@ -74,7 +74,7 @@ class DropDownAllSessions extends StatelessWidget {
               cont.selectIndex(type, newValue);
               cont.setsessionid(cont.sessions!.sessions!
                   .firstWhere((session) => session.year == newValue)
-                  .id); 
+                  .id);
               switch (API) {
                 case 'AllStudents':
                   Getallstudentapi.Getallstudent(sessionID: cont.sessionId);

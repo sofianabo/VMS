@@ -17,8 +17,7 @@ class GetAllGuardiansAPI {
     try {
       c.setIsLoading(true);
       String myurl = "${hostPort}${getguardians}";
-      var response = await dio.get(myurl,
-options: getDioOptions());
+      var response = await dio.get(myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         AllGuardianModel classes = AllGuardianModel.fromJson(response.data);
         c.setallGaurdian(classes);

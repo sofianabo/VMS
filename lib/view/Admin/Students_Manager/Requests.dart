@@ -45,8 +45,10 @@ class _RequestsState extends State<Requests> {
                     Row(
                       children: [
                         Dropdownrequestenroll(
-                          isLoading: false,
-                            title: "Status", width: w / 5, type: "status"),
+                            isLoading: false,
+                            title: "Status",
+                            width: w / 5,
+                            type: "status"),
                         Padding(
                           padding:
                               const EdgeInsets.only(left: 20.0, right: 20.0),
@@ -59,11 +61,14 @@ class _RequestsState extends State<Requests> {
                             controller.clearName();
                           },
                           onchange: (value) {
-                           controller.searchByName(value,controller.statusindex , controller.filterDate);
+                            controller.searchByName(value,
+                                controller.statusindex, controller.filterDate);
                           },
                           radius: 5,
                           controller: search,
-                          suffixIcon: search.text.isNotEmpty ? Icons.close :  Icons.search,
+                          suffixIcon: search.text.isNotEmpty
+                              ? Icons.close
+                              : Icons.search,
                         ),
                       ],
                     ),
