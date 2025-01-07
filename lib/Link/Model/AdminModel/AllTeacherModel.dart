@@ -32,20 +32,22 @@ class Teachers {
   int? hoursCount;
   List<Classes>? classes;
   List<Subject>? subject;
+  bool? hasEmployee;
   String? email;
 
   Teachers(
       {this.id,
-        this.contractType,
-        this.gender,
-        this.phone,
-        this.imageId,
-        this.jobTitle,
-        this.fullName,
-        this.hoursCount,
-        this.classes,
-        this.subject,
-        this.email});
+      this.contractType,
+      this.gender,
+      this.phone,
+      this.imageId,
+      this.jobTitle,
+      this.fullName,
+      this.hoursCount,
+      this.classes,
+      this.subject,
+      this.hasEmployee,
+      this.email});
 
   Teachers.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -68,6 +70,7 @@ class Teachers {
         subject!.add(new Subject.fromJson(v));
       });
     }
+    hasEmployee = json['hasEmployee'];
     email = json['email'];
   }
 
@@ -87,6 +90,7 @@ class Teachers {
     if (this.subject != null) {
       data['subject'] = this.subject!.map((v) => v.toJson()).toList();
     }
+    data['hasEmployee'] = this.hasEmployee;
     data['email'] = this.email;
     return data;
   }

@@ -11,6 +11,7 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeacherAtendenceController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DateControler.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:intl/intl.dart';
@@ -877,7 +878,6 @@ class PenaltyEndDate extends StatelessWidget {
   }
 }
 
-
 class examDate extends StatelessWidget {
   final double width;
   final double? height;
@@ -892,8 +892,7 @@ class examDate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ExamTableController controller =
-        Get.put(ExamTableController());
+    final ExamTableController controller = Get.put(ExamTableController());
     return Obx(
       () => Container(
         width: width,
@@ -936,6 +935,180 @@ class examDate extends StatelessWidget {
                       size: 16,
                     ),
                     onPressed: () => controller.selectDateIndex(context),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class EditJoinDateTeacher extends StatelessWidget {
+  final double width;
+  final String Uptext;
+  final double? height;
+  final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
+
+  EditJoinDateTeacher({
+    super.key,
+    required this.width,
+    required this.Uptext,
+    this.height,
+    this.isRequired = false, // افتراضي الحقل غير مطلوب.
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final Allteachercontroller controller = Get.put(Allteachercontroller());
+    return Obx(
+      () => Container(
+        width: width,
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5.0),
+              child: RichText(
+                text: TextSpan(
+                  text: Uptext,
+                  style: TextStyle(color: Colors.black, fontSize: 14),
+                  children: isRequired
+                      ? [
+                          TextSpan(
+                            text: " *",
+                            style: TextStyle(color: Colors.red, fontSize: 14),
+                          ),
+                        ]
+                      : [],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: height ?? 40,
+              child: TextFormField(
+                style: TextStyle(fontSize: 14),
+                controller: TextEditingController(
+                  text: controller.Joindate.value != null
+                      ? DateFormat('yyyy-MM-dd')
+                          .format(controller.Joindate.value!)
+                      : '',
+                ),
+                readOnly: true,
+                onTap: () => controller.selectJoinDate(context),
+                decoration: InputDecoration(
+                  hintText: "yyyy-MM-dd",
+                  hintStyle: Get.theme.textTheme.bodyMedium!
+                      .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(color: Color(0xffD9D9D9), width: 2),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: const BorderSide(color: Color(0xffD9D9D9)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      VMS_Icons.calender,
+                      color: Get.theme.primaryColor,
+                      size: 16,
+                    ),
+                    onPressed: () => controller.selectJoinDate(context),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class EditBirthDateTeacher extends StatelessWidget {
+  final double width;
+  final String Uptext;
+  final double? height;
+  final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
+
+  EditBirthDateTeacher({
+    super.key,
+    required this.width,
+    required this.Uptext,
+    this.height,
+    this.isRequired = false, // افتراضي الحقل غير مطلوب.
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final Allteachercontroller controller = Get.put(Allteachercontroller());
+    return Obx(
+      () => Container(
+        width: width,
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5.0),
+              child: RichText(
+                text: TextSpan(
+                  text: Uptext,
+                  style: TextStyle(color: Colors.black, fontSize: 14),
+                  children: isRequired
+                      ? [
+                          TextSpan(
+                            text: " *",
+                            style: TextStyle(color: Colors.red, fontSize: 14),
+                          ),
+                        ]
+                      : [],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: height ?? 40,
+              child: TextFormField(
+                style: TextStyle(fontSize: 14),
+                controller: TextEditingController(
+                  text: controller.Birthdate.value != null
+                      ? DateFormat('yyyy-MM-dd')
+                          .format(controller.Birthdate.value!)
+                      : '',
+                ),
+                readOnly: true,
+                onTap: () => controller.selectBirthDate(context),
+                decoration: InputDecoration(
+                  hintText: "yyyy-MM-dd",
+                  hintStyle: Get.theme.textTheme.bodyMedium!
+                      .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(color: Color(0xffD9D9D9), width: 2),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: const BorderSide(color: Color(0xffD9D9D9)),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      VMS_Icons.calender,
+                      color: Get.theme.primaryColor,
+                      size: 16,
+                    ),
+                    onPressed: () => controller.selectBirthDate(context),
                   ),
                 ),
               ),

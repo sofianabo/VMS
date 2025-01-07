@@ -13,7 +13,7 @@ import 'package:vms_school/widgets/VMSAlertDialog.dart';
 import 'package:vms_school/widgets/Admin_employee/DropDownAllEmployee.dart';
 
 EditEmployee(BuildContext context , int idx , String employeeID) {
-
+ 
    final empolyeecontroller = Get.find<Allempolyeecontroller>();
    TextEditingController First_Name = TextEditingController(text: empolyeecontroller.employee!.firstName);
    TextEditingController Last_Name = TextEditingController(text: empolyeecontroller.employee!.lastName);
@@ -184,8 +184,8 @@ EditEmployee(BuildContext context , int idx , String employeeID) {
 
                                          width: 250,
                                          controller: Phone_Numper,
-                                         Uptext: "Phone Numper",
-                                         hinttext: "Phone Numper"),
+                                         Uptext: "Phone Number",
+                                         hinttext: "Phone Number"),
                                      Padding(
                                          padding: const EdgeInsets.only(left: 20.0),
                                          child: BirthDate(
@@ -450,7 +450,7 @@ EditEmployee(BuildContext context , int idx , String employeeID) {
                                    crossAxisAlignment: CrossAxisAlignment.end,
                                    children: [
                                      Text(
-                                       "Teacher Bank Info :",
+                                       "Empolyee Bank Info :",
                                        style: Get.theme.textTheme.titleLarge!
                                            .copyWith(fontSize: 20),
                                      )

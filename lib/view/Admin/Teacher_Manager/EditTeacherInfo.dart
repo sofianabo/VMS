@@ -3,548 +3,608 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
+import 'package:vms_school/Link/API/API.dart';
+import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/EditTeacherAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Illness_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AddTeacherController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
+import 'package:vms_school/widgets/Admin_teachers/DropDownAllTeacher.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
 import 'package:vms_school/widgets/DropDown.dart';
 import 'package:vms_school/widgets/LargeTextField.dart';
 import 'package:vms_school/widgets/TextFieldDialog.dart';
+import 'package:vms_school/widgets/TextFildWithUpper.dart';
+import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
-EditTeacherDialog() {
-  TextEditingController firstName = TextEditingController();
-  TextEditingController lastName = TextEditingController();
-  TextEditingController phoneNumber = TextEditingController();
-  TextEditingController address = TextEditingController();
-  TextEditingController emergency = TextEditingController();
-  TextEditingController email = TextEditingController();
-  TextEditingController currentAddress = TextEditingController();
-  TextEditingController username = TextEditingController();
-  TextEditingController salary = TextEditingController();
-  TextEditingController fatherName = TextEditingController();
-  TextEditingController jobTitle = TextEditingController();
-  TextEditingController facebook = TextEditingController();
-  TextEditingController motherName = TextEditingController();
-  TextEditingController x = TextEditingController();
-  TextEditingController linkedin = TextEditingController();
-  TextEditingController insta = TextEditingController();
-  TextEditingController bankAccountTitle = TextEditingController();
-  TextEditingController bankName = TextEditingController();
-  TextEditingController bankBranchName = TextEditingController();
-  TextEditingController bankAccountNumber = TextEditingController();
-  TextEditingController ifsc = TextEditingController();
-  TextEditingController careerHistory = TextEditingController();
-  TextEditingController qualification = TextEditingController();
-  TextEditingController experience = TextEditingController();
-  TextEditingController note = TextEditingController();
+EditTeacherDialog(BuildContext context, int idx, String teacherId) {
+  final teacherControler = Get.find<Allteachercontroller>();
+  TextEditingController firstName =
+      TextEditingController(text: teacherControler.oTeacher!.firstName);
+  TextEditingController lastName =
+      TextEditingController(text: teacherControler.oTeacher!.lastName);
+  TextEditingController phoneNumber =
+      TextEditingController(text: teacherControler.oTeacher!.phone);
+  TextEditingController address =
+      TextEditingController(text: teacherControler.oTeacher!.address);
+  TextEditingController emergency =
+      TextEditingController(text: teacherControler.oTeacher!.emergencyNumber);
+  TextEditingController email =
+      TextEditingController(text: teacherControler.oTeacher!.email);
+  TextEditingController currentAddress =
+      TextEditingController(text: teacherControler.oTeacher!.currentAddress);
+  TextEditingController username =
+      TextEditingController(text: teacherControler.oTeacher!.userName);
+  TextEditingController salary =
+      TextEditingController(text: teacherControler.oTeacher!.salary.toString());
+  TextEditingController fatherName =
+      TextEditingController(text: teacherControler.oTeacher!.fatherName);
+  TextEditingController jobTitle =
+      TextEditingController(text: teacherControler.oTeacher!.jobTitle);
+  TextEditingController facebook =
+      TextEditingController(text: teacherControler.oTeacher!.facebookUrl);
+  TextEditingController motherName =
+      TextEditingController(text: teacherControler.oTeacher!.motherName);
+  TextEditingController x =
+      TextEditingController(text: teacherControler.oTeacher!.twitterUrl);
+  TextEditingController linkedin =
+      TextEditingController(text: teacherControler.oTeacher!.lenkedinUrl);
+  TextEditingController insta =
+      TextEditingController(text: teacherControler.oTeacher!.instagramUrl);
+  TextEditingController bankAccountTitle =
+      TextEditingController(text: teacherControler.oTeacher!.bankAccountTitle);
+  TextEditingController bankName =
+      TextEditingController(text: teacherControler.oTeacher!.bankName);
+  TextEditingController bankBranchName =
+      TextEditingController(text: teacherControler.oTeacher!.bankBranchName);
+  TextEditingController bankAccountNumber =
+      TextEditingController(text: teacherControler.oTeacher!.bankAccountNumber);
+  TextEditingController ifsc =
+      TextEditingController(text: teacherControler.oTeacher!.iFSCCode);
+  TextEditingController careerHistory =
+      TextEditingController(text: teacherControler.oTeacher!.careerHistory);
+  TextEditingController qualification =
+      TextEditingController(text: teacherControler.oTeacher!.qualification);
+  TextEditingController experience =
+      TextEditingController(text: teacherControler.oTeacher!.experience);
+  TextEditingController note =
+      TextEditingController(text: teacherControler.oTeacher!.note);
+
   return Get.dialog(
-    Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-      backgroundColor: Colors.white,
-      surfaceTintColor: Colors.white,
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 20),
-        height: Get.height,
-        width: 554,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 20.0,
-                  right: 20.0,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    GetBuilder<Allteachercontroller>(builder: (control) {
+      control.Joindate.value = DateTime.parse(
+          Get.find<Allteachercontroller>().oTeacher!.joinDate.toString());
+      control.Birthdate.value = DateTime.parse(
+          Get.find<Allteachercontroller>().oTeacher!.birthDate.toString());
+
+      return VMSAlertDialog(
+          contents: GetBuilder<Addteachercontroller>(builder: (addcontrol) {
+            return Container(
+              width: 520,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
-                      "Edit Student",
-                      style: Get.theme.textTheme.bodyMedium!,
-                    ),
-                    IconButton(
-                        onPressed: () {
-                          Get.back();
-                        },
-                        icon: const Icon(Icons.highlight_remove))
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Image.asset(
-                          "../../images/Home-background2.png",
-                          height: 162,
-                          width: 162,
-                        )
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("First Name",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: firstName, hinttext: "First Name"),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 15.0),
-                          child: Text("Last Name",
-                              style: Get.theme.textTheme.bodyMedium!),
+                        Column(
+                          children: [
+                            Obx(
+                              () => GestureDetector(
+                                onTap: () async {
+                                  await addcontrol.pickImage(context);
+                                },
+                                child: CircleAvatar(
+                                  maxRadius: 100,
+                                  backgroundColor: const Color(0xffC4C4C4),
+                                  backgroundImage: addcontrol
+                                              .selectedImage.value !=
+                                          null
+                                      ? MemoryImage(
+                                          addcontrol.selectedImage.value!)
+                                      : teacherControler.filteredTeacher![idx]
+                                                  .imageId !=
+                                              null
+                                          ? NetworkImage("$getimage" +
+                                              "${teacherControler.filteredTeacher![idx].imageId}")
+                                          : null,
+                                  child:
+                                      addcontrol.selectedImage.value == null &&
+                                              teacherControler
+                                                      .filteredTeacher![idx]
+                                                      .imageId ==
+                                                  null
+                                          ? const Icon(
+                                              Icons.image_outlined,
+                                              color: Colors.white,
+                                              size: 40,
+                                            )
+                                          : null,
+                                ),
+                              ),
+                            )
+                          ],
                         ),
-                        TextFieldDialog(
-                            controller: lastName, hinttext: "last Name"),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15, top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Father Name",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: fatherName, hinttext: "Father Name"),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Mother Name",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: motherName, hinttext: "Mother Name"),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Phone Number",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: phoneNumber, hinttext: "Phone Number"),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Birth Date",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        DatePicker(
-                          width: 240,
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Textfildwithupper(
+                                width: 250,
+                                controller: firstName,
+                                Uptext: "First Name",
+                                hinttext: "First Name"),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 22.0),
+                              child: Textfildwithupper(
+                                  width: 250,
+                                  controller: lastName,
+                                  Uptext: "Last Name",
+                                  hinttext: "Last Name"),
+                            ),
+                          ],
                         )
                       ],
                     ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Emergency Number",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: emergency,
-                            hinttext: "Emergency Number"),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Join Date",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        DatePicker(
-                          width: 240,
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15, top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Address",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: address, hinttext: "Address"),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Current Address",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: currentAddress,
-                            hinttext: "Current Address"),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15, top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("E-mail",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(controller: email, hinttext: "E-mail"),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("User Name",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: username, hinttext: "User Name"),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15, top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Salary",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(controller: salary, hinttext: "Salary"),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Job Title",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: jobTitle, hinttext: "Job Title"),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 15, right: 15, top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    DropDown(
-                        title: "Gender", width: 240, options: ['dda', 'dd']),
-                    DropDown(
-                        title: "Family Status",
-                        width: 240,
-                        options: ['dfdsa', 'bhgmgh']),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    DropDown(
-                        title: "Contract Type",
-                        width: 240,
-                        options: ['fbdfba', 'bdfb']),
-                    Container(
-                      width: 240,
-                      height: 40,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: Colors.white,
-                        border: Border.all(color: Colors.grey),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.grey,
-                            offset: Offset(0, 3),
-                            blurRadius: 4,
-                          ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Row(
+                        children: [
+                          Textfildwithupper(
+                              width: 250,
+                              controller: fatherName,
+                              Uptext: "Father Name",
+                              hinttext: "Father Name"),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Textfildwithupper(
+                                width: 250,
+                                controller: motherName,
+                                Uptext: "Mother Name",
+                                hinttext: "Mother Name"),
+                          )
                         ],
                       ),
-                      child: Text("illness",
-                          style: Get.theme.textTheme.bodyMedium!),
                     ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text("Social Media Info:",
-                        style: Get.theme.textTheme.bodyMedium!),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Facebook URL",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: facebook, hinttext: "Facebook URL"),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        children: [
+                          Textfildwithupper(
+                              width: 250,
+                              controller: phoneNumber,
+                              Uptext: "Phone Number",
+                              hinttext: "Phone Number"),
+                          Padding(
+                              padding: const EdgeInsets.only(left: 20.0),
+                              child: EditBirthDateTeacher(
+                                Uptext: "Birthdate",
+                                width: 250,
+                              ))
+                        ],
+                      ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("X Platform URL",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: x, hinttext: "X Platform URL"),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        children: [
+                          Textfildwithupper(
+                              width: 250,
+                              controller: emergency,
+                              Uptext: "Emergency Number",
+                              hinttext: "Emergency Number"),
+                          Padding(
+                              padding: const EdgeInsets.only(left: 20.0),
+                              child: EditJoinDateTeacher(
+                                Uptext: "Join Date",
+                                width: 250,
+                              ))
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        children: [
+                          Textfildwithupper(
+                              width: 250,
+                              controller: address,
+                              Uptext: "Address",
+                              hinttext: "Address"),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Textfildwithupper(
+                                width: 250,
+                                controller: currentAddress,
+                                Uptext: "Current Address",
+                                hinttext: "Current Address"),
+                          )
+                        ],
+                      ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        children: [
+                          Textfildwithupper(
+                              readOnly: true,
+                              width: 250,
+                              controller: email,
+                              Uptext: "Email",
+                              hinttext: "Email"),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Textfildwithupper(
+                                readOnly: true,
+                                width: 250,
+                                controller: username,
+                                Uptext: "Username",
+                                hinttext: "Username"),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        children: [
+                          Textfildwithupper(
+                              readOnly: true,
+                              width: 250,
+                              controller: salary,
+                              Uptext: "Salary",
+                              hinttext: "Salary"),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Textfildwithupper(
+                                isRequired: true,
+                                width: 250,
+                                controller: jobTitle,
+                                Uptext: "Job Title",
+                                hinttext: "Job Title"),
+                          )
+                        ],
+                      ),
+                    ),
+                    //ddddddddddddd
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Dropdownallteacher(
+                            title: "Gender",
+                            type: "GenderDialog",
+                            width: 250,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Dropdownallteacher(
+                              title: "Family Status",
+                              type: "FamilyStatusDialog",
+                              width: 250,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Dropdownallteacher(
+                            title: "Contract Type",
+                            type: "ContractTypeDialog",
+                            width: 250,
+                          ),
+                          Padding(
+                              padding: const EdgeInsets.only(left: 20.0),
+                              child: GetBuilder<IllnessController>(
+                                  builder: (controller) {
+                                return ButtonDialog(
+                                    bordercolor: Color(0xffD9D9D9),
+                                    textcolor: Colors.black,
+                                    text: "Employee Illness",
+                                    onPressed: () {
+                                      Get.dialog(
+                                        VMSAlertDialog(
+                                          action: [],
+                                          contents: SizedBox(
+                                            height: 400,
+                                            width: 400,
+                                            child: Obx(() {
+                                              return ListView.builder(
+                                                itemCount: controller
+                                                    .allIllness.length,
+                                                itemBuilder: (context, index) {
+                                                  return Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Obx(() {
+                                                          // غلف CheckboxListTile بـ Obx
+                                                          return CheckboxListTile(
+                                                            overlayColor:
+                                                                WidgetStatePropertyAll(
+                                                                    Colors
+                                                                        .transparent),
+                                                            checkColor:
+                                                                Colors.white,
+                                                            title: Text(controller
+                                                                    .allIllness[
+                                                                index]['arName']),
+                                                            value: controller
+                                                                    .selectedIllness[
+                                                                index],
+                                                            onChanged:
+                                                                (bool? value) {
+                                                              controller
+                                                                  .toggleIllness(
+                                                                      index);
+                                                            },
+                                                          );
+                                                        }),
+                                                      ),
+                                                      Divider(
+                                                        color: Get
+                                                            .theme.primaryColor,
+                                                        height: 1,
+                                                      )
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                            }),
+                                          ),
+                                          apptitle: "All Employee Illness",
+                                          subtitle: "none",
+                                        ),
+                                      );
+                                    },
+                                    color: Colors.white,
+                                    width: 250);
+                              }))
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            "Social Media Info :",
+                            style: Get.theme.textTheme.titleLarge!
+                                .copyWith(fontSize: 20),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        children: [
+                          Textfildwithupper(
+                              width: 250,
+                              controller: facebook,
+                              Uptext: "Facebook URL",
+                              hinttext: "Facebook URL"),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Textfildwithupper(
+                                width: 250,
+                                controller: x,
+                                Uptext: "X Platform URL",
+                                hinttext: "X Platform URL"),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        children: [
+                          Textfildwithupper(
+                              width: 250,
+                              controller: linkedin,
+                              Uptext: "Linkedin URL",
+                              hinttext: "Linkedin URL"),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Textfildwithupper(
+                                width: 250,
+                                controller: insta,
+                                Uptext: "Instagram URL",
+                                hinttext: "Instagram URL"),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            "Teacher Bank Info :",
+                            style: Get.theme.textTheme.titleLarge!
+                                .copyWith(fontSize: 20),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        children: [
+                          Textfildwithupper(
+                              width: 250,
+                              controller: bankAccountTitle,
+                              Uptext: "Bank Account Title",
+                              hinttext: "Bank Account Title"),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Textfildwithupper(
+                                width: 250,
+                                controller: bankName,
+                                Uptext: "Bank Name",
+                                hinttext: "Bank Name"),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        children: [
+                          Textfildwithupper(
+                              width: 250,
+                              controller: bankBranchName,
+                              Uptext: "Bank Branch Name",
+                              hinttext: "Bank Branch Name"),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Textfildwithupper(
+                                width: 250,
+                                controller: bankAccountNumber,
+                                Uptext: "Bank Account Number",
+                                hinttext: "Bank Account Number"),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Textfildwithupper(
+                              width: 250,
+                              controller: ifsc,
+                              Uptext: "IFSC Code",
+                              hinttext: "IFSC Code"),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Divider(
+                        color: Get.theme.primaryColor,
+                        height: 1,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          LargeTextField(
+                              controller: careerHistory,
+                              hinttext: "Career History"),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          LargeTextField(
+                              controller: qualification,
+                              hinttext: "Qualification"),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          LargeTextField(
+                              controller: experience, hinttext: "Experience"),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          LargeTextField(controller: note, hinttext: "Note"),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(right: 15, top: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          ButtonDialog(
+                              width: 100,
+                              text: "Edit",
+                              onPressed: () {},
+                              color: Get.theme.colorScheme.primary)
+                        ],
+                      ),
                     )
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Linkedin URL",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: linkedin, hinttext: "Linkedin URL"),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Instagram URL",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: insta, hinttext: "Instagram URL"),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text("Teacher Bank Info:",
-                        style: Get.theme.textTheme.bodyMedium!),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Bank Account title",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: bankAccountTitle,
-                            hinttext: "Bank Account Title"),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Bank Name",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: bankName, hinttext: "Bank Name"),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Bank Branch Name",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: bankBranchName,
-                            hinttext: "Bank Branch Name"),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Bank Account Number",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: bankAccountNumber,
-                            hinttext: "Bank Account Number"),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("IFSC Code",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: ifsc, hinttext: "IFSC Code"),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                        height: 40,
-                        width: 400,
-                        child: Divider(
-                          color: Get.theme.colorScheme.primary,
-                        )),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Career History",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        LargeTextField(
-                            controller: careerHistory,
-                            hinttext: "Career History")
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Qualification",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        LargeTextField(
-                            controller: qualification,
-                            hinttext: "Qualification")
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Experience",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        LargeTextField(
-                            controller: experience, hinttext: "Experience")
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Note",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        LargeTextField(controller: note, hinttext: "Note")
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(right: 15, top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    ButtonDialog(
-                        width: 100,
-                        text: "Edit",
-                        onPressed: () {},
-                        color: Get.theme.colorScheme.primary)
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    ),
+            );
+          }),
+          apptitle: "Edit Teacher",
+          subtitle: "none",
+          action: [
+            ButtonDialog(
+                text: "Edit Employee",
+                onPressed: () async {
+                  print(control.Birthdate.value);
+                  await Editteacherapi.Editteacher(
+                    employeeId: teacherId,
+                    selectedImage:
+                        Get.find<Addteachercontroller>().selectedImage.value,
+                    First_Name: firstName.text,
+                    Last_Name: lastName.text,
+                    Father_Name: fatherName.text,
+                    Mother_Name: motherName.text,
+                    Phone_Numper: phoneNumber.text,
+                    Birth_Date: control.Birthdate.value.toString(),
+                    Emergency_Number: emergency.text,
+                    Join_Date: control.Joindate.value.toString(),
+                    Address: address.text,
+                    Current_Address: currentAddress.text,
+                    Gender: control.genderDialogIndex,
+                    Family_State: control.familyStatusDialogIndex,
+                    contractType: control.contractTypeDialogIndex,
+                    Facebook_URL: facebook.text,
+                    X_Platform_URL: x.text,
+                    Linkedin_URL: linkedin.text,
+                    Instagram_URL: insta.text,
+                    Bank_Account_Title: bankAccountTitle.text,
+                    Bank_Name: bankName.text,
+                    Bank_Branch_Name: bankBranchName.text,
+                    Bank_Account_Number: bankAccountNumber.text,
+                    IFSC_Code: ifsc.text,
+                    Career_History: careerHistory.text,
+                    Qualification: qualification.text,
+                    Experience: experience.text,
+                    Note: note.text,
+                  );
+                },
+                color: Get.theme.primaryColor,
+                width: 140)
+          ]);
+    }),
   );
 }
