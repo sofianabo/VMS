@@ -1025,7 +1025,6 @@ class examDate extends StatelessWidget {
     );
   }
 }
-<<<<<<< HEAD
 
 class EditJoinDateTeacher extends StatelessWidget {
   final double width;
@@ -1200,5 +1199,3 @@ class EditBirthDateTeacher extends StatelessWidget {
     );
   }
 }
-=======
->>>>>>> 9a8ed8892f4c5dcdf05ee6fa7c94d87bef8aa3d6
