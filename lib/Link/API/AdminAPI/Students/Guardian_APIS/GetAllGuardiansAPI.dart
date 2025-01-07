@@ -1,26 +1,26 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
-import 'package:vms_school/Link/API/AdminAPI/Students_APIs/GetAllStudentAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/allGaurdianController.dart';
+import 'package:vms_school/Link/Model/AdminModel/allGuardianModel.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 
-class Deletestudentapi {
-  Deletestudentapi(this.context);
+class GetAllGuardiansAPI {
+  final Allgaurdiancontroller c = Get.find<Allgaurdiancontroller>();
   BuildContext context;
+  GetAllGuardiansAPI(this.context);
   Dio dio = Dio();
-  Deletestudent(int id) async {
-    String myurl = "${hostPort}${deleteStudent}";
+
+  getAllGuardian() async {
     try {
-      var response = await dio.get(myurl,
-          data: {
-            "id":id
-          },
-    options: getDioOptions());
+      c.setIsLoading(true);
+      String myurl = "${hostPort}${getguardians}";
+      var response = await dio.get(myurl, options: getDioOptions());
       if (response.statusCode == 200) {
-        await Getallstudentapi.Getallstudent();
-        Get.back();
+        AllGuardianModel classes = AllGuardianModel.fromJson(response.data);
+        c.setallGaurdian(classes);
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,
@@ -28,7 +28,6 @@ class Deletestudentapi {
           type: DioErrorType.badResponse,
         ));
       }
-      return response.statusCode;
     } catch (e) {
       if (e is DioError) {
         ErrorHandler.handleDioError(e);

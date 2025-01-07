@@ -1,12 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/API/AdminAPI/Students_APIs/GetAllGuardiansAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Guardian_APIS/GetAllGuardiansAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/allGaurdianController.dart';
-import '../../API.dart' as global;
+import '../../../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';
-
 
 class Addguardianapi {
   final Allgaurdiancontroller u = Get.find<Allgaurdiancontroller>();

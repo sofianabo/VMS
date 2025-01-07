@@ -1,49 +1,66 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownClassesAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownDivisionAPI.dart';
-import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
-import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownGradeController.dart.dart';
-import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
+import 'package:vms_school/Link/Controller/AdminController/Location_controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
 
-class DropDownStudentsAttendens extends StatelessWidget {
+class DropdownAddStudents extends StatelessWidget {
   final double width;
   final String title;
   final String type;
   final Color? color;
-  bool isDisabled;
-  bool isLoading;
-  DropDownStudentsAttendens({
+  final bool isLoading;
+  final bool? isDisabled;
+
+  DropdownAddStudents({
     Key? key,
     required this.title,
     this.color,
     required this.width,
     required this.type,
+    required this.isLoading,
     this.isDisabled = false,
-    this.isLoading = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<StudentAttendencController>(builder: (cont) {
-      String selectedValue = "";
+    return GetBuilder<Add_Students_Controller>(builder: (cont) {
+      String selectedValue = title;
 
       switch (type) {
-        case 'grade':
-          selectedValue = cont.selectedgradeIndex.isNotEmpty
-              ? cont.selectedgradeIndex
+        case 'Gender':
+          selectedValue = cont.selectedGenderIndex.isNotEmpty
+              ? cont.selectedGenderIndex
               : title;
           break;
-        case 'class':
-          selectedValue = cont.selectedclassIndex.isNotEmpty
-              ? cont.selectedclassIndex
+        case 'Realagon':
+          selectedValue = cont.selectedRealagonIndex.isNotEmpty
+              ? cont.selectedRealagonIndex
               : title;
-
           break;
-        case 'division':
-          selectedValue = cont.selecteddivisionIndex.isNotEmpty
-              ? cont.selecteddivisionIndex
+        case 'BloodType':
+          selectedValue = cont.selectedBloodTypeIndex.isNotEmpty
+              ? cont.selectedBloodTypeIndex
+              : title;
+          break;
+        case 'Location':
+          selectedValue = cont.selectedLocationIndex.isNotEmpty
+              ? cont.selectedLocationIndex
+              : title;
+          break;
+        case 'FamilyState':
+          selectedValue = cont.selectedFamilyStateIndex.isNotEmpty
+              ? cont.selectedFamilyStateIndex
+              : title;
+          break;
+        case 'Class':
+          selectedValue = cont.selectedClassIndex.isNotEmpty
+              ? cont.selectedClassIndex
+              : title;
+          break;
+        case 'Division':
+          selectedValue = cont.selectedDivisionIndex.isNotEmpty
+              ? cont.selectedDivisionIndex
               : title;
           break;
       }
@@ -61,7 +78,7 @@ class DropDownStudentsAttendens extends StatelessWidget {
             ? Row(
                 children: [
                   Text(
-                    "$title",
+                    "Division",
                     style: TextStyle(color: Colors.grey),
                   ),
                 ],
@@ -78,34 +95,22 @@ class DropDownStudentsAttendens extends StatelessWidget {
                     children: [
                       Expanded(
                         child: DropdownButton<String>(
-                          onChanged: (newValue) async {
+                          onChanged: (newValue) {
                             if (newValue != null && newValue != title) {
                               cont.selectIndex(type, newValue);
-                              if (type == 'grade') {
-                                print(newValue);
+                              if (type == 'Class') {
                                 if (newValue != title) {
-                                  cont.resetOnGradeChange();
-                                  Getallclassapi.getAllClasses(
-                                    sessionID: Get.find<
-                                            All_Screen_Sessions_Controller>()
-                                        .sessionId,
-                                    Gradeid: Get.find<Dropdowngradecontroller>()
-                                        .gradess!
-                                        .grades!
-                                        .firstWhere((grad) =>
-                                            grad.enName == newValue ||
-                                            grad.name == newValue)
-                                        .id,
-                                  );
+                                  Dropdowndivisionapi(context).Dropdowndivision(
+                                      cont.Classlist.indexOf(newValue));
                                 }
                               }
-                              if (type == 'class') {
+                              if (type == 'Location') {
                                 if (newValue != title) {
-                                  print("d");
-                                  AllDivisionModel division =
-                                      await Dropdowndivisionapi(context)
-                                          .Dropdowndivision(
-                                              cont.classlist.indexOf(newValue));
+                                  Get.find<Location_controller>()
+                                      .setLocationsid(
+                                          cont.Locationlist.indexOf(newValue));
+                                  print(cont.Classlist.indexOf(newValue)
+                                      .toString());
                                 }
                               }
                             }
@@ -116,25 +121,10 @@ class DropDownStudentsAttendens extends StatelessWidget {
                           value: selectedValue,
                           isExpanded: true,
                           underline: const SizedBox(),
-                          icon:
-                              selectedValue.isNotEmpty && selectedValue != title
-                                  ? GestureDetector(
-                                      onTap: () {
-                                        cont.selectIndex(type, "");
-                                        if (type == "grade") {
-                                          cont.resetOnGradeChange();
-                                        }
-                                        cont.update();
-                                      },
-                                      child: Icon(
-                                        Icons.close,
-                                        color: Get.theme.secondaryHeaderColor,
-                                      ),
-                                    )
-                                  : Icon(
-                                      Icons.arrow_drop_down,
-                                      color: Get.theme.secondaryHeaderColor,
-                                    ),
+                          icon: Icon(
+                            Icons.arrow_drop_down,
+                            color: Get.theme.secondaryHeaderColor,
+                          ),
                           style: Get.theme.textTheme.bodyMedium!
                               .copyWith(fontSize: 14),
                           items: [
@@ -159,51 +149,99 @@ class DropDownStudentsAttendens extends StatelessWidget {
   }
 
   List<DropdownMenuItem<String>> _getDropdownItems(
-      StudentAttendencController cont, BuildContext context) {
+      Add_Students_Controller cont, BuildContext context) {
     List<DropdownMenuItem<String>> items = [];
 
     switch (type) {
-      case 'session':
-        items.addAll(cont.sessionlist.map((String value) {
+      case 'Gender':
+        items.addAll(cont.Genderlist.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
               value,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
+            onTap: () async {
+              cont.selectIndex(type, value);
+            },
           );
         }).toList());
         break;
-      case 'grade':
-        items.addAll(cont.gradelist.map((String value) {
+      case 'Realagon':
+        items.addAll(cont.Realagonlist.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
               value,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
+            onTap: () async {
+              cont.selectIndex(type, value);
+            },
           );
         }).toList());
         break;
-      case 'class':
-        items.addAll(cont.classlist.map((String value) {
+      case 'BloodType':
+        items.addAll(cont.BloodTypelist.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
               value,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
+            onTap: () async {},
           );
         }).toList());
         break;
-      case 'division':
-        items.addAll(cont.divisionlist.map((String value) {
+      case 'Location':
+        items.addAll(cont.Locationlist.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
               value,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
+            onTap: () async {
+              cont.selectIndex(type, value);
+            },
+          );
+        }).toList());
+        break;
+      case 'FamilyState':
+        items.addAll(cont.FamilyStatelist.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+            ),
+            onTap: () async {
+              cont.selectIndex(type, value);
+            },
+          );
+        }).toList());
+        break;
+      case 'Class':
+        items.addAll(cont.Classlist.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+            ),
+            onTap: () async {},
+          );
+        }).toList());
+        break;
+      case 'Division':
+        items.addAll(cont.Divisionlist.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+            ),
+            onTap: () async {},
           );
         }).toList());
         break;

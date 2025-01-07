@@ -14,8 +14,8 @@ class DashboardModel {
   int? visitor;
   int? divisin;
   int? elibraryCount;
-  NumberOfStudentsThisYear? numberOfStudentsThisYear;
-  NumberOfStudentsThisYear? numberOfStudentsPerYear;
+  List<NumberOfStudentsThisYear>? numberOfStudentsThisYear;
+  List<NumberOfStudentsPerYear>? numberOfStudentsPerYear;
   Session? session;
 
   DashboardModel(
@@ -54,51 +54,26 @@ class DashboardModel {
     visitor = json['Visitor'];
     divisin = json['Divisin'];
     elibraryCount = json['ElibraryCount'];
-    numberOfStudentsThisYear = json['NumberOfStudentsThisYear'] != null
-        ? new NumberOfStudentsThisYear.fromJson(
-            json['NumberOfStudentsThisYear'])
-        : null;
-    numberOfStudentsPerYear = json['NumberOfStudentsPerYear'] != null
-        ? new NumberOfStudentsThisYear.fromJson(json['NumberOfStudentsPerYear'])
-        : null;
+    if (json['NumberOfStudentsThisYear'] != null) {
+      numberOfStudentsThisYear = <NumberOfStudentsThisYear>[];
+      json['NumberOfStudentsThisYear'].forEach((v) {
+        numberOfStudentsThisYear!.add(new NumberOfStudentsThisYear.fromJson(v));
+      });
+    }
+    if (json['NumberOfStudentsPerYear'] != null) {
+      numberOfStudentsPerYear = <NumberOfStudentsPerYear>[];
+      json['NumberOfStudentsPerYear'].forEach((v) {
+        numberOfStudentsPerYear!.add(new NumberOfStudentsPerYear.fromJson(v));
+      });
+    }
     session =
         json['session'] != null ? new Session.fromJson(json['session']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['percentageStudents'] = this.percentageStudents;
-    data['PercentageTeachers'] = this.percentageTeachers;
-    data['PercentageEmployees'] = this.percentageEmployees;
-    data['PercentageStudentsAttendance'] = this.percentageStudentsAttendance;
-    data['PercentageTeachersAttendance'] = this.percentageTeachersAttendance;
-    data['PercentageEmployeeAttendance'] = this.percentageEmployeeAttendance;
-    data['AllStudents'] = this.allStudents;
-    data['AllNowStudents'] = this.allNowStudents;
-    data['AllTeachers'] = this.allTeachers;
-    data['AllNowTeachers'] = this.allNowTeachers;
-    data['AllEmplooyes'] = this.allEmplooyes;
-    data['AllNowEmplooyes'] = this.allNowEmplooyes;
-    data['Visitor'] = this.visitor;
-    data['Divisin'] = this.divisin;
-    data['ElibraryCount'] = this.elibraryCount;
-    if (this.numberOfStudentsThisYear != null) {
-      data['NumberOfStudentsThisYear'] =
-          this.numberOfStudentsThisYear!.toJson();
-    }
-    if (this.numberOfStudentsPerYear != null) {
-      data['NumberOfStudentsPerYear'] = this.numberOfStudentsPerYear!.toJson();
-    }
-    if (this.session != null) {
-      data['session'] = this.session!.toJson();
-    }
-    return data;
   }
 }
 
 class NumberOfStudentsThisYear {
   String? countryName;
-  int? percent;
+  double? percent;
 
   NumberOfStudentsThisYear({this.countryName, this.percent});
 
@@ -112,6 +87,18 @@ class NumberOfStudentsThisYear {
     data['countryName'] = this.countryName;
     data['percent'] = this.percent;
     return data;
+  }
+}
+
+class NumberOfStudentsPerYear {
+  String? countryName;
+  double? percent;
+
+  NumberOfStudentsPerYear({this.countryName, this.percent});
+
+  NumberOfStudentsPerYear.fromJson(Map<String, dynamic> json) {
+    countryName = json['countryName'];
+    percent = json['percent'];
   }
 }
 

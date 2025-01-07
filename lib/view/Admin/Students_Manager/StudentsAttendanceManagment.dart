@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownGradeAPI.dart';
-import 'package:vms_school/Link/API/AdminAPI/Students_APIs/AddStudentAttendenceAPI.dart';
-import 'package:vms_school/Link/API/AdminAPI/Students_APIs/IncreaseAttendanceAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/AddStudentAttendenceAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/IncreaseAttendanceAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/view/Admin/Students_Manager/StudentsAttendanceManagmentGrid.dart';
 import 'package:vms_school/widgets/Admin_Students/DropDownStudentsAttendencemgmt.dart';
@@ -28,6 +28,7 @@ class _StudentsAttendanceManagmentState
     IncreaseAttendanceAPI(context).GetIncreaseAttendance(isserch: true);
     super.initState();
   }
+
   TextEditingController cuse = TextEditingController();
 
   @override
@@ -86,16 +87,17 @@ class _StudentsAttendanceManagmentState
                                           BorderRadius.all(Radius.circular(4))),
                                   value: controller.allHolidayChecked.value,
                                   onChanged: (value) {
-                                    if(controller.isUploaded == true||controller.isLoading == true){
-
-                                    }else{
-                                      if(value == true){
+                                    if (controller.isUploaded == true ||
+                                        controller.isLoading == true) {
+                                    } else {
+                                      if (value == true) {
                                         Get.dialog(VMSAlertDialog(
                                             action: [
                                               ButtonDialog(
                                                   text: "Done",
-                                                  onPressed: (){
-                                                    controller.setAllAsHoliday(value!,cuse.text);
+                                                  onPressed: () {
+                                                    controller.setAllAsHoliday(
+                                                        value!, cuse.text);
                                                     Get.back();
                                                   },
                                                   color: Get.theme.primaryColor,
@@ -114,10 +116,13 @@ class _StudentsAttendanceManagmentState
                                                 ],
                                               ),
                                             ),
-                                            apptitle: "Enter The Reason For Absence",
-                                            subtitle: "The reason for the absence of the all students"));
-                                      }else{
-                                        controller.setAllAsHoliday(value!,null);
+                                            apptitle:
+                                                "Enter The Reason For Absence",
+                                            subtitle:
+                                                "The reason for the absence of the all students"));
+                                      } else {
+                                        controller.setAllAsHoliday(
+                                            value!, null);
                                       }
                                     }
                                   },
@@ -146,13 +151,13 @@ class _StudentsAttendanceManagmentState
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
                           onPressed: () async {
-                            if(controller.isLoading == false)
-                              {
-                                if(controller.isUploaded == false){
-                                  await Addstudentattendenceapi.Addstudentattendence(
-                                      students: controller.students);
-                                }
+                            if (controller.isLoading == false) {
+                              if (controller.isUploaded == false) {
+                                await Addstudentattendenceapi
+                                    .Addstudentattendence(
+                                        students: controller.students);
                               }
+                            }
                           },
                           icon: Icon(Icons.file_upload_outlined,
                               size: 22, color: Get.theme.primaryColor)),

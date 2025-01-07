@@ -1,11 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/API/AdminAPI/Students_APIs/GetAllGuardiansAPI.dart';
+import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
-import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/allGaurdianController.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
-import '../../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';
 
 class Studentpunishapi {
@@ -14,7 +12,7 @@ class Studentpunishapi {
   Dio dio = Dio();
   Studentpunish(int penaltyId, String reason, String? startdate,
       String? enddate, int studentId) async {
-    String myurl = "${global.hostPort}${global.addStudentPenalty}";
+    String myurl = "${hostPort}${addStudentPenalty}";
     try {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
@@ -30,7 +28,6 @@ class Studentpunishapi {
           options: getDioOptions());
 
       if (response.statusCode == 200) {
-
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,
@@ -47,7 +44,7 @@ class Studentpunishapi {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    }finally{
+    } finally {
       Get.back();
       Get.back();
     }

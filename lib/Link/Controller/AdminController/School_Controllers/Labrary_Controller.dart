@@ -4,41 +4,18 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Labrary_Model.dart';
 
 class Labrary_Controller extends GetxController {
-
   String? filterName = '';
-
 
   List<Books>? books;
   List<Books>? filteredEbook;
 
   bool isLoading = true;
+
   bool isHoveringFile = false;
   String fileStatus = "Click To Add File\nOr\nDrag And Drop File Here";
 
   Rx<Uint8List?> selectedFile = Rx<Uint8List?>(null);
   RxString fileName = "".obs;
-
-  void searchByName(String? nameQuery) {
-    filterName = nameQuery;
-    List<Books> tempFilteredList = List.from(books!);
-
-    if (nameQuery != null && nameQuery.isNotEmpty) {
-      tempFilteredList = tempFilteredList.where((cur) {
-        final curName = cur.name?.toLowerCase() ?? '';
-        final curEName = cur.enName?.toLowerCase() ?? '';
-        return curName.contains(nameQuery.toLowerCase()) || curEName.contains(nameQuery.toLowerCase())  ;
-      }).toList();
-    }
-
-    filteredEbook = tempFilteredList;
-    update();
-  }
-
-  void clearFilter() {
-    searchByName("");
-    update();
-  }
-
   Future<void> pickPDFFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
@@ -63,6 +40,27 @@ class Labrary_Controller extends GetxController {
     update();
   }
 
+  void searchByName(String? nameQuery) {
+    filterName = nameQuery;
+    List<Books> tempFilteredList = List.from(books!);
+
+    if (nameQuery != null && nameQuery.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((cur) {
+        final curName = cur.name?.toLowerCase() ?? '';
+        final curEName = cur.enName?.toLowerCase() ?? '';
+        return curName.contains(nameQuery.toLowerCase()) ||
+            curEName.contains(nameQuery.toLowerCase());
+      }).toList();
+    }
+
+    filteredEbook = tempFilteredList;
+    update();
+  }
+
+  void clearFilter() {
+    searchByName("");
+    update();
+  }
 
   void SetIsLoading(bool value) {
     isLoading = value;

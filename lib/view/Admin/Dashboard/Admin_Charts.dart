@@ -194,17 +194,31 @@ class BarChartSample1State extends State<BarChartSample1> {
 }
 
 List<Map<String, dynamic>> convertNumberOfStudentsPerYearToWidgetData(
-    NumberOfStudentsThisYear? numberOfStudentsPerYear) {
-  if (numberOfStudentsPerYear == null) {
+    List<NumberOfStudentsPerYear>? numberOfStudentsPerYear) {
+  if (numberOfStudentsPerYear == null || numberOfStudentsPerYear.isEmpty) {
     return [];
   }
 
-  return [
-    {
-      'countryName': numberOfStudentsPerYear.countryName ?? 'Unknown',
-      'percent': numberOfStudentsPerYear.percent?.toString() ?? '0',
-    }
-  ];
+  return numberOfStudentsPerYear.map((student) {
+    return {
+      'countryName': student.countryName ?? 'Unknown',
+      'percent': student.percent?.toString() ?? '0',
+    };
+  }).toList();
+}
+
+List<Map<String, dynamic>> convertNumberOfStudentsThisYearToWidgetData(
+    List<NumberOfStudentsThisYear>? numberOfStudentsThisYear) {
+  if (numberOfStudentsThisYear == null || numberOfStudentsThisYear.isEmpty) {
+    return [];
+  }
+
+  return numberOfStudentsThisYear.map((student) {
+    return {
+      'countryName': student.countryName ?? 'Unknown',
+      'percent': student.percent?.toString() ?? '0',
+    };
+  }).toList();
 }
 
 class BarChartSample2 extends StatefulWidget {

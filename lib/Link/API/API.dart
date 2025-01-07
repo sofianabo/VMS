@@ -12,7 +12,7 @@ String logout = "logoutF";
 
 //..................... Students ...................//
 
-String addGuardian = "addenroll";
+String addGuardian = "addGuardian";
 String getguardians = "getAllGuardian";
 String editGuardian = "updateGuardian";
 String getStudents = "getAllStudent";
@@ -26,6 +26,8 @@ String acceptARequest = "AcceptARequest";
 String allPenalty = "getPenalty";
 String addStudentPenalty = "addStudentPenalty";
 String addStudentAttendance = "addStudentAttendance";
+String addStudentInfo = "addStudentInfo";
+String getStudentInformation = "getStudentInformation";
 
 //..................... Employees ...................//
 
@@ -96,9 +98,12 @@ String addBook = "addBook";
 String getBook = "getBook";
 String deleteBook = "deleteBook";
 
+String getTransaction = "getTransaction";
+
 //..................... Admin ...................//
 
 String dashboard = "DashBoard";
+String getLocation = "getLocation";
 
 //..................... File ...................//
 

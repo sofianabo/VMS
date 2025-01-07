@@ -27,13 +27,14 @@ class _DivisionManagementState extends State<DivisionManagement> {
   TextEditingController enName = TextEditingController();
 
   TextEditingController driveUrl = TextEditingController();
-@override
+  @override
   void initState() {
-  Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
-  Get_All_Division_API(context).Get_All_Division();
-   Getallclassapi(context).getAllClasses();
+    Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
+    Get_All_Division_API(context).Get_All_Division();
+    Getallclassapi.getAllClasses();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -49,17 +50,20 @@ class _DivisionManagementState extends State<DivisionManagement> {
               Row(
                 children: [
                   DropDownAllSessions(
-                    API: "division",
-                      title: "Session", width: Get.width / 3, type: "session"),
+                      API: "division",
+                      title: "Session",
+                      width: Get.width / 3,
+                      type: "session"),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
-                    child: GetBuilder<Divisions_Controller>(
-                      builder: (controller) {
-                        return DropDownDivisionMgmt(
+                    child:
+                        GetBuilder<Divisions_Controller>(builder: (controller) {
+                      return DropDownDivisionMgmt(
                           isLoading: controller.isLoading,
-                            title: "Class", width: Get.width / 3, type: "class");
-                      }
-                    ),
+                          title: "Class",
+                          width: Get.width / 3,
+                          type: "class");
+                    }),
                   ),
                   Spacer(),
                   Container(
@@ -92,11 +96,10 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                       onPressed: () {
                                         Add_Division_API(context).Add_Division(
                                           classId: controller.dropDiagClasses,
-                                          enName:enName.text ,
+                                          enName: enName.text,
                                           name: arName.text,
                                           meetUrl: driveUrl.text,
                                         );
-
                                       },
                                       color: Get.theme.primaryColor,
                                       width: 120),
@@ -136,14 +139,13 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                           MainAxisAlignment.start,
                                       children: [
                                         GetBuilder<Divisions_Controller>(
-                                          builder: (controller) {
-                                            return DropDownDivisionMgmt(
+                                            builder: (controller) {
+                                          return DropDownDivisionMgmt(
                                               isLoading: controller.isLoading,
-                                                title: "Class",
-                                                width: 250,
-                                                type: "classDiag");
-                                          }
-                                        ),
+                                              title: "Class",
+                                              width: 250,
+                                              type: "classDiag");
+                                        }),
                                         Padding(
                                           padding:
                                               const EdgeInsets.only(left: 15.0),

@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
-import 'package:vms_school/Link/API/AdminAPI/Students_APIs/AddGuardianAPI.dart';
-import 'package:vms_school/Link/API/AdminAPI/Students_APIs/GetAllGuardiansAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Guardian_APIS/AddGuardianAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Guardian_APIS/GetAllGuardiansAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/allGaurdianController.dart';
-import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Admin/Students_Manager/AllGuardianGrid.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFieldDialog.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
-
-
 
 class AllGuardians extends StatefulWidget {
   AllGuardians({super.key});
@@ -64,21 +61,22 @@ class _AllGuardiansState extends State<AllGuardians> {
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: GetBuilder<Allgaurdiancontroller>(
-                          builder: (controller) {
-                            return TextFormSearch(
-                              click: () {
-                                controller.clearFilter();
-                              },
-                              onchange: (value){
-                                controller.searchGaurdian(value);
-                              },
-                              width: w * 0.7,
-                              radius: 5,
-                              controller: search,
-                              suffixIcon: search.text.isNotEmpty ? Icons.close :  Icons.search,
-                            );
-                          }
-                        ),
+                            builder: (controller) {
+                          return TextFormSearch(
+                            click: () {
+                              controller.clearFilter();
+                            },
+                            onchange: (value) {
+                              controller.searchGaurdian(value);
+                            },
+                            width: w * 0.7,
+                            radius: 5,
+                            controller: search,
+                            suffixIcon: search.text.isNotEmpty
+                                ? Icons.close
+                                : Icons.search,
+                          );
+                        }),
                       ),
                     ],
                   ),

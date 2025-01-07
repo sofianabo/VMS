@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Dashboard_Controller.dart';
+import 'package:vms_school/Link/Model/AdminModel/Dashboard_Model.dart';
 import 'package:vms_school/view/Admin/Dashboard/Admin_Charts.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 
@@ -45,7 +46,7 @@ class DashboardSecondRow extends StatelessWidget {
                   delay: Duration(seconds: 1)),
               HoverScaleCard(
                   child: Container(
-                    width:width/3.95,
+                width: width / 3.95,
                 height: 170,
                 padding: EdgeInsets.all(13.0),
                 margin: EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
@@ -68,7 +69,7 @@ class DashboardSecondRow extends StatelessWidget {
                   delay: Duration(seconds: 1)),
               HoverScaleCard(
                   child: Container(
-                    width:width/3.95,
+                width: width / 3.95,
                 height: 170,
                 padding: EdgeInsets.all(13.0),
                 margin: EdgeInsets.only(bottom: 15.0),
@@ -256,65 +257,67 @@ class DashboardSecondRow extends StatelessWidget {
               ),
             ),
             HoverScaleCard(
-                child: Container(
-                  width:width/3.95,
-              height: 170,
-              padding: EdgeInsets.all(13.0),
-              margin: EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
-              decoration: BoxDecoration(
-                color: Get.theme.cardColor,
-                border: Border.all(color: Colors.grey, width: 0.2),
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.black12,
-                        offset: Offset(0, 2),
-                    blurRadius: 1,
-                  ),
-                ],
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: BarChartSample1(
-                      headerText: "Presence of students",
-                      data: convertNumberOfStudentsPerYearToWidgetData(
-                          controller.dsh!.numberOfStudentsPerYear),
-                    ),
-                  ),
-                ],
-              ),
-            )),
-            HoverScaleCard(
-                child: Container(
-                  width:width/3.95,
-              height: 170,
-              padding: EdgeInsets.all(13.0),
-              margin: EdgeInsets.only(bottom: 15.0),
-              decoration: BoxDecoration(
+              child: Container(
+                width: width / 3.95,
+                height: 170,
+                padding: EdgeInsets.all(13.0),
+                margin: EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
+                decoration: BoxDecoration(
                   color: Get.theme.cardColor,
                   border: Border.all(color: Colors.grey, width: 0.2),
                   borderRadius: BorderRadius.all(Radius.circular(5)),
                   boxShadow: const [
                     BoxShadow(
-                        color: Colors.black12,
-                        offset: Offset(0, 2),
-                        blurRadius: 1)
-                  ]),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: BarChartSample2(
-                      headerText: "Presence 2024 students",
-                      data: convertNumberOfStudentsPerYearToWidgetData(
-                          controller.dsh!.numberOfStudentsThisYear),
+                      color: Colors.black12,
+                      offset: Offset(0, 2),
+                      blurRadius: 1,
                     ),
-                  ),
-                ],
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: BarChartSample1(
+                        headerText: "Presence of students",
+                        data: convertNumberOfStudentsPerYearToWidgetData(
+                            controller.dsh!.numberOfStudentsPerYear),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            )),
+            ),
+            HoverScaleCard(
+              child: Container(
+                width: width / 3.95,
+                height: 170,
+                padding: EdgeInsets.all(13.0),
+                margin: EdgeInsets.only(bottom: 15.0),
+                decoration: BoxDecoration(
+                    color: Get.theme.cardColor,
+                    border: Border.all(color: Colors.grey, width: 0.2),
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.black12,
+                          offset: Offset(0, 2),
+                          blurRadius: 1)
+                    ]),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: BarChartSample2(
+                        headerText: "Presence 2024 students",
+                        data: convertNumberOfStudentsThisYearToWidgetData(
+                            controller.dsh!.numberOfStudentsThisYear),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         );
       },

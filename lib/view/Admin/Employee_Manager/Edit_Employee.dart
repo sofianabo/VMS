@@ -12,41 +12,66 @@ import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 import 'package:vms_school/widgets/Admin_employee/DropDownAllEmployee.dart';
 
-EditEmployee(BuildContext context , int idx , String employeeID) {
- 
-   final empolyeecontroller = Get.find<Allempolyeecontroller>();
-   TextEditingController First_Name = TextEditingController(text: empolyeecontroller.employee!.firstName);
-   TextEditingController Last_Name = TextEditingController(text: empolyeecontroller.employee!.lastName);
-   TextEditingController Father_Name = TextEditingController(text: empolyeecontroller.employee!.fatherName);
-   TextEditingController Mother_Name = TextEditingController(text: empolyeecontroller.employee!.motherName);
-   TextEditingController Phone_Numper = TextEditingController(text: empolyeecontroller.employee!.phone);
-   TextEditingController Emergency_Number = TextEditingController(text: empolyeecontroller.employee!.emergencyNumber);
-   TextEditingController Address = TextEditingController(text: empolyeecontroller.employee!.address);
-   TextEditingController Current_Address = TextEditingController(text: empolyeecontroller.employee!.currentAddress);
-   TextEditingController Salary = TextEditingController(text: empolyeecontroller.employee!.salary.toString());
-   TextEditingController Email = TextEditingController(text: empolyeecontroller.employee!.email);
-   TextEditingController Username = TextEditingController(text: empolyeecontroller.employee!.userName);
-   TextEditingController Joptitle = TextEditingController(text: empolyeecontroller.employee!.jobTitle);
-   TextEditingController roll = TextEditingController(text: empolyeecontroller.employee!.roll);
-   TextEditingController Facebook_URL = TextEditingController(text: empolyeecontroller.employee!.facebookUrl);
-   TextEditingController X_Platform_URL = TextEditingController(text: empolyeecontroller.employee!.twitterUrl);
-   TextEditingController Linkedin_URL = TextEditingController(text: empolyeecontroller.employee!.lenkedinUrl);
-   TextEditingController Instagram_URL = TextEditingController(text: empolyeecontroller.employee!.instagramUrl);
-   TextEditingController Bank_Account_Title = TextEditingController(text: empolyeecontroller.employee!.bankAccountTitle);
-   TextEditingController Bank_Name = TextEditingController(text: empolyeecontroller.employee!.bankName);
-   TextEditingController Bank_Branch_Name = TextEditingController(text: empolyeecontroller.employee!.bankBranchName);
-   TextEditingController Bank_Account_Number = TextEditingController(text: empolyeecontroller.employee!.bankAccountNumber);
-   TextEditingController IFSC_Code = TextEditingController(text: empolyeecontroller.employee!.iFSCCode);
-   TextEditingController Career_History = TextEditingController(text: empolyeecontroller.employee!.careerHistory);
-   TextEditingController Qualification = TextEditingController(text: empolyeecontroller.employee!.qualification);
-   TextEditingController Experience = TextEditingController(text: empolyeecontroller.employee!.experience);
-   TextEditingController Note = TextEditingController(text: empolyeecontroller.employee!.note);
+EditEmployee(BuildContext context, int idx, String employeeID) {
+  final empolyeecontroller = Get.find<Allempolyeecontroller>();
+  TextEditingController First_Name =
+      TextEditingController(text: empolyeecontroller.employee!.firstName);
+  TextEditingController Last_Name =
+      TextEditingController(text: empolyeecontroller.employee!.lastName);
+  TextEditingController Father_Name =
+      TextEditingController(text: empolyeecontroller.employee!.fatherName);
+  TextEditingController Mother_Name =
+      TextEditingController(text: empolyeecontroller.employee!.motherName);
+  TextEditingController Phone_Numper =
+      TextEditingController(text: empolyeecontroller.employee!.phone);
+  TextEditingController Emergency_Number =
+      TextEditingController(text: empolyeecontroller.employee!.emergencyNumber);
+  TextEditingController Address =
+      TextEditingController(text: empolyeecontroller.employee!.address);
+  TextEditingController Current_Address =
+      TextEditingController(text: empolyeecontroller.employee!.currentAddress);
+  TextEditingController Salary = TextEditingController(
+      text: empolyeecontroller.employee!.salary.toString());
+  TextEditingController Email =
+      TextEditingController(text: empolyeecontroller.employee!.email);
+  TextEditingController Username =
+      TextEditingController(text: empolyeecontroller.employee!.userName);
+  TextEditingController Joptitle =
+      TextEditingController(text: empolyeecontroller.employee!.jobTitle);
+  TextEditingController roll =
+      TextEditingController(text: empolyeecontroller.employee!.roll);
+  TextEditingController Facebook_URL =
+      TextEditingController(text: empolyeecontroller.employee!.facebookUrl);
+  TextEditingController X_Platform_URL =
+      TextEditingController(text: empolyeecontroller.employee!.twitterUrl);
+  TextEditingController Linkedin_URL =
+      TextEditingController(text: empolyeecontroller.employee!.lenkedinUrl);
+  TextEditingController Instagram_URL =
+      TextEditingController(text: empolyeecontroller.employee!.instagramUrl);
+  TextEditingController Bank_Account_Title = TextEditingController(
+      text: empolyeecontroller.employee!.bankAccountTitle);
+  TextEditingController Bank_Name =
+      TextEditingController(text: empolyeecontroller.employee!.bankName);
+  TextEditingController Bank_Branch_Name =
+      TextEditingController(text: empolyeecontroller.employee!.bankBranchName);
+  TextEditingController Bank_Account_Number = TextEditingController(
+      text: empolyeecontroller.employee!.bankAccountNumber);
+  TextEditingController IFSC_Code =
+      TextEditingController(text: empolyeecontroller.employee!.iFSCCode);
+  TextEditingController Career_History =
+      TextEditingController(text: empolyeecontroller.employee!.careerHistory);
+  TextEditingController Qualification =
+      TextEditingController(text: empolyeecontroller.employee!.qualification);
+  TextEditingController Experience =
+      TextEditingController(text: empolyeecontroller.employee!.experience);
+  TextEditingController Note =
+      TextEditingController(text: empolyeecontroller.employee!.note);
 
-   Get.dialog(
-       GetBuilder<Allempolyeecontroller>(
-           builder: (controller) {
-             controller.Birthdate.value = DateTime.parse(Get.find<Allempolyeecontroller>().employee!.birthDate.toString());
-             controller.Joindate.value = DateTime.parse(Get.find<Allempolyeecontroller>().employee!.joinDate.toString());
+  Get.dialog(GetBuilder<Allempolyeecontroller>(builder: (controller) {
+    controller.Birthdate.value = DateTime.parse(
+        Get.find<Allempolyeecontroller>().employee!.birthDate.toString());
+    controller.Joindate.value = DateTime.parse(
+        Get.find<Allempolyeecontroller>().employee!.joinDate.toString());
 
              return VMSAlertDialog(
                  action: [
@@ -184,8 +209,8 @@ EditEmployee(BuildContext context , int idx , String employeeID) {
 
                                          width: 250,
                                          controller: Phone_Numper,
-                                         Uptext: "Phone Number",
-                                         hinttext: "Phone Number"),
+                                         Uptext: "Phone Numper",
+                                         hinttext: "Phone Numper"),
                                      Padding(
                                          padding: const EdgeInsets.only(left: 20.0),
                                          child: BirthDate(
@@ -450,7 +475,7 @@ EditEmployee(BuildContext context , int idx , String employeeID) {
                                    crossAxisAlignment: CrossAxisAlignment.end,
                                    children: [
                                      Text(
-                                       "Empolyee Bank Info :",
+                                       "Teacher Bank Info :",
                                        style: Get.theme.textTheme.titleLarge!
                                            .copyWith(fontSize: 20),
                                      )

@@ -1,15 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/API/AdminAPI/Students_APIs/GetAllGuardiansAPI.dart';
-import 'package:vms_school/Link/API/AdminAPI/Students_APIs/RequestsAPI.dart';
+import 'package:vms_school/Link/API/API.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/RequestsAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
-import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/allGaurdianController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
-import '../../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';
 
 class Approverequestapi {
@@ -32,7 +30,7 @@ class Approverequestapi {
       Loading_Dialog(cancelToken: cancelToken);
       int? cID = classControl.Allclass[classid].id;
       int? dID = divisionControl.allDivision[divisionId].id;
-      String myurl = "${global.hostPort}${global.acceptARequest}";
+      String myurl = "${hostPort}${acceptARequest}";
       var response = await dio.post(myurl,
           cancelToken: cancelToken,
           data: {

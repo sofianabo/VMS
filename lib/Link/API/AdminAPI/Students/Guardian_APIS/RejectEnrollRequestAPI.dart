@@ -1,27 +1,28 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/RequestsAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
-import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownPenaltyController.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllPenaltyModel.dart';
-import '../../API.dart' as global;
+import 'package:vms_school/widgets/Loading_Dialog.dart';
+import '../../../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';
 
-class Get_All_Benality_API {
-  Dropdownpenaltycontroller c = Get.find<Dropdownpenaltycontroller>();
+class Rejectenrollrequestapi {
   BuildContext context;
-  Get_All_Benality_API(this.context);
+  Rejectenrollrequestapi(this.context);
   Dio dio = Dio();
 
-  Get_All_Benality() async {
+  Rejectenrollrequest(int id) async {
     try {
-      c.setIsLoading(true);
-      String myurl = "${global.hostPort}${global.allPenalty}";
-      var response = await dio.get(myurl, options: getDioOptions());
+      CancelToken cancelToken = CancelToken();
+      Loading_Dialog(cancelToken: cancelToken);
+      String myurl = "${global.hostPort}${global.rejectrequest}/$id";
+      var response = await dio.get(
+          cancelToken: cancelToken, myurl, options: getDioOptions());
       if (response.statusCode == 200) {
-        AllPenaltyModel penalty = AllPenaltyModel.fromJson(response.data);
-        c.setPenalty(penalty);
-        return penalty;
+        Get.back();
+        Get.back();
+        GetAllRequestsapi(context).GetAllRequests();
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,
