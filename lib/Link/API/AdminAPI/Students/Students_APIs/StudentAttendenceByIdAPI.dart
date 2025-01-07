@@ -1,12 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/oneStudentAttendenceController.dart';
 import 'package:vms_school/Link/Model/AdminModel/OneStudentAttendenceModel.dart';
-import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
-import '../../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';
 
 class Studentattendencebyidapi {
@@ -20,7 +19,7 @@ class Studentattendencebyidapi {
     try {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
-      String myurl = "${global.hostPort}${global.studentAttendenceById}";
+      String myurl = "${hostPort}${studentAttendenceById}";
       var response = await dio.post(myurl,
           cancelToken: cancelToken,
           data: {"studentId": id}, options: getDioOptions());

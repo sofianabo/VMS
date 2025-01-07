@@ -1,30 +1,28 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/API/AdminAPI/Students_APIs/RequestsAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/GetAllStudentAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
-import '../../API.dart' as global;
+import '../../../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';
 
-class Rejectenrollrequestapi {
+class Delete_Student_API {
+  Delete_Student_API(this.context);
   BuildContext context;
-  Rejectenrollrequestapi(this.context);
   Dio dio = Dio();
-
-  Rejectenrollrequest(int id) async {
+  Delete_Student({required String id}) async {
+    String myurl = "${global.hostPort}${global.deleteStudent}/$id";
     try {
-
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
-      String myurl = "${global.hostPort}${global.rejectrequest}/$id";
-      var response = await dio.get(
-          cancelToken: cancelToken,
-          myurl, options: getDioOptions());
+      var response = await dio.delete(
+          cancelToken: cancelToken, myurl, options: getDioOptions());
+
       if (response.statusCode == 200) {
         Get.back();
         Get.back();
-        GetAllRequestsapi(context).GetAllRequests();
+        await Getallstudentapi.Getallstudent();
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,
@@ -32,6 +30,7 @@ class Rejectenrollrequestapi {
           type: DioErrorType.badResponse,
         ));
       }
+      return response.statusCode;
     } catch (e) {
       if (e is DioError) {
         ErrorHandler.handleDioError(e);
@@ -40,6 +39,6 @@ class Rejectenrollrequestapi {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    }
+    } finally {}
   }
 }

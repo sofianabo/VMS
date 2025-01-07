@@ -27,6 +27,7 @@ String allPenalty = "getPenalty";
 String addStudentPenalty = "addStudentPenalty";
 String addStudentAttendance = "addStudentAttendance";
 String addStudentInfo = "addStudentInfo";
+String getStudentInformation = "getStudentInformation";
 
 //..................... Employees ...................//
 
@@ -114,3 +115,4 @@ String examTable = "getQuiz";
 String getCurriculumbyClass = "getCurriculumbyClass";
 String addQuiz = "addQuiz";
 String deletetQuiz = "deleteQuiz";
+String updateQuiz = "updateQuiz";
