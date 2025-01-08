@@ -80,7 +80,7 @@ class Editteacherapi {
         formData.files.add(MapEntry(
           "file",
           MultipartFile.fromBytes(selectedImage,
-              filename: employeeId +"ProfileImage"),
+              filename: employeeId + "ProfileImage"),
         ));
       }
 
