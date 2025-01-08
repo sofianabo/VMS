@@ -78,7 +78,8 @@ class EditEmployeeApi {
       if (selectedImage != null) {
         formData.files.add(MapEntry(
           "file",
-          MultipartFile.fromBytes(selectedImage, filename: employeeId +"ProfileImage"),
+          MultipartFile.fromBytes(selectedImage,
+              filename: employeeId + "ProfileImage"),
         ));
       }
 
