@@ -22,7 +22,7 @@ class Delete_E_Book_API {
     try {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
-      String myurl = "${hostPort}${deleteBook}";
+      String myurl = "$hostPort$deleteBook";
 
       var response = await dio.post(
         cancelToken: cancelToken,
@@ -37,14 +37,14 @@ class Delete_E_Book_API {
         await Get_All_E_Book_API(context).Get_All_E_Book();
 
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

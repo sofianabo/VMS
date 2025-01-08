@@ -17,14 +17,14 @@ class DropDownStudentsAttendencemgmt extends StatelessWidget {
   bool isDisabled;
   bool isLoading;
   DropDownStudentsAttendencemgmt({
-    Key? key,
+    super.key,
     required this.title,
     this.color,
     required this.width,
     required this.type,
     this.isDisabled = false,
     this.isLoading = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class DropDownStudentsAttendencemgmt extends StatelessWidget {
       }
 
       return Container(
-        padding: EdgeInsets.all(6.0),
+        padding: const EdgeInsets.all(6.0),
         alignment: Alignment.centerLeft,
         width: width,
         height: 40,
@@ -62,13 +62,13 @@ class DropDownStudentsAttendencemgmt extends StatelessWidget {
             ? Row(
                 children: [
                   Text(
-                    "$title",
-                    style: TextStyle(color: Colors.grey),
+                    title,
+                    style: const TextStyle(color: Colors.grey),
                   ),
                 ],
               )
             : isLoading == true
-                ? Center(
+                ? const Center(
                     child: SizedBox(
                       width: 20,
                       height: 20,

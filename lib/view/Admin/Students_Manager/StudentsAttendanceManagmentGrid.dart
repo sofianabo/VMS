@@ -35,7 +35,7 @@ class StudentsAttendanceManagmentGrid extends StatelessWidget {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           width: Get.width / 3.5,
                                           child: Row(
                                             children: [
@@ -114,7 +114,7 @@ class StudentsAttendanceManagmentGrid extends StatelessWidget {
                                                               .students[index]
                                                           ['status'],
                                                       activeColor:
-                                                          Color(0xff134B70),
+                                                          const Color(0xff134B70),
                                                       onChanged: (value) {
                                                     if(value == "Holiday"){
 
@@ -135,7 +135,7 @@ class StudentsAttendanceManagmentGrid extends StatelessWidget {
                                                                   color: Get.theme.primaryColor,
                                                                   width: 65)
                                                             ],
-                                                            contents: Container(
+                                                            contents: SizedBox(
                                                               width: 500,
                                                               child: Column(
                                                                 mainAxisSize: MainAxisSize.min,
@@ -168,21 +168,21 @@ class StudentsAttendanceManagmentGrid extends StatelessWidget {
                                                       style: TextStyle(
                                                         color: status ==
                                                                 'Present'
-                                                            ? Color(0xff2F9742)
+                                                            ? const Color(0xff2F9742)
                                                             : status == 'Truant'
-                                                                ? Color(
+                                                                ? const Color(
                                                                     0xff972F2F)
                                                                 : status ==
                                                                         'Late'
-                                                                    ? Color(
+                                                                    ? const Color(
                                                                         0xff349393)
-                                                                        : Color(
+                                                                        : const Color(
                                                                             0xff134B70),
                                                       ),
                                                     ),
                                                   ],
                                                 ))
-                                            .toList(),
+                                            ,
                                       ],
                                     ),
                                     Divider(
@@ -210,7 +210,7 @@ class StudentsAttendanceManagmentGrid extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Container(
+                                SizedBox(
                                   width: Get.width / 3.5,
                                   child: Row(
                                     children: [
@@ -245,7 +245,7 @@ class StudentsAttendanceManagmentGrid extends StatelessWidget {
                                             SchemaWidget(width: 50, height: 15),
                                           ],
                                         ))
-                                    .toList(),
+                                    ,
                               ],
                             ),
                             Divider(

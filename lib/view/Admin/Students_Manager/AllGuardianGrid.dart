@@ -83,8 +83,8 @@ class AllGuardianGrid extends StatelessWidget {
             ).animate(onPlay: (controller) => controller.repeat()).shimmer(
               angle: 1,
               color: Colors.grey.withOpacity(0.2),
-              duration: Duration(seconds: 1),
-              delay: Duration(seconds: 1))
+              duration: const Duration(seconds: 1),
+              delay: const Duration(seconds: 1))
           : GridView.builder(
               padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

@@ -12,7 +12,7 @@ import 'package:vms_school/widgets/Schema_Widget.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class StudentStatusGrid extends StatefulWidget {
-  StudentStatusGrid({super.key});
+  const StudentStatusGrid({super.key});
 
   @override
   State<StudentStatusGrid> createState() => _StudentStatusGridState();
@@ -67,8 +67,8 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
               ).animate(onPlay: (controller) => controller.repeat()).shimmer(
                 angle: 1,
                 color: Colors.grey.withOpacity(0.2),
-                duration: Duration(seconds: 1),
-                delay: Duration(seconds: 1))
+                duration: const Duration(seconds: 1),
+                delay: const Duration(seconds: 1))
             : GridView.builder(
                 padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -224,7 +224,7 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                                                       .fileId ==
                                                   null
                                               ? Text(
-                                                  "${control.filteredStudents[index].fullName!.substring(0, 1).toUpperCase()}",
+                                                  control.filteredStudents[index].fullName!.substring(0, 1).toUpperCase(),
                                                   style: Get
                                                       .textTheme.titleLarge!
                                                       .copyWith(
@@ -255,22 +255,22 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                                     color: control.filteredStudents[index]
                                                 .status ==
                                             "Present"
-                                        ? Color(0xff2F9742)
+                                        ? const Color(0xff2F9742)
                                         : control.filteredStudents[index]
                                                     .status ==
                                                 "Truant"
-                                            ? Color(0xff972F2F)
+                                            ? const Color(0xff972F2F)
                                             : control.filteredStudents[index]
                                                         .status ==
                                                     "Vacation"
-                                                ? Color(0xffB27671)
+                                                ? const Color(0xffB27671)
                                                 : control
                                                             .filteredStudents[
                                                                 index]
                                                             .status ==
                                                         "Late"
-                                                    ? Color(0xff349393)
-                                                    : Color(0xff134B70))),
+                                                    ? const Color(0xff349393)
+                                                    : const Color(0xff134B70))),
                             Expanded(
                               child: Text(
                                   "Grade Level: ${control.filteredStudents[index].grade!.enName}",

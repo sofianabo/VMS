@@ -84,12 +84,12 @@ class ClassMgmtController extends GetxController {
   addData(String arName, String enName, String drive) {
     Class.addAll([
       {
-        "arName": "$arName",
-        "enName": "$enName",
-        "engrade": "$selectedgradeDiagIndex",
-        "session": "$selectedsessionDiagIndex",
-        "admin": "$selectedAdminDiagIndex",
-        "drive": "$drive",
+        "arName": arName,
+        "enName": enName,
+        "engrade": selectedgradeDiagIndex,
+        "session": selectedsessionDiagIndex,
+        "admin": selectedAdminDiagIndex,
+        "drive": drive,
       }
     ]);
     gradeDiagIndex = "";

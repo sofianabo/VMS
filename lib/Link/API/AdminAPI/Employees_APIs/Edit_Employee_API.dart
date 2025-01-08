@@ -41,7 +41,7 @@ class EditEmployeeApi {
     String? Note,
   }) async {
     CancelToken cancelToken = CancelToken();
-    String myURI = "${hostPort}${updateEmployee}";
+    String myURI = "$hostPort$updateEmployee";
     try {
       Loading_Dialog(cancelToken: cancelToken);
       FormData formData = FormData.fromMap({
@@ -78,7 +78,7 @@ class EditEmployeeApi {
       if (selectedImage != null) {
         formData.files.add(MapEntry(
           "file",
-          MultipartFile.fromBytes(selectedImage, filename: "$employeeId" + "ProfileImage"),
+          MultipartFile.fromBytes(selectedImage, filename: employeeId +"ProfileImage"),
         ));
       }
 
@@ -94,14 +94,14 @@ class EditEmployeeApi {
         gets.Get.find<Allempolyeecontroller>().SetDefualtValue();
         return response.statusCode;
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

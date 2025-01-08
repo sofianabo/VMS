@@ -16,11 +16,11 @@ class DashboardFirstRow extends StatelessWidget {
         HoverScaleCard(
           child: Container(
             padding:
-                EdgeInsets.only(top: 20.0, left: 32.0, right: 32.0, bottom: 20),
+                const EdgeInsets.only(top: 20.0, left: 32.0, right: 32.0, bottom: 20),
             decoration: BoxDecoration(
                 color: Get.theme.cardColor,
                 border: Border.all(color: Colors.grey, width: 0.2),
-                borderRadius: BorderRadius.all(Radius.circular(5)),
+                borderRadius: const BorderRadius.all(Radius.circular(5)),
                 boxShadow: const [
                   BoxShadow(
                       color: Colors.black12,
@@ -29,14 +29,14 @@ class DashboardFirstRow extends StatelessWidget {
                 ]),
             child: Row(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   maxRadius: 60,
                   foregroundImage: AssetImage("../../images/Rectangle66.png"),
                 ),
                 Column(
                   children: [
-                    Text("Welcome Laith Haitham Azzam"),
-                    Text("Have A Nice Day At Work"),
+                    const Text("Welcome Laith Haitham Azzam"),
+                    const Text("Have A Nice Day At Work"),
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0),
                       child: Row(
@@ -55,7 +55,7 @@ class DashboardFirstRow extends StatelessWidget {
                                         blurRadius: 1)
                                   ]),
                               child: IconButton(
-                                  style: ButtonStyle(
+                                  style: const ButtonStyle(
                                       shape: WidgetStatePropertyAll(
                                           RoundedRectangleBorder(
                                               borderRadius: BorderRadius.all(
@@ -83,7 +83,7 @@ class DashboardFirstRow extends StatelessWidget {
                                           blurRadius: 1)
                                     ]),
                                 child: IconButton(
-                                    style: ButtonStyle(
+                                    style: const ButtonStyle(
                                         shape: WidgetStatePropertyAll(
                                             RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.all(
@@ -109,7 +109,7 @@ class DashboardFirstRow extends StatelessWidget {
                                         blurRadius: 1)
                                   ]),
                               child: IconButton(
-                                  style: ButtonStyle(
+                                  style: const ButtonStyle(
                                       shape: WidgetStatePropertyAll(
                                           RoundedRectangleBorder(
                                               borderRadius: BorderRadius.all(
@@ -133,12 +133,12 @@ class DashboardFirstRow extends StatelessWidget {
           child: Container(
                width:width/3.95,
               height: 160,
-              padding: EdgeInsets.all(13.0),
-              margin: EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(13.0),
+              margin: const EdgeInsets.all(15.0),
               decoration: BoxDecoration(
-                  color: Color(0xff235789),
+                  color: const Color(0xff235789),
                   border: Border.all(color: Colors.grey, width: 0.2),
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  borderRadius: const BorderRadius.all(Radius.circular(5)),
                   boxShadow: const [
                     BoxShadow(
                         color: Colors.black12,
@@ -153,8 +153,8 @@ class DashboardFirstRow extends StatelessWidget {
                   ),
                   Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0, bottom: 15.0),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 10.0, bottom: 15.0),
                         child: Text(
                           "Illness and Epidemics",
                           style: TextStyle(color: Colors.white),
@@ -169,7 +169,7 @@ class DashboardFirstRow extends StatelessWidget {
                                   bordercolor: Colors.white,
                                   text: "Illness",
                                   onPressed: () {},
-                                  color: Color(0xff4C779F),
+                                  color: const Color(0xff4C779F),
                                   width: 150),
                               Padding(
                                 padding: const EdgeInsets.only(top: 8.0),
@@ -177,7 +177,7 @@ class DashboardFirstRow extends StatelessWidget {
                                     bordercolor: Colors.white,
                                     text: "Epidemics",
                                     onPressed: () {},
-                                    color: Color(0xff4C779F),
+                                    color: const Color(0xff4C779F),
                                     width: 150),
                               ),
                             ],
@@ -193,11 +193,11 @@ class DashboardFirstRow extends StatelessWidget {
           child: Container(
                width:width/3.95,
               height: 160,
-              padding: EdgeInsets.all(13.0),
+              padding: const EdgeInsets.all(13.0),
               decoration: BoxDecoration(
-                  color: Color(0xffFE8686),
+                  color: const Color(0xffFE8686),
                   border: Border.all(color: Colors.grey, width: 0.2),
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  borderRadius: const BorderRadius.all(Radius.circular(5)),
                   boxShadow: const [
                     BoxShadow(
                         color: Colors.black12,
@@ -211,8 +211,8 @@ class DashboardFirstRow extends StatelessWidget {
                   ),
                   Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0, bottom: 15.0),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 10.0, bottom: 15.0),
                         child: Text(
                           "Rewards and Penalties",
                           style: TextStyle(color: Colors.white),
@@ -227,7 +227,7 @@ class DashboardFirstRow extends StatelessWidget {
                                   bordercolor: Colors.white,
                                   text: "Rewards",
                                   onPressed: () {},
-                                  color: Color(0xffFE9E9E),
+                                  color: const Color(0xffFE9E9E),
                                   width: 150),
                               Padding(
                                 padding: const EdgeInsets.only(top: 8.0),
@@ -235,7 +235,7 @@ class DashboardFirstRow extends StatelessWidget {
                                     bordercolor: Colors.white,
                                     text: "Penalties",
                                     onPressed: () {},
-                                    color: Color(0xffFE9E9E),
+                                    color: const Color(0xffFE9E9E),
                                     width: 150),
                               ),
                             ],

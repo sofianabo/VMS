@@ -16,7 +16,7 @@ class Get_All_Employee_API {
     Dio dio = Dio();
     final Allempolyeecontroller controller = Get.find<Allempolyeecontroller>();
     controller.setIsLoading(true);
-    String myurl = "${hostPort}${getAllEmployee}";
+    String myurl = "$hostPort$getAllEmployee";
     try {
       var response = await dio.get(
         myurl,
@@ -27,15 +27,15 @@ class Get_All_Employee_API {
             AllEmployeeModel.fromJson(response.data);
         controller.setEmployee(allEmployeeModel);
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
       return response.statusCode;
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

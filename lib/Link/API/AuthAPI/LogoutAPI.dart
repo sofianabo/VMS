@@ -28,7 +28,7 @@ class Logoutapi {
         await prefs!.clear();
         
         Get.to(
-          () => Directionality(textDirection: TextDirection.rtl, child: Home()),
+          () => const Directionality(textDirection: TextDirection.rtl, child: Home()),
         );
       } else {
         return throw Exception("Failed");

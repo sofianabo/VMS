@@ -15,7 +15,7 @@ import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class DivisionManagement extends StatefulWidget {
-  DivisionManagement({super.key});
+  const DivisionManagement({super.key});
 
   @override
   State<DivisionManagement> createState() => _DivisionManagementState();
@@ -41,7 +41,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
         child: Column(
       children: [
         Container(
-          margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -65,7 +65,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
                           type: "class");
                     }),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Container(
                     width: 40,
                     height: 40,
@@ -79,7 +79,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style: ButtonStyle(
+                        style: const ButtonStyle(
                             backgroundColor:
                                 WidgetStatePropertyAll(Color(0xffF9F8FD)),
                             shape: WidgetStatePropertyAll(
@@ -120,7 +120,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                             Uptext: "Division En - Name",
                                             hinttext: "Division En - Name"),
                                         Padding(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               left: 15.0,
                                               right: 15.0,
                                               bottom: 15.0),
@@ -196,7 +196,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                          style: ButtonStyle(
+                          style: const ButtonStyle(
                               backgroundColor:
                                   WidgetStatePropertyAll(Color(0xffF9F8FD)),
                               shape: WidgetStatePropertyAll(
@@ -221,7 +221,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style: ButtonStyle(
+                        style: const ButtonStyle(
                             backgroundColor:
                                 WidgetStatePropertyAll(Color(0xffF9F8FD)),
                             shape: WidgetStatePropertyAll(

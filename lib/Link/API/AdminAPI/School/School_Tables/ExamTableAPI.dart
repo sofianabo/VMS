@@ -29,20 +29,20 @@ class Examtableapi {
       AllClassModel cl = await Getallclassapi.getAllClasses();
       c.setAllClasses(cl);
       c.setAllClassesDialog(cl);
-      String myurl = "${hostPort}${examTable}";
+      String myurl = "$hostPort$examTable";
       var response = await dio.post(myurl, data: {}, options: getDioOptions());
       if (response.statusCode == 200) {
         ExamTableModel student = ExamTableModel.fromJson(response.data);
         c.setAllQuiz(student);
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

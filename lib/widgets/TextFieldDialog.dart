@@ -18,7 +18,7 @@ class TextFieldDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top:2.0),
+      margin: const EdgeInsets.only(top:2.0),
       width: width ?? 250,
       height: 40,
       child: TextFormField(
@@ -28,7 +28,7 @@ class TextFieldDialog extends StatelessWidget {
           hintText: hinttext,
           hintStyle: Get.theme.textTheme.bodyMedium!.copyWith(
             fontSize: 14,
-            color: Color(0xffB3B3B3)
+            color: const Color(0xffB3B3B3)
           ),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),

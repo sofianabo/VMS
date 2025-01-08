@@ -39,7 +39,7 @@ class Schooltimetableapi {
       //   ));
       // }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

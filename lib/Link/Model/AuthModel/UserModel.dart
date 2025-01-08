@@ -14,11 +14,11 @@ class UserModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['token'] = this.token;
-    data['roll'] = this.roll;
-    data['verified'] = this.verified;
-    data['hasData'] = this.hasData;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['token'] = token;
+    data['roll'] = roll;
+    data['verified'] = verified;
+    data['hasData'] = hasData;
     return data;
   }
 }

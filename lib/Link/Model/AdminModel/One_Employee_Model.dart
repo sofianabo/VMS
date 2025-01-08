@@ -5,7 +5,7 @@ class One_Employee_Model {
 
   One_Employee_Model.fromJson(Map<String, dynamic> json) {
     employee = json['employee'] != null
-        ? new Employee.fromJson(json['employee'])
+        ? Employee.fromJson(json['employee'])
         : null;
   }
 }

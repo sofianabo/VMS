@@ -14,7 +14,7 @@ import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class Transaction_Management_Grid extends StatelessWidget {
-  Transaction_Management_Grid({super.key});
+  const Transaction_Management_Grid({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class Transaction_Management_Grid extends StatelessWidget {
       return control.isLoading == true
           ? GridView.builder(
               padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 4,
                   crossAxisSpacing: 20.0,
                   mainAxisSpacing: 20.0,
@@ -96,14 +96,14 @@ class Transaction_Management_Grid extends StatelessWidget {
                 ).animate(onPlay: (controller) => controller.repeat()).shimmer(
                     angle: 1,
                     color: Colors.grey.withOpacity(0.2),
-                    duration: Duration(seconds: 1),
-                    delay: Duration(seconds: 1));
+                    duration: const Duration(seconds: 1),
+                    delay: const Duration(seconds: 1));
               },
             )
           : control.filteredTransaction!.isNotEmpty
               ? GridView.builder(
                   padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 4,
                       crossAxisSpacing: 20.0,
                       mainAxisSpacing: 20.0,
@@ -135,7 +135,7 @@ class Transaction_Management_Grid extends StatelessWidget {
                                 children: [
                                   Row(
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.date_range,
                                         size: 16,
                                       ),
@@ -149,7 +149,7 @@ class Transaction_Management_Grid extends StatelessWidget {
                                   ),
                                   Row(
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.access_time_rounded,
                                         size: 16,
                                       ),

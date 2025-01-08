@@ -7,15 +7,15 @@ class Classes_Model {
     if (json['classes'] != null) {
       classes = <Classes>[];
       json['classes'].forEach((v) {
-        classes!.add(new Classes.fromJson(v));
+        classes!.add(Classes.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.classes != null) {
-      data['classes'] = this.classes!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (classes != null) {
+      data['classes'] = classes!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -44,26 +44,26 @@ class Classes {
     driveUrl = json['driveUrl'];
     name = json['name'];
     enName = json['enName'];
-    grade = json['grade'] != null ? new Grade.fromJson(json['grade']) : null;
+    grade = json['grade'] != null ? Grade.fromJson(json['grade']) : null;
     session =
-    json['session'] != null ? new Session.fromJson(json['session']) : null;
-    admin = json['admin'] != null ? new Admin.fromJson(json['admin']) : null;
+    json['session'] != null ? Session.fromJson(json['session']) : null;
+    admin = json['admin'] != null ? Admin.fromJson(json['admin']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['driveUrl'] = this.driveUrl;
-    data['name'] = this.name;
-    data['enName'] = this.enName;
-    if (this.grade != null) {
-      data['grade'] = this.grade!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['driveUrl'] = driveUrl;
+    data['name'] = name;
+    data['enName'] = enName;
+    if (grade != null) {
+      data['grade'] = grade!.toJson();
     }
-    if (this.session != null) {
-      data['session'] = this.session!.toJson();
+    if (session != null) {
+      data['session'] = session!.toJson();
     }
-    if (this.admin != null) {
-      data['admin'] = this.admin!.toJson();
+    if (admin != null) {
+      data['admin'] = admin!.toJson();
     }
     return data;
   }
@@ -81,9 +81,9 @@ class Grade {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['enName'] = this.enName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['enName'] = enName;
     return data;
   }
 }
@@ -98,8 +98,8 @@ class Session {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['year'] = this.year;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['year'] = year;
     return data;
   }
 }
@@ -114,8 +114,8 @@ class Admin {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userName'] = this.userName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['userName'] = userName;
     return data;
   }
 }

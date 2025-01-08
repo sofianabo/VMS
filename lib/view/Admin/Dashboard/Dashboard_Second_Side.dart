@@ -22,11 +22,11 @@ class DashboardSecondSide extends StatelessWidget {
                   child: Container(
                     width: 500,
                     height: 500,
-                    padding: EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.all(15.0),
                     decoration: BoxDecoration(
                         color: Get.theme.cardColor,
                         border: Border.all(color: Colors.grey, width: 0.2),
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                        borderRadius: const BorderRadius.all(Radius.circular(5)),
                         boxShadow: const [
                           BoxShadow(
                               color: Colors.black12,
@@ -40,23 +40,23 @@ class DashboardSecondSide extends StatelessWidget {
           ).animate(onPlay: (controller) => controller.repeat()).shimmer(
               angle: 1,
               color: Colors.grey.withOpacity(0.2),
-              duration: Duration(seconds: 1),
-              delay: Duration(seconds: 1));
+              duration: const Duration(seconds: 1),
+              delay: const Duration(seconds: 1));
         }
 
         return HoverScaleCard(
           child: Container(
-              margin: EdgeInsets.only(left: 15.0),
+              margin: const EdgeInsets.only(left: 15.0),
               child: Column(
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
                     child: Container(
-                        padding: EdgeInsets.all(13.0),
+                        padding: const EdgeInsets.all(13.0),
                         decoration: BoxDecoration(
                             color: Get.theme.cardColor,
                             border: Border.all(color: Colors.grey, width: 0.2),
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                            borderRadius: const BorderRadius.all(Radius.circular(5)),
                             boxShadow: const [
                               BoxShadow(
                                   color: Colors.black12,
@@ -65,8 +65,8 @@ class DashboardSecondSide extends StatelessWidget {
                             ]),
                         child: Column(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 25.0),
+                            const Padding(
+                              padding: EdgeInsets.only(bottom: 25.0),
                               child: Text("Total 2024"),
                             ),
                             Column(
@@ -82,7 +82,7 @@ class DashboardSecondSide extends StatelessWidget {
                                               0,
                                   maxProgress: 100,
                                   startAngle: -27.5,
-                                  foregroundColor: Color(0xff006D77),
+                                  foregroundColor: const Color(0xff006D77),
                                   backgroundColor: const Color(0xffE8DEF8),
                                   foregroundStrokeWidth: 10,
                                   backgroundStrokeWidth: 10,
@@ -94,7 +94,7 @@ class DashboardSecondSide extends StatelessWidget {
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        Text(
+                                        const Text(
                                           "Percentage\nStudents",
                                           style: TextStyle(fontSize: 12),
                                           textAlign: TextAlign.center,
@@ -114,7 +114,7 @@ class DashboardSecondSide extends StatelessWidget {
                                 ),
                                 Padding(
                                   padding:
-                                      EdgeInsets.only(top: 15.0, bottom: 15.0),
+                                      const EdgeInsets.only(top: 15.0, bottom: 15.0),
                                   child: DashedCircularProgressBar.square(
                                     dimensions: 130,
                                     progress:
@@ -127,7 +127,7 @@ class DashboardSecondSide extends StatelessWidget {
                                                 0,
                                     maxProgress: 100,
                                     startAngle: -27.5,
-                                    foregroundColor: Color(0xff94C9A9),
+                                    foregroundColor: const Color(0xff94C9A9),
                                     backgroundColor: const Color(0xffE8DEF8),
                                     foregroundStrokeWidth: 10,
                                     backgroundStrokeWidth: 10,
@@ -139,7 +139,7 @@ class DashboardSecondSide extends StatelessWidget {
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          Text(
+                                          const Text(
                                             textAlign: TextAlign.center,
                                             "Percentage\nTeacher",
                                             style: TextStyle(fontSize: 12),
@@ -170,7 +170,7 @@ class DashboardSecondSide extends StatelessWidget {
                                               0,
                                   maxProgress: 100,
                                   startAngle: -27.5,
-                                  foregroundColor: Color(0xffB97375),
+                                  foregroundColor: const Color(0xffB97375),
                                   backgroundColor: const Color(0xffE8DEF8),
                                   foregroundStrokeWidth: 10,
                                   backgroundStrokeWidth: 10,
@@ -182,7 +182,7 @@ class DashboardSecondSide extends StatelessWidget {
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        Text(
+                                        const Text(
                                           "Percentage\nEmployee",
                                           style: TextStyle(fontSize: 12),
                                           textAlign: TextAlign.center,

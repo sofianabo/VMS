@@ -13,25 +13,25 @@ import 'package:vms_school/widgets/Admin_employee/DropDownAllEmployee.dart';
 
 Add_Full_Employee(BuildContext context) {
 
-  TextEditingController First_Name = TextEditingController();
-  TextEditingController Last_Name = TextEditingController();
-  TextEditingController Father_Name = TextEditingController();
-  TextEditingController Mother_Name = TextEditingController();
-  TextEditingController Phone_Numper = TextEditingController();
-  TextEditingController Emergency_Number = TextEditingController();
+  TextEditingController firstName = TextEditingController();
+  TextEditingController lastName = TextEditingController();
+  TextEditingController fatherName = TextEditingController();
+  TextEditingController motherName = TextEditingController();
+  TextEditingController phoneNumper = TextEditingController();
+  TextEditingController emergencyNumber = TextEditingController();
   TextEditingController Address = TextEditingController();
-  TextEditingController Current_Address = TextEditingController();
+  TextEditingController currentAddress = TextEditingController();
   TextEditingController Salary = TextEditingController();
-  TextEditingController Facebook_URL = TextEditingController();
-  TextEditingController X_Platform_URL = TextEditingController();
-  TextEditingController Linkedin_URL = TextEditingController();
-  TextEditingController Instagram_URL = TextEditingController();
-  TextEditingController Bank_Account_Title = TextEditingController();
-  TextEditingController Bank_Name = TextEditingController();
-  TextEditingController Bank_Branch_Name = TextEditingController();
-  TextEditingController Bank_Account_Number = TextEditingController();
-  TextEditingController IFSC_Code = TextEditingController();
-  TextEditingController Career_History = TextEditingController();
+  TextEditingController facebookUrl = TextEditingController();
+  TextEditingController xPlatformUrl = TextEditingController();
+  TextEditingController linkedinUrl = TextEditingController();
+  TextEditingController instagramUrl = TextEditingController();
+  TextEditingController bankAccountTitle = TextEditingController();
+  TextEditingController bankName = TextEditingController();
+  TextEditingController bankBranchName = TextEditingController();
+  TextEditingController bankAccountNumber = TextEditingController();
+  TextEditingController ifscCode = TextEditingController();
+  TextEditingController careerHistory = TextEditingController();
   TextEditingController Qualification = TextEditingController();
   TextEditingController Experience = TextEditingController();
   TextEditingController Note = TextEditingController();
@@ -46,14 +46,14 @@ Add_Full_Employee(BuildContext context) {
                 text: "Add Employee",
                 onPressed: () async {
                    await AddFullEmployee.addFullEmployees(
-                     First_Name:First_Name.text,
-                     Last_Name:Last_Name.text,
-                     Father_Name:Father_Name.text,
-                     Mother_Name:Mother_Name.text,
-                     Phone_Numper:Phone_Numper.text,
-                     Emergency_Number:Emergency_Number.text,
+                     First_Name:firstName.text,
+                     Last_Name:lastName.text,
+                     Father_Name:fatherName.text,
+                     Mother_Name:motherName.text,
+                     Phone_Numper:phoneNumper.text,
+                     Emergency_Number:emergencyNumber.text,
                      Address:Address.text,
-                     Current_Address:Current_Address.text,
+                     Current_Address:currentAddress.text,
                      Birth_Date:controller.Birthdate.value.toString(),
                      Join_Date:controller.Joindate.value.toString(),
                      Jop_Title: controller.dialogjobTitleIndex,
@@ -61,16 +61,16 @@ Add_Full_Employee(BuildContext context) {
                      Family_State:controller.Family_StatusIndex,
                      Salary:Salary.text,
                      selectedImage: Get.find<AddFullEmployeeController>().selectedImage.value,
-                     Facebook_URL:Facebook_URL.text,
-                     X_Platform_URL:X_Platform_URL.text,
-                     Linkedin_URL:Linkedin_URL.text,
-                     Instagram_URL:Instagram_URL.text,
-                     Bank_Account_Title:Bank_Account_Title.text,
-                     Bank_Name:Bank_Name.text,
-                     Bank_Branch_Name:Bank_Branch_Name.text,
-                     Bank_Account_Number:Bank_Account_Number.text,
-                     IFSC_Code:IFSC_Code.text,
-                     Career_History:Career_History.text,
+                     Facebook_URL:facebookUrl.text,
+                     X_Platform_URL:xPlatformUrl.text,
+                     Linkedin_URL:linkedinUrl.text,
+                     Instagram_URL:instagramUrl.text,
+                     Bank_Account_Title:bankAccountTitle.text,
+                     Bank_Name:bankName.text,
+                     Bank_Branch_Name:bankBranchName.text,
+                     Bank_Account_Number:bankAccountNumber.text,
+                     IFSC_Code:ifscCode.text,
+                     Career_History:careerHistory.text,
                      Qualification:Qualification.text,
                      Experience:Experience.text,
                      Note:Note.text,
@@ -83,7 +83,7 @@ Add_Full_Employee(BuildContext context) {
           contents: GetBuilder<AddFullEmployeeController>(
               builder: (controller) {
 
-                return Container(
+                return SizedBox(
                   width: 520,
                   child: SingleChildScrollView(
                     child: Column(
@@ -128,7 +128,7 @@ Add_Full_Employee(BuildContext context) {
                                 Textfildwithupper(
                                     isRequired: true,
                                     width: 250,
-                                    controller: First_Name,
+                                    controller: firstName,
                                     Uptext: "First Name",
                                     hinttext: "First Name"),
                                 Padding(
@@ -136,7 +136,7 @@ Add_Full_Employee(BuildContext context) {
                                   child: Textfildwithupper(
                                       isRequired: true,
                                       width: 250,
-                                      controller: Last_Name,
+                                      controller: lastName,
                                       Uptext: "Last Name",
                                       hinttext: "Last Name"),
                                 ),
@@ -151,7 +151,7 @@ Add_Full_Employee(BuildContext context) {
                               Textfildwithupper(
                                   isRequired: true,
                                   width: 250,
-                                  controller: Father_Name,
+                                  controller: fatherName,
                                   Uptext: "Father Name",
                                   hinttext: "Father Name"),
                               Padding(
@@ -159,7 +159,7 @@ Add_Full_Employee(BuildContext context) {
                                 child: Textfildwithupper(
                                     isRequired: true,
                                     width: 250,
-                                    controller: Mother_Name,
+                                    controller: motherName,
                                     Uptext: "Mother Name",
                                     hinttext: "Mother Name"),
                               )
@@ -173,7 +173,7 @@ Add_Full_Employee(BuildContext context) {
                               Textfildwithupper(
                                   isRequired: true,
                                   width: 250,
-                                  controller: Phone_Numper,
+                                  controller: phoneNumper,
                                   Uptext: "Phone Numper",
                                   hinttext: "Phone Numper"),
                               Padding(
@@ -193,7 +193,7 @@ Add_Full_Employee(BuildContext context) {
                               Textfildwithupper(
                                   isRequired: true,
                                   width: 250,
-                                  controller: Emergency_Number,
+                                  controller: emergencyNumber,
                                   Uptext: "Emergency Number",
                                   hinttext: "Emergency Number"),
                               Padding(
@@ -222,7 +222,7 @@ Add_Full_Employee(BuildContext context) {
                                 child: Textfildwithupper(
                                     isRequired: true,
                                     width: 250,
-                                    controller: Current_Address,
+                                    controller: currentAddress,
                                     Uptext: "Current Address",
                                     hinttext: "Current Address"),
                               )
@@ -239,8 +239,8 @@ Add_Full_Employee(BuildContext context) {
                                   controller: Salary,
                                   Uptext: "Salary",
                                   hinttext: "Salary"),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 20.0),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 20.0),
                                 child: Dropdownallemployee(
                                     title: "Job Title",
                                     width: 250,
@@ -251,15 +251,15 @@ Add_Full_Employee(BuildContext context) {
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 22.0),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 22.0),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Dropdownallemployee(
                                   title: "Gender", width: 250, type: "Gender"),
                               Padding(
-                                padding: const EdgeInsets.only(left: 20.0),
+                                padding: EdgeInsets.only(left: 20.0),
                                 child: Dropdownallemployee(
 
 
@@ -280,7 +280,7 @@ Add_Full_Employee(BuildContext context) {
                             children: [
                               GetBuilder<IllnessController>(builder: (controller) {
                                 return ButtonDialog(
-                                    bordercolor: Color(0xffD9D9D9),
+                                    bordercolor: const Color(0xffD9D9D9),
                                     textcolor: Colors.black,
                                     text: "Employee Illness",
                                     onPressed: () {
@@ -305,7 +305,7 @@ Add_Full_Employee(BuildContext context) {
                                                           // غلف CheckboxListTile بـ Obx
                                                           return CheckboxListTile(
                                                             overlayColor:
-                                                            WidgetStatePropertyAll(
+                                                            const WidgetStatePropertyAll(
                                                                 Colors.transparent),
                                                             checkColor: Colors
                                                                 .white,
@@ -363,14 +363,14 @@ Add_Full_Employee(BuildContext context) {
                             children: [
                               Textfildwithupper(
                                   width: 250,
-                                  controller: Facebook_URL,
+                                  controller: facebookUrl,
                                   Uptext: "Facebook URL",
                                   hinttext: "Facebook URL"),
                               Padding(
                                 padding: const EdgeInsets.only(left: 20.0),
                                 child: Textfildwithupper(
                                     width: 250,
-                                    controller: X_Platform_URL,
+                                    controller: xPlatformUrl,
                                     Uptext: "X Platform URL",
                                     hinttext: "X Platform URL"),
                               )
@@ -383,14 +383,14 @@ Add_Full_Employee(BuildContext context) {
                             children: [
                               Textfildwithupper(
                                   width: 250,
-                                  controller: Linkedin_URL,
+                                  controller: linkedinUrl,
                                   Uptext: "Linkedin URL",
                                   hinttext: "Linkedin URL"),
                               Padding(
                                 padding: const EdgeInsets.only(left: 20.0),
                                 child: Textfildwithupper(
                                     width: 250,
-                                    controller: Instagram_URL,
+                                    controller: instagramUrl,
                                     Uptext: "Instagram URL",
                                     hinttext: "Instagram URL"),
                               )
@@ -415,14 +415,14 @@ Add_Full_Employee(BuildContext context) {
                             children: [
                               Textfildwithupper(
                                   width: 250,
-                                  controller: Bank_Account_Title,
+                                  controller: bankAccountTitle,
                                   Uptext: "Bank Account Title",
                                   hinttext: "Bank Account Title"),
                               Padding(
                                 padding: const EdgeInsets.only(left: 20.0),
                                 child: Textfildwithupper(
                                     width: 250,
-                                    controller: Bank_Name,
+                                    controller: bankName,
                                     Uptext: "Bank Name",
                                     hinttext: "Bank Name"),
                               )
@@ -435,14 +435,14 @@ Add_Full_Employee(BuildContext context) {
                             children: [
                               Textfildwithupper(
                                   width: 250,
-                                  controller: Bank_Branch_Name,
+                                  controller: bankBranchName,
                                   Uptext: "Bank Branch Name",
                                   hinttext: "Bank Branch Name"),
                               Padding(
                                 padding: const EdgeInsets.only(left: 20.0),
                                 child: Textfildwithupper(
                                     width: 250,
-                                    controller: Bank_Account_Number,
+                                    controller: bankAccountNumber,
                                     Uptext: "Bank Account Number",
                                     hinttext: "Bank Account Number"),
                               )
@@ -457,7 +457,7 @@ Add_Full_Employee(BuildContext context) {
                             children: [
                               Textfildwithupper(
                                   width: 250,
-                                  controller: IFSC_Code,
+                                  controller: ifscCode,
                                   Uptext: "IFSC Code",
                                   hinttext: "IFSC Code"),
                             ],
@@ -477,7 +477,7 @@ Add_Full_Employee(BuildContext context) {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               LargeTextField(
-                                  controller: Career_History,
+                                  controller: careerHistory,
                                   hinttext: "Career History"),
                             ],
                           ),

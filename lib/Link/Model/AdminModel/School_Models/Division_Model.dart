@@ -7,15 +7,15 @@ class Division_Model {
     if (json['division'] != null) {
       division = <Division>[];
       json['division'].forEach((v) {
-        division!.add(new Division.fromJson(v));
+        division!.add(Division.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.division != null) {
-      data['division'] = this.division!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (division != null) {
+      data['division'] = division!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -44,18 +44,18 @@ class Division {
     meetUrl = json['meetUrl'];
     hasStudent = json['hasStudent'];
     classes =
-    json['classes'] != null ? new Classes.fromJson(json['classes']) : null;
+    json['classes'] != null ? Classes.fromJson(json['classes']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['enName'] = this.enName;
-    data['meetUrl'] = this.meetUrl;
-    data['hasStudent'] = this.hasStudent;
-    if (this.classes != null) {
-      data['classes'] = this.classes!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['enName'] = enName;
+    data['meetUrl'] = meetUrl;
+    data['hasStudent'] = hasStudent;
+    if (classes != null) {
+      data['classes'] = classes!.toJson();
     }
     return data;
   }
@@ -77,11 +77,11 @@ class Classes {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['driveUrl'] = this.driveUrl;
-    data['name'] = this.name;
-    data['enName'] = this.enName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['driveUrl'] = driveUrl;
+    data['name'] = name;
+    data['enName'] = enName;
     return data;
   }
 }

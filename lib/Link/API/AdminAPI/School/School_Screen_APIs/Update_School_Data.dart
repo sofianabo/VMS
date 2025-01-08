@@ -15,7 +15,7 @@ class Update_School_Data_API {
   Dio dio = Dio();
   Update_School_Data(
       ) async {
-    String myURI = "${hostPort}${updatSchoolData}";
+    String myURI = "$hostPort$updatSchoolData";
     try {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
@@ -53,15 +53,15 @@ class Update_School_Data_API {
       if (response.statusCode == 200) {
         await School_Data_API(context).School_Data();
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
       return response.statusCode;
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

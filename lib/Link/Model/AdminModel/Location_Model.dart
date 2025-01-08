@@ -7,15 +7,15 @@ class Location_Model {
     if (json['Location'] != null) {
       location = <Location>[];
       json['Location'].forEach((v) {
-        location!.add(new Location.fromJson(v));
+        location!.add(Location.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.location != null) {
-      data['Location'] = this.location!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (location != null) {
+      data['Location'] = location!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -37,11 +37,11 @@ class Location {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['enName'] = this.enName;
-    data['callSign'] = this.callSign;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['enName'] = enName;
+    data['callSign'] = callSign;
     return data;
   }
 }

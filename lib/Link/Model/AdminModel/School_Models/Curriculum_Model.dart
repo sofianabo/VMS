@@ -7,15 +7,15 @@ class Curriculum_Model {
     if (json['curriculum'] != null) {
       curriculum = <Curriculum>[];
       json['curriculum'].forEach((v) {
-        curriculum!.add(new Curriculum.fromJson(v));
+        curriculum!.add(Curriculum.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.curriculum != null) {
-      data['curriculum'] = this.curriculum!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (curriculum != null) {
+      data['curriculum'] = curriculum!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -52,26 +52,26 @@ class Curriculum {
     passingMark = json['PassingMark'];
     type = json['type'];
     subject =
-    json['subject'] != null ? new Subject.fromJson(json['subject']) : null;
+    json['subject'] != null ? Subject.fromJson(json['subject']) : null;
     semester = json['semester'] != null
-        ? new Subject.fromJson(json['semester'])
+        ? Subject.fromJson(json['semester'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['fileId'] = this.fileId;
-    data['ImageId'] = this.imageId;
-    data['name'] = this.name;
-    data['maxMark'] = this.maxMark;
-    data['PassingMark'] = this.passingMark;
-    data['type'] = this.type;
-    if (this.subject != null) {
-      data['subject'] = this.subject!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['fileId'] = fileId;
+    data['ImageId'] = imageId;
+    data['name'] = name;
+    data['maxMark'] = maxMark;
+    data['PassingMark'] = passingMark;
+    data['type'] = type;
+    if (subject != null) {
+      data['subject'] = subject!.toJson();
     }
-    if (this.semester != null) {
-      data['semester'] = this.semester!.toJson();
+    if (semester != null) {
+      data['semester'] = semester!.toJson();
     }
     return data;
   }
@@ -89,9 +89,9 @@ class Subject {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['enName'] = this.enName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['enName'] = enName;
     return data;
   }
 }

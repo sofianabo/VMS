@@ -44,7 +44,7 @@ class SessionController extends GetxController {
 
 
   TextEditingController sessionController = TextEditingController();
-  var borderColor = Color(0xffD9D9D9).obs; // Reactive border color
+  var borderColor = const Color(0xffD9D9D9).obs; // Reactive border color
 
 
   void updateStatus(int index, String newStatus) {

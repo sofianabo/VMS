@@ -12,7 +12,7 @@ import 'package:vms_school/widgets/Schema_Widget.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class CurriculumGrid extends StatelessWidget {
-  CurriculumGrid({super.key});
+  const CurriculumGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class CurriculumGrid extends StatelessWidget {
       return control.isLoading ?
       GridView.builder(
         padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,
             crossAxisSpacing: 20.0,
             mainAxisSpacing: 20.0,
@@ -82,12 +82,12 @@ class CurriculumGrid extends StatelessWidget {
       ).animate(onPlay: (controller) => controller.repeat()).shimmer(
           angle: 1,
           color: Colors.grey.withOpacity(0.2),
-          duration: Duration(seconds: 1),
-          delay: Duration(seconds: 1))
+          duration: const Duration(seconds: 1),
+          delay: const Duration(seconds: 1))
           :
       control.filteredCurriculum.isNotEmpty ? GridView.builder(
         padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,
             crossAxisSpacing: 20.0,
             mainAxisSpacing: 20.0,
@@ -97,7 +97,7 @@ class CurriculumGrid extends StatelessWidget {
           return HoverScaleCard(
             child: GestureDetector(
               onTap: () async {
-                final url = '${getimage}${control.filteredCurriculum[index].fileId}';
+                final url = '$getimage${control.filteredCurriculum[index].fileId}';
                 downloadFile(url, 'file.pdf');
               },
               child: Container(
@@ -120,7 +120,7 @@ class CurriculumGrid extends StatelessWidget {
                           child: SizedBox(
                               width: 500,
                               child: Image.network(
-                                "${getimage}${control.filteredCurriculum[index].imageId}",
+                                "$getimage${control.filteredCurriculum[index].imageId}",
                                 fit: BoxFit.fitWidth,
                               ))),
                       Row(
@@ -159,7 +159,7 @@ class CurriculumGrid extends StatelessWidget {
                                   style: TextStyle(
                                     color: control.filteredCurriculum[index].type ==
                                             1
-                                        ? Color(0xffB03D3D)
+                                        ? const Color(0xffB03D3D)
                                         : Get.theme.primaryColor,
                                   )),
                             ],
@@ -177,7 +177,7 @@ class CurriculumGrid extends StatelessWidget {
                                       blurRadius: 1)
                                 ]),
                             child: IconButton(
-                                style: ButtonStyle(
+                                style: const ButtonStyle(
                                     backgroundColor:
                                         WidgetStatePropertyAll(Color(0xffB03D3D)),
                                     shape: WidgetStatePropertyAll(
@@ -194,7 +194,7 @@ class CurriculumGrid extends StatelessWidget {
                                                 cid: control.filteredCurriculum[index].id
                                               );
                                             },
-                                            color: Color(0xffB03D3D),
+                                            color: const Color(0xffB03D3D),
                                             width: 80),
                                         ButtonDialog(
                                             text: "Cancel",
@@ -227,7 +227,7 @@ class CurriculumGrid extends StatelessWidget {
                                       apptitle: "Delete Division",
                                       subtitle: "none"));
                                 },
-                                icon: Icon(VMS_Icons.bin,
+                                icon: const Icon(VMS_Icons.bin,
                                     size: 16, color: Colors.white)),
                           ),
                         ],

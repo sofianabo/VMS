@@ -14,21 +14,21 @@ import 'package:vms_school/widgets/Admin_employee/DropDownAllEmployee.dart';
 
 EditEmployee(BuildContext context, int idx, String employeeID) {
   final empolyeecontroller = Get.find<Allempolyeecontroller>();
-  TextEditingController First_Name =
+  TextEditingController firstName =
       TextEditingController(text: empolyeecontroller.employee!.firstName);
-  TextEditingController Last_Name =
+  TextEditingController lastName =
       TextEditingController(text: empolyeecontroller.employee!.lastName);
-  TextEditingController Father_Name =
+  TextEditingController fatherName =
       TextEditingController(text: empolyeecontroller.employee!.fatherName);
-  TextEditingController Mother_Name =
+  TextEditingController motherName =
       TextEditingController(text: empolyeecontroller.employee!.motherName);
-  TextEditingController Phone_Numper =
+  TextEditingController phoneNumper =
       TextEditingController(text: empolyeecontroller.employee!.phone);
-  TextEditingController Emergency_Number =
+  TextEditingController emergencyNumber =
       TextEditingController(text: empolyeecontroller.employee!.emergencyNumber);
   TextEditingController Address =
       TextEditingController(text: empolyeecontroller.employee!.address);
-  TextEditingController Current_Address =
+  TextEditingController currentAddress =
       TextEditingController(text: empolyeecontroller.employee!.currentAddress);
   TextEditingController Salary = TextEditingController(
       text: empolyeecontroller.employee!.salary.toString());
@@ -40,25 +40,25 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
       TextEditingController(text: empolyeecontroller.employee!.jobTitle);
   TextEditingController roll =
       TextEditingController(text: empolyeecontroller.employee!.roll);
-  TextEditingController Facebook_URL =
+  TextEditingController facebookUrl =
       TextEditingController(text: empolyeecontroller.employee!.facebookUrl);
-  TextEditingController X_Platform_URL =
+  TextEditingController xPlatformUrl =
       TextEditingController(text: empolyeecontroller.employee!.twitterUrl);
-  TextEditingController Linkedin_URL =
+  TextEditingController linkedinUrl =
       TextEditingController(text: empolyeecontroller.employee!.lenkedinUrl);
-  TextEditingController Instagram_URL =
+  TextEditingController instagramUrl =
       TextEditingController(text: empolyeecontroller.employee!.instagramUrl);
-  TextEditingController Bank_Account_Title = TextEditingController(
+  TextEditingController bankAccountTitle = TextEditingController(
       text: empolyeecontroller.employee!.bankAccountTitle);
-  TextEditingController Bank_Name =
+  TextEditingController bankName =
       TextEditingController(text: empolyeecontroller.employee!.bankName);
-  TextEditingController Bank_Branch_Name =
+  TextEditingController bankBranchName =
       TextEditingController(text: empolyeecontroller.employee!.bankBranchName);
-  TextEditingController Bank_Account_Number = TextEditingController(
+  TextEditingController bankAccountNumber = TextEditingController(
       text: empolyeecontroller.employee!.bankAccountNumber);
-  TextEditingController IFSC_Code =
+  TextEditingController ifscCode =
       TextEditingController(text: empolyeecontroller.employee!.iFSCCode);
-  TextEditingController Career_History =
+  TextEditingController careerHistory =
       TextEditingController(text: empolyeecontroller.employee!.careerHistory);
   TextEditingController Qualification =
       TextEditingController(text: empolyeecontroller.employee!.qualification);
@@ -81,30 +81,30 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                          print(controller.Birthdate.value);
                          await EditEmployeeApi.EditEmployee(
                            employeeId: employeeID,
-                           First_Name:First_Name.text,
-                           Last_Name:Last_Name.text,
-                           Father_Name:Father_Name.text,
-                           Mother_Name:Mother_Name.text,
-                           Phone_Numper:Phone_Numper.text,
-                           Emergency_Number:Emergency_Number.text,
+                           First_Name:firstName.text,
+                           Last_Name:lastName.text,
+                           Father_Name:fatherName.text,
+                           Mother_Name:motherName.text,
+                           Phone_Numper:phoneNumper.text,
+                           Emergency_Number:emergencyNumber.text,
                            Address:Address.text,
-                           Current_Address:Current_Address.text,
+                           Current_Address:currentAddress.text,
                            Birth_Date:controller.Birthdate.value.toString(),
                            Join_Date:controller.Joindate.value.toString(),
                            Gender: controller.GenderListIndex,
                            Family_State:controller.Family_StatusIndex,
                            Salary:Salary.text,
                            selectedImage: Get.find<AddFullEmployeeController>().selectedImage.value,
-                           Facebook_URL:Facebook_URL.text,
-                           X_Platform_URL:X_Platform_URL.text,
-                           Linkedin_URL:Linkedin_URL.text,
-                           Instagram_URL:Instagram_URL.text,
-                           Bank_Account_Title:Bank_Account_Title.text,
-                           Bank_Name:Bank_Name.text,
-                           Bank_Branch_Name:Bank_Branch_Name.text,
-                           Bank_Account_Number:Bank_Account_Number.text,
-                           IFSC_Code:IFSC_Code.text,
-                           Career_History:Career_History.text,
+                           Facebook_URL:facebookUrl.text,
+                           X_Platform_URL:xPlatformUrl.text,
+                           Linkedin_URL:linkedinUrl.text,
+                           Instagram_URL:instagramUrl.text,
+                           Bank_Account_Title:bankAccountTitle.text,
+                           Bank_Name:bankName.text,
+                           Bank_Branch_Name:bankBranchName.text,
+                           Bank_Account_Number:bankAccountNumber.text,
+                           IFSC_Code:ifscCode.text,
+                           Career_History:careerHistory.text,
                            Qualification:Qualification.text,
                            Experience:Experience.text,
                            Note:Note.text,
@@ -116,7 +116,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                  contents: GetBuilder<AddFullEmployeeController>(
                      builder: (controller) {
 
-                       return Container(
+                       return SizedBox(
                          width: 520,
                          child: SingleChildScrollView(
                            child: Column(
@@ -143,7 +143,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                                                      controller.selectedImage.value!)
                                                      :
                                                  empolyeecontroller.filteredreemployees[idx].imageId !=null ?
-                                                 NetworkImage("$getimage"+"${empolyeecontroller.filteredreemployees[idx].imageId}"):
+                                                 NetworkImage(getimage+"${empolyeecontroller.filteredreemployees[idx].imageId}"):
                                                  null,
                                                  child: controller.selectedImage.value ==
                                                      null &&    empolyeecontroller.filteredreemployees[idx].imageId ==null
@@ -163,7 +163,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                                      children: [
                                        Textfildwithupper(
                                            width: 250,
-                                           controller: First_Name,
+                                           controller: firstName,
                                            Uptext: "First Name",
                                            hinttext: "First Name"),
                                        Padding(
@@ -171,7 +171,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                                          child: Textfildwithupper(
 
                                              width: 250,
-                                             controller: Last_Name,
+                                             controller: lastName,
                                              Uptext: "Last Name",
                                              hinttext: "Last Name"),
                                        ),
@@ -186,7 +186,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                                      Textfildwithupper(
 
                                          width: 250,
-                                         controller: Father_Name,
+                                         controller: fatherName,
                                          Uptext: "Father Name",
                                          hinttext: "Father Name"),
                                      Padding(
@@ -194,7 +194,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                                        child: Textfildwithupper(
 
                                            width: 250,
-                                           controller: Mother_Name,
+                                           controller: motherName,
                                            Uptext: "Mother Name",
                                            hinttext: "Mother Name"),
                                      )
@@ -208,7 +208,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                                      Textfildwithupper(
 
                                          width: 250,
-                                         controller: Phone_Numper,
+                                         controller: phoneNumper,
                                          Uptext: "Phone Numper",
                                          hinttext: "Phone Numper"),
                                      Padding(
@@ -228,7 +228,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                                      Textfildwithupper(
 
                                          width: 250,
-                                         controller: Emergency_Number,
+                                         controller: emergencyNumber,
                                          Uptext: "Emergency Number",
                                          hinttext: "Emergency Number"),
                                      Padding(
@@ -257,7 +257,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                                        child: Textfildwithupper(
 
                                            width: 250,
-                                           controller: Current_Address,
+                                           controller: currentAddress,
                                            Uptext: "Current Address",
                                            hinttext: "Current Address"),
                                      )
@@ -312,15 +312,15 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                                    ],
                                  ),
                                ),
-                               Padding(
-                                 padding: const EdgeInsets.only(top: 22.0),
+                               const Padding(
+                                 padding: EdgeInsets.only(top: 22.0),
                                  child: Row(
                                    crossAxisAlignment: CrossAxisAlignment.end,
                                    children: [
                                      Dropdownallemployee(
                                          title: "Gender", width: 250, type: "Gender"),
                                      Padding(
-                                       padding: const EdgeInsets.only(left: 20.0),
+                                       padding: EdgeInsets.only(left: 20.0),
                                        child: Dropdownallemployee(
                                            title: "Family Status",
                                            width: 250,
@@ -346,7 +346,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                                          padding: const EdgeInsets.only(left: 20.0),
                                          child:   GetBuilder<IllnessController>(builder: (controller) {
                                            return ButtonDialog(
-                                               bordercolor: Color(0xffD9D9D9),
+                                               bordercolor: const Color(0xffD9D9D9),
                                                textcolor: Colors.black,
                                                text: "Employee Illness",
                                                onPressed: () {
@@ -371,7 +371,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                                                                      // غلف CheckboxListTile بـ Obx
                                                                      return CheckboxListTile(
                                                                        overlayColor:
-                                                                       WidgetStatePropertyAll(
+                                                                       const WidgetStatePropertyAll(
                                                                            Colors.transparent),
                                                                        checkColor: Colors
                                                                            .white,
@@ -435,14 +435,14 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                                    children: [
                                      Textfildwithupper(
                                          width: 250,
-                                         controller: Facebook_URL,
+                                         controller: facebookUrl,
                                          Uptext: "Facebook URL",
                                          hinttext: "Facebook URL"),
                                      Padding(
                                        padding: const EdgeInsets.only(left: 20.0),
                                        child: Textfildwithupper(
                                            width: 250,
-                                           controller: X_Platform_URL,
+                                           controller: xPlatformUrl,
                                            Uptext: "X Platform URL",
                                            hinttext: "X Platform URL"),
                                      )
@@ -455,14 +455,14 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                                    children: [
                                      Textfildwithupper(
                                          width: 250,
-                                         controller: Linkedin_URL,
+                                         controller: linkedinUrl,
                                          Uptext: "Linkedin URL",
                                          hinttext: "Linkedin URL"),
                                      Padding(
                                        padding: const EdgeInsets.only(left: 20.0),
                                        child: Textfildwithupper(
                                            width: 250,
-                                           controller: Instagram_URL,
+                                           controller: instagramUrl,
                                            Uptext: "Instagram URL",
                                            hinttext: "Instagram URL"),
                                      )
@@ -488,14 +488,14 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                                    children: [
                                      Textfildwithupper(
                                          width: 250,
-                                         controller: Bank_Account_Title,
+                                         controller: bankAccountTitle,
                                          Uptext: "Bank Account Title",
                                          hinttext: "Bank Account Title"),
                                      Padding(
                                        padding: const EdgeInsets.only(left: 20.0),
                                        child: Textfildwithupper(
                                            width: 250,
-                                           controller: Bank_Name,
+                                           controller: bankName,
                                            Uptext: "Bank Name",
                                            hinttext: "Bank Name"),
                                      )
@@ -508,14 +508,14 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                                    children: [
                                      Textfildwithupper(
                                          width: 250,
-                                         controller: Bank_Branch_Name,
+                                         controller: bankBranchName,
                                          Uptext: "Bank Branch Name",
                                          hinttext: "Bank Branch Name"),
                                      Padding(
                                        padding: const EdgeInsets.only(left: 20.0),
                                        child: Textfildwithupper(
                                            width: 250,
-                                           controller: Bank_Account_Number,
+                                           controller: bankAccountNumber,
                                            Uptext: "Bank Account Number",
                                            hinttext: "Bank Account Number"),
                                      )
@@ -530,7 +530,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                                    children: [
                                      Textfildwithupper(
                                          width: 250,
-                                         controller: IFSC_Code,
+                                         controller: ifscCode,
                                          Uptext: "IFSC Code",
                                          hinttext: "IFSC Code"),
                                    ],
@@ -550,7 +550,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                                    crossAxisAlignment: CrossAxisAlignment.start,
                                    children: [
                                      LargeTextField(
-                                         controller: Career_History,
+                                         controller: careerHistory,
                                          hinttext: "Career History"),
                                    ],
                                  ),

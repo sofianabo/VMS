@@ -43,7 +43,7 @@ class Editteacherapi {
     String? Note,
   }) async {
     CancelToken cancelToken = CancelToken();
-    String myURI = "${hostPort}${updateTeacher}";
+    String myURI = "$hostPort$updateTeacher";
     try {
       Loading_Dialog(cancelToken: cancelToken);
       FormData formData = FormData.fromMap({
@@ -80,7 +80,7 @@ class Editteacherapi {
         formData.files.add(MapEntry(
           "file",
           MultipartFile.fromBytes(selectedImage,
-              filename: "$employeeId" + "ProfileImage"),
+              filename: employeeId +"ProfileImage"),
         ));
       }
 
@@ -96,14 +96,14 @@ class Editteacherapi {
         gets.Get.find<Allteachercontroller>().SetDefualtValue();
         return response.statusCode;
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

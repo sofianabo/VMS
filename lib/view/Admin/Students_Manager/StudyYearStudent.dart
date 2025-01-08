@@ -11,7 +11,7 @@ import 'package:vms_school/widgets/Admin_Students/DropDownStudyYearStudents.dart
 import 'package:vms_school/widgets/TextFormSearch.dart';
 
 class StudyYearStudents extends StatefulWidget {
-  StudyYearStudents({super.key});
+  const StudyYearStudents({super.key});
 
   @override
   State<StudyYearStudents> createState() => _StudyYearStudentsState();
@@ -36,7 +36,7 @@ class _StudyYearStudentsState extends State<StudyYearStudents> {
       children: [
         GetBuilder<StudyYearStudentsController>(builder: (controller) {
           return Container(
-            margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
             alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -108,7 +108,7 @@ class _StudyYearStudentsState extends State<StudyYearStudents> {
                         ),
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Row(
                       children: [
                         Container(
@@ -124,7 +124,7 @@ class _StudyYearStudentsState extends State<StudyYearStudents> {
                                     blurRadius: 1)
                               ]),
                           child: IconButton(
-                              style: ButtonStyle(
+                              style: const ButtonStyle(
                                   shape: WidgetStatePropertyAll(
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
@@ -149,7 +149,7 @@ class _StudyYearStudentsState extends State<StudyYearStudents> {
                                       blurRadius: 1)
                                 ]),
                             child: IconButton(
-                                style: ButtonStyle(
+                                style: const ButtonStyle(
                                     shape: WidgetStatePropertyAll(
                                         RoundedRectangleBorder(
                                             borderRadius: BorderRadius.all(

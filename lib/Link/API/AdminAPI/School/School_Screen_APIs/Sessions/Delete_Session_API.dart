@@ -20,7 +20,7 @@ class Delete_Session_API {
     CancelToken cancelToken = CancelToken();
     Loading_Dialog(cancelToken: cancelToken);
     try {
-      String myurl = "${hostPort}${destroy}/$sessionId";
+      String myurl = "$hostPort$destroy/$sessionId";
       print(sessionId);
       var response = await dio.delete(
         cancelToken: cancelToken,
@@ -30,14 +30,14 @@ class Delete_Session_API {
         Get.back();
         Get_Session_Screen_API(context).Getsession();
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

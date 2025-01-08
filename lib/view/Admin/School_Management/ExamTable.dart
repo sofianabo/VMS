@@ -24,7 +24,7 @@ import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class ExamTable extends StatefulWidget {
-  ExamTable({super.key});
+  const ExamTable({super.key});
 
   @override
   State<ExamTable> createState() => _ExamTableState();
@@ -66,7 +66,7 @@ class _ExamTableState extends State<ExamTable> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               width: Get.width * 0.9,
               child: Row(
                 children: [
@@ -91,7 +91,7 @@ class _ExamTableState extends State<ExamTable> {
                       width: Get.width / 6.5,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Row(
                     children: [
                       Container(
@@ -107,7 +107,7 @@ class _ExamTableState extends State<ExamTable> {
                                   blurRadius: 1)
                             ]),
                         child: IconButton(
-                            style: ButtonStyle(
+                            style: const ButtonStyle(
                                 shape: WidgetStatePropertyAll(
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
@@ -149,13 +149,13 @@ class _ExamTableState extends State<ExamTable> {
                                   contents: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Padding(
+                                      const Padding(
                                         padding:
-                                            const EdgeInsets.only(top: 15.0),
+                                            EdgeInsets.only(top: 15.0),
                                         child: Row(
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsets.only(
+                                              padding: EdgeInsets.only(
                                                   right: 15.0),
                                               child: DropDownexamTable(
                                                   title: "Class",
@@ -169,13 +169,13 @@ class _ExamTableState extends State<ExamTable> {
                                           ],
                                         ),
                                       ),
-                                      Padding(
+                                      const Padding(
                                         padding:
-                                            const EdgeInsets.only(top: 15.0),
+                                            EdgeInsets.only(top: 15.0),
                                         child: Row(
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsets.only(
+                                              padding: EdgeInsets.only(
                                                 right: 15.0,
                                               ),
                                               child: DropDownexamTable(
@@ -234,7 +234,7 @@ class _ExamTableState extends State<ExamTable> {
                                                       const EdgeInsets.only(
                                                           bottom: 5.0),
                                                   child: RichText(
-                                                      text: TextSpan(
+                                                      text: const TextSpan(
                                                           text: "Date")),
                                                 ),
                                                 examDate(
@@ -268,7 +268,7 @@ class _ExamTableState extends State<ExamTable> {
                                     blurRadius: 1)
                               ]),
                           child: IconButton(
-                              style: ButtonStyle(
+                              style: const ButtonStyle(
                                   shape: WidgetStatePropertyAll(
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
@@ -291,7 +291,7 @@ class _ExamTableState extends State<ExamTable> {
                                   blurRadius: 1)
                             ]),
                         child: IconButton(
-                            style: ButtonStyle(
+                            style: const ButtonStyle(
                                 shape: WidgetStatePropertyAll(
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
@@ -310,7 +310,7 @@ class _ExamTableState extends State<ExamTable> {
                     child: Container(
                       width: Get.width * 0.9,
                       padding: const EdgeInsets.all(20),
-                      decoration: BoxDecoration(boxShadow: const [
+                      decoration: const BoxDecoration(boxShadow: [
                         BoxShadow(
                             color: Colors.white,
                             offset: Offset(0, 2),
@@ -318,12 +318,12 @@ class _ExamTableState extends State<ExamTable> {
                       ]),
                       child: DataTable(
                         headingRowColor:
-                            WidgetStatePropertyAll(Colors.blueGrey),
+                            const WidgetStatePropertyAll(Colors.blueGrey),
                         border: TableBorder.all(
                           color: Colors.grey,
                           width: 1.0,
                         ),
-                        columns: [
+                        columns: const [
                           DataColumn(
                             label: Text(
                               "Class",
@@ -344,7 +344,7 @@ class _ExamTableState extends State<ExamTable> {
                         ],
                         rows: List.generate(
                           5, // عدد الصفوف في واجهة الانتظار
-                          (index) => DataRow(
+                          (index) => const DataRow(
                             cells: [
                               DataCell(Text('')),
                               DataCell(Text('')),
@@ -364,8 +364,8 @@ class _ExamTableState extends State<ExamTable> {
                     .shimmer(
                         angle: 1,
                         color: Colors.white,
-                        duration: Duration(milliseconds: 600),
-                        delay: Duration(milliseconds: 200))
+                        duration: const Duration(milliseconds: 600),
+                        delay: const Duration(milliseconds: 200))
                 : Column(
                     children: [
                       Container(
@@ -387,15 +387,15 @@ class _ExamTableState extends State<ExamTable> {
                                     textAlign: TextAlign.center,
                                     style: Get.theme.textTheme.titleLarge),
                               ),
-                              DataColumn(label: Text('Type')),
-                              DataColumn(label: Text('Curriculum Name')),
-                              DataColumn(label: Text('Date')),
-                              DataColumn(label: Text('Period')),
-                              DataColumn(label: Text('Max Mark')),
-                              DataColumn(
+                              const DataColumn(label: Text('Type')),
+                              const DataColumn(label: Text('Curriculum Name')),
+                              const DataColumn(label: Text('Date')),
+                              const DataColumn(label: Text('Period')),
+                              const DataColumn(label: Text('Max Mark')),
+                              const DataColumn(
                                 label: Text('Passing Mark'),
                               ),
-                              DataColumn(
+                              const DataColumn(
                                 label: Text('Operations'),
                               ),
                             ],
@@ -416,9 +416,9 @@ class _ExamTableState extends State<ExamTable> {
                                     IconButton(
                                       style: ButtonStyle(
                                           maximumSize: WidgetStateProperty.all(
-                                              Size(35, 35)),
+                                              const Size(35, 35)),
                                           minimumSize: WidgetStateProperty.all(
-                                              Size(35, 35)),
+                                              const Size(35, 35)),
                                           iconSize: WidgetStateProperty.all(14),
                                           shape: WidgetStateProperty.all(
                                               RoundedRectangleBorder(
@@ -427,8 +427,8 @@ class _ExamTableState extends State<ExamTable> {
                                           )),
                                           backgroundColor:
                                               WidgetStateProperty.all(
-                                                  Color(0xffB03D3D))),
-                                      icon: Icon(VMS_Icons.bin),
+                                                  const Color(0xffB03D3D))),
+                                      icon: const Icon(VMS_Icons.bin),
                                       iconSize: 16,
                                       color: Colors.white,
                                       onPressed: () async {
@@ -443,9 +443,9 @@ class _ExamTableState extends State<ExamTable> {
                                     IconButton(
                                       style: ButtonStyle(
                                           maximumSize: WidgetStateProperty.all(
-                                              Size(35, 35)),
+                                              const Size(35, 35)),
                                           minimumSize: WidgetStateProperty.all(
-                                              Size(35, 35)),
+                                              const Size(35, 35)),
                                           iconSize: WidgetStateProperty.all(14),
                                           shape: WidgetStateProperty.all(
                                               RoundedRectangleBorder(
@@ -454,9 +454,9 @@ class _ExamTableState extends State<ExamTable> {
                                           )),
                                           backgroundColor:
                                               WidgetStateProperty.all(
-                                                  Color.fromARGB(
+                                                  const Color.fromARGB(
                                                       255, 2, 124, 49))),
-                                      icon: Icon(VMS_Icons.edit),
+                                      icon: const Icon(VMS_Icons.edit),
                                       iconSize: 16,
                                       color: Colors.white,
                                       onPressed: () async {
@@ -572,7 +572,7 @@ class _ExamTableState extends State<ExamTable> {
                                                                     bottom:
                                                                         5.0),
                                                             child: RichText(
-                                                                text: TextSpan(
+                                                                text: const TextSpan(
                                                                     text:
                                                                         "Date")),
                                                           ),

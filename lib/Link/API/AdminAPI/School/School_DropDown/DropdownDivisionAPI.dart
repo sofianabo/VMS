@@ -37,21 +37,21 @@ class Dropdowndivisionapi {
       Add_Students_Controlle.SetIsLoadingDivision(true);
 
       int? id = class_controller.Allclass[idx].id;
-      String myurl = "${hostPort}${getDivision}";
+      String myurl = "$hostPort$getDivision";
       var response = await dio.post(myurl,
           data: {"classId": id}, options: getDioOptions());
       if (response.statusCode == 200) {
         AllDivisionModel division = AllDivisionModel.fromJson(response.data);
         c.setDivision(division);
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

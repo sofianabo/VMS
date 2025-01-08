@@ -28,21 +28,21 @@ class Getallclassapi {
           Get.find<Dropdownclassescontroller>();
       final Studentcontroller = Get.find<Allstudentscontroller>();
       final StudyYearStudents = Get.find<StudyYearStudentsController>();
-      final Student_attendence = Get.find<Student_attendence_controller>();
+      final studentAttendence = Get.find<Student_attendence_controller>();
       final Allteachercontrolle = Get.find<Allteachercontroller>();
       final Allteacheratendencecontrolle =
           Get.find<Allteacheratendencecontroller>();
       final StudentAttendencControlle = Get.find<StudentAttendencController>();
-      final Add_Students_Controlle = Get.find<Add_Students_Controller>();
+      final addStudentsControlle = Get.find<Add_Students_Controller>();
 
       ClassController.setIsLoading(true);
       Studentcontroller.setClassLoading(true);
       StudyYearStudents.setClassLoading(true);
-      Student_attendence.setClassLoading(true);
+      studentAttendence.setClassLoading(true);
       Allteachercontrolle.setClassLoading(true);
       Allteacheratendencecontrolle.setClassLoading(true);
       StudentAttendencControlle.setClassLoading(true);
-      Add_Students_Controlle.SetIsLoadingClass(true);
+      addStudentsControlle.SetIsLoadingClass(true);
 
       final controller = Get.find<Divisions_Controller>();
       controller.SetIsloading(true);
@@ -61,14 +61,14 @@ class Getallclassapi {
         controller.setClass(classes);
         return classes;
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

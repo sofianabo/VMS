@@ -13,7 +13,7 @@ import 'package:vms_school/widgets/TextFormSearch.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class Virtual_User_Management extends StatefulWidget {
-  Virtual_User_Management({super.key});
+  const Virtual_User_Management({super.key});
 
   @override
   State<Virtual_User_Management> createState() =>
@@ -41,7 +41,7 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
         GetBuilder<All_Virtual_Employee_Controller>(
           builder: (controller) {
             return Container(
-              margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+              margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
               alignment: Alignment.center,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -72,7 +72,7 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                           ),
                         ],
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Row(
                         children: [
                           Container(
@@ -88,7 +88,7 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                                       blurRadius: 1)
                                 ]),
                             child: IconButton(
-                                style: ButtonStyle(
+                                style: const ButtonStyle(
                                     backgroundColor:
                                         WidgetStatePropertyAll(Color(0xffF9F8FD)),
                                     shape: WidgetStatePropertyAll(
@@ -125,7 +125,7 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                                                     controller: username,
                                                     hinttext: "Username"),
                                               ),
-                                              Dropdownallemployee(
+                                              const Dropdownallemployee(
                                                   title: "Job Title",
                                                   width: 250,
                                                   type: "rolldialog"),
@@ -176,7 +176,7 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                                         blurRadius: 1)
                                   ]),
                               child: IconButton(
-                                  style: ButtonStyle(
+                                  style: const ButtonStyle(
                                       backgroundColor:
                                           WidgetStatePropertyAll(Color(0xffF9F8FD)),
                                       shape: WidgetStatePropertyAll(
@@ -201,7 +201,7 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                                       blurRadius: 1)
                                 ]),
                             child: IconButton(
-                                style: ButtonStyle(
+                                style: const ButtonStyle(
                                     backgroundColor:
                                         WidgetStatePropertyAll(Color(0xffF9F8FD)),
                                     shape: WidgetStatePropertyAll(

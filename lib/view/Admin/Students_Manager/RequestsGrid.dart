@@ -14,14 +14,14 @@ import 'package:vms_school/widgets/Schema_Widget.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class RequestsGrid extends StatelessWidget {
-  RequestsGrid({super.key});
+  const RequestsGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Requestscontroller>(builder: (controller) {
       if (controller.isLoading == true) {
         return Container(
-          padding: EdgeInsets.only(left: 30.0, right: 30.0),
+          padding: const EdgeInsets.only(left: 30.0, right: 30.0),
           child: GridView.builder(
             shrinkWrap: true,
             itemCount: 6,
@@ -39,7 +39,7 @@ class RequestsGrid extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: Get.theme.cardColor,
                           border: Border.all(color: Colors.grey, width: 0.2),
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                          borderRadius: const BorderRadius.all(Radius.circular(5)),
                           boxShadow: const [
                             BoxShadow(
                                 color: Colors.black12,
@@ -142,9 +142,9 @@ class RequestsGrid extends StatelessWidget {
                         .shimmer(
                             angle: 1,
                             color: Get.theme.dialogBackgroundColor,
-                            duration: Duration(seconds: 1),
-                            delay: Duration(seconds: 1)),
-                    Center(
+                            duration: const Duration(seconds: 1),
+                            delay: const Duration(seconds: 1)),
+                    const Center(
                         child: CircularProgressIndicator(
                       color: Color(0xffe6e7ea),
                       strokeCap: StrokeCap.round,
@@ -163,7 +163,7 @@ class RequestsGrid extends StatelessWidget {
                       .copyWith(fontSize: 22, fontWeight: FontWeight.normal)));
         } else {
           return Container(
-            padding: EdgeInsets.only(left: 30.0, right: 30.0),
+            padding: const EdgeInsets.only(left: 30.0, right: 30.0),
             child: GridView.builder(
               shrinkWrap: true,
               itemCount: controller.filteredregistration.length,
@@ -179,7 +179,7 @@ class RequestsGrid extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: Get.theme.cardColor,
                         border: Border.all(color: Colors.grey, width: 0.2),
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                        borderRadius: const BorderRadius.all(Radius.circular(5)),
                         boxShadow: const [
                           BoxShadow(
                               color: Colors.black12,
@@ -315,7 +315,7 @@ class RequestsGrid extends StatelessWidget {
                                             Get.back();
                                           },
                                           width: 80,
-                                          color: Color(0xffB03D3D),
+                                          color: const Color(0xffB03D3D),
                                         ),
                                         ButtonDialog(
                                           text: 'Approve',
@@ -392,14 +392,14 @@ class RequestsGrid extends StatelessWidget {
                                                                 index]
                                                             .type ==
                                                         "Rejected"
-                                                    ? Color(0xffB27671)
+                                                    ? const Color(0xffB27671)
                                                     : controller
                                                                 .filteredregistration[
                                                                     index]
                                                                 .type ==
                                                             "Pending"
-                                                        ? Color(0xff297686)
-                                                        : Color(0xff779DB6),
+                                                        ? const Color(0xff297686)
+                                                        : const Color(0xff779DB6),
                                                 fontWeight: FontWeight.normal),
                                       ),
                                     ),
@@ -419,14 +419,14 @@ class RequestsGrid extends StatelessWidget {
                                                     .filteredregistration[index]
                                                     .type ==
                                                 "Rejected"
-                                            ? Color(0xffB27671)
+                                            ? const Color(0xffB27671)
                                             : controller
                                                         .filteredregistration[
                                                             index]
                                                         .type ==
                                                     "Pending"
-                                                ? Color(0xff297686)
-                                                : Color(0xff779DB6))
+                                                ? const Color(0xff297686)
+                                                : const Color(0xff779DB6))
                                   ],
                                 ),
                               )

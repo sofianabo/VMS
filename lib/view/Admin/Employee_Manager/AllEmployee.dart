@@ -18,7 +18,7 @@ import '../../../widgets/TextFildWithUpper.dart';
 import '../../../widgets/VMSAlertDialog.dart';
 
 class AllEmployee extends StatefulWidget {
-  AllEmployee({super.key});
+  const AllEmployee({super.key});
 
   @override
   State<AllEmployee> createState() => _AllEmployeeState();
@@ -53,7 +53,7 @@ class _AllEmployeeState extends State<AllEmployee> {
         child: Column(
       children: [
         Container(
-          margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -100,14 +100,14 @@ class _AllEmployeeState extends State<AllEmployee> {
                       }),
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Row(
                     children: [
                       Container(
                         width: 40,
                         height: 40,
                         decoration: BoxDecoration(
-                            color: Color(0xffF9F8FD),
+                            color: const Color(0xffF9F8FD),
                             borderRadius: BorderRadius.circular(5),
                             boxShadow: const [
                               BoxShadow(
@@ -116,7 +116,7 @@ class _AllEmployeeState extends State<AllEmployee> {
                                   blurRadius: 1)
                             ]),
                         child: PopupMenuButton(
-                          style: ButtonStyle(
+                          style: const ButtonStyle(
                               backgroundColor:
                                   WidgetStatePropertyAll(Color(0xffF9F8FD)),
                               shape: WidgetStatePropertyAll(
@@ -225,13 +225,13 @@ class _AllEmployeeState extends State<AllEmployee> {
                                             ],
                                           ),
                                         ),
-                                        Padding(
+                                        const Padding(
                                           padding:
-                                              const EdgeInsets.only(top: 15.0),
+                                              EdgeInsets.only(top: 15.0),
                                           child: Row(
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets.only(
+                                                padding: EdgeInsets.only(
                                                     right: 15.0),
                                                 child: Dropdownallemployee(
                                                     title: "Job Title",
@@ -245,13 +245,13 @@ class _AllEmployeeState extends State<AllEmployee> {
                                             ],
                                           ),
                                         ),
-                                        Padding(
+                                        const Padding(
                                           padding:
-                                              const EdgeInsets.only(top: 15.0),
+                                              EdgeInsets.only(top: 15.0),
                                           child: Row(
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets.only(
+                                                padding: EdgeInsets.only(
                                                     right: 15.0),
                                                 child: Dropdownallemployee(
                                                     title: "Gender",
@@ -299,12 +299,12 @@ class _AllEmployeeState extends State<AllEmployee> {
                           },
                           itemBuilder: (BuildContext context) =>
                               <PopupMenuEntry<String>>[
-                            PopupMenuItem<String>(
+                            const PopupMenuItem<String>(
                                 value: 'Add Employee',
                                 child: Text(
                                   'Add Employee',
                                 )),
-                            PopupMenuItem<String>(
+                            const PopupMenuItem<String>(
                                 value: 'Add Full Employee',
                                 child: Text('Add Full Employee')),
                           ],
@@ -325,7 +325,7 @@ class _AllEmployeeState extends State<AllEmployee> {
                                     blurRadius: 1)
                               ]),
                           child: IconButton(
-                              style: ButtonStyle(
+                              style: const ButtonStyle(
                                   backgroundColor:
                                       WidgetStatePropertyAll(Color(0xffF9F8FD)),
                                   shape: WidgetStatePropertyAll(
@@ -354,7 +354,7 @@ class _AllEmployeeState extends State<AllEmployee> {
                                   blurRadius: 1)
                             ]),
                         child: IconButton(
-                            style: ButtonStyle(
+                            style: const ButtonStyle(
                                 backgroundColor:
                                     WidgetStatePropertyAll(Color(0xffF9F8FD)),
                                 shape: WidgetStatePropertyAll(

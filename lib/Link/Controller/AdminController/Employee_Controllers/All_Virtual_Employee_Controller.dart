@@ -26,7 +26,7 @@ class All_Virtual_Employee_Controller extends GetxController{
 
   void searchRequestByName(String query, String jobindexed) {
     List<ViraulUser> tempFilteredList = List.from(viraulUser!);
-    if (query != null && query.isNotEmpty) {
+    if (query.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((emp) {
         final empName = emp.userName?.toLowerCase() ?? '';
         return empName.contains(query.toLowerCase());

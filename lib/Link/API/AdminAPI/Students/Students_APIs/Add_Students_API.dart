@@ -50,7 +50,7 @@ class Add_Student_API {
     file,
   }) async {
     Dio dio = Dio();
-    String myURI = "${hostPort}${addStudentInfo}";
+    String myURI = "$hostPort$addStudentInfo";
 
     try {
       CancelToken cancelToken = CancelToken();
@@ -103,7 +103,7 @@ class Add_Student_API {
         formDataMap.addAll({
           "file": MultipartFile.fromBytes(
             file,
-            filename: '${firstName} ${lastName}Student Profile Image',
+            filename: '$firstName ${lastName}Student Profile Image',
           )
         });
       }
@@ -185,15 +185,15 @@ class Add_Student_API {
         gets.Get.back();
         Getallstudentapi.Getallstudent();
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
       print(e);
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

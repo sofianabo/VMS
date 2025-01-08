@@ -15,21 +15,21 @@ class Get_All_Grade_API {
     final controller = Get.find<Grade_Controller>();
     controller.setIsLoading(true);
     try {
-      String myurl = "${hostPort}${getGrade}";
+      String myurl = "$hostPort$getGrade";
       var response = await dio.get(myurl,
           options: getDioOptions());
       if (response.statusCode == 200) {
        AllGradesModel allGradesModel = AllGradesModel.fromJson(response.data);
        controller.setData(allGradesModel);
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

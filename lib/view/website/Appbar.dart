@@ -33,7 +33,7 @@ class _AppbarCustomState extends State<AppbarCustom> {
                    },)
                  ],
                ),
-              Container(
+              SizedBox(
                 width: w / 15.8,
                 height: h / 28.5,
                 child: MaterialButton(
@@ -44,7 +44,7 @@ class _AppbarCustomState extends State<AppbarCustom> {
                   ),
                 ),
               ),
-              Container(
+              SizedBox(
                 width: w / 15.8,
                 height: h / 28.5,
                 child: MaterialButton(
@@ -56,7 +56,7 @@ class _AppbarCustomState extends State<AppbarCustom> {
                   ),
                 ),
               ),
-              Container(
+              SizedBox(
                 width: w / 15.8,
                 height: h / 28.5,
                 child: MaterialButton(
@@ -67,7 +67,7 @@ class _AppbarCustomState extends State<AppbarCustom> {
                   ),
                 ),
               ),
-              Container(
+              SizedBox(
                 width: w / 15.8,
                 height: h / 28.5,
                 child: MaterialButton(
@@ -78,7 +78,7 @@ class _AppbarCustomState extends State<AppbarCustom> {
                   ),
                 ),
               ),
-              Container(
+              SizedBox(
                 width: w / 15.8,
                 height: h / 28.5,
                 child: MaterialButton(

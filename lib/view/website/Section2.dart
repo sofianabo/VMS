@@ -51,7 +51,7 @@ class Section2 extends StatelessWidget {
                             borderRadius: BorderRadius.circular(1000),
                             color: const Color(0xff47ccaa),
                           ),
-                          child: Icon(
+                          child: const Icon(
                             Icons.emoji_emotions_outlined,
                             color: Colors.white,
                           ),
@@ -89,7 +89,7 @@ class Section2 extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(1000),
                             color: const Color(0xff946ffb)),
-                        child: Icon(
+                        child: const Icon(
                           Icons.emoji_events_outlined,
                           color: Colors.white,
                         ),

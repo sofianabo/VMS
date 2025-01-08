@@ -36,7 +36,7 @@ class Subject_Management_Grid extends StatelessWidget {
                         border: TableBorder.all(color: Get.theme.primaryColor),
                         children: [
                           TableRow(
-                            decoration: BoxDecoration(color: Color(0xffD4DFE5)),
+                            decoration: const BoxDecoration(color: Color(0xffD4DFE5)),
                             children: [
                               _tableHeader('Operation'),
                               _tableHeader('Subject Name'),
@@ -87,7 +87,7 @@ class Subject_Management_Grid extends StatelessWidget {
           controller.Subjects[index]['hasCurriculum'] == false
               ? _iconButton(
                   iconData: VMS_Icons.bin,
-                  color: Color(0xffB03D3D),
+                  color: const Color(0xffB03D3D),
                   onPressed: () {
                     Get.dialog(
                       VMSAlertDialog(
@@ -100,7 +100,7 @@ class Subject_Management_Grid extends StatelessWidget {
                                   index: index,
                                 );
                               },
-                              color: Color(0xffB03D3D),
+                              color: const Color(0xffB03D3D),
                               width: 120),
                           ButtonDialog(
                               text: "Cancel",
@@ -113,11 +113,11 @@ class Subject_Management_Grid extends StatelessWidget {
                         contents: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Container(
+                            SizedBox(
                               width: 400,
                               child: Text(
                                 "Do You Want To Delete (${row['enName']}) Subject",
-                                style: TextStyle(fontSize: 16),
+                                style: const TextStyle(fontSize: 16),
                               ),
                             ),
                           ],
@@ -160,7 +160,7 @@ class Subject_Management_Grid extends StatelessWidget {
                         Row(
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(left: 15.0, right: 15.0),
+                              padding: const EdgeInsets.only(left: 15.0, right: 15.0),
                               child: Textfildwithupper(
                                   controller: enName,
                                   Uptext: "Subject En - Name",
@@ -189,7 +189,7 @@ class Subject_Management_Grid extends StatelessWidget {
       required Color color,
       required VoidCallback onPressed}) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10.0),
+      margin: const EdgeInsets.symmetric(horizontal: 10.0),
       width: 40,
       height: 40,
       alignment: Alignment.center,
@@ -203,7 +203,7 @@ class Subject_Management_Grid extends StatelessWidget {
       child: IconButton(
         style: ButtonStyle(
           backgroundColor: WidgetStatePropertyAll(color),
-          shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+          shape: const WidgetStatePropertyAll(RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(5)))),
         ),
         onPressed: onPressed,
@@ -218,7 +218,7 @@ class Subject_Management_Grid extends StatelessWidget {
       height: 50,
       child: Text(
         data ?? '',
-        style: TextStyle(color: Colors.black),
+        style: const TextStyle(color: Colors.black),
       ),
     );
   }

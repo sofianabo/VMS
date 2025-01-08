@@ -12,7 +12,7 @@ import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class TeacherAttendanceManagment extends StatefulWidget {
-  TeacherAttendanceManagment({super.key});
+  const TeacherAttendanceManagment({super.key});
 
   @override
   State<TeacherAttendanceManagment> createState() =>
@@ -36,7 +36,7 @@ class _TeacherAttendanceManagmentState
           child: Column(
         children: [
           Container(
-            margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
             alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -45,12 +45,12 @@ class _TeacherAttendanceManagmentState
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
+                    SizedBox(
                         width: w / 5.0,
                         child: Obx(() => Row(
                           children: [
                             Checkbox(
-                              shape: RoundedRectangleBorder(
+                              shape: const RoundedRectangleBorder(
                                   borderRadius:
                                   BorderRadius.all(Radius.circular(4))),
                               value: controller.allHolidayChecked.value,
@@ -70,7 +70,7 @@ class _TeacherAttendanceManagmentState
                                               color: Get.theme.primaryColor,
                                               width: 65)
                                         ],
-                                        contents: Container(
+                                        contents: SizedBox(
                                           width: 500,
                                           child: Column(
                                             mainAxisSize: MainAxisSize.min,
@@ -91,7 +91,7 @@ class _TeacherAttendanceManagmentState
                                 }
                               },
                             ),
-                            Text("Set All As a Holiday"),
+                            const Text("Set All As a Holiday"),
                           ],
                         ))),
                     Container(
@@ -107,7 +107,7 @@ class _TeacherAttendanceManagmentState
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                          style: ButtonStyle(
+                          style: const ButtonStyle(
                               backgroundColor:
                                   WidgetStatePropertyAll(Color(0xffF9F8FD)),
                               shape: WidgetStatePropertyAll(

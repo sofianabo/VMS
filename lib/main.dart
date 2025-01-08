@@ -19,7 +19,7 @@ void main() async {
 }
 
 class VMS extends StatefulWidget {
-  VMS({super.key});
+  const VMS({super.key});
 
   @override
   State<VMS> createState() => _VMSState();
@@ -45,7 +45,7 @@ class _VMSState extends State<VMS> {
         home: prefs!.getBool("isLogin") != null &&
             prefs!.getBool("isLogin") == true
             ? AdminHome()
-            : Directionality(textDirection: TextDirection.rtl, child: Home())
+            : const Directionality(textDirection: TextDirection.rtl, child: Home())
 
         // home: AdminHome()
 

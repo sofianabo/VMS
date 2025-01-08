@@ -44,17 +44,17 @@ class GetteacherbyidAPI {
         EditTeacherDialog(context, index, TeacherId);
         return response.statusCode;
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
       print(e);
-      if (e is DioError && e.type == DioErrorType.cancel) {
+      if (e is DioException && e.type == DioExceptionType.cancel) {
         print("Request canceled");
-      } else if (e is DioError) {
+      } else if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else {
         ErrorHandler.handleException(Exception(e.toString()));

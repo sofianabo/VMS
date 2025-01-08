@@ -7,7 +7,7 @@ import 'package:vms_school/widgets/GridAnimation.dart';
 
 class DashboardThirdRow extends StatelessWidget {
 
-  DashboardThirdRow({Key? key}) : super(key: key);
+  const DashboardThirdRow({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -85,8 +85,8 @@ class DashboardThirdRow extends StatelessWidget {
                 ).animate(onPlay: (controller) => controller.repeat()).shimmer(
                         angle: 1,
                         color: dashed[index]['color'],
-                        duration: Duration(seconds: 1),
-                        delay: Duration(seconds: 1)));
+                        duration: const Duration(seconds: 1),
+                        delay: const Duration(seconds: 1)));
               },
             ),
           );

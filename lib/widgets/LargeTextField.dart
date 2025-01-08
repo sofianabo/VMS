@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LargeTextField extends StatelessWidget {
-  LargeTextField({
+  const LargeTextField({
     super.key,
     required this.controller,
     this.width,
@@ -16,7 +16,7 @@ class LargeTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: width ?? 515,
       height: 300,
       child: Column(
@@ -28,10 +28,10 @@ class LargeTextField extends StatelessWidget {
             child: RichText(
               text: TextSpan(
                 text: hinttext,
-                style: TextStyle(color: Colors.black, fontSize: 16),
+                style: const TextStyle(color: Colors.black, fontSize: 16),
                 children: isRequired
                     ? [
-                        TextSpan(
+                        const TextSpan(
                           text: " *",
                           style: TextStyle(color: Colors.red, fontSize: 14),
                         ),
@@ -45,10 +45,10 @@ class LargeTextField extends StatelessWidget {
             controller: controller,
             decoration: InputDecoration(
               hintText: hinttext,
-              hintStyle: TextStyle(color: Color(0xffD9D9D9)),
+              hintStyle: const TextStyle(color: Color(0xffD9D9D9)),
               focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(color: Color(0xffD9D9D9), width: 1)),
+                  borderSide: const BorderSide(color: Color(0xffD9D9D9), width: 1)),
               enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: const BorderSide(color: Color(0xffD9D9D9))),

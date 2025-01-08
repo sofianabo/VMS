@@ -30,14 +30,14 @@ import 'package:vms_school/view/Admin/Teacher_Manager/TeacherMangament.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherStatus.dart';
 
 class AdminHome extends StatelessWidget {
-  AdminHome({super.key});
+  const AdminHome({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppbarAdmin(),
+          const AppbarAdmin(),
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

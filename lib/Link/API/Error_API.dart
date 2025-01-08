@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:dio/dio.dart';
 
 class ErrorHandler {
-  static void handleDioError(DioError error) {
+  static void handleDioError(DioException error) {
     String message;
 
-    if (error.type == DioErrorType.badResponse) {
+    if (error.type == DioExceptionType.badResponse) {
       int statusCode = error.response?.statusCode ?? 0;
 
       switch (statusCode) {
@@ -50,13 +50,13 @@ class ErrorHandler {
           message =
               "حدث خطأ غير متوقع برمز: $statusCode. يرجى المحاولة لاحقًا.";
       }
-    } else if (error.type == DioErrorType.connectionTimeout) {
+    } else if (error.type == DioExceptionType.connectionTimeout) {
       message = "انتهى وقت الاتصال بالخادم. يرجى التحقق من اتصالك.";
-    } else if (error.type == DioErrorType.sendTimeout) {
+    } else if (error.type == DioExceptionType.sendTimeout) {
       message = "انتهى وقت إرسال الطلب. حاول مرة أخرى.";
-    } else if (error.type == DioErrorType.receiveTimeout) {
+    } else if (error.type == DioExceptionType.receiveTimeout) {
       message = "انتهى وقت استلام الرد من الخادم. حاول مرة أخرى.";
-    } else if (error.type == DioErrorType.cancel) {
+    } else if (error.type == DioExceptionType.cancel) {
       message = "تم إلغاء الطلب. حاول مرة أخرى.";
     } else {
       message = "حدث خطأ أثناء معالجة الطلب. يرجى المحاولة لاحقًا.";
@@ -68,7 +68,7 @@ class ErrorHandler {
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: Colors.red,
       colorText: Colors.white,
-      duration: Duration(seconds: 3),
+      duration: const Duration(seconds: 3),
     );
   }
 
@@ -83,7 +83,7 @@ class ErrorHandler {
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.red,
         colorText: Colors.white,
-        duration: Duration(seconds: 3),
+        duration: const Duration(seconds: 3),
       );
     }
   }

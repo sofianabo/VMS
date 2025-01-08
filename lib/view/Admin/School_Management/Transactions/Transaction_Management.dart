@@ -9,7 +9,7 @@ import 'package:vms_school/widgets/Calender.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 
 class Transaction_Management extends StatefulWidget {
-  Transaction_Management({super.key});
+  const Transaction_Management({super.key});
 
   @override
   State<Transaction_Management> createState() => _Transaction_ManagementState();
@@ -30,7 +30,7 @@ class _Transaction_ManagementState extends State<Transaction_Management> {
         child: Column(
       children: [
         Container(
-          margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -79,14 +79,14 @@ class _Transaction_ManagementState extends State<Transaction_Management> {
                             search.text.isNotEmpty ? Icons.close : Icons.search,
                       ),
                     ),
-                    Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
+                    const Padding(
+                        padding: EdgeInsets.only(left: 8.0),
                         child: DropDowTransaction(
                             isLoading: false,
                             title: "Rows",
                             width: 100,
                             type: "rows")),
-                    Spacer(),
+                    const Spacer(),
                     Padding(
                       padding: const EdgeInsets.only(right: 10.0, left: 10.0),
                       child: Container(
@@ -102,7 +102,7 @@ class _Transaction_ManagementState extends State<Transaction_Management> {
                                   blurRadius: 1)
                             ]),
                         child: IconButton(
-                            style: ButtonStyle(
+                            style: const ButtonStyle(
                                 backgroundColor:
                                     WidgetStatePropertyAll(Color(0xffF9F8FD)),
                                 shape: WidgetStatePropertyAll(
@@ -127,7 +127,7 @@ class _Transaction_ManagementState extends State<Transaction_Management> {
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                          style: ButtonStyle(
+                          style: const ButtonStyle(
                               backgroundColor:
                                   WidgetStatePropertyAll(Color(0xffF9F8FD)),
                               shape: WidgetStatePropertyAll(

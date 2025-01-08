@@ -7,15 +7,15 @@ class AllPenaltyModel {
     if (json['penalty'] != null) {
       penalty = <Penalty>[];
       json['penalty'].forEach((v) {
-        penalty!.add(new Penalty.fromJson(v));
+        penalty!.add(Penalty.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.penalty != null) {
-      data['penalty'] = this.penalty!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (penalty != null) {
+      data['penalty'] = penalty!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -35,10 +35,10 @@ class Penalty {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['enName'] = this.enName;
-    data['id'] = this.id;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['enName'] = enName;
+    data['id'] = id;
     return data;
   }
 }

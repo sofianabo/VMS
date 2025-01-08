@@ -13,25 +13,25 @@ class Get_Location_API {
 
   static Get_Locations() async {
     Dio dio = Dio();
-    String myURI = "${hostPort}${getLocation}";
+    String myURI = "$hostPort$getLocation";
 
     try {
       final controller = Get.find<Location_controller>();
       controller.setIsLoading(true);
       var response = await dio.get(myURI, options: getDioOptions());
       if (response.statusCode == 200) {
-        Location_Model location_model = Location_Model.fromJson(response.data);
-        controller.setLocations(location_model);
+        Location_Model locationModel = Location_Model.fromJson(response.data);
+        controller.setLocations(locationModel);
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
       return response.statusCode;
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

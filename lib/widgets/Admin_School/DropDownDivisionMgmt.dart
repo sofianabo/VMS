@@ -11,14 +11,14 @@ class DropDownDivisionMgmt extends StatelessWidget {
   final bool? isLoading;
 
   const DropDownDivisionMgmt({
-    Key? key,
+    super.key,
     required this.title,
     this.color,
     required this.width,
     required this.type,
     this.selectedValue,
     required this.isLoading,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class DropDownDivisionMgmt extends StatelessWidget {
       }
 
       return Container(
-        padding: EdgeInsets.all(6.0),
+        padding: const EdgeInsets.all(6.0),
         alignment: Alignment.centerLeft,
         width: width,
         height: 40,
@@ -51,7 +51,7 @@ class DropDownDivisionMgmt extends StatelessWidget {
           border: Border.all(color: color ?? const Color(0xffD9D9D9)),
         ),
         child: isLoading == true
-            ? Center(
+            ? const Center(
           child: SizedBox(
             width: 20,
             height: 20,

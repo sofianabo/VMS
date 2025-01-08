@@ -20,21 +20,21 @@ class Get_All_E_Book_API {
 
     try {
       controller.SetIsLoading(true);
-      String myurl = "${hostPort}${getBook}";
+      String myurl = "$hostPort$getBook";
       var response = await dio.get(myurl,
           options: getDioOptions());
       if (response.statusCode == 200) {
-        Labrary_Model labrary_model = Labrary_Model.fromJson(response.data);
-       controller.SetData(labrary_model);
+        Labrary_Model labraryModel = Labrary_Model.fromJson(response.data);
+       controller.SetData(labraryModel);
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

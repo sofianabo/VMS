@@ -19,24 +19,24 @@ class Get_Transaction_Screen_API {
     final controller = Get.find<Transaction_Controller>();
     controller.setIsLoading(true);
     try {
-      String myurl = "${hostPort}${getTransaction}";
+      String myurl = "$hostPort$getTransaction";
       var response = await dio.post(
           data: {"rows": rows == "Up 200" ? null : rows},
           myurl,
           options: getDioOptions());
       if (response.statusCode == 200) {
-        Transaction_Model transaction_model =
+        Transaction_Model transactionModel =
             Transaction_Model.fromJson(response.data);
-        controller.setData(transaction_model);
+        controller.setData(transactionModel);
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

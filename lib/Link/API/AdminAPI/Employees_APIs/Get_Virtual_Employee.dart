@@ -21,19 +21,19 @@ class Get_Virtual_Employee_API {
       );
 
       if (response.statusCode == 200) {
-        Virtual_Employee_Model virtual_employee_model = Virtual_Employee_Model.fromJson(response.data);
-        controller.setData(virtual_employee_model);
+        Virtual_Employee_Model virtualEmployeeModel = Virtual_Employee_Model.fromJson(response.data);
+        controller.setData(virtualEmployeeModel);
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError && e.type == DioErrorType.cancel) {
+      if (e is DioException && e.type == DioExceptionType.cancel) {
         print("Request canceled");
-      } else if (e is DioError) {
+      } else if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else {
         ErrorHandler.handleException(Exception(e.toString()));

@@ -11,5 +11,6 @@ class AuthMidlleware extends GetMiddleware {
     if (prefs!.getString("islogin") != null) {
       return const RouteSettings(name: "/Home");
     }
+    return null;
   }
 }

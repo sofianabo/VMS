@@ -20,13 +20,13 @@ class DropDown extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<DropDownController>(builder: (cont) {
       return Container(
-        padding: EdgeInsets.all(6.0),
+        padding: const EdgeInsets.all(6.0),
         alignment: Alignment.centerLeft,
         width: width,
         height: 40,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          border: Border.all(color: COLOR ?? Color(0xffD9D9D9)),
+          border: Border.all(color: COLOR ?? const Color(0xffD9D9D9)),
         ),
         child: DropdownButton<String>(
           focusColor: Colors.white,
@@ -35,11 +35,11 @@ class DropDown extends StatelessWidget {
           iconEnabledColor: Colors.black,
           value: cont.selectedIndex,
           underline: const Text(""),
-          icon: Expanded(
+          icon: const Expanded(
             child: Row(
               children: [
                 Spacer(),
-                const Icon(Icons.arrow_drop_down),
+                Icon(Icons.arrow_drop_down),
               ],
             ),
           ),
@@ -66,7 +66,7 @@ class DropDown extends StatelessWidget {
                       .copyWith(fontSize: 14),
                 ),
               );
-            }).toList(),
+            }),
           ],
           borderRadius: BorderRadius.circular(3),
         ),

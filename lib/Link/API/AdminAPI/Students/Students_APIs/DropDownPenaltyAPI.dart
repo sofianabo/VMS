@@ -16,21 +16,21 @@ class Get_All_Benality_API {
   Get_All_Benality() async {
     try {
       c.setIsLoading(true);
-      String myurl = "${hostPort}${allPenalty}";
+      String myurl = "$hostPort$allPenalty";
       var response = await dio.get(myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         AllPenaltyModel penalty = AllPenaltyModel.fromJson(response.data);
         c.setPenalty(penalty);
         return penalty;
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

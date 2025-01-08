@@ -9,7 +9,7 @@ import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class TeacherAttendanceManagmentGrid extends StatefulWidget {
-  TeacherAttendanceManagmentGrid({super.key});
+  const TeacherAttendanceManagmentGrid({super.key});
 
   @override
   State<TeacherAttendanceManagmentGrid> createState() => _TeacherAttendanceManagmentGridState();
@@ -42,7 +42,7 @@ class _TeacherAttendanceManagmentGridState extends State<TeacherAttendanceManagm
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           width: Get.width / 3.5,
                                           child: Row(
                                             children: [
@@ -125,7 +125,7 @@ class _TeacherAttendanceManagmentGridState extends State<TeacherAttendanceManagm
                                                               .Employees[index]
                                                           ['status'],
                                                       activeColor:
-                                                          Color(0xff134B70),
+                                                          const Color(0xff134B70),
                                                       onChanged: (value) {
                                                         if(value == "Holiday"){
 
@@ -146,7 +146,7 @@ class _TeacherAttendanceManagmentGridState extends State<TeacherAttendanceManagm
                                                                       color: Get.theme.primaryColor,
                                                                       width: 65)
                                                                 ],
-                                                                contents: Container(
+                                                                contents: SizedBox(
                                                                   width: 500,
                                                                   child: Column(
                                                                     mainAxisSize: MainAxisSize.min,
@@ -179,25 +179,25 @@ class _TeacherAttendanceManagmentGridState extends State<TeacherAttendanceManagm
                                                       style: TextStyle(
                                                         color: status ==
                                                                 'Present'
-                                                            ? Color(0xff2F9742)
+                                                            ? const Color(0xff2F9742)
                                                             : status == 'Truant'
-                                                                ? Color(
+                                                                ? const Color(
                                                                     0xff972F2F)
                                                                 : status ==
                                                                         'Late'
-                                                                    ? Color(
+                                                                    ? const Color(
                                                                         0xff349393)
                                                                     : status ==
                                                                             'Vacation'
-                                                                        ? Color(
+                                                                        ? const Color(
                                                                             0xffB27671)
-                                                                        : Color(
+                                                                        : const Color(
                                                                             0xff134B70),
                                                       ),
                                                     ),
                                                   ],
                                                 ))
-                                            .toList(),
+                                            ,
                                       ],
                                     ),
                                     Divider(
@@ -225,7 +225,7 @@ class _TeacherAttendanceManagmentGridState extends State<TeacherAttendanceManagm
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Container(
+                                SizedBox(
                                   width: Get.width / 3.5,
                                   child: Row(
                                     children: [
@@ -260,7 +260,7 @@ class _TeacherAttendanceManagmentGridState extends State<TeacherAttendanceManagm
                                             SchemaWidget(width: 50, height: 15),
                                           ],
                                         ))
-                                    .toList(),
+                                    ,
                               ],
                             ),
                             Divider(

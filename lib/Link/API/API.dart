@@ -107,7 +107,7 @@ String getLocation = "getLocation";
 
 //..................... File ...................//
 
-String getimage = "$hostPort" + "getFile/";
+String getimage = hostPort+ "getFile/";
 
 //..................... Tables ...................//
 

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SidbarAnimation extends StatefulWidget {
   final Widget child;
 
-  const SidbarAnimation({Key? key, required this.child}) : super(key: key);
+  const SidbarAnimation({super.key, required this.child});
 
   @override
   _SidbarAnimationState createState() => _SidbarAnimationState();

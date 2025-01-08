@@ -23,7 +23,7 @@ class DatePicker extends StatelessWidget {
   final double? height;
   final bool isRequired;
 
-  DatePicker({
+  const DatePicker({
     super.key,
     required this.width,
     this.height,
@@ -46,7 +46,7 @@ class DatePicker extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 5.0),
                 child: RichText(
-                  text: TextSpan(
+                  text: const TextSpan(
                     text: "Select Date",
                     style: TextStyle(color: Colors.black, fontSize: 14),
                     children: [
@@ -61,7 +61,7 @@ class DatePicker extends StatelessWidget {
             SizedBox(
               height: height ?? 40,
               child: TextFormField(
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
                 controller: TextEditingController(
                   text: controller.selectedDate.value != null
                       ? DateFormat('yyyy-MM-dd')
@@ -110,7 +110,7 @@ class BirthDate extends StatelessWidget {
   final double? height;
   final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
 
-  BirthDate({
+  const BirthDate({
     super.key,
     required this.width,
     required this.Uptext,
@@ -134,10 +134,10 @@ class BirthDate extends StatelessWidget {
               child: RichText(
                 text: TextSpan(
                   text: Uptext,
-                  style: TextStyle(color: Colors.black, fontSize: 14),
+                  style: const TextStyle(color: Colors.black, fontSize: 14),
                   children: isRequired
                       ? [
-                          TextSpan(
+                          const TextSpan(
                             text: " *",
                             style: TextStyle(color: Colors.red, fontSize: 14),
                           ),
@@ -149,7 +149,7 @@ class BirthDate extends StatelessWidget {
             SizedBox(
               height: height ?? 40,
               child: TextFormField(
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
                 controller: TextEditingController(
                   text: controller.Birthdate.value != null
                       ? DateFormat('yyyy-MM-dd')
@@ -161,10 +161,10 @@ class BirthDate extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Get.theme.textTheme.bodyMedium!
-                      .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
+                      .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide: const BorderSide(color: Color(0xffD9D9D9), width: 2),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -197,7 +197,7 @@ class JoinDate extends StatelessWidget {
   final double? height;
   final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
 
-  JoinDate({
+  const JoinDate({
     super.key,
     required this.width,
     required this.Uptext,
@@ -221,10 +221,10 @@ class JoinDate extends StatelessWidget {
               child: RichText(
                 text: TextSpan(
                   text: Uptext,
-                  style: TextStyle(color: Colors.black, fontSize: 14),
+                  style: const TextStyle(color: Colors.black, fontSize: 14),
                   children: isRequired
                       ? [
-                          TextSpan(
+                          const TextSpan(
                             text: " *",
                             style: TextStyle(color: Colors.red, fontSize: 14),
                           ),
@@ -236,7 +236,7 @@ class JoinDate extends StatelessWidget {
             SizedBox(
               height: height ?? 40,
               child: TextFormField(
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
                 controller: TextEditingController(
                   text: controller.Joindate.value != null
                       ? DateFormat('yyyy-MM-dd')
@@ -248,10 +248,10 @@ class JoinDate extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Get.theme.textTheme.bodyMedium!
-                      .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
+                      .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide: const BorderSide(color: Color(0xffD9D9D9), width: 2),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -283,7 +283,7 @@ class selectDateRequest extends StatelessWidget {
   final double? height;
   final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
 
-  selectDateRequest({
+  const selectDateRequest({
     super.key,
     required this.width,
     this.height,
@@ -304,7 +304,7 @@ class selectDateRequest extends StatelessWidget {
             SizedBox(
               height: height ?? 40,
               child: TextFormField(
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
                 controller: TextEditingController(
                   text: controller.requestDate.value != null
                       ? DateFormat('yyyy-MM-dd')
@@ -316,11 +316,11 @@ class selectDateRequest extends StatelessWidget {
                 decoration: InputDecoration(
                     hintText: "yyyy-MM-dd",
                     hintStyle: Get.theme.textTheme.bodyMedium!
-                        .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
+                        .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
                       borderSide:
-                          BorderSide(color: Color(0xffD9D9D9), width: 2),
+                          const BorderSide(color: Color(0xffD9D9D9), width: 2),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
@@ -360,7 +360,7 @@ class selectTeacherDateAttendence extends StatelessWidget {
   final double? height;
   final bool isRequired;
 
-  selectTeacherDateAttendence({
+  const selectTeacherDateAttendence({
     super.key,
     required this.width,
     this.height,
@@ -381,7 +381,7 @@ class selectTeacherDateAttendence extends StatelessWidget {
               SizedBox(
                 height: height ?? 40,
                 child: TextFormField(
-                  style: TextStyle(fontSize: 14),
+                  style: const TextStyle(fontSize: 14),
                   controller: TextEditingController(
                     text: controller.AttendencetDate.value != null
                         ? DateFormat('yyyy-MM-dd')
@@ -393,11 +393,11 @@ class selectTeacherDateAttendence extends StatelessWidget {
                   decoration: InputDecoration(
                       hintText: "yyyy-MM-dd",
                       hintStyle: Get.theme.primaryTextTheme.titleMedium!
-                          .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
+                          .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
                         borderSide:
-                            BorderSide(color: Color(0xffD9D9D9), width: 2),
+                            const BorderSide(color: Color(0xffD9D9D9), width: 2),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
@@ -445,7 +445,7 @@ class selectEmployeeDateAttendence extends StatelessWidget {
   final double? height;
   final bool isRequired;
 
-  selectEmployeeDateAttendence({
+  const selectEmployeeDateAttendence({
     super.key,
     required this.width,
     this.height,
@@ -466,7 +466,7 @@ class selectEmployeeDateAttendence extends StatelessWidget {
               SizedBox(
                 height: height ?? 40,
                 child: TextFormField(
-                  style: TextStyle(fontSize: 14),
+                  style: const TextStyle(fontSize: 14),
                   controller: TextEditingController(
                     text: controller.AttendencetDate.value != null
                         ? DateFormat('yyyy-MM-dd')
@@ -478,11 +478,11 @@ class selectEmployeeDateAttendence extends StatelessWidget {
                   decoration: InputDecoration(
                       hintText: "yyyy-MM-dd",
                       hintStyle: Get.theme.primaryTextTheme.titleMedium!
-                          .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
+                          .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
                         borderSide:
-                            BorderSide(color: Color(0xffD9D9D9), width: 2),
+                            const BorderSide(color: Color(0xffD9D9D9), width: 2),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
@@ -527,7 +527,7 @@ class selectStudentsDateAttendence extends StatelessWidget {
   final double? height;
   final bool isRequired;
 
-  selectStudentsDateAttendence({
+  const selectStudentsDateAttendence({
     super.key,
     required this.width,
     this.height,
@@ -548,7 +548,7 @@ class selectStudentsDateAttendence extends StatelessWidget {
               SizedBox(
                 height: height ?? 40,
                 child: TextFormField(
-                  style: TextStyle(fontSize: 14),
+                  style: const TextStyle(fontSize: 14),
                   controller: TextEditingController(
                     text: controller.AttendencetDate.value != null
                         ? DateFormat('yyyy-MM-dd')
@@ -560,11 +560,11 @@ class selectStudentsDateAttendence extends StatelessWidget {
                   decoration: InputDecoration(
                       hintText: "yyyy-MM-dd",
                       hintStyle: Get.theme.primaryTextTheme.titleMedium!
-                          .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
+                          .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
                         borderSide:
-                            BorderSide(color: Color(0xffD9D9D9), width: 2),
+                            const BorderSide(color: Color(0xffD9D9D9), width: 2),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
@@ -609,7 +609,7 @@ class selectTransactionDate extends StatelessWidget {
   final double? height;
   final bool isRequired;
 
-  selectTransactionDate({
+  const selectTransactionDate({
     super.key,
     required this.width,
     this.height,
@@ -630,7 +630,7 @@ class selectTransactionDate extends StatelessWidget {
               SizedBox(
                 height: height ?? 40,
                 child: TextFormField(
-                  style: TextStyle(fontSize: 14),
+                  style: const TextStyle(fontSize: 14),
                   controller: TextEditingController(
                     text: controller.AttendencetDate.value != null
                         ? DateFormat('yyyy-MM-dd')
@@ -642,11 +642,11 @@ class selectTransactionDate extends StatelessWidget {
                   decoration: InputDecoration(
                       hintText: "yyyy-MM-dd",
                       hintStyle: Get.theme.primaryTextTheme.titleMedium!
-                          .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
+                          .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
                         borderSide:
-                            BorderSide(color: Color(0xffD9D9D9), width: 2),
+                            const BorderSide(color: Color(0xffD9D9D9), width: 2),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
@@ -689,7 +689,7 @@ class selectstart extends StatelessWidget {
   final double? height;
   final bool isRequired;
 
-  selectstart({
+  const selectstart({
     super.key,
     required this.width,
     this.height,
@@ -710,7 +710,7 @@ class selectstart extends StatelessWidget {
             SizedBox(
               height: height ?? 40,
               child: TextFormField(
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
                 controller: TextEditingController(
                   text: controller.startDate.value != null
                       ? DateFormat('yyyy-MM-dd')
@@ -722,10 +722,10 @@ class selectstart extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Get.theme.primaryTextTheme.titleMedium!
-                      .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
+                      .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide: const BorderSide(color: Color(0xffD9D9D9), width: 2),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -757,7 +757,7 @@ class selectend extends StatelessWidget {
   final double? height;
   final bool isRequired;
 
-  selectend({
+  const selectend({
     super.key,
     required this.width,
     this.height,
@@ -778,7 +778,7 @@ class selectend extends StatelessWidget {
             SizedBox(
               height: height ?? 40,
               child: TextFormField(
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
                 controller: TextEditingController(
                   text: controller.endDate.value != null
                       ? DateFormat('yyyy-MM-dd')
@@ -790,10 +790,10 @@ class selectend extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Get.theme.primaryTextTheme.titleMedium!
-                      .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
+                      .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide: const BorderSide(color: Color(0xffD9D9D9), width: 2),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -825,7 +825,7 @@ class penaltyStartDate extends StatelessWidget {
   final double? height;
   final bool isRequired;
 
-  penaltyStartDate({
+  const penaltyStartDate({
     super.key,
     required this.width,
     this.height,
@@ -847,7 +847,7 @@ class penaltyStartDate extends StatelessWidget {
             SizedBox(
               height: height ?? 40,
               child: TextFormField(
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
                 controller: TextEditingController(
                   text: controller.startdate.value != null
                       ? DateFormat('yyyy-MM-dd')
@@ -859,10 +859,10 @@ class penaltyStartDate extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Get.theme.primaryTextTheme.titleMedium!
-                      .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
+                      .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide: const BorderSide(color: Color(0xffD9D9D9), width: 2),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -894,7 +894,7 @@ class PenaltyEndDate extends StatelessWidget {
   final double? height;
   final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
 
-  PenaltyEndDate({
+  const PenaltyEndDate({
     super.key,
     required this.width,
     this.height,
@@ -916,7 +916,7 @@ class PenaltyEndDate extends StatelessWidget {
             SizedBox(
               height: height ?? 40,
               child: TextFormField(
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
                 controller: TextEditingController(
                   text: controller.enddate.value != null
                       ? DateFormat('yyyy-MM-dd')
@@ -928,10 +928,10 @@ class PenaltyEndDate extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Get.theme.primaryTextTheme.titleMedium!
-                      .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
+                      .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide: const BorderSide(color: Color(0xffD9D9D9), width: 2),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -963,7 +963,7 @@ class examDate extends StatelessWidget {
   final double? height;
   final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
 
-  examDate({
+  const examDate({
     super.key,
     required this.width,
     this.height,
@@ -984,7 +984,7 @@ class examDate extends StatelessWidget {
             SizedBox(
               height: height ?? 40,
               child: TextFormField(
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
                 controller: TextEditingController(
                   text: controller.dateindex.value != null
                       ? DateFormat('yyyy-MM-dd')
@@ -996,10 +996,10 @@ class examDate extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Get.theme.primaryTextTheme.titleMedium!
-                      .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
+                      .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide: const BorderSide(color: Color(0xffD9D9D9), width: 2),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -1032,7 +1032,7 @@ class EditJoinDateTeacher extends StatelessWidget {
   final double? height;
   final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
 
-  EditJoinDateTeacher({
+  const EditJoinDateTeacher({
     super.key,
     required this.width,
     required this.Uptext,
@@ -1056,10 +1056,10 @@ class EditJoinDateTeacher extends StatelessWidget {
               child: RichText(
                 text: TextSpan(
                   text: Uptext,
-                  style: TextStyle(color: Colors.black, fontSize: 14),
+                  style: const TextStyle(color: Colors.black, fontSize: 14),
                   children: isRequired
                       ? [
-                          TextSpan(
+                          const TextSpan(
                             text: " *",
                             style: TextStyle(color: Colors.red, fontSize: 14),
                           ),
@@ -1071,7 +1071,7 @@ class EditJoinDateTeacher extends StatelessWidget {
             SizedBox(
               height: height ?? 40,
               child: TextFormField(
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
                 controller: TextEditingController(
                   text: controller.Joindate.value != null
                       ? DateFormat('yyyy-MM-dd')
@@ -1083,10 +1083,10 @@ class EditJoinDateTeacher extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Get.theme.textTheme.bodyMedium!
-                      .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
+                      .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide: const BorderSide(color: Color(0xffD9D9D9), width: 2),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -1119,7 +1119,7 @@ class EditBirthDateTeacher extends StatelessWidget {
   final double? height;
   final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
 
-  EditBirthDateTeacher({
+  const EditBirthDateTeacher({
     super.key,
     required this.width,
     required this.Uptext,
@@ -1143,10 +1143,10 @@ class EditBirthDateTeacher extends StatelessWidget {
               child: RichText(
                 text: TextSpan(
                   text: Uptext,
-                  style: TextStyle(color: Colors.black, fontSize: 14),
+                  style: const TextStyle(color: Colors.black, fontSize: 14),
                   children: isRequired
                       ? [
-                          TextSpan(
+                          const TextSpan(
                             text: " *",
                             style: TextStyle(color: Colors.red, fontSize: 14),
                           ),
@@ -1158,7 +1158,7 @@ class EditBirthDateTeacher extends StatelessWidget {
             SizedBox(
               height: height ?? 40,
               child: TextFormField(
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
                 controller: TextEditingController(
                   text: controller.Birthdate.value != null
                       ? DateFormat('yyyy-MM-dd')
@@ -1170,10 +1170,10 @@ class EditBirthDateTeacher extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Get.theme.textTheme.bodyMedium!
-                      .copyWith(fontSize: 14, color: Color(0xffD9D9D9)),
+                      .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide: const BorderSide(color: Color(0xffD9D9D9), width: 2),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),

@@ -15,7 +15,7 @@ class Get_All_Division_API {
     final controller = Get.find<Divisions_Controller>();
     controller.SetIsapiloading(true);
     try {
-      String myurl = "${hostPort}${getAllDivision}";
+      String myurl = "$hostPort$getAllDivision";
       var response = await dio.post(myurl,
           data: {
             'sessionId':sessionId
@@ -25,14 +25,14 @@ class Get_All_Division_API {
        Division_Model allDivisionModel = Division_Model.fromJson(response.data);
        controller.setDivisions(allDivisionModel);
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

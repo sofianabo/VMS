@@ -13,25 +13,25 @@ class School_Data_API {
   BuildContext context;
   Dio dio = Dio();
   School_Data() async {
-    String myURI = "${hostPort}${getSchoolData}";
+    String myURI = "$hostPort$getSchoolData";
     try {
       final controller = Get.find<SchoolInfoController>();
       controller.setIsLoading(true);
       var response = await dio.get(myURI,
           options: getDioOptions());
       if (response.statusCode == 200) {
-        School_Data_Model school_data_model = School_Data_Model.fromJson(response.data);
-        controller.setData(school_data_model.data);
+        School_Data_Model schoolDataModel = School_Data_Model.fromJson(response.data);
+        controller.setData(schoolDataModel.data);
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
       return response.statusCode;
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

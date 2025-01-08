@@ -7,15 +7,15 @@ class Virtual_Employee_Model {
     if (json['viraulUser'] != null) {
       viraulUser = <ViraulUser>[];
       json['viraulUser'].forEach((v) {
-        viraulUser!.add(new ViraulUser.fromJson(v));
+        viraulUser!.add(ViraulUser.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.viraulUser != null) {
-      data['viraulUser'] = this.viraulUser!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (viraulUser != null) {
+      data['viraulUser'] = viraulUser!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -37,11 +37,11 @@ class ViraulUser {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['roll'] = this.roll;
-    data['userName'] = this.userName;
-    data['hasclasses'] = this.hasclasses;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['roll'] = roll;
+    data['userName'] = userName;
+    data['hasclasses'] = hasclasses;
     return data;
   }
 }

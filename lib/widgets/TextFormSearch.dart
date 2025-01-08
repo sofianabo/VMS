@@ -9,7 +9,7 @@ class TextFormSearch extends StatelessWidget {
   final ValueChanged<String>? onchange;
   final VoidCallback? click;
 
-  TextFormSearch({
+  const TextFormSearch({
     super.key,
     required this.controller,
     required this.suffixIcon,
@@ -45,7 +45,7 @@ class TextFormSearch extends StatelessWidget {
             },
             child: Icon(
               suffixIcon,
-              color:  Color(0xffB3B3B3),
+              color:  const Color(0xffB3B3B3),
               size: 16,
             ),
           ),

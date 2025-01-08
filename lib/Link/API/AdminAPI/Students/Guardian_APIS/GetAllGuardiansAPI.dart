@@ -16,20 +16,20 @@ class GetAllGuardiansAPI {
   getAllGuardian() async {
     try {
       c.setIsLoading(true);
-      String myurl = "${hostPort}${getguardians}";
+      String myurl = "$hostPort$getguardians";
       var response = await dio.get(myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         AllGuardianModel classes = AllGuardianModel.fromJson(response.data);
         c.setallGaurdian(classes);
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

@@ -19,7 +19,7 @@ class Studentattendencebyidapi {
     try {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
-      String myurl = "${hostPort}${studentAttendenceById}";
+      String myurl = "$hostPort$studentAttendenceById";
       var response = await dio.post(myurl,
           cancelToken: cancelToken,
           data: {"studentId": id},
@@ -30,14 +30,14 @@ class Studentattendencebyidapi {
         c.setStudentAttendence(st);
         return st;
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

@@ -30,7 +30,7 @@ class Approverequestapi {
       Loading_Dialog(cancelToken: cancelToken);
       int? cID = classControl.Allclass[classid].id;
       int? dID = divisionControl.allDivision[divisionId].id;
-      String myurl = "${hostPort}${acceptARequest}";
+      String myurl = "$hostPort$acceptARequest";
       var response = await dio.post(myurl,
           cancelToken: cancelToken,
           data: {
@@ -46,15 +46,15 @@ class Approverequestapi {
         Get.back();
         await GetAllRequestsapi(context).GetAllRequests();
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
       return response.statusCode;
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

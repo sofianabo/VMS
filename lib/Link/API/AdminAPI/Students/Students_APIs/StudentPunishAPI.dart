@@ -12,7 +12,7 @@ class Studentpunishapi {
   Dio dio = Dio();
   Studentpunish(int penaltyId, String reason, String? startdate,
       String? enddate, int studentId) async {
-    String myurl = "${hostPort}${addStudentPenalty}";
+    String myurl = "$hostPort$addStudentPenalty";
     try {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
@@ -29,15 +29,15 @@ class Studentpunishapi {
 
       if (response.statusCode == 200) {
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
       return response.statusCode;
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

@@ -18,7 +18,7 @@ class Dashboard_API {
   Dio dio = Dio();
 
   initDashboard() async {
-    String myurl = "${hostPort}${dashboard}";
+    String myurl = "$hostPort$dashboard";
     bool isSuccessful = false;
     int retryCount = 0;
     const int maxRetries = 5;

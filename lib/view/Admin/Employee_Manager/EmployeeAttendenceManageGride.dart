@@ -9,7 +9,7 @@ import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class EmployeesAttendanceManagmentGrid extends StatefulWidget {
-  EmployeesAttendanceManagmentGrid({super.key});
+  const EmployeesAttendanceManagmentGrid({super.key});
 
   @override
   State<EmployeesAttendanceManagmentGrid> createState() =>
@@ -45,7 +45,7 @@ class _EmployeesAttendanceManagmentGridState
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           width: Get.width / 3.5,
                                           child: Row(
                                             children: [
@@ -132,7 +132,7 @@ class _EmployeesAttendanceManagmentGridState
                                                               .Employees[index]
                                                           ['status'],
                                                       activeColor:
-                                                          Color(0xff134B70),
+                                                          const Color(0xff134B70),
                                                       onChanged: (value) {
                                                         if (value ==
                                                             "Holiday") {
@@ -162,7 +162,7 @@ class _EmployeesAttendanceManagmentGridState
                                                                       width: 65)
                                                                 ],
                                                                     contents:
-                                                                        Container(
+                                                                        SizedBox(
                                                                       width:
                                                                           500,
                                                                       child:
@@ -197,25 +197,25 @@ class _EmployeesAttendanceManagmentGridState
                                                       style: TextStyle(
                                                         color: status ==
                                                                 'Present'
-                                                            ? Color(0xff2F9742)
+                                                            ? const Color(0xff2F9742)
                                                             : status == 'Truant'
-                                                                ? Color(
+                                                                ? const Color(
                                                                     0xff972F2F)
                                                                 : status ==
                                                                         'Late'
-                                                                    ? Color(
+                                                                    ? const Color(
                                                                         0xff349393)
                                                                     : status ==
                                                                             'Vacation'
-                                                                        ? Color(
+                                                                        ? const Color(
                                                                             0xffB27671)
-                                                                        : Color(
+                                                                        : const Color(
                                                                             0xff134B70),
                                                       ),
                                                     ),
                                                   ],
                                                 ))
-                                            .toList(),
+                                            ,
                                       ],
                                     ),
                                     Divider(
@@ -243,7 +243,7 @@ class _EmployeesAttendanceManagmentGridState
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Container(
+                                SizedBox(
                                   width: Get.width / 3.5,
                                   child: Row(
                                     children: [
@@ -278,7 +278,7 @@ class _EmployeesAttendanceManagmentGridState
                                             SchemaWidget(width: 50, height: 15),
                                           ],
                                         ))
-                                    .toList(),
+                                    ,
                               ],
                             ),
                             Divider(

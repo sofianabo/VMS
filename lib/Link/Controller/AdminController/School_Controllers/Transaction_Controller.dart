@@ -40,7 +40,7 @@ class Transaction_Controller extends GetxController {
       String query, String roll, String Date, String action) {
     List<Transaction> tempFilteredList = List.from(transaction ?? []);
 
-    if (query != null && query.isNotEmpty) {
+    if (query.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((teacher) {
         final empName = teacher.userName?.toLowerCase() ?? '';
         return empName.contains(query.toLowerCase());

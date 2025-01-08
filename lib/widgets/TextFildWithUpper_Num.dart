@@ -9,13 +9,13 @@ class Textfildwithupper_num extends StatelessWidget {
   final String hinttext;
   final Rx<Color> borderColor;
 
-  Textfildwithupper_num({
-    Key? key,
+  const Textfildwithupper_num({
+    super.key,
     required this.Uptext,
     required this.hinttext,
     required this.sessionController,
     required this.borderColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class Textfildwithupper_num extends StatelessWidget {
                   hintText: hinttext,
                   hintStyle: Get.theme.textTheme.bodyMedium!.copyWith(
                     fontSize: 14,
-                    color: Color(0xffB3B3B3),
+                    color: const Color(0xffB3B3B3),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),

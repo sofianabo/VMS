@@ -55,7 +55,7 @@ class DropDownAllStudents extends StatelessWidget {
       }
 
       return Container(
-        padding: EdgeInsets.all(6.0),
+        padding: const EdgeInsets.all(6.0),
         alignment: Alignment.centerLeft,
         width: width,
         height: 40,
@@ -67,13 +67,13 @@ class DropDownAllStudents extends StatelessWidget {
             ? Row(
                 children: [
                   Text(
-                    "$title",
-                    style: TextStyle(color: Colors.grey),
+                    title,
+                    style: const TextStyle(color: Colors.grey),
                   ),
                 ],
               )
             : isLoading == true
-                ? Center(
+                ? const Center(
                     child: SizedBox(
                       width: 20,
                       height: 20,

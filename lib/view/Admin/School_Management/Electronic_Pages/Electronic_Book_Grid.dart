@@ -13,7 +13,7 @@ import 'package:vms_school/widgets/VMSAlertDialog.dart';
 import '../../../../Link/API/AdminAPI/School/School_Screen_APIs/Electronic_Library_API/Delete_Curriculm_API.dart';
 
 class ElectronicBookGrid extends StatelessWidget {
-  ElectronicBookGrid({super.key});
+  const ElectronicBookGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,7 @@ class ElectronicBookGrid extends StatelessWidget {
                               ]),
                           child: Column(
                             children: [
-                              Spacer(),
+                              const Spacer(),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -77,7 +77,7 @@ class ElectronicBookGrid extends StatelessWidget {
                                   )
                                 ],
                               ),
-                              Spacer(),
+                              const Spacer(),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -86,7 +86,7 @@ class ElectronicBookGrid extends StatelessWidget {
                             ],
                           )),
                       Align(
-                          alignment: Alignment(-1.5, 2),
+                          alignment: const Alignment(-1.5, 2),
                           child: Image.asset(
                             "../../images/labrary3d.png",
                             height: 300,
@@ -97,8 +97,8 @@ class ElectronicBookGrid extends StatelessWidget {
                 ).animate(onPlay: (controller) => controller.repeat()).shimmer(
                     angle: 1,
                     color: Colors.grey.withOpacity(0.2),
-                    duration: Duration(seconds: 1),
-                    delay: Duration(seconds: 1));
+                    duration: const Duration(seconds: 1),
+                    delay: const Duration(seconds: 1));
               },
             )
           : control.filteredEbook!.isNotEmpty
@@ -129,7 +129,7 @@ class ElectronicBookGrid extends StatelessWidget {
                       child: GestureDetector(
                         onTap: () {
                           final url =
-                              '${getimage}${control.filteredEbook![index].fileId}';
+                              '$getimage${control.filteredEbook![index].fileId}';
                           downloadFile(url, 'file.pdf');
                         },
                         child: Stack(
@@ -150,7 +150,7 @@ class ElectronicBookGrid extends StatelessWidget {
                                     ]),
                                 child: Column(
                                   children: [
-                                    Spacer(),
+                                    const Spacer(),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -165,20 +165,20 @@ class ElectronicBookGrid extends StatelessWidget {
                                             child: Text(
                                               textAlign: TextAlign.center,
                                               "${control.filteredEbook![index].enName}",
-                                              style: TextStyle(fontSize: 26),
+                                              style: const TextStyle(fontSize: 26),
                                             ),
                                           ),
                                         )
                                       ],
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
                                       children: [
                                         IconButton(
-                                            style: ButtonStyle(
+                                            style: const ButtonStyle(
                                                 backgroundColor:
                                                     WidgetStatePropertyAll(
                                                         Color(0xffB03D3D)),
@@ -202,7 +202,7 @@ class ElectronicBookGrid extends StatelessWidget {
                                                                         index]
                                                                     .id);
                                                       },
-                                                      color: Color(0xffB03D3D),
+                                                      color: const Color(0xffB03D3D),
                                                       width: 80),
                                                   ButtonDialog(
                                                       text: "Cancel",
@@ -213,7 +213,7 @@ class ElectronicBookGrid extends StatelessWidget {
                                                           .theme.primaryColor,
                                                       width: 80)
                                                 ],
-                                                contents: Container(
+                                                contents: SizedBox(
                                                     width: 500,
                                                     child: Row(
                                                       mainAxisAlignment:
@@ -239,14 +239,14 @@ class ElectronicBookGrid extends StatelessWidget {
                                                 subtitle: "none",
                                               ));
                                             },
-                                            icon: Icon(VMS_Icons.bin,
+                                            icon: const Icon(VMS_Icons.bin,
                                                 size: 16, color: Colors.white)),
                                       ],
                                     )
                                   ],
                                 )),
                             Align(
-                                alignment: Alignment(-1.5, 2),
+                                alignment: const Alignment(-1.5, 2),
                                 child: Image.asset("../../images/labrary3d.png",
                                     height: 300)),
                           ],

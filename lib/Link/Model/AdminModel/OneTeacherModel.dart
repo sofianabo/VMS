@@ -5,14 +5,14 @@ class Oneteachermodel {
 
   Oneteachermodel.fromJson(Map<String, dynamic> json) {
     teacher = json['Teacher'] != null
-        ? new TeacherById.fromJson(json['Teacher'])
+        ? TeacherById.fromJson(json['Teacher'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.teacher != null) {
-      data['Teacher'] = this.teacher!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (teacher != null) {
+      data['Teacher'] = teacher!.toJson();
     }
     return data;
   }
@@ -125,40 +125,40 @@ class TeacherById {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['imageId'] = this.imageId;
-    data['firstName'] = this.firstName;
-    data['lastName'] = this.lastName;
-    data['fatherName'] = this.fatherName;
-    data['motherName'] = this.motherName;
-    data['gender'] = this.gender;
-    data['birthDate'] = this.birthDate;
-    data['joinDate'] = this.joinDate;
-    data['phone'] = this.phone;
-    data['emergencyNumber'] = this.emergencyNumber;
-    data['familystatus'] = this.familystatus;
-    data['currentAddress'] = this.currentAddress;
-    data['address'] = this.address;
-    data['qualification'] = this.qualification;
-    data['experience'] = this.experience;
-    data['note'] = this.note;
-    data['contractType'] = this.contractType;
-    data['bankAccountTitle'] = this.bankAccountTitle;
-    data['bankName'] = this.bankName;
-    data['bankBranchName'] = this.bankBranchName;
-    data['bankAccountNumber'] = this.bankAccountNumber;
-    data['IFSCCode'] = this.iFSCCode;
-    data['facebookUrl'] = this.facebookUrl;
-    data['twitterUrl'] = this.twitterUrl;
-    data['lenkedinUrl'] = this.lenkedinUrl;
-    data['instagramUrl'] = this.instagramUrl;
-    data['careerHistory'] = this.careerHistory;
-    data['jobTitle'] = this.jobTitle;
-    data['salary'] = this.salary;
-    data['email'] = this.email;
-    data['userName'] = this.userName;
-    data['roll'] = this.roll;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['imageId'] = imageId;
+    data['firstName'] = firstName;
+    data['lastName'] = lastName;
+    data['fatherName'] = fatherName;
+    data['motherName'] = motherName;
+    data['gender'] = gender;
+    data['birthDate'] = birthDate;
+    data['joinDate'] = joinDate;
+    data['phone'] = phone;
+    data['emergencyNumber'] = emergencyNumber;
+    data['familystatus'] = familystatus;
+    data['currentAddress'] = currentAddress;
+    data['address'] = address;
+    data['qualification'] = qualification;
+    data['experience'] = experience;
+    data['note'] = note;
+    data['contractType'] = contractType;
+    data['bankAccountTitle'] = bankAccountTitle;
+    data['bankName'] = bankName;
+    data['bankBranchName'] = bankBranchName;
+    data['bankAccountNumber'] = bankAccountNumber;
+    data['IFSCCode'] = iFSCCode;
+    data['facebookUrl'] = facebookUrl;
+    data['twitterUrl'] = twitterUrl;
+    data['lenkedinUrl'] = lenkedinUrl;
+    data['instagramUrl'] = instagramUrl;
+    data['careerHistory'] = careerHistory;
+    data['jobTitle'] = jobTitle;
+    data['salary'] = salary;
+    data['email'] = email;
+    data['userName'] = userName;
+    data['roll'] = roll;
     return data;
   }
 }

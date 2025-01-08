@@ -16,7 +16,7 @@ class Getsessionapi {
 
   Getsession() async {
     try {
-      String myurl = "${hostPort}${getSession}";
+      String myurl = "$hostPort$getSession";
       var response = await dio.get(myurl,
 options: getDioOptions());
       if (response.statusCode == 200) {
@@ -24,14 +24,14 @@ options: getDioOptions());
         c.setSession(session);
         return session;
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

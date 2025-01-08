@@ -74,7 +74,7 @@ class Section1 extends StatelessWidget {
                                   width: w / 6.808,
                                   decoration:  BoxDecoration(
                                       color: Get.theme.primaryColor,
-                                      borderRadius: BorderRadius.only(
+                                      borderRadius: const BorderRadius.only(
                                           topRight: Radius.circular(11),
                                           bottomRight: Radius.circular(11))),
                                   alignment: Alignment.center,
@@ -118,7 +118,7 @@ class Section1 extends StatelessWidget {
                                   height: h / 5.7,
                                   width: w / 12.8,
                                   decoration: BoxDecoration(
-                                      color: Color(0xffFFFDFB),
+                                      color: const Color(0xffFFFDFB),
                                       borderRadius: BorderRadius.circular(21),
                                       border: Border.all(
                                         color: Colors.grey,

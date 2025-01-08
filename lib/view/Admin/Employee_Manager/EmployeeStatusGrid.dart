@@ -14,7 +14,7 @@ import '../../../widgets/GridAnimation.dart';
 import '../../../widgets/VMSAlertDialog.dart';
 
 class EmpolyeeStatusGrid extends StatefulWidget {
-  EmpolyeeStatusGrid({super.key});
+  const EmpolyeeStatusGrid({super.key});
 
   @override
   State<EmpolyeeStatusGrid> createState() => _EmpolyeeStatusGridState();
@@ -49,7 +49,7 @@ class _EmpolyeeStatusGridState extends State<EmpolyeeStatusGrid> {
                               GetBuilder<Oneemployeeattendencecontroller>(
                             builder: (oneControl) {
                               return VMSAlertDialog(
-                                action: [Text("")],
+                                action: [const Text("")],
                                 contents: SizedBox(
                                   width: 600,
                                   height: Get.height,
@@ -180,26 +180,26 @@ class _EmpolyeeStatusGridState extends State<EmpolyeeStatusGrid> {
                                                             index]
                                                         .status ==
                                                     "Present"
-                                                ? Color(0xff2F9742)
+                                                ? const Color(0xff2F9742)
                                                 : controller
                                                             .filteredreemployees[
                                                                 index]
                                                             .status ==
                                                         "Truant"
-                                                    ? Color(0xff972F2F)
+                                                    ? const Color(0xff972F2F)
                                                     : controller
                                                                 .filteredreemployees[
                                                                     index]
                                                                 .status ==
                                                             "Vacation"
-                                                        ? Color(0xffB27671)
+                                                        ? const Color(0xffB27671)
                                                         : controller
                                                                     .filteredreemployees[
                                                                         index]
                                                                     .status ==
                                                                 "Late"
-                                                            ? Color(0xff349393)
-                                                            : Color(
+                                                            ? const Color(0xff349393)
+                                                            : const Color(
                                                                 0xff134B70))),
                                 Text(
                                     "${controller.filteredreemployees[index].jobTitle}",
@@ -262,8 +262,8 @@ class _EmpolyeeStatusGridState extends State<EmpolyeeStatusGrid> {
             ).animate(onPlay: (controller) => controller.repeat()).shimmer(
               angle: 1,
               color: Colors.grey.withOpacity(0.2),
-              duration: Duration(seconds: 1),
-              delay: Duration(seconds: 1));
+              duration: const Duration(seconds: 1),
+              delay: const Duration(seconds: 1));
     });
   }
 }

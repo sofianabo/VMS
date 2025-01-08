@@ -23,7 +23,7 @@ class TextFieldAuth extends StatelessWidget {
         controller: controller,
         decoration: InputDecoration(
           hintText: hinttext,
-          hintStyle: TextStyle(
+          hintStyle: const TextStyle(
             fontSize: 12,
             color: Colors.grey
           ),

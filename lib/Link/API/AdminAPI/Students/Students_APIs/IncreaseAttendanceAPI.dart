@@ -25,7 +25,7 @@ class IncreaseAttendanceAPI {
 
       controller.setIsLoading(true);
       controller.setIsUploded(false,"Attendance Today Has Been Uploaded");
-      String myurl = "${hostPort}${studentsAttendance}";
+      String myurl = "$hostPort$studentsAttendance";
       var response = await dio.post(
           data: {
             "gradeId":gradeid,
@@ -43,15 +43,15 @@ class IncreaseAttendanceAPI {
         controller.setIsUploded(true,"Attendance Today Has Been Uploaded");
       }
       else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
 
-      if (e is DioError) {
+      if (e is DioException) {
        if( e.response?.statusCode == 404){
 
          controller.setIsLoading(false);

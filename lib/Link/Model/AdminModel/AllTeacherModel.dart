@@ -7,15 +7,15 @@ class AllTeacherModel {
     if (json['Teachers'] != null) {
       teachers = <Teachers>[];
       json['Teachers'].forEach((v) {
-        teachers!.add(new Teachers.fromJson(v));
+        teachers!.add(Teachers.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.teachers != null) {
-      data['Teachers'] = this.teachers!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (teachers != null) {
+      data['Teachers'] = teachers!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -61,13 +61,13 @@ class Teachers {
     if (json['classes'] != null) {
       classes = <Classes>[];
       json['classes'].forEach((v) {
-        classes!.add(new Classes.fromJson(v));
+        classes!.add(Classes.fromJson(v));
       });
     }
     if (json['subject'] != null) {
       subject = <Subject>[];
       json['subject'].forEach((v) {
-        subject!.add(new Subject.fromJson(v));
+        subject!.add(Subject.fromJson(v));
       });
     }
     hasEmployee = json['hasEmployee'];
@@ -75,23 +75,23 @@ class Teachers {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['contractType'] = this.contractType;
-    data['gender'] = this.gender;
-    data['phone'] = this.phone;
-    data['imageId'] = this.imageId;
-    data['jobTitle'] = this.jobTitle;
-    data['fullName'] = this.fullName;
-    data['hoursCount'] = this.hoursCount;
-    if (this.classes != null) {
-      data['classes'] = this.classes!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['contractType'] = contractType;
+    data['gender'] = gender;
+    data['phone'] = phone;
+    data['imageId'] = imageId;
+    data['jobTitle'] = jobTitle;
+    data['fullName'] = fullName;
+    data['hoursCount'] = hoursCount;
+    if (classes != null) {
+      data['classes'] = classes!.map((v) => v.toJson()).toList();
     }
-    if (this.subject != null) {
-      data['subject'] = this.subject!.map((v) => v.toJson()).toList();
+    if (subject != null) {
+      data['subject'] = subject!.map((v) => v.toJson()).toList();
     }
-    data['hasEmployee'] = this.hasEmployee;
-    data['email'] = this.email;
+    data['hasEmployee'] = hasEmployee;
+    data['email'] = email;
     return data;
   }
 }
@@ -110,10 +110,10 @@ class Classes {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['enName'] = this.enName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['enName'] = enName;
     return data;
   }
 }
@@ -132,10 +132,10 @@ class Subject {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['enName'] = this.enName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['enName'] = enName;
     return data;
   }
 }

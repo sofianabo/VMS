@@ -11,7 +11,7 @@ import 'package:vms_school/widgets/TextFildWithUpper_Num.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class SessionManagement extends StatefulWidget {
-  SessionManagement({super.key});
+  const SessionManagement({super.key});
 
   @override
   State<SessionManagement> createState() => _SessionManagementState();
@@ -33,7 +33,7 @@ class _SessionManagementState extends State<SessionManagement> {
         child: Column(
       children: [
         Container(
-          margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -41,7 +41,7 @@ class _SessionManagementState extends State<SessionManagement> {
             children: [
               Row(
                 children: [
-                  Spacer(),
+                  const Spacer(),
                   Container(
                     width: 40,
                     height: 40,
@@ -55,7 +55,7 @@ class _SessionManagementState extends State<SessionManagement> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style: ButtonStyle(
+                        style: const ButtonStyle(
                             backgroundColor:
                                 WidgetStatePropertyAll(Color(0xffF9F8FD)),
                             shape: WidgetStatePropertyAll(
@@ -89,7 +89,7 @@ class _SessionManagementState extends State<SessionManagement> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           width: 220,
                                           child: Textfildwithupper_num(
                                             Uptext: "Study Year",
@@ -134,8 +134,8 @@ class _SessionManagementState extends State<SessionManagement> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,
                                           children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
+                                            const Padding(
+                                              padding: EdgeInsets.only(
                                                   bottom: 5.0),
                                               child: Text("Start Date"),
                                             ),
@@ -154,8 +154,8 @@ class _SessionManagementState extends State<SessionManagement> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
                                             children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
+                                              const Padding(
+                                                padding: EdgeInsets.only(
                                                     bottom: 5.0),
                                                 child: Text("End Date"),
                                               ),
@@ -192,7 +192,7 @@ class _SessionManagementState extends State<SessionManagement> {
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                          style: ButtonStyle(
+                          style: const ButtonStyle(
                               backgroundColor:
                                   WidgetStatePropertyAll(Color(0xffF9F8FD)),
                               shape: WidgetStatePropertyAll(
@@ -217,7 +217,7 @@ class _SessionManagementState extends State<SessionManagement> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style: ButtonStyle(
+                        style: const ButtonStyle(
                             backgroundColor:
                                 WidgetStatePropertyAll(Color(0xffF9F8FD)),
                             shape: WidgetStatePropertyAll(

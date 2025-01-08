@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 class LanguageSwitcher extends StatefulWidget {
   final Function(bool) onLanguageToggle; // دالة للتعامل مع تغيير اللغة
 
-  const LanguageSwitcher({Key? key, required this.onLanguageToggle}) : super(key: key);
+  const LanguageSwitcher({super.key, required this.onLanguageToggle});
 
   @override
   _LanguageSwitcherState createState() => _LanguageSwitcherState();

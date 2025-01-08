@@ -19,7 +19,7 @@ class Add_Subject_API {
     try {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
-      String myurl = "${hostPort}${addSubject}";
+      String myurl = "$hostPort$addSubject";
       var response = await dio.post(
           cancelToken: cancelToken,
           myurl,
@@ -31,14 +31,14 @@ class Add_Subject_API {
       if (response.statusCode == 200) {
         Get_Subject_Screen_API(context).Get_Subject_Screen();
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

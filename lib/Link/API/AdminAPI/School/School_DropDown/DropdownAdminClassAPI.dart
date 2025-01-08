@@ -15,21 +15,21 @@ class Get_Admin_Class_API {
     try {
       final controller = Get.find<Virtual_Employee_Controller>();
       controller.SetIsLoading(true);
-      String myurl = "${hostPort}${getClassUser}";
+      String myurl = "$hostPort$getClassUser";
       var response = await dio.get(myurl,
           options: getDioOptions());
       if (response.statusCode == 200) {
         viraul_Classes_Model vcm = viraul_Classes_Model.fromJson(response.data);
         controller.SetVirtualClass(vcm);
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);
