@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/DeleteTeacherAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetTeacherById.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
@@ -217,8 +219,54 @@ class TeacherManagementGrid extends StatelessWidget {
                                     },
                                     icon: const Icon(VMS_Icons.bin,
                                         size: 16, color: Colors.white)),
-                                Image.asset("../../images/Rectangle66.png",
-                                    height: 100, width: 100),
+                                FutureBuilder(
+                                  future: precacheImage(
+                                      NetworkImage(
+                                          "$getimage${control.filteredTeacher![index].imageId}"),
+                                      context),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.done) {
+                                      return CircleAvatar(
+                                        maxRadius: 60,
+                                        backgroundColor:
+                                            const Color(0xffC4C4C4),
+                                        backgroundImage: control
+                                                    .filteredTeacher![index]
+                                                    .imageId !=
+                                                null
+                                            ? NetworkImage(
+                                                "$getimage${control.filteredTeacher![index].imageId}")
+                                            : null,
+                                        child: control.filteredTeacher![index]
+                                                    .imageId ==
+                                                null
+                                            ? Text(
+                                                control.filteredTeacher![index]
+                                                    .fullName!
+                                                    .substring(0, 1)
+                                                    .toUpperCase(),
+                                                style: Get.textTheme.titleLarge!
+                                                    .copyWith(
+                                                        fontSize: 26,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                              )
+                                            : null,
+                                      );
+                                    } else {
+                                      return CircleAvatar(
+                                        maxRadius: 60,
+                                        backgroundColor:
+                                            const Color(0xffC4C4C4),
+                                        child: LoadingAnimationWidget.inkDrop(
+                                          color: Theme.of(context).primaryColor,
+                                          size: 30,
+                                        ),
+                                      );
+                                    }
+                                  },
+                                ),
                               ],
                             ),
                             Padding(

@@ -150,13 +150,12 @@ class _ExamTableState extends State<ExamTable> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       const Padding(
-                                        padding:
-                                            EdgeInsets.only(top: 15.0),
+                                        padding: EdgeInsets.only(top: 15.0),
                                         child: Row(
                                           children: [
                                             Padding(
-                                              padding: EdgeInsets.only(
-                                                  right: 15.0),
+                                              padding:
+                                                  EdgeInsets.only(right: 15.0),
                                               child: DropDownexamTable(
                                                   title: "Class",
                                                   width: 220,
@@ -170,8 +169,7 @@ class _ExamTableState extends State<ExamTable> {
                                         ),
                                       ),
                                       const Padding(
-                                        padding:
-                                            EdgeInsets.only(top: 15.0),
+                                        padding: EdgeInsets.only(top: 15.0),
                                         child: Row(
                                           children: [
                                             Padding(
@@ -318,7 +316,7 @@ class _ExamTableState extends State<ExamTable> {
                       ]),
                       child: DataTable(
                         headingRowColor:
-                            const WidgetStatePropertyAll(Colors.blueGrey),
+                            const WidgetStatePropertyAll(Colors.white),
                         border: TableBorder.all(
                           color: Colors.grey,
                           width: 1.0,
@@ -326,20 +324,19 @@ class _ExamTableState extends State<ExamTable> {
                         columns: const [
                           DataColumn(
                             label: Text(
-                              "Class",
-                              textAlign: TextAlign.center,
+                              "",
                             ),
                           ),
-                          DataColumn(label: Text('Type')),
-                          DataColumn(label: Text('Curriculum Name')),
-                          DataColumn(label: Text('Date')),
-                          DataColumn(label: Text('Period')),
-                          DataColumn(label: Text('Max Mark')),
+                          DataColumn(label: Text('')),
+                          DataColumn(label: Text('')),
+                          DataColumn(label: Text('')),
+                          DataColumn(label: Text('')),
+                          DataColumn(label: Text('')),
                           DataColumn(
-                            label: Text('Passing Mark'),
+                            label: Text(''),
                           ),
                           DataColumn(
-                            label: Text('Operations'),
+                            label: Text(''),
                           ),
                         ],
                         rows: List.generate(
