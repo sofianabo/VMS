@@ -42,7 +42,7 @@ class AddFullEmployee {
     String? Experience,
     String? Note,
   }) async {
-    String myURI = "${hostPort}${addFullEmployee}";
+    String myURI = "$hostPort$addFullEmployee";
     CancelToken cancelToken = CancelToken();
 
     Loading_Dialog(cancelToken: cancelToken);
@@ -97,14 +97,14 @@ class AddFullEmployee {
         gets.Get.find<Allempolyeecontroller>().SetDefualtValue();
         await Get_All_Employee_API.Get_All_Employee();
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

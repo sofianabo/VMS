@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:vms_school/Link/Model/AdminModel/Dashboard_Model.dart';
 
 class BarChartSample1 extends StatefulWidget {
-  BarChartSample1({Key? key, required this.data, required this.headerText})
-      : super(key: key);
+  BarChartSample1({super.key, required this.data, required this.headerText});
 
   final List<Map<String, dynamic>> data;
   final String headerText;
   final Color barBackgroundColor = Colors.black.withOpacity(0.3);
-  final Color barColor = Color(0xff134B70);
-  final Color touchedBarColor = Color(0xff3E8F98);
+  final Color barColor = const Color(0xff134B70);
+  final Color touchedBarColor = const Color(0xff3E8F98);
 
   @override
   State<StatefulWidget> createState() => BarChartSample1State();
@@ -32,11 +31,11 @@ class BarChartSample1State extends State<BarChartSample1> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                icon: Icon(Icons.arrow_back, size: 20),
+                icon: const Icon(Icons.arrow_back, size: 20),
                 onPressed: () {
                   _scrollController.animateTo(
                     _scrollController.offset - 50,
-                    duration: Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 300),
                     curve: Curves.easeInOut,
                   );
                 },
@@ -49,11 +48,11 @@ class BarChartSample1State extends State<BarChartSample1> {
                 ),
               ),
               IconButton(
-                icon: Icon(Icons.arrow_forward, size: 20),
+                icon: const Icon(Icons.arrow_forward, size: 20),
                 onPressed: () {
                   _scrollController.animateTo(
                     _scrollController.offset + 50,
-                    duration: Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 300),
                     curve: Curves.easeInOut,
                   );
                 },
@@ -152,12 +151,12 @@ class BarChartSample1State extends State<BarChartSample1> {
         },
       ),
       titlesData: FlTitlesData(
-        topTitles: AxisTitles(
+        topTitles: const AxisTitles(
           sideTitles: SideTitles(
             showTitles: false,
           ),
         ),
-        rightTitles: AxisTitles(
+        rightTitles: const AxisTitles(
           sideTitles: SideTitles(
             showTitles: false,
           ),
@@ -222,14 +221,13 @@ List<Map<String, dynamic>> convertNumberOfStudentsThisYearToWidgetData(
 }
 
 class BarChartSample2 extends StatefulWidget {
-  BarChartSample2({Key? key, required this.data, required this.headerText})
-      : super(key: key);
+  BarChartSample2({super.key, required this.data, required this.headerText});
 
   final List<Map<String, dynamic>> data;
   final String headerText;
   final Color barBackgroundColor = Colors.black.withOpacity(0.3);
-  final Color barColor = Color(0xff3E8F98);
-  final Color touchedBarColor = Color(0xff134B70);
+  final Color barColor = const Color(0xff3E8F98);
+  final Color touchedBarColor = const Color(0xff134B70);
 
   @override
   State<StatefulWidget> createState() => BarChartSample2State();
@@ -251,11 +249,11 @@ class BarChartSample2State extends State<BarChartSample2> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                icon: Icon(Icons.arrow_back, size: 20),
+                icon: const Icon(Icons.arrow_back, size: 20),
                 onPressed: () {
                   _scrollController.animateTo(
                     _scrollController.offset - 50,
-                    duration: Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 300),
                     curve: Curves.easeInOut,
                   );
                 },
@@ -268,11 +266,11 @@ class BarChartSample2State extends State<BarChartSample2> {
                 ),
               ),
               IconButton(
-                icon: Icon(Icons.arrow_forward, size: 20),
+                icon: const Icon(Icons.arrow_forward, size: 20),
                 onPressed: () {
                   _scrollController.animateTo(
                     _scrollController.offset + 50,
-                    duration: Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 300),
                     curve: Curves.easeInOut,
                   );
                 },
@@ -371,12 +369,12 @@ class BarChartSample2State extends State<BarChartSample2> {
         },
       ),
       titlesData: FlTitlesData(
-        topTitles: AxisTitles(
+        topTitles: const AxisTitles(
           sideTitles: SideTitles(
             showTitles: false,
           ),
         ),
-        rightTitles: AxisTitles(
+        rightTitles: const AxisTitles(
           sideTitles: SideTitles(
             showTitles: false,
           ),

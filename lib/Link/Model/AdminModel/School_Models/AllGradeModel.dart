@@ -7,15 +7,15 @@ class AllGradesModel {
     if (json['grades'] != null) {
       grades = <Grades>[];
       json['grades'].forEach((v) {
-        grades!.add(new Grades.fromJson(v));
+        grades!.add(Grades.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.grades != null) {
-      data['grades'] = this.grades!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (grades != null) {
+      data['grades'] = grades!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -39,12 +39,12 @@ class Grades {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['enName'] = this.enName;
-    data['feeCount'] = this.feeCount;
-    data['hasStudent'] = this.hasStudent;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['enName'] = enName;
+    data['feeCount'] = feeCount;
+    data['hasStudent'] = hasStudent;
     return data;
   }
 }

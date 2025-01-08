@@ -6,7 +6,7 @@ import 'package:vms_school/view/Admin/Dashboard/Dashboard_Second_Side.dart';
 import 'package:vms_school/view/Admin/Dashboard/Dashboard_third_Row.dart';
 
 class AdminDashboard extends StatefulWidget {
-  AdminDashboard({super.key});
+  const AdminDashboard({super.key});
 
   @override
   State<AdminDashboard> createState() => _AdminDashboardState();
@@ -37,13 +37,13 @@ class _AdminDashboardState extends State<AdminDashboard> {
                   flex: 6,
                   child: Column(
                     children: [
-                      DashboardFirstRow(),
-                      DashboardSecondRow(),
+                      const DashboardFirstRow(),
+                      const DashboardSecondRow(),
                       DashboardThirdRow(),
                     ],
                   ),
                 ),
-                Expanded(
+                const Expanded(
                   flex: 1,
                   child: Column(
                     children: [

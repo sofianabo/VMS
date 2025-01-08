@@ -12,7 +12,7 @@ import 'package:vms_school/widgets/TextFormSearch.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class ElectronicBook extends StatefulWidget {
-  ElectronicBook({super.key});
+  const ElectronicBook({super.key});
 
   @override
   State<ElectronicBook> createState() => _ElectronicBookState();
@@ -36,7 +36,7 @@ class _ElectronicBookState extends State<ElectronicBook> {
         child: Column(
       children: [
         Container(
-          margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -67,7 +67,7 @@ class _ElectronicBookState extends State<ElectronicBook> {
                       }),
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Row(
                     children: [
                       Container(
@@ -83,7 +83,7 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                   blurRadius: 1)
                             ]),
                         child: IconButton(
-                            style: ButtonStyle(
+                            style: const ButtonStyle(
                                 shape: WidgetStatePropertyAll(
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
@@ -119,10 +119,10 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                                 controller.pickPDFFile();
                                               },
                                               child: AnimatedContainer(
-                                                duration: Duration(milliseconds: 500),
+                                                duration: const Duration(milliseconds: 500),
                                                 decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                                                  border: Border.all(color: Color(0xffD9D9D9)),
+                                                  borderRadius: const BorderRadius.all(Radius.circular(5)),
+                                                  border: Border.all(color: const Color(0xffD9D9D9)),
                                                   color: controller.isHoveringFile ? Get.theme.primaryColor : Colors.white,
                                                 ),
                                                 alignment: Alignment.center,
@@ -166,7 +166,7 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                                         textAlign: TextAlign.center,
                                                         controller.fileStatus,
                                                         style: TextStyle(
-                                                          color: controller.isHoveringFile ? Colors.white : Color(0xffCBBFBF),
+                                                          color: controller.isHoveringFile ? Colors.white : const Color(0xffCBBFBF),
                                                         ),
                                                       ),
                                                     ),
@@ -221,7 +221,7 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                     blurRadius: 1)
                               ]),
                           child: IconButton(
-                              style: ButtonStyle(
+                              style: const ButtonStyle(
                                   shape: WidgetStatePropertyAll(
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
@@ -246,7 +246,7 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                     blurRadius: 1)
                               ]),
                           child: IconButton(
-                              style: ButtonStyle(
+                              style: const ButtonStyle(
                                   shape: WidgetStatePropertyAll(
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(

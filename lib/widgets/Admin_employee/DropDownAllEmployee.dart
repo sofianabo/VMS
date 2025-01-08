@@ -9,12 +9,12 @@ class Dropdownallemployee extends StatelessWidget {
   final Color? color;
 
   const Dropdownallemployee({
-    Key? key,
+    super.key,
     required this.title,
     this.color,
     required this.width,
     required this.type,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -68,13 +68,13 @@ class Dropdownallemployee extends StatelessWidget {
 
 
       return Container(
-        padding: EdgeInsets.all(6.0),
+        padding: const EdgeInsets.all(6.0),
         alignment: Alignment.centerLeft,
         width: width,
         height: 40,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          border: Border.all(color: color ?? Color(0xffD9D9D9)),
+          border: Border.all(color: color ?? const Color(0xffD9D9D9)),
         ),
         child: Row(
           children: [

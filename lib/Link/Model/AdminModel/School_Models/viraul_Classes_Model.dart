@@ -7,16 +7,16 @@ class viraul_Classes_Model {
     if (json['viraulClasses'] != null) {
       viraulClasses = <ViraulClasses>[];
       json['viraulClasses'].forEach((v) {
-        viraulClasses!.add(new ViraulClasses.fromJson(v));
+        viraulClasses!.add(ViraulClasses.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.viraulClasses != null) {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (viraulClasses != null) {
       data['viraulClasses'] =
-          this.viraulClasses!.map((v) => v.toJson()).toList();
+          viraulClasses!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -34,9 +34,9 @@ class ViraulClasses {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['userName'] = this.userName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['userName'] = userName;
     return data;
   }
 }

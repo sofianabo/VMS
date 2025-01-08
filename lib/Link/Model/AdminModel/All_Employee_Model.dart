@@ -7,15 +7,15 @@ class AllEmployeeModel {
     if (json['employees'] != null) {
       employees = <Employees>[];
       json['employees'].forEach((v) {
-        employees!.add(new Employees.fromJson(v));
+        employees!.add(Employees.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.employees != null) {
-      data['employees'] = this.employees!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (employees != null) {
+      data['employees'] = employees!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -56,16 +56,16 @@ class Employees {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['imageId'] = this.imageId;
-    data['jobTitle'] = this.jobTitle;
-    data['salary'] = this.salary;
-    data['fullName'] = this.fullName;
-    data['hasEmployee'] = this.hasEmployee;
-    data['email'] = this.email;
-    data['userName'] = this.userName;
-    data['roll'] = this.roll;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['imageId'] = imageId;
+    data['jobTitle'] = jobTitle;
+    data['salary'] = salary;
+    data['fullName'] = fullName;
+    data['hasEmployee'] = hasEmployee;
+    data['email'] = email;
+    data['userName'] = userName;
+    data['roll'] = roll;
     return data;
   }
 }

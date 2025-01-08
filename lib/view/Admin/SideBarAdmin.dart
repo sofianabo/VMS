@@ -6,7 +6,7 @@ import 'package:vms_school/view/Admin/SideBar_Path.dart';
 import '../../widgets/SidbarAnimation.dart';
 
 class SideBarAdmin extends StatelessWidget {
-  SideBarAdmin({super.key});
+  const SideBarAdmin({super.key});
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
@@ -26,7 +26,7 @@ class SideBarAdmin extends StatelessWidget {
                 onTap: () {
                   cont.updateContent("Dashboard");
                 },
-                child: Icon(
+                child: const Icon(
                   VMS_Icons.a1,
                   size: 18,
                   color: Colors.white,
@@ -66,13 +66,13 @@ class SideBarAdmin extends StatelessWidget {
                     },
                     itemBuilder: (BuildContext context) =>
                         <PopupMenuEntry<String>>[
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'Exam Table',
                         child: Text(
                           'Exam Table',
                         ),
                       ),
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'School Time Table',
                         child: Text(
                           'School Time Table',
@@ -111,31 +111,31 @@ class SideBarAdmin extends StatelessWidget {
                     },
                     itemBuilder: (BuildContext context) =>
                         <PopupMenuEntry<String>>[
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'All Students',
                         child: Text(
                           'All Students',
                         ),
                       ),
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'Study Year Students',
                         child: Text(
                           'Study Year Students',
                         ),
                       ),
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'All Guardians',
                         child: Text(
                           'All Guardians',
                         ),
                       ),
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'Student Attendance',
                         child: Text(
                           'Student Attendance',
                         ),
                       ),
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'Students Attendance Managment',
                         child: Text(
                           'Students Attendance Managment',
@@ -168,19 +168,19 @@ class SideBarAdmin extends StatelessWidget {
                     },
                     itemBuilder: (BuildContext context) =>
                         <PopupMenuEntry<String>>[
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'Teacher Management',
                         child: Text(
                           'Teacher Management',
                         ),
                       ),
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'Teacher Status',
                         child: Text(
                           'Teacher Status',
                         ),
                       ),
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'Teacher Attendance Managment',
                         child: Text(
                           'Teacher Attendance Managment',
@@ -216,25 +216,25 @@ class SideBarAdmin extends StatelessWidget {
                     },
                     itemBuilder: (BuildContext context) =>
                         <PopupMenuEntry<String>>[
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'Employee Management',
                         child: Text(
                           'Employee Management',
                         ),
                       ),
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'Employee Attendance',
                         child: Text(
                           'Employee Attendance',
                         ),
                       ),
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'Employee Attendance Manage',
                         child: Text(
                           'Employee Attendance Manage',
                         ),
                       ),
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'Virtual User Management',
                         child: Text(
                           'Virtual User Management',
@@ -276,37 +276,37 @@ class SideBarAdmin extends StatelessWidget {
                     },
                     itemBuilder: (BuildContext context) =>
                         <PopupMenuEntry<String>>[
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'Session Management',
                         child: Text(
                           'Session Management',
                         ),
                       ),
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'Grade Management',
                         child: Text(
                           'Grade Management',
                         ),
                       ),
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'Class Management',
                         child: Text(
                           'Class Management',
                         ),
                       ),
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'Division Management',
                         child: Text(
                           'Division Management',
                         ),
                       ),
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'Subject Management',
                         child: Text(
                           'Subject Management',
                         ),
                       ),
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'Curriculum Management',
                         child: Text(
                           'Curriculum Management',
@@ -345,19 +345,19 @@ class SideBarAdmin extends StatelessWidget {
                     },
                     itemBuilder: (BuildContext context) =>
                         <PopupMenuEntry<String>>[
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'School Data Management',
                         child: Text(
                           'School Data Management',
                         ),
                       ),
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'Electronic Library',
                         child: Text(
                           'Electronic Library',
                         ),
                       ),
-                      PopupMenuItem<String>(
+                      const PopupMenuItem<String>(
                         value: 'Transaction',
                         child: Text(
                           'Transaction',

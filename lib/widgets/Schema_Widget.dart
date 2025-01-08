@@ -23,7 +23,7 @@ class SchemaWidget extends StatelessWidget {
           width: width,
           height: height,
           decoration: BoxDecoration(
-              color: controller.isDarkMode.value == true ? Color(0xff797777) :Color(0xffF3F4F8),
+              color: controller.isDarkMode.value == true ? const Color(0xff797777) :const Color(0xffF3F4F8),
               borderRadius: BorderRadius.all(Radius.circular(radius??2))
           ),
         );

@@ -7,15 +7,15 @@ class AllDivisionModel {
     if (json['division'] != null) {
       division = <Division>[];
       json['division'].forEach((v) {
-        division!.add(new Division.fromJson(v));
+        division!.add(Division.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.division != null) {
-      data['division'] = this.division!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (division != null) {
+      data['division'] = division!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -39,12 +39,12 @@ class Division {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['classId'] = this.classId;
-    data['name'] = this.name;
-    data['enName'] = this.enName;
-    data['meetUrl'] = this.meetUrl;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['classId'] = classId;
+    data['name'] = name;
+    data['enName'] = enName;
+    data['meetUrl'] = meetUrl;
     return data;
   }
 }

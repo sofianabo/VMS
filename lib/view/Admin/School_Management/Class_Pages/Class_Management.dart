@@ -19,7 +19,7 @@ import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class ClassManagement extends StatefulWidget {
-  ClassManagement({super.key});
+  const ClassManagement({super.key});
 
   @override
   State<ClassManagement> createState() => _ClassManagementState();
@@ -47,7 +47,7 @@ class _ClassManagementState extends State<ClassManagement> {
         child: Column(
       children: [
         Container(
-          margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -69,7 +69,7 @@ class _ClassManagementState extends State<ClassManagement> {
                         }
                     )
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Container(
                     width: 40,
                     height: 40,
@@ -83,7 +83,7 @@ class _ClassManagementState extends State<ClassManagement> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style: ButtonStyle(
+                        style: const ButtonStyle(
                             backgroundColor:
                                 WidgetStatePropertyAll(Color(0xffF9F8FD)),
                             shape: WidgetStatePropertyAll(
@@ -134,7 +134,7 @@ class _ClassManagementState extends State<ClassManagement> {
                                             Uptext: "Class En - Name",
                                             hinttext: "Class En - Name"),
                                         Padding(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               left: 15.0,
                                               right: 15.0,
                                               bottom: 15.0),
@@ -156,7 +156,7 @@ class _ClassManagementState extends State<ClassManagement> {
 
 
                                         Padding(
-                                            padding: EdgeInsets.only(
+                                            padding: const EdgeInsets.only(
                                                 left: 15.0, right: 15.0),
                                             child:  TextFieldDialog(
                                                 readonly: true,
@@ -228,7 +228,7 @@ class _ClassManagementState extends State<ClassManagement> {
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                          style: ButtonStyle(
+                          style: const ButtonStyle(
                               backgroundColor:
                                   WidgetStatePropertyAll(Color(0xffF9F8FD)),
                               shape: WidgetStatePropertyAll(
@@ -253,7 +253,7 @@ class _ClassManagementState extends State<ClassManagement> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style: ButtonStyle(
+                        style: const ButtonStyle(
                             backgroundColor:
                                 WidgetStatePropertyAll(Color(0xffF9F8FD)),
                             shape: WidgetStatePropertyAll(

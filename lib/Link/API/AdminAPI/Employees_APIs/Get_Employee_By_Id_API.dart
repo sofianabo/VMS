@@ -34,24 +34,24 @@ class GetEmployeeByIdApi {
       );
 
       if (response.statusCode == 200) {
-        One_Employee_Model one_employee_model = One_Employee_Model.fromJson(response.data);
-        controller.setOneEmployee(one_employee_model);
+        One_Employee_Model oneEmployeeModel = One_Employee_Model.fromJson(response.data);
+        controller.setOneEmployee(oneEmployeeModel);
         Get.back();
         EditEmployee(context, index,employeeID);
         return response.statusCode;
       } else {
 
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
 
-      if (e is DioError && e.type == DioErrorType.cancel) {
+      if (e is DioException && e.type == DioExceptionType.cancel) {
         print("Request canceled");
-      } else if (e is DioError) {
+      } else if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else {
         ErrorHandler.handleException(Exception(e.toString()));

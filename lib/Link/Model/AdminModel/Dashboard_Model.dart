@@ -57,17 +57,17 @@ class DashboardModel {
     if (json['NumberOfStudentsThisYear'] != null) {
       numberOfStudentsThisYear = <NumberOfStudentsThisYear>[];
       json['NumberOfStudentsThisYear'].forEach((v) {
-        numberOfStudentsThisYear!.add(new NumberOfStudentsThisYear.fromJson(v));
+        numberOfStudentsThisYear!.add(NumberOfStudentsThisYear.fromJson(v));
       });
     }
     if (json['NumberOfStudentsPerYear'] != null) {
       numberOfStudentsPerYear = <NumberOfStudentsPerYear>[];
       json['NumberOfStudentsPerYear'].forEach((v) {
-        numberOfStudentsPerYear!.add(new NumberOfStudentsPerYear.fromJson(v));
+        numberOfStudentsPerYear!.add(NumberOfStudentsPerYear.fromJson(v));
       });
     }
     session =
-        json['session'] != null ? new Session.fromJson(json['session']) : null;
+        json['session'] != null ? Session.fromJson(json['session']) : null;
   }
 }
 
@@ -83,9 +83,9 @@ class NumberOfStudentsThisYear {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['countryName'] = this.countryName;
-    data['percent'] = this.percent;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['countryName'] = countryName;
+    data['percent'] = percent;
     return data;
   }
 }
@@ -112,20 +112,20 @@ class Session {
     if (json['sessions'] != null) {
       sessions = <Sessions>[];
       json['sessions'].forEach((v) {
-        sessions!.add(new Sessions.fromJson(v));
+        sessions!.add(Sessions.fromJson(v));
       });
     }
     current =
-        json['current'] != null ? new Sessions.fromJson(json['current']) : null;
+        json['current'] != null ? Sessions.fromJson(json['current']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.sessions != null) {
-      data['sessions'] = this.sessions!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (sessions != null) {
+      data['sessions'] = sessions!.map((v) => v.toJson()).toList();
     }
-    if (this.current != null) {
-      data['current'] = this.current!.toJson();
+    if (current != null) {
+      data['current'] = current!.toJson();
     }
     return data;
   }
@@ -157,13 +157,13 @@ class Sessions {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['year'] = this.year;
-    data['status'] = this.status;
-    data['startDate'] = this.startDate;
-    data['endDate'] = this.endDate;
-    data['hasStudent'] = this.hasStudent;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['year'] = year;
+    data['status'] = status;
+    data['startDate'] = startDate;
+    data['endDate'] = endDate;
+    data['hasStudent'] = hasStudent;
     return data;
   }
 }

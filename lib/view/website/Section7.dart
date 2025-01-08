@@ -9,9 +9,9 @@ class Section7 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 500,
-      color: Color(0xff21245D),
+      color: const Color(0xff21245D),
       margin: const EdgeInsets.only(top: 100),
-      padding: EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.only(top: 20),
       child: Column(
         children: [
           Row(
@@ -21,7 +21,7 @@ class Section7 extends StatelessWidget {
                 children: [
                   Container(
                     padding: const EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(100))),
                     height: 100,
@@ -33,8 +33,8 @@ class Section7 extends StatelessWidget {
                     )
                         .animate(onPlay: (controller) => controller.repeat())
                         .rotate(
-                            duration: Duration(seconds: 10),
-                            delay: Duration(milliseconds: 1)),
+                            duration: const Duration(seconds: 10),
+                            delay: const Duration(milliseconds: 1)),
                   ),
                   const SizedBox(
                     height: 5,
@@ -165,7 +165,7 @@ class Section7 extends StatelessWidget {
                               width: 8,
                             ),
                             Container(
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(50)),
                                     color: Colors.white),
@@ -191,7 +191,7 @@ class Section7 extends StatelessWidget {
                               width: 8,
                             ),
                             Container(
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(50)),
                                     color: Colors.white),
@@ -217,7 +217,7 @@ class Section7 extends StatelessWidget {
                               width: 8,
                             ),
                             Container(
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(50)),
                                     color: Colors.white),
@@ -250,7 +250,7 @@ class Section7 extends StatelessWidget {
               const SizedBox(
                 width: 15,
               ),
-              Icon(
+              const Icon(
                 Icons.location_on_rounded,
                 color: Colors.white,
                 size: 20,
@@ -260,7 +260,7 @@ class Section7 extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
+              const Icon(
                 Icons.copyright_outlined,
                 color: Colors.white,
                 size: 20,

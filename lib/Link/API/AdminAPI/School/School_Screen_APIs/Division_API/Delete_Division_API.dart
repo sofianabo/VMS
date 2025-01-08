@@ -25,7 +25,7 @@ class Delete_Division_API {
     try {
       Loading_Dialog(cancelToken: cancelToken);
       final controller = Get.find<Divisions_Controller>();
-      String myurl = "${hostPort}${deleteDivision}";
+      String myurl = "$hostPort$deleteDivision";
 
       var response = await dio.post(
         data: {
@@ -38,14 +38,14 @@ class Delete_Division_API {
         Get_All_Division_API(context).Get_All_Division(sessionId: Get.find<All_Screen_Sessions_Controller>().sessionId);
         Get.back();
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

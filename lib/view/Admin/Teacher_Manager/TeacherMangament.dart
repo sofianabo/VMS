@@ -19,7 +19,7 @@ import 'package:vms_school/widgets/TextFormSearch.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class TeacherManagement extends StatefulWidget {
-  TeacherManagement({super.key});
+  const TeacherManagement({super.key});
 
   @override
   State<TeacherManagement> createState() => _TeacherManagementState();
@@ -51,7 +51,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
         child: Column(
       children: [
         Container(
-          margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -111,7 +111,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                       ],
                     );
                   }),
-                  Spacer(),
+                  const Spacer(),
                   Row(
                     children: [
                       Container(
@@ -127,7 +127,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                   blurRadius: 1)
                             ]),
                         child: IconButton(
-                            style: ButtonStyle(
+                            style: const ButtonStyle(
                                 backgroundColor:
                                     WidgetStatePropertyAll(Color(0xffF9F8FD)),
                                 shape: WidgetStatePropertyAll(
@@ -234,13 +234,13 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                             ],
                                           ),
                                         ),
-                                        Padding(
+                                        const Padding(
                                           padding:
-                                              const EdgeInsets.only(top: 15.0),
+                                              EdgeInsets.only(top: 15.0),
                                           child: Row(
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets.only(
+                                                padding: EdgeInsets.only(
                                                     right: 15.0),
                                                 child: Dropdownallemployee(
                                                     title: "Gender",
@@ -300,7 +300,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                     blurRadius: 1)
                               ]),
                           child: IconButton(
-                              style: ButtonStyle(
+                              style: const ButtonStyle(
                                   backgroundColor:
                                       WidgetStatePropertyAll(Color(0xffF9F8FD)),
                                   shape: WidgetStatePropertyAll(
@@ -325,7 +325,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                   blurRadius: 1)
                             ]),
                         child: IconButton(
-                            style: ButtonStyle(
+                            style: const ButtonStyle(
                                 backgroundColor:
                                     WidgetStatePropertyAll(Color(0xffF9F8FD)),
                                 shape: WidgetStatePropertyAll(

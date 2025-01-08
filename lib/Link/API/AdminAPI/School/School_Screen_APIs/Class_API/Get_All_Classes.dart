@@ -17,7 +17,7 @@ class Get_All_Classes_API {
 
     try {
       controller.SetIsLoading(true);
-      String myurl = "${hostPort}${getclasses}";
+      String myurl = "$hostPort$getclasses";
       var response = await dio.post(myurl,
           data: {
             "sessionId": sessionID,
@@ -27,14 +27,14 @@ class Get_All_Classes_API {
         Classes_Model allClassModel = Classes_Model.fromJson(response.data);
        controller.SetClasses(allClassModel);
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

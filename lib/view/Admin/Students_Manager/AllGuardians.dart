@@ -11,7 +11,7 @@ import 'package:vms_school/widgets/TextFormSearch.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class AllGuardians extends StatefulWidget {
-  AllGuardians({super.key});
+  const AllGuardians({super.key});
 
   @override
   State<AllGuardians> createState() => _AllGuardiansState();
@@ -48,7 +48,7 @@ class _AllGuardiansState extends State<AllGuardians> {
         child: Column(
       children: [
         Container(
-          margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -80,7 +80,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                       ),
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Row(
                     children: [
                       Container(
@@ -96,7 +96,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                   blurRadius: 1)
                             ]),
                         child: IconButton(
-                            style: ButtonStyle(
+                            style: const ButtonStyle(
                                 shape: WidgetStatePropertyAll(
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
@@ -318,7 +318,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                     blurRadius: 1)
                               ]),
                           child: IconButton(
-                              style: ButtonStyle(
+                              style: const ButtonStyle(
                                   shape: WidgetStatePropertyAll(
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
@@ -343,7 +343,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                     blurRadius: 1)
                               ]),
                           child: IconButton(
-                              style: ButtonStyle(
+                              style: const ButtonStyle(
                                   shape: WidgetStatePropertyAll(
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(

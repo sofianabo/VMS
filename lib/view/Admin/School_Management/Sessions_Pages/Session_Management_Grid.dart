@@ -13,7 +13,7 @@ import 'package:vms_school/widgets/TextFildWithUpper_Num.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class SessionManagementGrid extends StatelessWidget {
-  SessionManagementGrid({super.key});
+  const SessionManagementGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class SessionManagementGrid extends StatelessWidget {
       return control.isLoading == false
           ? GridView.builder(
               padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 5,
                   crossAxisSpacing: 20.0,
                   mainAxisSpacing: 20.0,
@@ -42,21 +42,21 @@ class SessionManagementGrid extends StatelessWidget {
                                         control.updateStatus(index, "Closed");
                                         Get.back();
                                       },
-                                      color: Color(0xff134B70),
+                                      color: const Color(0xff134B70),
                                       width: 120),
                                   ButtonDialog(
                                       text: "Cansel",
                                       onPressed: () {
                                         Get.back();
                                       },
-                                      color: Color(0xffB03D3D),
+                                      color: const Color(0xffB03D3D),
                                       width: 120),
                                 ],
-                                contents: Container(
+                                contents: SizedBox(
                                     width: 400,
                                     child: Text(
                                       "Close ${control.Sessionss[index]['name']}",
-                                      style: TextStyle(fontSize: 16),
+                                      style: const TextStyle(fontSize: 16),
                                     )),
                                 apptitle: "Close Session",
                                 subtitle: "none"));
@@ -84,7 +84,7 @@ class SessionManagementGrid extends StatelessWidget {
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color:
-                                            Color(0xff134B70).withOpacity(0.2),
+                                            const Color(0xff134B70).withOpacity(0.2),
                                         fontWeight: FontWeight.bold,
                                         fontSize: 60),
                                   ),
@@ -108,8 +108,8 @@ class SessionManagementGrid extends StatelessWidget {
                                           color: control.Sessionss[index]
                                                       ['status'] ==
                                                   "Closed"
-                                              ? Color(0xffB03D3D)
-                                              : Color(0xff2F9742),
+                                              ? const Color(0xffB03D3D)
+                                              : const Color(0xff2F9742),
                                         )),
                                     Row(
                                       children: [
@@ -156,7 +156,7 @@ class SessionManagementGrid extends StatelessWidget {
                               children: [
                                 _iconButton(
                                   iconData: VMS_Icons.bin,
-                                  color: Color(0xffB03D3D),
+                                  color: const Color(0xffB03D3D),
                                   onPressed: () {
                                     Get.dialog(
                                       VMSAlertDialog(
@@ -171,7 +171,7 @@ class SessionManagementGrid extends StatelessWidget {
                                                             control.Sessionss[
                                                                 index]['id']);
                                               },
-                                              color: Color(0xffB03D3D),
+                                              color: const Color(0xffB03D3D),
                                               width: 120),
                                           ButtonDialog(
                                               text: "Cancel",
@@ -182,11 +182,11 @@ class SessionManagementGrid extends StatelessWidget {
                                         contents: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            Container(
+                                            SizedBox(
                                               width: 400,
                                               child: Text(
                                                 "Do You Want To Delete (${control.Sessionss[index]['name']}) Session",
-                                                style: TextStyle(fontSize: 16),
+                                                style: const TextStyle(fontSize: 16),
                                               ),
                                             ),
                                           ],
@@ -266,7 +266,7 @@ class SessionManagementGrid extends StatelessWidget {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.end,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: 220,
                                                     child:
                                                         Textfildwithupper_num(
@@ -317,9 +317,9 @@ class SessionManagementGrid extends StatelessWidget {
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.start,
                                                     children: [
-                                                      Padding(
+                                                      const Padding(
                                                         padding:
-                                                            const EdgeInsets
+                                                            EdgeInsets
                                                                 .only(
                                                                 bottom: 5.0),
                                                         child:
@@ -344,9 +344,9 @@ class SessionManagementGrid extends StatelessWidget {
                                                           MainAxisAlignment
                                                               .start,
                                                       children: [
-                                                        Padding(
+                                                        const Padding(
                                                           padding:
-                                                              const EdgeInsets
+                                                              EdgeInsets
                                                                   .only(
                                                                   bottom: 5.0),
                                                           child:
@@ -370,7 +370,7 @@ class SessionManagementGrid extends StatelessWidget {
                                 ),
                               ],
                             )
-                          : Text("")
+                          : const Text("")
                     ],
                   ),
                 );
@@ -378,7 +378,7 @@ class SessionManagementGrid extends StatelessWidget {
             )
           : GridView.builder(
               padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 5,
                   crossAxisSpacing: 20.0,
                   mainAxisSpacing: 20.0,
@@ -425,8 +425,8 @@ class SessionManagementGrid extends StatelessWidget {
                     .shimmer(
                         angle: 1,
                         color: Colors.grey.withOpacity(0.2),
-                        duration: Duration(seconds: 1),
-                        delay: Duration(seconds: 1));
+                        duration: const Duration(seconds: 1),
+                        delay: const Duration(seconds: 1));
               },
             );
     });
@@ -437,7 +437,7 @@ class SessionManagementGrid extends StatelessWidget {
       required Color color,
       required VoidCallback onPressed}) {
     return Container(
-      margin: EdgeInsets.all(5),
+      margin: const EdgeInsets.all(5),
       width: 35,
       height: 35,
       alignment: Alignment.center,
@@ -451,7 +451,7 @@ class SessionManagementGrid extends StatelessWidget {
       child: IconButton(
         style: ButtonStyle(
           backgroundColor: WidgetStatePropertyAll(color),
-          shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+          shape: const WidgetStatePropertyAll(RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(5)))),
         ),
         onPressed: onPressed,

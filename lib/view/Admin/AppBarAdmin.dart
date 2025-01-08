@@ -40,7 +40,7 @@ class AppbarAdmin extends StatelessWidget {
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                          style: ButtonStyle(
+                          style: const ButtonStyle(
                               shape: WidgetStatePropertyAll(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
@@ -69,7 +69,7 @@ class AppbarAdmin extends StatelessWidget {
                           ]),
                       child: GetBuilder<ThemeController>(builder: (controller) {
                         return IconButton(
-                            style: ButtonStyle(
+                            style: const ButtonStyle(
                                 shape: WidgetStatePropertyAll(
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
@@ -97,7 +97,7 @@ class AppbarAdmin extends StatelessWidget {
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                          style: ButtonStyle(
+                          style: const ButtonStyle(
                               shape: WidgetStatePropertyAll(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(

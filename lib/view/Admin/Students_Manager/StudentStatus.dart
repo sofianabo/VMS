@@ -12,7 +12,7 @@ import '../../../Icons_File/v_m_s__icons_icons.dart';
 import '../../../widgets/TextFormSearch.dart';
 
 class StudentStatus extends StatefulWidget {
-  StudentStatus({super.key});
+  const StudentStatus({super.key});
 
   @override
   State<StudentStatus> createState() => _StudentStatusState();
@@ -36,7 +36,7 @@ class _StudentStatusState extends State<StudentStatus> {
         child: Column(
       children: [
         Container(
-          margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           alignment: Alignment.center,
           child: GetBuilder<StudentAttendencController>(builder: (controller) {
             return Column(
@@ -72,7 +72,7 @@ class _StudentStatusState extends State<StudentStatus> {
                         width: w / 3.6,
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Container(
                       width: 40,
                       height: 40,
@@ -86,7 +86,7 @@ class _StudentStatusState extends State<StudentStatus> {
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                          style: ButtonStyle(
+                          style: const ButtonStyle(
                               shape: WidgetStatePropertyAll(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
@@ -142,7 +142,7 @@ class _StudentStatusState extends State<StudentStatus> {
                           );
                         }),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Container(
                         width: 40,
                         height: 40,
@@ -156,7 +156,7 @@ class _StudentStatusState extends State<StudentStatus> {
                                   blurRadius: 1)
                             ]),
                         child: IconButton(
-                            style: ButtonStyle(
+                            style: const ButtonStyle(
                                 shape: WidgetStatePropertyAll(
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(

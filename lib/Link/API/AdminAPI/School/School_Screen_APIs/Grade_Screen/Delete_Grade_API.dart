@@ -21,21 +21,21 @@ class Delete_Grade_API {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
       final controller = Get.find<Grade_Controller>();
-      String myurl = "${hostPort}${destroyGrede}/$gradeId";
+      String myurl = "$hostPort$destroyGrede/$gradeId";
 
       var response = await dio.delete(
           cancelToken: cancelToken, myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         controller.DeleteGrade(index);
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

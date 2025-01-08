@@ -8,18 +8,18 @@ class IncreaseEmpolyeeAttendenceModel {
     if (json['employee'] != null) {
       employee = <Employee>[];
       json['employee'].forEach((v) {
-        employee!.add(new Employee.fromJson(v));
+        employee!.add(Employee.fromJson(v));
       });
     }
     noAttendanceDatas = json['noAttendanceDatas'].cast<String>();
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.employee != null) {
-      data['employee'] = this.employee!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (employee != null) {
+      data['employee'] = employee!.map((v) => v.toJson()).toList();
     }
-    data['noAttendanceDatas'] = this.noAttendanceDatas;
+    data['noAttendanceDatas'] = noAttendanceDatas;
     return data;
   }
 }
@@ -38,10 +38,10 @@ class Employee {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['fullName'] = this.fullName;
-    data['imageId'] = this.imageId;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['fullName'] = fullName;
+    data['imageId'] = imageId;
     return data;
   }
 }

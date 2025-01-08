@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Textfildwithupper extends StatelessWidget {
-  Textfildwithupper({
+  const Textfildwithupper({
     super.key,
     required this.controller,
     required this.Uptext,
@@ -28,7 +28,7 @@ class Textfildwithupper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 2.0),
+      margin: const EdgeInsets.only(top: 2.0),
       width: width ?? 250,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -43,7 +43,7 @@ class Textfildwithupper extends StatelessWidget {
                     .copyWith(fontSize: 14, color: Colors.black),
                 children: isRequired
                     ? [
-                        TextSpan(
+                        const TextSpan(
                           text: " *",
                           style: TextStyle(color: Colors.red, fontSize: 14),
                         ),
@@ -83,10 +83,10 @@ class Textfildwithupper extends StatelessWidget {
                 }
               },
               decoration: InputDecoration(
-                suffixIcon: icon ?? Text(""),
+                suffixIcon: icon ?? const Text(""),
                 hintText: hinttext,
                 hintStyle: Get.theme.textTheme.bodyMedium!
-                    .copyWith(fontSize: 14, color: Color(0xffB3B3B3)),
+                    .copyWith(fontSize: 14, color: const Color(0xffB3B3B3)),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5),
                   borderSide: BorderSide(

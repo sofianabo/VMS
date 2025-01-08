@@ -14,7 +14,7 @@ class Editguardianapi {
   Dio dio = Dio();
   Editguardian(int id, String name, String email, String nationalid,
       String phone, int index) async {
-    String myurl = "${hostPort}${editGuardian}";
+    String myurl = "$hostPort$editGuardian";
     try {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
@@ -33,15 +33,15 @@ options: getDioOptions());
         Get.back();
         u.updateGuardian(name, index, phone, email, nationalid);
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
       return response.statusCode;
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

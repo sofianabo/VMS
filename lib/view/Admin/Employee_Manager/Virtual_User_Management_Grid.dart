@@ -13,7 +13,7 @@ import 'package:vms_school/widgets/VMSAlertDialog.dart';
 class Virtual_User_Management_Grid extends StatefulWidget {
 
 
-  Virtual_User_Management_Grid({super.key});
+  const Virtual_User_Management_Grid({super.key});
 
   @override
   State<Virtual_User_Management_Grid> createState() => _Virtual_User_Management_GridState();
@@ -83,8 +83,8 @@ class _Virtual_User_Management_GridState extends State<Virtual_User_Management_G
                         ]))).animate(onPlay: (controller) => controller.repeat()).shimmer(
                 angle: 1,
                 color: Colors.grey.withOpacity(0.2),
-                duration: Duration(seconds: 1),
-                delay: Duration(seconds: 1));
+                duration: const Duration(seconds: 1),
+                delay: const Duration(seconds: 1));
           },
         )
         : controller.filteredviraulUser!.isEmpty ?
@@ -124,7 +124,7 @@ class _Virtual_User_Management_GridState extends State<Virtual_User_Management_G
                             children: [
                               if(controller.filteredviraulUser![index].hasclasses == false)
                                 IconButton(
-                                    style: ButtonStyle(
+                                    style: const ButtonStyle(
                                         backgroundColor: WidgetStatePropertyAll(
                                             Color(0xffB03D3D)),
                                         shape: WidgetStatePropertyAll(
@@ -139,7 +139,7 @@ class _Virtual_User_Management_GridState extends State<Virtual_User_Management_G
                                               onPressed: () {
                                                 Delete_Virtual_User_API(context). Delete_Virtual_User(id:controller.filteredviraulUser![index].id);
                                               },
-                                              color: Color(0xffB03D3D),
+                                              color: const Color(0xffB03D3D),
                                               width: 80),
                                           ButtonDialog(
                                               text: "Cancel",
@@ -149,7 +149,7 @@ class _Virtual_User_Management_GridState extends State<Virtual_User_Management_G
                                               color: Get.theme.primaryColor,
                                               width: 80)
                                         ],
-                                        contents: Container(
+                                        contents: SizedBox(
                                             width: 500,
                                             child: Row(
                                               mainAxisAlignment:
@@ -172,14 +172,14 @@ class _Virtual_User_Management_GridState extends State<Virtual_User_Management_G
                                         subtitle: "none",
                                       ));
                                     },
-                                    icon: Icon(VMS_Icons.bin,
+                                    icon: const Icon(VMS_Icons.bin,
                                         size: 16, color: Colors.white)),
                               Text(
                                 "${controller.filteredviraulUser![index].roll}",
                                 style: TextStyle(
                                     color: controller.filteredviraulUser![index].roll == "Observer"
-                                        ? Color(0xff1EBC3B)
-                                        : Color(0xff134B70),
+                                        ? const Color(0xff1EBC3B)
+                                        : const Color(0xff134B70),
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold),
                               )
@@ -196,7 +196,7 @@ class _Virtual_User_Management_GridState extends State<Virtual_User_Management_G
                                 children: [
                                   Text(
                                     "${ controller.filteredviraulUser![index].userName}",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 18,
                                     ),
                                   )

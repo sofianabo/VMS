@@ -7,15 +7,15 @@ class Labrary_Model {
     if (json['books'] != null) {
       books = <Books>[];
       json['books'].forEach((v) {
-        books!.add(new Books.fromJson(v));
+        books!.add(Books.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.books != null) {
-      data['books'] = this.books!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (books != null) {
+      data['books'] = books!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -37,11 +37,11 @@ class Books {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['fileId'] = this.fileId;
-    data['name'] = this.name;
-    data['enName'] = this.enName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['fileId'] = fileId;
+    data['name'] = name;
+    data['enName'] = enName;
     return data;
   }
 }

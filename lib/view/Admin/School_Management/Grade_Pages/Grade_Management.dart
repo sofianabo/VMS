@@ -10,7 +10,7 @@ import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class GradeManagement extends StatefulWidget {
-  GradeManagement({super.key});
+  const GradeManagement({super.key});
 
   @override
   State<GradeManagement> createState() => _GradeManagementState();
@@ -35,7 +35,7 @@ class _GradeManagementState extends State<GradeManagement> {
         child: Column(
       children: [
         Container(
-          margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -43,7 +43,7 @@ class _GradeManagementState extends State<GradeManagement> {
             children: [
               Row(
                 children: [
-                  Spacer(),
+                  const Spacer(),
                   Container(
                     width: 40,
                     height: 40,
@@ -57,7 +57,7 @@ class _GradeManagementState extends State<GradeManagement> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style: ButtonStyle(
+                        style: const ButtonStyle(
                             backgroundColor:
                                 WidgetStatePropertyAll(Color(0xffF9F8FD)),
                             shape: WidgetStatePropertyAll(
@@ -90,7 +90,7 @@ class _GradeManagementState extends State<GradeManagement> {
                                         Row(
                                           children: [
                                             Padding(
-                                              padding: EdgeInsets.only(
+                                              padding: const EdgeInsets.only(
                                                   left: 15.0, right: 15.0),
                                               child: Textfildwithupper(
                                                   controller: enName,
@@ -111,7 +111,7 @@ class _GradeManagementState extends State<GradeManagement> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsets.only(
+                                              padding: const EdgeInsets.only(
                                                   left: 15.0,
                                                   right: 15.0,
                                                   top: 15.0),
@@ -148,7 +148,7 @@ class _GradeManagementState extends State<GradeManagement> {
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                          style: ButtonStyle(
+                          style: const ButtonStyle(
                               backgroundColor:
                                   WidgetStatePropertyAll(Color(0xffF9F8FD)),
                               shape: WidgetStatePropertyAll(
@@ -173,7 +173,7 @@ class _GradeManagementState extends State<GradeManagement> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style: ButtonStyle(
+                        style: const ButtonStyle(
                             backgroundColor:
                                 WidgetStatePropertyAll(Color(0xffF9F8FD)),
                             shape: WidgetStatePropertyAll(

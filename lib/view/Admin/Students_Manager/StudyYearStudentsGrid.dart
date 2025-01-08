@@ -17,7 +17,7 @@ import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class StudyYearStudentGrid extends StatefulWidget {
-  StudyYearStudentGrid({super.key});
+  const StudyYearStudentGrid({super.key});
 
   @override
   State<StudyYearStudentGrid> createState() => _StudyYearStudentGridState();
@@ -93,7 +93,7 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid> {
                         ],
                       )),
                 ).animate(onPlay: (controller) => controller.repeat()).shimmer(
-                    duration: Duration(seconds: 2),
+                    duration: const Duration(seconds: 2),
                     color: Get.theme.primaryColor.withOpacity(0.1));
               },
             )
@@ -156,7 +156,7 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid> {
                                                   .fileId ==
                                               null
                                           ? Text(
-                                              "${controller.filteredStudents![index].fullName!.substring(0, 1).toUpperCase()}",
+                                              controller.filteredStudents![index].fullName!.substring(0, 1).toUpperCase(),
                                               style: Get.textTheme.titleLarge!
                                                   .copyWith(
                                                       fontSize: 26,
@@ -185,12 +185,12 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid> {
                                   color: controller
                                               .filteredStudents![index].state ==
                                           "Passing"
-                                      ? Color(0xff2F9742)
+                                      ? const Color(0xff2F9742)
                                       : controller.filteredStudents![index]
                                                   .state ==
                                               "Failed"
-                                          ? Color(0xff972F2F)
-                                          : Color(0xff134B70))),
+                                          ? const Color(0xff972F2F)
+                                          : const Color(0xff134B70))),
                           Text(
                               "Grade Level: ${controller.filteredStudents![index].grade!.enName}",
                               style: Get.theme.textTheme.bodyMedium),
@@ -201,24 +201,24 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid> {
                               children: [
                                 TextButton(
                                     style: ButtonStyle(
-                                        backgroundColor: WidgetStatePropertyAll(
+                                        backgroundColor: const WidgetStatePropertyAll(
                                             Colors.transparent),
                                         shape: WidgetStatePropertyAll(
                                             RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(3)),
                                           side: BorderSide(
                                               color: Get.theme.primaryColor),
                                         ))),
                                     onPressed: () {},
-                                    child: Row(
+                                    child: const Row(
                                       children: [
                                         Icon(
                                           VMS_Icons.vcard,
                                           size: 14,
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(
+                                          padding: EdgeInsets.only(
                                               left: 5.0, right: 5.0),
                                           child: Text("First Season"),
                                         ),
@@ -226,11 +226,11 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid> {
                                     )),
                                 TextButton(
                                     style: ButtonStyle(
-                                        backgroundColor: WidgetStatePropertyAll(
+                                        backgroundColor: const WidgetStatePropertyAll(
                                             Colors.transparent),
                                         shape: WidgetStatePropertyAll(
                                             RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(3)),
                                           side: BorderSide(
                                               color: Get.theme.primaryColor),
@@ -268,7 +268,7 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 350,
                                               ),
                                               GetBuilder<
@@ -329,7 +329,7 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid> {
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .normal),
-                                                            children: [
+                                                            children: const [
                                                               TextSpan(
                                                                 text: " *",
                                                                 style: TextStyle(
@@ -370,12 +370,12 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid> {
                                           apptitle: "Punishing Student",
                                           subtitle: ""));
                                     },
-                                    child: Row(
+                                    child: const Row(
                                       children: [
                                         Icon(Icons.person_remove_outlined,
                                             size: 14),
                                         Padding(
-                                          padding: const EdgeInsets.only(
+                                          padding: EdgeInsets.only(
                                               left: 5.0, right: 5.0),
                                           child: Text("Punishing"),
                                         ),

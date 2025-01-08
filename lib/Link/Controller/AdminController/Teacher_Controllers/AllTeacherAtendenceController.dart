@@ -78,7 +78,7 @@ class Allteacheratendencecontroller extends GetxController {
   void searchRequestByName(String query, String classes, String subjects,String type) {
     List<Teacherattendance> tempFilteredList = List.from(teacher ?? []);
 
-    if (query != null && query.isNotEmpty) {
+    if (query.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((teacher) {
         final empName = teacher.fullName?.toLowerCase() ?? '';
         final email = teacher.email?.toLowerCase() ?? '';

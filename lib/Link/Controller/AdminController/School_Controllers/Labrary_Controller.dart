@@ -67,8 +67,8 @@ class Labrary_Controller extends GetxController {
     update();
   }
 
-  void SetData(Labrary_Model labrary_model) {
-    books = labrary_model.books;
+  void SetData(Labrary_Model labraryModel) {
+    books = labraryModel.books;
     filteredEbook = List.from(books!);
     if (filterName != null && filterName!.isNotEmpty) {
       searchByName(filterName.toString());

@@ -79,7 +79,7 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
 
       return VMSAlertDialog(
           contents: GetBuilder<Addteachercontroller>(builder: (addcontrol) {
-            return Container(
+            return SizedBox(
               width: 520,
               child: SingleChildScrollView(
                 child: Column(
@@ -106,8 +106,7 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                                       : teacherControler.filteredTeacher![idx]
                                                   .imageId !=
                                               null
-                                          ? NetworkImage("$getimage" +
-                                              "${teacherControler.filteredTeacher![idx].imageId}")
+                                          ? NetworkImage(getimage +"${teacherControler.filteredTeacher![idx].imageId}")
                                           : null,
                                   child:
                                       addcontrol.selectedImage.value == null &&
@@ -304,7 +303,7 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                               child: GetBuilder<IllnessController>(
                                   builder: (controller) {
                                 return ButtonDialog(
-                                    bordercolor: Color(0xffD9D9D9),
+                                    bordercolor: const Color(0xffD9D9D9),
                                     textcolor: Colors.black,
                                     text: "Employee Illness",
                                     onPressed: () {
@@ -331,7 +330,7 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                                                           // غلف CheckboxListTile بـ Obx
                                                           return CheckboxListTile(
                                                             overlayColor:
-                                                                WidgetStatePropertyAll(
+                                                                const WidgetStatePropertyAll(
                                                                     Colors
                                                                         .transparent),
                                                             checkColor:
@@ -546,7 +545,7 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(right: 15, top: 15),
+                      padding: const EdgeInsets.only(right: 15, top: 15),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [

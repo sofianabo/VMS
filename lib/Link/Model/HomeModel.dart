@@ -14,10 +14,10 @@ class HomeModel {
     }
 
     Map<String, dynamic> toJson() {
-        final Map<String, dynamic> _data = <String, dynamic>{};
-        _data["student"] = student;
-        _data["teacher"] = teacher;
-        _data["visitors"] = visitors;
-        return _data;
+        final Map<String, dynamic> data = <String, dynamic>{};
+        data["student"] = student;
+        data["teacher"] = teacher;
+        data["visitors"] = visitors;
+        return data;
     }
 }

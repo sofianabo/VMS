@@ -17,7 +17,7 @@ class Get_Session_Screen_API {
    final controller = Get.find<SessionController>();
    controller.setIsLoading(true);
     try {
-      String myurl = "${hostPort}${getSession}";
+      String myurl = "$hostPort$getSession";
       var response = await dio.get(myurl,
           options: getDioOptions());
       if (response.statusCode == 200) {
@@ -25,14 +25,14 @@ class Get_Session_Screen_API {
         controller.setData(session);
         return session;
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

@@ -24,11 +24,11 @@ class DashboardSecondRow extends StatelessWidget {
                   child: Container(
                     width: 375,
                     height: 170,
-                    padding: EdgeInsets.all(13.0),
+                    padding: const EdgeInsets.all(13.0),
                     decoration: BoxDecoration(
-                      color: Color(0xffFBFBFB),
+                      color: const Color(0xffFBFBFB),
                       border: Border.all(color: Colors.grey, width: 0.2),
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                       boxShadow: const [
                         BoxShadow(
                           color: Colors.black12,
@@ -42,18 +42,18 @@ class DashboardSecondRow extends StatelessWidget {
               ).animate(onPlay: (controller) => controller.repeat()).shimmer(
                   angle: 1,
                   color: Colors.grey.withOpacity(0.2),
-                  duration: Duration(seconds: 1),
-                  delay: Duration(seconds: 1)),
+                  duration: const Duration(seconds: 1),
+                  delay: const Duration(seconds: 1)),
               HoverScaleCard(
                   child: Container(
                 width: width / 3.95,
                 height: 170,
-                padding: EdgeInsets.all(13.0),
-                margin: EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
+                padding: const EdgeInsets.all(13.0),
+                margin: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
                 decoration: BoxDecoration(
                   color: Get.theme.cardColor,
                   border: Border.all(color: Colors.grey, width: 0.2),
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  borderRadius: const BorderRadius.all(Radius.circular(5)),
                   boxShadow: const [
                     BoxShadow(
                       color: Colors.black12,
@@ -65,18 +65,18 @@ class DashboardSecondRow extends StatelessWidget {
               )).animate(onPlay: (controller) => controller.repeat()).shimmer(
                   angle: 1,
                   color: Colors.grey.withOpacity(0.2),
-                  duration: Duration(seconds: 1),
-                  delay: Duration(seconds: 1)),
+                  duration: const Duration(seconds: 1),
+                  delay: const Duration(seconds: 1)),
               HoverScaleCard(
                   child: Container(
                 width: width / 3.95,
                 height: 170,
-                padding: EdgeInsets.all(13.0),
-                margin: EdgeInsets.only(bottom: 15.0),
+                padding: const EdgeInsets.all(13.0),
+                margin: const EdgeInsets.only(bottom: 15.0),
                 decoration: BoxDecoration(
                     color: Get.theme.cardColor,
                     border: Border.all(color: Colors.grey, width: 0.2),
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     boxShadow: const [
                       BoxShadow(
                           color: Colors.black12,
@@ -86,8 +86,8 @@ class DashboardSecondRow extends StatelessWidget {
               )).animate(onPlay: (controller) => controller.repeat()).shimmer(
                   angle: 1,
                   color: Colors.grey.withOpacity(0.2),
-                  duration: Duration(seconds: 1),
-                  delay: Duration(seconds: 1)),
+                  duration: const Duration(seconds: 1),
+                  delay: const Duration(seconds: 1)),
             ],
           );
         }
@@ -98,11 +98,11 @@ class DashboardSecondRow extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 15.0),
                 child: Container(
-                  padding: EdgeInsets.all(13.0),
+                  padding: const EdgeInsets.all(13.0),
                   decoration: BoxDecoration(
-                    color: Color(0xffFBFBFB),
+                    color: const Color(0xffFBFBFB),
                     border: Border.all(color: Colors.grey, width: 0.2),
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     boxShadow: const [
                       BoxShadow(
                         color: Colors.black12,
@@ -113,8 +113,8 @@ class DashboardSecondRow extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 10.0),
+                      const Padding(
+                        padding: EdgeInsets.only(bottom: 10.0),
                         child: Text("Attendance Today"),
                       ),
                       Row(
@@ -130,7 +130,7 @@ class DashboardSecondRow extends StatelessWidget {
                                         0,
                             maxProgress: 100,
                             startAngle: -27.5,
-                            foregroundColor: Color(0xff006D77),
+                            foregroundColor: const Color(0xff006D77),
                             backgroundColor: const Color(0xffE8DEF8),
                             foregroundStrokeWidth: 10,
                             backgroundStrokeWidth: 10,
@@ -142,7 +142,7 @@ class DashboardSecondRow extends StatelessWidget {
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Text(
+                                  const Text(
                                     "Employees\nAttendance",
                                     style: TextStyle(fontSize: 12),
                                   ),
@@ -175,7 +175,7 @@ class DashboardSecondRow extends StatelessWidget {
                                       0,
                               maxProgress: 100,
                               startAngle: -27.5,
-                              foregroundColor: Color(0xff94C9A9),
+                              foregroundColor: const Color(0xff94C9A9),
                               backgroundColor: const Color(0xffE8DEF8),
                               foregroundStrokeWidth: 10,
                               backgroundStrokeWidth: 10,
@@ -187,7 +187,7 @@ class DashboardSecondRow extends StatelessWidget {
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Text(
+                                    const Text(
                                       "Students\nAttendance",
                                       style: TextStyle(fontSize: 12),
                                     ),
@@ -218,7 +218,7 @@ class DashboardSecondRow extends StatelessWidget {
                                         0,
                             maxProgress: 100,
                             startAngle: -27.5,
-                            foregroundColor: Color(0xffB97375),
+                            foregroundColor: const Color(0xffB97375),
                             backgroundColor: const Color(0xffE8DEF8),
                             foregroundStrokeWidth: 10,
                             backgroundStrokeWidth: 10,
@@ -230,7 +230,7 @@ class DashboardSecondRow extends StatelessWidget {
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Text(
+                                  const Text(
                                     "Teachers\nAttendance",
                                     style: TextStyle(fontSize: 12),
                                     textAlign: TextAlign.center,
@@ -260,12 +260,12 @@ class DashboardSecondRow extends StatelessWidget {
               child: Container(
                 width: width / 3.95,
                 height: 170,
-                padding: EdgeInsets.all(13.0),
-                margin: EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
+                padding: const EdgeInsets.all(13.0),
+                margin: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
                 decoration: BoxDecoration(
                   color: Get.theme.cardColor,
                   border: Border.all(color: Colors.grey, width: 0.2),
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  borderRadius: const BorderRadius.all(Radius.circular(5)),
                   boxShadow: const [
                     BoxShadow(
                       color: Colors.black12,
@@ -292,12 +292,12 @@ class DashboardSecondRow extends StatelessWidget {
               child: Container(
                 width: width / 3.95,
                 height: 170,
-                padding: EdgeInsets.all(13.0),
-                margin: EdgeInsets.only(bottom: 15.0),
+                padding: const EdgeInsets.all(13.0),
+                margin: const EdgeInsets.only(bottom: 15.0),
                 decoration: BoxDecoration(
                     color: Get.theme.cardColor,
                     border: Border.all(color: Colors.grey, width: 0.2),
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     boxShadow: const [
                       BoxShadow(
                           color: Colors.black12,

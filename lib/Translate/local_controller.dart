@@ -4,7 +4,7 @@ import 'package:vms_school/main.dart';
 
 // ignore: camel_case_types
 class localeController extends GetxController {
-  Locale init = Locale("en");
+  Locale init = const Locale("en");
   // Locale init = lang!.getString("lang") == null
   //     ? Get.deviceLocale!
   //     : Locale(lang!.getString(("lang"))!);

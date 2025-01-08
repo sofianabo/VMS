@@ -15,7 +15,7 @@ import 'package:vms_school/widgets/TextFormSearch.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class Curriculum_Management extends StatefulWidget {
-  Curriculum_Management({super.key});
+  const Curriculum_Management({super.key});
 
   @override
   State<Curriculum_Management> createState() => _Curriculum_ManagementState();
@@ -44,7 +44,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
         child: Column(
       children: [
         Container(
-          margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -97,7 +97,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                       ),
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Row(
                     children: [
                       Container(
@@ -113,7 +113,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                   blurRadius: 1)
                             ]),
                         child: IconButton(
-                            style: ButtonStyle(
+                            style: const ButtonStyle(
                                 backgroundColor:
                                     WidgetStatePropertyAll(Color(0xffF9F8FD)),
                                 shape: WidgetStatePropertyAll(
@@ -169,7 +169,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                     type: "Dialog_Subject");
                                               }
                                             ),
-                                            DropDownCurriMgmt(
+                                            const DropDownCurriMgmt(
                                                 title: "Semester",
                                                 width: 250,
                                                 type: "Dialog_semester")
@@ -200,7 +200,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
                                                   children: [
-                                                    Text("Failing Subject"),
+                                                    const Text("Failing Subject"),
                                                     Column(
                                                       children: [
                                                         Row(
@@ -216,7 +216,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                                         value!); // Update the state
                                                               },
                                                             ),
-                                                            Text(
+                                                            const Text(
                                                                 "Is Failing Subject"),
                                                           ],
                                                         ),
@@ -252,10 +252,10 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                   controller.pickPDFFile();
                                                 },
                                                 child: AnimatedContainer(
-                                                  duration: Duration(milliseconds: 500),
+                                                  duration: const Duration(milliseconds: 500),
                                                   decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                                                    border: Border.all(color: Color(0xffD9D9D9)),
+                                                    borderRadius: const BorderRadius.all(Radius.circular(5)),
+                                                    border: Border.all(color: const Color(0xffD9D9D9)),
                                                     color: controller.isHoveringFile ? Get.theme.primaryColor : Colors.white,
                                                   ),
                                                   alignment: Alignment.center,
@@ -299,7 +299,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                           textAlign: TextAlign.center,
                                                           controller.fileStatus,
                                                           style: TextStyle(
-                                                            color: controller.isHoveringFile ? Colors.white : Color(0xffCBBFBF),
+                                                            color: controller.isHoveringFile ? Colors.white : const Color(0xffCBBFBF),
                                                           ),
                                                         ),
                                                       ),
@@ -314,10 +314,10 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                     controller.pickImage();
                                                   },
                                                   child: AnimatedContainer(
-                                                    duration: Duration(milliseconds: 500),
+                                                    duration: const Duration(milliseconds: 500),
                                                     decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                                                      border: Border.all(color: Color(0xffD9D9D9)),
+                                                      borderRadius: const BorderRadius.all(Radius.circular(5)),
+                                                      border: Border.all(color: const Color(0xffD9D9D9)),
                                                       color: controller.isHoveringimage ? Get.theme.primaryColor : Colors.white,
                                                     ),
                                                     alignment: Alignment.center,
@@ -362,7 +362,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                             textAlign: TextAlign.center,
                                                             controller.imageStatus,
                                                             style: TextStyle(
-                                                              color: controller.isHoveringimage ? Colors.white : Color(0xffCBBFBF),
+                                                              color: controller.isHoveringimage ? Colors.white : const Color(0xffCBBFBF),
                                                             ),
                                                           ),
                                                         ),
@@ -398,7 +398,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                     blurRadius: 1)
                               ]),
                           child: IconButton(
-                              style: ButtonStyle(
+                              style: const ButtonStyle(
                                   backgroundColor:
                                       WidgetStatePropertyAll(Color(0xffF9F8FD)),
                                   shape: WidgetStatePropertyAll(
@@ -423,7 +423,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                   blurRadius: 1)
                             ]),
                         child: IconButton(
-                            style: ButtonStyle(
+                            style: const ButtonStyle(
                                 backgroundColor:
                                     WidgetStatePropertyAll(Color(0xffF9F8FD)),
                                 shape: WidgetStatePropertyAll(

@@ -12,7 +12,7 @@ class DeleteEmployee {
   static Future<dynamic> DeleteEmployeeByID({
     required String employeeID,
   }) async {
-    String myURI = "${hostPort}${deleteEmployee}";
+    String myURI = "$hostPort$deleteEmployee";
     CancelToken cancelToken = CancelToken();
     try {
     Loading_Dialog(cancelToken: cancelToken);
@@ -30,14 +30,14 @@ class DeleteEmployee {
 
         return response.statusCode;
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

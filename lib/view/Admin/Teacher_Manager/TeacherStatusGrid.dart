@@ -13,7 +13,7 @@ import '../../../widgets/GridAnimation.dart';
 import '../../../widgets/VMSAlertDialog.dart';
 
 class TeacherStatusGrid extends StatefulWidget {
-  TeacherStatusGrid({super.key});
+  const TeacherStatusGrid({super.key});
 
   @override
   State<TeacherStatusGrid> createState() => _TeacherStatusGridState();
@@ -65,8 +65,8 @@ class _TeacherStatusGridState extends State<TeacherStatusGrid> {
             ).animate(onPlay: (controller) => controller.repeat()).shimmer(
               angle: 1,
               color: Colors.grey.withOpacity(0.2),
-              duration: Duration(seconds: 1),
-              delay: Duration(seconds: 1))
+              duration: const Duration(seconds: 1),
+              delay: const Duration(seconds: 1))
           : GridView.builder(
               padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -86,7 +86,7 @@ class _TeacherStatusGridState extends State<TeacherStatusGrid> {
                       Get.dialog(GetBuilder<Oneemployeeattendencecontroller>(
                         builder: (oneControl) {
                           return VMSAlertDialog(
-                            action: [Text("")],
+                            action: [const Text("")],
                             contents: SizedBox(
                               width: 600,
                               height: Get.height,
@@ -204,19 +204,19 @@ class _TeacherStatusGridState extends State<TeacherStatusGrid> {
                                     fontSize: 16,
                                     color: controller.filteredTeacher![index].status ==
                                             "Present"
-                                        ? Color(0xff2F9742)
+                                        ? const Color(0xff2F9742)
                                         : controller.filteredTeacher![index].status ==
                                                 "Truant"
-                                            ? Color(0xff972F2F)
+                                            ? const Color(0xff972F2F)
                                             : controller.filteredTeacher![index]
                                                         .status ==
                                                     "Vacation"
-                                                ? Color(0xffB27671)
+                                                ? const Color(0xffB27671)
                                                 : controller.filteredTeacher![index]
                                                             .status ==
                                                         "Late"
-                                                    ? Color(0xff349393)
-                                                    : Color(0xff134B70))),
+                                                    ? const Color(0xff349393)
+                                                    : const Color(0xff134B70))),
                             Text("Email: ${controller.filteredTeacher![index].email}",
                                 style: Get.theme.textTheme.bodyMedium!),
                           ],

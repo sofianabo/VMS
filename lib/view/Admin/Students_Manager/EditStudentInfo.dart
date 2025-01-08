@@ -229,33 +229,33 @@ EditStudentDialog() {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 15, right: 15, top: 10),
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
                   children: [
                     DropDown(
-                        title: "Class", width: 250, options: ['asdsa', 'bwfw']),
+                        title: "Class", width: 250, options: const ['asdsa', 'bwfw']),
                     Padding(
                       padding: const EdgeInsets.only(left: 15.0),
                       child: DropDown(
                           title: "Division",
                           width: 250,
-                          options: ['sdsb', 'fgng']),
+                          options: const ['sdsb', 'fgng']),
                     ),
                   ],
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 15, right: 15, top: 10),
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                 child: Row(
                   children: [
                     DropDown(
                         title: "Blood Type",
                         width: 250,
-                        options: ['art', 'bhtg']),
+                        options: const ['art', 'bhtg']),
                     Padding(
                       padding: const EdgeInsets.only(left: 15.0),
                       child:
-                          DropDown(title: "Gender", width: 250, options: ['a']),
+                          DropDown(title: "Gender", width: 250, options: const ['a']),
                     ),
                   ],
                 ),
@@ -268,7 +268,7 @@ EditStudentDialog() {
                     DropDown(
                         title: "Location",
                         width: 250,
-                        options: ['dfbfd', 'fdbb']),
+                        options: const ['dfbfd', 'fdbb']),
                     Padding(
                       padding: const EdgeInsets.only(left: 15.0),
                       child: Column(
@@ -502,7 +502,7 @@ EditStudentDialog() {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(right: 15, top: 10),
+                padding: const EdgeInsets.only(right: 15, top: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [

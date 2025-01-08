@@ -1,7 +1,5 @@
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllPenaltyModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSemesterModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 
 class Dropdownsemstercontroller extends GetxController {
   List<String> semesters = [];

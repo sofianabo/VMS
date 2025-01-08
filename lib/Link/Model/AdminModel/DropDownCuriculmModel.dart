@@ -7,15 +7,15 @@ class DropDowmCuriculmModel {
     if (json['curriculum'] != null) {
       curriculum = <Curriculum>[];
       json['curriculum'].forEach((v) {
-        curriculum!.add(new Curriculum.fromJson(v));
+        curriculum!.add(Curriculum.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.curriculum != null) {
-      data['curriculum'] = this.curriculum!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (curriculum != null) {
+      data['curriculum'] = curriculum!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -33,9 +33,9 @@ class Curriculum {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
     return data;
   }
 }

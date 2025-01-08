@@ -1,10 +1,8 @@
 import 'dart:html' as html;
 import 'package:excel/excel.dart';
-import 'dart:typed_data';
 import 'package:flutter/services.dart';
 import 'package:vms_school/Link/Model/AdminModel/RequestsModel.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:pdf/pdf.dart';
 
 void exportToExcel(List<Map<String, dynamic>> data, List<String> headers) {

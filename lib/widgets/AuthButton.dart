@@ -31,8 +31,8 @@ class ButtonAuth extends StatelessWidget {
                         style: Get.theme.textTheme.displayMedium!
                             .copyWith(fontSize: 15),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0 , right: 8.0),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 8.0 , right: 8.0),
                         child: Icon(
                           Icons.login,
                           color: Colors.white,

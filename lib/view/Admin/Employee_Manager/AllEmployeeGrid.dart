@@ -14,7 +14,7 @@ import '../../../widgets/VMSAlertDialog.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class AllEmployeeGrid extends StatelessWidget {
-  AllEmployeeGrid({super.key});
+  const AllEmployeeGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -110,8 +110,8 @@ class AllEmployeeGrid extends StatelessWidget {
                 ).animate(onPlay: (controller) => controller.repeat()).shimmer(
                     angle: 1,
                     color: Colors.white,
-                    duration: Duration(milliseconds: 600),
-                    delay: Duration(milliseconds: 200));
+                    duration: const Duration(milliseconds: 600),
+                    delay: const Duration(milliseconds: 200));
               },
             )
           : controller.filteredreemployees.isNotEmpty
@@ -140,7 +140,7 @@ class AllEmployeeGrid extends StatelessWidget {
                             } else {
                               Get.dialog(VMSAlertDialog(
                                 action: [],
-                                contents: Text("This Employee Not Have Data"),
+                                contents: const Text("This Employee Not Have Data"),
                                 apptitle:
                                     "This Employee Not Uploaded his/her Data",
                                 subtitle: "none",
@@ -170,7 +170,7 @@ class AllEmployeeGrid extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     IconButton(
-                                        style: ButtonStyle(
+                                        style: const ButtonStyle(
                                             backgroundColor:
                                                 WidgetStatePropertyAll(
                                                     Color(0xffB03D3D)),
@@ -193,7 +193,7 @@ class AllEmployeeGrid extends StatelessWidget {
                                                             .id
                                                             .toString());
                                                   },
-                                                  color: Color(0xffB03D3D),
+                                                  color: const Color(0xffB03D3D),
                                                   width: 80),
                                               ButtonDialog(
                                                   text: "Cancel",
@@ -201,7 +201,7 @@ class AllEmployeeGrid extends StatelessWidget {
                                                   color: Get.theme.primaryColor,
                                                   width: 80)
                                             ],
-                                            contents: Container(
+                                            contents: SizedBox(
                                                 width: 500,
                                                 child: Row(
                                                   mainAxisAlignment:
@@ -225,7 +225,7 @@ class AllEmployeeGrid extends StatelessWidget {
                                             subtitle: "none",
                                           ));
                                         },
-                                        icon: Icon(VMS_Icons.bin,
+                                        icon: const Icon(VMS_Icons.bin,
                                             size: 16, color: Colors.white)),
                                     Expanded(
                                         child: Center(
@@ -261,24 +261,24 @@ class AllEmployeeGrid extends StatelessWidget {
                                                                       index]
                                                                   .roll ==
                                                               "Accountant"
-                                                          ? Color(0xff2684FC)
+                                                          ? const Color(0xff2684FC)
                                                           : controller
                                                                       .filteredreemployees[
                                                                           index]
                                                                       .roll ==
                                                                   "Sub Admin"
-                                                              ? Color(
+                                                              ? const Color(
                                                                   0xff297686)
                                                               : controller
                                                                           .filteredreemployees[
                                                                               index]
                                                                           .roll ==
                                                                       "Registration"
-                                                                  ? Color(
+                                                                  ? const Color(
                                                                       0xffB27671)
                                                                   : controller.filteredreemployees[index].roll ==
                                                                           "Supervisor"
-                                                                      ? Color(
+                                                                      ? const Color(
                                                                           0xff2F9742)
                                                                       : Get
                                                                           .theme
@@ -326,25 +326,25 @@ class AllEmployeeGrid extends StatelessWidget {
                                                                 index]
                                                             .roll ==
                                                         "Accountant"
-                                                    ? Color(0xff2684FC)
+                                                    ? const Color(0xff2684FC)
                                                     : controller
                                                                 .filteredreemployees[
                                                                     index]
                                                                 .roll ==
                                                             "Sub Admin"
-                                                        ? Color(0xff297686)
+                                                        ? const Color(0xff297686)
                                                         : controller
                                                                     .filteredreemployees[
                                                                         index]
                                                                     .roll ==
                                                                 "Registration"
-                                                            ? Color(0xffB27671)
+                                                            ? const Color(0xffB27671)
                                                             : controller
                                                                         .filteredreemployees[
                                                                             index]
                                                                         .roll ==
                                                                     "Supervisor"
-                                                                ? Color(
+                                                                ? const Color(
                                                                     0xff2F9742)
                                                                 : Get.theme
                                                                     .primaryColor,
@@ -396,7 +396,7 @@ class AllEmployeeGrid extends StatelessWidget {
                                                         .imageId ==
                                                     null
                                                 ? Text(
-                                                    "${controller.filteredreemployees[index].fullName!.substring(0, 1).toUpperCase()}",
+                                                    controller.filteredreemployees[index].fullName!.substring(0, 1).toUpperCase(),
                                                     style: Get
                                                         .textTheme.titleLarge!
                                                         .copyWith(

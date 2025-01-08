@@ -22,7 +22,7 @@ class Delete_Subject_API {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
       final controller = Get.find<Subject_Controller>();
-      String myurl = "${hostPort}${deleteSubject}";
+      String myurl = "$hostPort$deleteSubject";
 
       var response = await dio.post(
           cancelToken: cancelToken,
@@ -32,14 +32,14 @@ class Delete_Subject_API {
       if (response.statusCode == 200) {
         controller.DeleteSubject(index);
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

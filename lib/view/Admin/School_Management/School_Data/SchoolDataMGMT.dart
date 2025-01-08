@@ -8,6 +8,8 @@ import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Sc
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 
 class SchoolDataMgmt extends StatefulWidget {
+  const SchoolDataMgmt({super.key});
+
   @override
   State<SchoolDataMgmt> createState() => _SchoolDataMgmtState();
 }
@@ -18,11 +20,12 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
     School_Data_API(context).School_Data();
     super.initState();
   }
+  @override
   Widget build(BuildContext context) {
     return Expanded(
         child: GetBuilder<SchoolInfoController>(builder: (controller) {
       return controller.isLoading == true ?
-          Center()
+          const Center()
           :Column(
         children: [
           Padding(
@@ -44,7 +47,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                             blurRadius: 1)
                       ]),
                   child: IconButton(
-                      style: ButtonStyle(
+                      style: const ButtonStyle(
                           shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5))))),
@@ -69,7 +72,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style: ButtonStyle(
+                        style: const ButtonStyle(
                             shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
                                     borderRadius:
@@ -96,7 +99,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style: ButtonStyle(
+                        style: const ButtonStyle(
                             shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
                                     borderRadius:
@@ -135,12 +138,12 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                   children: [
                     GetBuilder<SchoolInfoController>(builder: (controller) {
                       return Container(
-                          padding: EdgeInsets.all(15.0),
+                          padding: const EdgeInsets.all(15.0),
                           decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xffB3B3B3)),
+                              border: Border.all(color: const Color(0xffB3B3B3)),
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
-                          margin: EdgeInsets.only(
+                                  const BorderRadius.all(Radius.circular(5))),
+                          margin: const EdgeInsets.only(
                               left: 30.0, right: 30.0, top: 30.0),
                           alignment: Alignment.center,
                           child: Column(
@@ -304,7 +307,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     width: Get.width / 2.5,
                                     child: Column(
                                       children: [
@@ -320,7 +323,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                                         .value = value!;
                                                   },
                                                 ),
-                                                Text("Outstanding School"),
+                                                const Text("Outstanding School"),
                                               ],
                                             )),
                                         Obx(() => Row(
@@ -334,7 +337,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                                         .value = value!;
                                                   },
                                                 ),
-                                                Text("Taken Over School"),
+                                                const Text("Taken Over School"),
                                               ],
                                             )),
                                         Obx(() => Row(
@@ -350,7 +353,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                                         .value = value!;
                                                   },
                                                 ),
-                                                Text("Reassignment Teachers"),
+                                                const Text("Reassignment Teachers"),
                                               ],
                                             )),
                                         Obx(() => Row(
@@ -364,7 +367,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                                         .value = value!;
                                                   },
                                                 ),
-                                                Text("Martyrs Sons"),
+                                                const Text("Martyrs Sons"),
                                               ],
                                             )),
                                       ],
@@ -373,7 +376,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                   Padding(
                                     padding: const EdgeInsets.only(
                                         left: 20.0, right: 20.0),
-                                    child: Container(
+                                    child: SizedBox(
                                       width: Get.width / 2.5,
                                       child: Column(
                                         children: [
@@ -390,7 +393,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                                           .value = value!;
                                                     },
                                                   ),
-                                                  Text("Internet Connection"),
+                                                  const Text("Internet Connection"),
                                                 ],
                                               )),
                                           Obx(() => Row(
@@ -406,7 +409,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                                           .value = value!;
                                                     },
                                                   ),
-                                                  Text("Government Connection"),
+                                                  const Text("Government Connection"),
                                                 ],
                                               )),
                                           Obx(() => Row(
@@ -420,7 +423,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                                           .value = value!;
                                                     },
                                                   ),
-                                                  Text("Joint Building"),
+                                                  const Text("Joint Building"),
                                                 ],
                                               )),
                                           Obx(() => Row(
@@ -436,7 +439,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                                           .value = value!;
                                                     },
                                                   ),
-                                                  Text("Industrial Section"),
+                                                  const Text("Industrial Section"),
                                                 ],
                                               )),
                                         ],

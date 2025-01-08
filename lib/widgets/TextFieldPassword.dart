@@ -31,7 +31,7 @@ class TextFormPassword extends StatelessWidget {
           obscureText: pass.isVisible,
           decoration: InputDecoration(
             hintText: hinttext,
-            hintStyle: TextStyle(
+            hintStyle: const TextStyle(
                 fontSize: 12,
                 color: Colors.grey
             ),
@@ -41,10 +41,10 @@ class TextFormPassword extends StatelessWidget {
                 onPressed: () {
                   pass.isVisible ? pass.hint() : pass.notHint();
                 },
-                icon:  pass.isVisible ? Icon(
+                icon:  pass.isVisible ? const Icon(
                   Icons.visibility_off ,
                   color: Colors.grey,
-                ) : Icon(Icons.visibility,
+                ) : const Icon(Icons.visibility,
                   color: Colors.grey,
                 ),
               ),

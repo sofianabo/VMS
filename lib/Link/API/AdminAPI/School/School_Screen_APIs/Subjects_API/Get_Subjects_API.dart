@@ -25,21 +25,21 @@ class Get_Subject_Screen_API {
     controllers.setSubjectLoading(true);
     controllers1.setSubjectLoading(true);
     try {
-      String myurl = "${hostPort}${getSubject}";
+      String myurl = "$hostPort$getSubject";
       var response = await dio.get(myurl,
           options: getDioOptions());
       if (response.statusCode == 200) {
         Subject_Model subjects = Subject_Model.fromJson(response.data);
         controller.setData(subjects);
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

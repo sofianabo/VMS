@@ -25,7 +25,7 @@ class DivisionGrid extends StatelessWidget {
       return control.Isapiloading == true ?
       GridView.builder(
         padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 5,
             crossAxisSpacing: 20.0,
             mainAxisSpacing: 20.0,
@@ -70,15 +70,15 @@ class DivisionGrid extends StatelessWidget {
           ).animate(onPlay: (controller) => controller.repeat()).shimmer(
               angle: 1,
               color: Colors.grey.withOpacity(0.2),
-              duration: Duration(seconds: 1),
-              delay: Duration(seconds: 1));
+              duration: const Duration(seconds: 1),
+              delay: const Duration(seconds: 1));
         },
       )
           :
       control.filteredDivision!.isNotEmpty?
       GridView.builder(
         padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 5,
             crossAxisSpacing: 20.0,
             mainAxisSpacing: 20.0,
@@ -123,7 +123,7 @@ class DivisionGrid extends StatelessWidget {
                             hinttext: "Grade En - Name",
                           ),
                           Padding(
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 left: 15.0, right: 15.0, bottom: 15.0),
                             child: Textfildwithupper(
                               width: 250,
@@ -193,7 +193,7 @@ class DivisionGrid extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       control.filteredDivision![index].hasStudent == true ?
-                          Text("")
+                          const Text("")
                           : Container(
                         width: 35,
                         height: 35,
@@ -207,7 +207,7 @@ class DivisionGrid extends StatelessWidget {
                                   blurRadius: 1)
                             ]),
                         child: IconButton(
-                            style: ButtonStyle(
+                            style: const ButtonStyle(
                                 backgroundColor:
                                     WidgetStatePropertyAll(Color(0xffB03D3D)),
                                 shape: WidgetStatePropertyAll(
@@ -222,7 +222,7 @@ class DivisionGrid extends StatelessWidget {
                                         onPressed: () async {
                                          await Delete_Division_API(context).Delete_Division(index: index , Id: control.filteredDivision![index].id);
                                         },
-                                        color: Color(0xffB03D3D),
+                                        color: const Color(0xffB03D3D),
                                         width: 80),
                                     ButtonDialog(
                                         text: "Cancel",
@@ -255,7 +255,7 @@ class DivisionGrid extends StatelessWidget {
                                   apptitle: "Delete Division",
                                   subtitle: "none"));
                             },
-                            icon: Icon(VMS_Icons.bin,
+                            icon: const Icon(VMS_Icons.bin,
                                 size: 16, color: Colors.white)),
                       ),
                       Row(

@@ -20,28 +20,28 @@ class Add_Session_API {
     CancelToken cancelToken = CancelToken();
     Loading_Dialog(cancelToken: cancelToken);
     try {
-      String myurl = "${hostPort}${addSession}";
+      String myurl = "$hostPort$addSession";
       var response = await dio.post(
         cancelToken: cancelToken,
           myurl,
           data: {
-            'year':'$year',
-            'startDate':'$startDate',
-            'endDate':'$endDate',
+            'year':year,
+            'startDate':startDate,
+            'endDate':endDate,
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
         Get.back();
         Get_Session_Screen_API(context).Getsession();
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

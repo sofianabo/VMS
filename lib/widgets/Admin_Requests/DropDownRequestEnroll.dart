@@ -12,15 +12,15 @@ class Dropdownrequestenroll extends StatelessWidget {
   final bool isLoading;
   final bool? isDisabled;
 
-  Dropdownrequestenroll({
-    Key? key,
+  const Dropdownrequestenroll({
+    super.key,
     required this.title,
     this.color,
     required this.width,
     required this.type,
     required this.isLoading,
     this.isDisabled = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class Dropdownrequestenroll extends StatelessWidget {
       }
 
       return Container(
-        padding: EdgeInsets.all(6.0),
+        padding: const EdgeInsets.all(6.0),
         alignment: Alignment.centerLeft,
         width: width,
         height: 40,
@@ -55,7 +55,7 @@ class Dropdownrequestenroll extends StatelessWidget {
           border: Border.all(color: color ?? const Color(0xffD9D9D9)),
         ),
         child: isDisabled == true
-            ? Row(
+            ? const Row(
                 children: [
                   Text(
                     "Division",
@@ -64,7 +64,7 @@ class Dropdownrequestenroll extends StatelessWidget {
                 ],
               )
             : isLoading == true
-                ? Center(
+                ? const Center(
                     child: SizedBox(
                       width: 20,
                       height: 20,

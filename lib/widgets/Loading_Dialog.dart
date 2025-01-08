@@ -22,8 +22,8 @@ Loading_Dialog({ required CancelToken cancelToken}){
           surfaceTintColor: Colors.transparent,
           insetPadding: EdgeInsets.zero,
           titlePadding: EdgeInsets.zero,
-          contentPadding: EdgeInsets.only(top: 0, left: 35.0, right: 35.0, bottom: 20.0),
-          actionsPadding: EdgeInsets.all(15.0),
+          contentPadding: const EdgeInsets.only(top: 0, left: 35.0, right: 35.0, bottom: 20.0),
+          actionsPadding: const EdgeInsets.all(15.0),
           content: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -41,7 +41,7 @@ Loading_Dialog({ required CancelToken cancelToken}){
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(""),
+              const Text(""),
               Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: IconButton(
@@ -49,7 +49,7 @@ Loading_Dialog({ required CancelToken cancelToken}){
                     cancelToken.cancel();
                     Get.back();
                   },
-                  icon: Icon(Icons.close_rounded, color: Colors.black),
+                  icon: const Icon(Icons.close_rounded, color: Colors.black),
                 ),
               ),
             ],

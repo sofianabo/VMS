@@ -12,7 +12,7 @@ import 'package:vms_school/widgets/Schema_Widget.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class TeacherManagementGrid extends StatelessWidget {
-  TeacherManagementGrid({super.key});
+  const TeacherManagementGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -100,8 +100,8 @@ class TeacherManagementGrid extends StatelessWidget {
             ).animate(onPlay: (controller) => controller.repeat()).shimmer(
               angle: 1,
               color: Colors.grey.withOpacity(0.2),
-              duration: Duration(seconds: 1),
-              delay: Duration(seconds: 1))
+              duration: const Duration(seconds: 1),
+              delay: const Duration(seconds: 1))
           : GridView.builder(
               padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -138,7 +138,7 @@ class TeacherManagementGrid extends StatelessWidget {
                       } else {
                         Get.dialog(VMSAlertDialog(
                           action: [],
-                          contents: Text("This Teacher Not Have Data"),
+                          contents: const Text("This Teacher Not Have Data"),
                           apptitle: "This Teacher Not Uploaded his/her Data",
                           subtitle: "none",
                         ));
@@ -166,7 +166,7 @@ class TeacherManagementGrid extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 IconButton(
-                                    style: ButtonStyle(
+                                    style: const ButtonStyle(
                                         backgroundColor: WidgetStatePropertyAll(
                                             Color(0xffB03D3D)),
                                         shape: WidgetStatePropertyAll(
@@ -184,7 +184,7 @@ class TeacherManagementGrid extends StatelessWidget {
                                                         .filteredTeacher![index]
                                                         .id!);
                                               },
-                                              color: Color(0xffB03D3D),
+                                              color: const Color(0xffB03D3D),
                                               width: 80),
                                           ButtonDialog(
                                               text: "Cancel",
@@ -194,7 +194,7 @@ class TeacherManagementGrid extends StatelessWidget {
                                               color: Get.theme.primaryColor,
                                               width: 80)
                                         ],
-                                        contents: Container(
+                                        contents: SizedBox(
                                             width: 500,
                                             child: Row(
                                               mainAxisAlignment:
@@ -215,7 +215,7 @@ class TeacherManagementGrid extends StatelessWidget {
                                         subtitle: "none",
                                       ));
                                     },
-                                    icon: Icon(VMS_Icons.bin,
+                                    icon: const Icon(VMS_Icons.bin,
                                         size: 16, color: Colors.white)),
                                 Image.asset("../../images/Rectangle66.png",
                                     height: 100, width: 100),
@@ -246,7 +246,7 @@ class TeacherManagementGrid extends StatelessWidget {
                                                               index]
                                                           .contractType ==
                                                       "Full Time"
-                                                  ? Color(0xff2F9742)
+                                                  ? const Color(0xff2F9742)
                                                   : Get.theme.primaryColor)),
                                 ),
                                 Padding(

@@ -7,15 +7,15 @@ class ExamTableModel {
     if (json['quiz'] != null) {
       quiz = <Quiz>[];
       json['quiz'].forEach((v) {
-        quiz!.add(new Quiz.fromJson(v));
+        quiz!.add(Quiz.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.quiz != null) {
-      data['quiz'] = this.quiz!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (quiz != null) {
+      data['quiz'] = quiz!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -25,14 +25,14 @@ class Quiz {
   int? id;
   String? startDate;
   String? period;
-  Null? name;
+  Null name;
   int? maxMark;
   int? passingMark;
   Classese? classes;
   Classese? type;
   Classese? semester;
   String? curriculumName;
-  Null? curriculumEnName;
+  Null curriculumEnName;
 
   Quiz(
       {this.id,
@@ -55,34 +55,34 @@ class Quiz {
     maxMark = json['maxMark'];
     passingMark = json['PassingMark'];
     classes =
-        json['classes'] != null ? new Classese.fromJson(json['classes']) : null;
-    type = json['Type'] != null ? new Classese.fromJson(json['Type']) : null;
+        json['classes'] != null ? Classese.fromJson(json['classes']) : null;
+    type = json['Type'] != null ? Classese.fromJson(json['Type']) : null;
     semester = json['semester'] != null
-        ? new Classese.fromJson(json['semester'])
+        ? Classese.fromJson(json['semester'])
         : null;
     curriculumName = json['curriculumName'];
     curriculumEnName = json['curriculumEnName'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['startDate'] = this.startDate;
-    data['period'] = this.period;
-    data['name'] = this.name;
-    data['maxMark'] = this.maxMark;
-    data['PassingMark'] = this.passingMark;
-    if (this.classes != null) {
-      data['classes'] = this.classes!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['startDate'] = startDate;
+    data['period'] = period;
+    data['name'] = name;
+    data['maxMark'] = maxMark;
+    data['PassingMark'] = passingMark;
+    if (classes != null) {
+      data['classes'] = classes!.toJson();
     }
-    if (this.type != null) {
-      data['Type'] = this.type!.toJson();
+    if (type != null) {
+      data['Type'] = type!.toJson();
     }
-    if (this.semester != null) {
-      data['semester'] = this.semester!.toJson();
+    if (semester != null) {
+      data['semester'] = semester!.toJson();
     }
-    data['curriculumName'] = this.curriculumName;
-    data['curriculumEnName'] = this.curriculumEnName;
+    data['curriculumName'] = curriculumName;
+    data['curriculumEnName'] = curriculumEnName;
     return data;
   }
 }
@@ -101,10 +101,10 @@ class Classese {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['enName'] = this.enName;
-    data['id'] = this.id;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['enName'] = enName;
+    data['id'] = id;
     return data;
   }
 }

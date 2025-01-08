@@ -21,21 +21,21 @@ class Increaseemployeattendenceapi {
     AttendenceController.setIsIsuploaded(false);
 
     try {
-      String myurl = "${hostPort}${employeeIncreaseAttendance}";
+      String myurl = "$hostPort$employeeIncreaseAttendance";
       var response = await dio.get(data: {}, myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         IncreaseEmpolyeeAttendenceModel empolyee =
             IncreaseEmpolyeeAttendenceModel.fromJson(response.data);
         AttendenceController.setData(empolyee);
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

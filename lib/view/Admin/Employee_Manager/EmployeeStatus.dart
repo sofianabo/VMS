@@ -15,7 +15,7 @@ import '../../../Icons_File/v_m_s__icons_icons.dart';
 import '../../../widgets/TextFormSearch.dart';
 
 class EmployeeStatus extends StatefulWidget {
-  EmployeeStatus({super.key});
+  const EmployeeStatus({super.key});
 
   @override
   State<EmployeeStatus> createState() => _EmployeeStatusState();
@@ -38,7 +38,7 @@ class _EmployeeStatusState extends State<EmployeeStatus> {
         child: Column(
       children: [
         Container(
-          margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -91,7 +91,7 @@ class _EmployeeStatusState extends State<EmployeeStatus> {
                         ),
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Row(
                       children: [
                         Container(
@@ -107,7 +107,7 @@ class _EmployeeStatusState extends State<EmployeeStatus> {
                                     blurRadius: 1)
                               ]),
                           child: IconButton(
-                              style: ButtonStyle(
+                              style: const ButtonStyle(
                                   shape: WidgetStatePropertyAll(
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
@@ -132,7 +132,7 @@ class _EmployeeStatusState extends State<EmployeeStatus> {
                                       blurRadius: 1)
                                 ]),
                             child: IconButton(
-                                style: ButtonStyle(
+                                style: const ButtonStyle(
                                     shape: WidgetStatePropertyAll(
                                         RoundedRectangleBorder(
                                             borderRadius: BorderRadius.all(

@@ -24,7 +24,7 @@ class ClassGrid extends StatelessWidget {
       return control.isLoading == true ?
       GridView.builder(
         padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 5,
             crossAxisSpacing: 20.0,
             mainAxisSpacing: 20.0,
@@ -70,14 +70,14 @@ class ClassGrid extends StatelessWidget {
           ).animate(onPlay: (controller) => controller.repeat()).shimmer(
               angle: 1,
               color: Colors.grey.withOpacity(0.2),
-              duration: Duration(seconds: 1),
-              delay: Duration(seconds: 1));
+              duration: const Duration(seconds: 1),
+              delay: const Duration(seconds: 1));
         },
       ) :
           control.filteredreclasses!.isNotEmpty ?
       GridView.builder(
         padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 5,
             crossAxisSpacing: 20.0,
             mainAxisSpacing: 20.0,
@@ -121,7 +121,7 @@ class ClassGrid extends StatelessWidget {
                             hinttext: "Grade En - Name",
                           ),
                           Padding(
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 left: 15.0, right: 15.0, bottom: 15.0),
                             child: Textfildwithupper(
                               width: 250,
@@ -144,7 +144,7 @@ class ClassGrid extends StatelessWidget {
 
 
                           Padding(
-                            padding: EdgeInsets.only(left: 15.0, right: 15.0),
+                            padding: const EdgeInsets.only(left: 15.0, right: 15.0),
                             child:     Textfildwithupper(
                               width: 250,
                               controller: TextEditingController(text: "${control.filteredreclasses![index].session!.year}"),
@@ -226,7 +226,7 @@ class ClassGrid extends StatelessWidget {
                                   blurRadius: 1)
                             ]),
                         child: IconButton(
-                            style: ButtonStyle(
+                            style: const ButtonStyle(
                                 backgroundColor:
                                     WidgetStatePropertyAll(Color(0xffB03D3D)),
                                 shape: WidgetStatePropertyAll(
@@ -242,7 +242,7 @@ class ClassGrid extends StatelessWidget {
                                          await Delete_Class_API(context).Delete_Class(classId: control.filteredreclasses![index].id,index: index);
                                           Get.back();
                                         },
-                                        color: Color(0xffB03D3D),
+                                        color: const Color(0xffB03D3D),
                                         width: 80),
                                     ButtonDialog(
                                         text: "Cancel",
@@ -275,7 +275,7 @@ class ClassGrid extends StatelessWidget {
                                   apptitle: "Delete Class",
                                   subtitle: "none"));
                             },
-                            icon: Icon(VMS_Icons.bin,
+                            icon: const Icon(VMS_Icons.bin,
                                 size: 16, color: Colors.white)),
                       ),
                       Row(

@@ -10,7 +10,7 @@ import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class Subject_Management extends StatefulWidget {
-  Subject_Management({super.key});
+  const Subject_Management({super.key});
 
   @override
   State<Subject_Management> createState() => _Subject_ManagementState();
@@ -32,7 +32,7 @@ class _Subject_ManagementState extends State<Subject_Management> {
         child: Column(
       children: [
         Container(
-          margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -40,7 +40,7 @@ class _Subject_ManagementState extends State<Subject_Management> {
             children: [
               Row(
                 children: [
-                  Spacer(),
+                  const Spacer(),
                   Container(
                     width: 40,
                     height: 40,
@@ -54,7 +54,7 @@ class _Subject_ManagementState extends State<Subject_Management> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style: ButtonStyle(
+                        style: const ButtonStyle(
                             backgroundColor:
                                 WidgetStatePropertyAll(Color(0xffF9F8FD)),
                             shape: WidgetStatePropertyAll(
@@ -87,7 +87,7 @@ class _Subject_ManagementState extends State<Subject_Management> {
                                         Row(
                                           children: [
                                             Padding(
-                                              padding: EdgeInsets.only(
+                                              padding: const EdgeInsets.only(
                                                   left: 15.0, right: 15.0),
                                               child: Textfildwithupper(
                                                   controller: enName,
@@ -127,7 +127,7 @@ class _Subject_ManagementState extends State<Subject_Management> {
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                          style: ButtonStyle(
+                          style: const ButtonStyle(
                               backgroundColor:
                                   WidgetStatePropertyAll(Color(0xffF9F8FD)),
                               shape: WidgetStatePropertyAll(
@@ -152,7 +152,7 @@ class _Subject_ManagementState extends State<Subject_Management> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style: ButtonStyle(
+                        style: const ButtonStyle(
                             backgroundColor:
                                 WidgetStatePropertyAll(Color(0xffF9F8FD)),
                             shape: WidgetStatePropertyAll(

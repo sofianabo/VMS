@@ -7,15 +7,15 @@ class AllEmployeeAttendeceModel {
     if (json['attendance'] != null) {
       attendance = <Attendance>[];
       json['attendance'].forEach((v) {
-        attendance!.add(new Attendance.fromJson(v));
+        attendance!.add(Attendance.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.attendance != null) {
-      data['attendance'] = this.attendance!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (attendance != null) {
+      data['attendance'] = attendance!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -40,12 +40,12 @@ class Attendance {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['status'] = this.status;
-    data['jobTitle'] = this.jobTitle;
-    data['imageId'] = this.imageId;
-    data['fullName'] = this.fullName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['status'] = status;
+    data['jobTitle'] = jobTitle;
+    data['imageId'] = imageId;
+    data['fullName'] = fullName;
     return data;
   }
 }

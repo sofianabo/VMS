@@ -15,7 +15,7 @@ import 'package:vms_school/widgets/VMSAlertDialog.dart';
 import '../../../widgets/GridAnimation.dart';
 
 class AllStudentGrid extends StatelessWidget {
-  AllStudentGrid({super.key});
+  const AllStudentGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +107,7 @@ class AllStudentGrid extends StatelessWidget {
                                                       .fileId ==
                                                   null
                                               ? Text(
-                                                  "${control.filteredStudents[index].fullName!.substring(0, 1).toUpperCase()}",
+                                                  control.filteredStudents[index].fullName!.substring(0, 1).toUpperCase(),
                                                   style: Get
                                                       .textTheme.titleLarge!
                                                       .copyWith(
@@ -151,9 +151,9 @@ class AllStudentGrid extends StatelessWidget {
                                     IconButton(
                                       style: ButtonStyle(
                                           maximumSize: WidgetStateProperty.all(
-                                              Size(35, 35)),
+                                              const Size(35, 35)),
                                           minimumSize: WidgetStateProperty.all(
-                                              Size(35, 35)),
+                                              const Size(35, 35)),
                                           iconSize: WidgetStateProperty.all(14),
                                           shape: WidgetStateProperty.all(
                                               RoundedRectangleBorder(
@@ -162,7 +162,7 @@ class AllStudentGrid extends StatelessWidget {
                                           )),
                                           backgroundColor:
                                               WidgetStateProperty.all(
-                                                  Color(0xffB03D3D))),
+                                                  const Color(0xffB03D3D))),
                                       onPressed: () {
                                         Get.dialog(VMSAlertDialog(
                                             action: [
@@ -179,7 +179,7 @@ class AllStudentGrid extends StatelessWidget {
                                                               .id
                                                               .toString());
                                                 },
-                                                color: Color(0xffB03D3D),
+                                                color: const Color(0xffB03D3D),
                                               ),
                                               const SizedBox(
                                                 width: 10,
@@ -193,7 +193,7 @@ class AllStudentGrid extends StatelessWidget {
                                                   color: Get.theme.colorScheme
                                                       .primary)
                                             ],
-                                            contents: Container(
+                                            contents: SizedBox(
                                               width: 400,
                                               height: 1,
                                             ),
@@ -207,9 +207,9 @@ class AllStudentGrid extends StatelessWidget {
                                     IconButton(
                                       style: ButtonStyle(
                                           maximumSize: WidgetStateProperty.all(
-                                              Size(35, 35)),
+                                              const Size(35, 35)),
                                           minimumSize: WidgetStateProperty.all(
-                                              Size(35, 35)),
+                                              const Size(35, 35)),
                                           iconSize: WidgetStateProperty.all(14),
                                           shape: WidgetStateProperty.all(
                                               RoundedRectangleBorder(
@@ -226,9 +226,9 @@ class AllStudentGrid extends StatelessWidget {
                                     IconButton(
                                       style: ButtonStyle(
                                           maximumSize: WidgetStateProperty.all(
-                                              Size(35, 35)),
+                                              const Size(35, 35)),
                                           minimumSize: WidgetStateProperty.all(
-                                              Size(35, 35)),
+                                              const Size(35, 35)),
                                           iconSize: WidgetStateProperty.all(14),
                                           shape: WidgetStateProperty.all(
                                               RoundedRectangleBorder(
@@ -245,9 +245,9 @@ class AllStudentGrid extends StatelessWidget {
                                     IconButton(
                                       style: ButtonStyle(
                                           maximumSize: WidgetStateProperty.all(
-                                              Size(35, 35)),
+                                              const Size(35, 35)),
                                           minimumSize: WidgetStateProperty.all(
-                                              Size(35, 35)),
+                                              const Size(35, 35)),
                                           iconSize: WidgetStateProperty.all(14),
                                           shape: WidgetStateProperty.all(
                                               RoundedRectangleBorder(
@@ -379,9 +379,8 @@ class AllStudentGrid extends StatelessWidget {
                 ).animate(onPlay: (controller) => controller.repeat()).shimmer(
                     angle: 1,
                     color: Colors.white,
-                    duration: Duration(milliseconds: 600),
-                    delay: Duration(milliseconds: 200));
-                ;
+                    duration: const Duration(milliseconds: 600),
+                    delay: const Duration(milliseconds: 200));
               },
             );
     });

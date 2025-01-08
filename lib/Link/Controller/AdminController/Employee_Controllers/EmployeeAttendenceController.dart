@@ -50,7 +50,7 @@ class Employeeattendencecontroller extends GetxController {
   void searchRequestByName(String query, String jopindex) {
     List<Attendance> tempFilteredList = List.from(employee);
 
-    if (query != null && query.isNotEmpty) {
+    if (query.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((emp) {
         final empName = emp.fullName?.toLowerCase() ?? '';
         return empName.contains(query.toLowerCase());

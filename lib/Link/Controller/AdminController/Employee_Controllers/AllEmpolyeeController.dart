@@ -103,7 +103,7 @@ class Allempolyeecontroller extends GetxController {
 
   void searchRequestByName(String query, String jobindexed) {
     List<Employees> tempFilteredList = List.from(employees);
-    if (query != null && query.isNotEmpty) {
+    if (query.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((emp) {
         final empName = emp.userName?.toLowerCase() ?? '';
         final empFullName = emp.fullName?.toLowerCase() ?? '';

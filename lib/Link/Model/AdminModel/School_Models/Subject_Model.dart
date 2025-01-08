@@ -7,7 +7,7 @@ class Subject_Model {
     if (json['subject'] != null) {
       subject = <Subject>[];
       json['subject'].forEach((v) {
-        subject!.add(new Subject.fromJson(v));
+        subject!.add(Subject.fromJson(v));
       });
     }
   }

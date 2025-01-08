@@ -13,7 +13,7 @@ import '../../../Icons_File/v_m_s__icons_icons.dart';
 import '../../../widgets/TextFormSearch.dart';
 
 class TeacherStatus extends StatefulWidget {
-  TeacherStatus({super.key});
+  const TeacherStatus({super.key});
 
   @override
   State<TeacherStatus> createState() => _TeacherStatusState();
@@ -37,7 +37,7 @@ class _TeacherStatusState extends State<TeacherStatus> {
         child: Column(
       children: [
         Container(
-          margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           alignment: Alignment.center,
           child: Row(
             children: [
@@ -88,7 +88,7 @@ class _TeacherStatusState extends State<TeacherStatus> {
                                       blurRadius: 1)
                                 ]),
                             child: IconButton(
-                                style: ButtonStyle(
+                                style: const ButtonStyle(
                                     shape: WidgetStatePropertyAll(
                                         RoundedRectangleBorder(
                                             borderRadius: BorderRadius.all(
@@ -155,7 +155,7 @@ class _TeacherStatusState extends State<TeacherStatus> {
                                         blurRadius: 1)
                                   ]),
                               child: IconButton(
-                                  style: ButtonStyle(
+                                  style: const ButtonStyle(
                                       shape: WidgetStatePropertyAll(
                                           RoundedRectangleBorder(
                                               borderRadius: BorderRadius.all(

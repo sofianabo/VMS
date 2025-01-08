@@ -7,15 +7,15 @@ class OneStudentAttendenceModel {
     if (json['studentAt'] != null) {
       studentAt = <StudentAt>[];
       json['studentAt'].forEach((v) {
-        studentAt!.add(new StudentAt.fromJson(v));
+        studentAt!.add(StudentAt.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.studentAt != null) {
-      data['studentAt'] = this.studentAt!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (studentAt != null) {
+      data['studentAt'] = studentAt!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -35,10 +35,10 @@ class StudentAt {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['cause'] = this.cause;
-    data['date'] = this.date;
-    data['status'] = this.status;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['cause'] = cause;
+    data['date'] = date;
+    data['status'] = status;
     return data;
   }
 }

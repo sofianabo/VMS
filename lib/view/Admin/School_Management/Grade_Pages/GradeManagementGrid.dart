@@ -36,7 +36,7 @@ class GradeTable extends StatelessWidget {
                         border: TableBorder.all(color: Get.theme.primaryColor),
                         children: [
                           TableRow(
-                            decoration: BoxDecoration(color: Color(0xffD4DFE5)),
+                            decoration: const BoxDecoration(color: Color(0xffD4DFE5)),
                             children: [
                               _tableHeader('Operation'),
                               _tableHeader('Fee Count'),
@@ -88,7 +88,7 @@ class GradeTable extends StatelessWidget {
         children: [
           _iconButton(
             iconData: VMS_Icons.bin,
-            color: Color(0xffB03D3D),
+            color: const Color(0xffB03D3D),
             onPressed: () {
               Get.dialog(
                 VMSAlertDialog(
@@ -101,7 +101,7 @@ class GradeTable extends StatelessWidget {
                             index: index,
                           );
                         },
-                        color: Color(0xffB03D3D),
+                        color: const Color(0xffB03D3D),
                         width: 120),
                     ButtonDialog(
                         text: "Cancel",
@@ -114,11 +114,11 @@ class GradeTable extends StatelessWidget {
                   contents: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Container(
+                      SizedBox(
                         width: 400,
                         child: Text(
                           "Do You Want To Delete (${row['enName']}) Grade",
-                          style: TextStyle(fontSize: 16),
+                          style: const TextStyle(fontSize: 16),
                         ),
                       ),
                     ],
@@ -158,7 +158,7 @@ class GradeTable extends StatelessWidget {
                         Row(
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(left: 15.0, right: 15.0),
+                              padding: const EdgeInsets.only(left: 15.0, right: 15.0),
                               child: Textfildwithupper(
                                   controller: enName,
                                   Uptext: "Grade En - Name",
@@ -176,7 +176,7 @@ class GradeTable extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                   left: 15.0, right: 15.0, top: 15.0),
                               child: Textfildwithupper(
                                   controller: feeCount,
@@ -202,7 +202,7 @@ class GradeTable extends StatelessWidget {
       required Color color,
       required VoidCallback onPressed}) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10.0),
+      margin: const EdgeInsets.symmetric(horizontal: 10.0),
       width: 40,
       height: 40,
       alignment: Alignment.center,
@@ -216,7 +216,7 @@ class GradeTable extends StatelessWidget {
       child: IconButton(
         style: ButtonStyle(
           backgroundColor: WidgetStatePropertyAll(color),
-          shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+          shape: const WidgetStatePropertyAll(RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(5)))),
         ),
         onPressed: onPressed,
@@ -231,7 +231,7 @@ class GradeTable extends StatelessWidget {
       height: 50,
       child: Text(
         data ?? '',
-        style: TextStyle(color: Colors.black),
+        style: const TextStyle(color: Colors.black),
       ),
     );
   }

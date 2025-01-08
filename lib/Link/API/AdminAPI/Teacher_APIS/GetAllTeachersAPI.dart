@@ -22,7 +22,7 @@ class Getallteachersapi {
     controller.setIsLoading(true);
 
     try {
-      String myurl = "${hostPort}${getTeachers}";
+      String myurl = "$hostPort$getTeachers";
       var response = await dio.post(
         data: {
           'sessionId':sessionID
@@ -32,14 +32,14 @@ class Getallteachersapi {
         AllTeacherModel teacher = AllTeacherModel.fromJson(response.data);
         controller.setAllTeacher(teacher);
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

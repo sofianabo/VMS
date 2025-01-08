@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Model/AdminModel/OneStudentAttendenceModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/oneEmployeeAttendenceModel.dart';
 
 class Oneemployeeattendencecontroller extends GetxController {

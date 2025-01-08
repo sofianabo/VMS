@@ -7,15 +7,15 @@ class AllSemesterModel {
     if (json['semester'] != null) {
       semester = <Semester>[];
       json['semester'].forEach((v) {
-        semester!.add(new Semester.fromJson(v));
+        semester!.add(Semester.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.semester != null) {
-      data['semester'] = this.semester!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (semester != null) {
+      data['semester'] = semester!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -35,10 +35,10 @@ class Semester {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['enName'] = this.enName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['enName'] = enName;
     return data;
   }
 }

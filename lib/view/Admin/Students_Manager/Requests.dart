@@ -12,7 +12,7 @@ import 'package:vms_school/widgets/Calender.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 
 class Requests extends StatefulWidget {
-  Requests({super.key});
+  const Requests({super.key});
 
   @override
   State<Requests> createState() => _RequestsState();
@@ -34,7 +34,7 @@ class _RequestsState extends State<Requests> {
       children: [
         GetBuilder<Requestscontroller>(builder: (controller) {
           return Container(
-            margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
             alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -72,7 +72,7 @@ class _RequestsState extends State<Requests> {
                         ),
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Row(
                       children: [
                         Container(
@@ -115,7 +115,7 @@ class _RequestsState extends State<Requests> {
                                       blurRadius: 1)
                                 ]),
                             child: IconButton(
-                                style: ButtonStyle(
+                                style: const ButtonStyle(
                                     shape: WidgetStatePropertyAll(
                                         RoundedRectangleBorder(
                                             borderRadius: BorderRadius.all(

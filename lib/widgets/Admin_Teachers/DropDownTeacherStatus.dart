@@ -13,14 +13,14 @@ class DropDownTeacherStatus extends StatelessWidget {
   bool isDisabled;
   bool isLoading;
   DropDownTeacherStatus({
-    Key? key,
+    super.key,
     required this.title,
     this.color,
     required this.width,
     required this.type,
         this.isDisabled = false,
     this.isLoading = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class DropDownTeacherStatus extends StatelessWidget {
       }
 
       return Container(
-        padding: EdgeInsets.all(6.0),
+        padding: const EdgeInsets.all(6.0),
         alignment: Alignment.centerLeft,
         width: width,
         height: 40,
@@ -59,11 +59,11 @@ class DropDownTeacherStatus extends StatelessWidget {
         child: isDisabled == true?
         Row(
           children: [
-            Text("$title" , style: TextStyle(color: Colors.grey),),
+            Text(title , style: const TextStyle(color: Colors.grey),),
           ],
         ):
         isLoading == true
-            ? Center(
+            ? const Center(
           child: SizedBox(
             width: 20,
             height: 20,

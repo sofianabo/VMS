@@ -22,7 +22,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Color(0xfff9f8fd),
+      backgroundColor: const Color(0xfff9f8fd),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -37,7 +37,7 @@ class LoginScreen extends StatelessWidget {
                     )
                         .animate(onPlay: (controller) => controller.repeat())
                         .shimmer(
-                            duration: Duration(seconds: 4),
+                            duration: const Duration(seconds: 4),
                             color: Colors.white.withOpacity(0.8))),
               ],
             ),
@@ -59,15 +59,15 @@ class LoginScreen extends StatelessWidget {
                             .moveY(
                               begin: 1,
                               end: 30,
-                              duration: Duration(seconds: 2),
-                              delay: Duration(milliseconds: 1),
+                              duration: const Duration(seconds: 2),
+                              delay: const Duration(milliseconds: 1),
                             )
                             .then()
                             .moveY(
                               begin: 30,
                               end: 1,
-                              duration: Duration(seconds: 2),
-                              delay: Duration(milliseconds: 1),
+                              duration: const Duration(seconds: 2),
+                              delay: const Duration(milliseconds: 1),
                             )
                       ],
                     ),
@@ -90,7 +90,7 @@ class LoginScreen extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(top: 5.0),
                                     child: TextFieldAuth(
-                                      autofill: [AutofillHints.username],
+                                      autofill: const [AutofillHints.username],
                                       controller: username,
                                       hinttext: "Username",
                                     ),
@@ -116,7 +116,7 @@ class LoginScreen extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(top: 5.0),
                                       child: TextFormPassword(
-                                          autofill: [AutofillHints.password],
+                                          autofill: const [AutofillHints.password],
                                           controller: password,
                                           hinttext: "Password"),
                                     ),
@@ -126,7 +126,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                         ],
-                      ).animate().fadeIn(duration: Duration(seconds: 1)),
+                      ).animate().fadeIn(duration: const Duration(seconds: 1)),
                     ),
                     Column(
                       children: [
@@ -139,15 +139,15 @@ class LoginScreen extends StatelessWidget {
                             .moveY(
                               begin: 30,
                               end: 1,
-                              duration: Duration(seconds: 2),
-                              delay: Duration(milliseconds: 1),
+                              duration: const Duration(seconds: 2),
+                              delay: const Duration(milliseconds: 1),
                             )
                             .then()
                             .moveY(
                               begin: 1,
                               end: 30,
-                              duration: Duration(seconds: 2),
-                              delay: Duration(milliseconds: 1),
+                              duration: const Duration(seconds: 2),
+                              delay: const Duration(milliseconds: 1),
                             )
                       ],
                     ),
@@ -162,8 +162,8 @@ class LoginScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5),
                   ),)
                   ,backgroundColor: WidgetStatePropertyAll(Get.theme.primaryColor),
-                    maximumSize: WidgetStatePropertyAll(Size(200 , 60)),
-                    minimumSize: WidgetStatePropertyAll(Size(200 , 60)),
+                    maximumSize: const WidgetStatePropertyAll(Size(200 , 60)),
+                    minimumSize: const WidgetStatePropertyAll(Size(200 , 60)),
                   ),
                     onPressed: () async {
                     if(controller.Isloading == false){
@@ -185,8 +185,8 @@ class LoginScreen extends StatelessWidget {
                           style: Get.theme.textTheme.displayMedium!
                               .copyWith(fontSize: 15),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0 , right: 8.0),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 8.0 , right: 8.0),
                           child: Icon(
                             Icons.login,
                             color: Colors.white,
@@ -194,7 +194,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                       ],
-                    )).animate().fadeIn(duration: Duration(seconds: 1));
+                    )).animate().fadeIn(duration: const Duration(seconds: 1));
               }
             )
           ],

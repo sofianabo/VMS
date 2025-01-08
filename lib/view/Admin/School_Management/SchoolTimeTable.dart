@@ -5,7 +5,7 @@ import 'package:vms_school/Link/API/AdminAPI/School/SchoolTimeTableAPI.dart';
 import 'package:vms_school/widgets/Admin_Table/DropDownSchoolTime.dart';
 
 class SchoolTimeTable extends StatefulWidget {
-  SchoolTimeTable({super.key});
+  const SchoolTimeTable({super.key});
 
   @override
   State<SchoolTimeTable> createState() => _SchoolTimeTableState();
@@ -79,7 +79,7 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
+          SizedBox(
             width: Get.width * 0.9,
             child: Row(
               children: [
@@ -96,7 +96,7 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                     width: Get.width / 4,
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Row(
                   children: [
                     Container(
@@ -112,7 +112,7 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                          style: ButtonStyle(
+                          style: const ButtonStyle(
                               shape: WidgetStatePropertyAll(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
@@ -136,7 +136,7 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                   blurRadius: 1)
                             ]),
                         child: IconButton(
-                            style: ButtonStyle(
+                            style: const ButtonStyle(
                                 shape: WidgetStatePropertyAll(
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
@@ -169,7 +169,7 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                             Container(
                               height: 50,
                               alignment: Alignment.center,
-                              color: Color(0xffD4DFE5),
+                              color: const Color(0xffD4DFE5),
                               child: Center(
                                 child: Text(
                                   'Day',
@@ -188,7 +188,7 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                 .map((key) => Container(
                                       height: 50,
                                       alignment: Alignment.center,
-                                      color: Color(0xffD4DFE5),
+                                      color: const Color(0xffD4DFE5),
                                       child: Center(
                                         child: Text(
                                           textAlign: TextAlign.center,
@@ -202,7 +202,7 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                         ),
                                       ),
                                     ))
-                                .toList(),
+                                ,
                           ],
                         ),
                         for (var row in tableData)
@@ -211,7 +211,7 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                               Container(
                                 alignment: Alignment.center,
                                 height: 50,
-                                color: Color(0xffD4DFE5),
+                                color: const Color(0xffD4DFE5),
                                 child: Center(
                                   child: Text(row['Day'] ?? '',
                                       style: Get.theme.textTheme.titleLarge!
@@ -230,10 +230,10 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                         child: Text(
                                           textAlign: TextAlign.center,
                                           entry.value,
-                                          style: TextStyle(color: Colors.black),
+                                          style: const TextStyle(color: Colors.black),
                                         ),
                                       ))
-                                  .toList(),
+                                  ,
                             ],
                           ),
                       ],

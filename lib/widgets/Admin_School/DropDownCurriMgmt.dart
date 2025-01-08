@@ -12,14 +12,14 @@ class DropDownCurriMgmt extends StatelessWidget {
   final bool? Isloading;
 
   const DropDownCurriMgmt({
-    Key? key,
+    super.key,
     required this.title,
     this.color,
     required this.width,
     required this.type,
     this.selectedValue,
     this.Isloading,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class DropDownCurriMgmt extends StatelessWidget {
       }
 
       return Container(
-        padding: EdgeInsets.all(6.0),
+        padding: const EdgeInsets.all(6.0),
         alignment: Alignment.centerLeft,
         width: width,
         height: 40,
@@ -61,7 +61,7 @@ class DropDownCurriMgmt extends StatelessWidget {
           border: Border.all(color: color ?? const Color(0xffD9D9D9)),
         ),
         child: Isloading == true
-            ? Center(
+            ? const Center(
           child: SizedBox(
             width: 20,
             height: 20,

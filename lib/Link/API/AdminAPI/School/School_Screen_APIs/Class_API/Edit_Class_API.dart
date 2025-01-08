@@ -27,7 +27,7 @@ class Edit_Class_API {
     try {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
-      String myurl = "${hostPort}${updateClass}";
+      String myurl = "$hostPort$updateClass";
       var response = await dio.post(
         cancelToken: cancelToken,
           myurl,
@@ -42,14 +42,14 @@ class Edit_Class_API {
         await Get_All_Classes_API(context).Get_All_Classes(sessionID: Get.find<All_Screen_Sessions_Controller>().sessionId);
         Get.back();
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

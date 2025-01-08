@@ -19,7 +19,7 @@ class Studentattendenceapi {
     try {
       c.setIsLoading(true);
 
-      String myurl = "${hostPort}${studentAttenendnce}";
+      String myurl = "$hostPort$studentAttenendnce";
       var response = await dio.post(myurl,
           data: {
             "sessionId": sessionID,
@@ -31,14 +31,14 @@ class Studentattendenceapi {
             AllStudentAttendenceModel.fromJson(response.data);
         c.setAllStudents(student);
       } else {
-        ErrorHandler.handleDioError(DioError(
+        ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
-          type: DioErrorType.badResponse,
+          type: DioExceptionType.badResponse,
         ));
       }
     } catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {
         ErrorHandler.handleException(e);

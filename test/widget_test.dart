@@ -8,7 +8,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:vms_school/main.dart';
 import 'package:vms_school/view/website/Home.dart';
 
 void main() {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class HoverScaleCard extends StatefulWidget {
   final Widget child;
 
-  const HoverScaleCard({Key? key, required this.child}) : super(key: key);
+  const HoverScaleCard({super.key, required this.child});
 
   @override
   _HoverScaleCardState createState() => _HoverScaleCardState();

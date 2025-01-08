@@ -1,9 +1,7 @@
-import 'dart:typed_data';
 import 'package:excel/excel.dart';
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'package:vms_school/Link/Model/AdminModel/AllStudentModel.dart';
 import 'dart:html' as html;
 
 import 'package:vms_school/Link/Model/AdminModel/All_Employee_Model.dart';
