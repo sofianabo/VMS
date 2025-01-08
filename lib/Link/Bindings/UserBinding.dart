@@ -12,11 +12,13 @@ import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Class_Mgmt_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Grade_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Labrary_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/School_Info_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Session_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Subject_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Transaction_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
@@ -98,11 +100,11 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Subject_Controller(), fenix: true);
     Get.lazyPut(() => Allteacheratendencecontroller(), fenix: true);
     Get.lazyPut(() => Dropdowncuriculmcontroller(), fenix: true);
-     Get.lazyPut(() => Transaction_Controller(), fenix: true);
+    Get.lazyPut(() => Transaction_Controller(), fenix: true);
     Get.lazyPut(() => Add_Students_Controller(), fenix: true);
     Get.lazyPut(() => Location_controller(), fenix: true);
-        Get.lazyPut(() => Addteachercontroller(), fenix: true);
-
- 
+    Get.lazyPut(() => Illness_Controller(), fenix: true);
+    Get.lazyPut(() => Vaccines_Controller(), fenix: true);
+    Get.lazyPut(() => Addteachercontroller(), fenix: true);
   }
 }

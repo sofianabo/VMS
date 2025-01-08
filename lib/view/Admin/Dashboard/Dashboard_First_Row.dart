@@ -1,6 +1,7 @@
 import 'package:dashed_circular_progress_bar/dashed_circular_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 
@@ -10,7 +11,7 @@ class DashboardFirstRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-   
+
     return Row(
       children: [
         HoverScaleCard(
@@ -131,7 +132,7 @@ class DashboardFirstRow extends StatelessWidget {
         ),
         HoverScaleCard(
           child: Container(
-               width:width/3.95,
+              width: width / 3.95,
               height: 160,
               padding: const EdgeInsets.all(13.0),
               margin: const EdgeInsets.all(15.0),
@@ -156,7 +157,7 @@ class DashboardFirstRow extends StatelessWidget {
                       const Padding(
                         padding: EdgeInsets.only(top: 10.0, bottom: 15.0),
                         child: Text(
-                          "Illness and Epidemics",
+                          "Illness and Vaccines",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -168,8 +169,11 @@ class DashboardFirstRow extends StatelessWidget {
                               ButtonDashboard(
                                   bordercolor: Colors.white,
                                   text: "Illness",
-                                  onPressed: () {},
-                                  color: const Color(0xff4C779F),
+                                  onPressed: () {
+                                    Get.find<AdminHomeContentController>()
+                                        .updateContent("Illness Screen");
+                                  },
+                                  color: Color(0xff4C779F),
                                   width: 150),
                               Padding(
                                 padding: const EdgeInsets.only(top: 8.0),
@@ -177,7 +181,7 @@ class DashboardFirstRow extends StatelessWidget {
                                     bordercolor: Colors.white,
                                     text: "Epidemics",
                                     onPressed: () {},
-                                    color: const Color(0xff4C779F),
+                                    color: Color(0xff4C779F),
                                     width: 150),
                               ),
                             ],
@@ -191,7 +195,7 @@ class DashboardFirstRow extends StatelessWidget {
         ),
         HoverScaleCard(
           child: Container(
-               width:width/3.95,
+              width: width / 3.95,
               height: 160,
               padding: const EdgeInsets.all(13.0),
               decoration: BoxDecoration(

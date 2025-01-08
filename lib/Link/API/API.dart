@@ -100,6 +100,14 @@ String deleteBook = "deleteBook";
 
 String getTransaction = "getTransaction";
 
+String getIllness = "getIllness";
+String addIllness = "addIllness";
+String deleteIllness = "deleteIllness";
+
+String getVaccine = "getVaccine";
+String deleteVaccines = "deleteVaccines";
+String addVaccines = "addVaccines";
+
 //..................... Admin ...................//
 
 String dashboard = "DashBoard";

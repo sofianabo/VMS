@@ -48,6 +48,7 @@ class Add_Student_API {
     Academic_sequence,
     FamilyNotbook,
     file,
+    Fee_Discount,
   }) async {
     Dio dio = Dio();
     String myURI = "$hostPort$addStudentInfo";
@@ -85,6 +86,7 @@ class Add_Student_API {
         "note": note,
         "specialNeeds": specialNeeds == true ? 1 : 0,
         "martyrSon": martyrSon == true ? 1 : 0,
+        "feeDiscount": Fee_Discount,
       };
 
       List<Map<String, dynamic>> files = [];

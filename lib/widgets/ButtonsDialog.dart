@@ -11,19 +11,20 @@ class ButtonDialog extends StatelessWidget {
       required this.color,
       this.textcolor,
       this.bordercolor,
-      required this.width});
+      required this.width,
+      this.height});
   final VoidCallback onPressed;
   Color color;
   Color? bordercolor;
   Color? textcolor;
   String text;
   double width;
+  double? height;
   @override
   Widget build(BuildContext context) {
-
     return Container(
       width: width,
-      height: 40,
+      height: height ?? 40,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
       child: MaterialButton(
           shape: RoundedRectangleBorder(
@@ -31,7 +32,8 @@ class ButtonDialog extends StatelessWidget {
               side: BorderSide(color: bordercolor ?? Colors.transparent)),
           onPressed: onPressed,
           color: color,
-          child: Text(text, style: Get.theme.textTheme.displayMedium!.copyWith(
+          child: Text(text,
+              style: Get.theme.textTheme.displayMedium!.copyWith(
                   fontFamily: "Cairo", color: textcolor ?? Colors.white))),
     );
   }

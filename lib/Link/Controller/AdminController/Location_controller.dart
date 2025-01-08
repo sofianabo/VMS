@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/Location_Model.dart';
 
@@ -30,6 +31,7 @@ class Location_controller extends GetxController {
 
     print("object");
     Get.find<Add_Students_Controller>().SetLocationlist(newList);
+    Get.find<Vaccines_Controller>().SetLocationlist(newList);
 
     setIsLoading(false);
     update();
