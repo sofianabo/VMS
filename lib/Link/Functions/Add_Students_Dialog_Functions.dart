@@ -13,11 +13,13 @@ import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Location_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/allGaurdianController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
 import 'package:vms_school/Link/Functions/Students_Illness_Funcation.dart';
+import 'package:vms_school/Link/Functions/Students_Vaccines_Funcation.dart';
 import 'package:vms_school/Link/Model/AdminModel/allGuardianModel.dart';
 import 'package:vms_school/widgets/Admin_Students/DropDown_Add_Students.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
@@ -156,6 +158,7 @@ All_Gurdians_Dialog() {
                           Academic_sequence: addStudentsController.selectedtsalsol.value,
                           FamilyNotbook: addStudentsController.selectedFamilyBook.value,
                           illness: Get.find<Illness_Controller>().files,
+                          vaccine: Get.find<Vaccines_Controller>().files,
                           file: addStudentsController.selectedImage.value);
                     },
                     color: Get.theme.primaryColor,
@@ -600,12 +603,19 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                   }),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 10.0),
-                                    child: ButtonDialog(
-                                        height: 60,
-                                        text: "Student Vaccines (99)",
-                                        onPressed: () {},
-                                        color: Get.theme.primaryColor,
-                                        width: 145),
+                                    child: GetBuilder<Vaccines_Controller>(
+                                        builder: (vac_Controller) {
+                                      return ButtonDialog(
+                                          height: 60,
+                                          text:
+                                              "Student Vaccines (${vac_Controller.selectedVaccine.length})",
+                                          onPressed: () async {
+                                            await Students_Vaccines_Funcation(
+                                                context);
+                                          },
+                                          color: Get.theme.primaryColor,
+                                          width: 145);
+                                    }),
                                   ),
                                 ]),
                           ],

@@ -49,6 +49,7 @@ class Add_Student_API {
     FamilyNotbook,
     file,
     illness,
+    vaccine,
     Fee_Discount,
   }) async {
     Dio dio = Dio();
@@ -88,7 +89,6 @@ class Add_Student_API {
         "specialNeeds": specialNeeds == true ? 1 : 0,
         "martyrSon": martyrSon == true ? 1 : 0,
         "feeDiscount": Fee_Discount,
-        "illness": illness,
       };
 
       List<Map<String, dynamic>> files = [];
@@ -110,6 +110,14 @@ class Add_Student_API {
             filename: '$firstName ${lastName}Student Profile Image',
           )
         });
+      }
+
+      if (illness != null) {
+        formDataMap.addAll({"illness": illness});
+      }
+
+      if (vaccine != null) {
+        formDataMap.addAll({"vaccines": vaccine});
       }
 
       if (MotherPassport != null) {

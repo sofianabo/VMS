@@ -16,13 +16,14 @@ class Get_Vaccines_API {
   BuildContext context;
   Get_Vaccines_API(this.context);
   Dio dio = Dio();
-  Get_Vaccines() async {
+  Get_Vaccines({CancelToken? cancelToken}) async {
     final controller = Get.find<Vaccines_Controller>();
 
     try {
       controller.SetIsLoading(true);
       String myurl = "${hostPort}${getVaccine}";
-      var response = await dio.get(myurl, options: getDioOptions());
+      var response = await dio.get(
+          cancelToken: cancelToken, myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         Vaccines_Model Vaccines_model = Vaccines_Model.fromJson(response.data);
         controller.SetData(Vaccines_model);
@@ -33,6 +34,7 @@ class Get_Vaccines_API {
           type: DioErrorType.badResponse,
         ));
       }
+      return response.statusCode;
     } catch (e) {
       if (e is DioError) {
         ErrorHandler.handleDioError(e);
