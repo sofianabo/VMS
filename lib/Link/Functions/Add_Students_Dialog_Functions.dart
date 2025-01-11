@@ -12,10 +12,12 @@ import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Location_controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/allGaurdianController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
+import 'package:vms_school/Link/Functions/Students_Illness_Funcation.dart';
 import 'package:vms_school/Link/Model/AdminModel/allGuardianModel.dart';
 import 'package:vms_school/widgets/Admin_Students/DropDown_Add_Students.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
@@ -34,7 +36,7 @@ Add_Students_Dialog_Functions() async {
     CancelToken cancelToken = CancelToken();
     Loading_Dialog(cancelToken: cancelToken);
     c.setIsLoading(true);
-    String myurl = "$hostPort$getguardians";
+    String myurl = "${hostPort}${getguardians}";
     var response = await dio.get(
         cancelToken: cancelToken, myurl, options: getDioOptions());
     if (response.statusCode == 200) {
@@ -44,14 +46,14 @@ Add_Students_Dialog_Functions() async {
       Get_Location_API.Get_Locations();
       Get.dialog(All_Gurdians_Dialog());
     } else {
-      ErrorHandler.handleDioError(DioException(
+      ErrorHandler.handleDioError(DioError(
         requestOptions: response.requestOptions,
         response: response,
-        type: DioExceptionType.badResponse,
+        type: DioErrorType.badResponse,
       ));
     }
   } catch (e) {
-    if (e is DioException) {
+    if (e is DioError) {
       ErrorHandler.handleDioError(e);
     } else if (e is Exception) {
       ErrorHandler.handleException(e);
@@ -64,25 +66,25 @@ Add_Students_Dialog_Functions() async {
 All_Gurdians_Dialog() {
   Getallclassapi.getAllClasses();
   TextEditingController search = TextEditingController();
-  TextEditingController firstName = TextEditingController();
-  TextEditingController lastName = TextEditingController();
-  TextEditingController placeOfBirth = TextEditingController();
-  TextEditingController mobileNumber = TextEditingController();
-  TextEditingController currentAddress = TextEditingController();
-  TextEditingController nationalId = TextEditingController();
+  TextEditingController First_Name = TextEditingController();
+  TextEditingController Last_Name = TextEditingController();
+  TextEditingController Place_Of_Birth = TextEditingController();
+  TextEditingController Mobile_Number = TextEditingController();
+  TextEditingController Current_Address = TextEditingController();
+  TextEditingController National_ID = TextEditingController();
   TextEditingController Password = TextEditingController();
-  TextEditingController fatherName = TextEditingController();
-  TextEditingController motherName = TextEditingController();
-  TextEditingController fatherPhone = TextEditingController();
-  TextEditingController fatherWork = TextEditingController();
-  TextEditingController motherPhone = TextEditingController();
-  TextEditingController motherWork = TextEditingController();
-  TextEditingController lastSchoolDetail = TextEditingController();
+  TextEditingController Father_Name = TextEditingController();
+  TextEditingController Mother_Name = TextEditingController();
+  TextEditingController Father_Phone = TextEditingController();
+  TextEditingController Father_Work = TextEditingController();
+  TextEditingController Mother_Phone = TextEditingController();
+  TextEditingController Mother_Work = TextEditingController();
+  TextEditingController Last_School_Detail = TextEditingController();
   TextEditingController LocalID = TextEditingController();
   TextEditingController Note = TextEditingController();
   TextEditingController Fee_Discount = TextEditingController();
   final addStudentsController = Get.put(Add_Students_Controller());
-  final classController = Get.find<Dropdownclassescontroller>();
+  final class_controller = Get.find<Dropdownclassescontroller>();
   addStudentsController.resetData();
   return VMSAlertDialog(
     action: [
@@ -107,25 +109,25 @@ All_Gurdians_Dialog() {
                               .location![addStudentsController.Locationlist.indexOf(
                                   addStudentsController.LocationIndex)]
                               .id,
-                          firstName: firstName.text,
-                          lastName: lastName.text,
+                          firstName: First_Name.text,
+                          lastName: Last_Name.text,
                           gender: addStudentsController.GenderIndex,
                           birthDate:
                               Get.find<Allempolyeecontroller>().Birthdate.value,
-                          placeOfBirth: placeOfBirth.text,
+                          placeOfBirth: Place_Of_Birth.text,
                           religion: addStudentsController.RealagonIndex,
-                          mobileNumber: mobileNumber.text,
+                          mobileNumber: Mobile_Number.text,
                           bloodType: addStudentsController.BloodTypeIndex,
-                          fatherName: fatherName.text,
-                          fatherPhone: fatherPhone.text,
-                          motherName: motherName.text,
-                          currentAdress: currentAddress.text,
+                          fatherName: Father_Name.text,
+                          fatherPhone: Father_Phone.text,
+                          motherName: Mother_Name.text,
+                          currentAdress: Current_Address.text,
                           familystatus: addStudentsController.FamilyStateIndex,
                           guardianId:
                               Get.find<Allgaurdiancontroller>().garduansid,
                           userName: addStudentsController.textController.text,
                           password: Password.text,
-                          classid: classController
+                          classid: class_controller
                               .Allclass[addStudentsController.Classlist.indexOf(
                                   addStudentsController.ClassIndex)]
                               .id,
@@ -134,12 +136,12 @@ All_Gurdians_Dialog() {
                                   addStudentsController.Divisionlist.indexOf(
                                       addStudentsController.DivisionIndex)]
                               .id,
-                          fatherWork: fatherWork.text,
-                          motherPhone: motherPhone.text,
-                          motherWork: motherWork.text,
-                          nationalNumber: nationalId.text,
+                          fatherWork: Father_Work.text,
+                          motherPhone: Mother_Phone.text,
+                          motherWork: Mother_Work.text,
+                          nationalNumber: National_ID.text,
                           localID: LocalID.text,
-                          lastSchoolDetail: lastSchoolDetail.text,
+                          lastSchoolDetail: Last_School_Detail.text,
                           note: Note.text,
                           Fee_Discount: Fee_Discount.text,
                           specialNeeds:
@@ -153,6 +155,7 @@ All_Gurdians_Dialog() {
                           Certefecate: addStudentsController.selectedCertificate.value,
                           Academic_sequence: addStudentsController.selectedtsalsol.value,
                           FamilyNotbook: addStudentsController.selectedFamilyBook.value,
+                          illness: Get.find<Illness_Controller>().files,
                           file: addStudentsController.selectedImage.value);
                     },
                     color: Get.theme.primaryColor,
@@ -160,7 +163,7 @@ All_Gurdians_Dialog() {
                   ),
                 ],
               )
-            : const SizedBox();
+            : SizedBox();
       }),
     ],
     contents: Padding(
@@ -168,7 +171,7 @@ All_Gurdians_Dialog() {
       child: SizedBox(
         width: 700,
         child: PageView(
-          physics: const NeverScrollableScrollPhysics(),
+          physics: NeverScrollableScrollPhysics(),
           allowImplicitScrolling: false,
           scrollDirection: Axis.horizontal,
           controller: addStudentsController.pageController,
@@ -203,7 +206,7 @@ All_Gurdians_Dialog() {
                       child: GridView.builder(
                     padding:
                         const EdgeInsets.only(top: 10, left: 10, right: 10),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 10.0,
                         mainAxisSpacing: 10.0,
@@ -274,20 +277,20 @@ All_Gurdians_Dialog() {
               );
             }),
             Add_Students_page(
-              First_Name: firstName,
-              Last_Name: lastName,
-              Place_Of_Birth: placeOfBirth,
-              Mobile_Number: mobileNumber,
-              Current_Address: currentAddress,
-              National_ID: nationalId,
+              First_Name: First_Name,
+              Last_Name: Last_Name,
+              Place_Of_Birth: Place_Of_Birth,
+              Mobile_Number: Mobile_Number,
+              Current_Address: Current_Address,
+              National_ID: National_ID,
               Password: Password,
-              Father_Name: fatherName,
-              Mother_Name: motherName,
-              Father_Phone: fatherPhone,
-              Father_Work: fatherWork,
-              Mother_Phone: motherPhone,
-              Mother_Work: motherWork,
-              Last_School_Detail: lastSchoolDetail,
+              Father_Name: Father_Name,
+              Mother_Name: Mother_Name,
+              Father_Phone: Father_Phone,
+              Father_Work: Father_Work,
+              Mother_Phone: Mother_Phone,
+              Mother_Work: Mother_Work,
+              Last_School_Detail: Last_School_Detail,
               Note: Note,
               LocalID: LocalID,
               Fee_Discount: Fee_Discount,
@@ -582,12 +585,19 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  ButtonDialog(
-                                      height: 60,
-                                      text: "Student Illness (99)",
-                                      onPressed: () {},
-                                      color: Get.theme.primaryColor,
-                                      width: 145),
+                                  GetBuilder<Illness_Controller>(
+                                      builder: (Ill_Controller) {
+                                    return ButtonDialog(
+                                        height: 60,
+                                        text:
+                                            "Student Illness (${Ill_Controller.selectedIllnesses.length})",
+                                        onPressed: () async {
+                                          await Students_Illness_Funcation(
+                                              context);
+                                        },
+                                        color: Get.theme.primaryColor,
+                                        width: 145);
+                                  }),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 10.0),
                                     child: ButtonDialog(
@@ -877,7 +887,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text("Add Father Passport"),
+                              Text("Add Father Passport"),
                               Padding(
                                 padding: const EdgeInsets.only(top: 10.0),
                                 child: GestureDetector(
@@ -885,12 +895,12 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                     controller.pickFatherPassport();
                                   },
                                   child: AnimatedContainer(
-                                    duration: const Duration(milliseconds: 500),
+                                    duration: Duration(milliseconds: 500),
                                     decoration: BoxDecoration(
                                       borderRadius:
-                                          const BorderRadius.all(Radius.circular(5)),
+                                          BorderRadius.all(Radius.circular(5)),
                                       border:
-                                          Border.all(color: const Color(0xffD9D9D9)),
+                                          Border.all(color: Color(0xffD9D9D9)),
                                       color: controller.isHoveringFatherPassport
                                           ? Get.theme.primaryColor
                                           : Colors.white,
@@ -941,7 +951,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                               color: controller
                                                       .isHoveringFatherPassport
                                                   ? Colors.white
-                                                  : const Color(0xffCBBFBF),
+                                                  : Color(0xffCBBFBF),
                                             ),
                                           ),
                                         ),
@@ -956,7 +966,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text("Add Mother Passport"),
+                              Text("Add Mother Passport"),
                               Padding(
                                 padding: const EdgeInsets.only(top: 10.0),
                                 child: GestureDetector(
@@ -964,12 +974,12 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                     controller.pickMotherPassport();
                                   },
                                   child: AnimatedContainer(
-                                    duration: const Duration(milliseconds: 500),
+                                    duration: Duration(milliseconds: 500),
                                     decoration: BoxDecoration(
                                       borderRadius:
-                                          const BorderRadius.all(Radius.circular(5)),
+                                          BorderRadius.all(Radius.circular(5)),
                                       border:
-                                          Border.all(color: const Color(0xffD9D9D9)),
+                                          Border.all(color: Color(0xffD9D9D9)),
                                       color: controller.isHoveringMotherPassport
                                           ? Get.theme.primaryColor
                                           : Colors.white,
@@ -1020,7 +1030,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                               color: controller
                                                       .isHoveringMotherPassport
                                                   ? Colors.white
-                                                  : const Color(0xffCBBFBF),
+                                                  : Color(0xffCBBFBF),
                                             ),
                                           ),
                                         ),
@@ -1043,7 +1053,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text("Add Son Passport"),
+                              Text("Add Son Passport"),
                               Padding(
                                 padding: const EdgeInsets.only(top: 10.0),
                                 child: GestureDetector(
@@ -1051,12 +1061,12 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                     controller.pickSonPassport();
                                   },
                                   child: AnimatedContainer(
-                                    duration: const Duration(milliseconds: 500),
+                                    duration: Duration(milliseconds: 500),
                                     decoration: BoxDecoration(
                                       borderRadius:
-                                          const BorderRadius.all(Radius.circular(5)),
+                                          BorderRadius.all(Radius.circular(5)),
                                       border:
-                                          Border.all(color: const Color(0xffD9D9D9)),
+                                          Border.all(color: Color(0xffD9D9D9)),
                                       color: controller.isHoveringSonPassport
                                           ? Get.theme.primaryColor
                                           : Colors.white,
@@ -1107,7 +1117,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                               color: controller
                                                       .isHoveringSonPassport
                                                   ? Colors.white
-                                                  : const Color(0xffCBBFBF),
+                                                  : Color(0xffCBBFBF),
                                             ),
                                           ),
                                         ),
@@ -1122,7 +1132,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text("Add ID File"),
+                              Text("Add ID File"),
                               Padding(
                                 padding: const EdgeInsets.only(top: 10.0),
                                 child: GestureDetector(
@@ -1130,12 +1140,12 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                     controller.pickId();
                                   },
                                   child: AnimatedContainer(
-                                    duration: const Duration(milliseconds: 500),
+                                    duration: Duration(milliseconds: 500),
                                     decoration: BoxDecoration(
                                       borderRadius:
-                                          const BorderRadius.all(Radius.circular(5)),
+                                          BorderRadius.all(Radius.circular(5)),
                                       border:
-                                          Border.all(color: const Color(0xffD9D9D9)),
+                                          Border.all(color: Color(0xffD9D9D9)),
                                       color: controller.isHoveringId
                                           ? Get.theme.primaryColor
                                           : Colors.white,
@@ -1185,7 +1195,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                             style: TextStyle(
                                               color: controller.isHoveringId
                                                   ? Colors.white
-                                                  : const Color(0xffCBBFBF),
+                                                  : Color(0xffCBBFBF),
                                             ),
                                           ),
                                         ),
@@ -1208,7 +1218,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text("Add Certificate"),
+                              Text("Add Certificate"),
                               Padding(
                                 padding: const EdgeInsets.only(top: 10.0),
                                 child: GestureDetector(
@@ -1216,12 +1226,12 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                     controller.pickCertificate();
                                   },
                                   child: AnimatedContainer(
-                                    duration: const Duration(milliseconds: 500),
+                                    duration: Duration(milliseconds: 500),
                                     decoration: BoxDecoration(
                                       borderRadius:
-                                          const BorderRadius.all(Radius.circular(5)),
+                                          BorderRadius.all(Radius.circular(5)),
                                       border:
-                                          Border.all(color: const Color(0xffD9D9D9)),
+                                          Border.all(color: Color(0xffD9D9D9)),
                                       color: controller.isHoveringCertificate
                                           ? Get.theme.primaryColor
                                           : Colors.white,
@@ -1274,7 +1284,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                               color: controller
                                                       .isHoveringCertificate
                                                   ? Colors.white
-                                                  : const Color(0xffCBBFBF),
+                                                  : Color(0xffCBBFBF),
                                             ),
                                           ),
                                         ),
@@ -1289,7 +1299,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text("Add Academic sequence"),
+                              Text("Add Academic sequence"),
                               Padding(
                                 padding: const EdgeInsets.only(top: 10.0),
                                 child: GestureDetector(
@@ -1297,12 +1307,12 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                     controller.picktsalsol();
                                   },
                                   child: AnimatedContainer(
-                                    duration: const Duration(milliseconds: 500),
+                                    duration: Duration(milliseconds: 500),
                                     decoration: BoxDecoration(
                                       borderRadius:
-                                          const BorderRadius.all(Radius.circular(5)),
+                                          BorderRadius.all(Radius.circular(5)),
                                       border:
-                                          Border.all(color: const Color(0xffD9D9D9)),
+                                          Border.all(color: Color(0xffD9D9D9)),
                                       color: controller.isHoveringtsalsol
                                           ? Get.theme.primaryColor
                                           : Colors.white,
@@ -1354,7 +1364,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                               color:
                                                   controller.isHoveringtsalsol
                                                       ? Colors.white
-                                                      : const Color(0xffCBBFBF),
+                                                      : Color(0xffCBBFBF),
                                             ),
                                           ),
                                         ),
@@ -1379,18 +1389,18 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text("Add Family notebook"),
+                                Text("Add Family notebook"),
                                 GestureDetector(
                                   onTap: () {
                                     controller.pickFamilyBook();
                                   },
                                   child: AnimatedContainer(
-                                    duration: const Duration(milliseconds: 500),
+                                    duration: Duration(milliseconds: 500),
                                     decoration: BoxDecoration(
                                       borderRadius:
-                                          const BorderRadius.all(Radius.circular(5)),
+                                          BorderRadius.all(Radius.circular(5)),
                                       border:
-                                          Border.all(color: const Color(0xffD9D9D9)),
+                                          Border.all(color: Color(0xffD9D9D9)),
                                       color: controller.isHoveringFamilyBook
                                           ? Get.theme.primaryColor
                                           : Colors.white,
@@ -1443,7 +1453,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                               color: controller
                                                       .isHoveringFamilyBook
                                                   ? Colors.white
-                                                  : const Color(0xffCBBFBF),
+                                                  : Color(0xffCBBFBF),
                                             ),
                                           ),
                                         ),

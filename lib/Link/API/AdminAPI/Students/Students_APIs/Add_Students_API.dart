@@ -48,10 +48,11 @@ class Add_Student_API {
     Academic_sequence,
     FamilyNotbook,
     file,
+    illness,
     Fee_Discount,
   }) async {
     Dio dio = Dio();
-    String myURI = "$hostPort$addStudentInfo";
+    String myURI = "${hostPort}${addStudentInfo}";
 
     try {
       CancelToken cancelToken = CancelToken();
@@ -87,6 +88,7 @@ class Add_Student_API {
         "specialNeeds": specialNeeds == true ? 1 : 0,
         "martyrSon": martyrSon == true ? 1 : 0,
         "feeDiscount": Fee_Discount,
+        "illness": illness,
       };
 
       List<Map<String, dynamic>> files = [];
