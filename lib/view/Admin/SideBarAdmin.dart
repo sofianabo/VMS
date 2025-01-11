@@ -6,7 +6,7 @@ import 'package:vms_school/view/Admin/SideBar_Path.dart';
 import '../../widgets/SidbarAnimation.dart';
 
 class SideBarAdmin extends StatelessWidget {
-  const SideBarAdmin({super.key});
+  SideBarAdmin({super.key});
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
@@ -26,7 +26,7 @@ class SideBarAdmin extends StatelessWidget {
                 onTap: () {
                   cont.updateContent("Dashboard");
                 },
-                child: const Icon(
+                child: Icon(
                   VMS_Icons.a1,
                   size: 18,
                   color: Colors.white,
@@ -66,13 +66,13 @@ class SideBarAdmin extends StatelessWidget {
                     },
                     itemBuilder: (BuildContext context) =>
                         <PopupMenuEntry<String>>[
-                      const PopupMenuItem<String>(
+                      PopupMenuItem<String>(
                         value: 'Exam Table',
                         child: Text(
                           'Exam Table',
                         ),
                       ),
-                      const PopupMenuItem<String>(
+                      PopupMenuItem<String>(
                         value: 'School Time Table',
                         child: Text(
                           'School Time Table',
@@ -111,31 +111,31 @@ class SideBarAdmin extends StatelessWidget {
                     },
                     itemBuilder: (BuildContext context) =>
                         <PopupMenuEntry<String>>[
-                      const PopupMenuItem<String>(
+                      PopupMenuItem<String>(
                         value: 'All Students',
                         child: Text(
                           'All Students',
                         ),
                       ),
-                      const PopupMenuItem<String>(
+                      PopupMenuItem<String>(
                         value: 'Study Year Students',
                         child: Text(
                           'Study Year Students',
                         ),
                       ),
-                      const PopupMenuItem<String>(
+                      PopupMenuItem<String>(
                         value: 'All Guardians',
                         child: Text(
                           'All Guardians',
                         ),
                       ),
-                      const PopupMenuItem<String>(
+                      PopupMenuItem<String>(
                         value: 'Student Attendance',
                         child: Text(
                           'Student Attendance',
                         ),
                       ),
-                      const PopupMenuItem<String>(
+                      PopupMenuItem<String>(
                         value: 'Students Attendance Managment',
                         child: Text(
                           'Students Attendance Managment',

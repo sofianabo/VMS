@@ -5,18 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 
 class SessionController extends GetxController {
-
-
-  var Sessionss = <Map<String, dynamic>>[
-  ].obs;
-
-
-
-
+  var Sessionss = <Map<String, dynamic>>[].obs;
 
   List<Sessions>? sessions;
-
-
 
   bool isLoading = true;
 
@@ -29,9 +20,9 @@ class SessionController extends GetxController {
         'id': stu.id,
         'name': stu.year,
         'status': stu.status,
-        'startDate': stu.startDate, 
+        'startDate': stu.startDate,
         'endDate': stu.endDate,
-        'hasStudents': stu.hasStudent==1 ? true :  false,
+        'hasStudents': stu.hasStudent == 1 ? true : false,
       });
     }
     update();
@@ -42,16 +33,14 @@ class SessionController extends GetxController {
     update();
   }
 
-
   TextEditingController sessionController = TextEditingController();
   var borderColor = const Color(0xffD9D9D9).obs; // Reactive border color
-
 
   void updateStatus(int index, String newStatus) {
     Sessionss[index]['status'] = newStatus;
     update();
   }
-  
+
   var currentYear = 0.obs;
 
   void updateYear(String year) {
@@ -63,8 +52,6 @@ class SessionController extends GetxController {
       currentYear.value = parsedYear + 1;
     }
   }
-
-
 
   Rx<DateTime?> startDate = Rx<DateTime?>(null);
   Rx<DateTime?> endDate = Rx<DateTime?>(null);
@@ -80,6 +67,7 @@ class SessionController extends GetxController {
       startDate.value = picked;
     }
   }
+
   void SelectEndDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -91,7 +79,7 @@ class SessionController extends GetxController {
       endDate.value = picked;
     }
   }
+
   Rx<DateTime?> get selectStartDateindex => startDate;
   Rx<DateTime?> get selectEndDateindex => endDate;
-
 }

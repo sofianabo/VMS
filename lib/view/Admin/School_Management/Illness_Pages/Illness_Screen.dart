@@ -20,10 +20,9 @@ class Ilness_Screen extends StatefulWidget {
 
 class _Ilness_ScreenState extends State<Ilness_Screen> {
   TextEditingController search = TextEditingController();
-
   TextEditingController name = TextEditingController();
   TextEditingController enName = TextEditingController();
-  DropzoneViewController? ctrl;
+
   @override
   void initState() {
     Get_Illness_API(context).Get_Illness();

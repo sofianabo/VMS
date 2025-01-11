@@ -19,8 +19,10 @@ Widget VMSAlertDialog({
       insetPadding: EdgeInsets.zero,
       titlePadding: EdgeInsets.zero,
       contentPadding: subtitle != "none"
-          ? const EdgeInsets.only(top: 35, left: 35.0, right: 35.0, bottom: 20.0)
-          : const EdgeInsets.only(top: 0, left: 35.0, right: 35.0, bottom: 20.0),
+          ? const EdgeInsets.only(
+              top: 35, left: 35.0, right: 35.0, bottom: 20.0)
+          : const EdgeInsets.only(
+              top: 0, left: 35.0, right: 35.0, bottom: 20.0),
       actionsPadding: const EdgeInsets.all(15.0),
       content: contents,
       title: Row(
@@ -35,15 +37,18 @@ Widget VMSAlertDialog({
               children: [
                 Text(
                   apptitle,
-                  style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, wordSpacing: 2.5),
+                  style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      wordSpacing: 2.5),
                 ),
                 subtitle != "none"
                     ? Padding(
                         padding: const EdgeInsets.only(top: 5.0),
-                  child: Text(
-                    subtitle,
-                    style: const TextStyle(fontSize: 16),
-                  ),
+                        child: Text(
+                          subtitle,
+                          style: const TextStyle(fontSize: 16),
+                        ),
                       )
                     : const Text(""),
               ],
