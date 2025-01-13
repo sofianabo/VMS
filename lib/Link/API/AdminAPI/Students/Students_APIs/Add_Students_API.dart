@@ -48,10 +48,12 @@ class Add_Student_API {
     Academic_sequence,
     FamilyNotbook,
     file,
+    illness,
+    vaccine,
     Fee_Discount,
   }) async {
     Dio dio = Dio();
-    String myURI = "$hostPort$addStudentInfo";
+    String myURI = "${hostPort}${addStudentInfo}";
 
     try {
       CancelToken cancelToken = CancelToken();
@@ -108,6 +110,14 @@ class Add_Student_API {
             filename: '$firstName ${lastName}Student Profile Image',
           )
         });
+      }
+
+      if (illness != null) {
+        formDataMap.addAll({"illness": illness});
+      }
+
+      if (vaccine != null) {
+        formDataMap.addAll({"vaccines": vaccine});
       }
 
       if (MotherPassport != null) {

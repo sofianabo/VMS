@@ -78,7 +78,7 @@ class Add_Students_Controller extends GetxController {
       combinedName = arabicToLatin(combinedName);
     }
 
-    username.value = combinedName.toLowerCase();
+    username.value = '$combinedName'.toLowerCase();
     textController.text = username.value;
     update();
   }
@@ -195,7 +195,7 @@ class Add_Students_Controller extends GetxController {
     currentPage.value = page;
     pageController.animateToPage(
       page,
-      duration: const Duration(milliseconds: 500),
+      duration: Duration(milliseconds: 500),
       curve: Curves.easeInOut,
     );
   }

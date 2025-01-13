@@ -97,6 +97,8 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                                 return VMSAlertDialog(
                                     contents: Column(
                                       mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: [
                                         Container(
                                           width: 400,
@@ -117,17 +119,13 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsets.only(top: 10.0),
-                                          child: Row(
-                                            children: [
-                                              DropdownAddStudents(
-                                                  isLoading: controller
-                                                      .isLoadingLocation,
-                                                  title: "Location",
-                                                  width: 300,
-                                                  type: "Location"),
-                                            ],
-                                          ),
+                                              const EdgeInsets.only(top: 15.0),
+                                          child: DropdownAddStudents(
+                                              isLoading:
+                                                  controller.isLoadingLocation,
+                                              title: "Location",
+                                              width: 350,
+                                              type: "Location"),
                                         ),
                                       ],
                                     ),

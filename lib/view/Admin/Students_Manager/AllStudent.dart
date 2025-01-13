@@ -11,7 +11,7 @@ import 'package:vms_school/widgets/Admin_Students/DropDownAllStudents.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 
 class AllStudent extends StatefulWidget {
-  const AllStudent({super.key});
+  AllStudent({super.key});
 
   @override
   State<AllStudent> createState() => _AllStudentState();
@@ -35,7 +35,7 @@ class _AllStudentState extends State<AllStudent> {
       children: [
         GetBuilder<Allstudentscontroller>(builder: (controller) {
           return Container(
-            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+            margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
             alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -111,11 +111,11 @@ class _AllStudentState extends State<AllStudent> {
                         ),
                       ],
                     ),
-                    const Spacer(),
+                    Spacer(),
                     Row(
                       children: [
                         Container(
-                          margin: const EdgeInsets.only(right: 10.0),
+                          margin: EdgeInsets.only(right: 10.0),
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
@@ -128,7 +128,7 @@ class _AllStudentState extends State<AllStudent> {
                                     blurRadius: 1)
                               ]),
                           child: IconButton(
-                              style: const ButtonStyle(
+                              style: ButtonStyle(
                                   shape: WidgetStatePropertyAll(
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
@@ -154,7 +154,7 @@ class _AllStudentState extends State<AllStudent> {
                                     blurRadius: 1)
                               ]),
                           child: IconButton(
-                              style: const ButtonStyle(
+                              style: ButtonStyle(
                                   shape: WidgetStatePropertyAll(
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
@@ -181,7 +181,7 @@ class _AllStudentState extends State<AllStudent> {
                                       blurRadius: 1)
                                 ]),
                             child: IconButton(
-                                style: const ButtonStyle(
+                                style: ButtonStyle(
                                     shape: WidgetStatePropertyAll(
                                         RoundedRectangleBorder(
                                             borderRadius: BorderRadius.all(

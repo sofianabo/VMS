@@ -11,13 +11,14 @@ class Get_Illness_API {
   BuildContext context;
   Get_Illness_API(this.context);
   Dio dio = Dio();
-  Get_Illness() async {
+  Get_Illness({CancelToken? cancelToken}) async {
     final controller = Get.find<Illness_Controller>();
 
     try {
       controller.SetIsLoading(true);
       String myurl = "${hostPort}${getIllness}";
-      var response = await dio.get(myurl, options: getDioOptions());
+      var response = await dio.get(
+          cancelToken: cancelToken, myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         Illness_Model illness_model = Illness_Model.fromJson(response.data);
         controller.SetData(illness_model);
@@ -28,6 +29,7 @@ class Get_Illness_API {
           type: DioErrorType.badResponse,
         ));
       }
+      return response.statusCode;
     } catch (e) {
       if (e is DioError) {
         ErrorHandler.handleDioError(e);

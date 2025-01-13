@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Translate/local_controller.dart'
-show localeController;
+    show localeController;
 import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/link/Bindings/UserBinding.dart';
 import 'package:vms_school/view/Admin/AdminHome.dart';
@@ -19,7 +19,7 @@ void main() async {
 }
 
 class VMS extends StatefulWidget {
-  const VMS({super.key});
+  VMS({super.key});
 
   @override
   State<VMS> createState() => _VMSState();
@@ -40,15 +40,15 @@ class _VMSState extends State<VMS> {
         initialBinding: UserBiniding(),
         locale: loc.init,
         darkTheme: themeController.Dark_Theme,
-        theme: ThemeController.Light_Theme ,
+        theme: ThemeController.Light_Theme,
         themeMode: themeController.currentTheme,
         home: prefs!.getBool("isLogin") != null &&
-            prefs!.getBool("isLogin") == true
+                prefs!.getBool("isLogin") == true
             ? AdminHome()
-            : const Directionality(textDirection: TextDirection.rtl, child: Home())
+            : Directionality(textDirection: TextDirection.rtl, child: Home())
 
         // home: AdminHome()
 
-    ));
+        ));
   }
 }
