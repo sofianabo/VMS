@@ -17,7 +17,7 @@ class Virtual_Employee_Controller extends GetxController{
 
 
   setVECUserID(vale){
-    vecUserID = vale;
+    vecUserID = vale; 
     update();
   }
 

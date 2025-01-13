@@ -14,7 +14,7 @@ class DropDownexamTable extends StatelessWidget {
 
   const DropDownexamTable({
     super.key,
-    required this.title,
+    required this.title, 
     this.color,
     required this.width,
     required this.type,

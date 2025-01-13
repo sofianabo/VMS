@@ -2,25 +2,27 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Virtual_Employee_Model.dart';
 
-class All_Virtual_Employee_Controller extends GetxController{
+class All_Virtual_Employee_Controller extends GetxController {
   bool isLoading = true;
   List<ViraulUser>? viraulUser;
   List<ViraulUser>? filteredviraulUser;
   String filteredName = "";
 
-  SetIsLoading (bool value){
+  SetIsLoading(bool value) {
     isLoading = value;
     update();
   }
-  setData(Virtual_Employee_Model vem){
+
+  setData(Virtual_Employee_Model vem) {
     viraulUser = vem.viraulUser;
     isLoading = false;
-    searchRequestByName(filteredName , Get.find<Allempolyeecontroller>().rollIndex);
+    searchRequestByName(
+        filteredName, Get.find<Allempolyeecontroller>().rollIndex);
     update();
   }
 
   void clearFilter() {
-    searchRequestByName("",Get.find<Allempolyeecontroller>().rollIndex);
+    searchRequestByName("", Get.find<Allempolyeecontroller>().rollIndex);
     update();
   }
 
@@ -42,6 +44,4 @@ class All_Virtual_Employee_Controller extends GetxController{
     filteredviraulUser = tempFilteredList;
     update();
   }
-
-
 }

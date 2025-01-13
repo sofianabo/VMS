@@ -233,7 +233,9 @@ class DashboardFirstRow extends StatelessWidget {
                               ButtonDashboard(
                                   bordercolor: Colors.white,
                                   text: "Rewards",
-                                  onPressed: () {},
+                                  onPressed: () {
+                                     
+                                  },
                                   color: const Color(0xffFE9E9E),
                                   width: 150),
                               Padding(
@@ -241,7 +243,10 @@ class DashboardFirstRow extends StatelessWidget {
                                 child: ButtonDashboard(
                                     bordercolor: Colors.white,
                                     text: "Penalties",
-                                    onPressed: () {},
+                                    onPressed: () {
+                                       Get.find<AdminHomeContentController>()
+                                          .updateContent("Penalties");
+                                    },
                                     color: const Color(0xffFE9E9E),
                                     width: 150),
                               ),
