@@ -608,7 +608,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                       return ButtonDialog(
                                           height: 60,
                                           text:
-                                              "Student Vaccines (${vac_Controller.selectedVaccine.length})",
+                                              "Student Vaccines (${vac_Controller.selectedIllnesses.length})",
                                           onPressed: () async {
                                             await Students_Vaccines_Funcation(
                                                 context);

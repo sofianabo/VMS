@@ -26,6 +26,7 @@ class Employeeattendencecontroller extends GetxController {
     "Supervisor",
     "Accountant",
     "Technical Support",
+    "Media",
     "Technical Support Manager",
   ];
   String filteredName = "";

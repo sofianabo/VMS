@@ -6,6 +6,10 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Delete_Student_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Students_Illness.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Students_Vaccines.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/view/Admin/Students_Manager/EditStudentInfo.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
@@ -107,7 +111,11 @@ class AllStudentGrid extends StatelessWidget {
                                                       .fileId ==
                                                   null
                                               ? Text(
-                                                  control.filteredStudents[index].fullName!.substring(0, 1).toUpperCase(),
+                                                  control
+                                                      .filteredStudents[index]
+                                                      .fullName!
+                                                      .substring(0, 1)
+                                                      .toUpperCase(),
                                                   style: Get
                                                       .textTheme.titleLarge!
                                                       .copyWith(
@@ -219,7 +227,15 @@ class AllStudentGrid extends StatelessWidget {
                                           backgroundColor:
                                               WidgetStateProperty.all(
                                                   Get.theme.primaryColor)),
-                                      onPressed: () {},
+                                      onPressed: () async {
+                                        Get.find<Illness_Controller>()
+                                            .initialdata();
+                                        await Get_Students_Illness_API(context)
+                                            .Get_Students_Illness(
+                                                studentId: control
+                                                    .filteredStudents[index]
+                                                    .id);
+                                      },
                                       icon: const Icon(VMS_Icons.vir),
                                       color: Colors.white,
                                     ),
@@ -238,7 +254,16 @@ class AllStudentGrid extends StatelessWidget {
                                           backgroundColor:
                                               WidgetStateProperty.all(
                                                   Get.theme.primaryColor)),
-                                      onPressed: () {},
+                                      onPressed: () async {
+                                        Get.find<Vaccines_Controller>()
+                                            .initialdata();
+                                        await Get_Students_Vacciness_API(
+                                                context)
+                                            .Get_Students_Vacciness(
+                                                studentId: control
+                                                    .filteredStudents[index]
+                                                    .id);
+                                      },
                                       icon: const Icon(VMS_Icons.dose),
                                       color: Colors.white,
                                     ),

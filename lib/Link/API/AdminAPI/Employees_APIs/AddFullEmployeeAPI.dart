@@ -8,7 +8,6 @@ import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 
-
 class AddFullEmployee {
   static Dio dio = Dio();
 
@@ -47,7 +46,6 @@ class AddFullEmployee {
 
     Loading_Dialog(cancelToken: cancelToken);
     try {
-      // Prepare form data
       FormData formData = FormData.fromMap({
         "firstName": First_Name,
         "lastName": Last_Name,
@@ -85,7 +83,6 @@ class AddFullEmployee {
         ));
       }
 
-      // Send POST request
       var response = await dio.post(
         cancelToken: cancelToken,
         myURI,
@@ -111,10 +108,9 @@ class AddFullEmployee {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    } finally{
+    } finally {
       gets.Get.back();
     }
     return null;
   }
-
 }

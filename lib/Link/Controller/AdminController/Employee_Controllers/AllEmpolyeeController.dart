@@ -12,9 +12,9 @@ class Allempolyeecontroller extends GetxController {
   bool isUploaded = false;
 
   Employee? employee;
-  String? Value; 
+  String? Value;
   bool isLoading = true;
- 
+
   String sessionIndex = "";
   String jobTitleIndex = "";
   String rollIndex = "";
@@ -36,8 +36,9 @@ class Allempolyeecontroller extends GetxController {
     "Secretary",
     "Supervisor",
     "Accountant",
-    "Technical Support", 
-    "Technical Support Manager",
+    "Technical Support",
+    "Media"
+        "Technical Support Manager",
   ];
   List<String> dialogjobTitleList = ["Dustman", "Guard"];
   List<String> rolllist = ['Class', 'Observer'];
