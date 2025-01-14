@@ -14,6 +14,7 @@ import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Cl
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Grade_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Labrary_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/PenaltyController.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/School_Info_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Session_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Subject_Controller.dart';
@@ -24,6 +25,7 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Employeeecontroller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/ExamTableController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/PenaltiesAndRewardsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
@@ -106,5 +108,7 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Illness_Controller(), fenix: true);
     Get.lazyPut(() => Vaccines_Controller(), fenix: true);
     Get.lazyPut(() => Addteachercontroller(), fenix: true);
+    Get.lazyPut(() => Penaltycontroller(), fenix: true);
+    Get.lazyPut(() => Penaltiesandrewardscontroller(), fenix: true);
   }
 }

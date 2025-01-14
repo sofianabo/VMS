@@ -2,9 +2,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllStudentModel.dart';
 
-
 class Allstudentscontroller extends GetxController {
-
   List<Students> stud = [];
   List<Students> filteredStudents = [];
   String sessionIndex = "";
@@ -26,16 +24,15 @@ class Allstudentscontroller extends GetxController {
   bool isDivisionLoading = true;
   List<String> sessionlist = [];
 
-
-
   void clearFilter() {
-    searchByName("",gradeIndex , classIndex,divisionIndex);
+    searchByName("", gradeIndex, classIndex, divisionIndex);
     update();
   }
 
-  void searchByName(String? nameQuery, String? grade, String? classs, String? division) {
+  void searchByName(
+      String? nameQuery, String? grade, String? classs, String? division) {
     List<Students> tempFilteredList = List.from(stud);
-    filterName=nameQuery;
+    filterName = nameQuery;
     if (nameQuery != null && nameQuery.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((cur) {
         final mobile = cur.mobileNumber?.toLowerCase() ?? '';
@@ -45,7 +42,13 @@ class Allstudentscontroller extends GetxController {
         final guname = cur.guardians!.userName?.toLowerCase() ?? '';
         final gemail = cur.guardians!.email?.toLowerCase() ?? '';
         final gnationalid = cur.guardians!.nationalId?.toLowerCase() ?? '';
-        return mobile.contains(nameQuery.toLowerCase())|| email.contains(nameQuery.toLowerCase())||name.contains(nameQuery.toLowerCase())||gname.contains(nameQuery.toLowerCase())||guname.contains(nameQuery.toLowerCase())||gemail.contains(nameQuery.toLowerCase())||gnationalid.contains(nameQuery.toLowerCase());
+        return mobile.contains(nameQuery.toLowerCase()) ||
+            email.contains(nameQuery.toLowerCase()) ||
+            name.contains(nameQuery.toLowerCase()) ||
+            gname.contains(nameQuery.toLowerCase()) ||
+            guname.contains(nameQuery.toLowerCase()) ||
+            gemail.contains(nameQuery.toLowerCase()) ||
+            gnationalid.contains(nameQuery.toLowerCase());
       }).toList();
     }
 
@@ -55,7 +58,6 @@ class Allstudentscontroller extends GetxController {
       }).toList();
     }
 
-
     if (classs != null && classs.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((cur) {
         return cur.classes!.enName == classs || cur.classes!.name == classs;
@@ -63,7 +65,8 @@ class Allstudentscontroller extends GetxController {
     }
     if (division != null && division.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((cur) {
-        return cur.division!.enName == division || cur.division!.name == division;
+        return cur.division!.enName == division ||
+            cur.division!.name == division;
       }).toList();
     }
 
@@ -71,47 +74,47 @@ class Allstudentscontroller extends GetxController {
     update();
   }
 
-  setGradeList(List<String> value){
-    gradeIndex="";
+  setGradeList(List<String> value) {
+    gradeIndex = "";
     gradelist.clear();
     gradelist = value;
     setGradeLoading(false);
     update();
   }
 
-  setClassList(List<String> value){
-    classIndex="";
+  setClassList(List<String> value) {
+    classIndex = "";
     classlist.clear();
     classlist = value;
     setClassLoading(false);
     update();
   }
 
-  setDivisionList(List<String> value){
+  setDivisionList(List<String> value) {
     setDivisionLoading(false);
     divisionlist.clear();
-    divisionIndex="";
+    divisionIndex = "";
     divisionlist = value;
     update();
   }
 
-  setGradeLoading(bool value){
+  setGradeLoading(bool value) {
     isGradeLoading = value;
     update();
   }
 
-  setClassLoading(bool value){
+  setClassLoading(bool value) {
     isClassLoading = value;
     classIndex = "";
     update();
   }
 
-  setDivisionLoading(bool value){
+  setDivisionLoading(bool value) {
     isDivisionLoading = value;
     update();
   }
 
-  resetOnSessionChange(){
+  resetOnSessionChange() {
     gradeIndex = "";
     classIndex = "";
     setGradeLoading(true);
@@ -119,16 +122,14 @@ class Allstudentscontroller extends GetxController {
     update();
   }
 
-  resetOnGradeChange(){
+  resetOnGradeChange() {
     classIndex = "";
     divisionIndex = "";
     print("lkdssdf");
     update();
   }
 
-
   void selectIndex(String type, String? index) {
-
     switch (type) {
       case 'session':
         sessionIndex = index ?? "";
@@ -146,7 +147,7 @@ class Allstudentscontroller extends GetxController {
         break;
     }
 
-    searchByName(filterName, gradeIndex, classIndex,divisionIndex);
+    searchByName(filterName, gradeIndex, classIndex, divisionIndex);
 
     update();
   }
@@ -155,22 +156,25 @@ class Allstudentscontroller extends GetxController {
     stud = model.students!;
     filteredStudents = List.from(stud);
     if (filterName != null && filterName!.isNotEmpty) {
-      searchByName(filterName.toString(), gradeIndex,classIndex,divisionIndex);
+      searchByName(
+          filterName.toString(), gradeIndex, classIndex, divisionIndex);
     }
 
     if (gradeIndex.isNotEmpty) {
       filteredStudents = filteredStudents.where((emp) {
-        return emp.grade!.name == gradeIndex ||emp.grade!.enName == gradeIndex ;
+        return emp.grade!.name == gradeIndex || emp.grade!.enName == gradeIndex;
       }).toList();
     }
     if (classIndex.isNotEmpty) {
       filteredStudents = filteredStudents.where((emp) {
-        return emp.classes!.enName == classIndex||emp.classes!.name == classIndex;
+        return emp.classes!.enName == classIndex ||
+            emp.classes!.name == classIndex;
       }).toList();
     }
     if (divisionIndex.isNotEmpty) {
       filteredStudents = filteredStudents.where((emp) {
-        return emp.division!.enName == divisionIndex||emp.division!.name == divisionIndex;
+        return emp.division!.enName == divisionIndex ||
+            emp.division!.name == divisionIndex;
       }).toList();
     }
 
@@ -178,12 +182,15 @@ class Allstudentscontroller extends GetxController {
     update();
   }
 
-  setIsLoading(bool value){
+  setIsLoading(bool value) {
     isLoading = value;
     update();
   }
 
-  void updateList(String type, List<String> options,) {
+  void updateList(
+    String type,
+    List<String> options,
+  ) {
     switch (type) {
       case 'session':
         sessionlist = options;
@@ -201,7 +208,6 @@ class Allstudentscontroller extends GetxController {
     update();
   }
 
-
   void setAllDivision(AllDivisionModel division) {
     divisionlist.clear();
     for (int k = 0; k < division.division!.length; k++) {
@@ -210,8 +216,6 @@ class Allstudentscontroller extends GetxController {
     update();
     updateList("division", divisionlist);
   }
-
-
 
   String get selectedsessionIndex => sessionIndex;
 

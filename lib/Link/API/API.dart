@@ -23,11 +23,12 @@ String studentsAttendance = "IncreaseAttendance";
 String getStudyYearStudent = "getStudent";
 String rejectrequest = "unacceptable";
 String acceptARequest = "AcceptARequest";
-String allPenalty = "getPenalty";
 String addStudentPenalty = "addStudentPenalty";
 String addStudentAttendance = "addStudentAttendance";
 String addStudentInfo = "addStudentInfo";
 String getStudentInformation = "getStudentInformation";
+String getStudentsPenalty = "getStudentsPenalty";
+
 String updateStudentIll = "updateStudentIll";
 String getStudentIll = "getStudentIll";
 String getStudentVaccines = "getStudentVaccines";
@@ -110,6 +111,11 @@ String deleteIllness = "deleteIllness";
 String getVaccine = "getVaccine";
 String deleteVaccines = "deleteVaccines";
 String addVaccines = "addVaccines";
+
+String allPenalty = "getPenalty";
+String addPenalty = "addPenalty";
+String deletePenalty = "deletePenalty";
+String editPenalty = "updatePenalty";
 
 //..................... Admin ...................//
 

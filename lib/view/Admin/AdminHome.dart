@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
 import 'package:vms_school/view/Admin/School_Management/ExamTable.dart';
 import 'package:vms_school/view/Admin/School_Management/Illness_Pages/Illness_Screen.dart';
+import 'package:vms_school/view/Admin/School_Management/PenaltyScreen/PenaltyScreen.dart';
 import 'package:vms_school/view/Admin/School_Management/SchoolTimeTable.dart';
 import 'package:vms_school/view/Admin/School_Management/Subject_Pages/Subject_Management.dart';
 import 'package:vms_school/view/Admin/School_Management/Transactions/Transaction_Management.dart';
@@ -101,6 +102,8 @@ class AdminHome extends StatelessWidget {
                       return Transaction_Management();
                     case "Virtual User Management":
                       return Virtual_User_Management();
+                    case "Penalties":
+                      return Penaltyscreen();
 
                     default:
                       return AdminDashboard();

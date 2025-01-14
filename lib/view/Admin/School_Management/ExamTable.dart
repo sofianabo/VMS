@@ -396,7 +396,7 @@ class _ExamTableState extends State<ExamTable> {
                                 label: Text('Operations'),
                               ),
                             ],
-                            rows: controller.quizList.map((exam) {
+                            rows: controller.filteredquiz!.map((exam) {
                               return DataRow(cells: [
                                 DataCell(Text(exam.classes?.enName ?? '')),
                                 DataCell(Text(exam.type?.enName ?? '')),
@@ -431,7 +431,7 @@ class _ExamTableState extends State<ExamTable> {
                                       onPressed: () async {
                                         await DeletequizAPI(context).Deletequiz(
                                             controller
-                                                .quizList[controller.quizList
+                                                .filteredquiz![controller.filteredquiz!
                                                     .indexOf(exam)]
                                                 .id
                                                 .toString());
@@ -461,17 +461,17 @@ class _ExamTableState extends State<ExamTable> {
                                         Loading_Dialog(
                                             cancelToken: cancelToken);
                                         maxDialog.text = controller
-                                            .quizList[controller.quizList
+                                            .filteredquiz![controller.filteredquiz!
                                                 .indexOf(exam)]
                                             .maxMark
                                             .toString();
                                         minDialog.text = controller
-                                            .quizList[controller.quizList
+                                            .filteredquiz![controller.filteredquiz!
                                                 .indexOf(exam)]
                                             .passingMark
                                             .toString();
                                         periodDialog.text = controller
-                                            .quizList[controller.quizList
+                                            .filteredquiz![controller.filteredquiz!
                                                 .indexOf(exam)]
                                             .period
                                             .toString();
@@ -491,8 +491,8 @@ class _ExamTableState extends State<ExamTable> {
                                                             context)
                                                         .Editquiz(
                                                             controller
-                                                                .quizList[controller
-                                                                    .quizList
+                                                                .filteredquiz![controller
+                                                                    .filteredquiz!
                                                                     .indexOf(
                                                                         exam)]
                                                                 .id

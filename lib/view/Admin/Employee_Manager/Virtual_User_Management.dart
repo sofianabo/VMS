@@ -46,7 +46,7 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: [ 
                   Row(
                     children: [
                       Row(

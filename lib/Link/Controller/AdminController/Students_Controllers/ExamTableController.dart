@@ -29,16 +29,64 @@ class ExamTableController extends GetxController {
   List<Quiz> quizList = [];
   List<Classes> Allclass = [];
   List<Semester> allSemester = [];
+  List<Quiz>? filteredquiz;
 
   void setAllQuiz(ExamTableModel model) {
     quizList.clear();
     quizList = model.quiz!;
-        setIsLoading(false);
+    filteredquiz = model.quiz!;
+    setIsLoading(false);
+    if (examSeasonIndex.isNotEmpty) {
+      filteredquiz = filteredquiz!.where((emp) {
+        return emp.semester!.name == examSeasonIndex ||
+            emp.semester!.enName == examSeasonIndex;
+      }).toList();
+    }
+    if (examTypeIndex.isNotEmpty) {
+      filteredquiz = filteredquiz!.where((emp) {
+        return emp.type!.name == examTypeIndex ||
+            emp.type!.enName == examTypeIndex;
+      }).toList();
+    }
+    if (examClassIndex.isNotEmpty) {
+      filteredquiz = filteredquiz!.where((emp) {
+        return emp.classes!.name == examClassIndex ||
+            emp.type!.enName == examClassIndex;
+      }).toList();
+    }
 
     update();
   }
 
-   setIsLoading(bool value) {
+  void clearFilter() {
+    searchRequestByName(examSeasonIndex, examTypeIndex, examClassIndex);
+    update();
+  }
+
+  void searchRequestByName(String semseter, String type, String classes) {
+    List<Quiz> tempFilteredList = List.from(quizList);
+
+    if (semseter.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((emp) {
+        return emp.semester!.enName!.toLowerCase() == semseter.toLowerCase();
+      }).toList();
+    }
+    if (type.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((emp) {
+        return emp.type!.enName!.toLowerCase() == type.toLowerCase();
+      }).toList();
+    }
+    if (classes.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((emp) {
+        return emp.classes!.enName!.toLowerCase() == classes.toLowerCase();
+      }).toList();
+    }
+
+    filteredquiz = tempFilteredList;
+    update();
+  }
+
+  setIsLoading(bool value) {
     isLoading = value;
     update();
   }
@@ -67,6 +115,8 @@ class ExamTableController extends GetxController {
         semesterDialogIndex = index ?? "";
         break;
     }
+    searchRequestByName(examSeasonIndex, examTypeIndex, examClassIndex);
+
     update();
   }
 
@@ -129,8 +179,6 @@ class ExamTableController extends GetxController {
     isCuriculmLoading = value;
     update();
   }
-
-  
 
   void setAllSeason(AllSemesterModel semster) {
     examSeason.clear();

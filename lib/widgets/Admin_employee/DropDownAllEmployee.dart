@@ -31,13 +31,15 @@ class Dropdownallemployee extends StatelessWidget {
           selectedValue =
               cont.selecterollIndex.isNotEmpty ? cont.selecterollIndex : title;
           break;
-          case 'feroll':
-          selectedValue =
-              cont.selecteferollIndex.isNotEmpty ? cont.selecteferollIndex : title;
+        case 'feroll':
+          selectedValue = cont.selecteferollIndex.isNotEmpty
+              ? cont.selecteferollIndex
+              : title;
           break;
-          case 'fejop':
-          selectedValue =
-              cont.selectefejopIndex.isNotEmpty ? cont.selectefejopIndex : title;
+        case 'fejop':
+          selectedValue = cont.selectefejopIndex.isNotEmpty
+              ? cont.selectefejopIndex
+              : title;
           break;
         case 'rolldialog':
           selectedValue = cont.selectedrolldialogIndex.isNotEmpty
@@ -59,13 +61,12 @@ class Dropdownallemployee extends StatelessWidget {
               ? cont.selecteFamily_StatusIndex
               : title;
           break;
-           case 'Contract':
+        case 'Contract':
           selectedValue = cont.selecteContractTypeIndex.isNotEmpty
               ? cont.selecteContractTypeIndex
               : title;
           break;
       }
-
 
       return Container(
         padding: const EdgeInsets.all(6.0),
@@ -80,18 +81,21 @@ class Dropdownallemployee extends StatelessWidget {
           children: [
             Expanded(
               child: DropdownButton<String>(
-                icon:  selectedValue != title ?
-          GestureDetector(
-          onTap: () {
-        cont.selectIndex(type, "");
-      },
-      child:  Icon(
-      Icons.close,
-        color: Get.theme.secondaryHeaderColor,
-      ),):Icon(Icons.arrow_drop_down_outlined,color: Get.theme.secondaryHeaderColor),
-      dropdownColor: Get.theme.cardColor,
-      iconDisabledColor: Colors.grey,
-      iconEnabledColor: Get.theme.cardColor,
+                icon: selectedValue != title
+                    ? GestureDetector(
+                        onTap: () {
+                          cont.selectIndex(type, "");
+                        },
+                        child: Icon(
+                          Icons.close,
+                          color: Get.theme.secondaryHeaderColor,
+                        ),
+                      )
+                    : Icon(Icons.arrow_drop_down_outlined,
+                        color: Get.theme.secondaryHeaderColor),
+                dropdownColor: Get.theme.cardColor,
+                iconDisabledColor: Colors.grey,
+                iconEnabledColor: Get.theme.cardColor,
                 value: selectedValue,
                 isExpanded: true,
                 underline: const SizedBox(),
@@ -120,7 +124,6 @@ class Dropdownallemployee extends StatelessWidget {
           ],
         ),
       );
-
     });
   }
 
@@ -134,31 +137,28 @@ class Dropdownallemployee extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());
-        case 'feroll':
+      case 'feroll':
         items.addAll(cont.feRoll.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());
         break;
-        case 'fejop':
+      case 'fejop':
         items.addAll(cont.feJoptitle.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());
@@ -169,8 +169,7 @@ class Dropdownallemployee extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());
@@ -181,8 +180,7 @@ class Dropdownallemployee extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());
@@ -193,8 +191,7 @@ class Dropdownallemployee extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());
@@ -205,8 +202,7 @@ class Dropdownallemployee extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());
@@ -217,20 +213,18 @@ class Dropdownallemployee extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());
         break;
-           case 'Contract':
+      case 'Contract':
         items.addAll(cont.contractList.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());
