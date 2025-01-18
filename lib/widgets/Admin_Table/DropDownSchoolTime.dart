@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/SchoolTimeTableAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownDivisionAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/DropDownExamCuriculmAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/DropDownCuriculmModel.dart';
 
 class DropDownSchoolTime extends StatelessWidget {
   final double width;
@@ -35,6 +38,26 @@ class DropDownSchoolTime extends StatelessWidget {
               ? cont.selectedExamDivision
               : title;
           break;
+        case 'classDialog':
+          selectedValue = cont.selectedClassDialog.isNotEmpty
+              ? cont.selectedClassDialog
+              : title;
+          break;
+        case 'divisionDialog':
+          selectedValue = cont.selectedDivisionDialog.isNotEmpty
+              ? cont.selectedDivisionDialog
+              : title;
+          break;
+        case 'subjectDialog':
+          selectedValue = cont.selectedSubjectDialog.isNotEmpty
+              ? cont.selectedSubjectDialog
+              : title;
+          break;
+        case 'teacherDialog':
+          selectedValue = cont.selectedTeacherDialog.isNotEmpty
+              ? cont.selectedTeacherDialog
+              : title;
+          break;
       }
 
       return Container(
@@ -56,7 +79,8 @@ class DropDownSchoolTime extends StatelessWidget {
           icon: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Icon(Icons.arrow_drop_down , color: Get.theme.secondaryHeaderColor),
+              Icon(Icons.arrow_drop_down,
+                  color: Get.theme.secondaryHeaderColor),
             ],
           ),
           style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
@@ -76,7 +100,7 @@ class DropDownSchoolTime extends StatelessWidget {
                 ),
               ),
             ),
-            ..._getDropdownItems(cont,context),
+            ..._getDropdownItems(cont, context),
           ],
           borderRadius: BorderRadius.circular(3),
         ),
@@ -95,8 +119,7 @@ class DropDownSchoolTime extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
             onTap: () async {
               AllDivisionModel division = await Dropdowndivisionapi(context)
@@ -112,8 +135,64 @@ class DropDownSchoolTime extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+            ),
+            onTap: () async {
+              await Schooltimetableapi(context).Schooltimetable(
+                  cont.examDivision.indexOf(cont.selectedExamDivision));
+              },
+          );
+        }).toList());
+        break;
+      case 'classDialog':
+        items.addAll(cont.classDialogList.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+            ),
+            onTap: () async {
+              AllDivisionModel division = await Dropdowndivisionapi(context)
+                  .Dropdowndivision(cont.classDialogList.indexOf(value));
+              cont.setAllDivisionDialog(division);
+              DropDowmCuriculmModel curr =
+                  await Dropdownexamcuriculmapi(context).Dropdownexamcuriculm(
+                      cont.classDialogList.indexOf(value));
+              cont.setAllSubjectDialog(curr);
+            },
+          );
+        }).toList());
+        break;
+      case 'divisionDialog':
+        items.addAll(cont.divisionDialogList.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+            ),
+          );
+        }).toList());
+        break;
+      case 'teacherDialog':
+        items.addAll(cont.teacherDialogList.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+            ),
+          );
+        }).toList());
+        break;
+      case 'subjectDialog':
+        items.addAll(cont.subjectDialogList.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());

@@ -13,17 +13,17 @@ class Get_All_Curriculm_API {
   Get_All_Curriculm_API(this.context);
   Dio dio = Dio();
   Get_All_Curriculm() async {
-
     final controller = Get.find<Curriculumn_Controller>();
 
     try {
       controller.SetIsLoading(true);
       String myurl = "$hostPort$getCurriculum";
-      var response = await dio.post(myurl,
-          options: getDioOptions());
+      var response = await dio.post(myurl, options: getDioOptions());
       if (response.statusCode == 200) {
-        Curriculum_Model curriculumModel = Curriculum_Model.fromJson(response.data);
-       controller.SetCurriculum(curriculumModel);
+        Curriculum_Model curriculumModel =
+            Curriculum_Model.fromJson(response.data);
+        controller.SetCurriculum(curriculumModel);
+        return curriculumModel;
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
