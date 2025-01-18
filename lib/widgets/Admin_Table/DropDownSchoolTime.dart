@@ -6,13 +6,14 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/DropDownExamCu
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/DropDownCuriculmModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/SchoolTimeModel.dart';
+import 'package:vms_school/view/Admin/School_Management/SchoolTimeTable.dart';
 
 class DropDownSchoolTime extends StatelessWidget {
   final double width;
   final String title;
   final String type; // تحديد نوع الـ DropDown
   final Color? color;
-
   const DropDownSchoolTime({
     super.key,
     required this.title,
@@ -38,16 +39,7 @@ class DropDownSchoolTime extends StatelessWidget {
               ? cont.selectedExamDivision
               : title;
           break;
-        case 'classDialog':
-          selectedValue = cont.selectedClassDialog.isNotEmpty
-              ? cont.selectedClassDialog
-              : title;
-          break;
-        case 'divisionDialog':
-          selectedValue = cont.selectedDivisionDialog.isNotEmpty
-              ? cont.selectedDivisionDialog
-              : title;
-          break;
+
         case 'subjectDialog':
           selectedValue = cont.selectedSubjectDialog.isNotEmpty
               ? cont.selectedSubjectDialog
@@ -86,6 +78,9 @@ class DropDownSchoolTime extends StatelessWidget {
           style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
           onChanged: (newValue) {
             if (newValue != null) {
+              if (type == "class") {
+                cont.setDevisionindex();
+              }
               cont.selectIndex(type, newValue);
             }
           },
@@ -122,9 +117,18 @@ class DropDownSchoolTime extends StatelessWidget {
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
             onTap: () async {
+              for (int i = 0; i < 5; i++)
+                for (int j = 1; j < 8; j++) {
+                  tableData[i][lessions[j]!] = "";
+                }
+
               AllDivisionModel division = await Dropdowndivisionapi(context)
                   .Dropdowndivision(cont.examClass.indexOf(value));
               cont.setAllDivision(division);
+              DropDowmCuriculmModel curr =
+                  await Dropdownexamcuriculmapi(context)
+                      .Dropdownexamcuriculm(cont.examClass.indexOf(value));
+              cont.setAllSubjectDialog(curr);
             },
           );
         }).toList());
@@ -138,43 +142,19 @@ class DropDownSchoolTime extends StatelessWidget {
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
             onTap: () async {
-              await Schooltimetableapi(context).Schooltimetable(
-                  cont.examDivision.indexOf(cont.selectedExamDivision));
-              },
-          );
-        }).toList());
-        break;
-      case 'classDialog':
-        items.addAll(cont.classDialogList.map((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
-            onTap: () async {
-              AllDivisionModel division = await Dropdowndivisionapi(context)
-                  .Dropdowndivision(cont.classDialogList.indexOf(value));
-              cont.setAllDivisionDialog(division);
-              DropDowmCuriculmModel curr =
-                  await Dropdownexamcuriculmapi(context).Dropdownexamcuriculm(
-                      cont.classDialogList.indexOf(value));
-              cont.setAllSubjectDialog(curr);
+              for (int i = 0; i < 5; i++)
+                for (int j = 1; j < 8; j++) {
+                  String s = "No Lesson";
+                  for (int k = 0; k < j; k++) s += " ";
+                  tableData[i][lessions[j]!] = s;
+                }
+              m = await Schooltimetableapi(context)
+                  .Schooltimetable(cont.examDivision.indexOf(value));
             },
           );
         }).toList());
         break;
-      case 'divisionDialog':
-        items.addAll(cont.divisionDialogList.map((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
-          );
-        }).toList());
-        break;
+
       case 'teacherDialog':
         items.addAll(cont.teacherDialogList.map((String value) {
           return DropdownMenuItem<String>(

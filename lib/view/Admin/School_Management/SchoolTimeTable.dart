@@ -30,85 +30,90 @@ class SchoolTimeTable extends StatefulWidget {
   State<SchoolTimeTable> createState() => _SchoolTimeTableState();
 }
 
+Map<String, int> days = {
+  "Sunday": 0,
+  "Monday": 1,
+  "Tuesday": 2,
+  "Wednesday": 3,
+  "Thursday": 4
+};
+Map<int, String> lessions = {
+  1: 'First\n Lesson',
+  2: 'second\n Lesson',
+  3: 'Third\n Lesson',
+  4: 'Forth\n Lesson',
+  5: 'Fifth\n Lesson',
+  6: 'Sixth\n Lesson',
+  7: 'Seventh\n Lesson',
+};
+List<Map<String, String>> tableData = [
+  {
+    'Day': 'Sunday',
+    'First\n Lesson': 'No Lesson',
+    'second\n Lesson': 'No Lesson ',
+    'Third\n Lesson': 'No Lesson  ',
+    'Forth\n Lesson': 'No Lesson   ',
+    'Fifth\n Lesson': 'No Lesson    ',
+    'Sixth\n Lesson': 'No Lesson     ',
+    'Seventh\n Lesson': 'No Lesson    ',
+  },
+  {
+    'Day': 'Monday',
+    'First\n Lesson': 'No Lesson',
+    'second\n Lesson': 'No Lesson ',
+    'Third\n Lesson': 'No Lesson  ',
+    'Forth\n Lesson': 'No Lesson   ',
+    'Fifth\n Lesson': 'No Lesson    ',
+    'Sixth\n Lesson': 'No Lesson     ',
+    'Seventh\n Lesson': 'No Lesson    ',
+  },
+  {
+    'Day': 'Tuesday',
+    'First\n Lesson': 'No Lesson',
+    'second\n Lesson': 'No Lesson ',
+    'Third\n Lesson': 'No Lesson  ',
+    'Forth\n Lesson': 'No Lesson   ',
+    'Fifth\n Lesson': 'No Lesson    ',
+    'Sixth\n Lesson': 'No Lesson     ',
+    'Seventh\n Lesson': 'No Lesson    ',
+  },
+  {
+    'Day': 'Wednesday',
+    'First\n Lesson': 'No Lesson',
+    'second\n Lesson': 'No Lesson ',
+    'Third\n Lesson': 'No Lesson  ',
+    'Forth\n Lesson': 'No Lesson   ',
+    'Fifth\n Lesson': 'No Lesson    ',
+    'Sixth\n Lesson': 'No Lesson     ',
+    'Seventh\n Lesson': 'No Lesson    ',
+  },
+  {
+    'Day': 'Thursday',
+    'First\n Lesson': 'No Lesson',
+    'second\n Lesson': 'No Lesson ',
+    'Third\n Lesson': 'No Lesson  ',
+    'Forth\n Lesson': 'No Lesson   ',
+    'Fifth\n Lesson': 'No Lesson    ',
+    'Sixth\n Lesson': 'No Lesson     ',
+    'Seventh\n Lesson': 'No Lesson    ',
+  },
+];
+
+SchoolTimeModel? m;
+
 class _SchoolTimeTableState extends State<SchoolTimeTable> {
   TextEditingController period = TextEditingController();
-  Map<String, int> days = {
-    "Sunday": 0,
-    "Monday": 1,
-    "Tuesday": 2,
-    "Wednesday": 3,
-    "Thursday": 4
-  };
-  Map<int, String> lessions = {
-    1: 'First\n Lesson',
-    2: 'second\n Lesson',
-    3: 'Third\n Lesson',
-    4: 'Forth\n Lesson',
-    5: 'Fifth\n Lesson',
-    6: 'Sixth\n Lesson',
-    7: 'Seventh\n Lesson',
-  };
-  List<Map<String, String>> tableData = [
-    {
-      'Day': 'Sunday',
-      'First\n Lesson': 'No Lesson',
-      'second\n Lesson': 'No Lesson ',
-      'Third\n Lesson': 'No Lesson  ',
-      'Forth\n Lesson': 'No Lesson   ',
-      'Fifth\n Lesson': 'No Lesson    ',
-      'Sixth\n Lesson': 'No Lesson     ',
-      'Seventh\n Lesson': 'No Lesson    ',
-    },
-    {
-      'Day': 'Monday',
-      'First\n Lesson': 'No Lesson',
-      'second\n Lesson': 'No Lesson ',
-      'Third\n Lesson': 'No Lesson  ',
-      'Forth\n Lesson': 'No Lesson   ',
-      'Fifth\n Lesson': 'No Lesson    ',
-      'Sixth\n Lesson': 'No Lesson     ',
-      'Seventh\n Lesson': 'No Lesson    ',
-    },
-    {
-      'Day': 'Tuesday',
-      'First\n Lesson': 'No Lesson',
-      'second\n Lesson': 'No Lesson ',
-      'Third\n Lesson': 'No Lesson  ',
-      'Forth\n Lesson': 'No Lesson   ',
-      'Fifth\n Lesson': 'No Lesson    ',
-      'Sixth\n Lesson': 'No Lesson     ',
-      'Seventh\n Lesson': 'No Lesson    ',
-    },
-    {
-      'Day': 'Wednesday',
-      'First\n Lesson': 'No Lesson',
-      'second\n Lesson': 'No Lesson ',
-      'Third\n Lesson': 'No Lesson  ',
-      'Forth\n Lesson': 'No Lesson   ',
-      'Fifth\n Lesson': 'No Lesson    ',
-      'Sixth\n Lesson': 'No Lesson     ',
-      'Seventh\n Lesson': 'No Lesson    ',
-    },
-    {
-      'Day': 'Thursday',
-      'First\n Lesson': 'No Lesson',
-      'second\n Lesson': 'No Lesson ',
-      'Third\n Lesson': 'No Lesson  ',
-      'Forth\n Lesson': 'No Lesson   ',
-      'Fifth\n Lesson': 'No Lesson    ',
-      'Sixth\n Lesson': 'No Lesson     ',
-      'Seventh\n Lesson': 'No Lesson    ',
-    },
-  ];
-  SchoolTimeModel? m;
+
   void getSchoolTable() async {
-    SchoolTimeModel model =
-        await Schooltimetableapi(context).Schooltimetable(null);
+    final c = Get.find<AdminSchoolTimeController>();
+    SchoolTimeModel model = await Schooltimetableapi(context)
+        .Schooltimetable(c.examDivision.indexOf(c.selectedExamDivision));
     m = model;
     for (int i = 0; i < model.studyShare!.length; i++) {
       tableData[days[model.studyShare![i].day]!]
               [lessions[model.studyShare![i].lessonId]!] =
           model.studyShare![i].toString();
+          
     }
   }
 
@@ -340,12 +345,7 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                     Loading_Dialog(
                                                         cancelToken:
                                                             cancelToken);
-                                                    AllClassModel model =
-                                                        await Getallclassapi
-                                                            .getAllClasses();
-                                                    controller
-                                                        .setAllClassesDialog(
-                                                            model);
+
                                                     AllTeacherModel teacher =
                                                         await Getallteachersapi
                                                             .Getallteachers();
@@ -380,9 +380,9 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                             .indexOf(controller
                                                                                 .selectedSubjectDialog),
                                                                         controller
-                                                                            .divisionDialogList
+                                                                            .examDivision
                                                                             .indexOf(controller
-                                                                                .selectedDivisionDialog),
+                                                                                .selectedExamDivision),
                                                                         period
                                                                             .text,
                                                                         controller
@@ -421,37 +421,6 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                 MainAxisSize
                                                                     .min,
                                                             children: [
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                        .only(
-                                                                        top:
-                                                                            15.0),
-                                                                child: Row(
-                                                                  children: [
-                                                                    Padding(
-                                                                      padding: const EdgeInsets
-                                                                          .only(
-                                                                          right:
-                                                                              15.0),
-                                                                      child: DropDownSchoolTime(
-                                                                          title:
-                                                                              "Class",
-                                                                          width:
-                                                                              220,
-                                                                          type:
-                                                                              "classDialog"),
-                                                                    ),
-                                                                    DropDownSchoolTime(
-                                                                        title:
-                                                                            "Division",
-                                                                        width:
-                                                                            220,
-                                                                        type:
-                                                                            "divisionDialog"),
-                                                                  ],
-                                                                ),
-                                                              ),
                                                               Padding(
                                                                 padding:
                                                                     const EdgeInsets

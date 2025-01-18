@@ -8,6 +8,7 @@ import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Ad
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/SchoolTimeModel.dart';
+import 'package:vms_school/view/Admin/School_Management/SchoolTimeTable.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 import '../../API.dart' as global;
 
@@ -23,39 +24,33 @@ class Schooltimetableapi {
     try {
       c.setIsLoading(true);
       AllClassModel cl = await Getallclassapi.getAllClasses();
+
       c.setAllClasses(cl);
-      if (id == null) {
-        String myurl = "${global.hostPort}${global.getDivisionStudyShare}";
-        var response = await dio.post(myurl,
-            data: {"divisionId": id}, options: getDioOptions());
-        if (response.statusCode == 200) {
-          SchoolTimeModel model = SchoolTimeModel.fromJson(response.data);
-          c.setStudyShare(model);
-          return model;
-        } else {
-          ErrorHandler.handleDioError(DioError(
-            requestOptions: response.requestOptions,
-            response: response,
-            type: DioErrorType.badResponse,
-          ));
+
+      int? idx = id == -1 || id == null ? null : d.allDivision[id!].id;
+      String myurl = "${global.hostPort}${global.getDivisionStudyShare}";
+      var response = await dio.post(myurl,
+          data: {"divisionId": idx}, options: getDioOptions());
+      if (response.statusCode == 200) {
+        SchoolTimeModel model = SchoolTimeModel.fromJson(response.data);
+
+        c.setStudyShare(model);
+        for (int i = 0; i < model.studyShare!.length; i++) {
+          tableData[days[model.studyShare![i].day]!]
+                  [lessions[model.studyShare![i].lessonId]!] =
+              model.studyShare![i].toString();
         }
+        m = model;
+
+        print(m!.studyShare);
+        Get.back();
+        return model;
       } else {
-        print(id);
-        int? idx = d.allDivision[id].id;
-        String myurl = "${global.hostPort}${global.getDivisionStudyShare}";
-        var response = await dio.post(myurl,
-            data: {"divisionId": idx}, options: getDioOptions());
-        if (response.statusCode == 200) {
-          SchoolTimeModel model = SchoolTimeModel.fromJson(response.data);
-          c.setStudyShare(model);
-          return model;
-        } else {
-          ErrorHandler.handleDioError(DioError(
-            requestOptions: response.requestOptions,
-            response: response,
-            type: DioErrorType.badResponse,
-          ));
-        }
+        ErrorHandler.handleDioError(DioError(
+          requestOptions: response.requestOptions,
+          response: response,
+          type: DioErrorType.badResponse,
+        ));
       }
     } catch (e) {
       if (e is DioException) {

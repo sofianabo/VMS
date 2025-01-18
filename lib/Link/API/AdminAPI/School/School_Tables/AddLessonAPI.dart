@@ -13,6 +13,7 @@ import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCuriculmController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownExamTypeController.dart';
+import 'package:vms_school/view/Admin/School_Management/SchoolTimeTable.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import '../../../API.dart' as global;
@@ -54,7 +55,8 @@ class Addlessonapi {
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
-        await Schooltimetableapi(context).Schooltimetable(null);
+        m = await Schooltimetableapi(context)
+            .Schooltimetable(u.examDivision.indexOf(u.selectedExamDivision));
         Get.back();
       } else {
         ErrorHandler.handleDioError(DioException(
