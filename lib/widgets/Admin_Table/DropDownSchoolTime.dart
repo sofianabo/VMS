@@ -123,7 +123,7 @@ class DropDownSchoolTime extends StatelessWidget {
                 }
 
               AllDivisionModel division = await Dropdowndivisionapi(context)
-                  .Dropdowndivision(cont.examClass.indexOf(value));
+                  .Dropdowndivision(cont.examClass.indexOf(value), 0);
               cont.setAllDivision(division);
               DropDowmCuriculmModel curr =
                   await Dropdownexamcuriculmapi(context)
