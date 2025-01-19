@@ -137,3 +137,6 @@ String getCurriculumbyClass = "getCurriculumbyClass";
 String addQuiz = "addQuiz";
 String deletetQuiz = "deleteQuiz";
 String updateQuiz = "updateQuiz";
+
+String addStudyShare = "addStudyShare";
+String getDivisionStudyShare = "getDivisionStudyShare";

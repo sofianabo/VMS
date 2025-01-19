@@ -43,6 +43,7 @@ class Dropdowndivisionapi {
       if (response.statusCode == 200) {
         AllDivisionModel division = AllDivisionModel.fromJson(response.data);
         c.setDivision(division);
+        return division;
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

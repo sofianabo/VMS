@@ -16,21 +16,19 @@ class Getallteachersapi {
   Getallteachersapi(this.context);
 
   static Getallteachers({sessionID}) async {
-      Dio dio = Dio();
+    Dio dio = Dio();
 
-   final Allteachercontroller controller = Get.find<Allteachercontroller>();
+    final Allteachercontroller controller = Get.find<Allteachercontroller>();
     controller.setIsLoading(true);
 
     try {
       String myurl = "$hostPort$getTeachers";
       var response = await dio.post(
-        data: {
-          'sessionId':sessionID
-        },
-          myurl, options: getDioOptions());
+          data: {'sessionId': sessionID}, myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         AllTeacherModel teacher = AllTeacherModel.fromJson(response.data);
         controller.setAllTeacher(teacher);
+        return teacher;
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
