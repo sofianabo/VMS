@@ -9,7 +9,5 @@ Options getDioOptions() {
       'accept': 'application/json',
       'authorization': 'Bearer ${prefs!.getString("token")}',
     },
-
   );
-
 }

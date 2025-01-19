@@ -1,523 +1,760 @@
-// ignore_for_file: non_constant_identifier_names, file_names
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Controller/WidgetController/CheckBoxController.dart';
+import 'package:vms_school/Link/API/API.dart';
+import 'package:vms_school/Link/API/AdminAPI/Location_API/Locations_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownClassesAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownDivisionAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Update_Student_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Location_controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
+import 'package:vms_school/view/Admin/Students_Manager/Edite_Students_Drop_Files.dart';
+import 'package:vms_school/widgets/Admin_Students/DropDown_Add_Students.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
-import 'package:vms_school/widgets/DropDown.dart';
-import 'package:vms_school/widgets/TextFieldDialog.dart';
+import 'package:vms_school/widgets/LargeTextField.dart';
+import 'package:vms_school/widgets/TextFildWithUpper.dart';
+import 'package:vms_school/widgets/VMSAlertDialog.dart';
+import '../../../Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 
-EditStudentDialog() {
-  TextEditingController firstName = TextEditingController();
-  TextEditingController lastName = TextEditingController();
-  TextEditingController phoneNumber = TextEditingController();
-  TextEditingController placeofBirth = TextEditingController();
-  TextEditingController religion = TextEditingController();
-  TextEditingController nationalNumber = TextEditingController();
-  TextEditingController currentAddress = TextEditingController();
-  TextEditingController feeDiscount = TextEditingController();
-  TextEditingController localID = TextEditingController();
-  TextEditingController fatherName = TextEditingController();
-  TextEditingController fatherJob = TextEditingController();
-  TextEditingController fatherPhoneNumber = TextEditingController();
-  TextEditingController motherName = TextEditingController();
-  TextEditingController motherJob = TextEditingController();
-  TextEditingController motherPhoneNumber = TextEditingController();
-  TextEditingController guardianUserName = TextEditingController();
-  TextEditingController guardianNationalID = TextEditingController();
-  TextEditingController guardianEmail = TextEditingController();
-  TextEditingController session = TextEditingController();
-  return Get.dialog(
-    Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-      backgroundColor: Colors.white,
-      surfaceTintColor: Colors.white,
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 20),
-        height: Get.height,
-        width: 560,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 20.0,
-                  right: 20.0,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Edit Student",
-                          style: Get.theme.textTheme.bodyMedium!),
-                      IconButton(
-                          onPressed: () {
-                            Get.back();
-                          },
-                          icon: const Icon(Icons.close))
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Column(
-                      children: [
-                        Image.asset(
-                          "../../images/Rectangle66.png",
-                          height: 200,
-                          width: 200,
-                        )
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 65.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("First Name",
-                              style: Get.theme.textTheme.bodyMedium!),
-                          TextFieldDialog(
-                              controller: firstName, hinttext: "First Name"),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 15.0),
-                            child: Text("Last Name",
-                                style: Get.theme.textTheme.bodyMedium!),
-                          ),
-                          TextFieldDialog(
-                              controller: lastName, hinttext: "Last Name"),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Birth Date",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        DatePicker(
-                          width: 250,
-                          height: 40,
-                        )
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Session",
-                              style: Get.theme.textTheme.bodyMedium!),
-                          TextFieldDialog(
-                              controller: session, hinttext: "Session"),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Phone Number",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: phoneNumber, hinttext: "Phone Number"),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Place of Birth",
-                              style: Get.theme.textTheme.bodyMedium!),
-                          TextFieldDialog(
-                              controller: placeofBirth,
-                              hinttext: "Place of Birth"),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 15,
-                  right: 15,
-                ),
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Religion",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: religion, hinttext: "Religion"),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
-                      child:
-                          GetBuilder<CheckboxController>(builder: (controller) {
-                        return Container(
-                          margin: const EdgeInsets.only(top: 30),
-                          height: 70,
-                          width: 220,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                height: 20,
-                                child: Row(
-                                  children: [
-                                    Checkbox(
-                                      value:
-                                          controller.selectedIndex.value == 0,
-                                      onChanged: (bool? value) {
-                                        controller.selectcheck(0);
-                                      },
-                                    ),
-                                    Text("Special Needs",
-                                        style: Get
-                                            .theme.primaryTextTheme.bodySmall),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(
-                                height: 20,
-                                child: Row(
-                                  children: [
-                                    Checkbox(
-                                      value:
-                                          controller.selectedIndex.value == 1,
-                                      onChanged: (bool? value) {
-                                        controller.selectcheck(1);
-                                      },
-                                    ),
-                                    Text("Martyr Son",
-                                        style: Get
-                                            .theme.primaryTextTheme.bodySmall),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(height: 16.0),
-                            ],
-                          ),
-                        );
-                      }),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
-                child: Row(
-                  children: [
-                    DropDown(
-                        title: "Class", width: 250, options: const ['asdsa', 'bwfw']),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
-                      child: DropDown(
-                          title: "Division",
-                          width: 250,
-                          options: const ['sdsb', 'fgng']),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
-                child: Row(
-                  children: [
-                    DropDown(
-                        title: "Blood Type",
-                        width: 250,
-                        options: const ['art', 'bhtg']),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
-                      child:
-                          DropDown(title: "Gender", width: 250, options: const ['a']),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    DropDown(
-                        title: "Location",
-                        width: 250,
-                        options: const ['dfbfd', 'fdbb']),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Current Address",
-                              style: Get.theme.textTheme.bodyMedium!),
-                          TextFieldDialog(
-                              controller: currentAddress,
-                              hinttext: "Current Address"),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("National Number",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: nationalNumber,
-                            hinttext: "National Number"),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Local ID",
-                              style: Get.theme.textTheme.bodyMedium!),
-                          TextFieldDialog(
-                              controller: localID, hinttext: "Local ID"),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Fee Discount",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: feeDiscount, hinttext: "Fee Discount"),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Student's Father Info:",
-                      style: Get.theme.textTheme.bodyMedium!,
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Father Name",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: fatherName, hinttext: "Father Name"),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("His Job",
-                              style: Get.theme.textTheme.bodyMedium!),
-                          TextFieldDialog(
-                              controller: fatherJob, hinttext: "His Job"),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Phone Number",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: fatherPhoneNumber,
-                            hinttext: "Phone Number"),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Student's Mother Info:",
-                      style: Get.theme.textTheme.bodyMedium!,
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Mother Name",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: motherName, hinttext: "Mother Name"),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Her Job",
-                              style: Get.theme.textTheme.bodyMedium!),
-                          TextFieldDialog(
-                              controller: motherJob, hinttext: "Her Job"),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Phone Number",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: motherPhoneNumber,
-                            hinttext: "Phone Number"),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text("Student's Guardian Info:",
-                        style: Get.theme.textTheme.bodyMedium!),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Guardian Username",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: guardianUserName,
-                            hinttext: "Guardian Username"),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Guardian National ID",
-                              style: Get.theme.textTheme.bodyMedium!),
-                          TextFieldDialog(
-                              controller: guardianNationalID,
-                              hinttext: "Guardian National ID"),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Guardian E-mail",
-                            style: Get.theme.textTheme.bodyMedium!),
-                        TextFieldDialog(
-                            controller: guardianEmail,
-                            hinttext: "Guardian E-mail"),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 15, top: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    ButtonDialog(
-                        width: 100,
-                        text: "Edit",
-                        onPressed: () {},
-                        color: Get.theme.colorScheme.primary)
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
+EditStudentDialog(int idx, BuildContext context) async {
+  final Controller = Get.find<Allstudentscontroller>();
+  final add_controller = Get.find<Add_Students_Controller>();
+  final Allempolyeecontrollers = Get.find<Allempolyeecontroller>();
+  Controller.SetIDX(idx);
+  TextEditingController First_Name =
+      TextEditingController(text: Controller.filteredStudents[idx].firstName);
+  TextEditingController Last_Name =
+      TextEditingController(text: Controller.filteredStudents[idx].lastName);
+  TextEditingController Place_Of_Birth = TextEditingController(
+      text: Controller.filteredStudents[idx].placeOfBirth);
+  TextEditingController Mobile_Number = TextEditingController(
+      text: Controller.filteredStudents[idx].mobileNumber);
+  TextEditingController Current_Address = TextEditingController(
+      text: Controller.filteredStudents[idx].currentAdress);
+  TextEditingController National_ID = TextEditingController(
+      text: Controller.filteredStudents[idx].nationalNumber);
+  TextEditingController Password = TextEditingController();
+  TextEditingController Father_Name =
+      TextEditingController(text: Controller.filteredStudents[idx].fatherName);
+  TextEditingController Mother_Name =
+      TextEditingController(text: Controller.filteredStudents[idx].motherName);
+  TextEditingController Father_Phone =
+      TextEditingController(text: Controller.filteredStudents[idx].fatherPhone);
+  TextEditingController Father_Work =
+      TextEditingController(text: Controller.filteredStudents[idx].fatherWork);
+  TextEditingController Mother_Phone =
+      TextEditingController(text: Controller.filteredStudents[idx].motherPhone);
+  TextEditingController Mother_Work =
+      TextEditingController(text: Controller.filteredStudents[idx].motherWork);
+  TextEditingController Last_School_Detail = TextEditingController(
+      text: Controller.filteredStudents[idx].lastSchoolDetail);
+  TextEditingController LocalID =
+      TextEditingController(text: Controller.filteredStudents[idx].localID);
+  TextEditingController Note =
+      TextEditingController(text: Controller.filteredStudents[idx].note);
+  TextEditingController Fee_Discount =
+      TextEditingController(text: Controller.filteredStudents[idx].feeDiscount);
+  TextEditingController username =
+      TextEditingController(text: Controller.filteredStudents[idx].userName);
+  add_controller.selectedImage.value = null;
+  add_controller.set_Edite_Data(
+      BloodTypeindex: Controller.filteredStudents[idx].bloodType,
+      Classindex: Controller.filteredStudents[idx].classes!.enName ?? "",
+      FamilyStateindex: Controller.filteredStudents[idx].familystatus,
+      Genderindex: Controller.filteredStudents[idx].gender,
+      Locationindex: Controller.filteredStudents[idx].location!.enName ?? "",
+      Specialneed:
+          Controller.filteredStudents[idx].specialNeeds == 1 ? true : false,
+      Martyson: Controller.filteredStudents[idx].martyrSon == 1 ? true : false,
+      Realagonindex: Controller.filteredStudents[idx].religion);
+  Allempolyeecontrollers.Birthdate.value =
+      DateTime.parse(Controller.filteredStudents[idx].birthDate.toString());
+  Get_Location_API.Get_Locations();
+  add_controller.initialdata();
+  add_controller.SetIsLoadingDivision(true);
+
+  Get.dialog(VMSAlertDialog(
+      action: [
+        ButtonDialog(
+            text: "Update Student",
+            onPressed: () async {
+              await Update_Student_API.Update_Student(
+                  Academic_sequence_FileID:
+                      Controller.documantesList[idx].academicSequence?.id,
+                  Certefecate_FileID:
+                      Controller.documantesList[idx].certificate?.id,
+                  FamilyNotbook_FileID:
+                      Controller.documantesList[idx].familyNotebook?.id,
+                  FatherPassport_FileID:
+                      Controller.documantesList[idx].fatherPassport?.id,
+                  MotherPassport_FileID:
+                      Controller.documantesList[idx].motherPassport?.id,
+                  SonPassport_FileID:
+                      Controller.documantesList[idx].sonPassport?.id,
+                  studentID: Controller.filteredStudents[idx].id,
+                  UserID_FileID: Controller.documantesList[idx].userID?.id,
+                  locationId: Get.find<Location_controller>()
+                      .location![add_controller.Locationlist.indexOf(
+                          add_controller.LocationIndex)]
+                      .id,
+                  firstName: First_Name.text,
+                  lastName: Last_Name.text,
+                  gender: add_controller.GenderIndex,
+                  birthDate: Get.find<Allempolyeecontroller>().Birthdate.value,
+                  placeOfBirth: Place_Of_Birth.text,
+                  religion: add_controller.RealagonIndex,
+                  mobileNumber: Mobile_Number.text,
+                  bloodType: add_controller.BloodTypeIndex,
+                  fatherName: Father_Name.text,
+                  fatherPhone: Father_Phone.text,
+                  motherName: Mother_Name.text,
+                  currentAdress: Current_Address.text,
+                  familystatus: add_controller.FamilyStateIndex,
+                  password: Password.text,
+                  classid: Get.find<Dropdownclassescontroller>()
+                      .Allclass[add_controller.Classlist.indexOf(
+                          add_controller.ClassIndex)]
+                      .id,
+                  divisionId: Get.find<Dropdowndivisioncontroller>()
+                      .allDivision[add_controller.Divisionlist.indexOf(
+                          add_controller.DivisionIndex)]
+                      .id,
+                  fatherWork: Father_Work.text,
+                  motherPhone: Mother_Phone.text,
+                  motherWork: Mother_Work.text,
+                  nationalNumber: National_ID.text,
+                  localID: LocalID.text,
+                  lastSchoolDetail: Last_School_Detail.text,
+                  note: Note.text,
+                  Fee_Discount: Fee_Discount.text,
+                  specialNeeds: add_controller.isSpecialNeed.value,
+                  martyrSon: add_controller.isMartySon.value,
+                  FatherPassport: add_controller.selectedFatherPassport.value,
+                  MotherPassport: add_controller.selectedMotherPassport.value,
+                  SonPassport: add_controller.selectedSonPassport.value,
+                  UserID: add_controller.selectedId.value,
+                  Certefecate: add_controller.selectedCertificate.value,
+                  Academic_sequence: add_controller.selectedtsalsol.value,
+                  FamilyNotbook: add_controller.selectedFamilyBook.value,
+                  file: add_controller.selectedImage.value);
+            },
+            color: Get.theme.primaryColor,
+            width: 120)
+      ],
+      contents: Edite_Students_page(
+        First_Name: First_Name,
+        Last_Name: Last_Name,
+        Place_Of_Birth: Place_Of_Birth,
+        Mobile_Number: Mobile_Number,
+        Current_Address: Current_Address,
+        National_ID: National_ID,
+        Password: Password,
+        Father_Name: Father_Name,
+        Mother_Name: Mother_Name,
+        Father_Phone: Father_Phone,
+        Father_Work: Father_Work,
+        Mother_Phone: Mother_Phone,
+        Mother_Work: Mother_Work,
+        Last_School_Detail: Last_School_Detail,
+        Note: Note,
+        LocalID: LocalID,
+        Fee_Discount: Fee_Discount,
+        username: username,
       ),
-    ),
-  );
+      apptitle: "Edite Student",
+      subtitle: "Edite ${Controller.filteredStudents[idx].fullName} Info"));
+  await Getallclassapi.getAllClasses();
+  print(add_controller.Classlist.indexOf(add_controller.ClassIndex));
+  await Dropdowndivisionapi(context).Dropdowndivision(
+      add_controller.Classlist.indexOf(add_controller.ClassIndex), idx);
+  add_controller.SetDivision(
+      division: Controller.filteredStudents[idx].division!.enName.toString());
+}
+
+class Edite_Students_page extends StatefulWidget {
+  Edite_Students_page({
+    super.key,
+    required this.First_Name,
+    required this.Last_Name,
+    required this.Place_Of_Birth,
+    required this.Mobile_Number,
+    required this.Current_Address,
+    required this.National_ID,
+    required this.Password,
+    required this.Father_Name,
+    required this.Mother_Name,
+    required this.Father_Phone,
+    required this.Father_Work,
+    required this.Mother_Phone,
+    required this.Mother_Work,
+    required this.LocalID,
+    required this.Last_School_Detail,
+    required this.Note,
+    required this.Fee_Discount,
+    required this.username,
+  });
+
+  TextEditingController First_Name;
+  TextEditingController Last_Name;
+  TextEditingController Place_Of_Birth;
+  TextEditingController Mobile_Number;
+  TextEditingController LocalID;
+  TextEditingController Current_Address;
+  TextEditingController National_ID;
+  TextEditingController Password;
+  TextEditingController Father_Name;
+  TextEditingController Mother_Name;
+  TextEditingController Father_Phone;
+  TextEditingController Father_Work;
+  TextEditingController Mother_Phone;
+  TextEditingController Mother_Work;
+  TextEditingController Last_School_Detail;
+  TextEditingController Note;
+  TextEditingController Fee_Discount;
+  TextEditingController username;
+
+  @override
+  State<Edite_Students_page> createState() => _Edite_Students_pageState();
+}
+
+class _Edite_Students_pageState extends State<Edite_Students_page> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        GetBuilder<Add_Students_Controller>(builder: (controller) {
+          return Expanded(
+            child: SizedBox(
+              width: 620,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Obx(
+                              () => GestureDetector(
+                                onTap: () async {
+                                  await controller.pickImage(context);
+                                },
+                                child: CircleAvatar(
+                                  maxRadius: 100,
+                                  backgroundColor: const Color(0xffC4C4C4),
+                                  backgroundImage: controller
+                                              .selectedImage.value !=
+                                          null
+                                      ? MemoryImage(
+                                          controller.selectedImage.value!)
+                                      : Get.find<Allstudentscontroller>()
+                                                  .filteredStudents[Get.find<
+                                                          Allstudentscontroller>()
+                                                      .idx]
+                                                  .fileId !=
+                                              null
+                                          ? NetworkImage(getimage +
+                                              "${Get.find<Allstudentscontroller>().filteredStudents[Get.find<Allstudentscontroller>().idx].fileId}")
+                                          : null,
+                                  child: controller.selectedImage.value ==
+                                              null &&
+                                          Get.find<Allstudentscontroller>()
+                                                  .filteredStudents[Get.find<
+                                                          Allstudentscontroller>()
+                                                      .idx]
+                                                  .fileId ==
+                                              null
+                                      ? Text(
+                                          Get.find<Allstudentscontroller>()
+                                              .filteredStudents[Get.find<
+                                                      Allstudentscontroller>()
+                                                  .idx]
+                                              .fullName!
+                                              .substring(0, 1)
+                                              .toUpperCase(),
+                                          style: Get.textTheme.titleLarge!
+                                              .copyWith(
+                                            fontSize: 42,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        )
+                                      : null,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Textfildwithupper(
+                              isRequired: true,
+                              width: 300,
+                              controller: widget.First_Name,
+                              Uptext: "First Name",
+                              hinttext: "First Name",
+                              onChanged: (value) {
+                                controller.updateFirstName(value);
+                              },
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 22.0),
+                              child: Textfildwithupper(
+                                isRequired: true,
+                                width: 300,
+                                controller: widget.Last_Name,
+                                Uptext: "Last Name",
+                                hinttext: "Last Name",
+                                onChanged: (value) {
+                                  controller.updateLastName(value);
+                                },
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        children: [
+                          Textfildwithupper(
+                              isRequired: true,
+                              width: 300,
+                              controller: widget.Place_Of_Birth,
+                              Uptext: "Place Of Birth",
+                              hinttext: "Place Of Birth"),
+                          Padding(
+                              padding: const EdgeInsets.only(left: 20.0),
+                              child: BirthDate(
+                                isRequired: true,
+                                Uptext: "Birthdate",
+                                width: 300,
+                              ))
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          DropdownAddStudents(
+                              isLoading: false,
+                              title: "Gender",
+                              width: 300,
+                              type: "Gender"),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: DropdownAddStudents(
+                                isLoading: false,
+                                title: "Realagon",
+                                width: 300,
+                                type: "Realagon"),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          DropdownAddStudents(
+                              isLoading: false,
+                              title: "Blood Type",
+                              width: 300,
+                              type: "BloodType"),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: DropdownAddStudents(
+                                isLoading: controller.isLoadingLocation,
+                                title: "Location",
+                                width: 300,
+                                type: "Location"),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        children: [
+                          Textfildwithupper(
+                              isRequired: true,
+                              width: 300,
+                              controller: widget.Mobile_Number,
+                              Uptext: "Mobile Number",
+                              hinttext: "Mobile Number"),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Textfildwithupper(
+                                isRequired: true,
+                                width: 300,
+                                controller: widget.LocalID,
+                                Uptext: "Local ID",
+                                hinttext: "Local ID"),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          DropdownAddStudents(
+                              isLoading: false,
+                              title: "Family State",
+                              width: 620,
+                              type: "FamilyState"),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        children: [
+                          Textfildwithupper(
+                              isRequired: false,
+                              width: 300,
+                              controller: widget.National_ID,
+                              Uptext: "National Id",
+                              hinttext: "National Id"),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Textfildwithupper(
+                                isRequired: true,
+                                width: 300,
+                                controller: widget.Current_Address,
+                                Uptext: "Current Address",
+                                hinttext: "Current Address"),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.only(top: 22.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Obx(() => Checkbox(
+                                            value:
+                                                controller.isSpecialNeed.value,
+                                            onChanged: (value) {
+                                              controller
+                                                  .toggleSpecialNeed(value!);
+                                            },
+                                          )),
+                                      Text("Special need",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(fontSize: 16)),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Obx(() => Checkbox(
+                                            value: controller.isMartySon.value,
+                                            onChanged: (value) {
+                                              controller.toggleMartySon(value!);
+                                            },
+                                          )),
+                                      Text("Marty son",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(fontSize: 16)),
+                                    ],
+                                  ),
+                                ]),
+                          ],
+                        )),
+                    Padding(
+                        padding: const EdgeInsets.only(top: 22.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Divider(
+                                color: Get.theme.primaryColor,
+                                height: 1,
+                              ),
+                            ),
+                            Text(
+                              "   Student School Info   ",
+                              style: Get.theme.textTheme.titleMedium!
+                                  .copyWith(fontSize: 18),
+                            ),
+                            Expanded(
+                              child: Divider(
+                                color: Get.theme.primaryColor,
+                                height: 1,
+                              ),
+                            ),
+                          ],
+                        )),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          DropdownAddStudents(
+                              isLoading: controller.isLoadingClass,
+                              title: "Class",
+                              width: 300,
+                              type: "Class"),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: DropdownAddStudents(
+                                isLoading: controller.isLoadingDivision,
+                                isDisabled:
+                                    controller.ClassIndex == "" ? true : false,
+                                title: "Division",
+                                width: 300,
+                                type: "Division"),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        children: [
+                          Textfildwithupper(
+                            readOnly: true,
+                            isRequired: true,
+                            width: 300,
+                            controller: widget.username,
+                            Uptext: "Username",
+                            hinttext: "Username",
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Textfildwithupper(
+                                isRequired: true,
+                                width: 300,
+                                controller: widget.Password,
+                                Uptext: "Password",
+                                hinttext: "Password"),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        children: [
+                          Textfildwithupper(
+                              isRequired: false,
+                              width: 300,
+                              controller: widget.Fee_Discount,
+                              Uptext: "Fee Discount",
+                              hinttext: "Fee Discount")
+                        ],
+                      ),
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.only(top: 22.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Divider(
+                                color: Get.theme.primaryColor,
+                                height: 1,
+                              ),
+                            ),
+                            Text(
+                              "   Father Info   ",
+                              style: Get.theme.textTheme.titleMedium!
+                                  .copyWith(fontSize: 18),
+                            ),
+                            Expanded(
+                              child: Divider(
+                                color: Get.theme.primaryColor,
+                                height: 1,
+                              ),
+                            ),
+                          ],
+                        )),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Row(
+                        children: [
+                          Textfildwithupper(
+                              isRequired: true,
+                              width: 300,
+                              controller: widget.Father_Name,
+                              Uptext: "Father Name",
+                              hinttext: "Father Name"),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Textfildwithupper(
+                                isRequired: true,
+                                width: 300,
+                                controller: widget.Father_Phone,
+                                Uptext: "Father Phone",
+                                hinttext: "Father Phone"),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Textfildwithupper(
+                              width: 300,
+                              controller: widget.Father_Work,
+                              Uptext: "Father Work",
+                              hinttext: "Father Work"),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.only(top: 22.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Divider(
+                                color: Get.theme.primaryColor,
+                                height: 1,
+                              ),
+                            ),
+                            Text(
+                              "   Mother Info   ",
+                              style: Get.theme.textTheme.titleMedium!
+                                  .copyWith(fontSize: 18),
+                            ),
+                            Expanded(
+                              child: Divider(
+                                color: Get.theme.primaryColor,
+                                height: 1,
+                              ),
+                            ),
+                          ],
+                        )),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Row(
+                        children: [
+                          Textfildwithupper(
+                              isRequired: true,
+                              width: 300,
+                              controller: widget.Mother_Name,
+                              Uptext: "Mother Name",
+                              hinttext: "Mother Name"),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Textfildwithupper(
+                                isRequired: false,
+                                width: 300,
+                                controller: widget.Mother_Phone,
+                                Uptext: "Mother Phone",
+                                hinttext: "Mother Phone"),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Textfildwithupper(
+                              width: 300,
+                              controller: widget.Mother_Work,
+                              Uptext: "Mother Work",
+                              hinttext: "Mother Work"),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.only(top: 22.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Divider(
+                                color: Get.theme.primaryColor,
+                                height: 1,
+                              ),
+                            ),
+                            Text(
+                              "   More Info   ",
+                              style: Get.theme.textTheme.titleMedium!
+                                  .copyWith(fontSize: 18),
+                            ),
+                            Expanded(
+                              child: Divider(
+                                color: Get.theme.primaryColor,
+                                height: 1,
+                              ),
+                            ),
+                          ],
+                        )),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          LargeTextField(
+                              width: 620,
+                              controller: widget.Last_School_Detail,
+                              hinttext: "Last School Detail"),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 22.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          LargeTextField(
+                              width: 620,
+                              controller: widget.Note,
+                              hinttext: "Note"),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.only(top: 22.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Divider(
+                                color: Get.theme.primaryColor,
+                                height: 1,
+                              ),
+                            ),
+                            Text(
+                              "   File Data   ",
+                              style: Get.theme.textTheme.titleMedium!
+                                  .copyWith(fontSize: 18),
+                            ),
+                            Expanded(
+                              child: Divider(
+                                color: Get.theme.primaryColor,
+                                height: 1,
+                              ),
+                            ),
+                          ],
+                        )),
+                    Drop_Edite_students()
+                  ],
+                ),
+              ),
+            ),
+          );
+        }),
+      ],
+    );
+  }
 }

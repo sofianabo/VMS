@@ -56,7 +56,8 @@ class DropDownSchoolTime extends StatelessWidget {
           icon: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Icon(Icons.arrow_drop_down , color: Get.theme.secondaryHeaderColor),
+              Icon(Icons.arrow_drop_down,
+                  color: Get.theme.secondaryHeaderColor),
             ],
           ),
           style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
@@ -76,7 +77,7 @@ class DropDownSchoolTime extends StatelessWidget {
                 ),
               ),
             ),
-            ..._getDropdownItems(cont,context),
+            ..._getDropdownItems(cont, context),
           ],
           borderRadius: BorderRadius.circular(3),
         ),
@@ -95,12 +96,11 @@ class DropDownSchoolTime extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
             onTap: () async {
               AllDivisionModel division = await Dropdowndivisionapi(context)
-                  .Dropdowndivision(cont.examClass.indexOf(value));
+                  .Dropdowndivision(cont.examClass.indexOf(value), 0);
               cont.setAllDivision(division);
             },
           );
@@ -112,8 +112,7 @@ class DropDownSchoolTime extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());

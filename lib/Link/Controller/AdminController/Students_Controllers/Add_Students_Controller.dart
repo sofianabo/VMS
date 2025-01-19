@@ -23,11 +23,34 @@ class Add_Students_Controller extends GetxController {
   List<String> Classlist = [];
   List<String> Divisionlist = [];
 
-  // متغيرات للتحكم بحالة كل Checkbox
   var isSpecialNeed = false.obs;
   var isMartySon = false.obs;
 
-  // دوال لتحديث القيم
+  set_Edite_Data(
+      {Genderindex,
+      Realagonindex,
+      BloodTypeindex,
+      Locationindex,
+      FamilyStateindex,
+      Classindex,
+      Specialneed,
+      Martyson}) {
+    GenderIndex = Genderindex;
+    RealagonIndex = Realagonindex;
+    BloodTypeIndex = BloodTypeindex;
+    LocationIndex = Locationindex;
+    FamilyStateIndex = FamilyStateindex;
+    ClassIndex = Classindex;
+    isSpecialNeed.value = Specialneed;
+    isMartySon.value = Martyson;
+    update();
+  }
+
+  SetDivision({division}) {
+    DivisionIndex = division;
+    update();
+  }
+
   void toggleSpecialNeed(bool value) {
     isSpecialNeed.value = value;
   }
@@ -59,6 +82,7 @@ class Add_Students_Controller extends GetxController {
     LocationIndex = "Syria";
     FamilyStateIndex = "Single";
     ClassIndex = "";
+
     DivisionIndex = "";
     firstName.value = "";
     lastName.value = "";
@@ -471,4 +495,71 @@ class Add_Students_Controller extends GetxController {
   String get selectedFamilyStateIndex => FamilyStateIndex;
   String get selectedClassIndex => ClassIndex;
   String get selectedDivisionIndex => DivisionIndex;
+
+  void ClearselectedFatherPassport() {
+    selectedFatherPassport.value = null;
+    updateHoverFather(false);
+
+    updateTextFather(
+        "Click To Add Father Passport\nOr\nDrag And Drop File Here");
+    update();
+  }
+
+  void ClearselectedMotherPassport() {
+    selectedMotherPassport.value = null;
+    updateHoverMother(false);
+    updateTextMother(
+        "Click To Add Mother Passport\nOr\nDrag And Drop File Here");
+    update();
+  }
+
+  void Clear_Son() {
+    selectedSonPassport.value = null;
+    updateHoverSon(false);
+    updateTextSon("Click To Add Son Passport\nOr\nDrag And Drop File Here");
+    update();
+  }
+
+  void Clear_id() {
+    selectedId.value = null;
+    updateHoverId(false);
+    updateTextId("Click To Add Id\nOr\nDrag And Drop File Here");
+    update();
+  }
+
+  void Clear_Certificate() {
+    selectedCertificate.value = null;
+    updateHoverCertificate(false);
+    updateTextCertificate(
+        "Click To Add Certificate\nOr\nDrag And Drop File Here");
+    update();
+  }
+
+  void Clear_tasalsol() {
+    selectedtsalsol.value = null;
+    updateHovertsalsol(false);
+    updateTexttsalsol(
+        "Click To Add Academic sequence\nOr\nDrag And Drop File Here");
+    update();
+  }
+
+  void Clear_FamilyBook() {
+    selectedFamilyBook.value = null;
+
+    updateHoverFamilyBook(false);
+    updateTextFamilyBook(
+        "Click To Add Family notebook\nOr\nDrag And Drop File Here");
+    update();
+  }
+
+  void initialdata() {
+    ClearselectedFatherPassport();
+    ClearselectedMotherPassport();
+    Clear_Son();
+    Clear_id();
+    Clear_Certificate();
+    Clear_tasalsol();
+    Clear_FamilyBook();
+    update();
+  }
 }

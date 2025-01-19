@@ -82,63 +82,62 @@ class AllStudentGrid extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                        "${control.filteredStudents[index].fullName}",
-                                        style: Get.theme.textTheme.bodyMedium!
-                                            .copyWith(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold)),
+                                      "${control.filteredStudents[index].fullName}",
+                                      style: Get.theme.textTheme.bodyMedium!
+                                          .copyWith(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ),
-                                  FutureBuilder(
-                                    future: precacheImage(
-                                        NetworkImage(
-                                            "$getimage${control.filteredStudents[index].fileId}"),
-                                        context),
-                                    builder: (context, snapshot) {
-                                      if (snapshot.connectionState ==
-                                          ConnectionState.done) {
-                                        return CircleAvatar(
-                                          maxRadius: 60,
-                                          backgroundColor:
-                                              const Color(0xffC4C4C4),
-                                          backgroundImage: control
-                                                      .filteredStudents[index]
-                                                      .fileId !=
-                                                  null
-                                              ? NetworkImage(
-                                                  "$getimage${control.filteredStudents[index].fileId}")
-                                              : null,
-                                          child: control.filteredStudents[index]
-                                                      .fileId ==
-                                                  null
-                                              ? Text(
-                                                  control
-                                                      .filteredStudents[index]
-                                                      .fullName!
-                                                      .substring(0, 1)
-                                                      .toUpperCase(),
-                                                  style: Get
-                                                      .textTheme.titleLarge!
-                                                      .copyWith(
-                                                          fontSize: 26,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                )
-                                              : null,
-                                        );
-                                      } else {
-                                        return CircleAvatar(
-                                          maxRadius: 60,
-                                          backgroundColor:
-                                              const Color(0xffC4C4C4),
-                                          child: LoadingAnimationWidget.inkDrop(
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                            size: 30,
+                                  control.filteredStudents[index].fileId != null
+                                      ? FutureBuilder(
+                                          future: precacheImage(
+                                            NetworkImage(
+                                                "$getimage${control.filteredStudents[index].fileId}"),
+                                            context,
                                           ),
-                                        );
-                                      }
-                                    },
-                                  ),
+                                          builder: (context, snapshot) {
+                                            if (snapshot.connectionState ==
+                                                ConnectionState.done) {
+                                              return CircleAvatar(
+                                                maxRadius: 60,
+                                                backgroundColor:
+                                                    const Color(0xffC4C4C4),
+                                                backgroundImage: NetworkImage(
+                                                    "$getimage${control.filteredStudents[index].fileId}"),
+                                              );
+                                            } else {
+                                              return CircleAvatar(
+                                                maxRadius: 60,
+                                                backgroundColor:
+                                                    const Color(0xffC4C4C4),
+                                                child: LoadingAnimationWidget
+                                                    .inkDrop(
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                  size: 30,
+                                                ),
+                                              );
+                                            }
+                                          },
+                                        )
+                                      : CircleAvatar(
+                                          maxRadius: 60,
+                                          backgroundColor:
+                                              const Color(0xffC4C4C4),
+                                          child: Text(
+                                            control.filteredStudents[index]
+                                                .fullName!
+                                                .substring(0, 1)
+                                                .toUpperCase(),
+                                            style: Get.textTheme.titleLarge!
+                                                .copyWith(
+                                              fontSize: 26,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
                                 ],
                               ),
                               Text(
@@ -283,7 +282,7 @@ class AllStudentGrid extends StatelessWidget {
                                               WidgetStateProperty.all(
                                                   Get.theme.primaryColor)),
                                       onPressed: () {
-                                        EditStudentDialog();
+                                        EditStudentDialog(index, context);
                                       },
                                       icon: const Icon(VMS_Icons.vcard),
                                       color: Colors.white,

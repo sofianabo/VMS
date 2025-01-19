@@ -3,6 +3,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart' as gets;
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Illness_Model.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/Students_Illness.dart'
@@ -145,8 +146,10 @@ class Illness_Controller extends gets.GetxController {
                         Container(
                           width: 400,
                           height: 200,
-                          child: Image.asset(
-                              fit: BoxFit.cover, "../../images/think.gif"),
+                          child: SvgPicture.asset(
+                            "../../images/warning.svg",
+                            fit: BoxFit.fitWidth,
+                          ),
                         ),
                         Expanded(
                             child: Center(
@@ -276,21 +279,102 @@ class Illness_Controller extends gets.GetxController {
   }
 
   void clearFile(Illness illness) {
-    var existingFile = files.firstWhere(
-      (file) => file["id"] == illness.id.toString(),
-      orElse: () => {},
-    );
+    if (hasFile(illness)) {
+      gets.Get.dialog(Padding(
+          padding: const EdgeInsets.only(top: 40.0, bottom: 40),
+          child: WillPopScope(
+            onWillPop: () => Future.value(false),
+            child: AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5),
+              ),
+              surfaceTintColor: Colors.transparent,
+              insetPadding: EdgeInsets.zero,
+              titlePadding: EdgeInsets.zero,
+              contentPadding: EdgeInsets.zero,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              alignment: Alignment.center,
+              content: Container(
+                width: 400,
+                height: 300,
+                child: Expanded(
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 400,
+                        height: 200,
+                        child: SvgPicture.asset(
+                          "../../images/warning.svg",
+                          fit: BoxFit.fitWidth,
+                        ),
+                      ),
+                      Expanded(
+                          child: Center(
+                              child: Text(
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: gets.Get.theme.primaryColor),
+                                  textAlign: TextAlign.center,
+                                  "If You Click Yes The File Will Remove"))),
+                    ],
+                  ),
+                ),
+              ),
+              actions: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    TextButton(
+                      style: ButtonStyle(
+                          shadowColor:
+                              const MaterialStatePropertyAll(Color(0xffffffff)),
+                          backgroundColor:
+                              MaterialStatePropertyAll(Color(0xff972F2F)),
+                          minimumSize:
+                              MaterialStatePropertyAll(Size(300 / 3, 50))),
+                      child: const Text('Yes',
+                          style: TextStyle(color: Colors.white)),
+                      onPressed: () {
+                        var existingFile = files.firstWhere(
+                          (file) => file["id"] == illness.id.toString(),
+                          orElse: () => {},
+                        );
 
-    if (existingFile.isNotEmpty) {
-      existingFile["file"] = null;
-    }
+                        if (existingFile.isNotEmpty) {
+                          existingFile["file"] = null;
+                        }
 
-    for (var illnessEntry in previousSelectedIllnesses) {
-      if (illnessEntry.illness?.id.toString() == illness.id.toString()) {
-        illnessEntry.fileId != null
-            ? illnessEntry.fileId = 0
-            : illnessEntry.fileId = null;
-      }
+                        for (var illnessEntry in previousSelectedIllnesses) {
+                          if (illnessEntry.illness?.id.toString() ==
+                              illness.id.toString()) {
+                            illnessEntry.fileId != null
+                                ? illnessEntry.fileId = 0
+                                : illnessEntry.fileId = null;
+                          }
+                        }
+
+                        gets.Get.back();
+                      },
+                    ),
+                    TextButton(
+                      style: ButtonStyle(
+                          shadowColor:
+                              const MaterialStatePropertyAll(Color(0xffffffff)),
+                          backgroundColor:
+                              MaterialStatePropertyAll(Color(0xff134B70)),
+                          minimumSize:
+                              MaterialStatePropertyAll(Size(300 / 3, 50))),
+                      child: const Text('Back',
+                          style: TextStyle(color: Colors.white)),
+                      onPressed: () {
+                        gets.Get.back();
+                      },
+                    )
+                  ],
+                )
+              ],
+            ),
+          )));
     }
 
     update();
