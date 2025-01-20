@@ -3,7 +3,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart' as gets;
-import 'package:get/get_core/src/get_main.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Vaccines_Model.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/Students_Vaccines_Model.dart'
     as stuill;
@@ -97,6 +96,7 @@ class Vaccines_Controller extends gets.GetxController {
     }
 
     SetIsLoading(false);
+    SetFinalList();
     update();
   }
 
@@ -130,6 +130,7 @@ class Vaccines_Controller extends gets.GetxController {
     } catch (e) {
       print("Error updating student illnesses: $e");
     }
+    SetFinalList();
   }
 
   void toggleSelection(Vaccine illness) {
@@ -233,6 +234,7 @@ class Vaccines_Controller extends gets.GetxController {
         files.add({"id": illness.id.toString()});
       }
     }
+    SetFinalList();
     update();
   }
 
@@ -277,7 +279,7 @@ class Vaccines_Controller extends gets.GetxController {
       if (!isSelected(illness)) {
         toggleSelection(illness);
       }
-
+      SetFinalList();
       update();
     } catch (e) {
       print("Error picking file: $e");
@@ -286,7 +288,7 @@ class Vaccines_Controller extends gets.GetxController {
 
   void removeFile(Vaccine illness) {
     files.removeWhere((file) => file["id"] == illness.id.toString());
-
+    SetFinalList();
     update();
   }
 
@@ -364,7 +366,7 @@ class Vaccines_Controller extends gets.GetxController {
                                 : illnessEntry.fileId = null;
                           }
                         }
-
+                        SetFinalList();
                         gets.Get.back();
                       },
                     ),
@@ -388,7 +390,7 @@ class Vaccines_Controller extends gets.GetxController {
             ),
           )));
     }
-
+    SetFinalList();
     update();
   }
 
@@ -410,13 +412,11 @@ class Vaccines_Controller extends gets.GetxController {
       }
       return filename;
     }
-
     return "Vaccine File";
   }
 
   void SetFinalList() {
     finalList.clear();
-    print(finalList);
 
     for (var illness in selectedIllnesses) {
       var fileEntry = files.firstWhere(
@@ -433,8 +433,11 @@ class Vaccines_Controller extends gets.GetxController {
         "id": illness.id,
         "file": fileEntry["file"],
         "fileid": fileId,
+        "hasOldFile": fileId == 0 || fileId == null ? false : true,
+        "hasNewFile": fileEntry["file"] != null ? true : false,
       });
     }
     print(finalList);
+    update();
   }
 }
