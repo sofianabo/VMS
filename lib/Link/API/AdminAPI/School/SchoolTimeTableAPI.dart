@@ -20,7 +20,7 @@ class Schooltimetableapi {
   Dropdowndivisioncontroller d = Get.find<Dropdowndivisioncontroller>();
   Dio dio = Dio();
 
-  Schooltimetable(int? id) async {
+  Schooltimetable(int? id,String? t) async {
     try {
       c.setIsLoading(true);
       AllClassModel cl = await Getallclassapi.getAllClasses();
@@ -28,22 +28,32 @@ class Schooltimetableapi {
       c.setAllClasses(cl);
 
       int? idx = id == -1 || id == null ? null : d.allDivision[id!].id;
+      if (t == null) {
+        t = "";
+      } else {
+        t = c.timeLessonIndex;
+      }
       String myurl = "${global.hostPort}${global.getDivisionStudyShare}";
       var response = await dio.post(myurl,
-          data: {"divisionId": idx}, options: getDioOptions());
+          data: {"divisionId": idx,"permanentType":t}, options: getDioOptions());
       if (response.statusCode == 200) {
         SchoolTimeModel model = SchoolTimeModel.fromJson(response.data);
 
         c.setStudyShare(model);
+        for (int i = 0; i < 5; i++)
+          for (int j = 1; j < 8; j++) {
+            String s = "No Lesson";
+            for (int k = 0; k < j; k++) s += " ";
+            tableData[i][lessions[j]!] = s;
+          }
         for (int i = 0; i < model.studyShare!.length; i++) {
+          indexes![Pair(days[model.studyShare![i].day]!,
+              model.studyShare![i].lessonId!)] = model.studyShare![i].id!;
           tableData[days[model.studyShare![i].day]!]
                   [lessions[model.studyShare![i].lessonId]!] =
               model.studyShare![i].toString();
         }
         m = model;
-
-        print(m!.studyShare);
-        Get.back();
         return model;
       } else {
         ErrorHandler.handleDioError(DioError(

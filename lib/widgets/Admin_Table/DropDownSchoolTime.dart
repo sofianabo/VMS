@@ -50,6 +50,11 @@ class DropDownSchoolTime extends StatelessWidget {
               ? cont.selectedTeacherDialog
               : title;
           break;
+        case 'time':
+          selectedValue = cont.selectedTimeLesson.isNotEmpty
+              ? cont.selectedTimeLesson
+              : title;
+          break;
       }
 
       return Container(
@@ -79,6 +84,10 @@ class DropDownSchoolTime extends StatelessWidget {
           onChanged: (newValue) {
             if (newValue != null) {
               if (type == "class") {
+                cont.setDevisionindex();
+              }
+              if (type == "time") {
+                cont.setClassIndex();
                 cont.setDevisionindex();
               }
               cont.selectIndex(type, newValue);
@@ -121,6 +130,7 @@ class DropDownSchoolTime extends StatelessWidget {
                 for (int j = 1; j < 8; j++) {
                   tableData[i][lessions[j]!] = "";
                 }
+              cont.subjectDialogList = [];
 
               AllDivisionModel division = await Dropdowndivisionapi(context)
                   .Dropdowndivision(cont.examClass.indexOf(value));
@@ -148,8 +158,8 @@ class DropDownSchoolTime extends StatelessWidget {
                   for (int k = 0; k < j; k++) s += " ";
                   tableData[i][lessions[j]!] = s;
                 }
-              m = await Schooltimetableapi(context)
-                  .Schooltimetable(cont.examDivision.indexOf(value));
+              m = await Schooltimetableapi(context).Schooltimetable(
+                  cont.examDivision.indexOf(value), cont.timeLessonIndex);
             },
           );
         }).toList());
@@ -174,6 +184,23 @@ class DropDownSchoolTime extends StatelessWidget {
               value,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
+          );
+        }).toList());
+        break;
+      case 'time':
+        items.addAll(cont.timeLessonList.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+            ),
+            onTap: () {
+              for (int i = 0; i < 5; i++)
+                for (int j = 1; j < 8; j++) {
+                  tableData[i][lessions[j]!] = "";
+                }
+            },
           );
         }).toList());
         break;
