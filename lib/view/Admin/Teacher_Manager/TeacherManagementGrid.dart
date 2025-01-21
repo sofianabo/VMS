@@ -5,8 +5,11 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/DeleteTeacherAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetTeacherAttendenceAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetTeacherById.dart';
+import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/getTeacherSubjectAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
+import 'package:vms_school/Link/Model/AdminModel/TeacherSubjectModel.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/EditTeacherInfo.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
@@ -319,12 +322,136 @@ class TeacherManagementGrid extends StatelessWidget {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 5.0),
-                              child: Text(
-                                  "Email : ${control.filteredTeacher![index].email}",
-                                  style:
-                                      Get.theme.textTheme.bodyMedium!.copyWith(
-                                    fontSize: 14,
-                                  )),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                      "Email : ${control.filteredTeacher![index].email}",
+                                      style: Get.theme.textTheme.bodyMedium!
+                                          .copyWith(
+                                        fontSize: 14,
+                                      )),
+                                  IconButton(
+                                      onPressed: () async {
+                                        TeacherSubjectModel m =
+                                            await Getteachersubjectapi(context)
+                                                .Getteachersubject(control
+                                                    .filteredTeacher![index]
+                                                    .id!);
+                                        Get.dialog(
+                                            GetBuilder<Allteachercontroller>(
+                                          builder: (oneControl) {
+                                            return VMSAlertDialog(
+                                              action: [const Text("")],
+                                              contents: SizedBox(
+                                                width: 600,
+                                                height: Get.height,
+                                                child: Column(
+                                                  children: [
+                                                    SizedBox(
+                                                      width: Get.width,
+                                                      child:
+                                                          SingleChildScrollView(
+                                                        child: DataTable(
+                                                          border:
+                                                              TableBorder.all(
+                                                            color: Get.theme
+                                                                .primaryColor,
+                                                            width: 1.0,
+                                                          ),
+                                                          columns: [
+                                                            DataColumn(
+                                                              label: Text(
+                                                                'Subject',
+                                                                style: Get
+                                                                    .theme
+                                                                    .textTheme
+                                                                    .bodyMedium,
+                                                              ),
+                                                            ),
+                                                            DataColumn(
+                                                              label: Text(
+                                                                'Class',
+                                                                style: Get
+                                                                    .theme
+                                                                    .textTheme
+                                                                    .bodyMedium,
+                                                              ),
+                                                            ),
+                                                            DataColumn(
+                                                              label: Text(
+                                                                'Division',
+                                                                style: Get
+                                                                    .theme
+                                                                    .textTheme
+                                                                    .bodyMedium,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                          rows: [
+                                                            // هنا نقوم بملئ الصفوف ببيانات الطالب
+                                                            for (var emp
+                                                                in m.teacherSubject ??
+                                                                    [])
+                                                              DataRow(
+                                                                cells: [
+                                                                  DataCell(
+                                                                    Text(
+                                                                      emp.subjects
+                                                                              .enName ??
+                                                                          'N/A',
+                                                                      style: Get
+                                                                          .theme
+                                                                          .textTheme
+                                                                          .bodyMedium,
+                                                                    ),
+                                                                  ),
+                                                                  //status
+                                                                  DataCell(
+                                                                    Text(
+                                                                      emp.classes
+                                                                              .enName ??
+                                                                          'N/A',
+                                                                      style: Get
+                                                                          .theme
+                                                                          .textTheme
+                                                                          .bodyMedium,
+                                                                    ),
+                                                                  ),
+                                                                  DataCell(
+                                                                    Text(
+                                                                      emp.division
+                                                                              .enName ??
+                                                                          'N/A',
+                                                                      style: Get
+                                                                          .theme
+                                                                          .textTheme
+                                                                          .bodyMedium,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              apptitle:
+                                                  "${control.filteredTeacher![index].fullName} Subjects ",
+                                              subtitle: "none",
+                                            );
+                                          },
+                                        ));
+                                      },
+                                      icon: Icon(
+                                        Icons.card_membership_sharp,
+                                        color: Get.theme.primaryColor,
+                                      ))
+                                ],
+                              ),
                             ),
                           ],
                         )),

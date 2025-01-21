@@ -141,8 +141,8 @@ class Allteachercontroller extends GetxController {
     if (subjects.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((teacher) {
         return teacher.subject?.any((subj) =>
-                subj.name?.toLowerCase() == subjects.toLowerCase() ||
-                subj.enName?.toLowerCase() == subjects.toLowerCase()) ??
+                subj.subjectName?.toLowerCase() == subjects.toLowerCase() ||
+                subj.subjectEnName?.toLowerCase() == subjects.toLowerCase()) ??
             false;
       }).toList();
     }

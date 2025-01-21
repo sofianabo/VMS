@@ -7,15 +7,15 @@ class AllTeacherModel {
     if (json['Teachers'] != null) {
       teachers = <Teachers>[];
       json['Teachers'].forEach((v) {
-        teachers!.add(Teachers.fromJson(v));
+        teachers!.add(new Teachers.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (teachers != null) {
-      data['Teachers'] = teachers!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.teachers != null) {
+      data['Teachers'] = this.teachers!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -26,7 +26,7 @@ class Teachers {
   String? contractType;
   String? gender;
   String? phone;
-  int? imageId;
+  Null? imageId;
   String? jobTitle;
   String? fullName;
   int? hoursCount;
@@ -61,13 +61,13 @@ class Teachers {
     if (json['classes'] != null) {
       classes = <Classes>[];
       json['classes'].forEach((v) {
-        classes!.add(Classes.fromJson(v));
+        classes!.add(new Classes.fromJson(v));
       });
     }
     if (json['subject'] != null) {
       subject = <Subject>[];
       json['subject'].forEach((v) {
-        subject!.add(Subject.fromJson(v));
+        subject!.add(new Subject.fromJson(v));
       });
     }
     hasEmployee = json['hasEmployee'];
@@ -75,23 +75,23 @@ class Teachers {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['contractType'] = contractType;
-    data['gender'] = gender;
-    data['phone'] = phone;
-    data['imageId'] = imageId;
-    data['jobTitle'] = jobTitle;
-    data['fullName'] = fullName;
-    data['hoursCount'] = hoursCount;
-    if (classes != null) {
-      data['classes'] = classes!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['contractType'] = this.contractType;
+    data['gender'] = this.gender;
+    data['phone'] = this.phone;
+    data['imageId'] = this.imageId;
+    data['jobTitle'] = this.jobTitle;
+    data['fullName'] = this.fullName;
+    data['hoursCount'] = this.hoursCount;
+    if (this.classes != null) {
+      data['classes'] = this.classes!.map((v) => v.toJson()).toList();
     }
-    if (subject != null) {
-      data['subject'] = subject!.map((v) => v.toJson()).toList();
+    if (this.subject != null) {
+      data['subject'] = this.subject!.map((v) => v.toJson()).toList();
     }
-    data['hasEmployee'] = hasEmployee;
-    data['email'] = email;
+    data['hasEmployee'] = this.hasEmployee;
+    data['email'] = this.email;
     return data;
   }
 }
@@ -110,32 +110,59 @@ class Classes {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['name'] = name;
-    data['enName'] = enName;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['enName'] = this.enName;
     return data;
   }
 }
 
 class Subject {
-  int? id;
-  String? name;
-  String? enName;
+  int? subjectId;
+  String? subjectName;
+  String? subjectEnName;
+  int? classId;
+  String? className;
+  String? classEnName;
+  int? divisionId;
+  String? divisionName;
+  String? divisionEnName;
 
-  Subject({this.id, this.name, this.enName});
+  Subject(
+      {this.subjectId,
+      this.subjectName,
+      this.subjectEnName,
+      this.classId,
+      this.className,
+      this.classEnName,
+      this.divisionId,
+      this.divisionName,
+      this.divisionEnName});
 
   Subject.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    enName = json['enName'];
+    subjectId = json['subject_id'];
+    subjectName = json['subject_name'];
+    subjectEnName = json['subject_enName'];
+    classId = json['class_id'];
+    className = json['class_name'];
+    classEnName = json['class_enName'];
+    divisionId = json['division_id'];
+    divisionName = json['division_name'];
+    divisionEnName = json['division_enName'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['name'] = name;
-    data['enName'] = enName;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['subject_id'] = this.subjectId;
+    data['subject_name'] = this.subjectName;
+    data['subject_enName'] = this.subjectEnName;
+    data['class_id'] = this.classId;
+    data['class_name'] = this.className;
+    data['class_enName'] = this.classEnName;
+    data['division_id'] = this.divisionId;
+    data['division_name'] = this.divisionName;
+    data['division_enName'] = this.divisionEnName;
     return data;
   }
 }

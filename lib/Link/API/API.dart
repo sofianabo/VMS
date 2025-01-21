@@ -60,6 +60,7 @@ String getTeacherAttendance = "getTeacherAttendance";
 String teacherIncreaseAttendance = "teacherIncreaseAttendance";
 String getTeacherById = "getTeacherById";
 String updateTeacher = "updateTeacher";
+String getSCDTeacherById = "getSCDTeacherById";
 
 //..................... Schools ...................//
 
