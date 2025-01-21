@@ -101,7 +101,7 @@ class DropdownAddStudents extends StatelessWidget {
                               if (type == 'Class') {
                                 if (newValue != title) {
                                   Dropdowndivisionapi(context).Dropdowndivision(
-                                      cont.Classlist.indexOf(newValue));
+                                      cont.Classlist.indexOf(newValue), 0);
                                 }
                               }
                               if (type == 'Location') {

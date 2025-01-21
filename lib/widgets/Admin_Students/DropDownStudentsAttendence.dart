@@ -101,11 +101,9 @@ class DropDownStudentsAttendens extends StatelessWidget {
                               }
                               if (type == 'class') {
                                 if (newValue != title) {
-                                  print("d");
-                                  AllDivisionModel division =
-                                      await Dropdowndivisionapi(context)
-                                          .Dropdowndivision(
-                                              cont.classlist.indexOf(newValue));
+                                  await Dropdowndivisionapi(context)
+                                      .Dropdowndivision(
+                                          cont.classlist.indexOf(newValue), 0);
                                 }
                               }
                             }

@@ -70,10 +70,20 @@ Students_Vaccines_Funcation(BuildContext context) async {
                         itemBuilder: (context, index) {
                           final Vaccines = control.filteredvaccine![index];
                           final isSelected = control.isSelected(Vaccines);
+                          final hasOldFile = control.finalList.any((entry) =>
+                              entry['id'] == Vaccines.id &&
+                              entry.containsKey('hasOldFile') &&
+                              entry['hasOldFile'] == true);
+                          final hasNewFile = control.finalList.any((entry) =>
+                              entry['id'] == Vaccines.id &&
+                              entry.containsKey('hasNewFile') &&
+                              entry['hasNewFile'] == true);
                           return HoverScaleCard(
                             child: GestureDetector(
                               onTap: () {
-                                control.toggleSelection(Vaccines);
+                                control.toggleSelection(
+                                  Vaccines,
+                                );
                               },
                               child: Container(
                                 padding: const EdgeInsets.all(20),
@@ -238,7 +248,9 @@ Students_Vaccines_Funcation(BuildContext context) async {
                                                   ),
                                                 ),
                                                 onPressed: () {
-                                                  control.attachFile(Vaccines);
+                                                  control.attachFile(
+                                                    Vaccines,
+                                                  );
                                                 },
                                                 icon: Icon(
                                                   Icons.file_upload_outlined,

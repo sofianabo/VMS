@@ -103,7 +103,7 @@ class DropDownStudentsAttendencemgmt extends StatelessWidget {
                               if (type == 'class') {
                                 if (newValue != title) {
                                   Dropdowndivisionapi(context).Dropdowndivision(
-                                      cont.classlist.indexOf(newValue));
+                                      cont.classlist.indexOf(newValue), 0);
                                 }
                               }
                               switch (type) {

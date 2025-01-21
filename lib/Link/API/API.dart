@@ -29,6 +29,12 @@ String addStudentInfo = "addStudentInfo";
 String getStudentInformation = "getStudentInformation";
 String getStudentsPenalty = "getStudentsPenalty";
 
+String updateStudentIll = "updateStudentIll";
+String getStudentIll = "getStudentIll";
+String getStudentVaccines = "getStudentVaccines";
+String updateStudentVaccines = "updateStudentVaccines";
+String updateStudent = "update";
+
 //..................... Employees ...................//
 
 String addEmpolyee = "addEmployee";

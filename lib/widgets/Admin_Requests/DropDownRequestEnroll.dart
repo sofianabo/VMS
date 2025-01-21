@@ -154,10 +154,8 @@ class Dropdownrequestenroll extends StatelessWidget {
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
             onTap: () async {
-              AllDivisionModel division =
-                  await Dropdowndivisionapi(context).Dropdowndivision(
-                cont.classlist.indexOf(value),
-              );
+              AllDivisionModel division = await Dropdowndivisionapi(context)
+                  .Dropdowndivision(cont.classlist.indexOf(value), 0);
               print(cont.classlist.indexOf(value));
               cont.setAllDivisionDialog(division);
             },

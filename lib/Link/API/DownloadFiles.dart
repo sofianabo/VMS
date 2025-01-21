@@ -7,13 +7,12 @@ import 'package:vms_school/widgets/Loading_Dialog.dart';
 Future<void> downloadFile(String url, String fileName) async {
   Dio dio = Dio();
   try {
-      CancelToken cancelToken = CancelToken();
-     Loading_Dialog(cancelToken: cancelToken);
+    CancelToken cancelToken = CancelToken();
+    Loading_Dialog(cancelToken: cancelToken);
     final response = await dio.get(
       url,
       options: Options(responseType: ResponseType.bytes),
       cancelToken: cancelToken,
-
     );
     if (response.statusCode == 200) {
       final blob = html.Blob([response.data]);
@@ -29,7 +28,7 @@ Future<void> downloadFile(String url, String fileName) async {
     }
   } catch (e) {
     print('Error downloading file: $e');
-  }finally{
+  } finally {
     Get.back();
   }
 }

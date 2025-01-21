@@ -110,7 +110,8 @@ class DropDownAllStudents extends StatelessWidget {
                                   AllDivisionModel division =
                                       Dropdowndivisionapi(context)
                                           .Dropdowndivision(
-                                              cont.classlist.indexOf(newValue));
+                                              cont.classlist.indexOf(newValue),
+                                              0);
                                   cont.setAllDivision(division);
                                 }
                               }

@@ -6,6 +6,10 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Delete_Student_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Students_Illness.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Students_Vaccines.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/view/Admin/Students_Manager/EditStudentInfo.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
@@ -78,59 +82,62 @@ class AllStudentGrid extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                        "${control.filteredStudents[index].fullName}",
-                                        style: Get.theme.textTheme.bodyMedium!
-                                            .copyWith(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold)),
+                                      "${control.filteredStudents[index].fullName}",
+                                      style: Get.theme.textTheme.bodyMedium!
+                                          .copyWith(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ),
-                                  FutureBuilder(
-                                    future: precacheImage(
-                                        NetworkImage(
-                                            "$getimage${control.filteredStudents[index].fileId}"),
-                                        context),
-                                    builder: (context, snapshot) {
-                                      if (snapshot.connectionState ==
-                                          ConnectionState.done) {
-                                        return CircleAvatar(
-                                          maxRadius: 60,
-                                          backgroundColor:
-                                              const Color(0xffC4C4C4),
-                                          backgroundImage: control
-                                                      .filteredStudents[index]
-                                                      .fileId !=
-                                                  null
-                                              ? NetworkImage(
-                                                  "$getimage${control.filteredStudents[index].fileId}")
-                                              : null,
-                                          child: control.filteredStudents[index]
-                                                      .fileId ==
-                                                  null
-                                              ? Text(
-                                                  control.filteredStudents[index].fullName!.substring(0, 1).toUpperCase(),
-                                                  style: Get
-                                                      .textTheme.titleLarge!
-                                                      .copyWith(
-                                                          fontSize: 26,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                )
-                                              : null,
-                                        );
-                                      } else {
-                                        return CircleAvatar(
-                                          maxRadius: 60,
-                                          backgroundColor:
-                                              const Color(0xffC4C4C4),
-                                          child: LoadingAnimationWidget.inkDrop(
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                            size: 30,
+                                  control.filteredStudents[index].fileId != null
+                                      ? FutureBuilder(
+                                          future: precacheImage(
+                                            NetworkImage(
+                                                "$getimage${control.filteredStudents[index].fileId}"),
+                                            context,
                                           ),
-                                        );
-                                      }
-                                    },
-                                  ),
+                                          builder: (context, snapshot) {
+                                            if (snapshot.connectionState ==
+                                                ConnectionState.done) {
+                                              return CircleAvatar(
+                                                maxRadius: 60,
+                                                backgroundColor:
+                                                    const Color(0xffC4C4C4),
+                                                backgroundImage: NetworkImage(
+                                                    "$getimage${control.filteredStudents[index].fileId}"),
+                                              );
+                                            } else {
+                                              return CircleAvatar(
+                                                maxRadius: 60,
+                                                backgroundColor:
+                                                    const Color(0xffC4C4C4),
+                                                child: LoadingAnimationWidget
+                                                    .inkDrop(
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                  size: 30,
+                                                ),
+                                              );
+                                            }
+                                          },
+                                        )
+                                      : CircleAvatar(
+                                          maxRadius: 60,
+                                          backgroundColor:
+                                              const Color(0xffC4C4C4),
+                                          child: Text(
+                                            control.filteredStudents[index]
+                                                .fullName!
+                                                .substring(0, 1)
+                                                .toUpperCase(),
+                                            style: Get.textTheme.titleLarge!
+                                                .copyWith(
+                                              fontSize: 26,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
                                 ],
                               ),
                               Text(
@@ -219,7 +226,15 @@ class AllStudentGrid extends StatelessWidget {
                                           backgroundColor:
                                               WidgetStateProperty.all(
                                                   Get.theme.primaryColor)),
-                                      onPressed: () {},
+                                      onPressed: () async {
+                                        Get.find<Illness_Controller>()
+                                            .initialdata();
+                                        await Get_Students_Illness_API(context)
+                                            .Get_Students_Illness(
+                                                studentId: control
+                                                    .filteredStudents[index].id,
+                                                index_of_Student: index);
+                                      },
                                       icon: const Icon(VMS_Icons.vir),
                                       color: Colors.white,
                                     ),
@@ -238,7 +253,16 @@ class AllStudentGrid extends StatelessWidget {
                                           backgroundColor:
                                               WidgetStateProperty.all(
                                                   Get.theme.primaryColor)),
-                                      onPressed: () {},
+                                      onPressed: () async {
+                                        Get.find<Vaccines_Controller>()
+                                            .initialdata();
+                                        await Get_Students_Vacciness_API(
+                                                context)
+                                            .Get_Students_Vacciness(
+                                                studentId: control
+                                                    .filteredStudents[index].id,
+                                                index_of_student: index);
+                                      },
                                       icon: const Icon(VMS_Icons.dose),
                                       color: Colors.white,
                                     ),
@@ -258,7 +282,7 @@ class AllStudentGrid extends StatelessWidget {
                                               WidgetStateProperty.all(
                                                   Get.theme.primaryColor)),
                                       onPressed: () {
-                                        EditStudentDialog();
+                                        EditStudentDialog(index, context);
                                       },
                                       icon: const Icon(VMS_Icons.vcard),
                                       color: Colors.white,

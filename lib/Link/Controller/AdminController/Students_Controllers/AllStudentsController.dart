@@ -5,6 +5,7 @@ import 'package:vms_school/Link/Model/AdminModel/AllStudentModel.dart';
 class Allstudentscontroller extends GetxController {
   List<Students> stud = [];
   List<Students> filteredStudents = [];
+  List<Documantes> documantesList = []; // القائمة الجديدة لتخزين Documantes
   String sessionIndex = "";
   String gradeIndex = "";
   String classIndex = "";
@@ -23,6 +24,12 @@ class Allstudentscontroller extends GetxController {
   List<String> divisionlist = [];
   bool isDivisionLoading = true;
   List<String> sessionlist = [];
+
+  var idx;
+  SetIDX(int vale) {
+    idx = vale;
+    update();
+  }
 
   void clearFilter() {
     searchByName("", gradeIndex, classIndex, divisionIndex);
@@ -71,7 +78,15 @@ class Allstudentscontroller extends GetxController {
     }
 
     filteredStudents = tempFilteredList;
+    updateDocumantesList();
     update();
+  }
+
+  void updateDocumantesList() {
+    documantesList = filteredStudents
+        .where((student) => student.documantes != null)
+        .map((student) => student.documantes!)
+        .toList();
   }
 
   setGradeList(List<String> value) {
@@ -179,6 +194,7 @@ class Allstudentscontroller extends GetxController {
     }
 
     setIsLoading(false);
+    updateDocumantesList();
     update();
   }
 

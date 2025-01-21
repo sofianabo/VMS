@@ -27,7 +27,7 @@ class Dropdowndivisionapi {
   Dropdowndivisionapi(this.context);
   Dio dio = Dio();
 
-  Dropdowndivision(int idx) async {
+  Dropdowndivision(int idx, int idx2) async {
     try {
       c.setIsLoading(true);
       stuc.setDivisionLoading(true);

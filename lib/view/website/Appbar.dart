@@ -3,7 +3,22 @@ import 'package:get/get.dart';
 import 'package:vms_school/widgets/Switcher.dart';
 
 class AppbarCustom extends StatefulWidget {
-  const AppbarCustom({super.key});
+  var Section2Key = GlobalKey();
+  var Section3Key = GlobalKey();
+  var Section4Key = GlobalKey();
+  var Section5Key = GlobalKey();
+  var Section6Key = GlobalKey();
+  var Section7Key = GlobalKey();
+
+  AppbarCustom({
+    super.key,
+    required this.Section2Key,
+    required this.Section3Key,
+    required this.Section4Key,
+    required this.Section5Key,
+    required this.Section6Key,
+    required this.Section7Key,
+  });
 
   @override
   State<AppbarCustom> createState() => _AppbarCustomState();
@@ -11,80 +26,103 @@ class AppbarCustom extends StatefulWidget {
 
 class _AppbarCustomState extends State<AppbarCustom> {
   bool isArabic = true;
+  ScrollToKey(GlobalKey key) {
+    Scrollable.ensureVisible(key.currentContext!,
+        duration: Duration(milliseconds: 700), curve: Curves.easeInOut);
+  }
 
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
-
     return Container(
-      height: h / 6.84,
-      margin: EdgeInsets.only(right: w / 21.33, left: w / 42.66),
-      width: w,
+      height: 100,
+      margin: EdgeInsets.only(right: 25, left: 25),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
-               Row(
-                 children: [
-                   LanguageSwitcher(onLanguageToggle: (bool ) {
-                     print(bool);
-                   },)
-                 ],
-               ),
-              SizedBox(
-                width: w / 15.8,
-                height: h / 28.5,
-                child: MaterialButton(
-                  onPressed: () {},
-                  child: Text(
-                    "Classes",
-                    style:Get.theme.textTheme.bodyMedium!,
+              LanguageSwitcher(
+                onLanguageToggle: (bool) {
+                  print(bool);
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: SizedBox(
+                  width: 90,
+                  height: 20,
+                  child: MaterialButton(
+                    onPressed: () {
+                      ScrollToKey(widget.Section7Key);
+                    },
+                    child: Text(
+                      "Contact Us",
+                      style: Get.theme.textTheme.bodyMedium!,
+                    ),
                   ),
                 ),
               ),
               SizedBox(
-                width: w / 15.8,
-                height: h / 28.5,
+                width: 90,
+                height: 20,
                 child: MaterialButton(
                   onPressed: () {
+                    ScrollToKey(widget.Section5Key);
                   },
                   child: Text(
-                    "Courses",
+                    "AboutUs",
                     style: Get.theme.textTheme.bodyMedium!,
                   ),
                 ),
               ),
               SizedBox(
-                width: w / 15.8,
-                height: h / 28.5,
+                width: 90,
+                height: 20,
                 child: MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    ScrollToKey(widget.Section4Key);
+                  },
                   child: Text(
-                    "News",
+                    "WhyUs",
                     style: Get.theme.textTheme.bodyMedium!,
                   ),
                 ),
               ),
               SizedBox(
-                width: w / 15.8,
-                height: h / 28.5,
+                width: 90,
+                height: 20,
                 child: MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    ScrollToKey(widget.Section6Key);
+                  },
                   child: Text(
-                    "About Us",
+                    "Programs",
                     style: Get.theme.textTheme.bodyMedium!,
                   ),
                 ),
               ),
               SizedBox(
-                width: w / 15.8,
-                height: h / 28.5,
+                width: 90,
+                height: 20,
                 child: MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    ScrollToKey(widget.Section3Key);
+                  },
                   child: Text(
-                    "Contact Us",
+                    "Enrollment",
+                    style: Get.theme.textTheme.bodyMedium!,
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 90,
+                height: 20,
+                child: MaterialButton(
+                  onPressed: () {
+                    ScrollToKey(widget.Section2Key);
+                  },
+                  child: Text(
+                    "Eligibility",
                     style: Get.theme.textTheme.bodyMedium!,
                   ),
                 ),
@@ -92,8 +130,7 @@ class _AppbarCustomState extends State<AppbarCustom> {
             ],
           ),
           SizedBox(
-            height: h / 1.71,
-            width: w / 2.56,
+            width: 300,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

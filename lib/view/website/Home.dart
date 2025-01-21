@@ -19,12 +19,18 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final Section2Key = new GlobalKey();
+  final Section3Key = new GlobalKey();
+  final Section4Key = new GlobalKey();
+  final Section5Key = new GlobalKey();
+  final Section6Key = new GlobalKey();
+  final Section7Key = new GlobalKey();
+
   localeController loc = Get.put(localeController(), permanent: true);
+
   @override
   void initState() {
     Homescreenapi(context).homescreen();
-
-    // TODO: implement initState
     super.initState();
   }
 
@@ -35,16 +41,35 @@ class _HomeState extends State<Home> {
       body: SingleChildScrollView(
         child: SizedBox(
           width: w,
-          child: const Column(
+          child: Column(
             children: [
-              AppbarCustom(),
+              AppbarCustom(
+                Section2Key: Section2Key,
+                Section3Key: Section3Key,
+                Section4Key: Section4Key,
+                Section5Key: Section5Key,
+                Section6Key: Section6Key,
+                Section7Key: Section7Key,
+              ),
               Section1(),
-              Section2(),
-              Section3(),
-              Section4(),
-              Section5(),
-              Section6(),
-              Section7(),
+              Section2(
+                key: Section2Key,
+              ),
+              Section3(
+                key: Section3Key,
+              ),
+              Section4(
+                key: Section4Key,
+              ),
+              Section5(
+                key: Section5Key,
+              ),
+              Section6(
+                key: Section6Key,
+              ),
+              Section7(
+                key: Section7Key,
+              ),
             ],
           ),
         ),
