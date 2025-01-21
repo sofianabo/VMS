@@ -98,6 +98,7 @@ Students_Illness_ByID_Funcation(
                             entry['id'] == illness.id &&
                             entry.containsKey('hasNewFile') &&
                             entry['hasNewFile'] == true);
+
                         return HoverScaleCard(
                           child: GestureDetector(
                             onTap: () {
