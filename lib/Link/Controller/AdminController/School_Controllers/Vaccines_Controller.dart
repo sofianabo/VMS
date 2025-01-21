@@ -50,6 +50,7 @@ class Vaccines_Controller extends gets.GetxController {
     files.clear();
     filesMap.clear();
     finalList.clear();
+    isSelectedOnly = true;
   }
 
   void searchByName(String? nameQuery) {
@@ -134,8 +135,18 @@ class Vaccines_Controller extends gets.GetxController {
   }
 
   void toggleSelection(Vaccine illness) {
+    SetFinalList();
+    final hasOldFile = finalList.any((entry) =>
+        entry['id'] == illness.id &&
+        entry.containsKey('hasOldFile') &&
+        entry['hasOldFile'] == true);
+    final hasNewFile = finalList.any((entry) =>
+        entry['id'] == illness.id &&
+        entry.containsKey('hasNewFile') &&
+        entry['hasNewFile'] == true);
+
     if (selectedIllnesses.contains(illness)) {
-      if (hasFile(illness)) {
+      if (hasOldFile || hasNewFile) {
         gets.Get.dialog(Padding(
             padding: const EdgeInsets.only(top: 40.0, bottom: 40),
             child: WillPopScope(
@@ -293,7 +304,17 @@ class Vaccines_Controller extends gets.GetxController {
   }
 
   void clearFile(Vaccine illness) {
-    if (hasFile(illness)) {
+    SetFinalList();
+    final hasOldFile = finalList.any((entry) =>
+        entry['id'] == illness.id &&
+        entry.containsKey('hasOldFile') &&
+        entry['hasOldFile'] == true);
+    final hasNewFile = finalList.any((entry) =>
+        entry['id'] == illness.id &&
+        entry.containsKey('hasNewFile') &&
+        entry['hasNewFile'] == true);
+
+    if (hasOldFile || hasNewFile) {
       gets.Get.dialog(Padding(
           padding: const EdgeInsets.only(top: 40.0, bottom: 40),
           child: WillPopScope(
@@ -428,16 +449,22 @@ class Vaccines_Controller extends gets.GetxController {
           .firstWhere((entry) => entry.vaccines?.id == illness.id,
               orElse: () => stuill.Vaccineses())
           .fileId;
-
       finalList.add({
         "id": illness.id,
         "file": fileEntry["file"],
         "fileid": fileId,
+        "illnesName": illness.enName,
         "hasOldFile": fileId == 0 || fileId == null ? false : true,
         "hasNewFile": fileEntry["file"] != null ? true : false,
       });
     }
     print(finalList);
+    update();
+  }
+
+  bool isSelectedOnly = true;
+  void SetisSelectedOnly(bool value) {
+    isSelectedOnly = value;
     update();
   }
 }

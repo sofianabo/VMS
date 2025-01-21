@@ -16,7 +16,8 @@ class Get_Students_Vacciness_API {
 
   Get_Students_Vacciness_API(this.context);
 
-  Future<void> Get_Students_Vacciness({int? studentId}) async {
+  Future<void> Get_Students_Vacciness(
+      {int? studentId, required int? index_of_student}) async {
     final vaccinesController = Get.find<Vaccines_Controller>();
 
     vaccinesController.SetIsLoading(true);
@@ -39,7 +40,7 @@ class Get_Students_Vacciness_API {
         Students_Vaccines_Model students_vaccines_model =
             Students_Vaccines_Model.fromJson(response.data);
         vaccinesController.setIllnessSelected(students_vaccines_model);
-        Show_Vaccines_By_Id_Funcation(context, studentId);
+        Show_Vaccines_By_Id_Funcation(context, studentId, index_of_student);
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,

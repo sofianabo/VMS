@@ -1,21 +1,21 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Illness_APIs/Get_All_Illness_API.dart';
+import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/UpdateStudentsIllness.dart';
+import 'package:vms_school/Link/API/DownloadFiles.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 import '../Model/AdminModel/School_Models/Illness_Model.dart';
 
-Students_Illness_ByID_Funcation(BuildContext context, id) async {
+Students_Illness_ByID_Funcation(
+    BuildContext context, id, int? index_of_student) async {
   TextEditingController search = TextEditingController();
-  bool isSelectedOnly = true;
   try {
     Get.dialog(VMSAlertDialog(
         action: [
@@ -36,7 +36,7 @@ Students_Illness_ByID_Funcation(BuildContext context, id) async {
           child: SizedBox(
             width: 700,
             child: GetBuilder<Illness_Controller>(builder: (control) {
-              List<Illness> filteredList = isSelectedOnly
+              List<Illness> filteredList = control.isSelectedOnly
                   ? control.filteredIllness!
                       .where((illness) => control.isSelected(illness))
                       .toList()
@@ -68,10 +68,9 @@ Students_Illness_ByID_Funcation(BuildContext context, id) async {
                   Row(
                     children: [
                       Checkbox(
-                        value: isSelectedOnly,
+                        value: control.isSelectedOnly,
                         onChanged: (value) {
-                          isSelectedOnly = value!;
-                          Get.forceAppUpdate();
+                          control.SetisSelectedOnly(value!);
                         },
                       ),
                       Text('Show only selected items'),
@@ -91,6 +90,14 @@ Students_Illness_ByID_Funcation(BuildContext context, id) async {
                       itemBuilder: (context, index) {
                         final illness = filteredList[index];
                         final isSelected = control.isSelected(illness);
+                        final hasOldFile = control.finalList.any((entry) =>
+                            entry['id'] == illness.id &&
+                            entry.containsKey('hasOldFile') &&
+                            entry['hasOldFile'] == true);
+                        final hasNewFile = control.finalList.any((entry) =>
+                            entry['id'] == illness.id &&
+                            entry.containsKey('hasNewFile') &&
+                            entry['hasNewFile'] == true);
                         return HoverScaleCard(
                           child: GestureDetector(
                             onTap: () {
@@ -133,131 +140,109 @@ Students_Illness_ByID_Funcation(BuildContext context, id) async {
                                     ),
                                   ),
                                   Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Text("${control.getFileName(illness)}",
-                                          style: Get.theme.textTheme.bodyMedium!
-                                              .copyWith(
-                                                  fontSize: 14,
-                                                  color: isSelected
-                                                      ? Colors.white
-                                                      : Get
-                                                          .theme.primaryColor)),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 5.0, right: 5.0),
-                                            child: Container(
-                                              width: 35,
-                                              height: 35,
-                                              decoration: BoxDecoration(
-                                                  color: isSelected
-                                                      ? Colors.white
-                                                      : Get.theme.primaryColor,
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                  boxShadow: const [
-                                                    BoxShadow(
-                                                        color: Colors.black12,
-                                                        offset: Offset(0, 2),
-                                                        blurRadius: 1)
-                                                  ]),
-                                              child: IconButton(
-                                                  onPressed:
-                                                      control.hasFile(illness)
-                                                          ? () {
-                                                              control.clearFile(
-                                                                  illness);
-                                                            }
-                                                          : () {},
-                                                  icon: Icon(
-                                                      Icons
-                                                          .delete_outline_outlined,
-                                                      size: 20,
-                                                      color: isSelected
-                                                          ? control.hasFile(
-                                                                  illness)
-                                                              ? Get.theme
-                                                                  .primaryColor
-                                                              : Colors.grey
-                                                          : Colors.white)),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 35,
-                                            height: 35,
-                                            decoration: BoxDecoration(
-                                              color: isSelected
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 5.0, right: 5.0),
+                                        child: Container(
+                                          width: 35,
+                                          height: 35,
+                                          decoration: BoxDecoration(
+                                              color: hasNewFile == true ||
+                                                      hasOldFile == true
                                                   ? Colors.white
-                                                  : Get.theme.primaryColor,
+                                                  : Get.theme.disabledColor,
                                               borderRadius:
                                                   BorderRadius.circular(5),
                                               boxShadow: const [
                                                 BoxShadow(
-                                                  color: Colors.black12,
-                                                  offset: Offset(0, 2),
-                                                  blurRadius: 1,
-                                                )
-                                              ],
-                                            ),
-                                            child: IconButton(
-                                              onPressed: () {
-                                                control.attachFile(illness);
-                                              },
+                                                    color: Colors.black12,
+                                                    offset: Offset(0, 2),
+                                                    blurRadius: 1)
+                                              ]),
+                                          child: IconButton(
+                                              onPressed: hasNewFile == true ||
+                                                      hasOldFile == true
+                                                  ? () {
+                                                      control
+                                                          .clearFile(illness);
+                                                    }
+                                                  : () {},
                                               icon: Icon(
-                                                Icons.file_upload_outlined,
-                                                size: 20,
-                                                color: isSelected
-                                                    ? Get.theme.primaryColor
-                                                    : Colors.white,
-                                              ),
-                                            ),
+                                                  Icons.delete_outline_outlined,
+                                                  size: 20,
+                                                  color: hasNewFile == true ||
+                                                          hasOldFile == true
+                                                      ? Get.theme.primaryColor
+                                                      : Colors.white)),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 35,
+                                        height: 35,
+                                        decoration: BoxDecoration(
+                                          color: isSelected
+                                              ? Colors.white
+                                              : Get.theme.primaryColor,
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          boxShadow: const [
+                                            BoxShadow(
+                                              color: Colors.black12,
+                                              offset: Offset(0, 2),
+                                              blurRadius: 1,
+                                            )
+                                          ],
+                                        ),
+                                        child: IconButton(
+                                          onPressed: () {
+                                            control.attachFile(illness);
+                                          },
+                                          icon: Icon(
+                                            Icons.file_upload_outlined,
+                                            size: 20,
+                                            color: isSelected
+                                                ? Get.theme.primaryColor
+                                                : Colors.white,
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 5.0, right: 5.0),
-                                            child: Container(
-                                              width: 35,
-                                              height: 35,
-                                              decoration: BoxDecoration(
-                                                  color: isSelected
-                                                      ? Colors.white
-                                                      : Get.theme.primaryColor,
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                  boxShadow: const [
-                                                    BoxShadow(
-                                                        color: Colors.black12,
-                                                        offset: Offset(0, 2),
-                                                        blurRadius: 1)
-                                                  ]),
-                                              child: IconButton(
-                                                  onPressed:
-                                                      control.hasFile(illness)
-                                                          ? () {
-                                                              //ksjdjks
-                                                            }
-                                                          : () {},
-                                                  icon: Icon(
-                                                      Icons
-                                                          .file_download_outlined,
-                                                      size: 20,
-                                                      color: isSelected
-                                                          ? control.hasFile(
-                                                                  illness)
-                                                              ? Get.theme
-                                                                  .primaryColor
-                                                              : Colors.grey
-                                                          : Colors.white)),
-                                            ),
-                                          ),
-                                        ],
-                                      )
+                                        ),
+                                      ),
+                                      Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 5.0, right: 5.0),
+                                          child: Container(
+                                            width: 35,
+                                            height: 35,
+                                            decoration: BoxDecoration(
+                                                color: hasOldFile == true
+                                                    ? Colors.white
+                                                    : Get.theme.disabledColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                boxShadow: const [
+                                                  BoxShadow(
+                                                      color: Colors.black12,
+                                                      offset: Offset(0, 2),
+                                                      blurRadius: 1)
+                                                ]),
+                                            child: IconButton(
+                                                onPressed: hasOldFile == true
+                                                    ? () {
+                                                        final url =
+                                                            '$getimage${control.finalList[index]['fileid']}';
+                                                        downloadFile("$url",
+                                                            "${Get.find<Allstudentscontroller>().filteredStudents[index_of_student!].fullName} ${control.finalList[index]['illnesName']}.pdf");
+                                                      }
+                                                    : () {},
+                                                icon: Icon(
+                                                    Icons
+                                                        .file_download_outlined,
+                                                    size: 20,
+                                                    color: hasOldFile == true
+                                                        ? Get.theme.primaryColor
+                                                        : Colors.white)),
+                                          )),
                                     ],
                                   )
                                 ],

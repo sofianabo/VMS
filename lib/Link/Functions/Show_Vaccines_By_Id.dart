@@ -5,15 +5,18 @@ import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/UpdateStudentsVaccines.dart';
 import 'package:vms_school/Link/API/DownloadFiles.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
+import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Vaccines_Model.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
-Show_Vaccines_By_Id_Funcation(BuildContext context, id) async {
+Show_Vaccines_By_Id_Funcation(
+    BuildContext context, id, index_of_student) async {
   TextEditingController search = TextEditingController();
-  bool isSelectedOnly = true;
+
   try {
     Get.find<Vaccines_Controller>().SetFinalList();
     Get.dialog(VMSAlertDialog(
@@ -35,7 +38,7 @@ Show_Vaccines_By_Id_Funcation(BuildContext context, id) async {
           child: SizedBox(
             width: 700,
             child: GetBuilder<Vaccines_Controller>(builder: (control) {
-              List<Vaccine> filteredList = isSelectedOnly
+              List<Vaccine> filteredList = control.isSelectedOnly
                   ? control.filteredvaccine!
                       .where((illness) => control.isSelected(illness))
                       .toList()
@@ -67,10 +70,9 @@ Show_Vaccines_By_Id_Funcation(BuildContext context, id) async {
                   Row(
                     children: [
                       Checkbox(
-                        value: isSelectedOnly,
+                        value: control.isSelectedOnly,
                         onChanged: (value) {
-                          isSelectedOnly = value!;
-                          Get.forceAppUpdate();
+                          control.SetisSelectedOnly(value!);
                         },
                       ),
                       Text('Show only selected items'),
@@ -102,7 +104,9 @@ Show_Vaccines_By_Id_Funcation(BuildContext context, id) async {
                         return HoverScaleCard(
                           child: GestureDetector(
                             onTap: () {
-                              control.toggleSelection(illness);
+                              control.toggleSelection(
+                                illness,
+                              );
                             },
                             child: Container(
                               padding: const EdgeInsets.all(20),
@@ -182,7 +186,8 @@ Show_Vaccines_By_Id_Funcation(BuildContext context, id) async {
                                                               hasOldFile == true
                                                           ? () {
                                                               control.clearFile(
-                                                                  illness);
+                                                                illness,
+                                                              );
                                                             }
                                                           : () {},
                                                   icon: Icon(
@@ -216,7 +221,9 @@ Show_Vaccines_By_Id_Funcation(BuildContext context, id) async {
                                             ),
                                             child: IconButton(
                                               onPressed: () {
-                                                control.attachFile(illness);
+                                                control.attachFile(
+                                                  illness,
+                                                );
                                               },
                                               icon: Icon(
                                                 Icons.file_upload_outlined,
@@ -255,7 +262,7 @@ Show_Vaccines_By_Id_Funcation(BuildContext context, id) async {
                                                                     '$getimage${control.finalList[index]['fileid']}';
                                                                 downloadFile(
                                                                     "$url",
-                                                                    "fileName.pdf");
+                                                                    "${Get.find<Allstudentscontroller>().filteredStudents[index_of_student!].fullName} ${control.finalList[index]['illnesName']}.pdf");
                                                               }
                                                             : () {},
                                                     icon: Icon(

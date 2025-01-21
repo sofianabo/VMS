@@ -16,7 +16,7 @@ class Illness_Controller extends gets.GetxController {
   Map<String, dynamic> filesMap = {};
   List<Map<String, dynamic>> finalList = [];
   String? filterName = '';
-
+  bool isSelectedOnly = true;
   List<Illness>? illness;
   List<Illness>? filteredIllness;
 
@@ -33,6 +33,7 @@ class Illness_Controller extends gets.GetxController {
     finalList.clear();
     illness = [];
     filteredIllness = [];
+    isSelectedOnly = true;
   }
 
   void togglechronic(bool value) {
@@ -81,7 +82,7 @@ class Illness_Controller extends gets.GetxController {
     if (filterName != null && filterName!.isNotEmpty) {
       searchByName(filterName.toString());
     }
-
+    SetFinalList();
     SetIsLoading(false);
     update();
   }
@@ -98,15 +99,13 @@ class Illness_Controller extends gets.GetxController {
                 ))
             .toList();
 
-        // التأكد من إضافة جميع العناصر الموجودة في selectedIllnesses إلى files
         for (var selectedIllness in selectedIllnesses) {
-          // التأكد من أنه يتم إضافة قيمة null إذا لم يكن هناك ملف
           if (!files
               .any((file) => file["id"] == selectedIllness.id.toString())) {
             files.add({
               "id": selectedIllness.id.toString(),
-              "fileid": null, // إذا لم يكن هناك fileid
-              "file": null, // إذا لم يكن هناك ملف
+              "fileid": null,
+              "file": null,
             });
           }
         }
@@ -118,11 +117,22 @@ class Illness_Controller extends gets.GetxController {
     } catch (e) {
       print("Error updating student illnesses: $e");
     }
+    SetFinalList();
   }
 
   void toggleSelection(Illness illness) {
     if (selectedIllnesses.contains(illness)) {
-      if (hasFile(illness)) {
+      SetFinalList();
+      final hasOldFile = finalList.any((entry) =>
+          entry['id'] == illness.id &&
+          entry.containsKey('hasOldFile') &&
+          entry['hasOldFile'] == true);
+      final hasNewFile = finalList.any((entry) =>
+          entry['id'] == illness.id &&
+          entry.containsKey('hasNewFile') &&
+          entry['hasNewFile'] == true);
+
+      if (hasOldFile || hasNewFile) {
         gets.Get.dialog(Padding(
             padding: const EdgeInsets.only(top: 40.0, bottom: 40),
             child: WillPopScope(
@@ -137,13 +147,13 @@ class Illness_Controller extends gets.GetxController {
                 contentPadding: EdgeInsets.zero,
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 alignment: Alignment.center,
-                content: Container(
+                content: SizedBox(
                   width: 400,
                   height: 300,
                   child: Expanded(
                     child: Column(
                       children: [
-                        Container(
+                        SizedBox(
                           width: 400,
                           height: 200,
                           child: SvgPicture.asset(
@@ -178,12 +188,10 @@ class Illness_Controller extends gets.GetxController {
                         child: const Text('Yes',
                             style: TextStyle(color: Colors.white)),
                         onPressed: () {
-                          removeFile(illness); // إزالة الملف إذا كان موجودًا
-                          selectedIllnesses.removeWhere((entry) =>
-                              entry.id ==
-                              illness.id); // إزالة العنصر من القائمة
+                          removeFile(illness);
+                          selectedIllnesses
+                              .removeWhere((entry) => entry.id == illness.id);
 
-                          // إزالة fileId من previousSelectedIllnesses
                           previousSelectedIllnesses
                               .removeWhere((e) => e.illness?.id == illness.id);
                           gets.Get.back();
@@ -210,17 +218,16 @@ class Illness_Controller extends gets.GetxController {
             )));
       } else {
         selectedIllnesses.removeWhere((entry) => entry.id == illness.id);
-
         previousSelectedIllnesses
             .removeWhere((e) => e.illness?.id == illness.id);
       }
     } else {
       selectedIllnesses.add(illness);
-
       if (!files.any((entry) => entry["id"] == illness.id.toString())) {
         files.add({"id": illness.id.toString()});
       }
     }
+    SetFinalList();
     update();
   }
 
@@ -265,7 +272,7 @@ class Illness_Controller extends gets.GetxController {
       if (!isSelected(illness)) {
         toggleSelection(illness);
       }
-
+      SetFinalList();
       update();
     } catch (e) {
       print("Error picking file: $e");
@@ -274,12 +281,22 @@ class Illness_Controller extends gets.GetxController {
 
   void removeFile(Illness illness) {
     files.removeWhere((file) => file["id"] == illness.id.toString());
-
+    SetFinalList();
     update();
   }
 
   void clearFile(Illness illness) {
-    if (hasFile(illness)) {
+    SetFinalList();
+    final hasOldFile = finalList.any((entry) =>
+        entry['id'] == illness.id &&
+        entry.containsKey('hasOldFile') &&
+        entry['hasOldFile'] == true);
+    final hasNewFile = finalList.any((entry) =>
+        entry['id'] == illness.id &&
+        entry.containsKey('hasNewFile') &&
+        entry['hasNewFile'] == true);
+
+    if (hasOldFile || hasNewFile) {
       gets.Get.dialog(Padding(
           padding: const EdgeInsets.only(top: 40.0, bottom: 40),
           child: WillPopScope(
@@ -294,13 +311,13 @@ class Illness_Controller extends gets.GetxController {
               contentPadding: EdgeInsets.zero,
               clipBehavior: Clip.antiAliasWithSaveLayer,
               alignment: Alignment.center,
-              content: Container(
+              content: SizedBox(
                 width: 400,
                 height: 300,
                 child: Expanded(
                   child: Column(
                     children: [
-                      Container(
+                      SizedBox(
                         width: 400,
                         height: 200,
                         child: SvgPicture.asset(
@@ -352,7 +369,7 @@ class Illness_Controller extends gets.GetxController {
                                 : illnessEntry.fileId = null;
                           }
                         }
-
+                        SetFinalList();
                         gets.Get.back();
                       },
                     ),
@@ -376,7 +393,7 @@ class Illness_Controller extends gets.GetxController {
             ),
           )));
     }
-
+    SetFinalList();
     update();
   }
 
@@ -404,7 +421,6 @@ class Illness_Controller extends gets.GetxController {
 
   void SetFinalList() {
     finalList.clear();
-    print(finalList);
 
     for (var illness in selectedIllnesses) {
       var fileEntry = files.firstWhere(
@@ -421,8 +437,17 @@ class Illness_Controller extends gets.GetxController {
         "id": illness.id,
         "file": fileEntry["file"],
         "fileid": fileId,
+        "illnesName": illness.enName,
+        "hasOldFile": fileId == 0 || fileId == null ? false : true,
+        "hasNewFile": fileEntry["file"] != null ? true : false,
       });
     }
     print(finalList);
+    update();
+  }
+
+  void SetisSelectedOnly(bool value) {
+    isSelectedOnly = value;
+    update();
   }
 }

@@ -232,8 +232,8 @@ class AllStudentGrid extends StatelessWidget {
                                         await Get_Students_Illness_API(context)
                                             .Get_Students_Illness(
                                                 studentId: control
-                                                    .filteredStudents[index]
-                                                    .id);
+                                                    .filteredStudents[index].id,
+                                                index_of_Student: index);
                                       },
                                       icon: const Icon(VMS_Icons.vir),
                                       color: Colors.white,
@@ -260,8 +260,8 @@ class AllStudentGrid extends StatelessWidget {
                                                 context)
                                             .Get_Students_Vacciness(
                                                 studentId: control
-                                                    .filteredStudents[index]
-                                                    .id);
+                                                    .filteredStudents[index].id,
+                                                index_of_student: index);
                                       },
                                       icon: const Icon(VMS_Icons.dose),
                                       color: Colors.white,

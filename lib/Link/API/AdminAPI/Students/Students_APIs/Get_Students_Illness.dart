@@ -16,7 +16,8 @@ class Get_Students_Illness_API {
 
   Get_Students_Illness_API(this.context);
 
-  Future<void> Get_Students_Illness({int? studentId}) async {
+  Future<void> Get_Students_Illness(
+      {int? studentId, int? index_of_Student}) async {
     final illnessController = Get.find<Illness_Controller>();
 
     illnessController.SetIsLoading(true);
@@ -39,7 +40,7 @@ class Get_Students_Illness_API {
         Students_Illness studentsIllness =
             Students_Illness.fromJson(response.data);
         illnessController.setIllnessSelected(studentsIllness);
-        Students_Illness_ByID_Funcation(context, studentId);
+        Students_Illness_ByID_Funcation(context, studentId, index_of_Student);
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,
