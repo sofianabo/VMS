@@ -911,7 +911,11 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                           BorderRadius.all(Radius.circular(5)),
                                       border:
                                           Border.all(color: Color(0xffD9D9D9)),
-                                      color: controller.isHoveringFatherPassport
+                                      color: controller
+                                                  .isHoveringFatherPassport ||
+                                              controller.selectedFatherPassport
+                                                      .value !=
+                                                  null
                                           ? Get.theme.primaryColor
                                           : Colors.white,
                                     ),
@@ -954,16 +958,31 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                           },
                                         ),
                                         Center(
-                                          child: Text(
-                                            textAlign: TextAlign.center,
-                                            controller.FatherPassportStatus,
-                                            style: TextStyle(
-                                              color: controller
-                                                      .isHoveringFatherPassport
-                                                  ? Colors.white
-                                                  : Color(0xffCBBFBF),
-                                            ),
-                                          ),
+                                          child: controller
+                                                      .selectedFatherPassport
+                                                      .value !=
+                                                  null
+                                              ? IconButton(
+                                                  onPressed: () {
+                                                    controller
+                                                        .ClearselectedFatherPassport();
+                                                  },
+                                                  icon: Icon(
+                                                    Icons
+                                                        .delete_outline_outlined,
+                                                    color: Colors.white,
+                                                  ))
+                                              : Text(
+                                                  textAlign: TextAlign.center,
+                                                  controller
+                                                      .FatherPassportStatus,
+                                                  style: TextStyle(
+                                                    color: controller
+                                                            .isHoveringFatherPassport
+                                                        ? Colors.white
+                                                        : Color(0xffCBBFBF),
+                                                  ),
+                                                ),
                                         ),
                                       ],
                                     ),
@@ -990,7 +1009,11 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                           BorderRadius.all(Radius.circular(5)),
                                       border:
                                           Border.all(color: Color(0xffD9D9D9)),
-                                      color: controller.isHoveringMotherPassport
+                                      color: controller
+                                                  .isHoveringMotherPassport ||
+                                              controller.selectedMotherPassport
+                                                      .value !=
+                                                  null
                                           ? Get.theme.primaryColor
                                           : Colors.white,
                                     ),
@@ -1033,16 +1056,31 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                           },
                                         ),
                                         Center(
-                                          child: Text(
-                                            textAlign: TextAlign.center,
-                                            controller.MotherPassportStatus,
-                                            style: TextStyle(
-                                              color: controller
-                                                      .isHoveringMotherPassport
-                                                  ? Colors.white
-                                                  : Color(0xffCBBFBF),
-                                            ),
-                                          ),
+                                          child: controller
+                                                      .selectedMotherPassport
+                                                      .value !=
+                                                  null
+                                              ? IconButton(
+                                                  onPressed: () {
+                                                    controller
+                                                        .ClearselectedMotherPassport();
+                                                  },
+                                                  icon: Icon(
+                                                    Icons
+                                                        .delete_outline_outlined,
+                                                    color: Colors.white,
+                                                  ))
+                                              : Text(
+                                                  textAlign: TextAlign.center,
+                                                  controller
+                                                      .MotherPassportStatus,
+                                                  style: TextStyle(
+                                                    color: controller
+                                                            .isHoveringMotherPassport
+                                                        ? Colors.white
+                                                        : Color(0xffCBBFBF),
+                                                  ),
+                                                ),
                                         ),
                                       ],
                                     ),
@@ -1077,7 +1115,10 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                           BorderRadius.all(Radius.circular(5)),
                                       border:
                                           Border.all(color: Color(0xffD9D9D9)),
-                                      color: controller.isHoveringSonPassport
+                                      color: controller.isHoveringSonPassport ||
+                                              controller.selectedSonPassport
+                                                      .value !=
+                                                  null
                                           ? Get.theme.primaryColor
                                           : Colors.white,
                                     ),
@@ -1120,16 +1161,28 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                           },
                                         ),
                                         Center(
-                                          child: Text(
-                                            textAlign: TextAlign.center,
-                                            controller.SonPassportStatus,
-                                            style: TextStyle(
-                                              color: controller
-                                                      .isHoveringSonPassport
-                                                  ? Colors.white
-                                                  : Color(0xffCBBFBF),
-                                            ),
-                                          ),
+                                          child: controller.selectedSonPassport
+                                                      .value !=
+                                                  null
+                                              ? IconButton(
+                                                  onPressed: () {
+                                                    controller.Clear_Son();
+                                                  },
+                                                  icon: Icon(
+                                                    Icons
+                                                        .delete_outline_outlined,
+                                                    color: Colors.white,
+                                                  ))
+                                              : Text(
+                                                  textAlign: TextAlign.center,
+                                                  controller.SonPassportStatus,
+                                                  style: TextStyle(
+                                                    color: controller
+                                                            .isHoveringSonPassport
+                                                        ? Colors.white
+                                                        : Color(0xffCBBFBF),
+                                                  ),
+                                                ),
                                         ),
                                       ],
                                     ),
@@ -1156,7 +1209,9 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                           BorderRadius.all(Radius.circular(5)),
                                       border:
                                           Border.all(color: Color(0xffD9D9D9)),
-                                      color: controller.isHoveringId
+                                      color: controller.isHoveringId ||
+                                              controller.selectedId.value !=
+                                                  null
                                           ? Get.theme.primaryColor
                                           : Colors.white,
                                     ),
@@ -1199,15 +1254,27 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                           },
                                         ),
                                         Center(
-                                          child: Text(
-                                            textAlign: TextAlign.center,
-                                            controller.IdStatus,
-                                            style: TextStyle(
-                                              color: controller.isHoveringId
-                                                  ? Colors.white
-                                                  : Color(0xffCBBFBF),
-                                            ),
-                                          ),
+                                          child: controller.selectedId.value !=
+                                                  null
+                                              ? IconButton(
+                                                  onPressed: () {
+                                                    controller.Clear_id();
+                                                  },
+                                                  icon: Icon(
+                                                    Icons
+                                                        .delete_outline_outlined,
+                                                    color: Colors.white,
+                                                  ))
+                                              : Text(
+                                                  textAlign: TextAlign.center,
+                                                  controller.IdStatus,
+                                                  style: TextStyle(
+                                                    color:
+                                                        controller.isHoveringId
+                                                            ? Colors.white
+                                                            : Color(0xffCBBFBF),
+                                                  ),
+                                                ),
                                         ),
                                       ],
                                     ),
@@ -1242,7 +1309,10 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                           BorderRadius.all(Radius.circular(5)),
                                       border:
                                           Border.all(color: Color(0xffD9D9D9)),
-                                      color: controller.isHoveringCertificate
+                                      color: controller.isHoveringCertificate ||
+                                              controller.selectedCertificate
+                                                      .value !=
+                                                  null
                                           ? Get.theme.primaryColor
                                           : Colors.white,
                                     ),
@@ -1287,16 +1357,29 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                           },
                                         ),
                                         Center(
-                                          child: Text(
-                                            textAlign: TextAlign.center,
-                                            controller.CertificateStatus,
-                                            style: TextStyle(
-                                              color: controller
-                                                      .isHoveringCertificate
-                                                  ? Colors.white
-                                                  : Color(0xffCBBFBF),
-                                            ),
-                                          ),
+                                          child: controller.selectedCertificate
+                                                      .value !=
+                                                  null
+                                              ? IconButton(
+                                                  onPressed: () {
+                                                    controller
+                                                        .Clear_Certificate();
+                                                  },
+                                                  icon: Icon(
+                                                    Icons
+                                                        .delete_outline_outlined,
+                                                    color: Colors.white,
+                                                  ))
+                                              : Text(
+                                                  textAlign: TextAlign.center,
+                                                  controller.CertificateStatus,
+                                                  style: TextStyle(
+                                                    color: controller
+                                                            .isHoveringCertificate
+                                                        ? Colors.white
+                                                        : Color(0xffCBBFBF),
+                                                  ),
+                                                ),
                                         ),
                                       ],
                                     ),
@@ -1323,7 +1406,10 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                           BorderRadius.all(Radius.circular(5)),
                                       border:
                                           Border.all(color: Color(0xffD9D9D9)),
-                                      color: controller.isHoveringtsalsol
+                                      color: controller.isHoveringtsalsol ||
+                                              controller
+                                                      .selectedtsalsol.value !=
+                                                  null
                                           ? Get.theme.primaryColor
                                           : Colors.white,
                                     ),
@@ -1367,16 +1453,28 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                           },
                                         ),
                                         Center(
-                                          child: Text(
-                                            textAlign: TextAlign.center,
-                                            controller.tsalsolStatus,
-                                            style: TextStyle(
-                                              color:
-                                                  controller.isHoveringtsalsol
-                                                      ? Colors.white
-                                                      : Color(0xffCBBFBF),
-                                            ),
-                                          ),
+                                          child: controller
+                                                      .selectedtsalsol.value !=
+                                                  null
+                                              ? IconButton(
+                                                  onPressed: () {
+                                                    controller.Clear_tasalsol();
+                                                  },
+                                                  icon: Icon(
+                                                    Icons
+                                                        .delete_outline_outlined,
+                                                    color: Colors.white,
+                                                  ))
+                                              : Text(
+                                                  textAlign: TextAlign.center,
+                                                  controller.tsalsolStatus,
+                                                  style: TextStyle(
+                                                    color: controller
+                                                            .isHoveringtsalsol
+                                                        ? Colors.white
+                                                        : Color(0xffCBBFBF),
+                                                  ),
+                                                ),
                                         ),
                                       ],
                                     ),
@@ -1411,7 +1509,10 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                           BorderRadius.all(Radius.circular(5)),
                                       border:
                                           Border.all(color: Color(0xffD9D9D9)),
-                                      color: controller.isHoveringFamilyBook
+                                      color: controller.isHoveringFamilyBook ||
+                                              controller.selectedFamilyBook
+                                                      .value !=
+                                                  null
                                           ? Get.theme.primaryColor
                                           : Colors.white,
                                     ),
@@ -1456,16 +1557,29 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                           },
                                         ),
                                         Center(
-                                          child: Text(
-                                            textAlign: TextAlign.center,
-                                            controller.FamilyBookStatus,
-                                            style: TextStyle(
-                                              color: controller
-                                                      .isHoveringFamilyBook
-                                                  ? Colors.white
-                                                  : Color(0xffCBBFBF),
-                                            ),
-                                          ),
+                                          child: controller.selectedFamilyBook
+                                                      .value !=
+                                                  null
+                                              ? IconButton(
+                                                  onPressed: () {
+                                                    controller
+                                                        .Clear_FamilyBook();
+                                                  },
+                                                  icon: Icon(
+                                                    Icons
+                                                        .delete_outline_outlined,
+                                                    color: Colors.white,
+                                                  ))
+                                              : Text(
+                                                  textAlign: TextAlign.center,
+                                                  controller.FamilyBookStatus,
+                                                  style: TextStyle(
+                                                    color: controller
+                                                            .isHoveringFamilyBook
+                                                        ? Colors.white
+                                                        : Color(0xffCBBFBF),
+                                                  ),
+                                                ),
                                         ),
                                       ],
                                     ),

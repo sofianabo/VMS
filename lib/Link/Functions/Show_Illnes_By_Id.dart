@@ -98,6 +98,13 @@ Students_Illness_ByID_Funcation(
                             entry['id'] == illness.id &&
                             entry.containsKey('hasNewFile') &&
                             entry['hasNewFile'] == true);
+                        final illnesName = control.finalList.firstWhere(
+                          (entry) =>
+                              entry['id'] == illness.id &&
+                              entry.containsKey('illnesName'),
+                          orElse: () => {"illnesName": ""},
+                        )['illnesName'];
+
                         return HoverScaleCard(
                           child: GestureDetector(
                             onTap: () {
@@ -232,7 +239,7 @@ Students_Illness_ByID_Funcation(
                                                         final url =
                                                             '$getimage${control.finalList[index]['fileid']}';
                                                         downloadFile("$url",
-                                                            "${Get.find<Allstudentscontroller>().filteredStudents[index_of_student!].fullName} ${control.finalList[index]['illnesName']}.pdf");
+                                                            "${Get.find<Allstudentscontroller>().filteredStudents[index_of_student!].fullName} $illnesName.pdf");
                                                       }
                                                     : () {},
                                                 icon: Icon(

@@ -12,18 +12,20 @@ class Get_All_Curriculm_API {
   BuildContext context;
   Get_All_Curriculm_API(this.context);
   Dio dio = Dio();
-  Get_All_Curriculm() async {
+  Get_All_Curriculm({CancelToken? canceltoken}) async {
     final controller = Get.find<Curriculumn_Controller>();
+    final class_Cur_Controller = Get.find<ClassMgmtController>();
 
     try {
       controller.SetIsLoading(true);
       String myurl = "$hostPort$getCurriculum";
-      var response = await dio.post(myurl, options: getDioOptions());
+      var response = await dio.post(
+          cancelToken: canceltoken, myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         Curriculum_Model curriculumModel =
             Curriculum_Model.fromJson(response.data);
         controller.SetCurriculum(curriculumModel);
-        return curriculumModel;
+        class_Cur_Controller.SetCurriculum(curriculumModel);
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
@@ -31,6 +33,7 @@ class Get_All_Curriculm_API {
           type: DioExceptionType.badResponse,
         ));
       }
+      return response.statusCode;
     } catch (e) {
       if (e is DioException) {
         ErrorHandler.handleDioError(e);

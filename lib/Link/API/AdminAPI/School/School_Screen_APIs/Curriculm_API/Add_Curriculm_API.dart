@@ -13,30 +13,26 @@ class Add_Curriculm_API {
   Dio dio = Dio();
 
   Add_Curriculm(
-  {
-    subjectId,
-    semesterId,
-    name,
-    maxMark,
-    PassingMark,
-    file,
-    type,
-    Image,
-
-}
-      ) async {
-
+      {subjectId,
+      semesterId,
+      name,
+      maxMark,
+      PassingMark,
+      file,
+      type,
+      Image,
+      Ename}) async {
     CancelToken cancelToken = CancelToken();
     Loading_Dialog(cancelToken: cancelToken);
     try {
-
       FormData formData = FormData.fromMap({
-        'subjectId':'$subjectId',
-        'semesterId':'$semesterId',
-        'name':'$name',
-        'maxMark':'$maxMark',
-        'PassingMark':'$PassingMark',
-        'type':'${type==true? 1 : 0 }',
+        'subjectId': '$subjectId',
+        'semesterId': '$semesterId',
+        'name': '$name',
+        'enName': '$Ename',
+        'maxMark': '$maxMark',
+        'PassingMark': '$PassingMark',
+        'type': '${type == true ? 1 : 0}',
       });
 
       if (file != null) {
@@ -55,8 +51,8 @@ class Add_Curriculm_API {
       String myurl = "$hostPort$createCurriculum";
 
       var response = await dio.post(
-        data: formData,
-        cancelToken: cancelToken,
+          data: formData,
+          cancelToken: cancelToken,
           myurl,
           options: getDioOptions());
 
@@ -65,7 +61,6 @@ class Add_Curriculm_API {
         gets.Get.back();
         await Get_All_Curriculm_API(context).Get_All_Curriculm();
       } else {
-
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,

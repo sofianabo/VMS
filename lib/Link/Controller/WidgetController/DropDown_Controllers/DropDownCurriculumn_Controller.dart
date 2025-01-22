@@ -5,18 +5,16 @@ import 'package:image_picker/image_picker.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Curriculum_Model.dart';
 
 class Curriculumn_Controller extends GetxController {
-
   List<Curriculum>? curriculum;
   String? filterName = '';
   String? filterSemester = '';
   String? filterSubject = '';
   List<Curriculum> filteredCurriculum = [];
-   int? semesterId ;
-   int? subjectId ;
-
+  int? semesterId;
+  int? subjectId;
 
   void clearFilter() {
-    searchByName("",semesterIndex , subjectIndex);
+    searchByName("", semesterIndex, subjectIndex);
     update();
   }
 
@@ -26,16 +24,18 @@ class Curriculumn_Controller extends GetxController {
     if (nameQuery != null && nameQuery.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((cur) {
         final curName = cur.name?.toLowerCase() ?? '';
-        return curName.contains(nameQuery.toLowerCase());
+        final curenName = cur.enName?.toLowerCase() ?? '';
+        return curName.contains(nameQuery.toLowerCase()) ||
+            curenName.contains(nameQuery.toLowerCase());
       }).toList();
     }
 
     if (semester != null && semester.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((cur) {
-        return cur.semester!.enName == semester || cur.semester!.name == semester;
+        return cur.semester!.enName == semester ||
+            cur.semester!.name == semester;
       }).toList();
     }
-
 
     if (subject != null && subject.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((cur) {
@@ -47,16 +47,12 @@ class Curriculumn_Controller extends GetxController {
     update();
   }
 
-
-
-
   bool isFailingSubject = false;
   bool isLoading = true;
   bool isHoveringFile = false;
   String fileStatus = "Click To Add File\nOr\nDrag And Drop File Here";
   bool isHoveringimage = false;
   String imageStatus = "Click To Add Image\nOr\nDrag And Drop Image Here";
-
 
   Rx<Uint8List?> selectedImage = Rx<Uint8List?>(null);
 
@@ -66,15 +62,13 @@ class Curriculumn_Controller extends GetxController {
   final ImagePicker _picker = ImagePicker();
 
   Future<void> pickImage() async {
-    final XFile? pickedFile = await _picker.pickImage(
-        source: ImageSource.gallery, imageQuality: 80);
+    final XFile? pickedFile =
+        await _picker.pickImage(source: ImageSource.gallery, imageQuality: 80);
     if (pickedFile != null) {
       Uint8List fileBytes = await pickedFile.readAsBytes();
       selectedImage.value = fileBytes;
       updateTextImage("Done Selected Image");
-    } else {
-
-    }
+    } else {}
   }
 
   Future<void> pickPDFFile() async {
@@ -95,14 +89,17 @@ class Curriculumn_Controller extends GetxController {
     isHoveringFile = value;
     update();
   }
+
   void updateHoverImage(bool value) {
     isHoveringimage = value;
     update();
   }
+
   void updateTextImage(String value) {
     imageStatus = value;
     update();
   }
+
   void updateTextFile(String value) {
     fileStatus = value;
     update();
@@ -118,7 +115,6 @@ class Curriculumn_Controller extends GetxController {
   String dialog_SubjectIndex = "";
   String dialog_SemesterIndex = "";
 
-
   List<String> listsubject = [];
   List<String> list_Dialog_Subject = [];
   List<String> list_Dialog_semester = [
@@ -127,11 +123,10 @@ class Curriculumn_Controller extends GetxController {
     "The Third Semester",
   ];
   List<String> listSemester = [
-     "The First Semester",
-     "The Second Semester",
-     "The Third Semester",
+    "The First Semester",
+    "The Second Semester",
+    "The Third Semester",
   ];
-
 
   void selectIndex(String type, String? index) {
     switch (type) {
@@ -152,24 +147,24 @@ class Curriculumn_Controller extends GetxController {
     update();
   }
 
-
-
-
   void SetCurriculum(Curriculum_Model curriculumModel) {
     curriculum = curriculumModel.curriculum;
     filteredCurriculum = List.from(curriculum!);
+
     if (filterName != null && filterName!.isNotEmpty) {
-      searchByName(filterName.toString(), semesterIndex,subjectIndex);
+      searchByName(filterName.toString(), semesterIndex, subjectIndex);
     }
 
     if (semesterIndex.isNotEmpty) {
       filteredCurriculum = filteredCurriculum.where((emp) {
-        return emp.semester!.name == semesterIndex || emp.semester!.enName == semesterIndex;
+        return emp.semester!.name == semesterIndex ||
+            emp.semester!.enName == semesterIndex;
       }).toList();
     }
     if (subjectIndex.isNotEmpty) {
       filteredCurriculum = filteredCurriculum.where((emp) {
-        return emp.subject!.name == subjectIndex || emp.subject!.enName == subjectIndex;
+        return emp.subject!.name == subjectIndex ||
+            emp.subject!.enName == subjectIndex;
       }).toList();
     }
 
@@ -180,31 +175,29 @@ class Curriculumn_Controller extends GetxController {
   void addlistsubject(List<String> data) {
     listsubject.clear();
     list_Dialog_Subject.clear();
-    subjectIndex="";
+    subjectIndex = "";
     listsubject.addAll(data);
     list_Dialog_Subject.addAll(data);
     update();
   }
-
 
   void updateList(String type, List<String> options) {
     switch (type) {
       case 'Subject':
         listsubject = options;
         break;
-        case 'Dialog_Subject':
-          list_Dialog_Subject = options;
+      case 'Dialog_Subject':
+        list_Dialog_Subject = options;
         break;
       case 'semester':
-        listSemester  = options;
+        listSemester = options;
         break;
-        case 'Dialog_semester':
+      case 'Dialog_semester':
         list_Dialog_semester = options;
         break;
     }
     update();
   }
-
 
   String get selectsubjectIndex => subjectIndex;
 
@@ -222,10 +215,9 @@ class Curriculumn_Controller extends GetxController {
     subjectId = id;
     update();
   }
+
   void set_semesteridx(id) {
     semesterId = id;
     update();
   }
-
-
 }

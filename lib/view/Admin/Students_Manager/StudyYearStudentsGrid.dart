@@ -135,10 +135,8 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                             width: 600,
                             height: Get.height,
                             child: Container(
-                              // يمكنك استخدام Container أو SizedBox لتخصيص المساحة خارج الواجهة
                               child: Column(
                                 children: [
-                                  // يمكنك إضافة عنوان أو نص أعلى الـ Tabs إذا رغبت
                                   Padding(
                                     padding: const EdgeInsets.all(16.0),
                                     child: Text(
@@ -148,26 +146,20 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
-                                  // الـ TabBar
                                   TabBar(
                                     controller: _tabController,
-                                    labelColor: Get.theme
-                                        .primaryColor, // لون النص عند تحديد التبويب
-                                    unselectedLabelColor: Colors
-                                        .grey, // لون النص عندما لا يكون التبويب محددًا
-                                    indicatorColor: Get
-                                        .theme.primaryColor, // لون مؤشر التبويب
-                                    indicatorWeight: 4.0, // وزن المؤشر
+                                    labelColor: Get.theme.primaryColor,
+                                    unselectedLabelColor: Colors.grey,
+                                    indicatorColor: Get.theme.primaryColor,
+                                    indicatorWeight: 4.0,
                                     splashBorderRadius:
                                         BorderRadius.circular(10),
                                     dividerHeight: 0,
-
                                     tabs: [
                                       Tab(text: 'Rewards'),
                                       Tab(text: 'Penalties'),
                                     ],
                                   ),
-                                  // محتوى الـ TabBarView
                                   Expanded(
                                     child: GetBuilder<
                                             Penaltiesandrewardscontroller>(
@@ -236,7 +228,7 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                                                 i.penalty!
                                                                     .isNotEmpty
                                                             ? i.penalty![0]
-                                                                    .name ??
+                                                                    .enName ??
                                                                 "N/A"
                                                             : "N/A")),
                                                         DataCell(Text(

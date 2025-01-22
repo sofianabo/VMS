@@ -91,7 +91,9 @@ class Drop_Edite_students extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(5)),
                             border: Border.all(color: Color(0xffD9D9D9)),
-                            color: controller.isHoveringFatherPassport
+                            color: controller.isHoveringFatherPassport ||
+                                    controller.selectedFatherPassport.value !=
+                                        null
                                 ? Get.theme.primaryColor
                                 : Colors.white,
                           ),
@@ -141,7 +143,7 @@ class Drop_Edite_students extends StatelessWidget {
                                             },
                                             icon: Icon(
                                               Icons.delete_outline_outlined,
-                                              color: Get.theme.primaryColor,
+                                              color: Colors.white,
                                             ))
                                         : Text(
                                             textAlign: TextAlign.center,
@@ -227,7 +229,9 @@ class Drop_Edite_students extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(5)),
                             border: Border.all(color: Color(0xffD9D9D9)),
-                            color: controller.isHoveringMotherPassport
+                            color: controller.isHoveringMotherPassport ||
+                                    controller.selectedMotherPassport.value !=
+                                        null
                                 ? Get.theme.primaryColor
                                 : Colors.white,
                           ),
@@ -277,7 +281,7 @@ class Drop_Edite_students extends StatelessWidget {
                                             },
                                             icon: Icon(
                                               Icons.delete_outline_outlined,
-                                              color: Get.theme.primaryColor,
+                                              color: Colors.white,
                                             ))
                                         : Text(
                                             textAlign: TextAlign.center,
@@ -371,7 +375,8 @@ class Drop_Edite_students extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(5)),
                             border: Border.all(color: Color(0xffD9D9D9)),
-                            color: controller.isHoveringSonPassport
+                            color: controller.isHoveringSonPassport ||
+                                    controller.selectedSonPassport.value != null
                                 ? Get.theme.primaryColor
                                 : Colors.white,
                           ),
@@ -419,7 +424,7 @@ class Drop_Edite_students extends StatelessWidget {
                                         },
                                         icon: Icon(
                                           Icons.delete_outline_outlined,
-                                          color: Get.theme.primaryColor,
+                                          color: Colors.white,
                                         ))
                                     : Text(
                                         textAlign: TextAlign.center,
@@ -505,7 +510,8 @@ class Drop_Edite_students extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(5)),
                             border: Border.all(color: Color(0xffD9D9D9)),
-                            color: controller.isHoveringId
+                            color: controller.isHoveringId ||
+                                    controller.selectedId.value != null
                                 ? Get.theme.primaryColor
                                 : Colors.white,
                           ),
@@ -549,7 +555,7 @@ class Drop_Edite_students extends StatelessWidget {
                                         },
                                         icon: Icon(
                                           Icons.delete_outline_outlined,
-                                          color: Get.theme.primaryColor,
+                                          color: Colors.white,
                                         ))
                                     : Text(
                                         textAlign: TextAlign.center,
@@ -642,7 +648,8 @@ class Drop_Edite_students extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(5)),
                             border: Border.all(color: Color(0xffD9D9D9)),
-                            color: controller.isHoveringCertificate
+                            color: controller.isHoveringCertificate ||
+                                    controller.selectedCertificate.value != null
                                 ? Get.theme.primaryColor
                                 : Colors.white,
                           ),
@@ -690,7 +697,7 @@ class Drop_Edite_students extends StatelessWidget {
                                         },
                                         icon: Icon(
                                           Icons.delete_outline_outlined,
-                                          color: Get.theme.primaryColor,
+                                          color: Colors.white,
                                         ))
                                     : Text(
                                         textAlign: TextAlign.center,
@@ -776,7 +783,8 @@ class Drop_Edite_students extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(5)),
                             border: Border.all(color: Color(0xffD9D9D9)),
-                            color: controller.isHoveringtsalsol
+                            color: controller.isHoveringtsalsol ||
+                                    controller.selectedtsalsol.value != null
                                 ? Get.theme.primaryColor
                                 : Colors.white,
                           ),
@@ -822,7 +830,7 @@ class Drop_Edite_students extends StatelessWidget {
                                         },
                                         icon: Icon(
                                           Icons.delete_outline_outlined,
-                                          color: Get.theme.primaryColor,
+                                          color: Colors.white,
                                         ))
                                     : Text(
                                         textAlign: TextAlign.center,
@@ -849,144 +857,138 @@ class Drop_Edite_students extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 10.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 300,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("Family notebook"),
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Container(
-                                  width: 35,
-                                  height: 35,
-                                  decoration: BoxDecoration(
-                                      color: add_controller
-                                                  .documantesList[
-                                                      add_controller.idx]
-                                                  .familyNotebook !=
-                                              null
-                                          ? Get.theme.primaryColor
-                                          : Get.theme.disabledColor,
-                                      borderRadius: BorderRadius.circular(5),
-                                      boxShadow: const [
-                                        BoxShadow(
-                                            color: Colors.black12,
-                                            offset: Offset(0, 2),
-                                            blurRadius: 1)
-                                      ]),
-                                  child: IconButton(
-                                      onPressed: () {
-                                        if (add_controller
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 300,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("Family notebook"),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                width: 35,
+                                height: 35,
+                                decoration: BoxDecoration(
+                                    color: add_controller
                                                 .documantesList[
                                                     add_controller.idx]
                                                 .familyNotebook !=
-                                            null) {
-                                          final url =
-                                              '$getimage${add_controller.documantesList[add_controller.idx].familyNotebook!.id}';
-                                          downloadFile(url,
-                                              '${add_controller.filteredStudents[add_controller.idx].fullName!} Family notebook.${add_controller.documantesList[add_controller.idx].familyNotebook!.fileType}');
-                                        }
-                                      },
-                                      icon: Icon(
-                                        Icons.file_download_outlined,
-                                        size: 20,
-                                        color: Colors.white,
-                                      )),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
+                                            null
+                                        ? Get.theme.primaryColor
+                                        : Get.theme.disabledColor,
+                                    borderRadius: BorderRadius.circular(5),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          color: Colors.black12,
+                                          offset: Offset(0, 2),
+                                          blurRadius: 1)
+                                    ]),
+                                child: IconButton(
+                                    onPressed: () {
+                                      if (add_controller
+                                              .documantesList[
+                                                  add_controller.idx]
+                                              .familyNotebook !=
+                                          null) {
+                                        final url =
+                                            '$getimage${add_controller.documantesList[add_controller.idx].familyNotebook!.id}';
+                                        downloadFile(url,
+                                            '${add_controller.filteredStudents[add_controller.idx].fullName} Family notebook.${add_controller.documantesList[add_controller.idx].familyNotebook!.fileType}');
+                                      }
+                                    },
+                                    icon: Icon(
+                                      Icons.file_download_outlined,
+                                      size: 20,
+                                      color: Colors.white,
+                                    )),
+                              ),
+                            ],
+                          )
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            controller.pickFamilyBook();
-                          },
-                          child: AnimatedContainer(
-                            duration: Duration(milliseconds: 500),
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5)),
-                              border: Border.all(color: Color(0xffD9D9D9)),
-                              color: controller.isHoveringFamilyBook
-                                  ? Get.theme.primaryColor
-                                  : Colors.white,
-                            ),
-                            alignment: Alignment.center,
-                            width: 300,
-                            height: 100,
-                            child: Stack(
-                              children: [
-                                DropzoneView(
-                                  operation: DragOperation.copy,
-                                  cursor: CursorType.Default,
-                                  onCreated:
-                                      (DropzoneViewController controller) {
-                                    ctrl = controller;
-                                  },
-                                  onHover: () {
-                                    controller.updateHoverFamilyBook(true);
-                                  },
-                                  onLeave: () {
-                                    controller.updateHoverFamilyBook(false);
-                                  },
-                                  onDropFiles: (List<DropzoneFileInterface>?
-                                      files) async {
-                                    if (files != null && files.length == 1) {
-                                      final file = files.first;
-                                      final fileName =
-                                          await ctrl?.getFilename(file);
-                                      final fileBytes =
-                                          await ctrl?.getFileData(file);
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          controller.pickFamilyBook();
+                        },
+                        child: AnimatedContainer(
+                          duration: Duration(milliseconds: 500),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                            border: Border.all(color: Color(0xffD9D9D9)),
+                            color: controller.isHoveringFamilyBook ||
+                                    controller.selectedFamilyBook.value != null
+                                ? Get.theme.primaryColor
+                                : Colors.white,
+                          ),
+                          alignment: Alignment.center,
+                          width: 300,
+                          height: 100,
+                          child: Stack(
+                            children: [
+                              DropzoneView(
+                                operation: DragOperation.copy,
+                                cursor: CursorType.Default,
+                                onCreated: (DropzoneViewController controller) {
+                                  ctrl = controller;
+                                },
+                                onHover: () {
+                                  controller.updateHoverFamilyBook(true);
+                                },
+                                onLeave: () {
+                                  controller.updateHoverFamilyBook(false);
+                                },
+                                onDropFiles:
+                                    (List<DropzoneFileInterface>? files) async {
+                                  if (files != null && files.length == 1) {
+                                    final file = files.first;
+                                    final fileName =
+                                        await ctrl?.getFilename(file);
+                                    final fileBytes =
+                                        await ctrl?.getFileData(file);
 
-                                      controller.selectedFamilyBook.value =
-                                          fileBytes;
-                                      controller.FamilyBookName.value =
-                                          fileName!;
-                                      controller.updateTextFamilyBook(
-                                          "File Family notebook Dropped!");
-                                    }
-                                  },
-                                ),
-                                Center(
-                                  child: controller.selectedFamilyBook.value !=
-                                          null
-                                      ? IconButton(
-                                          onPressed: () {
-                                            controller.Clear_FamilyBook();
-                                          },
-                                          icon: Icon(
-                                            Icons.delete_outline_outlined,
-                                            color: Get.theme.primaryColor,
-                                          ))
-                                      : Text(
-                                          textAlign: TextAlign.center,
-                                          controller.FamilyBookStatus,
-                                          style: TextStyle(
-                                            color:
-                                                controller.isHoveringFamilyBook
-                                                    ? Colors.white
-                                                    : Color(0xffCBBFBF),
-                                          ),
+                                    controller.selectedFamilyBook.value =
+                                        fileBytes;
+                                    controller.FamilyBookName.value = fileName!;
+                                    controller.updateTextFamilyBook(
+                                        "File Family NoteBook Dropped!");
+                                  }
+                                },
+                              ),
+                              Center(
+                                child: controller.selectedFamilyBook.value !=
+                                        null
+                                    ? IconButton(
+                                        onPressed: () {
+                                          controller.Clear_FamilyBook();
+                                        },
+                                        icon: Icon(
+                                          Icons.delete_outline_outlined,
+                                          color: Colors.white,
+                                        ))
+                                    : Text(
+                                        textAlign: TextAlign.center,
+                                        controller.FamilyBookStatus,
+                                        style: TextStyle(
+                                          color: controller.isHoveringFamilyBook
+                                              ? Colors.white
+                                              : Color(0xffCBBFBF),
                                         ),
-                                ),
-                              ],
-                            ),
+                                      ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),

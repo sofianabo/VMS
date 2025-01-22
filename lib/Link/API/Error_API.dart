@@ -40,6 +40,12 @@ class ErrorHandler {
         case 422:
           message = "لا يمكن معالجة البيانات المرسلة.";
           break;
+        case 430:
+          message = "المدرس لديه حصة اخرى في هذا الوقت.";
+          break;
+        case 431:
+          message = "عذرا هذه الخانة تحتوي على حصة سابقة.";
+          break;
         case 500:
           message = "حدث خطأ داخلي في الخادم. يرجى المحاولة لاحقًا.";
           break;

@@ -10,6 +10,7 @@ import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Class_Mgmt_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownGradeController.dart.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
+import 'package:vms_school/Link/Functions/Class_Curriculm_Funcation.dart';
 import 'package:vms_school/view/Admin/School_Management/Class_Pages/Classes_Grid.dart';
 import 'package:vms_school/widgets/Admin_School/All_Screen_Sessions.dart';
 import 'package:vms_school/widgets/Admin_School/DropDownClassMgmt.dart';
@@ -26,7 +27,6 @@ class ClassManagement extends StatefulWidget {
 }
 
 class _ClassManagementState extends State<ClassManagement> {
-
   @override
   void initState() {
     Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
@@ -40,7 +40,7 @@ class _ClassManagementState extends State<ClassManagement> {
   TextEditingController enName = TextEditingController();
 
   TextEditingController driveUrl = TextEditingController();
-
+  final ClassMgmtController controllers = Get.put(ClassMgmtController());
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -55,20 +55,22 @@ class _ClassManagementState extends State<ClassManagement> {
             children: [
               Row(
                 children: [
-          DropDownAllSessions(
-          title: "Session",
-            width: Get.width / 3,
-            type: "session", API: 'class',),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child:   GetBuilder<Dropdowngradecontroller>(
-                        builder: (controller) {
-                          return DropDownClassMgmt(
-                              isLoading: controller.isLoading,
-                              title: "Grade", width: Get.width / 3, type: "grade");
-                        }
-                    )
+                  DropDownAllSessions(
+                    title: "Session",
+                    width: Get.width / 3,
+                    type: "session",
+                    API: 'class',
                   ),
+                  Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: GetBuilder<Dropdowngradecontroller>(
+                          builder: (controller) {
+                        return DropDownClassMgmt(
+                            isLoading: controller.isLoading,
+                            title: "Grade",
+                            width: Get.width / 3,
+                            type: "grade");
+                      })),
                   const Spacer(),
                   Container(
                     width: 40,
@@ -92,23 +94,35 @@ class _ClassManagementState extends State<ClassManagement> {
                                         BorderRadius.all(Radius.circular(5))))),
                         onPressed: () async {
                           Get_Admin_Class_API(context).Get_Admin_Class();
-                          Get.dialog(GetBuilder<Dropdowngradecontroller>(
+                          Get.find<ClassMgmtController>()
+                              .selectedCurriculumNames
+                              .clear();
+                          Get.find<ClassMgmtController>()
+                              .selectedCurriculums
+                              .clear();
+                          Get.dialog(GetBuilder<ClassMgmtController>(
                               builder: (controller) {
-
                             return VMSAlertDialog(
                                 action: [
                                   ButtonDialog(
                                       text: "Add",
                                       onPressed: () async {
-                                        print(Get.find<Virtual_Employee_Controller>().vecUserID);
                                         await Add_Class_API(context).Add_Class(
-                                          gradeId: Get.find<ClassMgmtController>().grades,
-                                          driveUrl: driveUrl.text,
-                                          enName:enName.text ,
-                                          name:arName.text,
-                                          sessionId: Get.find<All_Screen_Sessions_Controller>().sessions!.current!.id,
-                                          userId: Get.find<Virtual_Employee_Controller>().vecUserID,
-                                        );
+                                            gradeId: controller.grades,
+                                            driveUrl: driveUrl.text,
+                                            enName: enName.text,
+                                            name: arName.text,
+                                            sessionId: Get.find<
+                                                    All_Screen_Sessions_Controller>()
+                                                .sessions!
+                                                .current!
+                                                .id,
+                                            userId: Get.find<
+                                                    Virtual_Employee_Controller>()
+                                                .vecUserID,
+                                            curriculum:
+                                                Get.find<ClassMgmtController>()
+                                                    .selectedCurriculums);
 
                                         arName.clear();
                                         enName.clear();
@@ -124,9 +138,9 @@ class _ClassManagementState extends State<ClassManagement> {
                                   children: [
                                     Row(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       mainAxisAlignment:
-                                      MainAxisAlignment.start,
+                                          MainAxisAlignment.start,
                                       children: [
                                         Textfildwithupper(
                                             width: 250,
@@ -149,22 +163,23 @@ class _ClassManagementState extends State<ClassManagement> {
                                     Row(
                                       children: [
                                         DropDownClassMgmt(
-                                            isLoading:controller.isLoading,
+                                            isLoading: controller.isLoading,
                                             title: "Grade",
                                             width: 250,
                                             type: "gradediag"),
-
-
                                         Padding(
                                             padding: const EdgeInsets.only(
                                                 left: 15.0, right: 15.0),
-                                            child:  TextFieldDialog(
+                                            child: TextFieldDialog(
                                                 readonly: true,
                                                 width: 250,
-                                                controller: TextEditingController(text: Get.find<All_Screen_Sessions_Controller>().sessions!.current!.year),
-                                                hinttext: "Session"
-                                            )
-                                        ),
+                                                controller: TextEditingController(
+                                                    text: Get.find<
+                                                            All_Screen_Sessions_Controller>()
+                                                        .sessions!
+                                                        .current!
+                                                        .year),
+                                                hinttext: "Session")),
                                       ],
                                     ),
                                     Row(
@@ -172,23 +187,88 @@ class _ClassManagementState extends State<ClassManagement> {
                                         Padding(
                                           padding: const EdgeInsets.only(
                                               top: 15.0, bottom: 15.0),
-                                          child: GetBuilder<Virtual_Employee_Controller>(
-                                            builder: (VECcontroller) {
-                                              return DropDownClassMgmt(
-                                                  isLoading: VECcontroller.isLoading,
-                                                  title: "Admin Account",
-                                                  width: 515,
-                                                  type: "admin");
-                                            }
+                                          child: GetBuilder<
+                                                  Virtual_Employee_Controller>(
+                                              builder: (VECcontroller) {
+                                            return DropDownClassMgmt(
+                                                isLoading:
+                                                    VECcontroller.isLoading,
+                                                title: "Admin Account",
+                                                width: 250,
+                                                type: "admin");
+                                          }),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 15.0, bottom: 15.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              GestureDetector(
+                                                onTap: () =>
+                                                    Class_Curriculm_Funcation(
+                                                        context),
+                                                child: Container(
+                                                  padding: EdgeInsets.only(
+                                                      left: 5.0, right: 5.0),
+                                                  margin: EdgeInsets.only(
+                                                      left: 15.0),
+                                                  width: 250,
+                                                  height: 40,
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        color:
+                                                            Color(0xffB3B3B3)),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      GetBuilder<
+                                                              ClassMgmtController>(
+                                                          builder:
+                                                              (controller) {
+                                                        return Expanded(
+                                                          child: Text(
+                                                            maxLines: 1,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .black),
+                                                            controller
+                                                                    .selectedCurriculumNames
+                                                                    .isNotEmpty
+                                                                ? Get.find<
+                                                                        ClassMgmtController>()
+                                                                    .selectedCurriculumNames
+                                                                    .join(', ')
+                                                                : 'No selected curriculum', // هنا نعرض رسالة "لا يوجد مناهج مختارة" إذا كانت القائمة فارغة.
+                                                          ),
+                                                        );
+                                                      }),
+                                                      const Icon(Icons
+                                                          .arrow_drop_down),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ],
                                     ),
                                     Row(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       mainAxisAlignment:
-                                      MainAxisAlignment.start,
+                                          MainAxisAlignment.start,
                                       children: [
                                         Textfildwithupper(
                                             width: 480,

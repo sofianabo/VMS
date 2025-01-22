@@ -140,6 +140,11 @@ class DropDownAllStudents extends StatelessWidget {
                                         if (type == "grade") {
                                           cont.resetOnGradeChange();
                                         }
+                                        cont.searchByName(
+                                            cont.filterName,
+                                            cont.gradeIndex,
+                                            cont.classIndex,
+                                            cont.divisionIndex);
                                         cont.update();
                                       },
                                       child: Icon(

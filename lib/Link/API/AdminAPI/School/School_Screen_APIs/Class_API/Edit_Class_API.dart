@@ -13,33 +13,31 @@ class Edit_Class_API {
   Edit_Class_API(this.context);
   Dio dio = Dio();
 
-  Edit_Class(
-  {
+  Edit_Class({
     classId,
     driveUrl,
     name,
-    enName
-}
-
-      ) async {
-
-
+    enName,
+    curriculum,
+  }) async {
     try {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
       String myurl = "$hostPort$updateClass";
       var response = await dio.post(
-        cancelToken: cancelToken,
+          cancelToken: cancelToken,
           myurl,
-             data: {
-             'classId':'$classId',
-             'driveUrl':'$driveUrl',
-             'name':'$name',
-             'enName':'$enName',
+          data: {
+            'classId': classId,
+            'driveUrl': driveUrl,
+            'name': name,
+            'enName': '$enName',
+            'curriculum': curriculum,
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
-        await Get_All_Classes_API(context).Get_All_Classes(sessionID: Get.find<All_Screen_Sessions_Controller>().sessionId);
+        await Get_All_Classes_API(context).Get_All_Classes(
+            sessionID: Get.find<All_Screen_Sessions_Controller>().sessionId);
         Get.back();
       } else {
         ErrorHandler.handleDioError(DioException(
@@ -56,8 +54,8 @@ class Edit_Class_API {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    }finally{
-     Get.back();
+    } finally {
+      Get.back();
     }
   }
 }

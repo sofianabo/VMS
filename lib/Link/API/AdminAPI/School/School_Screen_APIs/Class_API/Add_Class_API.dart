@@ -13,31 +13,30 @@ class Add_Class_API {
   Add_Class_API(this.context);
   Dio dio = Dio();
 
-  Add_Class(
-  {
+  Add_Class({
     userId,
     sessionId,
     gradeId,
     driveUrl,
     name,
-    enName
-}
-      ) async {
-
+    enName,
+    curriculum,
+  }) async {
     CancelToken cancelToken = CancelToken();
     Loading_Dialog(cancelToken: cancelToken);
     try {
       String myurl = "$hostPort$addClass";
       var response = await dio.post(
-        cancelToken: cancelToken,
+          cancelToken: cancelToken,
           myurl,
           data: {
-             'userId':'$userId',
-             'sessionId':'$sessionId',
-             'gradeId':'$gradeId',
-             'driveUrl':'$driveUrl',
-             'name':'$name',
-             'enName':'$enName',
+            'userId': '$userId',
+            'sessionId': '$sessionId',
+            'gradeId': '$gradeId',
+            'driveUrl': '$driveUrl',
+            'name': '$name',
+            'enName': '$enName',
+            'curriculum': curriculum,
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
@@ -60,8 +59,8 @@ class Add_Class_API {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    }finally{
-     Get.back();
+    } finally {
+      Get.back();
     }
   }
 }

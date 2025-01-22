@@ -6,7 +6,6 @@ import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/UpdateStuden
 import 'package:vms_school/Link/API/DownloadFiles.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
-import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Vaccines_Model.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
@@ -100,6 +99,12 @@ Show_Vaccines_By_Id_Funcation(
                             entry['id'] == illness.id &&
                             entry.containsKey('hasNewFile') &&
                             entry['hasNewFile'] == true);
+                        final illnesName = control.finalList.firstWhere(
+                          (entry) =>
+                              entry['id'] == illness.id &&
+                              entry.containsKey('illnesName'),
+                          orElse: () => {"illnesName": ""},
+                        )['illnesName'];
 
                         return HoverScaleCard(
                           child: GestureDetector(
@@ -262,7 +267,7 @@ Show_Vaccines_By_Id_Funcation(
                                                                     '$getimage${control.finalList[index]['fileid']}';
                                                                 downloadFile(
                                                                     "$url",
-                                                                    "${Get.find<Allstudentscontroller>().filteredStudents[index_of_student!].fullName} ${control.finalList[index]['illnesName']}.pdf");
+                                                                    "${Get.find<Allstudentscontroller>().filteredStudents[index_of_student!].fullName} $illnesName.pdf");
                                                               }
                                                             : () {},
                                                     icon: Icon(

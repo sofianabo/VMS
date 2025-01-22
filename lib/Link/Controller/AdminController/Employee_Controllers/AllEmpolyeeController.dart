@@ -37,10 +37,10 @@ class Allempolyeecontroller extends GetxController {
     "Supervisor",
     "Accountant",
     "Technical Support",
-    "Media"
-        "Technical Support Manager",
+    "Media",
+    "Technical Support Manager",
   ];
-  List<String> dialogjobTitleList = ["Dustman", "Guard"];
+  List<String> dialogjobTitleList = ["Dustman", "Guard", "Media"];
   List<String> rolllist = ['Class', 'Observer'];
   List<String> rolldialoglist = ['Class', 'Observer'];
   List<String> contractList = ['Full Time', 'Hours'];

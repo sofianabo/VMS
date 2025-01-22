@@ -25,18 +25,20 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
   TextEditingController search = TextEditingController();
 
   TextEditingController name = TextEditingController();
+  TextEditingController enname = TextEditingController();
 
   TextEditingController max = TextEditingController();
 
   TextEditingController Passing = TextEditingController();
 
   DropzoneViewController? ctrl;
-   @override
+  @override
   void initState() {
-     Get_All_Curriculm_API(context).Get_All_Curriculm();
-     Get_Subject_Screen_API(context).Get_Subject_Screen();
+    Get_All_Curriculm_API(context).Get_All_Curriculm();
+    Get_Subject_Screen_API(context).Get_Subject_Screen();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -54,19 +56,17 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                 children: [
                   Row(
                     children: [
-                      GetBuilder<Subject_Controller>(
-                        builder: (controller) {
-                          return Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: DropDownCurriMgmt(
-                              Isloading: controller.isLoading,
-                              title: "Subject",
-                              width: w / 4,
-                              type: "Subject",
-                            ),
-                          );
-                        }
-                      ),
+                      GetBuilder<Subject_Controller>(builder: (controller) {
+                        return Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: DropDownCurriMgmt(
+                            Isloading: controller.isLoading,
+                            title: "Subject",
+                            width: w / 4,
+                            type: "Subject",
+                          ),
+                        );
+                      }),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: DropDownCurriMgmt(
@@ -76,25 +76,27 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                           type: "semester",
                         ),
                       ),
-                      GetBuilder<Curriculumn_Controller>(
-                        builder: (controller) {
-                          return Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: TextFormSearch(
-                              click: () {
-                                controller.clearFilter();
-                              },
-                              onchange: (value){
-                                controller.searchByName(value,controller.semesterIndex , controller.subjectIndex);
-                              },
-                              width: w / 4,
-                              radius: 5,
-                              controller: search,
-                              suffixIcon: search.text != "" ? Icons.clear: Icons.search,
-                            ),
-                          );
-                        }
-                      ),
+                      GetBuilder<Curriculumn_Controller>(builder: (controller) {
+                        return Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: TextFormSearch(
+                            click: () {
+                              controller.clearFilter();
+                            },
+                            onchange: (value) {
+                              controller.searchByName(
+                                  value,
+                                  controller.semesterIndex,
+                                  controller.subjectIndex);
+                            },
+                            width: w / 4,
+                            radius: 5,
+                            controller: search,
+                            suffixIcon:
+                                search.text != "" ? Icons.clear : Icons.search,
+                          ),
+                        );
+                      }),
                     ],
                   ),
                   const Spacer(),
@@ -121,29 +123,34 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
                             onPressed: () {
-                              Get.dialog(
-                                  GetBuilder<Curriculumn_Controller>(
-                                      builder: (controller) {
+                              Get.dialog(GetBuilder<Curriculumn_Controller>(
+                                  builder: (controller) {
                                 return VMSAlertDialog(
                                     action: [
                                       ButtonDialog(
                                           text: "Add",
                                           onPressed: () async {
-                                           await Add_Curriculm_API(context).Add_Curriculm(
+                                            await Add_Curriculm_API(context)
+                                                .Add_Curriculm(
                                               name: name.text,
-                                              file: controller.selectedFile.value,
-                                              Image: controller.selectedImage.value,
-                                              maxMark: max.text ,
+                                              Ename: enname.text,
+                                              file:
+                                                  controller.selectedFile.value,
+                                              Image: controller
+                                                  .selectedImage.value,
+                                              maxMark: max.text,
                                               PassingMark: Passing.text,
-                                              semesterId:controller.semesterId ,
+                                              semesterId: controller.semesterId,
                                               subjectId: controller.subjectId,
                                               type: controller.isFailingSubject,
                                             );
                                             name.clear();
                                             max.clear();
                                             Passing.clear();
-                                            controller.selectedFile.value!.clear();
-                                            controller.selectedImage.value!.clear();
+                                            controller.selectedFile.value!
+                                                .clear();
+                                            controller.selectedImage.value!
+                                                .clear();
                                           },
                                           color: Get.theme.primaryColor,
                                           width: 90)
@@ -161,14 +168,14 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             GetBuilder<Subject_Controller>(
-                                              builder: (controller) {
-                                                return DropDownCurriMgmt(
-                                                  Isloading: controller.isLoading,
-                                                    title: "Subject",
-                                                    width: 250,
-                                                    type: "Dialog_Subject");
-                                              }
-                                            ),
+                                                builder: (controller) {
+                                              return DropDownCurriMgmt(
+                                                  Isloading:
+                                                      controller.isLoading,
+                                                  title: "Subject",
+                                                  width: 250,
+                                                  type: "Dialog_Subject");
+                                            }),
                                             const DropDownCurriMgmt(
                                                 title: "Semester",
                                                 width: 250,
@@ -191,40 +198,15 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                   hinttext: "Name Curriculum"),
                                               Padding(
                                                 padding: const EdgeInsets.only(
-                                                    left: 15.0, right: 15.0),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  children: [
-                                                    const Text("Failing Subject"),
-                                                    Column(
-                                                      children: [
-                                                        Row(
-                                                          children: [
-                                                            Checkbox(
-                                                              value: controller
-                                                                  .isFailingSubject,
-                                                              // Use the state from the controller
-                                                              onChanged:
-                                                                  (value) {
-                                                                controller
-                                                                    .updateSelection(
-                                                                        value!); // Update the state
-                                                              },
-                                                            ),
-                                                            const Text(
-                                                                "Is Failing Subject"),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    )
-                                                  ],
-                                                ),
-                                              )
+                                                    left: 30.0),
+                                                child: Textfildwithupper(
+                                                    width: 250,
+                                                    controller: enname,
+                                                    Uptext:
+                                                        "English Name Curriculum",
+                                                    hinttext:
+                                                        "English Name Curriculum"),
+                                              ),
                                             ],
                                           ),
                                         ),
@@ -243,7 +225,8 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                           ],
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(top: 15.0),
+                                          padding:
+                                              const EdgeInsets.only(top: 15.0),
                                           child: Row(
                                             children: [
                                               // Dropzone area for files and PDFs
@@ -252,11 +235,19 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                   controller.pickPDFFile();
                                                 },
                                                 child: AnimatedContainer(
-                                                  duration: const Duration(milliseconds: 500),
+                                                  duration: const Duration(
+                                                      milliseconds: 500),
                                                   decoration: BoxDecoration(
-                                                    borderRadius: const BorderRadius.all(Radius.circular(5)),
-                                                    border: Border.all(color: const Color(0xffD9D9D9)),
-                                                    color: controller.isHoveringFile ? Get.theme.primaryColor : Colors.white,
+                                                    borderRadius:
+                                                        const BorderRadius.all(
+                                                            Radius.circular(5)),
+                                                    border: Border.all(
+                                                        color: const Color(
+                                                            0xffD9D9D9)),
+                                                    color: controller
+                                                            .isHoveringFile
+                                                        ? Get.theme.primaryColor
+                                                        : Colors.white,
                                                   ),
                                                   alignment: Alignment.center,
                                                   width: 250,
@@ -264,42 +255,86 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                   child: Stack(
                                                     children: [
                                                       DropzoneView(
-                                                        operation: DragOperation.copy,
-                                                        cursor: CursorType.Default,
-                                                        onCreated: (DropzoneViewController controller) {
+                                                        operation:
+                                                            DragOperation.copy,
+                                                        cursor:
+                                                            CursorType.Default,
+                                                        onCreated:
+                                                            (DropzoneViewController
+                                                                controller) {
                                                           ctrl = controller;
                                                         },
                                                         onHover: () {
-                                                          controller.updateHoverFile(true);
+                                                          controller
+                                                              .updateHoverFile(
+                                                                  true);
                                                         },
                                                         onLeave: () {
-                                                          controller.updateHoverFile(false);
+                                                          controller
+                                                              .updateHoverFile(
+                                                                  false);
                                                         },
-                                                        onDropFiles: (List<DropzoneFileInterface>? files) async {
-                                                          if (files != null && files.length == 1) {
-                                                            final file = files.first;
-                                                            final mimeType = await ctrl?.getFileMIME(file);
-                                                            final fileName = await ctrl?.getFilename(file);
-                                                            final fileBytes = await ctrl?.getFileData(file);
+                                                        onDropFiles: (List<
+                                                                DropzoneFileInterface>?
+                                                            files) async {
+                                                          if (files != null &&
+                                                              files.length ==
+                                                                  1) {
+                                                            final file =
+                                                                files.first;
+                                                            final mimeType =
+                                                                await ctrl
+                                                                    ?.getFileMIME(
+                                                                        file);
+                                                            final fileName =
+                                                                await ctrl
+                                                                    ?.getFilename(
+                                                                        file);
+                                                            final fileBytes =
+                                                                await ctrl
+                                                                    ?.getFileData(
+                                                                        file);
 
-                                                            if (mimeType == 'application/pdf' || fileName!.toLowerCase().endsWith('.pdf')) {
-                                                              controller.selectedFile.value = fileBytes;
-                                                              controller.fileName.value = fileName!;
-                                                              controller.updateTextFile("PDF File Successfully Dropped!");
-                                                            }else {
-                                                              controller.updateTextFile("Error: Unsupported File Type.");
+                                                            if (mimeType ==
+                                                                    'application/pdf' ||
+                                                                fileName!
+                                                                    .toLowerCase()
+                                                                    .endsWith(
+                                                                        '.pdf')) {
+                                                              controller
+                                                                      .selectedFile
+                                                                      .value =
+                                                                  fileBytes;
+                                                              controller
+                                                                      .fileName
+                                                                      .value =
+                                                                  fileName!;
+                                                              controller
+                                                                  .updateTextFile(
+                                                                      "PDF File Successfully Dropped!");
+                                                            } else {
+                                                              controller
+                                                                  .updateTextFile(
+                                                                      "Error: Unsupported File Type.");
                                                             }
                                                           } else {
-                                                            controller.updateTextFile("Error: Only One File Is Allowed.");
+                                                            controller
+                                                                .updateTextFile(
+                                                                    "Error: Only One File Is Allowed.");
                                                           }
                                                         },
                                                       ),
                                                       Center(
                                                         child: Text(
-                                                          textAlign: TextAlign.center,
+                                                          textAlign:
+                                                              TextAlign.center,
                                                           controller.fileStatus,
                                                           style: TextStyle(
-                                                            color: controller.isHoveringFile ? Colors.white : const Color(0xffCBBFBF),
+                                                            color: controller
+                                                                    .isHoveringFile
+                                                                ? Colors.white
+                                                                : const Color(
+                                                                    0xffCBBFBF),
                                                           ),
                                                         ),
                                                       ),
@@ -308,17 +343,29 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsets.only(left: 30.0),
+                                                padding: const EdgeInsets.only(
+                                                    left: 30.0),
                                                 child: GestureDetector(
                                                   onTap: () {
                                                     controller.pickImage();
                                                   },
                                                   child: AnimatedContainer(
-                                                    duration: const Duration(milliseconds: 500),
+                                                    duration: const Duration(
+                                                        milliseconds: 500),
                                                     decoration: BoxDecoration(
-                                                      borderRadius: const BorderRadius.all(Radius.circular(5)),
-                                                      border: Border.all(color: const Color(0xffD9D9D9)),
-                                                      color: controller.isHoveringimage ? Get.theme.primaryColor : Colors.white,
+                                                      borderRadius:
+                                                          const BorderRadius
+                                                              .all(
+                                                              Radius.circular(
+                                                                  5)),
+                                                      border: Border.all(
+                                                          color: const Color(
+                                                              0xffD9D9D9)),
+                                                      color: controller
+                                                              .isHoveringimage
+                                                          ? Get.theme
+                                                              .primaryColor
+                                                          : Colors.white,
                                                     ),
                                                     alignment: Alignment.center,
                                                     width: 250,
@@ -326,43 +373,92 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                     child: Stack(
                                                       children: [
                                                         DropzoneView(
-                                                          operation: DragOperation.copy,
-                                                          cursor: CursorType.Default,
-                                                          onCreated: (DropzoneViewController controller) {
+                                                          operation:
+                                                              DragOperation
+                                                                  .copy,
+                                                          cursor: CursorType
+                                                              .Default,
+                                                          onCreated:
+                                                              (DropzoneViewController
+                                                                  controller) {
                                                             ctrl = controller;
                                                           },
                                                           onHover: () {
-                                                            controller.updateHoverImage(true);
+                                                            controller
+                                                                .updateHoverImage(
+                                                                    true);
                                                           },
                                                           onLeave: () {
-                                                            controller.updateHoverImage(false);
+                                                            controller
+                                                                .updateHoverImage(
+                                                                    false);
                                                           },
-                                                          onDropFiles: (List<DropzoneFileInterface>? files) async {
-                                                            if (files != null && files.length == 1) {
-                                                              final file = files.first;
-                                                              final mimeType = await ctrl?.getFileMIME(file);
-                                                              final fileName = await ctrl?.getFilename(file);
-                                                              final fileBytes = await ctrl?.getFileData(file);
-                                                              if (mimeType == 'image/jpeg' || mimeType == 'image/png' ||
-                                                                  fileName!.toLowerCase().endsWith('.jpg') ||
-                                                                  fileName.toLowerCase().endsWith('.jpeg') ||
-                                                                  fileName.toLowerCase().endsWith('.png')) {
-                                                                controller.selectedImage.value = fileBytes;
-                                                                controller.updateTextImage("Image Successfully Dropped!");
+                                                          onDropFiles: (List<
+                                                                  DropzoneFileInterface>?
+                                                              files) async {
+                                                            if (files != null &&
+                                                                files.length ==
+                                                                    1) {
+                                                              final file =
+                                                                  files.first;
+                                                              final mimeType =
+                                                                  await ctrl
+                                                                      ?.getFileMIME(
+                                                                          file);
+                                                              final fileName =
+                                                                  await ctrl
+                                                                      ?.getFilename(
+                                                                          file);
+                                                              final fileBytes =
+                                                                  await ctrl
+                                                                      ?.getFileData(
+                                                                          file);
+                                                              if (mimeType == 'image/jpeg' ||
+                                                                  mimeType ==
+                                                                      'image/png' ||
+                                                                  fileName!
+                                                                      .toLowerCase()
+                                                                      .endsWith(
+                                                                          '.jpg') ||
+                                                                  fileName
+                                                                      .toLowerCase()
+                                                                      .endsWith(
+                                                                          '.jpeg') ||
+                                                                  fileName
+                                                                      .toLowerCase()
+                                                                      .endsWith(
+                                                                          '.png')) {
+                                                                controller
+                                                                        .selectedImage
+                                                                        .value =
+                                                                    fileBytes;
+                                                                controller
+                                                                    .updateTextImage(
+                                                                        "Image Successfully Dropped!");
                                                               } else {
-                                                                controller.updateTextImage("Error: Unsupported File Type.");
+                                                                controller
+                                                                    .updateTextImage(
+                                                                        "Error: Unsupported File Type.");
                                                               }
                                                             } else {
-                                                              controller.updateTextImage("Error: Only One File Is Allowed.");
+                                                              controller
+                                                                  .updateTextImage(
+                                                                      "Error: Only One File Is Allowed.");
                                                             }
                                                           },
                                                         ),
                                                         Center(
                                                           child: Text(
-                                                            textAlign: TextAlign.center,
-                                                            controller.imageStatus,
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            controller
+                                                                .imageStatus,
                                                             style: TextStyle(
-                                                              color: controller.isHoveringimage ? Colors.white : const Color(0xffCBBFBF),
+                                                              color: controller
+                                                                      .isHoveringimage
+                                                                  ? Colors.white
+                                                                  : const Color(
+                                                                      0xffCBBFBF),
                                                             ),
                                                           ),
                                                         ),
@@ -370,6 +466,50 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                     ),
                                                   ),
                                                 ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 15.0,
+                                              right: 15.0,
+                                              top: 15.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            children: [
+                                              Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  const Text("Failing Subject"),
+                                                  Column(
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          Checkbox(
+                                                            value: controller
+                                                                .isFailingSubject,
+                                                            // Use the state from the controller
+                                                            onChanged: (value) {
+                                                              controller
+                                                                  .updateSelection(
+                                                                      value!); // Update the state
+                                                            },
+                                                          ),
+                                                          const Text(
+                                                              "Is Failing Subject"),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
                                               ),
                                             ],
                                           ),

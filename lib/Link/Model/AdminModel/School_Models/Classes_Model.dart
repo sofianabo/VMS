@@ -7,17 +7,9 @@ class Classes_Model {
     if (json['classes'] != null) {
       classes = <Classes>[];
       json['classes'].forEach((v) {
-        classes!.add(Classes.fromJson(v));
+        classes!.add(new Classes.fromJson(v));
       });
     }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (classes != null) {
-      data['classes'] = classes!.map((v) => v.toJson()).toList();
-    }
-    return data;
   }
 }
 
@@ -26,46 +18,50 @@ class Classes {
   String? driveUrl;
   String? name;
   String? enName;
+  List<Curriculum>? curriculum;
   Grade? grade;
   Session? session;
   Admin? admin;
 
   Classes(
       {this.id,
-        this.driveUrl,
-        this.name,
-        this.enName,
-        this.grade,
-        this.session,
-        this.admin});
+      this.driveUrl,
+      this.name,
+      this.enName,
+      this.curriculum,
+      this.grade,
+      this.session,
+      this.admin});
 
   Classes.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     driveUrl = json['driveUrl'];
     name = json['name'];
     enName = json['enName'];
-    grade = json['grade'] != null ? Grade.fromJson(json['grade']) : null;
+    if (json['curriculum'] != null) {
+      curriculum = <Curriculum>[];
+      json['curriculum'].forEach((v) {
+        curriculum!.add(new Curriculum.fromJson(v));
+      });
+    }
+    grade = json['grade'] != null ? new Grade.fromJson(json['grade']) : null;
     session =
-    json['session'] != null ? Session.fromJson(json['session']) : null;
-    admin = json['admin'] != null ? Admin.fromJson(json['admin']) : null;
+        json['session'] != null ? new Session.fromJson(json['session']) : null;
+    admin = json['admin'] != null ? new Admin.fromJson(json['admin']) : null;
   }
+}
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['driveUrl'] = driveUrl;
-    data['name'] = name;
-    data['enName'] = enName;
-    if (grade != null) {
-      data['grade'] = grade!.toJson();
-    }
-    if (session != null) {
-      data['session'] = session!.toJson();
-    }
-    if (admin != null) {
-      data['admin'] = admin!.toJson();
-    }
-    return data;
+class Curriculum {
+  int? id;
+  String? name;
+  String? enName;
+
+  Curriculum({this.id, this.name, this.enName});
+
+  Curriculum.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    enName = json['enName'];
   }
 }
 
@@ -79,13 +75,6 @@ class Grade {
     name = json['name'];
     enName = json['enName'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['name'] = name;
-    data['enName'] = enName;
-    return data;
-  }
 }
 
 class Session {
@@ -96,12 +85,6 @@ class Session {
   Session.fromJson(Map<String, dynamic> json) {
     year = json['year'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['year'] = year;
-    return data;
-  }
 }
 
 class Admin {
@@ -111,11 +94,5 @@ class Admin {
 
   Admin.fromJson(Map<String, dynamic> json) {
     userName = json['userName'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['userName'] = userName;
-    return data;
   }
 }
