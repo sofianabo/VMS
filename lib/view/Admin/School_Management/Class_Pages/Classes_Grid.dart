@@ -295,84 +295,93 @@ class ClassGrid extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Container(
-                                  width: 35,
-                                  height: 35,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(5),
-                                      boxShadow: const [
-                                        BoxShadow(
-                                            color: Colors.black12,
-                                            offset: Offset(0, 2),
-                                            blurRadius: 1)
-                                      ]),
-                                  child: IconButton(
-                                      style: const ButtonStyle(
-                                          backgroundColor:
-                                              WidgetStatePropertyAll(
-                                                  Color(0xffB03D3D)),
-                                          shape: WidgetStatePropertyAll(
-                                              RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(
-                                                              5))))),
-                                      onPressed: () {
-                                        Get.dialog(VMSAlertDialog(
-                                            action: [
-                                              ButtonDialog(
-                                                  text: "Delete",
-                                                  onPressed: () async {
-                                                    await Delete_Class_API(
-                                                            context)
-                                                        .Delete_Class(
-                                                            classId: control
-                                                                .filteredreclasses![
-                                                                    index]
-                                                                .id,
-                                                            index: index);
-                                                    Get.back();
-                                                  },
-                                                  color:
-                                                      const Color(0xffB03D3D),
-                                                  width: 80),
-                                              ButtonDialog(
-                                                  text: "Cancel",
-                                                  onPressed: () {
-                                                    Get.back();
-                                                  },
-                                                  color: Get.theme.primaryColor,
-                                                  width: 80)
-                                            ],
-                                            contents: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                Container(
-                                                  width: 400,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Text(
-                                                      "Do You Want To Delete (${control.filteredreclasses![index].enName}) Class",
-                                                      style: Get.theme.textTheme
-                                                          .bodyMedium!
-                                                          .copyWith(
-                                                              fontSize: 16,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal),
-                                                    ),
+                                control.filteredreclasses![index].hasStudent ==
+                                        false
+                                    ? Container(
+                                        width: 35,
+                                        height: 35,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                  color: Colors.black12,
+                                                  offset: Offset(0, 2),
+                                                  blurRadius: 1)
+                                            ]),
+                                        child: IconButton(
+                                            style: const ButtonStyle(
+                                                backgroundColor:
+                                                    WidgetStatePropertyAll(
+                                                        Color(0xffB03D3D)),
+                                                shape: WidgetStatePropertyAll(
+                                                    RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    5))))),
+                                            onPressed: () {
+                                              Get.dialog(VMSAlertDialog(
+                                                  action: [
+                                                    ButtonDialog(
+                                                        text: "Delete",
+                                                        onPressed: () async {
+                                                          await Delete_Class_API(
+                                                                  context)
+                                                              .Delete_Class(
+                                                                  classId: control
+                                                                      .filteredreclasses![
+                                                                          index]
+                                                                      .id,
+                                                                  index: index);
+                                                          Get.back();
+                                                        },
+                                                        color: const Color(
+                                                            0xffB03D3D),
+                                                        width: 80),
+                                                    ButtonDialog(
+                                                        text: "Cancel",
+                                                        onPressed: () {
+                                                          Get.back();
+                                                        },
+                                                        color: Get
+                                                            .theme.primaryColor,
+                                                        width: 80)
                                                   ],
-                                                ),
-                                              ],
-                                            ),
-                                            apptitle: "Delete Class",
-                                            subtitle: "none"));
-                                      },
-                                      icon: const Icon(VMS_Icons.bin,
-                                          size: 16, color: Colors.white)),
-                                ),
+                                                  contents: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      Container(
+                                                        width: 400,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            "Do You Want To Delete (${control.filteredreclasses![index].enName}) Class",
+                                                            style: Get
+                                                                .theme
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                    fontSize:
+                                                                        16,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  apptitle: "Delete Class",
+                                                  subtitle: "none"));
+                                            },
+                                            icon: const Icon(VMS_Icons.bin,
+                                                size: 16, color: Colors.white)),
+                                      )
+                                    : Text(""),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,

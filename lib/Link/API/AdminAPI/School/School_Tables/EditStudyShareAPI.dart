@@ -46,10 +46,10 @@ class Editstudyshareapi {
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
+        Get.back();
+        Get.back();
         m = await Schooltimetableapi(context).Schooltimetable(
             u.examDivision.indexOf(u.selectedExamDivision), u.timeLessonIndex);
-        Get.back();
-        Get.back();
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

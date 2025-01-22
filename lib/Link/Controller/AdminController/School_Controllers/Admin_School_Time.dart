@@ -1,12 +1,9 @@
-import 'dart:async';
-
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllTeacherModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/DropDownCuriculmModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/SchoolTimeModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/School_Models/Curriculum_Model.dart';
 import 'package:vms_school/view/Admin/School_Management/SchoolTimeTable.dart';
 
 class AdminSchoolTimeController extends GetxController {
@@ -14,7 +11,7 @@ class AdminSchoolTimeController extends GetxController {
   String examDivisionIndex = "";
   String subjectDialogIndex = "";
   String teacherDialogIndex = "";
-  String timeLessonIndex = "";
+  String timeLessonIndex = "Morning";
 
   List<String> examClass = [];
   List<String> examDivision = [];

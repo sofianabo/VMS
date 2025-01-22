@@ -2,14 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
-import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/ExamTableController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCuriculmController.dart';
-import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownExamTypeController.dart';
-import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownSemsterController.dart';
 import 'package:vms_school/Link/Model/AdminModel/DropDownCuriculmModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/ExamTypeModel.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
 import '../../../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';
 
@@ -17,7 +12,7 @@ class Dropdownexamcuriculmapi {
   Dropdowncuriculmcontroller c = Get.find<Dropdowncuriculmcontroller>();
   Dropdownclassescontroller class_controller =
       Get.find<Dropdownclassescontroller>();
-      
+
   BuildContext context;
 
   Dropdownexamcuriculmapi(this.context);

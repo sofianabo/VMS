@@ -25,7 +25,6 @@ class DropDownSchoolTime extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AdminSchoolTimeController>(builder: (cont) {
-      // تعيين القيمة الافتراضية لـ selectedValue
       String selectedValue = title;
 
       switch (type) {

@@ -11,6 +11,14 @@ class Classes_Model {
       });
     }
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.classes != null) {
+      data['classes'] = this.classes!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
 }
 
 class Classes {
@@ -19,6 +27,7 @@ class Classes {
   String? name;
   String? enName;
   List<Curriculum>? curriculum;
+  bool? hasStudent;
   Grade? grade;
   Session? session;
   Admin? admin;
@@ -29,6 +38,7 @@ class Classes {
       this.name,
       this.enName,
       this.curriculum,
+      this.hasStudent,
       this.grade,
       this.session,
       this.admin});
@@ -44,10 +54,33 @@ class Classes {
         curriculum!.add(new Curriculum.fromJson(v));
       });
     }
+    hasStudent = json['hasStudent'];
     grade = json['grade'] != null ? new Grade.fromJson(json['grade']) : null;
     session =
         json['session'] != null ? new Session.fromJson(json['session']) : null;
     admin = json['admin'] != null ? new Admin.fromJson(json['admin']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['driveUrl'] = this.driveUrl;
+    data['name'] = this.name;
+    data['enName'] = this.enName;
+    if (this.curriculum != null) {
+      data['curriculum'] = this.curriculum!.map((v) => v.toJson()).toList();
+    }
+    data['hasStudent'] = this.hasStudent;
+    if (this.grade != null) {
+      data['grade'] = this.grade!.toJson();
+    }
+    if (this.session != null) {
+      data['session'] = this.session!.toJson();
+    }
+    if (this.admin != null) {
+      data['admin'] = this.admin!.toJson();
+    }
+    return data;
   }
 }
 
@@ -63,6 +96,14 @@ class Curriculum {
     name = json['name'];
     enName = json['enName'];
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['enName'] = this.enName;
+    return data;
+  }
 }
 
 class Grade {
@@ -75,6 +116,13 @@ class Grade {
     name = json['name'];
     enName = json['enName'];
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['enName'] = this.enName;
+    return data;
+  }
 }
 
 class Session {
@@ -85,6 +133,12 @@ class Session {
   Session.fromJson(Map<String, dynamic> json) {
     year = json['year'];
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['year'] = this.year;
+    return data;
+  }
 }
 
 class Admin {
@@ -94,5 +148,11 @@ class Admin {
 
   Admin.fromJson(Map<String, dynamic> json) {
     userName = json['userName'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['userName'] = this.userName;
+    return data;
   }
 }

@@ -55,10 +55,10 @@ class Addlessonapi {
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
-        m = await Schooltimetableapi(context)
-            .Schooltimetable(u.examDivision.indexOf(u.selectedExamDivision),u.timeLessonIndex);
         Get.back();
         Get.back();
+        m = await Schooltimetableapi(context).Schooltimetable(
+            u.examDivision.indexOf(u.selectedExamDivision), u.timeLessonIndex);
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
