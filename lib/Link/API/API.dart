@@ -60,6 +60,7 @@ String getTeacherAttendance = "getTeacherAttendance";
 String teacherIncreaseAttendance = "teacherIncreaseAttendance";
 String getTeacherById = "getTeacherById";
 String updateTeacher = "updateTeacher";
+String getSCDTeacherById = "getSCDTeacherById";
 
 //..................... Schools ...................//
 
@@ -140,3 +141,5 @@ String updateQuiz = "updateQuiz";
 
 String addStudyShare = "addStudyShare";
 String getDivisionStudyShare = "getDivisionStudyShare";
+String updatLessonByDay = "updatLessonByDay";
+String deleteStudyShare = "deleteStudyShare";

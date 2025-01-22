@@ -18,29 +18,23 @@ import 'package:vms_school/widgets/Loading_Dialog.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import '../../../API.dart' as global;
 
-class Addlessonapi {
+class Editstudyshareapi {
   AdminSchoolTimeController u = Get.find<AdminSchoolTimeController>();
-  Dropdownclassescontroller classControl =
-      Get.find<Dropdownclassescontroller>();
+
   Dropdowncuriculmcontroller curi = Get.find<Dropdowncuriculmcontroller>();
-  Dropdowndivisioncontroller div = Get.find<Dropdowndivisioncontroller>();
   Allteachercontroller teach = Get.find<Allteachercontroller>();
-  Addlessonapi(this.context);
+  Editstudyshareapi(this.context);
   BuildContext context;
   Dio dio = Dio();
 
-  Addlesson(
+  EditLesson(
     int curriculumId,
-    int divID,
-    String perType,
     int teachId,
-    int lessonID,
-    String day,
+    int id,
   ) async {
-    String myurl = "${global.hostPort}${global.addStudyShare}";
+    String myurl = "${global.hostPort}${global.updatLessonByDay}";
     try {
       int? curiID = curi.allCuriculm[curriculumId].id;
-      int? divisionID = div.allDivision[divID].id;
       int? teacherID = teach.teachers[teachId].id;
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
@@ -48,15 +42,12 @@ class Addlessonapi {
           data: {
             "curriculumId": curiID,
             "teacherId": teacherID,
-            "divisionId": divisionID,
-            "day": day,
-            "lessonId": lessonID,
-            "permanentType": perType,
+            "studyShareId": id
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
-        m = await Schooltimetableapi(context)
-            .Schooltimetable(u.examDivision.indexOf(u.selectedExamDivision),u.timeLessonIndex);
+        m = await Schooltimetableapi(context).Schooltimetable(
+            u.examDivision.indexOf(u.selectedExamDivision), u.timeLessonIndex);
         Get.back();
         Get.back();
       } else {

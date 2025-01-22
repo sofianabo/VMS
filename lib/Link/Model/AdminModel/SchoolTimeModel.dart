@@ -25,7 +25,8 @@ class StudyShare {
   String? name;
   String? enName;
   String? day;
-  String? startAt;
+  int? id;
+  String? permanentType;
   int? lessonId;
   String? fullName;
 
@@ -33,7 +34,8 @@ class StudyShare {
       {this.name,
       this.enName,
       this.day,
-      this.startAt,
+      this.id,
+      this.permanentType,
       this.lessonId,
       this.fullName});
 
@@ -41,7 +43,8 @@ class StudyShare {
     name = json['name'];
     enName = json['enName'];
     day = json['day'];
-    startAt = json['startAt'];
+    id = json['id'];
+    permanentType = json['permanentType'];
     lessonId = json['lessonId'];
     fullName = json['fullName'];
   }
@@ -51,29 +54,30 @@ class StudyShare {
     data['name'] = this.name;
     data['enName'] = this.enName;
     data['day'] = this.day;
-    data['startAt'] = this.startAt;
+    data['id'] = this.id;
+    data['permanentType'] = this.permanentType;
     data['lessonId'] = this.lessonId;
     data['fullName'] = this.fullName;
     return data;
   }
-  
- @override
+
+  @override
   String toString() {
     String s = "";
     if (true) {
       //language
       s += "${enName} \n";
       s += "${fullName} \n";
-      s += "${startAt} \n";
     } else {
       //arbic
       s += "${name} \n";
       s += "${fullName} \n";
-      s += "${startAt} \n";
     }
     return s;
   }
 }
+
+
 
 
 

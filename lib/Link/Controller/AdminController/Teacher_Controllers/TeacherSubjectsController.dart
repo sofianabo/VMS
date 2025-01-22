@@ -1,14 +1,15 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Model/AdminModel/TeacherSubjectModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/oneEmployeeAttendenceModel.dart';
 
-class Oneemployeeattendencecontroller extends GetxController {
+class Teachersubjectscontroller extends GetxController {
   late BuildContext context;
-  List<EmployeeAttendance> employeeAtt = [];
+  List<TeacherSubject> teacherSub = [];
   bool isLoading = true;
 
-  void setEmployeeAttendence(oneEmployeeAttendenceModel model) {
-    employeeAtt = model.employeeAttendance!;
+  void setTeacherSubject(TeacherSubjectModel model) {
+    teacherSub = model.teacherSubject!;
     setIsLoading(false);
     update();
   }

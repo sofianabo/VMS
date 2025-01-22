@@ -431,7 +431,8 @@ class _ExamTableState extends State<ExamTable> {
                                       onPressed: () async {
                                         await DeletequizAPI(context).Deletequiz(
                                             controller
-                                                .filteredquiz![controller.filteredquiz!
+                                                .filteredquiz![controller
+                                                    .filteredquiz!
                                                     .indexOf(exam)]
                                                 .id
                                                 .toString());
@@ -461,17 +462,20 @@ class _ExamTableState extends State<ExamTable> {
                                         Loading_Dialog(
                                             cancelToken: cancelToken);
                                         maxDialog.text = controller
-                                            .filteredquiz![controller.filteredquiz!
+                                            .filteredquiz![controller
+                                                .filteredquiz!
                                                 .indexOf(exam)]
                                             .maxMark
                                             .toString();
                                         minDialog.text = controller
-                                            .filteredquiz![controller.filteredquiz!
+                                            .filteredquiz![controller
+                                                .filteredquiz!
                                                 .indexOf(exam)]
                                             .passingMark
                                             .toString();
                                         periodDialog.text = controller
-                                            .filteredquiz![controller.filteredquiz!
+                                            .filteredquiz![controller
+                                                .filteredquiz!
                                                 .indexOf(exam)]
                                             .period
                                             .toString();
@@ -487,21 +491,20 @@ class _ExamTableState extends State<ExamTable> {
                                               ButtonDialog(
                                                   text: "Edit Exam",
                                                   onPressed: () async {
-                                                    await Editquizapi(
-                                                            context)
-                                                        .Editquiz(
-                                                            controller
-                                                                .filteredquiz![controller
+                                                    await Editquizapi(context).Editquiz(
+                                                        controller
+                                                            .filteredquiz![
+                                                                controller
                                                                     .filteredquiz!
                                                                     .indexOf(
                                                                         exam)]
-                                                                .id
-                                                                .toString(),
-                                                            controller.dateindex
-                                                                .toString(),
-                                                            periodDialog.text,
-                                                            maxDialog.text,
-                                                            minDialog.text);
+                                                            .id
+                                                            .toString(),
+                                                        controller.dateindex
+                                                            .toString(),
+                                                        periodDialog.text,
+                                                        maxDialog.text,
+                                                        minDialog.text);
                                                     Get.back();
                                                   },
                                                   color: Get.theme.primaryColor,

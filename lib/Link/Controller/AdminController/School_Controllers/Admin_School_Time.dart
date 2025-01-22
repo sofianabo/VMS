@@ -14,6 +14,7 @@ class AdminSchoolTimeController extends GetxController {
   String examDivisionIndex = "";
   String subjectDialogIndex = "";
   String teacherDialogIndex = "";
+  String timeLessonIndex = "";
 
   List<String> examClass = [];
   List<String> examDivision = [];
@@ -21,6 +22,8 @@ class AdminSchoolTimeController extends GetxController {
   List<String> subjectDialogList = [];
   List<String> teacherDialogList = [];
   List<StudyShare> studyshare = [];
+  List<String> timeLessonList = ['Morning', 'Evening'];
+
   bool isLoading = true;
 
   void initStudyShare() {
@@ -53,6 +56,9 @@ class AdminSchoolTimeController extends GetxController {
         break;
       case 'teacherDialog':
         teacherDialogIndex = index ?? "";
+        break;
+      case 'time':
+        timeLessonIndex = index ?? "";
         break;
     }
     update();
@@ -110,6 +116,9 @@ class AdminSchoolTimeController extends GetxController {
       case 'subjectDialog':
         subjectDialogList = options;
         break;
+      case 'time':
+        timeLessonList = options;
+        break;
     }
     update();
   }
@@ -119,9 +128,15 @@ class AdminSchoolTimeController extends GetxController {
   String get selectedExamDivision => examDivisionIndex;
   String get selectedSubjectDialog => subjectDialogIndex;
   String get selectedTeacherDialog => teacherDialogIndex;
+  String get selectedTimeLesson => timeLessonIndex;
 
   void setDevisionindex() {
     examDivisionIndex = "";
+    update();
+  }
+
+  void setClassIndex() {
+    examClassIndex = "";
     update();
   }
 }

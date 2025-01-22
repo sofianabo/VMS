@@ -33,6 +33,7 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AddTeacherController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeacherAtendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/TeacherSubjectsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Years_Controllers/Divisions_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/oneStudentAttendenceController.dart';
 import 'package:vms_school/Link/Controller/AuthController/UserController.dart';
@@ -110,5 +111,6 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Addteachercontroller(), fenix: true);
     Get.lazyPut(() => Penaltycontroller(), fenix: true);
     Get.lazyPut(() => Penaltiesandrewardscontroller(), fenix: true);
+    Get.lazyPut(() => Teachersubjectscontroller(), fenix: true);
   }
 }
