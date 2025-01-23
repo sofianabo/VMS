@@ -7,6 +7,7 @@ import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Delete_Student_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Students_Illness.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Students_Information.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Students_Vaccines.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
@@ -281,8 +282,13 @@ class AllStudentGrid extends StatelessWidget {
                                           backgroundColor:
                                               WidgetStateProperty.all(
                                                   Get.theme.primaryColor)),
-                                      onPressed: () {
-                                        EditStudentDialog(index, context);
+                                      onPressed: () async {
+                                        await Get_Students_Information_API(
+                                                context)
+                                            .Get_Students_Information(
+                                                StudentsID: control
+                                                    .filteredStudents[index].id,
+                                                index: index);
                                       },
                                       icon: const Icon(VMS_Icons.vcard),
                                       color: Colors.white,

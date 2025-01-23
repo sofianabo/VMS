@@ -1,11 +1,12 @@
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllStudentModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/Students_Models/Student_Info_model.dart';
 
 class Allstudentscontroller extends GetxController {
   List<Students> stud = [];
+  Student? student;
   List<Students> filteredStudents = [];
-  List<Documantes> documantesList = []; // القائمة الجديدة لتخزين Documantes
   String sessionIndex = "";
   String gradeIndex = "";
   String classIndex = "";
@@ -44,6 +45,7 @@ class Allstudentscontroller extends GetxController {
       tempFilteredList = tempFilteredList.where((cur) {
         final mobile = cur.mobileNumber?.toLowerCase() ?? '';
         final email = cur.email?.toLowerCase() ?? '';
+        final username = cur.userName?.toLowerCase() ?? '';
         final name = cur.fullName?.toLowerCase() ?? '';
         final gname = cur.guardians!.name?.toLowerCase() ?? '';
         final guname = cur.guardians!.userName?.toLowerCase() ?? '';
@@ -55,6 +57,7 @@ class Allstudentscontroller extends GetxController {
             gname.contains(nameQuery.toLowerCase()) ||
             guname.contains(nameQuery.toLowerCase()) ||
             gemail.contains(nameQuery.toLowerCase()) ||
+            username.contains(nameQuery.toLowerCase()) ||
             gnationalid.contains(nameQuery.toLowerCase());
       }).toList();
     }
@@ -78,15 +81,14 @@ class Allstudentscontroller extends GetxController {
     }
 
     filteredStudents = tempFilteredList;
-    updateDocumantesList();
     update();
   }
 
-  void updateDocumantesList() {
-    documantesList = filteredStudents
-        .where((student) => student.documantes != null)
-        .map((student) => student.documantes!)
-        .toList();
+  void Set_Selected_Student(Student_Info_model stu) {
+    student = stu.student;
+    print("l;fkdskdfl;ksd");
+    print(stu.student);
+    update();
   }
 
   setGradeList(List<String> value) {
@@ -192,9 +194,7 @@ class Allstudentscontroller extends GetxController {
             emp.division!.name == divisionIndex;
       }).toList();
     }
-
     setIsLoading(false);
-    updateDocumantesList();
     update();
   }
 

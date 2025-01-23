@@ -23,58 +23,57 @@ EditStudentDialog(int idx, BuildContext context) async {
   final Controller = Get.find<Allstudentscontroller>();
   final add_controller = Get.find<Add_Students_Controller>();
   final Allempolyeecontrollers = Get.find<Allempolyeecontroller>();
+
   Controller.SetIDX(idx);
   TextEditingController First_Name =
-      TextEditingController(text: Controller.filteredStudents[idx].firstName);
+      TextEditingController(text: Controller.student!.firstName);
   TextEditingController Last_Name =
-      TextEditingController(text: Controller.filteredStudents[idx].lastName);
-  TextEditingController Place_Of_Birth = TextEditingController(
-      text: Controller.filteredStudents[idx].placeOfBirth);
+      TextEditingController(text: Controller.student!.lastName);
+  TextEditingController Place_Of_Birth =
+      TextEditingController(text: Controller.student!.placeOfBirth);
   TextEditingController Mobile_Number = TextEditingController(
       text: Controller.filteredStudents[idx].mobileNumber);
-  TextEditingController Current_Address = TextEditingController(
-      text: Controller.filteredStudents[idx].currentAdress);
-  TextEditingController National_ID = TextEditingController(
-      text: Controller.filteredStudents[idx].nationalNumber);
+  TextEditingController Current_Address =
+      TextEditingController(text: Controller.student!.currentAdress);
+  TextEditingController National_ID =
+      TextEditingController(text: Controller.student!.nationalNumber);
   TextEditingController Password = TextEditingController();
   TextEditingController Father_Name =
-      TextEditingController(text: Controller.filteredStudents[idx].fatherName);
+      TextEditingController(text: Controller.student!.fatherName);
   TextEditingController Mother_Name =
-      TextEditingController(text: Controller.filteredStudents[idx].motherName);
+      TextEditingController(text: Controller.student!.motherName);
   TextEditingController Father_Phone =
-      TextEditingController(text: Controller.filteredStudents[idx].fatherPhone);
+      TextEditingController(text: Controller.student!.fatherPhone);
   TextEditingController Father_Work =
-      TextEditingController(text: Controller.filteredStudents[idx].fatherWork);
+      TextEditingController(text: Controller.student!.fatherWork);
   TextEditingController Mother_Phone =
-      TextEditingController(text: Controller.filteredStudents[idx].motherPhone);
+      TextEditingController(text: Controller.student!.motherPhone);
   TextEditingController Mother_Work =
-      TextEditingController(text: Controller.filteredStudents[idx].motherWork);
-  TextEditingController Last_School_Detail = TextEditingController(
-      text: Controller.filteredStudents[idx].lastSchoolDetail);
+      TextEditingController(text: Controller.student!.motherWork);
+  TextEditingController Last_School_Detail =
+      TextEditingController(text: Controller.student!.lastSchoolDetail);
   TextEditingController LocalID =
-      TextEditingController(text: Controller.filteredStudents[idx].localID);
+      TextEditingController(text: Controller.student!.localID);
   TextEditingController Note =
-      TextEditingController(text: Controller.filteredStudents[idx].note);
+      TextEditingController(text: Controller.student!.note);
   TextEditingController Fee_Discount =
-      TextEditingController(text: Controller.filteredStudents[idx].feeDiscount);
+      TextEditingController(text: Controller.student!.feeDiscount);
   TextEditingController username =
       TextEditingController(text: Controller.filteredStudents[idx].userName);
+
   add_controller.selectedImage.value = null;
   add_controller.set_Edite_Data(
-      BloodTypeindex: Controller.filteredStudents[idx].bloodType,
-      Classindex: Controller.filteredStudents[idx].classes!.enName ?? "",
-      FamilyStateindex: Controller.filteredStudents[idx].familystatus,
-      Genderindex: Controller.filteredStudents[idx].gender,
-      Locationindex: Controller.filteredStudents[idx].location!.enName ?? "",
-      Specialneed:
-          Controller.filteredStudents[idx].specialNeeds == 1 ? true : false,
-      Martyson: Controller.filteredStudents[idx].martyrSon == 1 ? true : false,
-      Realagonindex: Controller.filteredStudents[idx].religion);
+      DivisionIndexs: Controller.student!.division!.enName,
+      BloodTypeindex: Controller.student!.bloodType,
+      Classindex: Controller.student!.classes!.enName ?? "",
+      FamilyStateindex: Controller.student!.familystatus ?? "",
+      Genderindex: Controller.student!.gender ?? "",
+      Locationindex: Controller.student!.location!.enName ?? "",
+      Specialneed: Controller.student!.specialNeeds == 1 ? true : false,
+      Martyson: Controller.student!.martyrSon == 1 ? true : false,
+      Realagonindex: Controller.student!.religion ?? "");
   Allempolyeecontrollers.Birthdate.value =
-      DateTime.parse(Controller.filteredStudents[idx].birthDate.toString());
-  Get_Location_API.Get_Locations();
-  add_controller.initialdata();
-  add_controller.SetIsLoadingDivision(true);
+      DateTime.parse(Controller.student!.birthDate.toString());
 
   Get.dialog(VMSAlertDialog(
       action: [
@@ -83,19 +82,19 @@ EditStudentDialog(int idx, BuildContext context) async {
             onPressed: () async {
               await Update_Student_API.Update_Student(
                   Academic_sequence_FileID:
-                      Controller.documantesList[idx].academicSequence?.id,
+                      Controller.student!.documantes!.academicSequence?.id,
                   Certefecate_FileID:
-                      Controller.documantesList[idx].certificate?.id,
+                      Controller.student!.documantes!.certificate?.id,
                   FamilyNotbook_FileID:
-                      Controller.documantesList[idx].familyNotebook?.id,
+                      Controller.student!.documantes!.familyNotebook?.id,
                   FatherPassport_FileID:
-                      Controller.documantesList[idx].fatherPassport?.id,
+                      Controller.student!.documantes!.fatherPassport?.id,
                   MotherPassport_FileID:
-                      Controller.documantesList[idx].motherPassport?.id,
+                      Controller.student!.documantes!.motherPassport?.id,
                   SonPassport_FileID:
-                      Controller.documantesList[idx].sonPassport?.id,
+                      Controller.student!.documantes!.sonPassport?.id,
                   studentID: Controller.filteredStudents[idx].id,
-                  UserID_FileID: Controller.documantesList[idx].userID?.id,
+                  UserID_FileID: Controller.student!.documantes!.userID?.id,
                   locationId: Get.find<Location_controller>()
                       .location![add_controller.Locationlist.indexOf(
                           add_controller.LocationIndex)]
@@ -119,8 +118,7 @@ EditStudentDialog(int idx, BuildContext context) async {
                           add_controller.ClassIndex)]
                       .id,
                   divisionId: Get.find<Dropdowndivisioncontroller>()
-                      .allDivision[add_controller.Divisionlist.indexOf(
-                          add_controller.DivisionIndex)]
+                      .allDivision[add_controller.Divisionlist.indexOf(add_controller.DivisionIndex)]
                       .id,
                   fatherWork: Father_Work.text,
                   motherPhone: Mother_Phone.text,
@@ -167,9 +165,13 @@ EditStudentDialog(int idx, BuildContext context) async {
       apptitle: "Edite Student",
       subtitle: "Edite ${Controller.filteredStudents[idx].fullName} Info"));
   await Getallclassapi.getAllClasses();
-  print(add_controller.Classlist.indexOf(add_controller.ClassIndex));
+  await Get_Location_API.Get_Locations();
+  add_controller.initialdata();
+  add_controller.SetIsLoadingDivision(true);
   await Dropdowndivisionapi(context).Dropdowndivision(
-      add_controller.Classlist.indexOf(add_controller.ClassIndex), idx);
+      add_controller.Classlist.indexOf(
+          Controller.student!.classes!.enName.toString()),
+      idx);
   add_controller.SetDivision(
       division: Controller.filteredStudents[idx].division!.enName.toString());
 }

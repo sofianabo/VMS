@@ -25,14 +25,14 @@ class Quiz {
   int? id;
   String? startDate;
   String? period;
-  Null name;
+  String? name;
   int? maxMark;
   int? passingMark;
   Classese? classes;
   Classese? type;
   Classese? semester;
   String? curriculumName;
-  Null curriculumEnName;
+  String? curriculumEnName;
 
   Quiz(
       {this.id,
@@ -57,9 +57,8 @@ class Quiz {
     classes =
         json['classes'] != null ? Classese.fromJson(json['classes']) : null;
     type = json['Type'] != null ? Classese.fromJson(json['Type']) : null;
-    semester = json['semester'] != null
-        ? Classese.fromJson(json['semester'])
-        : null;
+    semester =
+        json['semester'] != null ? Classese.fromJson(json['semester']) : null;
     curriculumName = json['curriculumName'];
     curriculumEnName = json['curriculumEnName'];
   }

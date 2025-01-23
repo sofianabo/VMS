@@ -34,6 +34,7 @@ class Add_Students_Controller extends GetxController {
       FamilyStateindex,
       Classindex,
       Specialneed,
+      DivisionIndexs,
       Martyson}) {
     GenderIndex = Genderindex;
     RealagonIndex = Realagonindex;
@@ -41,6 +42,7 @@ class Add_Students_Controller extends GetxController {
     LocationIndex = Locationindex;
     FamilyStateIndex = FamilyStateindex;
     ClassIndex = Classindex;
+    DivisionIndex = DivisionIndexs;
     isSpecialNeed.value = Specialneed;
     isMartySon.value = Martyson;
     update();

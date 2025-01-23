@@ -41,8 +41,8 @@ class Drop_Edite_students extends StatelessWidget {
                                     height: 35,
                                     decoration: BoxDecoration(
                                         color: add_controller
-                                                    .documantesList[
-                                                        add_controller.idx]
+                                                    .student!
+                                                    .documantes!
                                                     .fatherPassport !=
                                                 null
                                             ? Get.theme.primaryColor
@@ -56,15 +56,13 @@ class Drop_Edite_students extends StatelessWidget {
                                         ]),
                                     child: IconButton(
                                         onPressed: () {
-                                          if (add_controller
-                                                  .documantesList[
-                                                      add_controller.idx]
-                                                  .fatherPassport !=
+                                          if (add_controller.student!
+                                                  .documantes!.fatherPassport !=
                                               null) {
                                             final url =
-                                                '$getimage${add_controller.documantesList[add_controller.idx].fatherPassport!.id}';
+                                                '$getimage${add_controller..student!.documantes!.fatherPassport!.id}';
                                             downloadFile(url,
-                                                '${add_controller.filteredStudents[add_controller.idx].fullName!} Father Passport.${add_controller.documantesList[add_controller.idx].fatherPassport!.fileType}');
+                                                '${add_controller.filteredStudents[add_controller.idx].fullName!} Father Passport.${add_controller.student!.documantes!.fatherPassport!.fileType}');
                                           }
                                         },
                                         icon: Icon(
@@ -180,9 +178,7 @@ class Drop_Edite_students extends StatelessWidget {
                                 width: 35,
                                 height: 35,
                                 decoration: BoxDecoration(
-                                    color: add_controller
-                                                .documantesList[
-                                                    add_controller.idx]
+                                    color: add_controller.student!.documantes!
                                                 .motherPassport !=
                                             null
                                         ? Get.theme.primaryColor
@@ -196,15 +192,13 @@ class Drop_Edite_students extends StatelessWidget {
                                     ]),
                                 child: IconButton(
                                     onPressed: () {
-                                      if (add_controller
-                                              .documantesList[
-                                                  add_controller.idx]
+                                      if (add_controller.student!.documantes!
                                               .motherPassport !=
                                           null) {
                                         final url =
-                                            '$getimage${add_controller.documantesList[add_controller.idx].motherPassport!.id}';
+                                            '$getimage${add_controller.student!.documantes!.motherPassport!.id}';
                                         downloadFile(url,
-                                            '${add_controller.filteredStudents[add_controller.idx].fullName!} Mother Passport.${add_controller.documantesList[add_controller.idx].motherPassport!.fileType}');
+                                            '${add_controller.filteredStudents[add_controller.idx].fullName!} Mother Passport.${add_controller.student!.documantes!.motherPassport!.fileType}');
                                       }
                                     },
                                     icon: Icon(
@@ -326,9 +320,7 @@ class Drop_Edite_students extends StatelessWidget {
                                 width: 35,
                                 height: 35,
                                 decoration: BoxDecoration(
-                                    color: add_controller
-                                                .documantesList[
-                                                    add_controller.idx]
+                                    color: add_controller.student!.documantes!
                                                 .sonPassport !=
                                             null
                                         ? Get.theme.primaryColor
@@ -342,15 +334,13 @@ class Drop_Edite_students extends StatelessWidget {
                                     ]),
                                 child: IconButton(
                                     onPressed: () {
-                                      if (add_controller
-                                              .documantesList[
-                                                  add_controller.idx]
+                                      if (add_controller.student!.documantes!
                                               .sonPassport !=
                                           null) {
                                         final url =
-                                            '$getimage${add_controller.documantesList[add_controller.idx].sonPassport!.id}';
+                                            '$getimage${add_controller.student!.documantes!.sonPassport!.id}';
                                         downloadFile(url,
-                                            '${add_controller.filteredStudents[add_controller.idx].fullName!} son Passport.${add_controller.documantesList[add_controller.idx].sonPassport!.fileType}');
+                                            '${add_controller.filteredStudents[add_controller.idx].fullName!} son Passport.${add_controller.student!.documantes!.sonPassport!.fileType}');
                                       }
                                     },
                                     icon: Icon(
@@ -462,9 +452,7 @@ class Drop_Edite_students extends StatelessWidget {
                                 height: 35,
                                 decoration: BoxDecoration(
                                     color: add_controller
-                                                .documantesList[
-                                                    add_controller.idx]
-                                                .userID !=
+                                                .student!.documantes!.userID !=
                                             null
                                         ? Get.theme.primaryColor
                                         : Get.theme.disabledColor,
@@ -478,14 +466,12 @@ class Drop_Edite_students extends StatelessWidget {
                                 child: IconButton(
                                     onPressed: () {
                                       if (add_controller
-                                              .documantesList[
-                                                  add_controller.idx]
-                                              .userID !=
+                                              .student!.documantes!.userID !=
                                           null) {
                                         final url =
-                                            '$getimage${add_controller.documantesList[add_controller.idx].userID!.id}';
+                                            '$getimage${add_controller.student!.documantes!.userID!.id}';
                                         downloadFile(url,
-                                            '${add_controller.filteredStudents[add_controller.idx].fullName!} userID.${add_controller.documantesList[add_controller.idx].userID!.fileType}');
+                                            '${add_controller.filteredStudents[add_controller.idx].fullName!} userID.${add_controller.student!.documantes!.userID!.fileType}');
                                       }
                                     },
                                     icon: Icon(
@@ -599,9 +585,7 @@ class Drop_Edite_students extends StatelessWidget {
                                 width: 35,
                                 height: 35,
                                 decoration: BoxDecoration(
-                                    color: add_controller
-                                                .documantesList[
-                                                    add_controller.idx]
+                                    color: add_controller.student!.documantes!
                                                 .certificate !=
                                             null
                                         ? Get.theme.primaryColor
@@ -615,15 +599,13 @@ class Drop_Edite_students extends StatelessWidget {
                                     ]),
                                 child: IconButton(
                                     onPressed: () {
-                                      if (add_controller
-                                              .documantesList[
-                                                  add_controller.idx]
+                                      if (add_controller.student!.documantes!
                                               .certificate !=
                                           null) {
                                         final url =
-                                            '$getimage${add_controller.documantesList[add_controller.idx].certificate!.id}';
+                                            '$getimage${add_controller.student!.documantes!.certificate!.id}';
                                         downloadFile(url,
-                                            '${add_controller.filteredStudents[add_controller.idx].fullName!} certificate.${add_controller.documantesList[add_controller.idx].certificate!.fileType}');
+                                            '${add_controller.filteredStudents[add_controller.idx].fullName!} certificate.${add_controller.student!.documantes!.certificate!.fileType}');
                                       }
                                     },
                                     icon: Icon(
@@ -734,9 +716,7 @@ class Drop_Edite_students extends StatelessWidget {
                                 width: 35,
                                 height: 35,
                                 decoration: BoxDecoration(
-                                    color: add_controller
-                                                .documantesList[
-                                                    add_controller.idx]
+                                    color: add_controller.student!.documantes!
                                                 .academicSequence !=
                                             null
                                         ? Get.theme.primaryColor
@@ -750,15 +730,13 @@ class Drop_Edite_students extends StatelessWidget {
                                     ]),
                                 child: IconButton(
                                     onPressed: () {
-                                      if (add_controller
-                                              .documantesList[
-                                                  add_controller.idx]
+                                      if (add_controller.student!.documantes!
                                               .academicSequence !=
                                           null) {
                                         final url =
-                                            '$getimage${add_controller.documantesList[add_controller.idx].academicSequence!.id}';
+                                            '$getimage${add_controller.student!.documantes!.academicSequence!.id}';
                                         downloadFile(url,
-                                            '${add_controller.filteredStudents[add_controller.idx].fullName} academicSequence.${add_controller.documantesList[add_controller.idx].academicSequence!.fileType}');
+                                            '${add_controller.filteredStudents[add_controller.idx].fullName} academicSequence.${add_controller.student!.documantes!.academicSequence!.fileType}');
                                       }
                                     },
                                     icon: Icon(
@@ -874,9 +852,7 @@ class Drop_Edite_students extends StatelessWidget {
                                 width: 35,
                                 height: 35,
                                 decoration: BoxDecoration(
-                                    color: add_controller
-                                                .documantesList[
-                                                    add_controller.idx]
+                                    color: add_controller.student!.documantes!
                                                 .familyNotebook !=
                                             null
                                         ? Get.theme.primaryColor
@@ -890,15 +866,13 @@ class Drop_Edite_students extends StatelessWidget {
                                     ]),
                                 child: IconButton(
                                     onPressed: () {
-                                      if (add_controller
-                                              .documantesList[
-                                                  add_controller.idx]
+                                      if (add_controller.student!.documantes!
                                               .familyNotebook !=
                                           null) {
                                         final url =
-                                            '$getimage${add_controller.documantesList[add_controller.idx].familyNotebook!.id}';
+                                            '$getimage${add_controller.student!.documantes!.familyNotebook!.id}';
                                         downloadFile(url,
-                                            '${add_controller.filteredStudents[add_controller.idx].fullName} Family notebook.${add_controller.documantesList[add_controller.idx].familyNotebook!.fileType}');
+                                            '${add_controller.filteredStudents[add_controller.idx].fullName} Family notebook.${add_controller.student!.documantes!.familyNotebook!.fileType}');
                                       }
                                     },
                                     icon: Icon(

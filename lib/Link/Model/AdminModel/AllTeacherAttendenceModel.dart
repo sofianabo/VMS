@@ -25,7 +25,7 @@ class AllTeacherAttendenceModel {
 class Teacherattendance {
   int? id;
   String? status;
-  Null imageId;
+  int? imageId;
   String? email;
   String? fullName;
   List<Classes>? classes;
@@ -33,12 +33,12 @@ class Teacherattendance {
 
   Teacherattendance(
       {this.id,
-        this.status,
-        this.imageId,
-        this.email,
-        this.fullName,
-        this.classes,
-        this.subject});
+      this.status,
+      this.imageId,
+      this.email,
+      this.fullName,
+      this.classes,
+      this.subject});
 
   Teacherattendance.fromJson(Map<String, dynamic> json) {
     id = json['id'];
