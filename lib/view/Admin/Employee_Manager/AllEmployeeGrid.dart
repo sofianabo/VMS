@@ -5,6 +5,7 @@ import 'package:get/route_manager.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Delete_Employee.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_Employee_By_Id_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/Get_Teacher_Illness.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
@@ -140,7 +141,8 @@ class AllEmployeeGrid extends StatelessWidget {
                             } else {
                               Get.dialog(VMSAlertDialog(
                                 action: [],
-                                contents: const Text("This Employee Not Have Data"),
+                                contents:
+                                    const Text("This Employee Not Have Data"),
                                 apptitle:
                                     "This Employee Not Uploaded his/her Data",
                                 subtitle: "none",
@@ -193,7 +195,8 @@ class AllEmployeeGrid extends StatelessWidget {
                                                             .id
                                                             .toString());
                                                   },
-                                                  color: const Color(0xffB03D3D),
+                                                  color:
+                                                      const Color(0xffB03D3D),
                                                   width: 80),
                                               ButtonDialog(
                                                   text: "Cancel",
@@ -224,6 +227,30 @@ class AllEmployeeGrid extends StatelessWidget {
                                             apptitle: "Delete Employee",
                                             subtitle: "none",
                                           ));
+                                        },
+                                        icon: const Icon(VMS_Icons.bin,
+                                            size: 16, color: Colors.white)),
+                                    IconButton(
+                                        style: const ButtonStyle(
+                                            backgroundColor:
+                                                WidgetStatePropertyAll(
+                                                    Color(0xffB03D3D)),
+                                            shape: WidgetStatePropertyAll(
+                                                RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                5))))),
+                                        onPressed: () async {
+                                          await Get_Teacher_Illness_API(context)
+                                              .Get_Teacher_Illness(
+                                                  teachId: int.parse(controller
+                                                      .filteredreemployees[
+                                                          index]
+                                                      .id
+                                                      .toString()),
+                                                  index_of_Emp: index,
+                                                  IsTeacher: false);
                                         },
                                         icon: const Icon(VMS_Icons.bin,
                                             size: 16, color: Colors.white)),
@@ -261,7 +288,8 @@ class AllEmployeeGrid extends StatelessWidget {
                                                                       index]
                                                                   .roll ==
                                                               "Accountant"
-                                                          ? const Color(0xff2684FC)
+                                                          ? const Color(
+                                                              0xff2684FC)
                                                           : controller
                                                                       .filteredreemployees[
                                                                           index]
@@ -332,13 +360,15 @@ class AllEmployeeGrid extends StatelessWidget {
                                                                     index]
                                                                 .roll ==
                                                             "Sub Admin"
-                                                        ? const Color(0xff297686)
+                                                        ? const Color(
+                                                            0xff297686)
                                                         : controller
                                                                     .filteredreemployees[
                                                                         index]
                                                                     .roll ==
                                                                 "Registration"
-                                                            ? const Color(0xffB27671)
+                                                            ? const Color(
+                                                                0xffB27671)
                                                             : controller
                                                                         .filteredreemployees[
                                                                             index]
@@ -396,7 +426,12 @@ class AllEmployeeGrid extends StatelessWidget {
                                                         .imageId ==
                                                     null
                                                 ? Text(
-                                                    controller.filteredreemployees[index].fullName!.substring(0, 1).toUpperCase(),
+                                                    controller
+                                                        .filteredreemployees[
+                                                            index]
+                                                        .fullName!
+                                                        .substring(0, 1)
+                                                        .toUpperCase(),
                                                     style: Get
                                                         .textTheme.titleLarge!
                                                         .copyWith(
