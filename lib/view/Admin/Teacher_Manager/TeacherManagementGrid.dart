@@ -5,12 +5,12 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/DeleteTeacherAPI.dart';
-import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetTeacherAttendenceAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetTeacherById.dart';
+import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/Get_Teacher_Illness.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/getTeacherSubjectAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
+import 'package:vms_school/Link/Functions/Show_Emp_Illnes_By_Id.dart';
 import 'package:vms_school/Link/Model/AdminModel/TeacherSubjectModel.dart';
-import 'package:vms_school/view/Admin/Teacher_Manager/EditTeacherInfo.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
@@ -449,7 +449,21 @@ class TeacherManagementGrid extends StatelessWidget {
                                       icon: Icon(
                                         Icons.card_membership_sharp,
                                         color: Get.theme.primaryColor,
-                                      ))
+                                      )),
+                                  IconButton(
+                                      onPressed: () async {
+                                        await Get_Teacher_Illness_API(context)
+                                            .Get_Teacher_Illness(
+                                                teachId: int.parse(control
+                                                    .filteredTeacher![index].id
+                                                    .toString()),
+                                                index_of_Emp: index,
+                                                IsTeacher: true);
+                                      },
+                                      icon: Icon(
+                                        Icons.yard,
+                                        color: Get.theme.primaryColor,
+                                      )),
                                 ],
                               ),
                             ),

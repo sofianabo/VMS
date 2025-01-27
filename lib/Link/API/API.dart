@@ -51,6 +51,8 @@ String employeeIncreaseAttendance = "employeeIncreaseAttendance";
 String addVirtualUser = "addVirtualUser";
 String getVirtualUser = "getVirtualUser";
 String deleteVirtualEmployee = "deleteVirtualUser";
+String updateEmployeeIll = "updateEmployeeIll";
+String getEmployeeIll = "getEmployeeIll";
 
 //..................... Teachers ...................//
 
