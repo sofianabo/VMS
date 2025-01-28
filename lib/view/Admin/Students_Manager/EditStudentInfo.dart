@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Location_API/Locations_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownClassesAPI.dart';
@@ -64,6 +65,7 @@ EditStudentDialog(int idx, BuildContext context) async {
   add_controller.selectedImage.value = null;
   add_controller.set_Edite_Data(
       DivisionIndexs: Controller.student!.division!.enName,
+      isPendStudents: Controller.student!.isPended,
       BloodTypeindex: Controller.student!.bloodType,
       Classindex: Controller.student!.classes!.enName ?? "",
       FamilyStateindex: Controller.student!.familystatus ?? "",
@@ -135,6 +137,7 @@ EditStudentDialog(int idx, BuildContext context) async {
                   SonPassport: add_controller.selectedSonPassport.value,
                   UserID: add_controller.selectedId.value,
                   Certefecate: add_controller.selectedCertificate.value,
+                  Ispend: add_controller.isPendStudent.value,
                   Academic_sequence: add_controller.selectedtsalsol.value,
                   FamilyNotbook: add_controller.selectedFamilyBook.value,
                   file: add_controller.selectedImage.value);
@@ -478,6 +481,123 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                                     ],
                                   ),
                                 ]),
+                            Row(
+                              children: [
+                                Obx(() => Row(
+                                      children: [
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(5))),
+                                              backgroundColor: controller
+                                                      .isPendStudent.value
+                                                  ? Get.theme.primaryColor
+                                                  : Get.theme.disabledColor),
+                                          onPressed: () {
+                                            if (!controller
+                                                .isPendStudent.value) {
+                                              Get.defaultDialog(
+                                                radius: 5,
+                                                contentPadding:
+                                                    EdgeInsets.all(20.0),
+                                                title: "Pend Student",
+                                                middleText:
+                                                    "Do You Want To Pend (${widget.First_Name.text} ${widget.Last_Name.text}) Student?",
+                                                confirm: ElevatedButton(
+                                                  onPressed: () {
+                                                    controller
+                                                        .togglePindStudent(
+                                                            true);
+                                                    Get.back();
+                                                  },
+                                                  child: Text("Yes"),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                          backgroundColor:
+                                                              Color(0xffB03D3D),
+                                                          foregroundColor:
+                                                              Colors.white),
+                                                ),
+                                                cancel: ElevatedButton(
+                                                  onPressed: () {
+                                                    Get.back();
+                                                  },
+                                                  child: Text("No"),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                          backgroundColor:
+                                                              Get.theme
+                                                                  .primaryColor,
+                                                          foregroundColor:
+                                                              Colors.white),
+                                                ),
+                                              );
+                                            } else {
+                                              Get.defaultDialog(
+                                                title: "UnPend Student",
+                                                radius: 5,
+                                                contentPadding:
+                                                    EdgeInsets.all(20.0),
+                                                middleText:
+                                                    "Do You Want To UnPend ( ${widget.First_Name.text} ${widget.Last_Name.text} ) Student ?",
+                                                confirm: ElevatedButton(
+                                                  onPressed: () {
+                                                    controller
+                                                        .togglePindStudent(
+                                                            false);
+                                                    Get.back();
+                                                  },
+                                                  child: Text("Yes"),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                          backgroundColor:
+                                                              Color(0xffB03D3D),
+                                                          foregroundColor:
+                                                              Colors.white),
+                                                ),
+                                                cancel: ElevatedButton(
+                                                  onPressed: () {
+                                                    Get.back();
+                                                  },
+                                                  child: Text("No"),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                          backgroundColor:
+                                                              Get.theme
+                                                                  .primaryColor,
+                                                          foregroundColor:
+                                                              Colors.white),
+                                                ),
+                                              );
+                                            }
+                                          },
+                                          child: Row(
+                                            children: [
+                                              Icon(
+                                                  color: Colors.white,
+                                                  controller.isPendStudent.value
+                                                      ? Icons.lock_open_outlined
+                                                      : Icons.lock),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 8.0, right: 8.0),
+                                                child: Text(
+                                                  controller.isPendStudent.value
+                                                      ? "UnPend This Student"
+                                                      : "Pend Student",
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    )),
+                              ],
+                            )
                           ],
                         )),
                     Padding(

@@ -22,6 +22,18 @@ class AdminSchoolTimeController extends GetxController {
   List<String> timeLessonList = ['Morning', 'Evening'];
 
   bool isLoading = true;
+  bool isLoadingClass = true;
+  bool isLoadingDivision = true;
+
+  setIsLoadingClass(bool value) {
+    isLoadingClass = value;
+    update();
+  }
+
+  setIsLoadingDivision(bool value) {
+    isLoadingDivision = value;
+    update();
+  }
 
   void initStudyShare() {
     tableData.clear();
@@ -72,6 +84,7 @@ class AdminSchoolTimeController extends GetxController {
 
   void setAllDivision(AllDivisionModel division) {
     examDivision.clear();
+    setIsLoadingDivision(false);
     allDivision = division.division;
     for (int j = 0; j < division.division!.length; j++) {
       examDivision.add(division.division![j].enName.toString());
@@ -134,6 +147,12 @@ class AdminSchoolTimeController extends GetxController {
 
   void setClassIndex() {
     examClassIndex = "";
+    update();
+  }
+
+  SetClasslist(List<String> data) {
+    examClass = data;
+    setIsLoadingClass(false);
     update();
   }
 }

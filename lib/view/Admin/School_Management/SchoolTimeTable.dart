@@ -7,11 +7,13 @@ import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/SchoolTimeTableAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownClassesAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/AddLessonAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/DeleteStudyShareAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/EditStudyShareAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetAllTeachersAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllTeacherModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/SchoolTimeModel.dart';
 import 'package:vms_school/widgets/Admin_Table/DropDownSchoolTime.dart';
@@ -128,24 +130,14 @@ Map<Pair<int, int>, int> indexes = {};
 SchoolTimeModel? m;
 
 class _SchoolTimeTableState extends State<SchoolTimeTable> {
-  void getSchoolTable() async {
-    final c = Get.find<AdminSchoolTimeController>();
-    SchoolTimeModel model = await Schooltimetableapi(context).Schooltimetable(
-        c.examDivision.indexOf(c.selectedExamDivision), c.timeLessonIndex);
-    m = model;
-    for (int i = 0; i < model.studyShare!.length; i++) {
-      indexes![Pair(days[model.studyShare![i].day]!,
-          model.studyShare![i].lessonId!)] = model.studyShare![i].id!;
-      tableData[days[model.studyShare![i].day]!]
-              [lessions[model.studyShare![i].lessonId]!] =
-          model.studyShare![i].toString();
-    }
+  @override
+  void initState() {
+    Getallclassapi.getAllClasses();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    getSchoolTable();
-
     return Expanded(
         child: Column(
       children: [

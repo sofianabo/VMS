@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
@@ -20,6 +21,7 @@ class Dropdowndivisionapi {
   final Student_attendence = Get.find<Student_attendence_controller>();
   final StudentAttendencControlle = Get.find<StudentAttendencController>();
   final Add_Students_Controlle = Get.find<Add_Students_Controller>();
+  final AdminSchoolTimeControllers = Get.find<AdminSchoolTimeController>();
 
   Dropdownclassescontroller class_controller =
       Get.find<Dropdownclassescontroller>();
@@ -35,6 +37,7 @@ class Dropdowndivisionapi {
       Student_attendence.setDivisionLoading(true);
       StudentAttendencControlle.setDivisionLoading(true);
       Add_Students_Controlle.SetIsLoadingDivision(true);
+      AdminSchoolTimeControllers.setIsLoadingDivision(true);
 
       int? id = class_controller.Allclass[idx].id;
       String myurl = "$hostPort$getDivision";

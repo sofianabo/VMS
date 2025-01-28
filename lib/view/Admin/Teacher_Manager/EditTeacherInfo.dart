@@ -1,19 +1,13 @@
-// ignore_for_file: non_constant_identifier_names, file_names
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/EditTeacherAPI.dart';
-import 'package:vms_school/Link/Controller/AdminController/Illness_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AddTeacherController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/widgets/Admin_teachers/DropDownAllTeacher.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
-import 'package:vms_school/widgets/DropDown.dart';
 import 'package:vms_school/widgets/LargeTextField.dart';
-import 'package:vms_school/widgets/TextFieldDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
@@ -106,7 +100,8 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                                       : teacherControler.filteredTeacher![idx]
                                                   .imageId !=
                                               null
-                                          ? NetworkImage(getimage +"${teacherControler.filteredTeacher![idx].imageId}")
+                                          ? NetworkImage(getimage +
+                                              "${teacherControler.filteredTeacher![idx].imageId}")
                                           : null,
                                   child:
                                       addcontrol.selectedImage.value == null &&
@@ -298,77 +293,6 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                             type: "ContractTypeDialog",
                             width: 250,
                           ),
-                          Padding(
-                              padding: const EdgeInsets.only(left: 20.0),
-                              child: GetBuilder<IllnessController>(
-                                  builder: (controller) {
-                                return ButtonDialog(
-                                    bordercolor: const Color(0xffD9D9D9),
-                                    textcolor: Colors.black,
-                                    text: "Employee Illness",
-                                    onPressed: () {
-                                      Get.dialog(
-                                        VMSAlertDialog(
-                                          action: [],
-                                          contents: SizedBox(
-                                            height: 400,
-                                            width: 400,
-                                            child: Obx(() {
-                                              return ListView.builder(
-                                                itemCount: controller
-                                                    .allIllness.length,
-                                                itemBuilder: (context, index) {
-                                                  return Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
-                                                        child: Obx(() {
-                                                          // غلف CheckboxListTile بـ Obx
-                                                          return CheckboxListTile(
-                                                            overlayColor:
-                                                                const WidgetStatePropertyAll(
-                                                                    Colors
-                                                                        .transparent),
-                                                            checkColor:
-                                                                Colors.white,
-                                                            title: Text(controller
-                                                                    .allIllness[
-                                                                index]['arName']),
-                                                            value: controller
-                                                                    .selectedIllness[
-                                                                index],
-                                                            onChanged:
-                                                                (bool? value) {
-                                                              controller
-                                                                  .toggleIllness(
-                                                                      index);
-                                                            },
-                                                          );
-                                                        }),
-                                                      ),
-                                                      Divider(
-                                                        color: Get
-                                                            .theme.primaryColor,
-                                                        height: 1,
-                                                      )
-                                                    ],
-                                                  );
-                                                },
-                                              );
-                                            }),
-                                          ),
-                                          apptitle: "All Employee Illness",
-                                          subtitle: "none",
-                                        ),
-                                      );
-                                    },
-                                    color: Colors.white,
-                                    width: 250);
-                              }))
                         ],
                       ),
                     ),
@@ -544,19 +468,6 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 15, top: 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          ButtonDialog(
-                              width: 100,
-                              text: "Edit",
-                              onPressed: () {},
-                              color: Get.theme.colorScheme.primary)
-                        ],
-                      ),
-                    )
                   ],
                 ),
               ),

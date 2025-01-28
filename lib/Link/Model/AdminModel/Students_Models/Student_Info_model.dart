@@ -19,7 +19,7 @@ class Student_Info_model {
 
 class Student {
   int? id;
-  String? acceptanceNumber;
+  int? acceptanceNumber;
   String? currentSession;
   String? firstName;
   String? lastName;
@@ -45,6 +45,7 @@ class Student {
   int? specialNeeds;
   int? martyrSon;
   int? fileId;
+  bool? isPended;
   String? email;
   Division? division;
   Division? location;
@@ -82,6 +83,7 @@ class Student {
       this.specialNeeds,
       this.martyrSon,
       this.fileId,
+      this.isPended,
       this.email,
       this.division,
       this.location,
@@ -119,6 +121,7 @@ class Student {
     specialNeeds = json['specialNeeds'];
     martyrSon = json['martyrSon'];
     fileId = json['fileId'];
+    isPended = json['isPended'];
     email = json['email'];
     division = json['division'] != null
         ? new Division.fromJson(json['division'])
@@ -167,6 +170,7 @@ class Student {
     data['specialNeeds'] = this.specialNeeds;
     data['martyrSon'] = this.martyrSon;
     data['fileId'] = this.fileId;
+    data['isPended'] = this.isPended;
     data['email'] = this.email;
     if (this.division != null) {
       data['division'] = this.division!.toJson();
@@ -284,9 +288,7 @@ class Documantes {
     academicSequence = json['AcademicSequence'] != null
         ? new FatherPassport.fromJson(json['AcademicSequence'])
         : null;
-    familyNotebook = json['Family Notebook'] != null
-        ? new FatherPassport.fromJson(json['Family Notebook'])
-        : null;
+    familyNotebook = json['Family Notebook'];
   }
 
   Map<String, dynamic> toJson() {
@@ -309,9 +311,7 @@ class Documantes {
     if (this.academicSequence != null) {
       data['AcademicSequence'] = this.academicSequence!.toJson();
     }
-    if (this.familyNotebook != null) {
-      data['Family Notebook'] = this.familyNotebook!.toJson();
-    }
+    data['Family Notebook'] = this.familyNotebook;
     return data;
   }
 }

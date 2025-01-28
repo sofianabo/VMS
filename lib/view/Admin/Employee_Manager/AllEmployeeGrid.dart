@@ -1,12 +1,14 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Delete_Employee.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_Employee_By_Id_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/Get_Teacher_Illness.dart';
-import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
@@ -29,7 +31,7 @@ class AllEmployeeGrid extends StatelessWidget {
                   crossAxisSpacing: 20.0,
                   mainAxisSpacing: 20.0,
                   childAspectRatio: 1.4),
-              itemCount: 8, // عدد العناصر في الشبكة
+              itemCount: 8,
               itemBuilder: (context, index) {
                 return HoverScaleCard(
                   child: Container(
@@ -140,13 +142,59 @@ class AllEmployeeGrid extends StatelessWidget {
                                   context: context,
                                   index: index);
                             } else {
-                              Get.dialog(VMSAlertDialog(
-                                action: [],
-                                contents:
-                                    const Text("This Employee Not Have Data"),
-                                apptitle:
-                                    "This Employee Not Uploaded his/her Data",
-                                subtitle: "none",
+                              Get.dialog(BackdropFilter(
+                                filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+                                child: AlertDialog(
+                                  title: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Text(""),
+                                      Padding(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: IconButton(
+                                          onPressed: () {
+                                            Get.back();
+                                          },
+                                          icon: const Icon(Icons.close_rounded,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  surfaceTintColor: Colors.transparent,
+                                  insetPadding: EdgeInsets.zero,
+                                  titlePadding: EdgeInsets.zero,
+                                  contentPadding: const EdgeInsets.only(
+                                      top: 0,
+                                      left: 20.0,
+                                      right: 20.0,
+                                      bottom: 20.0),
+                                  actionsPadding: const EdgeInsets.all(15.0),
+                                  content: Container(
+                                    width: 400,
+                                    height: 400,
+                                    child: Column(
+                                      children: [
+                                        SvgPicture.asset(
+                                          "../../images/nodata.svg",
+                                          width: 350,
+                                          height: 350,
+                                        ),
+                                        Text(
+                                          "This Teacher Does Not Contain Any Data",
+                                          style: Get.theme.textTheme.titleLarge!
+                                              .copyWith(fontSize: 16),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
                               ));
                             }
                           },
@@ -231,17 +279,21 @@ class AllEmployeeGrid extends StatelessWidget {
                                         },
                                         icon: const Icon(VMS_Icons.bin,
                                             size: 16, color: Colors.white)),
-                                    IconButton(
-                                        style: const ButtonStyle(
-                                            backgroundColor:
-                                                WidgetStatePropertyAll(
-                                                    Color(0xffB03D3D)),
-                                            shape: WidgetStatePropertyAll(
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10.0, right: 10.0),
+                                      child: IconButton(
+                                        style: ButtonStyle(
+                                            iconSize:
+                                                WidgetStateProperty.all(14),
+                                            shape: WidgetStateProperty.all(
                                                 RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                5))))),
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                            )),
+                                            backgroundColor:
+                                                WidgetStateProperty.all(
+                                                    Get.theme.primaryColor)),
                                         onPressed: () async {
                                           await Get_Teacher_Illness_API(context)
                                               .Get_Teacher_Illness(
@@ -253,11 +305,16 @@ class AllEmployeeGrid extends StatelessWidget {
                                                   index_of_Emp: index,
                                                   IsTeacher: false);
                                         },
-                                        icon: const Icon(VMS_Icons.bin,
-                                            size: 16, color: Colors.white)),
+                                        icon: const Icon(VMS_Icons.vir),
+                                        color: Colors.white,
+                                      ),
+                                    ),
                                     Expanded(
                                         child: Center(
                                             child: Text(
+                                      textAlign: TextAlign.center,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
                                       "${controller.filteredreemployees[index].fullName}",
                                       style: Get.theme.textTheme.bodyMedium!
                                           .copyWith(
