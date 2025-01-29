@@ -148,30 +148,61 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  DropDownSchoolTime(
-                    type: "time",
-                    title: "Time",
-                    width: Get.width / 4,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                    child: DropDownSchoolTime(
-                      type: "class",
-                      title: "Class",
+              GetBuilder<AdminSchoolTimeController>(builder: (controller) {
+                return Row(
+                  children: [
+                    DropDownSchoolTime(
+                      type: "time",
+                      title: "Time",
                       width: Get.width / 4,
                     ),
-                  ),
-                  DropDownSchoolTime(
-                    type: "division",
-                    title: "Division",
-                    width: Get.width / 4,
-                  ),
-                  const Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                    child: Container(
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                      child: DropDownSchoolTime(
+                        isDisabled: false,
+                        isLoading: controller.isLoadingClass,
+                        type: "class",
+                        title: "Class",
+                        width: Get.width / 4,
+                      ),
+                    ),
+                    DropDownSchoolTime(
+                      isLoading: controller.isLoadingDivision,
+                      isDisabled:
+                          controller.examClassIndex == "" ? true : false,
+                      type: "division",
+                      title: "Division",
+                      width: Get.width / 4,
+                    ),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: const ButtonStyle(
+                                backgroundColor:
+                                    WidgetStatePropertyAll(Color(0xffF9F8FD)),
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {},
+                            icon: Icon(VMS_Icons.pdf,
+                                size: 18, color: Get.theme.primaryColor)),
+                      ),
+                    ),
+                    Container(
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
@@ -192,36 +223,12 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
                           onPressed: () {},
-                          icon: Icon(VMS_Icons.pdf,
+                          icon: Icon(VMS_Icons.xl,
                               size: 18, color: Get.theme.primaryColor)),
                     ),
-                  ),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(5),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Colors.black12,
-                              offset: Offset(0, 2),
-                              blurRadius: 1)
-                        ]),
-                    child: IconButton(
-                        style: const ButtonStyle(
-                            backgroundColor:
-                                WidgetStatePropertyAll(Color(0xffF9F8FD)),
-                            shape: WidgetStatePropertyAll(
-                                RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))))),
-                        onPressed: () {},
-                        icon: Icon(VMS_Icons.xl,
-                            size: 18, color: Get.theme.primaryColor)),
-                  ),
-                ],
-              ),
+                  ],
+                );
+              }),
             ],
           ),
         ),
@@ -229,26 +236,25 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
           return Expanded(
               child: Padding(
             padding: const EdgeInsets.only(top: 15.0),
-            child: controller.isLoading
+            child: controller.examClassIndex == ""
                 ? Center(
-                    child: LoadingAnimationWidget.inkDrop(
-                      color: Theme.of(context).primaryColor,
-                      size: 60,
-                    ),
-                  )
-                : controller.examClassIndex == ""
+                    child: Text(
+                    "Select Class First",
+                    style: Get.textTheme.titleLarge!.copyWith(fontSize: 22),
+                  ))
+                : controller.examDivisionIndex == ""
                     ? Center(
                         child: Text(
-                        "Select Class First",
+                        "Select Division First",
                         style: Get.textTheme.titleLarge!.copyWith(fontSize: 22),
                       ))
-                    : controller.examDivisionIndex == ""
+                    : controller.isLoading
                         ? Center(
-                            child: Text(
-                            "Select Division First",
-                            style: Get.textTheme.titleLarge!
-                                .copyWith(fontSize: 22),
-                          ))
+                            child: LoadingAnimationWidget.inkDrop(
+                              color: Theme.of(context).primaryColor,
+                              size: 60,
+                            ),
+                          )
                         : Padding(
                             padding:
                                 const EdgeInsets.only(left: 30.0, right: 30.0),
