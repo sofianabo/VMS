@@ -1,6 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:vms_school/Link/Model/AdminModel/Dashboard_Model.dart';
+import 'package:vms_school/Theme/themeController.dart';
 
 class BarChartSample1 extends StatefulWidget {
   BarChartSample1({super.key, required this.data, required this.headerText});
@@ -167,14 +169,12 @@ class BarChartSample1State extends State<BarChartSample1> {
             getTitlesWidget: (value, meta) {
               final index = value.toInt();
               if (index < widget.data.length) {
-                return Text(
-                  widget.data[index]['countryName'],
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
-                  ),
-                );
+                return GetBuilder(
+                    init: Themecontroller(),
+                    builder: (thcont) {
+                      return Text(widget.data[index]['countryName'],
+                          style: thcont.th!.textTheme.bodyMedium);
+                    });
               }
               return const Text('');
             },
@@ -385,14 +385,12 @@ class BarChartSample2State extends State<BarChartSample2> {
             getTitlesWidget: (value, meta) {
               final index = value.toInt();
               if (index < widget.data.length) {
-                return Text(
-                  widget.data[index]['countryName'],
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
-                  ),
-                );
+                return GetBuilder(
+                    init: Themecontroller(),
+                    builder: (thcont) {
+                      return Text(widget.data[index]['countryName'],
+                          style: thcont.th!.textTheme.bodyMedium);
+                    });
               }
               return const Text('');
             },

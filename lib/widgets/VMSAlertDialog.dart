@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Theme/themeController.dart';
 
 Widget VMSAlertDialog({
   required List<Widget> action,
@@ -56,16 +57,21 @@ Widget VMSAlertDialog({
           ),
           Padding(
             padding: const EdgeInsets.all(5.0),
-            child: IconButton(
-              color: Colors.white,
-              focusColor: Colors.white,
-              hoverColor: Colors.white,
-              splashColor: Colors.white,
-              onPressed: () {
-                Get.back();
-              },
-              icon: const Icon(Icons.close_rounded, color: Colors.black),
-            ),
+            child: GetBuilder(
+                init: Themecontroller(),
+                builder: (thcont) {
+                  return IconButton(
+                    color: thcont.th!.indicatorColor,
+                    focusColor: thcont.th!.indicatorColor,
+                    hoverColor: thcont.th!.indicatorColor,
+                    splashColor: thcont.th!.indicatorColor,
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: Icon(Icons.close_rounded,
+                        color: thcont.th!.secondaryHeaderColor),
+                  );
+                }),
           ),
         ],
       ),

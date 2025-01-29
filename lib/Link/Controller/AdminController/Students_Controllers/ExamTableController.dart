@@ -123,7 +123,7 @@ class ExamTableController extends GetxController {
   void setAllTypes(AllExamTypeModel types) {
     examType.clear();
     for (int j = 0; j < types.type!.length; j++) {
-      examType.add(types.type![j].enName.toString());
+      examType.add(types.type![j].name.toString());
     }
     update();
     updateList("type", examType);
@@ -142,7 +142,7 @@ class ExamTableController extends GetxController {
   void setAllTypesDialog(AllExamTypeModel types) {
     typeDialogList.clear();
     for (int j = 0; j < types.type!.length; j++) {
-      typeDialogList.add(types.type![j].enName.toString());
+      typeDialogList.add(types.type![j].name.toString());
     }
     update();
     updateList("typeDialog", typeDialogList);

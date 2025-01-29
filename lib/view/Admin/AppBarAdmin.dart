@@ -5,11 +5,12 @@ import 'package:vms_school/Link/API/AuthAPI/LogoutAPI.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
 import 'package:vms_school/Link/Controller/AuthController/UserController.dart';
+import 'package:vms_school/Theme/ThemeData.dart';
 import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/main.dart';
 
 class AppbarAdmin extends StatelessWidget {
-  const AppbarAdmin({super.key});
+  AppbarAdmin({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,32 +56,32 @@ class AppbarAdmin extends StatelessWidget {
                           ))),
                   Padding(
                     padding: const EdgeInsets.only(right: 5.0),
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black12,
-                                offset: Offset(0, 2),
-                                blurRadius: 1)
-                          ]),
-                      child: GetBuilder<ThemeController>(builder: (controller) {
-                        return IconButton(
-                            style: const ButtonStyle(
-                                shape: WidgetStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5))))),
-                            onPressed: () {
-                              controller.toggleTheme();
-                            },
-                            icon: Icon(VMS_Icons.moon,
-                                size: 18, color: Get.theme.primaryColor));
-                      }),
-                    ),
+                    child: GetBuilder<Themecontroller>(builder: (cont) {
+                      return Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    offset: Offset(0, 2),
+                                    blurRadius: 1)
+                              ]),
+                          child: IconButton(
+                              style: const ButtonStyle(
+                                  shape: WidgetStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))))),
+                              onPressed: () {
+                                cont.changeThemeCustom(
+                                    !prefs!.getBool('mode')!);
+                              },
+                              icon: Icon(VMS_Icons.moon,
+                                  size: 18, color: Get.theme.primaryColor)));
+                    }),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 5.0),
@@ -132,7 +133,8 @@ class AppbarAdmin extends StatelessWidget {
                           GetBuilder<UserController>(builder: (control) {
                             return Text(
                               "${prefs!.getString("username")}",
-                              style: Get.theme.textTheme.bodyMedium!,
+                              style:
+                                  TextStyle(fontSize: 14, color: Colors.black),
                             );
                           })
                         ],
@@ -145,30 +147,36 @@ class AppbarAdmin extends StatelessWidget {
             Expanded(
               child: GetBuilder<AdminHomeContentController>(builder: (cont) {
                 return Center(
-                  child: Text(
-                    cont.content,
-                    style: Get.theme.textTheme.titleLarge!.copyWith(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold
-                    ),
-                  ),
+                  child: GetBuilder(
+                      init: Themecontroller(),
+                      builder: (thcont) {
+                        return Text(
+                          cont.content,
+                          style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: thcont.th!.highlightColor),
+                        );
+                      }),
                 );
               }),
             ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                GetBuilder<ThemeController>(builder: (controller) {
-                  return Obx(() => SvgPicture.asset(
-                        controller.isDarkMode.value
+            GetBuilder(
+                init: Themecontroller(),
+                builder: (thcont) {
+                  return Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      SvgPicture.asset(
+                        thcont.th == theme.Dark_Theme
                             ? "../../images/logodark.svg"
                             : "../../images/logolight.svg",
                         width: 250,
-                      ));
+                      )
+                    ],
+                  );
                 })
-              ],
-            )
           ],
         ),
       ),
