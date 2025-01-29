@@ -25,6 +25,18 @@ class ExamTableController extends GetxController {
 
   bool isCuriculmLoading = true;
   bool isLoading = true;
+  bool isTypeLoading = true;
+  bool isClassLoading = true;
+
+  setIsTypeLoading(bool value) {
+    isTypeLoading = value;
+    update();
+  }
+
+  setIsClassLoading(bool value) {
+    isClassLoading = value;
+    update();
+  }
 
   List<Quiz> quizList = [];
   List<Classes> Allclass = [];

@@ -25,6 +25,11 @@ class Add_Students_Controller extends GetxController {
 
   var isSpecialNeed = false.obs;
   var isMartySon = false.obs;
+  var isPendStudent = false.obs;
+
+  void togglePindStudent(bool value) {
+    isPendStudent.value = value;
+  }
 
   set_Edite_Data(
       {Genderindex,
@@ -35,6 +40,7 @@ class Add_Students_Controller extends GetxController {
       Classindex,
       Specialneed,
       DivisionIndexs,
+      required isPendStudents,
       Martyson}) {
     GenderIndex = Genderindex;
     RealagonIndex = Realagonindex;
@@ -44,6 +50,7 @@ class Add_Students_Controller extends GetxController {
     ClassIndex = Classindex;
     DivisionIndex = DivisionIndexs;
     isSpecialNeed.value = Specialneed;
+    isPendStudent.value = isPendStudents;
     isMartySon.value = Martyson;
     update();
   }
@@ -92,6 +99,7 @@ class Add_Students_Controller extends GetxController {
     currentPage.value = 0;
     isSpecialNeed.value = false;
     isMartySon.value = false;
+    isPendStudent.value = false;
     textController.clear();
     update();
   }

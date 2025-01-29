@@ -11,13 +11,16 @@ class DropDownexamTable extends StatelessWidget {
   final String title;
   final String type; // تحديد نوع الـ DropDown
   final Color? color;
-
-  const DropDownexamTable({
+  bool isDisabled;
+  bool isLoading;
+  DropDownexamTable({
     super.key,
-    required this.title, 
+    required this.title,
     this.color,
     required this.width,
     required this.type,
+    this.isDisabled = false,
+    this.isLoading = false,
   });
 
   @override
@@ -37,7 +40,7 @@ class DropDownexamTable extends StatelessWidget {
               ? cont.selectedExamClass
               : title;
           break;
-       
+
         case 'season':
           selectedValue = cont.selectedExamSeason.isNotEmpty
               ? cont.selectedExamSeason
@@ -74,41 +77,59 @@ class DropDownexamTable extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
           border: Border.all(color: color ?? const Color(0xffD9D9D9)),
         ),
-        child: DropdownButton<String>(
-          dropdownColor: Get.theme.cardColor,
-          iconDisabledColor: Colors.grey,
-          iconEnabledColor: Get.theme.cardColor,
-          value: selectedValue,
-          isExpanded: true,
-          underline: const SizedBox(),
-          icon: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Icon(Icons.arrow_drop_down,
-                  color: Get.theme.secondaryHeaderColor),
-            ],
-          ),
-          style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-          onChanged: (newValue) {
-            if (newValue != null) {
-              cont.selectIndex(type, newValue);
-            }
-          },
-          items: [
-            DropdownMenuItem<String>(
-              value: title,
-              enabled: false,
-              child: Text(
-                title,
-                style: Get.theme.textTheme.bodyMedium!.copyWith(
-                  fontSize: 14,
-                ),
-              ),
-            ),
-            ..._getDropdownItems(cont, context),
-          ],
-          borderRadius: BorderRadius.circular(3),
-        ),
+        child: isDisabled == true
+            ? Row(
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(color: Colors.grey),
+                  ),
+                ],
+              )
+            : isLoading == true
+                ? const Center(
+                    child: SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(strokeWidth: 3),
+                    ),
+                  )
+                : DropdownButton<String>(
+                    dropdownColor: Get.theme.cardColor,
+                    iconDisabledColor: Colors.grey,
+                    iconEnabledColor: Get.theme.cardColor,
+                    value: selectedValue,
+                    isExpanded: true,
+                    underline: const SizedBox(),
+                    icon: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Icon(Icons.arrow_drop_down,
+                            color: Get.theme.secondaryHeaderColor),
+                      ],
+                    ),
+                    style:
+                        Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+                    onChanged: (newValue) {
+                      if (newValue != null) {
+                        cont.selectIndex(type, newValue);
+                      }
+                    },
+                    items: [
+                      DropdownMenuItem<String>(
+                        value: title,
+                        enabled: false,
+                        child: Text(
+                          title,
+                          style: Get.theme.textTheme.bodyMedium!.copyWith(
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                      ..._getDropdownItems(cont, context),
+                    ],
+                    borderRadius: BorderRadius.circular(3),
+                  ),
       );
     });
   }
@@ -140,13 +161,11 @@ class DropDownexamTable extends StatelessWidget {
               value,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
-            onTap: () async {
-             
-            },
+            onTap: () async {},
           );
         }).toList());
         break;
-    
+
       case 'season':
         items.addAll(cont.examSeason.map((String value) {
           return DropdownMenuItem<String>(

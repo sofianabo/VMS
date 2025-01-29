@@ -78,6 +78,8 @@ class _ExamTableState extends State<ExamTable> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                     child: DropDownexamTable(
+                      isDisabled: false,
+                      // isLoading: controller.isLoadingClass,
                       title: "Type",
                       width: Get.width / 6.5,
                       type: 'type',
@@ -86,6 +88,8 @@ class _ExamTableState extends State<ExamTable> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                     child: DropDownexamTable(
+                      // isLoading: controller.c,
+                      isDisabled: false,
                       type: 'class',
                       title: "Class",
                       width: Get.width / 6.5,
@@ -149,13 +153,14 @@ class _ExamTableState extends State<ExamTable> {
                                   contents: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      const Padding(
-                                        padding: EdgeInsets.only(top: 15.0),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 15.0),
                                         child: Row(
                                           children: [
                                             Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 15.0),
+                                              padding: const EdgeInsets.only(
+                                                  right: 15.0),
                                               child: DropDownexamTable(
                                                   title: "Class",
                                                   width: 220,
@@ -168,7 +173,7 @@ class _ExamTableState extends State<ExamTable> {
                                           ],
                                         ),
                                       ),
-                                      const Padding(
+                                      Padding(
                                         padding: EdgeInsets.only(top: 15.0),
                                         child: Row(
                                           children: [

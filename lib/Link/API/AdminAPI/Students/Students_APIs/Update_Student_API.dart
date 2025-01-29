@@ -55,10 +55,8 @@ class Update_Student_API {
     FamilyNotbook_FileID,
     file,
     Fee_Discount,
+    Ispend,
   }) async {
-    print(
-        "$studentID $locationId, firstName: $firstName, lastName: $lastName, gender: $gender, birthDate: $birthDate, placeOfBirth: $placeOfBirth, religion: $religion, mobileNumber: $mobileNumber, bloodType: $bloodType, fatherName: $fatherName, fatherPhone: $fatherPhone, motherName: $motherName, currentAdress: $currentAdress, familystatus: $familystatus, password: $password, classid: $classid, divisionId: $divisionId, fatherWork: $fatherWork, motherPhone: $motherPhone, nationalNumber: $nationalNumber, localID: $localID, lastSchoolDetail: $lastSchoolDetail, note: $note, specialNeeds: $specialNeeds, martyrSon: $martyrSon, FatherPassport: $FatherPassport, MotherPassport: $MotherPassport, SonPassport: $SonPassport, UserID: $UserID, Certefecate: $Certefecate, Academic_sequence: $Academic_sequence, FamilyNotbook: $FamilyNotbook, FatherPassport_FileID: $FatherPassport_FileID, MotherPassport_FileID: $MotherPassport_FileID, SonPassport_FileID: $SonPassport_FileID, UserID_FileID: $UserID_FileID, Certefecate_FileID: $Certefecate_FileID, Academic_sequence_FileID: $Academic_sequence_FileID, FamilyNotbook_FileID: $FamilyNotbook_FileID, file: $file, Fee_Discount: $Fee_Discount");
-
     Dio dio = Dio();
     String myURI = "${hostPort}${updateStudent}";
 
@@ -95,6 +93,7 @@ class Update_Student_API {
         MapEntry("note", note),
         MapEntry("specialNeeds", specialNeeds == true ? "1" : "0"),
         MapEntry("martyrSon", martyrSon == true ? "1" : "0"),
+        MapEntry("pend", Ispend == true ? "1" : "0"),
         MapEntry("feeDiscount", Fee_Discount.toString()),
       ]);
 

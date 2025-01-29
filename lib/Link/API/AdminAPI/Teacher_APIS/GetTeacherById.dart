@@ -37,8 +37,6 @@ class GetteacherbyidAPI {
 
       if (response.statusCode == 200) {
         Oneteachermodel oneTeacher = Oneteachermodel.fromJson(response.data);
-        print(oneTeacher);
-
         controller.setOneTeacher(oneTeacher);
         Get.back();
         EditTeacherDialog(context, index, TeacherId);

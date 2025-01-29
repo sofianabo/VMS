@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
@@ -34,6 +35,7 @@ class Getallclassapi {
           Get.find<Allteacheratendencecontroller>();
       final StudentAttendencControlle = Get.find<StudentAttendencController>();
       final addStudentsControlle = Get.find<Add_Students_Controller>();
+      final AdminSchoolTimeControllers = Get.find<AdminSchoolTimeController>();
 
       ClassController.setIsLoading(true);
       Studentcontroller.setClassLoading(true);
@@ -43,6 +45,7 @@ class Getallclassapi {
       Allteacheratendencecontrolle.setClassLoading(true);
       StudentAttendencControlle.setClassLoading(true);
       addStudentsControlle.SetIsLoadingClass(true);
+      AdminSchoolTimeControllers.setIsLoadingClass(true);
 
       final controller = Get.find<Divisions_Controller>();
       controller.SetIsloading(true);

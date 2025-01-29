@@ -12,14 +12,18 @@ import 'package:vms_school/view/Admin/School_Management/SchoolTimeTable.dart';
 class DropDownSchoolTime extends StatelessWidget {
   final double width;
   final String title;
-  final String type; // تحديد نوع الـ DropDown
+  final String type;
   final Color? color;
-  const DropDownSchoolTime({
+  bool isDisabled;
+  bool isLoading;
+  DropDownSchoolTime({
     super.key,
     required this.title,
     this.color,
     required this.width,
     required this.type,
+    this.isDisabled = false,
+    this.isLoading = false,
   });
 
   @override
@@ -65,48 +69,66 @@ class DropDownSchoolTime extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
           border: Border.all(color: color ?? const Color(0xffD9D9D9)),
         ),
-        child: DropdownButton<String>(
-          dropdownColor: Get.theme.cardColor,
-          iconDisabledColor: Colors.grey,
-          iconEnabledColor: Get.theme.cardColor,
-          value: selectedValue,
-          isExpanded: true,
-          underline: const SizedBox(),
-          icon: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Icon(Icons.arrow_drop_down,
-                  color: Get.theme.secondaryHeaderColor),
-            ],
-          ),
-          style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-          onChanged: (newValue) {
-            if (newValue != null) {
-              if (type == "class") {
-                cont.setDevisionindex();
-              }
-              if (type == "time") {
-                cont.setClassIndex();
-                cont.setDevisionindex();
-              }
-              cont.selectIndex(type, newValue);
-            }
-          },
-          items: [
-            DropdownMenuItem<String>(
-              value: title,
-              enabled: false,
-              child: Text(
-                title,
-                style: Get.theme.textTheme.bodyMedium!.copyWith(
-                  fontSize: 14,
-                ),
-              ),
-            ),
-            ..._getDropdownItems(cont, context),
-          ],
-          borderRadius: BorderRadius.circular(3),
-        ),
+        child: isDisabled == true
+            ? Row(
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(color: Colors.grey),
+                  ),
+                ],
+              )
+            : isLoading == true
+                ? const Center(
+                    child: SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(strokeWidth: 3),
+                    ),
+                  )
+                : DropdownButton<String>(
+                    dropdownColor: Get.theme.cardColor,
+                    iconDisabledColor: Colors.grey,
+                    iconEnabledColor: Get.theme.cardColor,
+                    value: selectedValue,
+                    isExpanded: true,
+                    underline: const SizedBox(),
+                    icon: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Icon(Icons.arrow_drop_down,
+                            color: Get.theme.secondaryHeaderColor),
+                      ],
+                    ),
+                    style:
+                        Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+                    onChanged: (newValue) {
+                      if (newValue != null) {
+                        if (type == "class") {
+                          cont.setDevisionindex();
+                        }
+                        if (type == "time") {
+                          cont.setClassIndex();
+                          cont.setDevisionindex();
+                        }
+                        cont.selectIndex(type, newValue);
+                      }
+                    },
+                    items: [
+                      DropdownMenuItem<String>(
+                        value: title,
+                        enabled: false,
+                        child: Text(
+                          title,
+                          style: Get.theme.textTheme.bodyMedium!.copyWith(
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                      ..._getDropdownItems(cont, context),
+                    ],
+                    borderRadius: BorderRadius.circular(3),
+                  ),
       );
     });
   }

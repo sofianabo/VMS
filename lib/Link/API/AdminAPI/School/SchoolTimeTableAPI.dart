@@ -20,12 +20,9 @@ class Schooltimetableapi {
   Dropdowndivisioncontroller d = Get.find<Dropdowndivisioncontroller>();
   Dio dio = Dio();
 
-  Schooltimetable(int? id,String? t) async {
+  Schooltimetable(int? id, String? t) async {
     try {
       c.setIsLoading(true);
-      AllClassModel cl = await Getallclassapi.getAllClasses();
-
-      c.setAllClasses(cl);
 
       int? idx = id == -1 || id == null ? null : d.allDivision[id!].id;
       if (t == null) {
@@ -35,7 +32,8 @@ class Schooltimetableapi {
       }
       String myurl = "${global.hostPort}${global.getDivisionStudyShare}";
       var response = await dio.post(myurl,
-          data: {"divisionId": idx,"permanentType":t}, options: getDioOptions());
+          data: {"divisionId": idx, "permanentType": t},
+          options: getDioOptions());
       if (response.statusCode == 200) {
         SchoolTimeModel model = SchoolTimeModel.fromJson(response.data);
 
