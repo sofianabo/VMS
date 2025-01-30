@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Theme/ThemeData.dart';
 import 'package:vms_school/Translate/local_controller.dart'
     show localeController;
 import 'package:vms_school/Theme/themeController.dart';
@@ -26,22 +27,17 @@ class VMS extends StatefulWidget {
 }
 
 class _VMSState extends State<VMS> {
-  ThemeController th = Get.put(ThemeController(), permanent: true);
-
+  localeController loc = Get.put(localeController(), permanent: true);
   @override
   Widget build(BuildContext context) {
-    ThemeController themeController =
-        Get.put(ThemeController(), permanent: true);
-    localeController loc = Get.put(localeController(), permanent: true);
+    final Themecontroller themeController = Get.put(Themecontroller());
 
-    return Obx(() => GetMaterialApp(
+    return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         translations: MyLocal(),
         initialBinding: UserBiniding(),
         locale: loc.init,
-        darkTheme: themeController.Dark_Theme,
-        theme: ThemeController.Light_Theme,
-        themeMode: themeController.currentTheme,
+        theme: themeController.CheckTheme(),
         home: prefs!.getBool("isLogin") != null &&
                 prefs!.getBool("isLogin") == true
             ? AdminHome()
@@ -49,6 +45,6 @@ class _VMSState extends State<VMS> {
 
         // home: AdminHome()
 
-        ));
+        );
   }
 }

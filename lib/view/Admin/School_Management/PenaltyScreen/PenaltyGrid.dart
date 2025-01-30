@@ -9,6 +9,7 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/PenaltyAP
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/PenaltyAPI/EditPenaltyAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Grade_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/PenaltyController.dart';
+import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
@@ -36,29 +37,35 @@ class Penaltygrid extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Table(
-                        border: TableBorder.all(color: Get.theme.primaryColor),
-                        children: [
-                          TableRow(
-                            decoration:
-                                const BoxDecoration(color: Color(0xffD4DFE5)),
-                            children: [
-                              _tableHeader('Operation'),
-                              _tableHeader('Details'),
-                              _tableHeader('Penalty Name'),
-                            ],
-                          ),
-                          for (var row in controller.Penalties.asMap().entries)
-                            TableRow(
+                      GetBuilder(
+                          init: Themecontroller(),
+                          builder: (thcont) {
+                            return Table(
+                              border: TableBorder.all(
+                                  color: Get.theme.primaryColor),
                               children: [
-                                _operationColumn(
-                                    row.value, controller, row.key, context),
-                                _dataColumn(row.value['description']),
-                                _dataColumn(row.value['enName']),
+                                TableRow(
+                                  decoration: BoxDecoration(
+                                      color: thcont.th!.indicatorColor),
+                                  children: [
+                                    _tableHeader('Operation'),
+                                    _tableHeader('Details'),
+                                    _tableHeader('Penalty Name'),
+                                  ],
+                                ),
+                                for (var row
+                                    in controller.Penalties.asMap().entries)
+                                  TableRow(
+                                    children: [
+                                      _operationColumn(row.value, controller,
+                                          row.key, context),
+                                      _dataColumn(row.value['description']),
+                                      _dataColumn(row.value['enName']),
+                                    ],
+                                  ),
                               ],
-                            ),
-                        ],
-                      ),
+                            );
+                          }),
                     ],
                   ),
                 ),
@@ -72,14 +79,11 @@ class Penaltygrid extends StatelessWidget {
       height: 50,
       alignment: Alignment.center,
       child: Center(
-        child: Text(
-          title,
-          style: Get.theme.textTheme.titleLarge!.copyWith(
-            color: Get.theme.primaryColor,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        child: GetBuilder(
+            init: Themecontroller(),
+            builder: (thcont) {
+              return Text(title, style: thcont.th!.textTheme.headlineLarge);
+            }),
       ),
     );
   }
@@ -136,7 +140,7 @@ class Penaltygrid extends StatelessWidget {
           ),
           _iconButton(
             iconData: Icons.edit_note_outlined,
-            color: Get.theme.primaryColor,
+            color: const Color(0xff19478d),
             onPressed: () {
               name.text = "${row['name']}";
               enName.text = "${row['enName']}";
@@ -235,10 +239,14 @@ class Penaltygrid extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       height: 50,
-      child: Text(
-        data ?? '',
-        style: const TextStyle(color: Colors.black),
-      ),
+      child: GetBuilder(
+          init: Themecontroller(),
+          builder: (thcont) {
+            return Text(
+              data ?? '',
+              style: thcont.th!.textTheme.bodyMedium,
+            );
+          }),
     );
   }
 }
