@@ -28,7 +28,7 @@ class Textfildwithupper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder(
+    return GetBuilder<Themecontroller>(
         init: Themecontroller(),
         builder: (thcont) {
           return Container(
@@ -43,7 +43,8 @@ class Textfildwithupper extends StatelessWidget {
                   child: RichText(
                     text: TextSpan(
                       text: Uptext,
-                      style: thcont.th!.textTheme.bodyMedium,
+                      style: thcont.th!.textTheme.bodyMedium!
+                          .copyWith(fontSize: 14),
                       children: isRequired
                           ? [
                               const TextSpan(
@@ -59,6 +60,9 @@ class Textfildwithupper extends StatelessWidget {
                 SizedBox(
                   height: 40,
                   child: TextFormField(
+                    style:
+                        thcont.th!.textTheme.bodyMedium!.copyWith(fontSize: 14),
+                    textAlign: TextAlign.center,
                     enabled: enabled,
                     readOnly: readOnly,
                     controller: controller,
@@ -88,11 +92,9 @@ class Textfildwithupper extends StatelessWidget {
                       }
                     },
                     decoration: InputDecoration(
-                      suffixIcon: icon ?? const Text(""),
+                      suffixIcon: icon ?? null,
                       hintText: hinttext,
-                      hintStyle: TextStyle(
-                        color: Colors.grey,
-                      ),
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 12),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
                         borderSide:
