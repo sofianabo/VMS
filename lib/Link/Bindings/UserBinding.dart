@@ -17,6 +17,7 @@ import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Pe
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/School_Info_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Session_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Subject_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Teachernote_and_GradeReco.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Transaction_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
@@ -110,5 +111,6 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Penaltycontroller(), fenix: true);
     Get.lazyPut(() => Penaltiesandrewardscontroller(), fenix: true);
     Get.lazyPut(() => Teachersubjectscontroller(), fenix: true);
+    Get.lazyPut(() => TeachernoteAndGradeReco(), fenix: true);
   }
 }
