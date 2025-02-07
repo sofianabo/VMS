@@ -17,6 +17,7 @@ import 'package:vms_school/Link/Controller/WidgetController/DateControler.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:intl/intl.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
+import 'package:vms_school/Theme/themeController.dart';
 
 class DatePicker extends StatelessWidget {
   final double width;
@@ -164,7 +165,8 @@ class BirthDate extends StatelessWidget {
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide:
+                        const BorderSide(color: Color(0xffD9D9D9), width: 2),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -251,7 +253,8 @@ class JoinDate extends StatelessWidget {
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide:
+                        const BorderSide(color: Color(0xffD9D9D9), width: 2),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -315,7 +318,7 @@ class selectDateRequest extends StatelessWidget {
                 onTap: () => controller.selectDate(context),
                 decoration: InputDecoration(
                     hintText: "yyyy-MM-dd",
-                    hintStyle: Get.theme.textTheme.bodyMedium!
+                    hintStyle: Theme.of(context).textTheme.bodyMedium!
                         .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
@@ -333,7 +336,7 @@ class selectDateRequest extends StatelessWidget {
                         ? IconButton(
                             icon: Icon(
                               VMS_Icons.calender,
-                              color: Get.theme.primaryColor,
+                              color: Theme.of(context).primaryColor,
                               size: 16,
                             ),
                             onPressed: () => controller.selectDate(context),
@@ -341,7 +344,7 @@ class selectDateRequest extends StatelessWidget {
                         : IconButton(
                             icon: Icon(
                               Icons.close,
-                              color: Get.theme.primaryColor,
+                              color: Theme.of(context).primaryColor,
                               size: 16,
                             ),
                             onPressed: () => controller.removeDate(),
@@ -393,11 +396,12 @@ class selectTeacherDateAttendence extends StatelessWidget {
                   decoration: InputDecoration(
                       hintText: "yyyy-MM-dd",
                       hintStyle: Get.theme.primaryTextTheme.titleMedium!
-                          .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
+                          .copyWith(
+                              fontSize: 14, color: const Color(0xffD9D9D9)),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
-                        borderSide:
-                            const BorderSide(color: Color(0xffD9D9D9), width: 2),
+                        borderSide: const BorderSide(
+                            color: Color(0xffD9D9D9), width: 2),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
@@ -478,11 +482,12 @@ class selectEmployeeDateAttendence extends StatelessWidget {
                   decoration: InputDecoration(
                       hintText: "yyyy-MM-dd",
                       hintStyle: Get.theme.primaryTextTheme.titleMedium!
-                          .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
+                          .copyWith(
+                              fontSize: 14, color: const Color(0xffD9D9D9)),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
-                        borderSide:
-                            const BorderSide(color: Color(0xffD9D9D9), width: 2),
+                        borderSide: const BorderSide(
+                            color: Color(0xffD9D9D9), width: 2),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
@@ -560,11 +565,12 @@ class selectStudentsDateAttendence extends StatelessWidget {
                   decoration: InputDecoration(
                       hintText: "yyyy-MM-dd",
                       hintStyle: Get.theme.primaryTextTheme.titleMedium!
-                          .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
+                          .copyWith(
+                              fontSize: 14, color: const Color(0xffD9D9D9)),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
-                        borderSide:
-                            const BorderSide(color: Color(0xffD9D9D9), width: 2),
+                        borderSide: const BorderSide(
+                            color: Color(0xffD9D9D9), width: 2),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
@@ -642,11 +648,12 @@ class selectTransactionDate extends StatelessWidget {
                   decoration: InputDecoration(
                       hintText: "yyyy-MM-dd",
                       hintStyle: Get.theme.primaryTextTheme.titleMedium!
-                          .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
+                          .copyWith(
+                              fontSize: 14, color: const Color(0xffD9D9D9)),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
-                        borderSide:
-                            const BorderSide(color: Color(0xffD9D9D9), width: 2),
+                        borderSide: const BorderSide(
+                            color: Color(0xffD9D9D9), width: 2),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
@@ -725,7 +732,8 @@ class selectstart extends StatelessWidget {
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide:
+                        const BorderSide(color: Color(0xffD9D9D9), width: 2),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -793,7 +801,8 @@ class selectend extends StatelessWidget {
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide:
+                        const BorderSide(color: Color(0xffD9D9D9), width: 2),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -862,7 +871,8 @@ class penaltyStartDate extends StatelessWidget {
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide:
+                        const BorderSide(color: Color(0xffD9D9D9), width: 2),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -931,7 +941,8 @@ class PenaltyEndDate extends StatelessWidget {
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide:
+                        const BorderSide(color: Color(0xffD9D9D9), width: 2),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -999,7 +1010,8 @@ class examDate extends StatelessWidget {
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide:
+                        const BorderSide(color: Color(0xffD9D9D9), width: 2),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -1086,7 +1098,8 @@ class EditJoinDateTeacher extends StatelessWidget {
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide:
+                        const BorderSide(color: Color(0xffD9D9D9), width: 2),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -1173,7 +1186,8 @@ class EditBirthDateTeacher extends StatelessWidget {
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide:
+                        const BorderSide(color: Color(0xffD9D9D9), width: 2),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),

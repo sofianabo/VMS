@@ -18,6 +18,7 @@ class TextFieldAuth extends StatelessWidget {
       width: w/2.56,
       height: 50,
       child: TextFormField(
+        
         autofillHints: autofill,
         autofocus: true,
         controller: controller,

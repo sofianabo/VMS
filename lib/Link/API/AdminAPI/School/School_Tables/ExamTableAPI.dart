@@ -32,8 +32,11 @@ class Examtableapi {
       String myurl = "$hostPort$examTable";
       var response = await dio.post(myurl, data: {}, options: getDioOptions());
       if (response.statusCode == 200) {
+        
         ExamTableModel student = ExamTableModel.fromJson(response.data);
+        print("sssssssssss");
         c.setAllQuiz(student);
+        print("ddddddddd");
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

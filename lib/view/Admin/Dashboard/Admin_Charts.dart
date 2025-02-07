@@ -169,12 +169,8 @@ class BarChartSample1State extends State<BarChartSample1> {
             getTitlesWidget: (value, meta) {
               final index = value.toInt();
               if (index < widget.data.length) {
-                return GetBuilder(
-                    init: Themecontroller(),
-                    builder: (thcont) {
-                      return Text(widget.data[index]['countryName'],
-                          style: thcont.th!.textTheme.bodyMedium);
-                    });
+                return Text(widget.data[index]['countryName'],
+                    style: Theme.of(context).textTheme.bodyMedium);
               }
               return const Text('');
             },
@@ -385,12 +381,8 @@ class BarChartSample2State extends State<BarChartSample2> {
             getTitlesWidget: (value, meta) {
               final index = value.toInt();
               if (index < widget.data.length) {
-                return GetBuilder(
-                    init: Themecontroller(),
-                    builder: (thcont) {
-                      return Text(widget.data[index]['countryName'],
-                          style: thcont.th!.textTheme.bodyMedium);
-                    });
+                return Text(widget.data[index]['countryName'],
+                    style: Theme.of(context).textTheme.bodyMedium);
               }
               return const Text('');
             },

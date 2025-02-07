@@ -57,21 +57,17 @@ Widget VMSAlertDialog({
           ),
           Padding(
             padding: const EdgeInsets.all(5.0),
-            child: GetBuilder(
-                init: Themecontroller(),
-                builder: (thcont) {
-                  return IconButton(
-                    color: thcont.th!.indicatorColor,
-                    focusColor: thcont.th!.indicatorColor,
-                    hoverColor: thcont.th!.indicatorColor,
-                    splashColor: thcont.th!.indicatorColor,
-                    onPressed: () {
-                      Get.back();
-                    },
-                    icon: Icon(Icons.close_rounded,
-                        color: thcont.th!.secondaryHeaderColor),
-                  );
-                }),
+            child: IconButton(
+              color: Get.theme.indicatorColor,
+              focusColor: Get.theme.indicatorColor,
+              hoverColor: Get.theme.indicatorColor,
+              splashColor: Get.theme.indicatorColor,
+              onPressed: () {
+                Get.back();
+              },
+              icon: Icon(Icons.close_rounded,
+                  color: Get.theme.secondaryHeaderColor),
+            ),
           ),
         ],
       ),

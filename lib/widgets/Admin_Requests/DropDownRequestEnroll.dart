@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownDivisionAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
+import 'package:vms_school/Theme/themeController.dart';
 
 class Dropdownrequestenroll extends StatelessWidget {
   final double width;
@@ -55,7 +56,7 @@ class Dropdownrequestenroll extends StatelessWidget {
           border: Border.all(color: color ?? const Color(0xffD9D9D9)),
         ),
         child: isDisabled == true
-            ? const Row(
+            ? const Row( 
                 children: [
                   Text(
                     "Division",
@@ -81,39 +82,35 @@ class Dropdownrequestenroll extends StatelessWidget {
                               cont.selectIndex(type, newValue);
                             }
                           },
-                          dropdownColor: Get.theme.cardColor,
+                          dropdownColor: Theme.of(context).cardColor,
                           iconDisabledColor: Colors.grey,
-                          iconEnabledColor: Get.theme.cardColor,
+                          iconEnabledColor: Theme.of(context).cardColor,
                           value: selectedValue,
                           isExpanded: true,
                           underline: const SizedBox(),
-                          icon:
-                              selectedValue.isNotEmpty && selectedValue != title
-                                  ? GestureDetector(
-                                      onTap: () {
-                                        cont.selectIndex(type, "");
-                                        cont.update();
-                                      },
-                                      child: Icon(
-                                        Icons.close,
-                                        color: Get.theme.secondaryHeaderColor,
-                                      ),
-                                    )
-                                  : Icon(
-                                      Icons.arrow_drop_down,
-                                      color: Get.theme.secondaryHeaderColor,
-                                    ),
-                          style: Get.theme.textTheme.bodyMedium!
-                              .copyWith(fontSize: 14),
+                          icon: selectedValue.isNotEmpty &&
+                                  selectedValue != title
+                              ? GestureDetector(
+                                  onTap: () {
+                                    cont.selectIndex(type, "");
+                                    cont.update();
+                                  },
+                                  child: Icon(
+                                    Icons.close,
+                                    color:
+                                        Theme.of(context).secondaryHeaderColor,
+                                  ),
+                                )
+                              : Icon(
+                                  Icons.arrow_drop_down,
+                                  color: Theme.of(context).secondaryHeaderColor,
+                                ),
+                          style: Theme.of(context).textTheme.bodyMedium!,
                           items: [
                             DropdownMenuItem<String>(
                               value: title,
-                              child: Text(
-                                title,
-                                style: Get.theme.textTheme.bodyMedium!.copyWith(
-                                  fontSize: 14,
-                                ),
-                              ),
+                              child: Text(title,
+                                  style: Theme.of(context).textTheme.bodyMedium),
                             ),
                             ..._getDropdownItems(cont, context),
                           ],
@@ -135,10 +132,7 @@ class Dropdownrequestenroll extends StatelessWidget {
         items.addAll(cont.divisionlist.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
+            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () async {
               cont.selectIndex(type, value);
             },
@@ -149,10 +143,7 @@ class Dropdownrequestenroll extends StatelessWidget {
         items.addAll(cont.classlist.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
+            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () async {
               AllDivisionModel division = await Dropdowndivisionapi(context)
                   .Dropdowndivision(cont.classlist.indexOf(value), 0);
@@ -166,10 +157,7 @@ class Dropdownrequestenroll extends StatelessWidget {
         items.addAll(cont.statusList.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
+            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () async {
               cont.selectIndex(type, value);
             },

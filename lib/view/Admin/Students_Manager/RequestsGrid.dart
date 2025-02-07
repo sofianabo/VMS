@@ -6,6 +6,7 @@ import 'package:vms_school/Link/API/AdminAPI/Students/Guardian_APIS/RejectEnroll
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
+import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/widgets/Admin_Requests/DropDownRequestEnroll.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/ButtonsGrid.dart';
@@ -37,9 +38,10 @@ class RequestsGrid extends StatelessWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                          color: Get.theme.cardColor,
+                          color: Theme.of(context).cardColor,
                           border: Border.all(color: Colors.grey, width: 0.2),
-                          borderRadius: const BorderRadius.all(Radius.circular(5)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(5)),
                           boxShadow: const [
                             BoxShadow(
                                 color: Colors.black12,
@@ -141,7 +143,7 @@ class RequestsGrid extends StatelessWidget {
                         .animate(onPlay: (controller) => controller.repeat())
                         .shimmer(
                             angle: 1,
-                            color: Get.theme.dialogBackgroundColor,
+                            color: Theme.of(context).dialogBackgroundColor,
                             duration: const Duration(seconds: 1),
                             delay: const Duration(seconds: 1)),
                     const Center(
@@ -159,7 +161,9 @@ class RequestsGrid extends StatelessWidget {
         if (controller.filteredregistration.isEmpty) {
           return Center(
               child: Text("No Requests",
-                  style: Get.theme.textTheme.titleLarge!
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge!
                       .copyWith(fontSize: 22, fontWeight: FontWeight.normal)));
         } else {
           return Container(
@@ -177,9 +181,10 @@ class RequestsGrid extends StatelessWidget {
                 return HoverScaleCard(
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Get.theme.cardColor,
+                        color: Theme.of(context).cardColor,
                         border: Border.all(color: Colors.grey, width: 0.2),
-                        borderRadius: const BorderRadius.all(Radius.circular(5)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5)),
                         boxShadow: const [
                           BoxShadow(
                               color: Colors.black12,
@@ -199,10 +204,10 @@ class RequestsGrid extends StatelessWidget {
                               children: [
                                 Text(
                                   "Guardian Info :",
-                                  style: Get.theme.textTheme.titleLarge!
-                                      .copyWith(
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 18),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge!
+                                      .copyWith(fontSize: 18),
                                 ),
                                 Text(
                                     "${controller.filteredregistration[index].date}"),
@@ -213,68 +218,80 @@ class RequestsGrid extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 5.0),
                             child: Text(
                               "Name : ${controller.filteredregistration[index].guardian?.name}",
-                              style: Get.theme.textTheme.bodyMedium!.copyWith(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal),
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 5.0),
                             child: Text(
                               "Mobile: ${controller.filteredregistration[index].guardian?.phone}",
-                              style: Get.theme.textTheme.bodyMedium!.copyWith(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal),
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 5.0),
                             child: Text(
                               "Email: ${controller.filteredregistration[index].guardian?.email}",
-                              style: Get.theme.textTheme.bodyMedium!.copyWith(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal),
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 5.0),
                             child: Text(
                               "National ID: ${controller.filteredregistration[index].guardian?.nationalId}",
-                              style: Get.theme.textTheme.bodyMedium!.copyWith(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal),
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 5.0),
-                            child: Text(
-                              "Student Info:",
-                              style: Get.theme.textTheme.titleLarge!.copyWith(
-                                  fontSize: 18, fontWeight: FontWeight.normal),
-                            ),
+                            child: Text("Student Info:",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .copyWith(fontSize: 18)),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 5.0),
                             child: Text(
                               "Name : ${controller.filteredregistration[index].student?.name}",
-                              style: Get.theme.textTheme.bodyMedium!.copyWith(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal),
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 5.0),
                             child: Text(
                               "Current Class: ${controller.filteredregistration[index].student?.clas ?? "No Class"}",
-                              style: Get.theme.textTheme.bodyMedium!.copyWith(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal),
                             ),
                           ),
                           Padding(
@@ -282,10 +299,12 @@ class RequestsGrid extends StatelessWidget {
                                 const EdgeInsets.only(top: 5.0, bottom: 15.0),
                             child: Text(
                               "Previous Class: ${controller.filteredregistration[index].student?.previousClass ?? "No Class"}",
-                              style: Get.theme.textTheme.bodyMedium!.copyWith(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal),
                             ),
                           ),
                           Row(
@@ -293,7 +312,7 @@ class RequestsGrid extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               ButtonsGrid(
-                                color: Get.theme.primaryColor,
+                                color: Theme.of(context).primaryColorLight,
                                 width: 150,
                                 height: 40,
                                 text: "Manage",
@@ -339,7 +358,7 @@ class RequestsGrid extends StatelessWidget {
                                                             .selectedDivisionIndex));
                                           },
                                           width: 80,
-                                          color: Get.theme.primaryColor,
+                                          color: Theme.of(context).primaryColor,
                                         )
                                       ],
                                       contents: Row(
@@ -384,7 +403,9 @@ class RequestsGrid extends StatelessWidget {
                                           const EdgeInsets.only(right: 8.0),
                                       child: Text(
                                         "${controller.filteredregistration[index].type}",
-                                        style: Get.theme.textTheme.bodyMedium!
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
                                             .copyWith(
                                                 fontSize: 16,
                                                 color: controller
@@ -398,8 +419,10 @@ class RequestsGrid extends StatelessWidget {
                                                                     index]
                                                                 .type ==
                                                             "Pending"
-                                                        ? const Color(0xff297686)
-                                                        : const Color(0xff779DB6),
+                                                        ? const Color(
+                                                            0xff297686)
+                                                        : const Color(
+                                                            0xff779DB6),
                                                 fontWeight: FontWeight.normal),
                                       ),
                                     ),

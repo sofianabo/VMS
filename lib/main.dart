@@ -37,7 +37,9 @@ class _VMSState extends State<VMS> {
         translations: MyLocal(),
         initialBinding: UserBiniding(),
         locale: loc.init,
-        theme: themeController.CheckTheme(),
+        theme: theme.Light_Theme,
+        themeMode: Themecontroller.defualtTheme,
+        darkTheme: theme.Dark_Theme,
         home: prefs!.getBool("isLogin") != null &&
                 prefs!.getBool("isLogin") == true
             ? AdminHome()

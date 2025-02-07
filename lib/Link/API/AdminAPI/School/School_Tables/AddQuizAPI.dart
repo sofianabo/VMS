@@ -50,10 +50,8 @@ class Addquizapi {
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
-
-       await Examtableapi(context).Examtable();
-                Get.back();
-
+        await Examtableapi(context).Examtable();
+        Get.back();
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

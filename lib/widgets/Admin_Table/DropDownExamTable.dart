@@ -5,6 +5,7 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/DropDownExamTy
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/ExamTableController.dart';
 import 'package:vms_school/Link/Model/AdminModel/DropDownCuriculmModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/ExamTypeModel.dart';
+import 'package:vms_school/Theme/themeController.dart';
 
 class DropDownexamTable extends StatelessWidget {
   final double width;
@@ -94,10 +95,10 @@ class DropDownexamTable extends StatelessWidget {
                       child: CircularProgressIndicator(strokeWidth: 3),
                     ),
                   )
-                : DropdownButton<String>(
-                    dropdownColor: Get.theme.cardColor,
+                : DropdownButton<String>( 
+                    dropdownColor: Theme.of(context).cardColor,
                     iconDisabledColor: Colors.grey,
-                    iconEnabledColor: Get.theme.cardColor,
+                    iconEnabledColor: Theme.of(context).cardColor,
                     value: selectedValue,
                     isExpanded: true,
                     underline: const SizedBox(),
@@ -105,11 +106,10 @@ class DropDownexamTable extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Icon(Icons.arrow_drop_down,
-                            color: Get.theme.secondaryHeaderColor),
+                            color: Theme.of(context).secondaryHeaderColor),
                       ],
                     ),
-                    style:
-                        Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+                    style: Theme.of(context).textTheme.bodyMedium!,
                     onChanged: (newValue) {
                       if (newValue != null) {
                         cont.selectIndex(type, newValue);
@@ -119,12 +119,8 @@ class DropDownexamTable extends StatelessWidget {
                       DropdownMenuItem<String>(
                         value: title,
                         enabled: false,
-                        child: Text(
-                          title,
-                          style: Get.theme.textTheme.bodyMedium!.copyWith(
-                            fontSize: 14,
-                          ),
-                        ),
+                        child: Text(title,
+                            style: Theme.of(context).textTheme.bodyMedium),
                       ),
                       ..._getDropdownItems(cont, context),
                     ],
@@ -145,10 +141,7 @@ class DropDownexamTable extends StatelessWidget {
         items.addAll(cont.examType.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
+            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () {},
           );
         }).toList());
@@ -157,10 +150,7 @@ class DropDownexamTable extends StatelessWidget {
         items.addAll(cont.examClass.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
+            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () async {},
           );
         }).toList());
@@ -170,10 +160,7 @@ class DropDownexamTable extends StatelessWidget {
         items.addAll(cont.examSeason.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
+            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () async {
               seasonindex = value;
               AllExamTypeModel types = await Dropdownexamtypeapi(context)
@@ -187,10 +174,7 @@ class DropDownexamTable extends StatelessWidget {
         items.addAll(cont.semesterDialogList.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
+            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () async {
               seasonindex = value;
               AllExamTypeModel types = await Dropdownexamtypeapi(context)
@@ -204,10 +188,7 @@ class DropDownexamTable extends StatelessWidget {
         items.addAll(cont.classDialogList.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
+            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () async {
               classindex = value;
               DropDowmCuriculmModel curi =
@@ -222,10 +203,7 @@ class DropDownexamTable extends StatelessWidget {
         items.addAll(cont.curiculmDialogList.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
+            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
           );
         }).toList());
         break;
@@ -233,10 +211,7 @@ class DropDownexamTable extends StatelessWidget {
         items.addAll(cont.typeDialogList.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
+            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
           );
         }).toList());
         break;

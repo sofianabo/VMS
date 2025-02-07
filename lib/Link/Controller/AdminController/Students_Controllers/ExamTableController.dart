@@ -56,14 +56,13 @@ class ExamTableController extends GetxController {
     }
     if (examTypeIndex.isNotEmpty) {
       filteredquiz = filteredquiz!.where((emp) {
-        return emp.type!.name == examTypeIndex ||
-            emp.type!.enName == examTypeIndex;
+        return emp.type! == examTypeIndex;
       }).toList();
     }
     if (examClassIndex.isNotEmpty) {
       filteredquiz = filteredquiz!.where((emp) {
-        return emp.classes!.name == examClassIndex ||
-            emp.type!.enName == examClassIndex;
+        return emp.classese!.name == examClassIndex ||
+            emp.type! == examClassIndex;
       }).toList();
     }
 
@@ -85,12 +84,12 @@ class ExamTableController extends GetxController {
     }
     if (type.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((emp) {
-        return emp.type!.enName!.toLowerCase() == type.toLowerCase();
+        return emp.type!.toLowerCase() == type.toLowerCase();
       }).toList();
     }
     if (classes.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((emp) {
-        return emp.classes!.enName!.toLowerCase() == classes.toLowerCase();
+        return emp.classese!.enName!.toLowerCase() == classes.toLowerCase();
       }).toList();
     }
 

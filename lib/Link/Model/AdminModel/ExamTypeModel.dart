@@ -24,21 +24,19 @@ class AllExamTypeModel {
 class Type {
   int? id;
   String? name;
-  String? enName;
 
-  Type({this.id, this.name, this.enName});
+  Type({this.id, this.name});
 
   Type.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    enName = json['enName'];
+    
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
-    data['enName'] = enName;
     return data;
   }
 }

@@ -45,165 +45,161 @@ class PenaltyscreenState extends State<Penaltyscreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              GetBuilder(
-                  init: Themecontroller(),
-                  builder: (thcont) {
-                    return Row(
-                      children: [
-                        const Spacer(),
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: thcont.th!.cardColor,
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    offset: Offset(0, 2),
-                                    blurRadius: 1)
-                              ]),
-                          child: IconButton(
-                              style: ButtonStyle(
-                                  backgroundColor: WidgetStatePropertyAll(
-                                      thcont.th!.cardColor),
-                                  shape: WidgetStatePropertyAll(
-                                      RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))))),
-                              onPressed: () {
-                                Get.dialog(GetBuilder<Penaltycontroller>(
-                                    builder: (controller) {
-                                  return VMSAlertDialog(
-                                      action: [
-                                        ButtonDialog(
-                                            text: "Add",
-                                            onPressed: () async {
-                                              await Addpenaltyapi(context)
-                                                  .Addpenalty(
-                                                name: arName.text,
-                                                enName: enName.text,
-                                                discription: details.text,
-                                              );
-                                            },
-                                            color: Get.theme.primaryColor,
-                                            width: 120),
+              Row(
+                children: [
+                  const Spacer(),
+                  Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).cardColor,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(0, 2),
+                              blurRadius: 1)
+                        ]),
+                    child: IconButton(
+                        style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll(
+                                Theme.of(context).cardColor),
+                            shape: WidgetStatePropertyAll(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(5))))),
+                        onPressed: () {
+                          Get.dialog(GetBuilder<Penaltycontroller>(
+                              builder: (controller) {
+                            return VMSAlertDialog(
+                                action: [
+                                  ButtonDialog(
+                                      text: "Add",
+                                      onPressed: () async {
+                                        await Addpenaltyapi(context)
+                                            .Addpenalty(
+                                          name: arName.text,
+                                          enName: enName.text,
+                                          discription: details.text,
+                                        );
+                                      },
+                                      color: Get.theme.primaryColor,
+                                      width: 120),
+                                ],
+                                contents: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.only(
+                                                      left: 15.0,
+                                                      right: 15.0),
+                                              child: Textfildwithupper(
+                                                  controller: enName,
+                                                  Uptext:
+                                                      "Penalty En - Name",
+                                                  hinttext:
+                                                      "Penalty En - Name"),
+                                            ),
+                                            Textfildwithupper(
+                                                controller: arName,
+                                                Uptext:
+                                                    "Penalty Ar - Name",
+                                                hinttext:
+                                                    "Penalty Ar - Name"),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.only(
+                                                      left: 15.0,
+                                                      right: 15.0,
+                                                      top: 15.0),
+                                              child: Textfildwithupper(
+                                                  controller: details,
+                                                  Uptext: "Details",
+                                                  hinttext: "Details"),
+                                            ),
+                                          ],
+                                        ),
                                       ],
-                                      contents: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 15.0,
-                                                            right: 15.0),
-                                                    child: Textfildwithupper(
-                                                        controller: enName,
-                                                        Uptext:
-                                                            "Penalty En - Name",
-                                                        hinttext:
-                                                            "Penalty En - Name"),
-                                                  ),
-                                                  Textfildwithupper(
-                                                      controller: arName,
-                                                      Uptext:
-                                                          "Penalty Ar - Name",
-                                                      hinttext:
-                                                          "Penalty Ar - Name"),
-                                                ],
-                                              ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 15.0,
-                                                            right: 15.0,
-                                                            top: 15.0),
-                                                    child: Textfildwithupper(
-                                                        controller: details,
-                                                        Uptext: "Details",
-                                                        hinttext: "Details"),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      apptitle: "Add Penalty",
-                                      subtitle: "none");
-                                }));
-                              },
-                              icon: Icon(Icons.add,
-                                  size: 18, color: thcont.th!.highlightColor)),
-                        ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(right: 10.0, left: 10.0),
-                          child: Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                color: thcont.th!.cardColor,
-                                borderRadius: BorderRadius.circular(5),
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Colors.black12,
-                                      offset: Offset(0, 2),
-                                      blurRadius: 1)
-                                ]),
-                            child: IconButton(
-                                style: ButtonStyle(
-                                    backgroundColor: WidgetStatePropertyAll(
-                                        thcont.th!.cardColor),
-                                    shape: WidgetStatePropertyAll(
-                                        RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(5))))),
-                                onPressed: () {},
-                                icon: Icon(VMS_Icons.pdf,
-                                    size: 18,
-                                    color: thcont.th!.highlightColor)),
-                          ),
-                        ),
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: thcont.th!.cardColor,
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    offset: Offset(0, 2),
-                                    blurRadius: 1)
-                              ]),
-                          child: IconButton(
-                              style: ButtonStyle(
-                                  backgroundColor: WidgetStatePropertyAll(
-                                      thcont.th!.cardColor),
-                                  shape: WidgetStatePropertyAll(
-                                      RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))))),
-                              onPressed: () {},
-                              icon: Icon(VMS_Icons.xl,
-                                  size: 18, color: thcont.th!.highlightColor)),
-                        ),
-                      ],
-                    );
-                  }),
+                                    ),
+                                  ],
+                                ),
+                                apptitle: "Add Penalty",
+                                subtitle: "none");
+                          }));
+                        },
+                        icon: Icon(Icons.add,
+                            size: 18, color: Theme.of(context).highlightColor)),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(right: 10.0, left: 10.0),
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: IconButton(
+                          style: ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                  Theme.of(context).cardColor),
+                              shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5))))),
+                          onPressed: () {},
+                          icon: Icon(VMS_Icons.pdf,
+                              size: 18,
+                              color: Theme.of(context).highlightColor)),
+                    ),
+                  ),
+                  Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).cardColor,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(0, 2),
+                              blurRadius: 1)
+                        ]),
+                    child: IconButton(
+                        style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll(
+                                Theme.of(context).cardColor),
+                            shape: WidgetStatePropertyAll(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(5))))),
+                        onPressed: () {},
+                        icon: Icon(VMS_Icons.xl,
+                            size: 18, color: Theme.of(context).highlightColor)),
+                  ),
+                ],
+              ),
             ],
           ),
         ),

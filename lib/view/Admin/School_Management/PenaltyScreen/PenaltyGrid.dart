@@ -14,11 +14,18 @@ import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
-class Penaltygrid extends StatelessWidget {
+class Penaltygrid extends StatefulWidget {
   Penaltygrid({super.key});
 
+  @override
+  State<Penaltygrid> createState() => _PenaltygridState();
+}
+
+class _PenaltygridState extends State<Penaltygrid> {
   TextEditingController name = TextEditingController();
+
   TextEditingController enName = TextEditingController();
+
   TextEditingController details = TextEditingController();
 
   @override
@@ -37,35 +44,31 @@ class Penaltygrid extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      GetBuilder(
-                          init: Themecontroller(),
-                          builder: (thcont) {
-                            return Table(
-                              border: TableBorder.all(
-                                  color: Get.theme.primaryColor),
+                      Table(
+                        border: TableBorder.all(
+                            color: Get.theme.primaryColor),
+                        children: [
+                          TableRow(
+                            decoration: BoxDecoration(
+                                color: Theme.of(context).indicatorColor),
+                            children: [
+                              _tableHeader('Operation'),
+                              _tableHeader('Details'),
+                              _tableHeader('Penalty Name'),
+                            ],
+                          ),
+                          for (var row
+                              in controller.Penalties.asMap().entries)
+                            TableRow(
                               children: [
-                                TableRow(
-                                  decoration: BoxDecoration(
-                                      color: thcont.th!.indicatorColor),
-                                  children: [
-                                    _tableHeader('Operation'),
-                                    _tableHeader('Details'),
-                                    _tableHeader('Penalty Name'),
-                                  ],
-                                ),
-                                for (var row
-                                    in controller.Penalties.asMap().entries)
-                                  TableRow(
-                                    children: [
-                                      _operationColumn(row.value, controller,
-                                          row.key, context),
-                                      _dataColumn(row.value['description']),
-                                      _dataColumn(row.value['enName']),
-                                    ],
-                                  ),
+                                _operationColumn(row.value, controller,
+                                    row.key, context),
+                                _dataColumn(row.value['description']),
+                                _dataColumn(row.value['enName']),
                               ],
-                            );
-                          }),
+                            ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -79,11 +82,7 @@ class Penaltygrid extends StatelessWidget {
       height: 50,
       alignment: Alignment.center,
       child: Center(
-        child: GetBuilder(
-            init: Themecontroller(),
-            builder: (thcont) {
-              return Text(title, style: thcont.th!.textTheme.headlineLarge);
-            }),
+        child: Text(title, style: Theme.of(context).textTheme.headlineLarge),
       ),
     );
   }
@@ -239,14 +238,10 @@ class Penaltygrid extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       height: 50,
-      child: GetBuilder(
-          init: Themecontroller(),
-          builder: (thcont) {
-            return Text(
-              data ?? '',
-              style: thcont.th!.textTheme.bodyMedium,
-            );
-          }),
+      child: Text(
+        data ?? '',
+        style: Theme.of(context).textTheme.bodyMedium,
+      ),
     );
   }
 }

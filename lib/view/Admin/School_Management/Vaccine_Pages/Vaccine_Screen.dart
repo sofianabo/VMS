@@ -6,6 +6,7 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Vaccines_
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Vaccines_APIs/Get_All_Vaccines_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Location_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
+import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/view/Admin/School_Management/Vaccine_Pages/Vaccine_Grid.dart';
 import 'package:vms_school/widgets/Admin_Students/DropDown_Add_Students.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
@@ -77,7 +78,7 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                         width: 40,
                         height: 40,
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(5),
                             boxShadow: const [
                               BoxShadow(
@@ -148,7 +149,7 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                                                 );
                                               },
                                               color:
-                                                  Get.theme.colorScheme.primary)
+                                                  Theme.of(context).canvasColor)
                                         ],
                                       )
                                     ],
@@ -157,7 +158,8 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                               }));
                             },
                             icon: Icon(Icons.add,
-                                size: 18, color: Get.theme.primaryColor)),
+                                size: 18,
+                                color: Theme.of(context).primaryColor)),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0),
@@ -165,7 +167,7 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Theme.of(context).cardColor,
                               borderRadius: BorderRadius.circular(5),
                               boxShadow: const [
                                 BoxShadow(
@@ -181,7 +183,8 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                                               Radius.circular(5))))),
                               onPressed: () {},
                               icon: Icon(VMS_Icons.pdf,
-                                  size: 18, color: Get.theme.primaryColor)),
+                                  size: 18,
+                                  color: Theme.of(context).primaryColor)),
                         ),
                       ),
                       Padding(
@@ -190,7 +193,7 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Theme.of(context).cardColor,
                               borderRadius: BorderRadius.circular(5),
                               boxShadow: const [
                                 BoxShadow(
@@ -206,7 +209,8 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                                               Radius.circular(5))))),
                               onPressed: () {},
                               icon: Icon(VMS_Icons.xl,
-                                  size: 18, color: Get.theme.primaryColor)),
+                                  size: 18,
+                                  color: Theme.of(context).primaryColor)),
                         ),
                       ),
                     ],
