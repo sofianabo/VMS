@@ -42,7 +42,7 @@ class _VMSState extends State<VMS> {
         home: prefs!.getBool("isLogin") != null &&
                 prefs!.getBool("isLogin") == true
             ? AdminHome()
-            : Teachers_notebook_grade_record()
+            : Home()
 
         // home: AdminHome()
 
