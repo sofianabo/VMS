@@ -56,19 +56,22 @@ class DropDownAllSessions extends StatelessWidget {
         ),
         child: DropdownButton<String>(
           focusColor: Colors.white,
-          dropdownColor: Colors.white,
+          dropdownColor: Theme.of(context).cardColor,
           iconDisabledColor: Colors.grey,
-          iconEnabledColor: Colors.black,
+          iconEnabledColor: Theme.of(context).cardColor,
           value: selectedValue,
           isExpanded: true,
           underline: const SizedBox(),
-          icon: const Row(
+          icon: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Icon(Icons.arrow_drop_down),
+              Icon(
+                Icons.arrow_drop_down,
+                color: Theme.of(context).secondaryHeaderColor,
+              ),
             ],
           ),
-          style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+          style: Theme.of(context).textTheme.bodyMedium!,
           onChanged: (newValue) async {
             if (newValue != null) {
               cont.selectIndex(type, newValue);
@@ -187,15 +190,9 @@ class DropDownAllSessions extends StatelessWidget {
             DropdownMenuItem<String>(
               value: title,
               enabled: false,
-              child: Text(
-                title,
-                style: Get.theme.textTheme.bodyMedium!.copyWith(
-                  fontSize: 14,
-                  color: Colors.black,
-                ),
-              ),
+              child: Text(title, style: Theme.of(context).textTheme.bodyMedium),
             ),
-            ..._getDropdownItems(cont),
+            ..._getDropdownItems(cont, context),
           ],
           borderRadius: BorderRadius.circular(3),
         ),
@@ -204,7 +201,7 @@ class DropDownAllSessions extends StatelessWidget {
   }
 
   List<DropdownMenuItem<String>> _getDropdownItems(
-      All_Screen_Sessions_Controller cont) {
+      All_Screen_Sessions_Controller cont, BuildContext context) {
     List<DropdownMenuItem<String>> items = [];
 
     switch (type) {
@@ -212,10 +209,7 @@ class DropDownAllSessions extends StatelessWidget {
         items.addAll(cont.sessionlist.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
+            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
           );
         }).toList());
         break;

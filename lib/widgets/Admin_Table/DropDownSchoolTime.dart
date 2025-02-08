@@ -7,6 +7,7 @@ import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Ad
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/DropDownCuriculmModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/SchoolTimeModel.dart';
+import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/view/Admin/School_Management/SchoolTimeTable.dart';
 
 class DropDownSchoolTime extends StatelessWidget {
@@ -87,9 +88,9 @@ class DropDownSchoolTime extends StatelessWidget {
                     ),
                   )
                 : DropdownButton<String>(
-                    dropdownColor: Get.theme.cardColor,
+                    dropdownColor: Theme.of(context).cardColor,
                     iconDisabledColor: Colors.grey,
-                    iconEnabledColor: Get.theme.cardColor,
+                    iconEnabledColor: Theme.of(context).cardColor,
                     value: selectedValue,
                     isExpanded: true,
                     underline: const SizedBox(),
@@ -97,11 +98,10 @@ class DropDownSchoolTime extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Icon(Icons.arrow_drop_down,
-                            color: Get.theme.secondaryHeaderColor),
+                            color: Theme.of(context).secondaryHeaderColor),
                       ],
                     ),
-                    style:
-                        Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+                    style: Theme.of(context).textTheme.bodyMedium!,
                     onChanged: (newValue) {
                       if (newValue != null) {
                         if (type == "class") {
@@ -118,12 +118,8 @@ class DropDownSchoolTime extends StatelessWidget {
                       DropdownMenuItem<String>(
                         value: title,
                         enabled: false,
-                        child: Text(
-                          title,
-                          style: Get.theme.textTheme.bodyMedium!.copyWith(
-                            fontSize: 14,
-                          ),
-                        ),
+                        child: Text(title,
+                            style: Theme.of(context).textTheme.bodyMedium),
                       ),
                       ..._getDropdownItems(cont, context),
                     ],
@@ -142,10 +138,7 @@ class DropDownSchoolTime extends StatelessWidget {
         items.addAll(cont.examClass.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
+            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () async {
               for (int i = 0; i < 5; i++)
                 for (int j = 1; j < 8; j++) {
@@ -168,10 +161,7 @@ class DropDownSchoolTime extends StatelessWidget {
         items.addAll(cont.examDivision.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
+            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () async {
               for (int i = 0; i < 5; i++)
                 for (int j = 1; j < 8; j++) {
@@ -190,10 +180,7 @@ class DropDownSchoolTime extends StatelessWidget {
         items.addAll(cont.teacherDialogList.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
+            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
           );
         }).toList());
         break;
@@ -201,10 +188,7 @@ class DropDownSchoolTime extends StatelessWidget {
         items.addAll(cont.subjectDialogList.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
+            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
           );
         }).toList());
         break;
@@ -212,10 +196,7 @@ class DropDownSchoolTime extends StatelessWidget {
         items.addAll(cont.timeLessonList.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
+            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () {
               for (int i = 0; i < 5; i++)
                 for (int j = 1; j < 8; j++) {

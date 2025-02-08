@@ -4,6 +4,7 @@ import 'package:vms_school/Link/Model/AdminModel/AllStudentModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/Student_Info_model.dart';
 
 class Allstudentscontroller extends GetxController {
+  
   List<Students> stud = [];
   Student? student;
   List<Students> filteredStudents = [];

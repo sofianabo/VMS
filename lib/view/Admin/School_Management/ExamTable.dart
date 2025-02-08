@@ -15,6 +15,7 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/ExamTableAPI.d
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/ExamTableController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSemesterModel.dart';
+import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/widgets/Admin_Table/DropDownExamTable.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
@@ -102,7 +103,7 @@ class _ExamTableState extends State<ExamTable> {
                         width: 40,
                         height: 40,
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(5),
                             boxShadow: const [
                               BoxShadow(
@@ -237,8 +238,12 @@ class _ExamTableState extends State<ExamTable> {
                                                       const EdgeInsets.only(
                                                           bottom: 5.0),
                                                   child: RichText(
-                                                      text: const TextSpan(
-                                                          text: "Date")),
+                                                      text: TextSpan(
+                                                          text: "Date",
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium)),
                                                 ),
                                                 examDate(
                                                   width: 220,
@@ -254,7 +259,8 @@ class _ExamTableState extends State<ExamTable> {
                                   subtitle: "none"));
                             },
                             icon: Icon(Icons.add,
-                                size: 18, color: Get.theme.primaryColor)),
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 10.0, left: 10.0),
@@ -262,7 +268,7 @@ class _ExamTableState extends State<ExamTable> {
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Theme.of(context).cardColor,
                               borderRadius: BorderRadius.circular(5),
                               boxShadow: const [
                                 BoxShadow(
@@ -278,14 +284,15 @@ class _ExamTableState extends State<ExamTable> {
                                               Radius.circular(5))))),
                               onPressed: () {},
                               icon: Icon(VMS_Icons.xl,
-                                  size: 18, color: Get.theme.primaryColor)),
+                                  size: 18,
+                                  color: Theme.of(context).highlightColor)),
                         ),
                       ),
                       Container(
                         width: 40,
                         height: 40,
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(5),
                             boxShadow: const [
                               BoxShadow(
@@ -301,7 +308,8 @@ class _ExamTableState extends State<ExamTable> {
                                             Radius.circular(5))))),
                             onPressed: () {},
                             icon: Icon(VMS_Icons.pdf,
-                                size: 18, color: Get.theme.primaryColor)),
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
                       ),
                     ],
                   )
@@ -309,55 +317,56 @@ class _ExamTableState extends State<ExamTable> {
               ),
             ),
             controller.isLoading
-                ? HoverScaleCard(
-                    child: Container(
-                      width: Get.width * 0.9,
-                      padding: const EdgeInsets.all(20),
-                      decoration: const BoxDecoration(boxShadow: [
-                        BoxShadow(
-                            color: Colors.white,
-                            offset: Offset(0, 2),
-                            blurRadius: 1)
-                      ]),
-                      child: DataTable(
-                        headingRowColor:
-                            const WidgetStatePropertyAll(Colors.white),
-                        border: TableBorder.all(
-                          color: Colors.grey,
-                          width: 1.0,
+                ? Container(
+                    width: Get.width * 0.9,
+                    padding: const EdgeInsets.all(20),
+                    margin: EdgeInsets.only(top: 30),
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).cardColor,
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.white,
+                              offset: Offset(0, 2),
+                              blurRadius: 1)
+                        ]),
+                    child: DataTable(
+                      headingRowColor:
+                          WidgetStatePropertyAll(Theme.of(context).cardColor),
+                      border: TableBorder.all(
+                        color: Colors.grey,
+                        width: 1.0,
+                      ),
+                      columns: const [
+                        DataColumn(
+                          label: Text(
+                            "",
+                          ),
                         ),
-                        columns: const [
-                          DataColumn(
-                            label: Text(
-                              "",
-                            ),
-                          ),
-                          DataColumn(label: Text('')),
-                          DataColumn(label: Text('')),
-                          DataColumn(label: Text('')),
-                          DataColumn(label: Text('')),
-                          DataColumn(label: Text('')),
-                          DataColumn(
-                            label: Text(''),
-                          ),
-                          DataColumn(
-                            label: Text(''),
-                          ),
-                        ],
-                        rows: List.generate(
-                          5, // عدد الصفوف في واجهة الانتظار
-                          (index) => const DataRow(
-                            cells: [
-                              DataCell(Text('')),
-                              DataCell(Text('')),
-                              DataCell(Text('')),
-                              DataCell(Text('')),
-                              DataCell(Text('')),
-                              DataCell(Text('')),
-                              DataCell(Text('')),
-                              DataCell(Text('')),
-                            ],
-                          ),
+                        DataColumn(label: Text('')),
+                        DataColumn(label: Text('')),
+                        DataColumn(label: Text('')),
+                        DataColumn(label: Text('')),
+                        DataColumn(label: Text('')),
+                        DataColumn(
+                          label: Text(''),
+                        ),
+                        DataColumn(
+                          label: Text(''),
+                        ),
+                      ],
+                      rows: List.generate(
+                        5, // عدد الصفوف في واجهة الانتظار
+                        (index) => const DataRow(
+                          cells: [
+                            DataCell(Text('')),
+                            DataCell(Text('')),
+                            DataCell(Text('')),
+                            DataCell(Text('')),
+                            DataCell(Text('')),
+                            DataCell(Text('')),
+                            DataCell(Text('')),
+                            DataCell(Text('')),
+                          ],
                         ),
                       ),
                     ),
@@ -378,16 +387,17 @@ class _ExamTableState extends State<ExamTable> {
                                 builder: (controller) {
                           return DataTable(
                             headingRowColor: WidgetStatePropertyAll(
-                                Get.theme.colorScheme.secondary),
+                                Theme.of(context).indicatorColor),
                             border: TableBorder.all(
-                              color: Get.theme.primaryColor,
+                              color: Theme.of(context).primaryColor,
                               width: 1.0,
                             ),
                             columns: [
                               DataColumn(
                                 label: Text("Class",
                                     textAlign: TextAlign.center,
-                                    style: Get.theme.textTheme.titleLarge),
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge),
                               ),
                               const DataColumn(label: Text('Type')),
                               const DataColumn(label: Text('Curriculum Name')),
@@ -403,8 +413,8 @@ class _ExamTableState extends State<ExamTable> {
                             ],
                             rows: controller.filteredquiz!.map((exam) {
                               return DataRow(cells: [
-                                DataCell(Text(exam.classes?.enName ?? '')),
-                                DataCell(Text(exam.type?.enName ?? '')),
+                                DataCell(Text(exam.classese?.enName ?? '')),
+                                DataCell(Text(exam.type ?? '')),
                                 DataCell(Text(exam.curriculumName ?? '')),
                                 DataCell(Text(exam.startDate ?? '')),
                                 DataCell(Text(exam.period ?? '')),
@@ -577,9 +587,13 @@ class _ExamTableState extends State<ExamTable> {
                                                                     bottom:
                                                                         5.0),
                                                             child: RichText(
-                                                                text: const TextSpan(
+                                                                text: TextSpan(
                                                                     text:
-                                                                        "Date")),
+                                                                        "Date",
+                                                                    style: Get
+                                                                        .theme
+                                                                        .textTheme
+                                                                        .bodyMedium)),
                                                           ),
                                                           examDate(
                                                             width: 220,

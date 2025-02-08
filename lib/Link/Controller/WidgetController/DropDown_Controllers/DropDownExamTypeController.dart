@@ -8,7 +8,7 @@ class Dropdownexamtypecontroller extends GetxController {
     examType.clear();
     alltype = type.type!;
     for (int i = 0; i < type.type!.length; i++) {
-      examType.add(type.type![i].enName.toString());
+      examType.add(type.type![i].name.toString());
     }
     update();
   }

@@ -12,6 +12,7 @@ import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Students
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
+import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/view/Admin/Students_Manager/EditStudentInfo.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
@@ -19,9 +20,14 @@ import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 import '../../../widgets/GridAnimation.dart';
 
-class AllStudentGrid extends StatelessWidget {
+class AllStudentGrid extends StatefulWidget {
   const AllStudentGrid({super.key});
 
+  @override
+  State<AllStudentGrid> createState() => _AllStudentGridState();
+}
+
+class _AllStudentGridState extends State<AllStudentGrid> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Allstudentscontroller>(builder: (control) {
@@ -66,7 +72,7 @@ class AllStudentGrid extends StatelessWidget {
                               borderRadius: BorderRadius.circular(5),
                               border:
                                   Border.all(color: Colors.grey, width: 0.5),
-                              color: Colors.white,
+                              color: Theme.of(context).cardColor,
                               boxShadow: const [
                                 BoxShadow(
                                     color: Colors.black26,
@@ -84,11 +90,13 @@ class AllStudentGrid extends StatelessWidget {
                                   Expanded(
                                     child: Text(
                                       "${control.filteredStudents[index].fullName}",
-                                      style: Get.theme.textTheme.bodyMedium!
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
                                           .copyWith(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                     ),
                                   ),
                                   control.filteredStudents[index].fileId != null
@@ -143,13 +151,16 @@ class AllStudentGrid extends StatelessWidget {
                               ),
                               Text(
                                   "Mobile: ${control.filteredStudents[index].mobileNumber}",
-                                  style: Get.theme.textTheme.bodyMedium!),
+                                  style:
+                                      Theme.of(context).textTheme.bodyMedium),
                               Text(
                                   "Email: ${control.filteredStudents[index].email}",
-                                  style: Get.theme.textTheme.bodyMedium!),
+                                  style:
+                                      Theme.of(context).textTheme.bodyMedium),
                               Text(
                                   "Grade Level: ${control.filteredStudents[index].grade!.enName}",
-                                  style: Get.theme.textTheme.bodyMedium!),
+                                  style:
+                                      Theme.of(context).textTheme.bodyMedium),
                               Padding(
                                 padding: const EdgeInsets.only(top: 8.0),
                                 child: Row(
@@ -226,7 +237,8 @@ class AllStudentGrid extends StatelessWidget {
                                           )),
                                           backgroundColor:
                                               WidgetStateProperty.all(
-                                                  Get.theme.primaryColor)),
+                                                  Theme.of(context)
+                                                      .primaryColorLight)),
                                       onPressed: () async {
                                         Get.find<Illness_Controller>()
                                             .initialdata();
@@ -253,7 +265,8 @@ class AllStudentGrid extends StatelessWidget {
                                           )),
                                           backgroundColor:
                                               WidgetStateProperty.all(
-                                                  Get.theme.primaryColor)),
+                                                  Theme.of(context)
+                                                      .primaryColorLight)),
                                       onPressed: () async {
                                         Get.find<Vaccines_Controller>()
                                             .initialdata();
@@ -281,7 +294,8 @@ class AllStudentGrid extends StatelessWidget {
                                           )),
                                           backgroundColor:
                                               WidgetStateProperty.all(
-                                                  Get.theme.primaryColor)),
+                                                  Theme.of(context)
+                                                      .primaryColorLight)),
                                       onPressed: () async {
                                         await Get_Students_Information_API(
                                                 context)
@@ -303,7 +317,7 @@ class AllStudentGrid extends StatelessWidget {
                 )
               : Center(
                   child: Text("No Students",
-                      style: Get.theme.textTheme.titleLarge!.copyWith(
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontSize: 22, fontWeight: FontWeight.normal)))
           : GridView.builder(
               padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
@@ -343,7 +357,7 @@ class AllStudentGrid extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(color: Colors.grey, width: 0.5),
-                          color: Colors.white,
+                          color: Theme.of(context).cardColor,
                           boxShadow: const [
                             BoxShadow(
                                 color: Colors.black26,

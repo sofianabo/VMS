@@ -18,17 +18,13 @@ class SchemaWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<Themecontroller>(
-      builder: (controller) {
-        return Container(
-          width: width,
-          height: height,
-          decoration: BoxDecoration(
-              color: controller.th == theme.Dark_Theme ? const Color(0xff797777) :const Color(0xffF3F4F8),
-              borderRadius: BorderRadius.all(Radius.circular(radius??2))
-          ),
-        );
-      }
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+          color: Theme.of(context) == theme.Dark_Theme ? const Color(0xff797777) :const Color(0xffF3F4F8),
+          borderRadius: BorderRadius.all(Radius.circular(radius??2))
+      ),
     );
   }
 }

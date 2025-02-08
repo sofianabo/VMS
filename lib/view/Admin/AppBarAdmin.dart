@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AuthAPI/LogoutAPI.dart';
@@ -9,9 +10,16 @@ import 'package:vms_school/Theme/ThemeData.dart';
 import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/main.dart';
 
-class AppbarAdmin extends StatelessWidget {
+class AppbarAdmin extends StatefulWidget {
   AppbarAdmin({super.key});
 
+  @override
+  State<AppbarAdmin> createState() => _AppbarAdminState();
+}
+
+class _AppbarAdminState extends State<AppbarAdmin> {
+  final _isDarkMode = Get.isDarkMode.obs;
+  @override
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -55,9 +63,8 @@ class AppbarAdmin extends StatelessWidget {
                             color: Get.theme.primaryColor,
                           ))),
                   Padding(
-                    padding: const EdgeInsets.only(right: 5.0),
-                    child: GetBuilder<Themecontroller>(builder: (cont) {
-                      return Container(
+                      padding: const EdgeInsets.only(right: 5.0),
+                      child: Container(
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
@@ -76,13 +83,15 @@ class AppbarAdmin extends StatelessWidget {
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
                               onPressed: () {
-                                cont.changeThemeCustom(
-                                    !prefs!.getBool('mode')!);
+                                Get.changeThemeMode(_isDarkMode.value
+                                    ? ThemeMode.light
+                                    : ThemeMode.dark);
+                                _isDarkMode.value = !_isDarkMode.value;
+                                Themecontroller.isDarkMode = _isDarkMode.value;
+                                print(_isDarkMode.value);
                               },
                               icon: Icon(VMS_Icons.moon,
-                                  size: 18, color: Get.theme.primaryColor)));
-                    }),
-                  ),
+                                  size: 18, color: Get.theme.primaryColor)))),
                   Padding(
                     padding: const EdgeInsets.only(right: 5.0),
                     child: Container(
@@ -147,36 +156,28 @@ class AppbarAdmin extends StatelessWidget {
             Expanded(
               child: GetBuilder<AdminHomeContentController>(builder: (cont) {
                 return Center(
-                  child: GetBuilder(
-                      init: Themecontroller(),
-                      builder: (thcont) {
-                        return Text(
-                          cont.content,
-                          style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: thcont.th!.highlightColor),
-                        );
-                      }),
+                  child: Text(
+                    cont.content,
+                    style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).highlightColor),
+                  ),
                 );
               }),
             ),
-            GetBuilder(
-                init: Themecontroller(),
-                builder: (thcont) {
-                  return Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      SvgPicture.asset(
-                        thcont.th == theme.Dark_Theme
-                            ? "../../images/logodark.svg"
-                            : "../../images/logolight.svg",
-                        width: 250,
-                      )
-                    ],
-                  );
-                })
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                SvgPicture.asset(
+                  Theme.of(context) == theme.Dark_Theme
+                      ? "../../images/logodark.svg"
+                      : "../../images/logolight.svg",
+                  width: 250,
+                )
+              ],
+            )
           ],
         ),
       ),

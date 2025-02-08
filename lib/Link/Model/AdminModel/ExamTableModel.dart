@@ -7,15 +7,15 @@ class ExamTableModel {
     if (json['quiz'] != null) {
       quiz = <Quiz>[];
       json['quiz'].forEach((v) {
-        quiz!.add(Quiz.fromJson(v));
+        quiz!.add(new Quiz.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (quiz != null) {
-      data['quiz'] = quiz!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.quiz != null) {
+      data['quiz'] = this.quiz!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -25,11 +25,11 @@ class Quiz {
   int? id;
   String? startDate;
   String? period;
-  String? name;
+  Null? name;
   int? maxMark;
   int? passingMark;
-  Classese? classes;
-  Classese? type;
+  Classese? classese;
+  String? type;
   Classese? semester;
   String? curriculumName;
   String? curriculumEnName;
@@ -41,7 +41,7 @@ class Quiz {
       this.name,
       this.maxMark,
       this.passingMark,
-      this.classes,
+      this.classese,
       this.type,
       this.semester,
       this.curriculumName,
@@ -54,34 +54,33 @@ class Quiz {
     name = json['name'];
     maxMark = json['maxMark'];
     passingMark = json['PassingMark'];
-    classes =
-        json['classes'] != null ? Classese.fromJson(json['classes']) : null;
-    type = json['Type'] != null ? Classese.fromJson(json['Type']) : null;
-    semester =
-        json['semester'] != null ? Classese.fromJson(json['semester']) : null;
+    classese =
+        json['classes'] != null ? new Classese.fromJson(json['classes']) : null;
+    type = json['Type'];
+    semester = json['semester'] != null
+        ? new Classese.fromJson(json['semester'])
+        : null;
     curriculumName = json['curriculumName'];
     curriculumEnName = json['curriculumEnName'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['startDate'] = startDate;
-    data['period'] = period;
-    data['name'] = name;
-    data['maxMark'] = maxMark;
-    data['PassingMark'] = passingMark;
-    if (classes != null) {
-      data['classes'] = classes!.toJson();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['startDate'] = this.startDate;
+    data['period'] = this.period;
+    data['name'] = this.name;
+    data['maxMark'] = this.maxMark;
+    data['PassingMark'] = this.passingMark;
+    if (this.classese != null) {
+      data['classes'] = this.classese!.toJson();
     }
-    if (type != null) {
-      data['Type'] = type!.toJson();
+    data['Type'] = this.type;
+    if (this.semester != null) {
+      data['semester'] = this.semester!.toJson();
     }
-    if (semester != null) {
-      data['semester'] = semester!.toJson();
-    }
-    data['curriculumName'] = curriculumName;
-    data['curriculumEnName'] = curriculumEnName;
+    data['curriculumName'] = this.curriculumName;
+    data['curriculumEnName'] = this.curriculumEnName;
     return data;
   }
 }
@@ -100,10 +99,10 @@ class Classese {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['name'] = name;
-    data['enName'] = enName;
-    data['id'] = id;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['enName'] = this.enName;
+    data['id'] = this.id;
     return data;
   }
 }
