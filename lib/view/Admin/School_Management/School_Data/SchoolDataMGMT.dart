@@ -38,7 +38,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                   width: 40,
                   height: 40,
                   decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.circular(5),
                       boxShadow: const [
                         BoxShadow(
@@ -55,7 +55,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                         Update_School_Data_API(context).Update_School_Data();
                       },
                       icon: Icon(Icons.save,
-                          size: 18, color: Get.theme.primaryColor)),
+                          size: 18, color: Theme.of(context).highlightColor)),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0),
@@ -81,7 +81,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                           await exportToPdf(controller.SchoolInfo);
                         },
                         icon: Icon(VMS_Icons.pdf,
-                            size: 18, color: Get.theme.primaryColor)),
+                            size: 18, color: Theme.of(context).highlightColor)),
                   ),
                 ),
                 Padding(
@@ -90,7 +90,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                     width: 40,
                     height: 40,
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Theme.of(context).cardColor,
                         borderRadius: BorderRadius.circular(5),
                         boxShadow: const [
                           BoxShadow(
@@ -122,7 +122,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                           ]);
                         },
                         icon: Icon(VMS_Icons.xl,
-                            size: 18, color: Get.theme.primaryColor)),
+                            size: 18, color: Theme.of(context).highlightColor)),
                   ),
                 ),
               ],

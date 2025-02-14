@@ -36,7 +36,7 @@ class Transaction_Management_Grid extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(color: Colors.grey, width: 0.5),
-                          color: Colors.white,
+                          color: Theme.of(context).cardColor,
                           boxShadow: const [
                             BoxShadow(
                                 color: Colors.black26,
@@ -117,7 +117,7 @@ class Transaction_Management_Grid extends StatelessWidget {
                               borderRadius: BorderRadius.circular(5),
                               border:
                                   Border.all(color: Colors.grey, width: 0.5),
-                              color: Colors.white,
+                              color: Theme.of(context).cardColor,
                               boxShadow: const [
                                 BoxShadow(
                                     color: Colors.black26,
@@ -141,7 +141,7 @@ class Transaction_Management_Grid extends StatelessWidget {
                                       ),
                                       Text(
                                           " ${control.filteredTransaction![index].date}",
-                                          style: Get.theme.textTheme.bodyMedium!
+                                          style: Theme.of(context).textTheme.bodyMedium!
                                               .copyWith(
                                             fontSize: 14,
                                           )),
@@ -155,7 +155,7 @@ class Transaction_Management_Grid extends StatelessWidget {
                                       ),
                                       Text(
                                           " ${control.filteredTransaction![index].time}",
-                                          style: Get.theme.textTheme.bodyMedium!
+                                          style: Theme.of(context).textTheme.bodyMedium!
                                               .copyWith(
                                             fontSize: 14,
                                           )),
@@ -169,7 +169,7 @@ class Transaction_Management_Grid extends StatelessWidget {
                                 children: [
                                   Text(
                                       "${control.filteredTransaction![index].userName}",
-                                      style: Get.theme.textTheme.bodyMedium!
+                                      style: Theme.of(context).textTheme.bodyMedium!
                                           .copyWith(
                                         fontSize: 14,
                                       )),
@@ -184,7 +184,7 @@ class Transaction_Management_Grid extends StatelessWidget {
                                     child: Text(
                                         textAlign: TextAlign.center,
                                         "${control.filteredTransaction![index].detail}",
-                                        style: Get.theme.textTheme.bodyMedium!
+                                        style: Theme.of(context).textTheme.bodyMedium!
                                             .copyWith(
                                           fontSize: 14,
                                         )),
@@ -198,7 +198,7 @@ class Transaction_Management_Grid extends StatelessWidget {
                                 children: [
                                   SvgPicture.asset("images/line.svg"),
                                   Text("Device Info",
-                                      style: Get.theme.textTheme.bodyMedium!
+                                      style: Theme.of(context).textTheme.bodyMedium!
                                           .copyWith(
                                         fontSize: 14,
                                       )),
@@ -218,7 +218,7 @@ class Transaction_Management_Grid extends StatelessWidget {
                                       ),
                                       Text(
                                           " ${control.filteredTransaction![index].ip}",
-                                          style: Get.theme.textTheme.bodyMedium!
+                                          style: Theme.of(context).textTheme.bodyMedium!
                                               .copyWith(
                                             fontSize: 14,
                                           )),
@@ -268,7 +268,7 @@ class Transaction_Management_Grid extends StatelessWidget {
                                                   ""
                                               ? " ${control.filteredTransaction![index].browserVersion}"
                                               : "Unknow Browser",
-                                          style: Get.theme.textTheme.bodyMedium!
+                                          style: Theme.of(context).textTheme.bodyMedium!
                                               .copyWith(
                                             fontSize: 14,
                                           )),
@@ -322,7 +322,7 @@ class Transaction_Management_Grid extends StatelessWidget {
                                           size: size),
                                       Text(
                                           " ${control.filteredTransaction![index].platform}",
-                                          style: Get.theme.textTheme.bodyMedium!
+                                          style: Theme.of(context).textTheme.bodyMedium!
                                               .copyWith(
                                             fontSize: 14,
                                           )),
@@ -347,7 +347,7 @@ class Transaction_Management_Grid extends StatelessWidget {
                                           size: size),
                                       Text(
                                           " ${control.filteredTransaction![index].deviceType}",
-                                          style: Get.theme.textTheme.bodyMedium!
+                                          style: Theme.of(context).textTheme.bodyMedium!
                                               .copyWith(
                                             fontSize: 14,
                                           )),
@@ -358,7 +358,7 @@ class Transaction_Management_Grid extends StatelessWidget {
                                       Icon(VMS_Icons.admin, size: size),
                                       Text(
                                           " ${control.filteredTransaction![index].roll}",
-                                          style: Get.theme.textTheme.bodyMedium!
+                                          style: Theme.of(context).textTheme.bodyMedium!
                                               .copyWith(
                                             fontSize: 14,
                                           )),
@@ -373,7 +373,7 @@ class Transaction_Management_Grid extends StatelessWidget {
                 )
               : Center(
                   child: Text("No Transactions",
-                      style: Get.theme.textTheme.titleLarge!.copyWith(
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontSize: 22, fontWeight: FontWeight.normal)));
     });
   }

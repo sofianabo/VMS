@@ -38,7 +38,7 @@ class ClassGrid extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(color: Colors.grey, width: 0.5),
-                          color: Colors.white,
+                          color: Theme.of(context).cardColor,
                           boxShadow: const [
                             BoxShadow(
                                 color: Colors.black26,
@@ -110,7 +110,7 @@ class ClassGrid extends StatelessWidget {
                                     curriculum: control.selectedCurriculums,
                                   );
                                 },
-                                color: Get.theme.primaryColor,
+                                color: Theme.of(context).primaryColor,
                                 width: 120,
                               ),
                             ],
@@ -226,9 +226,10 @@ class ClassGrid extends StatelessWidget {
                                                           maxLines: 1,
                                                           overflow: TextOverflow
                                                               .ellipsis,
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.black),
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium,
                                                           controller
                                                                   .selectedCurriculumNames
                                                                   .isNotEmpty
@@ -284,7 +285,7 @@ class ClassGrid extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(5),
                                 border:
                                     Border.all(color: Colors.grey, width: 0.5),
-                                color: Colors.white,
+                                color: Theme.of(context).cardColor,
                                 boxShadow: const [
                                   BoxShadow(
                                       color: Colors.black26,
@@ -301,7 +302,7 @@ class ClassGrid extends StatelessWidget {
                                         width: 35,
                                         height: 35,
                                         decoration: BoxDecoration(
-                                            color: Colors.white,
+                                            color: Theme.of(context).cardColor,
                                             borderRadius:
                                                 BorderRadius.circular(5),
                                             boxShadow: const [
@@ -345,8 +346,8 @@ class ClassGrid extends StatelessWidget {
                                                         onPressed: () {
                                                           Get.back();
                                                         },
-                                                        color: Get
-                                                            .theme.primaryColor,
+                                                        color: Theme.of(context)
+                                                            .cardColor,
                                                         width: 80)
                                                   ],
                                                   contents: Column(
@@ -388,31 +389,35 @@ class ClassGrid extends StatelessWidget {
                                   children: [
                                     Text(
                                         "${control.filteredreclasses![index].enName}",
-                                        style: Get.theme.textTheme.bodyMedium!
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
                                             .copyWith(
-                                          fontSize: 20,
-                                        )),
+                                              fontSize: 20,
+                                            )),
                                   ],
                                 ),
                                 Text(
                                     "${control.filteredreclasses![index].grade!.enName}",
-                                    style: Get.theme.textTheme.bodyMedium!
-                                        .copyWith(
-                                            fontSize: 14, color: Colors.black)),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!),
                                 Text(
                                     "${control.filteredreclasses![index].session!.year}",
-                                    style: Get.theme.textTheme.bodyMedium!
-                                        .copyWith(
-                                            fontSize: 14, color: Colors.black)),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text("Drive URL",
-                                        style: Get.theme.textTheme.bodyMedium!
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
                                             .copyWith(
-                                          fontSize: 16,
-                                        )),
+                                              fontSize: 16,
+                                            )),
                                     SvgPicture.asset(
                                       "../../images/drive.svg",
                                       width: 20,
@@ -427,7 +432,7 @@ class ClassGrid extends StatelessWidget {
                 )
               : Center(
                   child: Text("No Classes",
-                      style: Get.theme.textTheme.titleLarge!.copyWith(
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontSize: 22, fontWeight: FontWeight.normal)));
     });
   }

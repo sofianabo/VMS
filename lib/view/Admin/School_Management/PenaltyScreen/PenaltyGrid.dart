@@ -46,7 +46,7 @@ class _PenaltygridState extends State<Penaltygrid> {
                     children: [
                       Table(
                         border: TableBorder.all(
-                            color: Get.theme.primaryColor),
+                            color: Theme.of(context).primaryColor),
                         children: [
                           TableRow(
                             decoration: BoxDecoration(
@@ -116,7 +116,7 @@ class _PenaltygridState extends State<Penaltygrid> {
                         onPressed: () {
                           Get.back();
                         },
-                        color: Get.theme.primaryColor,
+                        color: Theme.of(context).primaryColor,
                         width: 120)
                   ],
                   contents: Column(
@@ -157,7 +157,7 @@ class _PenaltygridState extends State<Penaltygrid> {
                               name: name.text,
                             );
                           },
-                          color: Get.theme.primaryColor,
+                          color: Theme.of(context).primaryColor,
                           width: 120),
                     ],
                     contents: Column(

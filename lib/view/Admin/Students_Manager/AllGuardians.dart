@@ -87,7 +87,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                         width: 40,
                         height: 40,
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(5),
                             boxShadow: const [
                               BoxShadow(
@@ -120,8 +120,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                               children: [
                                                 Text(
                                                   "Email",
-                                                  style: Get
-                                                      .theme
+                                                  style: Theme.of(context)
                                                       .primaryTextTheme
                                                       .labelSmall,
                                                 ),
@@ -137,8 +136,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                             children: [
                                               Text(
                                                 "Guardian Username",
-                                                style: Get
-                                                    .theme
+                                                style: Theme.of(context)
                                                     .primaryTextTheme
                                                     .labelSmall,
                                               ),
@@ -165,8 +163,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                 children: [
                                                   Text(
                                                     "Name",
-                                                    style: Get
-                                                        .theme
+                                                    style: Theme.of(context)
                                                         .primaryTextTheme
                                                         .labelSmall,
                                                   ),
@@ -182,8 +179,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                               children: [
                                                 Text(
                                                   "phone Number",
-                                                  style: Get
-                                                      .theme
+                                                  style: Theme.of(context)
                                                       .primaryTextTheme
                                                       .labelSmall,
                                                 ),
@@ -211,8 +207,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                 children: [
                                                   Text(
                                                     "National ID",
-                                                    style: Get
-                                                        .theme
+                                                    style: Theme.of(context)
                                                         .primaryTextTheme
                                                         .labelSmall,
                                                   ),
@@ -228,8 +223,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                               children: [
                                                 Text(
                                                   "Password",
-                                                  style: Get
-                                                      .theme
+                                                  style: Theme.of(context)
                                                       .primaryTextTheme
                                                       .labelSmall,
                                                 ),
@@ -257,8 +251,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                 children: [
                                                   Text(
                                                     "Confirm Password",
-                                                    style: Get
-                                                        .theme
+                                                    style: Theme.of(context)
                                                         .primaryTextTheme
                                                         .labelSmall,
                                                   ),
@@ -293,7 +286,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                               );
                                             },
                                             color:
-                                                Get.theme.colorScheme.primary)
+                                                Theme.of(context).primaryColor)
                                       ],
                                     )
                                   ],
@@ -301,7 +294,8 @@ class _AllGuardiansState extends State<AllGuardians> {
                                   subtitle: "none"));
                             },
                             icon: Icon(Icons.add,
-                                size: 18, color: Get.theme.primaryColor)),
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0),
@@ -309,7 +303,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Theme.of(context).cardColor,
                               borderRadius: BorderRadius.circular(5),
                               boxShadow: const [
                                 BoxShadow(
@@ -325,7 +319,8 @@ class _AllGuardiansState extends State<AllGuardians> {
                                               Radius.circular(5))))),
                               onPressed: () {},
                               icon: Icon(VMS_Icons.pdf,
-                                  size: 18, color: Get.theme.primaryColor)),
+                                  size: 18,
+                                  color: Theme.of(context).highlightColor)),
                         ),
                       ),
                       Padding(
@@ -334,7 +329,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Theme.of(context).cardColor,
                               borderRadius: BorderRadius.circular(5),
                               boxShadow: const [
                                 BoxShadow(
@@ -350,7 +345,8 @@ class _AllGuardiansState extends State<AllGuardians> {
                                               Radius.circular(5))))),
                               onPressed: () {},
                               icon: Icon(VMS_Icons.xl,
-                                  size: 18, color: Get.theme.primaryColor)),
+                                  size: 18,
+                                  color: Theme.of(context).highlightColor)),
                         ),
                       ),
                     ],

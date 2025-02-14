@@ -83,7 +83,7 @@ class PenaltyscreenState extends State<Penaltyscreen> {
                                           discription: details.text,
                                         );
                                       },
-                                      color: Get.theme.primaryColor,
+                                      color: Theme.of(context).primaryColor,
                                       width: 120),
                                 ],
                                 contents: Column(

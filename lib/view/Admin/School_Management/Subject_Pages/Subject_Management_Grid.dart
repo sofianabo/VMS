@@ -33,13 +33,15 @@ class Subject_Management_Grid extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Table(
-                        border: TableBorder.all(color: Get.theme.primaryColor),
+                        border: TableBorder.all(
+                            color: Theme.of(context).primaryColor),
                         children: [
                           TableRow(
-                            decoration: const BoxDecoration(color: Color(0xffD4DFE5)),
+                            decoration:
+                                const BoxDecoration(color: Color(0xffD4DFE5)),
                             children: [
-                              _tableHeader('Operation'),
-                              _tableHeader('Subject Name'),
+                              _tableHeader('Operation', context),
+                              _tableHeader('Subject Name', context),
                             ],
                           ),
                           for (var row in controller.Subjects.asMap().entries)
@@ -60,18 +62,18 @@ class Subject_Management_Grid extends StatelessWidget {
     );
   }
 
-  Widget _tableHeader(String title) {
+  Widget _tableHeader(String title, BuildContext context) {
     return Container(
       height: 50,
       alignment: Alignment.center,
       child: Center(
         child: Text(
           title,
-          style: Get.theme.textTheme.titleLarge!.copyWith(
-            color: Get.theme.primaryColor,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                color: Theme.of(context).primaryColor,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
         ),
       ),
     );
@@ -107,7 +109,7 @@ class Subject_Management_Grid extends StatelessWidget {
                               onPressed: () {
                                 Get.back();
                               },
-                              color: Get.theme.primaryColor,
+                              color: Theme.of(context).primaryColor,
                               width: 120)
                         ],
                         contents: Column(
@@ -130,12 +132,12 @@ class Subject_Management_Grid extends StatelessWidget {
                 )
               : _iconButton(
                   iconData: VMS_Icons.bin,
-                  color: Get.theme.disabledColor,
+                  color: Theme.of(context).disabledColor,
                   onPressed: () {},
                 ),
           _iconButton(
             iconData: Icons.edit_note_outlined,
-            color: Get.theme.primaryColor,
+            color: Theme.of(context).primaryColor,
             onPressed: () {
               name.text = "${row['name']}";
               enName.text = "${row['enName']}";
@@ -151,7 +153,7 @@ class Subject_Management_Grid extends StatelessWidget {
                               name: name.text,
                             );
                           },
-                          color: Get.theme.primaryColor,
+                          color: Theme.of(context).primaryColor,
                           width: 120),
                     ],
                     contents: Column(
@@ -160,7 +162,8 @@ class Subject_Management_Grid extends StatelessWidget {
                         Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                              padding: const EdgeInsets.only(
+                                  left: 15.0, right: 15.0),
                               child: Textfildwithupper(
                                   controller: enName,
                                   Uptext: "Subject En - Name",

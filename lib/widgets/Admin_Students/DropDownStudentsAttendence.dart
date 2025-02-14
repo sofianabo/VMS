@@ -108,41 +108,47 @@ class DropDownStudentsAttendens extends StatelessWidget {
                               }
                             }
                           },
-                          dropdownColor: Get.theme.cardColor,
+                          dropdownColor: Theme.of(context).cardColor,
                           iconDisabledColor: Colors.grey,
-                          iconEnabledColor: Get.theme.cardColor,
+                          iconEnabledColor: Theme.of(context).cardColor,
                           value: selectedValue,
                           isExpanded: true,
                           underline: const SizedBox(),
-                          icon:
-                              selectedValue.isNotEmpty && selectedValue != title
-                                  ? GestureDetector(
-                                      onTap: () {
-                                        cont.selectIndex(type, "");
-                                        if (type == "grade") {
-                                          cont.resetOnGradeChange();
-                                        }
-                                        cont.update();
-                                      },
-                                      child: Icon(
-                                        Icons.close,
-                                        color: Get.theme.secondaryHeaderColor,
-                                      ),
-                                    )
-                                  : Icon(
-                                      Icons.arrow_drop_down,
-                                      color: Get.theme.secondaryHeaderColor,
-                                    ),
-                          style: Get.theme.textTheme.bodyMedium!
+                          icon: selectedValue.isNotEmpty &&
+                                  selectedValue != title
+                              ? GestureDetector(
+                                  onTap: () {
+                                    cont.selectIndex(type, "");
+                                    if (type == "grade") {
+                                      cont.resetOnGradeChange();
+                                    }
+                                    cont.update();
+                                  },
+                                  child: Icon(
+                                    Icons.close,
+                                    color:
+                                        Theme.of(context).secondaryHeaderColor,
+                                  ),
+                                )
+                              : Icon(
+                                  Icons.arrow_drop_down,
+                                  color: Theme.of(context).secondaryHeaderColor,
+                                ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
                               .copyWith(fontSize: 14),
                           items: [
                             DropdownMenuItem<String>(
                               value: title,
                               child: Text(
                                 title,
-                                style: Get.theme.textTheme.bodyMedium!.copyWith(
-                                  fontSize: 14,
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                      fontSize: 14,
+                                    ),
                               ),
                             ),
                             ..._getDropdownItems(cont, context),
@@ -167,7 +173,10 @@ class DropDownStudentsAttendens extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(fontSize: 14),
             ),
           );
         }).toList());
@@ -178,7 +187,10 @@ class DropDownStudentsAttendens extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(fontSize: 14),
             ),
           );
         }).toList());
@@ -189,7 +201,10 @@ class DropDownStudentsAttendens extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(fontSize: 14),
             ),
           );
         }).toList());
@@ -200,7 +215,10 @@ class DropDownStudentsAttendens extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(fontSize: 14),
             ),
           );
         }).toList());

@@ -55,7 +55,7 @@ class DropDownAllSessions extends StatelessWidget {
           border: Border.all(color: color ?? const Color(0xffD9D9D9)),
         ),
         child: DropdownButton<String>(
-          focusColor: Colors.white,
+          focusColor: Theme.of(context).scaffoldBackgroundColor,
           dropdownColor: Theme.of(context).cardColor,
           iconDisabledColor: Colors.grey,
           iconEnabledColor: Theme.of(context).cardColor,

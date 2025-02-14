@@ -41,7 +41,7 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(color: Colors.grey, width: 0.5),
-                          color: Colors.white,
+                          color: Theme.of(context).cardColor,
                           boxShadow: const [
                             BoxShadow(
                                 color: Colors.black26,
@@ -99,7 +99,8 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                                       child: SingleChildScrollView(
                                         child: DataTable(
                                           border: TableBorder.all(
-                                            color: Get.theme.primaryColor,
+                                            color:
+                                                Theme.of(context).primaryColor,
                                             width: 1.0,
                                           ),
                                           columns: [
@@ -135,7 +136,8 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                                                     Text(
                                                       studentAttendance.date ??
                                                           'N/A',
-                                                      style: Get.theme.textTheme
+                                                      style: Theme.of(context)
+                                                          .textTheme
                                                           .bodyMedium,
                                                     ),
                                                   ),
@@ -145,7 +147,8 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                                                       studentAttendance
                                                               .status ??
                                                           'N/A',
-                                                      style: Get.theme.textTheme
+                                                      style: Theme.of(context)
+                                                          .textTheme
                                                           .bodyMedium,
                                                     ),
                                                   ),
@@ -153,7 +156,8 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                                                     Text(
                                                       studentAttendance.cause ??
                                                           'N/A',
-                                                      style: Get.theme.textTheme
+                                                      style: Theme.of(context)
+                                                          .textTheme
                                                           .bodyMedium,
                                                     ),
                                                   ),
@@ -178,7 +182,7 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(color: Colors.grey, width: 0.5),
-                            color: Colors.white,
+                            color: Theme.of(context).cardColor,
                             boxShadow: const [
                               BoxShadow(
                                   color: Colors.black26,
@@ -196,7 +200,9 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                                   Expanded(
                                       child: Text(
                                           "${control.filteredStudents[index].fullName}",
-                                          style: Get.theme.textTheme.bodyMedium!
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
                                               .copyWith(
                                                   fontSize: 20,
                                                   fontWeight:
@@ -224,7 +230,11 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                                                       .fileId ==
                                                   null
                                               ? Text(
-                                                  control.filteredStudents[index].fullName!.substring(0, 1).toUpperCase(),
+                                                  control
+                                                      .filteredStudents[index]
+                                                      .fullName!
+                                                      .substring(0, 1)
+                                                      .toUpperCase(),
                                                   style: Get
                                                       .textTheme.titleLarge!
                                                       .copyWith(
@@ -250,34 +260,43 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                                   ),
                                 ]),
                             Text("${control.filteredStudents[index].status}",
-                                style: Get.theme.textTheme.bodyMedium!.copyWith(
-                                    fontSize: 16,
-                                    color: control.filteredStudents[index]
-                                                .status ==
-                                            "Present"
-                                        ? const Color(0xff2F9742)
-                                        : control.filteredStudents[index]
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                        fontSize: 16,
+                                        color: control.filteredStudents[index]
                                                     .status ==
-                                                "Truant"
-                                            ? const Color(0xff972F2F)
+                                                "Present"
+                                            ? const Color(0xff2F9742)
                                             : control.filteredStudents[index]
                                                         .status ==
-                                                    "Vacation"
-                                                ? const Color(0xffB27671)
+                                                    "Truant"
+                                                ? const Color(0xff972F2F)
                                                 : control
                                                             .filteredStudents[
                                                                 index]
                                                             .status ==
-                                                        "Late"
-                                                    ? const Color(0xff349393)
-                                                    : const Color(0xff134B70))),
+                                                        "Vacation"
+                                                    ? const Color(0xffB27671)
+                                                    : control
+                                                                .filteredStudents[
+                                                                    index]
+                                                                .status ==
+                                                            "Late"
+                                                        ? const Color(
+                                                            0xff349393)
+                                                        : const Color(
+                                                            0xff134B70))),
                             Expanded(
                               child: Text(
                                   "Grade Level: ${control.filteredStudents[index].grade!.enName}",
-                                  style:
-                                      Get.theme.textTheme.bodyMedium!.copyWith(
-                                    fontSize: 16,
-                                  )),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                        fontSize: 16,
+                                      )),
                             )
                           ],
                         ),

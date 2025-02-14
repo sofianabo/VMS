@@ -53,7 +53,7 @@ class TeacherManagementGrid extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(color: Colors.grey, width: 0.5),
-                          color: Colors.white,
+                          color: Theme.of(context).cardColor,
                           boxShadow: const [
                             BoxShadow(
                                 color: Colors.black26,
@@ -219,7 +219,9 @@ class TeacherManagementGrid extends StatelessWidget {
                                   ),
                                   Text(
                                     "This Teacher Does Not Contain Any Data",
-                                    style: Get.theme.textTheme.titleLarge!
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge!
                                         .copyWith(fontSize: 16),
                                   )
                                 ],
@@ -234,7 +236,7 @@ class TeacherManagementGrid extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(color: Colors.grey, width: 0.5),
-                            color: Colors.white,
+                            color: Theme.of(context).cardColor,
                             boxShadow: const [
                               BoxShadow(
                                   color: Colors.black26,
@@ -256,7 +258,9 @@ class TeacherManagementGrid extends StatelessWidget {
                                         maxLines: 3,
                                         overflow: TextOverflow.ellipsis,
                                         "${control.filteredTeacher![index].fullName}",
-                                        style: Get.theme.textTheme.bodyMedium!
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
                                             .copyWith(
                                                 fontSize: 25,
                                                 fontWeight: FontWeight.bold)),
@@ -320,7 +324,9 @@ class TeacherManagementGrid extends StatelessWidget {
                                   padding: const EdgeInsets.only(top: 5.0),
                                   child: Text(
                                       "${control.filteredTeacher![index].contractType}",
-                                      style: Get.theme.textTheme.bodyMedium!
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
                                           .copyWith(
                                               fontSize: 16,
                                               color: control
@@ -329,16 +335,20 @@ class TeacherManagementGrid extends StatelessWidget {
                                                           .contractType ==
                                                       "Full Time"
                                                   ? const Color(0xff2F9742)
-                                                  : Get.theme.primaryColor)),
+                                                  : Theme.of(context)
+                                                      .primaryColor)),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 5.0),
                                   child: Text(
                                       "${control.filteredTeacher![index].gender}",
-                                      style: Get.theme.textTheme.bodyMedium!
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
                                           .copyWith(
                                               fontSize: 16,
-                                              color: Get.theme.primaryColor)),
+                                              color: Theme.of(context)
+                                                  .primaryColor)),
                                 ),
                               ],
                             ),
@@ -346,10 +356,12 @@ class TeacherManagementGrid extends StatelessWidget {
                               padding: const EdgeInsets.only(top: 5.0),
                               child: Text(
                                   "Mobile : ${control.filteredTeacher![index].phone}",
-                                  style:
-                                      Get.theme.textTheme.bodyMedium!.copyWith(
-                                    fontSize: 16,
-                                  )),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                        fontSize: 16,
+                                      )),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 5.0),
@@ -362,10 +374,12 @@ class TeacherManagementGrid extends StatelessWidget {
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         "Email : ${control.filteredTeacher![index].email}",
-                                        style: Get.theme.textTheme.bodyMedium!
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
                                             .copyWith(
-                                          fontSize: 14,
-                                        )),
+                                              fontSize: 14,
+                                            )),
                                   ),
                                 ],
                               ),
@@ -404,7 +418,8 @@ class TeacherManagementGrid extends StatelessWidget {
                                               onPressed: () {
                                                 Get.back();
                                               },
-                                              color: Get.theme.primaryColor,
+                                              color: Theme.of(context)
+                                                  .primaryColor,
                                               width: 80)
                                         ],
                                         contents: SizedBox(
@@ -415,7 +430,8 @@ class TeacherManagementGrid extends StatelessWidget {
                                               children: [
                                                 Text(
                                                   "Do You Want To Delete ( ${control.filteredTeacher![index].fullName} ) Teacher",
-                                                  style: Get.theme.textTheme
+                                                  style: Theme.of(context)
+                                                      .textTheme
                                                       .bodyMedium!
                                                       .copyWith(
                                                           fontSize: 16,
@@ -447,7 +463,8 @@ class TeacherManagementGrid extends StatelessWidget {
                                         )),
                                         backgroundColor:
                                             WidgetStateProperty.all(
-                                                Get.theme.primaryColor)),
+                                                Theme.of(context)
+                                                    .primaryColorLight)),
                                     onPressed: () async {
                                       await Get_Teacher_Illness_API(context)
                                           .Get_Teacher_Illness(
@@ -473,7 +490,7 @@ class TeacherManagementGrid extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(5),
                                       )),
                                       backgroundColor: WidgetStateProperty.all(
-                                          Get.theme.primaryColor)),
+                                          Theme.of(context).primaryColorLight)),
                                   onPressed: () async {
                                     await Getteachersubjectapi(context)
                                         .Getteachersubject(

@@ -39,7 +39,7 @@ class _TeacherStatusGridState extends State<TeacherStatusGrid> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         border: Border.all(color: Colors.grey, width: 0.5),
-                        color: Colors.white,
+                        color: Theme.of(context).cardColor,
                         boxShadow: const [
                           BoxShadow(
                               color: Colors.black26,
@@ -74,7 +74,8 @@ class _TeacherStatusGridState extends State<TeacherStatusGrid> {
                   crossAxisSpacing: 20.0,
                   mainAxisSpacing: 20.0,
                   childAspectRatio: 1.4),
-              itemCount: controller.filteredTeacher!.length, // عدد العناصر في الشبكة
+              itemCount:
+                  controller.filteredTeacher!.length, // عدد العناصر في الشبكة
               itemBuilder: (context, index) {
                 return HoverScaleCard(
                   child: GestureDetector(
@@ -97,7 +98,7 @@ class _TeacherStatusGridState extends State<TeacherStatusGrid> {
                                     child: SingleChildScrollView(
                                       child: DataTable(
                                         border: TableBorder.all(
-                                          color: Get.theme.primaryColor,
+                                          color: Theme.of(context).primaryColor,
                                           width: 1.0,
                                         ),
                                         columns: [
@@ -133,7 +134,8 @@ class _TeacherStatusGridState extends State<TeacherStatusGrid> {
                                                 DataCell(
                                                   Text(
                                                     emp.date ?? 'N/A',
-                                                    style: Get.theme.textTheme
+                                                    style: Theme.of(context)
+                                                        .textTheme
                                                         .bodyMedium,
                                                   ),
                                                 ),
@@ -141,14 +143,16 @@ class _TeacherStatusGridState extends State<TeacherStatusGrid> {
                                                 DataCell(
                                                   Text(
                                                     emp.status ?? 'N/A',
-                                                    style: Get.theme.textTheme
+                                                    style: Theme.of(context)
+                                                        .textTheme
                                                         .bodyMedium,
                                                   ),
                                                 ),
                                                 DataCell(
                                                   Text(
                                                     emp.cause ?? 'N/A',
-                                                    style: Get.theme.textTheme
+                                                    style: Theme.of(context)
+                                                        .textTheme
                                                         .bodyMedium,
                                                   ),
                                                 ),
@@ -173,7 +177,7 @@ class _TeacherStatusGridState extends State<TeacherStatusGrid> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(color: Colors.grey, width: 0.5),
-                            color: Colors.white,
+                            color: Theme.of(context).cardColor,
                             boxShadow: const [
                               BoxShadow(
                                   color: Colors.black26,
@@ -190,7 +194,9 @@ class _TeacherStatusGridState extends State<TeacherStatusGrid> {
                                 Expanded(
                                   child: Text(
                                       "${controller.filteredTeacher![index].fullName}",
-                                      style: Get.theme.textTheme.bodyMedium!
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
                                           .copyWith(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold)),
@@ -200,25 +206,38 @@ class _TeacherStatusGridState extends State<TeacherStatusGrid> {
                               ],
                             ),
                             Text("${controller.filteredTeacher![index].status}",
-                                style: Get.theme.textTheme.bodyMedium!.copyWith(
-                                    fontSize: 16,
-                                    color: controller.filteredTeacher![index].status ==
-                                            "Present"
-                                        ? const Color(0xff2F9742)
-                                        : controller.filteredTeacher![index].status ==
-                                                "Truant"
-                                            ? const Color(0xff972F2F)
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                        fontSize: 16,
+                                        color: controller
+                                                    .filteredTeacher![index]
+                                                    .status ==
+                                                "Present"
+                                            ? const Color(0xff2F9742)
                                             : controller.filteredTeacher![index]
                                                         .status ==
-                                                    "Vacation"
-                                                ? const Color(0xffB27671)
-                                                : controller.filteredTeacher![index]
+                                                    "Truant"
+                                                ? const Color(0xff972F2F)
+                                                : controller
+                                                            .filteredTeacher![
+                                                                index]
                                                             .status ==
-                                                        "Late"
-                                                    ? const Color(0xff349393)
-                                                    : const Color(0xff134B70))),
-                            Text("Email: ${controller.filteredTeacher![index].email}",
-                                style: Get.theme.textTheme.bodyMedium!),
+                                                        "Vacation"
+                                                    ? const Color(0xffB27671)
+                                                    : controller
+                                                                .filteredTeacher![
+                                                                    index]
+                                                                .status ==
+                                                            "Late"
+                                                        ? const Color(
+                                                            0xff349393)
+                                                        : const Color(
+                                                            0xff134B70))),
+                            Text(
+                                "Email: ${controller.filteredTeacher![index].email}",
+                                style: Theme.of(context).textTheme.bodyMedium!),
                           ],
                         )),
                   ),

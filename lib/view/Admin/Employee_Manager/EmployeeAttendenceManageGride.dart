@@ -27,7 +27,7 @@ class _EmployeesAttendanceManagmentGridState
           ? controller.Isuploaded == true
               ? Center(
                   child: Text("Attendance Today Has Been Uploaded",
-                      style: Get.theme.textTheme.titleLarge!.copyWith(
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontSize: 16, fontWeight: FontWeight.normal)))
               : Obx(() {
                   return Column(
@@ -219,7 +219,7 @@ class _EmployeesAttendanceManagmentGridState
                                       ],
                                     ),
                                     Divider(
-                                      color: Get.theme.primaryColor,
+                                      color: Theme.of(context).primaryColor,
                                     ),
                                   ],
                                 );
@@ -282,7 +282,7 @@ class _EmployeesAttendanceManagmentGridState
                               ],
                             ),
                             Divider(
-                              color: Get.theme.primaryColor,
+                              color: Theme.of(context).primaryColor,
                             ),
                           ],
                         );

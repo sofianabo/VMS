@@ -39,7 +39,7 @@ class AllEmployeeGrid extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         border: Border.all(color: Colors.grey, width: 0.5),
-                        color: Colors.white,
+                        color: Theme.of(context).cardColor,
                         boxShadow: const [
                           BoxShadow(
                               color: Colors.black26,
@@ -188,7 +188,9 @@ class AllEmployeeGrid extends StatelessWidget {
                                         ),
                                         Text(
                                           "This Teacher Does Not Contain Any Data",
-                                          style: Get.theme.textTheme.titleLarge!
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleLarge!
                                               .copyWith(fontSize: 16),
                                         )
                                       ],
@@ -204,7 +206,7 @@ class AllEmployeeGrid extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(5),
                                 border:
                                     Border.all(color: Colors.grey, width: 0.5),
-                                color: Colors.white,
+                                color: Theme.of(context).cardColor,
                                 boxShadow: const [
                                   BoxShadow(
                                       color: Colors.black26,
@@ -250,7 +252,8 @@ class AllEmployeeGrid extends StatelessWidget {
                                               ButtonDialog(
                                                   text: "Cancel",
                                                   onPressed: () {},
-                                                  color: Get.theme.primaryColor,
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
                                                   width: 80)
                                             ],
                                             contents: SizedBox(
@@ -293,7 +296,8 @@ class AllEmployeeGrid extends StatelessWidget {
                                             )),
                                             backgroundColor:
                                                 WidgetStateProperty.all(
-                                                    Get.theme.primaryColor)),
+                                                    Theme.of(context)
+                                                        .primaryColorLight)),
                                         onPressed: () async {
                                           await Get_Teacher_Illness_API(context)
                                               .Get_Teacher_Illness(
@@ -316,7 +320,9 @@ class AllEmployeeGrid extends StatelessWidget {
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
                                       "${controller.filteredreemployees[index].fullName}",
-                                      style: Get.theme.textTheme.bodyMedium!
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
                                           .copyWith(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold),
@@ -434,7 +440,8 @@ class AllEmployeeGrid extends StatelessWidget {
                                                                     "Supervisor"
                                                                 ? const Color(
                                                                     0xff2F9742)
-                                                                : Get.theme
+                                                                : Theme.of(
+                                                                        context)
                                                                     .primaryColor,
                                               ),
                                             )
@@ -442,18 +449,20 @@ class AllEmployeeGrid extends StatelessWidget {
                                         ),
                                         Text(
                                           "${controller.filteredreemployees[index].jobTitle}",
-                                          style: Get.theme.textTheme.bodyMedium!
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
                                               .copyWith(
-                                                  color: Colors.black,
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.bold),
                                         ),
                                         Text(
                                           "${controller.filteredreemployees[index].salary}",
-                                          style: Get.theme.textTheme.bodyMedium!
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
-                                                  color: Colors.black,
                                                   fontWeight: FontWeight.bold),
                                         )
                                       ],
@@ -525,7 +534,7 @@ class AllEmployeeGrid extends StatelessWidget {
                 )
               : Center(
                   child: Text("No Employees",
-                      style: Get.theme.textTheme.titleLarge!.copyWith(
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontSize: 22, fontWeight: FontWeight.normal)));
     });
   }

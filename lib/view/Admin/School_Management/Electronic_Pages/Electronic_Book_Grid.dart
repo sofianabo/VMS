@@ -52,7 +52,7 @@ class ElectronicBookGrid extends StatelessWidget {
                               borderRadius: BorderRadius.circular(5),
                               border:
                                   Border.all(color: Colors.grey, width: 0.5),
-                              color: Colors.white,
+                              color: Theme.of(context).cardColor,
                               boxShadow: const [
                                 BoxShadow(
                                     color: Colors.black26,
@@ -141,7 +141,7 @@ class ElectronicBookGrid extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(5),
                                     border: Border.all(
                                         color: Colors.grey, width: 0.5),
-                                    color: Colors.white,
+                                    color: Theme.of(context).cardColor,
                                     boxShadow: const [
                                       BoxShadow(
                                           color: Colors.black26,
@@ -209,8 +209,7 @@ class ElectronicBookGrid extends StatelessWidget {
                                                       onPressed: () {
                                                         Get.back();
                                                       },
-                                                      color: Get
-                                                          .theme.primaryColor,
+                                                      color: Theme.of(context).primaryColor,
                                                       width: 80)
                                                 ],
                                                 contents: SizedBox(
@@ -257,7 +256,7 @@ class ElectronicBookGrid extends StatelessWidget {
                 )
               : Center(
                   child: Text("No Electronic Book",
-                      style: Get.theme.textTheme.titleLarge!.copyWith(
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontSize: 22, fontWeight: FontWeight.normal)));
     });
   }

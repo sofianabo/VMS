@@ -60,28 +60,32 @@ class _EmpolyeeStatusGridState extends State<EmpolyeeStatusGrid> {
                                         child: SingleChildScrollView(
                                           child: DataTable(
                                             border: TableBorder.all(
-                                              color: Get.theme.primaryColor,
+                                              color: Theme.of(context)
+                                                  .primaryColor,
                                               width: 1.0,
                                             ),
                                             columns: [
                                               DataColumn(
                                                 label: Text(
                                                   'Date',
-                                                  style: Get.theme.textTheme
+                                                  style: Theme.of(context)
+                                                      .textTheme
                                                       .bodyMedium,
                                                 ),
                                               ),
                                               DataColumn(
                                                 label: Text(
                                                   'Status',
-                                                  style: Get.theme.textTheme
+                                                  style: Theme.of(context)
+                                                      .textTheme
                                                       .bodyMedium,
                                                 ),
                                               ),
                                               DataColumn(
                                                 label: Text(
                                                   'Cause',
-                                                  style: Get.theme.textTheme
+                                                  style: Theme.of(context)
+                                                      .textTheme
                                                       .bodyMedium,
                                                 ),
                                               ),
@@ -143,7 +147,7 @@ class _EmpolyeeStatusGridState extends State<EmpolyeeStatusGrid> {
                                 borderRadius: BorderRadius.circular(5),
                                 border:
                                     Border.all(color: Colors.grey, width: 0.5),
-                                color: Colors.white,
+                                color: Theme.of(context).cardColor,
                                 boxShadow: const [
                                   BoxShadow(
                                       color: Colors.black26,
@@ -161,7 +165,9 @@ class _EmpolyeeStatusGridState extends State<EmpolyeeStatusGrid> {
                                     Expanded(
                                       child: Text(
                                           "${controller.filteredreemployees[index].fullName}",
-                                          style: Get.theme.textTheme.bodyMedium!
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
                                               .copyWith(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.bold)),
@@ -172,7 +178,9 @@ class _EmpolyeeStatusGridState extends State<EmpolyeeStatusGrid> {
                                 ),
                                 Text(
                                     "${controller.filteredreemployees[index].status}",
-                                    style: Get.theme.textTheme.bodyMedium!
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
                                         .copyWith(
                                             fontSize: 16,
                                             color: controller
@@ -192,18 +200,22 @@ class _EmpolyeeStatusGridState extends State<EmpolyeeStatusGrid> {
                                                                     index]
                                                                 .status ==
                                                             "Vacation"
-                                                        ? const Color(0xffB27671)
+                                                        ? const Color(
+                                                            0xffB27671)
                                                         : controller
                                                                     .filteredreemployees[
                                                                         index]
                                                                     .status ==
                                                                 "Late"
-                                                            ? const Color(0xff349393)
+                                                            ? const Color(
+                                                                0xff349393)
                                                             : const Color(
                                                                 0xff134B70))),
                                 Text(
                                     "${controller.filteredreemployees[index].jobTitle}",
-                                    style: Get.theme.textTheme.bodyMedium!),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!),
                               ],
                             )),
                       ),
@@ -212,7 +224,7 @@ class _EmpolyeeStatusGridState extends State<EmpolyeeStatusGrid> {
                 )
               : Center(
                   child: Text("No Attendance",
-                      style: Get.theme.textTheme.titleLarge!.copyWith(
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontSize: 16, fontWeight: FontWeight.normal)))
           : GridView.builder(
               padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
@@ -229,7 +241,7 @@ class _EmpolyeeStatusGridState extends State<EmpolyeeStatusGrid> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(color: Colors.grey, width: 0.5),
-                          color: Colors.white,
+                          color: Theme.of(context).cardColor,
                           boxShadow: const [
                             BoxShadow(
                                 color: Colors.black26,

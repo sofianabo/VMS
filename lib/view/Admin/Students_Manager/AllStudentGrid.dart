@@ -20,14 +20,9 @@ import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 import '../../../widgets/GridAnimation.dart';
 
-class AllStudentGrid extends StatefulWidget {
+class AllStudentGrid extends StatelessWidget {
   const AllStudentGrid({super.key});
 
-  @override
-  State<AllStudentGrid> createState() => _AllStudentGridState();
-}
-
-class _AllStudentGridState extends State<AllStudentGrid> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Allstudentscontroller>(builder: (control) {
@@ -209,8 +204,8 @@ class _AllStudentGridState extends State<AllStudentGrid> {
                                                   onPressed: () {
                                                     Get.back();
                                                   },
-                                                  color: Get.theme.colorScheme
-                                                      .primary)
+                                                  color: Theme.of(context)
+                                                      .primaryColor)
                                             ],
                                             contents: SizedBox(
                                               width: 400,

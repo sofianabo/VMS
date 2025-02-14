@@ -74,7 +74,7 @@ class _ElectronicBookState extends State<ElectronicBook> {
                         width: 40,
                         height: 40,
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(5),
                             boxShadow: const [
                               BoxShadow(
@@ -123,7 +123,7 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                                 decoration: BoxDecoration(
                                                   borderRadius: const BorderRadius.all(Radius.circular(5)),
                                                   border: Border.all(color: const Color(0xffD9D9D9)),
-                                                  color: controller.isHoveringFile ? Get.theme.primaryColor : Colors.white,
+                                                  color: controller.isHoveringFile ? Theme.of(context).primaryColor : Colors.white,
                                                 ),
                                                 alignment: Alignment.center,
                                                 width: 350,
@@ -194,7 +194,7 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                                  name.clear();
                                                 },
                                                 color:
-                                                    Get.theme.colorScheme.primary)
+                                                    Theme.of(context).colorScheme.primary)
                                           ],
                                         )
                                       ],
@@ -204,7 +204,7 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                   ));
                             },
                             icon: Icon(Icons.add,
-                                size: 18, color: Get.theme.primaryColor)),
+                                size: 18, color: Theme.of(context).highlightColor)),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0),
@@ -212,7 +212,7 @@ class _ElectronicBookState extends State<ElectronicBook> {
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Theme.of(context).cardColor,
                               borderRadius: BorderRadius.circular(5),
                               boxShadow: const [
                                 BoxShadow(
@@ -228,7 +228,7 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                               Radius.circular(5))))),
                               onPressed: () {},
                               icon: Icon(VMS_Icons.pdf,
-                                  size: 18, color: Get.theme.primaryColor)),
+                                  size: 18, color: Theme.of(context).highlightColor)),
                         ),
                       ),
                       Padding(
@@ -237,7 +237,7 @@ class _ElectronicBookState extends State<ElectronicBook> {
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Theme.of(context).cardColor,
                               borderRadius: BorderRadius.circular(5),
                               boxShadow: const [
                                 BoxShadow(
@@ -253,7 +253,7 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                               Radius.circular(5))))),
                               onPressed: () {},
                               icon: Icon(VMS_Icons.xl,
-                                  size: 18, color: Get.theme.primaryColor)),
+                                  size: 18, color: Theme.of(context).highlightColor)),
                         ),
                       ),
                     ],

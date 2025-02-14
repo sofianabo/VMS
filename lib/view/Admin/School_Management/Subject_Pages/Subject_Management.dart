@@ -45,7 +45,7 @@ class _Subject_ManagementState extends State<Subject_Management> {
                     width: 40,
                     height: 40,
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Theme.of(context).cardColor,
                         borderRadius: BorderRadius.circular(5),
                         boxShadow: const [
                           BoxShadow(
@@ -54,9 +54,9 @@ class _Subject_ManagementState extends State<Subject_Management> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style: const ButtonStyle(
+                        style:  ButtonStyle(
                             backgroundColor:
-                                WidgetStatePropertyAll(Color(0xffF9F8FD)),
+                                WidgetStatePropertyAll(Theme.of(context).cardColor),
                             shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
                                     borderRadius:
@@ -75,7 +75,7 @@ class _Subject_ManagementState extends State<Subject_Management> {
                                           enName: enName.text,
                                         );
                                       },
-                                      color: Get.theme.primaryColor,
+                                      color: Theme.of(context).primaryColor,
                                       width: 120),
                                 ],
                                 contents: Column(
@@ -110,7 +110,7 @@ class _Subject_ManagementState extends State<Subject_Management> {
                           }));
                         },
                         icon: Icon(Icons.add,
-                            size: 18, color: Get.theme.primaryColor)),
+                            size: 18, color: Theme.of(context).highlightColor)),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 10.0, left: 10.0),
@@ -118,7 +118,7 @@ class _Subject_ManagementState extends State<Subject_Management> {
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).cardColor,
                           borderRadius: BorderRadius.circular(5),
                           boxShadow: const [
                             BoxShadow(
@@ -127,23 +127,23 @@ class _Subject_ManagementState extends State<Subject_Management> {
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                          style: const ButtonStyle(
+                          style:  ButtonStyle(
                               backgroundColor:
-                                  WidgetStatePropertyAll(Color(0xffF9F8FD)),
+                                  WidgetStatePropertyAll(Theme.of(context).cardColor),
                               shape: WidgetStatePropertyAll(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
                           onPressed: () {},
                           icon: Icon(VMS_Icons.pdf,
-                              size: 18, color: Get.theme.primaryColor)),
+                              size: 18, color: Theme.of(context).highlightColor)),
                     ),
                   ),
                   Container(
                     width: 40,
                     height: 40,
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Theme.of(context).cardColor,
                         borderRadius: BorderRadius.circular(5),
                         boxShadow: const [
                           BoxShadow(
@@ -152,16 +152,16 @@ class _Subject_ManagementState extends State<Subject_Management> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style: const ButtonStyle(
+                        style:  ButtonStyle(
                             backgroundColor:
-                                WidgetStatePropertyAll(Color(0xffF9F8FD)),
+                                WidgetStatePropertyAll(Theme.of(context).cardColor),
                             shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5))))),
                         onPressed: () {},
                         icon: Icon(VMS_Icons.xl,
-                            size: 18, color: Get.theme.primaryColor)),
+                            size: 18, color: Theme.of(context).highlightColor)),
                   ),
                 ],
               ),

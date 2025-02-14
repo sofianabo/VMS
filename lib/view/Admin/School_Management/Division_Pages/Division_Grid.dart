@@ -38,7 +38,7 @@ class DivisionGrid extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     border: Border.all(color: Colors.grey, width: 0.5),
-                    color: Colors.white,
+                    color: Theme.of(context).cardColor,
                     boxShadow: const [
                       BoxShadow(
                           color: Colors.black26,
@@ -104,7 +104,7 @@ class DivisionGrid extends StatelessWidget {
                           meeturl: meetUrl.text,
                         );
                       },
-                      color: Get.theme.primaryColor,
+                      color: Theme.of(context).primaryColor,
                       width: 120,
                     ),
                   ],
@@ -181,7 +181,7 @@ class DivisionGrid extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(color: Colors.grey, width: 0.5),
-                      color: Colors.white,
+                      color: Theme.of(context).cardColor,
                       boxShadow: const [
                         BoxShadow(
                             color: Colors.black26,
@@ -198,7 +198,7 @@ class DivisionGrid extends StatelessWidget {
                         width: 35,
                         height: 35,
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(5),
                             boxShadow: const [
                               BoxShadow(
@@ -229,7 +229,7 @@ class DivisionGrid extends StatelessWidget {
                                         onPressed: () {
                                           Get.back();
                                         },
-                                        color: Get.theme.primaryColor,
+                                        color: Theme.of(context).primaryColor,
                                         width: 80)
                                   ],
                                   contents: Column(
@@ -242,7 +242,7 @@ class DivisionGrid extends StatelessWidget {
                                         children: [
                                           Text(
                                             "Do You Want To Delete (${control.filteredDivision![index].enName}) Division",
-                                            style: Get.theme.textTheme.bodyMedium!
+                                            style: Theme.of(context).textTheme.bodyMedium!
                                                 .copyWith(
                                                     fontSize: 16,
                                                     fontWeight:
@@ -263,20 +263,20 @@ class DivisionGrid extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text("${control.filteredDivision![index].enName}",
-                              style: Get.theme.textTheme.bodyMedium!
+                              style: Theme.of(context).textTheme.bodyMedium!
                                   .copyWith(
                                 fontSize: 20,
                               )),
                         ],
                       ),
                       Text("${control.filteredDivision![index].classes!.enName}",
-                          style: Get.theme.textTheme.bodyMedium!
-                              .copyWith(fontSize: 14, color: Colors.black)),
+                          style: Theme.of(context).textTheme.bodyMedium!
+                              .copyWith(fontSize: 14, )),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text("Meet URL",
-                              style: Get.theme.textTheme.bodyMedium!
+                              style: Theme.of(context).textTheme.bodyMedium!
                                   .copyWith(
                                 fontSize: 16,
                               )),
@@ -291,7 +291,7 @@ class DivisionGrid extends StatelessWidget {
             ),
           );
         },
-      ) : Center(child: Text("No Divisions" , style: Get.theme.textTheme.titleLarge!.copyWith(
+      ) : Center(child: Text("No Divisions" , style: Theme.of(context).textTheme.titleLarge!.copyWith(
           fontSize: 22,
           fontWeight: FontWeight.normal
       )));

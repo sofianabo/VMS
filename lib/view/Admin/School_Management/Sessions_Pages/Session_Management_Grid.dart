@@ -68,7 +68,7 @@ class SessionManagementGrid extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(5),
                                 border:
                                     Border.all(color: Colors.grey, width: 0.5),
-                                color: Colors.white,
+                                color: Theme.of(context).cardColor,
                                 boxShadow: const [
                                   BoxShadow(
                                       color: Colors.black26,
@@ -95,13 +95,13 @@ class SessionManagementGrid extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text("${control.Sessionss[index]['name']}",
-                                        style: Get.theme.textTheme.bodyMedium!
+                                        style: Theme.of(context).textTheme.bodyMedium!
                                             .copyWith(
                                                 fontSize: 20,
-                                                color: Colors.black)),
+                                                )),
                                     Text(
                                         "${control.Sessionss[index]['status']}",
-                                        style: Get.theme.textTheme.bodyMedium!
+                                        style: Theme.of(context).textTheme.bodyMedium!
                                             .copyWith(
                                           fontSize: 26,
                                           fontWeight: FontWeight.bold,
@@ -129,7 +129,7 @@ class SessionManagementGrid extends StatelessWidget {
                                                         fontSize: 16,
                                                         fontWeight:
                                                             FontWeight.normal,
-                                                        color: Colors.black)),
+                                                       )),
                                             Text(
                                                 "End Date : ${control.Sessionss[index]['endDate']}",
                                                 style: Get
@@ -140,7 +140,7 @@ class SessionManagementGrid extends StatelessWidget {
                                                         fontSize: 16,
                                                         fontWeight:
                                                             FontWeight.normal,
-                                                        color: Colors.black)),
+                                                      )),
                                           ],
                                         )
                                       ],
@@ -176,7 +176,7 @@ class SessionManagementGrid extends StatelessWidget {
                                           ButtonDialog(
                                               text: "Cancel",
                                               onPressed: () async {},
-                                              color: Get.theme.primaryColor,
+                                              color: Theme.of(context).primaryColor,
                                               width: 120)
                                         ],
                                         contents: Column(
@@ -199,7 +199,7 @@ class SessionManagementGrid extends StatelessWidget {
                                 ),
                                 _iconButton(
                                   iconData: Icons.edit_note_outlined,
-                                  color: Get.theme.primaryColor,
+                                  color: Theme.of(context).primaryColor,
                                   onPressed: () {
                                     Get.find<SessionController>()
                                         .sessionController
@@ -248,7 +248,7 @@ class SessionManagementGrid extends StatelessWidget {
                                                       .toString(),
                                                 );
                                               },
-                                              color: Get.theme.primaryColor,
+                                              color: Theme.of(context).primaryColor,
                                               width: 90)
                                         ],
                                         contents: Column(
@@ -390,7 +390,7 @@ class SessionManagementGrid extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(color: Colors.grey, width: 0.5),
-                            color: Colors.white,
+                            color: Theme.of(context).cardColor,
                             boxShadow: const [
                               BoxShadow(
                                   color: Colors.black26,

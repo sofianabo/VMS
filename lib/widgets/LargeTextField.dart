@@ -28,7 +28,7 @@ class LargeTextField extends StatelessWidget {
             child: RichText(
               text: TextSpan(
                 text: hinttext,
-                style: const TextStyle(color: Colors.black, fontSize: 16),
+                style: Theme.of(context).textTheme.bodyMedium,
                 children: isRequired
                     ? [
                         const TextSpan(
@@ -48,7 +48,8 @@ class LargeTextField extends StatelessWidget {
               hintStyle: const TextStyle(color: Color(0xffD9D9D9)),
               focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Color(0xffD9D9D9), width: 1)),
+                  borderSide:
+                      const BorderSide(color: Color(0xffD9D9D9), width: 1)),
               enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: const BorderSide(color: Color(0xffD9D9D9))),

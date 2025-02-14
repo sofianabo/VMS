@@ -70,7 +70,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
                     width: 40,
                     height: 40,
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Theme.of(context).cardColor,
                         borderRadius: BorderRadius.circular(5),
                         boxShadow: const [
                           BoxShadow(
@@ -79,9 +79,9 @@ class _DivisionManagementState extends State<DivisionManagement> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style: const ButtonStyle(
-                            backgroundColor:
-                                WidgetStatePropertyAll(Color(0xffF9F8FD)),
+                        style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll(
+                                Theme.of(context).cardColor),
                             shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
                                     borderRadius:
@@ -101,7 +101,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                           meetUrl: driveUrl.text,
                                         );
                                       },
-                                      color: Get.theme.primaryColor,
+                                      color: Theme.of(context).primaryColor,
                                       width: 120),
                                 ],
                                 contents: Column(
@@ -179,7 +179,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
                           }));
                         },
                         icon: Icon(Icons.add,
-                            size: 18, color: Get.theme.primaryColor)),
+                            size: 18, color: Theme.of(context).highlightColor)),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 10.0, left: 10.0),
@@ -187,7 +187,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).cardColor,
                           borderRadius: BorderRadius.circular(5),
                           boxShadow: const [
                             BoxShadow(
@@ -196,23 +196,24 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                          style: const ButtonStyle(
-                              backgroundColor:
-                                  WidgetStatePropertyAll(Color(0xffF9F8FD)),
+                          style: ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                  Theme.of(context).cardColor),
                               shape: WidgetStatePropertyAll(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
                           onPressed: () {},
                           icon: Icon(VMS_Icons.pdf,
-                              size: 18, color: Get.theme.primaryColor)),
+                              size: 18,
+                              color: Theme.of(context).highlightColor)),
                     ),
                   ),
                   Container(
                     width: 40,
                     height: 40,
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Theme.of(context).cardColor,
                         borderRadius: BorderRadius.circular(5),
                         boxShadow: const [
                           BoxShadow(
@@ -221,16 +222,16 @@ class _DivisionManagementState extends State<DivisionManagement> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style: const ButtonStyle(
-                            backgroundColor:
-                                WidgetStatePropertyAll(Color(0xffF9F8FD)),
+                        style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll(
+                                Theme.of(context).cardColor),
                             shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5))))),
                         onPressed: () {},
                         icon: Icon(VMS_Icons.xl,
-                            size: 18, color: Get.theme.primaryColor)),
+                            size: 18, color: Theme.of(context).highlightColor)),
                   ),
                 ],
               ),
