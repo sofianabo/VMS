@@ -25,9 +25,9 @@ class _TeacherAttendanceManagmentState
   void initState() {
     super.initState();
     Increaseteacherattendenceapi.Increaseteacherattendence();
-
   }
-   TextEditingController cuse = TextEditingController();
+
+  TextEditingController cuse = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -48,57 +48,62 @@ class _TeacherAttendanceManagmentState
                     SizedBox(
                         width: w / 5.0,
                         child: Obx(() => Row(
-                          children: [
-                            Checkbox(
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                  BorderRadius.all(Radius.circular(4))),
-                              value: controller.allHolidayChecked.value,
-                              onChanged: (value) {
-                                if(controller.Isuploaded == true||controller.Isloading == true){
-
-                                }else{
-                                  if(value == true){
-                                    Get.dialog(VMSAlertDialog(
-                                        action: [
-                                          ButtonDialog(
-                                              text: "Done",
-                                              onPressed: (){
-                                                controller.setAllAsHoliday(value!,cuse.text);
-                                                Get.back();
-                                              },
-                                              color: Get.theme.primaryColor,
-                                              width: 65)
-                                        ],
-                                        contents: SizedBox(
-                                          width: 500,
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Textfildwithupper(
-                                                  width: 250,
-                                                  controller: cuse,
-                                                  Uptext: "Cause",
-                                                  hinttext: "Cause")
+                              children: [
+                                Checkbox(
+                                  shape: const RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(4))),
+                                  value: controller.allHolidayChecked.value,
+                                  onChanged: (value) {
+                                    if (controller.Isuploaded == true ||
+                                        controller.Isloading == true) {
+                                    } else {
+                                      if (value == true) {
+                                        Get.dialog(VMSAlertDialog(
+                                            action: [
+                                              ButtonDialog(
+                                                  text: "Done",
+                                                  onPressed: () {
+                                                    controller.setAllAsHoliday(
+                                                        value!, cuse.text);
+                                                    Get.back();
+                                                  },
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                  width: 65)
                                             ],
-                                          ),
-                                        ),
-                                        apptitle: "Enter The Reason For Absence",
-                                        subtitle: "The reason for the absence of the all students"));
-                                  }else{
-                                    controller.setAllAsHoliday(value!,null);
-                                  }
-                                }
-                              },
-                            ),
-                            const Text("Set All As a Holiday"),
-                          ],
-                        ))),
+                                            contents: SizedBox(
+                                              width: 500,
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Textfildwithupper(
+                                                      width: 250,
+                                                      controller: cuse,
+                                                      Uptext: "Cause",
+                                                      hinttext: "Cause")
+                                                ],
+                                              ),
+                                            ),
+                                            apptitle:
+                                                "Enter The Reason For Absence",
+                                            subtitle:
+                                                "The reason for the absence of the all students"));
+                                      } else {
+                                        controller.setAllAsHoliday(
+                                            value!, null);
+                                      }
+                                    }
+                                  },
+                                ),
+                                const Text("Set All As a Holiday"),
+                              ],
+                            ))),
                     Container(
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).cardColor,
                           borderRadius: BorderRadius.circular(5),
                           boxShadow: const [
                             BoxShadow(
@@ -107,25 +112,25 @@ class _TeacherAttendanceManagmentState
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                          style: const ButtonStyle(
-                              backgroundColor:
-                                  WidgetStatePropertyAll(Color(0xffF9F8FD)),
+                          style: ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                  Theme.of(context).cardColor),
                               shape: WidgetStatePropertyAll(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
                           onPressed: () async {
-                            if(controller.Isloading == false)
-                            {
-                              if(controller.Isuploaded == false){
+                            if (controller.Isloading == false) {
+                              if (controller.Isuploaded == false) {
                                 await Add_Employee_Attendence_API
                                     .Add_Employee_Attendence(
-                                    employees: controller.Employees);
+                                        employees: controller.Employees);
                               }
                             }
                           },
                           icon: Icon(Icons.file_upload_outlined,
-                              size: 22, color: Get.theme.primaryColor)),
+                              size: 22,
+                              color: Theme.of(context).highlightColor)),
                     ),
                   ],
                 ),

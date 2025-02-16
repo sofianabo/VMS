@@ -46,7 +46,7 @@ class _SessionManagementState extends State<SessionManagement> {
                     width: 40,
                     height: 40,
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Theme.of(context).cardColor,
                         borderRadius: BorderRadius.circular(5),
                         boxShadow: const [
                           BoxShadow(
@@ -55,9 +55,9 @@ class _SessionManagementState extends State<SessionManagement> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style: const ButtonStyle(
+                        style:  ButtonStyle(
                             backgroundColor:
-                                WidgetStatePropertyAll(Color(0xffF9F8FD)),
+                                WidgetStatePropertyAll(Theme.of(context).cardColor),
                             shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
                                     borderRadius:
@@ -73,7 +73,7 @@ class _SessionManagementState extends State<SessionManagement> {
                                          Get.find<SessionController>().startDate.value.toString(),
                                          Get.find<SessionController>().endDate.value.toString());
                                     },
-                                    color: Get.theme.primaryColor,
+                                    color: Theme.of(context).primaryColor,
                                     width: 90)
                               ],
                               contents: Column(
@@ -175,7 +175,7 @@ class _SessionManagementState extends State<SessionManagement> {
                               subtitle: "none"));
                         },
                         icon: Icon(Icons.add,
-                            size: 18, color: Get.theme.primaryColor)),
+                            size: 18, color: Theme.of(context).highlightColor)),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 10.0, left: 10.0),
@@ -183,7 +183,7 @@ class _SessionManagementState extends State<SessionManagement> {
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).cardColor,
                           borderRadius: BorderRadius.circular(5),
                           boxShadow: const [
                             BoxShadow(
@@ -192,23 +192,23 @@ class _SessionManagementState extends State<SessionManagement> {
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                          style: const ButtonStyle(
+                          style:  ButtonStyle(
                               backgroundColor:
-                                  WidgetStatePropertyAll(Color(0xffF9F8FD)),
+                                  WidgetStatePropertyAll(Theme.of(context).cardColor),
                               shape: WidgetStatePropertyAll(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
                           onPressed: () {},
                           icon: Icon(VMS_Icons.pdf,
-                              size: 18, color: Get.theme.primaryColor)),
+                              size: 18, color: Theme.of(context).highlightColor)),
                     ),
                   ),
                   Container(
                     width: 40,
                     height: 40,
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Theme.of(context).cardColor,
                         borderRadius: BorderRadius.circular(5),
                         boxShadow: const [
                           BoxShadow(
@@ -217,16 +217,16 @@ class _SessionManagementState extends State<SessionManagement> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style: const ButtonStyle(
+                        style:  ButtonStyle(
                             backgroundColor:
-                                WidgetStatePropertyAll(Color(0xffF9F8FD)),
+                                WidgetStatePropertyAll(Theme.of(context).cardColor),
                             shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5))))),
                         onPressed: () {},
                         icon: Icon(VMS_Icons.xl,
-                            size: 18, color: Get.theme.primaryColor)),
+                            size: 18, color: Theme.of(context).highlightColor)),
                   ),
                 ],
               ),

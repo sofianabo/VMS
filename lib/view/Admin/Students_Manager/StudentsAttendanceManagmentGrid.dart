@@ -132,7 +132,7 @@ class StudentsAttendanceManagmentGrid extends StatelessWidget {
                                                                     );
                                                                     Get.back();
                                                                   },
-                                                                  color: Get.theme.primaryColor,
+                                                                  color: Theme.of(context).primaryColor,
                                                                   width: 65)
                                                             ],
                                                             contents: SizedBox(
@@ -186,7 +186,7 @@ class StudentsAttendanceManagmentGrid extends StatelessWidget {
                                       ],
                                     ),
                                     Divider(
-                                      color: Get.theme.primaryColor,
+                                      color: Theme.of(context).primaryColor,
                                     ),
                                   ],
                                 );
@@ -249,7 +249,7 @@ class StudentsAttendanceManagmentGrid extends StatelessWidget {
                               ],
                             ),
                             Divider(
-                              color: Get.theme.primaryColor,
+                              color: Theme.of(context).primaryColor,
                             ),
                           ],
                         );

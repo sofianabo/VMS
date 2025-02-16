@@ -26,6 +26,7 @@ class Textfildwithupper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       margin: const EdgeInsets.only(top: 2.0),
       width: width ?? 250,
@@ -86,6 +87,47 @@ class Textfildwithupper extends StatelessWidget {
                 suffixIcon: icon,
                 hintText: hinttext,
                 hintStyle: const TextStyle(color: Colors.grey, fontSize: 12),
+            ),
+          ),
+          SizedBox(
+            height: 40,
+            child: TextFormField(
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(fontSize: 14),
+              textAlign: TextAlign.center,
+              enabled: enabled,
+              readOnly: readOnly,
+              controller: controller,
+              onChanged: (value) {
+                if (Uptext == 'Username') {
+                  // حفظ موقع المؤشر الحالي
+                  final cursorPosition = controller.selection.baseOffset;
+
+                  // إزالة المسافات وتحويل النص إلى حروف صغيرة
+                  String updatedValue = value.replaceAll(' ', '').toLowerCase();
+
+                  // تعيين النص الجديد مع تعديل موقع المؤشر
+                  controller.value = TextEditingValue(
+                    text: updatedValue,
+                    selection: TextSelection.collapsed(
+                      offset: cursorPosition > updatedValue.length
+                          ? updatedValue.length
+                          : cursorPosition,
+                    ),
+                  );
+                }
+
+                // استدعاء الدالة إذا كانت غير null
+                if (onChanged != null) {
+                  onChanged!(controller.text);
+                }
+              },
+              decoration: InputDecoration(
+                suffixIcon: icon ?? null,
+                hintText: hinttext,
+                hintStyle: TextStyle(color: Colors.grey, fontSize: 12),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5),
                   borderSide: BorderSide(

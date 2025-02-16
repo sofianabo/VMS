@@ -55,7 +55,7 @@ class AllGuardianGrid extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(color: Colors.grey, width: 0.5),
-                          color: Colors.white,
+                          color: Theme.of(context).cardColor,
                           boxShadow: const [
                             BoxShadow(
                                 color: Colors.black26,
@@ -133,7 +133,9 @@ class AllGuardianGrid extends StatelessWidget {
                                     children: [
                                       Text(
                                         "Guardian Name",
-                                        style: Get.theme.textTheme.bodyMedium!,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!,
                                       ),
                                       TextFieldDialog(
                                           controller: gUserName,
@@ -149,8 +151,9 @@ class AllGuardianGrid extends StatelessWidget {
                                       children: [
                                         Text(
                                           "Guardian National ID",
-                                          style:
-                                              Get.theme.textTheme.bodyMedium!,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!,
                                         ),
                                         TextFieldDialog(
                                             controller: gNationalID,
@@ -173,8 +176,9 @@ class AllGuardianGrid extends StatelessWidget {
                                       children: [
                                         Text(
                                           "Guardian Email",
-                                          style:
-                                              Get.theme.textTheme.bodyMedium!,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!,
                                         ),
                                         TextFieldDialog(
                                             controller: gEmail,
@@ -191,8 +195,9 @@ class AllGuardianGrid extends StatelessWidget {
                                         children: [
                                           Text(
                                             "Guardian Phone Number",
-                                            style:
-                                                Get.theme.textTheme.bodyMedium!,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!,
                                           ),
                                           TextFieldDialog(
                                               controller: gphone,
@@ -226,7 +231,8 @@ class AllGuardianGrid extends StatelessWidget {
                                               index);
                                       Get.back();
                                     },
-                                    color: Get.theme.colorScheme.primary)
+                                    color:
+                                        Theme.of(context).primaryColor)
                               ],
                             )
                           ],
@@ -238,7 +244,7 @@ class AllGuardianGrid extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(color: Colors.grey, width: 0.5),
-                            color: Colors.white,
+                            color: Theme.of(context).cardColor,
                             boxShadow: const [
                               BoxShadow(
                                   color: Colors.black26,
@@ -255,22 +261,26 @@ class AllGuardianGrid extends StatelessWidget {
                                 Expanded(
                                   child: Text(
                                       "${control.filteredregaurdians![index].name}",
-                                      style: Get.theme.textTheme.bodyMedium!
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
                                           .copyWith(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold)),
                                 ),
                                 Text(
                                     "${control.filteredregaurdians![index].userName}",
-                                    style: Get.theme.textTheme.titleLarge!),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge!),
                               ],
                             ),
                             Text(
                                 "Email: ${control.filteredregaurdians![index].email}",
-                                style: Get.theme.textTheme.bodyMedium!),
+                                style: Theme.of(context).textTheme.bodyMedium!),
                             Text(
                                 "Mobile Number : ${control.filteredregaurdians![index].phone}",
-                                style: Get.theme.textTheme.bodyMedium!),
+                                style: Theme.of(context).textTheme.bodyMedium!),
                           ],
                         )),
                   ),

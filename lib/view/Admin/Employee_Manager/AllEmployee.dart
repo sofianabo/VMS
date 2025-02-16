@@ -107,7 +107,7 @@ class _AllEmployeeState extends State<AllEmployee> {
                         width: 40,
                         height: 40,
                         decoration: BoxDecoration(
-                            color: const Color(0xffF9F8FD),
+                            color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(5),
                             boxShadow: const [
                               BoxShadow(
@@ -116,16 +116,16 @@ class _AllEmployeeState extends State<AllEmployee> {
                                   blurRadius: 1)
                             ]),
                         child: PopupMenuButton(
-                          style: const ButtonStyle(
+                          style:  ButtonStyle(
                               backgroundColor:
-                                  WidgetStatePropertyAll(Color(0xffF9F8FD)),
+                                  WidgetStatePropertyAll(Theme.of(context).cardColor),
                               shape: WidgetStatePropertyAll(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
                           tooltip: "",
                           child: Icon(Icons.add,
-                              size: 18, color: Get.theme.primaryColor),
+                              size: 18, color: Theme.of(context).highlightColor),
                           onSelected: (value) {
                             if (value == "Add Employee") {
                               Get.dialog(GetBuilder<Allempolyeecontroller>(
@@ -150,7 +150,7 @@ class _AllEmployeeState extends State<AllEmployee> {
                                                     cont.fejopIndex,
                                                     password.text);
                                           },
-                                          color: Get.theme.primaryColor,
+                                          color: Theme.of(context).primaryColor,
                                           width: 120)
                                     ],
                                     contents: Column(
@@ -316,7 +316,7 @@ class _AllEmployeeState extends State<AllEmployee> {
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Theme.of(context).cardColor,
                               borderRadius: BorderRadius.circular(5),
                               boxShadow: const [
                                 BoxShadow(
@@ -325,9 +325,9 @@ class _AllEmployeeState extends State<AllEmployee> {
                                     blurRadius: 1)
                               ]),
                           child: IconButton(
-                              style: const ButtonStyle(
+                              style:  ButtonStyle(
                                   backgroundColor:
-                                      WidgetStatePropertyAll(Color(0xffF9F8FD)),
+                                      WidgetStatePropertyAll(Theme.of(context).cardColor),
                                   shape: WidgetStatePropertyAll(
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
@@ -338,14 +338,14 @@ class _AllEmployeeState extends State<AllEmployee> {
                                         .filteredreemployees);
                               },
                               icon: Icon(VMS_Icons.pdf,
-                                  size: 18, color: Get.theme.primaryColor)),
+                                  size: 18, color: Theme.of(context).highlightColor)),
                         ),
                       ),
                       Container(
                         width: 40,
                         height: 40,
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(5),
                             boxShadow: const [
                               BoxShadow(
@@ -354,9 +354,9 @@ class _AllEmployeeState extends State<AllEmployee> {
                                   blurRadius: 1)
                             ]),
                         child: IconButton(
-                            style: const ButtonStyle(
+                            style:  ButtonStyle(
                                 backgroundColor:
-                                    WidgetStatePropertyAll(Color(0xffF9F8FD)),
+                                    WidgetStatePropertyAll(Theme.of(context).cardColor),
                                 shape: WidgetStatePropertyAll(
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
@@ -367,7 +367,7 @@ class _AllEmployeeState extends State<AllEmployee> {
                                       .filteredreemployees);
                             },
                             icon: Icon(VMS_Icons.xl,
-                                size: 18, color: Get.theme.primaryColor)),
+                                size: 18, color: Theme.of(context).highlightColor)),
                       ),
                     ],
                   )

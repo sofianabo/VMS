@@ -33,7 +33,7 @@ class CurriculumGrid extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(color: Colors.grey, width: 0.5),
-                          color: Colors.white,
+                          color: Theme.of(context).cardColor,
                           boxShadow: const [
                             BoxShadow(
                                 color: Colors.black26,
@@ -107,7 +107,7 @@ class CurriculumGrid extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(5),
                                 border:
                                     Border.all(color: Colors.grey, width: 0.5),
-                                color: Colors.white,
+                                color: Theme.of(context).cardColor,
                                 boxShadow: const [
                                   BoxShadow(
                                       color: Colors.black26,
@@ -139,7 +139,7 @@ class CurriculumGrid extends StatelessWidget {
                                             overflow: TextOverflow.ellipsis,
                                             "${control.filteredCurriculum[index].name}",
                                             style: TextStyle(
-                                                color: Get.theme.primaryColor,
+                                                color: Theme.of(context).primaryColor,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
                                           ),
@@ -175,7 +175,7 @@ class CurriculumGrid extends StatelessWidget {
                                                           .type ==
                                                       1
                                                   ? const Color(0xffB03D3D)
-                                                  : Get.theme.primaryColor,
+                                                  : Theme.of(context).primaryColor,
                                             )),
                                       ],
                                     ),
@@ -183,7 +183,7 @@ class CurriculumGrid extends StatelessWidget {
                                       width: 35,
                                       height: 35,
                                       decoration: BoxDecoration(
-                                          color: Colors.white,
+                                          color: Theme.of(context).cardColor,
                                           borderRadius:
                                               BorderRadius.circular(5),
                                           boxShadow: const [
@@ -225,8 +225,7 @@ class CurriculumGrid extends StatelessWidget {
                                                       onPressed: () {
                                                         Get.back();
                                                       },
-                                                      color: Get
-                                                          .theme.primaryColor,
+                                                      color: Theme.of(context).primaryColor,
                                                       width: 80)
                                                 ],
                                                 contents: Column(
@@ -270,7 +269,7 @@ class CurriculumGrid extends StatelessWidget {
                 )
               : Center(
                   child: Text("No Curriculum",
-                      style: Get.theme.textTheme.titleLarge!.copyWith(
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontSize: 22, fontWeight: FontWeight.normal)));
     });
   }

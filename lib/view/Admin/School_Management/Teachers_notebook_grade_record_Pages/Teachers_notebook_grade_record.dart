@@ -34,7 +34,7 @@ class _Teachers_notebook_grade_recordState
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).cardColor,
                           borderRadius: BorderRadius.circular(5),
                           boxShadow: const [
                             BoxShadow(
@@ -43,9 +43,9 @@ class _Teachers_notebook_grade_recordState
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                          style: const ButtonStyle(
+                          style:  ButtonStyle(
                               backgroundColor:
-                                  WidgetStatePropertyAll(Color(0xffF9F8FD)),
+                                  WidgetStatePropertyAll(Theme.of(context).cardColor),
                               shape: WidgetStatePropertyAll(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
@@ -54,7 +54,7 @@ class _Teachers_notebook_grade_recordState
                             Get.dialog(Add_Group());
                           },
                           icon: Icon(Icons.add,
-                              size: 18, color: Get.theme.primaryColor)),
+                              size: 18, color: Theme.of(context).highlightColor)),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 10.0, left: 10.0),
@@ -62,7 +62,7 @@ class _Teachers_notebook_grade_recordState
                         width: 40,
                         height: 40,
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(5),
                             boxShadow: const [
                               BoxShadow(
@@ -71,23 +71,23 @@ class _Teachers_notebook_grade_recordState
                                   blurRadius: 1)
                             ]),
                         child: IconButton(
-                            style: const ButtonStyle(
+                            style:  ButtonStyle(
                                 backgroundColor:
-                                    WidgetStatePropertyAll(Color(0xffF9F8FD)),
+                                    WidgetStatePropertyAll(Theme.of(context).cardColor),
                                 shape: WidgetStatePropertyAll(
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
                             onPressed: () {},
                             icon: Icon(VMS_Icons.pdf,
-                                size: 18, color: Get.theme.primaryColor)),
+                                size: 18, color: Theme.of(context).highlightColor)),
                       ),
                     ),
                     Container(
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).cardColor,
                           borderRadius: BorderRadius.circular(5),
                           boxShadow: const [
                             BoxShadow(
@@ -96,16 +96,16 @@ class _Teachers_notebook_grade_recordState
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                          style: const ButtonStyle(
+                          style:  ButtonStyle(
                               backgroundColor:
-                                  WidgetStatePropertyAll(Color(0xffF9F8FD)),
+                                  WidgetStatePropertyAll(Theme.of(context).cardColor),
                               shape: WidgetStatePropertyAll(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
                           onPressed: () {},
                           icon: Icon(VMS_Icons.xl,
-                              size: 18, color: Get.theme.primaryColor)),
+                              size: 18, color: Theme.of(context).highlightColor)),
                     ),
                   ],
                 ),

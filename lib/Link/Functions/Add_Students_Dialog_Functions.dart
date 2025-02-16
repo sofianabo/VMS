@@ -91,6 +91,7 @@ All_Gurdians_Dialog() {
   return VMSAlertDialog(
     action: [
       Obx(() {
+        BuildContext context;
         return addStudentsController.currentPage.value == 1
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -230,7 +231,7 @@ All_Gurdians_Dialog() {
                               borderRadius: BorderRadius.circular(5),
                               border:
                                   Border.all(color: Colors.grey, width: 0.5),
-                              color: Colors.white,
+                              color: Theme.of(context).cardColor,
                               boxShadow: const [
                                 BoxShadow(
                                     color: Colors.black26,
@@ -249,7 +250,9 @@ All_Gurdians_Dialog() {
                                     Expanded(
                                       child: Text(
                                         "${control.filteredregaurdians![index].name}",
-                                        style: Get.theme.textTheme.bodyMedium!
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
                                             .copyWith(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold),
@@ -257,17 +260,21 @@ All_Gurdians_Dialog() {
                                     ),
                                     Text(
                                       "${control.filteredregaurdians![index].userName}",
-                                      style: Get.theme.textTheme.titleLarge!,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge!,
                                     ),
                                   ],
                                 ),
                                 Text(
                                   "Email: ${control.filteredregaurdians![index].email}",
-                                  style: Get.theme.textTheme.bodyMedium!,
+                                  style:
+                                      Theme.of(context).textTheme.bodyMedium!,
                                 ),
                                 Text(
                                   "Mobile Number : ${control.filteredregaurdians![index].phone}",
-                                  style: Get.theme.textTheme.bodyMedium!,
+                                  style:
+                                      Theme.of(context).textTheme.bodyMedium!,
                                 ),
                               ],
                             ),
@@ -566,7 +573,9 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                             },
                                           )),
                                       Text("Special need",
-                                          style: Get.theme.textTheme.bodyMedium!
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
                                               .copyWith(fontSize: 16)),
                                     ],
                                   ),
@@ -579,7 +588,9 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                             },
                                           )),
                                       Text("Marty son",
-                                          style: Get.theme.textTheme.bodyMedium!
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
                                               .copyWith(fontSize: 16)),
                                     ],
                                   ),
@@ -598,7 +609,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                           await Students_Illness_Funcation(
                                               context);
                                         },
-                                        color: Get.theme.primaryColor,
+                                        color: Theme.of(context).primaryColor,
                                         width: 145);
                                   }),
                                   Padding(
@@ -613,7 +624,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                             await Students_Vaccines_Funcation(
                                                 context);
                                           },
-                                          color: Get.theme.primaryColor,
+                                          color: Theme.of(context).primaryColor,
                                           width: 145);
                                     }),
                                   ),
@@ -626,18 +637,20 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                           children: [
                             Expanded(
                               child: Divider(
-                                color: Get.theme.primaryColor,
+                                color: Theme.of(context).primaryColor,
                                 height: 1,
                               ),
                             ),
                             Text(
                               "   Student School Info   ",
-                              style: Get.theme.textTheme.titleMedium!
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
                                   .copyWith(fontSize: 18),
                             ),
                             Expanded(
                               child: Divider(
-                                color: Get.theme.primaryColor,
+                                color: Theme.of(context).primaryColor,
                                 height: 1,
                               ),
                             ),
@@ -708,18 +721,20 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                           children: [
                             Expanded(
                               child: Divider(
-                                color: Get.theme.primaryColor,
+                                color: Theme.of(context).primaryColor,
                                 height: 1,
                               ),
                             ),
                             Text(
                               "   Father Info   ",
-                              style: Get.theme.textTheme.titleMedium!
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
                                   .copyWith(fontSize: 18),
                             ),
                             Expanded(
                               child: Divider(
-                                color: Get.theme.primaryColor,
+                                color: Theme.of(context).primaryColor,
                                 height: 1,
                               ),
                             ),
@@ -766,18 +781,20 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                           children: [
                             Expanded(
                               child: Divider(
-                                color: Get.theme.primaryColor,
+                                color: Theme.of(context).primaryColor,
                                 height: 1,
                               ),
                             ),
                             Text(
                               "   Mother Info   ",
-                              style: Get.theme.textTheme.titleMedium!
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
                                   .copyWith(fontSize: 18),
                             ),
                             Expanded(
                               child: Divider(
-                                color: Get.theme.primaryColor,
+                                color: Theme.of(context).primaryColor,
                                 height: 1,
                               ),
                             ),
@@ -824,18 +841,20 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                           children: [
                             Expanded(
                               child: Divider(
-                                color: Get.theme.primaryColor,
+                                color: Theme.of(context).primaryColor,
                                 height: 1,
                               ),
                             ),
                             Text(
                               "   More Info   ",
-                              style: Get.theme.textTheme.titleMedium!
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
                                   .copyWith(fontSize: 18),
                             ),
                             Expanded(
                               child: Divider(
-                                color: Get.theme.primaryColor,
+                                color: Theme.of(context).primaryColor,
                                 height: 1,
                               ),
                             ),
@@ -871,18 +890,20 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                           children: [
                             Expanded(
                               child: Divider(
-                                color: Get.theme.primaryColor,
+                                color: Theme.of(context).primaryColor,
                                 height: 1,
                               ),
                             ),
                             Text(
                               "   File Data   ",
-                              style: Get.theme.textTheme.titleMedium!
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
                                   .copyWith(fontSize: 18),
                             ),
                             Expanded(
                               child: Divider(
-                                color: Get.theme.primaryColor,
+                                color: Theme.of(context).primaryColor,
                                 height: 1,
                               ),
                             ),
@@ -916,7 +937,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                               controller.selectedFatherPassport
                                                       .value !=
                                                   null
-                                          ? Get.theme.primaryColor
+                                          ? Theme.of(context).primaryColor
                                           : Colors.white,
                                     ),
                                     alignment: Alignment.center,
@@ -1014,7 +1035,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                               controller.selectedMotherPassport
                                                       .value !=
                                                   null
-                                          ? Get.theme.primaryColor
+                                          ? Theme.of(context).primaryColor
                                           : Colors.white,
                                     ),
                                     alignment: Alignment.center,
@@ -1119,7 +1140,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                               controller.selectedSonPassport
                                                       .value !=
                                                   null
-                                          ? Get.theme.primaryColor
+                                          ? Theme.of(context).primaryColor
                                           : Colors.white,
                                     ),
                                     alignment: Alignment.center,
@@ -1212,7 +1233,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                       color: controller.isHoveringId ||
                                               controller.selectedId.value !=
                                                   null
-                                          ? Get.theme.primaryColor
+                                          ? Theme.of(context).primaryColor
                                           : Colors.white,
                                     ),
                                     alignment: Alignment.center,
@@ -1313,7 +1334,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                               controller.selectedCertificate
                                                       .value !=
                                                   null
-                                          ? Get.theme.primaryColor
+                                          ? Theme.of(context).primaryColor
                                           : Colors.white,
                                     ),
                                     alignment: Alignment.center,
@@ -1410,7 +1431,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                               controller
                                                       .selectedtsalsol.value !=
                                                   null
-                                          ? Get.theme.primaryColor
+                                          ? Theme.of(context).primaryColor
                                           : Colors.white,
                                     ),
                                     alignment: Alignment.center,
@@ -1513,7 +1534,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                               controller.selectedFamilyBook
                                                       .value !=
                                                   null
-                                          ? Get.theme.primaryColor
+                                          ? Theme.of(context).primaryColor
                                           : Colors.white,
                                     ),
                                     alignment: Alignment.center,

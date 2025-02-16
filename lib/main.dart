@@ -28,6 +28,8 @@ class VMS extends StatefulWidget {
 
 class _VMSState extends State<VMS> {
   localeController loc = Get.put(localeController(), permanent: true);
+  final Themecontroller themeController = Get.put(Themecontroller());
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(

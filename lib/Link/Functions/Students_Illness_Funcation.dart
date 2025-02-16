@@ -25,7 +25,7 @@ Students_Illness_Funcation(BuildContext context) async {
                 onPressed: () {
                   Get.back();
                 },
-                color: Get.theme.primaryColor,
+                color: Theme.of(context).primaryColor,
                 width: 65)
           ],
           contents: Padding(
@@ -81,7 +81,7 @@ Students_Illness_Funcation(BuildContext context) async {
                                   border: Border.all(
                                       color: Colors.grey, width: 0.5),
                                   color: isSelected
-                                      ? Get.theme.primaryColor
+                                      ? Theme.of(context).primaryColor
                                       : Colors.white,
                                   boxShadow: const [
                                     BoxShadow(
@@ -101,12 +101,12 @@ Students_Illness_Funcation(BuildContext context) async {
                                         child: Text(
                                           textAlign: TextAlign.center,
                                           "${control.filteredIllness![index].enName}",
-                                          style: Get.theme.textTheme.bodyMedium!
+                                          style: Theme.of(context).textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 18,
                                                   color: isSelected
                                                       ? Colors.white
-                                                      : Get.theme.primaryColor),
+                                                      : Theme.of(context).primaryColor),
                                         ),
                                       ),
                                     ),
@@ -123,7 +123,7 @@ Students_Illness_Funcation(BuildContext context) async {
                                                     fontSize: 14,
                                                     color: isSelected
                                                         ? Colors.white
-                                                        : Get.theme
+                                                        : Theme.of(context)
                                                             .primaryColor)),
                                         Row(
                                           mainAxisSize: MainAxisSize.min,
@@ -170,7 +170,7 @@ Students_Illness_Funcation(BuildContext context) async {
                                                         color: isSelected
                                                             ? control.hasFile(
                                                                     illness)
-                                                                ? Get.theme
+                                                                ? Theme.of(context)
                                                                     .primaryColor
                                                                 : Colors.grey
                                                             : Colors.white)),
@@ -184,7 +184,7 @@ Students_Illness_Funcation(BuildContext context) async {
                                             //   decoration: BoxDecoration(
                                             //       color: isSelected
                                             //           ? Colors.white
-                                            //           : Get.theme.primaryColor,
+                                            //           : Theme.of(context).primaryColor,
                                             //       borderRadius:
                                             //           BorderRadius.circular(5),
                                             //       boxShadow: const [
@@ -214,7 +214,7 @@ Students_Illness_Funcation(BuildContext context) async {
                                               decoration: BoxDecoration(
                                                 color: isSelected
                                                     ? Colors.white
-                                                    : Get.theme.primaryColor,
+                                                    : Theme.of(context).primaryColor,
                                                 borderRadius:
                                                     BorderRadius.circular(5),
                                                 boxShadow: const [
@@ -243,7 +243,7 @@ Students_Illness_Funcation(BuildContext context) async {
                                                   Icons.file_upload_outlined,
                                                   size: 20,
                                                   color: isSelected
-                                                      ? Get.theme.primaryColor
+                                                      ? Theme.of(context).primaryColor
                                                       : Colors.white,
                                                 ),
                                               ),

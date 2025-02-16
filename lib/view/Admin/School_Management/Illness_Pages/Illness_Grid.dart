@@ -296,7 +296,7 @@ class Illness_Grid extends StatelessWidget {
                 )
               : Center(
                   child: Text("No Illness",
-                      style: Get.theme.textTheme.titleLarge!.copyWith(
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontSize: 22, fontWeight: FontWeight.normal)));
     });
   }

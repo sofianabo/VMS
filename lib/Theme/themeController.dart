@@ -4,8 +4,6 @@ import 'package:vms_school/Theme/ThemeData.dart';
 import 'package:vms_school/main.dart';
 
 class Themecontroller extends GetxController {
-  
-
   static bool get isDarkMode => prefs!.getBool("mode") ?? true;
   static set isDarkMode(bool v) => prefs!.setBool("mode", v);
   static ThemeMode get defualtTheme {
@@ -18,5 +16,4 @@ class Themecontroller extends GetxController {
     }
     return ThemeMode.light;
   }
-
 }

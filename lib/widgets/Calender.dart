@@ -73,12 +73,14 @@ class DatePicker extends StatelessWidget {
                 onTap: () => controller.selectDate(context),
                 decoration: InputDecoration(
                   hintText: "Select Date",
-                  hintStyle:
-                      Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+                  hintStyle: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 14),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
                     borderSide: BorderSide(
-                        color: Get.theme.colorScheme.primary, width: 2),
+                        color: Theme.of(context).colorScheme.primary, width: 2),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -90,7 +92,7 @@ class DatePicker extends StatelessWidget {
                   suffixIcon: IconButton(
                     icon: Icon(
                       VMS_Icons.calender,
-                      color: Get.theme.primaryColor,
+                      color: Theme.of(context).primaryColor,
                       size: 16,
                     ),
                     onPressed: () => controller.selectDate(context),
@@ -135,7 +137,7 @@ class BirthDate extends StatelessWidget {
               child: RichText(
                 text: TextSpan(
                   text: Uptext,
-                  style: const TextStyle(color: Colors.black, fontSize: 14),
+                  style: Theme.of(context).textTheme.bodyMedium,
                   children: isRequired
                       ? [
                           const TextSpan(
@@ -161,7 +163,9 @@ class BirthDate extends StatelessWidget {
                 onTap: () => controller.selectBirthDate(context),
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
-                  hintStyle: Get.theme.textTheme.bodyMedium!
+                  hintStyle: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -178,7 +182,7 @@ class BirthDate extends StatelessWidget {
                   suffixIcon: IconButton(
                     icon: Icon(
                       VMS_Icons.calender,
-                      color: Get.theme.primaryColor,
+                      color: Theme.of(context).primaryColor,
                       size: 16,
                     ),
                     onPressed: () => controller.selectBirthDate(context),
@@ -223,7 +227,10 @@ class JoinDate extends StatelessWidget {
               child: RichText(
                 text: TextSpan(
                   text: Uptext,
-                  style: const TextStyle(color: Colors.black, fontSize: 14),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 14),
                   children: isRequired
                       ? [
                           const TextSpan(
@@ -249,7 +256,9 @@ class JoinDate extends StatelessWidget {
                 onTap: () => controller.selectJoinDate(context),
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
-                  hintStyle: Get.theme.textTheme.bodyMedium!
+                  hintStyle: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -266,7 +275,7 @@ class JoinDate extends StatelessWidget {
                   suffixIcon: IconButton(
                     icon: Icon(
                       VMS_Icons.calender,
-                      color: Get.theme.primaryColor,
+                      color: Theme.of(context).primaryColor,
                       size: 16,
                     ),
                     onPressed: () => controller.selectJoinDate(context),
@@ -318,7 +327,9 @@ class selectDateRequest extends StatelessWidget {
                 onTap: () => controller.selectDate(context),
                 decoration: InputDecoration(
                     hintText: "yyyy-MM-dd",
-                    hintStyle: Theme.of(context).textTheme.bodyMedium!
+                    hintStyle: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
                         .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
@@ -395,7 +406,9 @@ class selectTeacherDateAttendence extends StatelessWidget {
                   onTap: () => controller.selectDate(context),
                   decoration: InputDecoration(
                       hintText: "yyyy-MM-dd",
-                      hintStyle: Get.theme.primaryTextTheme.titleMedium!
+                      hintStyle: Theme.of(context)
+                          .primaryTextTheme
+                          .titleMedium!
                           .copyWith(
                               fontSize: 14, color: const Color(0xffD9D9D9)),
                       focusedBorder: OutlineInputBorder(
@@ -414,7 +427,7 @@ class selectTeacherDateAttendence extends StatelessWidget {
                           ? IconButton(
                               icon: Icon(
                                 VMS_Icons.calender,
-                                color: Get.theme.primaryColor,
+                                color: Theme.of(context).primaryColor,
                                 size: 16,
                               ),
                               onPressed: () => controller.selectDate(context),
@@ -422,7 +435,7 @@ class selectTeacherDateAttendence extends StatelessWidget {
                           : IconButton(
                               icon: Icon(
                                 Icons.clear,
-                                color: Get.theme.primaryColor,
+                                color: Theme.of(context).primaryColor,
                                 size: 16,
                               ),
                               onPressed: () {
@@ -481,7 +494,9 @@ class selectEmployeeDateAttendence extends StatelessWidget {
                   onTap: () => controller.selectDate(context: context),
                   decoration: InputDecoration(
                       hintText: "yyyy-MM-dd",
-                      hintStyle: Get.theme.primaryTextTheme.titleMedium!
+                      hintStyle: Theme.of(context)
+                          .primaryTextTheme
+                          .titleMedium!
                           .copyWith(
                               fontSize: 14, color: const Color(0xffD9D9D9)),
                       focusedBorder: OutlineInputBorder(
@@ -500,7 +515,7 @@ class selectEmployeeDateAttendence extends StatelessWidget {
                           ? IconButton(
                               icon: Icon(
                                 VMS_Icons.calender,
-                                color: Get.theme.primaryColor,
+                                color: Theme.of(context).primaryColor,
                                 size: 16,
                               ),
                               onPressed: () =>
@@ -509,7 +524,7 @@ class selectEmployeeDateAttendence extends StatelessWidget {
                           : IconButton(
                               icon: Icon(
                                 Icons.clear,
-                                color: Get.theme.primaryColor,
+                                color: Theme.of(context).primaryColor,
                                 size: 16,
                               ),
                               onPressed: () {
@@ -564,7 +579,9 @@ class selectStudentsDateAttendence extends StatelessWidget {
                   onTap: () => controller.selectDate(context: context),
                   decoration: InputDecoration(
                       hintText: "yyyy-MM-dd",
-                      hintStyle: Get.theme.primaryTextTheme.titleMedium!
+                      hintStyle: Theme.of(context)
+                          .primaryTextTheme
+                          .titleMedium!
                           .copyWith(
                               fontSize: 14, color: const Color(0xffD9D9D9)),
                       focusedBorder: OutlineInputBorder(
@@ -583,7 +600,7 @@ class selectStudentsDateAttendence extends StatelessWidget {
                           ? IconButton(
                               icon: Icon(
                                 VMS_Icons.calender,
-                                color: Get.theme.primaryColor,
+                                color: Theme.of(context).primaryColor,
                                 size: 16,
                               ),
                               onPressed: () =>
@@ -592,7 +609,7 @@ class selectStudentsDateAttendence extends StatelessWidget {
                           : IconButton(
                               icon: Icon(
                                 Icons.clear,
-                                color: Get.theme.primaryColor,
+                                color: Theme.of(context).primaryColor,
                                 size: 16,
                               ),
                               onPressed: () {
@@ -647,7 +664,9 @@ class selectTransactionDate extends StatelessWidget {
                   onTap: () => controller.selectDate(context: context),
                   decoration: InputDecoration(
                       hintText: "yyyy-MM-dd",
-                      hintStyle: Get.theme.primaryTextTheme.titleMedium!
+                      hintStyle: Theme.of(context)
+                          .primaryTextTheme
+                          .titleMedium!
                           .copyWith(
                               fontSize: 14, color: const Color(0xffD9D9D9)),
                       focusedBorder: OutlineInputBorder(
@@ -666,7 +685,7 @@ class selectTransactionDate extends StatelessWidget {
                           ? IconButton(
                               icon: Icon(
                                 VMS_Icons.calender,
-                                color: Get.theme.primaryColor,
+                                color: Theme.of(context).primaryColor,
                                 size: 16,
                               ),
                               onPressed: () =>
@@ -675,7 +694,7 @@ class selectTransactionDate extends StatelessWidget {
                           : IconButton(
                               icon: Icon(
                                 Icons.clear,
-                                color: Get.theme.primaryColor,
+                                color: Theme.of(context).primaryColor,
                                 size: 16,
                               ),
                               onPressed: () {
@@ -728,7 +747,9 @@ class selectstart extends StatelessWidget {
                 onTap: () => controller.SelectStartDate(context),
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
-                  hintStyle: Get.theme.primaryTextTheme.titleMedium!
+                  hintStyle: Theme.of(context)
+                      .primaryTextTheme
+                      .titleMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -745,7 +766,7 @@ class selectstart extends StatelessWidget {
                   suffixIcon: IconButton(
                     icon: Icon(
                       VMS_Icons.calender,
-                      color: Get.theme.primaryColor,
+                      color: Theme.of(context).primaryColor,
                       size: 16,
                     ),
                     onPressed: () => controller.SelectStartDate(context),
@@ -797,7 +818,9 @@ class selectend extends StatelessWidget {
                 onTap: () => controller.SelectEndDate(context),
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
-                  hintStyle: Get.theme.primaryTextTheme.titleMedium!
+                  hintStyle: Theme.of(context)
+                      .primaryTextTheme
+                      .titleMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -814,7 +837,7 @@ class selectend extends StatelessWidget {
                   suffixIcon: IconButton(
                     icon: Icon(
                       VMS_Icons.calender,
-                      color: Get.theme.primaryColor,
+                      color: Theme.of(context).primaryColor,
                       size: 16,
                     ),
                     onPressed: () => controller.SelectEndDate(context),
@@ -867,7 +890,9 @@ class penaltyStartDate extends StatelessWidget {
                 onTap: () => controller.selectStartDatePenalty(context),
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
-                  hintStyle: Get.theme.primaryTextTheme.titleMedium!
+                  hintStyle: Theme.of(context)
+                      .primaryTextTheme
+                      .titleMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -884,7 +909,7 @@ class penaltyStartDate extends StatelessWidget {
                   suffixIcon: IconButton(
                     icon: Icon(
                       VMS_Icons.calender,
-                      color: Get.theme.primaryColor,
+                      color: Theme.of(context).primaryColor,
                       size: 16,
                     ),
                     onPressed: () => controller.selectStartDatePenalty(context),
@@ -937,7 +962,9 @@ class PenaltyEndDate extends StatelessWidget {
                 onTap: () => controller.selectEndDatePenalty(context),
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
-                  hintStyle: Get.theme.primaryTextTheme.titleMedium!
+                  hintStyle: Theme.of(context)
+                      .primaryTextTheme
+                      .titleMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -954,7 +981,7 @@ class PenaltyEndDate extends StatelessWidget {
                   suffixIcon: IconButton(
                     icon: Icon(
                       VMS_Icons.calender,
-                      color: Get.theme.primaryColor,
+                      color: Theme.of(context).primaryColor,
                       size: 16,
                     ),
                     onPressed: () => controller.selectEndDatePenalty(context),
@@ -1006,7 +1033,9 @@ class examDate extends StatelessWidget {
                 onTap: () => controller.selectDateIndex(context),
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
-                  hintStyle: Get.theme.primaryTextTheme.titleMedium!
+                  hintStyle: Theme.of(context)
+                      .primaryTextTheme
+                      .titleMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -1023,7 +1052,7 @@ class examDate extends StatelessWidget {
                   suffixIcon: IconButton(
                     icon: Icon(
                       VMS_Icons.calender,
-                      color: Get.theme.primaryColor,
+                      color: Theme.of(context).primaryColor,
                       size: 16,
                     ),
                     onPressed: () => controller.selectDateIndex(context),
@@ -1094,7 +1123,9 @@ class EditJoinDateTeacher extends StatelessWidget {
                 onTap: () => controller.selectJoinDate(context),
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
-                  hintStyle: Get.theme.textTheme.bodyMedium!
+                  hintStyle: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -1111,7 +1142,7 @@ class EditJoinDateTeacher extends StatelessWidget {
                   suffixIcon: IconButton(
                     icon: Icon(
                       VMS_Icons.calender,
-                      color: Get.theme.primaryColor,
+                      color: Theme.of(context).primaryColor,
                       size: 16,
                     ),
                     onPressed: () => controller.selectJoinDate(context),
@@ -1182,7 +1213,9 @@ class EditBirthDateTeacher extends StatelessWidget {
                 onTap: () => controller.selectBirthDate(context),
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
-                  hintStyle: Get.theme.textTheme.bodyMedium!
+                  hintStyle: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
@@ -1199,7 +1232,7 @@ class EditBirthDateTeacher extends StatelessWidget {
                   suffixIcon: IconButton(
                     icon: Icon(
                       VMS_Icons.calender,
-                      color: Get.theme.primaryColor,
+                      color: Theme.of(context).primaryColor,
                       size: 16,
                     ),
                     onPressed: () => controller.selectBirthDate(context),

@@ -303,7 +303,9 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                         children: [
                           Text(
                             "Social Media Info :",
-                            style: Get.theme.textTheme.titleLarge!
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
                                 .copyWith(fontSize: 20),
                           )
                         ],
@@ -356,7 +358,9 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                         children: [
                           Text(
                             "Teacher Bank Info :",
-                            style: Get.theme.textTheme.titleLarge!
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
                                 .copyWith(fontSize: 20),
                           )
                         ],
@@ -419,7 +423,7 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                     Padding(
                       padding: const EdgeInsets.only(top: 22.0),
                       child: Divider(
-                        color: Get.theme.primaryColor,
+                        color: Theme.of(context).primaryColor,
                         height: 1,
                       ),
                     ),
@@ -512,7 +516,7 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                     Note: note.text,
                   );
                 },
-                color: Get.theme.primaryColor,
+                color: Theme.of(context).primaryColor,
                 width: 140)
           ]);
     }),

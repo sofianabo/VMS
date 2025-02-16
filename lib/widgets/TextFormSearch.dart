@@ -33,7 +33,7 @@ class TextFormSearch extends StatelessWidget {
         controller: controller,
         decoration: InputDecoration(
           hintText: "Search By Name",
-          hintStyle: TextStyle(color: Colors.blueGrey),
+          hintStyle: TextStyle(color: Colors.grey),
           suffixIcon: GestureDetector(
             onTap: () {
               if (controller.text.isNotEmpty) {

@@ -33,14 +33,16 @@ class GradeTable extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Table(
-                        border: TableBorder.all(color: Get.theme.primaryColor),
+                        border: TableBorder.all(
+                            color: Theme.of(context).primaryColor),
                         children: [
                           TableRow(
-                            decoration: const BoxDecoration(color: Color(0xffD4DFE5)),
+                            decoration: BoxDecoration(
+                                color: Theme.of(context).indicatorColor),
                             children: [
-                              _tableHeader('Operation'),
-                              _tableHeader('Fee Count'),
-                              _tableHeader('Grade Name'),
+                              _tableHeader('Operation', context),
+                              _tableHeader('Fee Count', context),
+                              _tableHeader('Grade Name', context),
                             ],
                           ),
                           for (var row in controller.Grades.asMap().entries)
@@ -48,8 +50,8 @@ class GradeTable extends StatelessWidget {
                               children: [
                                 _operationColumn(
                                     row.value, controller, row.key, context),
-                                _dataColumn(row.value['feeCount']),
-                                _dataColumn(row.value['enName']),
+                                _dataColumn(row.value['feeCount'], context),
+                                _dataColumn(row.value['enName'], context),
                               ],
                             ),
                         ],
@@ -62,18 +64,18 @@ class GradeTable extends StatelessWidget {
     );
   }
 
-  Widget _tableHeader(String title) {
+  Widget _tableHeader(String title, BuildContext context) {
     return Container(
       height: 50,
       alignment: Alignment.center,
       child: Center(
         child: Text(
           title,
-          style: Get.theme.textTheme.titleLarge!.copyWith(
-            color: Get.theme.primaryColor,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                color: Theme.of(context).primaryColor,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
         ),
       ),
     );
@@ -108,7 +110,7 @@ class GradeTable extends StatelessWidget {
                         onPressed: () {
                           Get.back();
                         },
-                        color: Get.theme.primaryColor,
+                        color: Theme.of(context).primaryColor,
                         width: 120)
                   ],
                   contents: Column(
@@ -131,7 +133,7 @@ class GradeTable extends StatelessWidget {
           ),
           _iconButton(
             iconData: Icons.edit_note_outlined,
-            color: Get.theme.primaryColor,
+            color: Theme.of(context).primaryColor,
             onPressed: () {
               name.text = "${row['name']}";
               enName.text = "${row['enName']}";
@@ -149,7 +151,7 @@ class GradeTable extends StatelessWidget {
                               name: name.text,
                             );
                           },
-                          color: Get.theme.primaryColor,
+                          color: Theme.of(context).primaryColor,
                           width: 120),
                     ],
                     contents: Column(
@@ -158,7 +160,8 @@ class GradeTable extends StatelessWidget {
                         Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                              padding: const EdgeInsets.only(
+                                  left: 15.0, right: 15.0),
                               child: Textfildwithupper(
                                   controller: enName,
                                   Uptext: "Grade En - Name",
@@ -225,13 +228,13 @@ class GradeTable extends StatelessWidget {
     );
   }
 
-  Widget _dataColumn(String? data) {
+  Widget _dataColumn(String? data, BuildContext context) {
     return Container(
       alignment: Alignment.center,
       height: 50,
       child: Text(
         data ?? '',
-        style: const TextStyle(color: Colors.black),
+        style: Theme.of(context).textTheme.bodyMedium,
       ),
     );
   }
