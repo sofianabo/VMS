@@ -6,7 +6,6 @@ import 'package:vms_school/Translate/local_controller.dart'
 import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/link/Bindings/UserBinding.dart';
 import 'package:vms_school/view/Admin/AdminHome.dart';
-import 'package:vms_school/view/Admin/School_Management/Teachers_notebook_grade_record_Pages/Teachers_notebook_grade_record.dart';
 import 'package:vms_school/view/website/Home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Translate/local.dart';
@@ -31,8 +30,6 @@ class _VMSState extends State<VMS> {
   localeController loc = Get.put(localeController(), permanent: true);
   @override
   Widget build(BuildContext context) {
-    final Themecontroller themeController = Get.put(Themecontroller());
-
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         translations: MyLocal(),
@@ -44,7 +41,7 @@ class _VMSState extends State<VMS> {
         home: prefs!.getBool("isLogin") != null &&
                 prefs!.getBool("isLogin") == true
             ? AdminHome()
-            : Home()
+            : Directionality(textDirection: TextDirection.rtl, child: Home())
 
         // home: AdminHome()
 

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:vms_school/Theme/themeController.dart';
 
 class Textfildwithupper extends StatelessWidget {
-  Textfildwithupper({
+  const Textfildwithupper({
     super.key,
     required this.controller,
     required this.Uptext,
@@ -28,12 +26,10 @@ class Textfildwithupper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     return Container(
       margin: const EdgeInsets.only(top: 2.0),
       width: width ?? 250,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
@@ -41,120 +37,37 @@ class Textfildwithupper extends StatelessWidget {
             child: RichText(
               text: TextSpan(
                 text: Uptext,
-                style: Theme.of(context).textTheme.bodyMedium,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+                    ?.copyWith(fontSize: 14),
                 children: isRequired
                     ? [
                         const TextSpan(
                           text: " *",
-                          style:
-                              TextStyle(color: Colors.red, fontSize: 14),
+                          style: TextStyle(color: Colors.red, fontSize: 14),
                         ),
                       ]
                     : [],
               ),
-=======
-    return GetBuilder<Themecontroller>(
-        init: Themecontroller(),
-        builder: (thcont) {
-          return Container(
-            margin: const EdgeInsets.only(top: 2.0),
-            width: width ?? 250,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 5.0),
-                  child: RichText(
-                    text: TextSpan(
-                      text: Uptext,
-                      style: thcont.th!.textTheme.bodyMedium!
-                          .copyWith(fontSize: 14),
-                      children: isRequired
-                          ? [
-                              const TextSpan(
-                                text: " *",
-                                style:
-                                    TextStyle(color: Colors.red, fontSize: 14),
-                              ),
-                            ]
-                          : [],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 40,
-                  child: TextFormField(
-                    style:
-                        thcont.th!.textTheme.bodyMedium!.copyWith(fontSize: 14),
-                    textAlign: TextAlign.center,
-                    enabled: enabled,
-                    readOnly: readOnly,
-                    controller: controller,
-                    onChanged: (value) {
-                      if (Uptext == 'Username') {
-                        // حفظ موقع المؤشر الحالي
-                        final cursorPosition = controller.selection.baseOffset;
-
-                        // إزالة المسافات وتحويل النص إلى حروف صغيرة
-                        String updatedValue =
-                            value.replaceAll(' ', '').toLowerCase();
-
-                        // تعيين النص الجديد مع تعديل موقع المؤشر
-                        controller.value = TextEditingValue(
-                          text: updatedValue,
-                          selection: TextSelection.collapsed(
-                            offset: cursorPosition > updatedValue.length
-                                ? updatedValue.length
-                                : cursorPosition,
-                          ),
-                        );
-                      }
-
-                      // استدعاء الدالة إذا كانت غير null
-                      if (onChanged != null) {
-                        onChanged!(controller.text);
-                      }
-                    },
-                    decoration: InputDecoration(
-                      suffixIcon: icon ?? null,
-                      hintText: hinttext,
-                      hintStyle: TextStyle(color: Colors.grey, fontSize: 12),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5),
-                        borderSide:
-                            BorderSide(color: thcont.th!.canvasColor, width: 2),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5),
-                        borderSide: const BorderSide(color: Color(0xffD9D9D9)),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
->>>>>>> ff7b8a19c79086843b1037bac456aca22947ee84
             ),
           ),
           SizedBox(
             height: 40,
             child: TextFormField(
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(fontSize: 14),
+              textAlign: TextAlign.center,
               enabled: enabled,
               readOnly: readOnly,
               controller: controller,
               onChanged: (value) {
                 if (Uptext == 'Username') {
-                  // حفظ موقع المؤشر الحالي
                   final cursorPosition = controller.selection.baseOffset;
-    
-                  // إزالة المسافات وتحويل النص إلى حروف صغيرة
-                  String updatedValue =
-                      value.replaceAll(' ', '').toLowerCase();
-    
-                  // تعيين النص الجديد مع تعديل موقع المؤشر
+                  String updatedValue = value.replaceAll(' ', '').toLowerCase();
+
                   controller.value = TextEditingValue(
                     text: updatedValue,
                     selection: TextSelection.collapsed(
@@ -164,22 +77,19 @@ class Textfildwithupper extends StatelessWidget {
                     ),
                   );
                 }
-    
-                // استدعاء الدالة إذا كانت غير null
+
                 if (onChanged != null) {
                   onChanged!(controller.text);
                 }
               },
               decoration: InputDecoration(
-                suffixIcon: icon ?? const Text(""),
+                suffixIcon: icon,
                 hintText: hinttext,
-                hintStyle: TextStyle(
-                  color: Colors.grey,
-                ),
+                hintStyle: const TextStyle(color: Colors.grey, fontSize: 12),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5),
-                  borderSide:
-                      BorderSide(color: Theme.of(context).canvasColor, width: 2),
+                  borderSide: BorderSide(
+                      color: Theme.of(context).canvasColor, width: 2),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5),
