@@ -39,11 +39,10 @@ class Section1 extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text("WE CARE ABOUT \n YOUR FUTURE",
+                        Text("WE CARE ABOUT \n YOUR FUTURE".tr,
                             textAlign: TextAlign.left,
-                            style: Get.theme.textTheme.titleLarge!.copyWith(
-                              fontSize: 60
-                            )),
+                            style: Get.theme.textTheme.titleLarge!
+                                .copyWith(fontSize: 60)),
                         Container(
                           padding: EdgeInsets.only(top: h / 68.4),
                           width: w / 3.2,
@@ -72,16 +71,15 @@ class Section1 extends StatelessWidget {
                               GestureDetector(
                                 child: Container(
                                   width: w / 6.808,
-                                  decoration:  BoxDecoration(
+                                  decoration: BoxDecoration(
                                       color: Get.theme.primaryColor,
                                       borderRadius: const BorderRadius.only(
                                           topRight: Radius.circular(11),
                                           bottomRight: Radius.circular(11))),
                                   alignment: Alignment.center,
                                   child: Text('Enroll',
-                                      style: Get.theme.textTheme.displayMedium!.copyWith(
-                                        fontSize: 16
-                                      )),
+                                      style: Get.theme.textTheme.displayMedium!
+                                          .copyWith(fontSize: 16)),
                                 ),
                                 onTap: () {
                                   // Get.to(() => Registration());
@@ -92,11 +90,9 @@ class Section1 extends StatelessWidget {
                                   width: w / 8,
                                   height: h / 13.68,
                                   alignment: Alignment.center,
-                                  child: Text('Sign In',
-                                      style: Get
-                                          .theme.textTheme.titleLarge!.copyWith(
-                                          fontSize: 16
-                                      )),
+                                  child: Text('Sign In'.tr,
+                                      style: Get.theme.textTheme.titleLarge!
+                                          .copyWith(fontSize: 16)),
                                 ),
                                 onTap: () {
                                   Get.to(

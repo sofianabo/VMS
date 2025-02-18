@@ -32,7 +32,7 @@ class TextFormSearch extends StatelessWidget {
         style: const TextStyle(fontSize: 14),
         controller: controller,
         decoration: InputDecoration(
-          hintText: "Search By Name",
+          hintText: "Search By Name".tr,
           hintStyle: TextStyle(color: Colors.grey),
           suffixIcon: GestureDetector(
             onTap: () {

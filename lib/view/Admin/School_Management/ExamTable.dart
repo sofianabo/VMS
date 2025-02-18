@@ -16,6 +16,8 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSemesterModel.dart';
 import 'package:vms_school/Theme/themeController.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/Admin_Table/DropDownExamTable.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
@@ -41,15 +43,7 @@ class _ExamTableState extends State<ExamTable> {
     super.initState();
   }
 
-  List<String> tableData = [
-    'Class',
-    'Type',
-    'Curriculum Name',
-    'Date',
-    'Period',
-    'Max Mark',
-    'Passing Mark'
-  ];
+ 
 
   TextEditingController period = TextEditingController();
   TextEditingController max = TextEditingController();
@@ -72,7 +66,7 @@ class _ExamTableState extends State<ExamTable> {
               child: Row(
                 children: [
                   DropDownexamTable(
-                    title: "Semester",
+                    title: "Semester".tr,
                     width: Get.width / 6.5,
                     type: 'season',
                   ),
@@ -81,7 +75,7 @@ class _ExamTableState extends State<ExamTable> {
                     child: DropDownexamTable(
                       isDisabled: false,
                       // isLoading: controller.isLoadingClass,
-                      title: "Type",
+                      title: "Type".tr,
                       width: Get.width / 6.5,
                       type: 'type',
                     ),
@@ -92,7 +86,7 @@ class _ExamTableState extends State<ExamTable> {
                       // isLoading: controller.c,
                       isDisabled: false,
                       type: 'class',
-                      title: "Class",
+                      title: "Class".tr,
                       width: Get.width / 6.5,
                     ),
                   ),
@@ -130,7 +124,7 @@ class _ExamTableState extends State<ExamTable> {
                               Get.dialog(VMSAlertDialog(
                                   action: [
                                     ButtonDialog(
-                                        text: "Add Exam",
+                                        text: "Add Exam".tr,
                                         onPressed: () async {
                                           await Addquizapi(context).Addquiz(
                                               controller.curiculmDialogList
@@ -163,12 +157,12 @@ class _ExamTableState extends State<ExamTable> {
                                               padding: const EdgeInsets.only(
                                                   right: 15.0),
                                               child: DropDownexamTable(
-                                                  title: "Class",
+                                                  title: "Class".tr,
                                                   width: 220,
                                                   type: "classDialog"),
                                             ),
                                             DropDownexamTable(
-                                                title: "Curiculm ",
+                                                title: "Curriculum".tr,
                                                 width: 220,
                                                 type: "curiculmDialog"),
                                           ],
@@ -183,12 +177,12 @@ class _ExamTableState extends State<ExamTable> {
                                                 right: 15.0,
                                               ),
                                               child: DropDownexamTable(
-                                                  title: "season ",
+                                                  title: "season".tr,
                                                   width: 220,
                                                   type: "semesterDialog"),
                                             ),
                                             DropDownexamTable(
-                                                title: "Type ",
+                                                title: "Type".tr,
                                                 width: 220,
                                                 type: "typeDialog"),
                                           ],
@@ -203,16 +197,16 @@ class _ExamTableState extends State<ExamTable> {
                                               padding: const EdgeInsets.only(
                                                   right: 15.0),
                                               child: Textfildwithupper(
-                                                  Uptext: "Max Mark",
+                                                  Uptext: "Max Mark".tr,
                                                   width: 220,
                                                   controller: max,
-                                                  hinttext: "Max Mark"),
+                                                  hinttext: "Max Mark".tr),
                                             ),
                                             Textfildwithupper(
-                                                Uptext: "Min Mark",
+                                                Uptext: "Min Mark".tr,
                                                 width: 220,
                                                 controller: min,
-                                                hinttext: "Min Mark")
+                                                hinttext: "Min Mark".tr)
                                           ],
                                         ),
                                       ),
@@ -225,7 +219,7 @@ class _ExamTableState extends State<ExamTable> {
                                                 padding: const EdgeInsets.only(
                                                     right: 15.0),
                                                 child: Textfildwithupper(
-                                                    Uptext: "Period",
+                                                    Uptext: "Period".tr,
                                                     width: 220,
                                                     controller: period,
                                                     hinttext: "00:00:00")),
@@ -239,7 +233,7 @@ class _ExamTableState extends State<ExamTable> {
                                                           bottom: 5.0),
                                                   child: RichText(
                                                       text: TextSpan(
-                                                          text: "Date",
+                                                          text: "Date".tr,
                                                           style:
                                                               Theme.of(context)
                                                                   .textTheme
@@ -255,7 +249,7 @@ class _ExamTableState extends State<ExamTable> {
                                       ),
                                     ],
                                   ),
-                                  apptitle: "Add Exam",
+                                  apptitle: "Add Exam".tr,
                                   subtitle: "none"));
                             },
                             icon: Icon(Icons.add,
@@ -394,28 +388,28 @@ class _ExamTableState extends State<ExamTable> {
                             ),
                             columns: [
                               DataColumn(
-                                label: Text("Class",
+                                label: Text("Class".tr,
                                     textAlign: TextAlign.center,
                                     style:
                                         Theme.of(context).textTheme.titleLarge),
                               ),
-                              const DataColumn(label: Text('Type')),
-                              const DataColumn(label: Text('Curriculum Name')),
-                              const DataColumn(label: Text('Date')),
-                              const DataColumn(label: Text('Period')),
-                              const DataColumn(label: Text('Max Mark')),
-                              const DataColumn(
-                                label: Text('Passing Mark'),
+                               DataColumn(label: Text('Type'.tr)),
+                               DataColumn(label: Text('Curriculum Name'.tr)),
+                               DataColumn(label: Text('Date'.tr)),
+                               DataColumn(label: Text('Period'.tr)),
+                               DataColumn(label: Text('Max Mark'.tr)),
+                               DataColumn(
+                                label: Text('Passing Mark'.tr),
                               ),
-                              const DataColumn(
-                                label: Text('Operations'),
+                               DataColumn(
+                                label: Text('Operations'.tr),
                               ),
                             ],
                             rows: controller.filteredquiz!.map((exam) {
                               return DataRow(cells: [
-                                DataCell(Text(exam.classese?.enName ?? '')),
+                                DataCell(Text(prefs!.getString(languageKey)=='ar'? exam.classese?.name ??"":exam.classese?.enName ?? '')),
                                 DataCell(Text(exam.type ?? '')),
-                                DataCell(Text(exam.curriculumName ?? '')),
+                                DataCell(Text(prefs!.getString(languageKey)=='ar'? exam.curriculumName ?? '':exam.curriculumEnName ?? '')),
                                 DataCell(Text(exam.startDate ?? '')),
                                 DataCell(Text(exam.period ?? '')),
                                 DataCell(Text(exam.maxMark?.toString() ?? '')),
@@ -504,7 +498,7 @@ class _ExamTableState extends State<ExamTable> {
                                         Get.dialog(VMSAlertDialog(
                                             action: [
                                               ButtonDialog(
-                                                  text: "Edit Exam",
+                                                  text: "Edit Exam".tr,
                                                   onPressed: () async {
                                                     await Editquizapi(context).Editquiz(
                                                         controller
@@ -542,18 +536,18 @@ class _ExamTableState extends State<ExamTable> {
                                                         child:
                                                             Textfildwithupper(
                                                                 Uptext:
-                                                                    "Max Mark",
+                                                                    "Max Mark".tr,
                                                                 width: 220,
                                                                 controller:
                                                                     maxDialog,
                                                                 hinttext:
-                                                                    "Max Mark"),
+                                                                    "Max Mark".tr),
                                                       ),
                                                       Textfildwithupper(
-                                                          Uptext: "Min Mark",
+                                                          Uptext: "Min Mark".tr,
                                                           width: 220,
                                                           controller: minDialog,
-                                                          hinttext: "Min Mark")
+                                                          hinttext: "Min Mark".tr)
                                                     ],
                                                   ),
                                                 ),
@@ -569,7 +563,7 @@ class _ExamTableState extends State<ExamTable> {
                                                                   .only(
                                                                   right: 15.0),
                                                           child: Textfildwithupper(
-                                                              Uptext: "Period",
+                                                              Uptext: "Period".tr,
                                                               width: 220,
                                                               controller:
                                                                   periodDialog,
@@ -589,7 +583,7 @@ class _ExamTableState extends State<ExamTable> {
                                                             child: RichText(
                                                                 text: TextSpan(
                                                                     text:
-                                                                        "Date",
+                                                                        "Date".tr,
                                                                     style: Get
                                                                         .theme
                                                                         .textTheme
@@ -605,7 +599,7 @@ class _ExamTableState extends State<ExamTable> {
                                                 ),
                                               ],
                                             ),
-                                            apptitle: "Edit Exam",
+                                            apptitle: "Edit Exam".tr,
                                             subtitle: "none"));
                                       },
                                     ),

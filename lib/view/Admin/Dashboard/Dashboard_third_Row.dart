@@ -57,8 +57,7 @@ class DashboardThirdRow extends StatelessWidget {
             child: GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              gridDelegate:
-                  const SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 6,
                 crossAxisSpacing: 10.0,
                 mainAxisSpacing: 10.0,
@@ -72,8 +71,7 @@ class DashboardThirdRow extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     border: Border.all(color: Colors.grey, width: 0.2),
-                    borderRadius:
-                        const BorderRadius.all(Radius.circular(5)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     boxShadow: const [
                       BoxShadow(
                         color: Colors.black12,
@@ -82,14 +80,11 @@ class DashboardThirdRow extends StatelessWidget {
                       ),
                     ],
                   ),
-                )
-                        .animate(
-                            onPlay: (controller) => controller.repeat())
-                        .shimmer(
-                            angle: 1,
-                            color: dashed[index]['color'],
-                            duration: const Duration(seconds: 1),
-                            delay: const Duration(seconds: 1)));
+                ).animate(onPlay: (controller) => controller.repeat()).shimmer(
+                        angle: 1,
+                        color: dashed[index]['color'],
+                        duration: const Duration(seconds: 1),
+                        delay: const Duration(seconds: 1)));
               },
             ),
           );
@@ -113,8 +108,7 @@ class DashboardThirdRow extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: dashed[index]['color'],
                     border: Border.all(color: Colors.grey, width: 0.2),
-                    borderRadius:
-                        const BorderRadius.all(Radius.circular(5)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     boxShadow: const [
                       BoxShadow(
                         color: Colors.black12,
@@ -136,7 +130,7 @@ class DashboardThirdRow extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0),
                         child: Text(
-                          "${dashed[index]['name']}",
+                          "${dashed[index]['name']}".tr,
                           style: TextStyle(color: Colors.black),
                         ),
                       ),

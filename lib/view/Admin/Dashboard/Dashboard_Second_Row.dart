@@ -116,10 +116,10 @@ class DashboardSecondRow extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      const Padding(
+                       Padding(
                         padding: EdgeInsets.only(bottom: 10.0),
                         child: Text(
-                          "Attendance Today",
+                          "Attendance Today".tr,
                         ),
                       ),
                       Row(
@@ -148,7 +148,7 @@ class DashboardSecondRow extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Text(
-                                    "Employees\nAttendance",
+                                    "Employees\nAttendance".tr,
                                     style:
                                         Theme.of(context).textTheme.bodyMedium,
                                   ),
@@ -197,7 +197,7 @@ class DashboardSecondRow extends StatelessWidget {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Text(
-                                      "Students\nAttendance",
+                                      "Students\nAttendance".tr,
                                       style:
                                           Theme.of(context).textTheme.bodyMedium,
                                     ),
@@ -244,7 +244,7 @@ class DashboardSecondRow extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Text(
-                                    "Teachers\nAttendance",
+                                    "Teachers\nAttendance".tr,
                                     style:
                                         Theme.of(context).textTheme.bodyMedium,
                                     textAlign: TextAlign.center,
@@ -298,7 +298,7 @@ class DashboardSecondRow extends StatelessWidget {
                   children: [
                     Expanded(
                       child: BarChartSample1(
-                        headerText: "Presence of students",
+                        headerText: "Presence of students".tr,
                         data: convertNumberOfStudentsPerYearToWidgetData(
                             controller.dsh!.numberOfStudentsPerYear),
                       ),
@@ -329,7 +329,7 @@ class DashboardSecondRow extends StatelessWidget {
                   children: [
                     Expanded(
                       child: BarChartSample2(
-                        headerText: "Presence 2024 students",
+                        headerText: "Presence this session students".tr,
                         data: convertNumberOfStudentsThisYearToWidgetData(
                             controller.dsh!.numberOfStudentsThisYear),
                       ),

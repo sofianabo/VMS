@@ -42,8 +42,8 @@ class _DashboardFirstRowState extends State<DashboardFirstRow> {
                 ),
                 Column(
                   children: [
-                    const Text("Welcome Laith Haitham Azzam"),
-                    const Text("Have A Nice Day At Work"),
+                     Text("Welcome Laith Haitham Azzam".tr),
+                     Text("Have A Nice Day At Work".tr),
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0),
                       child: Row(
@@ -160,10 +160,10 @@ class _DashboardFirstRowState extends State<DashboardFirstRow> {
                   ),
                   Column(
                     children: [
-                      const Padding(
+                       Padding(
                         padding: EdgeInsets.only(top: 10.0, bottom: 15.0),
                         child: Text(
-                          "Illness and Vaccines",
+                          "Illness and Vaccines".tr,
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -174,7 +174,7 @@ class _DashboardFirstRowState extends State<DashboardFirstRow> {
                             children: [
                               ButtonDashboard(
                                   bordercolor: Colors.white,
-                                  text: "Illness",
+                                  text: "Illness".tr,
                                   onPressed: () {
                                     Get.find<AdminHomeContentController>()
                                         .updateContent("Illness Screen");
@@ -185,7 +185,7 @@ class _DashboardFirstRowState extends State<DashboardFirstRow> {
                                 padding: const EdgeInsets.only(top: 8.0),
                                 child: ButtonDashboard(
                                     bordercolor: Colors.white,
-                                    text: "Vaccines",
+                                    text: "Vaccines".tr,
                                     onPressed: () {
                                       Get.find<AdminHomeContentController>()
                                           .updateContent("Vaccine Screen");
@@ -224,10 +224,10 @@ class _DashboardFirstRowState extends State<DashboardFirstRow> {
                   ),
                   Column(
                     children: [
-                      const Padding(
+                       Padding(
                         padding: EdgeInsets.only(top: 10.0, bottom: 15.0),
                         child: Text(
-                          "Rewards and Penalties",
+                          "Rewards and Penalties".tr,
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -238,7 +238,7 @@ class _DashboardFirstRowState extends State<DashboardFirstRow> {
                             children: [
                               ButtonDashboard(
                                   bordercolor: Colors.white,
-                                  text: "Rewards",
+                                  text: "Rewards".tr,
                                   onPressed: () {},
                                   color: const Color(0xffFE9E9E),
                                   width: 150),
@@ -246,7 +246,7 @@ class _DashboardFirstRowState extends State<DashboardFirstRow> {
                                 padding: const EdgeInsets.only(top: 8.0),
                                 child: ButtonDashboard(
                                     bordercolor: Colors.white,
-                                    text: "Penalties",
+                                    text: "Penalties".tr,
                                     onPressed: () {
                                       Get.find<AdminHomeContentController>()
                                           .updateContent("Penalties");

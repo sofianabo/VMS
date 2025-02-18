@@ -36,91 +36,94 @@ class AdminHome extends StatelessWidget {
   const AdminHome({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AppbarAdmin(),
-          Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(width: 70, child: SideBarAdmin()),
-                GetBuilder<AdminHomeContentController>(builder: (cont) {
-                  switch (cont.content) {
-                    case "Enroll Requests":
-                      return Requests();
-                    case "Exam Table":
-                      return ExamTable();
-                    case "Dashboard":
-                      return AdminDashboard();
-                    case "School Time Table":
-                      return SchoolTimeTable();
-                    case "All Students":
-                      return AllStudent();
-                    case "Study Year Students":
-                      return StudyYearStudents();
-                    case "All Guardians":
-                      return AllGuardians();
-                    case "Student Attendance":
-                      return StudentStatus();
-                    case "Teacher Management":
-                      return TeacherManagement();
-                    case "Teacher Status":
-                      return TeacherStatus();
-                    case "Employee Management":
-                      return AllEmployee();
-                    case "Employee Attendance":
-                      return EmployeeStatus();
-                    case "Employee Attendance Manage":
-                      return EmployeeAttendanceManagment();
-                    case "Teacher Attendance Managment":
-                      return TeacherAttendanceManagment();
-                    case "Students Attendance Managment":
-                      return StudentsAttendanceManagment();
-                    case "Grade Management":
-                      return GradeManagement();
-                    case "Subject Management":
-                      return Subject_Management();
-                    case "Class Management":
-                      return ClassManagement();
-                    case "Division Management":
-                      return DivisionManagement();
-                    case "Curriculum Management":
-                      return Curriculum_Management();
-                    case "Session Management":
-                      return SessionManagement();
-                    case "School Data Management":
-                      return SchoolDataMgmt();
-                    case "Electronic Library":
-                      return ElectronicBook();
-                    case "Illness Screen":
-                      return Ilness_Screen();
-                    case "Vaccine Screen":
-                      return Vaccine_Screen();
-                    case "Transaction":
-                      return Transaction_Management();
-                    case "Virtual User Management":
-                      return Virtual_User_Management();
-                    case "Penalties":
-                      return Penaltyscreen();
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Scaffold(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AppbarAdmin(),
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(width: 70, child: SideBarAdmin()),
+                  GetBuilder<AdminHomeContentController>(builder: (cont) {
+                    switch (cont.content) {
+                      case "Enroll Requests":
+                        return Requests();
+                      case "Exam Table":
+                        return ExamTable();
+                      case "Dashboard":
+                        return AdminDashboard();
+                      case "School Time Table":
+                        return SchoolTimeTable();
+                      case "All Students":
+                        return AllStudent();
+                      case "Study Year Students":
+                        return StudyYearStudents();
+                      case "All Guardians":
+                        return AllGuardians();
+                      case "Student Attendance":
+                        return StudentStatus();
+                      case "Teacher Management":
+                        return TeacherManagement();
+                      case "Teacher Status":
+                        return TeacherStatus();
+                      case "Employee Management":
+                        return AllEmployee();
+                      case "Employee Attendance":
+                        return EmployeeStatus();
+                      case "Employee Attendance Manage":
+                        return EmployeeAttendanceManagment();
+                      case "Teacher Attendance Managment":
+                        return TeacherAttendanceManagment();
+                      case "Students Attendance Managment":
+                        return StudentsAttendanceManagment();
+                      case "Grade Management":
+                        return GradeManagement();
+                      case "Subject Management":
+                        return Subject_Management();
+                      case "Class Management":
+                        return ClassManagement();
+                      case "Division Management":
+                        return DivisionManagement();
+                      case "Curriculum Management":
+                        return Curriculum_Management();
+                      case "Session Management":
+                        return SessionManagement();
+                      case "School Data Management":
+                        return SchoolDataMgmt();
+                      case "Electronic Library":
+                        return ElectronicBook();
+                      case "Illness Screen":
+                        return Ilness_Screen();
+                      case "Vaccine Screen":
+                        return Vaccine_Screen();
+                      case "Transaction":
+                        return Transaction_Management();
+                      case "Virtual User Management":
+                        return Virtual_User_Management();
+                      case "Penalties":
+                        return Penaltyscreen();
 
-                    default:
-                      return AdminDashboard();
-                  }
-                })
-              ],
+                      default:
+                        return AdminDashboard();
+                    }
+                  })
+                ],
+              ),
             ),
-          ),
-          // Container(
-          //   width: Get.width,
-          //   child: GetBuilder<UserController>(
-          //     builder: (userController) {
-          //       return Text(userController.roll);
-          //     },
-          //   ),
-          // ),
-        ],
+            // Container(
+            //   width: Get.width,
+            //   child: GetBuilder<UserController>(
+            //     builder: (userController) {
+            //       return Text(userController.roll);
+            //     },
+            //   ),
+            // ),
+          ],
+        ),
       ),
     );
   }

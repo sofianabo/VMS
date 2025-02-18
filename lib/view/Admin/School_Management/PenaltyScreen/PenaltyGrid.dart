@@ -10,6 +10,8 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/PenaltyAP
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Grade_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/PenaltyController.dart';
 import 'package:vms_school/Theme/themeController.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
@@ -52,19 +54,21 @@ class _PenaltygridState extends State<Penaltygrid> {
                             decoration: BoxDecoration(
                                 color: Theme.of(context).indicatorColor),
                             children: [
-                              _tableHeader('Operation'),
-                              _tableHeader('Details'),
-                              _tableHeader('Penalty Name'),
+                              _tableHeader('Penalty Name'.tr),
+                              _tableHeader('Details'.tr),
+                              _tableHeader('Operation'.tr),
                             ],
                           ),
-                          for (var row
-                              in controller.Penalties.asMap().entries)
+                          for (var row in controller.Penalties.asMap().entries)
                             TableRow(
                               children: [
-                                _operationColumn(row.value, controller,
-                                    row.key, context),
+                                _dataColumn(
+                                    prefs!.getString(languageKey) == 'ar'
+                                        ? row.value['name']
+                                        : row.value['enName']),
                                 _dataColumn(row.value['description']),
-                                _dataColumn(row.value['enName']),
+                                _operationColumn(
+                                    row.value, controller, row.key, context),
                               ],
                             ),
                         ],
@@ -102,7 +106,7 @@ class _PenaltygridState extends State<Penaltygrid> {
                 VMSAlertDialog(
                   action: [
                     ButtonDialog(
-                        text: "Delete",
+                        text: "Delete".tr,
                         onPressed: () {
                           Deletepenaltyapi(context).Deletepenalty(
                             penaltyId: controller.Penalties[index]['id'],
@@ -112,7 +116,7 @@ class _PenaltygridState extends State<Penaltygrid> {
                         color: const Color(0xffB03D3D),
                         width: 120),
                     ButtonDialog(
-                        text: "Cancel",
+                        text: "Cancel".tr,
                         onPressed: () {
                           Get.back();
                         },
@@ -125,13 +129,15 @@ class _PenaltygridState extends State<Penaltygrid> {
                       SizedBox(
                         width: 400,
                         child: Text(
-                          "Do You Want To Delete (${row['enName']}) penalty",
+                          "Do You Want To Delete".tr +
+                              " (${row['enName']})" +
+                              "penalty".tr,
                           style: const TextStyle(fontSize: 16),
                         ),
                       ),
                     ],
                   ),
-                  apptitle: "Delete Penalty",
+                  apptitle: "Delete Penalty".tr,
                   subtitle: "none",
                 ),
               );
@@ -148,7 +154,7 @@ class _PenaltygridState extends State<Penaltygrid> {
                 VMSAlertDialog(
                     action: [
                       ButtonDialog(
-                          text: "Edit",
+                          text: "Edit".tr,
                           onPressed: () {
                             Editpenaltyapi(context).Editpenalty(
                               penaltyid: controller.Penalties[index]['id'],
@@ -170,13 +176,13 @@ class _PenaltygridState extends State<Penaltygrid> {
                                   left: 15.0, right: 15.0),
                               child: Textfildwithupper(
                                   controller: enName,
-                                  Uptext: "Penalty En - Name",
-                                  hinttext: "Penalty En - Name"),
+                                  Uptext: "Penalty En - Name".tr,
+                                  hinttext: "Penalty En - Name".tr),
                             ),
                             Textfildwithupper(
                                 controller: name,
-                                Uptext: "Penalty Ar - Name",
-                                hinttext: "Penalty Ar - Name"),
+                                Uptext: "Penalty Ar - Name".tr,
+                                hinttext: "Penalty Ar - Name".tr),
                           ],
                         ),
                         Row(
@@ -189,14 +195,14 @@ class _PenaltygridState extends State<Penaltygrid> {
                                   left: 15.0, right: 15.0, top: 15.0),
                               child: Textfildwithupper(
                                   controller: details,
-                                  Uptext: "Details",
-                                  hinttext: "Details"),
+                                  Uptext: "Details".tr,
+                                  hinttext: "Details".tr),
                             ),
                           ],
                         ),
                       ],
                     ),
-                    apptitle: "Edit Penalty",
+                    apptitle: "Edit Penalty".tr,
                     subtitle: "none"),
               );
             },

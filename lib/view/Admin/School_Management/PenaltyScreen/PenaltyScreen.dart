@@ -74,7 +74,7 @@ class PenaltyscreenState extends State<Penaltyscreen> {
                             return VMSAlertDialog(
                                 action: [
                                   ButtonDialog(
-                                      text: "Add",
+                                      text: "Add".tr,
                                       onPressed: () async {
                                         await Addpenaltyapi(context)
                                             .Addpenalty(
@@ -102,16 +102,16 @@ class PenaltyscreenState extends State<Penaltyscreen> {
                                               child: Textfildwithupper(
                                                   controller: enName,
                                                   Uptext:
-                                                      "Penalty En - Name",
+                                                      "Penalty En - Name".tr,
                                                   hinttext:
-                                                      "Penalty En - Name"),
+                                                      "Penalty En - Name".tr),
                                             ),
                                             Textfildwithupper(
                                                 controller: arName,
                                                 Uptext:
-                                                    "Penalty Ar - Name",
+                                                    "Penalty Ar - Name".tr,
                                                 hinttext:
-                                                    "Penalty Ar - Name"),
+                                                    "Penalty Ar - Name".tr),
                                           ],
                                         ),
                                         Row(
@@ -129,8 +129,8 @@ class PenaltyscreenState extends State<Penaltyscreen> {
                                                       top: 15.0),
                                               child: Textfildwithupper(
                                                   controller: details,
-                                                  Uptext: "Details",
-                                                  hinttext: "Details"),
+                                                  Uptext: "Details".tr,
+                                                  hinttext: "Details".tr),
                                             ),
                                           ],
                                         ),
@@ -138,7 +138,7 @@ class PenaltyscreenState extends State<Penaltyscreen> {
                                     ),
                                   ],
                                 ),
-                                apptitle: "Add Penalty",
+                                apptitle: "Add Penalty".tr,
                                 subtitle: "none");
                           }));
                         },

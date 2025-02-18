@@ -48,7 +48,7 @@ class _RequestsState extends State<Requests> {
                       children: [
                         Dropdownrequestenroll(
                             isLoading: false,
-                            title: "Status",
+                            title: "Status".tr,
                             width: w / 5,
                             type: "status"),
                         Padding(

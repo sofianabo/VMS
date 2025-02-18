@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
   final Section6Key = new GlobalKey();
   final Section7Key = new GlobalKey();
 
-  localeController loc = Get.put(localeController(), permanent: true);
+  LocalizationController loc = Get.put(LocalizationController(), permanent: true);
 
   @override
   void initState() {

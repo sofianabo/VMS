@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Theme/ThemeData.dart';
 import 'package:vms_school/Translate/local_controller.dart'
-    show localeController;
+    show LocalizationController, localeController;
 import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/link/Bindings/UserBinding.dart';
 import 'package:vms_school/view/Admin/AdminHome.dart';
@@ -17,37 +17,40 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   prefs = await SharedPreferences.getInstance();
 
-  runApp(VMS());
+  final localizationController = LocalizationController();
+  await localizationController.loadLanguageFromCache();
+  runApp(VMS(localizationController: localizationController));
 }
 
-class VMS extends StatefulWidget {
-  VMS({super.key});
-
-  @override
-  State<VMS> createState() => _VMSState();
-}
-
-class _VMSState extends State<VMS> {
-  localeController loc = Get.put(localeController(), permanent: true);
+class VMS extends StatelessWidget {
+  final LocalizationController localizationController;
   final Themecontroller themeController = Get.put(Themecontroller());
+  VMS({Key? key, required this.localizationController}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        translations: MyLocal(),
         initialBinding: UserBiniding(),
-        locale: loc.init,
+        locale: localizationController.currentLocale.value,
+        translations: MyTranslations(),
+        fallbackLocale: const Locale('ar'),
         theme: theme.Light_Theme,
         themeMode: Themecontroller.defualtTheme,
         darkTheme: theme.Dark_Theme,
         home: prefs!.getBool("isLogin") != null &&
                 prefs!.getBool("isLogin") == true
-            ? AdminHome()
-            : Home()
+            ? Directionality(
+                textDirection: TextDirection.ltr, child: AdminHome())
+            : Directionality(textDirection: TextDirection.rtl, child: Home())
 
         // home: AdminHome()
 
         );
   }
+}
+
+class MyTranslations extends Translations {
+  @override
+  Map<String, Map<String, String>> get keys => Languages.translations;
 }
