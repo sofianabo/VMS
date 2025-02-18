@@ -7,15 +7,15 @@ class AllStudyYearModel {
     if (json['students'] != null) {
       students = <Students>[];
       json['students'].forEach((v) {
-        students!.add(Students.fromJson(v));
+        students!.add(new Students.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (students != null) {
-      data['students'] = students!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.students != null) {
+      data['students'] = this.students!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -28,22 +28,22 @@ class Students {
   String? fullName;
   String? email;
   Division? division;
-  Division? location;
   Division? classes;
   Division? grade;
   Guardians? guardians;
+  String? userName;
 
   Students(
       {this.id,
-        this.fileId,
-        this.state,
-        this.fullName,
-        this.email,
-        this.division,
-        this.location,
-        this.classes,
-        this.grade,
-        this.guardians});
+      this.fileId,
+      this.state,
+      this.fullName,
+      this.email,
+      this.division,
+      this.classes,
+      this.grade,
+      this.guardians,
+      this.userName});
 
   Students.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -52,41 +52,37 @@ class Students {
     fullName = json['fullName'];
     email = json['email'];
     division = json['division'] != null
-        ? Division.fromJson(json['division'])
-        : null;
-    location = json['location'] != null
-        ? Division.fromJson(json['location'])
+        ? new Division.fromJson(json['division'])
         : null;
     classes =
-    json['classes'] != null ? Division.fromJson(json['classes']) : null;
-    grade = json['grade'] != null ? Division.fromJson(json['grade']) : null;
+        json['classes'] != null ? new Division.fromJson(json['classes']) : null;
+    grade = json['grade'] != null ? new Division.fromJson(json['grade']) : null;
     guardians = json['guardians'] != null
-        ? Guardians.fromJson(json['guardians'])
+        ? new Guardians.fromJson(json['guardians'])
         : null;
+    userName = json['userName'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['fileId'] = fileId;
-    data['state'] = state;
-    data['fullName'] = fullName;
-    data['email'] = email;
-    if (division != null) {
-      data['division'] = division!.toJson();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['fileId'] = this.fileId;
+    data['state'] = this.state;
+    data['fullName'] = this.fullName;
+    data['email'] = this.email;
+    if (this.division != null) {
+      data['division'] = this.division!.toJson();
     }
-    if (location != null) {
-      data['location'] = location!.toJson();
+    if (this.classes != null) {
+      data['classes'] = this.classes!.toJson();
     }
-    if (classes != null) {
-      data['classes'] = classes!.toJson();
+    if (this.grade != null) {
+      data['grade'] = this.grade!.toJson();
     }
-    if (grade != null) {
-      data['grade'] = grade!.toJson();
+    if (this.guardians != null) {
+      data['guardians'] = this.guardians!.toJson();
     }
-    if (guardians != null) {
-      data['guardians'] = guardians!.toJson();
-    }
+    data['userName'] = this.userName;
     return data;
   }
 }
@@ -103,9 +99,9 @@ class Division {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['name'] = name;
-    data['EnName'] = enName;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['EnName'] = this.enName;
     return data;
   }
 }
@@ -120,11 +116,11 @@ class Guardians {
 
   Guardians(
       {this.id,
-        this.name,
-        this.phone,
-        this.nationalId,
-        this.email,
-        this.userName});
+      this.name,
+      this.phone,
+      this.nationalId,
+      this.email,
+      this.userName});
 
   Guardians.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -136,13 +132,13 @@ class Guardians {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['name'] = name;
-    data['phone'] = phone;
-    data['nationalId'] = nationalId;
-    data['email'] = email;
-    data['userName'] = userName;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['phone'] = this.phone;
+    data['nationalId'] = this.nationalId;
+    data['email'] = this.email;
+    data['userName'] = this.userName;
     return data;
   }
 }

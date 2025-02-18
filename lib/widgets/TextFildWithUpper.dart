@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:vms_school/Theme/themeController.dart';
 
 class Textfildwithupper extends StatelessWidget {
-  Textfildwithupper({
+  const Textfildwithupper({
     super.key,
     required this.controller,
     required this.Uptext,
@@ -28,11 +26,11 @@ class Textfildwithupper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       margin: const EdgeInsets.only(top: 2.0),
       width: width ?? 250,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
@@ -40,7 +38,10 @@ class Textfildwithupper extends StatelessWidget {
             child: RichText(
               text: TextSpan(
                 text: Uptext,
-                style: Theme.of(context).textTheme.bodyMedium,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+                    ?.copyWith(fontSize: 14),
                 children: isRequired
                     ? [
                         const TextSpan(
@@ -50,6 +51,42 @@ class Textfildwithupper extends StatelessWidget {
                       ]
                     : [],
               ),
+            ),
+          ),
+          SizedBox(
+            height: 40,
+            child: TextFormField(
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(fontSize: 14),
+              textAlign: TextAlign.center,
+              enabled: enabled,
+              readOnly: readOnly,
+              controller: controller,
+              onChanged: (value) {
+                if (Uptext == 'Username') {
+                  final cursorPosition = controller.selection.baseOffset;
+                  String updatedValue = value.replaceAll(' ', '').toLowerCase();
+
+                  controller.value = TextEditingValue(
+                    text: updatedValue,
+                    selection: TextSelection.collapsed(
+                      offset: cursorPosition > updatedValue.length
+                          ? updatedValue.length
+                          : cursorPosition,
+                    ),
+                  );
+                }
+
+                if (onChanged != null) {
+                  onChanged!(controller.text);
+                }
+              },
+              decoration: InputDecoration(
+                suffixIcon: icon,
+                hintText: hinttext,
+                hintStyle: const TextStyle(color: Colors.grey, fontSize: 12),
             ),
           ),
           SizedBox(
