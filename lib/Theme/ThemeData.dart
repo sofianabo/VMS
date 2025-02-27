@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 
 class theme {
+  static String IsAr =
+      prefs!.getString(languageKey) == 'ar' ? "Cairo" : "Sansation";
   static ThemeData Light_Theme = ThemeData(
-    
     cardColor: const Color(0xffFBFBFB),
     primaryColorLight: const Color(0xff19478d), // card button
     primaryColor: const Color(0xff19478d),
@@ -14,34 +17,41 @@ class theme {
     highlightColor: const Color(0xff19478d),
     canvasColor: const Color(0xff134B70),
     disabledColor: Color(0xffB03D3D),
-    textTheme: const TextTheme(
-        displayLarge: TextStyle(fontSize: 26, color: Colors.black),
+    textTheme: TextTheme(
+        displayLarge:
+            TextStyle(fontSize: 26, color: Colors.black, fontFamily: IsAr),
         bodyMedium:
-            TextStyle(color: Colors.black, fontFamily: "Cairo", fontSize: 14),
-        titleLarge: TextStyle(
-            color: Color(0xff134B70), fontFamily: "Cairo", fontSize: 14),
+            TextStyle(color: Colors.black, fontFamily: IsAr, fontSize: 14),
+        titleLarge:
+            TextStyle(color: Color(0xff134B70), fontFamily: IsAr, fontSize: 14),
         titleMedium: TextStyle(
             fontWeight: FontWeight.bold,
             color: Color(0xff134B70),
-            fontFamily: "Cairo",
+            fontFamily: IsAr,
             fontSize: 24),
         headlineLarge: TextStyle(
-          //table head
+          fontFamily: IsAr,
           color: Colors.black,
           fontSize: 18,
           fontWeight: FontWeight.bold,
         ),
         displayMedium:
-            TextStyle(color: Colors.white, fontFamily: "Cairo", fontSize: 14)),
-    fontFamily: "Cairo",
+            TextStyle(color: Colors.white, fontFamily: IsAr, fontSize: 14)),
+    fontFamily: IsAr,
     focusColor: Colors.white,
     colorScheme: const ColorScheme.light(
         primary: Color(0xff19478d),
         onPrimary: Color(0xffEAF0FF),
         secondary: Color(0xff7c9fb9)),
-    popupMenuTheme: const PopupMenuThemeData(
+    popupMenuTheme: PopupMenuThemeData(
+        textStyle: TextStyle(
+          fontFamily: IsAr,
+        ),
         color: Colors.white,
-        labelTextStyle: WidgetStatePropertyAll(TextStyle(color: Colors.black))),
+        labelTextStyle: WidgetStatePropertyAll(TextStyle(
+          color: Colors.black,
+          fontFamily: IsAr,
+        ))),
     checkboxTheme: const CheckboxThemeData(
       checkColor: WidgetStatePropertyAll(Colors.white),
     ),
@@ -58,41 +68,48 @@ class theme {
     cardColor: const Color(0xff464646),
     highlightColor: Colors.white,
     indicatorColor: Color.fromARGB(255, 57, 60, 61),
-    popupMenuTheme: const PopupMenuThemeData(
+    popupMenuTheme: PopupMenuThemeData(
         color: Color(0xff464646),
-        labelTextStyle: WidgetStatePropertyAll(TextStyle(color: Colors.white))),
+        labelTextStyle: WidgetStatePropertyAll(
+            TextStyle(fontFamily: IsAr, color: Colors.white))),
     scaffoldBackgroundColor: const Color(0xff1A1A1B),
     canvasColor: const Color(0xff252525),
     focusColor: const Color(0xff1A1A1B),
     secondaryHeaderColor: Colors.white,
     disabledColor: Color.fromARGB(255, 238, 141, 141),
-    textTheme: const TextTheme(
+    textTheme: TextTheme(
         bodyMedium:
-            TextStyle(color: Colors.white, fontFamily: "Cairo", fontSize: 14),
+            TextStyle(color: Colors.white, fontFamily: IsAr, fontSize: 14),
         displayMedium:
-            TextStyle(color: Colors.white, fontFamily: "Cairo", fontSize: 14),
+            TextStyle(color: Colors.white, fontFamily: IsAr, fontSize: 14),
         titleMedium: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.white,
-            fontFamily: "Cairo",
+            fontFamily: IsAr,
             fontSize: 24),
         headlineLarge: TextStyle(
-          //table head
+          fontFamily: IsAr,
           color: Colors.white,
           fontSize: 18,
           fontWeight: FontWeight.bold,
         ),
-        displayLarge: TextStyle(fontSize: 26, color: Colors.white),
-        titleLarge: TextStyle(
-            color: Colors.blueGrey, fontFamily: "Cairo", fontSize: 14)),
-    fontFamily: "Cairo",
+        displayLarge:
+            TextStyle(fontFamily: IsAr, fontSize: 26, color: Colors.white),
+        titleLarge:
+            TextStyle(color: Colors.blueGrey, fontFamily: IsAr, fontSize: 14)),
+    fontFamily: IsAr,
     dialogBackgroundColor: Colors.white.withOpacity(0.3),
     primaryColor: const Color(0xff464646),
     useMaterial3: true,
-    cupertinoOverrideTheme: const CupertinoThemeData(
+    cupertinoOverrideTheme: CupertinoThemeData(
         textTheme: CupertinoTextThemeData(
-            dateTimePickerTextStyle: TextStyle(color: Colors.white),
-            pickerTextStyle: TextStyle(color: Colors.white, fontSize: 16))),
+            textStyle: TextStyle(fontFamily: IsAr),
+            dateTimePickerTextStyle: TextStyle(
+              color: Colors.white,
+              fontFamily: IsAr,
+            ),
+            pickerTextStyle: TextStyle(
+                fontFamily: IsAr, color: Colors.white, fontSize: 16))),
     colorScheme: const ColorScheme.dark(
         primary: Color(0xff19478d),
         onPrimary: Color(0xff464646),

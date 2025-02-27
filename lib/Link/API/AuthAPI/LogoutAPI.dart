@@ -14,7 +14,8 @@ class Logoutapi {
   Dio dio = Dio();
   Logout() async {
     Get.to(
-          () => Directionality(textDirection: TextDirection.rtl, child: LoginScreen()),
+      () => Directionality(
+          textDirection: TextDirection.rtl, child: LoginScreen()),
     );
     await prefs!.clear();
     String myurl = "${global.hostPort}${global.logout}";
@@ -26,9 +27,10 @@ class Logoutapi {
           }));
       if (response.statusCode == 200) {
         await prefs!.clear();
-        
-        Get.to(
-          () => const Directionality(textDirection: TextDirection.rtl, child: Home()),
+
+        Get.off(
+          () => const Directionality(
+              textDirection: TextDirection.ltr, child: Home()),
         );
       } else {
         return throw Exception("Failed");
