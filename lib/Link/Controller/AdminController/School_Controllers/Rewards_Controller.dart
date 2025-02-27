@@ -24,7 +24,7 @@ class RewardsController extends GetxController {
 
   void addTextOverlay() {
     textOverlays.add(TextOverlay(
-      text: "نص جديد",
+      text: "New Text",
       position: Offset(100, 100),
       fontSize: 20,
       color: Colors.black,

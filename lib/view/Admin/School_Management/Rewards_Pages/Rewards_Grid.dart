@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Rewards_Controller.dart';
+import 'package:vms_school/Link/Functions/Export_Rewards.dart';
 
 GlobalKey RewardsGloballKey = GlobalKey(); // مفتاح لالتقاط الصورة من الـ Stack
 
@@ -73,7 +74,7 @@ class _RewardsGridState extends State<RewardsGrid> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  margin: EdgeInsets.only(left: 75, right: 75),
+                  margin: EdgeInsets.only(left: 35, right: 35),
                   width: 300,
                   height: 600,
                   decoration: BoxDecoration(
@@ -128,6 +129,121 @@ class _RewardsGridState extends State<RewardsGrid> {
                             isSelected: controller.selectedTextIndex == i,
                           ),
                       ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(left: 25, right: 25),
+                    decoration: BoxDecoration(
+                        color: Color(0xff134B70),
+                        borderRadius: BorderRadius.all(Radius.circular(5))),
+                    child: SingleChildScrollView(
+                      child: Column(children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 15.0),
+                          child: Text(
+                            "Tools",
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsets.only(top: 15.0, left: 8.0, right: 8.0),
+                          child: TextButton(
+                            onPressed:
+                                Get.find<RewardsController>().addTextOverlay,
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.text_increase_outlined,
+                                  color: Colors.white,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 6.0),
+                                  child: Expanded(
+                                    child: Text("Add Text",
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(color: Colors.white)),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsets.only(top: 15.0, left: 8.0, right: 8.0),
+                          child: TextButton(
+                            onPressed: () {
+                              saveRewardsAsPdf();
+                            },
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.picture_as_pdf,
+                                  color: Colors.white,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 6.0),
+                                  child: Text("Export As Pdf",
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(color: Colors.white)),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsets.only(top: 15.0, left: 8.0, right: 8.0),
+                          child: Expanded(
+                            child: TextButton(
+                              onPressed: () {},
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.temple_hindu,
+                                    color: Colors.white,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 6.0),
+                                    child: SingleChildScrollView(
+                                      scrollDirection: Axis.vertical,
+                                      child: Text("Add New Template",
+                                          overflow: TextOverflow.ellipsis,
+                                          style:
+                                              TextStyle(color: Colors.white)),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsets.only(top: 15.0, left: 8.0, right: 8.0),
+                          child: TextButton(
+                            onPressed: () {},
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.save,
+                                  color: Colors.white,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 6.0),
+                                  child: Text("Save",
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(color: Colors.white)),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ]),
                     ),
                   ),
                 ),

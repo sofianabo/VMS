@@ -239,7 +239,10 @@ class _DashboardFirstRowState extends State<DashboardFirstRow> {
                               ButtonDashboard(
                                   bordercolor: Colors.white,
                                   text: "Rewards",
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.find<AdminHomeContentController>()
+                                        .updateContent("Rewards");
+                                  },
                                   color: const Color(0xffFE9E9E),
                                   width: 150),
                               Padding(
