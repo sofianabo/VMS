@@ -39,8 +39,8 @@ class _DashboardFirstRowState extends State<DashboardFirstRow> {
                 ),
                 Column(
                   children: [
-                     Text("Welcome Laith Haitham Azzam".tr),
-                     Text("Have A Nice Day At Work".tr),
+                    Text("Welcome Laith Haitham Azzam".tr),
+                    Text("Have A Nice Day At Work".tr),
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0),
                       child: Row(
@@ -157,7 +157,7 @@ class _DashboardFirstRowState extends State<DashboardFirstRow> {
                   ),
                   Column(
                     children: [
-                       Padding(
+                      Padding(
                         padding: EdgeInsets.only(top: 10.0, bottom: 15.0),
                         child: Text(
                           "Illness and Vaccines".tr,
@@ -221,7 +221,7 @@ class _DashboardFirstRowState extends State<DashboardFirstRow> {
                   ),
                   Column(
                     children: [
-                       Padding(
+                      Padding(
                         padding: EdgeInsets.only(top: 10.0, bottom: 15.0),
                         child: Text(
                           "Rewards and Penalties".tr,
@@ -239,7 +239,6 @@ class _DashboardFirstRowState extends State<DashboardFirstRow> {
                                   onPressed: () {
                                     Get.find<AdminHomeContentController>()
                                         .updateContent("Rewards");
-
                                   },
                                   color: const Color(0xffFE9E9E),
                                   width: 150),
