@@ -53,6 +53,7 @@ import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers
 import 'package:vms_school/Link/Controller/WidgetController/PasswordHintController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/Theme/themeController.dart';
+import 'package:vms_school/Translate/local_controller.dart';
 
 class UserBiniding extends Bindings {
   @override
@@ -113,6 +114,9 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Penaltiesandrewardscontroller(), fenix: true);
     Get.lazyPut(() => Teachersubjectscontroller(), fenix: true);
     Get.lazyPut(() => TeachernoteAndGradeReco(), fenix: true);
-    Get.lazyPut(() => RewardsController(), fenix: true);
+        Get.lazyPut(() => RewardsController(), fenix: true);
+            Get.lazyPut(() => LocalizationController(), fenix: true);
+
+
   }
 }

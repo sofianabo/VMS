@@ -1,18 +1,32 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:vms_school/main.dart';
+import 'package:flutter/material.dart';  
+import 'package:get/get.dart';  
+import 'package:shared_preferences/shared_preferences.dart';  
+ const String languageKey = 'selected_language';
+class LocalizationController extends GetxController {  
 
-// ignore: camel_case_types
-class localeController extends GetxController {
-  Locale init = const Locale("en");
-  // Locale init = lang!.getString("lang") == null
-  //     ? Get.deviceLocale!
-  //     : Locale(lang!.getString(("lang"))!);
+  var currentLocale = const Locale('ar').obs;  
 
-  // void changelang(String l) {
-  //   Locale locale = Locale(l);
-  //   lang!.setString("lang", l);
-  //   Get.updateLocale(locale);
-  //   update();
-  // }
+  @override  
+  void onInit() {  
+    super.onInit();  
+    loadLanguageFromCache();  
+  }  
+
+  Future<void> loadLanguageFromCache() async {  
+    final prefs = await SharedPreferences.getInstance();  
+    String? savedLanguageCode = prefs.getString(languageKey);  
+
+    if (savedLanguageCode != null) {  
+      currentLocale.value = Locale(savedLanguageCode);  
+      Get.updateLocale(currentLocale.value);  
+    }  
+  }  
+
+  Future<void> changeLanguage(Locale locale) async {  
+    final prefs = await SharedPreferences.getInstance();  
+    await prefs.setString(languageKey, locale.languageCode);  
+
+    currentLocale.value = locale;  
+    Get.updateLocale(locale);  
+  }  
 }

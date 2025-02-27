@@ -56,7 +56,7 @@ class Dropdownrequestenroll extends StatelessWidget {
           border: Border.all(color: color ?? const Color(0xffD9D9D9)),
         ),
         child: isDisabled == true
-            ? const Row( 
+            ? const Row(
                 children: [
                   Text(
                     "Division",
@@ -110,7 +110,8 @@ class Dropdownrequestenroll extends StatelessWidget {
                             DropdownMenuItem<String>(
                               value: title,
                               child: Text(title,
-                                  style: Theme.of(context).textTheme.bodyMedium),
+                                  style:
+                                      Theme.of(context).textTheme.bodyMedium),
                             ),
                             ..._getDropdownItems(cont, context),
                           ],
@@ -156,10 +157,11 @@ class Dropdownrequestenroll extends StatelessWidget {
       case 'status':
         items.addAll(cont.statusList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value,
-            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
+            value: value.tr,
+            child:
+                Text(value.tr, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () async {
-              cont.selectIndex(type, value);
+              cont.selectIndex(type, value.tr);
             },
           );
         }).toList());

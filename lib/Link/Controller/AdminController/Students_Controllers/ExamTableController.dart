@@ -5,6 +5,8 @@ import 'package:vms_school/Link/Model/AdminModel/AllSemesterModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/DropDownCuriculmModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/ExamTableModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/ExamTypeModel.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 
 class ExamTableController extends GetxController {
   String examTypeIndex = "";
@@ -134,6 +136,7 @@ class ExamTableController extends GetxController {
   void setAllTypes(AllExamTypeModel types) {
     examType.clear();
     for (int j = 0; j < types.type!.length; j++) {
+      
       examType.add(types.type![j].name.toString());
     }
     update();
@@ -144,6 +147,9 @@ class ExamTableController extends GetxController {
     semesterDialogList.clear();
     allSemester = sem.semester!;
     for (int j = 0; j < sem.semester!.length; j++) {
+      if(prefs!.getString(languageKey)=='ar')
+            semesterDialogList.add(sem.semester![j].name.toString());
+else
       semesterDialogList.add(sem.semester![j].enName.toString());
     }
     update();
@@ -162,6 +168,9 @@ class ExamTableController extends GetxController {
   void setAllClasses(AllClassModel clas) {
     examClass.clear();
     for (int j = 0; j < clas.classes!.length; j++) {
+            if(prefs!.getString(languageKey)=='ar')
+      examClass.add(clas.classes![j].name.toString());
+else
       examClass.add(clas.classes![j].enName.toString());
     }
     update();
@@ -172,6 +181,9 @@ class ExamTableController extends GetxController {
     classDialogList.clear();
     Allclass = clas.classes!;
     for (int j = 0; j < clas.classes!.length; j++) {
+                  if(prefs!.getString(languageKey)=='ar')
+      classDialogList.add(clas.classes![j].name.toString());
+else
       classDialogList.add(clas.classes![j].enName.toString());
     }
     update();
@@ -194,6 +206,9 @@ class ExamTableController extends GetxController {
   void setAllSeason(AllSemesterModel semster) {
     examSeason.clear();
     for (int l = 0; l < semster.semester!.length; l++) {
+      if(prefs!.getString(languageKey)=='ar')
+            examSeason.add(semster.semester![l].name.toString());
+else
       examSeason.add(semster.semester![l].enName.toString());
     }
     update();
@@ -202,7 +217,12 @@ class ExamTableController extends GetxController {
 
   void setAllCuriculm(DropDowmCuriculmModel model) {
     for (int l = 0; l < model.curriculum!.length; l++) {
+            if(prefs!.getString(languageKey)=='ar')
+
       curiculmDialogList.add(model.curriculum![l].name.toString());
+      else
+            curiculmDialogList.add(model.curriculum![l].enName.toString());
+
     }
     update();
     updateList("curiculmDialog", curiculmDialogList);

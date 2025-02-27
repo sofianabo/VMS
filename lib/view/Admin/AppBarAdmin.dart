@@ -9,6 +9,7 @@ import 'package:vms_school/Link/Controller/AuthController/UserController.dart';
 import 'package:vms_school/Theme/ThemeData.dart';
 import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/main.dart';
+import 'package:vms_school/widgets/Switcher.dart';
 
 class AppbarAdmin extends StatefulWidget {
   AppbarAdmin({super.key});
@@ -62,6 +63,14 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                             size: 18,
                             color: Get.theme.primaryColor,
                           ))),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 5.0),
+                    child: LanguageSwitcher(
+                      onLanguageToggle: (bool) {
+                        print(bool);
+                      },
+                    ),
+                  ),
                   Padding(
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Container(
@@ -157,7 +166,7 @@ class _AppbarAdminState extends State<AppbarAdmin> {
               child: GetBuilder<AdminHomeContentController>(builder: (cont) {
                 return Center(
                   child: Text(
-                    cont.content,
+                    cont.content.tr,
                     style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,

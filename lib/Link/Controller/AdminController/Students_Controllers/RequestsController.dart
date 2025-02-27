@@ -4,30 +4,34 @@ import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/RequestsModel.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 
 class Requestscontroller extends GetxController {
-
   List<Registration> registration = [], filteredregistration = [];
-  String searchQuery = "", statusindex = "", classIndex = "", divisionIndex = "";
+  String searchQuery = "",
+      statusindex = "",
+      classIndex = "",
+      divisionIndex = "";
   Rx<DateTime?> requestDate = Rx<DateTime?>(null);
   String? filterName = '';
   String? filterDate = '';
-  List<String> statusList = ['Rejected', 'Pending', 'Partially'];
-  List<String> classlist = [], divisionlist = Get.find<Dropdowndivisioncontroller>().division;
+  List<String> statusList = ['Rejected'.tr, 'Pending'.tr, 'Partially'.tr];
+  List<String> classlist = [],
+      divisionlist = Get.find<Dropdowndivisioncontroller>().division;
   List<Classes> allClass = [];
   bool isLoading = true;
 
-
-  clearDivision(){
+  clearDivision() {
     divisionIndex = "";
     divisionlist.clear();
     update();
   }
 
   SetIsloading(bool value) {
-     isLoading = value;
-     update();
-   }
+    isLoading = value;
+    update();
+  }
 
   void clearName() {
     filterName = "";
@@ -36,7 +40,6 @@ class Requestscontroller extends GetxController {
   }
 
   void searchByName(String? nameQuery, String? status, String? date) {
-
     filterName = nameQuery;
 
     List<Registration> tempFilteredList = List.from(registration);
@@ -48,7 +51,11 @@ class Requestscontroller extends GetxController {
         final graemail = cur.guardian!.email?.toLowerCase() ?? '';
         final grphone = cur.guardian!.phone?.toLowerCase() ?? '';
         final grnational = cur.guardian!.nationalId?.toLowerCase() ?? '';
-        return stuname.contains(nameQuery.toLowerCase()) ||graname.contains(nameQuery.toLowerCase()) ||graemail.contains(nameQuery.toLowerCase())||grphone.contains(nameQuery.toLowerCase())||grnational.contains(nameQuery.toLowerCase()) ;
+        return stuname.contains(nameQuery.toLowerCase()) ||
+            graname.contains(nameQuery.toLowerCase()) ||
+            graemail.contains(nameQuery.toLowerCase()) ||
+            grphone.contains(nameQuery.toLowerCase()) ||
+            grnational.contains(nameQuery.toLowerCase());
       }).toList();
     }
 
@@ -58,10 +65,9 @@ class Requestscontroller extends GetxController {
       }).toList();
     }
 
-
     if (date != null && date.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((cur) {
-        return cur.date == date ;
+        return cur.date == date;
       }).toList();
     }
 
@@ -69,16 +75,11 @@ class Requestscontroller extends GetxController {
     update();
   }
 
-
-
-
-
-
   void setAllRequests(AllRequestsModel req) {
     registration = req.registration!;
     filteredregistration = List.from(req.registration!);
     if (filterName != null && filterName!.isNotEmpty) {
-      searchByName(filterName.toString(), statusindex,filterDate);
+      searchByName(filterName.toString(), statusindex, filterDate);
     }
 
     if (statusindex.isNotEmpty) {
@@ -88,25 +89,20 @@ class Requestscontroller extends GetxController {
     }
     if (filterDate!.isNotEmpty) {
       filteredregistration = filteredregistration.where((emp) {
-        return emp.date == filterDate ;
+        return emp.date == filterDate;
       }).toList();
     }
-
-
 
     isLoading = false;
     update();
   }
 
-
-  setdate(DateTime date){
+  setdate(DateTime date) {
     filterDate = "${date.year}-${date.month}-${date.day}";
     requestDate.value = date;
     searchByName(filterName, statusindex, filterDate);
     update();
   }
-
-
 
   void selectIndex(String type, String? index) {
     switch (type) {
@@ -120,11 +116,12 @@ class Requestscontroller extends GetxController {
         divisionIndex = index ?? "";
         break;
     }
-    if(type == "status"){
+    if (type == "status") {
       searchByName(filterName, statusindex, filterDate);
     }
-    if(type == "class"){
-      Get.find<Dropdowndivisioncontroller>().setIsDisiabled(index == "" ?true :false);
+    if (type == "class") {
+      Get.find<Dropdowndivisioncontroller>()
+          .setIsDisiabled(index == "" ? true : false);
     }
     update();
   }
@@ -136,14 +133,17 @@ class Requestscontroller extends GetxController {
     update();
   }
 
-
   void setAllClassDialog(AllClassModel clas) {
-    classlist = clas.classes!.map((c) => c.enName!).toList();
+    classlist = prefs!.getString(languageKey) == 'ar'
+        ? clas.classes!.map((c) => c.name!).toList()
+        : clas.classes!.map((c) => c.enName!).toList();
     update();
   }
 
   void setAllDivisionDialog(AllDivisionModel division) {
-    divisionlist = division.division!.map((d) => d.enName!).toList();
+    prefs!.getString(languageKey) == 'ar'
+        ? divisionlist = division.division!.map((d) => d.name!).toList()
+        : divisionlist = division.division!.map((d) => d.enName!).toList();
     update();
   }
 
@@ -162,7 +162,7 @@ class Requestscontroller extends GetxController {
     requestDate.value = null;
     filterDate = "";
     searchByName(filterName, statusindex, "");
-     update();
+    update();
   }
 
   String get selectedStatusIndex => statusindex;
