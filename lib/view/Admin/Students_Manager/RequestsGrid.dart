@@ -416,7 +416,7 @@ class RequestsGrid extends StatelessWidget {
                                         padding:
                                             const EdgeInsets.only(right: 8.0),
                                         child: Text(
-                                          "${controller.filteredregistration[index].type}",
+                                          "${controller.filteredregistration[index].type!.tr}",
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium!

@@ -98,6 +98,7 @@ class Languages {
       'Semester': 'الفصل',
       'Curriculum': 'المنهاج',
       'season': 'الفصل',
+      'New Text': 'نص جديد',
       'Min Mark': 'الحد الأدنى للنجاح',
     },
     'en': {
@@ -198,6 +199,7 @@ class Languages {
       'Semester': 'Semester',
       'Curriculum': 'Curriculum',
       'season': 'semester',
+      'New Text': 'New Text',
       'Min Mark': 'Min Mark',
       '': '',
       '': '',

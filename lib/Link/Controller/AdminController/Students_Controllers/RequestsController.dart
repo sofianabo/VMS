@@ -61,7 +61,7 @@ class Requestscontroller extends GetxController {
 
     if (status != null && status.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((cur) {
-        return cur.type == status;
+        return cur.type!.tr == status.tr;
       }).toList();
     }
 
