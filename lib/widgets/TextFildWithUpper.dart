@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 
 class Textfildwithupper extends StatelessWidget {
   const Textfildwithupper({
@@ -55,7 +57,9 @@ class Textfildwithupper extends StatelessWidget {
           child: TextFormField(
             style:
                 Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 14),
-            textAlign: TextAlign.left,
+            textAlign: prefs!.getString(languageKey) == 'ar'
+                ? TextAlign.right
+                : TextAlign.left,
             enabled: enabled,
             readOnly: readOnly,
             controller: controller,

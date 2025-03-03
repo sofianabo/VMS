@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/HomeScreenController.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Auth/LoginScreen.dart';
 
 class Section1 extends StatelessWidget {
@@ -40,17 +42,22 @@ class Section1 extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text("WE CARE ABOUT \n YOUR FUTURE".tr,
-                            textAlign: TextAlign.left,
+                            textAlign: prefs!.getString(languageKey) == 'ar'
+                                ? TextAlign.right
+                                : TextAlign.left,
                             style: Get.theme.textTheme.titleLarge!
                                 .copyWith(fontSize: 60)),
                         Container(
                           padding: EdgeInsets.only(top: h / 68.4),
                           width: w / 3.2,
                           child: Text(
-                            "Join us to enter a better world filled with advanced educational methods through Virtual Modern School",
+                            "Join us to enter a better world filled with advanced educational methods through Virtual Modern School"
+                                .tr,
                             style: Get.theme.textTheme.titleLarge!
                                 .copyWith(fontSize: 14),
-                            textAlign: TextAlign.left,
+                            textAlign: prefs!.getString(languageKey) == 'ar'
+                                ? TextAlign.right
+                                : TextAlign.left,
                           ),
                         ),
                         SizedBox(
@@ -77,7 +84,7 @@ class Section1 extends StatelessWidget {
                                           topRight: Radius.circular(11),
                                           bottomRight: Radius.circular(11))),
                                   alignment: Alignment.center,
-                                  child: Text('Enroll',
+                                  child: Text('Enroll'.tr,
                                       style: Get.theme.textTheme.displayMedium!
                                           .copyWith(fontSize: 16)),
                                 ),
@@ -145,7 +152,7 @@ class Section1 extends StatelessWidget {
                                       Padding(
                                         padding: EdgeInsets.only(top: h / 68.4),
                                         child: Text(
-                                          "Teachers",
+                                          "Teachers".tr,
                                           style: Get
                                               .theme.primaryTextTheme.bodySmall!
                                               .copyWith(
@@ -192,7 +199,7 @@ class Section1 extends StatelessWidget {
                                       ),
                                       Padding(
                                         padding: EdgeInsets.only(top: h / 68.4),
-                                        child: Text("Students",
+                                        child: Text("Students".tr,
                                             style: Get
                                                 .theme.textTheme.bodyMedium!
                                                 .copyWith(
@@ -236,7 +243,7 @@ class Section1 extends StatelessWidget {
                                       ),
                                       Padding(
                                         padding: EdgeInsets.only(top: h / 68.4),
-                                        child: Text("Visitors",
+                                        child: Text("Visitors".tr,
                                             style: Get
                                                 .theme.textTheme.bodyMedium!
                                                 .copyWith(

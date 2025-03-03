@@ -31,7 +31,7 @@ class Dropdownrequestenroll extends StatelessWidget {
       switch (type) {
         case 'status':
           if (cont.statusList.contains(cont.selectedStatusIndex)) {
-            selectedValue = cont.selectedStatusIndex;
+            selectedValue = cont.selectedStatusIndex.tr;
           }
           break;
         case 'class':
@@ -78,8 +78,11 @@ class Dropdownrequestenroll extends StatelessWidget {
                         child: DropdownButton<String>(
                           onChanged: (newValue) {
                             if (newValue != null && newValue != title) {
-                              cont.selectIndex(type, newValue);
-                              cont.selectIndex(type, newValue);
+                              // البحث عن القيمة الأصلية
+                              String originalValue = cont.statusList.firstWhere(
+                                  (status) => status.tr == newValue,
+                                  orElse: () => newValue);
+                              cont.selectIndex(type, originalValue);
                             }
                           },
                           dropdownColor: Theme.of(context).cardColor,
@@ -109,7 +112,7 @@ class Dropdownrequestenroll extends StatelessWidget {
                           items: [
                             DropdownMenuItem<String>(
                               value: title,
-                              child: Text(title,
+                              child: Text(title.tr,
                                   style:
                                       Theme.of(context).textTheme.bodyMedium),
                             ),
@@ -132,8 +135,9 @@ class Dropdownrequestenroll extends StatelessWidget {
       case 'division':
         items.addAll(cont.divisionlist.map((String value) {
           return DropdownMenuItem<String>(
-            value: value,
-            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
+            value: value.tr,
+            child:
+                Text(value.tr, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () async {
               cont.selectIndex(type, value);
             },
@@ -143,8 +147,9 @@ class Dropdownrequestenroll extends StatelessWidget {
       case 'class':
         items.addAll(cont.classlist.map((String value) {
           return DropdownMenuItem<String>(
-            value: value,
-            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
+            value: value.tr,
+            child:
+                Text(value.tr, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () async {
               AllDivisionModel division = await Dropdowndivisionapi(context)
                   .Dropdowndivision(cont.classlist.indexOf(value), 0);

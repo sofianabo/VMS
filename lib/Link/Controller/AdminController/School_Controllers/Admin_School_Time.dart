@@ -4,6 +4,8 @@ import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllTeacherModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/DropDownCuriculmModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/SchoolTimeModel.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/School_Management/SchoolTimeTable.dart';
 
 class AdminSchoolTimeController extends GetxController {
@@ -11,7 +13,7 @@ class AdminSchoolTimeController extends GetxController {
   String examDivisionIndex = "";
   String subjectDialogIndex = "";
   String teacherDialogIndex = "";
-  String timeLessonIndex = "Morning";
+  String timeLessonIndex = "Morning".tr;
 
   List<String> examClass = [];
   List<String> examDivision = [];
@@ -19,7 +21,7 @@ class AdminSchoolTimeController extends GetxController {
   List<String> subjectDialogList = [];
   List<String> teacherDialogList = [];
   List<StudyShare> studyshare = [];
-  List<String> timeLessonList = ['Morning', 'Evening'];
+  List<String> timeLessonList = ['Morning'.tr, 'Evening'.tr];
 
   bool isLoading = true;
   bool isLoadingClass = true;
@@ -76,7 +78,10 @@ class AdminSchoolTimeController extends GetxController {
   void setAllClasses(AllClassModel clas) {
     examClass.clear();
     for (int j = 0; j < clas.classes!.length; j++) {
-      examClass.add(clas.classes![j].enName.toString());
+      if (prefs!.getString(languageKey) == 'ar')
+        examClass.add(clas.classes![j].name.toString());
+      else
+        examClass.add(clas.classes![j].enName.toString());
     }
     update();
     updateList("class", examClass);
@@ -87,7 +92,10 @@ class AdminSchoolTimeController extends GetxController {
     setIsLoadingDivision(false);
     allDivision = division.division;
     for (int j = 0; j < division.division!.length; j++) {
-      examDivision.add(division.division![j].enName.toString());
+      if (prefs!.getString(languageKey) == 'ar')
+        examDivision.add(division.division![j].name.toString());
+      else
+        examDivision.add(division.division![j].enName.toString());
     }
     update();
     updateList("division", examDivision);
@@ -105,7 +113,10 @@ class AdminSchoolTimeController extends GetxController {
   void setAllSubjectDialog(DropDowmCuriculmModel? curr) {
     subjectDialogList.clear();
     for (int j = 0; j < curr!.curriculum!.length; j++) {
-      subjectDialogList.add(curr.curriculum![j].name.toString());
+      if (prefs!.getString(languageKey) == 'ar')
+        subjectDialogList.add(curr.curriculum![j].name.toString());
+      else
+        subjectDialogList.add(curr.curriculum![j].enName.toString());
     }
 
     update();
@@ -138,7 +149,7 @@ class AdminSchoolTimeController extends GetxController {
   String get selectedExamDivision => examDivisionIndex;
   String get selectedSubjectDialog => subjectDialogIndex;
   String get selectedTeacherDialog => teacherDialogIndex;
-  String get selectedTimeLesson => timeLessonIndex;
+  String get selectedTimeLesson => timeLessonIndex.tr;
 
   void setDevisionindex() {
     examDivisionIndex = "";

@@ -137,8 +137,9 @@ class DropDownSchoolTime extends StatelessWidget {
       case 'class':
         items.addAll(cont.examClass.map((String value) {
           return DropdownMenuItem<String>(
-            value: value,
-            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
+            value: value.tr,
+            child:
+                Text(value.tr, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () async {
               for (int i = 0; i < 5; i++)
                 for (int j = 1; j < 8; j++) {
@@ -160,8 +161,9 @@ class DropDownSchoolTime extends StatelessWidget {
       case 'division':
         items.addAll(cont.examDivision.map((String value) {
           return DropdownMenuItem<String>(
-            value: value,
-            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
+            value: value.tr,
+            child:
+                Text(value.tr, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () async {
               for (int i = 0; i < 5; i++)
                 for (int j = 1; j < 8; j++) {
@@ -179,24 +181,27 @@ class DropDownSchoolTime extends StatelessWidget {
       case 'teacherDialog':
         items.addAll(cont.teacherDialogList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value,
-            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
+            value: value.tr,
+            child:
+                Text(value.tr, style: Theme.of(context).textTheme.bodyMedium),
           );
         }).toList());
         break;
       case 'subjectDialog':
         items.addAll(cont.subjectDialogList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value,
-            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
+            value: value.tr,
+            child:
+                Text(value.tr, style: Theme.of(context).textTheme.bodyMedium),
           );
         }).toList());
         break;
       case 'time':
         items.addAll(cont.timeLessonList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value,
-            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
+            value: value.tr,
+            child:
+                Text(value.tr, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () {
               for (int i = 0; i < 5; i++)
                 for (int j = 1; j < 8; j++) {
