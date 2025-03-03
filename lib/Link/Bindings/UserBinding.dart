@@ -7,6 +7,7 @@ import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/oneEmployeeAttendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Location_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Dashboard_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Class_Mgmt_Controller.dart';
@@ -114,9 +115,8 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Penaltiesandrewardscontroller(), fenix: true);
     Get.lazyPut(() => Teachersubjectscontroller(), fenix: true);
     Get.lazyPut(() => TeachernoteAndGradeReco(), fenix: true);
-        Get.lazyPut(() => RewardsController(), fenix: true);
-            Get.lazyPut(() => LocalizationController(), fenix: true);
-
-
+    Get.lazyPut(() => Admin_Profile_Content(), fenix: true);
+    Get.lazyPut(() => RewardsController(), fenix: true);
+    Get.lazyPut(() => LocalizationController(), fenix: true);
   }
 }
