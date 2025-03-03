@@ -56,7 +56,7 @@ class DropDownSchoolTime extends StatelessWidget {
           break;
         case 'time':
           selectedValue = cont.selectedTimeLesson.isNotEmpty
-              ? cont.selectedTimeLesson
+              ? cont.selectedTimeLesson.tr
               : title;
           break;
       }
@@ -103,6 +103,13 @@ class DropDownSchoolTime extends StatelessWidget {
                     ),
                     style: Theme.of(context).textTheme.bodyMedium!,
                     onChanged: (newValue) {
+                      if (newValue != null && newValue != title) {
+                        // البحث عن القيمة الأصلية
+                        String originalValue = cont.timeLessonList.firstWhere(
+                            (status) => status.tr == newValue,
+                            orElse: () => newValue);
+                        cont.selectIndex(type, originalValue);
+                      }
                       if (newValue != null) {
                         if (type == "class") {
                           cont.setDevisionindex();
@@ -110,6 +117,7 @@ class DropDownSchoolTime extends StatelessWidget {
                         if (type == "time") {
                           cont.setClassIndex();
                           cont.setDevisionindex();
+                          
                         }
                         cont.selectIndex(type, newValue);
                       }
@@ -118,7 +126,7 @@ class DropDownSchoolTime extends StatelessWidget {
                       DropdownMenuItem<String>(
                         value: title,
                         enabled: false,
-                        child: Text(title,
+                        child: Text(title.tr,
                             style: Theme.of(context).textTheme.bodyMedium),
                       ),
                       ..._getDropdownItems(cont, context),
