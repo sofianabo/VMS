@@ -28,7 +28,7 @@ class _RewardsGridState extends State<RewardsGrid> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<RewardsController>(
-      init: RewardsController(),
+      init: Get.find<RewardsController>(),
       builder: (controller) {
         return GestureDetector(
           onTap: controller.deselectText,
@@ -141,7 +141,10 @@ class _RewardsGridState extends State<RewardsGrid> {
                           _buildToolButton(
                             icon: Icons.save,
                             label: "Save",
-                            onPressed: () {},
+                            onPressed: () {
+                              controller.saveChanges();
+                              print(controller.Certificats);
+                            },
                           ),
                         ],
                       ),
@@ -191,6 +194,7 @@ class TextOverlay {
   Color color;
   bool isBold;
   bool isSelected;
+  String type; // إضافة النوع
 
   TextOverlay({
     required this.text,
@@ -199,6 +203,7 @@ class TextOverlay {
     required this.color,
     this.isBold = false,
     this.isSelected = false,
+    required this.type, // القيمة الافتراضية
   });
 }
 
@@ -240,7 +245,6 @@ class _DraggableTextState extends State<DraggableText> {
   }
 
   void _pickColor() {
-    // استخدام Overlay لعرض الـ Dialog فوق العناصر الأخرى
     showDialog(
       context: context,
       builder: (context) {
@@ -258,14 +262,17 @@ class _DraggableTextState extends State<DraggableText> {
                     setState(() {
                       color = newColor;
                     });
-                    widget.onUpdate(TextOverlay(
-                      text: textController.text,
-                      position: position,
-                      fontSize: fontSize,
-                      color: color,
-                      isBold: isBold,
-                      isSelected: widget.isSelected,
-                    ));
+                    widget.onUpdate(
+                      TextOverlay(
+                        type: widget.overlay.type, // تمرير النوع الحالي
+                        text: textController.text,
+                        position: position,
+                        fontSize: fontSize,
+                        color: color,
+                        isBold: isBold,
+                        isSelected: widget.isSelected,
+                      ),
+                    );
                   },
                 ),
                 TextButton(
@@ -293,6 +300,7 @@ class _DraggableTextState extends State<DraggableText> {
             print(position);
           });
           widget.onUpdate(TextOverlay(
+            type: widget.overlay.type, // مرر النوع الحالي هنا
             text: textController.text,
             position: position,
             fontSize: fontSize,
@@ -316,7 +324,9 @@ class _DraggableTextState extends State<DraggableText> {
                         child: TextField(
                           controller: textController,
                           onChanged: (newText) {
+                            print(widget.overlay.type);
                             widget.onUpdate(TextOverlay(
+                              type: widget.overlay.type, // تمرير النوع الحالي
                               text: newText,
                               position: position,
                               fontSize: fontSize,
@@ -340,6 +350,7 @@ class _DraggableTextState extends State<DraggableText> {
                             fontSize = newSize;
                           });
                           widget.onUpdate(TextOverlay(
+                            type: widget.overlay.type, // مرر النوع الحالي
                             text: textController.text,
                             position: position,
                             fontSize: fontSize,
@@ -373,6 +384,7 @@ class _DraggableTextState extends State<DraggableText> {
                                 isBold = !isBold;
                               });
                               widget.onUpdate(TextOverlay(
+                                type: widget.overlay.type, // مرر النوع الحالي
                                 text: textController.text,
                                 position: position,
                                 fontSize: fontSize,

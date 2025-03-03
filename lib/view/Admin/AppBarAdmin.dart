@@ -9,7 +9,9 @@ import 'package:vms_school/Link/Controller/AuthController/UserController.dart';
 import 'package:vms_school/Theme/ThemeData.dart';
 import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/main.dart';
+import 'package:vms_school/widgets/Admin_Profile_Settings.dart';
 import 'package:vms_school/widgets/Switcher.dart';
+import 'package:vms_school/widgets/TextFormSearch.dart';
 
 class AppbarAdmin extends StatefulWidget {
   AppbarAdmin({super.key});
@@ -20,7 +22,7 @@ class AppbarAdmin extends StatefulWidget {
 
 class _AppbarAdminState extends State<AppbarAdmin> {
   final _isDarkMode = Get.isDarkMode.obs;
-  @override
+  TextEditingController serch = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -36,129 +38,152 @@ class _AppbarAdminState extends State<AppbarAdmin> {
               return Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Container(
-                      alignment: Alignment.center,
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black12,
-                                offset: Offset(0, 2),
-                                blurRadius: 1)
-                          ]),
-                      child: IconButton(
-                          style: const ButtonStyle(
-                              shape: WidgetStatePropertyAll(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(5))))),
-                          onPressed: () async {
-                            await Logoutapi(context).Logout();
-                          },
-                          icon: Icon(
-                            Icons.logout_rounded,
-                            size: 18,
-                            color: Get.theme.primaryColor,
-                          ))),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 5.0),
-                    child: LanguageSwitcher(
-                      onLanguageToggle: (bool) {
-                        print(bool);
-                      },
-                    ),
-                  ),
-                  Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    offset: Offset(0, 2),
-                                    blurRadius: 1)
-                              ]),
-                          child: IconButton(
-                              style: const ButtonStyle(
-                                  shape: WidgetStatePropertyAll(
-                                      RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))))),
-                              onPressed: () {
-                                Get.changeThemeMode(_isDarkMode.value
-                                    ? ThemeMode.light
-                                    : ThemeMode.dark);
-                                _isDarkMode.value = !_isDarkMode.value;
-                                Themecontroller.isDarkMode = _isDarkMode.value;
-                                print(_isDarkMode.value);
-                              },
-                              icon: Icon(VMS_Icons.moon,
-                                  size: 18, color: Get.theme.primaryColor)))),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 5.0),
+                  // Container(
+                  //     alignment: Alignment.center,
+                  //     width: 40,
+                  //     height: 40,
+                  //     decoration: BoxDecoration(
+                  //         color: Colors.white,
+                  //         borderRadius: BorderRadius.circular(5),
+                  //         boxShadow: const [
+                  //           BoxShadow(
+                  //               color: Colors.black12,
+                  //               offset: Offset(0, 2),
+                  //               blurRadius: 1)
+                  //         ]),
+                  //     child: IconButton(
+                  //         style: const ButtonStyle(
+                  //             shape: WidgetStatePropertyAll(
+                  //                 RoundedRectangleBorder(
+                  //                     borderRadius: BorderRadius.all(
+                  //                         Radius.circular(5))))),
+                  //         onPressed: () async {
+                  //           await Logoutapi(context).Logout();
+                  //         },
+                  //         icon: Icon(
+                  //           Icons.logout_rounded,
+                  //           size: 18,
+                  //           color: Get.theme.primaryColor,
+                  //         ))),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(right: 5.0),
+                  //   child: LanguageSwitcher(
+                  //     onLanguageToggle: (bool) {
+                  //       print(bool);
+                  //     },
+                  //   ),
+                  // ),
+                  // Padding(
+                  //     padding: const EdgeInsets.only(right: 5.0),
+                  //     child: Container(
+                  //         width: 40,
+                  //         height: 40,
+                  //         decoration: BoxDecoration(
+                  //             color: Colors.white,
+                  //             borderRadius: BorderRadius.circular(5),
+                  //             boxShadow: const [
+                  //               BoxShadow(
+                  //                   color: Colors.black12,
+                  //                   offset: Offset(0, 2),
+                  //                   blurRadius: 1)
+                  //             ]),
+                  //         child: IconButton(
+                  //             style: const ButtonStyle(
+                  //                 shape: WidgetStatePropertyAll(
+                  //                     RoundedRectangleBorder(
+                  //                         borderRadius: BorderRadius.all(
+                  //                             Radius.circular(5))))),
+                  //             onPressed: () {
+                  //               Get.changeThemeMode(_isDarkMode.value
+                  //                   ? ThemeMode.light
+                  //                   : ThemeMode.dark);
+                  //               _isDarkMode.value = !_isDarkMode.value;
+                  //               Themecontroller.isDarkMode = _isDarkMode.value;
+                  //               print(_isDarkMode.value);
+                  //             },
+                  //             icon: Icon(VMS_Icons.moon,
+                  //                 size: 18, color: Get.theme.primaryColor)))),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(right: 5.0),
+                  //   child: Container(
+                  //     width: 40,
+                  //     height: 40,
+                  //     decoration: BoxDecoration(
+                  //         color: Colors.white,
+                  //         borderRadius: BorderRadius.circular(5),
+                  //         boxShadow: const [
+                  //           BoxShadow(
+                  //               color: Colors.black12,
+                  //               offset: Offset(0, 2),
+                  //               blurRadius: 1)
+                  //         ]),
+                  //     child: IconButton(
+                  //         style: const ButtonStyle(
+                  //             shape: WidgetStatePropertyAll(
+                  //                 RoundedRectangleBorder(
+                  //                     borderRadius: BorderRadius.all(
+                  //                         Radius.circular(5))))),
+                  //         onPressed: () {},
+                  //         icon: Icon(Icons.notifications_none_outlined,
+                  //             size: 18, color: Get.theme.primaryColor)),
+                  //   ),
+                  // ),
+                  GestureDetector(
+                    onTap: () {
+                      Get.dialog(ProfileDialog());
+                    },
                     child: Container(
-                      width: 40,
                       height: 40,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black12,
-                                offset: Offset(0, 2),
-                                blurRadius: 1)
-                          ]),
-                      child: IconButton(
-                          style: const ButtonStyle(
-                              shape: WidgetStatePropertyAll(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(5))))),
-                          onPressed: () {},
-                          icon: Icon(Icons.notifications_none_outlined,
-                              size: 18, color: Get.theme.primaryColor)),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 5.0),
-                    child: Container(
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black12,
-                                offset: Offset(0, 2),
-                                blurRadius: 1)
-                          ]),
                       width: 200,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Color(0xffDAD0D0)),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Image.asset(
-                            "../../images/Home-Background2.png",
-                            height: 50,
-                            width: 50,
+                          Icon(
+                            Icons.arrow_drop_down,
+                            color: Colors.black,
                           ),
-                          GetBuilder<UserController>(builder: (control) {
-                            return Text(
-                              "${prefs!.getString("username")}",
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.black),
-                            );
-                          })
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 5.0),
+                              child: Text(
+                                textDirection: TextDirection.ltr,
+                                textAlign: TextAlign.start,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                "Laith Haitham Azzam",
+                                style: TextStyle(
+                                    fontSize: 12, color: Colors.black),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 5.0, right: 5.0, top: 3.0, bottom: 3.0),
+                            child: Image.asset(
+                              "../../images/Rectangle66.png",
+                              height: 40,
+                              width: 40,
+                            ),
+                          ),
                         ],
                       ),
                     ),
-                  )
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+                    child: TextpageSearch(
+                      click: () {},
+                      onchange: (value) {},
+                      width: 250,
+                      radius: 5,
+                      controller: serch,
+                      suffixIcon: serch.text != "" ? Icons.clear : Icons.search,
+                    ),
+                  ),
                 ],
               );
             }),
