@@ -7,6 +7,7 @@ import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/oneEmployeeAttendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Location_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_DropDown_Profile_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Dashboard_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
@@ -118,5 +119,6 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Admin_Profile_Content(), fenix: true);
     Get.lazyPut(() => RewardsController(), fenix: true);
     Get.lazyPut(() => LocalizationController(), fenix: true);
+    Get.lazyPut(() => Profile_DropDown_Controller(), fenix: true);
   }
 }

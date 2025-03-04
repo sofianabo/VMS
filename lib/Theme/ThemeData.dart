@@ -1,12 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 
 class theme {
-  static String IsAr =
-      prefs!.getString(languageKey) == 'ar' ? "Cairo" : "Sansation";
+  static String IsAr = Get.put(LocalizationController(), permanent: true)
+              .currentLocale
+              .value
+              .languageCode ==
+          'ar'
+      ? "Cairo"
+      : "Sansation";
   static ThemeData Light_Theme = ThemeData(
+    fontFamily: IsAr,
     cardColor: const Color(0xffFBFBFB),
     primaryColorLight: const Color(0xff19478d), // card button
     primaryColor: const Color(0xff19478d),
@@ -19,6 +26,8 @@ class theme {
     canvasColor: const Color(0xff134B70),
     disabledColor: Color(0xffBABDC6),
     textTheme: TextTheme(
+        bodySmall:
+            TextStyle(color: Color(0xffa3a6af), fontFamily: IsAr, fontSize: 14),
         displayLarge:
             TextStyle(fontSize: 26, color: Colors.black, fontFamily: IsAr),
         bodyMedium:
@@ -38,7 +47,6 @@ class theme {
         ),
         displayMedium:
             TextStyle(color: Colors.white, fontFamily: IsAr, fontSize: 14)),
-    fontFamily: IsAr,
     focusColor: Colors.white,
     colorScheme: const ColorScheme.light(
         primary: Color(0xff19478d),
@@ -65,6 +73,7 @@ class theme {
   );
 
   static ThemeData Dark_Theme = ThemeData(
+    fontFamily: IsAr,
     primaryColorDark: Color(0xff252525),
     primaryColorLight: const Color.fromARGB(255, 29, 28, 28),
     cardColor: const Color(0xff464646),
@@ -80,6 +89,11 @@ class theme {
     secondaryHeaderColor: Colors.white,
     disabledColor: Color(0xffBABDC6),
     textTheme: TextTheme(
+        bodySmall: TextStyle(
+            color: Colors.white,
+            fontFamily: IsAr,
+            fontSize: 14,
+            fontWeight: FontWeight.bold),
         bodyMedium:
             TextStyle(color: Colors.white, fontFamily: IsAr, fontSize: 14),
         displayMedium:
@@ -99,7 +113,6 @@ class theme {
             TextStyle(fontFamily: IsAr, fontSize: 26, color: Colors.white),
         titleLarge:
             TextStyle(color: Colors.blueGrey, fontFamily: IsAr, fontSize: 14)),
-    fontFamily: IsAr,
     dialogBackgroundColor: Colors.white.withOpacity(0.3),
     primaryColor: const Color(0xff464646),
     useMaterial3: true,

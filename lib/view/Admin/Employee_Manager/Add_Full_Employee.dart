@@ -165,8 +165,8 @@ Add_Full_Employee(BuildContext context) {
                             isRequired: true,
                             width: 250,
                             controller: phoneNumper,
-                            Uptext: "Phone Numper",
-                            hinttext: "Phone Numper"),
+                            Uptext: "Phone Number",
+                            hinttext: "Phone Number"),
                         Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: BirthDate(
