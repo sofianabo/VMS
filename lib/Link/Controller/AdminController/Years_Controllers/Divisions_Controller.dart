@@ -9,6 +9,8 @@ import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/A
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Division_Model.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 
 class Divisions_Controller extends GetxController {
   List<Map<String, dynamic>> Divisions = [];
@@ -44,7 +46,10 @@ class Divisions_Controller extends GetxController {
     List<String> classess = [];
     if (cls.classes != null) {
       for (var g in cls.classes!) {
-        classess.add(g.enName.toString());
+        if (prefs!.getString(languageKey) == 'ar')
+          classess.add(g.name.toString());
+        else
+          classess.add(g.enName.toString()); 
       }
     }
     addclassList(classess);

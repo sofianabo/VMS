@@ -45,6 +45,16 @@ class ExamTableController extends GetxController {
   List<Semester> allSemester = [];
   List<Quiz>? filteredquiz;
 
+  void initialData() {
+    typeDialogIndex = "";
+    curiculmDialogIndex = "";
+    classDialogIndex = "";
+    semesterDialogIndex = "";
+    typeDialogList = [];
+    curiculmDialogList = [];
+    update();
+  }
+
   void setAllQuiz(ExamTableModel model) {
     quizList.clear();
     quizList = model.quiz!;
@@ -81,7 +91,8 @@ class ExamTableController extends GetxController {
 
     if (semseter.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((emp) {
-        return emp.semester!.enName!.toLowerCase() == semseter.toLowerCase();
+        return emp.semester!.enName!.toLowerCase() == semseter.toLowerCase() ||
+            emp.semester!.name!.toLowerCase() == semseter.toLowerCase();
       }).toList();
     }
     if (type.isNotEmpty) {
@@ -91,7 +102,8 @@ class ExamTableController extends GetxController {
     }
     if (classes.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((emp) {
-        return emp.classese!.enName!.toLowerCase() == classes.toLowerCase();
+        return emp.classese!.enName!.toLowerCase() == classes.toLowerCase() ||
+            emp.classese!.name!.toLowerCase() == classes.toLowerCase();
       }).toList();
     }
 
@@ -136,7 +148,6 @@ class ExamTableController extends GetxController {
   void setAllTypes(AllExamTypeModel types) {
     examType.clear();
     for (int j = 0; j < types.type!.length; j++) {
-      
       examType.add(types.type![j].name.toString());
     }
     update();
@@ -147,10 +158,10 @@ class ExamTableController extends GetxController {
     semesterDialogList.clear();
     allSemester = sem.semester!;
     for (int j = 0; j < sem.semester!.length; j++) {
-      if(prefs!.getString(languageKey)=='ar')
-            semesterDialogList.add(sem.semester![j].name.toString());
-else
-      semesterDialogList.add(sem.semester![j].enName.toString());
+      if (prefs!.getString(languageKey) == 'ar')
+        semesterDialogList.add(sem.semester![j].name.toString());
+      else
+        semesterDialogList.add(sem.semester![j].enName.toString());
     }
     update();
     updateList("semesterDialog", semesterDialogList);
@@ -165,13 +176,15 @@ else
     updateList("typeDialog", typeDialogList);
   }
 
+  
+
   void setAllClasses(AllClassModel clas) {
     examClass.clear();
     for (int j = 0; j < clas.classes!.length; j++) {
-            if(prefs!.getString(languageKey)=='ar')
-      examClass.add(clas.classes![j].name.toString());
-else
-      examClass.add(clas.classes![j].enName.toString());
+      if (prefs!.getString(languageKey) == 'ar')
+        examClass.add(clas.classes![j].name.toString());
+      else
+        examClass.add(clas.classes![j].enName.toString());
     }
     update();
     updateList("class", examClass);
@@ -181,22 +194,14 @@ else
     classDialogList.clear();
     Allclass = clas.classes!;
     for (int j = 0; j < clas.classes!.length; j++) {
-                  if(prefs!.getString(languageKey)=='ar')
-      classDialogList.add(clas.classes![j].name.toString());
-else
-      classDialogList.add(clas.classes![j].enName.toString());
+      if (prefs!.getString(languageKey) == 'ar')
+        classDialogList.add(clas.classes![j].name.toString());
+      else
+        classDialogList.add(clas.classes![j].enName.toString());
     }
     update();
     updateList("classDialog", classDialogList);
   }
-
-  // setClassList(List<String> value) {
-  //   classDialogIndex = "";
-  //   classDialogList.clear();
-  //   classDialogList = value;
-  //   setCuriculmLoading(false);
-  //   update();
-  // }
 
   setCuriculmLoading(bool value) {
     isCuriculmLoading = value;
@@ -206,23 +211,22 @@ else
   void setAllSeason(AllSemesterModel semster) {
     examSeason.clear();
     for (int l = 0; l < semster.semester!.length; l++) {
-      if(prefs!.getString(languageKey)=='ar')
-            examSeason.add(semster.semester![l].name.toString());
-else
-      examSeason.add(semster.semester![l].enName.toString());
+      if (prefs!.getString(languageKey) == 'ar')
+        examSeason.add(semster.semester![l].name.toString());
+      else
+        examSeason.add(semster.semester![l].enName.toString());
     }
     update();
     updateList("season", examSeason);
   }
 
   void setAllCuriculm(DropDowmCuriculmModel model) {
+    curiculmDialogList.clear();
     for (int l = 0; l < model.curriculum!.length; l++) {
-            if(prefs!.getString(languageKey)=='ar')
-
-      curiculmDialogList.add(model.curriculum![l].name.toString());
+      if (prefs!.getString(languageKey) == 'ar')
+        curiculmDialogList.add(model.curriculum![l].name.toString());
       else
-            curiculmDialogList.add(model.curriculum![l].enName.toString());
-
+        curiculmDialogList.add(model.curriculum![l].enName.toString());
     }
     update();
     updateList("curiculmDialog", curiculmDialogList);

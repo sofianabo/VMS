@@ -43,8 +43,6 @@ class _ExamTableState extends State<ExamTable> {
     super.initState();
   }
 
- 
-
   TextEditingController period = TextEditingController();
   TextEditingController max = TextEditingController();
   TextEditingController min = TextEditingController();
@@ -112,6 +110,7 @@ class _ExamTableState extends State<ExamTable> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
                             onPressed: () async {
+                              controller.initialData();
                               CancelToken cancelToken = CancelToken();
                               Loading_Dialog(cancelToken: cancelToken);
                               AllSemesterModel semester =
@@ -155,7 +154,7 @@ class _ExamTableState extends State<ExamTable> {
                                           children: [
                                             Padding(
                                               padding: const EdgeInsets.only(
-                                                  right: 15.0),
+                                                  right: 15.0, left: 15),
                                               child: DropDownexamTable(
                                                   title: "Class".tr,
                                                   width: 220,
@@ -174,8 +173,7 @@ class _ExamTableState extends State<ExamTable> {
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.only(
-                                                right: 15.0,
-                                              ),
+                                                  right: 15.0, left: 15),
                                               child: DropDownexamTable(
                                                   title: "season".tr,
                                                   width: 220,
@@ -195,7 +193,7 @@ class _ExamTableState extends State<ExamTable> {
                                           children: [
                                             Padding(
                                               padding: const EdgeInsets.only(
-                                                  right: 15.0),
+                                                  right: 15.0, left: 15),
                                               child: Textfildwithupper(
                                                   Uptext: "Max Mark".tr,
                                                   width: 220,
@@ -217,7 +215,7 @@ class _ExamTableState extends State<ExamTable> {
                                           children: [
                                             Padding(
                                                 padding: const EdgeInsets.only(
-                                                    right: 15.0),
+                                                    right: 15.0, left: 15),
                                                 child: Textfildwithupper(
                                                     Uptext: "Period".tr,
                                                     width: 220,
@@ -393,23 +391,29 @@ class _ExamTableState extends State<ExamTable> {
                                     style:
                                         Theme.of(context).textTheme.titleLarge),
                               ),
-                               DataColumn(label: Text('Type'.tr)),
-                               DataColumn(label: Text('Curriculum Name'.tr)),
-                               DataColumn(label: Text('Date'.tr)),
-                               DataColumn(label: Text('Period'.tr)),
-                               DataColumn(label: Text('Max Mark'.tr)),
-                               DataColumn(
+                              DataColumn(label: Text('Type'.tr)),
+                              DataColumn(label: Text('Curriculum Name'.tr)),
+                              DataColumn(label: Text('Date'.tr)),
+                              DataColumn(label: Text('Period'.tr)),
+                              DataColumn(label: Text('Max Mark'.tr)),
+                              DataColumn(
                                 label: Text('Passing Mark'.tr),
                               ),
-                               DataColumn(
+                              DataColumn(
                                 label: Text('Operations'.tr),
                               ),
                             ],
                             rows: controller.filteredquiz!.map((exam) {
                               return DataRow(cells: [
-                                DataCell(Text(prefs!.getString(languageKey)=='ar'? exam.classese?.name ??"":exam.classese?.enName ?? '')),
+                                DataCell(Text(
+                                    prefs!.getString(languageKey) == 'ar'
+                                        ? exam.classese?.name ?? ""
+                                        : exam.classese?.enName ?? '')),
                                 DataCell(Text(exam.type ?? '')),
-                                DataCell(Text(prefs!.getString(languageKey)=='ar'? exam.curriculumName ?? '':exam.curriculumEnName ?? '')),
+                                DataCell(Text(
+                                    prefs!.getString(languageKey) == 'ar'
+                                        ? exam.curriculumName ?? ''
+                                        : exam.curriculumEnName ?? '')),
                                 DataCell(Text(exam.startDate ?? '')),
                                 DataCell(Text(exam.period ?? '')),
                                 DataCell(Text(exam.maxMark?.toString() ?? '')),
@@ -532,22 +536,26 @@ class _ExamTableState extends State<ExamTable> {
                                                         padding:
                                                             const EdgeInsets
                                                                 .only(
-                                                                right: 15.0),
+                                                                right: 15.0,
+                                                                left: 15),
                                                         child:
                                                             Textfildwithupper(
                                                                 Uptext:
-                                                                    "Max Mark".tr,
+                                                                    "Max Mark"
+                                                                        .tr,
                                                                 width: 220,
                                                                 controller:
                                                                     maxDialog,
                                                                 hinttext:
-                                                                    "Max Mark".tr),
+                                                                    "Max Mark"
+                                                                        .tr),
                                                       ),
                                                       Textfildwithupper(
                                                           Uptext: "Min Mark".tr,
                                                           width: 220,
                                                           controller: minDialog,
-                                                          hinttext: "Min Mark".tr)
+                                                          hinttext:
+                                                              "Min Mark".tr)
                                                     ],
                                                   ),
                                                 ),
@@ -561,9 +569,11 @@ class _ExamTableState extends State<ExamTable> {
                                                           padding:
                                                               const EdgeInsets
                                                                   .only(
-                                                                  right: 15.0),
+                                                                  right: 15.0,
+                                                                  left: 15),
                                                           child: Textfildwithupper(
-                                                              Uptext: "Period".tr,
+                                                              Uptext:
+                                                                  "Period".tr,
                                                               width: 220,
                                                               controller:
                                                                   periodDialog,
@@ -582,8 +592,8 @@ class _ExamTableState extends State<ExamTable> {
                                                                         5.0),
                                                             child: RichText(
                                                                 text: TextSpan(
-                                                                    text:
-                                                                        "Date".tr,
+                                                                    text: "Date"
+                                                                        .tr,
                                                                     style: Get
                                                                         .theme
                                                                         .textTheme

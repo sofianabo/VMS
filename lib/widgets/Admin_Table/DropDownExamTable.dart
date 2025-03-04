@@ -95,7 +95,7 @@ class DropDownexamTable extends StatelessWidget {
                       child: CircularProgressIndicator(strokeWidth: 3),
                     ),
                   )
-                : DropdownButton<String>( 
+                : DropdownButton<String>(
                     dropdownColor: Theme.of(context).cardColor,
                     iconDisabledColor: Colors.grey,
                     iconEnabledColor: Theme.of(context).cardColor,
@@ -147,10 +147,13 @@ class DropDownexamTable extends StatelessWidget {
         }).toList());
         break;
       case 'class':
-        items.addAll(cont.examClass.map((String value) {
+      
+        items.addAll(
+          cont.examClass.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
+            child:
+                Text(value, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () async {},
           );
         }).toList());
@@ -159,10 +162,11 @@ class DropDownexamTable extends StatelessWidget {
       case 'season':
         items.addAll(cont.examSeason.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
-            child: Text(value.tr, style: Theme.of(context).textTheme.bodyMedium),
+            value: value,
+            child:
+                Text(value, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () async {
-              seasonindex = value.tr;
+              seasonindex = value;
               AllExamTypeModel types = await Dropdownexamtypeapi(context)
                   .Dropdownexamtype(cont.examSeason.indexOf(seasonindex));
               cont.setAllTypes(types);
@@ -174,9 +178,10 @@ class DropDownexamTable extends StatelessWidget {
         items.addAll(cont.semesterDialogList.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(value.tr, style: Theme.of(context).textTheme.bodyMedium),
+            child:
+                Text(value, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () async {
-              seasonindex = value.tr;
+              seasonindex = value;
               AllExamTypeModel types = await Dropdownexamtypeapi(context)
                   .Dropdownexamtype(cont.examSeason.indexOf(seasonindex));
               cont.setAllTypesDialog(types);
@@ -188,7 +193,8 @@ class DropDownexamTable extends StatelessWidget {
         items.addAll(cont.classDialogList.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
+            child:
+                Text(value, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () async {
               classindex = value;
               DropDowmCuriculmModel curi =
@@ -203,7 +209,8 @@ class DropDownexamTable extends StatelessWidget {
         items.addAll(cont.curiculmDialogList.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
+            child:
+                Text(value, style: Theme.of(context).textTheme.bodyMedium),
           );
         }).toList());
         break;
@@ -211,7 +218,8 @@ class DropDownexamTable extends StatelessWidget {
         items.addAll(cont.typeDialogList.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
+            child:
+                Text(value, style: Theme.of(context).textTheme.bodyMedium),
           );
         }).toList());
         break;

@@ -35,8 +35,7 @@ class _RequestsState extends State<Requests> {
       children: [
         GetBuilder<Requestscontroller>(builder: (controller) {
           return Container(
-            margin:
-                const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
             alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -52,8 +51,8 @@ class _RequestsState extends State<Requests> {
                             width: w / 5,
                             type: "status"),
                         Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20.0, right: 20.0),
+                          padding:
+                              const EdgeInsets.only(left: 20.0, right: 20.0),
                           child: selectDateRequest(
                             width: w / 4.383,
                           ),
@@ -63,10 +62,8 @@ class _RequestsState extends State<Requests> {
                             controller.clearName();
                           },
                           onchange: (value) {
-                            controller.searchByName(
-                                value,
-                                controller.statusindex,
-                                controller.filterDate);
+                            controller.searchByName(value,
+                                controller.statusindex, controller.filterDate);
                           },
                           radius: 5,
                           controller: search,
@@ -98,16 +95,15 @@ class _RequestsState extends State<Requests> {
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
                               onPressed: () {
-                                ExleRequestsExport(
-                                    controller.registration);
+                                ExleRequestsExport(controller.registration);
                               },
                               icon: Icon(VMS_Icons.xl,
                                   size: 18,
                                   color: Theme.of(context).highlightColor)),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(
-                              right: 10.0, left: 10.0),
+                          padding:
+                              const EdgeInsets.only(right: 10.0, left: 10.0),
                           child: Container(
                             width: 40,
                             height: 40,
@@ -124,13 +120,10 @@ class _RequestsState extends State<Requests> {
                                 style: const ButtonStyle(
                                     shape: WidgetStatePropertyAll(
                                         RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.all(
-                                                    Radius.circular(
-                                                        5))))),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5))))),
                                 onPressed: () {
-                                  exportRequestsToPDF(
-                                      controller.registration);
+                                  exportRequestsToPDF(controller.registration);
                                 },
                                 icon: Icon(VMS_Icons.pdf,
                                     size: 18,

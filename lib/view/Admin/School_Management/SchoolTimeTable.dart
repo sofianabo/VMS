@@ -143,30 +143,27 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
         child: Column(
       children: [
         Container(
-          margin:
-              const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              GetBuilder<AdminSchoolTimeController>(
-                  builder: (controller) {
+              GetBuilder<AdminSchoolTimeController>(builder: (controller) {
                 return Row(
                   children: [
                     DropDownSchoolTime(
                       type: "time",
-                      title: "Time",
+                      title: "Time".tr,
                       width: Get.width / 4,
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsets.only(left: 10.0, right: 10.0),
+                      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                       child: DropDownSchoolTime(
                         isDisabled: false,
                         isLoading: controller.isLoadingClass,
                         type: "class",
-                        title: "Class",
+                        title: "Class".tr,
                         width: Get.width / 4,
                       ),
                     ),
@@ -175,13 +172,12 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                       isDisabled:
                           controller.examClassIndex == "" ? true : false,
                       type: "division",
-                      title: "Division",
+                      title: "Division".tr,
                       width: Get.width / 4,
                     ),
                     const Spacer(),
                     Padding(
-                      padding:
-                          const EdgeInsets.only(right: 10.0, left: 10.0),
+                      padding: const EdgeInsets.only(right: 10.0, left: 10.0),
                       child: Container(
                         width: 40,
                         height: 40,
@@ -247,15 +243,13 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                 ? Center(
                     child: Text(
                     "Select Class First",
-                    style:
-                        Get.textTheme.titleLarge!.copyWith(fontSize: 22),
+                    style: Get.textTheme.titleLarge!.copyWith(fontSize: 22),
                   ))
                 : controller.examDivisionIndex == ""
                     ? Center(
                         child: Text(
                         "Select Division First",
-                        style: Get.textTheme.titleLarge!
-                            .copyWith(fontSize: 22),
+                        style: Get.textTheme.titleLarge!.copyWith(fontSize: 22),
                       ))
                     : controller.isLoading
                         ? Center(
@@ -265,16 +259,14 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                             ),
                           )
                         : Padding(
-                            padding: const EdgeInsets.only(
-                                left: 30.0, right: 30.0),
+                            padding:
+                                const EdgeInsets.only(left: 30.0, right: 30.0),
                             child: SingleChildScrollView(
                                 child: Column(
-                              crossAxisAlignment:
-                                  CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Table(
                                       border: TableBorder.all(
@@ -285,31 +277,33 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                             Container(
                                               height: 50,
                                               alignment: Alignment.center,
-                                              color: Theme.of(context).indicatorColor,
+                                              color: Theme.of(context)
+                                                  .indicatorColor,
                                               child: Center(
                                                 child: Text('Day',
-                                                    style:Theme.of(context)
+                                                    style: Theme.of(context)
                                                         .textTheme
-                                                        .titleMedium!.copyWith(fontSize: 18)),
+                                                        .titleMedium!
+                                                        .copyWith(
+                                                            fontSize: 18)),
                                               ),
                                             ),
                                             ...tableData[0]
                                                 .keys
-                                                .where(
-                                                    (key) => key != 'Day')
+                                                .where((key) => key != 'Day')
                                                 .map((key) => Container(
                                                       height: 50,
-                                                      alignment: Alignment
-                                                          .center,
+                                                      alignment:
+                                                          Alignment.center,
                                                       color: Theme.of(context)
                                                           .indicatorColor,
                                                       child: Center(
                                                         child: Text(
-                                                            textAlign:
-                                                                TextAlign
-                                                                    .center,
+                                                            textAlign: TextAlign
+                                                                .center,
                                                             key,
-                                                            style:Theme.of(context)
+                                                            style: Theme.of(
+                                                                    context)
                                                                 .textTheme
                                                                 .bodyMedium),
                                                       ),
@@ -320,13 +314,12 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                           TableRow(
                                             children: [
                                               Container(
-                                                alignment:
-                                                    Alignment.center,
+                                                alignment: Alignment.center,
                                                 height: 70,
-                                                color: Theme.of(context).indicatorColor,
+                                                color: Theme.of(context)
+                                                    .indicatorColor,
                                                 child: Center(
-                                                  child: Text(
-                                                      row['Day'] ?? '',
+                                                  child: Text(row['Day'] ?? '',
                                                       style: Theme.of(context)
                                                           .textTheme
                                                           .bodyMedium),
@@ -338,8 +331,7 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                   .map(
                                                       (entry) =>
                                                           GestureDetector(
-                                                            onTap:
-                                                                () async {
+                                                            onTap: () async {
                                                               if (m!.studyShare!
                                                                       .isEmpty &&
                                                                   controller
@@ -352,7 +344,7 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                 Loading_Dialog(
                                                                     cancelToken:
                                                                         cancelToken);
-    
+
                                                                 AllTeacherModel
                                                                     teacher =
                                                                     await Getallteachersapi
@@ -361,16 +353,18 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                     .setAllTeacherDialog(
                                                                         teacher);
                                                                 Get.back();
-                                                                Get.dialog(VMSAlertDialog(
-                                                                    action: [
-                                                                      entry.value.contains("No Lesson")
+                                                                Get.dialog(
+                                                                    VMSAlertDialog(
+                                                                        action: [
+                                                                      entry.value
+                                                                              .contains("No Lesson")
                                                                           ? ButtonDialog(
                                                                               text: "Add",
                                                                               onPressed: () async {
                                                                                 final entryIndex = row.entries
                                                                                     .toList() // تحويل الكائنات إلى قائمة
                                                                                     .indexWhere((e) => e.value == entry.value); // البحث عن الفهرس
-    
+
                                                                                 await Addlessonapi(context).Addlesson(controller.subjectDialogList.indexOf(controller.selectedSubjectDialog), controller.examDivision.indexOf(controller.selectedExamDivision), controller.timeLessonIndex, controller.teacherDialogList.indexOf(controller.selectedTeacherDialog), entryIndex, row['Day'].toString());
                                                                               },
                                                                               color: Get.theme.primaryColor,
@@ -381,11 +375,11 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                                 final entryIndex = row.entries
                                                                                     .toList() // تحويل الكائنات إلى قائمة
                                                                                     .indexWhere((e) => e.value == entry.value);
-    
+
                                                                                 Pair<int, int> key = Pair(days[row["Day"].toString()]!, entryIndex);
-    
+
                                                                                 int selectedId = indexes[key]!;
-    
+
                                                                                 await Editstudyshareapi(context).EditLesson(
                                                                                   controller.subjectDialogList.indexOf(controller.selectedSubjectDialog),
                                                                                   controller.teacherDialogList.indexOf(controller.selectedTeacherDialog),
@@ -395,7 +389,8 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                               },
                                                                               color: Color.fromARGB(255, 2, 124, 49),
                                                                               width: 120),
-                                                                      entry.value.contains("No Lesson")
+                                                                      entry.value
+                                                                              .contains("No Lesson")
                                                                           ? Container()
                                                                           : ButtonDialog(
                                                                               text: "Delete",
@@ -404,7 +399,7 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                                     .toList() // تحويل الكائنات إلى قائمة
                                                                                     .indexWhere((e) => e.value == entry.value);
                                                                                 Pair<int, int> key = Pair(days[row["Day"].toString()]!, entryIndex);
-    
+
                                                                                 // البحث عن الفهرس
                                                                                 int selectedId = indexes[key]!;
                                                                                 await Deletestudyshareapi(context).Deletestudyshare(selectedId);
@@ -413,41 +408,57 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                               color: Color(0xffB03D3D),
                                                                               width: 120),
                                                                     ],
-                                                                    contents: Container(
-                                                                      child:
-                                                                          Column(
-                                                                        mainAxisSize: MainAxisSize.min,
-                                                                        children: [
-                                                                          Padding(
-                                                                            padding: const EdgeInsets.only(top: 15.0),
-                                                                            child: Row(
-                                                                              children: [
-                                                                                Padding(
-                                                                                  padding: const EdgeInsets.only(right: 15.0),
-                                                                                  child: DropDownSchoolTime(title: "Curriculm", width: 220, type: "subjectDialog"),
+                                                                        contents:
+                                                                            Container(
+                                                                          child:
+                                                                              Column(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.min,
+                                                                            children: [
+                                                                              Padding(
+                                                                                padding: const EdgeInsets.only(top: 15.0),
+                                                                                child: Row(
+                                                                                  children: [
+                                                                                    Padding(
+                                                                                      padding: const EdgeInsets.only(right: 15.0),
+                                                                                      child: DropDownSchoolTime(title: "Curriculm", width: 220, type: "subjectDialog"),
+                                                                                    ),
+                                                                                    DropDownSchoolTime(title: "Teacher", width: 220, type: "teacherDialog"),
+                                                                                  ],
                                                                                 ),
-                                                                                DropDownSchoolTime(title: "Teacher", width: 220, type: "teacherDialog"),
-                                                                              ],
-                                                                            ),
+                                                                              ),
+                                                                            ],
                                                                           ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                    apptitle: "Operation of Lessons",
-                                                                    subtitle: ""));
+                                                                        ),
+                                                                        apptitle:
+                                                                            "Operation of Lessons",
+                                                                        subtitle:
+                                                                            ""));
                                                               }
                                                             },
                                                             child: Container(
-                                                                alignment: Alignment.center,
+                                                                alignment:
+                                                                    Alignment
+                                                                        .center,
                                                                 height: 70,
-                                                                child: m!.studyShare!.isEmpty && controller.examDivision.isEmpty
+                                                                child: m!.studyShare!
+                                                                            .isEmpty &&
+                                                                        controller
+                                                                            .examDivision
+                                                                            .isEmpty
                                                                     ? Text("")
-                                                                    : entry.value.contains("No Lesson")!
+                                                                    : entry.value.contains(
+                                                                            "No Lesson")!
                                                                         ? Icon(
                                                                             Icons.add_circle_outline,
-                                                                            color: Get.theme.primaryColor,
+                                                                            color:
+                                                                                Get.theme.primaryColor,
                                                                           )
-                                                                        : Text(textAlign: TextAlign.center, entry.value, style: Theme.of(context).textTheme.bodyMedium)),
+                                                                        : Text(
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            entry.value,
+                                                                            style: Theme.of(context).textTheme.bodyMedium)),
                                                           )),
                                             ],
                                           ),

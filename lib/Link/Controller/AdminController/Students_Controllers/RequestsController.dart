@@ -16,7 +16,7 @@ class Requestscontroller extends GetxController {
   Rx<DateTime?> requestDate = Rx<DateTime?>(null);
   String? filterName = '';
   String? filterDate = '';
-  List<String> statusList = ['Rejected'.tr, 'Pending'.tr, 'Partially'.tr];
+  List<String> statusList = ['Rejected', 'Pending', 'Partially'];
   List<String> classlist = [],
       divisionlist = Get.find<Dropdowndivisioncontroller>().division;
   List<Classes> allClass = [];
@@ -133,8 +133,8 @@ class Requestscontroller extends GetxController {
     update();
   }
 
-  void setAllClassDialog(AllClassModel clas) {
-    classlist = prefs!.getString(languageKey) == 'ar'
+  void setAllClassDialog(AllClassModel clas) async {
+    classlist = await prefs!.getString(languageKey) == 'ar'
         ? clas.classes!.map((c) => c.name!).toList()
         : clas.classes!.map((c) => c.enName!).toList();
     update();
