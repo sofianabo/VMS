@@ -19,6 +19,8 @@ class theme {
     canvasColor: const Color(0xff134B70),
     disabledColor: Color(0xffBABDC6),
     textTheme: TextTheme(
+        bodySmall:
+            TextStyle(color: Color(0xffa3a6af), fontFamily: IsAr, fontSize: 14),
         displayLarge:
             TextStyle(fontSize: 26, color: Colors.black, fontFamily: IsAr),
         bodyMedium:
@@ -80,6 +82,11 @@ class theme {
     secondaryHeaderColor: Colors.white,
     disabledColor: Color(0xffBABDC6),
     textTheme: TextTheme(
+        bodySmall: TextStyle(
+            color: Colors.white,
+            fontFamily: IsAr,
+            fontSize: 14,
+            fontWeight: FontWeight.bold),
         bodyMedium:
             TextStyle(color: Colors.white, fontFamily: IsAr, fontSize: 14),
         displayMedium:
