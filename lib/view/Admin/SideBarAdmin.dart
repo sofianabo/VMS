@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/ExamTableController.dart';
 import 'package:vms_school/view/Admin/SideBar_Path.dart';
 import '../../widgets/SidbarAnimation.dart';
 
@@ -59,9 +61,13 @@ class SideBarAdmin extends StatelessWidget {
                     onSelected: (value) {
                       if (value == "Exam Table".tr) {
                         cont.updateContent("Exam Table");
+                        Get.find<ExamTableController>().setClassIndex();
+                        Get.find<ExamTableController>().setSemesterIndex();
                       }
                       if (value == "School Time Table".tr) {
                         cont.updateContent("School Time Table");
+                            Get.find<AdminSchoolTimeController>().setClassIndex();
+    Get.find<AdminSchoolTimeController>().setTimeLessonIndex();
                       }
                     },
                     itemBuilder: (BuildContext context) =>

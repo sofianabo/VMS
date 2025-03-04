@@ -13,6 +13,8 @@ import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Il
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Theme/themeController.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/Students_Manager/EditStudentInfo.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
@@ -145,15 +147,15 @@ class AllStudentGrid extends StatelessWidget {
                                 ],
                               ),
                               Text(
-                                  "Mobile: ${control.filteredStudents[index].mobileNumber}",
+                                  "${"Mobile:".tr}${control.filteredStudents[index].mobileNumber}",
                                   style:
                                       Theme.of(context).textTheme.bodyMedium),
                               Text(
-                                  "Email: ${control.filteredStudents[index].email}",
+                                  "${"Email:".tr}${control.filteredStudents[index].email}",
                                   style:
                                       Theme.of(context).textTheme.bodyMedium),
-                              Text(
-                                  "Grade Level: ${control.filteredStudents[index].grade!.enName}",
+                              Text( 
+                                  "${"Grade Level:".tr}${prefs!.getString(languageKey)=="ar"? control.filteredStudents[index].grade!.name:control.filteredStudents[index].grade!.enName}",
                                   style:
                                       Theme.of(context).textTheme.bodyMedium),
                               Padding(
@@ -182,7 +184,7 @@ class AllStudentGrid extends StatelessWidget {
                                             action: [
                                               ButtonDialog(
                                                 width: 100,
-                                                text: "Delete",
+                                                text: "Delete".tr,
                                                 onPressed: () async {
                                                   await Delete_Student_API(
                                                           context)
@@ -200,20 +202,20 @@ class AllStudentGrid extends StatelessWidget {
                                               ),
                                               ButtonDialog(
                                                   width: 100,
-                                                  text: "Cancel",
+                                                  text: "Cancel".tr,
                                                   onPressed: () {
                                                     Get.back();
                                                   },
                                                   color: Theme.of(context)
                                                       .primaryColor)
                                             ],
-                                            contents: SizedBox(
+                                            contents: SizedBox( 
                                               width: 400,
                                               height: 1,
                                             ),
-                                            apptitle: "Delete Students",
+                                            apptitle: "Delete Students".tr,
                                             subtitle:
-                                                "Do You Want To Delete ${control.filteredStudents[index].fullName} Student"));
+                                                "Do You Want To Delete".tr+ "${control.filteredStudents[index].fullName}"+"Student".tr));
                                       },
                                       icon: const Icon(VMS_Icons.bin),
                                       color: Colors.white,
@@ -311,7 +313,7 @@ class AllStudentGrid extends StatelessWidget {
                   },
                 )
               : Center(
-                  child: Text("No Students",
+                  child: Text("No Students".tr,
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontSize: 22, fontWeight: FontWeight.normal)))
           : GridView.builder(

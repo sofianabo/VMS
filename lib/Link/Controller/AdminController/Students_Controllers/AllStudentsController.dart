@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllStudentModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/Student_Info_model.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 
 class Allstudentscontroller extends GetxController {
   
@@ -65,7 +67,7 @@ class Allstudentscontroller extends GetxController {
 
     if (grade != null && grade.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((cur) {
-        return cur.grade!.enName == grade || cur.grade!.enName == grade;
+        return cur.grade!.name == grade || cur.grade!.enName == grade;
       }).toList();
     }
 
@@ -228,7 +230,11 @@ class Allstudentscontroller extends GetxController {
   void setAllDivision(AllDivisionModel division) {
     divisionlist.clear();
     for (int k = 0; k < division.division!.length; k++) {
-      divisionlist.add(division.division![k].enName.toString());
+      if(prefs!.getString(languageKey)=='ar')
+      divisionlist.add(division.division![k].name.toString());
+      else
+            divisionlist.add(division.division![k].enName.toString());
+
     }
     update();
     updateList("division", divisionlist);

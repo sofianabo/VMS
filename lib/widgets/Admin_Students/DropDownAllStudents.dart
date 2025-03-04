@@ -165,7 +165,7 @@ class DropDownAllStudents extends StatelessWidget {
                             DropdownMenuItem<String>(
                               value: title,
                               child: Text(
-                                title,
+                                title.tr,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium!

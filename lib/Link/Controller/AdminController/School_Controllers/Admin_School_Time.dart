@@ -13,7 +13,7 @@ class AdminSchoolTimeController extends GetxController {
   String examDivisionIndex = "";
   String subjectDialogIndex = "";
   String teacherDialogIndex = "";
-  String timeLessonIndex = "Morning".tr;
+  String timeLessonIndex = "Morning";
 
   List<String> examClass = [];
   List<String> examDivision = [];
@@ -21,11 +21,16 @@ class AdminSchoolTimeController extends GetxController {
   List<String> subjectDialogList = [];
   List<String> teacherDialogList = [];
   List<StudyShare> studyshare = [];
-  List<String> timeLessonList = ['Morning'.tr, 'Evening'.tr];
+  List<String> timeLessonList = ['Morning', 'Evening'];
 
   bool isLoading = true;
   bool isLoadingClass = true;
   bool isLoadingDivision = true;
+
+  setTimeLessonIndex() {
+    timeLessonIndex = 'Morning';
+    update();
+  }
 
   setIsLoadingClass(bool value) {
     isLoadingClass = value;

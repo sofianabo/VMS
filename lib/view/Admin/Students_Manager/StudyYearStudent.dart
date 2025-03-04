@@ -60,7 +60,7 @@ class _StudyYearStudentsState extends State<StudyYearStudents> {
                           child: DropDownStudyYearStudents(
                             isLoading: controller.isGradeLoading,
                             type: "grade",
-                            title: "Grade",
+                            title: "Grade".tr,
                             width: w / 6.5,
                           ),
                         ),
@@ -71,7 +71,7 @@ class _StudyYearStudentsState extends State<StudyYearStudents> {
                                 controller.gradeIndex == "" ? true : false,
                             isLoading: controller.isClassLoading,
                             type: "class",
-                            title: "Class",
+                            title: "Class".tr,
                             width: w / 6.5,
                           ),
                         ),
@@ -82,7 +82,7 @@ class _StudyYearStudentsState extends State<StudyYearStudents> {
                             isDisabled:
                                 controller.classIndex == "" ? true : false,
                             type: "division",
-                            title: "Division",
+                            title: "Division".tr,
                             width: w / 6.5,
                           ),
                         ),

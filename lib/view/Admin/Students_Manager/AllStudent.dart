@@ -60,7 +60,7 @@ class _AllStudentState extends State<AllStudent> {
                           child: DropDownAllStudents(
                             isLoading: controller.isGradeLoading,
                             type: "grade",
-                            title: "Grade",
+                            title: "Grade".tr,
                             width: w / 6.5,
                           ),
                         ),
@@ -71,7 +71,7 @@ class _AllStudentState extends State<AllStudent> {
                                 controller.gradeIndex == "" ? true : false,
                             isLoading: controller.isClassLoading,
                             type: "class",
-                            title: "Class",
+                            title: "Class".tr,
                             width: w / 6.5,
                           ),
                         ),
@@ -82,7 +82,7 @@ class _AllStudentState extends State<AllStudent> {
                             isDisabled:
                                 controller.classIndex == "" ? true : false,
                             type: "division",
-                            title: "Division",
+                            title: "Division".tr,
                             width: w / 6.5,
                           ),
                         ),
@@ -203,7 +203,7 @@ class _AllStudentState extends State<AllStudent> {
             ),
           );
         }),
-        Expanded(
+        Expanded( 
             child: Padding(
           padding: const EdgeInsets.only(top: 15.0),
           child: AllStudentGrid(),

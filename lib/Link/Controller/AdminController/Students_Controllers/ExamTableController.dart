@@ -30,6 +30,18 @@ class ExamTableController extends GetxController {
   bool isTypeLoading = true;
   bool isClassLoading = true;
 
+  setClassIndex() {
+    examClassIndex = '';
+    update();
+  }
+
+  setSemesterIndex() {
+    examSeasonIndex = '';
+    examTypeIndex = '';
+    examType = [];
+    update();
+  }
+
   setIsTypeLoading(bool value) {
     isTypeLoading = value;
     update();
@@ -175,8 +187,6 @@ class ExamTableController extends GetxController {
     update();
     updateList("typeDialog", typeDialogList);
   }
-
-  
 
   void setAllClasses(AllClassModel clas) {
     examClass.clear();
