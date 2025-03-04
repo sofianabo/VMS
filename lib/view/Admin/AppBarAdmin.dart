@@ -21,7 +21,6 @@ class AppbarAdmin extends StatefulWidget {
 }
 
 class _AppbarAdminState extends State<AppbarAdmin> {
-  final _isDarkMode = Get.isDarkMode.obs;
   TextEditingController serch = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -38,99 +37,10 @@ class _AppbarAdminState extends State<AppbarAdmin> {
               return Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // Container(
-                  //     alignment: Alignment.center,
-                  //     width: 40,
-                  //     height: 40,
-                  //     decoration: BoxDecoration(
-                  //         color: Colors.white,
-                  //         borderRadius: BorderRadius.circular(5),
-                  //         boxShadow: const [
-                  //           BoxShadow(
-                  //               color: Colors.black12,
-                  //               offset: Offset(0, 2),
-                  //               blurRadius: 1)
-                  //         ]),
-                  //     child: IconButton(
-                  //         style: const ButtonStyle(
-                  //             shape: WidgetStatePropertyAll(
-                  //                 RoundedRectangleBorder(
-                  //                     borderRadius: BorderRadius.all(
-                  //                         Radius.circular(5))))),
-                  //         onPressed: () async {
-                  //           await Logoutapi(context).Logout();
-                  //         },
-                  //         icon: Icon(
-                  //           Icons.logout_rounded,
-                  //           size: 18,
-                  //           color: Get.theme.primaryColor,
-                  //         ))),
-                  // Padding(
-                  //   padding: const EdgeInsets.only(right: 5.0),
-                  //   child: LanguageSwitcher(
-                  //     onLanguageToggle: (bool) {
-                  //       print(bool);
-                  //     },
-                  //   ),
-                  // ),
-                  // Padding(
-                  //     padding: const EdgeInsets.only(right: 5.0),
-                  //     child: Container(
-                  //         width: 40,
-                  //         height: 40,
-                  //         decoration: BoxDecoration(
-                  //             color: Colors.white,
-                  //             borderRadius: BorderRadius.circular(5),
-                  //             boxShadow: const [
-                  //               BoxShadow(
-                  //                   color: Colors.black12,
-                  //                   offset: Offset(0, 2),
-                  //                   blurRadius: 1)
-                  //             ]),
-                  //         child: IconButton(
-                  //             style: const ButtonStyle(
-                  //                 shape: WidgetStatePropertyAll(
-                  //                     RoundedRectangleBorder(
-                  //                         borderRadius: BorderRadius.all(
-                  //                             Radius.circular(5))))),
-                  //             onPressed: () {
-                  //               Get.changeThemeMode(_isDarkMode.value
-                  //                   ? ThemeMode.light
-                  //                   : ThemeMode.dark);
-                  //               _isDarkMode.value = !_isDarkMode.value;
-                  //               Themecontroller.isDarkMode = _isDarkMode.value;
-                  //               print(_isDarkMode.value);
-                  //             },
-                  //             icon: Icon(VMS_Icons.moon,
-                  //                 size: 18, color: Get.theme.primaryColor)))),
-                  // Padding(
-                  //   padding: const EdgeInsets.only(right: 5.0),
-                  //   child: Container(
-                  //     width: 40,
-                  //     height: 40,
-                  //     decoration: BoxDecoration(
-                  //         color: Colors.white,
-                  //         borderRadius: BorderRadius.circular(5),
-                  //         boxShadow: const [
-                  //           BoxShadow(
-                  //               color: Colors.black12,
-                  //               offset: Offset(0, 2),
-                  //               blurRadius: 1)
-                  //         ]),
-                  //     child: IconButton(
-                  //         style: const ButtonStyle(
-                  //             shape: WidgetStatePropertyAll(
-                  //                 RoundedRectangleBorder(
-                  //                     borderRadius: BorderRadius.all(
-                  //                         Radius.circular(5))))),
-                  //         onPressed: () {},
-                  //         icon: Icon(Icons.notifications_none_outlined,
-                  //             size: 18, color: Get.theme.primaryColor)),
-                  //   ),
-                  // ),
                   GestureDetector(
                     onTap: () {
-                      Get.dialog(ProfileDialog());
+                      Get.find<AdminHomeContentController>()
+                          .updateContent("My Profile");
                     },
                     child: Container(
                       height: 40,

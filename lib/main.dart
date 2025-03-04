@@ -23,7 +23,7 @@ void main() async {
 
 class VMS extends StatelessWidget {
   final LocalizationController localizationController;
-  final Themecontroller themeController = Get.put(Themecontroller());
+  final ThemeController themeController = Get.put(ThemeController());
   VMS({Key? key, required this.localizationController}) : super(key: key);
 
   @override
@@ -35,7 +35,7 @@ class VMS extends StatelessWidget {
         translations: MyTranslations(),
         fallbackLocale: const Locale('ar'),
         theme: theme.Light_Theme,
-        themeMode: Themecontroller.defualtTheme,
+        themeMode: ThemeController.defaultTheme,
         darkTheme: theme.Dark_Theme,
         home: prefs!.getBool("isLogin") != null &&
                 prefs!.getBool("isLogin") == true

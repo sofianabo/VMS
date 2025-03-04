@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
+import 'package:vms_school/view/Admin/All_Settings/Profile_Settings.dart';
 import 'package:vms_school/view/Admin/School_Management/ExamTable.dart';
 import 'package:vms_school/view/Admin/School_Management/Illness_Pages/Illness_Screen.dart';
 import 'package:vms_school/view/Admin/School_Management/PenaltyScreen/PenaltyScreen.dart';
@@ -109,7 +110,8 @@ class AdminHome extends StatelessWidget {
                           return Penaltyscreen();
                         case "Rewards":
                           return Rewards_Screen();
-
+                        case "My Profile":
+                          return ProfileSettings();
                         default:
                           return AdminDashboard();
                       }

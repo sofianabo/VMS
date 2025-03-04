@@ -12,11 +12,12 @@ class theme {
     primaryColor: const Color(0xff19478d),
     scaffoldBackgroundColor: Colors.white,
     indicatorColor: Color(0xffD4DFE5),
+    primaryColorDark: Color(0xffF6F6F6),
     dialogBackgroundColor: Colors.white,
     secondaryHeaderColor: Colors.black,
     highlightColor: const Color(0xff19478d),
     canvasColor: const Color(0xff134B70),
-    disabledColor: Color(0xffB03D3D),
+    disabledColor: Color(0xffBABDC6),
     textTheme: TextTheme(
         displayLarge:
             TextStyle(fontSize: 26, color: Colors.black, fontFamily: IsAr),
@@ -64,6 +65,7 @@ class theme {
   );
 
   static ThemeData Dark_Theme = ThemeData(
+    primaryColorDark: Color(0xff252525),
     primaryColorLight: const Color.fromARGB(255, 29, 28, 28),
     cardColor: const Color(0xff464646),
     highlightColor: Colors.white,
@@ -76,7 +78,7 @@ class theme {
     canvasColor: const Color(0xff252525),
     focusColor: const Color(0xff1A1A1B),
     secondaryHeaderColor: Colors.white,
-    disabledColor: Color.fromARGB(255, 238, 141, 141),
+    disabledColor: Color(0xffBABDC6),
     textTheme: TextTheme(
         bodyMedium:
             TextStyle(color: Colors.white, fontFamily: IsAr, fontSize: 14),

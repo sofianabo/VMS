@@ -111,6 +111,7 @@ class Languages {
       'Language': 'اللغة',
       'English': 'English',
       'Arabic': 'العربية',
+      'Application and Profile Settings': 'اعدادات التطبيق و الملف الشخصي',
       'Application Theem': 'نمط التطبيق',
     },
     'en': {
@@ -224,8 +225,8 @@ class Languages {
       'Language': 'Language',
       'English': 'English',
       'Arabic': 'العربية',
-      'Application Theem': 'Application Theem',
-      '': '',
+      'Application Theem': 'Application Theme',
+      'Application and Profile Settings': 'Application and Profile Settings',
       '': '',
       '': '',
       '': '',

@@ -60,8 +60,8 @@ class UserBiniding extends Bindings {
   @override
   void dependencies() {
     Get.put(
-      () => Themecontroller(),
-      builder: () => Themecontroller(),
+      () => ThemeController(),
+      builder: () => ThemeController(),
     );
     Get.lazyPut(() => UserController(), fenix: true);
     Get.lazyPut(() => PasswordHintController(), fenix: true);

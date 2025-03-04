@@ -23,8 +23,7 @@ class Illness_Grid extends StatelessWidget {
     return GetBuilder<Illness_Controller>(builder: (control) {
       return control.isLoading == true
           ? GridView.builder(
-              padding:
-                  const EdgeInsets.only(top: 10, left: 40, right: 40),
+              padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: Get.width <= 1226 && Get.width >= 988
                       ? 3
@@ -54,8 +53,8 @@ class Illness_Grid extends StatelessWidget {
                           padding: const EdgeInsets.all(5),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
-                              border: Border.all(
-                                  color: Colors.grey, width: 0.5),
+                              border:
+                                  Border.all(color: Colors.grey, width: 0.5),
                               color: Theme.of(context).cardColor,
                               boxShadow: const [
                                 BoxShadow(
@@ -67,18 +66,16 @@ class Illness_Grid extends StatelessWidget {
                             children: [
                               Spacer(),
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.center,
-                                crossAxisAlignment:
-                                    CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Container(
                                     width: 50,
                                   ),
                                   Expanded(
                                     child: Center(
-                                      child: SchemaWidget(
-                                          width: 40, height: 15),
+                                      child:
+                                          SchemaWidget(width: 40, height: 15),
                                     ),
                                   )
                                 ],
@@ -86,11 +83,8 @@ class Illness_Grid extends StatelessWidget {
                               Spacer(),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment:
-                                    CrossAxisAlignment.end,
-                                children: [
-                                  SchemaWidget(width: 20, height: 20)
-                                ],
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [SchemaWidget(width: 20, height: 20)],
                               )
                             ],
                           )),
@@ -103,40 +97,35 @@ class Illness_Grid extends StatelessWidget {
                           )),
                     ],
                   ),
-                )
-                    .animate(onPlay: (controller) => controller.repeat())
-                    .shimmer(
-                        angle: 1,
-                        color: Colors.grey.withOpacity(0.2),
-                        duration: Duration(seconds: 1),
-                        delay: Duration(seconds: 1));
+                ).animate(onPlay: (controller) => controller.repeat()).shimmer(
+                    angle: 1,
+                    color: Colors.grey.withOpacity(0.2),
+                    duration: Duration(seconds: 1),
+                    delay: Duration(seconds: 1));
               },
             )
           : control.filteredIllness!.isNotEmpty
               ? GridView.builder(
-                  padding:
-                      const EdgeInsets.only(top: 10, left: 40, right: 40),
+                  padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount:
-                          Get.width <= 1226 && Get.width >= 988
-                              ? 3
-                              : Get.width <= 987 && Get.width >= 759
-                                  ? 2
-                                  : Get.width <= 758
-                                      ? 1
-                                      : 4,
+                      crossAxisCount: Get.width <= 1226 && Get.width >= 988
+                          ? 3
+                          : Get.width <= 987 && Get.width >= 759
+                              ? 2
+                              : Get.width <= 758
+                                  ? 1
+                                  : 4,
                       crossAxisSpacing: 45.0,
                       mainAxisSpacing: 20.0,
-                      childAspectRatio:
-                          Get.width <= 1226 && Get.width >= 988
-                              ? 2.2
-                              : Get.width <= 987 && Get.width >= 759
-                                  ? 2.7
-                                  : Get.width <= 758 && Get.width >= 573
-                                      ? 3.8
-                                      : Get.width <= 573
-                                          ? 3.0
-                                          : 1.8),
+                      childAspectRatio: Get.width <= 1226 && Get.width >= 988
+                          ? 2.2
+                          : Get.width <= 987 && Get.width >= 759
+                              ? 2.7
+                              : Get.width <= 758 && Get.width >= 573
+                                  ? 3.8
+                                  : Get.width <= 573
+                                      ? 3.0
+                                      : 1.8),
                   itemCount: control.filteredIllness!.length,
                   itemBuilder: (context, index) {
                     return HoverScaleCard(
@@ -148,8 +137,7 @@ class Illness_Grid extends StatelessWidget {
                             Container(
                                 padding: const EdgeInsets.all(5),
                                 decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.circular(5),
+                                    borderRadius: BorderRadius.circular(5),
                                     border: Border.all(
                                         color: Colors.grey, width: 0.5),
                                     color: Theme.of(context).cardColor,
@@ -177,29 +165,24 @@ class Illness_Grid extends StatelessWidget {
                                             Text(
                                               textAlign: TextAlign.center,
                                               "${control.filteredIllness![index].enName}",
-                                              style:
-                                                  TextStyle(fontSize: 26),
+                                              style: TextStyle(fontSize: 26),
                                             ),
-                                            control
-                                                        .filteredIllness![
-                                                            index]
+                                            control.filteredIllness![index]
                                                         .chronic ==
                                                     1
                                                 ? Text(
-                                                    textAlign:
-                                                        TextAlign.center,
+                                                    textAlign: TextAlign.center,
                                                     "Is chronic : Yes",
                                                     style: TextStyle(
                                                         fontSize: 14,
-                                                        color: Theme.of(context)
-                                                            .disabledColor),
-                                                  ) 
+                                                        color:
+                                                            Color(0xffB03D3D)),
+                                                  )
                                                 : Text(
-                                                    textAlign:
-                                                        TextAlign.center,
+                                                    textAlign: TextAlign.center,
                                                     "Is chronic : No",
-                                                    style: TextStyle(
-                                                        fontSize: 14),
+                                                    style:
+                                                        TextStyle(fontSize: 14),
                                                   )
                                           ])),
                                         )
@@ -207,8 +190,7 @@ class Illness_Grid extends StatelessWidget {
                                     ),
                                     Spacer(),
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.end,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
                                       children: [
@@ -216,21 +198,19 @@ class Illness_Grid extends StatelessWidget {
                                             style: ButtonStyle(
                                                 backgroundColor:
                                                     WidgetStatePropertyAll(
-                                                        Color(
-                                                            0xffB03D3D)),
+                                                        Color(0xffB03D3D)),
                                                 shape: WidgetStatePropertyAll(
                                                     RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius
-                                                            .all(Radius
-                                                                .circular(
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
                                                                     5))))),
                                             onPressed: () {
                                               Get.dialog(VMSAlertDialog(
                                                 action: [
                                                   ButtonDialog(
                                                       text: "Delete",
-                                                      onPressed:
-                                                          () async {
+                                                      onPressed: () async {
                                                         await Delete_Illness_API(
                                                                 context)
                                                             .Delete_Illness(
@@ -239,15 +219,15 @@ class Illness_Grid extends StatelessWidget {
                                                                         index]
                                                                     .id);
                                                       },
-                                                      color: Color(
-                                                          0xffB03D3D),
+                                                      color: Color(0xffB03D3D),
                                                       width: 80),
                                                   ButtonDialog(
                                                       text: "Cancel",
                                                       onPressed: () {
                                                         Get.back();
                                                       },
-                                                      color: Theme.of(context).canvasColor,
+                                                      color: Theme.of(context)
+                                                          .canvasColor,
                                                       width: 80)
                                                 ],
                                                 contents: Container(
@@ -264,29 +244,26 @@ class Illness_Grid extends StatelessWidget {
                                                               .textTheme
                                                               .bodyMedium!
                                                               .copyWith(
-                                                                  fontSize:
-                                                                      16,
+                                                                  fontSize: 16,
                                                                   fontWeight:
-                                                                      FontWeight.normal),
+                                                                      FontWeight
+                                                                          .normal),
                                                         ),
                                                       ],
                                                     )),
-                                                apptitle:
-                                                    "Delete Illness",
+                                                apptitle: "Delete Illness",
                                                 subtitle: "none",
                                               ));
                                             },
                                             icon: Icon(VMS_Icons.bin,
-                                                size: 16,
-                                                color: Colors.white)),
+                                                size: 16, color: Colors.white)),
                                       ],
                                     )
                                   ],
                                 )),
                             Align(
                                 alignment: Alignment(-1.5, 1),
-                                child: Image.asset(
-                                    "../../images/Illness.png",
+                                child: Image.asset("../../images/Illness.png",
                                     height: 120)),
                           ],
                         ),

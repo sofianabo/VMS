@@ -132,7 +132,7 @@ class Subject_Management_Grid extends StatelessWidget {
                 )
               : _iconButton(
                   iconData: VMS_Icons.bin,
-                  color: Theme.of(context).disabledColor,
+                  color: Color(0xffB03D3D),
                   onPressed: () {},
                 ),
           _iconButton(
