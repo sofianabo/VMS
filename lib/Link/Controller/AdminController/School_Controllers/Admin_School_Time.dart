@@ -149,7 +149,7 @@ class AdminSchoolTimeController extends GetxController {
   String get selectedExamDivision => examDivisionIndex;
   String get selectedSubjectDialog => subjectDialogIndex;
   String get selectedTeacherDialog => teacherDialogIndex;
-  String get selectedTimeLesson => timeLessonIndex.tr;
+  String get selectedTimeLesson => timeLessonIndex;
 
   void setDevisionindex() {
     examDivisionIndex = "";
