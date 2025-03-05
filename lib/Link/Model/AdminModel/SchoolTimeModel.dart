@@ -1,3 +1,6 @@
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
+
 class SchoolTimeModel {
   List<StudyShare>? studyShare;
 
@@ -64,20 +67,15 @@ class StudyShare {
   @override
   String toString() {
     String s = "";
-    if (true) {
+    if (prefs!.getString(languageKey) == 'ar') {
       //language
-      s += "${enName} \n";
+      s += "${name} \n";
       s += "${fullName} \n";
     } else {
       //arbic
-      s += "${name} \n";
+      s += "${enName} \n";
       s += "${fullName} \n";
     }
     return s;
   }
 }
-
-
-
-
-

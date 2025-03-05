@@ -38,6 +38,7 @@ class _ExamTableState extends State<ExamTable> {
 
   @override
   void initState() {
+ 
     Examtableapi(context).Examtable();
 
     super.initState();

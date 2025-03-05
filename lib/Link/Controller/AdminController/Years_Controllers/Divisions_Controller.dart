@@ -49,7 +49,7 @@ class Divisions_Controller extends GetxController {
         if (prefs!.getString(languageKey) == 'ar')
           classess.add(g.name.toString());
         else
-          classess.add(g.enName.toString()); 
+          classess.add(g.enName.toString());
       }
     }
     addclassList(classess);

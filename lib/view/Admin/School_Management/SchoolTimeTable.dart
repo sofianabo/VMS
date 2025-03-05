@@ -242,13 +242,13 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
             child: controller.examClassIndex == ""
                 ? Center(
                     child: Text(
-                    "Select Class First",
+                    "Select Class First".tr,
                     style: Get.textTheme.titleLarge!.copyWith(fontSize: 22),
                   ))
                 : controller.examDivisionIndex == ""
                     ? Center(
                         child: Text(
-                        "Select Division First",
+                        "Select Division First".tr,
                         style: Get.textTheme.titleLarge!.copyWith(fontSize: 22),
                       ))
                     : controller.isLoading
@@ -280,7 +280,7 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                               color: Theme.of(context)
                                                   .indicatorColor,
                                               child: Center(
-                                                child: Text('Day',
+                                                child: Text('Day'.tr,
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .titleMedium!
@@ -301,7 +301,7 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                         child: Text(
                                                             textAlign: TextAlign
                                                                 .center,
-                                                            key,
+                                                            key.tr,
                                                             style: Theme.of(
                                                                     context)
                                                                 .textTheme
@@ -319,7 +319,8 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                 color: Theme.of(context)
                                                     .indicatorColor,
                                                 child: Center(
-                                                  child: Text(row['Day'] ?? '',
+                                                  child: Text(
+                                                      row['Day']?.tr ?? '',
                                                       style: Theme.of(context)
                                                           .textTheme
                                                           .bodyMedium),
@@ -359,7 +360,7 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                       entry.value
                                                                               .contains("No Lesson")
                                                                           ? ButtonDialog(
-                                                                              text: "Add",
+                                                                              text: "Add".tr,
                                                                               onPressed: () async {
                                                                                 final entryIndex = row.entries
                                                                                     .toList() // تحويل الكائنات إلى قائمة
@@ -370,7 +371,7 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                               color: Get.theme.primaryColor,
                                                                               width: 120)
                                                                           : ButtonDialog(
-                                                                              text: "Edit",
+                                                                              text: "Edit".tr,
                                                                               onPressed: () async {
                                                                                 final entryIndex = row.entries
                                                                                     .toList() // تحويل الكائنات إلى قائمة
@@ -393,7 +394,7 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                               .contains("No Lesson")
                                                                           ? Container()
                                                                           : ButtonDialog(
-                                                                              text: "Delete",
+                                                                              text: "Delete".tr,
                                                                               onPressed: () async {
                                                                                 final entryIndex = row.entries
                                                                                     .toList() // تحويل الكائنات إلى قائمة
@@ -420,10 +421,10 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                                 child: Row(
                                                                                   children: [
                                                                                     Padding(
-                                                                                      padding: const EdgeInsets.only(right: 15.0),
-                                                                                      child: DropDownSchoolTime(title: "Curriculm", width: 220, type: "subjectDialog"),
+                                                                                      padding: const EdgeInsets.only(right: 15.0, left: 15),
+                                                                                      child: DropDownSchoolTime(title: "Curriculum".tr, width: 220, type: "subjectDialog"),
                                                                                     ),
-                                                                                    DropDownSchoolTime(title: "Teacher", width: 220, type: "teacherDialog"),
+                                                                                    DropDownSchoolTime(title: "Teacher".tr, width: 220, type: "teacherDialog"),
                                                                                   ],
                                                                                 ),
                                                                               ),
@@ -431,7 +432,8 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                           ),
                                                                         ),
                                                                         apptitle:
-                                                                            "Operation of Lessons",
+                                                                            "Operation of Lessons"
+                                                                                .tr,
                                                                         subtitle:
                                                                             ""));
                                                               }

@@ -5,6 +5,8 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 
 class Dropdowngradecontroller extends GetxController {
   List<Map<String, dynamic>> grades = [];
@@ -29,8 +31,14 @@ class Dropdowngradecontroller extends GetxController {
         grades.add({
           'id': g.id,
           'name': g.enName.toString(),
+          'arName':g.name.toString()
         });
+      if(prefs!.getString(languageKey)=='ar')
+        gradeNames.add(g.name.toString());
+        else{
         gradeNames.add(g.enName.toString());
+
+        }
       }
     }
     Get.find<ClassMgmtController>().addGradeList(gradeNames);

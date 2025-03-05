@@ -103,13 +103,6 @@ class DropDownSchoolTime extends StatelessWidget {
                     ),
                     style: Theme.of(context).textTheme.bodyMedium!,
                     onChanged: (newValue) {
-                      if (newValue != null && newValue != title) {
-                        // البحث عن القيمة الأصلية
-                        String originalValue = cont.timeLessonList.firstWhere(
-                            (status) => status.tr == newValue,
-                            orElse: () => newValue);
-                        cont.selectIndex(type, originalValue);
-                      }
                       if (newValue != null) {
                         if (type == "class") {
                           cont.setDevisionindex();
@@ -117,7 +110,6 @@ class DropDownSchoolTime extends StatelessWidget {
                         if (type == "time") {
                           cont.setClassIndex();
                           cont.setDevisionindex();
-                          
                         }
                         cont.selectIndex(type, newValue);
                       }
@@ -145,9 +137,8 @@ class DropDownSchoolTime extends StatelessWidget {
       case 'class':
         items.addAll(cont.examClass.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
-            child:
-                Text(value.tr, style: Theme.of(context).textTheme.bodyMedium),
+            value: value,
+            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () async {
               for (int i = 0; i < 5; i++)
                 for (int j = 1; j < 8; j++) {
@@ -169,9 +160,8 @@ class DropDownSchoolTime extends StatelessWidget {
       case 'division':
         items.addAll(cont.examDivision.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
-            child:
-                Text(value.tr, style: Theme.of(context).textTheme.bodyMedium),
+            value: value,
+            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () async {
               for (int i = 0; i < 5; i++)
                 for (int j = 1; j < 8; j++) {
@@ -189,18 +179,17 @@ class DropDownSchoolTime extends StatelessWidget {
       case 'teacherDialog':
         items.addAll(cont.teacherDialogList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
-            child:
-                Text(value.tr, style: Theme.of(context).textTheme.bodyMedium),
+            value: value,
+            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
           );
         }).toList());
         break;
       case 'subjectDialog':
         items.addAll(cont.subjectDialogList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value,
             child:
-                Text(value.tr, style: Theme.of(context).textTheme.bodyMedium),
+                Text(value, style: Theme.of(context).textTheme.bodyMedium),
           );
         }).toList());
         break;

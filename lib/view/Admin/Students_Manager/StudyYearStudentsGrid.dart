@@ -11,6 +11,8 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownPenaltyController.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/PenaltiesAndRewardsStudentModel.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/Admin_Students/DropDownStudyYearStudents.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
@@ -140,7 +142,7 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                   Padding(
                                     padding: const EdgeInsets.all(16.0),
                                     child: Text(
-                                      'Details',
+                                      'Details'.tr,
                                       style: TextStyle(
                                           fontSize: 24,
                                           fontWeight: FontWeight.bold),
@@ -156,8 +158,8 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                         BorderRadius.circular(10),
                                     dividerHeight: 0,
                                     tabs: [
-                                      Tab(text: 'Rewards'),
-                                      Tab(text: 'Penalties'),
+                                      Tab(text: 'Rewards'.tr),
+                                      Tab(text: 'Penalties'.tr),
                                     ],
                                   ),
                                   Expanded(
@@ -178,9 +180,9 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                                 ),
                                                 columns: [
                                                   DataColumn(
-                                                      label: Text('Season')),
+                                                      label: Text('Session'.tr)),
                                                   DataColumn(
-                                                      label: Text('Reward')),
+                                                      label: Text('Reward'.tr)),
                                                 ],
                                                 rows: const <DataRow>[
                                                   DataRow(cells: <DataCell>[
@@ -208,15 +210,15 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                                   ),
                                                   columns: [
                                                     DataColumn(
-                                                        label: Text('Penalty')),
+                                                        label: Text('Penalty'.tr)),
                                                     DataColumn(
                                                         label:
-                                                            Text('Start Date')),
+                                                            Text('Start Date'.tr)),
                                                     DataColumn(
                                                         label:
-                                                            Text('End Date')),
+                                                            Text('End Date'.tr)),
                                                     DataColumn(
-                                                        label: Text('Reason')),
+                                                        label: Text('Reason'.tr)),
                                                   ],
                                                   rows: [
                                                     for (var i in model
@@ -226,10 +228,15 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                                         DataCell(Text(i.penalty !=
                                                                     null &&
                                                                 i.penalty!
-                                                                    .isNotEmpty
+                                                                    .isNotEmpty && prefs!.getString(languageKey)=='ar'
                                                             ? i.penalty![0]
-                                                                    .enName ??
-                                                                "N/A"
+                                                                    .name ??
+                                                                "N/A":i.penalty !=
+                                                                    null &&
+                                                                i.penalty!
+                                                                    .isNotEmpty
+                                                            ?i.penalty![0]
+                                                                    .enName
                                                             : "N/A")),
                                                         DataCell(Text(
                                                             "${i.startDate ?? []}")),
@@ -248,7 +255,7 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                 ],
                               ),
                             )),
-                        apptitle: "Penalties And Rewards",
+                        apptitle: "Penalties And Rewards".tr,
                         subtitle: "none"));
                   },
                   child: HoverScaleCard(
@@ -336,15 +343,17 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                     fontSize: 16,
                                     color: controller.filteredStudents![index]
                                                 .state ==
-                                            "Passing"
+                                            "Passing".tr
                                         ? const Color(0xff2F9742)
                                         : controller.filteredStudents![index]
                                                     .state ==
-                                                "Failed"
+                                                "Failed".tr
                                             ? const Color(0xff972F2F)
                                             : const Color(0xff134B70))),
                             Text(
-                                "Grade Level: ${controller.filteredStudents![index].grade!.enName}",
+                                "${"Grade Level:".tr} ${
+                                  prefs!.getString(languageKey)=='ar'?
+                                  controller.filteredStudents![index].grade!.name:controller.filteredStudents![index].grade!.enName}",
                                 style: Get.theme.textTheme.bodyMedium),
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
@@ -366,16 +375,16 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                                 color: Get.theme.primaryColor),
                                           ))),
                                       onPressed: () {},
-                                      child: const Row(
+                                      child:  Row(
                                         children: [
-                                          Icon(
+                                        const  Icon(
                                             VMS_Icons.vcard,
                                             size: 14,
                                           ),
                                           Padding(
-                                            padding: EdgeInsets.only(
+                                            padding:const EdgeInsets.only(
                                                 left: 5.0, right: 5.0),
-                                            child: Text("First Season"),
+                                            child: Text('Export Certificate'.tr),
                                           ),
                                         ],
                                       )),
@@ -417,7 +426,7 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                                               .id!);
                                                 },
                                                 color: Get.theme.primaryColor,
-                                                text: "Send",
+                                                text: "Send".tr,
                                               )
                                             ],
                                             contents: Column(
@@ -436,7 +445,7 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                                   return DropDownStudyYearStudents(
                                                     isLoading:
                                                         PController.Isloading,
-                                                    title: "Penalty",
+                                                    title: "Penaltyy".tr,
                                                     type: "penalty",
                                                     width: w / 3.6,
                                                   );
@@ -450,18 +459,18 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
-                                                      Text("The Reason",
+                                                      Text("The Reason".tr,
                                                           style: Get
                                                               .theme
                                                               .primaryTextTheme
                                                               .labelSmall),
                                                       Textfildwithupper(
-                                                          Uptext: "The Reason",
+                                                          Uptext: "The Reason".tr,
                                                           isRequired: true,
                                                           width: w / 3.6,
                                                           controller: reason,
                                                           hinttext:
-                                                              "The Reason"),
+                                                              "The Reason".tr),
                                                     ],
                                                   ),
                                                 ),
@@ -485,7 +494,7 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                                         child: RichText(
                                                           text: TextSpan(
                                                               text:
-                                                                  "Start Date",
+                                                                  "Start Date".tr,
                                                               style: Get
                                                                   .theme
                                                                   .textTheme
@@ -537,17 +546,17 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                                 ),
                                               ],
                                             ),
-                                            apptitle: "Punishing Student",
+                                            apptitle: "Punishing Student".tr,
                                             subtitle: ""));
                                       },
-                                      child: const Row(
+                                      child:  Row(
                                         children: [
                                           Icon(Icons.person_remove_outlined,
                                               size: 14),
                                           Padding(
                                             padding: EdgeInsets.only(
                                                 left: 5.0, right: 5.0),
-                                            child: Text("Punishing"),
+                                            child: Text("Punishing".tr),
                                           ),
                                         ],
                                       )),
