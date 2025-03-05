@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 
-class TextField_Profile extends StatelessWidget {
-  const TextField_Profile({
+class Long_TextField_Profile extends StatelessWidget {
+  const Long_TextField_Profile({
     super.key,
     required this.controller,
     required this.Uptext,
@@ -39,7 +39,7 @@ class TextField_Profile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.only(bottom: enabled ? 8.0 : 0),
+              padding: EdgeInsets.all(15.0),
               child: Row(
                 spacing: 8.0,
                 textDirection: Get.find<LocalizationController>()
@@ -56,8 +56,9 @@ class TextField_Profile extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 40,
+              height: 300,
               child: TextFormField(
+                maxLines: 10,
                 textDirection: Get.find<LocalizationController>()
                             .currentLocale
                             .value
@@ -84,9 +85,18 @@ class TextField_Profile extends StatelessWidget {
                   hintStyle: TextStyle(
                     color: Colors.grey,
                   ),
-                  focusedBorder: UnderlineInputBorder(),
-                  enabledBorder: InputBorder.none,
-                  border: InputBorder.none,
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                      borderSide:
+                          BorderSide(color: Theme.of(context).disabledColor)),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                      borderSide:
+                          BorderSide(color: Theme.of(context).disabledColor)),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                      borderSide:
+                          BorderSide(color: Theme.of(context).disabledColor)),
                 ),
               ),
             ),

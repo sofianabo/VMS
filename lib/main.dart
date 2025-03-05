@@ -41,8 +41,7 @@ class VMS extends StatelessWidget {
                 prefs!.getBool("isLogin") == true
             ? Directionality(
                 textDirection: TextDirection.ltr, child: AdminHome())
-            : Directionality(
-                textDirection: TextDirection.rtl, child: Home())
+            : Directionality(textDirection: TextDirection.rtl, child: Home())
 
         // home: AdminHome()
 
