@@ -42,7 +42,7 @@ class VMS extends StatelessWidget {
             ? Directionality(
                 textDirection: TextDirection.ltr, child: AdminHome())
             : Directionality(
-                textDirection: TextDirection.rtl, child: AdminHome())
+                textDirection: TextDirection.rtl, child: Home())
 
         // home: AdminHome()
 
