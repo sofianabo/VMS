@@ -90,7 +90,7 @@ class _SearchWithSuggestionsState extends State<SearchWithSuggestions> {
               children: _filteredItems.map((item) {
                 return GestureDetector(
                   onTap: () {
-                    _controller.text = item.tr; // استخدام .tr هنا لترجمة العنصر
+                    _controller.text = item.tr;
                     widget.onItemSelected(item);
                     _hideOverlay();
                   },
