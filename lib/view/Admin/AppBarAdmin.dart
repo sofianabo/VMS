@@ -2,16 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/API/AuthAPI/LogoutAPI.dart';
-import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
-import 'package:vms_school/Link/Controller/AuthController/UserController.dart';
 import 'package:vms_school/Theme/ThemeData.dart';
-import 'package:vms_school/Theme/themeController.dart';
-import 'package:vms_school/main.dart';
-import 'package:vms_school/widgets/Admin_Profile_Settings.dart';
-import 'package:vms_school/widgets/Switcher.dart';
-import 'package:vms_school/widgets/TextFormSearch.dart';
+import 'package:vms_school/view/Admin/Search_Bar_widget.dart';
 
 class AppbarAdmin extends StatefulWidget {
   AppbarAdmin({super.key});
@@ -84,16 +77,12 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 5.0, right: 5.0),
-                    child: TextpageSearch(
-                      click: () {},
-                      onchange: (value) {},
-                      width: 250,
-                      radius: 5,
-                      controller: serch,
-                      suffixIcon: serch.text != "" ? Icons.clear : Icons.search,
-                    ),
-                  ),
+                      padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+                      child: SearchWithSuggestions(
+                        onItemSelected: (value) {
+                          cont.updateContent(value);
+                        },
+                      )),
                 ],
               );
             }),

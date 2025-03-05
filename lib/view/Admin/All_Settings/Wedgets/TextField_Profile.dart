@@ -13,6 +13,7 @@ class TextField_Profile extends StatelessWidget {
     this.icon,
     this.upicon,
     this.enabled = true,
+    this.onChanged, // إضافة حدث onChanged
   });
 
   final TextEditingController controller;
@@ -22,6 +23,7 @@ class TextField_Profile extends StatelessWidget {
   final bool readOnly;
   final bool enabled;
   final Widget? upicon;
+  final Function(String)? onChanged; // تعريف الحدث كـ Function اختيارية
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,6 @@ class TextField_Profile extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(bottom: enabled ? 8.0 : 0),
               child: Row(
-                spacing: 8.0,
                 textDirection: Get.find<LocalizationController>()
                             .currentLocale
                             .value
@@ -50,8 +51,18 @@ class TextField_Profile extends StatelessWidget {
                     ? TextDirection.rtl
                     : TextDirection.ltr,
                 children: [
-                  if (upicon != null) upicon!,
-                  Text("$Uptext", style: Theme.of(context).textTheme.bodySmall),
+                  if (upicon != null)
+                    Padding(
+                      padding: Get.find<LocalizationController>()
+                                  .currentLocale
+                                  .value
+                                  .languageCode ==
+                              'ar'
+                          ? EdgeInsets.only(left: 8.0)
+                          : EdgeInsets.only(right: 8.0),
+                      child: upicon!,
+                    ),
+                  Text(Uptext, style: Theme.of(context).textTheme.bodySmall),
                 ],
               ),
             ),
@@ -79,12 +90,13 @@ class TextField_Profile extends StatelessWidget {
                     : TextAlign.left,
                 readOnly: readOnly,
                 controller: controller,
+                onChanged: onChanged, // استدعاء الحدث هنا
                 decoration: InputDecoration(
                   hintText: Uptext,
-                  hintStyle: TextStyle(
+                  hintStyle: const TextStyle(
                     color: Colors.grey,
                   ),
-                  focusedBorder: UnderlineInputBorder(),
+                  focusedBorder: const UnderlineInputBorder(),
                   enabledBorder: InputBorder.none,
                   border: InputBorder.none,
                 ),

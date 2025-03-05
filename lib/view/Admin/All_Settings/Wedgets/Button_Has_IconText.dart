@@ -20,7 +20,7 @@ class Button_Has_IconText extends StatelessWidget {
             shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                 side: BorderSide(color: Color(0xffECECEC), width: 1.4),
                 borderRadius: BorderRadius.all(Radius.circular(60))))),
-        onPressed: () {},
+        onPressed: onPressed,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(

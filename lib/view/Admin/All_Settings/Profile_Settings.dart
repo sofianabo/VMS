@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
-import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/view/Admin/All_Settings/Account_And_Password.dart';
 import 'package:vms_school/view/Admin/All_Settings/Apperance.dart';
 import 'package:vms_school/view/Admin/All_Settings/Prof_Section.dart';
-import 'package:vms_school/view/Admin/All_Settings/Wedgets/Personal_Section.dart';
+import 'package:vms_school/view/Admin/All_Settings/Personal_Section.dart';
 
 class ProfileSettings extends StatefulWidget {
   ProfileSettings({super.key});
@@ -171,7 +170,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                             : TextDirection.ltr,
                                     children: [
                                       Icon(Icons.password_outlined),
-                                      Text("  " + "Password".tr + "  ")
+                                      Text("  " +
+                                          "Account And Password".tr +
+                                          "  ")
                                     ],
                                   ),
                                 ),
@@ -214,6 +215,38 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                   ),
                                 ),
                               ),
+                              GestureDetector(
+                                onTap: () {},
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Row(
+                                    textDirection:
+                                        Get.find<LocalizationController>()
+                                                    .currentLocale
+                                                    .value
+                                                    .languageCode ==
+                                                'ar'
+                                            ? TextDirection.rtl
+                                            : TextDirection.ltr,
+                                    children: [
+                                      Icon(
+                                        Icons.login_outlined,
+                                        color: _isDarkMode.value
+                                            ? Colors.redAccent
+                                            : Color(0xffB03D3D),
+                                      ),
+                                      Text(
+                                        "  " + "Logout".tr + "  ",
+                                        style: TextStyle(
+                                          color: _isDarkMode.value
+                                              ? Colors.redAccent
+                                              : Color(0xffB03D3D),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -231,7 +264,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                 ? Profile()
                                 : controller.curruntValue == "Personal"
                                     ? Personal()
-                                    : Text("data"),
+                                    : Account_And_Password(),
                       ))
                     ],
                   ),
