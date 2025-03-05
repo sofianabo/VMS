@@ -5,10 +5,13 @@ import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 
 class theme {
-  static String IsAr =
-      Get.put(LocalizationController()).currentLocale.value.languageCode == 'ar'
-          ? "Cairo"
-          : "Sansation";
+  static String IsAr = Get.put(LocalizationController(), permanent: true)
+              .currentLocale
+              .value
+              .languageCode ==
+          'ar'
+      ? "Cairo"
+      : "Sansation";
   static ThemeData Light_Theme = ThemeData(
     fontFamily: IsAr,
     cardColor: const Color(0xffFBFBFB),
