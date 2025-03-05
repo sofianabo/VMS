@@ -51,7 +51,17 @@ class TextField_Profile extends StatelessWidget {
                     ? TextDirection.rtl
                     : TextDirection.ltr,
                 children: [
-                  if (upicon != null) upicon!,
+                  if (upicon != null)
+                    Padding(
+                      padding: Get.find<LocalizationController>()
+                                  .currentLocale
+                                  .value
+                                  .languageCode ==
+                              'ar'
+                          ? EdgeInsets.only(left: 8.0)
+                          : EdgeInsets.only(right: 8.0),
+                      child: upicon!,
+                    ),
                   Text(Uptext, style: Theme.of(context).textTheme.bodySmall),
                 ],
               ),

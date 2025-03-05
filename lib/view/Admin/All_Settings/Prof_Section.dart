@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
@@ -76,8 +78,61 @@ class _ProfileState extends State<Profile> {
                     children: [
                       CircleAvatar(
                         maxRadius: 35,
-                        child: Image.asset(
-                          "../../images/Rectangle66.png",
+                        child: GestureDetector(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => Dialog(
+                                backgroundColor: Colors.transparent,
+                                child: GestureDetector(
+                                  onTap: () => Navigator.pop(context),
+                                  child: Hero(
+                                    tag: 'profileImageHero',
+                                    child: Material(
+                                      color: Colors.transparent,
+                                      child: Center(
+                                        child: AnimatedContainer(
+                                          duration:
+                                              const Duration(milliseconds: 500),
+                                          curve: Curves.fastOutSlowIn,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.black
+                                                    .withOpacity(0.5),
+                                                blurRadius: 20,
+                                                offset: const Offset(0, 10),
+                                              ),
+                                            ],
+                                          ),
+                                          child: ClipOval(
+                                            child: Image.asset(
+                                              "../../images/Rectangle66.png",
+                                              fit: BoxFit.cover,
+                                              width: 400,
+                                              height: 400,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                          child: Hero(
+                            tag: 'profileImageHero',
+                            child: ClipOval(
+                              child: Image.asset(
+                                "../../images/Rectangle66.png",
+                                fit: BoxFit.cover,
+                                width: 70,
+                                height: 70,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                       Padding(
@@ -406,6 +461,101 @@ class _ProfileState extends State<Profile> {
           ],
         );
       }),
+    );
+  }
+}
+
+class ProfileImageWithHoverDialog extends StatefulWidget {
+  const ProfileImageWithHoverDialog({Key? key}) : super(key: key);
+
+  @override
+  State<ProfileImageWithHoverDialog> createState() =>
+      _ProfileImageWithHoverDialogState();
+}
+
+class _ProfileImageWithHoverDialogState
+    extends State<ProfileImageWithHoverDialog> {
+  Timer? _hoverTimer;
+  bool _isDialogOpen = false;
+
+  void _showImageDialog() {
+    if (_isDialogOpen) return;
+    _isDialogOpen = true;
+
+    Get.dialog(
+      Dialog(
+        backgroundColor: Colors.transparent,
+        child: GestureDetector(
+          onTap: () => _closeDialog(),
+          child: Hero(
+            tag: 'profileImageHero',
+            child: Material(
+              color: Colors.transparent,
+              child: Center(
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.fastOutSlowIn,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.5),
+                        blurRadius: 20,
+                        offset: const Offset(0, 10),
+                      ),
+                    ],
+                  ),
+                  child: ClipOval(
+                    child: Image.asset(
+                      "../../images/Rectangle66.png",
+                      fit: BoxFit.cover,
+                      width: 400,
+                      height: 400,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+      barrierDismissible: true,
+    ).then((_) {
+      _isDialogOpen = false;
+    });
+  }
+
+  void _closeDialog() {
+    if (_isDialogOpen) {
+      Navigator.of(Get.overlayContext!).pop();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) {
+        _hoverTimer =
+            Timer(const Duration(milliseconds: 500), _showImageDialog);
+      },
+      onExit: (_) {
+        _hoverTimer?.cancel();
+        _closeDialog();
+      },
+      child: Hero(
+        tag: 'profileImageHero',
+        child: CircleAvatar(
+          maxRadius: 35,
+          child: ClipOval(
+            child: Image.asset(
+              "../../images/Rectangle66.png",
+              fit: BoxFit.cover,
+              width: 70,
+              height: 70,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
