@@ -6,7 +6,6 @@ import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 
 class Allstudentscontroller extends GetxController {
-  
   List<Students> stud = [];
   Student? student;
   List<Students> filteredStudents = [];
@@ -230,11 +229,10 @@ class Allstudentscontroller extends GetxController {
   void setAllDivision(AllDivisionModel division) {
     divisionlist.clear();
     for (int k = 0; k < division.division!.length; k++) {
-      if(prefs!.getString(languageKey)=='ar')
-      divisionlist.add(division.division![k].name.toString());
+      if (prefs!.getString(languageKey) == 'ar')
+        divisionlist.add(division.division![k].name.toString());
       else
-            divisionlist.add(division.division![k].enName.toString());
-
+        divisionlist.add(division.division![k].enName.toString());
     }
     update();
     updateList("division", divisionlist);

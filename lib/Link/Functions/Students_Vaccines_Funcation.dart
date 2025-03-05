@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Vaccines_APIs/Get_All_Vaccines_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
@@ -22,7 +24,7 @@ Students_Vaccines_Funcation(BuildContext context) async {
       Get.dialog(VMSAlertDialog(
           action: [
             ButtonDialog(
-                text: "Done",
+                text: "Done".tr,
                 onPressed: () {
                   Get.back();
                 },
@@ -111,7 +113,9 @@ Students_Vaccines_Funcation(BuildContext context) async {
                                       child: Center(
                                         child: Text(
                                           textAlign: TextAlign.center,
-                                          "${control.filteredvaccine![index].enName}",
+                                          prefs!.getString(languageKey) == 'ar'
+                                              ? "${control.filteredvaccine![index].name}"
+                                              : "${control.filteredvaccine![index].enName}",
                                           style: Theme.of(context).textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 18,
@@ -278,7 +282,7 @@ Students_Vaccines_Funcation(BuildContext context) async {
               }),
             ),
           ),
-          apptitle: "Students Vaccine",
+          apptitle: "Student Vaccine".tr,
           subtitle: "none"));
     }
   } catch (e) {}

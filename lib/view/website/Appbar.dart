@@ -49,15 +49,19 @@ class _AppbarCustomState extends State<AppbarCustom> {
               Padding(
                 padding: const EdgeInsets.only(right: 8.0),
                 child: SizedBox(
-                  width: 90,
+                  width: 95,
                   height: 20,
                   child: MaterialButton(
                     onPressed: () {
                       ScrollToKey(widget.Section7Key);
                     },
-                    child: Text(
-                      "Contact Us",
-                      style: Get.theme.textTheme.bodyMedium!,
+                    child: Container(
+                      color: Get.theme.scaffoldBackgroundColor,
+                      child: Text(
+                        overflow: TextOverflow.ellipsis,
+                        "Contact Us".tr,
+                        style: Get.theme.textTheme.bodyMedium!,
+                      ),
                     ),
                   ),
                 ),
@@ -70,7 +74,7 @@ class _AppbarCustomState extends State<AppbarCustom> {
                     ScrollToKey(widget.Section5Key);
                   },
                   child: Text(
-                    "AboutUs",
+                    "AboutUs".tr,
                     style: Get.theme.textTheme.bodyMedium!,
                   ),
                 ),
@@ -83,7 +87,7 @@ class _AppbarCustomState extends State<AppbarCustom> {
                     ScrollToKey(widget.Section4Key);
                   },
                   child: Text(
-                    "WhyUs",
+                    "WhyUs".tr,
                     style: Get.theme.textTheme.bodyMedium!,
                   ),
                 ),
@@ -96,7 +100,7 @@ class _AppbarCustomState extends State<AppbarCustom> {
                     ScrollToKey(widget.Section6Key);
                   },
                   child: Text(
-                    "Programs",
+                    "Programs".tr,
                     style: Get.theme.textTheme.bodyMedium!,
                   ),
                 ),
@@ -109,7 +113,7 @@ class _AppbarCustomState extends State<AppbarCustom> {
                     ScrollToKey(widget.Section3Key);
                   },
                   child: Text(
-                    "Enrollment",
+                    "Enrollment".tr,
                     style: Get.theme.textTheme.bodyMedium!,
                   ),
                 ),
@@ -122,7 +126,7 @@ class _AppbarCustomState extends State<AppbarCustom> {
                     ScrollToKey(widget.Section2Key);
                   },
                   child: Text(
-                    "Eligibility",
+                    "Eligibility".tr,
                     style: Get.theme.textTheme.bodyMedium!,
                   ),
                 ),

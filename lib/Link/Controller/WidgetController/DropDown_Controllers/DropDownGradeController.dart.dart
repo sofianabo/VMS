@@ -17,11 +17,13 @@ class Dropdowngradecontroller extends GetxController {
     isLoading = value;
     update();
   }
+
   var gradeId;
   void setgradeId(id) {
     gradeId = id;
     update();
   }
+
   void setGrades(AllGradesModel grade) {
     grades.clear();
     gradess = grade;
@@ -31,13 +33,12 @@ class Dropdowngradecontroller extends GetxController {
         grades.add({
           'id': g.id,
           'name': g.enName.toString(),
-          'arName':g.name.toString()
+          'arName': g.name.toString()
         });
-      if(prefs!.getString(languageKey)=='ar')
-        gradeNames.add(g.name.toString());
-        else{
-        gradeNames.add(g.enName.toString());
-
+        if (prefs!.getString(languageKey) == 'ar')
+          gradeNames.add(g.name.toString());
+        else {
+          gradeNames.add(g.enName.toString());
         }
       }
     }

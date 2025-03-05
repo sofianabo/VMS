@@ -6,6 +6,8 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 
 class Dropdowndivisioncontroller extends GetxController {
   List<String> division = [];
@@ -31,7 +33,10 @@ class Dropdowndivisioncontroller extends GetxController {
     List<String> newList = [];
     for (int i = 0; i < div.division!.length; i++) {
       division.add(div.division![i].enName.toString());
-      newList.add(div.division![i].enName.toString());
+      if (prefs!.getString(languageKey) == 'ar')
+        newList.add(div.division![i].name.toString());
+      else
+        newList.add(div.division![i].enName.toString());
     }
     Get.find<Allstudentscontroller>().setDivisionList(newList);
     Get.find<StudyYearStudentsController>().setDivisionList(newList);

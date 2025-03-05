@@ -121,7 +121,7 @@ class Section1 extends StatelessWidget {
                                   height: h / 5.7,
                                   width: w / 12.8,
                                   decoration: BoxDecoration(
-                                      color: const Color(0xffFFFDFB),
+                                      color: Get.theme.cardColor,
                                       borderRadius: BorderRadius.circular(21),
                                       border: Border.all(
                                         color: Colors.grey,
@@ -134,6 +134,7 @@ class Section1 extends StatelessWidget {
                                         height: h / 17.1,
                                         width: w / 32,
                                         decoration: BoxDecoration(
+                                            color: Get.theme.cardColor,
                                             borderRadius:
                                                 BorderRadius.circular(100)),
                                         child: Image.asset(
@@ -170,6 +171,7 @@ class Section1 extends StatelessWidget {
                                   height: h / 5.7,
                                   width: w / 12.8,
                                   decoration: BoxDecoration(
+                                      color: Get.theme.cardColor,
                                       borderRadius: BorderRadius.circular(21),
                                       border: Border.all(
                                         color: Colors.grey,
@@ -182,6 +184,7 @@ class Section1 extends StatelessWidget {
                                         height: h / 17.1,
                                         width: w / 32,
                                         decoration: BoxDecoration(
+                                            color: Get.theme.cardColor,
                                             borderRadius:
                                                 BorderRadius.circular(100)),
                                         child: Image.asset(
@@ -214,6 +217,7 @@ class Section1 extends StatelessWidget {
                                   height: h / 5.7,
                                   width: w / 12.8,
                                   decoration: BoxDecoration(
+                                      color: Get.theme.cardColor,
                                       borderRadius: BorderRadius.circular(21),
                                       border: Border.all(
                                         color: Colors.grey,
@@ -226,6 +230,7 @@ class Section1 extends StatelessWidget {
                                         height: h / 17.1,
                                         width: w / 32,
                                         decoration: BoxDecoration(
+                                            color: Get.theme.cardColor,
                                             borderRadius:
                                                 BorderRadius.circular(100)),
                                         child: Image.asset(
