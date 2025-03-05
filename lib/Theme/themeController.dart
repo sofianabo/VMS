@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/main.dart';
 
 class ThemeController extends GetxController {
-  static bool get isDarkMode => prefs!.getBool("mode") ?? true;
+  static bool get isDarkMode => prefs!.getBool("mode") ?? false;
 
   static set isDarkMode(bool v) {
     prefs!.setBool("mode", v);

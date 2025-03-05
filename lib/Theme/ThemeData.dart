@@ -1,12 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 
 class theme {
   static String IsAr =
-      prefs!.getString(languageKey) == 'ar' ? "Cairo" : "Sansation";
+      Get.put(LocalizationController()).currentLocale.value.languageCode == 'ar'
+          ? "Cairo"
+          : "Sansation";
   static ThemeData Light_Theme = ThemeData(
+    fontFamily: IsAr,
     cardColor: const Color(0xffFBFBFB),
     primaryColorLight: const Color(0xff19478d), // card button
     primaryColor: const Color(0xff19478d),
@@ -40,7 +44,6 @@ class theme {
         ),
         displayMedium:
             TextStyle(color: Colors.white, fontFamily: IsAr, fontSize: 14)),
-    fontFamily: IsAr,
     focusColor: Colors.white,
     colorScheme: const ColorScheme.light(
         primary: Color(0xff19478d),
@@ -67,6 +70,7 @@ class theme {
   );
 
   static ThemeData Dark_Theme = ThemeData(
+    fontFamily: IsAr,
     primaryColorDark: Color(0xff252525),
     primaryColorLight: const Color.fromARGB(255, 29, 28, 28),
     cardColor: const Color(0xff464646),
@@ -106,7 +110,6 @@ class theme {
             TextStyle(fontFamily: IsAr, fontSize: 26, color: Colors.white),
         titleLarge:
             TextStyle(color: Colors.blueGrey, fontFamily: IsAr, fontSize: 14)),
-    fontFamily: IsAr,
     dialogBackgroundColor: Colors.white.withOpacity(0.3),
     primaryColor: const Color(0xff464646),
     useMaterial3: true,
