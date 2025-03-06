@@ -17,19 +17,20 @@ class LoginAPI {
   login(String username, String password) async {
     String myurl = "${global.hostPort}${global.LOGIN}";
     try {
-       u.SetIsloading(true);
+      u.SetIsloading(true);
       var response = await dio.post(myurl,
           data: {
             "userName": username,
             "password": password,
           },
-           options: getDioOptions());
+          options: getDioOptions());
       if (response.statusCode == 200) {
-
         UserModel user = UserModel.fromJson(response.data);
         u.GetuserInfo(user);
         prefs!.setBool("isLogin", true);
-        Get.to(() => AdminHome(),);
+        Get.to(
+          () => AdminHome(),
+        );
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
@@ -46,7 +47,7 @@ class LoginAPI {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    }finally{
+    } finally {
       u.SetIsloading(false);
     }
   }

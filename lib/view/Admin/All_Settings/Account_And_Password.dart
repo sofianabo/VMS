@@ -25,200 +25,84 @@ class _ProfileState extends State<Account_And_Password> {
   bool isenapled = false;
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: GetBuilder<Admin_Profile_Content>(builder: (controller) {
-        return Column(
-          textDirection: Get.find<LocalizationController>()
-                      .currentLocale
-                      .value
-                      .languageCode ==
-                  'ar'
-              ? TextDirection.rtl
-              : TextDirection.ltr,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  top: 25.0, left: 15.0, right: 15.0, bottom: 15.0),
-              child: Text(
-                "Account And Password".tr,
-                style: TextStyle(fontSize: 18),
+    return Align(
+      alignment: Alignment.topCenter,
+      child: SingleChildScrollView(
+        child: GetBuilder<Admin_Profile_Content>(builder: (controller) {
+          return Column(
+            textDirection: Get.find<LocalizationController>()
+                        .currentLocale
+                        .value
+                        .languageCode ==
+                    'ar'
+                ? TextDirection.rtl
+                : TextDirection.ltr,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 25.0, left: 15.0, right: 15.0, bottom: 15.0),
+                child: Text(
+                  "Account And Password".tr,
+                  style: TextStyle(fontSize: 18),
+                ),
               ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 15.0),
-              padding: EdgeInsets.all(15.0),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                  border: Border.all(color: Color(0xffF6F6F6), width: 1.5)),
-              child: Column(
-                spacing: 5.0,
-                children: [
-                  Row(
-                    textDirection: Get.find<LocalizationController>()
-                                .currentLocale
-                                .value
-                                .languageCode ==
-                            'ar'
-                        ? TextDirection.rtl
-                        : TextDirection.ltr,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "My Email".tr,
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      Button_Has_IconText(
-                        onPressed: () {
-                          if (controller.enabledEmailInfo == true) {
-                            controller.ChangeenabledEmailInfo(false);
-                          } else {
-                            controller.ChangeenabledEmailInfo(true);
-                          }
-                        },
-                        text:
-                            controller.enabledEmailInfo ? "Save".tr : "Edit".tr,
-                        icon: Icon(
-                          controller.enabledEmailInfo
-                              ? Icons.save_outlined
-                              : Icons.edit,
-                          color: Colors.black,
+              Container(
+                margin: EdgeInsets.only(top: 15.0),
+                padding: EdgeInsets.all(15.0),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    border: Border.all(color: Color(0xffF6F6F6), width: 1.5)),
+                child: Column(
+                  spacing: 5.0,
+                  children: [
+                    Row(
+                      textDirection: Get.find<LocalizationController>()
+                                  .currentLocale
+                                  .value
+                                  .languageCode ==
+                              'ar'
+                          ? TextDirection.rtl
+                          : TextDirection.ltr,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "My Email".tr,
+                          style: TextStyle(fontSize: 18),
                         ),
-                      )
-                    ],
-                  ),
-                  Column(
-                    spacing: 15.0,
-                    textDirection: Get.find<LocalizationController>()
-                                .currentLocale
-                                .value
-                                .languageCode ==
-                            'ar'
-                        ? TextDirection.rtl
-                        : TextDirection.ltr,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        textDirection: Get.find<LocalizationController>()
-                                    .currentLocale
-                                    .value
-                                    .languageCode ==
-                                'ar'
-                            ? TextDirection.rtl
-                            : TextDirection.ltr,
-                        children: [
-                          TextField_Profile(
-                            upicon: Icon(
-                              Icons.email_outlined,
-                              color:
-                                  Theme.of(context).textTheme.bodySmall!.color,
-                              size: 20,
-                            ),
-                            controller: newemail,
-                            Uptext: "My Email".tr,
-                            enabled: controller.enabledEmailInfo,
-                            onChanged: (value) {
-                              if (value != "laithazzam.la.la@gmail.com" &&
-                                  value.isNotEmpty) {
-                                controller.ChangeenabledchangeemaildInfo(true);
-                              } else {
-                                controller.ChangeenabledchangeemaildInfo(false);
-                              }
-                            },
+                        Button_Has_IconText(
+                          onPressed: () {
+                            if (controller.enabledEmailInfo == true) {
+                              controller.ChangeenabledEmailInfo(false);
+                            } else {
+                              controller.ChangeenabledEmailInfo(true);
+                            }
+                          },
+                          text: controller.enabledEmailInfo
+                              ? "Save".tr
+                              : "Edit".tr,
+                          icon: Icon(
+                            controller.enabledEmailInfo
+                                ? Icons.save_outlined
+                                : Icons.edit,
+                            color: Colors.black,
                           ),
-                          if (controller.enabledchangeemaildInfo == true)
-                            TextField_Profile(
-                              upicon: Icon(
-                                Icons.password,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall!
-                                    .color,
-                                size: 20,
-                              ),
-                              controller: password,
-                              Uptext: "Your Password".tr,
-                              enabled: controller.enabledchangeemaildInfo,
-                            ),
-                          if (controller.enabledchangeemaildInfo == true)
-                            TextField_Profile(
-                              upicon: Icon(
-                                Icons.verified_outlined,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall!
-                                    .color,
-                                size: 20,
-                              ),
-                              controller: virificationCode,
-                              Uptext: "Your Verification Code".tr,
-                              enabled: controller.enabledchangeemaildInfo,
-                            ),
-                        ],
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 15.0),
-              padding: EdgeInsets.all(15.0),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                  border: Border.all(color: Color(0xffF6F6F6), width: 1.5)),
-              child: Column(
-                spacing: 0.0,
-                children: [
-                  Row(
-                    textDirection: Get.find<LocalizationController>()
-                                .currentLocale
-                                .value
-                                .languageCode ==
-                            'ar'
-                        ? TextDirection.rtl
-                        : TextDirection.ltr,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Change Password".tr,
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      Button_Has_IconText(
-                        onPressed: () {
-                          if (controller.enabledPasswordInfo == true) {
-                            controller.ChangeenabledPasswordInfo(false);
-                          } else {
-                            controller.ChangeenabledPasswordInfo(true);
-                          }
-                        },
-                        text: controller.enabledPasswordInfo
-                            ? "Save".tr
-                            : "Edit".tr,
-                        icon: Icon(
-                          controller.enabledPasswordInfo
-                              ? Icons.save_outlined
-                              : Icons.edit,
-                          color: Colors.black,
-                        ),
-                      )
-                    ],
-                  ),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    textDirection: Get.find<LocalizationController>()
-                                .currentLocale
-                                .value
-                                .languageCode ==
-                            'ar'
-                        ? TextDirection.rtl
-                        : TextDirection.ltr,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 15.0),
-                        child: Row(
+                        )
+                      ],
+                    ),
+                    Column(
+                      spacing: 15.0,
+                      textDirection: Get.find<LocalizationController>()
+                                  .currentLocale
+                                  .value
+                                  .languageCode ==
+                              'ar'
+                          ? TextDirection.rtl
+                          : TextDirection.ltr,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
                           textDirection: Get.find<LocalizationController>()
                                       .currentLocale
                                       .value
@@ -229,23 +113,172 @@ class _ProfileState extends State<Account_And_Password> {
                           children: [
                             TextField_Profile(
                               upicon: Icon(
-                                Icons.password,
+                                Icons.email_outlined,
                                 color: Theme.of(context)
                                     .textTheme
                                     .bodySmall!
                                     .color,
                                 size: 20,
                               ),
-                              controller: oldpassword,
-                              Uptext: "Old Password".tr,
-                              enabled: controller.enabledPasswordInfo,
+                              controller: newemail,
+                              Uptext: "My Email".tr,
+                              enabled: controller.enabledEmailInfo,
+                              onChanged: (value) {
+                                if (value != "laithazzam.la.la@gmail.com" &&
+                                    value.isNotEmpty) {
+                                  controller.ChangeenabledchangeemaildInfo(
+                                      true);
+                                } else {
+                                  controller.ChangeenabledchangeemaildInfo(
+                                      false);
+                                }
+                              },
                             ),
+                            if (controller.enabledchangeemaildInfo == true)
+                              TextField_Profile(
+                                upicon: Icon(
+                                  Icons.password,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall!
+                                      .color,
+                                  size: 20,
+                                ),
+                                controller: password,
+                                Uptext: "Your Password".tr,
+                                enabled: controller.enabledchangeemaildInfo,
+                              ),
+                            if (controller.enabledchangeemaildInfo == true)
+                              TextField_Profile(
+                                upicon: Icon(
+                                  Icons.verified_outlined,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall!
+                                      .color,
+                                  size: 20,
+                                ),
+                                controller: virificationCode,
+                                Uptext: "Your Verification Code".tr,
+                                enabled: controller.enabledchangeemaildInfo,
+                              ),
                           ],
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 15.0),
+                padding: EdgeInsets.all(15.0),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    border: Border.all(color: Color(0xffF6F6F6), width: 1.5)),
+                child: Column(
+                  spacing: 0.0,
+                  children: [
+                    Row(
+                      textDirection: Get.find<LocalizationController>()
+                                  .currentLocale
+                                  .value
+                                  .languageCode ==
+                              'ar'
+                          ? TextDirection.rtl
+                          : TextDirection.ltr,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Change Password".tr,
+                          style: TextStyle(fontSize: 18),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                        child: Row(
+                        Button_Has_IconText(
+                          onPressed: () {
+                            if (controller.enabledPasswordInfo == true) {
+                              controller.ChangeenabledPasswordInfo(false);
+                            } else {
+                              controller.ChangeenabledPasswordInfo(true);
+                            }
+                          },
+                          text: controller.enabledPasswordInfo
+                              ? "Save".tr
+                              : "Edit".tr,
+                          icon: Icon(
+                            controller.enabledPasswordInfo
+                                ? Icons.save_outlined
+                                : Icons.edit,
+                            color: Colors.black,
+                          ),
+                        )
+                      ],
+                    ),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      textDirection: Get.find<LocalizationController>()
+                                  .currentLocale
+                                  .value
+                                  .languageCode ==
+                              'ar'
+                          ? TextDirection.rtl
+                          : TextDirection.ltr,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 15.0),
+                          child: Row(
+                            textDirection: Get.find<LocalizationController>()
+                                        .currentLocale
+                                        .value
+                                        .languageCode ==
+                                    'ar'
+                                ? TextDirection.rtl
+                                : TextDirection.ltr,
+                            children: [
+                              TextField_Profile(
+                                upicon: Icon(
+                                  Icons.password,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall!
+                                      .color,
+                                  size: 20,
+                                ),
+                                controller: oldpassword,
+                                Uptext: "Old Password".tr,
+                                enabled: controller.enabledPasswordInfo,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                          child: Row(
+                            textDirection: Get.find<LocalizationController>()
+                                        .currentLocale
+                                        .value
+                                        .languageCode ==
+                                    'ar'
+                                ? TextDirection.rtl
+                                : TextDirection.ltr,
+                            children: [
+                              TextField_Profile(
+                                upicon: Icon(
+                                  Icons.password,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall!
+                                      .color,
+                                  size: 20,
+                                ),
+                                controller: newpassword,
+                                Uptext: "New Password".tr,
+                                enabled: controller.enabledPasswordInfo,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Row(
                           textDirection: Get.find<LocalizationController>()
                                       .currentLocale
                                       .value
@@ -256,50 +289,28 @@ class _ProfileState extends State<Account_And_Password> {
                           children: [
                             TextField_Profile(
                               upicon: Icon(
-                                Icons.password,
+                                Icons.password_outlined,
                                 color: Theme.of(context)
                                     .textTheme
                                     .bodySmall!
                                     .color,
                                 size: 20,
                               ),
-                              controller: newpassword,
-                              Uptext: "New Password".tr,
+                              controller: confnewpassword,
+                              Uptext: "Confirm New Password".tr,
                               enabled: controller.enabledPasswordInfo,
                             ),
                           ],
                         ),
-                      ),
-                      Row(
-                        textDirection: Get.find<LocalizationController>()
-                                    .currentLocale
-                                    .value
-                                    .languageCode ==
-                                'ar'
-                            ? TextDirection.rtl
-                            : TextDirection.ltr,
-                        children: [
-                          TextField_Profile(
-                            upicon: Icon(
-                              Icons.password_outlined,
-                              color:
-                                  Theme.of(context).textTheme.bodySmall!.color,
-                              size: 20,
-                            ),
-                            controller: confnewpassword,
-                            Uptext: "Confirm New Password".tr,
-                            enabled: controller.enabledPasswordInfo,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
-        );
-      }),
+            ],
+          );
+        }),
+      ),
     );
   }
 }

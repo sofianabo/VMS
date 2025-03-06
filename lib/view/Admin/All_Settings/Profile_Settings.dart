@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AuthAPI/LogoutAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Admin/All_Settings/Account_And_Password.dart';
@@ -217,33 +218,93 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                               ),
                               GestureDetector(
                                 onTap: () {},
-                                child: Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Row(
-                                    textDirection:
-                                        Get.find<LocalizationController>()
-                                                    .currentLocale
-                                                    .value
-                                                    .languageCode ==
-                                                'ar'
-                                            ? TextDirection.rtl
-                                            : TextDirection.ltr,
-                                    children: [
-                                      Icon(
-                                        Icons.login_outlined,
-                                        color: _isDarkMode.value
-                                            ? Colors.redAccent
-                                            : Color(0xffB03D3D),
+                                child: PopupMenuButton<int>(
+                                  onSelected: (value) async {
+                                    if (value == 1) {
+                                      await Logoutapi(context)
+                                          .Logout(Type: "now");
+                                    } else if (value == 2) {
+                                      await Logoutapi(context)
+                                          .Logout(Type: "all");
+                                    }
+                                  },
+                                  itemBuilder: (context) => [
+                                    PopupMenuItem(
+                                      value: 1,
+                                      child: Row(
+                                        children: [
+                                          Icon(Icons.logout,
+                                              size: 18,
+                                              color: _isDarkMode.value
+                                                  ? Colors.redAccent
+                                                  : Color(0xffB03D3D)),
+                                          SizedBox(width: 8),
+                                          Text(
+                                              style: TextStyle(
+                                                  color: _isDarkMode.value
+                                                      ? Colors.redAccent
+                                                      : Color(0xffB03D3D)),
+                                              "Logout from Current Session".tr),
+                                        ],
                                       ),
-                                      Text(
-                                        "  " + "Logout".tr + "  ",
-                                        style: TextStyle(
+                                    ),
+                                    PopupMenuItem(
+                                      value: 2,
+                                      child: Row(
+                                        children: [
+                                          Icon(Icons.mobile_off,
+                                              size: 18,
+                                              color: _isDarkMode.value
+                                                  ? Colors.redAccent
+                                                  : Color(0xffB03D3D)),
+                                          SizedBox(width: 8),
+                                          Text(
+                                              style: TextStyle(
+                                                  color: _isDarkMode.value
+                                                      ? Colors.redAccent
+                                                      : Color(0xffB03D3D)),
+                                              "Logout from All Sessions".tr),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                  child: AnimatedContainer(
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context).cardColor,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(20)),
+                                    ),
+                                    padding: EdgeInsets.all(5.0),
+                                    duration: Duration(milliseconds: 150),
+                                    child: Row(
+                                      textDirection:
+                                          Get.find<LocalizationController>()
+                                                      .currentLocale
+                                                      .value
+                                                      .languageCode ==
+                                                  'ar'
+                                              ? TextDirection.rtl
+                                              : TextDirection.ltr,
+                                      children: [
+                                        Icon(
+                                          Icons.login_outlined,
                                           color: _isDarkMode.value
                                               ? Colors.redAccent
                                               : Color(0xffB03D3D),
                                         ),
-                                      )
-                                    ],
+                                        Text(
+                                          "  " + "Logout".tr + "  ",
+                                          maxLines: 2,
+                                          style: TextStyle(
+                                            color: _isDarkMode.value
+                                                ? Colors.redAccent
+                                                : Color(0xffB03D3D),
+                                          ),
+                                          textAlign: TextAlign.center,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),

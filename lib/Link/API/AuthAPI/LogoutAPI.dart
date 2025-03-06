@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AuthController/UserController.dart';
 import 'package:vms_school/main.dart';
-import 'package:vms_school/view/Auth/LoginScreen.dart';
+import 'package:vms_school/widgets/Loading_Dialog.dart';
 import '../../../view/website/Home.dart';
 import '../API.dart' as global;
 
@@ -12,31 +12,33 @@ class Logoutapi {
   Logoutapi(this.context);
   BuildContext context;
   Dio dio = Dio();
-  Logout() async {
-    Get.to(
-      () => Directionality(
-          textDirection: TextDirection.rtl, child: LoginScreen()),
-    );
-    await prefs!.clear();
-    String myurl = "${global.hostPort}${global.logout}";
+  Logout({required String Type}) async {
+    String myurl;
+    if (Type == "all") {
+      myurl = "${global.hostPort}${global.logout}/1";
+    } else {
+      myurl = "${global.hostPort}${global.logout}/0";
+    }
     try {
+      CancelToken cancelToken = CancelToken();
+      Loading_Dialog(cancelToken: cancelToken);
       var response = await dio.get(myurl,
+          cancelToken: cancelToken,
           options: Options(headers: {
             'accept': 'application/json',
             'authorization': 'Bearer ${prefs!.getString("token")}'
           }));
       if (response.statusCode == 200) {
         await prefs!.clear();
-
         Get.off(
-          () => const Directionality(
-              textDirection: TextDirection.ltr, child: Home()),
+          () => Home(),
         );
       } else {
         return throw Exception("Failed");
       }
       return response.statusCode;
     } catch (e) {
+      print('$e');
       print('logout field');
     }
   }
