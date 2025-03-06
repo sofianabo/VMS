@@ -7,6 +7,7 @@ import 'package:vms_school/view/Admin/All_Settings/Account_And_Password.dart';
 import 'package:vms_school/view/Admin/All_Settings/Apperance.dart';
 import 'package:vms_school/view/Admin/All_Settings/Prof_Section.dart';
 import 'package:vms_school/view/Admin/All_Settings/Personal_Section.dart';
+import 'package:vms_school/view/Admin/All_Settings/Verifing_Code_Dialog.dart';
 
 class ProfileSettings extends StatefulWidget {
   ProfileSettings({super.key});
@@ -84,18 +85,17 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                 onTap: () {
                                   controller.ChangeCurruntValue("Profile");
                                 },
-                                child: AnimatedContainer(
+                                child: Container(
                                   decoration: BoxDecoration(
                                       color: controller.curruntValue ==
                                               "Profile"
                                           ? _isDarkMode.value
                                               ? Theme.of(context).indicatorColor
                                               : Color(0xffEBEBEB)
-                                          : Theme.of(context).cardColor,
+                                          : Colors.transparent,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(20))),
                                   padding: EdgeInsets.all(5.0),
-                                  duration: Duration(milliseconds: 150),
                                   child: Row(
                                     textDirection:
                                         Get.find<LocalizationController>()
@@ -116,18 +116,17 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                 onTap: () {
                                   controller.ChangeCurruntValue("Personal");
                                 },
-                                child: AnimatedContainer(
+                                child: Container(
                                   decoration: BoxDecoration(
                                       color: controller.curruntValue ==
                                               "Personal"
                                           ? _isDarkMode.value
                                               ? Theme.of(context).indicatorColor
                                               : Color(0xffEBEBEB)
-                                          : Theme.of(context).cardColor,
+                                          : Colors.transparent,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(20))),
                                   padding: EdgeInsets.all(5.0),
-                                  duration: Duration(milliseconds: 150),
                                   child: Row(
                                     textDirection:
                                         Get.find<LocalizationController>()
@@ -148,18 +147,17 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                 onTap: () {
                                   controller.ChangeCurruntValue("Password");
                                 },
-                                child: AnimatedContainer(
+                                child: Container(
                                   decoration: BoxDecoration(
                                       color: controller.curruntValue ==
                                               "Password"
                                           ? _isDarkMode.value
                                               ? Theme.of(context).indicatorColor
                                               : Color(0xffEBEBEB)
-                                          : Theme.of(context).cardColor,
+                                          : Colors.transparent,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(20))),
                                   padding: EdgeInsets.all(5.0),
-                                  duration: Duration(milliseconds: 150),
                                   child: Row(
                                     textDirection:
                                         Get.find<LocalizationController>()
@@ -183,6 +181,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                   controller.ChangeCurruntValue("Appearance");
                                 },
                                 child: AnimatedContainer(
+                                  duration: Duration(milliseconds: 150),
                                   decoration: BoxDecoration(
                                       color: controller.curruntValue ==
                                               "Appearance"
@@ -193,7 +192,6 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(20))),
                                   padding: EdgeInsets.all(5.0),
-                                  duration: Duration(milliseconds: 150),
                                   child: Row(
                                     textDirection:
                                         Get.find<LocalizationController>()
@@ -219,6 +217,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                               GestureDetector(
                                 onTap: () {},
                                 child: PopupMenuButton<int>(
+                                  tooltip: "",
                                   onSelected: (value) async {
                                     if (value == 1) {
                                       await Logoutapi(context)
@@ -268,14 +267,13 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                       ),
                                     ),
                                   ],
-                                  child: AnimatedContainer(
+                                  child: Container(
                                     decoration: BoxDecoration(
-                                      color: Theme.of(context).cardColor,
+                                      color: Colors.transparent,
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(20)),
                                     ),
                                     padding: EdgeInsets.all(5.0),
-                                    duration: Duration(milliseconds: 150),
                                     child: Row(
                                       textDirection:
                                           Get.find<LocalizationController>()

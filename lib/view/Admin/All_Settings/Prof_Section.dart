@@ -20,6 +20,8 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   TextEditingController Firstname = TextEditingController(text: "Laith");
   TextEditingController Lastname = TextEditingController(text: "Azzam");
+  TextEditingController Mothername = TextEditingController(text: "f");
+  TextEditingController Fathername = TextEditingController(text: "s");
   TextEditingController fatherName = TextEditingController();
   TextEditingController motherName = TextEditingController();
   TextEditingController phoneNumper = TextEditingController();
@@ -274,6 +276,28 @@ class _ProfileState extends State<Profile> {
                           ),
                           TextField_Profile(
                             upicon: Icon(
+                              Icons.boy,
+                              color:
+                                  Theme.of(context).textTheme.bodySmall!.color,
+                              size: 20,
+                            ),
+                            controller: Fathername,
+                            Uptext: "Father Name".tr,
+                            enabled: controller.enabledPublicInfo,
+                          ),
+                          TextField_Profile(
+                            upicon: Icon(
+                              Icons.girl,
+                              color:
+                                  Theme.of(context).textTheme.bodySmall!.color,
+                              size: 20,
+                            ),
+                            controller: Mothername,
+                            Uptext: "Mother Name".tr,
+                            enabled: controller.enabledPublicInfo,
+                          ),
+                          TextField_Profile(
+                            upicon: Icon(
                               Icons.phone_enabled_outlined,
                               color:
                                   Theme.of(context).textTheme.bodySmall!.color,
@@ -301,7 +325,7 @@ class _ProfileState extends State<Profile> {
                                   Theme.of(context).textTheme.bodySmall!.color,
                               size: 20,
                             ),
-                            enabled: controller.enabledPublicInfo,
+                            enabled: false,
                             Uptext: "Join Date".tr,
                             width: 220,
                           ),
