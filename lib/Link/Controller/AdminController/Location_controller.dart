@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/Location_Model.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 
 class Location_controller extends GetxController {
   List<Location>? location;
@@ -26,7 +28,10 @@ class Location_controller extends GetxController {
     List<String> newList = [];
 
     for (int i = 0; i < locations.location!.length; i++) {
-      newList.add(locations.location![i].enName.toString());
+      if (prefs!.getString(languageKey) == "ar")
+        newList.add(locations.location![i].name.toString());
+      else
+        newList.add(locations.location![i].enName.toString());
     }
 
     print("object");

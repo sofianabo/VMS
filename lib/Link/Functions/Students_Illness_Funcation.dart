@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Illness_APIs/Get_All_Illness_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
@@ -21,7 +23,7 @@ Students_Illness_Funcation(BuildContext context) async {
       Get.dialog(VMSAlertDialog(
           action: [
             ButtonDialog(
-                text: "Done",
+                text: "Done".tr,
                 onPressed: () {
                   Get.back();
                 },
@@ -100,13 +102,18 @@ Students_Illness_Funcation(BuildContext context) async {
                                       child: Center(
                                         child: Text(
                                           textAlign: TextAlign.center,
-                                          "${control.filteredIllness![index].enName}",
-                                          style: Theme.of(context).textTheme.bodyMedium!
+                                          prefs!.getString(languageKey) == 'ar'
+                                              ? "${control.filteredIllness![index].name}"
+                                              : "${control.filteredIllness![index].enName}",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
                                               .copyWith(
                                                   fontSize: 18,
                                                   color: isSelected
                                                       ? Colors.white
-                                                      : Theme.of(context).primaryColor),
+                                                      : Theme.of(context)
+                                                          .primaryColor),
                                         ),
                                       ),
                                     ),
@@ -152,9 +159,9 @@ Students_Illness_Funcation(BuildContext context) async {
                                                     style: ButtonStyle(
                                                         shape: WidgetStatePropertyAll(
                                                             RoundedRectangleBorder(
-                                                                borderRadius: BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
+                                                                borderRadius:
+                                                                    BorderRadius.all(
+                                                                        Radius.circular(
                                                                             5))))),
                                                     onPressed: control
                                                             .hasFile(illness)
@@ -170,7 +177,8 @@ Students_Illness_Funcation(BuildContext context) async {
                                                         color: isSelected
                                                             ? control.hasFile(
                                                                     illness)
-                                                                ? Theme.of(context)
+                                                                ? Theme.of(
+                                                                        context)
                                                                     .primaryColor
                                                                 : Colors.grey
                                                             : Colors.white)),
@@ -214,7 +222,8 @@ Students_Illness_Funcation(BuildContext context) async {
                                               decoration: BoxDecoration(
                                                 color: isSelected
                                                     ? Colors.white
-                                                    : Theme.of(context).primaryColor,
+                                                    : Theme.of(context)
+                                                        .primaryColor,
                                                 borderRadius:
                                                     BorderRadius.circular(5),
                                                 boxShadow: const [
@@ -243,7 +252,8 @@ Students_Illness_Funcation(BuildContext context) async {
                                                   Icons.file_upload_outlined,
                                                   size: 20,
                                                   color: isSelected
-                                                      ? Theme.of(context).primaryColor
+                                                      ? Theme.of(context)
+                                                          .primaryColor
                                                       : Colors.white,
                                                 ),
                                               ),
@@ -265,7 +275,7 @@ Students_Illness_Funcation(BuildContext context) async {
               }),
             ),
           ),
-          apptitle: "Students Vaccine",
+          apptitle: "Student illeness".tr,
           subtitle: "none"));
     }
   } catch (e) {}

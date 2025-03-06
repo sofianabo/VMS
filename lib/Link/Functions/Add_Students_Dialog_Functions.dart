@@ -21,6 +21,8 @@ import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers
 import 'package:vms_school/Link/Functions/Students_Illness_Funcation.dart';
 import 'package:vms_school/Link/Functions/Students_Vaccines_Funcation.dart';
 import 'package:vms_school/Link/Model/AdminModel/allGuardianModel.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/Admin_Students/DropDown_Add_Students.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
@@ -97,7 +99,7 @@ All_Gurdians_Dialog() {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ButtonDialog(
-                    text: "Back",
+                    text: "Back".tr,
                     onPressed: () {
                       addStudentsController.goToPage(0);
                     },
@@ -105,7 +107,7 @@ All_Gurdians_Dialog() {
                     width: 100,
                   ),
                   ButtonDialog(
-                    text: "Add Students",
+                    text: "Add Students".tr,
                     onPressed: () async {
                       await Add_Student_API.Add_Student(
                           locationId: Get.find<Location_controller>()
@@ -267,12 +269,14 @@ All_Gurdians_Dialog() {
                                   ],
                                 ),
                                 Text(
-                                  "Email: ${control.filteredregaurdians![index].email}",
+                                  "Email:".tr +
+                                      " ${control.filteredregaurdians![index].email}",
                                   style:
                                       Theme.of(context).textTheme.bodyMedium!,
                                 ),
                                 Text(
-                                  "Mobile Number : ${control.filteredregaurdians![index].phone}",
+                                  "Mobile Number :".tr +
+                                      " ${control.filteredregaurdians![index].phone}",
                                   style:
                                       Theme.of(context).textTheme.bodyMedium!,
                                 ),
@@ -309,8 +313,8 @@ All_Gurdians_Dialog() {
         ),
       ),
     ),
-    apptitle: "Add Students",
-    subtitle: "Select Garduans To Add Students",
+    apptitle: "Add Students".tr,
+    subtitle: "Select Garduans To Add Students".tr,
   );
 }
 
@@ -370,1249 +374,1349 @@ class _Add_Students_pageState extends State<Add_Students_page> {
             child: SizedBox(
               width: 620,
               child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          children: [
-                            Obx(
-                              () => GestureDetector(
-                                onTap: () async {
-                                  await controller.pickImage(context);
+                child: Directionality(
+                  textDirection: prefs!.getString(languageKey) == "ar"
+                      ? TextDirection.rtl
+                      : TextDirection.ltr,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            children: [
+                              Obx(
+                                () => GestureDetector(
+                                  onTap: () async {
+                                    await controller.pickImage(context);
+                                  },
+                                  child: CircleAvatar(
+                                    backgroundColor: const Color(0xffC4C4C4),
+                                    maxRadius: 100,
+                                    backgroundImage:
+                                        controller.selectedImage.value != null
+                                            ? MemoryImage(
+                                                controller.selectedImage.value!)
+                                            : null,
+                                    child:
+                                        controller.selectedImage.value == null
+                                            ? const Icon(
+                                                Icons.image_outlined,
+                                                color: Colors.white,
+                                                size: 40,
+                                              )
+                                            : null,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Textfildwithupper(
+                                isRequired: true,
+                                width: 300,
+                                controller: widget.First_Name,
+                                Uptext: "First Name".tr,
+                                hinttext: "First Name".tr,
+                                onChanged: (value) {
+                                  controller.updateFirstName(value);
                                 },
-                                child: CircleAvatar(
-                                  backgroundColor: const Color(0xffC4C4C4),
-                                  maxRadius: 100,
-                                  backgroundImage:
-                                      controller.selectedImage.value != null
-                                          ? MemoryImage(
-                                              controller.selectedImage.value!)
-                                          : null,
-                                  child: controller.selectedImage.value == null
-                                      ? const Icon(
-                                          Icons.image_outlined,
-                                          color: Colors.white,
-                                          size: 40,
-                                        )
-                                      : null,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 22.0),
+                                child: Textfildwithupper(
+                                  isRequired: true,
+                                  width: 300,
+                                  controller: widget.Last_Name,
+                                  Uptext: "Last Name".tr,
+                                  hinttext: "Last Name".tr,
+                                  onChanged: (value) {
+                                    controller.updateLastName(value);
+                                  },
                                 ),
                               ),
+                            ],
+                          )
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 22.0),
+                        child: Row(
+                          children: [
+                            Textfildwithupper(
+                                isRequired: true,
+                                width: 300,
+                                controller: widget.Place_Of_Birth,
+                                Uptext: "Place Of Birth".tr,
+                                hinttext: "Place Of Birth".tr),
+                            Padding(
+                                padding: EdgeInsets.only(
+                                    left: prefs!.getString(languageKey) == "ar"
+                                        ? 0
+                                        : 20.0,
+                                    right: prefs!.getString(languageKey) == "ar"
+                                        ? 20
+                                        : 0),
+                                child: BirthDate(
+                                  isRequired: true,
+                                  Uptext: "Birthdate".tr,
+                                  width: 300,
+                                ))
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 22.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            DropdownAddStudents(
+                                isLoading: false,
+                                title: "Gender".tr,
+                                width: 300,
+                                type: "Gender"),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: prefs!.getString(languageKey) == "ar"
+                                      ? 0
+                                      : 20.0,
+                                  right: prefs!.getString(languageKey) == "ar"
+                                      ? 20
+                                      : 0),
+                              child: DropdownAddStudents(
+                                  isLoading: false,
+                                  title: "Religion".tr,
+                                  width: 300,
+                                  type: "Realagon"),
                             )
                           ],
                         ),
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Textfildwithupper(
-                              isRequired: true,
-                              width: 300,
-                              controller: widget.First_Name,
-                              Uptext: "First Name",
-                              hinttext: "First Name",
-                              onChanged: (value) {
-                                controller.updateFirstName(value);
-                              },
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 22.0),
-                              child: Textfildwithupper(
-                                isRequired: true,
-                                width: 300,
-                                controller: widget.Last_Name,
-                                Uptext: "Last Name",
-                                hinttext: "Last Name",
-                                onChanged: (value) {
-                                  controller.updateLastName(value);
-                                },
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Row(
-                        children: [
-                          Textfildwithupper(
-                              isRequired: true,
-                              width: 300,
-                              controller: widget.Place_Of_Birth,
-                              Uptext: "Place Of Birth",
-                              hinttext: "Place Of Birth"),
-                          Padding(
-                              padding: const EdgeInsets.only(left: 20.0),
-                              child: BirthDate(
-                                isRequired: true,
-                                Uptext: "Birthdate",
-                                width: 300,
-                              ))
-                        ],
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          DropdownAddStudents(
-                              isLoading: false,
-                              title: "Gender",
-                              width: 300,
-                              type: "Gender"),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
-                            child: DropdownAddStudents(
-                                isLoading: false,
-                                title: "Realagon",
-                                width: 300,
-                                type: "Realagon"),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          DropdownAddStudents(
-                              isLoading: false,
-                              title: "Blood Type",
-                              width: 300,
-                              type: "BloodType"),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
-                            child: DropdownAddStudents(
-                                isLoading: controller.isLoadingLocation,
-                                title: "Location",
-                                width: 300,
-                                type: "Location"),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Row(
-                        children: [
-                          Textfildwithupper(
-                              isRequired: true,
-                              width: 300,
-                              controller: widget.Mobile_Number,
-                              Uptext: "Mobile Number",
-                              hinttext: "Mobile Number"),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
-                            child: Textfildwithupper(
-                                isRequired: true,
-                                width: 300,
-                                controller: widget.LocalID,
-                                Uptext: "Local ID",
-                                hinttext: "Local ID"),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          DropdownAddStudents(
-                              isLoading: false,
-                              title: "Family State",
-                              width: 620,
-                              type: "FamilyState"),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Row(
-                        children: [
-                          Textfildwithupper(
-                              isRequired: false,
-                              width: 300,
-                              controller: widget.National_ID,
-                              Uptext: "National Id",
-                              hinttext: "National Id"),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
-                            child: Textfildwithupper(
-                                isRequired: true,
-                                width: 300,
-                                controller: widget.Current_Address,
-                                Uptext: "Current Address",
-                                hinttext: "Current Address"),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
+                      Padding(
                         padding: const EdgeInsets.only(top: 22.0),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Obx(() => Checkbox(
-                                            value:
-                                                controller.isSpecialNeed.value,
-                                            onChanged: (value) {
-                                              controller
-                                                  .toggleSpecialNeed(value!);
-                                            },
-                                          )),
-                                      Text("Special need",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(fontSize: 16)),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Obx(() => Checkbox(
-                                            value: controller.isMartySon.value,
-                                            onChanged: (value) {
-                                              controller.toggleMartySon(value!);
-                                            },
-                                          )),
-                                      Text("Marty son",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(fontSize: 16)),
-                                    ],
-                                  ),
-                                ]),
-                            Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  GetBuilder<Illness_Controller>(
-                                      builder: (Ill_Controller) {
-                                    return ButtonDialog(
-                                        height: 60,
-                                        text:
-                                            "Student Illness (${Ill_Controller.selectedIllnesses.length})",
-                                        onPressed: () async {
-                                          await Students_Illness_Funcation(
-                                              context);
-                                        },
-                                        color: Theme.of(context).primaryColor,
-                                        width: 145);
-                                  }),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 10.0),
-                                    child: GetBuilder<Vaccines_Controller>(
-                                        builder: (vac_Controller) {
+                            DropdownAddStudents(
+                                isLoading: false,
+                                title: "Blood Type".tr,
+                                width: 300,
+                                type: "BloodType"),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: prefs!.getString(languageKey) == "ar"
+                                      ? 0
+                                      : 20.0,
+                                  right: prefs!.getString(languageKey) == "ar"
+                                      ? 20
+                                      : 0),
+                              child: DropdownAddStudents(
+                                  isLoading: controller.isLoadingLocation,
+                                  title: "Location".tr,
+                                  width: 300,
+                                  type: "Location"),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 22.0),
+                        child: Row(
+                          children: [
+                            Textfildwithupper(
+                                isRequired: true,
+                                width: 300,
+                                controller: widget.Mobile_Number,
+                                Uptext: "Mobile Number".tr,
+                                hinttext: "Mobile Number".tr),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: prefs!.getString(languageKey) == "ar"
+                                      ? 0
+                                      : 20.0,
+                                  right: prefs!.getString(languageKey) == "ar"
+                                      ? 20
+                                      : 0),
+                              child: Textfildwithupper(
+                                  isRequired: true,
+                                  width: 300,
+                                  controller: widget.LocalID,
+                                  Uptext: "Local ID".tr,
+                                  hinttext: "Local ID".tr),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 22.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            DropdownAddStudents(
+                                isLoading: false,
+                                title: "Family State".tr,
+                                width: 620,
+                                type: "FamilyState"),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 22.0),
+                        child: Row(
+                          children: [
+                            Textfildwithupper(
+                                isRequired: false,
+                                width: 300,
+                                controller: widget.National_ID,
+                                Uptext: "National Id".tr,
+                                hinttext: "National Id".tr),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: prefs!.getString(languageKey) == "ar"
+                                      ? 0
+                                      : 20.0,
+                                  right: prefs!.getString(languageKey) == "ar"
+                                      ? 20
+                                      : 0),
+                              child: Textfildwithupper(
+                                  isRequired: true,
+                                  width: 300,
+                                  controller: widget.Current_Address,
+                                  Uptext: "Current Address".tr,
+                                  hinttext: "Current Address".tr),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.only(top: 22.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Obx(() => Checkbox(
+                                              value: controller
+                                                  .isSpecialNeed.value,
+                                              onChanged: (value) {
+                                                controller
+                                                    .toggleSpecialNeed(value!);
+                                              },
+                                            )),
+                                        Text("Special need".tr,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(fontSize: 16)),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Obx(() => Checkbox(
+                                              value:
+                                                  controller.isMartySon.value,
+                                              onChanged: (value) {
+                                                controller
+                                                    .toggleMartySon(value!);
+                                              },
+                                            )),
+                                        Text("Martyr son".tr,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(fontSize: 16)),
+                                      ],
+                                    ),
+                                  ]),
+                              Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    GetBuilder<Illness_Controller>(
+                                        builder: (Ill_Controller) {
                                       return ButtonDialog(
                                           height: 60,
-                                          text:
-                                              "Student Vaccines (${vac_Controller.selectedIllnesses.length})",
+                                          text: "Student Illness".tr +
+                                              " (${Ill_Controller.selectedIllnesses.length})",
                                           onPressed: () async {
-                                            await Students_Vaccines_Funcation(
+                                            await Students_Illness_Funcation(
                                                 context);
                                           },
                                           color: Theme.of(context).primaryColor,
                                           width: 145);
                                     }),
-                                  ),
-                                ]),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: prefs!.getString(languageKey) ==
+                                                  "ar"
+                                              ? 0
+                                              : 10.0,
+                                          right:
+                                              prefs!.getString(languageKey) ==
+                                                      "ar"
+                                                  ? 10
+                                                  : 0),
+                                      child: GetBuilder<Vaccines_Controller>(
+                                          builder: (vac_Controller) {
+                                        return ButtonDialog(
+                                            height: 60,
+                                            text: "Student Vaccines".tr +
+                                                " (${vac_Controller.selectedIllnesses.length})",
+                                            onPressed: () async {
+                                              await Students_Vaccines_Funcation(
+                                                  context);
+                                            },
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                            width: 145);
+                                      }),
+                                    ),
+                                  ]),
+                            ],
+                          )),
+                      Padding(
+                          padding: const EdgeInsets.only(top: 22.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Divider(
+                                  color: Theme.of(context).primaryColor,
+                                  height: 1,
+                                ),
+                              ),
+                              Text(
+                                "   Student School Info   ".tr,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .copyWith(fontSize: 18),
+                              ),
+                              Expanded(
+                                child: Divider(
+                                  color: Theme.of(context).primaryColor,
+                                  height: 1,
+                                ),
+                              ),
+                            ],
+                          )),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 22.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            DropdownAddStudents(
+                                isLoading: controller.isLoadingClass,
+                                title: "Class".tr,
+                                width: 300,
+                                type: "Class"),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: prefs!.getString(languageKey) == "ar"
+                                      ? 0
+                                      : 20.0,
+                                  right: prefs!.getString(languageKey) == "ar"
+                                      ? 20
+                                      : 0),
+                              child: DropdownAddStudents(
+                                  isLoading: controller.isLoadingDivision,
+                                  isDisabled: controller.ClassIndex == ""
+                                      ? true
+                                      : false,
+                                  title: "Division".tr,
+                                  width: 300,
+                                  type: "Division"),
+                            )
                           ],
-                        )),
-                    Padding(
+                        ),
+                      ),
+                      Padding(
                         padding: const EdgeInsets.only(top: 22.0),
                         child: Row(
                           children: [
-                            Expanded(
-                              child: Divider(
-                                color: Theme.of(context).primaryColor,
-                                height: 1,
-                              ),
-                            ),
-                            Text(
-                              "   Student School Info   ",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(fontSize: 18),
-                            ),
-                            Expanded(
-                              child: Divider(
-                                color: Theme.of(context).primaryColor,
-                                height: 1,
-                              ),
-                            ),
-                          ],
-                        )),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          DropdownAddStudents(
-                              isLoading: controller.isLoadingClass,
-                              title: "Class",
-                              width: 300,
-                              type: "Class"),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
-                            child: DropdownAddStudents(
-                                isLoading: controller.isLoadingDivision,
-                                isDisabled:
-                                    controller.ClassIndex == "" ? true : false,
-                                title: "Division",
-                                width: 300,
-                                type: "Division"),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Row(
-                        children: [
-                          Textfildwithupper(
-                            isRequired: true,
-                            width: 300,
-                            controller: controller.textController,
-                            Uptext: "Username",
-                            hinttext: "Username",
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
-                            child: Textfildwithupper(
-                                isRequired: true,
-                                width: 300,
-                                controller: widget.Password,
-                                Uptext: "Password",
-                                hinttext: "Password"),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Row(
-                        children: [
-                          Textfildwithupper(
-                              isRequired: false,
-                              width: 300,
-                              controller: widget.Fee_Discount,
-                              Uptext: "Fee Discount",
-                              hinttext: "Fee Discount")
-                        ],
-                      ),
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.only(top: 22.0),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Divider(
-                                color: Theme.of(context).primaryColor,
-                                height: 1,
-                              ),
-                            ),
-                            Text(
-                              "   Father Info   ",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(fontSize: 18),
-                            ),
-                            Expanded(
-                              child: Divider(
-                                color: Theme.of(context).primaryColor,
-                                height: 1,
-                              ),
-                            ),
-                          ],
-                        )),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: Row(
-                        children: [
-                          Textfildwithupper(
+                            Textfildwithupper(
                               isRequired: true,
                               width: 300,
-                              controller: widget.Father_Name,
-                              Uptext: "Father Name",
-                              hinttext: "Father Name"),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
-                            child: Textfildwithupper(
-                                isRequired: true,
-                                width: 300,
-                                controller: widget.Father_Phone,
-                                Uptext: "Father Phone",
-                                hinttext: "Father Phone"),
-                          )
-                        ],
+                              controller: controller.textController,
+                              Uptext: "Username".tr,
+                              hinttext: "Username".tr,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: prefs!.getString(languageKey) == "ar"
+                                      ? 0
+                                      : 20.0,
+                                  right: prefs!.getString(languageKey) == "ar"
+                                      ? 20
+                                      : 0),
+                              child: Textfildwithupper(
+                                  isRequired: true,
+                                  width: 300,
+                                  controller: widget.Password,
+                                  Uptext: "Password".tr,
+                                  hinttext: "Password".tr),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Textfildwithupper(
-                              width: 300,
-                              controller: widget.Father_Work,
-                              Uptext: "Father Work",
-                              hinttext: "Father Work"),
-                        ],
-                      ),
-                    ),
-                    Padding(
+                      Padding(
                         padding: const EdgeInsets.only(top: 22.0),
                         child: Row(
                           children: [
-                            Expanded(
-                              child: Divider(
-                                color: Theme.of(context).primaryColor,
-                                height: 1,
-                              ),
-                            ),
-                            Text(
-                              "   Mother Info   ",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(fontSize: 18),
-                            ),
-                            Expanded(
-                              child: Divider(
-                                color: Theme.of(context).primaryColor,
-                                height: 1,
-                              ),
-                            ),
-                          ],
-                        )),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: Row(
-                        children: [
-                          Textfildwithupper(
-                              isRequired: true,
-                              width: 300,
-                              controller: widget.Mother_Name,
-                              Uptext: "Mother Name",
-                              hinttext: "Mother Name"),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
-                            child: Textfildwithupper(
+                            Textfildwithupper(
                                 isRequired: false,
                                 width: 300,
-                                controller: widget.Mother_Phone,
-                                Uptext: "Mother Phone",
-                                hinttext: "Mother Phone"),
-                          )
-                        ],
+                                controller: widget.Fee_Discount,
+                                Uptext: "Fee Discount".tr,
+                                hinttext: "Fee Discount".tr)
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Textfildwithupper(
-                              width: 300,
-                              controller: widget.Mother_Work,
-                              Uptext: "Mother Work",
-                              hinttext: "Mother Work"),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.only(top: 22.0),
+                      Padding(
+                          padding: const EdgeInsets.only(top: 22.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Divider(
+                                  color: Theme.of(context).primaryColor,
+                                  height: 1,
+                                ),
+                              ),
+                              Text(
+                                "   Father Info   ".tr,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .copyWith(fontSize: 18),
+                              ),
+                              Expanded(
+                                child: Divider(
+                                  color: Theme.of(context).primaryColor,
+                                  height: 1,
+                                ),
+                              ),
+                            ],
+                          )),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
                         child: Row(
                           children: [
-                            Expanded(
-                              child: Divider(
-                                color: Theme.of(context).primaryColor,
-                                height: 1,
-                              ),
-                            ),
-                            Text(
-                              "   More Info   ",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(fontSize: 18),
-                            ),
-                            Expanded(
-                              child: Divider(
-                                color: Theme.of(context).primaryColor,
-                                height: 1,
-                              ),
-                            ),
+                            Textfildwithupper(
+                                isRequired: true,
+                                width: 300,
+                                controller: widget.Father_Name,
+                                Uptext: "Father Name".tr,
+                                hinttext: "Father Name".tr),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: prefs!.getString(languageKey) == "ar"
+                                      ? 0
+                                      : 20.0,
+                                  right: prefs!.getString(languageKey) == "ar"
+                                      ? 20
+                                      : 0),
+                              child: Textfildwithupper(
+                                  isRequired: true,
+                                  width: 300,
+                                  controller: widget.Father_Phone,
+                                  Uptext: "Father Phone".tr,
+                                  hinttext: "Father Phone".tr),
+                            )
                           ],
-                        )),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          LargeTextField(
-                              width: 620,
-                              controller: widget.Last_School_Detail,
-                              hinttext: "Last School Detail"),
-                        ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          LargeTextField(
-                              width: 620,
-                              controller: widget.Note,
-                              hinttext: "Note"),
-                        ],
-                      ),
-                    ),
-                    Padding(
+                      Padding(
                         padding: const EdgeInsets.only(top: 22.0),
                         child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Expanded(
-                              child: Divider(
-                                color: Theme.of(context).primaryColor,
-                                height: 1,
-                              ),
-                            ),
-                            Text(
-                              "   File Data   ",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(fontSize: 18),
-                            ),
-                            Expanded(
-                              child: Divider(
-                                color: Theme.of(context).primaryColor,
-                                height: 1,
-                              ),
-                            ),
+                            Textfildwithupper(
+                                width: 300,
+                                controller: widget.Father_Work,
+                                Uptext: "Father Work".tr,
+                                hinttext: "Father Work".tr),
                           ],
-                        )),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Add Father Passport"),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10.0),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    controller.pickFatherPassport();
-                                  },
-                                  child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 500),
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(5)),
-                                      border:
-                                          Border.all(color: Color(0xffD9D9D9)),
-                                      color: controller
-                                                  .isHoveringFatherPassport ||
-                                              controller.selectedFatherPassport
-                                                      .value !=
-                                                  null
-                                          ? Theme.of(context).primaryColor
-                                          : Colors.white,
-                                    ),
-                                    alignment: Alignment.center,
-                                    width: 300,
-                                    height: 100,
-                                    child: Stack(
-                                      children: [
-                                        DropzoneView(
-                                          operation: DragOperation.copy,
-                                          cursor: CursorType.Default,
-                                          onCreated: (DropzoneViewController
-                                              controller) {
-                                            ctrl = controller;
-                                          },
-                                          onHover: () {
-                                            controller.updateHoverFather(true);
-                                          },
-                                          onLeave: () {
-                                            controller.updateHoverFather(false);
-                                          },
-                                          onDropFiles:
-                                              (List<DropzoneFileInterface>?
-                                                  files) async {
-                                            if (files != null &&
-                                                files.length == 1) {
-                                              final file = files.first;
-                                              final fileName =
-                                                  await ctrl?.getFilename(file);
-                                              final fileBytes =
-                                                  await ctrl?.getFileData(file);
-
-                                              controller.selectedFatherPassport
-                                                  .value = fileBytes;
-                                              controller.FatherPassportName
-                                                  .value = fileName!;
-                                              controller.updateTextFather(
-                                                  "File Father Passport Dropped!");
-                                            }
-                                          },
-                                        ),
-                                        Center(
-                                          child: controller
-                                                      .selectedFatherPassport
-                                                      .value !=
-                                                  null
-                                              ? IconButton(
-                                                  onPressed: () {
-                                                    controller
-                                                        .ClearselectedFatherPassport();
-                                                  },
-                                                  icon: Icon(
-                                                    Icons
-                                                        .delete_outline_outlined,
-                                                    color: Colors.white,
-                                                  ))
-                                              : Text(
-                                                  textAlign: TextAlign.center,
-                                                  controller
-                                                      .FatherPassportStatus,
-                                                  style: TextStyle(
-                                                    color: controller
-                                                            .isHoveringFatherPassport
-                                                        ? Colors.white
-                                                        : Color(0xffCBBFBF),
-                                                  ),
-                                                ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Add Mother Passport"),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10.0),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    controller.pickMotherPassport();
-                                  },
-                                  child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 500),
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(5)),
-                                      border:
-                                          Border.all(color: Color(0xffD9D9D9)),
-                                      color: controller
-                                                  .isHoveringMotherPassport ||
-                                              controller.selectedMotherPassport
-                                                      .value !=
-                                                  null
-                                          ? Theme.of(context).primaryColor
-                                          : Colors.white,
-                                    ),
-                                    alignment: Alignment.center,
-                                    width: 300,
-                                    height: 100,
-                                    child: Stack(
-                                      children: [
-                                        DropzoneView(
-                                          operation: DragOperation.copy,
-                                          cursor: CursorType.Default,
-                                          onCreated: (DropzoneViewController
-                                              controller) {
-                                            ctrl = controller;
-                                          },
-                                          onHover: () {
-                                            controller.updateHoverMother(true);
-                                          },
-                                          onLeave: () {
-                                            controller.updateHoverMother(false);
-                                          },
-                                          onDropFiles:
-                                              (List<DropzoneFileInterface>?
-                                                  files) async {
-                                            if (files != null &&
-                                                files.length == 1) {
-                                              final file = files.first;
-                                              final fileName =
-                                                  await ctrl?.getFilename(file);
-                                              final fileBytes =
-                                                  await ctrl?.getFileData(file);
-
-                                              controller.selectedMotherPassport
-                                                  .value = fileBytes;
-                                              controller.MotherPassportName
-                                                  .value = fileName!;
-                                              controller.updateTextMother(
-                                                  "File Mother Passport Dropped!");
-                                            }
-                                          },
-                                        ),
-                                        Center(
-                                          child: controller
-                                                      .selectedMotherPassport
-                                                      .value !=
-                                                  null
-                                              ? IconButton(
-                                                  onPressed: () {
-                                                    controller
-                                                        .ClearselectedMotherPassport();
-                                                  },
-                                                  icon: Icon(
-                                                    Icons
-                                                        .delete_outline_outlined,
-                                                    color: Colors.white,
-                                                  ))
-                                              : Text(
-                                                  textAlign: TextAlign.center,
-                                                  controller
-                                                      .MotherPassportStatus,
-                                                  style: TextStyle(
-                                                    color: controller
-                                                            .isHoveringMotherPassport
-                                                        ? Colors.white
-                                                        : Color(0xffCBBFBF),
-                                                  ),
-                                                ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                      Padding(
+                          padding: const EdgeInsets.only(top: 22.0),
+                          child: Row(
                             children: [
-                              Text("Add Son Passport"),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10.0),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    controller.pickSonPassport();
-                                  },
-                                  child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 500),
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(5)),
-                                      border:
-                                          Border.all(color: Color(0xffD9D9D9)),
-                                      color: controller.isHoveringSonPassport ||
-                                              controller.selectedSonPassport
-                                                      .value !=
-                                                  null
-                                          ? Theme.of(context).primaryColor
-                                          : Colors.white,
-                                    ),
-                                    alignment: Alignment.center,
-                                    width: 300,
-                                    height: 100,
-                                    child: Stack(
-                                      children: [
-                                        DropzoneView(
-                                          operation: DragOperation.copy,
-                                          cursor: CursorType.Default,
-                                          onCreated: (DropzoneViewController
-                                              controller) {
-                                            ctrl = controller;
-                                          },
-                                          onHover: () {
-                                            controller.updateHoverSon(true);
-                                          },
-                                          onLeave: () {
-                                            controller.updateHoverSon(false);
-                                          },
-                                          onDropFiles:
-                                              (List<DropzoneFileInterface>?
-                                                  files) async {
-                                            if (files != null &&
-                                                files.length == 1) {
-                                              final file = files.first;
-                                              final fileName =
-                                                  await ctrl?.getFilename(file);
-                                              final fileBytes =
-                                                  await ctrl?.getFileData(file);
-
-                                              controller.selectedSonPassport
-                                                  .value = fileBytes;
-                                              controller.SonPassportName.value =
-                                                  fileName!;
-                                              controller.updateTextSon(
-                                                  "File Son Passport Dropped!");
-                                            }
-                                          },
-                                        ),
-                                        Center(
-                                          child: controller.selectedSonPassport
-                                                      .value !=
-                                                  null
-                                              ? IconButton(
-                                                  onPressed: () {
-                                                    controller.Clear_Son();
-                                                  },
-                                                  icon: Icon(
-                                                    Icons
-                                                        .delete_outline_outlined,
-                                                    color: Colors.white,
-                                                  ))
-                                              : Text(
-                                                  textAlign: TextAlign.center,
-                                                  controller.SonPassportStatus,
-                                                  style: TextStyle(
-                                                    color: controller
-                                                            .isHoveringSonPassport
-                                                        ? Colors.white
-                                                        : Color(0xffCBBFBF),
-                                                  ),
-                                                ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                              Expanded(
+                                child: Divider(
+                                  color: Theme.of(context).primaryColor,
+                                  height: 1,
+                                ),
+                              ),
+                              Text(
+                                "   Mother Info   ".tr,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .copyWith(fontSize: 18),
+                              ),
+                              Expanded(
+                                child: Divider(
+                                  color: Theme.of(context).primaryColor,
+                                  height: 1,
                                 ),
                               ),
                             ],
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Add ID File"),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10.0),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    controller.pickId();
-                                  },
-                                  child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 500),
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(5)),
-                                      border:
-                                          Border.all(color: Color(0xffD9D9D9)),
-                                      color: controller.isHoveringId ||
-                                              controller.selectedId.value !=
-                                                  null
-                                          ? Theme.of(context).primaryColor
-                                          : Colors.white,
-                                    ),
-                                    alignment: Alignment.center,
-                                    width: 300,
-                                    height: 100,
-                                    child: Stack(
-                                      children: [
-                                        DropzoneView(
-                                          operation: DragOperation.copy,
-                                          cursor: CursorType.Default,
-                                          onCreated: (DropzoneViewController
-                                              controller) {
-                                            ctrl = controller;
-                                          },
-                                          onHover: () {
-                                            controller.updateHoverId(true);
-                                          },
-                                          onLeave: () {
-                                            controller.updateHoverId(false);
-                                          },
-                                          onDropFiles:
-                                              (List<DropzoneFileInterface>?
-                                                  files) async {
-                                            if (files != null &&
-                                                files.length == 1) {
-                                              final file = files.first;
-                                              final fileName =
-                                                  await ctrl?.getFilename(file);
-                                              final fileBytes =
-                                                  await ctrl?.getFileData(file);
-
-                                              controller.selectedId.value =
-                                                  fileBytes;
-                                              controller.IdName.value =
-                                                  fileName!;
-                                              controller.updateTextId(
-                                                  "File Id Dropped!");
-                                            }
-                                          },
-                                        ),
-                                        Center(
-                                          child: controller.selectedId.value !=
-                                                  null
-                                              ? IconButton(
-                                                  onPressed: () {
-                                                    controller.Clear_id();
-                                                  },
-                                                  icon: Icon(
-                                                    Icons
-                                                        .delete_outline_outlined,
-                                                    color: Colors.white,
-                                                  ))
-                                              : Text(
-                                                  textAlign: TextAlign.center,
-                                                  controller.IdStatus,
-                                                  style: TextStyle(
-                                                    color:
-                                                        controller.isHoveringId
-                                                            ? Colors.white
-                                                            : Color(0xffCBBFBF),
-                                                  ),
-                                                ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                          )),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Row(
+                          children: [
+                            Textfildwithupper(
+                                isRequired: true,
+                                width: 300,
+                                controller: widget.Mother_Name,
+                                Uptext: "Mother Name".tr,
+                                hinttext: "Mother Name".tr),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: prefs!.getString(languageKey) == "ar"
+                                      ? 0
+                                      : 20.0,
+                                  right: prefs!.getString(languageKey) == "ar"
+                                      ? 20
+                                      : 0),
+                              child: Textfildwithupper(
+                                  isRequired: false,
+                                  width: 300,
+                                  controller: widget.Mother_Phone,
+                                  Uptext: "Mother Phone".tr,
+                                  hinttext: "Mother Phone".tr),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Add Certificate"),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10.0),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    controller.pickCertificate();
-                                  },
-                                  child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 500),
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(5)),
-                                      border:
-                                          Border.all(color: Color(0xffD9D9D9)),
-                                      color: controller.isHoveringCertificate ||
-                                              controller.selectedCertificate
-                                                      .value !=
-                                                  null
-                                          ? Theme.of(context).primaryColor
-                                          : Colors.white,
-                                    ),
-                                    alignment: Alignment.center,
-                                    width: 300,
-                                    height: 100,
-                                    child: Stack(
-                                      children: [
-                                        DropzoneView(
-                                          operation: DragOperation.copy,
-                                          cursor: CursorType.Default,
-                                          onCreated: (DropzoneViewController
-                                              controller) {
-                                            ctrl = controller;
-                                          },
-                                          onHover: () {
-                                            controller
-                                                .updateHoverCertificate(true);
-                                          },
-                                          onLeave: () {
-                                            controller
-                                                .updateHoverCertificate(false);
-                                          },
-                                          onDropFiles:
-                                              (List<DropzoneFileInterface>?
-                                                  files) async {
-                                            if (files != null &&
-                                                files.length == 1) {
-                                              final file = files.first;
-                                              final fileName =
-                                                  await ctrl?.getFilename(file);
-                                              final fileBytes =
-                                                  await ctrl?.getFileData(file);
-
-                                              controller.selectedCertificate
-                                                  .value = fileBytes;
-                                              controller.CertificateName.value =
-                                                  fileName!;
-                                              controller.updateTextCertificate(
-                                                  "File Certificate Dropped!");
-                                            }
-                                          },
-                                        ),
-                                        Center(
-                                          child: controller.selectedCertificate
-                                                      .value !=
-                                                  null
-                                              ? IconButton(
-                                                  onPressed: () {
-                                                    controller
-                                                        .Clear_Certificate();
-                                                  },
-                                                  icon: Icon(
-                                                    Icons
-                                                        .delete_outline_outlined,
-                                                    color: Colors.white,
-                                                  ))
-                                              : Text(
-                                                  textAlign: TextAlign.center,
-                                                  controller.CertificateStatus,
-                                                  style: TextStyle(
-                                                    color: controller
-                                                            .isHoveringCertificate
-                                                        ? Colors.white
-                                                        : Color(0xffCBBFBF),
-                                                  ),
-                                                ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Add Academic sequence"),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10.0),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    controller.picktsalsol();
-                                  },
-                                  child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 500),
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(5)),
-                                      border:
-                                          Border.all(color: Color(0xffD9D9D9)),
-                                      color: controller.isHoveringtsalsol ||
-                                              controller
-                                                      .selectedtsalsol.value !=
-                                                  null
-                                          ? Theme.of(context).primaryColor
-                                          : Colors.white,
-                                    ),
-                                    alignment: Alignment.center,
-                                    width: 300,
-                                    height: 100,
-                                    child: Stack(
-                                      children: [
-                                        DropzoneView(
-                                          operation: DragOperation.copy,
-                                          cursor: CursorType.Default,
-                                          onCreated: (DropzoneViewController
-                                              controller) {
-                                            ctrl = controller;
-                                          },
-                                          onHover: () {
-                                            controller.updateHovertsalsol(true);
-                                          },
-                                          onLeave: () {
-                                            controller
-                                                .updateHovertsalsol(false);
-                                          },
-                                          onDropFiles:
-                                              (List<DropzoneFileInterface>?
-                                                  files) async {
-                                            if (files != null &&
-                                                files.length == 1) {
-                                              final file = files.first;
-                                              final fileName =
-                                                  await ctrl?.getFilename(file);
-                                              final fileBytes =
-                                                  await ctrl?.getFileData(file);
-
-                                              controller.selectedtsalsol.value =
-                                                  fileBytes;
-                                              controller.tsalsolName.value =
-                                                  fileName!;
-                                              controller.updateTexttsalsol(
-                                                  "File Academic sequence Dropped!");
-                                            }
-                                          },
-                                        ),
-                                        Center(
-                                          child: controller
-                                                      .selectedtsalsol.value !=
-                                                  null
-                                              ? IconButton(
-                                                  onPressed: () {
-                                                    controller.Clear_tasalsol();
-                                                  },
-                                                  icon: Icon(
-                                                    Icons
-                                                        .delete_outline_outlined,
-                                                    color: Colors.white,
-                                                  ))
-                                              : Text(
-                                                  textAlign: TextAlign.center,
-                                                  controller.tsalsolStatus,
-                                                  style: TextStyle(
-                                                    color: controller
-                                                            .isHoveringtsalsol
-                                                        ? Colors.white
-                                                        : Color(0xffCBBFBF),
-                                                  ),
-                                                ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 22.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Textfildwithupper(
+                                width: 300,
+                                controller: widget.Mother_Work,
+                                Uptext: "Mother Work".tr,
+                                hinttext: "Mother Work".tr),
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                            child: Column(
+                      Padding(
+                          padding: const EdgeInsets.only(top: 22.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Divider(
+                                  color: Theme.of(context).primaryColor,
+                                  height: 1,
+                                ),
+                              ),
+                              Text(
+                                "   More Info   ".tr,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .copyWith(fontSize: 18),
+                              ),
+                              Expanded(
+                                child: Divider(
+                                  color: Theme.of(context).primaryColor,
+                                  height: 1,
+                                ),
+                              ),
+                            ],
+                          )),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 22.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            LargeTextField(
+                                width: 620,
+                                controller: widget.Last_School_Detail,
+                                hinttext: "Last School Details".tr),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 22.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            LargeTextField(
+                                width: 620,
+                                controller: widget.Note,
+                                hinttext: "Note".tr),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.only(top: 22.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Divider(
+                                  color: Theme.of(context).primaryColor,
+                                  height: 1,
+                                ),
+                              ),
+                              Text(
+                                "   File Data   ".tr,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .copyWith(fontSize: 18),
+                              ),
+                              Expanded(
+                                child: Divider(
+                                  color: Theme.of(context).primaryColor,
+                                  height: 1,
+                                ),
+                              ),
+                            ],
+                          )),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 22.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Add Family notebook"),
-                                GestureDetector(
-                                  onTap: () {
-                                    controller.pickFamilyBook();
-                                  },
-                                  child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 500),
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(5)),
-                                      border:
-                                          Border.all(color: Color(0xffD9D9D9)),
-                                      color: controller.isHoveringFamilyBook ||
-                                              controller.selectedFamilyBook
-                                                      .value !=
-                                                  null
-                                          ? Theme.of(context).primaryColor
-                                          : Colors.white,
-                                    ),
-                                    alignment: Alignment.center,
-                                    width: 300,
-                                    height: 100,
-                                    child: Stack(
-                                      children: [
-                                        DropzoneView(
-                                          operation: DragOperation.copy,
-                                          cursor: CursorType.Default,
-                                          onCreated: (DropzoneViewController
-                                              controller) {
-                                            ctrl = controller;
-                                          },
-                                          onHover: () {
-                                            controller
-                                                .updateHoverFamilyBook(true);
-                                          },
-                                          onLeave: () {
-                                            controller
-                                                .updateHoverFamilyBook(false);
-                                          },
-                                          onDropFiles:
-                                              (List<DropzoneFileInterface>?
-                                                  files) async {
-                                            if (files != null &&
-                                                files.length == 1) {
-                                              final file = files.first;
-                                              final fileName =
-                                                  await ctrl?.getFilename(file);
-                                              final fileBytes =
-                                                  await ctrl?.getFileData(file);
+                                Text("Add Father Passport".tr),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10.0),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      controller.pickFatherPassport();
+                                    },
+                                    child: AnimatedContainer(
+                                      duration: Duration(milliseconds: 500),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5)),
+                                        border: Border.all(
+                                            color: Color(0xffD9D9D9)),
+                                        color: controller
+                                                    .isHoveringFatherPassport ||
+                                                controller
+                                                        .selectedFatherPassport
+                                                        .value !=
+                                                    null
+                                            ? Theme.of(context).primaryColor
+                                            : Colors.white,
+                                      ),
+                                      alignment: Alignment.center,
+                                      width: 300,
+                                      height: 100,
+                                      child: Stack(
+                                        children: [
+                                          DropzoneView(
+                                            operation: DragOperation.copy,
+                                            cursor: CursorType.Default,
+                                            onCreated: (DropzoneViewController
+                                                controller) {
+                                              ctrl = controller;
+                                            },
+                                            onHover: () {
+                                              controller
+                                                  .updateHoverFather(true);
+                                            },
+                                            onLeave: () {
+                                              controller
+                                                  .updateHoverFather(false);
+                                            },
+                                            onDropFiles:
+                                                (List<DropzoneFileInterface>?
+                                                    files) async {
+                                              if (files != null &&
+                                                  files.length == 1) {
+                                                final file = files.first;
+                                                final fileName = await ctrl
+                                                    ?.getFilename(file);
+                                                final fileBytes = await ctrl
+                                                    ?.getFileData(file);
 
-                                              controller.selectedFamilyBook
-                                                  .value = fileBytes;
-                                              controller.FamilyBookName.value =
-                                                  fileName!;
-                                              controller.updateTextFamilyBook(
-                                                  "File Family notebook Dropped!");
-                                            }
-                                          },
-                                        ),
-                                        Center(
-                                          child: controller.selectedFamilyBook
-                                                      .value !=
-                                                  null
-                                              ? IconButton(
-                                                  onPressed: () {
+                                                controller
+                                                    .selectedFatherPassport
+                                                    .value = fileBytes;
+                                                controller.FatherPassportName
+                                                    .value = fileName!;
+                                                controller.updateTextFather(
+                                                    "File Father Passport Dropped!"
+                                                        .tr);
+                                              }
+                                            },
+                                          ),
+                                          Center(
+                                            child: controller
+                                                        .selectedFatherPassport
+                                                        .value !=
+                                                    null
+                                                ? IconButton(
+                                                    onPressed: () {
+                                                      controller
+                                                          .ClearselectedFatherPassport();
+                                                    },
+                                                    icon: Icon(
+                                                      Icons
+                                                          .delete_outline_outlined,
+                                                      color: Colors.white,
+                                                    ))
+                                                : Text(
+                                                    textAlign: TextAlign.center,
                                                     controller
-                                                        .Clear_FamilyBook();
-                                                  },
-                                                  icon: Icon(
-                                                    Icons
-                                                        .delete_outline_outlined,
-                                                    color: Colors.white,
-                                                  ))
-                                              : Text(
-                                                  textAlign: TextAlign.center,
-                                                  controller.FamilyBookStatus,
-                                                  style: TextStyle(
-                                                    color: controller
-                                                            .isHoveringFamilyBook
-                                                        ? Colors.white
-                                                        : Color(0xffCBBFBF),
+                                                        .FatherPassportStatus,
+                                                    style: TextStyle(
+                                                      color: controller
+                                                              .isHoveringFatherPassport
+                                                          ? Colors.white
+                                                          : Color(0xffCBBFBF),
+                                                    ),
                                                   ),
-                                                ),
-                                        ),
-                                      ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
                               ],
                             ),
-                          ),
-                        ],
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Add Mother Passport".tr),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10.0),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      controller.pickMotherPassport();
+                                    },
+                                    child: AnimatedContainer(
+                                      duration: Duration(milliseconds: 500),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5)),
+                                        border: Border.all(
+                                            color: Color(0xffD9D9D9)),
+                                        color: controller
+                                                    .isHoveringMotherPassport ||
+                                                controller
+                                                        .selectedMotherPassport
+                                                        .value !=
+                                                    null
+                                            ? Theme.of(context).primaryColor
+                                            : Colors.white,
+                                      ),
+                                      alignment: Alignment.center,
+                                      width: 300,
+                                      height: 100,
+                                      child: Stack(
+                                        children: [
+                                          DropzoneView(
+                                            operation: DragOperation.copy,
+                                            cursor: CursorType.Default,
+                                            onCreated: (DropzoneViewController
+                                                controller) {
+                                              ctrl = controller;
+                                            },
+                                            onHover: () {
+                                              controller
+                                                  .updateHoverMother(true);
+                                            },
+                                            onLeave: () {
+                                              controller
+                                                  .updateHoverMother(false);
+                                            },
+                                            onDropFiles:
+                                                (List<DropzoneFileInterface>?
+                                                    files) async {
+                                              if (files != null &&
+                                                  files.length == 1) {
+                                                final file = files.first;
+                                                final fileName = await ctrl
+                                                    ?.getFilename(file);
+                                                final fileBytes = await ctrl
+                                                    ?.getFileData(file);
+
+                                                controller
+                                                    .selectedMotherPassport
+                                                    .value = fileBytes;
+                                                controller.MotherPassportName
+                                                    .value = fileName!;
+                                                controller.updateTextMother(
+                                                    "File Mother Passport Dropped!"
+                                                        .tr);
+                                              }
+                                            },
+                                          ),
+                                          Center(
+                                            child: controller
+                                                        .selectedMotherPassport
+                                                        .value !=
+                                                    null
+                                                ? IconButton(
+                                                    onPressed: () {
+                                                      controller
+                                                          .ClearselectedMotherPassport();
+                                                    },
+                                                    icon: Icon(
+                                                      Icons
+                                                          .delete_outline_outlined,
+                                                      color: Colors.white,
+                                                    ))
+                                                : Text(
+                                                    textAlign: TextAlign.center,
+                                                    controller
+                                                        .MotherPassportStatus,
+                                                    style: TextStyle(
+                                                      color: controller
+                                                              .isHoveringMotherPassport
+                                                          ? Colors.white
+                                                          : Color(0xffCBBFBF),
+                                                    ),
+                                                  ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 22.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Add Son Passport".tr),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10.0),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      controller.pickSonPassport();
+                                    },
+                                    child: AnimatedContainer(
+                                      duration: Duration(milliseconds: 500),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5)),
+                                        border: Border.all(
+                                            color: Color(0xffD9D9D9)),
+                                        color:
+                                            controller.isHoveringSonPassport ||
+                                                    controller
+                                                            .selectedSonPassport
+                                                            .value !=
+                                                        null
+                                                ? Theme.of(context).primaryColor
+                                                : Colors.white,
+                                      ),
+                                      alignment: Alignment.center,
+                                      width: 300,
+                                      height: 100,
+                                      child: Stack(
+                                        children: [
+                                          DropzoneView(
+                                            operation: DragOperation.copy,
+                                            cursor: CursorType.Default,
+                                            onCreated: (DropzoneViewController
+                                                controller) {
+                                              ctrl = controller;
+                                            },
+                                            onHover: () {
+                                              controller.updateHoverSon(true);
+                                            },
+                                            onLeave: () {
+                                              controller.updateHoverSon(false);
+                                            },
+                                            onDropFiles:
+                                                (List<DropzoneFileInterface>?
+                                                    files) async {
+                                              if (files != null &&
+                                                  files.length == 1) {
+                                                final file = files.first;
+                                                final fileName = await ctrl
+                                                    ?.getFilename(file);
+                                                final fileBytes = await ctrl
+                                                    ?.getFileData(file);
+
+                                                controller.selectedSonPassport
+                                                    .value = fileBytes;
+                                                controller.SonPassportName
+                                                    .value = fileName!;
+                                                controller.updateTextSon(
+                                                    "File Son Passport Dropped!"
+                                                        .tr);
+                                              }
+                                            },
+                                          ),
+                                          Center(
+                                            child: controller
+                                                        .selectedSonPassport
+                                                        .value !=
+                                                    null
+                                                ? IconButton(
+                                                    onPressed: () {
+                                                      controller.Clear_Son();
+                                                    },
+                                                    icon: Icon(
+                                                      Icons
+                                                          .delete_outline_outlined,
+                                                      color: Colors.white,
+                                                    ))
+                                                : Text(
+                                                    textAlign: TextAlign.center,
+                                                    controller
+                                                        .SonPassportStatus,
+                                                    style: TextStyle(
+                                                      color: controller
+                                                              .isHoveringSonPassport
+                                                          ? Colors.white
+                                                          : Color(0xffCBBFBF),
+                                                    ),
+                                                  ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Add ID File".tr),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10.0),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      controller.pickId();
+                                    },
+                                    child: AnimatedContainer(
+                                      duration: Duration(milliseconds: 500),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5)),
+                                        border: Border.all(
+                                            color: Color(0xffD9D9D9)),
+                                        color: controller.isHoveringId ||
+                                                controller.selectedId.value !=
+                                                    null
+                                            ? Theme.of(context).primaryColor
+                                            : Colors.white,
+                                      ),
+                                      alignment: Alignment.center,
+                                      width: 300,
+                                      height: 100,
+                                      child: Stack(
+                                        children: [
+                                          DropzoneView(
+                                            operation: DragOperation.copy,
+                                            cursor: CursorType.Default,
+                                            onCreated: (DropzoneViewController
+                                                controller) {
+                                              ctrl = controller;
+                                            },
+                                            onHover: () {
+                                              controller.updateHoverId(true);
+                                            },
+                                            onLeave: () {
+                                              controller.updateHoverId(false);
+                                            },
+                                            onDropFiles:
+                                                (List<DropzoneFileInterface>?
+                                                    files) async {
+                                              if (files != null &&
+                                                  files.length == 1) {
+                                                final file = files.first;
+                                                final fileName = await ctrl
+                                                    ?.getFilename(file);
+                                                final fileBytes = await ctrl
+                                                    ?.getFileData(file);
+
+                                                controller.selectedId.value =
+                                                    fileBytes;
+                                                controller.IdName.value =
+                                                    fileName!;
+                                                controller.updateTextId(
+                                                    "File Id Dropped!".tr);
+                                              }
+                                            },
+                                          ),
+                                          Center(
+                                            child: controller
+                                                        .selectedId.value !=
+                                                    null
+                                                ? IconButton(
+                                                    onPressed: () {
+                                                      controller.Clear_id();
+                                                    },
+                                                    icon: Icon(
+                                                      Icons
+                                                          .delete_outline_outlined,
+                                                      color: Colors.white,
+                                                    ))
+                                                : Text(
+                                                    textAlign: TextAlign.center,
+                                                    controller.IdStatus,
+                                                    style: TextStyle(
+                                                      color: controller
+                                                              .isHoveringId
+                                                          ? Colors.white
+                                                          : Color(0xffCBBFBF),
+                                                    ),
+                                                  ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 22.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Add Certificate".tr),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10.0),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      controller.pickCertificate();
+                                    },
+                                    child: AnimatedContainer(
+                                      duration: Duration(milliseconds: 500),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5)),
+                                        border: Border.all(
+                                            color: Color(0xffD9D9D9)),
+                                        color:
+                                            controller.isHoveringCertificate ||
+                                                    controller
+                                                            .selectedCertificate
+                                                            .value !=
+                                                        null
+                                                ? Theme.of(context).primaryColor
+                                                : Colors.white,
+                                      ),
+                                      alignment: Alignment.center,
+                                      width: 300,
+                                      height: 100,
+                                      child: Stack(
+                                        children: [
+                                          DropzoneView(
+                                            operation: DragOperation.copy,
+                                            cursor: CursorType.Default,
+                                            onCreated: (DropzoneViewController
+                                                controller) {
+                                              ctrl = controller;
+                                            },
+                                            onHover: () {
+                                              controller
+                                                  .updateHoverCertificate(true);
+                                            },
+                                            onLeave: () {
+                                              controller.updateHoverCertificate(
+                                                  false);
+                                            },
+                                            onDropFiles:
+                                                (List<DropzoneFileInterface>?
+                                                    files) async {
+                                              if (files != null &&
+                                                  files.length == 1) {
+                                                final file = files.first;
+                                                final fileName = await ctrl
+                                                    ?.getFilename(file);
+                                                final fileBytes = await ctrl
+                                                    ?.getFileData(file);
+
+                                                controller.selectedCertificate
+                                                    .value = fileBytes;
+                                                controller.CertificateName
+                                                    .value = fileName!;
+                                                controller.updateTextCertificate(
+                                                    "File Certificate Dropped!"
+                                                        .tr);
+                                              }
+                                            },
+                                          ),
+                                          Center(
+                                            child: controller
+                                                        .selectedCertificate
+                                                        .value !=
+                                                    null
+                                                ? IconButton(
+                                                    onPressed: () {
+                                                      controller
+                                                          .Clear_Certificate();
+                                                    },
+                                                    icon: Icon(
+                                                      Icons
+                                                          .delete_outline_outlined,
+                                                      color: Colors.white,
+                                                    ))
+                                                : Text(
+                                                    textAlign: TextAlign.center,
+                                                    controller
+                                                        .CertificateStatus,
+                                                    style: TextStyle(
+                                                      color: controller
+                                                              .isHoveringCertificate
+                                                          ? Colors.white
+                                                          : Color(0xffCBBFBF),
+                                                    ),
+                                                  ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Add Academic sequence".tr),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10.0),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      controller.picktsalsol();
+                                    },
+                                    child: AnimatedContainer(
+                                      duration: Duration(milliseconds: 500),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5)),
+                                        border: Border.all(
+                                            color: Color(0xffD9D9D9)),
+                                        color: controller.isHoveringtsalsol ||
+                                                controller.selectedtsalsol
+                                                        .value !=
+                                                    null
+                                            ? Theme.of(context).primaryColor
+                                            : Colors.white,
+                                      ),
+                                      alignment: Alignment.center,
+                                      width: 300,
+                                      height: 100,
+                                      child: Stack(
+                                        children: [
+                                          DropzoneView(
+                                            operation: DragOperation.copy,
+                                            cursor: CursorType.Default,
+                                            onCreated: (DropzoneViewController
+                                                controller) {
+                                              ctrl = controller;
+                                            },
+                                            onHover: () {
+                                              controller
+                                                  .updateHovertsalsol(true);
+                                            },
+                                            onLeave: () {
+                                              controller
+                                                  .updateHovertsalsol(false);
+                                            },
+                                            onDropFiles:
+                                                (List<DropzoneFileInterface>?
+                                                    files) async {
+                                              if (files != null &&
+                                                  files.length == 1) {
+                                                final file = files.first;
+                                                final fileName = await ctrl
+                                                    ?.getFilename(file);
+                                                final fileBytes = await ctrl
+                                                    ?.getFileData(file);
+
+                                                controller.selectedtsalsol
+                                                    .value = fileBytes;
+                                                controller.tsalsolName.value =
+                                                    fileName!;
+                                                controller.updateTexttsalsol(
+                                                    "File Academic sequence Dropped!"
+                                                        .tr);
+                                              }
+                                            },
+                                          ),
+                                          Center(
+                                            child: controller.selectedtsalsol
+                                                        .value !=
+                                                    null
+                                                ? IconButton(
+                                                    onPressed: () {
+                                                      controller
+                                                          .Clear_tasalsol();
+                                                    },
+                                                    icon: Icon(
+                                                      Icons
+                                                          .delete_outline_outlined,
+                                                      color: Colors.white,
+                                                    ))
+                                                : Text(
+                                                    textAlign: TextAlign.center,
+                                                    controller.tsalsolStatus,
+                                                    style: TextStyle(
+                                                      color: controller
+                                                              .isHoveringtsalsol
+                                                          ? Colors.white
+                                                          : Color(0xffCBBFBF),
+                                                    ),
+                                                  ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 22.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Add Family notebook".tr),
+                                  GestureDetector(
+                                    onTap: () {
+                                      controller.pickFamilyBook();
+                                    },
+                                    child: AnimatedContainer(
+                                      duration: Duration(milliseconds: 500),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5)),
+                                        border: Border.all(
+                                            color: Color(0xffD9D9D9)),
+                                        color:
+                                            controller.isHoveringFamilyBook ||
+                                                    controller
+                                                            .selectedFamilyBook
+                                                            .value !=
+                                                        null
+                                                ? Theme.of(context).primaryColor
+                                                : Colors.white,
+                                      ),
+                                      alignment: Alignment.center,
+                                      width: 300,
+                                      height: 100,
+                                      child: Stack(
+                                        children: [
+                                          DropzoneView(
+                                            operation: DragOperation.copy,
+                                            cursor: CursorType.Default,
+                                            onCreated: (DropzoneViewController
+                                                controller) {
+                                              ctrl = controller;
+                                            },
+                                            onHover: () {
+                                              controller
+                                                  .updateHoverFamilyBook(true);
+                                            },
+                                            onLeave: () {
+                                              controller
+                                                  .updateHoverFamilyBook(false);
+                                            },
+                                            onDropFiles:
+                                                (List<DropzoneFileInterface>?
+                                                    files) async {
+                                              if (files != null &&
+                                                  files.length == 1) {
+                                                final file = files.first;
+                                                final fileName = await ctrl
+                                                    ?.getFilename(file);
+                                                final fileBytes = await ctrl
+                                                    ?.getFileData(file);
+
+                                                controller.selectedFamilyBook
+                                                    .value = fileBytes;
+                                                controller.FamilyBookName
+                                                    .value = fileName!;
+                                                controller.updateTextFamilyBook(
+                                                    "File Family notebook Dropped!"
+                                                        .tr);
+                                              }
+                                            },
+                                          ),
+                                          Center(
+                                            child: controller.selectedFamilyBook
+                                                        .value !=
+                                                    null
+                                                ? IconButton(
+                                                    onPressed: () {
+                                                      controller
+                                                          .Clear_FamilyBook();
+                                                    },
+                                                    icon: Icon(
+                                                      Icons
+                                                          .delete_outline_outlined,
+                                                      color: Colors.white,
+                                                    ))
+                                                : Text(
+                                                    textAlign: TextAlign.center,
+                                                    controller.FamilyBookStatus,
+                                                    style: TextStyle(
+                                                      color: controller
+                                                              .isHoveringFamilyBook
+                                                          ? Colors.white
+                                                          : Color(0xffCBBFBF),
+                                                    ),
+                                                  ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

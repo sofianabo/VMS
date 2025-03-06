@@ -126,6 +126,7 @@ class Divisions_Controller extends GetxController {
     }
 
     for (var div in division!) {
+      
       Divisions.add({
         'arName': div.name.toString(),
         'enName': div.enName.toString(),

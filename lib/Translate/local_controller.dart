@@ -7,7 +7,6 @@ const String languageKey = 'selected_language';
 class LocalizationController extends GetxController {
   var currentLocale = const Locale('ar').obs;
 
-
   @override
   void onInit() {
     super.onInit();
@@ -18,10 +17,14 @@ class LocalizationController extends GetxController {
     final prefs = await SharedPreferences.getInstance();
     String? savedLanguageCode = prefs.getString(languageKey);
 
-    if (savedLanguageCode != null) {
-      currentLocale.value = Locale(savedLanguageCode);
-      Get.updateLocale(currentLocale.value);
+    // إذا لم يكن هناك لغة محفوظة مسبقًا، قم بتعيين اللغة العربية كافتراضية
+    if (savedLanguageCode == null) {
+      savedLanguageCode = 'ar';
+      await prefs.setString(languageKey, savedLanguageCode);
     }
+
+    currentLocale.value = Locale(savedLanguageCode);
+    Get.updateLocale(currentLocale.value);
   }
 
   Future<void> changeLanguage(Locale locale) async {

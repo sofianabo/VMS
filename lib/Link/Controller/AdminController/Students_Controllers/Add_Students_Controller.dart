@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class Add_Students_Controller extends GetxController {
-  List<String> Genderlist = ["Male", "Female"];
-  List<String> Realagonlist = ["Muslim", "Christianity"];
+  List<String> Genderlist = ["Male".tr, "Female".tr];
+  List<String> Realagonlist = ["Muslim".tr, "Christian".tr];
   List<String> BloodTypelist = [
     "A+",
     "A-",
@@ -17,7 +17,7 @@ class Add_Students_Controller extends GetxController {
     "O+",
     "O-"
   ];
-  List<String> FamilyStatelist = ["Widow", "Single", "Married", "Divorced"];
+  List<String> FamilyStatelist = ["Widow".tr, "Single".tr, "Married".tr, "Divorced".tr];
 
   List<String> Locationlist = [];
   List<String> Classlist = [];
@@ -88,7 +88,7 @@ class Add_Students_Controller extends GetxController {
     GenderIndex = "";
     RealagonIndex = "";
     BloodTypeIndex = "";
-    LocationIndex = "Syria";
+    LocationIndex = "Syria".tr;
     FamilyStateIndex = "Single";
     ClassIndex = "";
 
@@ -312,7 +312,7 @@ class Add_Students_Controller extends GetxController {
 
   bool isHoveringFatherPassport = false;
   String FatherPassportStatus =
-      "Click To Add Father Passport\nOr\nDrag And Drop File Here";
+      "Click To Add Father Passport\nOr\nDrag And Drop File Here".tr;
 
   Rx<Uint8List?> selectedFatherPassport = Rx<Uint8List?>(null);
   RxString FatherPassportName = "".obs;
@@ -323,7 +323,7 @@ class Add_Students_Controller extends GetxController {
       selectedFatherPassport.value = result.files.single.bytes;
       FatherPassportName.value = result.files.single.name;
 
-      updateTextFather("Done Selected File");
+      updateTextFather("Done Selected File".tr);
     }
   }
 
@@ -339,7 +339,7 @@ class Add_Students_Controller extends GetxController {
 
   bool isHoveringMotherPassport = false;
   String MotherPassportStatus =
-      "Click To Add Mother Passport\nOr\nDrag And Drop File Here";
+      "Click To Add Mother Passport\nOr\nDrag And Drop File Here".tr;
 
   Rx<Uint8List?> selectedMotherPassport = Rx<Uint8List?>(null);
   RxString MotherPassportName = "".obs;
@@ -350,7 +350,7 @@ class Add_Students_Controller extends GetxController {
       selectedMotherPassport.value = result.files.single.bytes;
       MotherPassportName.value = result.files.single.name;
 
-      updateTextMother("Done Selected File");
+      updateTextMother("Done Selected File".tr);
     }
   }
 
@@ -366,7 +366,7 @@ class Add_Students_Controller extends GetxController {
 
   bool isHoveringSonPassport = false;
   String SonPassportStatus =
-      "Click To Add Son Passport\nOr\nDrag And Drop File Here";
+      "Click To Add Son Passport\nOr\nDrag And Drop File Here".tr;
 
   Rx<Uint8List?> selectedSonPassport = Rx<Uint8List?>(null);
   RxString SonPassportName = "".obs;
@@ -377,7 +377,7 @@ class Add_Students_Controller extends GetxController {
       selectedSonPassport.value = result.files.single.bytes;
       SonPassportName.value = result.files.single.name;
 
-      updateTextSon("Done Selected File");
+      updateTextSon("Done Selected File".tr);
     }
   }
 
@@ -392,7 +392,7 @@ class Add_Students_Controller extends GetxController {
   }
 
   bool isHoveringId = false;
-  String IdStatus = "Click To Add Id\nOr\nDrag And Drop File Here";
+  String IdStatus = "Click To Add Id\nOr\nDrag And Drop File Here".tr;
 
   Rx<Uint8List?> selectedId = Rx<Uint8List?>(null);
   RxString IdName = "".obs;
@@ -403,7 +403,7 @@ class Add_Students_Controller extends GetxController {
       selectedId.value = result.files.single.bytes;
       IdName.value = result.files.single.name;
 
-      updateTextId("Done Selected File");
+      updateTextId("Done Selected File".tr);
     }
   }
 
@@ -419,7 +419,7 @@ class Add_Students_Controller extends GetxController {
 
   bool isHoveringCertificate = false;
   String CertificateStatus =
-      "Click To Add Certificate\nOr\nDrag And Drop File Here";
+      "Click To Add Certificate\nOr\nDrag And Drop File Here".tr;
 
   Rx<Uint8List?> selectedCertificate = Rx<Uint8List?>(null);
   RxString CertificateName = "".obs;
@@ -430,7 +430,7 @@ class Add_Students_Controller extends GetxController {
       selectedCertificate.value = result.files.single.bytes;
       CertificateName.value = result.files.single.name;
 
-      updateTextCertificate("Done Selected File");
+      updateTextCertificate("Done Selected File".tr);
     }
   }
 
@@ -446,7 +446,7 @@ class Add_Students_Controller extends GetxController {
 
   bool isHoveringtsalsol = false;
   String tsalsolStatus =
-      "Click To Add Academic sequence\nOr\nDrag And Drop File Here";
+      "Click To Add Academic sequence\nOr\nDrag And Drop File Here".tr;
 
   Rx<Uint8List?> selectedtsalsol = Rx<Uint8List?>(null);
   RxString tsalsolName = "".obs;
@@ -457,7 +457,7 @@ class Add_Students_Controller extends GetxController {
       selectedtsalsol.value = result.files.single.bytes;
       tsalsolName.value = result.files.single.name;
 
-      updateTexttsalsol("Done Selected File");
+      updateTexttsalsol("Done Selected File".tr);
     }
   }
 
@@ -473,7 +473,7 @@ class Add_Students_Controller extends GetxController {
 
   bool isHoveringFamilyBook = false;
   String FamilyBookStatus =
-      "Click To Add Family notebook\nOr\nDrag And Drop File Here";
+      "Click To Add Family notebook\nOr\nDrag And Drop File Here".tr;
 
   Rx<Uint8List?> selectedFamilyBook = Rx<Uint8List?>(null);
   RxString FamilyBookName = "".obs;
@@ -484,7 +484,7 @@ class Add_Students_Controller extends GetxController {
       selectedFamilyBook.value = result.files.single.bytes;
       FamilyBookName.value = result.files.single.name;
 
-      updateTextFamilyBook("Done Selected File");
+      updateTextFamilyBook("Done Selected File".tr);
     }
   }
 
@@ -511,7 +511,7 @@ class Add_Students_Controller extends GetxController {
     updateHoverFather(false);
 
     updateTextFather(
-        "Click To Add Father Passport\nOr\nDrag And Drop File Here");
+        "Click To Add Father Passport\nOr\nDrag And Drop File Here".tr);
     update();
   }
 
@@ -519,21 +519,21 @@ class Add_Students_Controller extends GetxController {
     selectedMotherPassport.value = null;
     updateHoverMother(false);
     updateTextMother(
-        "Click To Add Mother Passport\nOr\nDrag And Drop File Here");
+        "Click To Add Mother Passport\nOr\nDrag And Drop File Here".tr);
     update();
   }
 
   void Clear_Son() {
     selectedSonPassport.value = null;
     updateHoverSon(false);
-    updateTextSon("Click To Add Son Passport\nOr\nDrag And Drop File Here");
+    updateTextSon("Click To Add Son Passport\nOr\nDrag And Drop File Here".tr);
     update();
   }
 
   void Clear_id() {
     selectedId.value = null;
     updateHoverId(false);
-    updateTextId("Click To Add Id\nOr\nDrag And Drop File Here");
+    updateTextId("Click To Add Id\nOr\nDrag And Drop File Here".tr);
     update();
   }
 
@@ -541,7 +541,7 @@ class Add_Students_Controller extends GetxController {
     selectedCertificate.value = null;
     updateHoverCertificate(false);
     updateTextCertificate(
-        "Click To Add Certificate\nOr\nDrag And Drop File Here");
+        "Click To Add Certificate\nOr\nDrag And Drop File Here".tr);
     update();
   }
 
@@ -549,7 +549,7 @@ class Add_Students_Controller extends GetxController {
     selectedtsalsol.value = null;
     updateHovertsalsol(false);
     updateTexttsalsol(
-        "Click To Add Academic sequence\nOr\nDrag And Drop File Here");
+        "Click To Add Academic sequence\nOr\nDrag And Drop File Here".tr);
     update();
   }
 
@@ -558,7 +558,7 @@ class Add_Students_Controller extends GetxController {
 
     updateHoverFamilyBook(false);
     updateTextFamilyBook(
-        "Click To Add Family notebook\nOr\nDrag And Drop File Here");
+        "Click To Add Family notebook\nOr\nDrag And Drop File Here".tr);
     update();
   }
 

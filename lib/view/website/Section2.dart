@@ -11,10 +11,10 @@ class Section2 extends StatelessWidget {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return Container(
-      margin:  EdgeInsets.only(top: h/8.55),
+      margin: EdgeInsets.only(top: h / 8.55),
       child: Column(
         children: [
-          Text("Who Can We Register At Virtual Modern School",
+          Text("Who Can We Register At Virtual Modern School".tr,
               style: Get.theme.textTheme.titleMedium!.copyWith(
                 fontSize: 24,
               )),
@@ -28,16 +28,23 @@ class Section2 extends StatelessWidget {
                     child: Row(
                       children: [
                         Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                                "Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary",
+                              "Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary"
+                                  .tr,
+                              style: Get.theme.textTheme.bodyMedium!,
+                              textDirection: TextDirection.ltr,
+                            ),
+                            Text(
+                                "to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted"
+                                    .tr,
+                                textDirection: TextDirection.ltr,
                                 style: Get.theme.textTheme.bodyMedium!),
                             Text(
-                                "to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted",
-                                style: Get.theme.textTheme.bodyMedium!),
-                            Text(
-                                "by the Ministry of Education at Syrian Arab Republic",
+                                "by the Ministry of Education at Syrian Arab Republic"
+                                    .tr,
+                                textDirection: TextDirection.ltr,
                                 style: Get.theme.textTheme.bodyMedium!),
                           ],
                         ),
@@ -68,13 +75,16 @@ class Section2 extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                              "People with special needs who are residing in Syria are uncapable to study in regular schools uncapable",
+                              "People with special needs who are residing in Syria are uncapable to study in regular schools uncapable"
+                                  .tr,
                               style: Get.theme.textTheme.bodyMedium!),
                           Text(
-                              "to study uncapable to study in regular schools and exceptional students cases determined by the",
+                              "to study uncapable to study in regular schools and exceptional students cases determined by the"
+                                  .tr,
                               style: Get.theme.textTheme.bodyMedium!),
                           Text(
-                              "Ministry of Education at Syrian Arab Diploma granted by the Ministry of Education at Syrian Arab",
+                              "Ministry of Education at Syrian Arab Diploma granted by the Ministry of Education at Syrian Arab"
+                                  .tr,
                               style: Get.theme.textTheme.bodyMedium!),
                           Text("Republic",
                               style: Get.theme.textTheme.bodyMedium!),
