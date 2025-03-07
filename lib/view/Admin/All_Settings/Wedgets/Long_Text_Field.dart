@@ -29,6 +29,7 @@ class Long_TextField_Profile extends StatelessWidget {
       margin: const EdgeInsets.only(top: 2.0),
       width: width ?? 220,
       child: Column(
+          mainAxisSize: MainAxisSize.min,
           textDirection: Get.find<LocalizationController>()
                       .currentLocale
                       .value
@@ -56,9 +57,9 @@ class Long_TextField_Profile extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 300,
+              height: 250,
               child: TextFormField(
-                maxLines: 10,
+                maxLines: 20,
                 textDirection: Get.find<LocalizationController>()
                             .currentLocale
                             .value
