@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/Get_My_Profile.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
 import 'package:vms_school/view/Admin/All_Settings/Profile_Settings.dart';
 import 'package:vms_school/view/Admin/School_Management/ExamTable.dart';
 import 'package:vms_school/view/Admin/School_Management/Illness_Pages/Illness_Screen.dart';
@@ -34,8 +37,26 @@ import 'package:vms_school/view/Admin/Teacher_Manager/TeacherAttendanceManagment
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherMangament.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherStatus.dart';
 
-class AdminHome extends StatelessWidget {
+class AdminHome extends StatefulWidget {
   const AdminHome({super.key});
+
+  @override
+  State<AdminHome> createState() => _AdminHomeState();
+}
+
+class _AdminHomeState extends State<AdminHome> {
+  @override
+  void initState() {
+    final con = Get.find<Add_Data_controller>();
+    final con2 = Get.find<Admin_Profile_Content>();
+    if (con.isVerified == false) {
+      con2.ChangeCurruntValue("addData");
+      Get.find<AdminHomeContentController>().updateContent("My Profile");
+      Get_My_Profile.Get_My_Profile_Data();
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Directionality(

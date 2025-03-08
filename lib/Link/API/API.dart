@@ -1,5 +1,5 @@
 // String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
-String hostPort = "http://192.168.1.165:8000/api/";
+String hostPort = "http://192.168.1.111:8000/api/";
 
 //..................... All ...................//
 
@@ -53,6 +53,8 @@ String getVirtualUser = "getVirtualUser";
 String deleteVirtualEmployee = "deleteVirtualUser";
 String updateEmployeeIll = "updateEmployeeIll";
 String getEmployeeIll = "getEmployeeIll";
+String getMyEmployee = "getMyEmployee";
+String addEmployeeInfo = "addEmployeeInfo";
 
 //..................... Teachers ...................//
 

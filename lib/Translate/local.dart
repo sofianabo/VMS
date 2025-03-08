@@ -289,6 +289,9 @@ class Languages {
           'اضغط لإضافة دفتر العائلة  \nأو\nاسحب وأفلت الملف هنا',
       'Student illeness': 'أمراض الطالب',
       'Done': "تم",
+      'Add Picture': "اضافة صورة",
+      'Complete the registration details before starting':
+          "استكمال بيانات التسجيل قبل البدء",
       'Add Your Photo Profile': "اضف صورة ملفك الشخصي",
       'Student Vaccine': "لقاحات الطالب"
     },
@@ -315,6 +318,8 @@ class Languages {
       'Total Books': 'Total Books',
       'Total Division': 'Total Division',
       'Dashboard': 'Dashboard',
+      'Complete the registration details before starting':
+          'Complete the registration details before starting',
       'Enroll Requests': 'Enroll Requests',
       'Exam Table': "Exam Table",
       'School Time Table': 'School Time Table',
@@ -582,7 +587,7 @@ class Languages {
       'Done': 'Done',
       'Student illeness': 'Student illeness',
       'Student Vaccine': 'Student Vaccine',
-      '': '',
+      'Add Picture': 'Add Picture',
       '': '',
       '': '',
       '': '',

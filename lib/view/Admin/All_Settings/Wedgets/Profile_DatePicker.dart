@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart' as intl;
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 
@@ -22,7 +23,7 @@ class Profile_BirthDate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Allempolyeecontroller controller = Get.put(Allempolyeecontroller());
+    final Add_Data_controller controller = Get.put(Add_Data_controller());
     return Obx(
       () => Container(
         width: width,

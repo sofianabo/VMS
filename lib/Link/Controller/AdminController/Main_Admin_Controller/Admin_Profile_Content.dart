@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 
 class Admin_Profile_Content extends GetxController {
   String curruntValue = "Profile";
-
   bool enabledPublicInfo = false;
   bool enabledMoreInfo = false;
   bool enabledSocilaMediaInfo = false;

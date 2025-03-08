@@ -25,7 +25,7 @@ class Quiz {
   int? id;
   String? startDate;
   String? period;
-  Null? name;
+  String? name;
   int? maxMark;
   int? passingMark;
   Classese? classese;
