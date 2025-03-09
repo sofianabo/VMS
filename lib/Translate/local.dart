@@ -205,14 +205,7 @@ class Languages {
       'Programs': 'البرمامج',
       'Enrollment': 'التسجيل',
       'Eligibility': 'المؤهلون',
-      'Who Can We Register At Virtual Modern School':
-          'من يمكنهم التسجيل في المدرسة الافتراضية الحديثة',
-      'Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary':
-          'من يمكنهم التسجيل في المدرسة الافتراضية الحديثة كل من يقيم خارج سوريا يمكنه التسجيل والتخرج ',
-      'to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted':
-          'ويرغب في تعلم المناهج التربوية السورية من المرحلة الابتدائية إلى المتوسطة والثانوية',
-      'by the Ministry of Education at Syrian Arab Republic':
-          'يمكنه التسجيل والتخرج للحصول على شهادة الثانوية العامة ',
+    
       'Back': 'رجوع',
       'Add Students': 'إضافة طالب',
       'Mobile Number :': 'رقم الهاتف:',
@@ -285,6 +278,178 @@ class Languages {
       'Done': "تم",
       'Student Vaccine': "لقاحات الطالب",
             'Add Your Photo Profile': "اضف صورة ملفك الشخصي",
+
+      /////////////////////////////////section 1 and home appbar////////////////////////
+   
+      'WE CARE ABOUT \n YOUR FUTURE': 'نحن نعتني\n بمستقبلك',
+      'Join us to enter a better world filled with advanced educational methods through Virtual Modern School':
+          'انضم إلينا لدخول عالم أفضل مليء بالأساليب التعليمية المتطورة من خلال المدرسة الافتراضية الحديثة',
+      'Enroll': 'تسجيل',
+      'Sign In': 'تسجيل دخول',
+      'Teachers': 'المعلمين',
+      'Students': 'الطلاب',
+      'Visitors': 'الزائرين',
+/////////////////////////////////////section 2///////////////////////////////
+      'Who Can We Register At Virtual Modern School':
+          'من يمكنهم التسجيل في المدرسة الافتراضية الحديثة',
+      'Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary':
+          'يمكن لأي شخص يقيم خارج سوريا ويرغب في دراسة المناهج التعليمية السورية من المرحلة  ',
+      'to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted':
+          'الابتدائية إلى المرحلة المتوسطة والثانوية التسجيل والتخرج للحصول على شهادة ',
+      'by the Ministry of Education at Syrian Arab Republic':
+          'الثانوية العامة المقدمة من وزارة التربية في الجمهورية العربية السورية',
+      'People with special needs who are residing in Syria are uncapable to study in regular schools uncapable':
+          'الأشخاص ذوو الاحتياجات الخاصة المقيمون في سوريا غير قادرين على الدراسة في ',
+      'to study uncapable to study in regular schools and exceptional students cases determined by the':
+          'المدارس العادية وحالات الطلاب الاستثنائيين التي تحددها وزارة التربية والتعليم',
+      'Ministry of Education at Syrian Arab Diploma granted by the Ministry of Education at Syrian Arab':
+          'بالدبلوم العربي السوري الممنوح من وزارة التربية في الجمهورية العربية السورية',
+      'Republic': '',
+
+      //////////////////////////section 3////////////////////////////
+      'How I Can Enroll At Virtual Modern School':
+          'كيف يمكنني التسجيل في المدرسة الافتراضية الحديثة',
+      'Parents of our students can register their children in the Virtual Modern School':
+          'يمكن لأولياء أمور طلابنا تسجيل أبنائهم في المدرسة الحديثة الافتراضية',
+      'by the following steps:': 'بالخطوات التالية:',
+      '1. Enter the first and last name of the guardian':
+          '1. أدخل الاسم الأول والأخير لوَليّ الأمر',
+      '2. Enter the mobile phone number of guardian':
+          '2. أدخل رقم الهاتف المحمول لوَليّ الأمر ',
+      '3. Enter the Syrian national number of the guardian':
+          '3. أدخل الرقم القومي السوري لوَليّ الأمر',
+      'Read More': 'قراءة المزيد',
+
+      ////////////////////////////////////section 4////////////////////////////////
+      'Why Us?': 'لماذا نحن',
+      'Virtual Modern School is an online learning platform that helps students to learn the':
+          'المدرسة الحديثة الافتراضية هي منصة تعليمية عبر الإنترنت تساعد الطلاب على  ',
+      'Syrian Education Curriculum from home. The courses of this platform are designed':
+          'تعلم المنهج التعليمي السوري من المنزل. تم تصميم الدورات في هذه المنصة للمدرسة الابتدائية،',
+      'for elementary school, middle school, and high school all in one place.':
+          'والمدرسة المتوسطة، والمدرسة الثانوية في مكان واحد.',
+
+      'Improving educational': 'تحسين مهارات',
+      'Skills': 'التعليم',
+      'Smart virtual': 'اجتماع افتراضي',
+      'meeting': 'ذكي',
+      'Outstanding': 'سهولة التعامل ',
+      'user - friendliness': 'مع المستخدم',
+      'Instant live': 'دروس مباشرة ',
+      'Lessons': 'فورية',
+      'Focus on results': 'التركيز على النتائج',
+      'Multiple registration': 'خيارات تسجيل',
+      'options': 'متعددة',
+      ///////////////////////////////////section 5//////////////////////////////////////
+
+      'Who Are We': 'من نحن',
+      'is a community of learners, including students, parents, and staff, dedicated to creating a rigorous and':
+          'المدرسة الحديثة الافتراضية هي مجتمع من المتعلمين ، بما في ذلك الطلاب وأولياء الأمور والموظفين ، مكرسين لإنشاء بيئة صارمة',
+      'VIRTUAL MODERN SCHOOL (VMS)': '',
+      'inclusive educational environment. VMS students are goal-oriented, critical thinkers, and community leaders':
+          ' و بيئة تعليمية شاملة. طلاب المدرسة هادفون ومفكرين نقديين وقادة مجتمع ملتزمون ',
+      'committed to achieving high levels of integrity and academic success.':
+          'بتحقيق مستويات عالية من النزاهة والنجاح الأكاديمي.',
+
+      'VIRTUAL MODERN SCHOOL (VMS) staff aim to create a supportive':
+          'يهدف موظفو المدرسة الحديثة الافتراضية إلى خلق بيئة داعمة وتحديّة',
+      'and challenging environment for all students to reach their potential,':
+          'لجميع الطلاب للوصول إلى إمكاناتهم، والانخراط في ',
+      'engaging in continuous improvement through goal setting and':
+          ' تحسين مستمر من خلال تحديد الأهداف والتأمل',
+      'reflection': '',
+      'Virtual Modern School': 'المدرسة الافتراضية الحديثة ',
+
+      ////////////////////////section 6//////////////////////////
+
+      'What Do We': 'ماذا نفعل',
+      'We develop a culture of excellence that includes a robust instructional program aligned to the':
+          'نحن نطور ثقافة التميز التي تشمل برنامجًا تعليميًا قويًا يتوافق مع أعلى المعايير،',
+      'highest standards with a focus on implementing balanced literacy through reading and writing':
+          'مع التركيز على تطبيق محو الأمية المتوازن من خلال ورش عمل القراءة والكتابة،',
+      'workshops, while cultivating competency across all subject areas.':
+          'مع تعزيز الكفاءة في جميع المواد الدراسية.',
+      'We are committed to developing well-rounded students who embody our core values: Be Safe, Be Respectful, Be Responsible, and Be Mindful. Our vibrant learning environment encourages discovery and creative expression, making every student feel valued.\n\nWe provide our educators with robust professional development to enhance teaching practices and boost student success. Through collaboration and a community schools model, we align resources to ensure every student thrives. Join us in our journey towards excellence!':
+          'نحن ملتزمون بتطوير طلاب متوازنين يجسدون قيمنا الأساسية: كن آمناً، وكن محترماً، وكن مسؤولا، وكن واعياً. تشجع بيئة التعلم الحيوية لدينا على الاكتشاف والتعبير الإبداعي، مما يجعل كل طالب يشعر بالتقدير.\n\n نحن نقدم لمعلمينا تطويراً مهنياً قوياً لتعزيز ممارسات التدريس وزيادة نجاح الطلاب. من خلال التعاون ونموذج المدارس المجتمعية، نقوم بتنسيق الموارد لضمان ازدهار كل طالب. انضم إلينا في رحلتنا نحو التميز!',
+      //////////////////////////////////section 7////////////////////////////////////////
+      'Openning Hours': 'ساعات العمل',
+      '8 AM -----> 1 PM': '8 صباحاً---------> 1 ظهراً',
+      '3 PM -----> 8 PM': '3 ظهراً--------->8 مساءً',
+      'Contact Details': 'معلومات التواصل',
+      'Shakib Arslan Street - Engineers Syndicate Building - 2nd Floor - AlSuwaidaa - Syria':
+          'سوريا - السويداء -شارع شكيب أرسلان - مجمع المهندسيين - الطابق الثاني',
+      'All Rights reserved. Copyright': 'جميع الحقوق محفوظة. حقوق النشر',
+      //////////////////////////////
+
+      'Login': 'تسجيل الدخول',
+
+      'Update Student': 'تحديث الطالب',
+      'Pend Student': 'قفل الحساب',
+      'Do You Want To Pend ': 'هل تريد قفل حساب الطالب',
+      'Student?': '',
+      'Yes': 'نعم',
+      'No': 'لا',
+      'UnPend Student': 'إلفاء قفل الحساب',
+      'Do You Want To UnPend': 'هل تريد إلفاء قفل الحساب',
+      'UnPend This Student': 'إلغاء قفل حساب هذا الطالب',
+      'Realagon': 'الدين',
+      'Family State': 'الحالة الأسرية',
+      'Last School Detail': 'معلومات المدرسة السابقة',
+      'Edit Student': 'تعديل الطالب',
+      'Edite': 'تعديل معلومات',
+      'Info': '',
+      'Show only selected items': 'عرض العناصر المختارة فقط',
+      'Do You Want To Deletee': 'هل تريد حذف الطالب ',
+      'No Result': 'لا يوجد نتيجة',
+      'Guardian Name': 'اسم ولي الأمر',
+      'Guardian National ID': 'الرقم الوطني لوَليّ الأمر',
+      'Guardian Email': ' البريد الإلكتروني لوَليّ الأمر ',
+      'Guardian Phone Number': 'رقم هاتف لوَليّ الأمر',
+      'Edit Guardian': 'تعديل الوَليّ الأمر',
+      'Confirm Password': 'تأكيد كلمة المرور',
+      'Add Guardian': 'إضافة وليّ الأمر',
+
+      'Email': 'البريد الإلكتروني',
+      'Guardian Username': 'اسم المستخدم لوَليّ الأمر',
+      'Name': 'الاسم',
+      'phone Number': 'رقم الهاتف ',
+      'National ID': 'الرقم الوطني',
+
+      'Set All As a Holiday': 'وضع عطلة للكل',
+      'Cause': 'السبب',
+      'Enter The Reason For Absence': 'أدخل سبب الغياب',
+      'The reason for the absence of the all students': 'سبب غياب جميع الطلاب',
+      'Present': 'حاضر',
+      'Truant': 'غائب',
+      'Late': 'متأخر',
+      'Holiday': 'عطلة',
+      'The reason for the absence of the student': 'سبب غياب الطالب',
+      'Attendance Today Has Been Uploaded': 'الحضور رفع اليوم',
+      'Attendence': '',
+      "att":"حضور",
+      'Subject': 'المادة',
+      'Add Teacher': 'إضافة معلم',
+      'Contract Type': 'نوع العقد',
+      'Full Time': 'دوام كامل',
+      'hours': 'ساعات',
+      'Hours': 'ساعات',
+      'This Teacher Does Not Contain Any Data': 'هذا المعلم ليس لديه أي بيانات',
+      'Mobile: ': 'الهاتف: ',
+      'Teacherr': '',
+      'Do You Want To Deletet': 'هل تريد حذف المعلم',
+      'Delete Teacher': 'حذف المعلم',
+      'If You Deselected The Illness The File Will Remove':
+          'إذا أردت إلغاء تحديد المرض , سوف يحذف الملف',
+      'If You Click Yes The File Will Remove': 'إذا ضغطت نعم , الملف سوف يحذف',
+      'illness File': 'ملف مرض',
+      'Vaccine File': 'ملف لقاح',
+      'Employee Illness': 'أمراض الموظف',
+      'Teacher Illness': 'أمراض المعلم',
+        'The reason for the absence of the all Teachers': 'سبب غياب كل المعلمين',
+      'Vacation': 'إجازة',
+        "sub":"مواد",
+
+      'Subjects': '',
 
     },
     'en': {
