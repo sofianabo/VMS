@@ -45,6 +45,8 @@ class theme {
           fontSize: 18,
           fontWeight: FontWeight.bold,
         ),
+        headlineMedium:
+            TextStyle(color: Color(0xff134B70), fontFamily: IsAr, fontSize: 12),
         displayMedium:
             TextStyle(color: Colors.white, fontFamily: IsAr, fontSize: 14)),
     focusColor: Colors.white,
@@ -109,6 +111,8 @@ class theme {
           fontSize: 18,
           fontWeight: FontWeight.bold,
         ),
+        headlineMedium:
+            TextStyle(color: Colors.white, fontFamily: IsAr, fontSize: 12),
         displayLarge:
             TextStyle(fontFamily: IsAr, fontSize: 26, color: Colors.white),
         titleLarge:

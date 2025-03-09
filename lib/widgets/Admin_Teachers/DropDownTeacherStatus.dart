@@ -18,7 +18,7 @@ class DropDownTeacherStatus extends StatelessWidget {
     this.color,
     required this.width,
     required this.type,
-        this.isDisabled = false,
+    this.isDisabled = false,
     this.isLoading = false,
   });
 
@@ -34,17 +34,17 @@ class DropDownTeacherStatus extends StatelessWidget {
               : title;
           break;
         case 'Subject':
-        selectedValue = cont.selectedSubjectIndex.isNotEmpty
-            ? cont.selectedSubjectIndex
-            : title;
+          selectedValue = cont.selectedSubjectIndex.isNotEmpty
+              ? cont.selectedSubjectIndex
+              : title;
 
-        break;
+          break;
         case 'Type':
-        selectedValue = cont.selectedTypeIndex.isNotEmpty
-            ? cont.selectedTypeIndex
-            : title;
+          selectedValue = cont.selectedTypeIndex.isNotEmpty
+              ? cont.selectedTypeIndex.tr
+              : title;
 
-        break;
+          break;
       }
 
       return Container(
@@ -56,109 +56,111 @@ class DropDownTeacherStatus extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
           border: Border.all(color: color ?? const Color(0xffD9D9D9)),
         ),
-        child: isDisabled == true?
-        Row(
-          children: [
-            Text(title , style: const TextStyle(color: Colors.grey),),
-          ],
-        ):
-        isLoading == true
-            ? const Center(
-          child: SizedBox(
-            width: 20,
-            height: 20,
-            child: CircularProgressIndicator(strokeWidth: 3),
-          ),
-        )
-            : Row(
-          children: [
-            Expanded(
-              child: DropdownButton<String>(
-                onChanged: (newValue) {
-                  if (newValue != null && newValue != title) {
-                    cont.selectIndex(type, newValue);
-                  }
-                },
-                dropdownColor: Get.theme.cardColor,
-                iconDisabledColor: Colors.grey,
-                iconEnabledColor: Get.theme.cardColor,
-                value: selectedValue,
-                isExpanded: true,
-                underline: const SizedBox(),
-                icon:  selectedValue.isNotEmpty && selectedValue != title
-                    ? GestureDetector(
-                  onTap: () {
-                    cont.selectIndex(type, "");
-                    cont.update();
-                  },
-                  child: Icon(
-                    Icons.close,
-                    color: Get.theme.secondaryHeaderColor,
+        child: isDisabled == true
+            ? Row(
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(color: Colors.grey),
                   ),
-                )
-                    : Icon(
-                  Icons.arrow_drop_down,
-                  color: Get.theme.secondaryHeaderColor,
-                ),
-                style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-                items: [
-                  DropdownMenuItem<String>(
-                    value: title,
-                    child: Text(
-                      title,
-                      style: Get.theme.textTheme.bodyMedium!.copyWith(
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
-                  ..._getDropdownItems(cont),
                 ],
-                borderRadius: BorderRadius.circular(3),
-              ),
-            ),
-          ],
-        ),
+              )
+            : isLoading == true
+                ? const Center(
+                    child: SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(strokeWidth: 3),
+                    ),
+                  )
+                : Row(
+                    children: [
+                      Expanded(
+                        child: DropdownButton<String>(
+                          onChanged: (newValue) {
+                            if (newValue != null && newValue != title) {
+                              cont.selectIndex(type, newValue);
+                            }
+                          },
+                          dropdownColor: Get.theme.cardColor,
+                          iconDisabledColor: Colors.grey,
+                          iconEnabledColor: Get.theme.cardColor,
+                          value: selectedValue,
+                          isExpanded: true,
+                          underline: const SizedBox(),
+                          icon:
+                              selectedValue.isNotEmpty && selectedValue != title
+                                  ? GestureDetector(
+                                      onTap: () {
+                                        cont.selectIndex(type, "");
+                                        cont.update();
+                                      },
+                                      child: Icon(
+                                        Icons.close,
+                                        color: Get.theme.secondaryHeaderColor,
+                                      ),
+                                    )
+                                  : Icon(
+                                      Icons.arrow_drop_down,
+                                      color: Get.theme.secondaryHeaderColor,
+                                    ),
+                          style: Get.theme.textTheme.bodyMedium!
+                              .copyWith(fontSize: 14),
+                          items: [
+                            DropdownMenuItem<String>(
+                              value: title,
+                              child: Text(
+                                title.tr,
+                                style: Get.theme.textTheme.bodyMedium!.copyWith(
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                            ..._getDropdownItems(cont),
+                          ],
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                      ),
+                    ],
+                  ),
       );
     });
   }
 
-  List<DropdownMenuItem<String>> _getDropdownItems(Allteacheratendencecontroller cont) {
+  List<DropdownMenuItem<String>> _getDropdownItems(
+      Allteacheratendencecontroller cont) {
     List<DropdownMenuItem<String>> items = [];
 
     switch (type) {
-
       case 'Class':
         items.addAll(cont.classlist.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());
         break;
-        case 'Type':
+      case 'Type':
         items.addAll(cont.Typelist.map((String value) {
           return DropdownMenuItem<String>(
-            value: value,
+            value: value.tr,
             child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              value.tr,
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());
         break;
-        case 'Subject':
+      case 'Subject':
         items.addAll(cont.Subjectlist.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());

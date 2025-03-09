@@ -26,29 +26,35 @@ class Allteacheratendencecontroller extends GetxController {
   bool isClassLoading = true;
   bool isCurriculumLoading = true;
 
-
-  SetSubject(List<String> subjects){
+  SetSubject(List<String> subjects) {
     Subjectlist = subjects;
     setSubjectLoading(false);
     update();
   }
-  SetClass(List<String> classes){
+
+  SetClass(List<String> classes) {
     classlist = classes;
     setClassLoading(false);
     update();
   }
 
-
-  setSubjectLoading(bool value){
+  setSubjectLoading(bool value) {
     isSubjectLoading = value;
     update();
   }
-  setClassLoading(bool value){
+
+  setdefualtDropdown() {
+    classIndex = '';
+    SubjectIndex = '';
+    TypeIndex = '';
+    update();
+  }
+
+  setClassLoading(bool value) {
     isClassLoading = value;
     classIndex = "";
     update();
   }
-
 
   void selectIndex(String type, String? index) {
     switch (type) {
@@ -58,52 +64,54 @@ class Allteacheratendencecontroller extends GetxController {
       case 'Subject':
         SubjectIndex = index ?? "";
         break;
-        case 'Type':
-          TypeIndex = index ?? "";
+      case 'Type':
+        TypeIndex = index ?? "";
         break;
     }
-    searchRequestByName(filteredName,classIndex,SubjectIndex,TypeIndex);
+    searchRequestByName(filteredName, classIndex, SubjectIndex, TypeIndex);
     update();
   }
 
   void setAllteachers(AllTeacherAttendenceModel model) {
     teacher = model.teacherattendance!;
-    searchRequestByName(filteredName , classIndex , SubjectIndex,TypeIndex);
+    searchRequestByName(filteredName, classIndex, SubjectIndex, TypeIndex);
     setIsLoading(false);
     update();
   }
 
-
-
-  void searchRequestByName(String query, String classes, String subjects,String type) {
+  void searchRequestByName(
+      String query, String classes, String subjects, String type) {
     List<Teacherattendance> tempFilteredList = List.from(teacher ?? []);
 
     if (query.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((teacher) {
         final empName = teacher.fullName?.toLowerCase() ?? '';
         final email = teacher.email?.toLowerCase() ?? '';
-        return empName.contains(query.toLowerCase()) ||   email.contains(query.toLowerCase());
+        return empName.contains(query.toLowerCase()) ||
+            email.contains(query.toLowerCase());
       }).toList();
     }
 
     if (classes.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((teacher) {
         return teacher.classes?.any((cls) =>
-        cls.name?.toLowerCase() == classes.toLowerCase() ||
-            cls.enName?.toLowerCase() == classes.toLowerCase()) ?? false;
+                cls.name?.toLowerCase() == classes.toLowerCase() ||
+                cls.enName?.toLowerCase() == classes.toLowerCase()) ??
+            false;
       }).toList();
     }
 
     if (subjects.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((teacher) {
         return teacher.subject?.any((subj) =>
-        subj.name?.toLowerCase() == subjects.toLowerCase() ||
-            subj.enName?.toLowerCase() == subjects.toLowerCase()) ?? false;
+                subj.name?.toLowerCase() == subjects.toLowerCase() ||
+                subj.enName?.toLowerCase() == subjects.toLowerCase()) ??
+            false;
       }).toList();
     }
     if (type.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((emp) {
-        return emp.status! == type ;
+        return emp.status!.tr == type.tr;
       }).toList();
     }
 
@@ -113,21 +121,20 @@ class Allteacheratendencecontroller extends GetxController {
   }
 
   void clearFilter() {
-    searchRequestByName("" , classIndex , SubjectIndex,TypeIndex);
+    searchRequestByName("", classIndex, SubjectIndex, TypeIndex);
     update();
   }
 
-
   void updateList(
-      String type,
-      List<String> options,
-      ) {
+    String type,
+    List<String> options,
+  ) {
     switch (type) {
       case 'Class':
         classlist = options;
         break;
-        case 'Type':
-          Typelist = options;
+      case 'Type':
+        Typelist = options;
         break;
       case 'Subject':
         Subjectlist = options;
@@ -136,47 +143,38 @@ class Allteacheratendencecontroller extends GetxController {
     update();
   }
 
-
-
   setIsLoading(bool value) {
     isLoading = value;
     update();
   }
 
-
-
   Rx<DateTime?> AttendencetDate = Rx<DateTime?>(null);
 
-  removeAttendence(){
+  removeAttendence() {
     AttendencetDate.value = null;
     update();
   }
 
-
-
   void selectDate(BuildContext context) async {
-
     try {
-      String rawStartDate = Get.find<All_Screen_Sessions_Controller>().startSessionDate;
-      String rawEndDate = Get.find<All_Screen_Sessions_Controller>().endSessionDate;
-
+      String rawStartDate =
+          Get.find<All_Screen_Sessions_Controller>().startSessionDate;
+      String rawEndDate =
+          Get.find<All_Screen_Sessions_Controller>().endSessionDate;
 
       print("Raw Start Date: $rawStartDate");
       print("Raw End Date: $rawEndDate");
-
 
       rawStartDate = rawStartDate.trim();
       rawEndDate = rawEndDate.trim();
 
       DateFormat format = DateFormat("yyyy-MM-dd");
 
-
       DateTime startDate = format.parse(rawStartDate);
       DateTime endDate = format.parse(rawEndDate);
 
       final DateTime? picked = await showDatePicker(
         context: context,
-
         firstDate: startDate,
         lastDate: endDate,
       );
@@ -192,10 +190,6 @@ class Allteacheratendencecontroller extends GetxController {
       print("Error parsing date: $e");
     }
   }
-
-
-
-
 
   String get selectedclassIndex => classIndex;
   String get selectedSubjectIndex => SubjectIndex;

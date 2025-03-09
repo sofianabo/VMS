@@ -21,12 +21,14 @@ class TeacherStatus extends StatefulWidget {
 
 class _TeacherStatusState extends State<TeacherStatus> {
   TextEditingController serch = TextEditingController();
+
   @override
   void initState() {
     Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
     Getteacherattendenceapi(context).Getteacherattendence();
     Getallclassapi.getAllClasses();
     Get_Subject_Screen_API(context).Get_Subject_Screen();
+    Get.find<Allteacheratendencecontroller>().setdefualtDropdown();
     super.initState();
   }
 
@@ -49,7 +51,7 @@ class _TeacherStatusState extends State<TeacherStatus> {
                         Padding(
                             padding: const EdgeInsets.only(left: 8.0),
                             child: DropDownAllSessions(
-                              title: "Session",
+                              title: "Session".tr,
                               width: w / 3.5,
                               type: "session",
                               API: "Teachersts",
@@ -59,7 +61,7 @@ class _TeacherStatusState extends State<TeacherStatus> {
                           child: DropDownTeacherStatus(
                             isLoading: controller.isClassLoading,
                             width: w / 3.5,
-                            title: "Class",
+                            title: "Class".tr,
                             type: 'Class',
                           ),
                         ),
@@ -68,7 +70,7 @@ class _TeacherStatusState extends State<TeacherStatus> {
                           child: DropDownTeacherStatus(
                             isLoading: controller.isSubjectLoading,
                             width: w / 3.5,
-                            title: "Subject",
+                            title: "Subject".tr,
                             type: 'Subject',
                           ),
                         ),
@@ -110,7 +112,7 @@ class _TeacherStatusState extends State<TeacherStatus> {
                             child: DropDownTeacherStatus(
                               isLoading: false,
                               width: w / 3.5,
-                              title: "Type",
+                              title: "Type".tr,
                               type: 'Type',
                             ),
                           ),

@@ -45,17 +45,17 @@ class Dropdownallteacher extends StatelessWidget {
         break;
           case 'GenderDialog':
         selectedValue = cont.selectedGenderDialogIndex.isNotEmpty
-            ? cont.selectedGenderDialogIndex
+            ? cont.selectedGenderDialogIndex.tr
             : title;
         break;
         case 'FamilyStatusDialog':
         selectedValue = cont.selectedFamilyStatusDialogIndex.isNotEmpty
-            ? cont.selectedFamilyStatusDialogIndex
+            ? cont.selectedFamilyStatusDialogIndex.tr
             : title;
         break;
           case 'ContractTypeDialog':
         selectedValue = cont.selectedContarctTypeDialogIndex.isNotEmpty
-            ? cont.selectedContarctTypeDialogIndex
+            ? cont.selectedContarctTypeDialogIndex.tr
             : title;
         break;
       }
@@ -118,7 +118,7 @@ class Dropdownallteacher extends StatelessWidget {
                   DropdownMenuItem<String>(
                     value: title,
                     child: Text(
-                      title,
+                      title.tr,
                       style: Get.theme.textTheme.bodyMedium!.copyWith(
                         fontSize: 14,
                       ),
@@ -179,9 +179,9 @@ class Dropdownallteacher extends StatelessWidget {
         case 'GenderDialog':
         items.addAll(cont.genderDialogList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value,
+            value: value.tr,
             child: Text(
-              value,
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!
                   .copyWith(fontSize: 14),
             ),
@@ -191,9 +191,9 @@ class Dropdownallteacher extends StatelessWidget {
          case 'FamilyStatusDialog':
         items.addAll(cont.familyStatusDialogList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value,
+            value: value.tr,
             child: Text(
-              value,
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!
                   .copyWith(fontSize: 14),
             ),
@@ -203,9 +203,9 @@ class Dropdownallteacher extends StatelessWidget {
          case 'ContractTypeDialog':
         items.addAll(cont.contractTypeDialogList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value,
+            value: value.tr,
             child: Text(
-              value,
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!
                   .copyWith(fontSize: 14),
             ),

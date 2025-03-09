@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class Add_Students_Controller extends GetxController {
-  List<String> Genderlist = ["Male".tr, "Female".tr];
-  List<String> Realagonlist = ["Muslim".tr, "Christian".tr];
+  List<String> Genderlist = ["Male", "Female"];
+  List<String> Realagonlist = ["Muslim", "Christian"];
   List<String> BloodTypelist = [
     "A+",
     "A-",
@@ -17,7 +17,7 @@ class Add_Students_Controller extends GetxController {
     "O+",
     "O-"
   ];
-  List<String> FamilyStatelist = ["Widow".tr, "Single".tr, "Married".tr, "Divorced".tr];
+  List<String> FamilyStatelist = ["Widow", "Single", "Married", "Divorced"];
 
   List<String> Locationlist = [];
   List<String> Classlist = [];

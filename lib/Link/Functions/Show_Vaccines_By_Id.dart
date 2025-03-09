@@ -7,6 +7,8 @@ import 'package:vms_school/Link/API/DownloadFiles.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Vaccines_Model.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
@@ -21,7 +23,7 @@ Show_Vaccines_By_Id_Funcation(
     Get.dialog(VMSAlertDialog(
         action: [
           ButtonDialog(
-              text: "Done",
+              text: "Done".tr,
               onPressed: () {
                 Get.find<Vaccines_Controller>().SetFinalList();
                 Update_Students_Vaccines_API(context).Update_Students_Vaccines(
@@ -74,7 +76,7 @@ Show_Vaccines_By_Id_Funcation(
                           control.SetisSelectedOnly(value!);
                         },
                       ),
-                      Text('Show only selected items'),
+                      Text('Show only selected items'.tr),
                     ],
                   ),
                   Expanded(
@@ -139,7 +141,9 @@ Show_Vaccines_By_Id_Funcation(
                                     child: Center(
                                       child: Text(
                                         textAlign: TextAlign.center,
-                                        "${illness.enName}",
+                                        prefs!.getString(languageKey) == 'ar'
+                                            ? "${illness.name}"
+                                            : "${illness.enName}",
                                         style: Get.theme.textTheme.bodyMedium!
                                             .copyWith(
                                                 fontSize: 18,
@@ -296,7 +300,7 @@ Show_Vaccines_By_Id_Funcation(
             }),
           ),
         ),
-        apptitle: "Students Vaccine",
+        apptitle: "Student Vaccine".tr,
         subtitle: "none"));
   } catch (e) {
     print(e.toString());

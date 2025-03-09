@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 
 class Section3 extends StatelessWidget {
   const Section3({super.key});
@@ -14,7 +16,7 @@ class Section3 extends StatelessWidget {
       margin: EdgeInsets.only(top: h / 6.84),
       child: Column(
         children: [
-          Text("How I Can Enroll At Virtual Modern School",
+          Text("How I Can Enroll At Virtual Modern School".tr,
               style: Get.theme.textTheme.titleMedium!.copyWith(
                 fontSize: 24,
               )),
@@ -28,72 +30,58 @@ class Section3 extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.only(left: w / 64),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: Text(
-                          "Parents of our students can register their children in the Virtual Modern School ",
-                          style: Get.theme.textTheme.bodyMedium!.copyWith(
-                            fontSize: 16
-                          )),
-                    ),
-                    Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: Text(" by the following steps:",
-                          style: Get.theme.textTheme.bodyMedium!.copyWith(
-                            fontSize: 16
-                          )),
-                    ),
-                    SizedBox(
-                      height: h / 34.2,
-                    ),
-                    Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: Text(
-                          "1. Enter the first and last name of the guardian",
-                          style: Get.theme.textTheme.bodyMedium!.copyWith(
-                            fontSize: 16
-                          )),
-                    ),
-                    SizedBox(
-                      height: h / 34.2,
-                    ),
-                    Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: Text("2. Enter the guardian's mobile phone number",
-                          style: Get.theme.textTheme.bodyMedium!.copyWith(
-                            fontSize: 16
-                          )),
-                    ),
-                    SizedBox(
-                      height: h / 34.2,
-                    ),
-                    Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: Text(
-                          "3. Enter the Syrian national number of the guardian",
-                          style: Get.theme.textTheme.bodyMedium!.copyWith(
-                            fontSize: 16
-                          )),
-                    ),
-                    SizedBox(
-                      height: h / 17.1,
-                    ),
-                    Container(
-                      height: h / 13.68,
-                      width: w / 9.846,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: const Color(0xff19478d)),
-                          borderRadius: BorderRadius.circular(10),
-                          color: Get.theme.primaryColor),
-                      child: Center(
-                        child: Text("Read More",
-                            style: Get.theme.textTheme.displayMedium!),
+                child: Directionality(
+                  textDirection: prefs!.getString(languageKey) == 'ar'
+                      ? TextDirection.rtl
+                      : TextDirection.ltr,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                          "Parents of our students can register their children in the Virtual Modern School"
+                              .tr,
+                          style: Get.theme.textTheme.bodyMedium!
+                              .copyWith(fontSize: 16)),
+                      Text("by the following steps:".tr,
+                          style: Get.theme.textTheme.bodyMedium!
+                              .copyWith(fontSize: 16)),
+                      SizedBox(
+                        height: h / 34.2,
                       ),
-                    )
-                  ],
+                      Text(
+                          "1. Enter the first and last name of the guardian".tr,
+                          style: Get.theme.textTheme.bodyMedium!
+                              .copyWith(fontSize: 16)),
+                      SizedBox(
+                        height: h / 34.2,
+                      ),
+                      Text("2. Enter the mobile phone number of guardian".tr,
+                          style: Get.theme.textTheme.bodyMedium!
+                              .copyWith(fontSize: 16)),
+                      SizedBox(
+                        height: h / 34.2,
+                      ),
+                      Text(
+                          "3. Enter the Syrian national number of the guardian"
+                              .tr,
+                          style: Get.theme.textTheme.bodyMedium!
+                              .copyWith(fontSize: 16)),
+                      SizedBox(
+                        height: h / 17.1,
+                      ),
+                      Container(
+                        height: h / 13.68,
+                        width: w / 9.846,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Get.theme.primaryColor),
+                        child: Center(
+                          child: Text("Read More".tr,
+                              style: Get.theme.textTheme.displayMedium!),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],

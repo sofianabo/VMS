@@ -10,6 +10,8 @@ import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/T
 import 'package:vms_school/Link/Model/AdminModel/OneStudentAttendenceModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/TeacherSubjectModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/oneEmployeeAttendenceModel.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 import '../../API.dart' as global;
@@ -54,19 +56,19 @@ class Getteachersubjectapi {
                           columns: [
                             DataColumn(
                               label: Text(
-                                'Subject',
+                                'Subject'.tr,
                                 style: Get.theme.textTheme.bodyMedium,
                               ),
                             ),
                             DataColumn(
                               label: Text(
-                                'Class',
+                                'Class'.tr,
                                 style: Get.theme.textTheme.bodyMedium,
                               ),
                             ),
                             DataColumn(
                               label: Text(
-                                'Division',
+                                'Division'.tr,
                                 style: Get.theme.textTheme.bodyMedium,
                               ),
                             ),
@@ -78,20 +80,26 @@ class Getteachersubjectapi {
                                 cells: [
                                   DataCell(
                                     Text(
-                                      emp.subjects.enName ?? 'N/A',
+                                      prefs!.getString(languageKey) == 'ar'
+                                          ? emp.subjects.name
+                                          : emp.subjects.enName ?? 'N/A',
                                       style: Get.theme.textTheme.bodyMedium,
                                     ),
                                   ),
                                   //status
                                   DataCell(
                                     Text(
-                                      emp.classes.enName ?? 'N/A',
+                                      prefs!.getString(languageKey) == 'ar'
+                                          ? emp.classes.name
+                                          : emp.classes.enName ?? 'N/A',
                                       style: Get.theme.textTheme.bodyMedium,
                                     ),
                                   ),
                                   DataCell(
                                     Text(
-                                      emp.division.enName ?? 'N/A',
+                                      prefs!.getString(languageKey) == 'ar'
+                                          ? emp.division.name
+                                          : emp.division.enName ?? 'N/A',
                                       style: Get.theme.textTheme.bodyMedium,
                                     ),
                                   ),
@@ -104,8 +112,9 @@ class Getteachersubjectapi {
                   ],
                 ),
               ),
-              apptitle:
-                  "${oneControl.filteredTeacher![index].fullName} Subjects ",
+              apptitle: "sub".tr +
+                  " ${oneControl.filteredTeacher![index].fullName} " +
+                  "Subjects".tr,
               subtitle: "none",
             );
           },

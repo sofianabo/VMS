@@ -5,6 +5,8 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownGrad
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/AddStudentAttendenceAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/IncreaseAttendanceAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/Students_Manager/StudentsAttendanceManagmentGrid.dart';
 import 'package:vms_school/widgets/Admin_Students/DropDownStudentsAttendencemgmt.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
@@ -53,7 +55,7 @@ class _StudentsAttendanceManagmentState
                       child: DropDownStudentsAttendencemgmt(
                         isLoading: controller.isGradeLoading,
                         type: "grade",
-                        title: "Grade",
+                        title: "Grade".tr,
                         width: w / 5,
                       ),
                     ),
@@ -63,7 +65,7 @@ class _StudentsAttendanceManagmentState
                         isDisabled: controller.gradeIndex == "" ? true : false,
                         isLoading: controller.isClassLoading,
                         type: "class",
-                        title: "Class",
+                        title: "Class".tr,
                         width: w / 5,
                       ),
                     ),
@@ -73,7 +75,7 @@ class _StudentsAttendanceManagmentState
                         isLoading: controller.isDivisionLoading,
                         isDisabled: controller.classIndex == "" ? true : false,
                         type: "division",
-                        title: "Division",
+                        title: "Division".tr,
                         width: w / 5,
                       ),
                     ),
@@ -91,36 +93,48 @@ class _StudentsAttendanceManagmentState
                                         controller.isLoading == true) {
                                     } else {
                                       if (value == true) {
-                                        Get.dialog(VMSAlertDialog(
-                                            action: [
-                                              ButtonDialog(
-                                                  text: "Done",
-                                                  onPressed: () {
-                                                    controller.setAllAsHoliday(
-                                                        value!, cuse.text);
-                                                    Get.back();
-                                                  },
-                                                  color: Theme.of(context)
-                                                      .primaryColor,
-                                                  width: 65)
-                                            ],
-                                            contents: SizedBox(
-                                              width: 500,
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  Textfildwithupper(
-                                                      width: 250,
-                                                      controller: cuse,
-                                                      Uptext: "Cause",
-                                                      hinttext: "Cause")
-                                                ],
+                                        Get.dialog(Directionality(
+                                          textDirection:
+                                              prefs!.getString(languageKey) ==
+                                                      'ar'
+                                                  ? TextDirection.rtl
+                                                  : TextDirection.ltr,
+                                          child: VMSAlertDialog(
+                                              action: [
+                                                ButtonDialog(
+                                                    text: "Done".tr,
+                                                    onPressed: () {
+                                                      controller
+                                                          .setAllAsHoliday(
+                                                              value!,
+                                                              cuse.text);
+                                                      Get.back();
+                                                    },
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    width: 65)
+                                              ],
+                                              contents: SizedBox(
+                                                width: 500,
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    Textfildwithupper(
+                                                        width: 250,
+                                                        controller: cuse,
+                                                        Uptext: "Cause".tr,
+                                                        hinttext: "Cause".tr)
+                                                  ],
+                                                ),
                                               ),
-                                            ),
-                                            apptitle:
-                                                "Enter The Reason For Absence",
-                                            subtitle:
-                                                "The reason for the absence of the all students"));
+                                              apptitle:
+                                                  "Enter The Reason For Absence"
+                                                      .tr,
+                                              subtitle:
+                                                  "The reason for the absence of the all students"
+                                                      .tr),
+                                        ));
                                       } else {
                                         controller.setAllAsHoliday(
                                             value!, null);
@@ -128,7 +142,7 @@ class _StudentsAttendanceManagmentState
                                     }
                                   },
                                 ),
-                                const Text("Set All As a Holiday"),
+                                Text("Set All As a Holiday".tr),
                               ],
                             ))),
                     Container(

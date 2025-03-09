@@ -16,8 +16,8 @@ class Section5 extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.only(bottom: h / 25),
-            child: Text("Who Are We",
-                style: Get.theme.textTheme.titleMedium!),
+            child:
+                Text("Who Are We".tr, style: Get.theme.textTheme.titleMedium!),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -27,17 +27,20 @@ class Section5 extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                          "is a community of learners, including students, parents, and staff, dedicated to creating a rigorous and",
+                          "is a community of learners, including students, parents, and staff, dedicated to creating a rigorous and"
+                              .tr,
                           style: Get.theme.textTheme.bodyMedium!),
-                      Text("VIRTUAL MODERN SCHOOL (VMS)",
+                      Text("VIRTUAL MODERN SCHOOL (VMS)".tr,
                           style: Get.theme.textTheme.bodyMedium!),
                     ],
                   ),
                   Text(
-                      " inclusive educational environment. VMS students are goal-oriented, critical thinkers, and community leaders ",
+                      "inclusive educational environment. VMS students are goal-oriented, critical thinkers, and community leaders"
+                          .tr,
                       style: Get.theme.textTheme.bodyMedium!),
                   Text(
-                    "committed to achieving high levels of integrity and academic success.",
+                    "committed to achieving high levels of integrity and academic success."
+                        .tr,
                     style: Get.theme.textTheme.bodyMedium!,
                   ),
                   Column(
@@ -59,24 +62,23 @@ class Section5 extends StatelessWidget {
                             padding: EdgeInsets.only(top: h / 22.8),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30),
-                                color: const Color(0xffeaf0ff)),
+                                color: Get.theme.colorScheme.onPrimary),
                             child: Column(
                               children: [
                                 Text(
-                                    "VIRTUAL MODERN SCHOOL (VMS) staff aim to create a supportive",
-                                    style:
-                                        Get.theme.textTheme.bodyMedium!),
+                                    "VIRTUAL MODERN SCHOOL (VMS) staff aim to create a supportive"
+                                        .tr,
+                                    style: Get.theme.textTheme.bodyMedium!),
                                 Text(
-                                    "and challenging environment for all students to reach their potential,",
-                                    style:
-                                        Get.theme.textTheme.bodyMedium!),
+                                    "and challenging environment for all students to reach their potential,"
+                                        .tr,
+                                    style: Get.theme.textTheme.bodyMedium!),
                                 Text(
-                                    "engaging in continuous improvement through goal setting and",
-                                    style:
-                                        Get.theme.textTheme.bodyMedium!),
-                                Text("reflection",
-                                    style:
-                                        Get.theme.textTheme.bodyMedium!),
+                                    "engaging in continuous improvement through goal setting and"
+                                        .tr,
+                                    style: Get.theme.textTheme.bodyMedium!),
+                                Text("reflection".tr,
+                                    style: Get.theme.textTheme.bodyMedium!),
                                 SizedBox(
                                   height: h / 34.2,
                                 ),
@@ -88,10 +90,8 @@ class Section5 extends StatelessWidget {
                                 SizedBox(
                                   height: h / 34.2,
                                 ),
-                                Text("Virtual Modern School",
-                                    style: Get
-                                        .theme.primaryTextTheme.titleSmall!
-                                        .copyWith(color: Colors.black))
+                                Text("Virtual Modern School".tr,
+                                    style: Get.theme.textTheme.headlineLarge!)
                               ],
                             ),
                           ),

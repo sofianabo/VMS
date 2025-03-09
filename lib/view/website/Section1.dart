@@ -144,22 +144,14 @@ class Section1 extends StatelessWidget {
                                         padding: EdgeInsets.only(top: h / 68.4),
                                         child: Text("${control.teacher}",
                                             style: Get
-                                                .theme.textTheme.bodyMedium!
-                                                .copyWith(
-                                                    fontSize: 16,
-                                                    color: Get
-                                                        .theme.primaryColor)),
+                                                .theme.textTheme.bodyMedium!),
                                       ),
                                       Padding(
                                         padding: EdgeInsets.only(top: h / 68.4),
                                         child: Text(
                                           "Teachers".tr,
-                                          style: Get
-                                              .theme.primaryTextTheme.bodySmall!
-                                              .copyWith(
-                                                  fontSize: 14,
-                                                  color:
-                                                      Get.theme.primaryColor),
+                                          style: Get.theme.textTheme
+                                              .bodyMedium!,
                                         ),
                                       ),
                                     ],
@@ -194,21 +186,13 @@ class Section1 extends StatelessWidget {
                                         padding: EdgeInsets.only(top: h / 68.4),
                                         child: Text("${control.student}",
                                             style: Get
-                                                .theme.textTheme.bodyMedium!
-                                                .copyWith(
-                                                    fontSize: 16,
-                                                    color: Get
-                                                        .theme.primaryColor)),
+                                                .theme.textTheme.bodyMedium!),
                                       ),
                                       Padding(
                                         padding: EdgeInsets.only(top: h / 68.4),
                                         child: Text("Students".tr,
                                             style: Get
-                                                .theme.textTheme.bodyMedium!
-                                                .copyWith(
-                                                    fontSize: 14,
-                                                    color: Get
-                                                        .theme.primaryColor)),
+                                                .theme.textTheme.bodyMedium!),
                                       ),
                                     ],
                                   ),
@@ -240,21 +224,13 @@ class Section1 extends StatelessWidget {
                                         padding: EdgeInsets.only(top: h / 68.4),
                                         child: Text("${control.visitor}",
                                             style: Get
-                                                .theme.textTheme.bodyMedium!
-                                                .copyWith(
-                                                    fontSize: 16,
-                                                    color: Get
-                                                        .theme.primaryColor)),
+                                                .theme.textTheme.bodyMedium!),
                                       ),
                                       Padding(
                                         padding: EdgeInsets.only(top: h / 68.4),
                                         child: Text("Visitors".tr,
                                             style: Get
-                                                .theme.textTheme.bodyMedium!
-                                                .copyWith(
-                                                    fontSize: 14,
-                                                    color: Get
-                                                        .theme.primaryColor)),
+                                                .theme.textTheme.bodyMedium!),
                                       ),
                                     ],
                                   ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/HomeScreenApI.dart';
 import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/view/website/Appbar.dart';
 import 'package:vms_school/view/website/Section1.dart';
 import 'package:vms_school/view/website/Section2.dart';
@@ -26,7 +27,8 @@ class _HomeState extends State<Home> {
   final Section6Key = new GlobalKey();
   final Section7Key = new GlobalKey();
 
-  LocalizationController loc = Get.put(LocalizationController(), permanent: true);
+  LocalizationController loc =
+      Get.put(LocalizationController(), permanent: true);
 
   @override
   void initState() {

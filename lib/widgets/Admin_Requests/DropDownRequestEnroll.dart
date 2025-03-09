@@ -84,7 +84,7 @@ class Dropdownrequestenroll extends StatelessWidget {
                                   orElse: () => newValue);
                               cont.selectIndex(type, originalValue);
                             }
-                          }, 
+                          },
                           dropdownColor: Theme.of(context).cardColor,
                           iconDisabledColor: Colors.grey,
                           iconEnabledColor: Theme.of(context).cardColor,
@@ -166,7 +166,7 @@ class Dropdownrequestenroll extends StatelessWidget {
             child:
                 Text(value.tr, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () async {
-              cont.selectIndex(type, value.tr);
+              cont.selectIndex(type, value);
             },
           );
         }).toList());

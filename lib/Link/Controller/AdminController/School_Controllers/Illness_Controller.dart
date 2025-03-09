@@ -168,7 +168,7 @@ class Illness_Controller extends gets.GetxController {
                                         fontSize: 16,
                                         color: gets.Get.theme.primaryColor),
                                     textAlign: TextAlign.center,
-                                    "If You Deselected The Illness The File Will Remove"))),
+                                    "If You Deselected The Illness The File Will Remove".tr))),
                       ],
                     ),
                   ),
@@ -185,7 +185,7 @@ class Illness_Controller extends gets.GetxController {
                                 Color(0xFF2E98A8)),
                             minimumSize:
                                 MaterialStatePropertyAll(Size(300 / 3, 50))),
-                        child: const Text('Yes',
+                        child:  Text('Yes'.tr,
                             style: TextStyle(color: Colors.white)),
                         onPressed: () {
                           removeFile(illness);
@@ -205,7 +205,7 @@ class Illness_Controller extends gets.GetxController {
                                 Color(0xFF2E98A8)),
                             minimumSize:
                                 MaterialStatePropertyAll(Size(300 / 3, 50))),
-                        child: const Text('Back',
+                        child:  Text('Back'.tr,
                             style: TextStyle(color: Colors.white)),
                         onPressed: () {
                           gets.Get.back();
@@ -332,7 +332,7 @@ class Illness_Controller extends gets.GetxController {
                                       fontSize: 16,
                                       color: gets.Get.theme.primaryColor),
                                   textAlign: TextAlign.center,
-                                  "If You Click Yes The File Will Remove"))),
+                                  "If You Click Yes The File Will Remove".tr))),
                     ],
                   ),
                 ),
@@ -349,7 +349,7 @@ class Illness_Controller extends gets.GetxController {
                               MaterialStatePropertyAll(Color(0xff972F2F)),
                           minimumSize:
                               MaterialStatePropertyAll(Size(300 / 3, 50))),
-                      child: const Text('Yes',
+                      child:  Text('Yes'.tr,
                           style: TextStyle(color: Colors.white)),
                       onPressed: () {
                         var existingFile = files.firstWhere(
@@ -381,7 +381,7 @@ class Illness_Controller extends gets.GetxController {
                               MaterialStatePropertyAll(Color(0xff134B70)),
                           minimumSize:
                               MaterialStatePropertyAll(Size(300 / 3, 50))),
-                      child: const Text('Back',
+                      child:  Text('Back'.tr,
                           style: TextStyle(color: Colors.white)),
                       onPressed: () {
                         gets.Get.back();
@@ -416,7 +416,7 @@ class Illness_Controller extends gets.GetxController {
       return filename;
     }
 
-    return "Vaccine File";
+    return "illness File".tr;
   }
 
   void SetFinalList() {

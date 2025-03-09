@@ -170,6 +170,8 @@ class SideBarAdmin extends StatelessWidget {
                       }
                       if (value == "Teacher Status".tr) {
                         cont.updateContent("Teacher Status");
+                      
+                      
                       }
                       if (value == "Teacher Attendance Managment".tr) {
                         cont.updateContent("Teacher Attendance Managment");

@@ -3,6 +3,8 @@ import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/A
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCurriculumn_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Subject_Model.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 
 class Subject_Controller extends GetxController {
   var Subjects = <Map<String, dynamic>>[].obs;
@@ -27,7 +29,10 @@ class Subject_Controller extends GetxController {
         'enName': subg.enName,
         'hasCurriculum': subg.hasCurriculum,
       });
-      subjectNames.add(subg.enName!);
+      if (prefs!.getString(languageKey) == 'ar')
+        subjectNames.add(subg.name!);
+      else
+        subjectNames.add(subg.enName!);
     }
     Get.find<Curriculumn_Controller>().addlistsubject(subjectNames);
     Get.find<Allteachercontroller>().SetSubject(subjectNames);

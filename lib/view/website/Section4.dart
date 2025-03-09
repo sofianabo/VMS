@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 
 class Section4 extends StatelessWidget {
   const Section4({super.key});
@@ -12,27 +14,33 @@ class Section4 extends StatelessWidget {
       padding: EdgeInsets.only(bottom: h / 45.6),
       width: w / 2,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30), color: Get.theme.colorScheme.onPrimary),
+          borderRadius: BorderRadius.circular(30),
+          color: Get.theme.colorScheme.onPrimary),
       child: Column(
         children: [
           Directionality(
-              textDirection: TextDirection.ltr,
+              textDirection: prefs!.getString(languageKey) == 'ar'
+                  ? TextDirection.rtl
+                  : TextDirection.ltr,
               child: Padding(
                 padding: EdgeInsets.only(top: h / 38),
-                child: Text("Why Us?",
-                    style: Get.theme.textTheme.titleMedium!),
+                child:
+                    Text("Why Us?".tr, style: Get.theme.textTheme.titleMedium!),
               )),
           SizedBox(
             height: h / 27.36,
           ),
           Text(
-              "Virtual Modern School is an online learning platform that helps students to learn the",
+              "Virtual Modern School is an online learning platform that helps students to learn the"
+                  .tr,
               style: Get.theme.textTheme.bodyMedium!),
           Text(
-              "Syrian Education Curriculum from home. The courses of this platform are designed",
+              "Syrian Education Curriculum from home. The courses of this platform are designed"
+                  .tr,
               style: Get.theme.textTheme.bodyMedium!),
           Text(
-              "for elementary school, middle school, and high school all in one place.",
+              "for elementary school, middle school, and high school all in one place."
+                  .tr,
               style: Get.theme.textTheme.bodyMedium!),
           SizedBox(
             height: h / 34.2,
@@ -57,9 +65,9 @@ class Section4 extends StatelessWidget {
                     SizedBox(
                       height: h / 68.4,
                     ),
-                    Text("Improving educational",
+                    Text("Improving educational".tr,
                         style: Get.theme.textTheme.bodyMedium!),
-                    Text("Skills", style: Get.theme.textTheme.bodyMedium!)
+                    Text("Skills".tr, style: Get.theme.textTheme.bodyMedium!)
                   ],
                 ),
               ),
@@ -80,9 +88,9 @@ class Section4 extends StatelessWidget {
                     SizedBox(
                       height: h / 68.4,
                     ),
-                    Text("Smart virtual",
+                    Text("Smart virtual".tr,
                         style: Get.theme.textTheme.bodyMedium!),
-                    Text("meeting", style: Get.theme.textTheme.bodyMedium!)
+                    Text("meeting".tr, style: Get.theme.textTheme.bodyMedium!)
                   ],
                 ),
               ),
@@ -103,9 +111,9 @@ class Section4 extends StatelessWidget {
                     SizedBox(
                       height: h / 68.4,
                     ),
-                    Text("Outstanding",
+                    Text("Outstanding".tr,
                         style: Get.theme.textTheme.bodyMedium!),
-                    Text("user - friendliness",
+                    Text("user - friendliness".tr,
                         style: Get.theme.textTheme.bodyMedium!)
                   ],
                 ),
@@ -135,9 +143,9 @@ class Section4 extends StatelessWidget {
                     SizedBox(
                       height: h / 68.4,
                     ),
-                    Text("Instant live",
+                    Text("Instant live".tr,
                         style: Get.theme.textTheme.bodyMedium!),
-                    Text("Lessons", style: Get.theme.textTheme.bodyMedium!)
+                    Text("Lessons".tr, style: Get.theme.textTheme.bodyMedium!)
                   ],
                 ),
               ),
@@ -158,7 +166,7 @@ class Section4 extends StatelessWidget {
                     SizedBox(
                       height: h / 68.4,
                     ),
-                    Text("Focus on results",
+                    Text("Focus on results".tr,
                         style: Get.theme.textTheme.bodyMedium!)
                   ],
                 ),
@@ -180,9 +188,9 @@ class Section4 extends StatelessWidget {
                     SizedBox(
                       height: h / 68.4,
                     ),
-                    Text("Multiple registration",
+                    Text("Multiple registration".tr,
                         style: Get.theme.textTheme.bodyMedium!),
-                    Text("options", style: Get.theme.textTheme.bodyMedium!)
+                    Text("options".tr, style: Get.theme.textTheme.bodyMedium!)
                   ],
                 ),
               ),
