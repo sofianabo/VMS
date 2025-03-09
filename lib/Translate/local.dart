@@ -198,14 +198,14 @@ class Languages {
       'Punishing Student': 'معاقبة الطالب',
       'Punishing': 'معاقبة',
       'Contact Us': 'التواصل معنا',
-            'Next': 'التالي',
+      'Next': 'التالي',
 
       'AboutUs': 'حول',
       'WhyUs': 'لماذا نحن',
       'Programs': 'البرمامج',
       'Enrollment': 'التسجيل',
       'Eligibility': 'المؤهلون',
-    
+
       'Back': 'رجوع',
       'Add Students': 'إضافة طالب',
       'Mobile Number :': 'رقم الهاتف:',
@@ -277,10 +277,10 @@ class Languages {
       'Student illeness': 'أمراض الطالب',
       'Done': "تم",
       'Student Vaccine': "لقاحات الطالب",
-            'Add Your Photo Profile': "اضف صورة ملفك الشخصي",
+      'Add Your Photo Profile': "اضف صورة ملفك الشخصي",
 
       /////////////////////////////////section 1 and home appbar////////////////////////
-   
+
       'WE CARE ABOUT \n YOUR FUTURE': 'نحن نعتني\n بمستقبلك',
       'Join us to enter a better world filled with advanced educational methods through Virtual Modern School':
           'انضم إلينا لدخول عالم أفضل مليء بالأساليب التعليمية المتطورة من خلال المدرسة الافتراضية الحديثة',
@@ -426,7 +426,7 @@ class Languages {
       'The reason for the absence of the student': 'سبب غياب الطالب',
       'Attendance Today Has Been Uploaded': 'الحضور رفع اليوم',
       'Attendence': '',
-      "att":"حضور",
+      "att": "حضور",
       'Subject': 'المادة',
       'Add Teacher': 'إضافة معلم',
       'Contract Type': 'نوع العقد',
@@ -445,12 +445,11 @@ class Languages {
       'Vaccine File': 'ملف لقاح',
       'Employee Illness': 'أمراض الموظف',
       'Teacher Illness': 'أمراض المعلم',
-        'The reason for the absence of the all Teachers': 'سبب غياب كل المعلمين',
+      'The reason for the absence of the all Teachers': 'سبب غياب كل المعلمين',
       'Vacation': 'إجازة',
-        "sub":"مواد",
+      "sub": "مواد",
 
       'Subjects': '',
-
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -900,11 +899,11 @@ class Languages {
       'Employee Illness': 'Employee Illness',
       'Teacher Illness': 'Teacher Illness',
 
-
-      'The reason for the absence of the all Teachers': 'The reason for the absence of the all Teachers',
+      'The reason for the absence of the all Teachers':
+          'The reason for the absence of the all Teachers',
       'Vacation': 'Vacation',
-            "att":"",
-            "sub":"",
+      "att": "",
+      "sub": "",
 
       'Subjects': 'Subjects',
       '': '',
