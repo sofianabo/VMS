@@ -283,7 +283,7 @@ class Languages {
           'اضغط لإضافة دفتر العائلة  \nأو\nاسحب وأفلت الملف هنا',
       'Student illeness': 'أمراض الطالب',
       'Done': "تم",
-      'Student Vaccine': "لقاحات الطالب"
+      'Student Vaccine': "لقاحات الطالب",
             'Add Your Photo Profile': "اضف صورة ملفك الشخصي",
 
     },
