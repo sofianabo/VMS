@@ -8,7 +8,7 @@ String Home = "homeScreen";
 //..................... Auth ...................//
 
 String LOGIN = "login";
-String logout = "logoutF";
+String logout = "logout";
 
 //..................... Students ...................//
 

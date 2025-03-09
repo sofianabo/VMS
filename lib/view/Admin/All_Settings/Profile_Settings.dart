@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AuthAPI/LogoutAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Admin/All_Settings/Account_And_Password.dart';
 import 'package:vms_school/view/Admin/All_Settings/Apperance.dart';
 import 'package:vms_school/view/Admin/All_Settings/Prof_Section.dart';
 import 'package:vms_school/view/Admin/All_Settings/Personal_Section.dart';
+import 'package:vms_school/view/Admin/All_Settings/Verifing_Code_Dialog.dart';
 
 class ProfileSettings extends StatefulWidget {
   ProfileSettings({super.key});
@@ -83,18 +85,17 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                 onTap: () {
                                   controller.ChangeCurruntValue("Profile");
                                 },
-                                child: AnimatedContainer(
+                                child: Container(
                                   decoration: BoxDecoration(
                                       color: controller.curruntValue ==
                                               "Profile"
                                           ? _isDarkMode.value
                                               ? Theme.of(context).indicatorColor
                                               : Color(0xffEBEBEB)
-                                          : Theme.of(context).cardColor,
+                                          : Colors.transparent,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(20))),
                                   padding: EdgeInsets.all(5.0),
-                                  duration: Duration(milliseconds: 150),
                                   child: Row(
                                     textDirection:
                                         Get.find<LocalizationController>()
@@ -115,18 +116,17 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                 onTap: () {
                                   controller.ChangeCurruntValue("Personal");
                                 },
-                                child: AnimatedContainer(
+                                child: Container(
                                   decoration: BoxDecoration(
                                       color: controller.curruntValue ==
                                               "Personal"
                                           ? _isDarkMode.value
                                               ? Theme.of(context).indicatorColor
                                               : Color(0xffEBEBEB)
-                                          : Theme.of(context).cardColor,
+                                          : Colors.transparent,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(20))),
                                   padding: EdgeInsets.all(5.0),
-                                  duration: Duration(milliseconds: 150),
                                   child: Row(
                                     textDirection:
                                         Get.find<LocalizationController>()
@@ -147,18 +147,17 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                 onTap: () {
                                   controller.ChangeCurruntValue("Password");
                                 },
-                                child: AnimatedContainer(
+                                child: Container(
                                   decoration: BoxDecoration(
                                       color: controller.curruntValue ==
                                               "Password"
                                           ? _isDarkMode.value
                                               ? Theme.of(context).indicatorColor
                                               : Color(0xffEBEBEB)
-                                          : Theme.of(context).cardColor,
+                                          : Colors.transparent,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(20))),
                                   padding: EdgeInsets.all(5.0),
-                                  duration: Duration(milliseconds: 150),
                                   child: Row(
                                     textDirection:
                                         Get.find<LocalizationController>()
@@ -182,6 +181,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                   controller.ChangeCurruntValue("Appearance");
                                 },
                                 child: AnimatedContainer(
+                                  duration: Duration(milliseconds: 150),
                                   decoration: BoxDecoration(
                                       color: controller.curruntValue ==
                                               "Appearance"
@@ -192,7 +192,6 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(20))),
                                   padding: EdgeInsets.all(5.0),
-                                  duration: Duration(milliseconds: 150),
                                   child: Row(
                                     textDirection:
                                         Get.find<LocalizationController>()
@@ -217,33 +216,93 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                               ),
                               GestureDetector(
                                 onTap: () {},
-                                child: Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Row(
-                                    textDirection:
-                                        Get.find<LocalizationController>()
-                                                    .currentLocale
-                                                    .value
-                                                    .languageCode ==
-                                                'ar'
-                                            ? TextDirection.rtl
-                                            : TextDirection.ltr,
-                                    children: [
-                                      Icon(
-                                        Icons.login_outlined,
-                                        color: _isDarkMode.value
-                                            ? Colors.redAccent
-                                            : Color(0xffB03D3D),
+                                child: PopupMenuButton<int>(
+                                  tooltip: "",
+                                  onSelected: (value) async {
+                                    if (value == 1) {
+                                      await Logoutapi(context)
+                                          .Logout(Type: "now");
+                                    } else if (value == 2) {
+                                      await Logoutapi(context)
+                                          .Logout(Type: "all");
+                                    }
+                                  },
+                                  itemBuilder: (context) => [
+                                    PopupMenuItem(
+                                      value: 1,
+                                      child: Row(
+                                        children: [
+                                          Icon(Icons.logout,
+                                              size: 18,
+                                              color: _isDarkMode.value
+                                                  ? Colors.redAccent
+                                                  : Color(0xffB03D3D)),
+                                          SizedBox(width: 8),
+                                          Text(
+                                              style: TextStyle(
+                                                  color: _isDarkMode.value
+                                                      ? Colors.redAccent
+                                                      : Color(0xffB03D3D)),
+                                              "Logout from Current Session".tr),
+                                        ],
                                       ),
-                                      Text(
-                                        "  " + "Logout".tr + "  ",
-                                        style: TextStyle(
+                                    ),
+                                    PopupMenuItem(
+                                      value: 2,
+                                      child: Row(
+                                        children: [
+                                          Icon(Icons.mobile_off,
+                                              size: 18,
+                                              color: _isDarkMode.value
+                                                  ? Colors.redAccent
+                                                  : Color(0xffB03D3D)),
+                                          SizedBox(width: 8),
+                                          Text(
+                                              style: TextStyle(
+                                                  color: _isDarkMode.value
+                                                      ? Colors.redAccent
+                                                      : Color(0xffB03D3D)),
+                                              "Logout from All Sessions".tr),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.transparent,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(20)),
+                                    ),
+                                    padding: EdgeInsets.all(5.0),
+                                    child: Row(
+                                      textDirection:
+                                          Get.find<LocalizationController>()
+                                                      .currentLocale
+                                                      .value
+                                                      .languageCode ==
+                                                  'ar'
+                                              ? TextDirection.rtl
+                                              : TextDirection.ltr,
+                                      children: [
+                                        Icon(
+                                          Icons.login_outlined,
                                           color: _isDarkMode.value
                                               ? Colors.redAccent
                                               : Color(0xffB03D3D),
                                         ),
-                                      )
-                                    ],
+                                        Text(
+                                          "  " + "Logout".tr + "  ",
+                                          maxLines: 2,
+                                          style: TextStyle(
+                                            color: _isDarkMode.value
+                                                ? Colors.redAccent
+                                                : Color(0xffB03D3D),
+                                          ),
+                                          textAlign: TextAlign.center,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
