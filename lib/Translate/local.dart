@@ -661,13 +661,13 @@ class Languages {
       'Enrollment': 'Enrollment',
       'Eligibility': 'Eligibility',
       'Who Can We Register At Virtual Modern School':
-      'Who Can We Register At Virtual Modern School',
+          'Who Can We Register At Virtual Modern School',
       'Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary':
-      'Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary',
+          'Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary',
       'to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted':
-      'to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted',
+          'to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted',
       'by the Ministry of Education at Syrian Arab Republic':
-      'by the Ministry of Education at Syrian Arab Republic',
+          'by the Ministry of Education at Syrian Arab Republic',
       'Back': 'Back',
       'Add Students': 'Add Students',
       'Mobile Number :': 'Mobile Number :',
@@ -742,12 +742,6 @@ class Languages {
       'Add Picture': 'Add Picture',
 
 ////////////////////////////////section 1 and home appbar////////////////////////////////////
-      'Contact Us': 'Contact Us',
-      'AboutUs': 'AboutUs',
-      'WhyUs': 'WhyUs',
-      'Programs': 'Programs',
-      'Enrollment': 'Enrollment',
-      'Eligibility': 'Eligibility',
       'WE CARE ABOUT \n YOUR FUTURE': 'WE CARE ABOUT \n YOUR FUTURE',
       'Join us to enter a better world filled with advanced educational methods through Virtual Modern School':
           'Join us to enter a better world filled with advanced educational methods through Virtual Modern School',
@@ -757,14 +751,6 @@ class Languages {
       'Students': 'Students',
       'Visitors': 'Visitors',
 /////////////////////////section 2////////////////////////////////////////////
-      'Who Can We Register At Virtual Modern School':
-          'Who Can We Register At Virtual Modern School',
-      'Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary':
-          'Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary',
-      'to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted':
-          'to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted',
-      'by the Ministry of Education at Syrian Arab Republic':
-          'by the Ministry of Education at Syrian Arab Republic',
       'People with special needs who are residing in Syria are uncapable to study in regular schools uncapable':
           'People with special needs who are residing in Syria are uncapable to study in regular schools uncapable',
       'to study uncapable to study in regular schools and exceptional students cases determined by the':
