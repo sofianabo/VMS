@@ -6,6 +6,8 @@ import 'package:vms_school/Link/API/DownloadFiles.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
@@ -22,7 +24,7 @@ Show_Teacher_Illnes_By_Id(
     Get.dialog(VMSAlertDialog(
         action: [
           ButtonDialog(
-              text: "Done",
+              text: "Done".tr,
               onPressed: () {
                 Get.find<Illness_Controller>().SetFinalList();
                 Update_Employee_Illness_API(context).Update_Employee_Illness(
@@ -75,7 +77,7 @@ Show_Teacher_Illnes_By_Id(
                           control.SetisSelectedOnly(value!);
                         },
                       ),
-                      Text('Show only selected items'),
+                      Text('Show only selected items'.tr),
                     ],
                   ),
                   Expanded(
@@ -138,7 +140,9 @@ Show_Teacher_Illnes_By_Id(
                                     child: Center(
                                       child: Text(
                                         textAlign: TextAlign.center,
-                                        "${illness.enName}",
+                                        prefs!.getString(languageKey) == 'ar'
+                                            ? "${illness.name}"
+                                            : "${illness.enName}",
                                         style: Get.theme.textTheme.bodyMedium!
                                             .copyWith(
                                                 fontSize: 18,
@@ -272,7 +276,7 @@ Show_Teacher_Illnes_By_Id(
             }),
           ),
         ),
-        apptitle: IsTeacher == true ? "Teacher Illness" : "Employee Illness",
+        apptitle: IsTeacher == true ? "Teacher Illness".tr : "Employee Illness".tr,
         subtitle: "none"));
   } catch (e) {
     print(e.toString());

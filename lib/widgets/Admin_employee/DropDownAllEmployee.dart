@@ -24,46 +24,47 @@ class Dropdownallemployee extends StatelessWidget {
       switch (type) {
         case 'jobTitle':
           selectedValue = cont.selectejobTitleIndex.isNotEmpty
-              ? cont.selectejobTitleIndex
+              ? cont.selectejobTitleIndex.tr
               : title;
           break;
         case 'roll':
-          selectedValue =
-              cont.selecterollIndex.isNotEmpty ? cont.selecterollIndex : title;
+          selectedValue = cont.selecterollIndex.isNotEmpty
+              ? cont.selecterollIndex.tr
+              : title;
           break;
         case 'feroll':
           selectedValue = cont.selecteferollIndex.isNotEmpty
-              ? cont.selecteferollIndex
+              ? cont.selecteferollIndex.tr
               : title;
           break;
         case 'fejop':
           selectedValue = cont.selectefejopIndex.isNotEmpty
-              ? cont.selectefejopIndex
+              ? cont.selectefejopIndex.tr
               : title;
           break;
         case 'rolldialog':
           selectedValue = cont.selectedrolldialogIndex.isNotEmpty
-              ? cont.selectedrolldialogIndex
+              ? cont.selectedrolldialogIndex.tr
               : title;
           break;
         case 'dialogjobTitle':
           selectedValue = cont.selecteddialogjobTitleIndex.isNotEmpty
-              ? cont.selecteddialogjobTitleIndex
+              ? cont.selecteddialogjobTitleIndex.tr
               : title;
           break;
         case 'Gender':
           selectedValue = cont.selecteGenderIndex.isNotEmpty
-              ? cont.selecteGenderIndex
+              ? cont.selecteGenderIndex.tr
               : title;
           break;
         case 'Family_Status':
           selectedValue = cont.selecteFamily_StatusIndex.isNotEmpty
-              ? cont.selecteFamily_StatusIndex
+              ? cont.selecteFamily_StatusIndex.tr
               : title;
           break;
         case 'Contract':
           selectedValue = cont.selecteContractTypeIndex.isNotEmpty
-              ? cont.selecteContractTypeIndex
+              ? cont.selecteContractTypeIndex.tr
               : title;
           break;
       }
@@ -110,7 +111,7 @@ class Dropdownallemployee extends StatelessWidget {
                     value: title,
                     enabled: false,
                     child: Text(
-                      title,
+                      title.tr,
                       style: Get.theme.textTheme.bodyMedium!.copyWith(
                         fontSize: 14,
                       ),
@@ -134,9 +135,9 @@ class Dropdownallemployee extends StatelessWidget {
       case 'jobTitle':
         items.addAll(cont.JobTitleList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value,
+            value: value.tr,
             child: Text(
-              value,
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
@@ -144,9 +145,9 @@ class Dropdownallemployee extends StatelessWidget {
       case 'feroll':
         items.addAll(cont.feRoll.map((String value) {
           return DropdownMenuItem<String>(
-            value: value,
+            value: value.tr,
             child: Text(
-              value,
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
@@ -155,9 +156,9 @@ class Dropdownallemployee extends StatelessWidget {
       case 'fejop':
         items.addAll(cont.feJoptitle.map((String value) {
           return DropdownMenuItem<String>(
-            value: value,
+            value: value.tr,
             child: Text(
-              value,
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
@@ -166,9 +167,9 @@ class Dropdownallemployee extends StatelessWidget {
       case 'roll':
         items.addAll(cont.rolllist.map((String value) {
           return DropdownMenuItem<String>(
-            value: value,
+            value: value.tr,
             child: Text(
-              value,
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
@@ -177,9 +178,9 @@ class Dropdownallemployee extends StatelessWidget {
       case 'dialogjobTitle':
         items.addAll(cont.dialogjobTitleList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value,
+            value: value.tr,
             child: Text(
-              value,
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
@@ -188,9 +189,9 @@ class Dropdownallemployee extends StatelessWidget {
       case 'Gender':
         items.addAll(cont.GenderList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value,
+            value: value.tr,
             child: Text(
-              value,
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
@@ -199,9 +200,9 @@ class Dropdownallemployee extends StatelessWidget {
       case 'Family_Status':
         items.addAll(cont.Family_StatusList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value,
+            value: value.tr,
             child: Text(
-              value,
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
@@ -210,9 +211,9 @@ class Dropdownallemployee extends StatelessWidget {
       case 'rolldialog':
         items.addAll(cont.rolldialoglist.map((String value) {
           return DropdownMenuItem<String>(
-            value: value,
+            value: value.tr,
             child: Text(
-              value,
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
@@ -221,9 +222,9 @@ class Dropdownallemployee extends StatelessWidget {
       case 'Contract':
         items.addAll(cont.contractList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value,
+            value: value.tr,
             child: Text(
-              value,
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );

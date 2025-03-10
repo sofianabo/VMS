@@ -6,6 +6,8 @@ import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/UpdateStuden
 import 'package:vms_school/Link/API/DownloadFiles.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
@@ -20,7 +22,7 @@ Students_Illness_ByID_Funcation(
     Get.dialog(VMSAlertDialog(
         action: [
           ButtonDialog(
-              text: "Done",
+              text: "Done".tr,
               onPressed: () {
                 Get.find<Illness_Controller>().SetFinalList();
                 Update_Students_Illness_API(context).Update_Students_Illness(
@@ -73,7 +75,7 @@ Students_Illness_ByID_Funcation(
                           control.SetisSelectedOnly(value!);
                         },
                       ),
-                      Text('Show only selected items'),
+                      Text('Show only selected items'.tr),
                     ],
                   ),
                   Expanded(
@@ -136,7 +138,9 @@ Students_Illness_ByID_Funcation(
                                     child: Center(
                                       child: Text(
                                         textAlign: TextAlign.center,
-                                        "${illness.enName}",
+                                        prefs!.getString(languageKey) == "ar"
+                                            ? "${illness.name}"
+                                            : "${illness.enName}",
                                         style: Get.theme.textTheme.bodyMedium!
                                             .copyWith(
                                                 fontSize: 18,
@@ -265,7 +269,7 @@ Students_Illness_ByID_Funcation(
             }),
           ),
         ),
-        apptitle: "Students Illness",
+        apptitle: "Student Illness".tr,
         subtitle: "none"));
   } catch (e) {
     print(e.toString());

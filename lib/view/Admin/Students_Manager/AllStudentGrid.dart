@@ -225,7 +225,7 @@ class AllStudentGrid extends StatelessWidget {
                                                 height: 1,
                                               ),
                                               apptitle: "Delete Students".tr,
-                                              subtitle: "Do You Want To Delete"
+                                              subtitle: "Do You Want To Deletee"
                                                       .tr +
                                                   "${control.filteredStudents[index].fullName}" +
                                                   "Student".tr));

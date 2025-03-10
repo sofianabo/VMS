@@ -7,6 +7,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Link/API/AuthAPI/LoginAPI.dart';
 import 'package:vms_school/Link/Controller/AuthController/UserController.dart';
 import 'package:vms_school/Theme/themeController.dart';
+import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/AdminHome.dart';
 import 'package:vms_school/widgets/AuthButton.dart';
@@ -51,8 +52,8 @@ class LoginScreen extends StatelessWidget {
                     Column(
                       children: [
                         Image.asset(
-                          "../../images/section5-image2.png",
-                          width: w / 6.095,
+                          "../../images/section5-image1.png",
+                          width: w / 5.845,
                         )
                             .animate(
                                 onPlay: (controller) => controller.repeat())
@@ -72,36 +73,14 @@ class LoginScreen extends StatelessWidget {
                       ],
                     ),
                     Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text(
-                                    "Username",
-                                    style:
-                                        Get.theme.textTheme.bodyMedium!,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
-                                    child: TextFieldAuth(
-                                      autofill: const [AutofillHints.username],
-                                      controller: username,
-                                      hinttext: "Username",
-                                    ),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 25.0),
-                            child: Row(
+                      child: Directionality(
+                        textDirection: prefs!.getString(languageKey) == 'ar'
+                            ? TextDirection.rtl
+                            : TextDirection.ltr,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Row(
                               children: [
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,30 +88,63 @@ class LoginScreen extends StatelessWidget {
                                       MainAxisAlignment.spaceAround,
                                   children: [
                                     Text(
-                                      "Password",
-                                      style:
-                                      Get.theme.textTheme.bodyMedium!,
+                                      "Username".tr,
+                                      style: Get.theme.textTheme.bodyMedium!,
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(top: 5.0),
-                                      child: TextFormPassword(
-                                          autofill: const [AutofillHints.password],
-                                          controller: password,
-                                          hinttext: "Password"),
-                                    ),
+                                      child: TextFieldAuth(
+                                        autofill: const [
+                                          AutofillHints.username
+                                        ],
+                                        controller: username,
+                                        hinttext: "Username".tr,
+                                      ),
+                                    )
                                   ],
                                 )
                               ],
                             ),
-                          ),
-                        ],
-                      ).animate().fadeIn(duration: const Duration(seconds: 1)),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 25.0),
+                              child: Row(
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Text(
+                                        "Password".tr,
+                                        style: Get.theme.textTheme.bodyMedium!,
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 5.0),
+                                        child: TextFormPassword(
+                                            autofill: const [
+                                              AutofillHints.password
+                                            ],
+                                            controller: password,
+                                            hinttext: "Password".tr),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        )
+                            .animate()
+                            .fadeIn(duration: const Duration(seconds: 1)),
+                      ),
                     ),
                     Column(
                       children: [
                         Image.asset(
-                          "../../images/section5-image1.png",
-                          width: w / 5.845,
+                          "../../images/section5-image2.png",
+                          width: w / 6.095,
                         )
                             .animate(
                                 onPlay: (controller) => controller.repeat())
@@ -155,48 +167,56 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
             ),
-            GetBuilder<UserController>(
-              builder: (controller) {
-                return TextButton(
-                  style: ButtonStyle(shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),)
-                  ,backgroundColor: WidgetStatePropertyAll(Get.theme.primaryColor),
-                    maximumSize: const WidgetStatePropertyAll(Size(200 , 60)),
-                    minimumSize: const WidgetStatePropertyAll(Size(200 , 60)),
-                  ),
-                    onPressed: () async {
-                    if(controller.Isloading == false){
-                      prefs!.setString("username", username.text);
-                      await LoginAPI(context).login(username.text, password.text);
-                    }
-                    },
-                    child: controller.Isloading == true ?
-                    LoadingAnimationWidget.inkDrop(
-                      color: Colors.white,
-                      size: 25,
-                    )
-                    : Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Login",
-                          style: Get.theme.textTheme.displayMedium!
-                              .copyWith(fontSize: 15),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 8.0 , right: 8.0),
-                          child: Icon(
-                            Icons.login,
-                            color: Colors.white,
-                            size: 17,
+            GetBuilder<UserController>(builder: (controller) {
+              return TextButton(
+                      style: ButtonStyle(
+                        shape: WidgetStatePropertyAll(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
                           ),
                         ),
-                      ],
-                    )).animate().fadeIn(duration: const Duration(seconds: 1));
-              }
-            )
+                        backgroundColor:
+                            WidgetStatePropertyAll(Get.theme.primaryColor),
+                        maximumSize:
+                            const WidgetStatePropertyAll(Size(200, 60)),
+                        minimumSize:
+                            const WidgetStatePropertyAll(Size(200, 60)),
+                      ),
+                      onPressed: () async {
+                        if (controller.Isloading == false) {
+                          prefs!.setString("username", username.text);
+                          await LoginAPI(context)
+                              .login(username.text, password.text);
+                        }
+                      },
+                      child: controller.Isloading == true
+                          ? LoadingAnimationWidget.inkDrop(
+                              color: Colors.white,
+                              size: 25,
+                            )
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Login".tr,
+                                  style: Get.theme.textTheme.displayMedium!
+                                      .copyWith(fontSize: 15),
+                                ),
+                                const Padding(
+                                  padding:
+                                      EdgeInsets.only(left: 8.0, right: 8.0),
+                                  child: Icon(
+                                    Icons.login,
+                                    color: Colors.white,
+                                    size: 17,
+                                  ),
+                                ),
+                              ],
+                            ))
+                  .animate()
+                  .fadeIn(duration: const Duration(seconds: 1));
+            })
           ],
         ),
       ),

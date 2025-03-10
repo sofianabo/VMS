@@ -12,7 +12,6 @@ import 'package:vms_school/Link/Model/AdminModel/AllPenaltyModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllStudyYearModel.dart';
 
-
 class Study_Year_Students_API {
   Study_Year_Students_API(this.context);
   BuildContext context;
@@ -22,16 +21,20 @@ class Study_Year_Students_API {
     try {
       final controller = Get.find<StudyYearStudentsController>();
       controller.setIsLoading(true);
+
       var response = await dio.post(myURI,
-          data: {
-          "sessionId":sessionId
-          },
-          options: getDioOptions());
+          data: {"sessionId": sessionId}, options: getDioOptions());
 
       if (response.statusCode == 200) {
-        AllStudyYearModel allStudyYearModel = AllStudyYearModel.fromJson(response.data);
+        print("qqqqqqqqqqqqqqq");
+
+        AllStudyYearModel allStudyYearModel =
+            AllStudyYearModel.fromJson(response.data);
+
         controller.setAllStudents(allStudyYearModel);
+        print("xxxxxxxxxxxxxxxxx");
         Getallgradeapi.Getallgrade();
+        print("dssdsddddd");
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
@@ -51,7 +54,3 @@ class Study_Year_Students_API {
     }
   }
 }
-
-
-
-

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 
 class Section7 extends StatelessWidget {
   const Section7({super.key});
@@ -9,7 +11,7 @@ class Section7 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 500,
-      color: const Color(0xff21245D),
+      color: Theme.of(context).primaryColor,
       margin: const EdgeInsets.only(top: 100),
       padding: const EdgeInsets.only(top: 20),
       child: Column(
@@ -42,7 +44,7 @@ class Section7 extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  Text("Virtual Modern School",
+                  Text("Virtual Modern School".tr,
                       style: Get.theme.textTheme.bodyMedium!
                           .copyWith(fontSize: 20, color: Colors.white)),
                 ],
@@ -59,7 +61,7 @@ class Section7 extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    Text("Openning Hours",
+                    Text("Openning Hours".tr,
                         style: Get.theme.textTheme.bodyMedium!
                             .copyWith(fontSize: 16, color: Colors.white)),
                     const SizedBox(
@@ -70,10 +72,9 @@ class Section7 extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Text("8 AM -----> 1 PM",
-                                style: Get.theme.textTheme.bodyMedium!
-                                    .copyWith(
-                                        fontSize: 16, color: Colors.white)),
+                            Text("8 AM -----> 1 PM".tr,
+                                style: Get.theme.textTheme.bodyMedium!.copyWith(
+                                    fontSize: 16, color: Colors.white)),
                             const SizedBox(
                               width: 5,
                             ),
@@ -89,10 +90,9 @@ class Section7 extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Text("3 PM -----> 8 PM",
-                                style: Get.theme.textTheme.bodyMedium!
-                                    .copyWith(
-                                        fontSize: 16, color: Colors.white)),
+                            Text("3 PM -----> 8 PM".tr,
+                                style: Get.theme.textTheme.bodyMedium!.copyWith(
+                                    fontSize: 16, color: Colors.white)),
                             const SizedBox(
                               width: 5,
                             ),
@@ -143,7 +143,7 @@ class Section7 extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 35.0),
                       child: Row(
                         children: [
-                          Text("Contact Details",
+                          Text("Contact Details".tr,
                               style: Get.theme.textTheme.bodyMedium!
                                   .copyWith(fontSize: 16, color: Colors.white)),
                         ],
@@ -158,9 +158,8 @@ class Section7 extends StatelessWidget {
                         Row(
                           children: [
                             Text("SYR: 00963 994 005157",
-                                style: Get.theme.textTheme.bodyMedium!
-                                    .copyWith(
-                                        fontSize: 14, color: Colors.white)),
+                                style: Get.theme.textTheme.bodyMedium!.copyWith(
+                                    fontSize: 14, color: Colors.white)),
                             const SizedBox(
                               width: 8,
                             ),
@@ -184,9 +183,8 @@ class Section7 extends StatelessWidget {
                         Row(
                           children: [
                             Text("USA: 001 817 583 0666",
-                                style: Get.theme.textTheme.bodyMedium!
-                                    .copyWith(
-                                        fontSize: 14, color: Colors.white)),
+                                style: Get.theme.textTheme.bodyMedium!.copyWith(
+                                    fontSize: 14, color: Colors.white)),
                             const SizedBox(
                               width: 8,
                             ),
@@ -210,9 +208,8 @@ class Section7 extends StatelessWidget {
                         Row(
                           children: [
                             Text("virtualmodernschoolmedia@gmail.com",
-                                style: Get.theme.textTheme.bodyMedium!
-                                    .copyWith(
-                                        fontSize: 16, color: Colors.white)),
+                                style: Get.theme.textTheme.bodyMedium!.copyWith(
+                                    fontSize: 16, color: Colors.white)),
                             const SizedBox(
                               width: 8,
                             ),
@@ -240,38 +237,49 @@ class Section7 extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                  "Shakib Arslan Street - Engineers Syndicate Building - 2nd Floor - AlSuwaidaa - Syria",
-                  style: Get.theme.textTheme.bodyMedium!
-                      .copyWith(fontSize: 16, color: Colors.white)),
-              const SizedBox(
-                width: 15,
-              ),
-              const Icon(
-                Icons.location_on_rounded,
-                color: Colors.white,
-                size: 20,
-              )
-            ],
+          Directionality(
+            textDirection: prefs!.getString(languageKey) == 'ar'
+                ? TextDirection.rtl
+                : TextDirection.ltr,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.location_on_rounded,
+                  color: Colors.white,
+                  size: 20,
+                ),
+                const SizedBox(
+                  width: 15,
+                ),
+                Text(
+                    "Shakib Arslan Street - Engineers Syndicate Building - 2nd Floor - AlSuwaidaa - Syria"
+                        .tr,
+                    style: Get.theme.textTheme.bodyMedium!
+                        .copyWith(fontSize: 16, color: Colors.white)),
+              ],
+            ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.copyright_outlined,
-                color: Colors.white,
-                size: 20,
-              ),
-              const SizedBox(
-                width: 3,
-              ),
-              Text("All Rights reserved. Copyright",
-                  style: Get.theme.textTheme.bodyMedium!
-                      .copyWith(fontSize: 16, color: Colors.white)),
-            ],
+          Directionality(
+            textDirection: prefs!.getString(languageKey) == 'ar'
+                ? TextDirection.rtl
+                : TextDirection.ltr,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.copyright_outlined,
+                  color: Colors.white,
+                  size: 20,
+                ),
+                const SizedBox(
+                  width: 3,
+                ),
+                Text("All Rights reserved. Copyright".tr,
+                    style: Get.theme.textTheme.bodyMedium!
+                        .copyWith(fontSize: 16, color: Colors.white)),
+              ],
+            ),
           ),
         ],
       ),

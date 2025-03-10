@@ -110,7 +110,7 @@ class Student_attendence_controller extends GetxController {
   }
   setIsUploded(bool isload ,String? Data) {
     isUploaded = isload;
-    title = Data;
+    title = Data!.tr;
     print(isload);
     update();
   }

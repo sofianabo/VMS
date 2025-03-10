@@ -8,6 +8,8 @@ import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetAllTeachersAPI.dart
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherManagementGrid.dart';
 import 'package:vms_school/widgets/Admin_School/All_Screen_Sessions.dart';
 import 'package:vms_school/widgets/Admin_employee/DropDownAllEmployee.dart';
@@ -65,7 +67,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                         Padding(
                             padding: const EdgeInsets.only(left: 8.0),
                             child: DropDownAllSessions(
-                              title: "Session",
+                              title: "Session".tr,
                               width: w / 6.5,
                               type: "session",
                               API: "TeacherManagement",
@@ -75,7 +77,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                           child: Dropdownallteacher(
                             isLoading: controller.isClassLoading,
                             width: w / 6.5,
-                            title: "Class",
+                            title: "Class".tr,
                             type: 'Class',
                           ),
                         ),
@@ -84,7 +86,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                           child: Dropdownallteacher(
                             isLoading: controller.isSubjectLoading,
                             width: w / 6.5,
-                            title: "Subject",
+                            title: "Subject".tr,
                             type: 'Subject',
                           ),
                         ),
@@ -140,7 +142,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                 return VMSAlertDialog(
                                     action: [
                                       ButtonDialog(
-                                          text: "Add Teacher",
+                                          text: "Add Teacher".tr,
                                           onPressed: () async {
                                             await Addteacherapi(context)
                                                 .Addteacher(
@@ -168,19 +170,28 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                         Row(
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 15.0),
+                                              padding: EdgeInsets.only(
+                                                  left: prefs!.getString(
+                                                              languageKey) ==
+                                                          'ar'
+                                                      ? 15
+                                                      : 0,
+                                                  right: prefs!.getString(
+                                                              languageKey) ==
+                                                          'ar'
+                                                      ? 0
+                                                      : 15),
                                               child: Textfildwithupper(
-                                                  Uptext: "First Name",
+                                                  Uptext: "First Name".tr,
                                                   width: 220,
                                                   controller: firstName,
-                                                  hinttext: "First Name"),
+                                                  hinttext: "First Name".tr),
                                             ),
                                             Textfildwithupper(
-                                                Uptext: "Last Name",
+                                                Uptext: "Last Name".tr,
                                                 width: 220,
                                                 controller: lastName,
-                                                hinttext: "Last Name")
+                                                hinttext: "Last Name".tr)
                                           ],
                                         ),
                                         Padding(
@@ -189,19 +200,28 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                           child: Row(
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 15.0),
+                                                padding: EdgeInsets.only(
+                                                    left: prefs!.getString(
+                                                                languageKey) ==
+                                                            'ar'
+                                                        ? 15
+                                                        : 0,
+                                                    right: prefs!.getString(
+                                                                languageKey) ==
+                                                            'ar'
+                                                        ? 0
+                                                        : 15),
                                                 child: Textfildwithupper(
-                                                    Uptext: "Email",
+                                                    Uptext: "Email".tr,
                                                     width: 220,
                                                     controller: email,
-                                                    hinttext: "Email"),
+                                                    hinttext: "Email".tr),
                                               ),
                                               Textfildwithupper(
-                                                  Uptext: "Username",
+                                                  Uptext: "Username".tr,
                                                   width: 220,
                                                   controller: username,
-                                                  hinttext: "Username")
+                                                  hinttext: "Username".tr)
                                             ],
                                           ),
                                         ),
@@ -211,13 +231,23 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                           child: Row(
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 15.0),
+                                                padding: EdgeInsets.only(
+                                                    left: prefs!.getString(
+                                                                languageKey) ==
+                                                            'ar'
+                                                        ? 15
+                                                        : 0,
+                                                    right: prefs!.getString(
+                                                                languageKey) ==
+                                                            'ar'
+                                                        ? 0
+                                                        : 15),
                                                 child: Textfildwithupper(
-                                                    Uptext: "Phone Number",
+                                                    Uptext: "Phone Number".tr,
                                                     width: 220,
                                                     controller: phone,
-                                                    hinttext: "Phone Number"),
+                                                    hinttext:
+                                                        "Phone Number".tr),
                                               ),
                                               Column(
                                                 mainAxisAlignment:
@@ -227,27 +257,36 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                                 children: [
                                                   JoinDate(
                                                     width: 220,
-                                                    Uptext: "Join Date",
+                                                    Uptext: "Join Date".tr,
                                                   )
                                                 ],
                                               )
                                             ],
                                           ),
                                         ),
-                                        const Padding(
+                                        Padding(
                                           padding: EdgeInsets.only(top: 15.0),
                                           child: Row(
                                             children: [
                                               Padding(
                                                 padding: EdgeInsets.only(
-                                                    right: 15.0),
+                                                    left: prefs!.getString(
+                                                                languageKey) ==
+                                                            'ar'
+                                                        ? 15
+                                                        : 0,
+                                                    right: prefs!.getString(
+                                                                languageKey) ==
+                                                            'ar'
+                                                        ? 0
+                                                        : 15),
                                                 child: Dropdownallemployee(
-                                                    title: "Gender",
+                                                    title: "Gender".tr,
                                                     width: 220,
                                                     type: "Gender"),
                                               ),
                                               Dropdownallemployee(
-                                                  title: "Contract Type",
+                                                  title: "Contract Type".tr,
                                                   width: 220,
                                                   type: "Contract"),
                                             ],
@@ -259,25 +298,35 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                           child: Row(
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 15.0),
+                                                padding: EdgeInsets.only(
+                                                    left: prefs!.getString(
+                                                                languageKey) ==
+                                                            'ar'
+                                                        ? 15
+                                                        : 0,
+                                                    right: prefs!.getString(
+                                                                languageKey) ==
+                                                            'ar'
+                                                        ? 0
+                                                        : 15),
                                                 child: Textfildwithupper(
-                                                    Uptext: "Password",
+                                                    Uptext: "Password".tr,
                                                     width: 220,
                                                     controller: password,
-                                                    hinttext: "Password"),
+                                                    hinttext: "Password".tr),
                                               ),
                                               Textfildwithupper(
-                                                  Uptext: "Confirm Password",
+                                                  Uptext: "Confirm Password".tr,
                                                   width: 220,
                                                   controller: cPassword,
-                                                  hinttext: "Confirm Password")
+                                                  hinttext:
+                                                      "Confirm Password".tr)
                                             ],
                                           ),
                                         )
                                       ],
                                     ),
-                                    apptitle: "Add Teacher",
+                                    apptitle: "Add Teacher".tr,
                                     subtitle: "none");
                               }));
                             },

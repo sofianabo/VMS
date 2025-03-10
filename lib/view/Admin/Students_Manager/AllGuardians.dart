@@ -113,20 +113,20 @@ class _AllGuardiansState extends State<AllGuardians> {
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.only(
-                                                right: 15.0),
+                                                right: 15.0, left: 15),
                                             child: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  "Email",
+                                                  "Email".tr,
                                                   style: Theme.of(context)
                                                       .primaryTextTheme
                                                       .labelSmall,
                                                 ),
                                                 TextFieldDialog(
                                                     controller: email,
-                                                    hinttext: "Email")
+                                                    hinttext: "Email".tr)
                                               ],
                                             ),
                                           ),
@@ -135,14 +135,15 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "Guardian Username",
+                                                "Guardian Username".tr,
                                                 style: Theme.of(context)
                                                     .primaryTextTheme
                                                     .labelSmall,
                                               ),
                                               TextFieldDialog(
                                                   controller: username,
-                                                  hinttext: "Guardian Username")
+                                                  hinttext:
+                                                      "Guardian Username".tr)
                                             ],
                                           )
                                         ],
@@ -156,20 +157,20 @@ class _AllGuardiansState extends State<AllGuardians> {
                                           children: [
                                             Padding(
                                               padding: const EdgeInsets.only(
-                                                  right: 15.0),
+                                                  right: 15.0, left: 15),
                                               child: Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    "Name",
+                                                    "Name".tr,
                                                     style: Theme.of(context)
                                                         .primaryTextTheme
                                                         .labelSmall,
                                                   ),
                                                   TextFieldDialog(
                                                       controller: name,
-                                                      hinttext: "Name")
+                                                      hinttext: "Name".tr)
                                                 ],
                                               ),
                                             ),
@@ -178,14 +179,14 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  "phone Number",
+                                                  "phone Number".tr,
                                                   style: Theme.of(context)
                                                       .primaryTextTheme
                                                       .labelSmall,
                                                 ),
                                                 TextFieldDialog(
                                                     controller: phone,
-                                                    hinttext: "Phone Number")
+                                                    hinttext: "Phone Number".tr)
                                               ],
                                             )
                                           ],
@@ -200,20 +201,21 @@ class _AllGuardiansState extends State<AllGuardians> {
                                           children: [
                                             Padding(
                                               padding: const EdgeInsets.only(
-                                                  right: 15.0),
+                                                  right: 15.0, left: 15),
                                               child: Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    "National ID",
+                                                    "National ID".tr,
                                                     style: Theme.of(context)
                                                         .primaryTextTheme
                                                         .labelSmall,
                                                   ),
                                                   TextFieldDialog(
                                                       controller: nationalId,
-                                                      hinttext: "National ID")
+                                                      hinttext:
+                                                          "National ID".tr)
                                                 ],
                                               ),
                                             ),
@@ -222,14 +224,14 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  "Password",
+                                                  "Password".tr,
                                                   style: Theme.of(context)
                                                       .primaryTextTheme
                                                       .labelSmall,
                                                 ),
                                                 TextFieldDialog(
                                                     controller: pass,
-                                                    hinttext: "Password")
+                                                    hinttext: "Password".tr)
                                               ],
                                             )
                                           ],
@@ -244,13 +246,13 @@ class _AllGuardiansState extends State<AllGuardians> {
                                           children: [
                                             Padding(
                                               padding: const EdgeInsets.only(
-                                                  right: 15.0),
+                                                  right: 15.0, left: 15),
                                               child: Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    "Confirm Password",
+                                                    "Confirm Password".tr,
                                                     style: Theme.of(context)
                                                         .primaryTextTheme
                                                         .labelSmall,
@@ -258,7 +260,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                   TextFieldDialog(
                                                       controller: cpass,
                                                       hinttext:
-                                                          "Confirm Password")
+                                                          "Confirm Password".tr)
                                                 ],
                                               ),
                                             ),
@@ -273,7 +275,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                       children: [
                                         ButtonDialog(
                                             width: 150,
-                                            text: "Add Guardian",
+                                            text: "Add Guardian".tr,
                                             onPressed: () {
                                               Addguardianapi(context)
                                                   .addguardian(
@@ -290,7 +292,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                       ],
                                     )
                                   ],
-                                  apptitle: "Add Guardian",
+                                  apptitle: "Add Guardian".tr,
                                   subtitle: "none"));
                             },
                             icon: Icon(Icons.add,

@@ -50,7 +50,7 @@ class StudentAttendencController extends GetxController {
 
     if (grade != null && grade.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((cur) {
-        return cur.grade!.enName == grade || cur.grade!.enName == grade;
+        return cur.grade!.name == grade || cur.grade!.enName == grade;
       }).toList();
     }
 

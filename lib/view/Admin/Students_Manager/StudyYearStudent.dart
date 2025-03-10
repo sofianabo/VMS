@@ -50,7 +50,7 @@ class _StudyYearStudentsState extends State<StudyYearStudents> {
                           padding: const EdgeInsets.only(left: 8.0),
                           child: DropDownAllSessions(
                             API: "SYStudent",
-                            title: "Session",
+                            title: "Session".tr,
                             type: "session",
                             width: w / 6.5,
                           ),

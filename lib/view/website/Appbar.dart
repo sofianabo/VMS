@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Theme/ThemeData.dart';
 import 'package:vms_school/widgets/Switcher.dart';
 
 class AppbarCustom extends StatefulWidget {
@@ -139,7 +140,9 @@ class _AppbarCustomState extends State<AppbarCustom> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Image.asset(
-                  "../../images/Logo.png",
+                  Theme.of(context) == theme.Dark_Theme
+                      ? "../../images/Logo.png"
+                      : "../../images/Logo2.png",
                 )
               ],
             ),

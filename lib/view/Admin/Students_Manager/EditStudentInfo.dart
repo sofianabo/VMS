@@ -11,6 +11,8 @@ import 'package:vms_school/Link/Controller/AdminController/Location_controller.d
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/Students_Manager/Edite_Students_Drop_Files.dart';
 import 'package:vms_school/widgets/Admin_Students/DropDown_Add_Students.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
@@ -67,10 +69,14 @@ EditStudentDialog(int idx, BuildContext context) async {
       DivisionIndexs: Controller.student!.division!.enName,
       isPendStudents: Controller.student!.isPended,
       BloodTypeindex: Controller.student!.bloodType,
-      Classindex: Controller.student!.classes!.enName ?? "",
+      Classindex: prefs!.getString(languageKey) == "ar"
+          ? Controller.student!.classes!.name
+          : Controller.student!.classes!.enName ?? "",
       FamilyStateindex: Controller.student!.familystatus ?? "",
       Genderindex: Controller.student!.gender ?? "",
-      Locationindex: Controller.student!.location!.enName ?? "",
+      Locationindex: prefs!.getString(languageKey) == "ar"
+          ? Controller.student!.location!.name
+          : Controller.student!.location!.enName ?? "",
       Specialneed: Controller.student!.specialNeeds == 1 ? true : false,
       Martyson: Controller.student!.martyrSon == 1 ? true : false,
       Realagonindex: Controller.student!.religion ?? "");
@@ -80,7 +86,7 @@ EditStudentDialog(int idx, BuildContext context) async {
   Get.dialog(VMSAlertDialog(
       action: [
         ButtonDialog(
-            text: "Update Student",
+            text: "Update Student".tr,
             onPressed: () async {
               await Update_Student_API.Update_Student(
                   Academic_sequence_FileID:
@@ -165,18 +171,21 @@ EditStudentDialog(int idx, BuildContext context) async {
         Fee_Discount: Fee_Discount,
         username: username,
       ),
-      apptitle: "Edite Student",
-      subtitle: "Edite ${Controller.filteredStudents[idx].fullName} Info"));
+      apptitle: "Edit Student".tr,
+      subtitle: "Edite".tr+" ${Controller.filteredStudents[idx].fullName}"+ "Info".tr));
   await Getallclassapi.getAllClasses();
   await Get_Location_API.Get_Locations();
   add_controller.initialdata();
   add_controller.SetIsLoadingDivision(true);
   await Dropdowndivisionapi(context).Dropdowndivision(
-      add_controller.Classlist.indexOf(
-          Controller.student!.classes!.enName.toString()),
+      add_controller.Classlist.indexOf(prefs!.getString(languageKey) == "ar"
+          ? Controller.student!.classes!.name.toString()
+          : Controller.student!.classes!.enName.toString()),
       idx);
   add_controller.SetDivision(
-      division: Controller.filteredStudents[idx].division!.enName.toString());
+      division: prefs!.getString(languageKey) == "ar"
+          ? Controller.filteredStudents[idx].division!.name.toString()
+          : Controller.filteredStudents[idx].division!.enName.toString());
 }
 
 class Edite_Students_page extends StatefulWidget {
@@ -300,8 +309,8 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                               isRequired: true,
                               width: 300,
                               controller: widget.First_Name,
-                              Uptext: "First Name",
-                              hinttext: "First Name",
+                              Uptext: "First Name".tr,
+                              hinttext: "First Name".tr,
                               onChanged: (value) {
                                 controller.updateFirstName(value);
                               },
@@ -331,13 +340,19 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                               isRequired: true,
                               width: 300,
                               controller: widget.Place_Of_Birth,
-                              Uptext: "Place Of Birth",
-                              hinttext: "Place Of Birth"),
+                              Uptext: "Place Of Birth".tr,
+                              hinttext: "Place Of Birth".tr),
                           Padding(
-                              padding: const EdgeInsets.only(left: 20.0),
+                              padding: EdgeInsets.only(
+                                  left: prefs!.getString(languageKey) == 'ar'
+                                      ? 0
+                                      : 20.0,
+                                  right: prefs!.getString(languageKey) == 'ar'
+                                      ? 20.0
+                                      : 0),
                               child: BirthDate(
                                 isRequired: true,
-                                Uptext: "Birthdate",
+                                Uptext: "Birthdate".tr,
                                 width: 300,
                               ))
                         ],
@@ -350,14 +365,20 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                         children: [
                           DropdownAddStudents(
                               isLoading: false,
-                              title: "Gender",
+                              title: "Gender".tr,
                               width: 300,
                               type: "Gender"),
                           Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
+                            padding: EdgeInsets.only(
+                                left: prefs!.getString(languageKey) == 'ar'
+                                    ? 0
+                                    : 20.0,
+                                right: prefs!.getString(languageKey) == 'ar'
+                                    ? 20.0
+                                    : 0),
                             child: DropdownAddStudents(
                                 isLoading: false,
-                                title: "Realagon",
+                                title: "Realagon".tr,
                                 width: 300,
                                 type: "Realagon"),
                           )
@@ -371,14 +392,20 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                         children: [
                           DropdownAddStudents(
                               isLoading: false,
-                              title: "Blood Type",
+                              title: "Blood Type".tr,
                               width: 300,
                               type: "BloodType"),
                           Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
+                            padding: EdgeInsets.only(
+                                left: prefs!.getString(languageKey) == 'ar'
+                                    ? 0
+                                    : 20.0,
+                                right: prefs!.getString(languageKey) == 'ar'
+                                    ? 20.0
+                                    : 0),
                             child: DropdownAddStudents(
                                 isLoading: controller.isLoadingLocation,
-                                title: "Location",
+                                title: "Location".tr,
                                 width: 300,
                                 type: "Location"),
                           )
@@ -393,16 +420,22 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                               isRequired: true,
                               width: 300,
                               controller: widget.Mobile_Number,
-                              Uptext: "Mobile Number",
-                              hinttext: "Mobile Number"),
+                              Uptext: "Mobile Number".tr,
+                              hinttext: "Mobile Number".tr),
                           Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
+                            padding: EdgeInsets.only(
+                                left: prefs!.getString(languageKey) == 'ar'
+                                    ? 0
+                                    : 20.0,
+                                right: prefs!.getString(languageKey) == 'ar'
+                                    ? 20.0
+                                    : 0),
                             child: Textfildwithupper(
                                 isRequired: true,
                                 width: 300,
                                 controller: widget.LocalID,
-                                Uptext: "Local ID",
-                                hinttext: "Local ID"),
+                                Uptext: "Local ID".tr,
+                                hinttext: "Local ID".tr),
                           )
                         ],
                       ),
@@ -414,7 +447,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                         children: [
                           DropdownAddStudents(
                               isLoading: false,
-                              title: "Family State",
+                              title: "Family State".tr,
                               width: 620,
                               type: "FamilyState"),
                         ],
@@ -428,16 +461,22 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                               isRequired: false,
                               width: 300,
                               controller: widget.National_ID,
-                              Uptext: "National Id",
-                              hinttext: "National Id"),
+                              Uptext: "National Id".tr,
+                              hinttext: "National Id".tr),
                           Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
+                            padding: EdgeInsets.only(
+                                left: prefs!.getString(languageKey) == 'ar'
+                                    ? 0
+                                    : 20.0,
+                                right: prefs!.getString(languageKey) == 'ar'
+                                    ? 20.0
+                                    : 0),
                             child: Textfildwithupper(
                                 isRequired: true,
                                 width: 300,
                                 controller: widget.Current_Address,
-                                Uptext: "Current Address",
-                                hinttext: "Current Address"),
+                                Uptext: "Current Address".tr,
+                                hinttext: "Current Address".tr),
                           )
                         ],
                       ),
@@ -462,7 +501,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                                                   .toggleSpecialNeed(value!);
                                             },
                                           )),
-                                      Text("Special need",
+                                      Text("Special need".tr,
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(fontSize: 16)),
                                     ],
@@ -475,7 +514,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                                               controller.toggleMartySon(value!);
                                             },
                                           )),
-                                      Text("Marty son",
+                                      Text("Marty son".tr,
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(fontSize: 16)),
                                     ],
@@ -502,9 +541,11 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                                                 radius: 5,
                                                 contentPadding:
                                                     EdgeInsets.all(20.0),
-                                                title: "Pend Student",
-                                                middleText:
-                                                    "Do You Want To Pend (${widget.First_Name.text} ${widget.Last_Name.text}) Student?",
+                                                title: "Pend Student".tr,
+                                                middleText: "Do You Want To Pend "
+                                                        .tr +
+                                                    "(${widget.First_Name.text} ${widget.Last_Name.text})" +
+                                                    "Student?".tr,
                                                 confirm: ElevatedButton(
                                                   onPressed: () {
                                                     controller
@@ -512,7 +553,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                                                             true);
                                                     Get.back();
                                                   },
-                                                  child: Text("Yes"),
+                                                  child: Text("Yes".tr),
                                                   style:
                                                       ElevatedButton.styleFrom(
                                                           backgroundColor:
@@ -524,7 +565,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                                                   onPressed: () {
                                                     Get.back();
                                                   },
-                                                  child: Text("No"),
+                                                  child: Text("No".tr),
                                                   style:
                                                       ElevatedButton.styleFrom(
                                                           backgroundColor:
@@ -536,12 +577,14 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                                               );
                                             } else {
                                               Get.defaultDialog(
-                                                title: "UnPend Student",
+                                                title: "UnPend Student".tr,
                                                 radius: 5,
                                                 contentPadding:
                                                     EdgeInsets.all(20.0),
-                                                middleText:
-                                                    "Do You Want To UnPend ( ${widget.First_Name.text} ${widget.Last_Name.text} ) Student ?",
+                                                middleText: "Do You Want To UnPend"
+                                                        .tr +
+                                                    " ( ${widget.First_Name.text} ${widget.Last_Name.text} )" +
+                                                    "Student?",
                                                 confirm: ElevatedButton(
                                                   onPressed: () {
                                                     controller
@@ -549,7 +592,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                                                             false);
                                                     Get.back();
                                                   },
-                                                  child: Text("Yes"),
+                                                  child: Text("Yes".tr),
                                                   style:
                                                       ElevatedButton.styleFrom(
                                                           backgroundColor:
@@ -561,7 +604,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                                                   onPressed: () {
                                                     Get.back();
                                                   },
-                                                  child: Text("No"),
+                                                  child: Text("No".tr),
                                                   style:
                                                       ElevatedButton.styleFrom(
                                                           backgroundColor:
@@ -585,8 +628,8 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                                                     left: 8.0, right: 8.0),
                                                 child: Text(
                                                   controller.isPendStudent.value
-                                                      ? "UnPend This Student"
-                                                      : "Pend Student",
+                                                      ? "UnPend This Student".tr
+                                                      : "Pend Student".tr,
                                                   style: TextStyle(
                                                       color: Colors.white),
                                                 ),
@@ -611,7 +654,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                               ),
                             ),
                             Text(
-                              "   Student School Info   ",
+                              "   Student School Info   ".tr,
                               style: Get.theme.textTheme.titleMedium!
                                   .copyWith(fontSize: 18),
                             ),
@@ -630,16 +673,22 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                         children: [
                           DropdownAddStudents(
                               isLoading: controller.isLoadingClass,
-                              title: "Class",
+                              title: "Class".tr,
                               width: 300,
                               type: "Class"),
                           Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
+                            padding: EdgeInsets.only(
+                                left: prefs!.getString(languageKey) == 'ar'
+                                    ? 0
+                                    : 20.0,
+                                right: prefs!.getString(languageKey) == 'ar'
+                                    ? 20.0
+                                    : 0),
                             child: DropdownAddStudents(
                                 isLoading: controller.isLoadingDivision,
                                 isDisabled:
                                     controller.ClassIndex == "" ? true : false,
-                                title: "Division",
+                                title: "Division".tr,
                                 width: 300,
                                 type: "Division"),
                           )
@@ -655,17 +704,23 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                             isRequired: true,
                             width: 300,
                             controller: widget.username,
-                            Uptext: "Username",
-                            hinttext: "Username",
+                            Uptext: "Username".tr,
+                            hinttext: "Username".tr,
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
+                            padding: EdgeInsets.only(
+                                left: prefs!.getString(languageKey) == 'ar'
+                                    ? 0
+                                    : 20.0,
+                                right: prefs!.getString(languageKey) == 'ar'
+                                    ? 20.0
+                                    : 0),
                             child: Textfildwithupper(
                                 isRequired: true,
                                 width: 300,
                                 controller: widget.Password,
-                                Uptext: "Password",
-                                hinttext: "Password"),
+                                Uptext: "Password".tr,
+                                hinttext: "Password".tr),
                           )
                         ],
                       ),
@@ -678,8 +733,8 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                               isRequired: false,
                               width: 300,
                               controller: widget.Fee_Discount,
-                              Uptext: "Fee Discount",
-                              hinttext: "Fee Discount")
+                              Uptext: "Fee Discount".tr,
+                              hinttext: "Fee Discount".tr)
                         ],
                       ),
                     ),
@@ -694,7 +749,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                               ),
                             ),
                             Text(
-                              "   Father Info   ",
+                              "   Father Info   ".tr,
                               style: Get.theme.textTheme.titleMedium!
                                   .copyWith(fontSize: 18),
                             ),
@@ -714,16 +769,22 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                               isRequired: true,
                               width: 300,
                               controller: widget.Father_Name,
-                              Uptext: "Father Name",
-                              hinttext: "Father Name"),
+                              Uptext: "Father Name".tr,
+                              hinttext: "Father Name".tr),
                           Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
+                            padding: EdgeInsets.only(
+                                left: prefs!.getString(languageKey) == 'ar'
+                                    ? 0
+                                    : 20.0,
+                                right: prefs!.getString(languageKey) == 'ar'
+                                    ? 20.0
+                                    : 0),
                             child: Textfildwithupper(
                                 isRequired: true,
                                 width: 300,
                                 controller: widget.Father_Phone,
-                                Uptext: "Father Phone",
-                                hinttext: "Father Phone"),
+                                Uptext: "Father Phone".tr,
+                                hinttext: "Father Phone".tr),
                           )
                         ],
                       ),
@@ -736,8 +797,8 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                           Textfildwithupper(
                               width: 300,
                               controller: widget.Father_Work,
-                              Uptext: "Father Work",
-                              hinttext: "Father Work"),
+                              Uptext: "Father Work".tr,
+                              hinttext: "Father Work".tr),
                         ],
                       ),
                     ),
@@ -752,7 +813,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                               ),
                             ),
                             Text(
-                              "   Mother Info   ",
+                              "   Mother Info   ".tr,
                               style: Get.theme.textTheme.titleMedium!
                                   .copyWith(fontSize: 18),
                             ),
@@ -772,16 +833,22 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                               isRequired: true,
                               width: 300,
                               controller: widget.Mother_Name,
-                              Uptext: "Mother Name",
-                              hinttext: "Mother Name"),
+                              Uptext: "Mother Name".tr,
+                              hinttext: "Mother Name".tr),
                           Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
+                            padding: EdgeInsets.only(
+                                left: prefs!.getString(languageKey) == 'ar'
+                                    ? 0
+                                    : 20.0,
+                                right: prefs!.getString(languageKey) == 'ar'
+                                    ? 20.0
+                                    : 0),
                             child: Textfildwithupper(
                                 isRequired: false,
                                 width: 300,
                                 controller: widget.Mother_Phone,
-                                Uptext: "Mother Phone",
-                                hinttext: "Mother Phone"),
+                                Uptext: "Mother Phone".tr,
+                                hinttext: "Mother Phone".tr),
                           )
                         ],
                       ),
@@ -794,8 +861,8 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                           Textfildwithupper(
                               width: 300,
                               controller: widget.Mother_Work,
-                              Uptext: "Mother Work",
-                              hinttext: "Mother Work"),
+                              Uptext: "Mother Work".tr,
+                              hinttext: "Mother Work".tr),
                         ],
                       ),
                     ),
@@ -810,7 +877,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                               ),
                             ),
                             Text(
-                              "   More Info   ",
+                              "   More Info   ".tr,
                               style: Get.theme.textTheme.titleMedium!
                                   .copyWith(fontSize: 18),
                             ),
@@ -830,7 +897,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                           LargeTextField(
                               width: 620,
                               controller: widget.Last_School_Detail,
-                              hinttext: "Last School Detail"),
+                              hinttext: "Last School Detail".tr),
                         ],
                       ),
                     ),
@@ -842,7 +909,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                           LargeTextField(
                               width: 620,
                               controller: widget.Note,
-                              hinttext: "Note"),
+                              hinttext: "Note".tr),
                         ],
                       ),
                     ),
@@ -857,7 +924,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                               ),
                             ),
                             Text(
-                              "   File Data   ",
+                              "   File Data   ".tr,
                               style: Get.theme.textTheme.titleMedium!
                                   .copyWith(fontSize: 18),
                             ),

@@ -433,7 +433,7 @@ class Vaccines_Controller extends gets.GetxController {
       }
       return filename;
     }
-    return "Vaccine File";
+    return "Vaccine File".tr;
   }
 
   void SetFinalList() {
