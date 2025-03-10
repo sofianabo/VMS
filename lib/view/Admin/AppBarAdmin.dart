@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
 import 'package:vms_school/Theme/ThemeData.dart';
 import 'package:vms_school/view/Admin/Search_Bar_widget.dart';
@@ -14,6 +15,7 @@ class AppbarAdmin extends StatefulWidget {
 }
 
 class _AppbarAdminState extends State<AppbarAdmin> {
+  var controller = Get.find<Add_Data_controller>();
   TextEditingController serch = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -32,14 +34,18 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Get.find<AdminHomeContentController>()
-                          .updateContent("My Profile");
+                      if (controller.hasData) {
+                        Get.find<AdminHomeContentController>()
+                            .updateContent("My Profile");
+                      }
                     },
                     child: Container(
                       height: 40,
                       width: 200,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: controller.hasData
+                            ? Colors.white
+                            : Theme.of(context).disabledColor,
                         border: Border.all(color: Color(0xffDAD0D0)),
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -79,6 +85,7 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                   Padding(
                       padding: const EdgeInsets.only(left: 5.0, right: 5.0),
                       child: SearchWithSuggestions(
+                        enabled: controller.hasData,
                         onItemSelected: (value) {
                           cont.updateContent(value);
                         },

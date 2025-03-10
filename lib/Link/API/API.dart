@@ -1,5 +1,5 @@
-// String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
-String hostPort = "http://192.168.1.111:8000/api/";
+String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
+// String hostPort = "http://192.168.1.8:8000/api/";
 
 //..................... All ...................//
 
@@ -147,3 +147,8 @@ String addStudyShare = "addStudyShare";
 String getDivisionStudyShare = "getDivisionStudyShare";
 String updatLessonByDay = "updatLessonByDay";
 String deleteStudyShare = "deleteStudyShare";
+
+//..................... All Users ...................//
+
+String verify = "verify";
+String resendCode = "resendCode";

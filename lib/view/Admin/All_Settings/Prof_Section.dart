@@ -51,13 +51,13 @@ class _ProfileState extends State<Profile> {
     Experience.text = add_Data_controller.myData?.experience ?? '';
     Note.text = add_Data_controller.myData?.note ?? '';
     Get.find<Add_Data_controller>().Birthdate.value =
-        DateTime.parse("${add_Data_controller.myData?.birthDate}");
+        DateTime.parse("${add_Data_controller.myData?.birthDate}" ?? "");
     Get.find<Add_Data_controller>().Joindate.value =
         DateTime.parse("${add_Data_controller.myData?.joinDate}");
     Get.find<Profile_DropDown_Controller>().selecteFamily_StatusIndex =
-        "${add_Data_controller.myData?.familystatus}";
+        "${add_Data_controller.myData?.familystatus}" ?? "";
     Get.find<Profile_DropDown_Controller>().selecteGenderIndex =
-        "${add_Data_controller.myData?.gender}";
+        "${add_Data_controller.myData?.gender}" ?? "";
   }
 
   @override
@@ -182,6 +182,7 @@ class _ProfileState extends State<Profile> {
                                                           style: Get.textTheme
                                                               .titleLarge
                                                               ?.copyWith(
+                                                            color: Colors.white,
                                                             fontSize: 26,
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -215,6 +216,7 @@ class _ProfileState extends State<Profile> {
                                                     '',
                                                 style: Get.textTheme.titleLarge
                                                     ?.copyWith(
+                                                  color: Colors.white,
                                                   fontSize: 26,
                                                   fontWeight: FontWeight.bold,
                                                 ),
@@ -272,7 +274,7 @@ class _ProfileState extends State<Profile> {
                           children: [
                             Button_Has_IconText(
                               onPressed: () {
-                                add_Data_controller.pickImage(context);
+                                add_Data_controller.pickImage(context, true);
                               },
                               text: add_Data_controller.myData!.imageId == null
                                   ? "Add Picture".tr

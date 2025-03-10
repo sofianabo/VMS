@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Add_Employee_Info.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_DropDown_Profile_Controller.dart';
@@ -46,8 +44,10 @@ class _ProfileState extends State<Add_Data_account> {
   TextEditingController ifscCode = TextEditingController();
   TextEditingController newpassword = TextEditingController();
   TextEditingController confnewpassword = TextEditingController();
+  bool initialazized = false;
   @override
   void fillControllersWithData() {
+    initialazized = true;
     Firstname.text = add_Data_controller.myData?.firstName ?? '';
     Lastname.text = add_Data_controller.myData?.lastName ?? '';
     Mothername.text = add_Data_controller.myData?.motherName ?? '';
@@ -71,39 +71,24 @@ class _ProfileState extends State<Add_Data_account> {
         add_Data_controller.myData?.bankAccountNumber ?? '';
     ifscCode.text = add_Data_controller.myData?.iFSCCode ?? '';
     Get.find<Add_Data_controller>().Birthdate.value =
-        DateTime.parse("${add_Data_controller.myData?.birthDate}");
-    Get.find<Add_Data_controller>().Joindate.value =
-        DateTime.parse("${add_Data_controller.myData?.joinDate}");
-    Get.find<Profile_DropDown_Controller>().selecteFamily_StatusIndex =
-        "${add_Data_controller.myData?.familystatus}";
-    Get.find<Profile_DropDown_Controller>().selecteGenderIndex =
-        "${add_Data_controller.myData?.gender}";
-  }
+        add_Data_controller.myData?.birthDate != null
+            ? DateTime.parse("${add_Data_controller.myData?.birthDate}")
+            : null;
 
-  @override
-  void dispose() {
-    Firstname.dispose();
-    Lastname.dispose();
-    Mothername.dispose();
-    Fathername.dispose();
-    phoneNumper.dispose();
-    emergencyNumber.dispose();
-    Address.dispose();
-    currentAddress.dispose();
-    careerHistory.dispose();
-    Qualification.dispose();
-    Experience.dispose();
-    Note.dispose();
-    facebookUrl.dispose();
-    xPlatformUrl.dispose();
-    linkedinUrl.dispose();
-    instagramUrl.dispose();
-    bankAccountTitle.dispose();
-    bankName.dispose();
-    bankBranchName.dispose();
-    bankAccountNumber.dispose();
-    ifscCode.dispose();
-    super.dispose();
+    Get.find<Add_Data_controller>().Joindate.value =
+        add_Data_controller.myData?.joinDate != null
+            ? DateTime.parse("${add_Data_controller.myData?.joinDate}")
+            : null;
+
+    Get.find<Profile_DropDown_Controller>().selecteFamily_StatusIndex =
+        add_Data_controller.myData?.familystatus != null
+            ? "${add_Data_controller.myData?.familystatus}"
+            : "";
+
+    Get.find<Profile_DropDown_Controller>().selecteGenderIndex =
+        add_Data_controller.myData?.gender != null
+            ? "${add_Data_controller.myData?.gender}"
+            : "";
   }
 
   @override
@@ -120,7 +105,9 @@ class _ProfileState extends State<Add_Data_account> {
             alignment: Alignment.topCenter,
             child: SingleChildScrollView(
               child: GetBuilder<Admin_Profile_Content>(builder: (controller) {
-                fillControllersWithData();
+                if (initialazized == false) {
+                  fillControllersWithData();
+                }
                 return Column(
                   textDirection: Get.find<LocalizationController>()
                               .currentLocale
@@ -331,7 +318,8 @@ class _ProfileState extends State<Add_Data_account> {
                               children: [
                                 Button_Has_IconText(
                                   onPressed: () {
-                                    add_Data_controller.pickImage(context);
+                                    add_Data_controller.pickImage(
+                                        context, false);
                                   },
                                   text:
                                       picController.selectedImage.value == null

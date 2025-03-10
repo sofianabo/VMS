@@ -48,7 +48,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   ? CrossAxisAlignment.end
                   : CrossAxisAlignment.start,
               children: [
-                add_Data_Controller.isVerified
+                add_Data_Controller.hasData
                     ? Text(
                         "Application and Profile Settings".tr,
                         style: TextStyle(fontSize: 20),
@@ -96,8 +96,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                     style: TextStyle(fontSize: 16),
                                   ),
                                 ),
-                                // if(add_Data_Controller.isVerified)
-                                add_Data_Controller.isVerified
+                                // if(add_Data_Controller.hasData)
+                                add_Data_Controller.hasData
                                     ? Column(
                                         spacing: 25.0,
                                         textDirection:

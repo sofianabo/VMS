@@ -6,6 +6,7 @@ import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 
 class Add_Employee_Information {
@@ -87,8 +88,10 @@ class Add_Employee_Information {
 
       if (response.statusCode == 200) {
         gets.Get.back();
+        prefs!.setBool("hasData", true);
         gets.Get.find<AdminHomeContentController>().updateContent("Dashboard");
         gets.Get.find<Add_Data_controller>().removeimage();
+        gets.Get.find<Add_Data_controller>().sethasData(true);
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

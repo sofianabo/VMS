@@ -78,7 +78,7 @@ class Update_Employee_Information {
           MultipartFile.fromBytes(selectedImage, filename: "profile.jpg"),
         ));
       } else {
-        formData.fields.add(MapEntry("deleteImage", "true"));
+        formData.fields.add(MapEntry("deletedImg", "true"));
       }
 
       var response = await dio.post(
@@ -98,8 +98,6 @@ class Update_Employee_Information {
         gets.Get.find<Admin_Profile_Content>().ChangeenabledBanlInfo(false);
         gets.Get.find<Admin_Profile_Content>().ChangeenabledEmailInfo(false);
         gets.Get.find<Admin_Profile_Content>().ChangeenabledPasswordInfo(false);
-
-        gets.Get.back();
         gets.Get.find<Add_Data_controller>().removeimage();
         Get_My_Profile.Get_My_Profile_Data();
       } else {

@@ -1,16 +1,21 @@
-
-import 'package:flutter/src/widgets/navigator.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/main.dart';
 
-class AuthMidlleware extends GetMiddleware {
-  @override
-
+class RoleBasedMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
-    if (prefs!.getString("islogin") != null) {
-      return const RouteSettings(name: "/Home");
+    bool isLoggedIn = prefs?.getBool("isLogin") ?? false;
+    String? role = prefs?.getString("role");
+
+    if (!isLoggedIn) {
+      return const RouteSettings(name: '/home');
     }
-    return null;
+
+    if (role == "admin") {
+      return const RouteSettings(name: '/admin');
+    } else {
+      return const RouteSettings(name: '/home');
+    }
   }
 }

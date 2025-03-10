@@ -8,6 +8,7 @@ import 'package:vms_school/Link/Model/AdminModel/My_Data_Model.dart';
 class Add_Data_controller extends GetxController {
   bool isLoading = true;
   MyData? myData;
+  String? email;
 
   setIsloading(bool value) {
     isLoading = value;
@@ -19,7 +20,8 @@ class Add_Data_controller extends GetxController {
     update();
   }
 
-  bool isVerified = true;
+  bool isVerified = false;
+  bool hasData = false;
 
   Rx<DateTime?> Birthdate = Rx<DateTime?>(null);
   Rx<DateTime?> Joindate = Rx<DateTime?>(null);
@@ -50,7 +52,7 @@ class Add_Data_controller extends GetxController {
   Rx<Uint8List?> selectedImage = Rx<Uint8List?>(null);
   final ImagePicker _picker = ImagePicker();
 
-  Future<void> pickImage(BuildContext context) async {
+  Future<void> pickImage(BuildContext context, bool isUpdate) async {
     final XFile? pickedFile =
         await _picker.pickImage(source: ImageSource.gallery, imageQuality: 80);
 
@@ -58,14 +60,31 @@ class Add_Data_controller extends GetxController {
       Uint8List fileBytes = await pickedFile.readAsBytes();
 
       selectedImage.value = fileBytes;
-      Update_Employee_Information.Update_Employee_Info(
-          selectedImage: selectedImage.value, Type: '');
+      if (isUpdate == true) {
+        Update_Employee_Information.Update_Employee_Info(
+            selectedImage: selectedImage.value, Type: '');
+      }
     } else {}
     update();
   }
 
   void removeimage() {
     selectedImage.value = null;
+    update();
+  }
+
+  void sethasData(bool value) {
+    hasData = value;
+    update();
+  }
+
+  void setEmail(String value) {
+    email = value;
+    update();
+  }
+
+  void setisVerified(bool value) {
+    isVerified = value;
     update();
   }
 }

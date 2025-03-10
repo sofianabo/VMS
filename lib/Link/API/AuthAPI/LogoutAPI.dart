@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
 import 'package:vms_school/Link/Controller/AuthController/UserController.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
@@ -30,6 +31,7 @@ class Logoutapi {
           }));
       if (response.statusCode == 200) {
         await prefs!.clear();
+        Get.find<AdminHomeContentController>().updateContent("Dashboard");
         Get.off(
           () => Home(),
         );
