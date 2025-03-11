@@ -71,7 +71,7 @@ class _VerifingCodeDialogState extends State<VerifingCodeDialog> {
       });
       String code = controllers.map((controller) => controller.text).join();
       if (await Verify_Account_API().Verify_Account(code: code) == 200) {
-        setState(() async {
+        setState(() {
           isLoading = LoadingStatus.done;
           Get.back();
         });

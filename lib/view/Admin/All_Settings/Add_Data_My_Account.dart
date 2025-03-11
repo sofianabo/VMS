@@ -187,18 +187,9 @@ class _ProfileState extends State<Add_Data_account> {
                           border:
                               Border.all(color: Color(0xffF6F6F6), width: 1.5)),
                       child: GetBuilder<Add_Data_controller>(
+                          init: Add_Data_controller(),
                           builder: (picController) {
-                        return Row(
-                          textDirection: Get.find<LocalizationController>()
-                                      .currentLocale
-                                      .value
-                                      .languageCode ==
-                                  'ar'
-                              ? TextDirection.rtl
-                              : TextDirection.ltr,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
+                            return Row(
                               textDirection: Get.find<LocalizationController>()
                                           .currentLocale
                                           .value
@@ -206,63 +197,54 @@ class _ProfileState extends State<Add_Data_account> {
                                       'ar'
                                   ? TextDirection.rtl
                                   : TextDirection.ltr,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                CircleAvatar(
-                                  maxRadius: 60,
-                                  backgroundColor: const Color(0xffC4C4C4),
-                                  child: picController.selectedImage.value !=
-                                              null &&
-                                          picController
-                                              .selectedImage.value!.isNotEmpty
-                                      ? ClipOval(
-                                          child: Image.memory(
-                                            picController.selectedImage.value!,
-                                            fit: BoxFit.cover,
-                                            width: 120,
-                                            height: 120,
-                                          ),
-                                        )
-                                      : Text(
-                                          picController.myData?.firstName
-                                                  ?.substring(0, 1)
-                                                  .toUpperCase() ??
-                                              '',
-                                          style: Get.textTheme.titleLarge
-                                              ?.copyWith(
-                                            fontSize: 26,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, right: 10.0),
-                                  child: Column(
-                                    textDirection:
-                                        Get.find<LocalizationController>()
-                                                    .currentLocale
-                                                    .value
-                                                    .languageCode ==
-                                                'ar'
-                                            ? TextDirection.rtl
-                                            : TextDirection.ltr,
-                                    spacing: 5.0,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "${add_Data_controller.myData?.firstName} ${add_Data_controller.myData?.lastName}",
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                          "${add_Data_controller.myData?.userName}",
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                          )),
-                                      Row(
+                                Row(
+                                  textDirection:
+                                      Get.find<LocalizationController>()
+                                                  .currentLocale
+                                                  .value
+                                                  .languageCode ==
+                                              'ar'
+                                          ? TextDirection.rtl
+                                          : TextDirection.ltr,
+                                  children: [
+                                    CircleAvatar(
+                                      maxRadius: 60,
+                                      backgroundColor: const Color(0xffC4C4C4),
+                                      child: picController
+                                                      .selectedImage.value !=
+                                                  null &&
+                                              picController.selectedImage.value!
+                                                  .isNotEmpty
+                                          ? ClipRRect(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(600)),
+                                              child: Image.memory(
+                                                width: 120,
+                                                height: 120,
+                                                picController
+                                                    .selectedImage.value!,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            )
+                                          : Text(
+                                              picController.myData?.firstName
+                                                      ?.substring(0, 1)
+                                                      .toUpperCase() ??
+                                                  'N',
+                                              style: Get.textTheme.titleLarge
+                                                  ?.copyWith(
+                                                color: Get.theme.primaryColor,
+                                                fontSize: 26,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10.0, right: 10.0),
+                                      child: Column(
                                         textDirection:
                                             Get.find<LocalizationController>()
                                                         .currentLocale
@@ -272,80 +254,107 @@ class _ProfileState extends State<Add_Data_account> {
                                                 ? TextDirection.rtl
                                                 : TextDirection.ltr,
                                         spacing: 5.0,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          Icon(
-                                            Icons.add,
-                                            size: 14,
+                                          Text(
+                                            "${add_Data_controller.myData?.firstName} ${add_Data_controller.myData?.lastName}",
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold),
                                           ),
                                           Text(
-                                              "${add_Data_controller.myData?.jobTitle}"
-                                                  .tr,
+                                              "${add_Data_controller.myData?.userName}",
                                               style: TextStyle(
                                                 fontSize: 12,
                                               )),
-                                        ],
-                                      ),
-                                      Row(
-                                        textDirection:
-                                            Get.find<LocalizationController>()
-                                                        .currentLocale
-                                                        .value
-                                                        .languageCode ==
-                                                    'ar'
-                                                ? TextDirection.rtl
-                                                : TextDirection.ltr,
-                                        spacing: 5.0,
-                                        children: [
-                                          Icon(
-                                            Icons.timer,
-                                            size: 14,
+                                          Row(
+                                            textDirection:
+                                                Get.find<LocalizationController>()
+                                                            .currentLocale
+                                                            .value
+                                                            .languageCode ==
+                                                        'ar'
+                                                    ? TextDirection.rtl
+                                                    : TextDirection.ltr,
+                                            spacing: 5.0,
+                                            children: [
+                                              Icon(
+                                                Icons.add,
+                                                size: 14,
+                                              ),
+                                              Text(
+                                                  "${add_Data_controller.myData?.jobTitle}"
+                                                      .tr,
+                                                  style: TextStyle(
+                                                    fontSize: 12,
+                                                  )),
+                                            ],
                                           ),
-                                          Text(
-                                              "${add_Data_controller.myData?.contractType}"
-                                                  .tr,
-                                              style: TextStyle(
-                                                fontSize: 12,
-                                              )),
+                                          Row(
+                                            textDirection:
+                                                Get.find<LocalizationController>()
+                                                            .currentLocale
+                                                            .value
+                                                            .languageCode ==
+                                                        'ar'
+                                                    ? TextDirection.rtl
+                                                    : TextDirection.ltr,
+                                            spacing: 5.0,
+                                            children: [
+                                              Icon(
+                                                Icons.timer,
+                                                size: 14,
+                                              ),
+                                              Text(
+                                                  "${add_Data_controller.myData?.contractType}"
+                                                      .tr,
+                                                  style: TextStyle(
+                                                    fontSize: 12,
+                                                  )),
+                                            ],
+                                          ),
                                         ],
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                            Column(
-                              spacing: 8.0,
-                              children: [
-                                Button_Has_IconText(
-                                  onPressed: () {
-                                    add_Data_controller.pickImage(
-                                        context, false);
-                                  },
-                                  text:
-                                      picController.selectedImage.value == null
+                                Column(
+                                  spacing: 8.0,
+                                  children: [
+                                    Button_Has_IconText(
+                                      onPressed: () {
+                                        add_Data_controller.pickImage(
+                                            context, false);
+                                      },
+                                      text: picController.selectedImage.value ==
+                                              null
                                           ? "Add Picture".tr
                                           : "Edit Picture".tr,
-                                  icon: Icon(
-                                    Icons.edit,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                if (picController.selectedImage.value != null)
-                                  Button_Has_IconText(
-                                    onPressed: () {
-                                      picController.removeimage();
-                                    },
-                                    text: "Delete Picture".tr,
-                                    icon: Icon(
-                                      Icons.delete_outline_outlined,
-                                      color: Color(0xffB03D3D),
+                                      icon: Icon(
+                                        Icons.edit,
+                                        color: Colors.black,
+                                      ),
                                     ),
-                                  )
+                                    if (picController.selectedImage.value !=
+                                        null)
+                                      Button_Has_IconText(
+                                        onPressed: () {
+                                          picController.removeimage();
+                                        },
+                                        text: "Delete Picture".tr,
+                                        icon: Icon(
+                                          Icons.delete_outline_outlined,
+                                          color: Color(0xffB03D3D),
+                                        ),
+                                      )
+                                  ],
+                                )
                               ],
-                            )
-                          ],
-                        );
-                      }),
+                            );
+                          }),
                     ),
                     Container(
                       margin: EdgeInsets.only(top: 15.0, bottom: 15.0),

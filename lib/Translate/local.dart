@@ -453,6 +453,7 @@ class Languages {
       "sub": "مواد",
 
       'Subjects': '',
+      'My Account': 'حسابي',
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -911,7 +912,7 @@ class Languages {
       "sub": "",
 
       'Subjects': 'Subjects',
-      '': '',
+      'My Account': 'My Account',
       '': '',
       '': '',
       '': '',

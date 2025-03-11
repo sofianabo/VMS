@@ -264,7 +264,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                                         ? TextDirection.rtl
                                                         : TextDirection.ltr,
                                                 children: [
-                                                  Icon(Icons.password_outlined),
+                                                  Icon(Icons
+                                                      .account_circle_outlined),
                                                   Text("  " +
                                                       "My Account".tr +
                                                       "  ")

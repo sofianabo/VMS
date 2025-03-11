@@ -138,58 +138,49 @@ class _ProfileState extends State<Profile> {
                                     context: context,
                                     builder: (context) => Dialog(
                                       backgroundColor: Colors.transparent,
-                                      child: GestureDetector(
-                                        onTap: () => Navigator.pop(context),
-                                        child: Hero(
-                                          tag: 'profileImageHero',
-                                          child: Material(
-                                            color: Colors.transparent,
-                                            child: Center(
-                                              child: AnimatedContainer(
-                                                duration: const Duration(
-                                                    milliseconds: 500),
-                                                curve: Curves.fastOutSlowIn,
-                                                decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                      color: Colors.black
-                                                          .withOpacity(0.5),
-                                                      blurRadius: 20,
-                                                      offset:
-                                                          const Offset(0, 10),
+                                      child: Material(
+                                        color: Colors.transparent,
+                                        child: Center(
+                                          child: AnimatedContainer(
+                                            duration: const Duration(
+                                                milliseconds: 500),
+                                            curve: Curves.fastOutSlowIn,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.black
+                                                      .withOpacity(0.5),
+                                                  blurRadius: 20,
+                                                  offset: const Offset(0, 10),
+                                                ),
+                                              ],
+                                            ),
+                                            child: ClipOval(
+                                              child: add_Data_controller
+                                                          .myData?.imageId !=
+                                                      null
+                                                  ? Image.network(
+                                                      "$getimage${add_Data_controller.myData!.imageId}",
+                                                      fit: BoxFit.cover,
+                                                      width: 400,
+                                                      height: 400,
+                                                    )
+                                                  : Text(
+                                                      picController
+                                                              .myData?.firstName
+                                                              ?.substring(0, 1)
+                                                              .toUpperCase() ??
+                                                          '',
+                                                      style: Get
+                                                          .textTheme.titleLarge
+                                                          ?.copyWith(
+                                                        color: Colors.white,
+                                                        fontSize: 26,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
                                                     ),
-                                                  ],
-                                                ),
-                                                child: ClipOval(
-                                                  child: add_Data_controller
-                                                              .myData
-                                                              ?.imageId !=
-                                                          null
-                                                      ? Image.network(
-                                                          "$getimage${add_Data_controller.myData!.imageId}",
-                                                          fit: BoxFit.cover,
-                                                          width: 400,
-                                                          height: 400,
-                                                        )
-                                                      : Text(
-                                                          picController.myData
-                                                                  ?.firstName
-                                                                  ?.substring(
-                                                                      0, 1)
-                                                                  .toUpperCase() ??
-                                                              '',
-                                                          style: Get.textTheme
-                                                              .titleLarge
-                                                              ?.copyWith(
-                                                            color: Colors.white,
-                                                            fontSize: 26,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
-                                                        ),
-                                                ),
-                                              ),
                                             ),
                                           ),
                                         ),
@@ -197,31 +188,27 @@ class _ProfileState extends State<Profile> {
                                     ),
                                   );
                                 },
-                                child: Hero(
-                                  tag: 'profileImageHero',
-                                  child: ClipOval(
-                                    child:
-                                        add_Data_controller.myData?.imageId !=
-                                                null
-                                            ? Image.network(
-                                                "$getimage${add_Data_controller.myData!.imageId}",
-                                                fit: BoxFit.cover,
-                                                width: 70,
-                                                height: 70,
-                                              )
-                                            : Text(
-                                                picController.myData?.firstName
-                                                        ?.substring(0, 1)
-                                                        .toUpperCase() ??
-                                                    '',
-                                                style: Get.textTheme.titleLarge
-                                                    ?.copyWith(
-                                                  color: Colors.white,
-                                                  fontSize: 26,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                  ),
+                                child: ClipOval(
+                                  child: add_Data_controller.myData?.imageId !=
+                                          null
+                                      ? Image.network(
+                                          "$getimage${add_Data_controller.myData!.imageId}",
+                                          fit: BoxFit.cover,
+                                          width: 70,
+                                          height: 70,
+                                        )
+                                      : Text(
+                                          picController.myData?.firstName
+                                                  ?.substring(0, 1)
+                                                  .toUpperCase() ??
+                                              '',
+                                          style: Get.textTheme.titleLarge
+                                              ?.copyWith(
+                                            color: Colors.white,
+                                            fontSize: 26,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
                                 ),
                               ),
                             ),
