@@ -16,7 +16,7 @@ class Personal extends StatefulWidget {
 }
 
 class _ProfileState extends State<Personal> {
-  var add_Data_controller = Get.find<Add_Data_controller>();
+  var add_Data_controller = Get.put(Add_Data_controller());
 
   TextEditingController facebookUrl = TextEditingController();
   TextEditingController xPlatformUrl = TextEditingController();
@@ -40,9 +40,9 @@ class _ProfileState extends State<Personal> {
     bankAccountNumber.text =
         add_Data_controller.myData?.bankAccountNumber ?? '';
     ifscCode.text = add_Data_controller.myData?.iFSCCode ?? '';
-    Get.find<Add_Data_controller>().Birthdate.value =
+    add_Data_controller.Birthdate.value =
         DateTime.parse("${add_Data_controller.myData?.birthDate}");
-    Get.find<Add_Data_controller>().Joindate.value =
+    add_Data_controller.Joindate.value =
         DateTime.parse("${add_Data_controller.myData?.joinDate}");
     Get.find<Profile_DropDown_Controller>().selecteFamily_StatusIndex =
         "${add_Data_controller.myData?.familystatus}";

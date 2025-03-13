@@ -13,6 +13,7 @@ import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/PenaltiesAndRewardsStudentModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
+import 'package:vms_school/view/Admin/School_Management/Rewards_Pages/Rewards_Dialog.dart';
 import 'package:vms_school/widgets/Admin_Students/DropDownStudyYearStudents.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
@@ -421,21 +422,37 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                             ),
                                           ],
                                         )),
-                                    TextButton(
-                                        style: ButtonStyle(
-                                            backgroundColor:
-                                                const WidgetStatePropertyAll(
-                                                    Colors.transparent),
-                                            shape: WidgetStatePropertyAll(
-                                                RoundedRectangleBorder(
-                                              borderRadius:
-                                                  const BorderRadius.all(
-                                                      Radius.circular(3)),
-                                              side: BorderSide(
-                                                  color:
-                                                      Get.theme.highlightColor),
-                                            ))),
-                                        onPressed: () {
+                                    PopupMenuButton<String>(
+                                      child: Container(
+                                        padding: EdgeInsets.all(8.0),
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5)),
+                                            border: Border.all(
+                                                color:
+                                                    Get.theme.highlightColor)),
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.gavel,
+                                              color: Get.theme.highlightColor,
+                                              size: 14,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5.0, right: 5.0),
+                                              child: Text(
+                                                'Rewards & Penalties'.tr,
+                                                style: Get.theme.textTheme
+                                                    .headlineMedium,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      tooltip: "".tr,
+                                      onSelected: (value) {
+                                        if (value == "Punishing".tr) {
                                           Get.dialog(VMSAlertDialog(
                                               action: [
                                                 ButtonDialog(
@@ -496,7 +513,7 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                                         Text("The Reason".tr,
                                                             style: Get
                                                                 .theme
-                                                                .primaryTextTheme
+                                                                .textTheme
                                                                 .labelSmall),
                                                         Textfildwithupper(
                                                             Uptext:
@@ -586,23 +603,30 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                               ),
                                               apptitle: "Punishing Student".tr,
                                               subtitle: ""));
-                                        },
-                                        child: Row(
-                                          children: [
-                                            Icon(
-                                              Icons.person_remove_outlined,
-                                              size: 14,
-                                              color: Get.theme.highlightColor,
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: 5.0, right: 5.0),
-                                              child: Text("Punishing".tr,
-                                                  style: Get.theme.textTheme
-                                                      .headlineMedium),
-                                            ),
-                                          ],
-                                        )),
+                                        } else {
+                                          Get.dialog(
+                                            Rewards_Dialog(
+                                                name: controller
+                                                        .filteredStudents![
+                                                            index]
+                                                        .fullName ??
+                                                    "unKnow"),
+                                            barrierDismissible: false,
+                                          );
+                                        }
+                                      },
+                                      itemBuilder: (BuildContext context) =>
+                                          <PopupMenuEntry<String>>[
+                                        PopupMenuItem<String>(
+                                          value: 'Punishing'.tr,
+                                          child: Text('Punishing'.tr),
+                                        ),
+                                        PopupMenuItem<String>(
+                                          value: 'Rewards'.tr,
+                                          child: Text('Rewards'.tr),
+                                        ),
+                                      ],
+                                    )
                                   ],
                                 ),
                               )

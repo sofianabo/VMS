@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
 import 'package:vms_school/Theme/ThemeData.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/Search_Bar_widget.dart';
 
 class AppbarAdmin extends StatefulWidget {
@@ -15,7 +17,7 @@ class AppbarAdmin extends StatefulWidget {
 }
 
 class _AppbarAdminState extends State<AppbarAdmin> {
-  var controller = Get.find<Add_Data_controller>();
+  var controller = Get.put(Add_Data_controller());
   TextEditingController serch = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -34,10 +36,8 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      if (controller.hasData) {
-                        Get.find<AdminHomeContentController>()
-                            .updateContent("My Profile");
-                      }
+                      Get.find<AdminHomeContentController>()
+                          .updateContent("My Profile");
                     },
                     child: Container(
                       height: 40,
@@ -60,10 +60,10 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                               padding: const EdgeInsets.only(left: 5.0),
                               child: Text(
                                 textDirection: TextDirection.ltr,
-                                textAlign: TextAlign.start,
+                                textAlign: TextAlign.center,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                "Laith Haitham Azzam",
+                                "${prefs!.getString("fullname")}",
                                 style: TextStyle(
                                     fontSize: 12, color: Colors.black),
                               ),
@@ -72,10 +72,59 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                           Padding(
                             padding: const EdgeInsets.only(
                                 left: 5.0, right: 5.0, top: 3.0, bottom: 3.0),
-                            child: Image.asset(
-                              "../../images/Rectangle66.png",
-                              height: 40,
-                              width: 40,
+                            child: CircleAvatar(
+                              radius: 25,
+                              backgroundColor: Colors
+                                  .grey[300], // اللون الخلفي أثناء التحميل
+                              child: prefs!.getString("imageId") != null
+                                  ? ClipOval(
+                                      child: Image.network(
+                                        headers: {
+                                          "ngrok-skip-browser-warning": "true",
+                                          'User-Agent': 'Custom User-Agent',
+                                          'accept': 'application/json',
+                                          'authorization':
+                                              'Bearer ${prefs!.getString("token")}',
+                                        },
+                                        "$getimage${prefs!.getString("imageId")}",
+                                        fit: BoxFit.cover,
+                                        loadingBuilder:
+                                            (context, child, loadingProgress) {
+                                          if (loadingProgress == null) {
+                                            // الصورة تم تحميلها بنجاح
+                                            return child;
+                                          } else {
+                                            // الصورة قيد التحميل، عرض شريط تحميل أبيض
+                                            return Center(
+                                              child: CircularProgressIndicator(
+                                                value: loadingProgress
+                                                            .expectedTotalBytes !=
+                                                        null
+                                                    ? loadingProgress
+                                                            .cumulativeBytesLoaded /
+                                                        (loadingProgress
+                                                                .expectedTotalBytes ??
+                                                            1)
+                                                    : null,
+                                                color: Colors
+                                                    .white, // شريط التحميل باللون الأبيض
+                                              ),
+                                            );
+                                          }
+                                        },
+                                      ),
+                                    )
+                                  : Text(
+                                      prefs!
+                                              .getString("fullname")
+                                              ?.substring(0, 1)
+                                              .toUpperCase() ??
+                                          '',
+                                      style: Get.textTheme.titleLarge?.copyWith(
+                                        color: Colors.white,
+                                        fontSize: 14,
+                                      ),
+                                    ),
                             ),
                           ),
                         ],

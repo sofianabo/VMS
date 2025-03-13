@@ -33,6 +33,8 @@ class LoginAPI {
         prefs!.setBool("hasData", user.hasData!);
         prefs!.setBool("isVerified", user.verified!);
         prefs!.setString("email", user.email!);
+        prefs!.setString("imageId", user.imageId.toString());
+        prefs!.setString("fullname", user.fullName.toString());
 
         Get.offAllNamed('/');
       } else {

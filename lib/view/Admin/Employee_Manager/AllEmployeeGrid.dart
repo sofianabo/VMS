@@ -264,9 +264,7 @@ class AllEmployeeGrid extends StatelessWidget {
                                                   children: [
                                                     Text(
                                                       "Do You Want To Delete ${controller.employees[index].fullName} Employee",
-                                                      style: Get
-                                                          .theme
-                                                          .primaryTextTheme
+                                                      style: Get.theme.textTheme
                                                           .bodyMedium!
                                                           .copyWith(
                                                               fontSize: 16,

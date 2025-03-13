@@ -49,8 +49,8 @@ class AdminHome extends StatefulWidget {
 class _AdminHomeState extends State<AdminHome> {
   @override
   void initState() {
-    final con = Get.find<Add_Data_controller>();
-    final con2 = Get.find<Admin_Profile_Content>();
+    final con = Get.put(Add_Data_controller());
+    final con2 = Get.put(Admin_Profile_Content());
     bool? hasData = prefs!.getBool("hasData");
     bool? isVerified = prefs!.getBool("isVerified");
     String? email = prefs!.getString("email");

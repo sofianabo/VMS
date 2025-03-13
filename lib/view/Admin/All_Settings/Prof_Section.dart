@@ -7,11 +7,15 @@ import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_DropDown_Profile_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
 import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/All_Settings/Wedgets/Button_Has_IconText.dart';
 import 'package:vms_school/view/Admin/All_Settings/Wedgets/Long_Text_Field.dart';
 import 'package:vms_school/view/Admin/All_Settings/Wedgets/Profile_DatePicker.dart';
 import 'package:vms_school/view/Admin/All_Settings/Wedgets/TextField_Profile.dart';
 import 'package:vms_school/view/Admin/All_Settings/Wedgets/Profile_DropDown.dart';
+import 'package:intl/intl.dart' as intl;
+
+intl.DateFormat format = intl.DateFormat("yyyy-MM-dd");
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -21,7 +25,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  var add_Data_controller = Get.find<Add_Data_controller>();
+  var add_Data_controller = Get.put(Add_Data_controller());
 
   TextEditingController Firstname = TextEditingController();
   TextEditingController Lastname = TextEditingController();
@@ -35,6 +39,7 @@ class _ProfileState extends State<Profile> {
   TextEditingController Qualification = TextEditingController();
   TextEditingController Experience = TextEditingController();
   TextEditingController Note = TextEditingController();
+  TextEditingController Joindate = TextEditingController();
 
   @override
   void fillControllersWithData() {
@@ -50,30 +55,16 @@ class _ProfileState extends State<Profile> {
     Qualification.text = add_Data_controller.myData?.qualification ?? '';
     Experience.text = add_Data_controller.myData?.experience ?? '';
     Note.text = add_Data_controller.myData?.note ?? '';
-    Get.find<Add_Data_controller>().Birthdate.value =
-        DateTime.parse("${add_Data_controller.myData?.birthDate}" ?? "");
-    Get.find<Add_Data_controller>().Joindate.value =
-        DateTime.parse("${add_Data_controller.myData?.joinDate}");
-    Get.find<Profile_DropDown_Controller>().selecteFamily_StatusIndex =
-        "${add_Data_controller.myData?.familystatus}" ?? "";
-    Get.find<Profile_DropDown_Controller>().selecteGenderIndex =
-        "${add_Data_controller.myData?.gender}" ?? "";
-  }
+    Joindate.text = add_Data_controller.myData?.joinDate ?? '';
 
-  @override
-  void dispose() {
-    Firstname.dispose();
-    Lastname.dispose();
-    Mothername.dispose();
-    Fathername.dispose();
-    phoneNumper.dispose();
-    emergencyNumber.dispose();
-    Address.dispose();
-    currentAddress.dispose();
-    careerHistory.dispose();
-    Qualification.dispose();
-    Experience.dispose();
-    super.dispose();
+    add_Data_controller.Birthdate.value =
+        add_Data_controller.myData?.birthDate != null
+            ? format.parse(add_Data_controller.myData!.birthDate!)
+            : null;
+    Get.put(Profile_DropDown_Controller()).selecteFamily_StatusIndex =
+        "${add_Data_controller.myData?.familystatus}" ?? "";
+    Get.put(Profile_DropDown_Controller()).selecteGenderIndex =
+        "${add_Data_controller.myData?.gender}" ?? "";
   }
 
   @override
@@ -131,56 +122,72 @@ class _ProfileState extends State<Profile> {
                               : TextDirection.ltr,
                           children: [
                             CircleAvatar(
-                              maxRadius: 35,
+                              maxRadius: 80,
                               child: GestureDetector(
                                 onTap: () {
                                   showDialog(
                                     context: context,
                                     builder: (context) => Dialog(
                                       backgroundColor: Colors.transparent,
-                                      child: Material(
-                                        color: Colors.transparent,
-                                        child: Center(
-                                          child: AnimatedContainer(
-                                            duration: const Duration(
-                                                milliseconds: 500),
-                                            curve: Curves.fastOutSlowIn,
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  color: Colors.black
-                                                      .withOpacity(0.5),
-                                                  blurRadius: 20,
-                                                  offset: const Offset(0, 10),
-                                                ),
-                                              ],
-                                            ),
-                                            child: ClipOval(
-                                              child: add_Data_controller
-                                                          .myData?.imageId !=
-                                                      null
-                                                  ? Image.network(
-                                                      "$getimage${add_Data_controller.myData!.imageId}",
-                                                      fit: BoxFit.cover,
-                                                      width: 400,
-                                                      height: 400,
-                                                    )
-                                                  : Text(
-                                                      picController
-                                                              .myData?.firstName
-                                                              ?.substring(0, 1)
-                                                              .toUpperCase() ??
-                                                          '',
-                                                      style: Get
-                                                          .textTheme.titleLarge
-                                                          ?.copyWith(
-                                                        color: Colors.white,
-                                                        fontSize: 26,
-                                                        fontWeight:
-                                                            FontWeight.bold,
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Get.back();
+                                        },
+                                        child: Material(
+                                          color: Colors.transparent,
+                                          child: Center(
+                                            child: AnimatedContainer(
+                                              duration: const Duration(
+                                                  milliseconds: 500),
+                                              curve: Curves.fastOutSlowIn,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.black
+                                                        .withOpacity(0.5),
+                                                    blurRadius: 20,
+                                                    offset: const Offset(0, 10),
+                                                  ),
+                                                ],
+                                              ),
+                                              child: ClipOval(
+                                                child: add_Data_controller
+                                                            .myData?.imageId !=
+                                                        null
+                                                    ? Image.network(
+                                                        headers: {
+                                                          "ngrok-skip-browser-warning":
+                                                              "true",
+                                                          'User-Agent':
+                                                              'Custom User-Agent',
+                                                          'accept':
+                                                              'application/json',
+                                                          'authorization':
+                                                              'Bearer ${prefs!.getString("token")}',
+                                                        },
+                                                        "$getimage${add_Data_controller.myData!.imageId}",
+                                                        fit: BoxFit.cover,
+                                                        width: 400,
+                                                        height: 400,
+                                                      )
+                                                    : Text(
+                                                        picController.myData
+                                                                ?.firstName
+                                                                ?.substring(
+                                                                    0, 1)
+                                                                .toUpperCase() ??
+                                                            '',
+                                                        style: Get.textTheme
+                                                            .titleLarge
+                                                            ?.copyWith(
+                                                          color: Colors.white,
+                                                          fontSize: 26,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
                                                       ),
-                                                    ),
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -192,10 +199,18 @@ class _ProfileState extends State<Profile> {
                                   child: add_Data_controller.myData?.imageId !=
                                           null
                                       ? Image.network(
+                                          headers: {
+                                            "ngrok-skip-browser-warning":
+                                                "true",
+                                            'User-Agent': 'Custom User-Agent',
+                                            'accept': 'application/json',
+                                            'authorization':
+                                                'Bearer ${prefs!.getString("token")}',
+                                          },
                                           "$getimage${add_Data_controller.myData!.imageId}",
                                           fit: BoxFit.cover,
-                                          width: 70,
-                                          height: 70,
+                                          width: 400,
+                                          height: 400,
                                         )
                                       : Text(
                                           picController.myData?.firstName
@@ -331,11 +346,9 @@ class _ProfileState extends State<Profile> {
                                         Qualification: Qualification.text,
                                         Experience: Experience.text,
                                         Note: Note.text,
-                                        Birth_Date:
-                                            Get.find<Add_Data_controller>()
-                                                .Birthdate
-                                                .value
-                                                .toString(),
+                                        Birth_Date: add_Data_controller
+                                            .Birthdate.value
+                                            .toString(),
                                         Gender: Get.find<
                                                 Profile_DropDown_Controller>()
                                             .selecteGenderIndex,
@@ -449,9 +462,9 @@ class _ProfileState extends State<Profile> {
                               controller: emergencyNumber,
                               Uptext: "Emergency Number".tr,
                             ),
-                            Profile_JoinDate(
+                            TextField_Profile(
                               upicon: Icon(
-                                Icons.date_range_outlined,
+                                Icons.date_range_rounded,
                                 color: Theme.of(context)
                                     .textTheme
                                     .bodySmall!
@@ -459,8 +472,8 @@ class _ProfileState extends State<Profile> {
                                 size: 20,
                               ),
                               enabled: false,
+                              controller: Joindate,
                               Uptext: "Join Date".tr,
-                              width: 220,
                             ),
                             Profile_BirthDate(
                               upicon: Icon(

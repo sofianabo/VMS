@@ -453,6 +453,8 @@ class Languages {
       "sub": "مواد",
 
       'Subjects': '',
+      'Rewards Students': 'مكافئة الطالب',
+      'Rewards & Penalties': 'مكافئات و عقوبات',
       'My Account': 'حسابي',
     },
     'en': {
@@ -460,6 +462,8 @@ class Languages {
       'Have A Nice Day At Work': 'Have A Nice Day At Work',
       'Illness and Vaccines': 'Illness and Vaccines',
       'Illness': 'Illness',
+      'Rewards Students': 'Rewards Students',
+      'Rewards & Penalties': 'Rewards & Penalties',
       'Vaccines': 'Vaccines',
       'Rewards and Penalties': 'Rewards and Penalties',
       'Rewards': 'Rewards',

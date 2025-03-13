@@ -152,3 +152,4 @@ String deleteStudyShare = "deleteStudyShare";
 
 String verify = "verify";
 String resendCode = "resendCode";
+String updateEmail = "updateEmail";

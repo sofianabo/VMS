@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/Users/Re_Email_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Admin/All_Settings/Wedgets/Button_Has_IconText.dart';
-import 'package:vms_school/view/Admin/All_Settings/Wedgets/Profile_DatePicker.dart';
 import 'package:vms_school/view/Admin/All_Settings/Wedgets/TextField_Profile.dart';
-import 'package:vms_school/view/Admin/All_Settings/Wedgets/Profile_DropDown.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
 
 class Account_And_Password extends StatefulWidget {
@@ -18,34 +17,29 @@ class Account_And_Password extends StatefulWidget {
 }
 
 class _ProfileState extends State<Account_And_Password> {
-  TextEditingController newemail =
-      TextEditingController(text: "laithazzam.la.la@gmail.com");
-  TextEditingController password = TextEditingController(text: "");
-  TextEditingController virificationCode = TextEditingController(text: "");
+  TextEditingController newemail = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController virificationCode = TextEditingController();
   TextEditingController oldpassword = TextEditingController();
   TextEditingController newpassword = TextEditingController();
   TextEditingController confnewpassword = TextEditingController();
-  bool isenapled = false;
+  bool isfilled = false;
 
-  var add_Data_controller = Get.find<Add_Data_controller>();
+  var add_Data_controller = Get.put(Add_Data_controller());
 
   @override
   void fillControllersWithData() {
     newemail.text = add_Data_controller.myData?.email ?? '';
-  }
-
-  @override
-  void dispose() {
-    newemail.dispose();
-
-    super.dispose();
+    isfilled = true;
   }
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Add_Data_controller>(builder: (add_Data_controller) {
-      if (add_Data_controller.isLoading == false) {
-        fillControllersWithData();
+      if (isfilled == false) {
+        if (add_Data_controller.isLoading == false) {
+          fillControllersWithData();
+        }
       }
       return Align(
         alignment: Alignment.topCenter,
@@ -94,8 +88,19 @@ class _ProfileState extends State<Account_And_Password> {
                           ),
                           Button_Has_IconText(
                             onPressed: () {
-                              if (controller.enabledEmailInfo == true) {
-                                controller.ChangeenabledEmailInfo(false);
+                              if (controller.enabledEmailInfo) {
+                                if (controller.enabledchangeemaildInfo) {
+                                  if (newemail.text != null ||
+                                      newemail.text.isNotEmpty &&
+                                          password.text != null ||
+                                      password.text.isNotEmpty)
+                                    Re_Email_API().Re_Email(
+                                        email: newemail.text,
+                                        password: password.text,
+                                        showdiag: true);
+                                } else {
+                                  controller.ChangeenabledEmailInfo(false);
+                                }
                               } else {
                                 controller.ChangeenabledEmailInfo(true);
                               }
@@ -148,7 +153,8 @@ class _ProfileState extends State<Account_And_Password> {
                                   Uptext: "My Email".tr,
                                   enabled: controller.enabledEmailInfo,
                                   onChanged: (value) {
-                                    if (value != "laithazzam.la.la@gmail.com" &&
+                                    if (value !=
+                                            "${add_Data_controller.myData!.email}" &&
                                         value.isNotEmpty) {
                                       controller.ChangeenabledchangeemaildInfo(
                                           true);
@@ -168,34 +174,21 @@ class _ProfileState extends State<Account_And_Password> {
                                         color: Colors.grey.withOpacity(0.2),
                                         duration: const Duration(seconds: 1),
                                         delay: const Duration(seconds: 1)),
-                              if (controller.enabledchangeemaildInfo == true)
-                                TextField_Profile(
-                                  upicon: Icon(
-                                    Icons.password,
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall!
-                                        .color,
-                                    size: 20,
+                              if (controller.enabledEmailInfo == true)
+                                if (controller.enabledchangeemaildInfo == true)
+                                  TextField_Profile(
+                                    upicon: Icon(
+                                      Icons.password,
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall!
+                                          .color,
+                                      size: 20,
+                                    ),
+                                    controller: password,
+                                    Uptext: "Your Password".tr,
+                                    enabled: controller.enabledchangeemaildInfo,
                                   ),
-                                  controller: password,
-                                  Uptext: "Your Password".tr,
-                                  enabled: controller.enabledchangeemaildInfo,
-                                ),
-                              if (controller.enabledchangeemaildInfo == true)
-                                TextField_Profile(
-                                  upicon: Icon(
-                                    Icons.verified_outlined,
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall!
-                                        .color,
-                                    size: 20,
-                                  ),
-                                  controller: virificationCode,
-                                  Uptext: "Your Verification Code".tr,
-                                  enabled: controller.enabledchangeemaildInfo,
-                                ),
                             ],
                           )
                         ],

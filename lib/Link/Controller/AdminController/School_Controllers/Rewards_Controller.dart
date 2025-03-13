@@ -5,7 +5,6 @@ import 'package:vms_school/view/Admin/School_Management/Rewards_Pages/Rewards_Gr
 class RewardsController extends GetxController {
   String selectedImage = "../../images/Certificate/c3.svg";
 
-// بيانات الشهادات
   List<Map<String, dynamic>> Certificats = [
     {
       "image": "../../images/Certificate/c2.svg",
@@ -343,6 +342,19 @@ class RewardsController extends GetxController {
   int? selectedTextIndex;
 
   var progress = 0.0.obs;
+
+  void updateCertificates(
+      List<Map<String, dynamic>> certificates, String newName) {
+    List<Map<String, dynamic>> updatedCertificates = List.from(certificates);
+
+    for (var certificate in updatedCertificates) {
+      for (var data in certificate['DataPosition']) {
+        if (data['type'] == "stuname") {
+          data['name'] = newName;
+        }
+      }
+    }
+  }
 
   Future<void> selectImage(String image) async {
     if (selectedImage == image) {

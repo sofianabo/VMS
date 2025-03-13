@@ -121,7 +121,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                 Text(
                                                   "Email".tr,
                                                   style: Theme.of(context)
-                                                      .primaryTextTheme
+                                                      .textTheme
                                                       .labelSmall,
                                                 ),
                                                 TextFieldDialog(
@@ -137,7 +137,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                               Text(
                                                 "Guardian Username".tr,
                                                 style: Theme.of(context)
-                                                    .primaryTextTheme
+                                                    .textTheme
                                                     .labelSmall,
                                               ),
                                               TextFieldDialog(
@@ -165,7 +165,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                   Text(
                                                     "Name".tr,
                                                     style: Theme.of(context)
-                                                        .primaryTextTheme
+                                                        .textTheme
                                                         .labelSmall,
                                                   ),
                                                   TextFieldDialog(
@@ -181,7 +181,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                 Text(
                                                   "phone Number".tr,
                                                   style: Theme.of(context)
-                                                      .primaryTextTheme
+                                                      .textTheme
                                                       .labelSmall,
                                                 ),
                                                 TextFieldDialog(
@@ -209,7 +209,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                   Text(
                                                     "National ID".tr,
                                                     style: Theme.of(context)
-                                                        .primaryTextTheme
+                                                        .textTheme
                                                         .labelSmall,
                                                   ),
                                                   TextFieldDialog(
@@ -226,7 +226,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                 Text(
                                                   "Password".tr,
                                                   style: Theme.of(context)
-                                                      .primaryTextTheme
+                                                      .textTheme
                                                       .labelSmall,
                                                 ),
                                                 TextFieldDialog(
@@ -254,7 +254,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                   Text(
                                                     "Confirm Password".tr,
                                                     style: Theme.of(context)
-                                                        .primaryTextTheme
+                                                        .textTheme
                                                         .labelSmall,
                                                   ),
                                                   TextFieldDialog(

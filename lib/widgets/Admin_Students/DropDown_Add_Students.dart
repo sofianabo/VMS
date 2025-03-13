@@ -30,27 +30,27 @@ class DropdownAddStudents extends StatelessWidget {
       switch (type) {
         case 'Gender':
           selectedValue = cont.selectedGenderIndex.isNotEmpty
-              ? cont.selectedGenderIndex.tr
+              ? cont.selectedGenderIndex
               : title;
           break;
         case 'Realagon':
           selectedValue = cont.selectedRealagonIndex.isNotEmpty
-              ? cont.selectedRealagonIndex.tr
+              ? cont.selectedRealagonIndex
               : title;
           break;
         case 'BloodType':
           selectedValue = cont.selectedBloodTypeIndex.isNotEmpty
-              ? cont.selectedBloodTypeIndex.tr
+              ? cont.selectedBloodTypeIndex
               : title;
           break;
         case 'Location':
           selectedValue = cont.selectedLocationIndex.isNotEmpty
-              ? cont.selectedLocationIndex.tr
+              ? cont.selectedLocationIndex
               : title;
           break;
         case 'FamilyState':
           selectedValue = cont.selectedFamilyStateIndex.isNotEmpty
-              ? cont.selectedFamilyStateIndex.tr
+              ? cont.selectedFamilyStateIndex
               : title;
           break;
         case 'Class':
@@ -154,13 +154,13 @@ class DropdownAddStudents extends StatelessWidget {
       case 'Gender':
         items.addAll(cont.Genderlist.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value,
             child: Text(
               value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
             onTap: () async {
-              cont.selectIndex(type, value.tr);
+              cont.selectIndex(type, value);
             },
           );
         }).toList());
@@ -168,13 +168,13 @@ class DropdownAddStudents extends StatelessWidget {
       case 'Realagon':
         items.addAll(cont.Realagonlist.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value,
             child: Text(
               value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
             onTap: () async {
-              cont.selectIndex(type, value.tr);
+              cont.selectIndex(type, value);
             },
           );
         }).toList());
@@ -182,7 +182,7 @@ class DropdownAddStudents extends StatelessWidget {
       case 'BloodType':
         items.addAll(cont.BloodTypelist.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value,
             child: Text(
               value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
@@ -194,13 +194,13 @@ class DropdownAddStudents extends StatelessWidget {
       case 'Location':
         items.addAll(cont.Locationlist.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value,
             child: Text(
               value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
             onTap: () async {
-              cont.selectIndex(type, value.tr);
+              cont.selectIndex(type, value);
             },
           );
         }).toList());
@@ -208,7 +208,7 @@ class DropdownAddStudents extends StatelessWidget {
       case 'FamilyState':
         items.addAll(cont.FamilyStatelist.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value,
             child: Text(
               value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),

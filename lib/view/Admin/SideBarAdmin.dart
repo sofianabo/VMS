@@ -13,7 +13,7 @@ class SideBarAdmin extends StatelessWidget {
   SideBarAdmin({super.key});
   @override
   Widget build(BuildContext context) {
-    var controller = Get.find<Add_Data_controller>();
+    var controller = Get.put(Add_Data_controller());
     double h = MediaQuery.of(context).size.height;
     return Stack(
       alignment: Alignment.center,
@@ -189,8 +189,6 @@ class SideBarAdmin extends StatelessWidget {
                       }
                       if (value == "Teacher Status".tr) {
                         cont.updateContent("Teacher Status");
-                      
-                      
                       }
                       if (value == "Teacher Attendance Managment".tr) {
                         cont.updateContent("Teacher Attendance Managment");

@@ -48,7 +48,7 @@ Add_Students_Dialog_Functions() async {
       c.setallGaurdian(classes);
       Get.back();
       Get_Location_API.Get_Locations();
-      Get.dialog(All_Gurdians_Dialog());
+      Get.dialog(All_Gurdians_Dialog(), barrierDismissible: false);
     } else {
       ErrorHandler.handleDioError(DioError(
         requestOptions: response.requestOptions,

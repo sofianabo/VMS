@@ -24,47 +24,46 @@ class Dropdownallemployee extends StatelessWidget {
       switch (type) {
         case 'jobTitle':
           selectedValue = cont.selectejobTitleIndex.isNotEmpty
-              ? cont.selectejobTitleIndex.tr
+              ? cont.selectejobTitleIndex
               : title;
           break;
         case 'roll':
-          selectedValue = cont.selecterollIndex.isNotEmpty
-              ? cont.selecterollIndex.tr
-              : title;
+          selectedValue =
+              cont.selecterollIndex.isNotEmpty ? cont.selecterollIndex : title;
           break;
         case 'feroll':
           selectedValue = cont.selecteferollIndex.isNotEmpty
-              ? cont.selecteferollIndex.tr
+              ? cont.selecteferollIndex
               : title;
           break;
         case 'fejop':
           selectedValue = cont.selectefejopIndex.isNotEmpty
-              ? cont.selectefejopIndex.tr
+              ? cont.selectefejopIndex
               : title;
           break;
         case 'rolldialog':
           selectedValue = cont.selectedrolldialogIndex.isNotEmpty
-              ? cont.selectedrolldialogIndex.tr
+              ? cont.selectedrolldialogIndex
               : title;
           break;
         case 'dialogjobTitle':
           selectedValue = cont.selecteddialogjobTitleIndex.isNotEmpty
-              ? cont.selecteddialogjobTitleIndex.tr
+              ? cont.selecteddialogjobTitleIndex
               : title;
           break;
         case 'Gender':
           selectedValue = cont.selecteGenderIndex.isNotEmpty
-              ? cont.selecteGenderIndex.tr
+              ? cont.selecteGenderIndex
               : title;
           break;
         case 'Family_Status':
           selectedValue = cont.selecteFamily_StatusIndex.isNotEmpty
-              ? cont.selecteFamily_StatusIndex.tr
+              ? cont.selecteFamily_StatusIndex
               : title;
           break;
         case 'Contract':
           selectedValue = cont.selecteContractTypeIndex.isNotEmpty
-              ? cont.selecteContractTypeIndex.tr
+              ? cont.selecteContractTypeIndex
               : title;
           break;
       }
@@ -135,17 +134,18 @@ class Dropdownallemployee extends StatelessWidget {
       case 'jobTitle':
         items.addAll(cont.JobTitleList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value,
             child: Text(
               value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());
+        break;
       case 'feroll':
         items.addAll(cont.feRoll.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value,
             child: Text(
               value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
@@ -156,7 +156,7 @@ class Dropdownallemployee extends StatelessWidget {
       case 'fejop':
         items.addAll(cont.feJoptitle.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value,
             child: Text(
               value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
@@ -167,7 +167,7 @@ class Dropdownallemployee extends StatelessWidget {
       case 'roll':
         items.addAll(cont.rolllist.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value,
             child: Text(
               value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
@@ -178,7 +178,7 @@ class Dropdownallemployee extends StatelessWidget {
       case 'dialogjobTitle':
         items.addAll(cont.dialogjobTitleList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value,
             child: Text(
               value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
@@ -189,7 +189,7 @@ class Dropdownallemployee extends StatelessWidget {
       case 'Gender':
         items.addAll(cont.GenderList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value,
             child: Text(
               value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
@@ -200,9 +200,9 @@ class Dropdownallemployee extends StatelessWidget {
       case 'Family_Status':
         items.addAll(cont.Family_StatusList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value, // استخدام القيمة الأصلية
             child: Text(
-              value.tr,
+              value.tr, // عرض القيمة المترجمة
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
@@ -211,9 +211,9 @@ class Dropdownallemployee extends StatelessWidget {
       case 'rolldialog':
         items.addAll(cont.rolldialoglist.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value, // استخدام القيمة الأصلية
             child: Text(
-              value.tr,
+              value.tr, // عرض القيمة المترجمة
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
@@ -222,9 +222,9 @@ class Dropdownallemployee extends StatelessWidget {
       case 'Contract':
         items.addAll(cont.contractList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value, // استخدام القيمة الأصلية
             child: Text(
-              value.tr,
+              value.tr, // عرض القيمة المترجمة
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );

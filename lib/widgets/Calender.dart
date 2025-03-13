@@ -407,7 +407,7 @@ class selectTeacherDateAttendence extends StatelessWidget {
                   decoration: InputDecoration(
                       hintText: "yyyy-MM-dd",
                       hintStyle: Theme.of(context)
-                          .primaryTextTheme
+                          .textTheme
                           .titleMedium!
                           .copyWith(
                               fontSize: 14, color: const Color(0xffD9D9D9)),
@@ -495,7 +495,7 @@ class selectEmployeeDateAttendence extends StatelessWidget {
                   decoration: InputDecoration(
                       hintText: "yyyy-MM-dd",
                       hintStyle: Theme.of(context)
-                          .primaryTextTheme
+                          .textTheme
                           .titleMedium!
                           .copyWith(
                               fontSize: 14, color: const Color(0xffD9D9D9)),
@@ -580,7 +580,7 @@ class selectStudentsDateAttendence extends StatelessWidget {
                   decoration: InputDecoration(
                       hintText: "yyyy-MM-dd",
                       hintStyle: Theme.of(context)
-                          .primaryTextTheme
+                          .textTheme
                           .titleMedium!
                           .copyWith(
                               fontSize: 14, color: const Color(0xffD9D9D9)),
@@ -665,7 +665,7 @@ class selectTransactionDate extends StatelessWidget {
                   decoration: InputDecoration(
                       hintText: "yyyy-MM-dd",
                       hintStyle: Theme.of(context)
-                          .primaryTextTheme
+                          .textTheme
                           .titleMedium!
                           .copyWith(
                               fontSize: 14, color: const Color(0xffD9D9D9)),
@@ -748,7 +748,7 @@ class selectstart extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Theme.of(context)
-                      .primaryTextTheme
+                      .textTheme
                       .titleMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
@@ -819,7 +819,7 @@ class selectend extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Theme.of(context)
-                      .primaryTextTheme
+                      .textTheme
                       .titleMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
@@ -891,7 +891,7 @@ class penaltyStartDate extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Theme.of(context)
-                      .primaryTextTheme
+                      .textTheme
                       .titleMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
@@ -963,7 +963,7 @@ class PenaltyEndDate extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Theme.of(context)
-                      .primaryTextTheme
+                      .textTheme
                       .titleMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
@@ -1034,7 +1034,7 @@ class examDate extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Theme.of(context)
-                      .primaryTextTheme
+                      .textTheme
                       .titleMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(

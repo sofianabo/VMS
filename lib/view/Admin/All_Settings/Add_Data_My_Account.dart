@@ -20,7 +20,7 @@ class Add_Data_account extends StatefulWidget {
 }
 
 class _ProfileState extends State<Add_Data_account> {
-  var add_Data_controller = Get.find<Add_Data_controller>();
+  var add_Data_controller = Get.put(Add_Data_controller());
   TextEditingController Firstname = TextEditingController();
   TextEditingController Lastname = TextEditingController();
   TextEditingController Mothername = TextEditingController();
@@ -70,12 +70,12 @@ class _ProfileState extends State<Add_Data_account> {
     bankAccountNumber.text =
         add_Data_controller.myData?.bankAccountNumber ?? '';
     ifscCode.text = add_Data_controller.myData?.iFSCCode ?? '';
-    Get.find<Add_Data_controller>().Birthdate.value =
+    add_Data_controller.Birthdate.value =
         add_Data_controller.myData?.birthDate != null
             ? DateTime.parse("${add_Data_controller.myData?.birthDate}")
             : null;
 
-    Get.find<Add_Data_controller>().Joindate.value =
+    add_Data_controller.Joindate.value =
         add_Data_controller.myData?.joinDate != null
             ? DateTime.parse("${add_Data_controller.myData?.joinDate}")
             : null;

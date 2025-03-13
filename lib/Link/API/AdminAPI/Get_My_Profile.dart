@@ -10,7 +10,7 @@ class Get_My_Profile {
   static Dio dio = Dio();
 
   static Future<dynamic> Get_My_Profile_Data() async {
-    final controller = Get.find<Add_Data_controller>();
+    final controller = Get.put(Add_Data_controller());
     String myURI = "$hostPort$getMyEmployee";
     controller.setIsloading(true);
     try {

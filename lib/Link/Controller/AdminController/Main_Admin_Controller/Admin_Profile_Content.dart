@@ -10,6 +10,17 @@ class Admin_Profile_Content extends GetxController {
   bool enabledPasswordInfo = false;
   bool enabledchangeemaildInfo = false;
 
+  resetAll() {
+    enabledPublicInfo = false;
+    enabledMoreInfo = false;
+    enabledSocilaMediaInfo = false;
+    enabledBanlInfo = false;
+    enabledEmailInfo = false;
+    enabledPasswordInfo = false;
+    enabledchangeemaildInfo = false;
+    update();
+  }
+
   ChangeCurruntValue(String value) {
     curruntValue = value;
     update();

@@ -83,8 +83,8 @@ class SessionManagementGrid extends StatelessWidget {
                                     "${control.Sessionss[index]['name']!.replaceRange(4, 9, "").replaceRange(0, 2, "20\n")}",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        color:
-                                            const Color(0xff134B70).withOpacity(0.2),
+                                        color: const Color(0xff134B70)
+                                            .withOpacity(0.2),
                                         fontWeight: FontWeight.bold,
                                         fontSize: 60),
                                   ),
@@ -95,22 +95,26 @@ class SessionManagementGrid extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text("${control.Sessionss[index]['name']}",
-                                        style: Theme.of(context).textTheme.bodyMedium!
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
                                             .copyWith(
-                                                fontSize: 20,
-                                                )),
+                                              fontSize: 20,
+                                            )),
                                     Text(
                                         "${control.Sessionss[index]['status']}",
-                                        style: Theme.of(context).textTheme.bodyMedium!
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
                                             .copyWith(
-                                          fontSize: 26,
-                                          fontWeight: FontWeight.bold,
-                                          color: control.Sessionss[index]
-                                                      ['status'] ==
-                                                  "Closed"
-                                              ? const Color(0xffB03D3D)
-                                              : const Color(0xff2F9742),
-                                        )),
+                                              fontSize: 26,
+                                              fontWeight: FontWeight.bold,
+                                              color: control.Sessionss[index]
+                                                          ['status'] ==
+                                                      "Closed"
+                                                  ? const Color(0xffB03D3D)
+                                                  : const Color(0xff2F9742),
+                                            )),
                                     Row(
                                       children: [
                                         Column(
@@ -121,26 +125,20 @@ class SessionManagementGrid extends StatelessWidget {
                                           children: [
                                             Text(
                                                 "Start Date : ${control.Sessionss[index]['startDate']}",
-                                                style: Get
-                                                    .theme
-                                                    .primaryTextTheme
-                                                    .titleLarge!
+                                                style: Get.theme.textTheme
+                                                    .displayLarge!
                                                     .copyWith(
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                       )),
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.normal,
+                                                )),
                                             Text(
                                                 "End Date : ${control.Sessionss[index]['endDate']}",
-                                                style: Get
-                                                    .theme
-                                                    .primaryTextTheme
-                                                    .titleLarge!
+                                                style: Get.theme.textTheme
+                                                    .displayLarge!
                                                     .copyWith(
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      )),
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.normal,
+                                                )),
                                           ],
                                         )
                                       ],
@@ -176,7 +174,8 @@ class SessionManagementGrid extends StatelessWidget {
                                           ButtonDialog(
                                               text: "Cancel",
                                               onPressed: () async {},
-                                              color: Theme.of(context).primaryColor,
+                                              color: Theme.of(context)
+                                                  .primaryColor,
                                               width: 120)
                                         ],
                                         contents: Column(
@@ -186,7 +185,8 @@ class SessionManagementGrid extends StatelessWidget {
                                               width: 400,
                                               child: Text(
                                                 "Do You Want To Delete (${control.Sessionss[index]['name']}) Session",
-                                                style: const TextStyle(fontSize: 16),
+                                                style: const TextStyle(
+                                                    fontSize: 16),
                                               ),
                                             ),
                                           ],
@@ -248,7 +248,8 @@ class SessionManagementGrid extends StatelessWidget {
                                                       .toString(),
                                                 );
                                               },
-                                              color: Theme.of(context).primaryColor,
+                                              color: Theme.of(context)
+                                                  .primaryColor,
                                               width: 90)
                                         ],
                                         contents: Column(
@@ -294,7 +295,7 @@ class SessionManagementGrid extends StatelessWidget {
                                                           style: Get
                                                               .theme
                                                               .textTheme
-                                                              .titleLarge!
+                                                              .displayLarge!
                                                               .copyWith(
                                                             fontSize: 22,
                                                           ),
@@ -319,8 +320,7 @@ class SessionManagementGrid extends StatelessWidget {
                                                     children: [
                                                       const Padding(
                                                         padding:
-                                                            EdgeInsets
-                                                                .only(
+                                                            EdgeInsets.only(
                                                                 bottom: 5.0),
                                                         child:
                                                             Text("Start Date"),
@@ -346,8 +346,7 @@ class SessionManagementGrid extends StatelessWidget {
                                                       children: [
                                                         const Padding(
                                                           padding:
-                                                              EdgeInsets
-                                                                  .only(
+                                                              EdgeInsets.only(
                                                                   bottom: 5.0),
                                                           child:
                                                               Text("End Date"),
