@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 
 class Dropdownallemployee extends StatelessWidget {
   final double width;
   final String title;
   final String type;
-  final Color? color;
+  final bool isError; // ✅ متغير للتحقق من الخطأ
 
   const Dropdownallemployee({
     super.key,
     required this.title,
-    this.color,
     required this.width,
     required this.type,
+    this.isError = false, // ✅ افتراضيًا لا يوجد خطأ
   });
 
   @override
@@ -68,61 +69,107 @@ class Dropdownallemployee extends StatelessWidget {
           break;
       }
 
-      return Container(
-        padding: const EdgeInsets.all(6.0),
-        alignment: Alignment.centerLeft,
-        width: width,
-        height: 40,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          border: Border.all(color: color ?? const Color(0xffD9D9D9)),
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: DropdownButton<String>(
-                icon: selectedValue != title
-                    ? GestureDetector(
-                        onTap: () {
-                          cont.selectIndex(type, "");
-                        },
-                        child: Icon(
-                          Icons.close,
-                          color: Get.theme.secondaryHeaderColor,
-                        ),
-                      )
-                    : Icon(Icons.arrow_drop_down_outlined,
-                        color: Get.theme.secondaryHeaderColor),
-                dropdownColor: Get.theme.cardColor,
-                iconDisabledColor: Colors.grey,
-                iconEnabledColor: Get.theme.cardColor,
-                value: selectedValue,
-                isExpanded: true,
-                underline: const SizedBox(),
-                style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-                onChanged: (newValue) {
-                  if (newValue != null) {
-                    cont.selectIndex(type, newValue);
-                  }
-                },
-                items: [
-                  DropdownMenuItem<String>(
-                    value: title,
-                    enabled: false,
-                    child: Text(
-                      title.tr,
-                      style: Get.theme.textTheme.bodyMedium!.copyWith(
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
-                  ..._getDropdownItems(cont),
-                ],
-                borderRadius: BorderRadius.circular(3),
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(6.0),
+            alignment: Alignment.centerLeft,
+            width: width,
+            height: 40,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              border: Border.all(
+                color: isError
+                    ? Colors.red
+                    : const Color(0xffD9D9D9), // ✅ تغيير اللون عند الخطأ
               ),
             ),
-          ],
-        ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: DropdownButton<String>(
+                    icon: selectedValue != title
+                        ? GestureDetector(
+                            onTap: () {
+                              cont.selectIndex(type, "");
+                              WidgetsBinding.instance.addPostFrameCallback((_) {
+                                if (type == "Gender") {
+                                  Get.find<Allteachercontroller>()
+                                      .updateFieldError("gender", true);
+                                }
+                              });
+
+                              WidgetsBinding.instance.addPostFrameCallback((_) {
+                                if (type == "Contract") {
+                                  Get.find<Allteachercontroller>()
+                                      .updateFieldError("contract", true);
+                                }
+                              });
+                            },
+                            child: Icon(
+                              Icons.close,
+                              color: Get.theme.secondaryHeaderColor,
+                            ),
+                          )
+                        : Icon(Icons.arrow_drop_down_outlined,
+                            color: Get.theme.secondaryHeaderColor),
+                    dropdownColor: Get.theme.cardColor,
+                    iconDisabledColor: Colors.grey,
+                    iconEnabledColor: Get.theme.cardColor,
+                    value: selectedValue,
+                    isExpanded: true,
+                    underline: const SizedBox(),
+                    style:
+                        Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+                    onChanged: (newValue) {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        if (type == "Gender" && newValue != "") {
+                          Get.find<Allteachercontroller>()
+                              .updateFieldError("gender", false);
+                        }
+                      });
+
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        if (type == "Contract" && newValue != "") {
+                          Get.find<Allteachercontroller>()
+                              .updateFieldError("contract", false);
+                        }
+                      });
+
+                      if (newValue != null) {
+                        cont.selectIndex(type, newValue);
+                      }
+                    },
+                    items: [
+                      DropdownMenuItem<String>(
+                        value: title,
+                        enabled: false,
+                        child: Text(
+                          title.tr,
+                          style: Get.theme.textTheme.bodyMedium!.copyWith(
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                      ..._getDropdownItems(cont),
+                    ],
+                    borderRadius: BorderRadius.circular(3),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // ✅ عرض رسالة خطأ إذا كان هناك خطأ
+          if (isError)
+            const Padding(
+              padding: EdgeInsets.only(top: 5.0),
+              child: Text(
+                "يرجى اختيار قيمة صحيحة",
+                style: TextStyle(color: Colors.red, fontSize: 12),
+              ),
+            ),
+        ],
       );
     });
   }
@@ -200,9 +247,9 @@ class Dropdownallemployee extends StatelessWidget {
       case 'Family_Status':
         items.addAll(cont.Family_StatusList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value, // استخدام القيمة الأصلية
+            value: value,
             child: Text(
-              value.tr, // عرض القيمة المترجمة
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
@@ -211,9 +258,9 @@ class Dropdownallemployee extends StatelessWidget {
       case 'rolldialog':
         items.addAll(cont.rolldialoglist.map((String value) {
           return DropdownMenuItem<String>(
-            value: value, // استخدام القيمة الأصلية
+            value: value,
             child: Text(
-              value.tr, // عرض القيمة المترجمة
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
@@ -222,13 +269,14 @@ class Dropdownallemployee extends StatelessWidget {
       case 'Contract':
         items.addAll(cont.contractList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value, // استخدام القيمة الأصلية
+            value: value,
             child: Text(
-              value.tr, // عرض القيمة المترجمة
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());
+
         break;
     }
 
