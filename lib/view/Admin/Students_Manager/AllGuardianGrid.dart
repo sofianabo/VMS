@@ -7,12 +7,12 @@ import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
-import 'package:vms_school/widgets/TextFieldDialog.dart';
+import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 import '../../../widgets/GridAnimation.dart';
 
 class AllGuardianGrid extends StatelessWidget {
-  TextEditingController gUserName = TextEditingController();
+  TextEditingController gName = TextEditingController();
   TextEditingController gNationalID = TextEditingController();
   TextEditingController gEmail = TextEditingController();
   TextEditingController gphone = TextEditingController();
@@ -117,8 +117,8 @@ class AllGuardianGrid extends StatelessWidget {
                   return HoverScaleCard(
                     child: GestureDetector(
                       onTap: () {
-                        gUserName.text =
-                            control.filteredregaurdians![index].name!;
+                        control.resetError();
+                        gName.text = control.filteredregaurdians![index].name!;
                         gNationalID.text =
                             control.filteredregaurdians![index].nationalId!;
                         gEmail.text =
@@ -126,83 +126,23 @@ class AllGuardianGrid extends StatelessWidget {
                         gphone.text =
                             control.filteredregaurdians![index].phone!;
 
-                        Get.dialog(VMSAlertDialog(
-                            contents: SizedBox(
-                                child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Guardian Name".tr,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!,
-                                        ),
-                                        TextFieldDialog(
-                                            controller: gUserName,
-                                            hinttext:
-                                                "${control.filteredregaurdians![index].name}")
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          left: prefs!.getString(languageKey) ==
-                                                  "ar"
-                                              ? 0
-                                              : 20.0,
-                                          right:
-                                              prefs!.getString(languageKey) ==
-                                                      "ar"
-                                                  ? 20
-                                                  : 0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Guardian National ID".tr,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium!,
-                                          ),
-                                          TextFieldDialog(
-                                              controller: gNationalID,
-                                              hinttext:
-                                                  "${control.filteredregaurdians![index].nationalId}")
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 20.0),
-                                  child: Row(
+                        Get.dialog(GetBuilder<Allgaurdiancontroller>(
+                            builder: (controller) {
+                          return VMSAlertDialog(
+                              contents: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Guardian Email".tr,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium!,
-                                          ),
-                                          TextFieldDialog(
-                                              controller: gEmail,
-                                              hinttext:
-                                                  "${control.filteredregaurdians![index].email}")
-                                        ],
-                                      ),
+                                      Textfildwithupper(
+                                          isError: controller.IsnameError,
+                                          Uptext: "Guardian Name".tr,
+                                          isRequired: true,
+                                          controller: gName,
+                                          hinttext:
+                                              "${controller.filteredregaurdians![index].name}"),
                                       Padding(
                                         padding: EdgeInsets.only(
                                             left:
@@ -215,54 +155,113 @@ class AllGuardianGrid extends StatelessWidget {
                                                         "ar"
                                                     ? 20
                                                     : 0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "Guardian Phone Number".tr,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium!,
-                                            ),
-                                            TextFieldDialog(
-                                                controller: gphone,
-                                                hinttext:
-                                                    "${control.filteredregaurdians![index].phone}")
-                                          ],
-                                        ),
+                                        child: Textfildwithupper(
+                                            isError: controller.IsnidError,
+                                            Uptext: "Guardian National ID".tr,
+                                            isRequired: true,
+                                            controller: gNationalID,
+                                            hinttext:
+                                                "${controller.filteredregaurdians![index].nationalId}"),
                                       )
                                     ],
                                   ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 20.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Textfildwithupper(
+                                            isError: controller.IsEmailError,
+                                            isRequired: true,
+                                            fieldType: "email",
+                                            Uptext: "Guardian Email".tr,
+                                            controller: gEmail,
+                                            hinttext:
+                                                "${controller.filteredregaurdians![index].email}"),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              left: prefs!.getString(
+                                                          languageKey) ==
+                                                      "ar"
+                                                  ? 0
+                                                  : 20.0,
+                                              right: prefs!.getString(
+                                                          languageKey) ==
+                                                      "ar"
+                                                  ? 20
+                                                  : 0),
+                                          child: Textfildwithupper(
+                                              fieldType: "phone",
+                                              isError: controller.IsphoneError,
+                                              Uptext:
+                                                  "Guardian Phone Number".tr,
+                                              isRequired: true,
+                                              controller: gphone,
+                                              hinttext:
+                                                  "${controller.filteredregaurdians![index].phone}"),
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                              action: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    ButtonDialog(
+                                        width: 80,
+                                        text: "Edit".tr,
+                                        onPressed: () async {
+                                          bool isNameEmpty =
+                                              gName.text.trim().isEmpty;
+                                          bool isPhoneEmpty =
+                                              gphone.text.trim().isEmpty;
+                                          bool isNationalIDEmpty =
+                                              gNationalID.text.trim().isEmpty;
+                                          bool isEmailEmpty =
+                                              gEmail.text.trim().isEmpty;
+
+                                          RegExp emailRegex = RegExp(
+                                              r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+                                          bool isEmailValid =
+                                              emailRegex.hasMatch(gEmail.text);
+
+                                          controller.updateFieldError(
+                                              "name", isNameEmpty);
+                                          controller.updateFieldError(
+                                              "phone", isPhoneEmpty);
+                                          controller.updateFieldError(
+                                              "nid", isNationalIDEmpty);
+                                          controller.updateFieldError("email",
+                                              isEmailEmpty || !isEmailValid);
+
+                                          if (!(isNameEmpty ||
+                                              isPhoneEmpty ||
+                                              isNationalIDEmpty ||
+                                              isEmailEmpty ||
+                                              !isEmailValid)) {
+                                            await Editguardianapi(context)
+                                                .Editguardian(
+                                                    controller
+                                                        .filteredregaurdians![
+                                                            index]
+                                                        .id!,
+                                                    gName.text,
+                                                    gEmail.text,
+                                                    gNationalID.text,
+                                                    gphone.text,
+                                                    index);
+                                          }
+                                        },
+                                        color: Theme.of(context).primaryColor)
+                                  ],
                                 )
                               ],
-                            )),
-                            action: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  ButtonDialog(
-                                      width: 80,
-                                      text: "Edit".tr,
-                                      onPressed: () async {
-                                        await Editguardianapi(context)
-                                            .Editguardian(
-                                                control
-                                                    .filteredregaurdians![index]
-                                                    .id!,
-                                                gUserName.text,
-                                                gEmail.text,
-                                                gNationalID.text,
-                                                gphone.text,
-                                                index);
-                                        Get.back();
-                                      },
-                                      color: Theme.of(context).primaryColor)
-                                ],
-                              )
-                            ],
-                            apptitle: "Edit Guardian".tr,
-                            subtitle: "none"));
+                              apptitle: "Edit Guardian".tr,
+                              subtitle: "none");
+                        }));
                       },
                       child: Container(
                           padding: const EdgeInsets.all(20),

@@ -132,7 +132,7 @@ Class_Curriculm_Funcation(BuildContext context) async {
               ),
             ),
           ),
-          apptitle: "Students Vaccine",
+          apptitle: "Curriculum List",
           subtitle: "none",
         );
       }));

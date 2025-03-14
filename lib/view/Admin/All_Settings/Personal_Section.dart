@@ -41,12 +41,16 @@ class _ProfileState extends State<Personal> {
         add_Data_controller.myData?.bankAccountNumber ?? '';
     ifscCode.text = add_Data_controller.myData?.iFSCCode ?? '';
     add_Data_controller.Birthdate.value =
-        DateTime.parse("${add_Data_controller.myData?.birthDate}");
+        add_Data_controller.myData?.birthDate != null
+            ? DateTime.parse("${add_Data_controller.myData?.birthDate}")
+            : null;
     add_Data_controller.Joindate.value =
-        DateTime.parse("${add_Data_controller.myData?.joinDate}");
-    Get.find<Profile_DropDown_Controller>().selecteFamily_StatusIndex =
+        add_Data_controller.myData?.joinDate != null
+            ? DateTime.parse("${add_Data_controller.myData?.joinDate}")
+            : null;
+    Get.find<Profile_DropDown_Controller>().Family_StatusIndex =
         "${add_Data_controller.myData?.familystatus}";
-    Get.find<Profile_DropDown_Controller>().selecteGenderIndex =
+    Get.find<Profile_DropDown_Controller>().GenderIndex =
         "${add_Data_controller.myData?.gender}";
   }
 
@@ -144,6 +148,8 @@ class _ProfileState extends State<Personal> {
                       Padding(
                         padding: const EdgeInsets.only(top: 15.0),
                         child: Wrap(
+                          alignment: WrapAlignment.spaceBetween,
+                          runAlignment: WrapAlignment.spaceBetween,
                           runSpacing: 25.0,
                           spacing: 25.0,
                           textDirection: Get.find<LocalizationController>()
@@ -263,6 +269,8 @@ class _ProfileState extends State<Personal> {
                       Padding(
                         padding: const EdgeInsets.only(top: 15.0),
                         child: Wrap(
+                          alignment: WrapAlignment.spaceBetween,
+                          runAlignment: WrapAlignment.spaceBetween,
                           runSpacing: 25.0,
                           spacing: 25.0,
                           textDirection: Get.find<LocalizationController>()

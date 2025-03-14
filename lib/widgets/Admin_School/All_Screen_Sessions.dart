@@ -128,7 +128,7 @@ class DropDownAllSessions extends StatelessWidget {
                       cont.sessions!.current!.id) {
                     Get.find<StudentAttendencController>()
                         .selectDateindex
-                        .value = null;
+                        .value = DateTime.now();
                     Studentattendenceapi(context).Studentattendence(
                       sessionID: cont.sessionId,
                     );

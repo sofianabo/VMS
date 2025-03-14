@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/Users/RePassword.dart';
 import 'package:vms_school/Link/API/AdminAPI/Users/Re_Email_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
@@ -90,14 +91,36 @@ class _ProfileState extends State<Account_And_Password> {
                             onPressed: () {
                               if (controller.enabledEmailInfo) {
                                 if (controller.enabledchangeemaildInfo) {
-                                  if (newemail.text != null ||
-                                      newemail.text.isNotEmpty &&
-                                          password.text != null ||
-                                      password.text.isNotEmpty)
-                                    Re_Email_API().Re_Email(
-                                        email: newemail.text,
-                                        password: password.text,
-                                        showdiag: true);
+                                  RegExp emailRegex = RegExp(
+                                      r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+                                  bool isEmailValid =
+                                      emailRegex.hasMatch(newemail.text);
+
+                                  RegExp passwordRegex =
+                                      RegExp(r"^[a-zA-Z0-9]{8,}$");
+                                  bool isPasswordValid =
+                                      passwordRegex.hasMatch(password.text);
+
+                                  if (!isEmailValid) {
+                                    Get.snackbar("خطأ",
+                                        "البريد الإلكتروني غير صالح. تأكد من احتوائه على @ و .com",
+                                        backgroundColor: Colors.red,
+                                        colorText: Colors.white);
+                                    return;
+                                  }
+
+                                  if (!isPasswordValid) {
+                                    Get.snackbar("خطأ",
+                                        "يجب أن تكون كلمة المرور 8 محارف على الأقل وأن تحتوي على أحرف إنجليزية فقط",
+                                        backgroundColor: Colors.red,
+                                        colorText: Colors.white);
+                                    return;
+                                  }
+
+                                  Re_Email_API().Re_Email(
+                                      email: newemail.text,
+                                      password: password.text,
+                                      showdiag: true);
                                 } else {
                                   controller.ChangeenabledEmailInfo(false);
                                 }
@@ -130,6 +153,7 @@ class _ProfileState extends State<Account_And_Password> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
+                            spacing: 12.0,
                             textDirection: Get.find<LocalizationController>()
                                         .currentLocale
                                         .value
@@ -140,6 +164,7 @@ class _ProfileState extends State<Account_And_Password> {
                             children: [
                               if (add_Data_controller.isLoading == false)
                                 TextField_Profile(
+                                  fieldType: "email",
                                   width: 350,
                                   upicon: Icon(
                                     Icons.email_outlined,
@@ -177,6 +202,16 @@ class _ProfileState extends State<Account_And_Password> {
                               if (controller.enabledEmailInfo == true)
                                 if (controller.enabledchangeemaildInfo == true)
                                   TextField_Profile(
+                                    isError: controller.IsPasswordError,
+                                    hidePassword: controller.ShowPassword,
+                                    IconButton: IconButton(
+                                        onPressed: () {
+                                          controller.ChangeShowPassword(
+                                              !controller.ShowPassword);
+                                        },
+                                        icon: Icon(controller.ShowPassword
+                                            ? Icons.visibility_off
+                                            : Icons.remove_red_eye_outlined)),
                                     upicon: Icon(
                                       Icons.password,
                                       color: Theme.of(context)
@@ -220,10 +255,58 @@ class _ProfileState extends State<Account_And_Password> {
                             style: TextStyle(fontSize: 18),
                           ),
                           Button_Has_IconText(
-                            onPressed: () {
-                              if (controller.enabledPasswordInfo == true) {
-                                controller.ChangeenabledPasswordInfo(false);
+                            onPressed: () async {
+                              if (controller.enabledPasswordInfo) {
+                                bool isOldEmpty =
+                                    oldpassword.text.trim().isEmpty;
+                                bool isNewEmpty =
+                                    newpassword.text.trim().isEmpty;
+                                bool isConfirmEmpty =
+                                    confnewpassword.text.trim().isEmpty;
+
+                                bool allEmpty =
+                                    isOldEmpty && isNewEmpty && isConfirmEmpty;
+                                bool allFilled = !isOldEmpty &&
+                                    !isNewEmpty &&
+                                    !isConfirmEmpty;
+
+                                if (allEmpty) {
+                                  controller.ChangeenabledPasswordInfo(false);
+                                  return;
+                                }
+
+                                // تحديث حالة الأخطاء للحقول الفارغة
+                                controller.updatePasswordError(
+                                    "old", isOldEmpty);
+                                controller.updatePasswordError(
+                                    "new", isNewEmpty);
+                                controller.updatePasswordError(
+                                    "confirm", isConfirmEmpty);
+
+                                // التحقق من تطابق الباسوورد الجديد مع التأكيد
+                                if (newpassword.text.trim() !=
+                                    confnewpassword.text.trim()) {
+                                  controller.updatePasswordError(
+                                      "confirm", true);
+                                  return; // إيقاف العملية حتى يتم التصحيح
+                                }
+
+                                // إرسال الطلب إذا كانت جميع الحقول ممتلئة وكلمات المرور متطابقة
+                                if (allFilled) {
+                                  if (await Re_Password_API().Re_Password(
+                                          oldPassword: oldpassword.text,
+                                          newPassword: newpassword.text) ==
+                                      200) {
+                                    oldpassword.clear();
+                                    newpassword.clear();
+                                    confnewpassword.clear();
+                                  }
+                                }
                               } else {
+                                controller.updatePasswordError("old", false);
+                                controller.updatePasswordError("new", false);
+                                controller.updatePasswordError(
+                                    "confirm", false);
                                 controller.ChangeenabledPasswordInfo(true);
                               }
                             },
@@ -262,6 +345,22 @@ class _ProfileState extends State<Account_And_Password> {
                                   : TextDirection.ltr,
                               children: [
                                 TextField_Profile(
+                                  isError: controller.IsOldPasswordError,
+                                  hidePassword: controller.ShowOldPassword,
+                                  IconButton: IconButton(
+                                      onPressed: () {
+                                        controller.ChangeShowOldPassword(
+                                            !controller.ShowOldPassword);
+                                      },
+                                      icon: Icon(
+                                        controller.ShowOldPassword
+                                            ? Icons.visibility_off
+                                            : Icons.remove_red_eye_outlined,
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall!
+                                            .color,
+                                      )),
                                   upicon: Icon(
                                     Icons.password,
                                     color: Theme.of(context)
@@ -290,6 +389,23 @@ class _ProfileState extends State<Account_And_Password> {
                                   : TextDirection.ltr,
                               children: [
                                 TextField_Profile(
+                                  fieldType: "password",
+                                  isError: controller.IsNewPasswordError,
+                                  hidePassword: controller.ShowNewPassword,
+                                  IconButton: IconButton(
+                                      onPressed: () {
+                                        controller.ChangeShowNewPassword(
+                                            !controller.ShowNewPassword);
+                                      },
+                                      icon: Icon(
+                                        controller.ShowNewPassword
+                                            ? Icons.visibility_off
+                                            : Icons.remove_red_eye_outlined,
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall!
+                                            .color,
+                                      )),
                                   upicon: Icon(
                                     Icons.password,
                                     color: Theme.of(context)
@@ -315,6 +431,23 @@ class _ProfileState extends State<Account_And_Password> {
                                 : TextDirection.ltr,
                             children: [
                               TextField_Profile(
+                                fieldType: "password",
+                                isError: controller.IsConfirmPasswordError,
+                                hidePassword: controller.ShowConfirmPassword,
+                                IconButton: IconButton(
+                                    onPressed: () {
+                                      controller.ChangeShowConfirmPassword(
+                                          !controller.ShowConfirmPassword);
+                                    },
+                                    icon: Icon(
+                                      controller.ShowConfirmPassword
+                                          ? Icons.visibility_off
+                                          : Icons.remove_red_eye_outlined,
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall!
+                                          .color,
+                                    )),
                                 upicon: Icon(
                                   Icons.password_outlined,
                                   color: Theme.of(context)

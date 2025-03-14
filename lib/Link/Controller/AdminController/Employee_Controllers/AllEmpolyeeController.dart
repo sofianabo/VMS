@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/All_Virtual_Employee_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/All_Employee_Model.dart';
 import 'package:vms_school/Link/Model/AdminModel/One_Employee_Model.dart';
@@ -217,10 +218,11 @@ class Allempolyeecontroller extends GetxController {
       context: context,
       initialDate: Birthdate.value ?? DateTime.now(),
       firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
+      lastDate: DateTime.now(),
     );
     if (picked != null) {
       Birthdate.value = picked;
+      Get.find<Allteachercontroller>().updateFieldError("join", false);
     }
   }
 
@@ -233,6 +235,7 @@ class Allempolyeecontroller extends GetxController {
     );
     if (picked != null) {
       Joindate.value = picked;
+      Get.find<Allteachercontroller>().updateFieldError("join", false);
     }
   }
 

@@ -23,7 +23,8 @@ class _StudentStatusState extends State<StudentStatus> {
   @override
   void initState() {
     Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
-    Get.find<StudentAttendencController>().AttendencetDate.value = null;
+    Get.find<StudentAttendencController>().AttendencetDate.value =
+        DateTime.now();
     Studentattendenceapi(context).Studentattendence();
     Getallgradeapi.Getallgrade();
     super.initState();

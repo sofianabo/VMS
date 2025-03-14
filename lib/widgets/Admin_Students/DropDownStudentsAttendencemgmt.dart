@@ -9,6 +9,8 @@ import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownGradeController.dart.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 
+import '../../Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
+
 class DropDownStudentsAttendencemgmt extends StatelessWidget {
   final double width;
   final String title;
@@ -110,7 +112,11 @@ class DropDownStudentsAttendencemgmt extends StatelessWidget {
                                 case 'grade':
                                   IncreaseAttendanceAPI(context)
                                       .GetIncreaseAttendance(
-                                    isserch: true,
+                                    DateTime: Get.find<
+                                            Student_attendence_controller>()
+                                        .AttendencetDate
+                                        .value
+                                        .toString(),
                                     gradeid: Get.find<Dropdowngradecontroller>()
                                         .gradess!
                                         .grades!
@@ -124,7 +130,11 @@ class DropDownStudentsAttendencemgmt extends StatelessWidget {
                                 case 'class':
                                   IncreaseAttendanceAPI(context)
                                       .GetIncreaseAttendance(
-                                    isserch: true,
+                                    DateTime: Get.find<
+                                            Student_attendence_controller>()
+                                        .AttendencetDate
+                                        .value
+                                        .toString(),
                                     classId: Get.find<Divisions_Controller>()
                                         .Classmodel!
                                         .classes!
@@ -138,7 +148,11 @@ class DropDownStudentsAttendencemgmt extends StatelessWidget {
                                 case 'division':
                                   IncreaseAttendanceAPI(context)
                                       .GetIncreaseAttendance(
-                                    isserch: true,
+                                    DateTime: Get.find<
+                                            Student_attendence_controller>()
+                                        .AttendencetDate
+                                        .value
+                                        .toString(),
                                     divisionId:
                                         Get.find<Dropdowndivisioncontroller>()
                                             .allDivision
@@ -167,13 +181,21 @@ class DropDownStudentsAttendencemgmt extends StatelessWidget {
                                       cont.resetOnGradeChange();
                                       IncreaseAttendanceAPI(context)
                                           .GetIncreaseAttendance(
-                                        isserch: false,
+                                        DateTime: Get.find<
+                                                Student_attendence_controller>()
+                                            .AttendencetDate
+                                            .value
+                                            .toString(),
                                       );
                                     }
                                     if (type == "class") {
                                       IncreaseAttendanceAPI(context)
                                           .GetIncreaseAttendance(
-                                        isserch: true,
+                                        DateTime: Get.find<
+                                                Student_attendence_controller>()
+                                            .AttendencetDate
+                                            .value
+                                            .toString(),
                                       );
                                     }
                                     if (type == "division") {
@@ -187,7 +209,11 @@ class DropDownStudentsAttendencemgmt extends StatelessWidget {
                                           .toString());
                                       IncreaseAttendanceAPI(context)
                                           .GetIncreaseAttendance(
-                                              isserch: true,
+                                              DateTime: Get.find<
+                                                      Student_attendence_controller>()
+                                                  .AttendencetDate
+                                                  .value
+                                                  .toString(),
                                               classId: Get.find<
                                                       Divisions_Controller>()
                                                   .Classmodel!

@@ -225,4 +225,69 @@ class Allteachercontroller extends GetxController {
   String get selectedGenderDialogIndex => genderDialogIndex;
   String get selectedFamilyStatusDialogIndex => familyStatusDialogIndex;
   String get selectedContarctTypeDialogIndex => contractTypeDialogIndex;
+
+  bool ShowConfirmPassword = true;
+  bool ShowPassword = true;
+
+  bool IsJoinError = false;
+  bool ISusernameError = false;
+  bool ISemailError = false;
+  bool ISfirstNameError = false;
+  bool ISlastNameError = false;
+  bool ISphoneError = false;
+  bool ISpasswordError = false;
+  bool IScPasswordError = false;
+  bool IsGenderError = false;
+  bool IsContractError = false;
+
+  void updateFieldError(String type, bool newValue) {
+    switch (type) {
+      case 'join':
+        IsJoinError = newValue;
+        break;
+      case 'username':
+        ISusernameError = newValue;
+        break;
+      case 'email':
+        ISemailError = newValue;
+        break;
+      case 'first':
+        ISfirstNameError = newValue;
+        break;
+      case 'last':
+        ISlastNameError = newValue;
+        break;
+      case 'phone':
+        ISphoneError = newValue;
+        break;
+      case 'password':
+        ISpasswordError = newValue;
+        break;
+      case 'cpassword':
+        IScPasswordError = newValue;
+        break;
+      case 'gender':
+        IsGenderError = newValue;
+        break;
+      case 'contract':
+        IsContractError = newValue;
+        break;
+
+      default:
+        print("Error: Invalid type");
+    }
+    update();
+  }
+
+  ChangeShowConfirmPassword(bool value) {
+    ShowConfirmPassword = value;
+    print(value);
+    update();
+  }
+
+  ChangeShowPassword(bool value) {
+    ShowPassword = value;
+    print(value);
+    update();
+  }
 }

@@ -130,7 +130,7 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                     crossAxisCount: 4,
                     crossAxisSpacing: 20.0,
                     mainAxisSpacing: 20.0,
-                    childAspectRatio: 1.2),
+                    childAspectRatio: 1.0),
                 itemCount: controller.filteredStudents!.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
@@ -385,7 +385,8 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                   style: Get.theme.textTheme.bodyMedium),
                               Padding(
                                 padding: const EdgeInsets.only(top: 8.0),
-                                child: Row(
+                                child: Column(
+                                  spacing: 10.0,
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
@@ -427,7 +428,7 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                         padding: EdgeInsets.all(8.0),
                                         decoration: BoxDecoration(
                                             borderRadius: BorderRadius.all(
-                                                Radius.circular(5)),
+                                                Radius.circular(3)),
                                             border: Border.all(
                                                 color:
                                                     Get.theme.highlightColor)),

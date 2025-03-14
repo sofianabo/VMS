@@ -25,11 +25,10 @@ class Editguardianapi {
             "phone": phone,
             "nationalId": nationalid,
             "guardianId": id,
-            "email":email
+            "email": email
           },
-options: getDioOptions());
+          options: getDioOptions());
       if (response.statusCode == 200) {
-        Get.back();
         Get.back();
         u.updateGuardian(name, index, phone, email, nationalid);
       } else {
@@ -48,6 +47,8 @@ options: getDioOptions());
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
+    } finally {
+      Get.back();
     }
   }
 }

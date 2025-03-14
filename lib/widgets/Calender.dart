@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/GetEmployeeAttendenceAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/IncreaseAttendanceAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/StudentAttendenceAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetTeacherAttendenceAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/EmployeeAttendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Session_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Transaction_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/ExamTableController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
@@ -17,7 +19,6 @@ import 'package:vms_school/Link/Controller/WidgetController/DateControler.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:intl/intl.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
-import 'package:vms_school/Theme/themeController.dart';
 
 class DatePicker extends StatelessWidget {
   final double width;
@@ -202,6 +203,7 @@ class JoinDate extends StatelessWidget {
   final String Uptext;
   final double? height;
   final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
+  final bool isError; // ✅ إضافة متغير للتحقق من الخطأ
 
   const JoinDate({
     super.key,
@@ -209,11 +211,13 @@ class JoinDate extends StatelessWidget {
     required this.Uptext,
     this.height,
     this.isRequired = false, // افتراضي الحقل غير مطلوب.
+    this.isError = false, // ✅ افتراضي لا يوجد خطأ
   });
 
   @override
   Widget build(BuildContext context) {
     final Allempolyeecontroller controller = Get.put(Allempolyeecontroller());
+
     return Obx(
       () => Container(
         width: width,
@@ -260,17 +264,26 @@ class JoinDate extends StatelessWidget {
                       .textTheme
                       .bodyMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
+
+                  // ✅ تغيير لون الحدود بناءً على قيمة isError
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide:
-                        const BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                      width: 2,
+                    ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(color: Color(0xffD9D9D9)),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                    ),
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : Colors.grey,
+                    ),
                   ),
                   suffixIcon: IconButton(
                     icon: Icon(
@@ -283,6 +296,15 @@ class JoinDate extends StatelessWidget {
                 ),
               ),
             ),
+            // ✅ عرض رسالة خطأ إذا كان هناك خطأ
+            if (isError)
+              const Padding(
+                padding: EdgeInsets.only(top: 5.0),
+                child: Text(
+                  "يجب إدخال تاريخ صحيح",
+                  style: TextStyle(color: Colors.red, fontSize: 12),
+                ),
+              ),
           ],
         ),
       ),
@@ -1244,5 +1266,126 @@ class EditBirthDateTeacher extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class SetStudentsDateAttendence extends StatelessWidget {
+  final double width;
+  final double? height;
+  final String StartDate;
+  final String EndDate;
+  final bool isRequired;
+  final bool enable;
+
+  const SetStudentsDateAttendence({
+    super.key,
+    required this.width,
+    required this.StartDate,
+    required this.EndDate,
+    required this.enable,
+    this.height,
+    this.isRequired = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<Student_attendence_controller>(
+        builder: (student_attendence_controller) {
+      return Obx(
+        () => Container(
+          width: width,
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: height ?? 40,
+                child: TextFormField(
+                  enabled: enable,
+                  style: const TextStyle(fontSize: 14),
+                  controller: TextEditingController(
+                    text: student_attendence_controller.AttendencetDate.value !=
+                            null
+                        ? DateFormat('yyyy-MM-dd').format(
+                            student_attendence_controller
+                                .AttendencetDate.value!)
+                        : '',
+                  ),
+                  readOnly: true,
+                  onTap: () {
+                    if (enable) {
+                      student_attendence_controller.selectDate(
+                          context: context,
+                          StartDate: StartDate,
+                          EndDate: EndDate);
+                    }
+                  },
+                  decoration: InputDecoration(
+                      hintText: "yyyy-MM-dd",
+                      hintStyle: Theme.of(context)
+                          .textTheme
+                          .titleMedium!
+                          .copyWith(
+                              fontSize: 14, color: const Color(0xffD9D9D9)),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: const BorderSide(
+                            color: Color(0xffD9D9D9), width: 2),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: const BorderSide(color: Color(0xffD9D9D9)),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      suffixIcon:
+                          student_attendence_controller.AttendencetDate.value ==
+                                  null
+                              ? IconButton(
+                                  icon: Icon(
+                                    VMS_Icons.calender,
+                                    color: Theme.of(context).primaryColor,
+                                    size: 16,
+                                  ),
+                                  onPressed: () {
+                                    if (enable) {
+                                      student_attendence_controller.selectDate(
+                                          context: context,
+                                          StartDate: StartDate,
+                                          EndDate: EndDate);
+                                    }
+                                  },
+                                )
+                              : IconButton(
+                                  icon: Icon(
+                                    Icons.clear,
+                                    color: Theme.of(context).primaryColor,
+                                    size: 16,
+                                  ),
+                                  onPressed: () {
+                                    if (student_attendence_controller
+                                            .AttendencetDate.value!.day !=
+                                        DateTime.now().day) {
+                                      IncreaseAttendanceAPI(context)
+                                          .GetIncreaseAttendance(
+                                        DateTime: Get.find<
+                                                Student_attendence_controller>()
+                                            .AttendencetDate
+                                            .value
+                                            .toString(),
+                                      );
+                                    }
+                                    student_attendence_controller
+                                        .removeAttendence();
+                                  })),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    });
   }
 }

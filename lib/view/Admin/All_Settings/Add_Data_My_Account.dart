@@ -80,13 +80,13 @@ class _ProfileState extends State<Add_Data_account> {
             ? DateTime.parse("${add_Data_controller.myData?.joinDate}")
             : null;
 
-    Get.find<Profile_DropDown_Controller>().selecteFamily_StatusIndex =
-        add_Data_controller.myData?.familystatus != null
+    Get.find<Profile_DropDown_Controller>().Family_StatusIndex =
+        add_Data_controller.myData!.familystatus != null
             ? "${add_Data_controller.myData?.familystatus}"
             : "";
 
-    Get.find<Profile_DropDown_Controller>().selecteGenderIndex =
-        add_Data_controller.myData?.gender != null
+    Get.find<Profile_DropDown_Controller>().GenderIndex =
+        add_Data_controller.myData!.gender != null
             ? "${add_Data_controller.myData?.gender}"
             : "";
   }
@@ -385,6 +385,8 @@ class _ProfileState extends State<Add_Data_account> {
                           Padding(
                             padding: const EdgeInsets.only(top: 15.0),
                             child: Wrap(
+                              alignment: WrapAlignment.spaceBetween,
+                              runAlignment: WrapAlignment.spaceBetween,
                               runSpacing: 25.0,
                               spacing: 25.0,
                               textDirection: Get.find<LocalizationController>()
@@ -588,6 +590,8 @@ class _ProfileState extends State<Add_Data_account> {
                           Padding(
                             padding: const EdgeInsets.only(top: 15.0),
                             child: Wrap(
+                              alignment: WrapAlignment.spaceBetween,
+                              runAlignment: WrapAlignment.spaceBetween,
                               runSpacing: 25.0,
                               spacing: 25.0,
                               textDirection: Get.find<LocalizationController>()
@@ -693,6 +697,8 @@ class _ProfileState extends State<Add_Data_account> {
                           Padding(
                             padding: const EdgeInsets.only(top: 15.0),
                             child: Wrap(
+                              alignment: WrapAlignment.spaceBetween,
+                              runAlignment: WrapAlignment.spaceBetween,
                               runSpacing: 25.0,
                               spacing: 25.0,
                               textDirection: Get.find<LocalizationController>()
@@ -790,6 +796,8 @@ class _ProfileState extends State<Add_Data_account> {
                           Padding(
                             padding: const EdgeInsets.only(top: 15.0),
                             child: Wrap(
+                              alignment: WrapAlignment.spaceBetween,
+                              runAlignment: WrapAlignment.spaceBetween,
                               runSpacing: 25.0,
                               spacing: 25.0,
                               textDirection: Get.find<LocalizationController>()

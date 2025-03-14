@@ -137,29 +137,129 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
                             onPressed: () {
-                              Get.dialog(GetBuilder<Allempolyeecontroller>(
-                                  builder: (cont) {
+                              Get.dialog(GetBuilder<Allteachercontroller>(
+                                  builder: (controller) {
                                 return VMSAlertDialog(
                                     action: [
                                       ButtonDialog(
                                           text: "Add Teacher".tr,
                                           onPressed: () async {
-                                            await Addteacherapi(context)
-                                                .Addteacher(
-                                                    firstName.text,
-                                                    lastName.text,
-                                                    email.text,
-                                                    username.text,
-                                                    cont.Joindate.toString(),
-                                                    phone.text,
-                                                    cont.GenderListIndex,
-                                                    cont.ContractTypeIndex
-                                                        .trim(),
-                                                    "teacher",
-                                                    "Teacher",
-                                                    password.text);
-                                            Get.back();
-                                            Getallteachersapi.Getallteachers();
+                                            bool isUsernameEmpty =
+                                                username.text.trim().isEmpty;
+                                            bool isPhoneEmpty =
+                                                phone.text.trim().isEmpty;
+                                            bool isEmailEmpty =
+                                                email.text.trim().isEmpty;
+                                            bool isPasswordEmpty =
+                                                password.text.trim().isEmpty;
+                                            bool isConfirmPasswordEmpty =
+                                                cPassword.text.trim().isEmpty;
+                                            bool isFirstnameEmpty =
+                                                firstName.text.trim().isEmpty;
+                                            bool isLastnameEmpty =
+                                                lastName.text.trim().isEmpty;
+                                            bool isJoindateEmpty = Get.find<
+                                                        Allempolyeecontroller>()
+                                                    .Joindate
+                                                    .value ==
+                                                null;
+                                            bool isGenderEmpty = Get.find<
+                                                        Allempolyeecontroller>()
+                                                    .GenderListIndex
+                                                    .isEmpty ||
+                                                Get.find<Allempolyeecontroller>()
+                                                        .GenderListIndex ==
+                                                    "";
+                                            bool isContractTypeEmpty = Get.find<
+                                                        Allempolyeecontroller>()
+                                                    .ContractTypeIndex
+                                                    .isEmpty ||
+                                                Get.find<Allempolyeecontroller>()
+                                                        .ContractTypeIndex ==
+                                                    "";
+
+                                            RegExp emailRegex = RegExp(
+                                                r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+                                            bool isEmailValid =
+                                                emailRegex.hasMatch(email.text);
+
+                                            RegExp passwordRegex =
+                                                RegExp(r"^[a-zA-Z0-9]{8,}$");
+                                            bool isPasswordValid = passwordRegex
+                                                .hasMatch(password.text);
+                                            bool isConfirmPasswordValid =
+                                                passwordRegex
+                                                    .hasMatch(cPassword.text);
+
+                                            // تحديث الأخطاء بناءً على الإدخال
+                                            controller.updateFieldError(
+                                                "first", isFirstnameEmpty);
+                                            controller.updateFieldError(
+                                                "last", isLastnameEmpty);
+                                            controller.updateFieldError("email",
+                                                isEmailEmpty || !isEmailValid);
+                                            controller.updateFieldError(
+                                                "username", isUsernameEmpty);
+                                            controller.updateFieldError(
+                                                "phone", isPhoneEmpty);
+
+                                            controller.updateFieldError(
+                                                "join", isJoindateEmpty);
+                                            controller.updateFieldError(
+                                                "gender", isGenderEmpty);
+                                            controller.updateFieldError(
+                                                "contract",
+                                                isContractTypeEmpty);
+                                            controller.updateFieldError(
+                                                "password",
+                                                isPasswordEmpty ||
+                                                    !isPasswordValid);
+                                            controller.updateFieldError(
+                                                "cpassword",
+                                                isConfirmPasswordEmpty ||
+                                                    password.text !=
+                                                        cPassword.text ||
+                                                    !isConfirmPasswordValid);
+
+                                            if (!(isFirstnameEmpty ||
+                                                isLastnameEmpty ||
+                                                isUsernameEmpty ||
+                                                isPhoneEmpty ||
+                                                isJoindateEmpty ||
+                                                isGenderEmpty ||
+                                                isContractTypeEmpty ||
+                                                isEmailEmpty ||
+                                                !isEmailValid ||
+                                                isPasswordEmpty ||
+                                                !isPasswordValid ||
+                                                isConfirmPasswordEmpty ||
+                                                !isConfirmPasswordValid ||
+                                                password.text !=
+                                                    cPassword.text)) {
+                                              await Addteacherapi(context).Addteacher(
+                                                  firstName.text,
+                                                  lastName.text,
+                                                  email.text,
+                                                  username.text,
+                                                  Get.find<
+                                                          Allempolyeecontroller>()
+                                                      .Joindate
+                                                      .toString(),
+                                                  phone.text,
+                                                  Get.find<
+                                                          Allempolyeecontroller>()
+                                                      .GenderListIndex,
+                                                  Get.find<
+                                                          Allempolyeecontroller>()
+                                                      .ContractTypeIndex
+                                                      .trim(),
+                                                  "teacher",
+                                                  "Teacher",
+                                                  password.text);
+                                              Get.back();
+                                              Getallteachersapi
+                                                  .Getallteachers();
+                                            }
                                           },
                                           color: Theme.of(context).primaryColor,
                                           width: 120)
@@ -182,12 +282,18 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                                       ? 0
                                                       : 15),
                                               child: Textfildwithupper(
+                                                  isRequired: true,
+                                                  isError: controller
+                                                      .ISfirstNameError,
                                                   Uptext: "First Name".tr,
                                                   width: 220,
                                                   controller: firstName,
                                                   hinttext: "First Name".tr),
                                             ),
                                             Textfildwithupper(
+                                                isRequired: true,
+                                                isError:
+                                                    controller.ISlastNameError,
                                                 Uptext: "Last Name".tr,
                                                 width: 220,
                                                 controller: lastName,
@@ -212,12 +318,26 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                                         ? 0
                                                         : 15),
                                                 child: Textfildwithupper(
+                                                    onChanged: (value) {
+                                                      if (value.isNotEmpty) {
+                                                        controller
+                                                            .updateFieldError(
+                                                                "email", false);
+                                                      }
+                                                    },
+                                                    fieldType: "email",
+                                                    isRequired: true,
+                                                    isError:
+                                                        controller.ISemailError,
                                                     Uptext: "Email".tr,
                                                     width: 220,
                                                     controller: email,
                                                     hinttext: "Email".tr),
                                               ),
                                               Textfildwithupper(
+                                                  isRequired: true,
+                                                  isError: controller
+                                                      .ISusernameError,
                                                   Uptext: "Username".tr,
                                                   width: 220,
                                                   controller: username,
@@ -243,6 +363,17 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                                         ? 0
                                                         : 15),
                                                 child: Textfildwithupper(
+                                                    fieldType: "phone",
+                                                    onChanged: (value) {
+                                                      if (value.isNotEmpty) {
+                                                        controller
+                                                            .updateFieldError(
+                                                                "phone", false);
+                                                      }
+                                                    },
+                                                    isRequired: true,
+                                                    isError:
+                                                        controller.ISphoneError,
                                                     Uptext: "Phone Number".tr,
                                                     width: 220,
                                                     controller: phone,
@@ -256,6 +387,9 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   JoinDate(
+                                                    isRequired: true,
+                                                    isError:
+                                                        controller.IsJoinError,
                                                     width: 220,
                                                     Uptext: "Join Date".tr,
                                                   )
@@ -281,11 +415,15 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                                         ? 0
                                                         : 15),
                                                 child: Dropdownallemployee(
+                                                    isError: controller
+                                                        .IsGenderError,
                                                     title: "Gender".tr,
                                                     width: 220,
                                                     type: "Gender"),
                                               ),
                                               Dropdownallemployee(
+                                                  isError: controller
+                                                      .IsContractError,
                                                   title: "Contract Type".tr,
                                                   width: 220,
                                                   type: "Contract"),
@@ -310,12 +448,78 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                                         ? 0
                                                         : 15),
                                                 child: Textfildwithupper(
+                                                    hidePassword:
+                                                        controller.ShowPassword,
+                                                    IconButton: IconButton(
+                                                        onPressed: () {
+                                                          controller
+                                                              .ChangeShowPassword(
+                                                                  !controller
+                                                                      .ShowPassword);
+                                                        },
+                                                        icon: Icon(
+                                                          controller
+                                                                  .ShowPassword
+                                                              ? Icons
+                                                                  .visibility_off
+                                                              : Icons
+                                                                  .remove_red_eye_outlined,
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodySmall!
+                                                                  .color,
+                                                        )),
+                                                    onChanged: (value) {
+                                                      if (value.isNotEmpty) {
+                                                        controller
+                                                            .updateFieldError(
+                                                                "password",
+                                                                false);
+                                                      }
+                                                    },
+                                                    fieldType: "password",
+                                                    isRequired: true,
+                                                    isError: controller
+                                                        .ISpasswordError,
                                                     Uptext: "Password".tr,
                                                     width: 220,
                                                     controller: password,
                                                     hinttext: "Password".tr),
                                               ),
                                               Textfildwithupper(
+                                                  hidePassword: controller
+                                                      .ShowConfirmPassword,
+                                                  IconButton: IconButton(
+                                                      onPressed: () {
+                                                        controller
+                                                            .ChangeShowConfirmPassword(
+                                                                !controller
+                                                                    .ShowConfirmPassword);
+                                                      },
+                                                      icon: Icon(
+                                                        controller.ShowConfirmPassword
+                                                            ? Icons
+                                                                .visibility_off
+                                                            : Icons
+                                                                .remove_red_eye_outlined,
+                                                        color: Theme.of(context)
+                                                            .textTheme
+                                                            .bodySmall!
+                                                            .color,
+                                                      )),
+                                                  onChanged: (value) {
+                                                    if (value.isNotEmpty) {
+                                                      controller
+                                                          .updateFieldError(
+                                                              "cpassword",
+                                                              false);
+                                                    }
+                                                  },
+                                                  fieldType: "password",
+                                                  isRequired: true,
+                                                  isError: controller
+                                                      .IScPasswordError,
                                                   Uptext: "Confirm Password".tr,
                                                   width: 220,
                                                   controller: cPassword,

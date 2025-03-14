@@ -89,6 +89,7 @@ class Add_Employee_Information {
       if (response.statusCode == 200) {
         gets.Get.back();
         prefs!.setBool("hasData", true);
+        prefs!.setString("fullname", "$First_Name $Last_Name");
         gets.Get.find<AdminHomeContentController>().updateContent("Dashboard");
         gets.Get.find<Add_Data_controller>().removeimage();
         gets.Get.find<Add_Data_controller>().sethasData(true);

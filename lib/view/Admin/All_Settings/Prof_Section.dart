@@ -61,10 +61,14 @@ class _ProfileState extends State<Profile> {
         add_Data_controller.myData?.birthDate != null
             ? format.parse(add_Data_controller.myData!.birthDate!)
             : null;
-    Get.put(Profile_DropDown_Controller()).selecteFamily_StatusIndex =
-        "${add_Data_controller.myData?.familystatus}" ?? "";
-    Get.put(Profile_DropDown_Controller()).selecteGenderIndex =
-        "${add_Data_controller.myData?.gender}" ?? "";
+    Get.put(Profile_DropDown_Controller()).Family_StatusIndex =
+        add_Data_controller.myData!.familystatus != null
+            ? "${add_Data_controller.myData!.familystatus}"
+            : "";
+    Get.put(Profile_DropDown_Controller()).GenderIndex =
+        add_Data_controller.myData!.gender != null
+            ? "${add_Data_controller.myData!.gender}"
+            : "";
   }
 
   @override
@@ -374,6 +378,8 @@ class _ProfileState extends State<Profile> {
                       Padding(
                         padding: const EdgeInsets.only(top: 15.0),
                         child: Wrap(
+                          alignment: WrapAlignment.spaceBetween,
+                          runAlignment: WrapAlignment.spaceBetween,
                           runSpacing: 25.0,
                           spacing: 25.0,
                           textDirection: Get.find<LocalizationController>()
@@ -600,6 +606,8 @@ class _ProfileState extends State<Profile> {
                       Padding(
                         padding: const EdgeInsets.only(top: 15.0),
                         child: Wrap(
+                          alignment: WrapAlignment.spaceBetween,
+                          runAlignment: WrapAlignment.spaceBetween,
                           runSpacing: 25.0,
                           spacing: 25.0,
                           textDirection: Get.find<LocalizationController>()
