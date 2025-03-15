@@ -151,7 +151,7 @@ class Allteacheratendencecontroller extends GetxController {
   Rx<DateTime?> AttendencetDate = Rx<DateTime?>(null);
 
   removeAttendence() {
-    AttendencetDate.value = null;
+    AttendencetDate.value = DateTime.now();
     update();
   }
 

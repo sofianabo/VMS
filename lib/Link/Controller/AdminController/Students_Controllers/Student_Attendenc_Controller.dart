@@ -32,7 +32,7 @@ class StudentAttendencController extends GetxController {
   }
 
   removeAttendence() {
-    AttendencetDate.value = null;
+    AttendencetDate.value = DateTime.now();
     Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
     update();
   }

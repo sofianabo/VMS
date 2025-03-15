@@ -26,7 +26,8 @@ class _EmployeeStatusState extends State<EmployeeStatus> {
   @override
   void initState() {
     Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
-    Get.find<Employeeattendencecontroller>().AttendencetDate.value = null;
+    Get.find<Employeeattendencecontroller>().AttendencetDate.value =
+        DateTime.now();
     Getemployeeattendenceapi(context).Getemployeeattendence();
     super.initState();
   }

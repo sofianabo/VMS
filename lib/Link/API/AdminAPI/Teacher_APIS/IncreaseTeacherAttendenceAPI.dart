@@ -11,7 +11,7 @@ class Increaseteacherattendenceapi {
   BuildContext context;
   Increaseteacherattendenceapi(this.context);
 
-  static Increaseteacherattendence() async {
+  static Increaseteacherattendence({required String DateTime}) async {
     Dio dio = Dio();
 
     final EmployeeController AttendenceController =
@@ -20,7 +20,9 @@ class Increaseteacherattendenceapi {
 
     try {
       String myurl = "$hostPort$teacherIncreaseAttendance";
-      var response = await dio.get(data: {}, myurl, options: getDioOptions());
+      var response = await dio.get(data: {
+        "date": DateTime,
+      }, myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         IncreaseTeacherAttendenceModel teacher =
             IncreaseTeacherAttendenceModel.fromJson(response.data);

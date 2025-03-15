@@ -24,7 +24,7 @@ class _EmployeesAttendanceManagmentGridState
   Widget build(BuildContext context) {
     return GetBuilder<EmployeeController>(builder: (controller) {
       return controller.Isloading == false
-          ? controller.Isuploaded == true
+          ? controller.employees!.isEmpty
               ? Center(
                   child: Text("Attendance Today Has Been Uploaded",
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
@@ -123,99 +123,95 @@ class _EmployeesAttendanceManagmentGridState
                                           'Late',
                                           'Vacation',
                                           'Holiday'
-                                        ]
-                                            .map((status) => Row(
-                                                  children: [
-                                                    Radio(
-                                                      value: status,
-                                                      groupValue: controller
-                                                              .Employees[index]
-                                                          ['status'],
-                                                      activeColor:
-                                                          const Color(0xff134B70),
-                                                      onChanged: (value) {
-                                                        if (value ==
-                                                            "Holiday") {
-                                                        } else {
-                                                          if (value ==
-                                                                  "Truant" ||
-                                                              value == "Late" ||
-                                                              value ==
-                                                                  "Vacation") {
-                                                            Get.dialog(
-                                                                VMSAlertDialog(
-                                                                    action: [
-                                                                  ButtonDialog(
-                                                                      text:
-                                                                          "Done",
-                                                                      onPressed:
-                                                                          () {
-                                                                        controller.updateStatus(
-                                                                            index,
-                                                                            value.toString(),
-                                                                            cuse.text);
-                                                                        Get.back();
-                                                                      },
-                                                                      color: Get
-                                                                          .theme
-                                                                          .primaryColor,
-                                                                      width: 65)
-                                                                ],
-                                                                    contents:
-                                                                        SizedBox(
-                                                                      width:
-                                                                          500,
-                                                                      child:
-                                                                          Column(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.min,
-                                                                        children: [
-                                                                          Textfildwithupper(
-                                                                              width: 250,
-                                                                              controller: cuse,
-                                                                              Uptext: "Cause",
-                                                                              hinttext: "Cause")
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                    apptitle:
-                                                                        "Enter The Reason For Absence",
-                                                                    subtitle:
-                                                                        "The reason for the absence of the student ${controller.Employees[index]['name']}"));
-                                                          } else {
-                                                            controller.updateStatus(
-                                                                index,
-                                                                value
-                                                                    .toString(),
-                                                                null);
-                                                          }
-                                                        }
-                                                      },
-                                                    ),
-                                                    Text(
-                                                      status,
-                                                      style: TextStyle(
-                                                        color: status ==
-                                                                'Present'
-                                                            ? const Color(0xff2F9742)
-                                                            : status == 'Truant'
+                                        ].map((status) => Row(
+                                              children: [
+                                                Radio(
+                                                  value: status,
+                                                  groupValue: controller
+                                                          .Employees[index]
+                                                      ['status'],
+                                                  activeColor:
+                                                      const Color(0xff134B70),
+                                                  onChanged: (value) {
+                                                    if (value == "Holiday") {
+                                                    } else {
+                                                      if (value == "Truant" ||
+                                                          value == "Late" ||
+                                                          value == "Vacation") {
+                                                        Get.dialog(
+                                                            VMSAlertDialog(
+                                                                action: [
+                                                              ButtonDialog(
+                                                                  text: "Done",
+                                                                  onPressed:
+                                                                      () {
+                                                                    controller.updateStatus(
+                                                                        index,
+                                                                        value
+                                                                            .toString(),
+                                                                        cuse.text);
+                                                                    Get.back();
+                                                                  },
+                                                                  color: Get
+                                                                      .theme
+                                                                      .primaryColor,
+                                                                  width: 65)
+                                                            ],
+                                                                contents:
+                                                                    SizedBox(
+                                                                  width: 500,
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .min,
+                                                                    children: [
+                                                                      Textfildwithupper(
+                                                                          width:
+                                                                              250,
+                                                                          controller:
+                                                                              cuse,
+                                                                          Uptext:
+                                                                              "Cause",
+                                                                          hinttext:
+                                                                              "Cause")
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                apptitle:
+                                                                    "Enter The Reason For Absence",
+                                                                subtitle:
+                                                                    "The reason for the absence of the student ${controller.Employees[index]['name']}"));
+                                                      } else {
+                                                        controller.updateStatus(
+                                                            index,
+                                                            value.toString(),
+                                                            null);
+                                                      }
+                                                    }
+                                                  },
+                                                ),
+                                                Text(
+                                                  status,
+                                                  style: TextStyle(
+                                                    color: status == 'Present'
+                                                        ? const Color(
+                                                            0xff2F9742)
+                                                        : status == 'Truant'
+                                                            ? const Color(
+                                                                0xff972F2F)
+                                                            : status == 'Late'
                                                                 ? const Color(
-                                                                    0xff972F2F)
+                                                                    0xff349393)
                                                                 : status ==
-                                                                        'Late'
+                                                                        'Vacation'
                                                                     ? const Color(
-                                                                        0xff349393)
-                                                                    : status ==
-                                                                            'Vacation'
-                                                                        ? const Color(
-                                                                            0xffB27671)
-                                                                        : const Color(
-                                                                            0xff134B70),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ))
-                                            ,
+                                                                        0xffB27671)
+                                                                    : const Color(
+                                                                        0xff134B70),
+                                                  ),
+                                                ),
+                                              ],
+                                            )),
                                       ],
                                     ),
                                     Divider(
@@ -267,18 +263,16 @@ class _EmployeesAttendanceManagmentGridState
                                   'Late',
                                   'Vacation',
                                   'Holiday'
-                                ]
-                                    .map((status) => Row(
-                                          children: [
-                                            SchemaWidget(
-                                              width: 15,
-                                              height: 15,
-                                              radius: 50,
-                                            ),
-                                            SchemaWidget(width: 50, height: 15),
-                                          ],
-                                        ))
-                                    ,
+                                ].map((status) => Row(
+                                      children: [
+                                        SchemaWidget(
+                                          width: 15,
+                                          height: 15,
+                                          radius: 50,
+                                        ),
+                                        SchemaWidget(width: 50, height: 15),
+                                      ],
+                                    )),
                               ],
                             ),
                             Divider(
