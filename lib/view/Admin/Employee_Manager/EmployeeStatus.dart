@@ -82,7 +82,7 @@ class _EmployeeStatusState extends State<EmployeeStatus> {
                               controller.searchRequestByName(
                                   value, controller.JopTitleIndex);
                             },
-                            width: w / 4,
+                            width: w / 4.0,
                             radius: 5,
                             controller: search,
                             suffixIcon: search.text.isNotEmpty
