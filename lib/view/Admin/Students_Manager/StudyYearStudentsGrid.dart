@@ -607,6 +607,11 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                         } else {
                                           Get.dialog(
                                             Rewards_Dialog(
+                                                FileType: "امتياز",
+                                                id: controller
+                                                    .filteredStudents![index]
+                                                    .id!
+                                                    .toString(),
                                                 name: controller
                                                         .filteredStudents![
                                                             index]

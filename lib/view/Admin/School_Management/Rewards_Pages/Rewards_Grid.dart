@@ -127,7 +127,10 @@ class _RewardsGridState extends State<RewardsGrid> {
                           _buildToolButton(
                             icon: Icons.picture_as_pdf,
                             label: "Export As Pdf",
-                            onPressed: saveRewardsAsPdf,
+                            onPressed: () async {
+                              await saveRewardsAsPdf(
+                                  key: RewardsGloballKey, saveLocal: true);
+                            },
                           ),
 
                           // زر إضافة قالب جديد

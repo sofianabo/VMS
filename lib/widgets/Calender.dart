@@ -1272,16 +1272,14 @@ class EditBirthDateTeacher extends StatelessWidget {
 class SetStudentsDateAttendence extends StatelessWidget {
   final double width;
   final double? height;
-  final String StartDate;
-  final String EndDate;
+  final List<String> allowedDates; // تعديل: استقبال قائمة التواريخ
   final bool isRequired;
   final bool enable;
 
   const SetStudentsDateAttendence({
     super.key,
     required this.width,
-    required this.StartDate,
-    required this.EndDate,
+    required this.allowedDates, // تعديل: تمرير قائمة التواريخ
     required this.enable,
     this.height,
     this.isRequired = false,
@@ -1290,38 +1288,40 @@ class SetStudentsDateAttendence extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Student_attendence_controller>(
-        builder: (student_attendence_controller) {
-      return Obx(
-        () => Container(
-          width: width,
-          alignment: Alignment.center,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: height ?? 40,
-                child: TextFormField(
-                  enabled: enable,
-                  style: const TextStyle(fontSize: 14),
-                  controller: TextEditingController(
-                    text: student_attendence_controller.AttendencetDate.value !=
-                            null
-                        ? DateFormat('yyyy-MM-dd').format(
-                            student_attendence_controller
-                                .AttendencetDate.value!)
-                        : '',
-                  ),
-                  readOnly: true,
-                  onTap: () {
-                    if (enable) {
-                      student_attendence_controller.selectDate(
+      builder: (student_attendence_controller) {
+        return Obx(
+          () => Container(
+            width: width,
+            alignment: Alignment.center,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: height ?? 40,
+                  child: TextFormField(
+                    enabled: enable,
+                    style: const TextStyle(fontSize: 14),
+                    controller: TextEditingController(
+                      text:
+                          student_attendence_controller.AttendencetDate.value !=
+                                  null
+                              ? DateFormat('yyyy-MM-dd').format(
+                                  student_attendence_controller
+                                      .AttendencetDate.value!)
+                              : '',
+                    ),
+                    readOnly: true,
+                    onTap: () {
+                      if (enable && allowedDates.isNotEmpty) {
+                        student_attendence_controller.selectDate(
                           context: context,
-                          StartDate: StartDate,
-                          EndDate: EndDate);
-                    }
-                  },
-                  decoration: InputDecoration(
+                          allowedDates:
+                              allowedDates, // تمرير قائمة التواريخ هنا
+                        );
+                      }
+                    },
+                    decoration: InputDecoration(
                       hintText: "yyyy-MM-dd",
                       hintStyle: Theme.of(context)
                           .textTheme
@@ -1350,11 +1350,11 @@ class SetStudentsDateAttendence extends StatelessWidget {
                                     size: 16,
                                   ),
                                   onPressed: () {
-                                    if (enable) {
+                                    if (enable && allowedDates.isNotEmpty) {
                                       student_attendence_controller.selectDate(
-                                          context: context,
-                                          StartDate: StartDate,
-                                          EndDate: EndDate);
+                                        context: context,
+                                        allowedDates: allowedDates,
+                                      );
                                     }
                                   },
                                 )
@@ -1368,6 +1368,8 @@ class SetStudentsDateAttendence extends StatelessWidget {
                                     if (student_attendence_controller
                                             .AttendencetDate.value!.day !=
                                         DateTime.now().day) {
+                                      student_attendence_controller
+                                          .removeAttendence();
                                       IncreaseAttendanceAPI(context)
                                           .GetIncreaseAttendance(
                                         DateTime: Get.find<
@@ -1379,13 +1381,16 @@ class SetStudentsDateAttendence extends StatelessWidget {
                                     }
                                     student_attendence_controller
                                         .removeAttendence();
-                                  })),
+                                  },
+                                ),
+                    ),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }

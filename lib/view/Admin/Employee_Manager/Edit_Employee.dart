@@ -301,7 +301,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                       ],
                     ),
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(top: 22.0),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.end,

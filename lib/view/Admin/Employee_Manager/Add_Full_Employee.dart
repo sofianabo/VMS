@@ -229,7 +229,7 @@ Add_Full_Employee(BuildContext context) {
                             controller: Salary,
                             Uptext: "Salary",
                             hinttext: "Salary"),
-                        const Padding(
+                        Padding(
                           padding: EdgeInsets.only(left: 20.0),
                           child: Dropdownallemployee(
                               title: "Job Title",
@@ -239,7 +239,7 @@ Add_Full_Employee(BuildContext context) {
                       ],
                     ),
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(top: 22.0),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.end,

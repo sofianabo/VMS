@@ -23,32 +23,40 @@ class Student_attendence_controller extends GetxController {
   List<String> sessionlist = [];
 
   Rx<DateTime?> AttendencetDate = Rx<DateTime?>(null);
+  Future<bool> selectDate({
+    required BuildContext context,
+    required List<String> allowedDates,
+  }) async {
+    if (allowedDates.isEmpty) return false; // التأكد من وجود تواريخ مسموح بها
 
-  Future<bool> selectDate(
-      {required BuildContext context,
-      required String StartDate,
-      required String EndDate}) async {
-    String rawStartDate = StartDate;
-    String rawEndDate = EndDate;
+    List<DateTime> parsedDates =
+        allowedDates.map((date) => DateTime.parse(date)).toList();
 
-    print("Raw Start Date: $rawStartDate");
-    print("Raw End Date: $rawEndDate");
+    DateTime startDate = parsedDates.first;
+    DateTime endDate = parsedDates.last;
 
-    rawStartDate = rawStartDate.trim();
-    rawEndDate = rawEndDate.trim();
+    // تحديد التاريخ الافتراضي عند الفتح
+    DateTime initialDate = AttendencetDate.value ??
+        (parsedDates.contains(DateTime.now()) ? DateTime.now() : startDate);
 
-    DateFormat format = DateFormat("yyyy-MM-dd");
-
-    DateTime startDate = format.parse(rawStartDate);
-    DateTime endDate = format.parse(rawEndDate);
+    // التأكد أن التاريخ الافتراضي يقع ضمن النطاق المسموح به
+    if (initialDate.isBefore(startDate)) {
+      initialDate = startDate;
+    } else if (initialDate.isAfter(endDate)) {
+      initialDate = endDate;
+    }
 
     final DateTime? picked = await showDatePicker(
       context: context,
       firstDate: startDate,
       lastDate: endDate,
+      initialDate: initialDate,
+      selectableDayPredicate: (date) {
+        return parsedDates.contains(date);
+      },
     );
 
-    if (picked != null) {
+    if (picked != null && parsedDates.contains(picked)) {
       AttendencetDate.value = picked;
       IncreaseAttendanceAPI(context)
           .GetIncreaseAttendance(DateTime: AttendencetDate.value.toString());
@@ -101,7 +109,6 @@ class Student_attendence_controller extends GetxController {
   resetOnGradeChange() {
     classIndex = "";
     divisionIndex = "";
-    print("lkdssdf");
     update();
   }
 
@@ -109,7 +116,6 @@ class Student_attendence_controller extends GetxController {
     gradeIndex = "";
     classIndex = "";
     divisionIndex = "";
-    print("lkdssdf");
     update();
   }
 
@@ -119,10 +125,13 @@ class Student_attendence_controller extends GetxController {
   }
 
   setData(StuAttendence stud) {
+    isUploaded = false;
     AllStudents = stud.students;
     noAttendanceDatas = stud.noAttendanceDatas;
     students.clear();
-
+    if (stud.students!.isEmpty) {
+      isUploaded = true;
+    }
     for (var stu in AllStudents!) {
       students.add({
         'studentId': stu.id,
@@ -143,7 +152,6 @@ class Student_attendence_controller extends GetxController {
   setIsUploded(bool isload, String? Data) {
     isUploaded = isload;
     title = Data!.tr;
-    print(isload);
     update();
   }
 

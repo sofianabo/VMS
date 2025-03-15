@@ -9,15 +9,25 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Rewards_Controller.dart';
 
+GlobalKey newRewardsGloballKey = GlobalKey();
+
 Rewards_Dialog({
   required String name,
+  required String id,
+  required String FileType,
 }) {
   final controller = Get.find<RewardsController>();
   return RewardsDialogs_VMS(
     action: [
       ButtonDialog(
           text: "Done".tr,
-          onPressed: () {},
+          onPressed: () async {
+            await saveRewardsAsPdf(
+                key: newRewardsGloballKey,
+                rewardsName: FileType,
+                saveLocal: false,
+                StuId: id);
+          },
           color: Get.theme.primaryColor,
           width: 150),
     ],
@@ -25,7 +35,7 @@ Rewards_Dialog({
     apptitle: "Rewards Students".tr,
     subtitle: Row(
       children: [
-        const Padding(
+        Padding(
           padding: EdgeInsets.only(top: 15.0),
           child: Text(
             "Tools",
@@ -39,10 +49,14 @@ Rewards_Dialog({
           onPressed: controller.addTextOverlay,
         ),
         _buildToolButton(
-          icon: Icons.picture_as_pdf,
-          label: "Export As Pdf",
-          onPressed: saveRewardsAsPdf,
-        ),
+            icon: Icons.picture_as_pdf,
+            label: "Export As Pdf",
+            onPressed: () async {
+              await saveRewardsAsPdf(
+                key: newRewardsGloballKey,
+                saveLocal: true,
+              );
+            }),
       ],
     ),
   );
@@ -105,7 +119,7 @@ class _RewardsGridsState extends State<RewardsGrids> {
                   ),
                 ),
                 RepaintBoundary(
-                  key: RewardsGloballKey,
+                  key: newRewardsGloballKey,
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border.all(color: Theme.of(context).primaryColor),

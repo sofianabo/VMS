@@ -4,17 +4,17 @@ import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 
 class Dropdownallemployee extends StatelessWidget {
-  final double width;
-  final String title;
-  final String type;
-  final bool isError; // ✅ متغير للتحقق من الخطأ
+  double width;
+  String title;
+  String type;
+  bool isError;
 
-  const Dropdownallemployee({
+  Dropdownallemployee({
     super.key,
     required this.title,
     required this.width,
     required this.type,
-    this.isError = false, // ✅ افتراضيًا لا يوجد خطأ
+    this.isError = false,
   });
 
   @override
@@ -80,7 +80,7 @@ class Dropdownallemployee extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
               border: Border.all(
-                color: isError
+                color: isError!
                     ? Colors.red
                     : const Color(0xffD9D9D9), // ✅ تغيير اللون عند الخطأ
               ),
@@ -161,7 +161,7 @@ class Dropdownallemployee extends StatelessWidget {
             ),
           ),
           // ✅ عرض رسالة خطأ إذا كان هناك خطأ
-          if (isError)
+          if (isError!)
             const Padding(
               padding: EdgeInsets.only(top: 5.0),
               child: Text(

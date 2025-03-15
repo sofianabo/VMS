@@ -116,16 +116,17 @@ class _AllEmployeeState extends State<AllEmployee> {
                                   blurRadius: 1)
                             ]),
                         child: PopupMenuButton(
-                          style:  ButtonStyle(
-                              backgroundColor:
-                                  WidgetStatePropertyAll(Theme.of(context).cardColor),
+                          style: ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                  Theme.of(context).cardColor),
                               shape: WidgetStatePropertyAll(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
                           tooltip: "",
                           child: Icon(Icons.add,
-                              size: 18, color: Theme.of(context).highlightColor),
+                              size: 18,
+                              color: Theme.of(context).highlightColor),
                           onSelected: (value) {
                             if (value == "Add Employee") {
                               Get.dialog(GetBuilder<Allempolyeecontroller>(
@@ -146,7 +147,10 @@ class _AllEmployeeState extends State<AllEmployee> {
                                                     cont.GenderListIndex,
                                                     cont.ContractTypeIndex
                                                         .trim(),
-                                                    cont.ferollIndex == "Sub Admin" ? "subAdmin" : cont.ferollIndex,
+                                                    cont.ferollIndex ==
+                                                            "Sub Admin"
+                                                        ? "subAdmin"
+                                                        : cont.ferollIndex,
                                                     cont.fejopIndex,
                                                     password.text);
                                           },
@@ -225,9 +229,8 @@ class _AllEmployeeState extends State<AllEmployee> {
                                             ],
                                           ),
                                         ),
-                                        const Padding(
-                                          padding:
-                                              EdgeInsets.only(top: 15.0),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 15.0),
                                           child: Row(
                                             children: [
                                               Padding(
@@ -245,9 +248,8 @@ class _AllEmployeeState extends State<AllEmployee> {
                                             ],
                                           ),
                                         ),
-                                        const Padding(
-                                          padding:
-                                              EdgeInsets.only(top: 15.0),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 15.0),
                                           child: Row(
                                             children: [
                                               Padding(
@@ -325,9 +327,9 @@ class _AllEmployeeState extends State<AllEmployee> {
                                     blurRadius: 1)
                               ]),
                           child: IconButton(
-                              style:  ButtonStyle(
-                                  backgroundColor:
-                                      WidgetStatePropertyAll(Theme.of(context).cardColor),
+                              style: ButtonStyle(
+                                  backgroundColor: WidgetStatePropertyAll(
+                                      Theme.of(context).cardColor),
                                   shape: WidgetStatePropertyAll(
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
@@ -338,7 +340,8 @@ class _AllEmployeeState extends State<AllEmployee> {
                                         .filteredreemployees);
                               },
                               icon: Icon(VMS_Icons.pdf,
-                                  size: 18, color: Theme.of(context).highlightColor)),
+                                  size: 18,
+                                  color: Theme.of(context).highlightColor)),
                         ),
                       ),
                       Container(
@@ -354,9 +357,9 @@ class _AllEmployeeState extends State<AllEmployee> {
                                   blurRadius: 1)
                             ]),
                         child: IconButton(
-                            style:  ButtonStyle(
-                                backgroundColor:
-                                    WidgetStatePropertyAll(Theme.of(context).cardColor),
+                            style: ButtonStyle(
+                                backgroundColor: WidgetStatePropertyAll(
+                                    Theme.of(context).cardColor),
                                 shape: WidgetStatePropertyAll(
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
@@ -367,7 +370,8 @@ class _AllEmployeeState extends State<AllEmployee> {
                                       .filteredreemployees);
                             },
                             icon: Icon(VMS_Icons.xl,
-                                size: 18, color: Theme.of(context).highlightColor)),
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
                       ),
                     ],
                   )

@@ -4,7 +4,6 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownGrad
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/AddStudentAttendenceAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/IncreaseAttendanceAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
-import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/Students_Manager/StudentsAttendanceManagmentGrid.dart';
@@ -89,10 +88,8 @@ class _StudentsAttendanceManagmentState
                       padding: const EdgeInsets.only(left: 8.0),
                       child: SetStudentsDateAttendence(
                         enable: !controller.isLoading,
-                        StartDate: controller.noAttendanceDatas?.first ??
-                            "${DateTime.now()}",
-                        EndDate: controller.noAttendanceDatas?.last ??
-                            "${DateTime.now()}",
+                        allowedDates: controller.noAttendanceDatas ??
+                            ["${DateTime.now()}"],
                         width: w / 6,
                       ),
                     ),
@@ -187,6 +184,9 @@ class _StudentsAttendanceManagmentState
                               if (controller.isUploaded == false) {
                                 await Addstudentattendenceapi
                                     .Addstudentattendence(
+                                        DateTime: controller
+                                            .AttendencetDate.value
+                                            .toString(),
                                         students: controller.students);
                               }
                             }

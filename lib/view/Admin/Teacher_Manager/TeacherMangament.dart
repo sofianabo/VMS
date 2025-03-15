@@ -21,7 +21,7 @@ import 'package:vms_school/widgets/TextFormSearch.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class TeacherManagement extends StatefulWidget {
-  const TeacherManagement({super.key});
+  TeacherManagement({super.key});
 
   @override
   State<TeacherManagement> createState() => _TeacherManagementState();
@@ -53,7 +53,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
         child: Column(
       children: [
         Container(
-          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+          margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -65,7 +65,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                     return Row(
                       children: [
                         Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
+                            padding: EdgeInsets.only(left: 8.0),
                             child: DropDownAllSessions(
                               title: "Session".tr,
                               width: w / 6.5,
@@ -73,7 +73,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                               API: "TeacherManagement",
                             )),
                         Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
+                          padding: EdgeInsets.only(left: 8.0),
                           child: Dropdownallteacher(
                             isLoading: controller.isClassLoading,
                             width: w / 6.5,
@@ -82,7 +82,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
+                          padding: EdgeInsets.only(left: 8.0),
                           child: Dropdownallteacher(
                             isLoading: controller.isSubjectLoading,
                             width: w / 6.5,
@@ -91,7 +91,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
+                          padding: EdgeInsets.only(left: 8.0),
                           child: TextFormSearch(
                             click: () {
                               controller.clearFilter();
@@ -113,7 +113,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                       ],
                     );
                   }),
-                  const Spacer(),
+                  Spacer(),
                   Row(
                     children: [
                       Container(
@@ -122,7 +122,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                         decoration: BoxDecoration(
                             color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(5),
-                            boxShadow: const [
+                            boxShadow: [
                               BoxShadow(
                                   color: Colors.black12,
                                   offset: Offset(0, 2),
@@ -301,8 +301,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                           ],
                                         ),
                                         Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 15.0),
+                                          padding: EdgeInsets.only(top: 15.0),
                                           child: Row(
                                             children: [
                                               Padding(
@@ -346,8 +345,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                           ),
                                         ),
                                         Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 15.0),
+                                          padding: EdgeInsets.only(top: 15.0),
                                           child: Row(
                                             children: [
                                               Padding(
@@ -431,8 +429,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                           ),
                                         ),
                                         Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 15.0),
+                                          padding: EdgeInsets.only(top: 15.0),
                                           child: Row(
                                             children: [
                                               Padding(
@@ -539,14 +536,14 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                 color: Theme.of(context).highlightColor)),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+                        padding: EdgeInsets.only(right: 10.0, left: 10.0),
                         child: Container(
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
                               color: Theme.of(context).cardColor,
                               borderRadius: BorderRadius.circular(5),
-                              boxShadow: const [
+                              boxShadow: [
                                 BoxShadow(
                                     color: Colors.black12,
                                     offset: Offset(0, 2),
@@ -572,7 +569,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                         decoration: BoxDecoration(
                             color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(5),
-                            boxShadow: const [
+                            boxShadow: [
                               BoxShadow(
                                   color: Colors.black12,
                                   offset: Offset(0, 2),
@@ -600,7 +597,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
         ),
         Expanded(
             child: Padding(
-          padding: const EdgeInsets.only(top: 15.0),
+          padding: EdgeInsets.only(top: 15.0),
           child: TeacherManagementGrid(),
         )),
       ],
