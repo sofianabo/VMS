@@ -45,4 +45,20 @@ class Subject_Controller extends GetxController {
     isLoading = isload;
     update();
   }
+
+  bool IsArnameError = false;
+  bool IsEnnameError = false;
+  void updateFieldError(String type, bool newValue) {
+    switch (type) {
+      case 'arname':
+        IsArnameError = newValue;
+        break;
+      case 'enname':
+        IsEnnameError = newValue;
+        break;
+      default:
+        print("Error: Invalid type");
+    }
+    update();
+  }
 }
