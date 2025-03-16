@@ -5,7 +5,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
-import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Session_Controller.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 
 class Add_Session_API {
@@ -34,9 +33,6 @@ class Add_Session_API {
       if (response.statusCode == 200) {
         Get.back();
         Get_Session_Screen_API(context).Getsession();
-      } else if (response.statusCode == 409) {
-        Get.find<SessionController>().updateFieldError("start", true);
-        Get.find<SessionController>().updateFieldError("end", true);
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

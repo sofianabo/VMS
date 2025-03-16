@@ -17,7 +17,6 @@ class GradeManagement extends StatefulWidget {
 }
 
 class _GradeManagementState extends State<GradeManagement> {
-
   @override
   void initState() {
     Get_All_Grade_API(context).Get_All_Grade();
@@ -57,9 +56,9 @@ class _GradeManagementState extends State<GradeManagement> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style:  ButtonStyle(
-                            backgroundColor:
-                                WidgetStatePropertyAll(Theme.of(context).cardColor),
+                        style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll(
+                                Theme.of(context).cardColor),
                             shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
                                     borderRadius:
@@ -72,11 +71,31 @@ class _GradeManagementState extends State<GradeManagement> {
                                   ButtonDialog(
                                       text: "Add",
                                       onPressed: () async {
-                                        await Add_Grade_API(context).Add_Grade(
-                                          name: arName.text,
-                                          enName: enName.text,
-                                          feeCount: feeCount.text,
-                                        );
+                                        bool isArNameEmpty =
+                                            arName.text.isEmpty;
+
+                                        bool isEnNameEmpty =
+                                            enName.text.isEmpty;
+
+                                        bool isFeeEmpty = feeCount.text.isEmpty;
+
+                                        controller.updateFieldError(
+                                            "arname", isArNameEmpty);
+                                        controller.updateFieldError(
+                                            "enname", isEnNameEmpty);
+                                        controller.updateFieldError(
+                                            "fee", isFeeEmpty);
+
+                                        if (!(isArNameEmpty ||
+                                            isEnNameEmpty ||
+                                            isFeeEmpty)) {
+                                          await Add_Grade_API(context)
+                                              .Add_Grade(
+                                            name: arName.text,
+                                            enName: enName.text,
+                                            feeCount: feeCount.text,
+                                          );
+                                        }
                                       },
                                       color: Theme.of(context).primaryColor,
                                       width: 120),
@@ -93,11 +112,30 @@ class _GradeManagementState extends State<GradeManagement> {
                                               padding: const EdgeInsets.only(
                                                   left: 15.0, right: 15.0),
                                               child: Textfildwithupper(
+                                                  isRequired: true,
+                                                  isError:
+                                                      controller.IsennameError,
+                                                  onChanged: (value) {
+                                                    if (value.isNotEmpty) {
+                                                      controller
+                                                          .updateFieldError(
+                                                              "enname", false);
+                                                    }
+                                                  },
                                                   controller: enName,
                                                   Uptext: "Grade En - Name",
                                                   hinttext: "Grade En - Name"),
                                             ),
                                             Textfildwithupper(
+                                                isRequired: true,
+                                                isError:
+                                                    controller.IsarnameError,
+                                                onChanged: (value) {
+                                                  if (value.isNotEmpty) {
+                                                    controller.updateFieldError(
+                                                        "arname", false);
+                                                  }
+                                                },
                                                 controller: arName,
                                                 Uptext: "Grade Ar - Name",
                                                 hinttext: "Grade Ar - Name"),
@@ -116,7 +154,18 @@ class _GradeManagementState extends State<GradeManagement> {
                                                   right: 15.0,
                                                   top: 15.0),
                                               child: Textfildwithupper(
+                                                  isRequired: true,
+                                                  isError:
+                                                      controller.IsfeeError,
+                                                  onChanged: (value) {
+                                                    if (value.isNotEmpty) {
+                                                      controller
+                                                          .updateFieldError(
+                                                              "fee", false);
+                                                    }
+                                                  },
                                                   controller: feeCount,
+                                                  fieldType: "number",
                                                   Uptext: "Fee Count",
                                                   hinttext: "Fee Count"),
                                             ),
@@ -148,16 +197,17 @@ class _GradeManagementState extends State<GradeManagement> {
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                          style:  ButtonStyle(
-                              backgroundColor:
-                                  WidgetStatePropertyAll(Theme.of(context).cardColor),
+                          style: ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                  Theme.of(context).cardColor),
                               shape: WidgetStatePropertyAll(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
                           onPressed: () {},
                           icon: Icon(VMS_Icons.pdf,
-                              size: 18, color: Theme.of(context).highlightColor)),
+                              size: 18,
+                              color: Theme.of(context).highlightColor)),
                     ),
                   ),
                   Container(
@@ -173,9 +223,9 @@ class _GradeManagementState extends State<GradeManagement> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style:  ButtonStyle(
-                            backgroundColor:
-                                WidgetStatePropertyAll(Theme.of(context).cardColor),
+                        style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll(
+                                Theme.of(context).cardColor),
                             shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
                                     borderRadius:

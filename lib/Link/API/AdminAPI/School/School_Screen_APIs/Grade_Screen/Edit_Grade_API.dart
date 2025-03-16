@@ -14,33 +14,23 @@ class Edit_Grade_API {
   Edit_Grade_API(this.context);
   Dio dio = Dio();
 
-  Edit_Grade(
-  {
-    name,
-    gradeId,
-    enName,
-    feeCount
-}
-
-      ) async {
-
-
+  Edit_Grade({name, gradeId, enName, feeCount}) async {
     try {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
       String myurl = "$hostPort$updateGrade";
       var response = await dio.post(
-        cancelToken: cancelToken,
+          cancelToken: cancelToken,
           myurl,
-             data: {
-             'gradeId':'$gradeId',
-             'name':'$name',
-             'enName':'$enName',
-             'feeCount':'$feeCount',
+          data: {
+            'gradeId': '$gradeId',
+            'name': '$name',
+            'enName': '$enName',
+            'feeCount': '$feeCount',
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
-        await Get_All_Grade_API(context).Get_All_Grade();
+        Get_All_Grade_API(context).Get_All_Grade();
         Get.back();
       } else {
         ErrorHandler.handleDioError(DioException(
@@ -57,8 +47,8 @@ class Edit_Grade_API {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    }finally{
-     Get.back();
+    } finally {
+      Get.back();
     }
   }
 }

@@ -98,13 +98,13 @@ class _SessionManagementState extends State<SessionManagement> {
                                         if (!(isNameEmpty ||
                                             isStartEmpty ||
                                             isEndEmpty)) {
-                                          print(await Add_Session_API(context)
+                                          await Add_Session_API(context)
                                               .Add_Session(
                                                   "${yearController.text}-${controller.currentYear.value}",
                                                   controller.startDate.value
                                                       .toString(),
                                                   controller.endDate.value
-                                                      .toString()));
+                                                      .toString());
                                         }
                                       },
                                       color: Theme.of(context).primaryColor,

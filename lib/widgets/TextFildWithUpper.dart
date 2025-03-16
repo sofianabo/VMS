@@ -18,7 +18,7 @@ class Textfildwithupper extends StatefulWidget {
     this.enabled = true,
     this.hidePassword = false,
     this.fieldType =
-        "text", // القيم الممكنة: "email" أو "password" أو "text" أو "phone"
+        "text", // القيم الممكنة: "email" أو "password" أو "text" أو "phone" أو "number"
     this.isError = false,
     this.IconButton,
   });
@@ -68,6 +68,12 @@ class _TextfildwithupperState extends State<Textfildwithupper> {
       if (!isValid) {
         error = "يُسمح بإدخال أرقام  وعلامة + فقط";
       }
+    } else if (widget.fieldType == "number") {
+      RegExp numberRegex = RegExp(r"^[0-9]+$"); // ✅ يسمح فقط بالأرقام بدون "+"
+      isValid = numberRegex.hasMatch(value);
+      if (!isValid) {
+        error = "يُسمح بإدخال الأرقام فقط";
+      }
     }
 
     setState(() {
@@ -95,6 +101,11 @@ class _TextfildwithupperState extends State<Textfildwithupper> {
       inputFormatters = [
         FilteringTextInputFormatter.allow(
             RegExp(r'[0-9+]')), // ✅ يسمح بالأرقام وعلامة +
+      ];
+    } else if (widget.fieldType == "number") {
+      keyboardType = TextInputType.number;
+      inputFormatters = [
+        FilteringTextInputFormatter.digitsOnly, // ✅ يسمح فقط بالأرقام
       ];
     } else {
       keyboardType = TextInputType.text;
@@ -141,7 +152,8 @@ class _TextfildwithupperState extends State<Textfildwithupper> {
               readOnly: widget.readOnly,
               controller: widget.controller,
               keyboardType: keyboardType, // ✅ تحديد نوع الكيبورد
-              inputFormatters: inputFormatters, // ✅ تحديد الفورمات لحقل الهاتف
+              inputFormatters:
+                  inputFormatters, // ✅ تحديد الفورمات لحقل الهاتف أو الرقم
               onChanged: (value) {
                 validateInput(value);
                 if (widget.Uptext == 'Username') {
@@ -161,94 +173,34 @@ class _TextfildwithupperState extends State<Textfildwithupper> {
                   widget.onChanged!(widget.controller.text);
                 }
               },
-              decoration: Get.find<LocalizationController>()
-                          .currentLocale
-                          .value
-                          .languageCode ==
-                      'ar'
-                  ? InputDecoration(
-                      suffixIcon: widget.IconButton,
-                      prefixIcon: widget.icon,
-                      hintText: widget.hinttext,
-                      hintStyle: TextStyle(
-                        color: Colors.grey,
-                      ),
-                      focusedBorder: showError
-                          ? OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                              borderSide: BorderSide(color: Colors.red),
-                            )
-                          : OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                              borderSide: BorderSide(
-                                  color: Theme.of(context).canvasColor,
-                                  width: 2),
-                            ),
-                      enabledBorder: showError
-                          ? OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                              borderSide: BorderSide(color: Colors.red),
-                            )
-                          : OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                              borderSide:
-                                  const BorderSide(color: Color(0xffD9D9D9)),
-                            ),
-                      border: showError
-                          ? OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                              borderSide: BorderSide(color: Colors.red),
-                            )
-                          : OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                    )
-                  : InputDecoration(
-                      prefixIcon: widget.IconButton,
-                      suffixIcon: widget.icon,
-                      hintText: widget.hinttext,
-                      hintStyle: TextStyle(
-                        color: Colors.grey,
-                      ),
-                      focusedBorder: showError
-                          ? OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                              borderSide: BorderSide(color: Colors.red),
-                            )
-                          : OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                              borderSide: BorderSide(
-                                  color: Theme.of(context).canvasColor,
-                                  width: 2),
-                            ),
-                      enabledBorder: showError
-                          ? OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                              borderSide: BorderSide(color: Colors.red),
-                            )
-                          : OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                              borderSide:
-                                  const BorderSide(color: Color(0xffD9D9D9)),
-                            ),
-                      border: showError
-                          ? OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                              borderSide: BorderSide(color: Colors.red),
-                            )
-                          : OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                    ),
+              decoration: InputDecoration(
+                prefixIcon: widget.IconButton,
+                suffixIcon: widget.icon,
+                hintText: widget.hinttext,
+                hintStyle: const TextStyle(color: Colors.grey),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5),
+                  borderSide: BorderSide(
+                      color: showError
+                          ? Colors.red
+                          : Theme.of(context).canvasColor,
+                      width: 2),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5),
+                  borderSide: BorderSide(
+                      color: showError ? Colors.red : const Color(0xffD9D9D9)),
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+              ),
             ),
           ),
           if (showError)
             Text(
               errorMessage,
-              style: TextStyle(
-                color: Colors.red,
-                fontSize: 12,
-              ),
+              style: const TextStyle(color: Colors.red, fontSize: 12),
             ),
         ],
       ),
