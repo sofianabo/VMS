@@ -264,45 +264,11 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                           color: Theme.of(context).primaryColor,
                                           width: 120)
                                     ],
-                                    contents: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: prefs!.getString(
-                                                              languageKey) ==
-                                                          'ar'
-                                                      ? 15
-                                                      : 0,
-                                                  right: prefs!.getString(
-                                                              languageKey) ==
-                                                          'ar'
-                                                      ? 0
-                                                      : 15),
-                                              child: Textfildwithupper(
-                                                  isRequired: true,
-                                                  isError: controller
-                                                      .ISfirstNameError,
-                                                  Uptext: "First Name".tr,
-                                                  width: 220,
-                                                  controller: firstName,
-                                                  hinttext: "First Name".tr),
-                                            ),
-                                            Textfildwithupper(
-                                                isRequired: true,
-                                                isError:
-                                                    controller.ISlastNameError,
-                                                Uptext: "Last Name".tr,
-                                                width: 220,
-                                                controller: lastName,
-                                                hinttext: "Last Name".tr)
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 15.0),
-                                          child: Row(
+                                    contents: SingleChildScrollView(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Row(
                                             children: [
                                               Padding(
                                                 padding: EdgeInsets.only(
@@ -321,142 +287,241 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                                       if (value.isNotEmpty) {
                                                         controller
                                                             .updateFieldError(
-                                                                "email", false);
+                                                                "first", false);
                                                       }
                                                     },
-                                                    fieldType: "email",
                                                     isRequired: true,
-                                                    isError:
-                                                        controller.ISemailError,
-                                                    Uptext: "Email".tr,
+                                                    isError: controller
+                                                        .ISfirstNameError,
+                                                    Uptext: "First Name".tr,
                                                     width: 220,
-                                                    controller: email,
-                                                    hinttext: "Email".tr),
+                                                    controller: firstName,
+                                                    hinttext: "First Name".tr),
                                               ),
                                               Textfildwithupper(
+                                                  onChanged: (value) {
+                                                    if (value.isNotEmpty) {
+                                                      controller
+                                                          .updateFieldError(
+                                                              "last", false);
+                                                    }
+                                                  },
                                                   isRequired: true,
                                                   isError: controller
-                                                      .ISusernameError,
-                                                  Uptext: "Username".tr,
+                                                      .ISlastNameError,
+                                                  Uptext: "Last Name".tr,
                                                   width: 220,
-                                                  controller: username,
-                                                  hinttext: "Username".tr)
+                                                  controller: lastName,
+                                                  hinttext: "Last Name".tr)
                                             ],
                                           ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 15.0),
-                                          child: Row(
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: prefs!.getString(
-                                                                languageKey) ==
-                                                            'ar'
-                                                        ? 15
-                                                        : 0,
-                                                    right: prefs!.getString(
-                                                                languageKey) ==
-                                                            'ar'
-                                                        ? 0
-                                                        : 15),
-                                                child: Textfildwithupper(
-                                                    fieldType: "phone",
+                                          Padding(
+                                            padding: EdgeInsets.only(top: 15.0),
+                                            child: Row(
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      left: prefs!.getString(
+                                                                  languageKey) ==
+                                                              'ar'
+                                                          ? 15
+                                                          : 0,
+                                                      right: prefs!.getString(
+                                                                  languageKey) ==
+                                                              'ar'
+                                                          ? 0
+                                                          : 15),
+                                                  child: Textfildwithupper(
+                                                      onChanged: (value) {
+                                                        if (value.isNotEmpty) {
+                                                          controller
+                                                              .updateFieldError(
+                                                                  "email",
+                                                                  false);
+                                                        }
+                                                      },
+                                                      fieldType: "email",
+                                                      isRequired: true,
+                                                      isError: controller
+                                                          .ISemailError,
+                                                      Uptext: "Email".tr,
+                                                      width: 220,
+                                                      controller: email,
+                                                      hinttext: "Email".tr),
+                                                ),
+                                                Textfildwithupper(
                                                     onChanged: (value) {
                                                       if (value.isNotEmpty) {
                                                         controller
                                                             .updateFieldError(
-                                                                "phone", false);
+                                                                "username",
+                                                                false);
                                                       }
                                                     },
                                                     isRequired: true,
-                                                    isError:
-                                                        controller.ISphoneError,
-                                                    Uptext: "Phone Number".tr,
-                                                    width: 220,
-                                                    controller: phone,
-                                                    hinttext:
-                                                        "Phone Number".tr),
-                                              ),
-                                              Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  JoinDate(
-                                                    isRequired: true,
-                                                    isError:
-                                                        controller.IsJoinError,
-                                                    width: 220,
-                                                    Uptext: "Join Date".tr,
-                                                  )
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 15.0),
-                                          child: Row(
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: prefs!.getString(
-                                                                languageKey) ==
-                                                            'ar'
-                                                        ? 15
-                                                        : 0,
-                                                    right: prefs!.getString(
-                                                                languageKey) ==
-                                                            'ar'
-                                                        ? 0
-                                                        : 15),
-                                                child: Dropdownallemployee(
                                                     isError: controller
-                                                        .IsGenderError,
-                                                    title: "Gender".tr,
+                                                        .ISusernameError,
+                                                    Uptext: "Username".tr,
                                                     width: 220,
-                                                    type: "Gender"),
-                                              ),
-                                              Dropdownallemployee(
-                                                  isError: controller
-                                                      .IsContractError,
-                                                  title: "Contract Type".tr,
-                                                  width: 220,
-                                                  type: "Contract"),
-                                            ],
+                                                    controller: username,
+                                                    hinttext: "Username".tr)
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 15.0),
-                                          child: Row(
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: prefs!.getString(
-                                                                languageKey) ==
-                                                            'ar'
-                                                        ? 15
-                                                        : 0,
-                                                    right: prefs!.getString(
-                                                                languageKey) ==
-                                                            'ar'
-                                                        ? 0
-                                                        : 15),
-                                                child: Textfildwithupper(
-                                                    hidePassword:
-                                                        controller.ShowPassword,
+                                          Padding(
+                                            padding: EdgeInsets.only(top: 15.0),
+                                            child: Row(
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      left: prefs!.getString(
+                                                                  languageKey) ==
+                                                              'ar'
+                                                          ? 15
+                                                          : 0,
+                                                      right: prefs!.getString(
+                                                                  languageKey) ==
+                                                              'ar'
+                                                          ? 0
+                                                          : 15),
+                                                  child: Textfildwithupper(
+                                                      fieldType: "phone",
+                                                      onChanged: (value) {
+                                                        if (value.isNotEmpty) {
+                                                          controller
+                                                              .updateFieldError(
+                                                                  "phone",
+                                                                  false);
+                                                        }
+                                                      },
+                                                      isRequired: true,
+                                                      isError: controller
+                                                          .ISphoneError,
+                                                      Uptext: "Phone Number".tr,
+                                                      width: 220,
+                                                      controller: phone,
+                                                      hinttext:
+                                                          "Phone Number".tr),
+                                                ),
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    JoinDate(
+                                                      isRequired: true,
+                                                      isError: controller
+                                                          .IsJoinError,
+                                                      width: 220,
+                                                      Uptext: "Join Date".tr,
+                                                    )
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(top: 15.0),
+                                            child: Row(
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      left: prefs!.getString(
+                                                                  languageKey) ==
+                                                              'ar'
+                                                          ? 15
+                                                          : 0,
+                                                      right: prefs!.getString(
+                                                                  languageKey) ==
+                                                              'ar'
+                                                          ? 0
+                                                          : 15),
+                                                  child: Dropdownallemployee(
+                                                      isError: controller
+                                                          .IsGenderError,
+                                                      title: "Gender".tr,
+                                                      width: 220,
+                                                      type: "Gender"),
+                                                ),
+                                                Dropdownallemployee(
+                                                    isError: controller
+                                                        .IsContractError,
+                                                    title: "Contract Type".tr,
+                                                    width: 220,
+                                                    type: "Contract"),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(top: 15.0),
+                                            child: Row(
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      left: prefs!.getString(
+                                                                  languageKey) ==
+                                                              'ar'
+                                                          ? 15
+                                                          : 0,
+                                                      right: prefs!.getString(
+                                                                  languageKey) ==
+                                                              'ar'
+                                                          ? 0
+                                                          : 15),
+                                                  child: Textfildwithupper(
+                                                      hidePassword: controller
+                                                          .ShowPassword,
+                                                      IconButton: IconButton(
+                                                          onPressed: () {
+                                                            controller
+                                                                .ChangeShowPassword(
+                                                                    !controller
+                                                                        .ShowPassword);
+                                                          },
+                                                          icon: Icon(
+                                                            controller
+                                                                    .ShowPassword
+                                                                ? Icons
+                                                                    .visibility_off
+                                                                : Icons
+                                                                    .remove_red_eye_outlined,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodySmall!
+                                                                .color,
+                                                          )),
+                                                      onChanged: (value) {
+                                                        if (value.isNotEmpty) {
+                                                          controller
+                                                              .updateFieldError(
+                                                                  "password",
+                                                                  false);
+                                                        }
+                                                      },
+                                                      fieldType: "password",
+                                                      isRequired: true,
+                                                      isError: controller
+                                                          .ISpasswordError,
+                                                      Uptext: "Password".tr,
+                                                      width: 220,
+                                                      controller: password,
+                                                      hinttext: "Password".tr),
+                                                ),
+                                                Textfildwithupper(
+                                                    hidePassword: controller
+                                                        .ShowConfirmPassword,
                                                     IconButton: IconButton(
                                                         onPressed: () {
                                                           controller
-                                                              .ChangeShowPassword(
+                                                              .ChangeShowConfirmPassword(
                                                                   !controller
-                                                                      .ShowPassword);
+                                                                      .ShowConfirmPassword);
                                                         },
                                                         icon: Icon(
                                                           controller
-                                                                  .ShowPassword
+                                                                  .ShowConfirmPassword
                                                               ? Icons
                                                                   .visibility_off
                                                               : Icons
@@ -471,61 +536,25 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                                       if (value.isNotEmpty) {
                                                         controller
                                                             .updateFieldError(
-                                                                "password",
+                                                                "cpassword",
                                                                 false);
                                                       }
                                                     },
                                                     fieldType: "password",
                                                     isRequired: true,
                                                     isError: controller
-                                                        .ISpasswordError,
-                                                    Uptext: "Password".tr,
+                                                        .IScPasswordError,
+                                                    Uptext:
+                                                        "Confirm Password".tr,
                                                     width: 220,
-                                                    controller: password,
-                                                    hinttext: "Password".tr),
-                                              ),
-                                              Textfildwithupper(
-                                                  hidePassword: controller
-                                                      .ShowConfirmPassword,
-                                                  IconButton: IconButton(
-                                                      onPressed: () {
-                                                        controller
-                                                            .ChangeShowConfirmPassword(
-                                                                !controller
-                                                                    .ShowConfirmPassword);
-                                                      },
-                                                      icon: Icon(
-                                                        controller.ShowConfirmPassword
-                                                            ? Icons
-                                                                .visibility_off
-                                                            : Icons
-                                                                .remove_red_eye_outlined,
-                                                        color: Theme.of(context)
-                                                            .textTheme
-                                                            .bodySmall!
-                                                            .color,
-                                                      )),
-                                                  onChanged: (value) {
-                                                    if (value.isNotEmpty) {
-                                                      controller
-                                                          .updateFieldError(
-                                                              "cpassword",
-                                                              false);
-                                                    }
-                                                  },
-                                                  fieldType: "password",
-                                                  isRequired: true,
-                                                  isError: controller
-                                                      .IScPasswordError,
-                                                  Uptext: "Confirm Password".tr,
-                                                  width: 220,
-                                                  controller: cPassword,
-                                                  hinttext:
-                                                      "Confirm Password".tr)
-                                            ],
-                                          ),
-                                        )
-                                      ],
+                                                    controller: cPassword,
+                                                    hinttext:
+                                                        "Confirm Password".tr)
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                     apptitle: "Add Teacher".tr,
                                     subtitle: "none");

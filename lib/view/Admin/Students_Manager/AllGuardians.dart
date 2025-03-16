@@ -151,6 +151,14 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Textfildwithupper(
+                                                    onChanged: (value) {
+                                                      if (value.isNotEmpty) {
+                                                        controller
+                                                            .updateFieldError(
+                                                                "username",
+                                                                false);
+                                                      }
+                                                    },
                                                     isRequired: true,
                                                     isError: controller
                                                         .IsusernameError,
@@ -178,6 +186,15 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Textfildwithupper(
+                                                        onChanged: (value) {
+                                                          if (value
+                                                              .isNotEmpty) {
+                                                            controller
+                                                                .updateFieldError(
+                                                                    "name",
+                                                                    false);
+                                                          }
+                                                        },
                                                         isRequired: true,
                                                         isError: controller
                                                             .IsnameError,
@@ -228,6 +245,15 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Textfildwithupper(
+                                                        onChanged: (value) {
+                                                          if (value
+                                                              .isNotEmpty) {
+                                                            controller
+                                                                .updateFieldError(
+                                                                    "nid",
+                                                                    false);
+                                                          }
+                                                        },
                                                         isError: controller
                                                             .IsnidError,
                                                         isRequired: true,

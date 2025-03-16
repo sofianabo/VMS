@@ -47,7 +47,7 @@ class _TextfildwithupperState extends State<Textfildwithupper> {
 
   void validateInput(String value) {
     bool isValid = true;
-    String error = "";
+    String error = "لا يسمح بترك الحقل فارغ";
 
     if (widget.fieldType == "email") {
       RegExp emailRegex =

@@ -167,6 +167,7 @@ class Allempolyeecontroller extends GetxController {
       Get.find<All_Virtual_Employee_Controller>().searchRequestByName(
           Get.find<All_Virtual_Employee_Controller>().filteredName, rollIndex);
     }
+
     update();
   }
 
@@ -236,6 +237,7 @@ class Allempolyeecontroller extends GetxController {
     if (picked != null) {
       Joindate.value = picked;
       Get.find<Allteachercontroller>().updateFieldError("join", false);
+      updateFieldError("join", false);
     }
   }
 
@@ -256,4 +258,77 @@ class Allempolyeecontroller extends GetxController {
   String get selectedrolldialogIndex => rolldialogIndex;
 
   String get selecteddialogjobTitleIndex => dialogjobTitleIndex;
+
+  bool ShowConfirmPassword = true;
+  bool ShowPassword = true;
+
+  bool IsJoinError = false;
+  bool ISusernameError = false;
+  bool ISemailError = false;
+  bool ISfirstNameError = false;
+  bool ISlastNameError = false;
+  bool ISphoneError = false;
+  bool ISpasswordError = false;
+  bool IScPasswordError = false;
+  bool IsGenderError = false;
+  bool IsContractError = false;
+  bool IsRollError = false;
+  bool IsJopError = false;
+
+  void updateFieldError(String type, bool newValue) {
+    switch (type) {
+      case 'join':
+        IsJoinError = newValue;
+        break;
+      case 'username':
+        ISusernameError = newValue;
+        break;
+      case 'email':
+        ISemailError = newValue;
+        break;
+      case 'first':
+        ISfirstNameError = newValue;
+        break;
+      case 'last':
+        ISlastNameError = newValue;
+        break;
+      case 'phone':
+        ISphoneError = newValue;
+        break;
+      case 'password':
+        ISpasswordError = newValue;
+        break;
+      case 'cpassword':
+        IScPasswordError = newValue;
+        break;
+      case 'gender':
+        IsGenderError = newValue;
+        break;
+      case 'contract':
+        IsContractError = newValue;
+        break;
+      case 'roll':
+        IsRollError = newValue;
+        break;
+      case 'jop':
+        IsJopError = newValue;
+        break;
+
+      default:
+        print("Error: Invalid type");
+    }
+    update();
+  }
+
+  ChangeShowConfirmPassword(bool value) {
+    ShowConfirmPassword = value;
+    print(value);
+    update();
+  }
+
+  ChangeShowPassword(bool value) {
+    ShowPassword = value;
+    print(value);
+    update();
+  }
 }

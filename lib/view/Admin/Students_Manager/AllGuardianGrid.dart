@@ -137,6 +137,12 @@ class AllGuardianGrid extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Textfildwithupper(
+                                          onChanged: (value) {
+                                            if (value.isNotEmpty) {
+                                              controller.updateFieldError(
+                                                  "name", false);
+                                            }
+                                          },
                                           isError: controller.IsnameError,
                                           Uptext: "Guardian Name".tr,
                                           isRequired: true,
@@ -156,6 +162,12 @@ class AllGuardianGrid extends StatelessWidget {
                                                     ? 20
                                                     : 0),
                                         child: Textfildwithupper(
+                                            onChanged: (value) {
+                                              if (value.isNotEmpty) {
+                                                controller.updateFieldError(
+                                                    "nid", false);
+                                              }
+                                            },
                                             isError: controller.IsnidError,
                                             Uptext: "Guardian National ID".tr,
                                             isRequired: true,
@@ -172,6 +184,12 @@ class AllGuardianGrid extends StatelessWidget {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Textfildwithupper(
+                                            onChanged: (value) {
+                                              if (value.isNotEmpty) {
+                                                controller.updateFieldError(
+                                                    "email", false);
+                                              }
+                                            },
                                             isError: controller.IsEmailError,
                                             isRequired: true,
                                             fieldType: "email",
@@ -192,6 +210,12 @@ class AllGuardianGrid extends StatelessWidget {
                                                   ? 20
                                                   : 0),
                                           child: Textfildwithupper(
+                                              onChanged: (value) {
+                                                if (value.isNotEmpty) {
+                                                  controller.updateFieldError(
+                                                      "phone", false);
+                                                }
+                                              },
                                               fieldType: "phone",
                                               isError: controller.IsphoneError,
                                               Uptext:
