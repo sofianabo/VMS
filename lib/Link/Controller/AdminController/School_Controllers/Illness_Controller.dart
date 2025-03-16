@@ -168,7 +168,8 @@ class Illness_Controller extends gets.GetxController {
                                         fontSize: 16,
                                         color: gets.Get.theme.primaryColor),
                                     textAlign: TextAlign.center,
-                                    "If You Deselected The Illness The File Will Remove".tr))),
+                                    "If You Deselected The Illness The File Will Remove"
+                                        .tr))),
                       ],
                     ),
                   ),
@@ -185,7 +186,7 @@ class Illness_Controller extends gets.GetxController {
                                 Color(0xFF2E98A8)),
                             minimumSize:
                                 MaterialStatePropertyAll(Size(300 / 3, 50))),
-                        child:  Text('Yes'.tr,
+                        child: Text('Yes'.tr,
                             style: TextStyle(color: Colors.white)),
                         onPressed: () {
                           removeFile(illness);
@@ -205,7 +206,7 @@ class Illness_Controller extends gets.GetxController {
                                 Color(0xFF2E98A8)),
                             minimumSize:
                                 MaterialStatePropertyAll(Size(300 / 3, 50))),
-                        child:  Text('Back'.tr,
+                        child: Text('Back'.tr,
                             style: TextStyle(color: Colors.white)),
                         onPressed: () {
                           gets.Get.back();
@@ -349,8 +350,8 @@ class Illness_Controller extends gets.GetxController {
                               MaterialStatePropertyAll(Color(0xff972F2F)),
                           minimumSize:
                               MaterialStatePropertyAll(Size(300 / 3, 50))),
-                      child:  Text('Yes'.tr,
-                          style: TextStyle(color: Colors.white)),
+                      child:
+                          Text('Yes'.tr, style: TextStyle(color: Colors.white)),
                       onPressed: () {
                         var existingFile = files.firstWhere(
                           (file) => file["id"] == illness.id.toString(),
@@ -381,7 +382,7 @@ class Illness_Controller extends gets.GetxController {
                               MaterialStatePropertyAll(Color(0xff134B70)),
                           minimumSize:
                               MaterialStatePropertyAll(Size(300 / 3, 50))),
-                      child:  Text('Back'.tr,
+                      child: Text('Back'.tr,
                           style: TextStyle(color: Colors.white)),
                       onPressed: () {
                         gets.Get.back();
@@ -448,6 +449,23 @@ class Illness_Controller extends gets.GetxController {
 
   void SetisSelectedOnly(bool value) {
     isSelectedOnly = value;
+    update();
+  }
+
+  bool IsAnameError = false;
+  bool IsEnameError = false;
+
+  void updateFieldError(String type, bool newValue) {
+    switch (type) {
+      case 'arname':
+        IsAnameError = newValue;
+        break;
+      case 'enname':
+        IsEnameError = newValue;
+        break;
+      default:
+        print("Error: Invalid type");
+    }
     update();
   }
 }

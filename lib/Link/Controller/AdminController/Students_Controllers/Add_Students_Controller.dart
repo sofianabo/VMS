@@ -71,7 +71,8 @@ class Add_Students_Controller extends GetxController {
   String GenderIndex = "";
   String RealagonIndex = "";
   String BloodTypeIndex = "";
-  String LocationIndex = "";
+
+  String LocationIndex = "Syria".tr;
   String FamilyStateIndex = "Single";
   String ClassIndex = "";
   String DivisionIndex = "";

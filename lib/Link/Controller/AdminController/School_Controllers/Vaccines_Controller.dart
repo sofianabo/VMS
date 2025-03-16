@@ -25,7 +25,7 @@ class Vaccines_Controller extends gets.GetxController {
   bool isLoadingLocation = true;
 
   List<String> Locationlist = [];
-  String LocationIndex = "";
+  String LocationIndex = "Syria".tr;
 
   SetIsLoadingLocation(bool value) {
     isLoadingLocation = value;
@@ -465,6 +465,23 @@ class Vaccines_Controller extends gets.GetxController {
   bool isSelectedOnly = true;
   void SetisSelectedOnly(bool value) {
     isSelectedOnly = value;
+    update();
+  }
+
+  bool IsAnameError = false;
+  bool IsEnameError = false;
+
+  void updateFieldError(String type, bool newValue) {
+    switch (type) {
+      case 'arname':
+        IsAnameError = newValue;
+        break;
+      case 'enname':
+        IsEnameError = newValue;
+        break;
+      default:
+        print("Error: Invalid type");
+    }
     update();
   }
 }
