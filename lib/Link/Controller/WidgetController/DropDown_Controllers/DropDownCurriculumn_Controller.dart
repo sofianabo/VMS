@@ -67,6 +67,7 @@ class Curriculumn_Controller extends GetxController {
     if (pickedFile != null) {
       Uint8List fileBytes = await pickedFile.readAsBytes();
       selectedImage.value = fileBytes;
+      updateFieldError("image", false);
       updateTextImage("Done Selected Image");
     } else {}
   }
@@ -80,7 +81,7 @@ class Curriculumn_Controller extends GetxController {
     if (result != null && result.files.single.bytes != null) {
       selectedFile.value = result.files.single.bytes;
       fileName.value = result.files.single.name;
-
+      updateFieldError("file", false);
       updateTextFile("Done Selected File");
     }
   }
@@ -97,11 +98,13 @@ class Curriculumn_Controller extends GetxController {
 
   void updateTextImage(String value) {
     imageStatus = value;
+    isHoveringimage = false;
     update();
   }
 
   void updateTextFile(String value) {
     fileStatus = value;
+    isHoveringFile = false;
     update();
   }
 
@@ -218,6 +221,63 @@ class Curriculumn_Controller extends GetxController {
 
   void set_semesteridx(id) {
     semesterId = id;
+    update();
+  }
+
+  bool IsAnameError = false;
+  bool IsEnameError = false;
+  bool IsSubjectError = false;
+  bool IsSemesterError = false;
+  bool IsMaxError = false;
+  bool IsPassingError = false;
+  bool IsImageError = false;
+  bool IsFileError = false;
+
+  void updateFieldError(String type, bool newValue) {
+    switch (type) {
+      case 'aname':
+        IsAnameError = newValue;
+        break;
+      case 'ename':
+        IsEnameError = newValue;
+        break;
+      case 'subject':
+        IsSubjectError = newValue;
+        break;
+      case 'semester':
+        IsSemesterError = newValue;
+        break;
+      case 'max':
+        IsMaxError = newValue;
+        break;
+      case 'passing':
+        IsPassingError = newValue;
+        break;
+      case 'image':
+        IsImageError = newValue;
+        break;
+      case 'file':
+        IsFileError = newValue;
+        break;
+      default:
+        print("Error: Invalid type");
+    }
+    update();
+  }
+
+  void Clearfile() {
+    selectedFile.value = null;
+    updateHoverFile(false);
+    updateTextFile("Click To Add File\nOr\nDrag And Drop File Here".tr);
+    updateFieldError("file", true);
+    update();
+  }
+
+  void ClearImage() {
+    selectedImage.value = null;
+    updateHoverImage(false);
+    updateTextImage("Click To Add Image\nOr\nDrag And Drop Image Here".tr);
+    updateFieldError("image", true);
     update();
   }
 }

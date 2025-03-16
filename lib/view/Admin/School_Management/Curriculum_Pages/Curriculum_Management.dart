@@ -26,9 +26,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
 
   TextEditingController name = TextEditingController();
   TextEditingController enname = TextEditingController();
-
   TextEditingController max = TextEditingController();
-
   TextEditingController Passing = TextEditingController();
 
   DropzoneViewController? ctrl;
@@ -130,27 +128,88 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                       ButtonDialog(
                                           text: "Add",
                                           onPressed: () async {
-                                            await Add_Curriculm_API(context)
-                                                .Add_Curriculm(
-                                              name: name.text,
-                                              Ename: enname.text,
-                                              file:
-                                                  controller.selectedFile.value,
-                                              Image: controller
-                                                  .selectedImage.value,
-                                              maxMark: max.text,
-                                              PassingMark: Passing.text,
-                                              semesterId: controller.semesterId,
-                                              subjectId: controller.subjectId,
-                                              type: controller.isFailingSubject,
-                                            );
-                                            name.clear();
-                                            max.clear();
-                                            Passing.clear();
-                                            controller.selectedFile.value!
-                                                .clear();
-                                            controller.selectedImage.value!
-                                                .clear();
+                                            bool isArNameEmpty =
+                                                name.text.isEmpty;
+                                            bool isEnNameEmpty =
+                                                enname.text.isEmpty;
+                                            bool isMaxEmpty = max.text.isEmpty;
+                                            bool isPassingEmpty =
+                                                Passing.text.isEmpty;
+                                            bool isSubjectEmpty = controller
+                                                    .dialog_SubjectIndex
+                                                    .isEmpty ||
+                                                controller
+                                                        .dialog_SubjectIndex ==
+                                                    "";
+                                            bool isSemesterEmpty = controller
+                                                    .dialog_SemesterIndex
+                                                    .isEmpty ||
+                                                controller
+                                                        .dialog_SemesterIndex ==
+                                                    "";
+                                            bool isImageEmpty = controller
+                                                    .selectedImage.value ==
+                                                null;
+                                            bool isFileEmpty =
+                                                controller.selectedFile.value ==
+                                                    null;
+
+                                            controller.updateFieldError(
+                                                "aname", isArNameEmpty);
+                                            controller.updateFieldError(
+                                                "ename", isEnNameEmpty);
+                                            controller.updateFieldError(
+                                                "subject", isSubjectEmpty);
+                                            controller.updateFieldError(
+                                                "semester", isSemesterEmpty);
+                                            controller.updateFieldError(
+                                                "max", isMaxEmpty);
+                                            controller.updateFieldError(
+                                                "passing", isPassingEmpty);
+                                            controller.updateFieldError(
+                                                "image", isImageEmpty);
+                                            controller.updateFieldError(
+                                                "file", isFileEmpty);
+
+                                            if (!(isArNameEmpty ||
+                                                isEnNameEmpty ||
+                                                isMaxEmpty ||
+                                                isPassingEmpty ||
+                                                isSubjectEmpty ||
+                                                isSemesterEmpty ||
+                                                isImageEmpty ||
+                                                isFileEmpty)) {
+                                              if (await Add_Curriculm_API(
+                                                          context)
+                                                      .Add_Curriculm(
+                                                    name: name.text,
+                                                    Ename: enname.text,
+                                                    file: controller
+                                                        .selectedFile.value,
+                                                    Image: controller
+                                                        .selectedImage.value,
+                                                    maxMark: max.text,
+                                                    PassingMark: Passing.text,
+                                                    semesterId:
+                                                        controller.semesterId,
+                                                    subjectId:
+                                                        controller.subjectId,
+                                                    type: controller
+                                                        .isFailingSubject,
+                                                  ) ==
+                                                  200) {
+                                                name.clear();
+                                                enname.clear();
+                                                max.clear();
+                                                Passing.clear();
+                                                controller.selectedFile.value!
+                                                    .clear();
+                                                controller.selectedImage.value!
+                                                    .clear();
+                                                controller.semesterIndex = "";
+                                                controller.subjectIndex = "";
+                                              }
+                                            }
                                           },
                                           color: Theme.of(context).primaryColor,
                                           width: 90)
@@ -168,15 +227,19 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             GetBuilder<Subject_Controller>(
-                                                builder: (controller) {
+                                                builder: (subject_controller) {
                                               return DropDownCurriMgmt(
-                                                  Isloading:
-                                                      controller.isLoading,
+                                                  isError:
+                                                      controller.IsSubjectError,
+                                                  Isloading: subject_controller
+                                                      .isLoading,
                                                   title: "Subject",
                                                   width: 250,
                                                   type: "Dialog_Subject");
                                             }),
-                                            const DropDownCurriMgmt(
+                                            DropDownCurriMgmt(
+                                                isError:
+                                                    controller.IsSemesterError,
                                                 title: "Semester",
                                                 width: 250,
                                                 type: "Dialog_semester")
@@ -192,6 +255,16 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                 CrossAxisAlignment.end,
                                             children: [
                                               Textfildwithupper(
+                                                  isError:
+                                                      controller.IsAnameError,
+                                                  isRequired: true,
+                                                  onChanged: (value) {
+                                                    if (value.isNotEmpty) {
+                                                      controller
+                                                          .updateFieldError(
+                                                              "aname", false);
+                                                    }
+                                                  },
                                                   width: 250,
                                                   controller: name,
                                                   Uptext: "Name Curriculum",
@@ -200,6 +273,16 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                 padding: const EdgeInsets.only(
                                                     left: 30.0),
                                                 child: Textfildwithupper(
+                                                    isError:
+                                                        controller.IsEnameError,
+                                                    isRequired: true,
+                                                    onChanged: (value) {
+                                                      if (value.isNotEmpty) {
+                                                        controller
+                                                            .updateFieldError(
+                                                                "ename", false);
+                                                      }
+                                                    },
                                                     width: 250,
                                                     controller: enname,
                                                     Uptext:
@@ -215,10 +298,29 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Textfildwithupper(
+                                                fieldType: "number",
+                                                isError: controller.IsMaxError,
+                                                isRequired: true,
+                                                onChanged: (value) {
+                                                  if (value.isNotEmpty) {
+                                                    controller.updateFieldError(
+                                                        "max", false);
+                                                  }
+                                                },
                                                 controller: max,
                                                 Uptext: "Max Mark",
                                                 hinttext: "Max Mark"),
                                             Textfildwithupper(
+                                                fieldType: "number",
+                                                isError:
+                                                    controller.IsPassingError,
+                                                isRequired: true,
+                                                onChanged: (value) {
+                                                  if (value.isNotEmpty) {
+                                                    controller.updateFieldError(
+                                                        "passing", false);
+                                                  }
+                                                },
                                                 controller: Passing,
                                                 Uptext: "Passing Mark",
                                                 hinttext: "Passing Mark")
@@ -241,9 +343,14 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                     borderRadius:
                                                         const BorderRadius.all(
                                                             Radius.circular(5)),
-                                                    border: Border.all(
-                                                        color: const Color(
-                                                            0xffD9D9D9)),
+                                                    border: controller
+                                                            .IsFileError
+                                                        ? Border.all(
+                                                            color: Colors
+                                                                .redAccent)
+                                                        : Border.all(
+                                                            color: const Color(
+                                                                0xffD9D9D9)),
                                                     color: controller
                                                             .isHoveringFile
                                                         ? Theme.of(context)
@@ -313,6 +420,10 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                               controller
                                                                   .updateTextFile(
                                                                       "PDF File Successfully Dropped!");
+                                                              controller
+                                                                  .updateFieldError(
+                                                                      "file",
+                                                                      false);
                                                             } else {
                                                               controller
                                                                   .updateTextFile(
@@ -326,18 +437,38 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                         },
                                                       ),
                                                       Center(
-                                                        child: Text(
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          controller.fileStatus,
-                                                          style: TextStyle(
-                                                            color: controller
-                                                                    .isHoveringFile
-                                                                ? Colors.white
-                                                                : const Color(
-                                                                    0xffCBBFBF),
-                                                          ),
-                                                        ),
+                                                        child: controller
+                                                                    .selectedFile
+                                                                    .value !=
+                                                                null
+                                                            ? IconButton(
+                                                                onPressed: () {
+                                                                  controller
+                                                                      .Clearfile();
+                                                                },
+                                                                icon: Icon(
+                                                                  Icons
+                                                                      .delete_outline_outlined,
+                                                                  color: Get
+                                                                      .theme
+                                                                      .primaryColor,
+                                                                ))
+                                                            : Text(
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                controller
+                                                                    .fileStatus,
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: controller
+                                                                          .isHoveringFile
+                                                                      ? Colors
+                                                                          .white
+                                                                      : const Color(
+                                                                          0xffCBBFBF),
+                                                                ),
+                                                              ),
                                                       ),
                                                     ],
                                                   ),
@@ -359,9 +490,14 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                               .all(
                                                               Radius.circular(
                                                                   5)),
-                                                      border: Border.all(
-                                                          color: const Color(
-                                                              0xffD9D9D9)),
+                                                      border: controller
+                                                              .IsImageError
+                                                          ? Border.all(
+                                                              color: Colors
+                                                                  .redAccent)
+                                                          : Border.all(
+                                                              color: const Color(
+                                                                  0xffD9D9D9)),
                                                       color: controller
                                                               .isHoveringimage
                                                           ? Theme.of(context)
@@ -436,6 +572,10 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                                 controller
                                                                     .updateTextImage(
                                                                         "Image Successfully Dropped!");
+                                                                controller
+                                                                    .updateFieldError(
+                                                                        "image",
+                                                                        false);
                                                               } else {
                                                                 controller
                                                                     .updateTextImage(
@@ -449,19 +589,38 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                           },
                                                         ),
                                                         Center(
-                                                          child: Text(
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            controller
-                                                                .imageStatus,
-                                                            style: TextStyle(
-                                                              color: controller
-                                                                      .isHoveringimage
-                                                                  ? Colors.white
-                                                                  : const Color(
-                                                                      0xffCBBFBF),
-                                                            ),
-                                                          ),
+                                                          child: controller
+                                                                      .selectedImage
+                                                                      .value !=
+                                                                  null
+                                                              ? IconButton(
+                                                                  onPressed:
+                                                                      () {
+                                                                    controller
+                                                                        .ClearImage();
+                                                                  },
+                                                                  icon: Icon(
+                                                                    Icons
+                                                                        .delete_outline_outlined,
+                                                                    color: Get
+                                                                        .theme
+                                                                        .primaryColor,
+                                                                  ))
+                                                              : Text(
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                  controller
+                                                                      .imageStatus,
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: controller.isHoveringimage
+                                                                        ? Colors
+                                                                            .white
+                                                                        : const Color(
+                                                                            0xffCBBFBF),
+                                                                  ),
+                                                                ),
                                                         ),
                                                       ],
                                                     ),
