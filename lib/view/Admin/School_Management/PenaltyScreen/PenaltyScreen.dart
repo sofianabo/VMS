@@ -66,8 +66,8 @@ class PenaltyscreenState extends State<Penaltyscreen> {
                                 Theme.of(context).cardColor),
                             shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(5))))),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5))))),
                         onPressed: () {
                           Get.dialog(GetBuilder<Penaltycontroller>(
                               builder: (controller) {
@@ -76,12 +76,33 @@ class PenaltyscreenState extends State<Penaltyscreen> {
                                   ButtonDialog(
                                       text: "Add".tr,
                                       onPressed: () async {
-                                        await Addpenaltyapi(context)
-                                            .Addpenalty(
-                                          name: arName.text,
-                                          enName: enName.text,
-                                          discription: details.text,
-                                        );
+                                        bool isArNameEmpty =
+                                            arName.text.isEmpty;
+                                        bool isEnNameEmpty =
+                                            enName.text.isEmpty;
+                                        bool isdetEmpty = details.text.isEmpty;
+
+                                        controller.updateFieldError(
+                                            "arname", isArNameEmpty);
+                                        controller.updateFieldError(
+                                            "enname", isEnNameEmpty);
+                                        controller.updateFieldError(
+                                            "detail", isdetEmpty);
+
+                                        if (!(isArNameEmpty ||
+                                            isEnNameEmpty ||
+                                            isdetEmpty)) {
+                                          await Addpenaltyapi(context)
+                                              .Addpenalty(
+                                            name: arName.text,
+                                            enName: enName.text,
+                                            discription: details.text,
+                                          );
+
+                                          arName.clear();
+                                          enName.clear();
+                                          details.clear();
+                                        }
                                       },
                                       color: Theme.of(context).primaryColor,
                                       width: 120),
@@ -95,11 +116,19 @@ class PenaltyscreenState extends State<Penaltyscreen> {
                                         Row(
                                           children: [
                                             Padding(
-                                              padding:
-                                                  const EdgeInsets.only(
-                                                      left: 15.0,
-                                                      right: 15.0),
+                                              padding: const EdgeInsets.only(
+                                                  left: 15.0, right: 15.0),
                                               child: Textfildwithupper(
+                                                  isRequired: true,
+                                                  isError:
+                                                      controller.IsEnnameError,
+                                                  onChanged: (value) {
+                                                    if (value.isNotEmpty) {
+                                                      controller
+                                                          .updateFieldError(
+                                                              "enname", false);
+                                                    }
+                                                  },
                                                   controller: enName,
                                                   Uptext:
                                                       "Penalty En - Name".tr,
@@ -107,9 +136,17 @@ class PenaltyscreenState extends State<Penaltyscreen> {
                                                       "Penalty En - Name".tr),
                                             ),
                                             Textfildwithupper(
+                                                isRequired: true,
+                                                isError:
+                                                    controller.IsArnameError,
+                                                onChanged: (value) {
+                                                  if (value.isNotEmpty) {
+                                                    controller.updateFieldError(
+                                                        "arname", false);
+                                                  }
+                                                },
                                                 controller: arName,
-                                                Uptext:
-                                                    "Penalty Ar - Name".tr,
+                                                Uptext: "Penalty Ar - Name".tr,
                                                 hinttext:
                                                     "Penalty Ar - Name".tr),
                                           ],
@@ -122,12 +159,20 @@ class PenaltyscreenState extends State<Penaltyscreen> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding:
-                                                  const EdgeInsets.only(
-                                                      left: 15.0,
-                                                      right: 15.0,
-                                                      top: 15.0),
+                                              padding: const EdgeInsets.only(
+                                                  left: 15.0,
+                                                  right: 15.0,
+                                                  top: 15.0),
                                               child: Textfildwithupper(
+                                                  isRequired: true,
+                                                  isError: controller.IsdeError,
+                                                  onChanged: (value) {
+                                                    if (value.isNotEmpty) {
+                                                      controller
+                                                          .updateFieldError(
+                                                              "detail", false);
+                                                    }
+                                                  },
                                                   controller: details,
                                                   Uptext: "Details".tr,
                                                   hinttext: "Details".tr),
@@ -146,8 +191,7 @@ class PenaltyscreenState extends State<Penaltyscreen> {
                             size: 18, color: Theme.of(context).highlightColor)),
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsets.only(right: 10.0, left: 10.0),
+                    padding: const EdgeInsets.only(right: 10.0, left: 10.0),
                     child: Container(
                       width: 40,
                       height: 40,
@@ -192,8 +236,8 @@ class PenaltyscreenState extends State<Penaltyscreen> {
                                 Theme.of(context).cardColor),
                             shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(5))))),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5))))),
                         onPressed: () {},
                         icon: Icon(VMS_Icons.xl,
                             size: 18, color: Theme.of(context).highlightColor)),

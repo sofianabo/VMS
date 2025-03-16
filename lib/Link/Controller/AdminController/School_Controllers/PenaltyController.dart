@@ -1,17 +1,10 @@
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllPenaltyModel.dart'as gr;
+import 'package:vms_school/Link/Model/AdminModel/AllPenaltyModel.dart' as gr;
 
 class Penaltycontroller extends GetxController {
-
-
-  var Penalties = <Map<String, dynamic>>[
-  ].obs;
-
-
+  var Penalties = <Map<String, dynamic>>[].obs;
 
   List<gr.Penalty>? penalt;
-
-
 
   bool isLoading = true;
 
@@ -23,7 +16,7 @@ class Penaltycontroller extends GetxController {
         'id': stu.id.toString(),
         'name': stu.name.toString(),
         'enName': stu.enName.toString(),
-        'description':stu.description.toString(),
+        'description': stu.description.toString(),
       });
     }
     setIsLoading(false);
@@ -40,4 +33,23 @@ class Penaltycontroller extends GetxController {
     update();
   }
 
+  bool IsArnameError = false;
+  bool IsEnnameError = false;
+  bool IsdeError = false;
+  void updateFieldError(String type, bool newValue) {
+    switch (type) {
+      case 'arname':
+        IsArnameError = newValue;
+        break;
+      case 'enname':
+        IsEnnameError = newValue;
+        break;
+      case 'detail':
+        IsdeError = newValue;
+        break;
+      default:
+        print("Error: Invalid type");
+    }
+    update();
+  }
 }

@@ -26,7 +26,7 @@ class DeleteEmployee {
       );
 
       if (response.statusCode == 200) {
-       await Get_All_Employee_API.Get_All_Employee();
+        Get_All_Employee_API.Get_All_Employee();
 
         return response.statusCode;
       } else {
