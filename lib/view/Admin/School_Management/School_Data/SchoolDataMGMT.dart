@@ -70,8 +70,13 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                   controller.Region.text.isEmpty;
 
                               bool isPhoneEmpty = controller.Phone.text.isEmpty;
-
-                              bool isEmailEmpty = controller.Email.text.isEmpty;
+                              RegExp emailRegex = RegExp(
+                                  r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+                              bool isEmailValid =
+                                  emailRegex.hasMatch(controller.Email.text);
+                              bool isEmailEmpty =
+                                  controller.Email.text.isEmpty ||
+                                      !isEmailValid;
 
                               bool isCreation_YearEmpty =
                                   controller.Creation_Year.text.isEmpty;
@@ -164,9 +169,13 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
 
                                 bool isPhoneEmpty =
                                     controller.Phone.text.isEmpty;
-
+                                RegExp emailRegex = RegExp(
+                                    r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+                                bool isEmailValid =
+                                    emailRegex.hasMatch(controller.Email.text);
                                 bool isEmailEmpty =
-                                    controller.Email.text.isEmpty;
+                                    controller.Email.text.isEmpty ||
+                                        !isEmailValid;
 
                                 bool isCreation_YearEmpty =
                                     controller.Creation_Year.text.isEmpty;
@@ -260,9 +269,14 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
 
                                 bool isPhoneEmpty =
                                     controller.Phone.text.isEmpty;
+                                RegExp emailRegex = RegExp(
+                                    r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+                                bool isEmailValid =
+                                    emailRegex.hasMatch(controller.Email.text);
 
                                 bool isEmailEmpty =
-                                    controller.Email.text.isEmpty;
+                                    controller.Email.text.isEmpty ||
+                                        !isEmailValid;
 
                                 bool isCreation_YearEmpty =
                                     controller.Creation_Year.text.isEmpty;
