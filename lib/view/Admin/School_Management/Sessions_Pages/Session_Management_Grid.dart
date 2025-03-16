@@ -225,118 +225,152 @@ class SessionManagementGrid extends StatelessWidget {
                                         DateTime.parse(control.Sessionss[index]
                                             ['endDate']);
 
-                                    Get.dialog(VMSAlertDialog(
-                                        action: [
-                                          ButtonDialog(
-                                              text: "Edit Session",
-                                              onPressed: () async {
-                                                await Edit_Session_API(context)
-                                                    .Edit_Session(
-                                                  sessionId: control
-                                                      .Sessionss[index]['id'],
-                                                  year:
-                                                      "${Get.find<SessionController>().sessionController.text}-${int.parse(Get.find<SessionController>().sessionController.text) + 1}",
-                                                  startDate: Get.find<
-                                                          SessionController>()
-                                                      .startDate
-                                                      .value
-                                                      .toString(),
-                                                  endDate: Get.find<
-                                                          SessionController>()
-                                                      .endDate
-                                                      .value
-                                                      .toString(),
-                                                );
-                                              },
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                              width: 90)
-                                        ],
-                                        contents: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            GetBuilder<SessionController>(
-                                                builder: (controllers) {
-                                              return Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.end,
-                                                children: [
-                                                  SizedBox(
-                                                    width: 220,
-                                                    child:
-                                                        Textfildwithupper_num(
-                                                      Uptext: "Study Year",
-                                                      hinttext: "Enter Year",
-                                                      sessionController:
-                                                          controllers
-                                                              .sessionController,
-                                                      borderColor: controllers
-                                                          .borderColor,
+                                    Get.dialog(GetBuilder<SessionController>(
+                                        builder: (controller) {
+                                      return VMSAlertDialog(
+                                          action: [
+                                            ButtonDialog(
+                                                text: "Edit Session",
+                                                onPressed: () async {
+                                                  bool isStartEmpty = controller
+                                                              .startDate
+                                                              .value ==
+                                                          null ||
+                                                      controller.startDate.value
+                                                              .toString() ==
+                                                          "";
+
+                                                  bool isEndEmpty = controller
+                                                              .endDate.value ==
+                                                          null ||
+                                                      controller.endDate.value
+                                                              .toString() ==
+                                                          "";
+                                                  bool isNameEmpty = controller
+                                                          .sessionController
+                                                          .text
+                                                          .trim()
+                                                          .isEmpty ||
+                                                      controller
+                                                              .sessionController
+                                                              .text
+                                                              .length <
+                                                          4 ||
+                                                      int.parse(controller
+                                                              .sessionController
+                                                              .text) >
+                                                          2098;
+
+                                                  controller.updateFieldError(
+                                                      "name", isNameEmpty);
+                                                  controller.updateFieldError(
+                                                      "start", isStartEmpty);
+                                                  controller.updateFieldError(
+                                                      "end", isEndEmpty);
+
+                                                  if (!(isNameEmpty ||
+                                                      isStartEmpty ||
+                                                      isEndEmpty)) {
+                                                    await Edit_Session_API(
+                                                            context)
+                                                        .Edit_Session(
+                                                      sessionId: control
+                                                              .Sessionss[index]
+                                                          ['id'],
+                                                      year:
+                                                          "${Get.find<SessionController>().sessionController.text}-${int.parse(Get.find<SessionController>().sessionController.text) + 1}",
+                                                      startDate: Get.find<
+                                                              SessionController>()
+                                                          .startDate
+                                                          .value
+                                                          .toString(),
+                                                      endDate: Get.find<
+                                                              SessionController>()
+                                                          .endDate
+                                                          .value
+                                                          .toString(),
+                                                    );
+                                                  }
+                                                },
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                                width: 90)
+                                          ],
+                                          contents: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              GetBuilder<SessionController>(
+                                                  builder: (controllers) {
+                                                return Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.end,
+                                                  children: [
+                                                    SizedBox(
+                                                      width: 220,
+                                                      child:
+                                                          Textfildwithupper_num(
+                                                        onChanged: (value) {
+                                                          controller.updateYear(
+                                                              value);
+                                                          if (value
+                                                              .isNotEmpty) {
+                                                            controller
+                                                                .updateFieldError(
+                                                                    "name",
+                                                                    false);
+                                                          }
+                                                        },
+                                                        isRequired: true,
+                                                        isError: controller
+                                                            .IsnameError,
+                                                        Uptext: "Study Year",
+                                                        hinttext: "Enter Year",
+                                                        sessionController:
+                                                            controller
+                                                                .sessionController,
+                                                        borderColor: controllers
+                                                            .borderColor,
+                                                      ),
                                                     ),
-                                                  ),
-                                                  Obx(() {
-                                                    return Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 8.0,
-                                                              right: 8.0),
-                                                      child: Container(
-                                                        height: 40,
-                                                        alignment:
-                                                            Alignment.center,
-                                                        child: Text(
-                                                          "/${controllers.currentYear.value}",
-                                                          style: Get
-                                                              .theme
-                                                              .textTheme
-                                                              .displayLarge!
-                                                              .copyWith(
-                                                            fontSize: 22,
+                                                    Obx(() {
+                                                      return Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                                left: 8.0,
+                                                                right: 8.0),
+                                                        child: Container(
+                                                          height: 40,
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child: Text(
+                                                            "/${controllers.currentYear.value}",
+                                                            style: Get
+                                                                .theme
+                                                                .textTheme
+                                                                .displayLarge!
+                                                                .copyWith(
+                                                              fontSize: 22,
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    );
-                                                  }),
-                                                ],
-                                              );
-                                            }),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 15.0),
-                                              child: Row(
-                                                children: [
-                                                  Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    children: [
-                                                      const Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                bottom: 5.0),
-                                                        child:
-                                                            Text("Start Date"),
-                                                      ),
-                                                      selectstart(
-                                                        width: 220,
-                                                        isRequired: true,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 20.0,
-                                                            right: 20.0),
-                                                    child: Column(
+                                                      );
+                                                    }),
+                                                  ],
+                                                );
+                                              }),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 15.0),
+                                                child: Row(
+                                                  children: [
+                                                    Column(
                                                       crossAxisAlignment:
                                                           CrossAxisAlignment
                                                               .start,
@@ -344,27 +378,68 @@ class SessionManagementGrid extends StatelessWidget {
                                                           MainAxisAlignment
                                                               .start,
                                                       children: [
-                                                        const Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  bottom: 5.0),
-                                                          child:
-                                                              Text("End Date"),
-                                                        ),
-                                                        selectend(
-                                                          width: 220,
+                                                        DateSelector(
+                                                          width: 300,
+                                                          label: "Start Date",
+                                                          dateValue: controller
+                                                              .startDate,
+                                                          onSelectDate: controller
+                                                              .selectStartDate,
                                                           isRequired: true,
-                                                        ),
+                                                          isError: controller
+                                                                  .startDate
+                                                                  .value ==
+                                                              null, // تحقق من الخطأ
+                                                        )
                                                       ],
                                                     ),
-                                                  ),
-                                                ],
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        apptitle: "Edit Session",
-                                        subtitle: "none"));
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 20.0,
+                                                              right: 20.0),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          DateSelector(
+                                                            width: 300,
+                                                            label: "End Date",
+                                                            dateValue:
+                                                                controller
+                                                                    .endDate,
+                                                            onSelectDate:
+                                                                controller
+                                                                    .selectEndDate,
+                                                            isRequired: true,
+                                                            isError: controller
+                                                                        .endDate
+                                                                        .value ==
+                                                                    null ||
+                                                                controller.endDate.value!.isBefore(controller
+                                                                        .startDate
+                                                                        .value
+                                                                        ?.add(Duration(
+                                                                            days:
+                                                                                1)) ??
+                                                                    DateTime
+                                                                        .now()),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          apptitle: "Edit Session",
+                                          subtitle: "none");
+                                    }));
                                   },
                                 ),
                               ],

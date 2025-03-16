@@ -769,21 +769,28 @@ class selectTransactionDate extends StatelessWidget {
   }
 }
 
-class selectstart extends StatelessWidget {
+class DateSelector extends StatelessWidget {
   final double width;
+  final String label;
   final double? height;
   final bool isRequired;
+  final bool isError;
+  final Rx<DateTime?> dateValue;
+  final Function(BuildContext) onSelectDate;
 
-  const selectstart({
+  const DateSelector({
     super.key,
     required this.width,
+    required this.label,
+    required this.dateValue,
+    required this.onSelectDate,
     this.height,
     this.isRequired = false,
+    this.isError = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    final SessionController controller = Get.put(SessionController());
     return Obx(
       () => Container(
         width: width,
@@ -792,118 +799,81 @@ class selectstart extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5.0),
+              child: RichText(
+                text: TextSpan(
+                  text: label,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 14),
+                  children: isRequired
+                      ? [
+                          const TextSpan(
+                            text: " *",
+                            style: TextStyle(color: Colors.red, fontSize: 14),
+                          ),
+                        ]
+                      : [],
+                ),
+              ),
+            ),
             SizedBox(
               height: height ?? 40,
               child: TextFormField(
                 style: const TextStyle(fontSize: 14),
                 controller: TextEditingController(
-                  text: controller.startDate.value != null
-                      ? DateFormat('yyyy-MM-dd')
-                          .format(controller.startDate.value!)
+                  text: dateValue.value != null
+                      ? DateFormat('yyyy-MM-dd').format(dateValue.value!)
                       : '',
                 ),
                 readOnly: true,
-                onTap: () => controller.SelectStartDate(context),
+                onTap: () => onSelectDate(context),
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Theme.of(context)
                       .textTheme
-                      .titleMedium!
+                      .bodyMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide:
-                        const BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                      width: 2,
+                    ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(color: Color(0xffD9D9D9)),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                    ),
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : Colors.grey,
+                    ),
                   ),
                   suffixIcon: IconButton(
                     icon: Icon(
-                      VMS_Icons.calender,
+                      Icons.calendar_today,
                       color: Theme.of(context).primaryColor,
                       size: 16,
                     ),
-                    onPressed: () => controller.SelectStartDate(context),
+                    onPressed: () => onSelectDate(context),
                   ),
                 ),
               ),
             ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class selectend extends StatelessWidget {
-  final double width;
-  final double? height;
-  final bool isRequired;
-
-  const selectend({
-    super.key,
-    required this.width,
-    this.height,
-    this.isRequired = false,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final SessionController controller = Get.put(SessionController());
-    return Obx(
-      () => Container(
-        width: width,
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: height ?? 40,
-              child: TextFormField(
-                style: const TextStyle(fontSize: 14),
-                controller: TextEditingController(
-                  text: controller.endDate.value != null
-                      ? DateFormat('yyyy-MM-dd')
-                          .format(controller.endDate.value!)
-                      : '',
-                ),
-                readOnly: true,
-                onTap: () => controller.SelectEndDate(context),
-                decoration: InputDecoration(
-                  hintText: "yyyy-MM-dd",
-                  hintStyle: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide:
-                        const BorderSide(color: Color(0xffD9D9D9), width: 2),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(color: Color(0xffD9D9D9)),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      VMS_Icons.calender,
-                      color: Theme.of(context).primaryColor,
-                      size: 16,
-                    ),
-                    onPressed: () => controller.SelectEndDate(context),
-                  ),
+            if (isError)
+              const Padding(
+                padding: EdgeInsets.only(top: 5.0),
+                child: Text(
+                  "يجب إدخال تاريخ صحيح",
+                  style: TextStyle(color: Colors.red, fontSize: 12),
                 ),
               ),
-            ),
           ],
         ),
       ),

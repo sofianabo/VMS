@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Session_Controller.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 
 class Add_Session_API {
@@ -13,26 +14,29 @@ class Add_Session_API {
   Dio dio = Dio();
 
   Add_Session(
-      String year ,
-      String startDate,
-      String endDate,
-      ) async {
+    String year,
+    String startDate,
+    String endDate,
+  ) async {
     CancelToken cancelToken = CancelToken();
     Loading_Dialog(cancelToken: cancelToken);
     try {
       String myurl = "$hostPort$addSession";
       var response = await dio.post(
-        cancelToken: cancelToken,
+          cancelToken: cancelToken,
           myurl,
           data: {
-            'year':year,
-            'startDate':startDate,
-            'endDate':endDate,
+            'year': year,
+            'startDate': startDate,
+            'endDate': endDate,
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
         Get.back();
         Get_Session_Screen_API(context).Getsession();
+      } else if (response.statusCode == 409) {
+        Get.find<SessionController>().updateFieldError("start", true);
+        Get.find<SessionController>().updateFieldError("end", true);
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
@@ -48,8 +52,8 @@ class Add_Session_API {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    }finally{
-     Get.back();
+    } finally {
+      Get.back();
     }
   }
 }

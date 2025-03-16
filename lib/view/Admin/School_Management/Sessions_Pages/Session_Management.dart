@@ -18,8 +18,6 @@ class SessionManagement extends StatefulWidget {
 }
 
 class _SessionManagementState extends State<SessionManagement> {
-
-
   TextEditingController search = TextEditingController();
   TextEditingController yearController = TextEditingController();
   @override
@@ -27,6 +25,7 @@ class _SessionManagementState extends State<SessionManagement> {
     Get_Session_Screen_API(context).Getsession();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -55,124 +54,167 @@ class _SessionManagementState extends State<SessionManagement> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style:  ButtonStyle(
-                            backgroundColor:
-                                WidgetStatePropertyAll(Theme.of(context).cardColor),
+                        style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll(
+                                Theme.of(context).cardColor),
                             shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5))))),
                         onPressed: () {
-                          Get.dialog(VMSAlertDialog(
-                              action: [
-                                ButtonDialog(
-                                    text: "Add",
-                                    onPressed: () async {
-                                     await Add_Session_API(context).Add_Session(
-                                        "${Get.find<SessionController>().sessionController.text}-${Get.find<SessionController>().currentYear.value}",
-                                         Get.find<SessionController>().startDate.value.toString(),
-                                         Get.find<SessionController>().endDate.value.toString());
-                                    },
-                                    color: Theme.of(context).primaryColor,
-                                    width: 90)
-                              ],
-                              contents: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  GetBuilder<SessionController>(
-                                      builder: (controllers) {
-                                    return Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        SizedBox(
-                                          width: 220,
-                                          child: Textfildwithupper_num(
-                                            Uptext: "Study Year",
-                                            hinttext: "Enter Year",
-                                            sessionController:
-                                                controllers.sessionController,
-                                            borderColor:
-                                                controllers.borderColor,
-                                          ),
-                                        ),
+                          Get.dialog(GetBuilder<SessionController>(
+                              builder: (controller) {
+                            return VMSAlertDialog(
+                                action: [
+                                  ButtonDialog(
+                                      text: "Add",
+                                      onPressed: () async {
+                                        bool isStartEmpty =
+                                            controller.startDate.value ==
+                                                    null ||
+                                                controller.startDate.value
+                                                        .toString() ==
+                                                    "";
 
-                                        Obx(() {
-                                          return Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 8.0, right: 8.0),
-                                            child: Container(
-                                              height: 40,
-                                              alignment: Alignment.center,
-                                              child: Text(
-                                                "/${controllers.currentYear.value}",
-                                                style: Get
-                                                    .theme
-                                                    .textTheme
-                                                    .titleLarge!
-                                                    .copyWith(
-                                                  fontSize: 22,
+                                        bool isEndEmpty =
+                                            controller.endDate.value == null ||
+                                                controller.endDate.value
+                                                        .toString() ==
+                                                    "";
+                                        bool isNameEmpty = yearController.text
+                                                .trim()
+                                                .isEmpty ||
+                                            yearController.text.length < 4 ||
+                                            int.parse(yearController.text) >
+                                                2098;
+
+                                        controller.updateFieldError(
+                                            "name", isNameEmpty);
+                                        controller.updateFieldError(
+                                            "start", isStartEmpty);
+                                        controller.updateFieldError(
+                                            "end", isEndEmpty);
+
+                                        if (!(isNameEmpty ||
+                                            isStartEmpty ||
+                                            isEndEmpty)) {
+                                          print(await Add_Session_API(context)
+                                              .Add_Session(
+                                                  "${yearController.text}-${controller.currentYear.value}",
+                                                  controller.startDate.value
+                                                      .toString(),
+                                                  controller.endDate.value
+                                                      .toString()));
+                                        }
+                                      },
+                                      color: Theme.of(context).primaryColor,
+                                      width: 90)
+                                ],
+                                contents: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    GetBuilder<SessionController>(
+                                        builder: (controllers) {
+                                      return Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          SizedBox(
+                                            width: 220,
+                                            child: Textfildwithupper_num(
+                                              onChanged: (value) {
+                                                controller.updateYear(value);
+                                                if (value.isNotEmpty) {
+                                                  controller.updateFieldError(
+                                                      "name", false);
+                                                }
+                                              },
+                                              isRequired: true,
+                                              isError: controller.IsnameError,
+                                              Uptext: "Study Year",
+                                              hinttext: "Enter Year",
+                                              sessionController: yearController,
+                                              borderColor:
+                                                  controllers.borderColor,
+                                            ),
+                                          ),
+                                          Obx(() {
+                                            return Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 8.0, right: 8.0),
+                                              child: Container(
+                                                height: 40,
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  "/${controllers.currentYear.value}",
+                                                  style: Get.theme.textTheme
+                                                      .titleLarge!
+                                                      .copyWith(
+                                                    fontSize: 22,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          );
-                                        }),
-                                      ],
-                                    );
-                                  }),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 15.0),
-                                    child: Row(
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            const Padding(
-                                              padding: EdgeInsets.only(
-                                                  bottom: 5.0),
-                                              child: Text("Start Date"),
-                                            ),
-                                            selectstart(
-                                              width: 220,
-                                              isRequired: true,
-                                            ),
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 20.0, right: 20.0),
-                                          child: Column(
+                                            );
+                                          }),
+                                        ],
+                                      );
+                                    }),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 15.0),
+                                      child: Row(
+                                        children: [
+                                          Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
                                             children: [
-                                              const Padding(
-                                                padding: EdgeInsets.only(
-                                                    bottom: 5.0),
-                                                child: Text("End Date"),
-                                              ),
-                                              selectend(
-                                                width: 220,
+                                              DateSelector(
+                                                width: 300,
+                                                label: "Start Date",
+                                                dateValue: controller.startDate,
+                                                onSelectDate:
+                                                    controller.selectStartDate,
                                                 isRequired: true,
-                                              ),
+                                                isError:
+                                                    controller.IsstartError,
+                                              )
                                             ],
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                              apptitle: "Add Session",
-                              subtitle: "none"));
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 20.0, right: 20.0),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                DateSelector(
+                                                  width: 300,
+                                                  label: "End Date",
+                                                  dateValue: controller.endDate,
+                                                  onSelectDate:
+                                                      controller.selectEndDate,
+                                                  isRequired: true,
+                                                  isError:
+                                                      controller.IsEndError,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                apptitle: "Add Session",
+                                subtitle: "none");
+                          }));
                         },
                         icon: Icon(Icons.add,
                             size: 18, color: Theme.of(context).highlightColor)),
@@ -192,16 +234,17 @@ class _SessionManagementState extends State<SessionManagement> {
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                          style:  ButtonStyle(
-                              backgroundColor:
-                                  WidgetStatePropertyAll(Theme.of(context).cardColor),
+                          style: ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                  Theme.of(context).cardColor),
                               shape: WidgetStatePropertyAll(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
                           onPressed: () {},
                           icon: Icon(VMS_Icons.pdf,
-                              size: 18, color: Theme.of(context).highlightColor)),
+                              size: 18,
+                              color: Theme.of(context).highlightColor)),
                     ),
                   ),
                   Container(
@@ -217,9 +260,9 @@ class _SessionManagementState extends State<SessionManagement> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style:  ButtonStyle(
-                            backgroundColor:
-                                WidgetStatePropertyAll(Theme.of(context).cardColor),
+                        style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll(
+                                Theme.of(context).cardColor),
                             shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
                                     borderRadius:
