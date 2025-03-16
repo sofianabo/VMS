@@ -248,4 +248,33 @@ class ClassMgmtController extends GetxController {
     }
     update();
   }
+
+  bool IsArnameError = false;
+  bool IsEnnameError = false;
+  bool IsGradeError = false;
+  bool IsAccountError = false;
+  bool IsDriveError = false;
+
+  void updateFieldError(String type, bool newValue) {
+    switch (type) {
+      case 'arname':
+        IsArnameError = newValue;
+        break;
+      case 'enname':
+        IsEnnameError = newValue;
+        break;
+      case 'grade':
+        IsGradeError = newValue;
+        break;
+      case 'drive':
+        IsDriveError = newValue;
+        break;
+      case 'account':
+        IsAccountError = newValue;
+        break;
+      default:
+        print("Error: Invalid type");
+    }
+    update();
+  }
 }

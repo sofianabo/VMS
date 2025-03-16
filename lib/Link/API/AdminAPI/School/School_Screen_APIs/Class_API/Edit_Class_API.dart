@@ -36,7 +36,7 @@ class Edit_Class_API {
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
-        await Get_All_Classes_API(context).Get_All_Classes(
+        Get_All_Classes_API(context).Get_All_Classes(
             sessionID: Get.find<All_Screen_Sessions_Controller>().sessionId);
         Get.back();
       } else {
