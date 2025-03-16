@@ -7,12 +7,16 @@ class LargeTextField extends StatelessWidget {
     this.width,
     required this.hinttext,
     this.isRequired = false, // إضافة متغير لتحديد ما إذا كان الحقل مطلوبًا.
+    this.isError = false, // خاصية لتحديد إذا كان هناك خطأ
+    this.onChanged, // خاصية لاستدعاء دالة عند تغيير النص
   });
 
   final TextEditingController controller;
   final String hinttext;
   final double? width;
   final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
+  final bool isError; // متغير للتحكم في ظهور الخطأ
+  final Function(String)? onChanged; // دالة تستدعى عند تغيير النص
 
   @override
   Widget build(BuildContext context) {
@@ -40,24 +44,42 @@ class LargeTextField extends StatelessWidget {
               ),
             ),
           ),
-          TextFormField(
-            maxLines: 10,
-            controller: controller,
-            decoration: InputDecoration(
-              hintText: hinttext,
-              hintStyle: const TextStyle(color: Color(0xffD9D9D9)),
-              focusedBorder: OutlineInputBorder(
+          Container(
+            height: 240,
+            child: TextFormField(
+              maxLines: 10,
+              controller: controller,
+              onChanged: onChanged, // إضافة onChanged
+              decoration: InputDecoration(
+                hintText: hinttext,
+                hintStyle: const TextStyle(color: Color(0xffD9D9D9)),
+                focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide:
-                      const BorderSide(color: Color(0xffD9D9D9), width: 1)),
-              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: isError ? Colors.red : const Color(0xffD9D9D9),
+                    width: 1,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Color(0xffD9D9D9))),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(
+                    color: isError ? Colors.red : const Color(0xffD9D9D9),
+                  ),
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
             ),
           ),
+          if (isError)
+            const Padding(
+              padding: EdgeInsets.only(top: 5),
+              child: Text(
+                "لا يسمح بوضع قيمة فارغة",
+                style: TextStyle(color: Colors.red, fontSize: 12),
+              ),
+            ),
         ],
       ),
     );

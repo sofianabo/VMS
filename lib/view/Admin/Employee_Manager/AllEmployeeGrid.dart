@@ -445,14 +445,19 @@ class AllEmployeeGrid extends StatelessWidget {
                                             )
                                           ],
                                         ),
-                                        Text(
-                                          "${controller.filteredreemployees[index].jobTitle}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.bold),
+                                        Container(
+                                          width: 125,
+                                          child: Text(
+                                            maxLines: 2,
+                                            "${controller.filteredreemployees[index].jobTitle}",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                          ),
                                         ),
                                         Text(
                                           "${controller.filteredreemployees[index].salary}",

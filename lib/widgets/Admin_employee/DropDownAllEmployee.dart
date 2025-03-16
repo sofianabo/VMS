@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Full_Employee_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
+
+import '../../Link/Controller/AdminController/Employee_Controllers/All_Virtual_Employee_Controller.dart';
 
 class Dropdownallemployee extends StatelessWidget {
   double width;
@@ -80,7 +83,7 @@ class Dropdownallemployee extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
               border: Border.all(
-                color: isError!
+                color: isError
                     ? Colors.red
                     : const Color(0xffD9D9D9), // ✅ تغيير اللون عند الخطأ
               ),
@@ -93,18 +96,36 @@ class Dropdownallemployee extends StatelessWidget {
                         ? GestureDetector(
                             onTap: () {
                               cont.selectIndex(type, "");
-                              WidgetsBinding.instance.addPostFrameCallback((_) {
-                                if (type == "Gender") {
-                                  Get.find<Allteachercontroller>()
-                                      .updateFieldError("gender", true);
-                                }
-                              });
+                              final errorMap = {
+                                "Gender": ["gender"],
+                                "Contract": ["contract"],
+                                "feroll": ["roll"],
+                                "rolldialog": ["jop"],
+                                "fejop": ["jop"],
+                                "dialogjobTitle": ["jop"],
+                                "Family_Status": ["family"],
+                              };
 
                               WidgetsBinding.instance.addPostFrameCallback((_) {
-                                if (type == "Contract") {
-                                  Get.find<Allteachercontroller>()
-                                      .updateFieldError("contract", true);
-                                }
+                                errorMap[type]?.forEach((field) {
+                                  if (type == "Gender") {
+                                    Get.find<Allteachercontroller>()
+                                        .updateFieldError(field, true);
+                                    Get.find<AddFullEmployeeController>()
+                                        .updateFieldError(field, true);
+                                  } else if (type == "Contract") {
+                                    Get.find<Allteachercontroller>()
+                                        .updateFieldError(field, true);
+                                  } else if (type == "rolldialog") {
+                                    Get.find<All_Virtual_Employee_Controller>()
+                                        .updateFieldError(field, true);
+                                  } else if (["dialogjobTitle", "Family_Status"]
+                                      .contains(type)) {
+                                    Get.find<AddFullEmployeeController>()
+                                        .updateFieldError(field, true);
+                                  }
+                                  cont.updateFieldError(field, true);
+                                });
                               });
                             },
                             child: Icon(
@@ -123,23 +144,36 @@ class Dropdownallemployee extends StatelessWidget {
                     style:
                         Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
                     onChanged: (newValue) {
-                      WidgetsBinding.instance.addPostFrameCallback((_) {
-                        if (type == "Gender" && newValue != "") {
-                          Get.find<Allteachercontroller>()
-                              .updateFieldError("gender", false);
-                        }
-                      });
+                      if (newValue!.isEmpty) return;
+                      cont.selectIndex(type, newValue);
+                      final errorMap = {
+                        "Gender": ["gender"],
+                        "Contract": ["contract"],
+                        "feroll": ["roll"],
+                        "rolldialog": ["jop"],
+                        "fejop": ["jop"],
+                        "dialogjobTitle": ["jop"],
+                        "Family_Status": ["family"],
+                      };
 
                       WidgetsBinding.instance.addPostFrameCallback((_) {
-                        if (type == "Contract" && newValue != "") {
-                          Get.find<Allteachercontroller>()
-                              .updateFieldError("contract", false);
-                        }
+                        errorMap[type]?.forEach((field) {
+                          if (["Gender", "Contract"].contains(type)) {
+                            Get.find<Allteachercontroller>()
+                                .updateFieldError(field, false);
+                          }
+                          if (["rolldialog"].contains(type)) {
+                            Get.find<All_Virtual_Employee_Controller>()
+                                .updateFieldError(field, false);
+                          }
+                          if (["Gender", "dialogjobTitle", "Family_Status"]
+                              .contains(type)) {
+                            Get.find<AddFullEmployeeController>()
+                                .updateFieldError(field, false);
+                          }
+                          cont.updateFieldError(field, false);
+                        });
                       });
-
-                      if (newValue != null) {
-                        cont.selectIndex(type, newValue);
-                      }
                     },
                     items: [
                       DropdownMenuItem<String>(
@@ -161,13 +195,10 @@ class Dropdownallemployee extends StatelessWidget {
             ),
           ),
           // ✅ عرض رسالة خطأ إذا كان هناك خطأ
-          if (isError!)
-            const Padding(
-              padding: EdgeInsets.only(top: 5.0),
-              child: Text(
-                "يرجى اختيار قيمة صحيحة",
-                style: TextStyle(color: Colors.red, fontSize: 12),
-              ),
+          if (isError)
+            Text(
+              "يرجى اختيار قيمة صحيحة",
+              style: TextStyle(color: Colors.red, fontSize: 12),
             ),
         ],
       );

@@ -19,7 +19,7 @@ Add_Full_Employee(BuildContext context) {
   TextEditingController emergencyNumber = TextEditingController();
   TextEditingController Address = TextEditingController();
   TextEditingController currentAddress = TextEditingController();
-  TextEditingController Salary = TextEditingController();
+  TextEditingController Salary = TextEditingController(text: "0");
   TextEditingController facebookUrl = TextEditingController();
   TextEditingController xPlatformUrl = TextEditingController();
   TextEditingController linkedinUrl = TextEditingController();
@@ -40,38 +40,94 @@ Add_Full_Employee(BuildContext context) {
           ButtonDialog(
               text: "Add Employee",
               onPressed: () async {
-                await AddFullEmployee.addFullEmployees(
-                  First_Name: firstName.text,
-                  Last_Name: lastName.text,
-                  Father_Name: fatherName.text,
-                  Mother_Name: motherName.text,
-                  Phone_Numper: phoneNumper.text,
-                  Emergency_Number: emergencyNumber.text,
-                  Address: Address.text,
-                  Current_Address: currentAddress.text,
-                  Birth_Date: controller.Birthdate.value.toString(),
-                  Join_Date: controller.Joindate.value.toString(),
-                  Jop_Title: controller.dialogjobTitleIndex,
-                  Gender: controller.GenderListIndex,
-                  Family_State: controller.Family_StatusIndex,
-                  Salary: Salary.text,
-                  selectedImage:
-                      Get.find<AddFullEmployeeController>().selectedImage.value,
-                  Facebook_URL: facebookUrl.text,
-                  X_Platform_URL: xPlatformUrl.text,
-                  Linkedin_URL: linkedinUrl.text,
-                  Instagram_URL: instagramUrl.text,
-                  Bank_Account_Title: bankAccountTitle.text,
-                  Bank_Name: bankName.text,
-                  Bank_Branch_Name: bankBranchName.text,
-                  Bank_Account_Number: bankAccountNumber.text,
-                  IFSC_Code: ifscCode.text,
-                  Career_History: careerHistory.text,
-                  Qualification: Qualification.text,
-                  Experience: Experience.text,
-                  Note: Note.text,
-                );
-                Get.back();
+                {
+                  bool isJopEmpty = controller.dialogjobTitleIndex.isEmpty ||
+                      controller.dialogjobTitleIndex == "";
+                  bool isGenderEmpty = controller.GenderListIndex.isEmpty ||
+                      controller.GenderListIndex == "";
+                  bool isFamilyEmpty = controller.Family_StatusIndex.isEmpty ||
+                      controller.Family_StatusIndex == "";
+                  bool isjoinEmpty = controller.Joindate.value == null ||
+                      controller.Joindate.value.toString() == "";
+                  bool isBirthEmpty = controller.Birthdate.value == null ||
+                      controller.Birthdate.value.toString() == "";
+                  bool isfirstEmpty = firstName.text.trim().isEmpty;
+                  bool islastnameEmpty = lastName.text.trim().isEmpty;
+                  bool isfatherEmpty = fatherName.text.trim().isEmpty;
+                  bool ismotherEmpty = motherName.text.trim().isEmpty;
+                  bool isphoneEmpty = phoneNumper.text.trim().isEmpty;
+                  bool isemgnEmpty = emergencyNumber.text.trim().isEmpty;
+                  bool isaddressEmpty = Address.text.trim().isEmpty;
+                  bool isCurrentAdressEmpty =
+                      currentAddress.text.trim().isEmpty;
+                  bool isQualEmpty = Qualification.text.trim().isEmpty;
+                  bool isExpEmpty = Experience.text.trim().isEmpty;
+                  final cont = Get.find<AddFullEmployeeController>();
+                  cont.updateFieldError("first", isfirstEmpty);
+                  cont.updateFieldError("last", islastnameEmpty);
+                  cont.updateFieldError("father", isfatherEmpty);
+                  cont.updateFieldError("mother", ismotherEmpty);
+                  cont.updateFieldError("birth", isBirthEmpty);
+                  cont.updateFieldError("phone", isphoneEmpty);
+                  cont.updateFieldError("emgn", isemgnEmpty);
+                  cont.updateFieldError("join", isjoinEmpty);
+                  cont.updateFieldError("address", isaddressEmpty);
+                  cont.updateFieldError("caddress", isCurrentAdressEmpty);
+                  cont.updateFieldError("jop", isJopEmpty);
+                  cont.updateFieldError("gender", isGenderEmpty);
+                  cont.updateFieldError("family", isFamilyEmpty);
+                  cont.updateFieldError("qua", isQualEmpty);
+                  cont.updateFieldError("exp", isExpEmpty);
+
+                  if (!(isJopEmpty ||
+                      isGenderEmpty ||
+                      isFamilyEmpty ||
+                      isjoinEmpty ||
+                      isBirthEmpty ||
+                      isfirstEmpty ||
+                      islastnameEmpty ||
+                      isfatherEmpty ||
+                      ismotherEmpty ||
+                      isphoneEmpty ||
+                      isemgnEmpty ||
+                      isaddressEmpty ||
+                      isCurrentAdressEmpty ||
+                      isQualEmpty ||
+                      isExpEmpty)) {
+                    await AddFullEmployee.addFullEmployees(
+                      First_Name: firstName.text,
+                      Last_Name: lastName.text,
+                      Father_Name: fatherName.text,
+                      Mother_Name: motherName.text,
+                      Phone_Numper: phoneNumper.text,
+                      Emergency_Number: emergencyNumber.text,
+                      Address: Address.text,
+                      Current_Address: currentAddress.text,
+                      Birth_Date: controller.Birthdate.value.toString(),
+                      Join_Date: controller.Joindate.value.toString(),
+                      Jop_Title: controller.dialogjobTitleIndex,
+                      Gender: controller.GenderListIndex,
+                      Family_State: controller.Family_StatusIndex,
+                      Salary: Salary.text,
+                      selectedImage: Get.find<AddFullEmployeeController>()
+                          .selectedImage
+                          .value,
+                      Facebook_URL: facebookUrl.text,
+                      X_Platform_URL: xPlatformUrl.text,
+                      Linkedin_URL: linkedinUrl.text,
+                      Instagram_URL: instagramUrl.text,
+                      Bank_Account_Title: bankAccountTitle.text,
+                      Bank_Name: bankName.text,
+                      Bank_Branch_Name: bankBranchName.text,
+                      Bank_Account_Number: bankAccountNumber.text,
+                      IFSC_Code: ifscCode.text,
+                      Career_History: careerHistory.text,
+                      Qualification: Qualification.text,
+                      Experience: Experience.text,
+                      Note: Note.text,
+                    );
+                  }
+                }
               },
               color: Get.theme.primaryColor,
               width: 140)
@@ -117,7 +173,13 @@ Add_Full_Employee(BuildContext context) {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Textfildwithupper(
+                              onChanged: (value) {
+                                if (value.isNotEmpty) {
+                                  controller.updateFieldError("first", false);
+                                }
+                              },
                               isRequired: true,
+                              isError: controller.IsFirstError,
                               width: 250,
                               controller: firstName,
                               Uptext: "First Name",
@@ -125,6 +187,12 @@ Add_Full_Employee(BuildContext context) {
                           Padding(
                             padding: const EdgeInsets.only(top: 22.0),
                             child: Textfildwithupper(
+                                onChanged: (value) {
+                                  if (value.isNotEmpty) {
+                                    controller.updateFieldError("last", false);
+                                  }
+                                },
+                                isError: controller.IsLastError,
                                 isRequired: true,
                                 width: 250,
                                 controller: lastName,
@@ -140,6 +208,12 @@ Add_Full_Employee(BuildContext context) {
                     child: Row(
                       children: [
                         Textfildwithupper(
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError("father", false);
+                              }
+                            },
+                            isError: controller.IsFatherError,
                             isRequired: true,
                             width: 250,
                             controller: fatherName,
@@ -148,6 +222,12 @@ Add_Full_Employee(BuildContext context) {
                         Padding(
                           padding: const EdgeInsets.only(left: 20.0),
                           child: Textfildwithupper(
+                              onChanged: (value) {
+                                if (value.isNotEmpty) {
+                                  controller.updateFieldError("mother", false);
+                                }
+                              },
+                              isError: controller.IsMotherError,
                               isRequired: true,
                               width: 250,
                               controller: motherName,
@@ -162,6 +242,13 @@ Add_Full_Employee(BuildContext context) {
                     child: Row(
                       children: [
                         Textfildwithupper(
+                            fieldType: "phone",
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError("phone", false);
+                              }
+                            },
+                            isError: controller.IsPhoneError,
                             isRequired: true,
                             width: 250,
                             controller: phoneNumper,
@@ -170,6 +257,7 @@ Add_Full_Employee(BuildContext context) {
                         Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: BirthDate(
+                              isError: controller.IsBirthError,
                               isRequired: true,
                               Uptext: "Birthdate",
                               width: 250,
@@ -182,6 +270,13 @@ Add_Full_Employee(BuildContext context) {
                     child: Row(
                       children: [
                         Textfildwithupper(
+                            fieldType: "phone",
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError("emgn", false);
+                              }
+                            },
+                            isError: controller.IsEmgnError,
                             isRequired: true,
                             width: 250,
                             controller: emergencyNumber,
@@ -190,6 +285,7 @@ Add_Full_Employee(BuildContext context) {
                         Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: JoinDate(
+                              isError: controller.IsJoinError,
                               isRequired: true,
                               Uptext: "Join Date",
                               width: 250,
@@ -202,6 +298,12 @@ Add_Full_Employee(BuildContext context) {
                     child: Row(
                       children: [
                         Textfildwithupper(
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError("address", false);
+                              }
+                            },
+                            isError: controller.IsAddressError,
                             isRequired: true,
                             width: 250,
                             controller: Address,
@@ -210,6 +312,13 @@ Add_Full_Employee(BuildContext context) {
                         Padding(
                           padding: const EdgeInsets.only(left: 20.0),
                           child: Textfildwithupper(
+                              onChanged: (value) {
+                                if (value.isNotEmpty) {
+                                  controller.updateFieldError(
+                                      "caddress", false);
+                                }
+                              },
+                              isError: controller.IsCAddressError,
                               isRequired: true,
                               width: 250,
                               controller: currentAddress,
@@ -225,6 +334,7 @@ Add_Full_Employee(BuildContext context) {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Textfildwithupper(
+                            fieldType: "number",
                             width: 250,
                             controller: Salary,
                             Uptext: "Salary",
@@ -232,6 +342,7 @@ Add_Full_Employee(BuildContext context) {
                         Padding(
                           padding: EdgeInsets.only(left: 20.0),
                           child: Dropdownallemployee(
+                              isError: controller.IsJopError,
                               title: "Job Title",
                               width: 250,
                               type: "dialogjobTitle"),
@@ -245,10 +356,14 @@ Add_Full_Employee(BuildContext context) {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Dropdownallemployee(
-                            title: "Gender", width: 250, type: "Gender"),
+                            isError: controller.IsGenderError,
+                            title: "Gender",
+                            width: 250,
+                            type: "Gender"),
                         Padding(
                           padding: EdgeInsets.only(left: 20.0),
                           child: Dropdownallemployee(
+                              isError: controller.IsFamilyError,
                               title: "Family Status",
                               width: 250,
                               type: "Family_Status"),
@@ -405,6 +520,12 @@ Add_Full_Employee(BuildContext context) {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         LargeTextField(
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError("qua", false);
+                              }
+                            },
+                            isError: controller.IsQualfError,
                             isRequired: true,
                             controller: Qualification,
                             hinttext: "Qualification"),
@@ -418,6 +539,12 @@ Add_Full_Employee(BuildContext context) {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         LargeTextField(
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError("exp", false);
+                              }
+                            },
+                            isError: controller.IsExpError,
                             isRequired: true,
                             controller: Experience,
                             hinttext: "Experience"),

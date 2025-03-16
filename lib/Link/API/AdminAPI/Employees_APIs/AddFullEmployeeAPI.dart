@@ -93,6 +93,7 @@ class AddFullEmployee {
       if (response.statusCode == 200) {
         gets.Get.find<Allempolyeecontroller>().SetDefualtValue();
         await Get_All_Employee_API.Get_All_Employee();
+        gets.Get.back();
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

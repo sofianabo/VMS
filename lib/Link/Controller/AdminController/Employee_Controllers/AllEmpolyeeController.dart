@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Full_Employee_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/All_Virtual_Employee_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
@@ -223,7 +224,7 @@ class Allempolyeecontroller extends GetxController {
     );
     if (picked != null) {
       Birthdate.value = picked;
-      Get.find<Allteachercontroller>().updateFieldError("join", false);
+      Get.find<AddFullEmployeeController>().updateFieldError("birth", false);
     }
   }
 
@@ -237,6 +238,7 @@ class Allempolyeecontroller extends GetxController {
     if (picked != null) {
       Joindate.value = picked;
       Get.find<Allteachercontroller>().updateFieldError("join", false);
+      Get.find<AddFullEmployeeController>().updateFieldError("join", false);
       updateFieldError("join", false);
     }
   }

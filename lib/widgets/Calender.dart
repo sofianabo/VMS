@@ -116,12 +116,15 @@ class BirthDate extends StatelessWidget {
   final String Uptext;
   final double? height;
   final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
+  final bool isError; // ✅ إضافة متغير للتحقق من الخطأ
 
   const BirthDate({
     super.key,
     required this.width,
     required this.Uptext,
     this.height,
+    this.isError = false, // ✅ افتراضي لا يوجد خطأ
+
     this.isRequired = false, // افتراضي الحقل غير مطلوب.
   });
 
@@ -153,6 +156,7 @@ class BirthDate extends StatelessWidget {
                 ),
               ),
             ),
+
             SizedBox(
               height: height ?? 40,
               child: TextFormField(
@@ -171,17 +175,26 @@ class BirthDate extends StatelessWidget {
                       .textTheme
                       .bodyMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
+
+                  // ✅ تغيير لون الحدود بناءً على قيمة isError
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide:
-                        const BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                      width: 2,
+                    ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(color: Color(0xffD9D9D9)),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                    ),
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : Colors.grey,
+                    ),
                   ),
                   suffixIcon: IconButton(
                     icon: Icon(
@@ -194,6 +207,15 @@ class BirthDate extends StatelessWidget {
                 ),
               ),
             ),
+            // ✅ عرض رسالة خطأ إذا كان هناك خطأ
+            if (isError)
+              const Padding(
+                padding: EdgeInsets.only(top: 5.0),
+                child: Text(
+                  "يجب إدخال تاريخ صحيح",
+                  style: TextStyle(color: Colors.red, fontSize: 12),
+                ),
+              ),
           ],
         ),
       ),
