@@ -126,7 +126,6 @@ class Divisions_Controller extends GetxController {
     }
 
     for (var div in division!) {
-      
       Divisions.add({
         'arName': div.name.toString(),
         'enName': div.enName.toString(),
@@ -151,6 +150,32 @@ class Divisions_Controller extends GetxController {
     }
 
     filteredDivision = tempFilteredList;
+    update();
+  }
+
+  bool IsennameError = false;
+  bool IsarnameError = false;
+  bool IsclassError = false;
+  bool IsmeetError = false;
+
+  void updateFieldError(String type, bool newValue) {
+    switch (type) {
+      case 'ename':
+        IsennameError = newValue;
+        break;
+      case 'arname':
+        IsarnameError = newValue;
+        break;
+      case 'class':
+        IsclassError = newValue;
+        break;
+      case 'meet':
+        IsmeetError = newValue;
+        break;
+
+      default:
+        print("Error: Invalid type");
+    }
     update();
   }
 }
