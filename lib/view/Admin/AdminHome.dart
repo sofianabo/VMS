@@ -49,6 +49,11 @@ class AdminHome extends StatefulWidget {
 class _AdminHomeState extends State<AdminHome> {
   @override
   void initState() {
+    CheeckHasData();
+    super.initState();
+  }
+
+  CheeckHasData() {
     final con = Get.put(Add_Data_controller());
     final con2 = Get.put(Admin_Profile_Content());
     bool? hasData = prefs!.getBool("hasData");
@@ -82,7 +87,6 @@ class _AdminHomeState extends State<AdminHome> {
         });
       }
     }
-    super.initState();
   }
 
   @override
