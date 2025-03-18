@@ -13,6 +13,7 @@ GlobalKey newRewardsGloballKey = GlobalKey();
 
 Rewards_Dialog({
   required String name,
+  required String Studentname,
   required String id,
   required String FileType,
 }) {
@@ -23,6 +24,7 @@ Rewards_Dialog({
           text: "Done".tr,
           onPressed: () async {
             await saveRewardsAsPdf(
+                StudentFullName: Studentname,
                 key: newRewardsGloballKey,
                 rewardsName: FileType,
                 saveLocal: false,
@@ -47,6 +49,14 @@ Rewards_Dialog({
           icon: Icons.text_increase_outlined,
           label: "Add Text",
           onPressed: controller.addTextOverlay,
+        ),
+        _buildToolButton(
+          icon: Icons.save,
+          label: "Save",
+          onPressed: () {
+            controller.saveChanges();
+            print(controller.Certificats);
+          },
         ),
         _buildToolButton(
             icon: Icons.picture_as_pdf,
@@ -118,14 +128,14 @@ class _RewardsGridsState extends State<RewardsGrids> {
                     ),
                   ),
                 ),
-                RepaintBoundary(
-                  key: newRewardsGloballKey,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Theme.of(context).primaryColor),
-                    ),
-                    width: 650,
-                    height: 450,
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Theme.of(context).primaryColor),
+                  ),
+                  width: 650,
+                  height: 450,
+                  child: RepaintBoundary(
+                    key: newRewardsGloballKey,
                     child: Stack(
                       children: [
                         SvgPicture.asset(

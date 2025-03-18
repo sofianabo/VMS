@@ -271,15 +271,26 @@ class _ClassManagementState extends State<ClassManagement> {
                                                       left: 15.0),
                                                   width: 250,
                                                   height: 40,
-                                                  decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                      color: Color(
-                                                          0xffB3B3B3), // تغيير لون الحدود حسب حالة الخطأ
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                  ),
+                                                  decoration: controller
+                                                          .IscurrError
+                                                      ? BoxDecoration(
+                                                          border: Border.all(
+                                                            color: Colors
+                                                                .red, // تغيير لون الحدود حسب حالة الخطأ
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                        )
+                                                      : BoxDecoration(
+                                                          border: Border.all(
+                                                            color: Color(
+                                                                0xffB3B3B3), // تغيير لون الحدود حسب حالة الخطأ
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                        ),
                                                   child: Row(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment

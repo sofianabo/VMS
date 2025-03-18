@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/PenaltyAPI/getPenaltiesAndRewardsAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/PenaltyAPI/Get_All_Penalties_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Rewards_APIs/Get_All_Rewards_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/StudentPunishAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/PenaltiesAndRewardsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
@@ -15,6 +16,7 @@ import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/School_Management/Rewards_Pages/Rewards_Dialog.dart';
 import 'package:vms_school/widgets/Admin_Students/DropDownStudyYearStudents.dart';
+import 'package:vms_school/widgets/Admin_Students/Penality_And_Rewards_Dialog.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
@@ -32,19 +34,6 @@ class StudyYearStudentGrid extends StatefulWidget {
 class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
     with SingleTickerProviderStateMixin {
   TextEditingController reason = TextEditingController();
-  late TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 2, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -135,147 +124,22 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () async {
-                      PenaltiesAndRewardsStudentModel model =
-                          await Getpenaltiesandrewardsapi(context)
-                              .Getpenaltiesandrewards(
-                                  controller.filteredStudents![index].id!);
-                      Get.dialog(VMSAlertDialog(
-                          action: [],
-                          contents: SizedBox(
-                              width: 600,
-                              height: Get.height,
-                              child: Container(
-                                child: Column(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(16.0),
-                                      child: Text(
-                                        'Details'.tr,
-                                        style: TextStyle(
-                                            fontSize: 24,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    TabBar(
-                                      controller: _tabController,
-                                      labelColor: Get.theme.primaryColor,
-                                      unselectedLabelColor: Colors.grey,
-                                      indicatorColor: Get.theme.primaryColor,
-                                      indicatorWeight: 4.0,
-                                      splashBorderRadius:
-                                          BorderRadius.circular(10),
-                                      dividerHeight: 0,
-                                      tabs: [
-                                        Tab(text: 'Rewards'.tr),
-                                        Tab(text: 'Penalties'.tr),
-                                      ],
-                                    ),
-                                    Expanded(
-                                      child: GetBuilder<
-                                              Penaltiesandrewardscontroller>(
-                                          builder: (cont) {
-                                        return TabBarView(
-                                          controller: _tabController,
-                                          children: [
-                                            Container(
-                                              padding: EdgeInsets.all(16.0),
-                                              child: SingleChildScrollView(
-                                                scrollDirection: Axis.vertical,
-                                                child: DataTable(
-                                                  border: TableBorder.all(
-                                                    color:
-                                                        Get.theme.primaryColor,
-                                                    width: 1.0,
-                                                  ),
-                                                  columns: [
-                                                    DataColumn(
-                                                        label:
-                                                            Text('Session'.tr)),
-                                                    DataColumn(
-                                                        label:
-                                                            Text('Reward'.tr)),
-                                                  ],
-                                                  rows: const <DataRow>[
-                                                    DataRow(cells: <DataCell>[
-                                                      DataCell(Text('بيان 1')),
-                                                      DataCell(Text('بيان 2')),
-                                                    ]),
-                                                    DataRow(cells: <DataCell>[
-                                                      DataCell(Text('بيان 4')),
-                                                      DataCell(Text('بيان 5')),
-                                                    ]),
-                                                    // يمكنك إضافة المزيد من الصفوف هنا
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            Container(
-                                              padding: EdgeInsets.all(16.0),
-                                              child: SingleChildScrollView(
-                                                scrollDirection: Axis.vertical,
-                                                child: DataTable(
-                                                    border: TableBorder.all(
-                                                      color: Get
-                                                          .theme.primaryColor,
-                                                      width: 1.0,
-                                                    ),
-                                                    columns: [
-                                                      DataColumn(
-                                                          label: Text(
-                                                              'Penalty'.tr)),
-                                                      DataColumn(
-                                                          label: Text(
-                                                              'Start Date'.tr)),
-                                                      DataColumn(
-                                                          label: Text(
-                                                              'End Date'.tr)),
-                                                      DataColumn(
-                                                          label: Text(
-                                                              'Reason'.tr)),
-                                                    ],
-                                                    rows: [
-                                                      for (var i in model
-                                                              .penaltyStudent ??
-                                                          [])
-                                                        DataRow(cells: [
-                                                          DataCell(Text(i.penalty !=
-                                                                      null &&
-                                                                  i.penalty!
-                                                                      .isNotEmpty &&
-                                                                  prefs!.getString(
-                                                                          languageKey) ==
-                                                                      'ar'
-                                                              ? i.penalty![0]
-                                                                      .name ??
-                                                                  "N/A"
-                                                              : i.penalty !=
-                                                                          null &&
-                                                                      i.penalty!
-                                                                          .isNotEmpty
-                                                                  ? i
-                                                                      .penalty![
-                                                                          0]
-                                                                      .enName
-                                                                  : "N/A")),
-                                                          DataCell(Text(
-                                                              "${i.startDate ?? []}")),
-                                                          DataCell(Text(
-                                                              "${i.endDate ?? []}")),
-                                                          DataCell(Text(
-                                                              "${i.cause ?? []}")),
-                                                        ])
-                                                    ]),
-                                              ),
-                                            ),
-                                          ],
-                                        );
-                                      }),
-                                    ),
-                                  ],
-                                ),
-                              )),
-                          apptitle: "Penalties And Rewards".tr,
-                          subtitle: "none"));
+                      final controllers =
+                          Get.put(Penaltiesandrewardscontroller());
+
+                      controllers.fetchPenalties(int.parse(
+                          controller.filteredStudents![index].id.toString()));
+
+                      controllers.fetchRewards(int.parse(
+                          controller.filteredStudents![index].id.toString()));
+
+                      Get.dialog(
+                        Re_Pe_Page(
+                            Id: controller.filteredStudents![index].id
+                                .toString(),
+                            name: controller.filteredStudents![index].fullName
+                                .toString()),
+                      );
                     },
                     child: HoverScaleCard(
                       child: Container(
@@ -607,6 +471,10 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                         } else {
                                           Get.dialog(
                                             Rewards_Dialog(
+                                                Studentname: controller
+                                                    .filteredStudents![index]
+                                                    .fullName!
+                                                    .toString(),
                                                 FileType: "امتياز",
                                                 id: controller
                                                     .filteredStudents![index]

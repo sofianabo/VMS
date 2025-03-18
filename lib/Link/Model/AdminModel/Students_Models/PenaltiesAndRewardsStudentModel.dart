@@ -1,9 +1,9 @@
-class PenaltiesAndRewardsStudentModel {
+class PenaltiesStudentModel {
   List<PenaltyStudent>? penaltyStudent;
 
-  PenaltiesAndRewardsStudentModel({this.penaltyStudent});
+  PenaltiesStudentModel({this.penaltyStudent});
 
-  PenaltiesAndRewardsStudentModel.fromJson(Map<String, dynamic> json) {
+  PenaltiesStudentModel.fromJson(Map<String, dynamic> json) {
     if (json['penaltyStudent'] != null) {
       penaltyStudent = <PenaltyStudent>[];
       json['penaltyStudent'].forEach((v) {

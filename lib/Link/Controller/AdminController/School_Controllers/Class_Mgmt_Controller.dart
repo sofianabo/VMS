@@ -254,6 +254,7 @@ class ClassMgmtController extends GetxController {
   bool IsGradeError = false;
   bool IsAccountError = false;
   bool IsDriveError = false;
+  bool IscurrError = false;
 
   void updateFieldError(String type, bool newValue) {
     switch (type) {
@@ -271,6 +272,9 @@ class ClassMgmtController extends GetxController {
         break;
       case 'account':
         IsAccountError = newValue;
+        break;
+      case 'curr':
+        IscurrError = newValue;
         break;
       default:
         print("Error: Invalid type");

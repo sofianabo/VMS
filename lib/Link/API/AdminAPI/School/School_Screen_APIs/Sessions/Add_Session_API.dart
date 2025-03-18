@@ -33,6 +33,7 @@ class Add_Session_API {
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
+        Get.back();
         Get_Session_Screen_API(context).Getsession();
       } else {
         ErrorHandler.handleDioError(DioException(

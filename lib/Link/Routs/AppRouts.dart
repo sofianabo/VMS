@@ -21,7 +21,7 @@ class AppRoutes {
     ),
     GetPage(
       name: '/home',
-      page: () => AdminHome(),
+      page: () => Home(),
     ),
   ];
 }

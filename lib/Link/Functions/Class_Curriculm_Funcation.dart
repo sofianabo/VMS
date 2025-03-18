@@ -28,6 +28,13 @@ Class_Curriculm_Funcation(BuildContext context) async {
             ButtonDialog(
                 text: "Done",
                 onPressed: () {
+                  if (control.selectedCurriculumNames.isNotEmpty ||
+                      control.selectedCurriculums.isNotEmpty ||
+                      control.getSelectedCurriculumNames().isNotEmpty) {
+                    control.updateFieldError("curr", false);
+                  } else {
+                    control.updateFieldError("curr", true);
+                  }
                   Get.back();
                 },
                 color: Get.theme.primaryColor,

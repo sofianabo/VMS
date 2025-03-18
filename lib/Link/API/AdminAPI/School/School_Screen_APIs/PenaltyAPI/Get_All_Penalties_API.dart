@@ -10,27 +10,19 @@ import 'package:vms_school/Link/Model/AdminModel/Students_Models/PenaltiesAndRew
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 
-class Getpenaltiesandrewardsapi {
-  BuildContext context;
+class Get_All_Peanlitys_API {
   final Penaltiesandrewardscontroller c =
       Get.find<Penaltiesandrewardscontroller>();
-  Getpenaltiesandrewardsapi(this.context);
   Dio dio = Dio();
 
-  Getpenaltiesandrewards(int id) async {
+  Get_All_Peanlitys(int id) async {
     try {
       CancelToken cancelToken = CancelToken();
-      Loading_Dialog(cancelToken: cancelToken);
       String myurl = "$hostPort$getStudentsPenalty";
       var response = await dio.post(myurl,
-          cancelToken: cancelToken,
-          data: {"id": id},
-          options: getDioOptions());
+          cancelToken: cancelToken, data: {"id": id}, options: getDioOptions());
       if (response.statusCode == 200) {
-        PenaltiesAndRewardsStudentModel st =
-            PenaltiesAndRewardsStudentModel.fromJson(response.data);
-        c.setPenaltyAndRewards(st);
-        return st;
+        return PenaltiesStudentModel.fromJson(response.data);
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
@@ -46,8 +38,6 @@ class Getpenaltiesandrewardsapi {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    } finally {
-      Get.back();
     }
   }
 }

@@ -114,9 +114,12 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                                                     .trim()
                                                     .isEmpty;
                                                 bool isJoptitleEmpty = Get.find<
-                                                        Allempolyeecontroller>()
-                                                    .jobTitleIndex
-                                                    .isEmpty;
+                                                            Allempolyeecontroller>()
+                                                        .rolldialogIndex
+                                                        .isEmpty ||
+                                                    Get.find<Allempolyeecontroller>()
+                                                            .rolldialogIndex ==
+                                                        "";
 
                                                 bool isPasswordEmpty = password
                                                     .text

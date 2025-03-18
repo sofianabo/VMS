@@ -5,16 +5,20 @@ import 'package:pdf/pdf.dart';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:pdf/widgets.dart' as pw;
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/PenaltyAPI/Get_All_Penalties_API.dart';
 import 'dart:html' as html; // استخدام html للويب
 
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Add_Students_Rewards.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Rewards_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/PenaltiesAndRewardsController.dart';
+import 'package:vms_school/widgets/Admin_Students/Penality_And_Rewards_Dialog.dart';
 
 Future saveRewardsAsPdf({
   required key,
   required bool saveLocal,
   String? rewardsName,
   String? StuId,
+  String? StudentFullName,
 }) async {
   final controller = Get.find<RewardsController>();
 
@@ -98,6 +102,16 @@ Future saveRewardsAsPdf({
           200) {
         controller.progress.value = 1.0;
         Get.back();
+        Get.back();
+        final controllers = Get.put(Penaltiesandrewardscontroller());
+
+        controllers.fetchPenalties(int.parse(StuId.toString()));
+
+        controllers.fetchRewards(int.parse(StuId.toString()));
+
+        Get.dialog(
+          Re_Pe_Page(Id: StuId.toString(), name: StudentFullName!),
+        );
       }
     }
   } catch (e) {

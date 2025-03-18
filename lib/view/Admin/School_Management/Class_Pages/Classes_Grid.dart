@@ -248,15 +248,26 @@ class ClassGrid extends StatelessWidget {
                                                       left: 5.0, right: 5.0),
                                                   width: 250,
                                                   height: 40,
-                                                  decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                      color: Color(
-                                                          0xffB3B3B3), // تغيير لون الحدود حسب حالة الخطأ
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                  ),
+                                                  decoration: controllers
+                                                          .IscurrError
+                                                      ? BoxDecoration(
+                                                          border: Border.all(
+                                                            color: Colors
+                                                                .red, // تغيير لون الحدود حسب حالة الخطأ
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                        )
+                                                      : BoxDecoration(
+                                                          border: Border.all(
+                                                            color: Color(
+                                                                0xffB3B3B3), // تغيير لون الحدود حسب حالة الخطأ
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                        ),
                                                   child: Row(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
