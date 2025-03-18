@@ -13,6 +13,7 @@ import 'package:vms_school/view/Admin/School_Management/PenaltyScreen/PenaltyScr
 import 'package:vms_school/view/Admin/School_Management/Rewards_Pages/Rewards_Screen.dart';
 import 'package:vms_school/view/Admin/School_Management/SchoolTimeTable.dart';
 import 'package:vms_school/view/Admin/School_Management/Subject_Pages/Subject_Management.dart';
+import 'package:vms_school/view/Admin/School_Management/Teachers_notebook_grade_record_Pages/Teachers_notebook_grade_record.dart';
 import 'package:vms_school/view/Admin/School_Management/Transactions/Transaction_Management.dart';
 import 'package:vms_school/view/Admin/School_Management/Vaccine_Pages/Vaccine_Screen.dart';
 import 'package:vms_school/view/Admin/Students_Manager/AllGuardians.dart';
@@ -165,6 +166,8 @@ class _AdminHomeState extends State<AdminHome> {
                           return Rewards_Screen();
                         case "My Profile":
                           return ProfileSettings();
+                        case "Quiz Type":
+                          return Teachers_notebook_grade_record();
                         default:
                           return AdminDashboard();
                       }

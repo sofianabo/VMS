@@ -84,6 +84,9 @@ class SideBarAdmin extends StatelessWidget {
                         Get.find<AdminSchoolTimeController>()
                             .setTimeLessonIndex();
                       }
+                      if (value == "Quiz Type".tr) {
+                        cont.updateContent("Quiz Type");
+                      }
                     },
                     itemBuilder: (BuildContext context) =>
                         <PopupMenuEntry<String>>[
@@ -97,6 +100,12 @@ class SideBarAdmin extends StatelessWidget {
                         value: 'School Time Table'.tr,
                         child: Text(
                           'School Time Table'.tr,
+                        ),
+                      ),
+                      PopupMenuItem<String>(
+                        value: 'Quiz Type'.tr,
+                        child: Text(
+                          'Quiz Type'.tr,
                         ),
                       ),
                     ],
