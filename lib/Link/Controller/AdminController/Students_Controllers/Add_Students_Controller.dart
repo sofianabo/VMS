@@ -298,6 +298,27 @@ class Add_Students_Controller extends GetxController {
     update();
   }
 
+  String getSelectedIndex(String type) {
+    switch (type) {
+      case 'Gender':
+        return GenderIndex;
+      case 'Realagon':
+        return RealagonIndex;
+      case 'BloodType':
+        return BloodTypeIndex;
+      case 'Location':
+        return LocationIndex;
+      case 'FamilyState':
+        return FamilyStateIndex;
+      case 'Class':
+        return ClassIndex;
+      case 'Division':
+        return DivisionIndex;
+      default:
+        return '';
+    }
+  }
+
   Rx<Uint8List?> selectedImage = Rx<Uint8List?>(null);
   final ImagePicker _picker = ImagePicker();
 
@@ -571,6 +592,16 @@ class Add_Students_Controller extends GetxController {
     Clear_Certificate();
     Clear_tasalsol();
     Clear_FamilyBook();
+    update();
+  }
+
+  void Initial() {
+    Classlist.clear();
+    Divisionlist.clear();
+    ClassIndex = "";
+    DivisionIndex = "";
+    Locationlist = [];
+    LocationIndex = "";
     update();
   }
 }

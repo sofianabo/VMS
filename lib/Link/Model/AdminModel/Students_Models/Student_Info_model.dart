@@ -7,12 +7,20 @@ class Student_Info_model {
     student =
         json['student'] != null ? new Student.fromJson(json['student']) : null;
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.student != null) {
+      data['student'] = this.student!.toJson();
+    }
+    return data;
+  }
 }
 
 class Student {
   int? id;
   int? acceptanceNumber;
-  String? currentSession;
+  int? currentSession;
   String? firstName;
   String? lastName;
   String? gender;
@@ -132,6 +140,59 @@ class Student {
         ? new Documantes.fromJson(json['documantes'])
         : null;
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['acceptanceNumber'] = this.acceptanceNumber;
+    data['currentSession'] = this.currentSession;
+    data['firstName'] = this.firstName;
+    data['lastName'] = this.lastName;
+    data['gender'] = this.gender;
+    data['birthDate'] = this.birthDate;
+    data['placeOfBirth'] = this.placeOfBirth;
+    data['religion'] = this.religion;
+    data['mobileNumber'] = this.mobileNumber;
+    data['bloodType'] = this.bloodType;
+    data['feeDiscount'] = this.feeDiscount;
+    data['fatherName'] = this.fatherName;
+    data['fatherPhone'] = this.fatherPhone;
+    data['fatherWork'] = this.fatherWork;
+    data['motherName'] = this.motherName;
+    data['motherPhone'] = this.motherPhone;
+    data['motherWork'] = this.motherWork;
+    data['currentAdress'] = this.currentAdress;
+    data['nationalNumber'] = this.nationalNumber;
+    data['localID'] = this.localID;
+    data['lastSchoolDetail'] = this.lastSchoolDetail;
+    data['note'] = this.note;
+    data['familystatus'] = this.familystatus;
+    data['specialNeeds'] = this.specialNeeds;
+    data['martyrSon'] = this.martyrSon;
+    data['fileId'] = this.fileId;
+    data['isPended'] = this.isPended;
+    data['email'] = this.email;
+    if (this.division != null) {
+      data['division'] = this.division!.toJson();
+    }
+    if (this.location != null) {
+      data['location'] = this.location!.toJson();
+    }
+    if (this.classes != null) {
+      data['classes'] = this.classes!.toJson();
+    }
+    if (this.grade != null) {
+      data['grade'] = this.grade!.toJson();
+    }
+    if (this.guardians != null) {
+      data['guardians'] = this.guardians!.toJson();
+    }
+    data['userName'] = this.userName;
+    if (this.documantes != null) {
+      data['documantes'] = this.documantes!.toJson();
+    }
+    return data;
+  }
 }
 
 class Division {
@@ -143,6 +204,13 @@ class Division {
   Division.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     enName = json['EnName'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['EnName'] = this.enName;
+    return data;
   }
 }
 
@@ -170,6 +238,17 @@ class Guardians {
     email = json['email'];
     userName = json['userName'];
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['phone'] = this.phone;
+    data['nationalId'] = this.nationalId;
+    data['email'] = this.email;
+    data['userName'] = this.userName;
+    return data;
+  }
 }
 
 class Documantes {
@@ -181,37 +260,63 @@ class Documantes {
   FatherPassport? academicSequence;
   FatherPassport? familyNotebook;
 
-  Documantes({
-    this.fatherPassport,
-    this.motherPassport,
-    this.sonPassport,
-    this.userID,
-    this.certificate,
-    this.academicSequence,
-    this.familyNotebook,
-  });
+  Documantes(
+      {this.fatherPassport,
+      this.motherPassport,
+      this.sonPassport,
+      this.userID,
+      this.certificate,
+      this.academicSequence,
+      this.familyNotebook});
 
   Documantes.fromJson(Map<String, dynamic> json) {
     fatherPassport = json['FatherPassport'] != null
-        ? FatherPassport.fromJson(json['FatherPassport'])
+        ? new FatherPassport.fromJson(json['FatherPassport'])
         : null;
     motherPassport = json['MotherPassport'] != null
-        ? FatherPassport.fromJson(json['MotherPassport'])
+        ? new FatherPassport.fromJson(json['MotherPassport'])
         : null;
     sonPassport = json['SonPassport'] != null
-        ? FatherPassport.fromJson(json['SonPassport'])
+        ? new FatherPassport.fromJson(json['SonPassport'])
         : null;
-    userID =
-        json['UserID'] != null ? FatherPassport.fromJson(json['UserID']) : null;
+    userID = json['UserID'] != null
+        ? new FatherPassport.fromJson(json['UserID'])
+        : null;
     certificate = json['Certificate'] != null
-        ? FatherPassport.fromJson(json['Certificate'])
+        ? new FatherPassport.fromJson(json['Certificate'])
         : null;
     academicSequence = json['AcademicSequence'] != null
-        ? FatherPassport.fromJson(json['AcademicSequence'])
+        ? new FatherPassport.fromJson(json['AcademicSequence'])
         : null;
     familyNotebook = json['Family Notebook'] != null
-        ? FatherPassport.fromJson(json['Family Notebook']) // التعديل هنا
+        ? new FatherPassport.fromJson(json['Family Notebook'])
         : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.fatherPassport != null) {
+      data['FatherPassport'] = this.fatherPassport!.toJson();
+    }
+    if (this.motherPassport != null) {
+      data['MotherPassport'] = this.motherPassport!.toJson();
+    }
+    if (this.sonPassport != null) {
+      data['SonPassport'] = this.sonPassport!.toJson();
+    }
+    if (this.userID != null) {
+      data['UserID'] = this.userID!.toJson();
+    }
+    if (this.certificate != null) {
+      data['Certificate'] = this.certificate!.toJson();
+    }
+    if (this.academicSequence != null) {
+      data['AcademicSequence'] = this.academicSequence!.toJson();
+    }
+    if (this.familyNotebook != null) {
+      data['Family Notebook'] = this.familyNotebook!.toJson();
+    }
+    return data;
   }
 }
 
@@ -224,5 +329,12 @@ class FatherPassport {
   FatherPassport.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     fileType = json['fileType'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['fileType'] = this.fileType;
+    return data;
   }
 }

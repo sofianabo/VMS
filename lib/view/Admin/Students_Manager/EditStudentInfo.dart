@@ -26,7 +26,12 @@ EditStudentDialog(int idx, BuildContext context) async {
   final Controller = Get.find<Allstudentscontroller>();
   final add_controller = Get.find<Add_Students_Controller>();
   final Allempolyeecontrollers = Get.find<Allempolyeecontroller>();
-
+  final isArabic = Get.find<LocalizationController>()
+      .currentLocale
+      .value
+      .languageCode ==
+      'ar';
+ add_controller.Initial();
   Controller.SetIDX(idx);
   TextEditingController First_Name =
       TextEditingController(text: Controller.student!.firstName);
@@ -69,12 +74,12 @@ EditStudentDialog(int idx, BuildContext context) async {
       DivisionIndexs: Controller.student!.division!.enName,
       isPendStudents: Controller.student!.isPended,
       BloodTypeindex: Controller.student!.bloodType,
-      Classindex: prefs!.getString(languageKey) == "ar"
+      Classindex: isArabic
           ? Controller.student!.classes!.name
           : Controller.student!.classes!.enName ?? "",
-      FamilyStateindex: Controller.student!.familystatus ?? "",
+      FamilyStateindex: Controller.student!.familystatus?? "",
       Genderindex: Controller.student!.gender ?? "",
-      Locationindex: prefs!.getString(languageKey) == "ar"
+      Locationindex: isArabic
           ? Controller.student!.location!.name
           : Controller.student!.location!.enName ?? "",
       Specialneed: Controller.student!.specialNeeds == 1 ? true : false,
@@ -172,18 +177,21 @@ EditStudentDialog(int idx, BuildContext context) async {
         username: username,
       ),
       apptitle: "Edit Student".tr,
-      subtitle: "Edite".tr+" ${Controller.filteredStudents[idx].fullName}"+ "Info".tr));
+      subtitle: "Edite".tr +
+          " ${Controller.filteredStudents[idx].fullName}" +
+          "Info".tr));
+
   await Getallclassapi.getAllClasses();
   await Get_Location_API.Get_Locations();
   add_controller.initialdata();
   add_controller.SetIsLoadingDivision(true);
   await Dropdowndivisionapi(context).Dropdowndivision(
-      add_controller.Classlist.indexOf(prefs!.getString(languageKey) == "ar"
+      add_controller.Classlist.indexOf(isArabic
           ? Controller.student!.classes!.name.toString()
           : Controller.student!.classes!.enName.toString()),
       idx);
   add_controller.SetDivision(
-      division: prefs!.getString(languageKey) == "ar"
+      division: isArabic
           ? Controller.filteredStudents[idx].division!.name.toString()
           : Controller.filteredStudents[idx].division!.enName.toString());
 }
