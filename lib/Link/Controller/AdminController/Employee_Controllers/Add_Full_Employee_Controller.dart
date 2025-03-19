@@ -83,7 +83,6 @@ class AddFullEmployeeController extends GetxController {
         break;
 
       default:
-        print("Error: Invalid type");
     }
     update();
   }

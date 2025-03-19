@@ -44,9 +44,8 @@ class Add_Session_API {
       }
     } catch (e) {
       if (e.toString().contains("status code of 409")) {
-        print('object');
-
         Get.find<SessionController>().updateFieldError("start", true);
+        Get.back();
         Get.snackbar(
           "خطأ",
           "لا يسمح باضافة تاريخ بدء لانه يوجد سنة مفتوحة ضمن النطاق المحدد",

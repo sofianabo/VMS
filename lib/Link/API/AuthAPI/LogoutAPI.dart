@@ -39,9 +39,6 @@ class Logoutapi {
         return throw Exception("Failed");
       }
       return response.statusCode;
-    } catch (e) {
-      print('$e');
-      print('logout field');
-    }
+    } catch (e) {}
   }
 }

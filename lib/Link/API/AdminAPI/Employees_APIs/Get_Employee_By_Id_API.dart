@@ -25,7 +25,6 @@ class GetEmployeeByIdApi {
     String myURI = "$hostPort$getEmployeeById";
 
     try {
-
       var response = await dio.post(
         cancelToken: cancelToken,
         myURI,
@@ -34,13 +33,13 @@ class GetEmployeeByIdApi {
       );
 
       if (response.statusCode == 200) {
-        One_Employee_Model oneEmployeeModel = One_Employee_Model.fromJson(response.data);
+        One_Employee_Model oneEmployeeModel =
+            One_Employee_Model.fromJson(response.data);
         controller.setOneEmployee(oneEmployeeModel);
         Get.back();
-        EditEmployee(context, index,employeeID);
+        EditEmployee(context, index, employeeID);
         return response.statusCode;
       } else {
-
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
@@ -48,9 +47,7 @@ class GetEmployeeByIdApi {
         ));
       }
     } catch (e) {
-
       if (e is DioException && e.type == DioExceptionType.cancel) {
-        print("Request canceled");
       } else if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else {

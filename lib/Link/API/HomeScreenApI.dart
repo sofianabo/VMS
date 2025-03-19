@@ -14,13 +14,10 @@ class Homescreenapi {
   homescreen() async {
     String myurl = "${global.hostPort}${global.Home}";
     try {
-      var response = await dio.get(myurl,
-          options:getDioOptions());
+      var response = await dio.get(myurl, options: getDioOptions());
       HomeModel home = HomeModel.fromJson(response.data);
       u.getHomeInfo(home);
       return response.statusCode;
-    } catch (e) {
-      print('Login field');
-    }
+    } catch (e) {}
   }
 }

@@ -204,7 +204,6 @@ class Add_Student_API {
         ));
       }
     } catch (e) {
-      print(e);
       if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {

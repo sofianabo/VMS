@@ -85,7 +85,6 @@ class DropDownStudentsAttendencemgmt extends StatelessWidget {
                             if (newValue != null && newValue != title) {
                               cont.selectIndex(type, newValue);
                               if (type == 'grade') {
-                                print(newValue);
                                 if (newValue != title) {
                                   cont.resetOnGradeChange();
                                   Getallclassapi.getAllClasses(
@@ -172,71 +171,63 @@ class DropDownStudentsAttendencemgmt extends StatelessWidget {
                           value: selectedValue,
                           isExpanded: true,
                           underline: const SizedBox(),
-                          icon: selectedValue.isNotEmpty &&
-                                  selectedValue != title
-                              ? GestureDetector(
-                                  onTap: () {
-                                    cont.selectIndex(type, "");
-                                    if (type == "grade") {
-                                      cont.resetOnGradeChange();
-                                      IncreaseAttendanceAPI(context)
-                                          .GetIncreaseAttendance(
-                                        DateTime: Get.find<
-                                                Student_attendence_controller>()
-                                            .AttendencetDate
-                                            .value
-                                            .toString(),
-                                      );
-                                    }
-                                    if (type == "class") {
-                                      IncreaseAttendanceAPI(context)
-                                          .GetIncreaseAttendance(
-                                        DateTime: Get.find<
-                                                Student_attendence_controller>()
-                                            .AttendencetDate
-                                            .value
-                                            .toString(),
-                                      );
-                                    }
-                                    if (type == "division") {
-                                      print(Get.find<Divisions_Controller>()
-                                          .Classmodel!
-                                          .classes!
-                                          .firstWhere((cls) =>
-                                              cls.enName == cont.classIndex ||
-                                              cls.name == cont.classIndex)
-                                          .id
-                                          .toString());
-                                      IncreaseAttendanceAPI(context)
-                                          .GetIncreaseAttendance(
-                                              DateTime: Get.find<
-                                                      Student_attendence_controller>()
-                                                  .AttendencetDate
-                                                  .value
-                                                  .toString(),
-                                              classId: Get.find<
-                                                      Divisions_Controller>()
-                                                  .Classmodel!
-                                                  .classes!
-                                                  .firstWhere((cls) =>
-                                                      cls.enName ==
-                                                          cont.classIndex ||
-                                                      cls.name ==
-                                                          cont.classIndex)
-                                                  .id
-                                                  .toString());
-                                    }
-                                    cont.update();
-                                  },
-                                  child: Icon(
-                                    Icons.close,
-                                    color: Get.theme.secondaryHeaderColor,
-                                  ),
-                                )
-                              : Icon(
-                                  Icons.arrow_drop_down,
-                                  color: Get.theme.secondaryHeaderColor,
-                                ),
+                          icon:
+                              selectedValue.isNotEmpty && selectedValue != title
+                                  ? GestureDetector(
+                                      onTap: () {
+                                        cont.selectIndex(type, "");
+                                        if (type == "grade") {
+                                          cont.resetOnGradeChange();
+                                          IncreaseAttendanceAPI(context)
+                                              .GetIncreaseAttendance(
+                                            DateTime: Get.find<
+                                                    Student_attendence_controller>()
+                                                .AttendencetDate
+                                                .value
+                                                .toString(),
+                                          );
+                                        }
+                                        if (type == "class") {
+                                          IncreaseAttendanceAPI(context)
+                                              .GetIncreaseAttendance(
+                                            DateTime: Get.find<
+                                                    Student_attendence_controller>()
+                                                .AttendencetDate
+                                                .value
+                                                .toString(),
+                                          );
+                                        }
+                                        if (type == "division") {
+                                          IncreaseAttendanceAPI(context)
+                                              .GetIncreaseAttendance(
+                                                  DateTime: Get.find<
+                                                          Student_attendence_controller>()
+                                                      .AttendencetDate
+                                                      .value
+                                                      .toString(),
+                                                  classId: Get.find<
+                                                          Divisions_Controller>()
+                                                      .Classmodel!
+                                                      .classes!
+                                                      .firstWhere((cls) =>
+                                                          cls.enName ==
+                                                              cont.classIndex ||
+                                                          cls.name ==
+                                                              cont.classIndex)
+                                                      .id
+                                                      .toString());
+                                        }
+                                        cont.update();
+                                      },
+                                      child: Icon(
+                                        Icons.close,
+                                        color: Get.theme.secondaryHeaderColor,
+                                      ),
+                                    )
+                                  : Icon(
+                                      Icons.arrow_drop_down,
+                                      color: Get.theme.secondaryHeaderColor,
+                                    ),
                           style: Get.theme.textTheme.bodyMedium!
                               .copyWith(fontSize: 14),
                           items: [

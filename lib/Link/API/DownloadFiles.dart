@@ -23,11 +23,8 @@ Future<void> downloadFile(String url, String fileName) async {
       anchor.click();
 
       html.Url.revokeObjectUrl(blobUrl);
-    } else {
-      print('Failed to download file. Status code: ${response.statusCode}');
-    }
+    } else {}
   } catch (e) {
-    print('Error downloading file: $e');
   } finally {
     Get.back();
   }
