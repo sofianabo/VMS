@@ -10,10 +10,9 @@ class Get_Virtual_Employee_API {
   static Dio dio = Dio();
 
   static Future<dynamic> Get_Virtual_Employee() async {
-
-   final controller = Get.find<All_Virtual_Employee_Controller>();
+    final controller = Get.find<All_Virtual_Employee_Controller>();
     String myURI = "$hostPort$getVirtualUser";
-   controller.SetIsLoading(true);
+    controller.SetIsLoading(true);
     try {
       var response = await dio.get(
         myURI,
@@ -21,7 +20,8 @@ class Get_Virtual_Employee_API {
       );
 
       if (response.statusCode == 200) {
-        Virtual_Employee_Model virtualEmployeeModel = Virtual_Employee_Model.fromJson(response.data);
+        Virtual_Employee_Model virtualEmployeeModel =
+            Virtual_Employee_Model.fromJson(response.data);
         controller.setData(virtualEmployeeModel);
       } else {
         ErrorHandler.handleDioError(DioException(

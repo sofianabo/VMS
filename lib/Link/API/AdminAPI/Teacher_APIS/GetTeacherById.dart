@@ -50,7 +50,6 @@ class GetteacherbyidAPI {
       }
     } catch (e) {
       if (e is DioException && e.type == DioExceptionType.cancel) {
-
       } else if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else {

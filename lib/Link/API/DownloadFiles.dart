@@ -23,8 +23,7 @@ Future<void> downloadFile(String url, String fileName) async {
       anchor.click();
 
       html.Url.revokeObjectUrl(blobUrl);
-    } else {
-    }
+    } else {}
   } catch (e) {
   } finally {
     Get.back();

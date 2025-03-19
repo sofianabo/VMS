@@ -26,7 +26,6 @@ class Study_Year_Students_API {
           data: {"sessionId": sessionId}, options: getDioOptions());
 
       if (response.statusCode == 200) {
-
         AllStudyYearModel allStudyYearModel =
             AllStudyYearModel.fromJson(response.data);
 

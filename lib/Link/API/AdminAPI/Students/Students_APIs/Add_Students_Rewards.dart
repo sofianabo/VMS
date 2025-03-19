@@ -18,11 +18,8 @@ class Add_Students_Rewards_API {
 
       // تحقق من البيانات المرسلة (الملف)
       if (file == null || file.isEmpty) {
-
         return;
-      } else {
-
-      }
+      } else {}
 
       // إعداد البيانات المرسلة في الطلب
       Map<String, dynamic> formDataMap = {
@@ -46,9 +43,7 @@ class Add_Students_Rewards_API {
 
       // تحقق من استجابة API
       if (response.statusCode == 200) {
-
       } else {
-
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
@@ -57,7 +52,6 @@ class Add_Students_Rewards_API {
       }
       return response.statusCode;
     } catch (e) {
-
       if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {

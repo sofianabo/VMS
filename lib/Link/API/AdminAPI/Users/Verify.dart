@@ -47,8 +47,6 @@ class Verify_Account_API {
       }
       return response.statusCode;
     } catch (e) {
-
-
       return null;
     }
   }

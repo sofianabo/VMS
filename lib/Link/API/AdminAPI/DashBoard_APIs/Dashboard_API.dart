@@ -31,7 +31,6 @@ class Dashboard_API {
           options: getDioOptions(),
         );
 
-
         if (response.statusCode == 200) {
           DashboardModel dashboardModel =
               DashboardModel.fromJson(response.data);

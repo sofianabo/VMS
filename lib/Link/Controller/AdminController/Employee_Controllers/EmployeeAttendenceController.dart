@@ -112,8 +112,6 @@ class Employeeattendencecontroller extends GetxController {
     String rawEndDate =
         Get.find<All_Screen_Sessions_Controller>().endSessionDate;
 
-
-
     rawStartDate = rawStartDate.trim();
     rawEndDate = rawEndDate.trim();
 

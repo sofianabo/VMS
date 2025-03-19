@@ -44,7 +44,6 @@ class Add_Session_API {
       }
     } catch (e) {
       if (e.toString().contains("status code of 409")) {
-
         Get.find<SessionController>().updateFieldError("start", true);
         Get.snackbar(
           "خطأ",

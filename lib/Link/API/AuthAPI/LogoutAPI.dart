@@ -39,7 +39,6 @@ class Logoutapi {
         return throw Exception("Failed");
       }
       return response.statusCode;
-    } catch (e) {
-    }
+    } catch (e) {}
   }
 }

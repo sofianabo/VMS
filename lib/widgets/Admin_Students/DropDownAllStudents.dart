@@ -114,7 +114,6 @@ class DropDownAllStudents extends StatelessWidget {
                                   cont.setAllDivision(division);
                                 }
                               }
-
                             }
                           },
                           dropdownColor: Theme.of(context).cardColor,
