@@ -191,8 +191,8 @@ Widget _buildToolButton({
 class DraggableText extends StatefulWidget {
   final TextOverlay overlay;
   final Function(TextOverlay) onUpdate;
-  final Function onSelect;
-  final Function onDelete;
+  final VoidCallback onSelect;
+  final VoidCallback onDelete;
   final bool isSelected;
 
   const DraggableText({
@@ -225,6 +225,93 @@ class _DraggableTextState extends State<DraggableText> {
     textController = TextEditingController(text: widget.overlay.text);
   }
 
+  void _showEditDialog() {
+    Get.defaultDialog(
+      title: "تعديل النص",
+      content: GetBuilder<RewardsController>(
+        init: RewardsController(fontSize, isBold),
+        builder: (controller) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: textController,
+                maxLines: 2,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "أدخل النص",
+                ),
+              ),
+              SizedBox(height: 10),
+              Text("حجم الخط: ${controller.fontSize.toStringAsFixed(0)}"),
+              Slider(
+                min: 10,
+                max: 50,
+                value: controller.fontSize,
+                onChanged: (newSize) {
+                  controller.updateFontSize(newSize);
+                  // تفعيل setState مباشرة لتحديث القيم في واجهة المستخدم
+                  setState(() {
+                    fontSize = newSize;
+                  });
+                },
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      controller.isBold
+                          ? Icons.format_bold
+                          : Icons.format_bold_outlined,
+                    ),
+                    onPressed: () {
+                      controller.toggleBold();
+                      setState(() {
+                        isBold = controller.isBold;
+                      });
+                    },
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.delete, color: Colors.red),
+                    onPressed: () {
+                      widget.onDelete();
+                      Get.back();
+                    },
+                  ),
+                ],
+              ),
+            ],
+          );
+        },
+      ),
+      actions: [
+        TextButton(
+          child: Text("إلغاء"),
+          onPressed: () => Get.back(),
+        ),
+        TextButton(
+          child: Text("تم"),
+          onPressed: () {
+            final controller = Get.find<RewardsController>();
+            widget.onUpdate(
+              TextOverlay(
+                type: widget.overlay.type,
+                text: textController.text,
+                position: position,
+                fontSize: controller.fontSize,
+                color: color,
+                isBold: controller.isBold,
+                isSelected: widget.isSelected,
+              ),
+            );
+            Get.back();
+          },
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -232,12 +319,12 @@ class _DraggableTextState extends State<DraggableText> {
       top: position.dy,
       child: GestureDetector(
         onTap: () => widget.onSelect(),
+        onDoubleTap: _showEditDialog,
         onPanUpdate: (details) {
           setState(() {
             position += details.delta;
-            print(position.dx);
-            print(position.dy);
           });
+
           widget.onUpdate(TextOverlay(
             type: widget.overlay.type,
             text: textController.text,
@@ -248,109 +335,16 @@ class _DraggableTextState extends State<DraggableText> {
             isSelected: widget.isSelected,
           ));
         },
-        child: Stack(
-          children: [
-            if (widget.isSelected)
-              Padding(
-                padding: const EdgeInsets.only(top: 45.0),
-                child: Container(
-                  padding: EdgeInsets.all(10.0),
-                  color: Theme.of(context).cardColor,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        width: 250,
-                        height: 60,
-                        child: TextField(
-                          maxLines: 3,
-                          controller: textController,
-                          onChanged: (newText) {
-                            widget.onUpdate(TextOverlay(
-                              type: widget.overlay.type,
-                              text: newText,
-                              position: position,
-                              fontSize: fontSize,
-                              color: color,
-                              isBold: isBold,
-                              isSelected: widget.isSelected,
-                            ));
-                          },
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: "أدخل النص",
-                          ),
-                        ),
-                      ),
-                      Slider(
-                        min: 10,
-                        max: 50,
-                        value: fontSize,
-                        onChanged: (newSize) {
-                          setState(() {
-                            fontSize = newSize;
-                          });
-                          widget.onUpdate(TextOverlay(
-                            type: widget.overlay.type,
-                            text: textController.text,
-                            position: position,
-                            fontSize: fontSize,
-                            color: color,
-                            isBold: isBold,
-                            isSelected: widget.isSelected,
-                          ));
-                        },
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            icon: Icon(Icons.delete, color: Colors.red),
-                            onPressed: () {
-                              widget.onDelete(); // حذف النص عند الضغط
-                            },
-                          ),
-                          IconButton(
-                            icon: Icon(
-                              isBold
-                                  ? Icons.format_bold
-                                  : Icons.format_bold_outlined,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                isBold = !isBold;
-                              });
-                              widget.onUpdate(TextOverlay(
-                                type: widget.overlay.type, // مرر النوع الحالي
-                                text: textController.text,
-                                position: position,
-                                fontSize: fontSize,
-                                color: color,
-                                isBold: isBold,
-                                isSelected: widget.isSelected,
-                              ));
-                            },
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            Container(
-              padding: EdgeInsets.all(4),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-              ),
-              child: Text(
-                textController.text,
-                style: TextStyle(
-                  fontSize: fontSize,
-                  color: color,
-                  fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
-                ),
-              ),
+        child: Container(
+          padding: EdgeInsets.all(4),
+          child: Text(
+            textController.text,
+            style: TextStyle(
+              fontSize: fontSize,
+              color: color,
+              fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
             ),
-          ],
+          ),
         ),
       ),
     );

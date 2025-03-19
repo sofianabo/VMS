@@ -3,6 +3,21 @@ import 'package:get/get.dart';
 import 'package:vms_school/view/Admin/School_Management/Rewards_Pages/Rewards_Grid.dart';
 
 class RewardsController extends GetxController {
+  double fontSize;
+  bool isBold;
+
+  RewardsController(this.fontSize, this.isBold);
+
+  void updateFontSize(double newSize) {
+    fontSize = newSize;
+    update();
+  }
+
+  void toggleBold() {
+    isBold = !isBold;
+    update();
+  }
+
   String selectedImage = "../../images/Certificate/c3.svg";
 
   List<Map<String, dynamic>> Certificats = [

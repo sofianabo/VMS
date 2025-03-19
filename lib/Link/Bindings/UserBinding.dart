@@ -116,9 +116,9 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Teachersubjectscontroller(), fenix: true);
     Get.lazyPut(() => TeachernoteAndGradeReco(), fenix: true);
     Get.lazyPut(() => Admin_Profile_Content(), fenix: true);
-    Get.lazyPut(() => RewardsController(), fenix: true);
     Get.lazyPut(() => LocalizationController(), fenix: true);
     Get.lazyPut(() => Profile_DropDown_Controller(), fenix: true);
     Get.lazyPut(() => Add_Data_controller(), fenix: true);
+    Get.lazyPut(() => RewardsController(20.0, true));
   }
 }
