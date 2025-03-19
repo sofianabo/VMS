@@ -454,6 +454,7 @@ class Languages {
       'The reason for the absence of the all Teachers': 'سبب غياب كل المعلمين',
       'Vacation': 'إجازة',
       "sub": "مواد",
+      "No Guardian": "لا يوجد أولياء أمور",
 
       'Subjects': '',
       'Rewards Students': 'مكافئة الطالب',
@@ -465,6 +466,7 @@ class Languages {
       'Have A Nice Day At Work': 'Have A Nice Day At Work',
       'Illness and Vaccines': 'Illness and Vaccines',
       'Illness': 'Illness',
+      'No Guardian': 'No Guardian',
       'Rewards Students': 'Rewards Students',
       'Rewards & Penalties': 'Rewards & Penalties',
       'Vaccines': 'Vaccines',

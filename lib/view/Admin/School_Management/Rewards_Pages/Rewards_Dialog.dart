@@ -51,14 +51,6 @@ Rewards_Dialog({
           onPressed: controller.addTextOverlay,
         ),
         _buildToolButton(
-          icon: Icons.save,
-          label: "Save",
-          onPressed: () {
-            controller.saveChanges();
-            print(controller.Certificats);
-          },
-        ),
-        _buildToolButton(
             icon: Icons.picture_as_pdf,
             label: "Export As Pdf",
             onPressed: () async {
@@ -85,8 +77,8 @@ class _RewardsGridsState extends State<RewardsGrids> {
   @override
   void initState() {
     final controller = Get.find<RewardsController>();
-    if (controller.Certificats.isNotEmpty) {
-      controller.selectImage(controller.Certificats.first['image']);
+    if (controller.DialogCertificats.isNotEmpty) {
+      controller.selectDialogImage(controller.DialogCertificats.first['image']);
     }
     super.initState();
   }
@@ -96,7 +88,8 @@ class _RewardsGridsState extends State<RewardsGrids> {
     return GetBuilder<RewardsController>(
       init: Get.find<RewardsController>(),
       builder: (controller) {
-        controller.updateCertificates(controller.Certificats, widget.name);
+        controller.updateCertificates(
+            controller.DialogCertificats, widget.name);
         return GestureDetector(
           onTap: controller.deselectText,
           child: SingleChildScrollView(
@@ -114,10 +107,10 @@ class _RewardsGridsState extends State<RewardsGrids> {
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.all(10.0),
                     child: Column(
-                      children: controller.Certificats.map((certificate) {
+                      children: controller.DialogCertificats.map((certificate) {
                         return GestureDetector(
                           onTap: () {
-                            controller.selectImage(certificate['image']);
+                            controller.selectDialogImage(certificate['image']);
                           },
                           child: SvgPicture.asset(
                             certificate['image'],
@@ -242,6 +235,8 @@ class _DraggableTextState extends State<DraggableText> {
         onPanUpdate: (details) {
           setState(() {
             position += details.delta;
+            print(position.dx);
+            print(position.dy);
           });
           widget.onUpdate(TextOverlay(
             type: widget.overlay.type,
@@ -261,14 +256,15 @@ class _DraggableTextState extends State<DraggableText> {
                 child: Container(
                   padding: EdgeInsets.all(10.0),
                   color: Theme.of(context).cardColor,
-                  child: Row(
+                  child: Column(
                     children: [
                       SizedBox(
                         width: 250,
+                        height: 60,
                         child: TextField(
+                          maxLines: 3,
                           controller: textController,
                           onChanged: (newText) {
-                            print(widget.overlay.type);
                             widget.onUpdate(TextOverlay(
                               type: widget.overlay.type,
                               text: newText,
@@ -294,7 +290,7 @@ class _DraggableTextState extends State<DraggableText> {
                             fontSize = newSize;
                           });
                           widget.onUpdate(TextOverlay(
-                            type: widget.overlay.type, // مرر النوع الحالي
+                            type: widget.overlay.type,
                             text: textController.text,
                             position: position,
                             fontSize: fontSize,

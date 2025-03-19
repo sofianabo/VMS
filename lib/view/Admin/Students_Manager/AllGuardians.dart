@@ -245,6 +245,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Textfildwithupper(
+                                                        fieldType: "number",
                                                         onChanged: (value) {
                                                           if (value
                                                               .isNotEmpty) {

@@ -40,7 +40,7 @@ class Add_Class_API {
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
-        await Get_All_Classes_API(context).Get_All_Classes();
+        Get_All_Classes_API(context).Get_All_Classes();
         Get.back();
         Get.find<ClassMgmtController>().selectIndex("admin", "");
         Get.find<ClassMgmtController>().selectIndex("gradediag", "");
