@@ -67,20 +67,17 @@ class All_Virtual_Employee_Controller extends GetxController {
         IsConfirmPasswordError = newValue;
         break;
       default:
-        print("Error: Invalid type");
     }
     update();
   }
 
   ChangeShowConfirmPassword(bool value) {
     ShowConfirmPassword = value;
-    print(value);
     update();
   }
 
   ChangeShowPassword(bool value) {
     ShowPassword = value;
-    print(value);
     update();
   }
 }

@@ -34,9 +34,7 @@ class Examtableapi {
       if (response.statusCode == 200) {
         
         ExamTableModel student = ExamTableModel.fromJson(response.data);
-        print("sssssssssss");
         c.setAllQuiz(student);
-        print("ddddddddd");
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

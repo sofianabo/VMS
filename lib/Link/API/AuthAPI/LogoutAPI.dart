@@ -40,8 +40,6 @@ class Logoutapi {
       }
       return response.statusCode;
     } catch (e) {
-      print('$e');
-      print('logout field');
     }
   }
 }

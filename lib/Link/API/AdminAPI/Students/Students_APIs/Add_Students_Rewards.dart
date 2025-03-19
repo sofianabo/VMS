@@ -18,10 +18,10 @@ class Add_Students_Rewards_API {
 
       // تحقق من البيانات المرسلة (الملف)
       if (file == null || file.isEmpty) {
-        print("الملف فارغ أو غير موجود");
+
         return;
       } else {
-        print("حجم الملف: ${file.lengthInBytes} بايت");
+
       }
 
       // إعداد البيانات المرسلة في الطلب
@@ -46,11 +46,9 @@ class Add_Students_Rewards_API {
 
       // تحقق من استجابة API
       if (response.statusCode == 200) {
-        print("تم إرسال الطلب بنجاح");
+
       } else {
-        print("فشل الطلب مع الحالة: ${response.statusCode}");
-        print("الاستجابة: ${response.data}");
-        // التعامل مع الخطأ
+
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
@@ -59,7 +57,7 @@ class Add_Students_Rewards_API {
       }
       return response.statusCode;
     } catch (e) {
-      // التعامل مع الاستثناءات
+
       if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {

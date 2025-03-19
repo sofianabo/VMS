@@ -85,7 +85,6 @@ class DropDownStudentsAttendencemgmt extends StatelessWidget {
                             if (newValue != null && newValue != title) {
                               cont.selectIndex(type, newValue);
                               if (type == 'grade') {
-                                print(newValue);
                                 if (newValue != title) {
                                   cont.resetOnGradeChange();
                                   Getallclassapi.getAllClasses(
@@ -199,14 +198,6 @@ class DropDownStudentsAttendencemgmt extends StatelessWidget {
                                       );
                                     }
                                     if (type == "division") {
-                                      print(Get.find<Divisions_Controller>()
-                                          .Classmodel!
-                                          .classes!
-                                          .firstWhere((cls) =>
-                                              cls.enName == cont.classIndex ||
-                                              cls.name == cont.classIndex)
-                                          .id
-                                          .toString());
                                       IncreaseAttendanceAPI(context)
                                           .GetIncreaseAttendance(
                                               DateTime: Get.find<

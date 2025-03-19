@@ -47,7 +47,6 @@ class Add_Virtual_Employee_API {
       }
     } catch (e) {
       if (e is DioException && e.type == DioExceptionType.cancel) {
-        print("Request canceled");
       } else if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else {

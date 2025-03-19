@@ -26,13 +26,11 @@ class Dashboard_API {
 
     while (!isSuccessful && retryCount < maxRetries) {
       try {
-        print("Attempt ${retryCount + 1} of $maxRetries...");
         var response = await dio.get(
           myurl,
           options: getDioOptions(),
         );
 
-        print("Response status code: ${response.statusCode}"); // تأكد من هنا!
 
         if (response.statusCode == 200) {
           DashboardModel dashboardModel =
@@ -43,9 +41,6 @@ class Dashboard_API {
           sessionCont.setAllSession(allSessionModel);
           isSuccessful = true;
         } else {
-          // **معالجة جميع رموز الأخطاء الأخرى هنا**
-          print(
-              "Request failed with status: ${response.statusCode}. Retrying...");
           retryCount++;
         }
       } on DioException catch (e) {
@@ -56,11 +51,9 @@ class Dashboard_API {
           );
           return; // توقف عن المحاولة
         } else {
-          print("DioError, retrying...");
           retryCount++;
         }
       } catch (e) {
-        print("An error occurred: $e, type: ${e.runtimeType}. Retrying...");
         retryCount++;
       }
 
@@ -70,7 +63,6 @@ class Dashboard_API {
     }
 
     if (!isSuccessful && retryCount >= maxRetries) {
-      print("Failed to fetch data after $maxRetries attempts.");
       Get.snackbar(
         "Error",
         "Unable to fetch dashboard data after multiple attempts.",

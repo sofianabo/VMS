@@ -49,7 +49,6 @@ class Admin_Profile_Content extends GetxController {
         IsPasswordError = newValue;
         break;
       default:
-        print("Error: Invalid type");
     }
     update();
   }

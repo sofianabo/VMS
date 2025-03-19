@@ -20,7 +20,6 @@ class Homescreenapi {
       u.getHomeInfo(home);
       return response.statusCode;
     } catch (e) {
-      print('Login field');
     }
   }
 }

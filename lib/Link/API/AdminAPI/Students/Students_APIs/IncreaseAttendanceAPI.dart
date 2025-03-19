@@ -31,7 +31,6 @@ class IncreaseAttendanceAPI {
         "divisionId": divisionId,
         "date": DateTime,
       }, myurl, options: getDioOptions());
-      print("${response.statusCode}");
       if (response.statusCode == 200) {
         StuAttendence stu = StuAttendence.fromJson(response.data);
         controller.setData(stu);

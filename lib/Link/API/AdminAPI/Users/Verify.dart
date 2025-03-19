@@ -47,9 +47,9 @@ class Verify_Account_API {
       }
       return response.statusCode;
     } catch (e) {
-      // التعامل مع الأخطاء هنا
-      print('Error: $e');
-      return null; // أو أي قيمة مناسبة
+
+
+      return null;
     }
   }
 }

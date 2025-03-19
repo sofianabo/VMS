@@ -43,7 +43,6 @@ class Update_Students_Vaccines_API {
       gets.Get.back();
       return response.statusCode;
     } catch (e) {
-      print(e);
       if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {

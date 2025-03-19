@@ -26,15 +26,12 @@ class Study_Year_Students_API {
           data: {"sessionId": sessionId}, options: getDioOptions());
 
       if (response.statusCode == 200) {
-        print("qqqqqqqqqqqqqqq");
 
         AllStudyYearModel allStudyYearModel =
             AllStudyYearModel.fromJson(response.data);
 
         controller.setAllStudents(allStudyYearModel);
-        print("xxxxxxxxxxxxxxxxx");
         Getallgradeapi.Getallgrade();
-        print("dssdsddddd");
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

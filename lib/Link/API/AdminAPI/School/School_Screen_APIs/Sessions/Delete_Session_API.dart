@@ -21,7 +21,6 @@ class Delete_Session_API {
     Loading_Dialog(cancelToken: cancelToken);
     try {
       String myurl = "$hostPort$destroy/$sessionId";
-      print(sessionId);
       var response = await dio.delete(
         cancelToken: cancelToken,
           myurl,

@@ -88,7 +88,6 @@ class DropDownAllStudents extends StatelessWidget {
                             if (newValue != null && newValue != title) {
                               cont.selectIndex(type, newValue);
                               if (type == 'grade') {
-                                print(newValue);
                                 if (newValue != title) {
                                   cont.resetOnGradeChange();
                                   Getallclassapi.getAllClasses(
@@ -115,15 +114,7 @@ class DropDownAllStudents extends StatelessWidget {
                                   cont.setAllDivision(division);
                                 }
                               }
-                              // switch (type) {
-                              //   case 'gradediag':
-                              //     cont.setGeidx(Get.find<Dropdowngradecontroller>().gradess!.grades!.firstWhere((grad) => grad.enName  == newValue || grad.name  == newValue).id);
-                              //     print(cont.grades);
-                              //     break;
-                              //   case 'admin':
-                              //     Get.find<Virtual_Employee_Controller>().setVECUserID(Get.find<Virtual_Employee_Controller>().viraulClasses!.firstWhere((admin) => admin.userName  == newValue).id);
-                              //     break;
-                              // }
+
                             }
                           },
                           dropdownColor: Theme.of(context).cardColor,
