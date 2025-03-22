@@ -37,7 +37,6 @@ class GradesTableScreen extends StatelessWidget {
       children: List.generate(
         controller.groups.length,
         (index) {
-          // تحويل القيمة إلى String
           String name = controller.groups[index]['name'] as String;
           return tableCell(context, name, index, isHeader: true);
         },
