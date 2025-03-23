@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Quiz_Type/Get_Quiz_Type.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Teachernote_and_GradeReco.dart';
 
 class QuizType_DropDown extends StatelessWidget {
@@ -9,6 +10,7 @@ class QuizType_DropDown extends StatelessWidget {
   final String? selectedValue;
   final Color? color;
   final bool? Isloading;
+  final bool? IsEnabled;
 
   const QuizType_DropDown({
     super.key,
@@ -18,6 +20,7 @@ class QuizType_DropDown extends StatelessWidget {
     required this.type,
     this.selectedValue,
     this.Isloading,
+    this.IsEnabled,
   });
 
   @override
@@ -57,58 +60,80 @@ class QuizType_DropDown extends StatelessWidget {
                       child: CircularProgressIndicator(strokeWidth: 3),
                     ),
                   )
-                : Row(
-                    children: [
-                      Expanded(
-                        child: DropdownButton<String>(
-                          onChanged: (newValue) {
-                            if (newValue != null && newValue != title) {
-                              cont.selectIndex(type, newValue);
-                              switch (type) {
-                                case 'semester':
-                                  if (newValue == "The First Semester") {
-                                    cont.set_semesteridx(1);
+                : IsEnabled == true
+                    ? Row(
+                        children: [
+                          Expanded(
+                            child: DropdownButton<String>(
+                              onChanged: (newValue) {
+                                if (newValue != null && newValue != title) {
+                                  cont.selectIndex(type, newValue);
+                                  switch (type) {
+                                    case 'semester':
+                                      if (newValue == "The First Semester") {
+                                        cont.set_semesteridx(1);
+                                      }
+                                      if (newValue == "The Second Semester") {
+                                        cont.set_semesteridx(2);
+                                      }
+                                      if (newValue == "The Third Semester") {
+                                        cont.set_semesteridx(3);
+                                      }
+                                      break;
                                   }
-                                  if (newValue == "The Second Semester") {
-                                    cont.set_semesteridx(2);
-                                  }
-                                  if (newValue == "The Third Semester") {
-                                    cont.set_semesteridx(3);
-                                  }
-                                  break;
-                              }
-                            }
-                          },
-                          dropdownColor: Get.theme.cardColor,
-                          iconDisabledColor: Colors.grey,
-                          iconEnabledColor: Get.theme.cardColor,
-                          value: currentValue,
-                          isExpanded: true,
-                          underline: const SizedBox(),
-                          icon: Icon(
-                            Icons.arrow_drop_down,
-                            color: Get.theme.secondaryHeaderColor,
-                          ),
-                          style: Get.theme.textTheme.bodyMedium!
-                              .copyWith(fontSize: 14),
-                          items: [
-                            DropdownMenuItem<String>(
-                              value: title,
-                              enabled: false,
-                              child: Text(
-                                title,
-                                style: Get.theme.textTheme.bodyMedium!.copyWith(
-                                  fontSize: 14,
-                                ),
+                                  var selectedClassItem = cont
+                                      .Classmodel?.classes
+                                      ?.firstWhereOrNull(
+                                    (element) =>
+                                        element.name == cont.ClassIndex ||
+                                        element.enName == cont.ClassIndex,
+                                  );
+
+                                  Get_Quiz_Type_API().Get_Quiz_Type(
+                                      SemsterId: cont.SemesterSendIndex,
+                                      ClassId:
+                                          selectedClassItem!.id.toString());
+                                }
+                              },
+                              dropdownColor: Get.theme.cardColor,
+                              iconDisabledColor: Colors.grey,
+                              iconEnabledColor: Get.theme.cardColor,
+                              value: currentValue,
+                              isExpanded: true,
+                              underline: const SizedBox(),
+                              icon: Icon(
+                                Icons.arrow_drop_down,
+                                color: Get.theme.secondaryHeaderColor,
                               ),
+                              style: Get.theme.textTheme.bodyMedium!
+                                  .copyWith(fontSize: 14),
+                              items: [
+                                DropdownMenuItem<String>(
+                                  value: title,
+                                  enabled: false,
+                                  child: Text(
+                                    title,
+                                    style: Get.theme.textTheme.bodyMedium!
+                                        .copyWith(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                                ..._getDropdownItems(cont),
+                              ],
+                              borderRadius: BorderRadius.circular(3),
                             ),
-                            ..._getDropdownItems(cont),
-                          ],
-                          borderRadius: BorderRadius.circular(3),
+                          ),
+                        ],
+                      )
+                    : Center(
+                        child: Text(
+                          title,
+                          style: Get.theme.textTheme.bodyMedium!.copyWith(
+                              fontSize: 14,
+                              color: Theme.of(context).disabledColor),
                         ),
                       ),
-                    ],
-                  ),
           ),
         ],
       );

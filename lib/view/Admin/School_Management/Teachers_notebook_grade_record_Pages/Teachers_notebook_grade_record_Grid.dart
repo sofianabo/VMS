@@ -1,32 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Teachernote_and_GradeReco.dart';
 import 'package:vms_school/Link/Functions/Add_Teacher_Functions.dart';
 
 class GradesTableScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final TeachernoteAndGradeReco controller = Get.find();
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: GestureDetector(
-          onTap: () {
-            Get.dialog(Rerange_Group());
-          },
-          child: Obx(() {
-            return Table(
-              border: TableBorder.all(color: Colors.black, width: 1),
-              columnWidths: {
-                for (int i = 0; i < controller.columnWidths.length; i++)
-                  i: FixedColumnWidth(controller.columnWidths[i]),
-              },
-              children: _buildTableRows(context, controller),
-            );
-          }),
-        ),
-      ),
-    );
+    return GetBuilder<TeachernoteAndGradeReco>(builder: (controller) {
+      return Expanded(
+        child: controller.ClassIndex.trim().toString() != ""
+            ? controller.isQuizTypeLoading == true
+                ? LoadingAnimationWidget.inkDrop(
+                    color: Theme.of(context).primaryColor,
+                    size: 60,
+                  )
+                : controller.groups.isNotEmpty
+                    ? Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.dialog(Rerange_Group());
+                          },
+                          child: Obx(() {
+                            return Table(
+                              border: TableBorder.all(
+                                  color: Colors.black, width: 1),
+                              columnWidths: {
+                                for (int i = 0;
+                                    i < controller.columnWidths.length;
+                                    i++)
+                                  i: FixedColumnWidth(
+                                      controller.columnWidths[i]),
+                              },
+                              children: _buildTableRows(context, controller),
+                            );
+                          }),
+                        ),
+                      )
+                    : Center(
+                        child: Text("No Quiz Type",
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.normal)))
+            : Center(
+                child: Text("Please Select Class First",
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        fontSize: 16, fontWeight: FontWeight.normal))),
+      );
+    });
   }
 
   List<TableRow> _buildTableRows(

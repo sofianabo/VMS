@@ -5,36 +5,44 @@ import 'package:vms_school/main.dart';
 
 class TeachernoteAndGradeReco extends GetxController {
   AllClassModel? Classmodel;
+  bool isQuizTypeLoading = true;
 
-  var groups = <Map<String, dynamic>>[
-    {"name": "تقديرات الفصل الأول", "ratio": 0, "size": 100.0, "items": []},
-    {
-      "name": "مجموع درجات الفصل الأول",
-      "ratio": 100,
-      "size": 100.0,
-      "items": []
-    },
-    {
-      "name": "درجة اختبار الفصل الأول",
-      "ratio": 40,
-      "size": 100.0,
-      "items": []
-    },
-    {
-      "name": "درجة أعمال الفصل الأول",
-      "ratio": 60,
-      "size": 100.0,
-      "items": [
-        {"name": "شفوية", "ratio": 20, "quizable": true},
-        {"name": "وظائف و أوراق عمل", "ratio": 20, "quizable": true},
-        {"name": "نشاطات و مبادرات", "ratio": 10, "quizable": true},
-        {"name": "المذاكرة", "ratio": 10, "quizable": true},
-      ]
-    },
-    {"name": "الدرجة العظمى", "ratio": 0, "size": 100.0, "items": []},
-    {"name": "المواد الدراسية", "ratio": 0, "size": 100.0, "items": []}
-  ].obs;
+  String ClassIndex = "";
+  String SemesterIndex = "The First Semester";
+  int SemesterSendIndex = 1;
+  var columnWidths = [].obs;
+  List<String> ClassList = [];
+  List<String> SemesterList = [
+    "The First Semester",
+    "The Second Semester",
+    "The Third Semester",
+  ];
+  bool isClassLoading = true;
+
+  var groups = <Map<String, dynamic>>[].obs;
   var items = [].obs;
+
+  SetIsQuizType(bool value) {
+    isQuizTypeLoading = value;
+    update();
+  }
+
+  void updateGroup(List<Map<String, dynamic>> data) {
+    groups.clear();
+    columnWidths.clear();
+
+    for (var item in data) {
+      var groupIndex = groups.indexWhere((group) => group['id'] == item['id']);
+      if (groupIndex != -1) {
+        groups[groupIndex] = item;
+      } else {
+        groups.add(item);
+      }
+      columnWidths.add(item['size']);
+    }
+    isQuizTypeLoading = false;
+    update();
+  }
 
   void updateItemName(int idx, String newName) {
     items[idx]['name'] = newName;
@@ -69,7 +77,7 @@ class TeachernoteAndGradeReco extends GetxController {
       items.add({
         "name": name,
         "ratio": ratioValue,
-        "quizable": IsQuizable,
+        "isQuizable": IsQuizable,
       });
       update();
     } else {
@@ -97,7 +105,7 @@ class TeachernoteAndGradeReco extends GetxController {
       items[idx] = {
         "name": name,
         "ratio": ratioValue,
-        "quizable": IsQuizable,
+        "isQuizable": IsQuizable,
       };
       update();
     } else {
@@ -116,14 +124,12 @@ class TeachernoteAndGradeReco extends GetxController {
         "name": name,
         "ratio": double.parse(ratio),
         "size": 100.0,
-        "items": List.from(newItems)
+        "items": List.from(newItems),
       },
     );
     columnWidths.add(100.0);
-    update(); // تحديث الحالة لإعادة بناء الواجهة
+    update();
   }
-
-  var columnWidths = [100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0].obs;
 
   void updateGroupSizes() {
     for (int i = 0; i < groups.length; i++) {
@@ -131,30 +137,17 @@ class TeachernoteAndGradeReco extends GetxController {
     }
   }
 
-  // تغيير عرض العمود عند السحب
   void resizeColumn(int index, double delta) {
     if (columnWidths[index] + delta >= 80.0 &&
         columnWidths[index] + delta <= 800.0) {
       columnWidths[index] += delta;
-      updateGroupSizes(); // تحديث الحجم في groups بعد تغيير العرض
+      updateGroupSizes();
     }
   }
 
   pri() {
     print(groups);
   }
-
-  String ClassIndex = "";
-  String SemesterIndex = "The First Semester";
-  int SemesterSendIndex = 1;
-
-  List<String> ClassList = [];
-  List<String> SemesterList = [
-    "The First Semester",
-    "The Second Semester",
-    "The Third Semester",
-  ];
-  bool isClassLoading = true;
 
   SetClass(AllClassModel ClassModel) {
     List<String> classess = [];
@@ -214,11 +207,24 @@ class TeachernoteAndGradeReco extends GetxController {
   List<String> selectedClasses = [];
 
   void toggleClassSelection(String classId) {
+    // البحث عن الصف الذي يطابق الاسم المخزن في ClassIndex
+    var selectedClassItem = Classmodel?.classes?.firstWhereOrNull(
+      (element) => element.name == ClassIndex || element.enName == ClassIndex,
+    );
+
+    // إذا لم يتم العثور على الصف أو كان الـ ID يطابق `classId`، لا تفعل شيئًا
+    if (selectedClassItem == null ||
+        selectedClassItem.id.toString() == classId) {
+      return;
+    }
+
+    // السماح بإضافة أو إزالة العناصر الأخرى بحرية
     if (selectedClasses.contains(classId)) {
       selectedClasses.remove(classId);
     } else {
       selectedClasses.add(classId);
     }
+
     update();
   }
 }

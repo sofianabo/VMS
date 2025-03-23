@@ -202,8 +202,9 @@ Add_Group() {
                                                   idx: index,
                                                   name: controller.items[index]
                                                       ['name'],
-                                                  quizable: controller
-                                                      .items[index]['quizable'],
+                                                  isQuizables:
+                                                      controller.items[index]
+                                                          ['isQuizable'],
                                                   rat: controller.items[index]
                                                       ['ratio']));
                                             },
@@ -334,10 +335,10 @@ Add_Items_Group() {
 }
 
 Edit_Items_Group(
-    {required int idx, double? rat, String? name, bool? quizable}) {
+    {required int idx, double? rat, String? name, bool? isQuizables}) {
   TextEditingController itemName = TextEditingController(text: name);
   TextEditingController ratio = TextEditingController(text: rat.toString());
-  var isQuizable = (quizable ?? false).obs;
+  var isQuizable = (isQuizables ?? false).obs;
 
   return VMSAlertDialog(
     action: [
@@ -756,8 +757,9 @@ Edit_Group(int idx) {
                                                   idx: index,
                                                   name: controller.items[index]
                                                       ['name'],
-                                                  quizable: controller
-                                                      .items[index]['quizable'],
+                                                  isQuizables:
+                                                      controller.items[index]
+                                                          ['isQuizable'],
                                                   rat: controller.items[index]
                                                       ['ratio']));
                                             },
