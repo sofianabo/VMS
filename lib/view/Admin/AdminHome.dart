@@ -12,6 +12,7 @@ import 'package:vms_school/view/Admin/School_Management/Illness_Pages/Illness_Sc
 import 'package:vms_school/view/Admin/School_Management/PenaltyScreen/PenaltyScreen.dart';
 import 'package:vms_school/view/Admin/School_Management/Rewards_Pages/Rewards_Screen.dart';
 import 'package:vms_school/view/Admin/School_Management/SchoolTimeTable.dart';
+import 'package:vms_school/view/Admin/School_Management/Students_Report_Card_Settings/Student_Report_Card.dart';
 import 'package:vms_school/view/Admin/School_Management/Subject_Pages/Subject_Management.dart';
 import 'package:vms_school/view/Admin/School_Management/Teachers_notebook_grade_record_Pages/Teachers_notebook_grade_record.dart';
 import 'package:vms_school/view/Admin/School_Management/Transactions/Transaction_Management.dart';
@@ -166,6 +167,8 @@ class _AdminHomeState extends State<AdminHome> {
                           return ProfileSettings();
                         case "Quiz Type":
                           return Teachers_notebook_grade_record();
+                        case "ExcelViewerScreen":
+                          return ExcelToPdfScreen();
                         default:
                           return AdminDashboard();
                       }

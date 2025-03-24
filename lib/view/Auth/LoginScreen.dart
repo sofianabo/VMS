@@ -77,67 +77,75 @@ class LoginScreen extends StatelessWidget {
                         textDirection: prefs!.getString(languageKey) == 'ar'
                             ? TextDirection.rtl
                             : TextDirection.ltr,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Row(
+                        child: Form(
+                          child: AutofillGroup(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                                Row(
                                   children: [
-                                    Text(
-                                      "Username".tr,
-                                      style: Get.theme.textTheme.bodyMedium!,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 5.0),
-                                      child: TextFieldAuth(
-                                        autofill: const [
-                                          AutofillHints.username
-                                        ],
-                                        controller: username,
-                                        hinttext: "Username".tr,
-                                      ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text(
+                                          "Username".tr,
+                                          style:
+                                              Get.theme.textTheme.bodyMedium!,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 5.0),
+                                          child: TextFieldAuth(
+                                            autofill: const [
+                                              AutofillHints.username
+                                            ],
+                                            controller: username,
+                                            hinttext: "Username".tr,
+                                          ),
+                                        )
+                                      ],
                                     )
                                   ],
-                                )
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 25.0),
-                              child: Row(
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 25.0),
+                                  child: Row(
                                     children: [
-                                      Text(
-                                        "Password".tr,
-                                        style: Get.theme.textTheme.bodyMedium!,
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 5.0),
-                                        child: TextFormPassword(
-                                            autofill: const [
-                                              AutofillHints.password
-                                            ],
-                                            controller: password,
-                                            hinttext: "Password".tr),
-                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Text(
+                                            "Password".tr,
+                                            style:
+                                                Get.theme.textTheme.bodyMedium!,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 5.0),
+                                            child: TextFormPassword(
+                                                autofill: const [
+                                                  AutofillHints.password
+                                                ],
+                                                controller: password,
+                                                hinttext: "Password".tr),
+                                          ),
+                                        ],
+                                      )
                                     ],
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        )
-                            .animate()
-                            .fadeIn(duration: const Duration(seconds: 1)),
+                                  ),
+                                ),
+                              ],
+                            )
+                                .animate()
+                                .fadeIn(duration: const Duration(seconds: 1)),
+                          ),
+                        ),
                       ),
                     ),
                     Column(

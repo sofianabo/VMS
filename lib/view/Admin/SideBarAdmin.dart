@@ -48,6 +48,7 @@ class SideBarAdmin extends StatelessWidget {
                   onTap: () {
                     if (controller.hasData == true) {
                       cont.updateContent("Enroll Requests");
+                      // cont.updateContent("ExcelViewerScreen");
                     }
                   },
                   child: Icon(
