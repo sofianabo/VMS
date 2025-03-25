@@ -60,7 +60,7 @@ class Drop_Edite_students extends StatelessWidget {
                                                   .documantes!.fatherPassport !=
                                               null) {
                                             final url =
-                                                '$getimage${add_controller..student!.documantes!.fatherPassport!.id}';
+                                                '$getimage${add_controller.student!.documantes!.fatherPassport!.id}';
                                             downloadFile(url,
                                                 '${add_controller.filteredStudents[add_controller.idx].fullName!} Father Passport.${add_controller.student!.documantes!.fatherPassport!.fileType}');
                                           }

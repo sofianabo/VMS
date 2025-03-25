@@ -8,6 +8,7 @@ import 'package:vms_school/Link/API/DownloadFiles.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCurriculumn_Controller.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
+import 'package:vms_school/widgets/PDF_View.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
@@ -97,9 +98,12 @@ class CurriculumGrid extends StatelessWidget {
                     return HoverScaleCard(
                       child: GestureDetector(
                         onTap: () async {
-                          final url =
-                              '$getimage${control.filteredCurriculum[index].fileId}';
-                          downloadFile(url, 'file.pdf');
+                          openFileInNewTab(
+                              filePath:
+                                  '$getpdf${control.filteredCurriculum[index].fileId}');
+                          // final url =
+                          //     '$getimage${control.filteredCurriculum[index].fileId}';
+                          // downloadFile(url, 'file.pdf');
                         },
                         child: Container(
                             padding: const EdgeInsets.all(20),
@@ -139,7 +143,8 @@ class CurriculumGrid extends StatelessWidget {
                                             overflow: TextOverflow.ellipsis,
                                             "${control.filteredCurriculum[index].name}",
                                             style: TextStyle(
-                                                color: Theme.of(context).primaryColor,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
                                           ),
@@ -175,7 +180,8 @@ class CurriculumGrid extends StatelessWidget {
                                                           .type ==
                                                       1
                                                   ? const Color(0xffB03D3D)
-                                                  : Theme.of(context).primaryColor,
+                                                  : Theme.of(context)
+                                                      .primaryColor,
                                             )),
                                       ],
                                     ),
@@ -225,7 +231,8 @@ class CurriculumGrid extends StatelessWidget {
                                                       onPressed: () {
                                                         Get.back();
                                                       },
-                                                      color: Theme.of(context).primaryColor,
+                                                      color: Theme.of(context)
+                                                          .primaryColor,
                                                       width: 80)
                                                 ],
                                                 contents: Column(
