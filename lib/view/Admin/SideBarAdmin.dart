@@ -143,6 +143,9 @@ class SideBarAdmin extends StatelessWidget {
                       if (value == "Students Attendance Managment".tr) {
                         cont.updateContent("Students Attendance Managment");
                       }
+                      if (value == "Students Marks".tr) {
+                        cont.updateContent("Students Marks");
+                      }
                     },
                     itemBuilder: (BuildContext context) =>
                         <PopupMenuEntry<String>>[
@@ -174,6 +177,12 @@ class SideBarAdmin extends StatelessWidget {
                         value: 'Students Attendance Managment'.tr,
                         child: Text(
                           'Students Attendance Managment'.tr,
+                        ),
+                      ),
+                      PopupMenuItem<String>(
+                        value: 'Students Marks'.tr,
+                        child: Text(
+                          'Students Marks'.tr,
                         ),
                       ),
                     ],

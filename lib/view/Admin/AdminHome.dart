@@ -36,6 +36,7 @@ import 'package:vms_school/view/Admin/School_Management/Sessions_Pages/Session_M
 import 'package:vms_school/view/Admin/SideBarAdmin.dart';
 import 'package:vms_school/view/Admin/Students_Manager/StudentStatus.dart';
 import 'package:vms_school/view/Admin/Students_Manager/StudentsAttendanceManagment.dart';
+import 'package:vms_school/view/Admin/Students_Manager/Students_Marks/Students_Marks.dart';
 import 'package:vms_school/view/Admin/Students_Manager/StudyYearStudent.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherAttendanceManagment.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherMangament.dart';
@@ -169,6 +170,8 @@ class _AdminHomeState extends State<AdminHome> {
                           return Teachers_notebook_grade_record();
                         case "ExcelViewerScreen":
                           return ExcelToPdfScreen();
+                        case "Students Marks":
+                          return Students_Marks();
                         default:
                           return AdminDashboard();
                       }

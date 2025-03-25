@@ -4,6 +4,7 @@ import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Teachernote_and_GradeReco.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/QuizType_Model.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 
 class Get_Quiz_Type_API {
@@ -26,8 +27,8 @@ class Get_Quiz_Type_API {
       );
 
       if (response.statusCode == 200) {
-        var data = response.data["type"];
-        controller.updateGroup(List<Map<String, dynamic>>.from(data));
+        QuizType_Model quizType_Model = QuizType_Model.fromJson(response.data);
+        controller.updateGroup(quizType_Model);
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

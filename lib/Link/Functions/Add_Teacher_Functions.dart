@@ -578,10 +578,10 @@ Edit_Group(int idx) {
             if (ratioValue != null) {
               // تحديث الـ group مع الـ ratio المحسوب
               controller.UpdateGroupItems(
-                idx,
-                groupname.text,
-                ratioValue,
-                controller.items.toList().cast<Map<String, dynamic>>(),
+                idx: idx,
+                groupName: groupname.text,
+                ratioValue: ratioValue,
+                items: controller.items.toList().cast<Map<String, dynamic>>(),
               );
               Get.back();
             } else {

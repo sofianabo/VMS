@@ -1,12 +1,13 @@
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/QuizType_Model.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 
 class TeachernoteAndGradeReco extends GetxController {
   AllClassModel? Classmodel;
   bool isQuizTypeLoading = true;
-
+  QuizType_Model? Qt_Model;
   String ClassIndex = "";
   String SemesterIndex = "The First Semester";
   int SemesterSendIndex = 1;
@@ -27,19 +28,38 @@ class TeachernoteAndGradeReco extends GetxController {
     update();
   }
 
-  void updateGroup(List<Map<String, dynamic>> data) {
+  void updateGroup(QuizType_Model quizTypeModel) {
     groups.clear();
     columnWidths.clear();
 
-    for (var item in data) {
-      var groupIndex = groups.indexWhere((group) => group['id'] == item['id']);
-      if (groupIndex != -1) {
-        groups[groupIndex] = item;
-      } else {
-        groups.add(item);
+    if (quizTypeModel.type != null) {
+      for (var type in quizTypeModel.type!) {
+        var groupIndex = groups.indexWhere((group) => group['id'] == type.id);
+        var typeMap = {
+          'id': type.id,
+          'name': type.name,
+          'ratio': type.ratio,
+          'size': type.size,
+          'items': type.items
+              ?.map((item) => {
+                    'id': item.id,
+                    'name': item.name,
+                    'ratio': item.ratio,
+                    'isQuizable': item.isQuizable == 0 ? false : true,
+                  })
+              .toList(),
+        };
+
+        if (groupIndex != -1) {
+          groups[groupIndex] = typeMap;
+        } else {
+          groups.add(typeMap);
+        }
+        columnWidths.add(type.size ?? 100); // افتراضي 0 إذا كان size null
       }
-      columnWidths.add(item['size']);
+      Qt_Model = quizTypeModel;
     }
+
     isQuizTypeLoading = false;
     update();
   }
@@ -60,8 +80,12 @@ class TeachernoteAndGradeReco extends GetxController {
     update();
   }
 
-  void UpdateGroupItems(int idx, String groupName, double ratioValue,
-      List<Map<String, dynamic>> items) {
+  void UpdateGroupItems({
+    required int idx,
+    required String groupName,
+    required double ratioValue,
+    required List<Map<String, dynamic>> items,
+  }) {
     groups[idx] = {
       'name': groupName,
       'ratio': ratioValue,
