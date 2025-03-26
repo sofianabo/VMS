@@ -22,279 +22,372 @@ class DivisionGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Divisions_Controller>(builder: (control) {
-      return control.Isapiloading == true ?
-      GridView.builder(
-        padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 5,
-            crossAxisSpacing: 20.0,
-            mainAxisSpacing: 20.0,
-            childAspectRatio: 1.1),
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return HoverScaleCard(
-            child: Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: Colors.grey, width: 0.5),
-                    color: Theme.of(context).cardColor,
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Colors.black26,
-                          offset: Offset(0, 2),
-                          blurRadius: 1)
-                    ]),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SchemaWidget(width: 35, height: 35),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SchemaWidget(width: 30, height: 15),
-                      ],
-                    ),
-                    SchemaWidget(width: 30, height: 15),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SchemaWidget(width: 30, height: 15),
-                        SchemaWidget(width: 25, height: 25),
-                      ],
-                    )
-                  ],
-                )),
-          ).animate(onPlay: (controller) => controller.repeat()).shimmer(
-              angle: 1,
-              color: Colors.grey.withOpacity(0.2),
-              duration: const Duration(seconds: 1),
-              delay: const Duration(seconds: 1));
-        },
-      )
-          :
-      control.filteredDivision!.isNotEmpty?
-      GridView.builder(
-        padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 5,
-            crossAxisSpacing: 20.0,
-            mainAxisSpacing: 20.0,
-            childAspectRatio: 1.1),
-        itemCount: control.filteredDivision!.length,
-        itemBuilder: (context, index) {
-          return HoverScaleCard(
-            child: GestureDetector(
-              onTap: () {
-
-                arName.text = "${control.filteredDivision![index].name}";
-                enName.text = "${control.filteredDivision![index].enName}";
-                meetUrl.text = "${control.filteredDivision![index].meetUrl}";
-                Get.dialog(VMSAlertDialog(
-                  action: [
-                    ButtonDialog(
-                      text: "Edit",
-                      onPressed: () {
-                        Edit_Division_API(context).Edit_Division(
-                          name: arName.text ,
-                          enName: enName.text,
-                          gradeId: control.filteredDivision![index].id,
-                          meeturl: meetUrl.text,
-                        );
-                      },
-                      color: Theme.of(context).primaryColor,
-                      width: 120,
-                    ),
-                  ],
-                  contents: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Row(
+      return control.Isapiloading == true
+          ? GridView.builder(
+              padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 5,
+                  crossAxisSpacing: 20.0,
+                  mainAxisSpacing: 20.0,
+                  childAspectRatio: 1.1),
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return HoverScaleCard(
+                  child: Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(color: Colors.grey, width: 0.5),
+                          color: Theme.of(context).cardColor,
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black26,
+                                offset: Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Textfildwithupper(
-                            width: 250,
-                            controller: enName,
-                            Uptext: "Grade En - Name",
-                            hinttext: "Grade En - Name",
+                          SchemaWidget(width: 35, height: 35),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SchemaWidget(width: 30, height: 15),
+                            ],
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 15.0, right: 15.0, bottom: 15.0),
-                            child: Textfildwithupper(
-                              width: 250,
-                              controller: arName,
-                              Uptext: "Grade Ar - Name",
-                              hinttext: "Grade Ar - Name",
-                            ),
-                          ),
+                          SchemaWidget(width: 30, height: 15),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SchemaWidget(width: 30, height: 15),
+                              SchemaWidget(width: 25, height: 25),
+                            ],
+                          )
                         ],
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Textfildwithupper(
-                            readOnly: true,
-                            width: 250,
-                            controller: TextEditingController(text: control.filteredDivision![index].classes!.enName),
-                            Uptext: "Class",
-                            hinttext: "Class",
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15.0),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Textfildwithupper(
-                                  width: 230,
-                                  controller: meetUrl,
-                                  Uptext: "Meet URL",
-                                  hinttext: "Meet URL",
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 5.0, top: 36.0),
-                                  child: SvgPicture.asset(
-                                    "../../images/meet.svg",
-                                    width: 25,
-                                  ),
+                      )),
+                ).animate(onPlay: (controller) => controller.repeat()).shimmer(
+                    angle: 1,
+                    color: Colors.grey.withOpacity(0.2),
+                    duration: const Duration(seconds: 1),
+                    delay: const Duration(seconds: 1));
+              },
+            )
+          : control.filteredDivision!.isNotEmpty
+              ? GridView.builder(
+                  padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 5,
+                      crossAxisSpacing: 20.0,
+                      mainAxisSpacing: 20.0,
+                      childAspectRatio: 1.1),
+                  itemCount: control.filteredDivision!.length,
+                  itemBuilder: (context, index) {
+                    return HoverScaleCard(
+                      child: GestureDetector(
+                        onTap: () {
+                          arName.text =
+                              "${control.filteredDivision![index].name}";
+                          enName.text =
+                              "${control.filteredDivision![index].enName}";
+                          meetUrl.text =
+                              "${control.filteredDivision![index].meetUrl}";
+                          Get.dialog(GetBuilder<Divisions_Controller>(
+                              builder: (controller) {
+                            return VMSAlertDialog(
+                              action: [
+                                ButtonDialog(
+                                  text: "Edit",
+                                  onPressed: () async {
+                                    bool isArNameEmpty = arName.text.isEmpty;
+                                    bool isEnNameEmpty = enName.text.isEmpty;
+                                    bool isDriveEmpty = meetUrl.text.isEmpty;
+
+                                    controller.updateFieldError(
+                                        "ename", isEnNameEmpty);
+                                    controller.updateFieldError(
+                                        "arname", isArNameEmpty);
+                                    controller.updateFieldError(
+                                        "meet", isDriveEmpty);
+
+                                    if (!(isArNameEmpty ||
+                                        isEnNameEmpty ||
+                                        isDriveEmpty)) {
+                                      await Edit_Division_API(context)
+                                          .Edit_Division(
+                                        name: arName.text,
+                                        enName: enName.text,
+                                        gradeId:
+                                            control.filteredDivision![index].id,
+                                        meeturl: meetUrl.text,
+                                      );
+
+                                      arName.clear();
+                                      enName.clear();
+                                      meetUrl.clear();
+                                      Get.back();
+                                    }
+                                  },
+                                  color: Theme.of(context).primaryColor,
+                                  width: 120,
                                 ),
                               ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  apptitle: "Edit Division",
-                  subtitle: "none",
-                ));
-              },
-              child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(color: Colors.grey, width: 0.5),
-                      color: Theme.of(context).cardColor,
-                      boxShadow: const [
-                        BoxShadow(
-                            color: Colors.black26,
-                            offset: Offset(0, 2),
-                            blurRadius: 1)
-                      ]),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      control.filteredDivision![index].hasStudent == true ?
-                          const Text("")
-                          : Container(
-                        width: 35,
-                        height: 35,
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).cardColor,
-                            borderRadius: BorderRadius.circular(5),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Colors.black12,
-                                  offset: Offset(0, 2),
-                                  blurRadius: 1)
-                            ]),
-                        child: IconButton(
-                            style: const ButtonStyle(
-                                backgroundColor:
-                                    WidgetStatePropertyAll(Color(0xffB03D3D)),
-                                shape: WidgetStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5))))),
-                            onPressed: () {
-                              Get.dialog(VMSAlertDialog(
-                                  action: [
-                                    ButtonDialog(
-                                        text: "Delete",
-                                        onPressed: () async {
-                                         await Delete_Division_API(context).Delete_Division(index: index , Id: control.filteredDivision![index].id);
-                                        },
-                                        color: const Color(0xffB03D3D),
-                                        width: 80),
-                                    ButtonDialog(
-                                        text: "Cancel",
-                                        onPressed: () {
-                                          Get.back();
-                                        },
-                                        color: Theme.of(context).primaryColor,
-                                        width: 80)
-                                  ],
-                                  contents: Column(
-                                    mainAxisSize: MainAxisSize.min,
+                              contents: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Container(
-                                        width: 400,
+                                      Textfildwithupper(
+                                        isError: controller.IsennameError,
+                                        isRequired: true,
+                                        onChanged: (value) {
+                                          if (value.isNotEmpty) {
+                                            controller.updateFieldError(
+                                                "ename", false);
+                                          }
+                                        },
+                                        width: 250,
+                                        controller: enName,
+                                        Uptext: "Division En - Name",
+                                        hinttext: "Division En - Name",
                                       ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "Do You Want To Delete (${control.filteredDivision![index].enName}) Division",
-                                            style: Theme.of(context).textTheme.bodyMedium!
-                                                .copyWith(
-                                                    fontSize: 16,
-                                                    fontWeight:
-                                                        FontWeight.normal),
-                                          ),
-                                        ],
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 15.0,
+                                            right: 15.0,
+                                            bottom: 15.0),
+                                        child: Textfildwithupper(
+                                          isError: controller.IsarnameError,
+                                          isRequired: true,
+                                          onChanged: (value) {
+                                            if (value.isNotEmpty) {
+                                              controller.updateFieldError(
+                                                  "arname", false);
+                                            }
+                                          },
+                                          width: 250,
+                                          controller: arName,
+                                          Uptext: "Division Ar - Name",
+                                          hinttext: "Division Ar - Name",
+                                        ),
                                       ),
                                     ],
                                   ),
-                                  apptitle: "Delete Division",
-                                  subtitle: "none"));
-                            },
-                            icon: const Icon(VMS_Icons.bin,
-                                size: 16, color: Colors.white)),
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Textfildwithupper(
+                                        readOnly: true,
+                                        width: 250,
+                                        controller: TextEditingController(
+                                            text: control
+                                                .filteredDivision![index]
+                                                .classes!
+                                                .enName),
+                                        Uptext: "Class",
+                                        hinttext: "Class",
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 15.0),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Textfildwithupper(
+                                              isError: controller.IsmeetError,
+                                              isRequired: true,
+                                              onChanged: (value) {
+                                                if (value.isNotEmpty) {
+                                                  controller.updateFieldError(
+                                                      "meet", false);
+                                                }
+                                              },
+                                              width: 230,
+                                              controller: meetUrl,
+                                              Uptext: "Meet URL",
+                                              hinttext: "Meet URL",
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5.0, top: 36.0),
+                                              child: SvgPicture.asset(
+                                                "../../images/meet.svg",
+                                                width: 25,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              apptitle: "Edit Division",
+                              subtitle: "none",
+                            );
+                          }));
+                        },
+                        child: Container(
+                            padding: const EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                border:
+                                    Border.all(color: Colors.grey, width: 0.5),
+                                color: Theme.of(context).cardColor,
+                                boxShadow: const [
+                                  BoxShadow(
+                                      color: Colors.black26,
+                                      offset: Offset(0, 2),
+                                      blurRadius: 1)
+                                ]),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                control.filteredDivision![index].hasStudent ==
+                                        true
+                                    ? const Text("")
+                                    : Container(
+                                        width: 35,
+                                        height: 35,
+                                        decoration: BoxDecoration(
+                                            color: Theme.of(context).cardColor,
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                  color: Colors.black12,
+                                                  offset: Offset(0, 2),
+                                                  blurRadius: 1)
+                                            ]),
+                                        child: IconButton(
+                                            style: const ButtonStyle(
+                                                backgroundColor:
+                                                    WidgetStatePropertyAll(
+                                                        Color(0xffB03D3D)),
+                                                shape: WidgetStatePropertyAll(
+                                                    RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    5))))),
+                                            onPressed: () {
+                                              Get.dialog(VMSAlertDialog(
+                                                  action: [
+                                                    ButtonDialog(
+                                                        text: "Delete",
+                                                        onPressed: () async {
+                                                          await Delete_Division_API(
+                                                                  context)
+                                                              .Delete_Division(
+                                                                  index: index,
+                                                                  Id: control
+                                                                      .filteredDivision![
+                                                                          index]
+                                                                      .id);
+                                                        },
+                                                        color: const Color(
+                                                            0xffB03D3D),
+                                                        width: 80),
+                                                    ButtonDialog(
+                                                        text: "Cancel",
+                                                        onPressed: () {
+                                                          Get.back();
+                                                        },
+                                                        color: Theme.of(context)
+                                                            .primaryColor,
+                                                        width: 80)
+                                                  ],
+                                                  contents: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      Container(
+                                                        width: 400,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            "Do You Want To Delete (${control.filteredDivision![index].enName}) Division",
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                    fontSize:
+                                                                        16,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  apptitle: "Delete Division",
+                                                  subtitle: "none"));
+                                            },
+                                            icon: const Icon(VMS_Icons.bin,
+                                                size: 16, color: Colors.white)),
+                                      ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                        "${control.filteredDivision![index].enName}",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
+                                            .copyWith(
+                                              fontSize: 20,
+                                            )),
+                                  ],
+                                ),
+                                Text(
+                                    "${control.filteredDivision![index].classes!.enName}",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(
+                                          fontSize: 14,
+                                        )),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("Meet URL",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
+                                            .copyWith(
+                                              fontSize: 16,
+                                            )),
+                                    SvgPicture.asset(
+                                      "../../images/meet.svg",
+                                      width: 20,
+                                    )
+                                  ],
+                                )
+                              ],
+                            )),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text("${control.filteredDivision![index].enName}",
-                              style: Theme.of(context).textTheme.bodyMedium!
-                                  .copyWith(
-                                fontSize: 20,
-                              )),
-                        ],
-                      ),
-                      Text("${control.filteredDivision![index].classes!.enName}",
-                          style: Theme.of(context).textTheme.bodyMedium!
-                              .copyWith(fontSize: 14, )),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("Meet URL",
-                              style: Theme.of(context).textTheme.bodyMedium!
-                                  .copyWith(
-                                fontSize: 16,
-                              )),
-                          SvgPicture.asset(
-                            "../../images/meet.svg",
-                            width: 20,
-                          )
-                        ],
-                      )
-                    ],
-                  )),
-            ),
-          );
-        },
-      ) : Center(child: Text("No Divisions" , style: Theme.of(context).textTheme.titleLarge!.copyWith(
-          fontSize: 22,
-          fontWeight: FontWeight.normal
-      )));
+                    );
+                  },
+                )
+              : Center(
+                  child: Text("No Divisions",
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          fontSize: 22, fontWeight: FontWeight.normal)));
     });
   }
 }

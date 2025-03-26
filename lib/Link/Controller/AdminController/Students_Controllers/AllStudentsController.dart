@@ -88,8 +88,8 @@ class Allstudentscontroller extends GetxController {
 
   void Set_Selected_Student(Student_Info_model stu) {
     student = stu.student;
-    print("l;fkdskdfl;ksd");
-    print(stu.student);
+    setClassLoading(true);
+    setDivisionLoading(true);
     update();
   }
 
@@ -125,6 +125,7 @@ class Allstudentscontroller extends GetxController {
   setClassLoading(bool value) {
     isClassLoading = value;
     classIndex = "";
+    divisionIndex = "";
     update();
   }
 

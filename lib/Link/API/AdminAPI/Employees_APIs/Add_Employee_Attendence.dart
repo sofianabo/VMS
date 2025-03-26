@@ -11,27 +11,24 @@ class Add_Employee_Attendence_API {
 
   static Future<dynamic> Add_Employee_Attendence({
     required employees,
+    required String Datetime,
   }) async {
-
     final controller = Get.find<EmployeeController>();
     CancelToken cancelToken = CancelToken();
     Loading_Dialog(cancelToken: cancelToken);
     String myURI = "$hostPort$addEmployeeAttendance";
 
     try {
-
       var response = await dio.post(
         cancelToken: cancelToken,
         myURI,
-        data: {'attendance': employees},
+        data: {'date': Datetime, 'attendance': employees},
         options: getDioOptions(),
       );
 
       if (response.statusCode == 200) {
-        controller.setIsIsuploaded(true);
-        return response.statusCode;
+        controller.Doneupload();
       } else {
-
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
@@ -39,15 +36,13 @@ class Add_Employee_Attendence_API {
         ));
       }
     } catch (e) {
-
       if (e is DioException && e.type == DioExceptionType.cancel) {
-        print("Request canceled");
       } else if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    }finally{
+    } finally {
       Get.back();
     }
     return true;

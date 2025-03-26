@@ -55,7 +55,7 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                         Padding(
                             padding: const EdgeInsets.only(left: 8.0),
                             child: Dropdownallemployee(
-                                title: "Job Title".tr,
+                                title: "Job Title",
                                 width: w / 5,
                                 type: "roll")),
                         Padding(
@@ -102,89 +102,226 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
                               onPressed: () {
-                                Get.dialog(VMSAlertDialog(
-                                    action: [
-                                      ButtonDialog(
-                                          text: "Add Virtual User".tr,
-                                          onPressed: () {
-                                            Add_Virtual_Employee_API
-                                                .Add_Virtual_Employee(
-                                                    userName: username.text,
-                                                    password: password.text,
-                                                    roll: Get.find<
+                                Get.dialog(
+                                    GetBuilder<All_Virtual_Employee_Controller>(
+                                        builder: (Virtual_controller) {
+                                  return VMSAlertDialog(
+                                      action: [
+                                        ButtonDialog(
+                                            text: "Add Virtual User",
+                                            onPressed: () {
+                                              {
+                                                bool isUsernameEmpty = username
+                                                    .text
+                                                    .trim()
+                                                    .isEmpty;
+                                                bool isJoptitleEmpty = Get.find<
                                                             Allempolyeecontroller>()
-                                                        .rolldialogIndex);
-                                          },
-                                          color: Theme.of(context).primaryColor,
-                                          width: 150)
-                                    ],
-                                    contents: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  right: prefs!.getString(
-                                                              languageKey) ==
-                                                          "ar"
-                                                      ? 0
-                                                      : 20.0,
-                                                  left: prefs!.getString(
-                                                              languageKey) ==
-                                                          "ar"
-                                                      ? 20
-                                                      : 0),
-                                              child: Textfildwithupper(
-                                                  Uptext: "Username".tr,
-                                                  width: 250,
-                                                  controller: username,
-                                                  hinttext: "Username".tr),
-                                            ),
-                                            Dropdownallemployee(
-                                                title: "Job Title".tr,
-                                                width: 250,
-                                                type: "rolldialog"),
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 15.0),
-                                          child: Row(
+                                                        .rolldialogIndex
+                                                        .isEmpty ||
+                                                    Get.find<Allempolyeecontroller>()
+                                                            .rolldialogIndex ==
+                                                        "";
+
+                                                bool isPasswordEmpty = password
+                                                    .text
+                                                    .trim()
+                                                    .isEmpty;
+                                                bool isConfirmPasswordEmpty =
+                                                    cPassword.text
+                                                        .trim()
+                                                        .isEmpty;
+
+                                                RegExp passwordRegex = RegExp(
+                                                    r"^[a-zA-Z0-9]{8,}$");
+                                                bool isPasswordValid =
+                                                    passwordRegex.hasMatch(
+                                                        password.text);
+
+                                                bool isConfirmPasswordValid =
+                                                    passwordRegex.hasMatch(
+                                                        cPassword.text);
+
+                                                Virtual_controller
+                                                    .updateFieldError(
+                                                        "username",
+                                                        isUsernameEmpty);
+                                                Virtual_controller
+                                                    .updateFieldError(
+                                                        "jop", isJoptitleEmpty);
+
+                                                Virtual_controller
+                                                    .updateFieldError(
+                                                        "password",
+                                                        isPasswordEmpty ||
+                                                            !isPasswordValid);
+                                                Virtual_controller.updateFieldError(
+                                                    "cpassword",
+                                                    isConfirmPasswordEmpty ||
+                                                        !isConfirmPasswordValid ||
+                                                        cPassword.text !=
+                                                            cPassword.text);
+
+                                                // إذا لم يكن هناك أي أخطاء، قم بإضافة ولي الأمر
+                                                if (!(isUsernameEmpty ||
+                                                    isJoptitleEmpty ||
+                                                    isPasswordEmpty ||
+                                                    !isPasswordValid ||
+                                                    isConfirmPasswordEmpty ||
+                                                    !isConfirmPasswordValid ||
+                                                    password.text !=
+                                                        cPassword.text)) {
+                                                  Add_Virtual_Employee_API
+                                                      .Add_Virtual_Employee(
+                                                          userName:
+                                                              username.text,
+                                                          password:
+                                                              password.text,
+                                                          roll: Get.find<
+                                                                  Allempolyeecontroller>()
+                                                              .rolldialogIndex);
+                                                }
+                                              }
+                                            },
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                            width: 150)
+                                      ],
+                                      contents: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsets.only(
-                                                    right: prefs!.getString(
-                                                                languageKey) ==
-                                                            "ar"
-                                                        ? 0
-                                                        : 20.0,
-                                                    left: prefs!.getString(
-                                                                languageKey) ==
-                                                            "ar"
-                                                        ? 20
-                                                        : 0),
+                                                padding: const EdgeInsets.only(
+                                                    right: 15.0),
                                                 child: Textfildwithupper(
-                                                    Uptext: "Password".tr,
+                                                    onChanged: (value) {
+                                                      if (value.isNotEmpty) {
+                                                        Virtual_controller
+                                                            .updateFieldError(
+                                                                "username",
+                                                                false);
+                                                      }
+                                                    },
+                                                    isRequired: true,
+                                                    isError: Virtual_controller
+                                                        .IsusernameError,
+                                                    Uptext: "Username",
                                                     width: 250,
-                                                    controller: password,
-                                                    hinttext: "Password".tr),
+                                                    controller: username,
+                                                    hinttext: "Username"),
                                               ),
-                                              Textfildwithupper(
-                                                  Uptext: "Confirm Password".tr,
+                                              Dropdownallemployee(
+                                                  isError: Virtual_controller
+                                                      .IsJoptitleError,
+                                                  title: "Job Title",
                                                   width: 250,
-                                                  controller: cPassword,
-                                                  hinttext:
-                                                      "Confirm Password".tr)
+                                                  type: "rolldialog"),
                                             ],
                                           ),
-                                        )
-                                      ],
-                                    ),
-                                    apptitle: "Add Virtual User".tr,
-                                    subtitle: "none"));
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 15.0),
+                                            child: Row(
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 15.0),
+                                                  child: Textfildwithupper(
+                                                      onChanged: (value) {
+                                                        if (value.isNotEmpty) {
+                                                          Virtual_controller
+                                                              .updateFieldError(
+                                                                  "password",
+                                                                  false);
+                                                        }
+                                                      },
+                                                      isError:
+                                                          Virtual_controller
+                                                              .IsPasswordError,
+                                                      fieldType: "password",
+                                                      IconButton: IconButton(
+                                                          onPressed: () {
+                                                            Virtual_controller
+                                                                .ChangeShowPassword(
+                                                                    !Virtual_controller
+                                                                        .ShowPassword);
+                                                          },
+                                                          icon: Icon(
+                                                            Virtual_controller
+                                                                    .ShowPassword
+                                                                ? Icons
+                                                                    .visibility_off
+                                                                : Icons
+                                                                    .remove_red_eye_outlined,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodySmall!
+                                                                .color,
+                                                          )),
+                                                      hidePassword:
+                                                          Virtual_controller
+                                                              .ShowPassword,
+                                                      isRequired: true,
+                                                      Uptext: "Password",
+                                                      width: 250,
+                                                      controller: password,
+                                                      hinttext: "Password"),
+                                                ),
+                                                Textfildwithupper(
+                                                    onChanged: (value) {
+                                                      if (value.isNotEmpty) {
+                                                        Virtual_controller
+                                                            .updateFieldError(
+                                                                "cpassword",
+                                                                false);
+                                                      }
+                                                    },
+                                                    isError: Virtual_controller
+                                                        .IsConfirmPasswordError,
+                                                    fieldType: "password",
+                                                    IconButton: IconButton(
+                                                        onPressed: () {
+                                                          Virtual_controller
+                                                              .ChangeShowConfirmPassword(
+                                                                  !Virtual_controller
+                                                                      .ShowConfirmPassword);
+                                                        },
+                                                        icon: Icon(
+                                                          Virtual_controller
+                                                                  .ShowConfirmPassword
+                                                              ? Icons
+                                                                  .visibility_off
+                                                              : Icons
+                                                                  .remove_red_eye_outlined,
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodySmall!
+                                                                  .color,
+                                                        )),
+                                                    hidePassword:
+                                                        Virtual_controller
+                                                            .ShowConfirmPassword,
+                                                    isRequired: true,
+                                                    Uptext: "Confirm Password",
+                                                    width: 250,
+                                                    controller: cPassword,
+                                                    hinttext:
+                                                        "Confirm Password")
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      apptitle: "Add Virtual User",
+                                      subtitle: "none");
+                                }));
                               },
                               icon: Icon(Icons.add,
                                   size: 18,

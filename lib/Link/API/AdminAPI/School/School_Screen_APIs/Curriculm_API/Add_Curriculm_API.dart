@@ -59,7 +59,7 @@ class Add_Curriculm_API {
       if (response.statusCode == 200) {
         gets.Get.back();
         gets.Get.back();
-        await Get_All_Curriculm_API(context).Get_All_Curriculm();
+        Get_All_Curriculm_API(context).Get_All_Curriculm();
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
@@ -67,6 +67,7 @@ class Add_Curriculm_API {
           type: DioExceptionType.badResponse,
         ));
       }
+      return response.statusCode;
     } catch (e) {
       if (e is DioException) {
         ErrorHandler.handleDioError(e);

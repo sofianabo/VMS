@@ -3,9 +3,23 @@ import 'package:get/get.dart';
 import 'package:vms_school/view/Admin/School_Management/Rewards_Pages/Rewards_Grid.dart';
 
 class RewardsController extends GetxController {
+  double fontSize;
+  bool isBold;
+
+  RewardsController(this.fontSize, this.isBold);
+
+  void updateFontSize(double newSize) {
+    fontSize = newSize;
+    update();
+  }
+
+  void toggleBold() {
+    isBold = !isBold;
+    update();
+  }
+
   String selectedImage = "../../images/Certificate/c3.svg";
 
-// بيانات الشهادات
   List<Map<String, dynamic>> Certificats = [
     {
       "image": "../../images/Certificate/c2.svg",
@@ -42,7 +56,7 @@ class RewardsController extends GetxController {
         },
         {
           "islock": false,
-          "name": "لتميزه في مادة العلوم",
+          "name": "لتميزه في جميع المواد",
           "PositionX": "266.8",
           "PositionY": "342.6",
           "isbold": false,
@@ -108,7 +122,7 @@ class RewardsController extends GetxController {
         },
         {
           "islock": false,
-          "name": "لتميزه في مادة العلوم",
+          "name": "لتميزه في جميع المواد",
           "PositionX": "238.4",
           "PositionY": "341.2",
           "isbold": false,
@@ -174,7 +188,7 @@ class RewardsController extends GetxController {
         },
         {
           "islock": false,
-          "name": "لتميزه في مادة العلوم",
+          "name": "لتميزه في جميع المواد",
           "PositionX": "262.8",
           "PositionY": "350.6",
           "isbold": false,
@@ -240,7 +254,7 @@ class RewardsController extends GetxController {
         },
         {
           "islock": false,
-          "name": "لتميزه في مادة العلوم",
+          "name": "لتميزه في جميع المواد",
           "PositionX": "254.8",
           "PositionY": "345.6",
           "isbold": false,
@@ -306,7 +320,339 @@ class RewardsController extends GetxController {
         },
         {
           "islock": false,
-          "name": "لتميزه في مادة العلوم",
+          "name": "لتميزه في جميع المواد",
+          "PositionX": "246.8",
+          "PositionY": "337.6",
+          "isbold": false,
+          "size": 36,
+          "color": "0xff000000",
+          "type": "UnKnow",
+        },
+        {
+          "islock": false,
+          "name": "و نتمنى له دوام التقدم و النجاح",
+          "PositionX": "256.8",
+          "PositionY": "463.6",
+          "isbold": false,
+          "size": 16,
+          "color": "0xff000000",
+          "type": "UnKnow",
+        },
+        {
+          "islock": true,
+          "name":
+              "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+          "PositionX": "571.6",
+          "PositionY": "487.2",
+          "isbold": false,
+          "size": 16,
+          "color": "0xff000000",
+          "type": "Date",
+        }
+      ]
+    },
+  ];
+  List<Map<String, dynamic>> DialogCertificats = [
+    {
+      "image": "../../images/Certificate/c2.svg",
+      "DataPosition": [
+        {
+          "islock": true,
+          "name": "شهادة امتياز",
+          "PositionX": "540.0",
+          "PositionY": "227.6",
+          "isbold": true,
+          "size": 14,
+          "color": "0xffCEAD6A",
+          "type": "Cname",
+        },
+        {
+          "islock": false,
+          "name": "اسرة المدرس الافتراضية الحديثة تهنئ الطالب",
+          "PositionX": "225.4",
+          "PositionY": "56.0",
+          "isbold": false,
+          "size": 14,
+          "color": "0xff000000",
+          "type": "UnKnow",
+        },
+        {
+          "islock": true,
+          "name": "ليث هيثم عزام",
+          "PositionX": "281.8",
+          "PositionY": "178.0",
+          "isbold": false,
+          "size": 24,
+          "color": "0xff000000",
+          "type": "stuname",
+        },
+        {
+          "islock": false,
+          "name": "لتميزه في جميع المواد",
+          "PositionX": "275.8",
+          "PositionY": "272.6",
+          "isbold": false,
+          "size": 16,
+          "color": "0xff000000",
+          "type": "UnKnow",
+        },
+        {
+          "islock": false,
+          "name": "و نتمنى له دوام التقدم و النجاح",
+          "PositionX": "263.8",
+          "PositionY": "301.0",
+          "isbold": false,
+          "size": 14,
+          "color": "0xff000000",
+          "type": "UnKnow",
+        },
+        {
+          "islock": true,
+          "name":
+              "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+          "PositionX": "518.1",
+          "PositionY": "394.6",
+          "isbold": false,
+          "size": 12,
+          "color": "0xff000000",
+          "type": "Date",
+        }
+      ]
+    },
+    {
+      "image": "../../images/Certificate/c1.svg",
+      "DataPosition": [
+        {
+          "islock": true,
+          "name": "شهادة امتياز",
+          "PositionX": "9.5",
+          "PositionY": "225.2",
+          "isbold": true,
+          "size": 14,
+          "color": "0xff1B2E50",
+          "type": "Cname",
+        },
+        {
+          "islock": false,
+          "name": "اسرة المدرس الافتراضية الحديثة تهنئ الطالب",
+          "PositionX": "156.4",
+          "PositionY": "52.7",
+          "isbold": false,
+          "size": 14,
+          "color": "0xff000000",
+          "type": "UnKnow",
+        },
+        {
+          "islock": true,
+          "name": "ليث هيثم عزام",
+          "PositionX": "220.8",
+          "PositionY": "174.0",
+          "isbold": false,
+          "size": 24,
+          "color": "0xff000000",
+          "type": "stuname",
+        },
+        {
+          "islock": false,
+          "name": "لتميزه في جميع المواد",
+          "PositionX": "214.2",
+          "PositionY": "271.0",
+          "isbold": false,
+          "size": 16,
+          "color": "0xff000000",
+          "type": "UnKnow",
+        },
+        {
+          "islock": false,
+          "name": "و نتمنى له دوام التقدم و النجاح",
+          "PositionX": "202.1",
+          "PositionY": "297.7",
+          "isbold": false,
+          "size": 14,
+          "color": "0xff000000",
+          "type": "UnKnow",
+        },
+        {
+          "islock": true,
+          "name":
+              "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+          "PositionX": "400.4",
+          "PositionY": "397.8",
+          "isbold": false,
+          "size": 12,
+          "color": "0xff000000",
+          "type": "Date",
+        }
+      ]
+    },
+    {
+      "image": "../../images/Certificate/c4.svg",
+      "DataPosition": [
+        {
+          "islock": true,
+          "name": "شهادة امتياز",
+          "PositionX": "532.6",
+          "PositionY": "230.0",
+          "isbold": true,
+          "size": 14,
+          "color": "0xff1B2E50",
+          "type": "Cname",
+        },
+        {
+          "islock": false,
+          "name": "اسرة المدرس الافتراضية الحديثة تهنئ الطالب",
+          "PositionX": "180.4",
+          "PositionY": "83.0",
+          "isbold": false,
+          "size": 14,
+          "color": "0xff000000",
+          "type": "UnKnow",
+        },
+        {
+          "islock": true,
+          "name": "ليث هيثم عزام",
+          "PositionX": "245.4",
+          "PositionY": "184.1",
+          "isbold": false,
+          "size": 24,
+          "color": "0xff000000",
+          "type": "stuname",
+        },
+        {
+          "islock": false,
+          "name": "لتميزه في جميع المواد",
+          "PositionX": "229.3",
+          "PositionY": "275.7",
+          "isbold": false,
+          "size": 16,
+          "color": "0xff000000",
+          "type": "UnKnow",
+        },
+        {
+          "islock": false,
+          "name": "و نتمنى له دوام التقدم و النجاح",
+          "PositionX": "214.1",
+          "PositionY": "302.4",
+          "isbold": false,
+          "size": 14,
+          "color": "0xff000000",
+          "type": "UnKnow",
+        },
+        {
+          "islock": true,
+          "name":
+              "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+          "PositionX": "462.8",
+          "PositionY": "369.0",
+          "isbold": false,
+          "size": 12,
+          "color": "0xff000000",
+          "type": "Date",
+        }
+      ]
+    },
+    {
+      "image": "../../images/Certificate/c3.svg",
+      "DataPosition": [
+        {
+          "islock": true,
+          "name": "شهادة ذهبية",
+          "PositionX": "540.0",
+          "PositionY": "227.6",
+          "isbold": true,
+          "size": 14,
+          "color": "0xffCEAD6A",
+          "type": "Cname",
+        },
+        {
+          "islock": false,
+          "name": "اسرة المدرس الافتراضية الحديثة تهنئ الطالب",
+          "PositionX": "225.4",
+          "PositionY": "56.0",
+          "isbold": false,
+          "size": 14,
+          "color": "0xffCEAD6A",
+          "type": "UnKnow",
+        },
+        {
+          "islock": true,
+          "name": "ليث هيثم عزام",
+          "PositionX": "281.8",
+          "PositionY": "178.0",
+          "isbold": true,
+          "size": 24,
+          "color": "0xffCEAD6A",
+          "type": "stuname",
+        },
+        {
+          "islock": false,
+          "name": "لتميزه في جميع المواد",
+          "PositionX": "275.8",
+          "PositionY": "272.6",
+          "isbold": false,
+          "size": 16,
+          "color": "0xffCEAD6A",
+          "type": "UnKnow",
+        },
+        {
+          "islock": false,
+          "name": "و نتمنى له دوام التقدم و النجاح",
+          "PositionX": "263.8",
+          "PositionY": "301.0",
+          "isbold": false,
+          "size": 14,
+          "color": "0xffCEAD6A",
+          "type": "UnKnow",
+        },
+        {
+          "islock": true,
+          "name":
+              "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+          "PositionX": "518.1",
+          "PositionY": "394.6",
+          "isbold": false,
+          "size": 12,
+          "color": "0xffCEAD6A",
+          "type": "Date",
+        }
+      ]
+    },
+    {
+      "image": "../../images/Certificate/c5.svg",
+      "DataPosition": [
+        {
+          "islock": true,
+          "name": "شهادة امتياز",
+          "PositionX": "70.0",
+          "PositionY": "254.6",
+          "isbold": true,
+          "size": 24,
+          "color": "0xff333B99",
+          "type": "Cname",
+        },
+        {
+          "islock": false,
+          "name": "اسرة المدرس الافتراضية الحديثة تهنئ الطالب",
+          "PositionX": "255.4",
+          "PositionY": " 115.0",
+          "isbold": false,
+          "size": 16,
+          "color": "0xff000000",
+          "type": "UnKnow",
+        },
+        {
+          "islock": true,
+          "name": "ليث هيثم عزام",
+          "PositionX": "304.2",
+          "PositionY": "214.6",
+          "isbold": false,
+          "size": 36,
+          "color": "0xff000000",
+          "type": "stuname",
+        },
+        {
+          "islock": false,
+          "name": "لتميزه في جميع المواد",
           "PositionX": "246.8",
           "PositionY": "337.6",
           "isbold": false,
@@ -344,6 +690,57 @@ class RewardsController extends GetxController {
 
   var progress = 0.0.obs;
 
+  Future<void> selectDialogImage(String image) async {
+    if (selectedImage == image) {
+      return;
+    }
+    selectedImage = image;
+    textOverlays.clear();
+    textOverlays.clear();
+    update();
+
+    await Future.delayed(Duration(milliseconds: 10));
+
+    var selectedCertificate = DialogCertificats.firstWhere(
+      (cert) => cert['image'].toString().trim() == image.trim(),
+      orElse: () => {},
+    );
+
+    if (selectedCertificate.isNotEmpty) {
+      var dataPositionList = selectedCertificate['DataPosition'];
+
+      for (var data in dataPositionList) {
+        InitialTextOverlay(
+          type: data['type'],
+          text: data['name'],
+          position: Offset(
+            double.parse(data['PositionX'].toString().trim()),
+            double.parse(data['PositionY'].toString().trim()),
+          ),
+          size: data['size'],
+          color: Color(int.parse(data['color'])),
+          isbold: data['isbold'],
+        );
+      }
+    }
+
+    update();
+  }
+
+  void updateCertificates(
+      List<Map<String, dynamic>> certificates, String newName) {
+    List<Map<String, dynamic>> updatedCertificates =
+        List.from(DialogCertificats);
+
+    for (var certificate in updatedCertificates) {
+      for (var data in certificate['DataPosition']) {
+        if (data['type'] == "stuname") {
+          data['name'] = newName;
+        }
+      }
+    }
+  }
+
   Future<void> selectImage(String image) async {
     if (selectedImage == image) {
       return;
@@ -360,7 +757,6 @@ class RewardsController extends GetxController {
       orElse: () => {},
     );
 
-    // التأكد من وجود الشهادة المحددة
     if (selectedCertificate.isNotEmpty) {
       var dataPositionList = selectedCertificate['DataPosition'];
 
@@ -416,12 +812,10 @@ class RewardsController extends GetxController {
     update();
   }
 
-  // تحديث النص
   void updateTextOverlay(int index, TextOverlay updatedOverlay) {
     if (index >= 0 && index < textOverlays.length) {
-      // تعديل العنصر في المصفوفة مباشرة باستخدام الفهرس
-      textOverlays[index] = updatedOverlay; // نعدل النص مباشرة
-      update(); // تحديث الواجهة بعد التعديل
+      textOverlays[index] = updatedOverlay;
+      update();
     }
   }
 
@@ -491,7 +885,6 @@ class RewardsController extends GetxController {
     update(); // تحديث الواجهة بعد الحفظ
   }
 
-// حذف النص
   void deleteText(int index) {
     // التأكد من إزالة العنصر بشكل صحيح حسب الـ index المحدد
     if (index >= 0 && index < textOverlays.length) {
@@ -501,7 +894,6 @@ class RewardsController extends GetxController {
     }
   }
 
-  // تحديد النص
   void selectText(int index) {
     selectedTextIndex = index;
 
@@ -515,7 +907,6 @@ class RewardsController extends GetxController {
     update();
   }
 
-  // إلغاء تحديد النص
   void deselectText() {
     selectedTextIndex = null;
     for (var overlay in textOverlays) {

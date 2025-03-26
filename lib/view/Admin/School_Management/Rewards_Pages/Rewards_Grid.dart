@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Rewards_Controller.dart';
 import 'package:vms_school/Link/Functions/Export_Rewards.dart';
@@ -127,7 +126,10 @@ class _RewardsGridState extends State<RewardsGrid> {
                           _buildToolButton(
                             icon: Icons.picture_as_pdf,
                             label: "Export As Pdf",
-                            onPressed: saveRewardsAsPdf,
+                            onPressed: () async {
+                              await saveRewardsAsPdf(
+                                  key: RewardsGloballKey, saveLocal: true);
+                            },
                           ),
 
                           // زر إضافة قالب جديد
@@ -244,49 +246,6 @@ class _DraggableTextState extends State<DraggableText> {
     textController = TextEditingController(text: widget.overlay.text);
   }
 
-  void _pickColor() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return Dialog(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text("اختر لون النص"),
-                ColorPicker(
-                  hexInputBar: true,
-                  pickerColor: color,
-                  labelTextStyle: TextStyle(color: Colors.black),
-                  onColorChanged: (newColor) {
-                    setState(() {
-                      color = newColor;
-                    });
-                    widget.onUpdate(
-                      TextOverlay(
-                        type: widget.overlay.type, // تمرير النوع الحالي
-                        text: textController.text,
-                        position: position,
-                        fontSize: fontSize,
-                        color: color,
-                        isBold: isBold,
-                        isSelected: widget.isSelected,
-                      ),
-                    );
-                  },
-                ),
-                TextButton(
-                  child: Text("موافق"),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -363,10 +322,6 @@ class _DraggableTextState extends State<DraggableText> {
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          IconButton(
-                            icon: Icon(Icons.color_lens, color: color),
-                            onPressed: _pickColor,
-                          ),
                           IconButton(
                             icon: Icon(Icons.delete, color: Colors.red),
                             onPressed: () {

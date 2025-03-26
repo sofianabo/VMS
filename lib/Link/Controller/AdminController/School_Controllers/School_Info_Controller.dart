@@ -14,7 +14,6 @@ class SchoolInfoController extends GetxController {
   var Joint_Building = false.obs;
   var Industrial_Section = false.obs;
 
-
   TextEditingController School_Name = TextEditingController();
   TextEditingController License_Number = TextEditingController();
   TextEditingController Address = TextEditingController();
@@ -40,29 +39,29 @@ class SchoolInfoController extends GetxController {
       SchoolInfo.clear();
       Map<String, dynamic> newSchoolInfo = {
         "School_Name": "",
-        "License_Number":"",
-        "Address":"",
-        "Village":"",
-        "Region":"",
-        "Phone":"",
-        "Email":"",
-        "Creation_Year":"",
-        "Clinic_Name":"",
-        "Congregation_number":"",
-        "Previous_name":"",
-        "Town_Chip":"",
-        "Fax":"",
+        "License_Number": "",
+        "Address": "",
+        "Village": "",
+        "Region": "",
+        "Phone": "",
+        "Email": "",
+        "Creation_Year": "",
+        "Clinic_Name": "",
+        "Congregation_number": "",
+        "Previous_name": "",
+        "Town_Chip": "",
+        "Fax": "",
         "Work_Begin_Year": "",
-        "Country":""     ,
-        "Work_Type":""      ,
-        "Outstanding_School":"",
-        "Taken_OverSchool":"",
-        "Reassignment_Teachers":"",
-        "Martyrs_Sons":"",
-        "Internet_Connection":"",
-        "Government_Connection":"",
-        "Joint_Building":"",
-        "Industrial_Section":"",
+        "Country": "",
+        "Work_Type": "",
+        "Outstanding_School": "",
+        "Taken_OverSchool": "",
+        "Reassignment_Teachers": "",
+        "Martyrs_Sons": "",
+        "Internet_Connection": "",
+        "Government_Connection": "",
+        "Joint_Building": "",
+        "Industrial_Section": "",
       };
       SchoolInfo.add(newSchoolInfo);
     } else {
@@ -85,11 +84,11 @@ class SchoolInfoController extends GetxController {
       Outstanding_School.value = datas.outstandingSchool == 1 ? true : false;
       Taken_OverSchool.value = datas.takenOverSchool == 1 ? true : false;
       Reassignment_Teachers.value =
-      datas.reassignmentTeachers == 1 ? true : false;
+          datas.reassignmentTeachers == 1 ? true : false;
       Martyrs_Sons.value = datas.martyrsSons == 1 ? true : false;
       Internet_Connection.value = datas.internetConnection == 1 ? true : false;
       Government_Connection.value =
-      datas.governmentConnection == 1 ? true : false;
+          datas.governmentConnection == 1 ? true : false;
       Joint_Building.value = datas.jointBuilding == 1 ? true : false;
       Industrial_Section.value = datas.industrialSection == 1 ? true : false;
 
@@ -126,7 +125,6 @@ class SchoolInfoController extends GetxController {
     update();
   }
 
-
   List<String> listCountry = [
     "Twelfth Scientific Grade",
     "Eleventh Scientific Grade",
@@ -143,8 +141,6 @@ class SchoolInfoController extends GetxController {
     "Eighth Scientific Grade",
     "Seventh Scientific Grade"
   ];
-
-
 
   void selectIndex(String type, String? index) {
     switch (type) {
@@ -176,6 +172,59 @@ class SchoolInfoController extends GetxController {
 
   void setIsLoading(bool value) {
     isLoading = value;
+    update();
+  }
+
+  bool IsnameError = false;
+  bool IslicError = false;
+  bool IsaddressError = false;
+  bool IsvillError = false;
+  bool IsregError = false;
+  bool Isphoneror = false;
+  bool IsworkError = false;
+  bool IscxError = false;
+  bool IsemailError = false;
+  bool IscnumError = false;
+  bool IstwnError = false;
+
+  void updateFieldError(String type, bool newValue) {
+    switch (type) {
+      case 'name':
+        IsnameError = newValue;
+        break;
+      case 'lic':
+        IslicError = newValue;
+        break;
+      case 'address':
+        IsaddressError = newValue;
+        break;
+      case 'vill':
+        IsvillError = newValue;
+        break;
+      case 'reg':
+        IsregError = newValue;
+        break;
+      case 'phone':
+        Isphoneror = newValue;
+        break;
+      case 'work':
+        IsworkError = newValue;
+        break;
+      case 'cx':
+        IscxError = newValue;
+        break;
+      case 'email':
+        IsemailError = newValue;
+        break;
+      case 'cnum':
+        IscnumError = newValue;
+        break;
+      case 'twn':
+        IstwnError = newValue;
+        break;
+      default:
+        print("Error: Invalid type");
+    }
     update();
   }
 }

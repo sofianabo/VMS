@@ -136,6 +136,7 @@ class _AppbarCustomState extends State<AppbarCustom> {
           ),
           SizedBox(
             width: 300,
+            height: 70,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

@@ -33,8 +33,6 @@ class _Profile_DropDownState extends State<Profile_DropDown> {
   @override
   void initState() {
     super.initState();
-
-    // تحديث الواجهة عند التركيز أو فقدانه
     _focusNode.addListener(() {
       setState(() {});
     });

@@ -43,7 +43,7 @@ class Employeeattendencecontroller extends GetxController {
   }
 
   removeAttendence() {
-    AttendencetDate.value = null;
+    AttendencetDate.value = DateTime.now();
     Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
     update();
   }
@@ -111,9 +111,6 @@ class Employeeattendencecontroller extends GetxController {
         Get.find<All_Screen_Sessions_Controller>().startSessionDate;
     String rawEndDate =
         Get.find<All_Screen_Sessions_Controller>().endSessionDate;
-
-    print("Raw Start Date: $rawStartDate");
-    print("Raw End Date: $rawEndDate");
 
     rawStartDate = rawStartDate.trim();
     rawEndDate = rawEndDate.trim();

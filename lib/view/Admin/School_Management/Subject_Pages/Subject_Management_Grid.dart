@@ -142,43 +142,74 @@ class Subject_Management_Grid extends StatelessWidget {
               name.text = "${row['name']}";
               enName.text = "${row['enName']}";
               Get.dialog(
-                VMSAlertDialog(
-                    action: [
-                      ButtonDialog(
-                          text: "Edit",
-                          onPressed: () {
-                            Edit_Subject_API(context).Edit_Subject(
-                              SubjectId: controller.Subjects[index]['id'],
-                              enName: enName.text,
-                              name: name.text,
-                            );
-                          },
-                          color: Theme.of(context).primaryColor,
-                          width: 120),
-                    ],
-                    contents: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 15.0, right: 15.0),
-                              child: Textfildwithupper(
-                                  controller: enName,
-                                  Uptext: "Subject En - Name",
-                                  hinttext: "Subject En - Name"),
-                            ),
-                            Textfildwithupper(
-                                controller: name,
-                                Uptext: "Subject Ar - Name",
-                                hinttext: "Subject Ar - Name"),
-                          ],
-                        ),
+                GetBuilder<Subject_Controller>(builder: (controller) {
+                  return VMSAlertDialog(
+                      action: [
+                        ButtonDialog(
+                            text: "Edit",
+                            onPressed: () async {
+                              bool isArNameEmpty = name.text.isEmpty;
+                              bool isEnNameEmpty = enName.text.isEmpty;
+
+                              controller.updateFieldError(
+                                  "arname", isArNameEmpty);
+                              controller.updateFieldError(
+                                  "enname", isEnNameEmpty);
+
+                              if (!(isArNameEmpty || isEnNameEmpty)) {
+                                await Edit_Subject_API(context).Edit_Subject(
+                                  SubjectId: controller.Subjects[index]['id'],
+                                  enName: enName.text,
+                                  name: name.text,
+                                );
+
+                                name.clear();
+                                enName.clear();
+                              }
+                            },
+                            color: Theme.of(context).primaryColor,
+                            width: 120),
                       ],
-                    ),
-                    apptitle: "Edit Subject",
-                    subtitle: "none"),
+                      contents: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 15.0, right: 15.0),
+                                child: Textfildwithupper(
+                                    isRequired: true,
+                                    isError: controller.IsEnnameError,
+                                    onChanged: (value) {
+                                      if (value.isNotEmpty) {
+                                        controller.updateFieldError(
+                                            "enname", false);
+                                      }
+                                    },
+                                    controller: enName,
+                                    Uptext: "Subject En - Name",
+                                    hinttext: "Subject En - Name"),
+                              ),
+                              Textfildwithupper(
+                                  isRequired: true,
+                                  isError: controller.IsArnameError,
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      controller.updateFieldError(
+                                          "arname", false);
+                                    }
+                                  },
+                                  controller: name,
+                                  Uptext: "Subject Ar - Name",
+                                  hinttext: "Subject Ar - Name"),
+                            ],
+                          ),
+                        ],
+                      ),
+                      apptitle: "Edit Subject",
+                      subtitle: "none");
+                }),
               );
             },
           ),

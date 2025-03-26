@@ -12,31 +12,23 @@ class Add_Division_API {
   Add_Division_API(this.context);
   Dio dio = Dio();
 
-  Add_Division(
-  {
-    classId,
-    enName,
-    name,
-    meetUrl
-}
-      ) async {
-
+  Add_Division({classId, enName, name, meetUrl}) async {
     CancelToken cancelToken = CancelToken();
     Loading_Dialog(cancelToken: cancelToken);
     try {
       String myurl = "$hostPort$createDivision";
       var response = await dio.post(
-        cancelToken: cancelToken,
+          cancelToken: cancelToken,
           myurl,
           data: {
-             'classId':'$classId',
-             'enName':'$enName',
-             'name':'$name',
-             'meetUrl':'$meetUrl',
+            'classId': '$classId',
+            'enName': '$enName',
+            'name': '$name',
+            'meetUrl': '$meetUrl',
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
-        await Get_All_Division_API(context).Get_All_Division();
+        Get_All_Division_API(context).Get_All_Division();
         Get.back();
       } else {
         ErrorHandler.handleDioError(DioException(
@@ -53,8 +45,8 @@ class Add_Division_API {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    }finally{
-     Get.back();
+    } finally {
+      Get.back();
     }
   }
 }

@@ -85,9 +85,9 @@ class _ClassManagementState extends State<ClassManagement> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style:  ButtonStyle(
-                            backgroundColor:
-                                WidgetStatePropertyAll(Theme.of(context).cardColor),
+                        style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll(
+                                Theme.of(context).cardColor),
                             shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
                                     borderRadius:
@@ -107,27 +107,63 @@ class _ClassManagementState extends State<ClassManagement> {
                                   ButtonDialog(
                                       text: "Add".tr,
                                       onPressed: () async {
-                                        await Add_Class_API(context).Add_Class(
-                                            gradeId: controller.grades,
-                                            driveUrl: driveUrl.text,
-                                            enName: enName.text,
-                                            name: arName.text,
-                                            sessionId: Get.find<
-                                                    All_Screen_Sessions_Controller>()
-                                                .sessions!
-                                                .current!
-                                                .id,
-                                            userId: Get.find<
-                                                    Virtual_Employee_Controller>()
-                                                .vecUserID,
-                                            curriculum:
-                                                Get.find<ClassMgmtController>()
-                                                    .selectedCurriculums);
+                                        bool isArNameEmpty =
+                                            arName.text.isEmpty;
+                                        bool isEnNameEmpty =
+                                            enName.text.isEmpty;
+                                        bool isGradeEmpty =
+                                            controller.gradeDiagIndex.isEmpty ||
+                                                controller.gradeDiagIndex == "";
+                                        bool isCurrEmpty = controller
+                                            .selectedCurriculums.isEmpty;
+                                        bool isDriveEmpty =
+                                            driveUrl.text.isEmpty;
+                                        bool isAccountEmpty = controller
+                                                .selectedAdminDiagIndex
+                                                .isEmpty ||
+                                            controller.selectedAdminDiagIndex ==
+                                                "";
 
-                                        arName.clear();
-                                        enName.clear();
-                                        driveUrl.clear();
-                                        Get.back();
+                                        controller.updateFieldError(
+                                            "arname", isArNameEmpty);
+                                        controller.updateFieldError(
+                                            "enname", isEnNameEmpty);
+                                        controller.updateFieldError(
+                                            "grade", isGradeEmpty);
+                                        controller.updateFieldError(
+                                            "curr", isCurrEmpty);
+                                        controller.updateFieldError(
+                                            "drive", isDriveEmpty);
+                                        controller.updateFieldError(
+                                            "account", isAccountEmpty);
+
+                                        if (!(isArNameEmpty ||
+                                            isEnNameEmpty ||
+                                            isGradeEmpty ||
+                                            isCurrEmpty ||
+                                            isDriveEmpty)) {
+                                          await Add_Class_API(context).Add_Class(
+                                              gradeId: controller.grades,
+                                              driveUrl: driveUrl.text,
+                                              enName: enName.text,
+                                              name: arName.text,
+                                              sessionId: Get.find<
+                                                      All_Screen_Sessions_Controller>()
+                                                  .sessions!
+                                                  .current!
+                                                  .id,
+                                              userId: Get.find<
+                                                      Virtual_Employee_Controller>()
+                                                  .vecUserID,
+                                              curriculum: Get.find<
+                                                      ClassMgmtController>()
+                                                  .selectedCurriculums);
+
+                                          arName.clear();
+                                          enName.clear();
+                                          driveUrl.clear();
+                                          Get.back();
+                                        }
                                       },
                                       color: Theme.of(context).primaryColor,
                                       width: 120),
@@ -143,6 +179,14 @@ class _ClassManagementState extends State<ClassManagement> {
                                           MainAxisAlignment.start,
                                       children: [
                                         Textfildwithupper(
+                                            isRequired: true,
+                                            isError: controller.IsEnnameError,
+                                            onChanged: (value) {
+                                              if (value.isNotEmpty) {
+                                                controller.updateFieldError(
+                                                    "enname", false);
+                                              }
+                                            },
                                             width: 250,
                                             controller: enName,
                                             Uptext: "Class En - Name".tr,
@@ -153,6 +197,14 @@ class _ClassManagementState extends State<ClassManagement> {
                                               right: 15.0,
                                               bottom: 15.0),
                                           child: Textfildwithupper(
+                                              isRequired: true,
+                                              isError: controller.IsArnameError,
+                                              onChanged: (value) {
+                                                if (value.isNotEmpty) {
+                                                  controller.updateFieldError(
+                                                      "arname", false);
+                                                }
+                                              },
                                               width: 250,
                                               controller: arName,
                                               Uptext: "Class Ar - Name".tr,
@@ -164,6 +216,7 @@ class _ClassManagementState extends State<ClassManagement> {
                                       children: [
                                         DropDownClassMgmt(
                                             isLoading: controller.isLoading,
+                                            isError: controller.IsGradeError,
                                             title: "Grade".tr,
                                             width: 250,
                                             type: "gradediag"),
@@ -191,6 +244,8 @@ class _ClassManagementState extends State<ClassManagement> {
                                                   Virtual_Employee_Controller>(
                                               builder: (VECcontroller) {
                                             return DropDownClassMgmt(
+                                                isError:
+                                                    controller.IsAccountError,
                                                 isLoading:
                                                     VECcontroller.isLoading,
                                                 title: "Admin Account",
@@ -216,41 +271,56 @@ class _ClassManagementState extends State<ClassManagement> {
                                                       left: 15.0),
                                                   width: 250,
                                                   height: 40,
-                                                  decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        color:
-                                                            Color(0xffB3B3B3)),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                  ),
+                                                  decoration: controller
+                                                          .IscurrError
+                                                      ? BoxDecoration(
+                                                          border: Border.all(
+                                                            color: Colors
+                                                                .red, // تغيير لون الحدود حسب حالة الخطأ
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                        )
+                                                      : BoxDecoration(
+                                                          border: Border.all(
+                                                            color: Color(
+                                                                0xffB3B3B3), // تغيير لون الحدود حسب حالة الخطأ
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                        ),
                                                   child: Row(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
                                                             .spaceBetween,
                                                     children: [
                                                       GetBuilder<
-                                                              ClassMgmtController>(
-                                                          builder:
-                                                              (controller) {
-                                                        return Expanded(
-                                                          child: Text(
-                                                            maxLines: 1,
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .ellipsis,
-                                                            style: Theme.of(context).textTheme.bodyMedium,
-                                                            controller
-                                                                    .selectedCurriculumNames
-                                                                    .isNotEmpty
-                                                                ? Get.find<
-                                                                        ClassMgmtController>()
-                                                                    .selectedCurriculumNames
-                                                                    .join(', ')
-                                                                : 'No selected curriculum', // هنا نعرض رسالة "لا يوجد مناهج مختارة" إذا كانت القائمة فارغة.
-                                                          ),
-                                                        );
-                                                      }),
+                                                          ClassMgmtController>(
+                                                        builder: (controller) {
+                                                          return Expanded(
+                                                            child: Text(
+                                                              maxLines: 1,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .bodyMedium,
+                                                              controller
+                                                                      .selectedCurriculumNames
+                                                                      .isNotEmpty
+                                                                  ? controller
+                                                                      .selectedCurriculumNames
+                                                                      .join(
+                                                                          ', ')
+                                                                  : 'No selected curriculum', // عرض رسالة عند عدم وجود مناهج مختارة
+                                                            ),
+                                                          );
+                                                        },
+                                                      ),
                                                       const Icon(Icons
                                                           .arrow_drop_down),
                                                     ],
@@ -269,6 +339,14 @@ class _ClassManagementState extends State<ClassManagement> {
                                           MainAxisAlignment.start,
                                       children: [
                                         Textfildwithupper(
+                                            isError: controller.IsDriveError,
+                                            isRequired: true,
+                                            onChanged: (value) {
+                                              if (value.isNotEmpty) {
+                                                controller.updateFieldError(
+                                                    "drive", false);
+                                              }
+                                            },
                                             width: 480,
                                             controller: driveUrl,
                                             Uptext: "Drive URL",
@@ -306,16 +384,17 @@ class _ClassManagementState extends State<ClassManagement> {
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                          style:  ButtonStyle(
-                              backgroundColor:
-                                  WidgetStatePropertyAll(Theme.of(context).cardColor),
+                          style: ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                  Theme.of(context).cardColor),
                               shape: WidgetStatePropertyAll(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
                           onPressed: () {},
                           icon: Icon(VMS_Icons.pdf,
-                              size: 18, color: Theme.of(context).highlightColor)),
+                              size: 18,
+                              color: Theme.of(context).highlightColor)),
                     ),
                   ),
                   Container(
@@ -331,9 +410,9 @@ class _ClassManagementState extends State<ClassManagement> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style:  ButtonStyle(
-                            backgroundColor:
-                                WidgetStatePropertyAll(Theme.of(context).cardColor),
+                        style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll(
+                                Theme.of(context).cardColor),
                             shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
                                     borderRadius:

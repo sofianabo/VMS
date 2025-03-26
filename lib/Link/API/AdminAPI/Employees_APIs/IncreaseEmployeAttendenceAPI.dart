@@ -12,17 +12,17 @@ class Increaseemployeattendenceapi {
   BuildContext context;
   Increaseemployeattendenceapi(this.context);
 
-  static Increaseemployeattendence() async {
+  static Increaseemployeattendence({required String DateTime}) async {
     Dio dio = Dio();
 
     final EmployeeController AttendenceController =
         Get.find<EmployeeController>();
     AttendenceController.setIsload(true);
-    AttendenceController.setIsIsuploaded(false);
 
     try {
       String myurl = "$hostPort$employeeIncreaseAttendance";
-      var response = await dio.get(data: {}, myurl, options: getDioOptions());
+      var response = await dio
+          .get(data: {"date": DateTime}, myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         IncreaseEmpolyeeAttendenceModel empolyee =
             IncreaseEmpolyeeAttendenceModel.fromJson(response.data);

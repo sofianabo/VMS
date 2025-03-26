@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/PenaltyAPI/getPenaltiesAndRewardsAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/PenaltyAPI/Get_All_Penalties_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Rewards_APIs/Get_All_Rewards_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/StudentPunishAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/PenaltiesAndRewardsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
@@ -13,7 +14,9 @@ import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/PenaltiesAndRewardsStudentModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
+import 'package:vms_school/view/Admin/School_Management/Rewards_Pages/Rewards_Dialog.dart';
 import 'package:vms_school/widgets/Admin_Students/DropDownStudyYearStudents.dart';
+import 'package:vms_school/widgets/Admin_Students/Penality_And_Rewards_Dialog.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
@@ -31,19 +34,6 @@ class StudyYearStudentGrid extends StatefulWidget {
 class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
     with SingleTickerProviderStateMixin {
   TextEditingController reason = TextEditingController();
-  late TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 2, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -123,495 +113,445 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                           color: Get.theme.primaryColor.withOpacity(0.1));
                 },
               )
-            : GridView.builder(
-                padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
-                    crossAxisSpacing: 20.0,
-                    mainAxisSpacing: 20.0,
-                    childAspectRatio: 1.2),
-                itemCount: controller.filteredStudents!.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () async {
-                      PenaltiesAndRewardsStudentModel model =
-                          await Getpenaltiesandrewardsapi(context)
-                              .Getpenaltiesandrewards(
-                                  controller.filteredStudents![index].id!);
-                      Get.dialog(VMSAlertDialog(
-                          action: [],
-                          contents: SizedBox(
-                              width: 600,
-                              height: Get.height,
-                              child: Container(
-                                child: Column(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(16.0),
-                                      child: Text(
-                                        'Details'.tr,
-                                        style: TextStyle(
-                                            fontSize: 24,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    TabBar(
-                                      controller: _tabController,
-                                      labelColor: Get.theme.primaryColor,
-                                      unselectedLabelColor: Colors.grey,
-                                      indicatorColor: Get.theme.primaryColor,
-                                      indicatorWeight: 4.0,
-                                      splashBorderRadius:
-                                          BorderRadius.circular(10),
-                                      dividerHeight: 0,
-                                      tabs: [
-                                        Tab(text: 'Rewards'.tr),
-                                        Tab(text: 'Penalties'.tr),
-                                      ],
-                                    ),
-                                    Expanded(
-                                      child: GetBuilder<
-                                              Penaltiesandrewardscontroller>(
-                                          builder: (cont) {
-                                        return TabBarView(
-                                          controller: _tabController,
-                                          children: [
-                                            Container(
-                                              padding: EdgeInsets.all(16.0),
-                                              child: SingleChildScrollView(
-                                                scrollDirection: Axis.vertical,
-                                                child: DataTable(
-                                                  border: TableBorder.all(
-                                                    color:
-                                                        Get.theme.primaryColor,
-                                                    width: 1.0,
-                                                  ),
-                                                  columns: [
-                                                    DataColumn(
-                                                        label:
-                                                            Text('Session'.tr)),
-                                                    DataColumn(
-                                                        label:
-                                                            Text('Reward'.tr)),
-                                                  ],
-                                                  rows: const <DataRow>[
-                                                    DataRow(cells: <DataCell>[
-                                                      DataCell(Text('بيان 1')),
-                                                      DataCell(Text('بيان 2')),
-                                                    ]),
-                                                    DataRow(cells: <DataCell>[
-                                                      DataCell(Text('بيان 4')),
-                                                      DataCell(Text('بيان 5')),
-                                                    ]),
-                                                    // يمكنك إضافة المزيد من الصفوف هنا
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            Container(
-                                              padding: EdgeInsets.all(16.0),
-                                              child: SingleChildScrollView(
-                                                scrollDirection: Axis.vertical,
-                                                child: DataTable(
-                                                    border: TableBorder.all(
-                                                      color: Get
-                                                          .theme.primaryColor,
-                                                      width: 1.0,
-                                                    ),
-                                                    columns: [
-                                                      DataColumn(
-                                                          label: Text(
-                                                              'Penalty'.tr)),
-                                                      DataColumn(
-                                                          label: Text(
-                                                              'Start Date'.tr)),
-                                                      DataColumn(
-                                                          label: Text(
-                                                              'End Date'.tr)),
-                                                      DataColumn(
-                                                          label: Text(
-                                                              'Reason'.tr)),
-                                                    ],
-                                                    rows: [
-                                                      for (var i in model
-                                                              .penaltyStudent ??
-                                                          [])
-                                                        DataRow(cells: [
-                                                          DataCell(Text(i.penalty !=
-                                                                      null &&
-                                                                  i.penalty!
-                                                                      .isNotEmpty &&
-                                                                  prefs!.getString(
-                                                                          languageKey) ==
-                                                                      'ar'
-                                                              ? i.penalty![0]
-                                                                      .name ??
-                                                                  "N/A"
-                                                              : i.penalty !=
-                                                                          null &&
-                                                                      i.penalty!
-                                                                          .isNotEmpty
-                                                                  ? i
-                                                                      .penalty![
-                                                                          0]
-                                                                      .enName
-                                                                  : "N/A")),
-                                                          DataCell(Text(
-                                                              "${i.startDate ?? []}")),
-                                                          DataCell(Text(
-                                                              "${i.endDate ?? []}")),
-                                                          DataCell(Text(
-                                                              "${i.cause ?? []}")),
-                                                        ])
-                                                    ]),
-                                              ),
-                                            ),
-                                          ],
-                                        );
-                                      }),
-                                    ),
-                                  ],
-                                ),
-                              )),
-                          apptitle: "Penalties And Rewards".tr,
-                          subtitle: "none"));
-                    },
-                    child: HoverScaleCard(
-                      child: Container(
-                          padding: const EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              border:
-                                  Border.all(color: Colors.grey, width: 0.5),
-                              color: Get.theme.cardColor,
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black26,
-                                    offset: Offset(0, 2),
-                                    blurRadius: 1)
-                              ]),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
+            : controller.filteredStudents!.isEmpty
+                ? Center(
+                    child: Text("No Students".tr,
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            fontSize: 22, fontWeight: FontWeight.normal)))
+                : GridView.builder(
+                    padding:
+                        const EdgeInsets.only(top: 10, left: 40, right: 40),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 4,
+                            crossAxisSpacing: 20.0,
+                            mainAxisSpacing: 20.0,
+                            childAspectRatio: 1.0),
+                    itemCount: controller.filteredStudents!.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () async {
+                          final controllers =
+                              Get.put(Penaltiesandrewardscontroller());
+
+                          controllers.fetchPenalties(int.parse(controller
+                              .filteredStudents![index].id
+                              .toString()));
+
+                          controllers.fetchRewards(int.parse(controller
+                              .filteredStudents![index].id
+                              .toString()));
+
+                          Get.dialog(
+                            Re_Pe_Page(
+                                Id: controller.filteredStudents![index].id
+                                    .toString(),
+                                name: controller
+                                    .filteredStudents![index].fullName
+                                    .toString()),
+                          );
+                        },
+                        child: HoverScaleCard(
+                          child: Container(
+                              padding: const EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(
+                                      color: Colors.grey, width: 0.5),
+                                  color: Get.theme.cardColor,
+                                  boxShadow: const [
+                                    BoxShadow(
+                                        color: Colors.black26,
+                                        offset: Offset(0, 2),
+                                        blurRadius: 1)
+                                  ]),
+                              child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Expanded(
-                                    child: Text(
-                                        "${controller.filteredStudents![index].fullName}",
-                                        style: Get.theme.textTheme.bodyMedium!
-                                            .copyWith(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold)),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                            "${controller.filteredStudents![index].fullName}",
+                                            style: Get
+                                                .theme.textTheme.bodyMedium!
+                                                .copyWith(
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                      ),
+                                      FutureBuilder(
+                                        future: precacheImage(
+                                            NetworkImage(
+                                                "$getimage${controller.filteredStudents![index].fileId}"),
+                                            context),
+                                        builder: (context, snapshot) {
+                                          if (snapshot.connectionState ==
+                                              ConnectionState.done) {
+                                            return CircleAvatar(
+                                              maxRadius: 60,
+                                              backgroundColor:
+                                                  const Color(0xffC4C4C4),
+                                              backgroundImage: controller
+                                                          .filteredStudents![
+                                                              index]
+                                                          .fileId !=
+                                                      null
+                                                  ? NetworkImage(
+                                                      "$getimage${controller.filteredStudents![index].fileId}")
+                                                  : null,
+                                              child: controller
+                                                          .filteredStudents![
+                                                              index]
+                                                          .fileId ==
+                                                      null
+                                                  ? Text(
+                                                      controller
+                                                          .filteredStudents![
+                                                              index]
+                                                          .fullName!
+                                                          .substring(0, 1)
+                                                          .toUpperCase(),
+                                                      style: Get
+                                                          .textTheme.titleLarge!
+                                                          .copyWith(
+                                                              fontSize: 26,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                    )
+                                                  : null,
+                                            );
+                                          } else {
+                                            return CircleAvatar(
+                                              maxRadius: 60,
+                                              backgroundColor:
+                                                  const Color(0xffC4C4C4),
+                                              child: LoadingAnimationWidget
+                                                  .inkDrop(
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                                size: 30,
+                                              ),
+                                            );
+                                          }
+                                        },
+                                      ),
+                                    ],
                                   ),
-                                  FutureBuilder(
-                                    future: precacheImage(
-                                        NetworkImage(
-                                            "$getimage${controller.filteredStudents![index].fileId}"),
-                                        context),
-                                    builder: (context, snapshot) {
-                                      if (snapshot.connectionState ==
-                                          ConnectionState.done) {
-                                        return CircleAvatar(
-                                          maxRadius: 60,
-                                          backgroundColor:
-                                              const Color(0xffC4C4C4),
-                                          backgroundImage: controller
-                                                      .filteredStudents![index]
-                                                      .fileId !=
-                                                  null
-                                              ? NetworkImage(
-                                                  "$getimage${controller.filteredStudents![index].fileId}")
-                                              : null,
-                                          child: controller
-                                                      .filteredStudents![index]
-                                                      .fileId ==
-                                                  null
-                                              ? Text(
-                                                  controller
-                                                      .filteredStudents![index]
-                                                      .fullName!
-                                                      .substring(0, 1)
-                                                      .toUpperCase(),
-                                                  style: Get
-                                                      .textTheme.titleLarge!
-                                                      .copyWith(
-                                                          fontSize: 26,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                )
-                                              : null,
-                                        );
-                                      } else {
-                                        return CircleAvatar(
-                                          maxRadius: 60,
-                                          backgroundColor:
-                                              const Color(0xffC4C4C4),
-                                          child: LoadingAnimationWidget.inkDrop(
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                            size: 30,
-                                          ),
-                                        );
-                                      }
-                                    },
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                  "${controller.filteredStudents![index].state}"
-                                      .tr,
-                                  style: Get.theme.textTheme.bodyMedium!
-                                      .copyWith(
-                                          fontSize: 16,
-                                          color: controller
-                                                      .filteredStudents![index]
-                                                      .state ==
-                                                  "Passing".tr
-                                              ? const Color(0xff2F9742)
-                                              : controller
+                                  Text(
+                                      "${controller.filteredStudents![index].state}"
+                                          .tr,
+                                      style: Get.theme.textTheme.bodyMedium!
+                                          .copyWith(
+                                              fontSize: 16,
+                                              color: controller
                                                           .filteredStudents![
                                                               index]
                                                           .state ==
-                                                      "Failed".tr
-                                                  ? const Color(0xff972F2F)
-                                                  : const Color.fromARGB(
-                                                      255, 44, 134, 194))),
-                              Text(
-                                  "${"Grade Level:".tr} ${prefs!.getString(languageKey) == 'ar' ? controller.filteredStudents![index].grade!.name : controller.filteredStudents![index].grade!.enName}",
-                                  style: Get.theme.textTheme.bodyMedium),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    TextButton(
-                                        style: ButtonStyle(
-                                            backgroundColor:
-                                                const WidgetStatePropertyAll(
-                                                    Colors.transparent),
-                                            shape: WidgetStatePropertyAll(
-                                                RoundedRectangleBorder(
-                                              borderRadius:
-                                                  const BorderRadius.all(
-                                                      Radius.circular(3)),
-                                              side: BorderSide(
+                                                      "Passing".tr
+                                                  ? const Color(0xff2F9742)
+                                                  : controller
+                                                              .filteredStudents![
+                                                                  index]
+                                                              .state ==
+                                                          "Failed".tr
+                                                      ? const Color(0xff972F2F)
+                                                      : const Color.fromARGB(
+                                                          255, 44, 134, 194))),
+                                  Text(
+                                      "${"Grade Level:".tr} ${prefs!.getString(languageKey) == 'ar' ? controller.filteredStudents![index].grade!.name : controller.filteredStudents![index].grade!.enName}",
+                                      style: Get.theme.textTheme.bodyMedium),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: Column(
+                                      spacing: 10.0,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        TextButton(
+                                            style: ButtonStyle(
+                                                backgroundColor:
+                                                    const WidgetStatePropertyAll(
+                                                        Colors.transparent),
+                                                shape: WidgetStatePropertyAll(
+                                                    RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      const BorderRadius.all(
+                                                          Radius.circular(3)),
+                                                  side: BorderSide(
+                                                      color: Get.theme
+                                                          .highlightColor),
+                                                ))),
+                                            onPressed: () {},
+                                            child: Row(
+                                              children: [
+                                                Icon(
+                                                  VMS_Icons.vcard,
                                                   color:
-                                                      Get.theme.highlightColor),
-                                            ))),
-                                        onPressed: () {},
-                                        child: Row(
-                                          children: [
-                                            Icon(
-                                              VMS_Icons.vcard,
-                                              color: Get.theme.highlightColor,
-                                              size: 14,
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 5.0, right: 5.0),
-                                              child: Text(
-                                                'Export Certificate'.tr,
-                                                style: Get.theme.textTheme
-                                                    .headlineMedium,
-                                              ),
-                                            ),
-                                          ],
-                                        )),
-                                    TextButton(
-                                        style: ButtonStyle(
-                                            backgroundColor:
-                                                const WidgetStatePropertyAll(
-                                                    Colors.transparent),
-                                            shape: WidgetStatePropertyAll(
-                                                RoundedRectangleBorder(
-                                              borderRadius:
-                                                  const BorderRadius.all(
-                                                      Radius.circular(3)),
-                                              side: BorderSide(
-                                                  color:
-                                                      Get.theme.highlightColor),
-                                            ))),
-                                        onPressed: () {
-                                          Get.dialog(VMSAlertDialog(
-                                              action: [
-                                                ButtonDialog(
-                                                  width: 90,
-                                                  onPressed: () async {
-                                                    await Studentpunishapi(
-                                                            context)
-                                                        .Studentpunish(
-                                                            Get.find<
-                                                                    Dropdownpenaltycontroller>()
-                                                                .penid!,
-                                                            reason.text,
-                                                            controller
-                                                                .startdate.value
-                                                                .toString(),
-                                                            controller
-                                                                .enddate.value
-                                                                .toString(),
-                                                            controller
-                                                                .filteredStudents![
-                                                                    index]
-                                                                .id!);
-                                                  },
-                                                  color: Get.theme.primaryColor,
-                                                  text: "Send".tr,
-                                                )
+                                                      Get.theme.highlightColor,
+                                                  size: 14,
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 5.0,
+                                                          right: 5.0),
+                                                  child: Text(
+                                                    'Export Certificate'.tr,
+                                                    style: Get.theme.textTheme
+                                                        .headlineMedium,
+                                                  ),
+                                                ),
                                               ],
-                                              contents: Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  const SizedBox(
-                                                    width: 350,
+                                            )),
+                                        PopupMenuButton<String>(
+                                          child: Container(
+                                            padding: EdgeInsets.all(8.0),
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(3)),
+                                                border: Border.all(
+                                                    color: Get
+                                                        .theme.highlightColor)),
+                                            child: Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.gavel,
+                                                  color:
+                                                      Get.theme.highlightColor,
+                                                  size: 14,
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 5.0,
+                                                          right: 5.0),
+                                                  child: Text(
+                                                    'Rewards & Penalties'.tr,
+                                                    style: Get.theme.textTheme
+                                                        .headlineMedium,
                                                   ),
-                                                  GetBuilder<
-                                                          Dropdownpenaltycontroller>(
-                                                      builder: (PController) {
-                                                    return DropDownStudyYearStudents(
-                                                      isLoading:
-                                                          PController.Isloading,
-                                                      title: "Penaltyy".tr,
-                                                      type: "penalty",
-                                                      width: w / 3.6,
-                                                    );
-                                                  }),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 15.0),
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text("The Reason".tr,
-                                                            style: Get
-                                                                .theme
-                                                                .primaryTextTheme
-                                                                .labelSmall),
-                                                        Textfildwithupper(
-                                                            Uptext:
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          tooltip: "".tr,
+                                          onSelected: (value) {
+                                            if (value == "Punishing".tr) {
+                                              Get.dialog(VMSAlertDialog(
+                                                  action: [
+                                                    ButtonDialog(
+                                                      width: 90,
+                                                      onPressed: () async {
+                                                        await Studentpunishapi(
+                                                                context)
+                                                            .Studentpunish(
+                                                                Get.find<
+                                                                        Dropdownpenaltycontroller>()
+                                                                    .penid!,
+                                                                reason.text,
+                                                                controller
+                                                                    .startdate
+                                                                    .value
+                                                                    .toString(),
+                                                                controller
+                                                                    .enddate
+                                                                    .value
+                                                                    .toString(),
+                                                                controller
+                                                                    .filteredStudents![
+                                                                        index]
+                                                                    .id!);
+                                                      },
+                                                      color: Get
+                                                          .theme.primaryColor,
+                                                      text: "Send".tr,
+                                                    )
+                                                  ],
+                                                  contents: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      const SizedBox(
+                                                        width: 350,
+                                                      ),
+                                                      GetBuilder<
+                                                              Dropdownpenaltycontroller>(
+                                                          builder:
+                                                              (PController) {
+                                                        return DropDownStudyYearStudents(
+                                                          isLoading: PController
+                                                              .Isloading,
+                                                          title: "Penaltyy".tr,
+                                                          type: "penalty",
+                                                          width: w / 3.6,
+                                                        );
+                                                      }),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                                top: 15.0),
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
                                                                 "The Reason".tr,
-                                                            isRequired: true,
-                                                            width: w / 3.6,
-                                                            controller: reason,
-                                                            hinttext:
-                                                                "The Reason"
-                                                                    .tr),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 15.0,
-                                                            bottom: 15.0),
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .only(
-                                                                  bottom: 5.0),
-                                                          child: RichText(
-                                                            text: TextSpan(
-                                                                text:
-                                                                    "Start Date"
-                                                                        .tr,
                                                                 style: Get
                                                                     .theme
                                                                     .textTheme
-                                                                    .bodyMedium!
-                                                                    .copyWith(
-                                                                        fontSize:
-                                                                            14,
-                                                                        fontWeight:
-                                                                            FontWeight.normal),
-                                                                children: const [
-                                                                  TextSpan(
-                                                                    text: " *",
-                                                                    style: TextStyle(
-                                                                        color: Colors
-                                                                            .red,
-                                                                        fontSize:
-                                                                            16),
-                                                                  ),
-                                                                ]),
-                                                          ),
+                                                                    .labelSmall),
+                                                            Textfildwithupper(
+                                                                Uptext:
+                                                                    "The Reason"
+                                                                        .tr,
+                                                                isRequired:
+                                                                    true,
+                                                                width: w / 3.6,
+                                                                controller:
+                                                                    reason,
+                                                                hinttext:
+                                                                    "The Reason"
+                                                                        .tr),
+                                                          ],
                                                         ),
-                                                        penaltyStartDate(
-                                                            width: w / 3.6)
-                                                      ],
-                                                    ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                                top: 15.0,
+                                                                bottom: 15.0),
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      bottom:
+                                                                          5.0),
+                                                              child: RichText(
+                                                                text: TextSpan(
+                                                                    text:
+                                                                        "Start Date"
+                                                                            .tr,
+                                                                    style: Get
+                                                                        .theme
+                                                                        .textTheme
+                                                                        .bodyMedium!
+                                                                        .copyWith(
+                                                                            fontSize:
+                                                                                14,
+                                                                            fontWeight:
+                                                                                FontWeight.normal),
+                                                                    children: const [
+                                                                      TextSpan(
+                                                                        text:
+                                                                            " *",
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                Colors.red,
+                                                                            fontSize: 16),
+                                                                      ),
+                                                                    ]),
+                                                              ),
+                                                            ),
+                                                            penaltyStartDate(
+                                                                width: w / 3.6)
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                                top: 15.0,
+                                                                bottom: 15.0),
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text("End Date".tr,
+                                                                style: Get
+                                                                    .theme
+                                                                    .textTheme
+                                                                    .bodyMedium!),
+                                                            PenaltyEndDate(
+                                                                width: w / 3.6)
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 15.0,
-                                                            bottom: 15.0),
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text("End Date".tr,
-                                                            style: Get
-                                                                .theme
-                                                                .textTheme
-                                                                .bodyMedium!),
-                                                        PenaltyEndDate(
-                                                            width: w / 3.6)
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              apptitle: "Punishing Student".tr,
-                                              subtitle: ""));
-                                        },
-                                        child: Row(
-                                          children: [
-                                            Icon(
-                                              Icons.person_remove_outlined,
-                                              size: 14,
-                                              color: Get.theme.highlightColor,
+                                                  apptitle:
+                                                      "Punishing Student".tr,
+                                                  subtitle: ""));
+                                            } else {
+                                              Get.dialog(
+                                                Rewards_Dialog(
+                                                    Studentname: controller
+                                                        .filteredStudents![
+                                                            index]
+                                                        .fullName!
+                                                        .toString(),
+                                                    FileType: "امتياز",
+                                                    id: controller
+                                                        .filteredStudents![
+                                                            index]
+                                                        .id!
+                                                        .toString(),
+                                                    name: controller
+                                                            .filteredStudents![
+                                                                index]
+                                                            .fullName ??
+                                                        "unKnow"),
+                                                barrierDismissible: false,
+                                              );
+                                            }
+                                          },
+                                          itemBuilder: (BuildContext context) =>
+                                              <PopupMenuEntry<String>>[
+                                            PopupMenuItem<String>(
+                                              value: 'Punishing'.tr,
+                                              child: Text('Punishing'.tr),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: 5.0, right: 5.0),
-                                              child: Text("Punishing".tr,
-                                                  style: Get.theme.textTheme
-                                                      .headlineMedium),
+                                            PopupMenuItem<String>(
+                                              value: 'Rewards'.tr,
+                                              child: Text('Rewards'.tr),
                                             ),
                                           ],
-                                        )),
-                                  ],
-                                ),
-                              )
-                            ],
-                          )),
-                    ),
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              )),
+                        ),
+                      );
+                    },
                   );
-                },
-              );
       }),
     );
   }

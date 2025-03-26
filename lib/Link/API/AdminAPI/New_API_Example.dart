@@ -4,25 +4,16 @@ import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 
-
 class Renamed {
   Renamed(this.context);
   BuildContext context;
   Dio dio = Dio();
-  add(
-
-
-      ) async {
+  add() async {
     String myURI = "$hostPort$addFullEmployee";
     try {
-      var response = await dio.post(myURI,
-          data: {
-
-          },
-          options: getDioOptions());
+      var response = await dio.post(myURI, data: {}, options: getDioOptions());
 
       if (response.statusCode == 200) {
-
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

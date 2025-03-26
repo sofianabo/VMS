@@ -13,33 +13,24 @@ class Edit_Division_API {
   Edit_Division_API(this.context);
   Dio dio = Dio();
 
-  Edit_Division(
-  {
-    gradeId,
-    name,
-    enName,
-    meeturl
-}
-
-      ) async {
-
-
+  Edit_Division({gradeId, name, enName, meeturl}) async {
     try {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
       String myurl = "$hostPort$updateDivision";
       var response = await dio.post(
-        cancelToken: cancelToken,
+          cancelToken: cancelToken,
           myurl,
-             data: {
-             'id':'$gradeId',
-             'name':'$name',
-             'enName':'$enName',
-             'meetUrl':'$meeturl',
+          data: {
+            'id': '$gradeId',
+            'name': '$name',
+            'enName': '$enName',
+            'meetUrl': '$meeturl',
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
-        await Get_All_Division_API(context).Get_All_Division(sessionId: Get.find<All_Screen_Sessions_Controller>().sessionId);
+        Get_All_Division_API(context).Get_All_Division(
+            sessionId: Get.find<All_Screen_Sessions_Controller>().sessionId);
         Get.back();
       } else {
         ErrorHandler.handleDioError(DioException(
@@ -56,8 +47,8 @@ class Edit_Division_API {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    }finally{
-     Get.back();
+    } finally {
+      Get.back();
     }
   }
 }

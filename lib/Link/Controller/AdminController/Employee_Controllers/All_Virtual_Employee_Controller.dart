@@ -44,4 +44,40 @@ class All_Virtual_Employee_Controller extends GetxController {
     filteredviraulUser = tempFilteredList;
     update();
   }
+
+  bool ShowConfirmPassword = true;
+  bool ShowPassword = true;
+  bool IsusernameError = false;
+  bool IsJoptitleError = false;
+  bool IsPasswordError = false;
+  bool IsConfirmPasswordError = false;
+
+  void updateFieldError(String type, bool newValue) {
+    switch (type) {
+      case 'username':
+        IsusernameError = newValue;
+        break;
+      case 'jop':
+        IsJoptitleError = newValue;
+        break;
+      case 'password':
+        IsPasswordError = newValue;
+        break;
+      case 'cpassword':
+        IsConfirmPasswordError = newValue;
+        break;
+      default:
+    }
+    update();
+  }
+
+  ChangeShowConfirmPassword(bool value) {
+    ShowConfirmPassword = value;
+    update();
+  }
+
+  ChangeShowPassword(bool value) {
+    ShowPassword = value;
+    update();
+  }
 }

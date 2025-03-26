@@ -105,6 +105,14 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                                           width: 400,
                                         ),
                                         Textfildwithupper(
+                                            isRequired: true,
+                                            isError: controller.IsAnameError,
+                                            onChanged: (value) {
+                                              if (value.isNotEmpty) {
+                                                controller.updateFieldError(
+                                                    "arname", false);
+                                              }
+                                            },
                                             width: 350,
                                             controller: name,
                                             Uptext: "Name",
@@ -113,6 +121,14 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                                           padding:
                                               const EdgeInsets.only(top: 10.0),
                                           child: Textfildwithupper(
+                                              isRequired: true,
+                                              isError: controller.IsEnameError,
+                                              onChanged: (value) {
+                                                if (value.isNotEmpty) {
+                                                  controller.updateFieldError(
+                                                      "enname", false);
+                                                }
+                                              },
                                               width: 350,
                                               controller: enName,
                                               Uptext: "English Name",
@@ -139,14 +155,31 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                                               width: 150,
                                               text: "Add Vaccine",
                                               onPressed: () async {
-                                                await Add_Vaccines_API(context)
-                                                    .Add_Vaccines(
-                                                  name: name.text,
-                                                  enName: enName.text,
-                                                  locationId: Get.find<
-                                                          Location_controller>()
-                                                      .Locationsid,
-                                                );
+                                                bool isArNameEmpty =
+                                                    name.text.isEmpty;
+                                                bool isEnNameEmpty =
+                                                    enName.text.isEmpty;
+
+                                                controller.updateFieldError(
+                                                    "arname", isArNameEmpty);
+                                                controller.updateFieldError(
+                                                    "enname", isEnNameEmpty);
+
+                                                if (!(isArNameEmpty ||
+                                                    isEnNameEmpty)) {
+                                                  await Add_Vaccines_API(
+                                                          context)
+                                                      .Add_Vaccines(
+                                                    name: name.text,
+                                                    enName: enName.text,
+                                                    locationId: Get.find<
+                                                            Location_controller>()
+                                                        .Locationsid,
+                                                  );
+
+                                                  name.clear();
+                                                  enName.clear();
+                                                }
                                               },
                                               color:
                                                   Theme.of(context).canvasColor)

@@ -11,39 +11,38 @@ void exportToExcel(List<Map<String, dynamic>> data, List<String> headers) {
     print("لا توجد بيانات للتصدير.");
     return;
   }
-
-  var excel = Excel.createExcel();
-  Sheet sheet = excel['Sheet1'];
-
-  // Append headers to the sheet
-  sheet.appendRow(headers);
-
-  // Iterate over the data and append each row
-  for (var school in data) {
-    sheet.appendRow(school.values.toList());
-  }
-
-  String fileName = 'SchoolInfo.xlsx';
-  var bytes = excel.save();
-
-  if (bytes != null) {
-    // Create a Blob from the byte array
-    final blob = html.Blob([bytes]);
-
-    // Create a URL from the Blob
-    final url = html.Url.createObjectUrlFromBlob(blob);
-
-    // Create a download link and trigger the download
-    final anchor = html.AnchorElement(href: url)
-      ..target = 'blank'
-      ..download = fileName
-      ..click();
-
-    // Revoke the Object URL after the download
-    html.Url.revokeObjectUrl(url);
-  }
+  //
+  // var excel = Excel.createExcel();
+  // Sheet sheet = excel['Sheet1'];
+  //
+  // // Append headers to the sheet
+  // sheet.appendRow(headers);
+  //
+  // // Iterate over the data and append each row
+  // for (var school in data) {
+  //   sheet.appendRow(school.values.toList());
+  // }
+  //
+  // String fileName = 'SchoolInfo.xlsx';
+  // var bytes = excel.save();
+  //
+  // if (bytes != null) {
+  //   // Create a Blob from the byte array
+  //   final blob = html.Blob([bytes]);
+  //
+  //   // Create a URL from the Blob
+  //   final url = html.Url.createObjectUrlFromBlob(blob);
+  //
+  //   // Create a download link and trigger the download
+  //   final anchor = html.AnchorElement(href: url)
+  //     ..target = 'blank'
+  //     ..download = fileName
+  //     ..click();
+  //
+  //   // Revoke the Object URL after the download
+  //   html.Url.revokeObjectUrl(url);
+  // }
 }
-
 
 void exportEmployeesToExcel(List<Employees> employees) async {
   List<Map<String, dynamic>> data = employees.map((emp) {
@@ -94,25 +93,21 @@ void exportEmployeesToExcel(List<Employees> employees) async {
 //   exportToExcel(data, headers);
 // }
 
-
-
-
 void exportEmployeesToPDF(List<Employees> employees) async {
   // تحميل الشعار
-  ByteData bytes =
-  await rootBundle.load('../../images/Logo.png');
+  ByteData bytes = await rootBundle.load('../../images/Logo.png');
   Uint8List imageBytes = bytes.buffer.asUint8List();
   final image = pw.MemoryImage(imageBytes);
 
   // تحضير البيانات
   List<List<String>> data = employees.map((emp) {
     return [
-       emp.userName ?? "",
-       emp.fullName ?? "",
-       emp.email ?? "",
-       emp.jobTitle ?? "",
-       emp.salary?.toString() ?? "",
-       emp.roll ?? "",
+      emp.userName ?? "",
+      emp.fullName ?? "",
+      emp.email ?? "",
+      emp.jobTitle ?? "",
+      emp.salary?.toString() ?? "",
+      emp.roll ?? "",
     ];
   }).toList();
 
@@ -133,9 +128,9 @@ void exportEmployeesToPDF(List<Employees> employees) async {
       header: (pw.Context context) {
         return pw.Center(
             child: pw.Column(children: [
-              pw.Image(image, width: 150, height: 150),
-              pw.SizedBox(height: 10)
-            ]));
+          pw.Image(image, width: 150, height: 150),
+          pw.SizedBox(height: 10)
+        ]));
       },
       build: (pw.Context context) {
         return [
@@ -170,5 +165,3 @@ void exportEmployeesToPDF(List<Employees> employees) async {
     ..click();
   html.Url.revokeObjectUrl(url);
 }
-
-

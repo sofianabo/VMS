@@ -96,188 +96,255 @@ class ClassGrid extends StatelessWidget {
                               "${control.filteredreclasses![index].driveUrl}";
                           control.selectCurriculumsForClass(
                               control.filteredreclasses![index].curriculum);
-                          Get.dialog(VMSAlertDialog(
-                            action: [
-                              ButtonDialog(
-                                text: "Edit",
-                                onPressed: () async {
-                                  await Edit_Class_API(context).Edit_Class(
-                                    name: arName.text,
-                                    enName: enName.text,
-                                    driveUrl: driveUrl.text,
-                                    classId:
-                                        control.filteredreclasses![index].id,
-                                    curriculum: control.selectedCurriculums,
-                                  );
-                                },
-                                color: Theme.of(context).primaryColor,
-                                width: 120,
-                              ),
-                            ],
-                            contents: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Textfildwithupper(
-                                      width: 250,
-                                      controller: enName,
-                                      Uptext: "Grade En - Name",
-                                      hinttext: "Grade En - Name",
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 15.0,
-                                          right: 15.0,
-                                          bottom: 15.0),
-                                      child: Textfildwithupper(
-                                        width: 250,
-                                        controller: arName,
-                                        Uptext: "Grade Ar - Name",
-                                        hinttext: "Grade Ar - Name",
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Textfildwithupper(
-                                      width: 250,
-                                      controller: TextEditingController(
-                                          text:
-                                              "${control.filteredreclasses![index].grade!.enName}"),
-                                      Uptext: "Grade",
-                                      hinttext: "Grade",
-                                      readOnly: true,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 15.0, right: 15.0),
-                                      child: Textfildwithupper(
-                                        width: 250,
-                                        controller: TextEditingController(
-                                            text:
-                                                "${control.filteredreclasses![index].session!.year}"),
-                                        Uptext: "Session",
-                                        hinttext: "Session",
-                                        readOnly: true,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 15.0, bottom: 15.0),
-                                      child: Textfildwithupper(
-                                        width: 250,
-                                        controller: TextEditingController(
-                                            text:
-                                                "${control.filteredreclasses![index].admin!.userName}"),
-                                        Uptext: "Admin Account",
-                                        hinttext: "Admin Account",
-                                        readOnly: true,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 15.0, bottom: 15.0),
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 15.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 5.0),
-                                              child: Text("Curriculums"),
-                                            ),
-                                            GestureDetector(
-                                              onTap: () =>
-                                                  Class_Curriculm_Funcation(
-                                                      context),
-                                              child: Container(
-                                                padding: EdgeInsets.only(
-                                                    left: 5.0, right: 5.0),
-                                                width: 250,
-                                                height: 40,
-                                                decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      color: Color(0xffB3B3B3)),
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                ),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    GetBuilder<
-                                                            ClassMgmtController>(
-                                                        builder: (controller) {
-                                                      return Expanded(
-                                                        child: Text(
-                                                          maxLines: 1,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          style:
-                                                              Theme.of(context)
-                                                                  .textTheme
-                                                                  .bodyMedium,
-                                                          controller
-                                                                  .selectedCurriculumNames
-                                                                  .isNotEmpty
-                                                              ? Get.find<
-                                                                      ClassMgmtController>()
-                                                                  .selectedCurriculumNames
-                                                                  .join(', ')
-                                                              : 'No selected curriculum', // هنا نعرض رسالة "لا يوجد مناهج مختارة" إذا كانت القائمة فارغة.
-                                                        ),
-                                                      );
-                                                    }),
-                                                    const Icon(
-                                                        Icons.arrow_drop_down),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Textfildwithupper(
-                                      width: 480,
-                                      controller: driveUrl,
-                                      Uptext: "Drive URL",
-                                      hinttext: "Drive URL",
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 5.0, top: 36.0),
-                                      child: SvgPicture.asset(
-                                        "../../images/drive.svg",
-                                        width: 25,
-                                      ),
-                                    ),
-                                  ],
+                          Get.dialog(GetBuilder<ClassMgmtController>(
+                              builder: (controllers) {
+                            return VMSAlertDialog(
+                              action: [
+                                ButtonDialog(
+                                  text: "Edit",
+                                  onPressed: () async {
+                                    bool isArNameEmpty =
+                                        arName.text.trim().isEmpty;
+                                    bool isEnNameEmpty = enName.text.isEmpty;
+                                    bool isDriveEmpty =
+                                        driveUrl.text.trim().isEmpty;
+
+                                    controllers.updateFieldError(
+                                        "arname", isArNameEmpty);
+                                    controllers.updateFieldError(
+                                        "enname", isEnNameEmpty);
+                                    controllers.updateFieldError(
+                                        "drive", isDriveEmpty);
+
+                                    if (!(isArNameEmpty ||
+                                        isEnNameEmpty ||
+                                        isDriveEmpty)) {
+                                      await Edit_Class_API(context).Edit_Class(
+                                        name: arName.text,
+                                        enName: enName.text,
+                                        driveUrl: driveUrl.text,
+                                        classId: control
+                                            .filteredreclasses![index].id,
+                                        curriculum: control.selectedCurriculums,
+                                      );
+
+                                      arName.clear();
+                                      enName.clear();
+                                      driveUrl.clear();
+                                      Get.back();
+                                    }
+                                  },
+                                  color: Theme.of(context).primaryColor,
+                                  width: 120,
                                 ),
                               ],
-                            ),
-                            apptitle: "Edit Class",
-                            subtitle: "none",
-                          ));
+                              contents: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Textfildwithupper(
+                                        isError: controllers.IsEnnameError,
+                                        isRequired: true,
+                                        onChanged: (value) {
+                                          if (value.isNotEmpty) {
+                                            controllers.updateFieldError(
+                                                "enname", false);
+                                          }
+                                        },
+                                        width: 250,
+                                        controller: enName,
+                                        Uptext: "Grade En - Name",
+                                        hinttext: "Grade En - Name",
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 15.0,
+                                            right: 15.0,
+                                            bottom: 15.0),
+                                        child: Textfildwithupper(
+                                          isError: controllers.IsArnameError,
+                                          isRequired: true,
+                                          onChanged: (value) {
+                                            if (value.isNotEmpty) {
+                                              controllers.updateFieldError(
+                                                  "arname", false);
+                                            }
+                                          },
+                                          width: 250,
+                                          controller: arName,
+                                          Uptext: "Grade Ar - Name",
+                                          hinttext: "Grade Ar - Name",
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Textfildwithupper(
+                                        width: 250,
+                                        controller: TextEditingController(
+                                            text:
+                                                "${control.filteredreclasses![index].grade!.enName}"),
+                                        Uptext: "Grade",
+                                        hinttext: "Grade",
+                                        readOnly: true,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 15.0, right: 15.0),
+                                        child: Textfildwithupper(
+                                          width: 250,
+                                          controller: TextEditingController(
+                                              text:
+                                                  "${control.filteredreclasses![index].session!.year}"),
+                                          Uptext: "Session",
+                                          hinttext: "Session",
+                                          readOnly: true,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 15.0, bottom: 15.0),
+                                        child: Textfildwithupper(
+                                          width: 250,
+                                          controller: TextEditingController(
+                                              text:
+                                                  "${control.filteredreclasses![index].admin!.userName}"),
+                                          Uptext: "Admin Account",
+                                          hinttext: "Admin Account",
+                                          readOnly: true,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 15.0, bottom: 15.0),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 15.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    bottom: 5.0),
+                                                child: Text("Curriculums"),
+                                              ),
+                                              GestureDetector(
+                                                onTap: () =>
+                                                    Class_Curriculm_Funcation(
+                                                        context),
+                                                child: Container(
+                                                  padding: EdgeInsets.only(
+                                                      left: 5.0, right: 5.0),
+                                                  width: 250,
+                                                  height: 40,
+                                                  decoration: controllers
+                                                          .IscurrError
+                                                      ? BoxDecoration(
+                                                          border: Border.all(
+                                                            color: Colors
+                                                                .red, // تغيير لون الحدود حسب حالة الخطأ
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                        )
+                                                      : BoxDecoration(
+                                                          border: Border.all(
+                                                            color: Color(
+                                                                0xffB3B3B3), // تغيير لون الحدود حسب حالة الخطأ
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                        ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      GetBuilder<
+                                                              ClassMgmtController>(
+                                                          builder:
+                                                              (controller) {
+                                                        return Expanded(
+                                                          child: Text(
+                                                            maxLines: 1,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium,
+                                                            controller
+                                                                    .selectedCurriculumNames
+                                                                    .isNotEmpty
+                                                                ? Get.find<
+                                                                        ClassMgmtController>()
+                                                                    .selectedCurriculumNames
+                                                                    .join(', ')
+                                                                : 'No selected curriculum', // هنا نعرض رسالة "لا يوجد مناهج مختارة" إذا كانت القائمة فارغة.
+                                                          ),
+                                                        );
+                                                      }),
+                                                      const Icon(Icons
+                                                          .arrow_drop_down),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Textfildwithupper(
+                                        isError: controllers.IsDriveError,
+                                        isRequired: true,
+                                        onChanged: (value) {
+                                          if (value.isNotEmpty) {
+                                            controllers.updateFieldError(
+                                                "drive", false);
+                                          }
+                                        },
+                                        width: 480,
+                                        controller: driveUrl,
+                                        Uptext: "Drive URL",
+                                        hinttext: "Drive URL",
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 5.0, top: 36.0),
+                                        child: SvgPicture.asset(
+                                          "../../images/drive.svg",
+                                          width: 25,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              apptitle: "Edit Class",
+                              subtitle: "none",
+                            );
+                          }));
                         },
                         child: Container(
                             padding: const EdgeInsets.all(20),

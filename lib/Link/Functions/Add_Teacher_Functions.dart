@@ -202,6 +202,9 @@ Add_Group() {
                                                   idx: index,
                                                   name: controller.items[index]
                                                       ['name'],
+                                                  isQuizables:
+                                                      controller.items[index]
+                                                          ['isQuizable'],
                                                   rat: controller.items[index]
                                                       ['ratio']));
                                             },
@@ -265,6 +268,8 @@ Add_Group() {
 Add_Items_Group() {
   TextEditingController itemName = TextEditingController();
   TextEditingController ratio = TextEditingController();
+  var isQuizable = false.obs; // متغير لتحديد إذا كان العنصر كويزابل
+
   return VMSAlertDialog(
     action: [
       ButtonDialog(
@@ -272,8 +277,11 @@ Add_Items_Group() {
         onPressed: () {
           double? ratioValue = double.tryParse(ratio.text);
           if (ratioValue != null && ratioValue > 0) {
-            Get.find<TeachernoteAndGradeReco>()
-                .Add_Items(itemName.text, ratioValue.toString());
+            Get.find<TeachernoteAndGradeReco>().Add_Items(
+              name: itemName.text,
+              ratio: ratioValue.toString(),
+              IsQuizable: isQuizable.value,
+            );
             Get.back();
           } else {
             Get.snackbar("Error", "Invalid ratio value");
@@ -290,6 +298,17 @@ Add_Items_Group() {
         children: [
           Row(
             children: [
+              Obx(() => Checkbox(
+                    value: isQuizable.value,
+                    onChanged: (value) {
+                      isQuizable.value = value!;
+                    },
+                  )),
+              const Text("Is Quizable"),
+            ],
+          ),
+          Row(
+            children: [
               Textfildwithupper(
                 width: 350,
                 controller: itemName,
@@ -301,8 +320,8 @@ Add_Items_Group() {
                 child: Textfildwithupper(
                   width: 60,
                   controller: ratio,
-                  Uptext: "ratio",
-                  hinttext: "ratio",
+                  Uptext: "Ratio",
+                  hinttext: "Ratio",
                 ),
               ),
             ],
@@ -315,9 +334,12 @@ Add_Items_Group() {
   );
 }
 
-Edit_Items_Group({required int idx, double? rat, String? name}) {
+Edit_Items_Group(
+    {required int idx, double? rat, String? name, bool? isQuizables}) {
   TextEditingController itemName = TextEditingController(text: name);
   TextEditingController ratio = TextEditingController(text: rat.toString());
+  var isQuizable = (isQuizables ?? false).obs;
+
   return VMSAlertDialog(
     action: [
       ButtonDialog(
@@ -325,8 +347,12 @@ Edit_Items_Group({required int idx, double? rat, String? name}) {
         onPressed: () {
           double? ratioValue = double.tryParse(ratio.text);
           if (ratioValue != null && ratioValue > 0) {
-            Get.find<TeachernoteAndGradeReco>()
-                .EditItem(idx, itemName.text, ratioValue.toString());
+            Get.find<TeachernoteAndGradeReco>().EditItem(
+              idx: idx,
+              name: itemName.text,
+              ratio: ratioValue.toString(),
+              IsQuizable: isQuizable.value,
+            );
             Get.back();
           } else {
             Get.snackbar("Error", "Invalid ratio value");
@@ -343,6 +369,17 @@ Edit_Items_Group({required int idx, double? rat, String? name}) {
         children: [
           Row(
             children: [
+              Obx(() => Checkbox(
+                    value: isQuizable.value,
+                    onChanged: (value) {
+                      isQuizable.value = value!;
+                    },
+                  )),
+              const Text("Is Quizable"),
+            ],
+          ),
+          Row(
+            children: [
               Textfildwithupper(
                 width: 350,
                 controller: itemName,
@@ -354,8 +391,8 @@ Edit_Items_Group({required int idx, double? rat, String? name}) {
                 child: Textfildwithupper(
                   width: 60,
                   controller: ratio,
-                  Uptext: "ratio",
-                  hinttext: "ratio",
+                  Uptext: "Ratio",
+                  hinttext: "Ratio",
                 ),
               ),
             ],
@@ -720,6 +757,9 @@ Edit_Group(int idx) {
                                                   idx: index,
                                                   name: controller.items[index]
                                                       ['name'],
+                                                  isQuizables:
+                                                      controller.items[index]
+                                                          ['isQuizable'],
                                                   rat: controller.items[index]
                                                       ['ratio']));
                                             },

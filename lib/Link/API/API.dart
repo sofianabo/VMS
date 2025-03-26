@@ -1,5 +1,5 @@
-String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
-// String hostPort = "http://192.168.1.8:8000/api/";
+// String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
+String hostPort = "http://192.168.1.111:8000/api/";
 
 //..................... All ...................//
 
@@ -34,6 +34,8 @@ String getStudentIll = "getStudentIll";
 String getStudentVaccines = "getStudentVaccines";
 String updateStudentVaccines = "updateStudentVaccines";
 String updateStudent = "update";
+String getStudentPrize = "getStudentPrize";
+String deleteStudentPrize = "deleteStudentPrize";
 
 //..................... Employees ...................//
 
@@ -53,6 +55,8 @@ String getVirtualUser = "getVirtualUser";
 String deleteVirtualEmployee = "deleteVirtualUser";
 String updateEmployeeIll = "updateEmployeeIll";
 String getEmployeeIll = "getEmployeeIll";
+String getMyEmployee = "getMyEmployee";
+String addEmployeeInfo = "addEmployeeInfo";
 
 //..................... Teachers ...................//
 
@@ -119,8 +123,13 @@ String addVaccines = "addVaccines";
 
 String allPenalty = "getPenalty";
 String addPenalty = "addPenalty";
+
 String deletePenalty = "deletePenalty";
 String editPenalty = "updatePenalty";
+String addStudentPrize = "addStudentPrize";
+
+String addQuizType = "addQuizType";
+String getQuizType = "getAllQuizType";
 
 //..................... Admin ...................//
 
@@ -130,6 +139,7 @@ String getLocation = "getLocation";
 //..................... File ...................//
 
 String getimage = hostPort + "getFile/";
+String getpdf = hostPort + "getpdf/";
 
 //..................... Tables ...................//
 
@@ -145,3 +155,10 @@ String addStudyShare = "addStudyShare";
 String getDivisionStudyShare = "getDivisionStudyShare";
 String updatLessonByDay = "updatLessonByDay";
 String deleteStudyShare = "deleteStudyShare";
+
+//..................... All Users ...................//
+
+String verify = "verify";
+String resendCode = "resendCode";
+String updateEmail = "updateEmail";
+String updatePassword = "updatePassword";

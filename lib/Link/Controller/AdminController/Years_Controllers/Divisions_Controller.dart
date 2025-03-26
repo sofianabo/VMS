@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Teachernote_and_GradeReco.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
@@ -62,6 +63,7 @@ class Divisions_Controller extends GetxController {
     Get.find<StudentAttendencController>().setClassList(classess);
     Get.find<Add_Students_Controller>().SetClasslist(classess);
     Get.find<AdminSchoolTimeController>().SetClasslist(classess);
+    Get.find<TeachernoteAndGradeReco>().SetClass(cls);
     update();
   }
 
@@ -126,7 +128,6 @@ class Divisions_Controller extends GetxController {
     }
 
     for (var div in division!) {
-      
       Divisions.add({
         'arName': div.name.toString(),
         'enName': div.enName.toString(),
@@ -151,6 +152,32 @@ class Divisions_Controller extends GetxController {
     }
 
     filteredDivision = tempFilteredList;
+    update();
+  }
+
+  bool IsennameError = false;
+  bool IsarnameError = false;
+  bool IsclassError = false;
+  bool IsmeetError = false;
+
+  void updateFieldError(String type, bool newValue) {
+    switch (type) {
+      case 'ename':
+        IsennameError = newValue;
+        break;
+      case 'arname':
+        IsarnameError = newValue;
+        break;
+      case 'class':
+        IsclassError = newValue;
+        break;
+      case 'meet':
+        IsmeetError = newValue;
+        break;
+
+      default:
+        print("Error: Invalid type");
+    }
     update();
   }
 }

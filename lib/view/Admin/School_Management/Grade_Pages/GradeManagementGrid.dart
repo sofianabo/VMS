@@ -139,59 +139,105 @@ class GradeTable extends StatelessWidget {
               enName.text = "${row['enName']}";
               feeCount.text = "${row['feeCount']}";
               Get.dialog(
-                VMSAlertDialog(
-                    action: [
-                      ButtonDialog(
-                          text: "Edit",
-                          onPressed: () {
-                            Edit_Grade_API(context).Edit_Grade(
-                              gradeId: controller.Grades[index]['id'],
-                              feeCount: feeCount.text,
-                              enName: enName.text,
-                              name: name.text,
-                            );
-                          },
-                          color: Theme.of(context).primaryColor,
-                          width: 120),
-                    ],
-                    contents: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 15.0, right: 15.0),
-                              child: Textfildwithupper(
-                                  controller: enName,
-                                  Uptext: "Grade En - Name",
-                                  hinttext: "Grade En - Name"),
-                            ),
-                            Textfildwithupper(
-                                controller: name,
-                                Uptext: "Grade Ar - Name",
-                                hinttext: "Grade Ar - Name"),
-                          ],
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 15.0, right: 15.0, top: 15.0),
-                              child: Textfildwithupper(
-                                  controller: feeCount,
-                                  Uptext: "Fee Count",
-                                  hinttext: "Fee Count"),
-                            ),
-                          ],
-                        ),
+                GetBuilder<Grade_Controller>(builder: (G_Controller) {
+                  return VMSAlertDialog(
+                      action: [
+                        ButtonDialog(
+                            text: "Edit",
+                            onPressed: () {
+                              {
+                                bool isArNameEmpty = name.text.isEmpty;
+
+                                bool isEnNameEmpty = enName.text.isEmpty;
+
+                                bool isFeeEmpty = feeCount.text.isEmpty;
+
+                                G_Controller.updateFieldError(
+                                    "arname", isArNameEmpty);
+                                G_Controller.updateFieldError(
+                                    "enname", isEnNameEmpty);
+                                G_Controller.updateFieldError(
+                                    "fee", isFeeEmpty);
+
+                                if (!(isArNameEmpty ||
+                                    isEnNameEmpty ||
+                                    isFeeEmpty)) {
+                                  Edit_Grade_API(context).Edit_Grade(
+                                    gradeId: G_Controller.Grades[index]['id'],
+                                    feeCount: feeCount.text,
+                                    enName: enName.text,
+                                    name: name.text,
+                                  );
+                                }
+                              }
+                            },
+                            color: Theme.of(context).primaryColor,
+                            width: 120),
                       ],
-                    ),
-                    apptitle: "Edit Grade",
-                    subtitle: "none"),
+                      contents: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 15.0, right: 15.0),
+                                child: Textfildwithupper(
+                                    isRequired: true,
+                                    isError: G_Controller.IsennameError,
+                                    onChanged: (value) {
+                                      if (value.isNotEmpty) {
+                                        G_Controller.updateFieldError(
+                                            "enname", false);
+                                      }
+                                    },
+                                    controller: enName,
+                                    Uptext: "Grade En - Name",
+                                    hinttext: "Grade En - Name"),
+                              ),
+                              Textfildwithupper(
+                                  isRequired: true,
+                                  isError: G_Controller.IsarnameError,
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      G_Controller.updateFieldError(
+                                          "arname", false);
+                                    }
+                                  },
+                                  controller: name,
+                                  Uptext: "Grade Ar - Name",
+                                  hinttext: "Grade Ar - Name"),
+                            ],
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 15.0, right: 15.0, top: 15.0),
+                                child: Textfildwithupper(
+                                    isRequired: true,
+                                    isError: G_Controller.IsfeeError,
+                                    onChanged: (value) {
+                                      if (value.isNotEmpty) {
+                                        G_Controller.updateFieldError(
+                                            "fee", false);
+                                      }
+                                    },
+                                    fieldType: "number",
+                                    controller: feeCount,
+                                    Uptext: "Fee Count",
+                                    hinttext: "Fee Count"),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      apptitle: "Edit Grade",
+                      subtitle: "none");
+                }),
               );
             },
           ),

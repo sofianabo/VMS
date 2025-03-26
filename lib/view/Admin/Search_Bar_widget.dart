@@ -4,10 +4,12 @@ import 'package:get/get.dart';
 class SearchWithSuggestions extends StatefulWidget {
   final ValueChanged<String> onItemSelected;
   final VoidCallback? click;
+  bool enabled;
 
-  const SearchWithSuggestions({
+  SearchWithSuggestions({
     Key? key,
     required this.onItemSelected,
+    required this.enabled,
     this.click,
   }) : super(key: key);
 
@@ -141,6 +143,7 @@ class _SearchWithSuggestionsState extends State<SearchWithSuggestions> {
         width: 220,
         height: 40,
         child: TextField(
+          enabled: widget.enabled,
           controller: _controller,
           onChanged: _filterSearchResults,
           style: const TextStyle(fontSize: 14),

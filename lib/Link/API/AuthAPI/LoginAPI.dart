@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AuthController/UserController.dart';
 import 'package:vms_school/Link/Model/AuthModel/UserModel.dart';
 import 'package:vms_school/main.dart';
@@ -28,9 +29,14 @@ class LoginAPI {
         UserModel user = UserModel.fromJson(response.data);
         u.GetuserInfo(user);
         prefs!.setBool("isLogin", true);
-        Get.to(
-          () => AdminHome(),
-        );
+        prefs!.setString("role", user.roll!);
+        prefs!.setBool("hasData", user.hasData!);
+        prefs!.setBool("isVerified", user.verified!);
+        prefs!.setString("email", user.email!);
+        prefs!.setString("imageId", user.imageId.toString());
+        prefs!.setString("fullname", user.fullName.toString());
+
+        Get.offAllNamed('/');
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

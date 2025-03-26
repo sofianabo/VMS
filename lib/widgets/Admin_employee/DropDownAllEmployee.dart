@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Full_Employee_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
+
+import '../../Link/Controller/AdminController/Employee_Controllers/All_Virtual_Employee_Controller.dart';
 
 class Dropdownallemployee extends StatelessWidget {
-  final double width;
-  final String title;
-  final String type;
-  final Color? color;
+  double width;
+  String title;
+  String type;
+  bool isError;
 
-  const Dropdownallemployee({
+  Dropdownallemployee({
     super.key,
     required this.title,
-    this.color,
     required this.width,
     required this.type,
+    this.isError = false,
   });
 
   @override
@@ -24,106 +28,179 @@ class Dropdownallemployee extends StatelessWidget {
       switch (type) {
         case 'jobTitle':
           selectedValue = cont.selectejobTitleIndex.isNotEmpty
-              ? cont.selectejobTitleIndex.tr
+              ? cont.selectejobTitleIndex
               : title;
           break;
         case 'roll':
-          selectedValue = cont.selecterollIndex.isNotEmpty
-              ? cont.selecterollIndex.tr
-              : title;
+          selectedValue =
+              cont.selecterollIndex.isNotEmpty ? cont.selecterollIndex : title;
           break;
         case 'feroll':
           selectedValue = cont.selecteferollIndex.isNotEmpty
-              ? cont.selecteferollIndex.tr
+              ? cont.selecteferollIndex
               : title;
           break;
         case 'fejop':
           selectedValue = cont.selectefejopIndex.isNotEmpty
-              ? cont.selectefejopIndex.tr
+              ? cont.selectefejopIndex
               : title;
           break;
         case 'rolldialog':
           selectedValue = cont.selectedrolldialogIndex.isNotEmpty
-              ? cont.selectedrolldialogIndex.tr
+              ? cont.selectedrolldialogIndex
               : title;
           break;
         case 'dialogjobTitle':
           selectedValue = cont.selecteddialogjobTitleIndex.isNotEmpty
-              ? cont.selecteddialogjobTitleIndex.tr
+              ? cont.selecteddialogjobTitleIndex
               : title;
           break;
         case 'Gender':
           selectedValue = cont.selecteGenderIndex.isNotEmpty
-              ? cont.selecteGenderIndex.tr
+              ? cont.selecteGenderIndex
               : title;
           break;
         case 'Family_Status':
           selectedValue = cont.selecteFamily_StatusIndex.isNotEmpty
-              ? cont.selecteFamily_StatusIndex.tr
+              ? cont.selecteFamily_StatusIndex
               : title;
           break;
         case 'Contract':
           selectedValue = cont.selecteContractTypeIndex.isNotEmpty
-              ? cont.selecteContractTypeIndex.tr
+              ? cont.selecteContractTypeIndex
               : title;
           break;
       }
 
-      return Container(
-        padding: const EdgeInsets.all(6.0),
-        alignment: Alignment.centerLeft,
-        width: width,
-        height: 40,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          border: Border.all(color: color ?? const Color(0xffD9D9D9)),
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: DropdownButton<String>(
-                icon: selectedValue != title
-                    ? GestureDetector(
-                        onTap: () {
-                          cont.selectIndex(type, "");
-                        },
-                        child: Icon(
-                          Icons.close,
-                          color: Get.theme.secondaryHeaderColor,
-                        ),
-                      )
-                    : Icon(Icons.arrow_drop_down_outlined,
-                        color: Get.theme.secondaryHeaderColor),
-                dropdownColor: Get.theme.cardColor,
-                iconDisabledColor: Colors.grey,
-                iconEnabledColor: Get.theme.cardColor,
-                value: selectedValue,
-                isExpanded: true,
-                underline: const SizedBox(),
-                style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-                onChanged: (newValue) {
-                  if (newValue != null) {
-                    cont.selectIndex(type, newValue);
-                  }
-                },
-                items: [
-                  DropdownMenuItem<String>(
-                    value: title,
-                    enabled: false,
-                    child: Text(
-                      title.tr,
-                      style: Get.theme.textTheme.bodyMedium!.copyWith(
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
-                  ..._getDropdownItems(cont),
-                ],
-                borderRadius: BorderRadius.circular(3),
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(6.0),
+            alignment: Alignment.centerLeft,
+            width: width,
+            height: 40,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              border: Border.all(
+                color: isError
+                    ? Colors.red
+                    : const Color(0xffD9D9D9), // ✅ تغيير اللون عند الخطأ
               ),
             ),
-          ],
-        ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: DropdownButton<String>(
+                    icon: selectedValue != title
+                        ? GestureDetector(
+                            onTap: () {
+                              cont.selectIndex(type, "");
+                              final errorMap = {
+                                "Gender": ["gender"],
+                                "Contract": ["contract"],
+                                "feroll": ["roll"],
+                                "rolldialog": ["jop"],
+                                "fejop": ["jop"],
+                                "dialogjobTitle": ["jop"],
+                                "Family_Status": ["family"],
+                              };
+
+                              WidgetsBinding.instance.addPostFrameCallback((_) {
+                                errorMap[type]?.forEach((field) {
+                                  if (type == "Gender") {
+                                    Get.find<Allteachercontroller>()
+                                        .updateFieldError(field, true);
+                                    Get.find<AddFullEmployeeController>()
+                                        .updateFieldError(field, true);
+                                  } else if (type == "Contract") {
+                                    Get.find<Allteachercontroller>()
+                                        .updateFieldError(field, true);
+                                  } else if (type == "rolldialog") {
+                                    Get.find<All_Virtual_Employee_Controller>()
+                                        .updateFieldError(field, true);
+                                  } else if (["dialogjobTitle", "Family_Status"]
+                                      .contains(type)) {
+                                    Get.find<AddFullEmployeeController>()
+                                        .updateFieldError(field, true);
+                                  }
+                                  cont.updateFieldError(field, true);
+                                });
+                              });
+                            },
+                            child: Icon(
+                              Icons.close,
+                              color: Get.theme.secondaryHeaderColor,
+                            ),
+                          )
+                        : Icon(Icons.arrow_drop_down_outlined,
+                            color: Get.theme.secondaryHeaderColor),
+                    dropdownColor: Get.theme.cardColor,
+                    iconDisabledColor: Colors.grey,
+                    iconEnabledColor: Get.theme.cardColor,
+                    value: selectedValue,
+                    isExpanded: true,
+                    underline: const SizedBox(),
+                    style:
+                        Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+                    onChanged: (newValue) {
+                      if (newValue!.isEmpty) return;
+                      cont.selectIndex(type, newValue);
+                      final errorMap = {
+                        "Gender": ["gender"],
+                        "Contract": ["contract"],
+                        "feroll": ["roll"],
+                        "rolldialog": ["jop"],
+                        "fejop": ["jop"],
+                        "dialogjobTitle": ["jop"],
+                        "Family_Status": ["family"],
+                      };
+
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        errorMap[type]?.forEach((field) {
+                          if (["Gender", "Contract"].contains(type)) {
+                            Get.find<Allteachercontroller>()
+                                .updateFieldError(field, false);
+                          }
+                          if (["rolldialog"].contains(type)) {
+                            Get.find<All_Virtual_Employee_Controller>()
+                                .updateFieldError(field, false);
+                          }
+                          if (["Gender", "dialogjobTitle", "Family_Status"]
+                              .contains(type)) {
+                            Get.find<AddFullEmployeeController>()
+                                .updateFieldError(field, false);
+                          }
+                          cont.updateFieldError(field, false);
+                        });
+                      });
+                    },
+                    items: [
+                      DropdownMenuItem<String>(
+                        value: title,
+                        enabled: false,
+                        child: Text(
+                          title.tr,
+                          style: Get.theme.textTheme.bodyMedium!.copyWith(
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                      ..._getDropdownItems(cont),
+                    ],
+                    borderRadius: BorderRadius.circular(3),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // ✅ عرض رسالة خطأ إذا كان هناك خطأ
+          if (isError)
+            Text(
+              "يرجى اختيار قيمة صحيحة",
+              style: TextStyle(color: Colors.red, fontSize: 12),
+            ),
+        ],
       );
     });
   }
@@ -135,17 +212,18 @@ class Dropdownallemployee extends StatelessWidget {
       case 'jobTitle':
         items.addAll(cont.JobTitleList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value,
             child: Text(
               value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());
+        break;
       case 'feroll':
         items.addAll(cont.feRoll.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value,
             child: Text(
               value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
@@ -156,7 +234,7 @@ class Dropdownallemployee extends StatelessWidget {
       case 'fejop':
         items.addAll(cont.feJoptitle.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value,
             child: Text(
               value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
@@ -167,7 +245,7 @@ class Dropdownallemployee extends StatelessWidget {
       case 'roll':
         items.addAll(cont.rolllist.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value,
             child: Text(
               value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
@@ -178,7 +256,7 @@ class Dropdownallemployee extends StatelessWidget {
       case 'dialogjobTitle':
         items.addAll(cont.dialogjobTitleList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value,
             child: Text(
               value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
@@ -189,7 +267,7 @@ class Dropdownallemployee extends StatelessWidget {
       case 'Gender':
         items.addAll(cont.GenderList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value,
             child: Text(
               value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
@@ -200,7 +278,7 @@ class Dropdownallemployee extends StatelessWidget {
       case 'Family_Status':
         items.addAll(cont.Family_StatusList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value,
             child: Text(
               value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
@@ -211,7 +289,7 @@ class Dropdownallemployee extends StatelessWidget {
       case 'rolldialog':
         items.addAll(cont.rolldialoglist.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value,
             child: Text(
               value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
@@ -222,13 +300,14 @@ class Dropdownallemployee extends StatelessWidget {
       case 'Contract':
         items.addAll(cont.contractList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value,
             child: Text(
               value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());
+
         break;
     }
 

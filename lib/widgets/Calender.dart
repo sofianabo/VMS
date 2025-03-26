@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/GetEmployeeAttendenceAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/IncreaseEmployeAttendenceAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/IncreaseAttendanceAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/StudentAttendenceAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetTeacherAttendenceAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/IncreaseTeacherAttendenceAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/EmployeeAttendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Session_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Transaction_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Employeeecontroller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/ExamTableController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
@@ -17,7 +22,6 @@ import 'package:vms_school/Link/Controller/WidgetController/DateControler.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:intl/intl.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
-import 'package:vms_school/Theme/themeController.dart';
 
 class DatePicker extends StatelessWidget {
   final double width;
@@ -112,12 +116,15 @@ class BirthDate extends StatelessWidget {
   final String Uptext;
   final double? height;
   final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
+  final bool isError; // ✅ إضافة متغير للتحقق من الخطأ
 
   const BirthDate({
     super.key,
     required this.width,
     required this.Uptext,
     this.height,
+    this.isError = false, // ✅ افتراضي لا يوجد خطأ
+
     this.isRequired = false, // افتراضي الحقل غير مطلوب.
   });
 
@@ -149,6 +156,7 @@ class BirthDate extends StatelessWidget {
                 ),
               ),
             ),
+
             SizedBox(
               height: height ?? 40,
               child: TextFormField(
@@ -167,17 +175,26 @@ class BirthDate extends StatelessWidget {
                       .textTheme
                       .bodyMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
+
+                  // ✅ تغيير لون الحدود بناءً على قيمة isError
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide:
-                        const BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                      width: 2,
+                    ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(color: Color(0xffD9D9D9)),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                    ),
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : Colors.grey,
+                    ),
                   ),
                   suffixIcon: IconButton(
                     icon: Icon(
@@ -190,6 +207,15 @@ class BirthDate extends StatelessWidget {
                 ),
               ),
             ),
+            // ✅ عرض رسالة خطأ إذا كان هناك خطأ
+            if (isError)
+              const Padding(
+                padding: EdgeInsets.only(top: 5.0),
+                child: Text(
+                  "يجب إدخال تاريخ صحيح",
+                  style: TextStyle(color: Colors.red, fontSize: 12),
+                ),
+              ),
           ],
         ),
       ),
@@ -202,6 +228,7 @@ class JoinDate extends StatelessWidget {
   final String Uptext;
   final double? height;
   final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
+  final bool isError; // ✅ إضافة متغير للتحقق من الخطأ
 
   const JoinDate({
     super.key,
@@ -209,11 +236,13 @@ class JoinDate extends StatelessWidget {
     required this.Uptext,
     this.height,
     this.isRequired = false, // افتراضي الحقل غير مطلوب.
+    this.isError = false, // ✅ افتراضي لا يوجد خطأ
   });
 
   @override
   Widget build(BuildContext context) {
     final Allempolyeecontroller controller = Get.put(Allempolyeecontroller());
+
     return Obx(
       () => Container(
         width: width,
@@ -260,17 +289,26 @@ class JoinDate extends StatelessWidget {
                       .textTheme
                       .bodyMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
+
+                  // ✅ تغيير لون الحدود بناءً على قيمة isError
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide:
-                        const BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                      width: 2,
+                    ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(color: Color(0xffD9D9D9)),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                    ),
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : Colors.grey,
+                    ),
                   ),
                   suffixIcon: IconButton(
                     icon: Icon(
@@ -283,6 +321,15 @@ class JoinDate extends StatelessWidget {
                 ),
               ),
             ),
+            // ✅ عرض رسالة خطأ إذا كان هناك خطأ
+            if (isError)
+              const Padding(
+                padding: EdgeInsets.only(top: 5.0),
+                child: Text(
+                  "يجب إدخال تاريخ صحيح",
+                  style: TextStyle(color: Colors.red, fontSize: 12),
+                ),
+              ),
           ],
         ),
       ),
@@ -407,7 +454,7 @@ class selectTeacherDateAttendence extends StatelessWidget {
                   decoration: InputDecoration(
                       hintText: "yyyy-MM-dd",
                       hintStyle: Theme.of(context)
-                          .primaryTextTheme
+                          .textTheme
                           .titleMedium!
                           .copyWith(
                               fontSize: 14, color: const Color(0xffD9D9D9)),
@@ -439,12 +486,16 @@ class selectTeacherDateAttendence extends StatelessWidget {
                                 size: 16,
                               ),
                               onPressed: () {
+                                if (controller.AttendencetDate.value!.day !=
+                                    DateTime.now().day) {
+                                  controller.removeAttendence();
+                                  Getteacherattendenceapi(context)
+                                      .Getteacherattendence(
+                                          sessionID: Get.find<
+                                                  All_Screen_Sessions_Controller>()
+                                              .sessionId);
+                                }
                                 controller.removeAttendence();
-                                Getteacherattendenceapi(context)
-                                    .Getteacherattendence(
-                                        sessionID: Get.find<
-                                                All_Screen_Sessions_Controller>()
-                                            .sessionId);
                               },
                             )),
                 ),
@@ -495,7 +546,7 @@ class selectEmployeeDateAttendence extends StatelessWidget {
                   decoration: InputDecoration(
                       hintText: "yyyy-MM-dd",
                       hintStyle: Theme.of(context)
-                          .primaryTextTheme
+                          .textTheme
                           .titleMedium!
                           .copyWith(
                               fontSize: 14, color: const Color(0xffD9D9D9)),
@@ -528,9 +579,13 @@ class selectEmployeeDateAttendence extends StatelessWidget {
                                 size: 16,
                               ),
                               onPressed: () {
+                                if (controller.AttendencetDate.value!.day !=
+                                    DateTime.now().day) {
+                                  controller.removeAttendence();
+                                  Getemployeeattendenceapi(context)
+                                      .Getemployeeattendence();
+                                }
                                 controller.removeAttendence();
-                                Getemployeeattendenceapi(context)
-                                    .Getemployeeattendence();
                               })),
                 ),
               ),
@@ -580,7 +635,7 @@ class selectStudentsDateAttendence extends StatelessWidget {
                   decoration: InputDecoration(
                       hintText: "yyyy-MM-dd",
                       hintStyle: Theme.of(context)
-                          .primaryTextTheme
+                          .textTheme
                           .titleMedium!
                           .copyWith(
                               fontSize: 14, color: const Color(0xffD9D9D9)),
@@ -613,9 +668,13 @@ class selectStudentsDateAttendence extends StatelessWidget {
                                 size: 16,
                               ),
                               onPressed: () {
+                                if (controller.AttendencetDate.value!.day !=
+                                    DateTime.now().day) {
+                                  controller.removeAttendence();
+                                  Studentattendenceapi(context)
+                                      .Studentattendence();
+                                }
                                 controller.removeAttendence();
-                                Studentattendenceapi(context)
-                                    .Studentattendence();
                               })),
                 ),
               ),
@@ -665,7 +724,7 @@ class selectTransactionDate extends StatelessWidget {
                   decoration: InputDecoration(
                       hintText: "yyyy-MM-dd",
                       hintStyle: Theme.of(context)
-                          .primaryTextTheme
+                          .textTheme
                           .titleMedium!
                           .copyWith(
                               fontSize: 14, color: const Color(0xffD9D9D9)),
@@ -710,21 +769,28 @@ class selectTransactionDate extends StatelessWidget {
   }
 }
 
-class selectstart extends StatelessWidget {
+class DateSelector extends StatelessWidget {
   final double width;
+  final String label;
   final double? height;
   final bool isRequired;
+  final bool isError;
+  final Rx<DateTime?> dateValue;
+  final Function(BuildContext) onSelectDate;
 
-  const selectstart({
+  const DateSelector({
     super.key,
     required this.width,
+    required this.label,
+    required this.dateValue,
+    required this.onSelectDate,
     this.height,
     this.isRequired = false,
+    this.isError = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    final SessionController controller = Get.put(SessionController());
     return Obx(
       () => Container(
         width: width,
@@ -733,118 +799,81 @@ class selectstart extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5.0),
+              child: RichText(
+                text: TextSpan(
+                  text: label,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 14),
+                  children: isRequired
+                      ? [
+                          const TextSpan(
+                            text: " *",
+                            style: TextStyle(color: Colors.red, fontSize: 14),
+                          ),
+                        ]
+                      : [],
+                ),
+              ),
+            ),
             SizedBox(
               height: height ?? 40,
               child: TextFormField(
                 style: const TextStyle(fontSize: 14),
                 controller: TextEditingController(
-                  text: controller.startDate.value != null
-                      ? DateFormat('yyyy-MM-dd')
-                          .format(controller.startDate.value!)
+                  text: dateValue.value != null
+                      ? DateFormat('yyyy-MM-dd').format(dateValue.value!)
                       : '',
                 ),
                 readOnly: true,
-                onTap: () => controller.SelectStartDate(context),
+                onTap: () => onSelectDate(context),
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Theme.of(context)
-                      .primaryTextTheme
-                      .titleMedium!
+                      .textTheme
+                      .bodyMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide:
-                        const BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                      width: 2,
+                    ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(color: Color(0xffD9D9D9)),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                    ),
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : Colors.grey,
+                    ),
                   ),
                   suffixIcon: IconButton(
                     icon: Icon(
-                      VMS_Icons.calender,
+                      Icons.calendar_today,
                       color: Theme.of(context).primaryColor,
                       size: 16,
                     ),
-                    onPressed: () => controller.SelectStartDate(context),
+                    onPressed: () => onSelectDate(context),
                   ),
                 ),
               ),
             ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class selectend extends StatelessWidget {
-  final double width;
-  final double? height;
-  final bool isRequired;
-
-  const selectend({
-    super.key,
-    required this.width,
-    this.height,
-    this.isRequired = false,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final SessionController controller = Get.put(SessionController());
-    return Obx(
-      () => Container(
-        width: width,
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: height ?? 40,
-              child: TextFormField(
-                style: const TextStyle(fontSize: 14),
-                controller: TextEditingController(
-                  text: controller.endDate.value != null
-                      ? DateFormat('yyyy-MM-dd')
-                          .format(controller.endDate.value!)
-                      : '',
-                ),
-                readOnly: true,
-                onTap: () => controller.SelectEndDate(context),
-                decoration: InputDecoration(
-                  hintText: "yyyy-MM-dd",
-                  hintStyle: Theme.of(context)
-                      .primaryTextTheme
-                      .titleMedium!
-                      .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide:
-                        const BorderSide(color: Color(0xffD9D9D9), width: 2),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(color: Color(0xffD9D9D9)),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      VMS_Icons.calender,
-                      color: Theme.of(context).primaryColor,
-                      size: 16,
-                    ),
-                    onPressed: () => controller.SelectEndDate(context),
-                  ),
+            if (isError)
+              const Padding(
+                padding: EdgeInsets.only(top: 5.0),
+                child: Text(
+                  "يجب إدخال تاريخ صحيح",
+                  style: TextStyle(color: Colors.red, fontSize: 12),
                 ),
               ),
-            ),
           ],
         ),
       ),
@@ -891,7 +920,7 @@ class penaltyStartDate extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Theme.of(context)
-                      .primaryTextTheme
+                      .textTheme
                       .titleMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
@@ -963,7 +992,7 @@ class PenaltyEndDate extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Theme.of(context)
-                      .primaryTextTheme
+                      .textTheme
                       .titleMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
@@ -1034,7 +1063,7 @@ class examDate extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Theme.of(context)
-                      .primaryTextTheme
+                      .textTheme
                       .titleMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
@@ -1243,6 +1272,272 @@ class EditBirthDateTeacher extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class SetStudentsDateAttendence extends StatelessWidget {
+  final double width;
+  final double? height;
+  final List<String> allowedDates; // تعديل: استقبال قائمة التواريخ
+  final bool isRequired;
+  final bool enable;
+
+  const SetStudentsDateAttendence({
+    super.key,
+    required this.width,
+    required this.allowedDates, // تعديل: تمرير قائمة التواريخ
+    required this.enable,
+    this.height,
+    this.isRequired = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<Student_attendence_controller>(
+      builder: (student_attendence_controller) {
+        return Obx(
+          () => Container(
+            width: width,
+            alignment: Alignment.center,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: height ?? 40,
+                  child: TextFormField(
+                    enabled: enable,
+                    style: const TextStyle(fontSize: 14),
+                    controller: TextEditingController(
+                      text:
+                          student_attendence_controller.AttendencetDate.value !=
+                                  null
+                              ? DateFormat('yyyy-MM-dd').format(
+                                  student_attendence_controller
+                                      .AttendencetDate.value!)
+                              : '',
+                    ),
+                    readOnly: true,
+                    onTap: () {
+                      if (enable && allowedDates.isNotEmpty) {
+                        student_attendence_controller.selectDate(
+                          context: context,
+                          allowedDates:
+                              allowedDates, // تمرير قائمة التواريخ هنا
+                        );
+                      }
+                    },
+                    decoration: InputDecoration(
+                      hintText: "yyyy-MM-dd",
+                      hintStyle: Theme.of(context)
+                          .textTheme
+                          .titleMedium!
+                          .copyWith(
+                              fontSize: 14, color: const Color(0xffD9D9D9)),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: const BorderSide(
+                            color: Color(0xffD9D9D9), width: 2),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: const BorderSide(color: Color(0xffD9D9D9)),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      suffixIcon:
+                          student_attendence_controller.AttendencetDate.value ==
+                                  null
+                              ? IconButton(
+                                  icon: Icon(
+                                    VMS_Icons.calender,
+                                    color: Theme.of(context).primaryColor,
+                                    size: 16,
+                                  ),
+                                  onPressed: () {
+                                    if (enable && allowedDates.isNotEmpty) {
+                                      student_attendence_controller.selectDate(
+                                        context: context,
+                                        allowedDates: allowedDates,
+                                      );
+                                    }
+                                  },
+                                )
+                              : IconButton(
+                                  icon: Icon(
+                                    Icons.clear,
+                                    color: Theme.of(context).primaryColor,
+                                    size: 16,
+                                  ),
+                                  onPressed: () {
+                                    if (student_attendence_controller
+                                            .AttendencetDate.value!.day !=
+                                        DateTime.now().day) {
+                                      student_attendence_controller
+                                          .removeAttendence();
+                                      IncreaseAttendanceAPI(context)
+                                          .GetIncreaseAttendance(
+                                        DateTime: Get.find<
+                                                Student_attendence_controller>()
+                                            .AttendencetDate
+                                            .value
+                                            .toString(),
+                                      );
+                                    }
+                                    student_attendence_controller
+                                        .removeAttendence();
+                                  },
+                                ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class SetTeacherDateAttendence extends StatelessWidget {
+  final double width;
+  final double? height;
+  final List<String> allowedDates; // تعديل: استقبال قائمة التواريخ
+  final bool isRequired;
+  final bool enable;
+  final String type;
+
+  const SetTeacherDateAttendence({
+    super.key,
+    required this.width,
+    required this.allowedDates, // تعديل: تمرير قائمة التواريخ
+    required this.enable,
+    this.height,
+    required this.type,
+    this.isRequired = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<EmployeeController>(
+      builder: (Employee_attendence_controller) {
+        return Obx(
+          () => Container(
+            width: width,
+            alignment: Alignment.center,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: height ?? 40,
+                  child: TextFormField(
+                    enabled: enable,
+                    style: const TextStyle(fontSize: 14),
+                    controller: TextEditingController(
+                      text: Employee_attendence_controller
+                                  .AttendencetDate.value !=
+                              null
+                          ? DateFormat('yyyy-MM-dd').format(
+                              Employee_attendence_controller
+                                  .AttendencetDate.value!)
+                          : '',
+                    ),
+                    readOnly: true,
+                    onTap: () {
+                      if (enable && allowedDates.isNotEmpty) {
+                        Employee_attendence_controller.selectDate(
+                          type: type,
+                          context: context,
+                          allowedDates:
+                              allowedDates, // تمرير قائمة التواريخ هنا
+                        );
+                      }
+                    },
+                    decoration: InputDecoration(
+                      hintText: "yyyy-MM-dd",
+                      hintStyle: Theme.of(context)
+                          .textTheme
+                          .titleMedium!
+                          .copyWith(
+                              fontSize: 14, color: const Color(0xffD9D9D9)),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: const BorderSide(
+                            color: Color(0xffD9D9D9), width: 2),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: const BorderSide(color: Color(0xffD9D9D9)),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      suffixIcon: Employee_attendence_controller
+                                  .AttendencetDate.value ==
+                              null
+                          ? IconButton(
+                              icon: Icon(
+                                VMS_Icons.calender,
+                                color: Theme.of(context).primaryColor,
+                                size: 16,
+                              ),
+                              onPressed: () {
+                                if (enable && allowedDates.isNotEmpty) {
+                                  Employee_attendence_controller.selectDate(
+                                    type: type,
+                                    context: context,
+                                    allowedDates: allowedDates,
+                                  );
+                                }
+                              },
+                            )
+                          : IconButton(
+                              icon: Icon(
+                                Icons.clear,
+                                color: Theme.of(context).primaryColor,
+                                size: 16,
+                              ),
+                              onPressed: () {
+                                if (Employee_attendence_controller
+                                        .AttendencetDate.value!.day !=
+                                    DateTime.now().day) {
+                                  Employee_attendence_controller
+                                      .removeAttendence();
+
+                                  if (type == "teacher") {
+                                    Increaseteacherattendenceapi
+                                        .Increaseteacherattendence(
+                                            DateTime:
+                                                Get.find<EmployeeController>()
+                                                    .AttendencetDate
+                                                    .value
+                                                    .toString());
+                                  } else {
+                                    Increaseemployeattendenceapi
+                                        .Increaseemployeattendence(
+                                            DateTime:
+                                                Get.find<EmployeeController>()
+                                                    .AttendencetDate
+                                                    .value
+                                                    .toString());
+                                  }
+                                }
+                                Employee_attendence_controller
+                                    .removeAttendence();
+                              },
+                            ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

@@ -1,17 +1,11 @@
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dart'as gr;
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dart'
+    as gr;
 
 class Grade_Controller extends GetxController {
-
-
-  var Grades = <Map<String, dynamic>>[
-  ].obs;
-
-
+  var Grades = <Map<String, dynamic>>[].obs;
 
   List<gr.Grades>? grades;
-
-
 
   bool isLoading = true;
 
@@ -24,7 +18,7 @@ class Grade_Controller extends GetxController {
         'name': stu.name.toString(),
         'enName': stu.enName.toString(),
         'feeCount': stu.feeCount.toString(),
-        'hasStudent': stu.hasStudent==1 ? true :  false,
+        'hasStudent': stu.hasStudent == 1 ? true : false,
       });
     }
     setIsLoading(false);
@@ -41,4 +35,23 @@ class Grade_Controller extends GetxController {
     update();
   }
 
+  bool IsarnameError = false;
+  bool IsennameError = false;
+  bool IsfeeError = false;
+  void updateFieldError(String type, bool newValue) {
+    switch (type) {
+      case 'arname':
+        IsarnameError = newValue;
+        break;
+      case 'enname':
+        IsennameError = newValue;
+        break;
+      case 'fee':
+        IsfeeError = newValue;
+        break;
+      default:
+        print("Error: Invalid type");
+    }
+    update();
+  }
 }

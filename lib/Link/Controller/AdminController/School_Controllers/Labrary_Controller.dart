@@ -25,7 +25,7 @@ class Labrary_Controller extends GetxController {
     if (result != null && result.files.single.bytes != null) {
       selectedFile.value = result.files.single.bytes;
       fileName.value = result.files.single.name;
-
+      updateFieldError("file", false);
       updateTextFile("Done Selected File");
     }
   }
@@ -37,6 +37,7 @@ class Labrary_Controller extends GetxController {
 
   void updateTextFile(String value) {
     fileStatus = value;
+    isHoveringFile = false;
     update();
   }
 
@@ -74,6 +75,35 @@ class Labrary_Controller extends GetxController {
       searchByName(filterName.toString());
     }
     SetIsLoading(false);
+    update();
+  }
+
+  bool IsarnameError = false;
+  bool IsennameError = false;
+  bool IsfileError = false;
+
+  void updateFieldError(String type, bool newValue) {
+    switch (type) {
+      case 'arname':
+        IsarnameError = newValue;
+        break;
+      case 'enname':
+        IsennameError = newValue;
+        break;
+      case 'file':
+        IsfileError = newValue;
+        break;
+      default:
+        print("Error: Invalid type");
+    }
+    update();
+  }
+
+  void Clearfile() {
+    updateFieldError("file", true);
+    fileStatus = "Click To Add File\nOr\nDrag And Drop File Here";
+    isHoveringFile = false;
+    selectedFile.value = null;
     update();
   }
 }

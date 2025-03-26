@@ -29,6 +29,7 @@ class _ElectronicBookState extends State<ElectronicBook> {
     Get_All_E_Book_API(context).Get_All_E_Book();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -54,14 +55,14 @@ class _ElectronicBookState extends State<ElectronicBook> {
                               controller.clearFilter();
                             },
                             onchange: (value) {
-                              controller.searchByName(
-                                value
-                              );
+                              controller.searchByName(value);
                             },
                             width: w * 0.7,
                             radius: 5,
                             controller: search,
-                            suffixIcon: search.text.isNotEmpty ? Icons.close :  Icons.search,
+                            suffixIcon: search.text.isNotEmpty
+                                ? Icons.close
+                                : Icons.search,
                           ),
                         );
                       }),
@@ -89,122 +90,239 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
                             onPressed: () {
-                              Get.dialog(
-                                  GetBuilder<Labrary_Controller>(
-                                    builder: (controller) {
-                                      return VMSAlertDialog(
-                                      contents:Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Container(
-                                            width: 400,
-                                          ),
-                                          Textfildwithupper(
-                                              width: 350,
-                                              controller: name,
-                                              Uptext: "Name",
-                                              hinttext: "Name"),
-                                          Padding(
-                                            padding: const EdgeInsets.only(top: 10.0),
-                                            child: Textfildwithupper(
-                                                width: 350,
-                                                controller: enName,
-                                                Uptext: "English Name",
-                                                hinttext: "English Name"),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(top: 10.0),
-                                            child: GestureDetector(
-                                              onTap: () {
-                                                controller.pickPDFFile();
+                              Get.dialog(GetBuilder<Labrary_Controller>(
+                                  builder: (controller) {
+                                return VMSAlertDialog(
+                                    contents: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Container(
+                                          width: 400,
+                                        ),
+                                        Textfildwithupper(
+                                            isRequired: true,
+                                            isError: controller.IsarnameError,
+                                            onChanged: (value) {
+                                              if (value.isNotEmpty) {
+                                                controller.updateFieldError(
+                                                    "arname", false);
+                                              }
+                                            },
+                                            width: 350,
+                                            controller: name,
+                                            Uptext: "Name",
+                                            hinttext: "Name"),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 10.0),
+                                          child: Textfildwithupper(
+                                              isRequired: true,
+                                              isError: controller.IsennameError,
+                                              onChanged: (value) {
+                                                if (value.isNotEmpty) {
+                                                  controller.updateFieldError(
+                                                      "enname", false);
+                                                }
                                               },
-                                              child: AnimatedContainer(
-                                                duration: const Duration(milliseconds: 500),
-                                                decoration: BoxDecoration(
-                                                  borderRadius: const BorderRadius.all(Radius.circular(5)),
-                                                  border: Border.all(color: const Color(0xffD9D9D9)),
-                                                  color: controller.isHoveringFile ? Theme.of(context).primaryColor : Colors.white,
-                                                ),
-                                                alignment: Alignment.center,
-                                                width: 350,
-                                                height: 100,
-                                                child: Stack(
-                                                  children: [
-                                                    DropzoneView(
-                                                      operation: DragOperation.copy,
-                                                      cursor: CursorType.Default,
-                                                      onCreated: (DropzoneViewController controller) {
-                                                        ctrl = controller;
-                                                      },
-                                                      onHover: () {
-                                                        controller.updateHoverFile(true);
-                                                      },
-                                                      onLeave: () {
-                                                        controller.updateHoverFile(false);
-                                                      },
-                                                      onDropFiles: (List<DropzoneFileInterface>? files) async {
-                                                        if (files != null && files.length == 1) {
-                                                          final file = files.first;
-                                                          final mimeType = await ctrl?.getFileMIME(file);
-                                                          final fileName = await ctrl?.getFilename(file);
-                                                          final fileBytes = await ctrl?.getFileData(file);
+                                              width: 350,
+                                              controller: enName,
+                                              Uptext: "English Name",
+                                              hinttext: "English Name"),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 10.0),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              controller.pickPDFFile();
+                                            },
+                                            child: AnimatedContainer(
+                                              duration: const Duration(
+                                                  milliseconds: 500),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                        Radius.circular(5)),
+                                                border: controller.IsfileError
+                                                    ? Border.all(
+                                                        color: Colors.redAccent)
+                                                    : Border.all(
+                                                        color: const Color(
+                                                            0xffD9D9D9)),
+                                                color: controller.isHoveringFile
+                                                    ? Theme.of(context)
+                                                        .primaryColor
+                                                    : Colors.white,
+                                              ),
+                                              alignment: Alignment.center,
+                                              width: 350,
+                                              height: 100,
+                                              child: Stack(
+                                                children: [
+                                                  DropzoneView(
+                                                    operation:
+                                                        DragOperation.copy,
+                                                    cursor: CursorType.Default,
+                                                    onCreated:
+                                                        (DropzoneViewController
+                                                            controller) {
+                                                      ctrl = controller;
+                                                    },
+                                                    onHover: () {
+                                                      controller
+                                                          .updateHoverFile(
+                                                              true);
+                                                    },
+                                                    onLeave: () {
+                                                      controller
+                                                          .updateHoverFile(
+                                                              false);
+                                                    },
+                                                    onDropFiles: (List<
+                                                            DropzoneFileInterface>?
+                                                        files) async {
+                                                      if (files != null &&
+                                                          files.length == 1) {
+                                                        final file =
+                                                            files.first;
+                                                        final mimeType =
+                                                            await ctrl
+                                                                ?.getFileMIME(
+                                                                    file);
+                                                        final fileName =
+                                                            await ctrl
+                                                                ?.getFilename(
+                                                                    file);
+                                                        final fileBytes =
+                                                            await ctrl
+                                                                ?.getFileData(
+                                                                    file);
 
-                                                          if (mimeType == 'application/pdf' || fileName!.toLowerCase().endsWith('.pdf')) {
-                                                            controller.selectedFile.value = fileBytes;
-                                                            controller.fileName.value = fileName!;
-                                                            controller.updateTextFile("PDF File Successfully Dropped!");
-                                                          }else {
-                                                            controller.updateTextFile("Error: Unsupported File Type.");
-                                                          }
+                                                        if (mimeType ==
+                                                                'application/pdf' ||
+                                                            fileName!
+                                                                .toLowerCase()
+                                                                .endsWith(
+                                                                    '.pdf')) {
+                                                          controller
+                                                                  .selectedFile
+                                                                  .value =
+                                                              fileBytes;
+                                                          controller.fileName
+                                                                  .value =
+                                                              fileName!;
+                                                          controller.updateTextFile(
+                                                              "PDF File Successfully Dropped!");
+                                                          controller
+                                                              .updateFieldError(
+                                                                  "file",
+                                                                  false);
                                                         } else {
-                                                          controller.updateTextFile("Error: Only One File Is Allowed.");
+                                                          controller.updateTextFile(
+                                                              "Error: Unsupported File Type.");
+                                                          controller
+                                                              .updateFieldError(
+                                                                  "file", true);
                                                         }
-                                                      },
-                                                    ),
-                                                    Center(
-                                                      child: Text(
-                                                        textAlign: TextAlign.center,
-                                                        controller.fileStatus,
-                                                        style: TextStyle(
-                                                          color: controller.isHoveringFile ? Colors.white : const Color(0xffCBBFBF),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
+                                                      } else {
+                                                        controller.updateTextFile(
+                                                            "Error: Only One File Is Allowed.");
+                                                        controller
+                                                            .updateFieldError(
+                                                                "file", true);
+                                                      }
+                                                    },
+                                                  ),
+                                                  Center(
+                                                    child: controller
+                                                                .selectedFile
+                                                                .value !=
+                                                            null
+                                                        ? IconButton(
+                                                            onPressed: () {
+                                                              controller
+                                                                  .Clearfile();
+                                                            },
+                                                            icon: Icon(
+                                                              Icons
+                                                                  .delete_outline_outlined,
+                                                              color: Get.theme
+                                                                  .primaryColor,
+                                                            ))
+                                                        : Text(
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            controller
+                                                                .fileStatus,
+                                                            style: TextStyle(
+                                                              color: controller
+                                                                      .isHoveringFile
+                                                                  ? Colors.white
+                                                                  : const Color(
+                                                                      0xffCBBFBF),
+                                                            ),
+                                                          ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           ),
-                                        ],
-                                      ),
-                                      action: [
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.end,
-                                          children: [
-                                            ButtonDialog(
-                                                width: 150,
-                                                text: "Add Book",
-                                                onPressed: () async {
-                                                 await Add_E_Book_API(context).Add_E_Book(
-                                                    file: controller.selectedFile.value,
-                                                    name: name.text,
-                                                   enName: enName.text,
-                                                  );
-                                                 controller.selectedFile.value!.clear();
-                                                 name.clear();
-                                                },
-                                                color:
-                                                    Theme.of(context).colorScheme.primary)
-                                          ],
-                                        )
+                                        ),
                                       ],
-                                      apptitle: "Add Electronic Book",
-                                      subtitle: "none");
-                                    }
-                                  ));
+                                    ),
+                                    action: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          ButtonDialog(
+                                              width: 150,
+                                              text: "Add Book",
+                                              onPressed: () async {
+                                                bool isArNameEmpty =
+                                                    name.text.isEmpty;
+                                                bool isEnNameEmpty =
+                                                    enName.text.isEmpty;
+                                                bool isfileEmpty = controller
+                                                        .selectedFile.value ==
+                                                    null;
+
+                                                controller.updateFieldError(
+                                                    "arname", isArNameEmpty);
+                                                controller.updateFieldError(
+                                                    "enname", isEnNameEmpty);
+                                                controller.updateFieldError(
+                                                    "file", isfileEmpty);
+
+                                                if (!(isArNameEmpty ||
+                                                    isEnNameEmpty ||
+                                                    isfileEmpty)) {
+                                                  await Add_E_Book_API(context)
+                                                      .Add_E_Book(
+                                                    file: controller
+                                                        .selectedFile.value,
+                                                    name: name.text,
+                                                    enName: enName.text,
+                                                  );
+                                                  controller.selectedFile.value!
+                                                      .clear();
+                                                  name.clear();
+                                                  enName.clear();
+                                                }
+                                              },
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primary)
+                                        ],
+                                      )
+                                    ],
+                                    apptitle: "Add Electronic Book",
+                                    subtitle: "none");
+                              }));
                             },
                             icon: Icon(Icons.add,
-                                size: 18, color: Theme.of(context).highlightColor)),
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0),
@@ -228,7 +346,8 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                               Radius.circular(5))))),
                               onPressed: () {},
                               icon: Icon(VMS_Icons.pdf,
-                                  size: 18, color: Theme.of(context).highlightColor)),
+                                  size: 18,
+                                  color: Theme.of(context).highlightColor)),
                         ),
                       ),
                       Padding(
@@ -253,7 +372,8 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                               Radius.circular(5))))),
                               onPressed: () {},
                               icon: Icon(VMS_Icons.xl,
-                                  size: 18, color: Theme.of(context).highlightColor)),
+                                  size: 18,
+                                  color: Theme.of(context).highlightColor)),
                         ),
                       ),
                     ],

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Full_Employee_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/All_Virtual_Employee_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/All_Employee_Model.dart';
 import 'package:vms_school/Link/Model/AdminModel/One_Employee_Model.dart';
@@ -166,6 +168,7 @@ class Allempolyeecontroller extends GetxController {
       Get.find<All_Virtual_Employee_Controller>().searchRequestByName(
           Get.find<All_Virtual_Employee_Controller>().filteredName, rollIndex);
     }
+
     update();
   }
 
@@ -217,10 +220,11 @@ class Allempolyeecontroller extends GetxController {
       context: context,
       initialDate: Birthdate.value ?? DateTime.now(),
       firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
+      lastDate: DateTime.now(),
     );
     if (picked != null) {
       Birthdate.value = picked;
+      Get.find<AddFullEmployeeController>().updateFieldError("birth", false);
     }
   }
 
@@ -233,6 +237,9 @@ class Allempolyeecontroller extends GetxController {
     );
     if (picked != null) {
       Joindate.value = picked;
+      Get.find<Allteachercontroller>().updateFieldError("join", false);
+      Get.find<AddFullEmployeeController>().updateFieldError("join", false);
+      updateFieldError("join", false);
     }
   }
 
@@ -253,4 +260,74 @@ class Allempolyeecontroller extends GetxController {
   String get selectedrolldialogIndex => rolldialogIndex;
 
   String get selecteddialogjobTitleIndex => dialogjobTitleIndex;
+
+  bool ShowConfirmPassword = true;
+  bool ShowPassword = true;
+
+  bool IsJoinError = false;
+  bool ISusernameError = false;
+  bool ISemailError = false;
+  bool ISfirstNameError = false;
+  bool ISlastNameError = false;
+  bool ISphoneError = false;
+  bool ISpasswordError = false;
+  bool IScPasswordError = false;
+  bool IsGenderError = false;
+  bool IsContractError = false;
+  bool IsRollError = false;
+  bool IsJopError = false;
+
+  void updateFieldError(String type, bool newValue) {
+    switch (type) {
+      case 'join':
+        IsJoinError = newValue;
+        break;
+      case 'username':
+        ISusernameError = newValue;
+        break;
+      case 'email':
+        ISemailError = newValue;
+        break;
+      case 'first':
+        ISfirstNameError = newValue;
+        break;
+      case 'last':
+        ISlastNameError = newValue;
+        break;
+      case 'phone':
+        ISphoneError = newValue;
+        break;
+      case 'password':
+        ISpasswordError = newValue;
+        break;
+      case 'cpassword':
+        IScPasswordError = newValue;
+        break;
+      case 'gender':
+        IsGenderError = newValue;
+        break;
+      case 'contract':
+        IsContractError = newValue;
+        break;
+      case 'roll':
+        IsRollError = newValue;
+        break;
+      case 'jop':
+        IsJopError = newValue;
+        break;
+
+      default:
+    }
+    update();
+  }
+
+  ChangeShowConfirmPassword(bool value) {
+    ShowConfirmPassword = value;
+    update();
+  }
+
+  ChangeShowPassword(bool value) {
+    ShowPassword = value;
+    update();
+  }
 }

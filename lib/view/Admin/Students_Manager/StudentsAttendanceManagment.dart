@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownGradeAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/AddStudentAttendenceAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/IncreaseAttendanceAPI.dart';
@@ -10,8 +9,8 @@ import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/Students_Manager/StudentsAttendanceManagmentGrid.dart';
 import 'package:vms_school/widgets/Admin_Students/DropDownStudentsAttendencemgmt.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
+import 'package:vms_school/widgets/Calender.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
-import 'package:vms_school/widgets/TextFormSearch.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class StudentsAttendanceManagment extends StatefulWidget {
@@ -26,8 +25,14 @@ class _StudentsAttendanceManagmentState
     extends State<StudentsAttendanceManagment> {
   @override
   void initState() {
+    Get.find<Student_attendence_controller>().AttendencetDate.value =
+        DateTime.now();
     Getallgradeapi.Getallgrade();
-    IncreaseAttendanceAPI(context).GetIncreaseAttendance(isserch: true);
+    IncreaseAttendanceAPI(context).GetIncreaseAttendance(
+        DateTime: Get.find<Student_attendence_controller>()
+            .AttendencetDate
+            .value
+            .toString());
     super.initState();
   }
 
@@ -56,7 +61,7 @@ class _StudentsAttendanceManagmentState
                         isLoading: controller.isGradeLoading,
                         type: "grade",
                         title: "Grade".tr,
-                        width: w / 5,
+                        width: w / 6,
                       ),
                     ),
                     Padding(
@@ -66,7 +71,7 @@ class _StudentsAttendanceManagmentState
                         isLoading: controller.isClassLoading,
                         type: "class",
                         title: "Class".tr,
-                        width: w / 5,
+                        width: w / 6,
                       ),
                     ),
                     Padding(
@@ -76,11 +81,20 @@ class _StudentsAttendanceManagmentState
                         isDisabled: controller.classIndex == "" ? true : false,
                         type: "division",
                         title: "Division".tr,
-                        width: w / 5,
+                        width: w / 6,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: SetStudentsDateAttendence(
+                        enable: !controller.isLoading,
+                        allowedDates: controller.noAttendanceDatas ??
+                            ["${DateTime.now()}"],
+                        width: w / 6,
                       ),
                     ),
                     SizedBox(
-                        width: w / 5.0,
+                        width: w / 6.0,
                         child: Obx(() => Row(
                               children: [
                                 Checkbox(
@@ -170,6 +184,9 @@ class _StudentsAttendanceManagmentState
                               if (controller.isUploaded == false) {
                                 await Addstudentattendenceapi
                                     .Addstudentattendence(
+                                        DateTime: controller
+                                            .AttendencetDate.value
+                                            .toString(),
                                         students: controller.students);
                               }
                             }

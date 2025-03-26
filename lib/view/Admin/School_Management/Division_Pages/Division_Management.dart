@@ -93,13 +93,45 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                 action: [
                                   ButtonDialog(
                                       text: "Add",
-                                      onPressed: () {
-                                        Add_Division_API(context).Add_Division(
-                                          classId: controller.dropDiagClasses,
-                                          enName: enName.text,
-                                          name: arName.text,
-                                          meetUrl: driveUrl.text,
-                                        );
+                                      onPressed: () async {
+                                        bool isArNameEmpty =
+                                            arName.text.isEmpty;
+                                        bool isEnNameEmpty =
+                                            enName.text.isEmpty;
+                                        bool isDriveEmpty =
+                                            driveUrl.text.isEmpty;
+
+                                        bool isclassEmpty = controller
+                                                .ClassDiagIndex.isEmpty ||
+                                            controller.ClassDiagIndex.isEmpty ==
+                                                "";
+
+                                        controller.updateFieldError(
+                                            "ename", isEnNameEmpty);
+                                        controller.updateFieldError(
+                                            "arname", isArNameEmpty);
+                                        controller.updateFieldError(
+                                            "meet", isDriveEmpty);
+                                        controller.updateFieldError(
+                                            "class", isclassEmpty);
+
+                                        if (!(isArNameEmpty ||
+                                            isEnNameEmpty ||
+                                            isDriveEmpty ||
+                                            isclassEmpty)) {
+                                          await Add_Division_API(context)
+                                              .Add_Division(
+                                            classId: controller.dropDiagClasses,
+                                            enName: enName.text,
+                                            name: arName.text,
+                                            meetUrl: driveUrl.text,
+                                          );
+
+                                          arName.clear();
+                                          enName.clear();
+                                          driveUrl.clear();
+                                          Get.back();
+                                        }
                                       },
                                       color: Theme.of(context).primaryColor,
                                       width: 120),
@@ -115,6 +147,14 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                           MainAxisAlignment.start,
                                       children: [
                                         Textfildwithupper(
+                                            isError: controller.IsennameError,
+                                            isRequired: true,
+                                            onChanged: (value) {
+                                              if (value.isNotEmpty) {
+                                                controller.updateFieldError(
+                                                    "ename", false);
+                                              }
+                                            },
                                             width: 250,
                                             controller: enName,
                                             Uptext: "Division En - Name",
@@ -125,6 +165,14 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                               right: 15.0,
                                               bottom: 15.0),
                                           child: Textfildwithupper(
+                                              isError: controller.IsarnameError,
+                                              isRequired: true,
+                                              onChanged: (value) {
+                                                if (value.isNotEmpty) {
+                                                  controller.updateFieldError(
+                                                      "arname", false);
+                                                }
+                                              },
                                               width: 250,
                                               controller: arName,
                                               Uptext: "Division Ar - Name",
@@ -141,6 +189,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                         GetBuilder<Divisions_Controller>(
                                             builder: (controller) {
                                           return DropDownDivisionMgmt(
+                                              isError: controller.IsclassError,
                                               isLoading: controller.isLoading,
                                               title: "Class",
                                               width: 250,
@@ -156,6 +205,16 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                                 MainAxisAlignment.start,
                                             children: [
                                               Textfildwithupper(
+                                                  isError:
+                                                      controller.IsmeetError,
+                                                  isRequired: true,
+                                                  onChanged: (value) {
+                                                    if (value.isNotEmpty) {
+                                                      controller
+                                                          .updateFieldError(
+                                                              "meet", false);
+                                                    }
+                                                  },
                                                   width: 230,
                                                   controller: driveUrl,
                                                   Uptext: "Meet URL",

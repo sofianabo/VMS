@@ -23,7 +23,7 @@ class _TeacherAttendanceManagmentGridState
   Widget build(BuildContext context) {
     return GetBuilder<EmployeeController>(builder: (controller) {
       return controller.Isloading == false
-          ? controller.Isuploaded == true
+          ? controller.teachers!.isEmpty
               ? Center(
                   child: Text("Attendance Today Has Been Uploaded".tr,
                       style: Get.theme.textTheme.titleLarge!.copyWith(

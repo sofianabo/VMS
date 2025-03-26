@@ -29,6 +29,8 @@ class _TeacherStatusState extends State<TeacherStatus> {
     Getallclassapi.getAllClasses();
     Get_Subject_Screen_API(context).Get_Subject_Screen();
     Get.find<Allteacheratendencecontroller>().setdefualtDropdown();
+    Get.find<Allteacheratendencecontroller>().AttendencetDate.value =
+        DateTime.now();
     super.initState();
   }
 

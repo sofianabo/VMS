@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/Get_My_Profile.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/All_Settings/Profile_Settings.dart';
+import 'package:vms_school/view/Admin/All_Settings/Verifing_Code_Dialog.dart';
 import 'package:vms_school/view/Admin/School_Management/ExamTable.dart';
 import 'package:vms_school/view/Admin/School_Management/Illness_Pages/Illness_Screen.dart';
 import 'package:vms_school/view/Admin/School_Management/PenaltyScreen/PenaltyScreen.dart';
 import 'package:vms_school/view/Admin/School_Management/Rewards_Pages/Rewards_Screen.dart';
 import 'package:vms_school/view/Admin/School_Management/SchoolTimeTable.dart';
+import 'package:vms_school/view/Admin/School_Management/Students_Report_Card_Settings/Student_Report_Card.dart';
 import 'package:vms_school/view/Admin/School_Management/Subject_Pages/Subject_Management.dart';
+import 'package:vms_school/view/Admin/School_Management/Teachers_notebook_grade_record_Pages/Teachers_notebook_grade_record.dart';
 import 'package:vms_school/view/Admin/School_Management/Transactions/Transaction_Management.dart';
 import 'package:vms_school/view/Admin/School_Management/Vaccine_Pages/Vaccine_Screen.dart';
 import 'package:vms_school/view/Admin/Students_Manager/AllGuardians.dart';
@@ -34,8 +41,54 @@ import 'package:vms_school/view/Admin/Teacher_Manager/TeacherAttendanceManagment
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherMangament.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherStatus.dart';
 
-class AdminHome extends StatelessWidget {
+class AdminHome extends StatefulWidget {
   const AdminHome({super.key});
+
+  @override
+  State<AdminHome> createState() => _AdminHomeState();
+}
+
+class _AdminHomeState extends State<AdminHome> {
+  @override
+  void initState() {
+    CheeckHasData();
+    super.initState();
+  }
+
+  CheeckHasData() {
+    final con = Get.put(Add_Data_controller());
+    final con2 = Get.put(Admin_Profile_Content());
+    bool? hasData = prefs!.getBool("hasData");
+    bool? isVerified = prefs!.getBool("isVerified");
+    String? email = prefs!.getString("email");
+    con.setisVerified(isVerified ?? false);
+    con.sethasData(hasData ?? false);
+    con.setEmail(email!);
+    if (con.isVerified == true) {
+      if (con.hasData == false) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          con2.ChangeCurruntValue("addData");
+          Get.find<AdminHomeContentController>().updateContent("My Profile");
+          Get_My_Profile.Get_My_Profile_Data();
+        });
+      }
+    } else {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.dialog(
+          VerifingCodeDialog(),
+          barrierDismissible: false,
+        );
+      });
+      if (con.hasData == false) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          con2.ChangeCurruntValue("addData");
+          Get.find<AdminHomeContentController>().updateContent("My Profile");
+          Get_My_Profile.Get_My_Profile_Data();
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -112,6 +165,10 @@ class AdminHome extends StatelessWidget {
                           return Rewards_Screen();
                         case "My Profile":
                           return ProfileSettings();
+                        case "Quiz Type":
+                          return Teachers_notebook_grade_record();
+                        case "ExcelViewerScreen":
+                          return ExcelToPdfScreen();
                         default:
                           return AdminDashboard();
                       }

@@ -28,7 +28,7 @@ class Addpenaltyapi {
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
-        await Getpenaltyapi(context).Getpenalty();
+        Getpenaltyapi(context).Getpenalty();
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

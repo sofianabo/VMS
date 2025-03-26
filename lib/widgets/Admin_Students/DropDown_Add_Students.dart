@@ -25,44 +25,14 @@ class DropdownAddStudents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Add_Students_Controller>(builder: (cont) {
-      String selectedValue = title;
+      List<String> itemList = _getListByType(cont);
+      String? selectedValue;
 
-      switch (type) {
-        case 'Gender':
-          selectedValue = cont.selectedGenderIndex.isNotEmpty
-              ? cont.selectedGenderIndex.tr
-              : title;
-          break;
-        case 'Realagon':
-          selectedValue = cont.selectedRealagonIndex.isNotEmpty
-              ? cont.selectedRealagonIndex.tr
-              : title;
-          break;
-        case 'BloodType':
-          selectedValue = cont.selectedBloodTypeIndex.isNotEmpty
-              ? cont.selectedBloodTypeIndex.tr
-              : title;
-          break;
-        case 'Location':
-          selectedValue = cont.selectedLocationIndex.isNotEmpty
-              ? cont.selectedLocationIndex.tr
-              : title;
-          break;
-        case 'FamilyState':
-          selectedValue = cont.selectedFamilyStateIndex.isNotEmpty
-              ? cont.selectedFamilyStateIndex.tr
-              : title;
-          break;
-        case 'Class':
-          selectedValue = cont.selectedClassIndex.isNotEmpty
-              ? cont.selectedClassIndex
-              : title;
-          break;
-        case 'Division':
-          selectedValue = cont.selectedDivisionIndex.isNotEmpty
-              ? cont.selectedDivisionIndex
-              : title;
-          break;
+      // ✅ تحديد القيمة المختارة بعد تعبئة القائمة
+      if (itemList.isNotEmpty) {
+        selectedValue = cont.getSelectedIndex(type).isNotEmpty
+            ? cont.getSelectedIndex(type)
+            : null;
       }
 
       return Container(
@@ -78,7 +48,7 @@ class DropdownAddStudents extends StatelessWidget {
             ? Row(
                 children: [
                   Text(
-                    "Division".tr,
+                    title.tr,
                     style: TextStyle(color: Colors.grey),
                   ),
                 ],
@@ -96,20 +66,17 @@ class DropdownAddStudents extends StatelessWidget {
                       Expanded(
                         child: DropdownButton<String>(
                           onChanged: (newValue) {
-                            if (newValue != null && newValue != title) {
+                            if (newValue != null) {
                               cont.selectIndex(type, newValue);
+
                               if (type == 'Class') {
-                                if (newValue != title) {
-                                  Dropdowndivisionapi(context).Dropdowndivision(
-                                      cont.Classlist.indexOf(newValue), 0);
-                                }
+                                Dropdowndivisionapi(context).Dropdowndivision(
+                                    cont.Classlist.indexOf(newValue), 0);
                               }
+
                               if (type == 'Location') {
-                                if (newValue != title) {
-                                  Get.find<Location_controller>()
-                                      .setLocationsid(
-                                          cont.Locationlist.indexOf(newValue));
-                                }
+                                Get.find<Location_controller>().setLocationsid(
+                                    cont.Locationlist.indexOf(newValue));
                               }
                             }
                           },
@@ -127,15 +94,14 @@ class DropdownAddStudents extends StatelessWidget {
                               .copyWith(fontSize: 14),
                           items: [
                             DropdownMenuItem<String>(
-                              value: title,
+                              value: null,
                               child: Text(
-                                title.tr,
-                                style: Get.theme.textTheme.bodyMedium!.copyWith(
-                                  fontSize: 14,
-                                ),
+                                title.tr, // يظهر العنوان عند عدم اختيار أي قيمة
+                                style: Get.theme.textTheme.bodyMedium!
+                                    .copyWith(fontSize: 14, color: Colors.grey),
                               ),
                             ),
-                            ..._getDropdownItems(cont, context),
+                            ..._getDropdownItems(cont),
                           ],
                           borderRadius: BorderRadius.circular(3),
                         ),
@@ -146,105 +112,39 @@ class DropdownAddStudents extends StatelessWidget {
     });
   }
 
-  List<DropdownMenuItem<String>> _getDropdownItems(
-      Add_Students_Controller cont, BuildContext context) {
-    List<DropdownMenuItem<String>> items = [];
-
+  /// 🔹 دالة لإرجاع القائمة بناءً على النوع
+  List<String> _getListByType(Add_Students_Controller cont) {
     switch (type) {
       case 'Gender':
-        items.addAll(cont.Genderlist.map((String value) {
-          return DropdownMenuItem<String>(
-            value: value.tr,
-            child: Text(
-              value.tr,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
-            onTap: () async {
-              cont.selectIndex(type, value.tr);
-            },
-          );
-        }).toList());
-        break;
+        return cont.Genderlist;
       case 'Realagon':
-        items.addAll(cont.Realagonlist.map((String value) {
-          return DropdownMenuItem<String>(
-            value: value.tr,
-            child: Text(
-              value.tr,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
-            onTap: () async {
-              cont.selectIndex(type, value.tr);
-            },
-          );
-        }).toList());
-        break;
+        return cont.Realagonlist;
       case 'BloodType':
-        items.addAll(cont.BloodTypelist.map((String value) {
-          return DropdownMenuItem<String>(
-            value: value.tr,
-            child: Text(
-              value.tr,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
-            onTap: () async {},
-          );
-        }).toList());
-        break;
+        return cont.BloodTypelist;
       case 'Location':
-        items.addAll(cont.Locationlist.map((String value) {
-          return DropdownMenuItem<String>(
-            value: value.tr,
-            child: Text(
-              value.tr,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
-            onTap: () async {
-              cont.selectIndex(type, value.tr);
-            },
-          );
-        }).toList());
-        break;
+        return cont.Locationlist;
       case 'FamilyState':
-        items.addAll(cont.FamilyStatelist.map((String value) {
-          return DropdownMenuItem<String>(
-            value: value.tr,
-            child: Text(
-              value.tr,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
-            onTap: () async {
-              cont.selectIndex(type, value);
-            },
-          );
-        }).toList());
-        break;
+        return cont.FamilyStatelist;
       case 'Class':
-        items.addAll(cont.Classlist.map((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
-            onTap: () async {},
-          );
-        }).toList());
-        break;
+        return cont.Classlist;
       case 'Division':
-        items.addAll(cont.Divisionlist.map((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-            ),
-            onTap: () async {},
-          );
-        }).toList());
-        break;
+        return cont.Divisionlist;
+      default:
+        return [];
     }
+  }
 
-    return items;
+  /// 🔹 دالة لإنشاء عناصر القائمة
+  List<DropdownMenuItem<String>> _getDropdownItems(
+      Add_Students_Controller cont) {
+    return _getListByType(cont).map((String value) {
+      return DropdownMenuItem<String>(
+        value: value,
+        child: Text(
+          value.tr,
+          style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+        ),
+      );
+    }).toList();
   }
 }

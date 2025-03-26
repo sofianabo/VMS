@@ -102,41 +102,53 @@ class _Ilness_ScreenState extends State<Ilness_Screen> {
                                           width: 400,
                                         ),
                                         Textfildwithupper(
+                                          isRequired: true,
+                                          isError: controller.IsAnameError,
+                                          onChanged: (value) {
+                                            if (value.isNotEmpty) {
+                                              controller.updateFieldError(
+                                                  "arname", false);
+                                            }
+                                          },
                                           width: 350,
                                           controller: name,
                                           Uptext: "Name",
                                           hinttext: "Name",
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 10.0),
+                                          padding:
+                                              const EdgeInsets.only(top: 10.0),
                                           child: Textfildwithupper(
+                                              isRequired: true,
+                                              isError: controller.IsEnameError,
+                                              onChanged: (value) {
+                                                if (value.isNotEmpty) {
+                                                  controller.updateFieldError(
+                                                      "enname", false);
+                                                }
+                                              },
                                               width: 350,
                                               controller: enName,
                                               Uptext: "English Name",
                                               hinttext: "English Name"),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 10.0),
+                                          padding:
+                                              const EdgeInsets.only(top: 10.0),
                                           child: Row(
                                             children: [
                                               Obx(() => Checkbox(
                                                     value: controller
                                                         .chronic.value,
                                                     onChanged: (value) {
-                                                      controller
-                                                          .togglechronic(
-                                                              value!);
+                                                      controller.togglechronic(
+                                                          value!);
                                                     },
                                                   )),
                                               Text("Is Chronic",
-                                                  style: Get
-                                                      .theme
-                                                      .textTheme
+                                                  style: Get.theme.textTheme
                                                       .bodyMedium!
-                                                      .copyWith(
-                                                          fontSize: 16)),
+                                                      .copyWith(fontSize: 16)),
                                             ],
                                           ),
                                         ),
@@ -151,14 +163,28 @@ class _Ilness_ScreenState extends State<Ilness_Screen> {
                                               width: 150,
                                               text: "Add Illness",
                                               onPressed: () async {
-                                                await Add_Illness_API(
-                                                        context)
-                                                    .Add_Illness(
-                                                  name: name.text,
-                                                  enName: enName.text,
-                                                  chronic: controller
-                                                      .chronic.value,
-                                                );
+                                                bool isArNameEmpty =
+                                                    name.text.isEmpty;
+                                                bool isEnNameEmpty =
+                                                    enName.text.isEmpty;
+                                                controller.updateFieldError(
+                                                    "arname", isArNameEmpty);
+                                                controller.updateFieldError(
+                                                    "enname", isEnNameEmpty);
+
+                                                if (!(isArNameEmpty ||
+                                                    isEnNameEmpty)) {
+                                                  await Add_Illness_API(context)
+                                                      .Add_Illness(
+                                                    name: name.text,
+                                                    enName: enName.text,
+                                                    chronic: controller
+                                                        .chronic.value,
+                                                  );
+
+                                                  name.clear();
+                                                  enName.clear();
+                                                }
                                               },
                                               color:
                                                   Theme.of(context).canvasColor)
@@ -202,8 +228,7 @@ class _Ilness_ScreenState extends State<Ilness_Screen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                            right: 10.0, left: 10.0),
+                        padding: const EdgeInsets.only(right: 10.0, left: 10.0),
                         child: Container(
                           width: 40,
                           height: 40,

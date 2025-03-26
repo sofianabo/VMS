@@ -54,9 +54,9 @@ class _Subject_ManagementState extends State<Subject_Management> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style:  ButtonStyle(
-                            backgroundColor:
-                                WidgetStatePropertyAll(Theme.of(context).cardColor),
+                        style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll(
+                                Theme.of(context).cardColor),
                             shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
                                     borderRadius:
@@ -69,11 +69,26 @@ class _Subject_ManagementState extends State<Subject_Management> {
                                   ButtonDialog(
                                       text: "Add",
                                       onPressed: () async {
-                                        await Add_Subject_API(context)
-                                            .Add_Subject(
-                                          name: arName.text,
-                                          enName: enName.text,
-                                        );
+                                        bool isArNameEmpty =
+                                            arName.text.isEmpty;
+                                        bool isEnNameEmpty =
+                                            enName.text.isEmpty;
+
+                                        controller.updateFieldError(
+                                            "arname", isArNameEmpty);
+                                        controller.updateFieldError(
+                                            "enname", isEnNameEmpty);
+
+                                        if (!(isArNameEmpty || isEnNameEmpty)) {
+                                          await Add_Subject_API(context)
+                                              .Add_Subject(
+                                            name: arName.text,
+                                            enName: enName.text,
+                                          );
+
+                                          arName.clear();
+                                          enName.clear();
+                                        }
                                       },
                                       color: Theme.of(context).primaryColor,
                                       width: 120),
@@ -90,12 +105,31 @@ class _Subject_ManagementState extends State<Subject_Management> {
                                               padding: const EdgeInsets.only(
                                                   left: 15.0, right: 15.0),
                                               child: Textfildwithupper(
+                                                  isRequired: true,
+                                                  isError:
+                                                      controller.IsEnnameError,
+                                                  onChanged: (value) {
+                                                    if (value.isNotEmpty) {
+                                                      controller
+                                                          .updateFieldError(
+                                                              "enname", false);
+                                                    }
+                                                  },
                                                   controller: enName,
                                                   Uptext: "Subject En - Name",
                                                   hinttext:
                                                       "Subject En - Name"),
                                             ),
                                             Textfildwithupper(
+                                                isRequired: true,
+                                                isError:
+                                                    controller.IsArnameError,
+                                                onChanged: (value) {
+                                                  if (value.isNotEmpty) {
+                                                    controller.updateFieldError(
+                                                        "arname", false);
+                                                  }
+                                                },
                                                 controller: arName,
                                                 Uptext: "Subject Ar - Name",
                                                 hinttext: "Subject Ar - Name"),
@@ -127,16 +161,17 @@ class _Subject_ManagementState extends State<Subject_Management> {
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                          style:  ButtonStyle(
-                              backgroundColor:
-                                  WidgetStatePropertyAll(Theme.of(context).cardColor),
+                          style: ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                  Theme.of(context).cardColor),
                               shape: WidgetStatePropertyAll(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
                           onPressed: () {},
                           icon: Icon(VMS_Icons.pdf,
-                              size: 18, color: Theme.of(context).highlightColor)),
+                              size: 18,
+                              color: Theme.of(context).highlightColor)),
                     ),
                   ),
                   Container(
@@ -152,9 +187,9 @@ class _Subject_ManagementState extends State<Subject_Management> {
                               blurRadius: 1)
                         ]),
                     child: IconButton(
-                        style:  ButtonStyle(
-                            backgroundColor:
-                                WidgetStatePropertyAll(Theme.of(context).cardColor),
+                        style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll(
+                                Theme.of(context).cardColor),
                             shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
                                     borderRadius:

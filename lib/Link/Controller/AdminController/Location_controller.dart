@@ -21,8 +21,6 @@ class Location_controller extends GetxController {
   }
 
   void setLocations(Location_Model locations) {
-    print("object1");
-    print("${locations.location!.length} dfslkjfdsjlkdfsjljlkdjlkdsfjlk");
     location = locations.location;
 
     List<String> newList = [];
@@ -34,7 +32,6 @@ class Location_controller extends GetxController {
         newList.add(locations.location![i].enName.toString());
     }
 
-    print("object");
     Get.find<Add_Students_Controller>().SetLocationlist(newList);
     Get.find<Vaccines_Controller>().SetLocationlist(newList);
 

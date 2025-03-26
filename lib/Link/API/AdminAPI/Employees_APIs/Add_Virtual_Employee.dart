@@ -16,14 +16,11 @@ class Add_Virtual_Employee_API {
     required password,
     required roll,
   }) async {
-
-
     CancelToken cancelToken = CancelToken();
     Loading_Dialog(cancelToken: cancelToken);
     String myURI = "$hostPort$addVirtualUser";
 
     try {
-
       var response = await dio.post(
         cancelToken: cancelToken,
         myURI,
@@ -36,9 +33,8 @@ class Add_Virtual_Employee_API {
       );
 
       if (response.statusCode == 200) {
-      Get_Virtual_Employee_API.Get_Virtual_Employee();
+        Get_Virtual_Employee_API.Get_Virtual_Employee();
       } else {
-
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
@@ -47,13 +43,12 @@ class Add_Virtual_Employee_API {
       }
     } catch (e) {
       if (e is DioException && e.type == DioExceptionType.cancel) {
-        print("Request canceled");
       } else if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    }finally{
+    } finally {
       Get.back();
       Get.back();
     }

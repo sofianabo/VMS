@@ -12,9 +12,10 @@ class Addstudentattendenceapi {
 
   static Future<dynamic> Addstudentattendence({
     required students,
+    required String DateTime,
   }) async {
-
-    final Student_attendence_controller  controller = Get.find<Student_attendence_controller>();
+    final Student_attendence_controller controller =
+        Get.find<Student_attendence_controller>();
     CancelToken cancelToken = CancelToken();
     Loading_Dialog(cancelToken: cancelToken);
 
@@ -23,15 +24,14 @@ class Addstudentattendenceapi {
       var response = await dio.post(
         cancelToken: cancelToken,
         myURI,
-        data: {'attendance': students},
+        data: {'date': DateTime, 'attendance': students},
         options: getDioOptions(),
       );
 
       if (response.statusCode == 200) {
-        controller.setIsUploded(true,"Attendance Today Has Been Uploaded");
+        controller.setIsUploded(true, "Attendance Today Has Been Uploaded");
         return response.statusCode;
       } else {
-
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,
@@ -39,15 +39,13 @@ class Addstudentattendenceapi {
         ));
       }
     } catch (e) {
-
       if (e is DioException && e.type == DioExceptionType.cancel) {
-        print("Request canceled");
       } else if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    }finally{
+    } finally {
       Get.back();
     }
     return true;

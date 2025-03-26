@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/ExamTableController.dart';
@@ -12,6 +13,7 @@ class SideBarAdmin extends StatelessWidget {
   SideBarAdmin({super.key});
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(Add_Data_controller());
     double h = MediaQuery.of(context).size.height;
     return Stack(
       alignment: Alignment.center,
@@ -27,12 +29,16 @@ class SideBarAdmin extends StatelessWidget {
               SidbarAnimation(
                   child: GestureDetector(
                 onTap: () {
-                  cont.updateContent("Dashboard");
+                  if (controller.hasData == true) {
+                    cont.updateContent("Dashboard");
+                  }
                 },
                 child: Icon(
                   VMS_Icons.a1,
                   size: 18,
-                  color: Colors.white,
+                  color: controller.hasData == true
+                      ? Colors.white
+                      : Theme.of(context).disabledColor,
                 ),
               )),
               SidbarAnimation(
@@ -40,11 +46,16 @@ class SideBarAdmin extends StatelessWidget {
                 padding: EdgeInsets.only(top: h / 34.2),
                 child: GestureDetector(
                   onTap: () {
-                    cont.updateContent("Enroll Requests");
+                    if (controller.hasData == true) {
+                      cont.updateContent("Enroll Requests");
+                      // cont.updateContent("ExcelViewerScreen");
+                    }
                   },
-                  child: const Icon(
+                  child: Icon(
                     VMS_Icons.a2,
-                    color: Colors.white,
+                    color: controller.hasData == true
+                        ? Colors.white
+                        : Theme.of(context).disabledColor,
                     size: 18,
                   ),
                 ),
@@ -53,10 +64,13 @@ class SideBarAdmin extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
+                    enabled: controller.hasData,
                     tooltip: "".tr,
-                    child: const Icon(
+                    child: Icon(
                       VMS_Icons.a3,
-                      color: Colors.white,
+                      color: controller.hasData == true
+                          ? Colors.white
+                          : Theme.of(context).disabledColor,
                       size: 18,
                     ),
                     onSelected: (value) {
@@ -70,6 +84,9 @@ class SideBarAdmin extends StatelessWidget {
                         Get.find<AdminSchoolTimeController>().setClassIndex();
                         Get.find<AdminSchoolTimeController>()
                             .setTimeLessonIndex();
+                      }
+                      if (value == "Quiz Type".tr) {
+                        cont.updateContent("Quiz Type");
                       }
                     },
                     itemBuilder: (BuildContext context) =>
@@ -86,6 +103,12 @@ class SideBarAdmin extends StatelessWidget {
                           'School Time Table'.tr,
                         ),
                       ),
+                      PopupMenuItem<String>(
+                        value: 'Quiz Type'.tr,
+                        child: Text(
+                          'Quiz Type'.tr,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -94,10 +117,13 @@ class SideBarAdmin extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
+                    enabled: controller.hasData,
                     tooltip: "".tr,
-                    child: const Icon(
+                    child: Icon(
                       VMS_Icons.a4,
-                      color: Colors.white,
+                      color: controller.hasData == true
+                          ? Colors.white
+                          : Theme.of(context).disabledColor,
                       size: 18,
                     ),
                     onSelected: (value) {
@@ -158,10 +184,13 @@ class SideBarAdmin extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
+                    enabled: controller.hasData,
                     tooltip: "".tr,
-                    child: const Icon(
+                    child: Icon(
                       VMS_Icons.a5,
-                      color: Colors.white,
+                      color: controller.hasData == true
+                          ? Colors.white
+                          : Theme.of(context).disabledColor,
                       size: 16,
                     ),
                     onSelected: (value) {
@@ -170,8 +199,6 @@ class SideBarAdmin extends StatelessWidget {
                       }
                       if (value == "Teacher Status".tr) {
                         cont.updateContent("Teacher Status");
-                      
-                      
                       }
                       if (value == "Teacher Attendance Managment".tr) {
                         cont.updateContent("Teacher Attendance Managment");
@@ -205,10 +232,13 @@ class SideBarAdmin extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
+                    enabled: controller.hasData,
                     tooltip: "".tr,
-                    child: const Icon(
+                    child: Icon(
                       VMS_Icons.a6,
-                      color: Colors.white,
+                      color: controller.hasData == true
+                          ? Colors.white
+                          : Theme.of(context).disabledColor,
                       size: 20,
                     ),
                     onSelected: (value) {
@@ -259,10 +289,13 @@ class SideBarAdmin extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
+                    enabled: controller.hasData,
                     tooltip: "".tr,
-                    child: const Icon(
+                    child: Icon(
                       VMS_Icons.a7,
-                      color: Colors.white,
+                      color: controller.hasData == true
+                          ? Colors.white
+                          : Theme.of(context).disabledColor,
                       size: 16,
                     ),
                     onSelected: (value) {
@@ -331,10 +364,13 @@ class SideBarAdmin extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(top: h / 34.2),
                   child: PopupMenuButton(
+                    enabled: controller.hasData,
                     tooltip: "".tr,
-                    child: const Icon(
+                    child: Icon(
                       VMS_Icons.a8,
-                      color: Colors.white,
+                      color: controller.hasData == true
+                          ? Colors.white
+                          : Theme.of(context).disabledColor,
                       size: 16,
                     ),
                     onSelected: (value) {

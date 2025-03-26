@@ -5,9 +5,12 @@ class Languages {
       'Have A Nice Day At Work': 'أتمنى لك يوم جيد في العمل',
       'Illness and Vaccines': 'الأمراض و اللقحات',
       'Illness': 'الأمراض',
+      'No Attendance': 'لا يوجد حظور بعد',
       'Vaccines': 'اللقحات',
       'Rewards and Penalties': 'المكافئات و العقوبات',
       'Rewards': 'المكافئات',
+      'No Rewards': 'لا يوجد مكافئات',
+      'No Penalty': 'لا يوجد عقوبات',
       'Penalties': 'العقوبات',
       'Attendance Today': 'حضور اليوم',
       'Employees\nAttendance': 'حضور الموظفين',
@@ -62,6 +65,7 @@ class Languages {
       'Do You Want To Delete': 'هل تريد حذف العقوبة',
       'penalty': '',
       'Edit': 'تعديل',
+      'Quiz Type': 'انواع الاختبارات',
       'Operation': 'العمليات',
       'Penalty Name': 'اسم العقوبة',
       'Delete Penalty': 'حذف العقوبة',
@@ -276,6 +280,9 @@ class Languages {
           'اضغط لإضافة دفتر العائلة  \nأو\nاسحب وأفلت الملف هنا',
       'Student illeness': 'أمراض الطالب',
       'Done': "تم",
+      'Add Picture': "اضافة صورة",
+      'Complete the registration details before starting':
+          "استكمال بيانات التسجيل قبل البدء",
       'Student Vaccine': "لقاحات الطالب",
       'Add Your Photo Profile': "اضف صورة ملفك الشخصي",
 
@@ -448,7 +455,12 @@ class Languages {
       'The reason for the absence of the all Teachers': 'سبب غياب كل المعلمين',
       'Vacation': 'إجازة',
       "sub": "مواد",
+      "No Guardian": "لا يوجد أولياء أمور",
+
       'Subjects': '',
+      'Rewards Students': 'مكافئة الطالب',
+      'Rewards & Penalties': 'مكافئات و عقوبات',
+      'My Account': 'حسابي',
 
       'Job Title': 'المسمى الوظيفي',
       "Manager": "مدير",
@@ -492,6 +504,9 @@ class Languages {
       'Have A Nice Day At Work': 'Have A Nice Day At Work',
       'Illness and Vaccines': 'Illness and Vaccines',
       'Illness': 'Illness',
+      'No Guardian': 'No Guardian',
+      'Rewards Students': 'Rewards Students',
+      'Rewards & Penalties': 'Rewards & Penalties',
       'Vaccines': 'Vaccines',
       'Rewards and Penalties': 'Rewards and Penalties',
       'Rewards': 'Rewards',
@@ -510,6 +525,8 @@ class Languages {
       'Total Books': 'Total Books',
       'Total Division': 'Total Division',
       'Dashboard': 'Dashboard',
+      'Complete the registration details before starting':
+          'Complete the registration details before starting',
       'Enroll Requests': 'Enroll Requests',
       'Exam Table': "Exam Table",
       'School Time Table': 'School Time Table',
@@ -551,6 +568,7 @@ class Languages {
       'Do You Want To Delete': 'Do You Want To Delete',
       'penalty': 'penalty',
       'Edit': 'Edit',
+      'No Attendance': 'No Attendance',
       'Operation': 'Operation',
       'Penalty Name': 'Penalty Name',
       'Delete Penalty': 'Delete Penalty',
@@ -578,6 +596,9 @@ class Languages {
       'Add Exam': 'Add Exam',
       'Date': 'Date',
       'Type': 'Type',
+      'Quiz Type': 'Quiz Type',
+      'No Rewards': 'No Rewards',
+      'No Penalty': 'No Penalty',
       'Curriculum Name': 'Curriculum Name',
       'Period': 'Period',
       'Max Mark': 'Max Mark',
@@ -685,7 +706,20 @@ class Languages {
       'The Reason': 'The Reason',
       'Punishing Student': 'Punishing Student',
       'Punishing': 'Punishing',
-
+      'Contact Us': 'Contact Us',
+      'AboutUs': 'AboutUs',
+      'WhyUs': 'WhyUs',
+      'Programs': 'Programs',
+      'Enrollment': 'Enrollment',
+      'Eligibility': 'Eligibility',
+      'Who Can We Register At Virtual Modern School':
+          'Who Can We Register At Virtual Modern School',
+      'Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary':
+          'Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary',
+      'to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted':
+          'to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted',
+      'by the Ministry of Education at Syrian Arab Republic':
+          'by the Ministry of Education at Syrian Arab Republic',
       'Back': 'Back',
       'Add Students': 'Add Students',
       'Mobile Number :': 'Mobile Number :',
@@ -757,14 +791,9 @@ class Languages {
       'Done': 'Done',
       'Student illeness': 'Student illeness',
       'Student Vaccine': 'Student Vaccine',
+      'Add Picture': 'Add Picture',
 
 ////////////////////////////////section 1 and home appbar////////////////////////////////////
-      'Contact Us': 'Contact Us',
-      'AboutUs': 'AboutUs',
-      'WhyUs': 'WhyUs',
-      'Programs': 'Programs',
-      'Enrollment': 'Enrollment',
-      'Eligibility': 'Eligibility',
       'WE CARE ABOUT \n YOUR FUTURE': 'WE CARE ABOUT \n YOUR FUTURE',
       'Join us to enter a better world filled with advanced educational methods through Virtual Modern School':
           'Join us to enter a better world filled with advanced educational methods through Virtual Modern School',
@@ -774,14 +803,6 @@ class Languages {
       'Students': 'Students',
       'Visitors': 'Visitors',
 /////////////////////////section 2////////////////////////////////////////////
-      'Who Can We Register At Virtual Modern School':
-          'Who Can We Register At Virtual Modern School',
-      'Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary':
-          'Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary',
-      'to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted':
-          'to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted',
-      'by the Ministry of Education at Syrian Arab Republic':
-          'by the Ministry of Education at Syrian Arab Republic',
       'People with special needs who are residing in Syria are uncapable to study in regular schools uncapable':
           'People with special needs who are residing in Syria are uncapable to study in regular schools uncapable',
       'to study uncapable to study in regular schools and exceptional students cases determined by the':
@@ -931,6 +952,8 @@ class Languages {
       "att": "",
       "sub": "",
       'Subjects': 'Subjects',
+      'My Account': 'My Account',
+      '': '',
 
       'Job Title': 'Job Title',
       "Manager": "Manager",

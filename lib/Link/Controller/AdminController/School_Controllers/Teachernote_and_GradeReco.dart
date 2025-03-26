@@ -1,60 +1,63 @@
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 
 class TeachernoteAndGradeReco extends GetxController {
-  var groups = <Map<String, dynamic>>[
-    {"name": "تقديرات الفصل الأول", "ratio": 0, "size": 100.0, "items": []},
-    {
-      "name": "مجموع درجات الفصل الأول",
-      "ratio": 100,
-      "size": 100.0,
-      "items": []
-    },
-    {
-      "name": "درجة اختبار الفصل الأول",
-      "ratio": 40,
-      "size": 100.0,
-      "items": []
-    },
-    {
-      "name": "درجة أعمال الفصل الأول",
-      "ratio": 60,
-      "size": 100.0,
-      "items": [
-        {"name": "شفوية", "ratio": 20},
-        {"name": "وظائف و أوراق عمل", "ratio": 20},
-        {"name": "نشاطات و مبادرات", "ratio": 10},
-        {"name": "المذاكرة", "ratio": 10},
-      ]
-    },
-    {
-      "name": "عادي",
-      "ratio": 20,
-      "size": 100.0,
-      "items": [
-        {"name": "شفوية", "ratio": 10},
-        {"name": "وظائف و أوراق عمل", "ratio": 10},
-      ]
-    },
-    {"name": "الدرجة العظمى", "ratio": 0, "size": 100.0, "items": []},
-    {"name": "المواد الدراسية", "ratio": 0, "size": 100.0, "items": []}
-  ].obs;
+  AllClassModel? Classmodel;
+  bool isQuizTypeLoading = true;
+
+  String ClassIndex = "";
+  String SemesterIndex = "The First Semester";
+  int SemesterSendIndex = 1;
+  var columnWidths = [].obs;
+  List<String> ClassList = [];
+  List<String> SemesterList = [
+    "The First Semester",
+    "The Second Semester",
+    "The Third Semester",
+  ];
+  bool isClassLoading = true;
+
+  var groups = <Map<String, dynamic>>[].obs;
   var items = [].obs;
+
+  SetIsQuizType(bool value) {
+    isQuizTypeLoading = value;
+    update();
+  }
+
+  void updateGroup(List<Map<String, dynamic>> data) {
+    groups.clear();
+    columnWidths.clear();
+
+    for (var item in data) {
+      var groupIndex = groups.indexWhere((group) => group['id'] == item['id']);
+      if (groupIndex != -1) {
+        groups[groupIndex] = item;
+      } else {
+        groups.add(item);
+      }
+      columnWidths.add(item['size']);
+    }
+    isQuizTypeLoading = false;
+    update();
+  }
 
   void updateItemName(int idx, String newName) {
     items[idx]['name'] = newName;
-    update(); // تحديث الواجهة فورًا
+    update();
   }
 
-  // تحديث نسبة العنصر
   void updateItemRatio(int idx, double newRatio) {
     items[idx]['ratio'] = newRatio;
-    update(); // تحديث الواجهة فورًا
+    update();
   }
 
   void SetItems(item) {
     items.clear();
-    items.addAll(item); // أضف العناصر إلى القائمة القابلة للمراقبة
-    update(); // تحديث الواجهة فورًا
+    items.addAll(item);
+    update();
   }
 
   void UpdateGroupItems(int idx, String groupName, double ratioValue,
@@ -67,10 +70,15 @@ class TeachernoteAndGradeReco extends GetxController {
     update();
   }
 
-  Add_Items(String name, String ratio) {
+  Add_Items(
+      {required String name, required String ratio, required bool IsQuizable}) {
     double? ratioValue = double.tryParse(ratio);
     if (ratioValue != null) {
-      items.add({"name": name, "ratio": ratioValue});
+      items.add({
+        "name": name,
+        "ratio": ratioValue,
+        "isQuizable": IsQuizable,
+      });
       update();
     } else {
       Get.snackbar("خطأ", "قيمة النسبة غير صالحة");
@@ -87,10 +95,18 @@ class TeachernoteAndGradeReco extends GetxController {
     update();
   }
 
-  void EditItem(int idx, String name, String ratio) {
+  void EditItem(
+      {required int idx,
+      required String name,
+      required String ratio,
+      required bool IsQuizable}) {
     double? ratioValue = double.tryParse(ratio);
     if (ratioValue != null) {
-      items[idx] = {"name": name, "ratio": ratioValue};
+      items[idx] = {
+        "name": name,
+        "ratio": ratioValue,
+        "isQuizable": IsQuizable,
+      };
       update();
     } else {
       Get.snackbar("خطأ", "قيمة النسبة غير صالحة");
@@ -108,14 +124,12 @@ class TeachernoteAndGradeReco extends GetxController {
         "name": name,
         "ratio": double.parse(ratio),
         "size": 100.0,
-        "items": List.from(newItems)
+        "items": List.from(newItems),
       },
     );
     columnWidths.add(100.0);
-    update(); // تحديث الحالة لإعادة بناء الواجهة
+    update();
   }
-
-  var columnWidths = [100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0].obs;
 
   void updateGroupSizes() {
     for (int i = 0; i < groups.length; i++) {
@@ -123,16 +137,94 @@ class TeachernoteAndGradeReco extends GetxController {
     }
   }
 
-  // تغيير عرض العمود عند السحب
   void resizeColumn(int index, double delta) {
     if (columnWidths[index] + delta >= 80.0 &&
         columnWidths[index] + delta <= 800.0) {
       columnWidths[index] += delta;
-      updateGroupSizes(); // تحديث الحجم في groups بعد تغيير العرض
+      updateGroupSizes();
     }
   }
 
   pri() {
     print(groups);
+  }
+
+  SetClass(AllClassModel ClassModel) {
+    List<String> classess = [];
+    if (ClassModel.classes != null) {
+      for (var g in ClassModel.classes!) {
+        if (prefs!.getString(languageKey) == 'ar')
+          classess.add(g.name.toString());
+        else
+          classess.add(g.enName.toString());
+      }
+    }
+
+    Classmodel = ClassModel;
+    ClassList = classess;
+    isClassLoading = false;
+    update();
+  }
+
+  setIsClassLoading(bool value) {
+    isClassLoading = value;
+    update();
+  }
+
+  void selectIndex(String type, String? index) {
+    switch (type) {
+      case 'semester':
+        SemesterIndex = index ?? "";
+        break;
+      case 'class':
+        ClassIndex = index ?? "";
+        break;
+    }
+
+    update();
+  }
+
+  void updateList(String type, List<String> options) {
+    switch (type) {
+      case 'semester':
+        ClassList = options;
+        break;
+      case 'class':
+        SemesterList = options;
+        break;
+    }
+    update();
+  }
+
+  String get selectedClass => ClassIndex;
+  String get selectedSemester => SemesterIndex;
+
+  void set_semesteridx(int i) {
+    SemesterSendIndex = i;
+    update();
+  }
+
+  List<String> selectedClasses = [];
+
+  void toggleClassSelection(String classId) {
+    // البحث عن الصف الذي يطابق الاسم المخزن في ClassIndex
+    var selectedClassItem = Classmodel?.classes?.firstWhereOrNull(
+      (element) => element.name == ClassIndex || element.enName == ClassIndex,
+    );
+
+    // إذا لم يتم العثور على الصف أو كان الـ ID يطابق `classId`، لا تفعل شيئًا
+    if (selectedClassItem == null ||
+        selectedClassItem.id.toString() == classId) {
+      return;
+    }
+
+    // السماح بإضافة أو إزالة العناصر الأخرى بحرية
+    if (selectedClasses.contains(classId)) {
+      selectedClasses.remove(classId);
+    } else {
+      selectedClasses.add(classId);
+    }
+
+    update();
   }
 }

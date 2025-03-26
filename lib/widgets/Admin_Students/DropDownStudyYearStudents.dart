@@ -93,7 +93,6 @@ class DropDownStudyYearStudents extends StatelessWidget {
                             if (newValue != null && newValue != title) {
                               cont.selectIndex(type, newValue);
                               if (type == 'grade') {
-                                print(newValue);
                                 if (newValue != title) {
                                   cont.resetOnGradeChange();
                                   Getallclassapi.getAllClasses(
