@@ -26,7 +26,7 @@ class _EmployeesAttendanceManagmentGridState
       return controller.Isloading == false
           ? controller.employees!.isEmpty
               ? Center(
-                  child: Text("Attendance Today Has Been Uploaded",
+                  child: Text("Attendance Today Has Been Uploaded".tr,
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontSize: 16, fontWeight: FontWeight.normal)))
               : Obx(() {
@@ -142,7 +142,7 @@ class _EmployeesAttendanceManagmentGridState
                                                             VMSAlertDialog(
                                                                 action: [
                                                               ButtonDialog(
-                                                                  text: "Done",
+                                                                  text: "Done".tr,
                                                                   onPressed:
                                                                       () {
                                                                     controller.updateStatus(
@@ -171,16 +171,16 @@ class _EmployeesAttendanceManagmentGridState
                                                                           controller:
                                                                               cuse,
                                                                           Uptext:
-                                                                              "Cause",
+                                                                              "Cause".tr,
                                                                           hinttext:
-                                                                              "Cause")
+                                                                              "Cause".tr)
                                                                     ],
                                                                   ),
                                                                 ),
                                                                 apptitle:
-                                                                    "Enter The Reason For Absence",
+                                                                    "Enter The Reason For Absence".tr,
                                                                 subtitle:
-                                                                    "The reason for the absence of the student ${controller.Employees[index]['name']}"));
+                                                                    "The reason for the absence of the employee".tr+" (${controller.Employees[index]['name']})"));
                                                       } else {
                                                         controller.updateStatus(
                                                             index,
@@ -191,7 +191,7 @@ class _EmployeesAttendanceManagmentGridState
                                                   },
                                                 ),
                                                 Text(
-                                                  status,
+                                                  status.tr,
                                                   style: TextStyle(
                                                     color: status == 'Present'
                                                         ? const Color(

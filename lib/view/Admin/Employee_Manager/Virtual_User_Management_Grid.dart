@@ -100,7 +100,7 @@ class _Virtual_User_Management_GridState
             )
           : controller.filteredviraulUser!.isEmpty
               ? Center(
-                  child: Text("No Virtual User",
+                  child: Text("No Virtual User".tr,
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontSize: 22, fontWeight: FontWeight.normal)))
               : GridView.builder(
@@ -155,7 +155,7 @@ class _Virtual_User_Management_GridState
                                               Get.dialog(VMSAlertDialog(
                                                 action: [
                                                   ButtonDialog(
-                                                      text: "Delete",
+                                                      text: "Delete".tr,
                                                       onPressed: () {
                                                         Delete_Virtual_User_API(
                                                                 context)
@@ -169,7 +169,7 @@ class _Virtual_User_Management_GridState
                                                           0xffB03D3D),
                                                       width: 80),
                                                   ButtonDialog(
-                                                      text: "Cancel",
+                                                      text: "Cancel".tr,
                                                       onPressed: () {
                                                         Get.back();
                                                       },
@@ -185,7 +185,7 @@ class _Virtual_User_Management_GridState
                                                               .start,
                                                       children: [
                                                         Text(
-                                                          "Do You Want To Delete ${controller.filteredviraulUser![index].userName} Virtual User",
+                                                          "Do You Want To Deletec".tr+" (${controller.filteredviraulUser![index].userName})"+"Virtual User".tr,
                                                           style: Get
                                                               .theme
                                                               .textTheme
@@ -198,14 +198,14 @@ class _Virtual_User_Management_GridState
                                                         ),
                                                       ],
                                                     )),
-                                                apptitle: "Delete Employee",
+                                                apptitle: "Delete Employee".tr,
                                                 subtitle: "none",
                                               ));
                                             },
                                             icon: const Icon(VMS_Icons.bin,
                                                 size: 16, color: Colors.white)),
                                       Text(
-                                        "${controller.filteredviraulUser![index].roll}",
+                                        "${controller.filteredviraulUser![index].roll}".tr,
                                         style: TextStyle(
                                             color: controller
                                                         .filteredviraulUser![

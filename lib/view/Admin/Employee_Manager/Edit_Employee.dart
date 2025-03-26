@@ -4,6 +4,8 @@ import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Edit_Employee_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Full_Employee_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
 import 'package:vms_school/widgets/LargeTextField.dart';
@@ -75,7 +77,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
     return VMSAlertDialog(
         action: [
           ButtonDialog(
-              text: "Edit Employee",
+              text: "Edit Employee".tr,
               onPressed: () async {
                 print(controller.Birthdate.value);
                 await EditEmployeeApi.EditEmployee(
@@ -167,15 +169,15 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                           Textfildwithupper(
                               width: 250,
                               controller: firstName,
-                              Uptext: "First Name",
-                              hinttext: "First Name"),
+                              Uptext: "First Name".tr,
+                              hinttext: "First Name".tr),
                           Padding(
                             padding: const EdgeInsets.only(top: 22.0),
                             child: Textfildwithupper(
                                 width: 250,
                                 controller: lastName,
-                                Uptext: "Last Name",
-                                hinttext: "Last Name"),
+                                Uptext: "Last Name".tr,
+                                hinttext: "Last Name".tr),
                           ),
                         ],
                       )
@@ -188,15 +190,21 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                         Textfildwithupper(
                             width: 250,
                             controller: fatherName,
-                            Uptext: "Father Name",
-                            hinttext: "Father Name"),
+                            Uptext: "Father Name".tr,
+                            hinttext: "Father Name".tr),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
+                          padding: EdgeInsets.only(
+                              left: prefs!.getString(languageKey) == "ar"
+                                  ? 0
+                                  : 20.0,
+                              right: prefs!.getString(languageKey) == "ar"
+                                  ? 20
+                                  : 0),
                           child: Textfildwithupper(
                               width: 250,
                               controller: motherName,
-                              Uptext: "Mother Name",
-                              hinttext: "Mother Name"),
+                              Uptext: "Mother Name".tr,
+                              hinttext: "Mother Name".tr),
                         )
                       ],
                     ),
@@ -208,12 +216,18 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                         Textfildwithupper(
                             width: 250,
                             controller: phoneNumper,
-                            Uptext: "Phone Numper",
-                            hinttext: "Phone Numper"),
+                            Uptext: "Phone Number".tr,
+                            hinttext: "Phone Number".tr),
                         Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
+                            padding: EdgeInsets.only(
+                                left: prefs!.getString(languageKey) == "ar"
+                                    ? 0
+                                    : 20.0,
+                                right: prefs!.getString(languageKey) == "ar"
+                                    ? 20
+                                    : 0),
                             child: BirthDate(
-                              Uptext: "Birthdate",
+                              Uptext: "Birthdate".tr,
                               width: 250,
                             ))
                       ],
@@ -226,12 +240,18 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                         Textfildwithupper(
                             width: 250,
                             controller: emergencyNumber,
-                            Uptext: "Emergency Number",
-                            hinttext: "Emergency Number"),
+                            Uptext: "Emergency Number".tr,
+                            hinttext: "Emergency Number".tr),
                         Padding(
-                            padding: const EdgeInsets.only(left: 20.0),
+                            padding: EdgeInsets.only(
+                                left: prefs!.getString(languageKey) == "ar"
+                                    ? 0
+                                    : 20.0,
+                                right: prefs!.getString(languageKey) == "ar"
+                                    ? 20
+                                    : 0),
                             child: JoinDate(
-                              Uptext: "Join Date",
+                              Uptext: "Join Date".tr,
                               width: 250,
                             ))
                       ],
@@ -244,15 +264,21 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                         Textfildwithupper(
                             width: 250,
                             controller: Address,
-                            Uptext: "Address",
-                            hinttext: "Address"),
+                            Uptext: "Address".tr,
+                            hinttext: "Address".tr),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
+                          padding: EdgeInsets.only(
+                              left: prefs!.getString(languageKey) == "ar"
+                                  ? 0
+                                  : 20.0,
+                              right: prefs!.getString(languageKey) == "ar"
+                                  ? 20
+                                  : 0),
                           child: Textfildwithupper(
                               width: 250,
                               controller: currentAddress,
-                              Uptext: "Current Address",
-                              hinttext: "Current Address"),
+                              Uptext: "Current Address".tr,
+                              hinttext: "Current Address".tr),
                         )
                       ],
                     ),
@@ -265,16 +291,22 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                             readOnly: true,
                             width: 250,
                             controller: Email,
-                            Uptext: "Email",
-                            hinttext: "Email"),
+                            Uptext: "Email".tr,
+                            hinttext: "Email".tr),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
+                          padding: EdgeInsets.only(
+                              left: prefs!.getString(languageKey) == "ar"
+                                  ? 0
+                                  : 20.0,
+                              right: prefs!.getString(languageKey) == "ar"
+                                  ? 20
+                                  : 0),
                           child: Textfildwithupper(
                               readOnly: true,
                               width: 250,
                               controller: Username,
-                              Uptext: "Username",
-                              hinttext: "Username"),
+                              Uptext: "Username".tr,
+                              hinttext: "Username".tr),
                         )
                       ],
                     ),
@@ -287,16 +319,22 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                             readOnly: true,
                             width: 250,
                             controller: Joptitle,
-                            Uptext: "Joptitle",
-                            hinttext: "Joptitle"),
+                            Uptext: "Joptitle".tr,
+                            hinttext: "Joptitle".tr),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
+                          padding: EdgeInsets.only(
+                              left: prefs!.getString(languageKey) == "ar"
+                                  ? 0
+                                  : 20.0,
+                              right: prefs!.getString(languageKey) == "ar"
+                                  ? 20
+                                  : 0),
                           child: Textfildwithupper(
                               readOnly: true,
                               width: 250,
                               controller: roll,
-                              Uptext: "Roll",
-                              hinttext: "Roll"),
+                              Uptext: "Roll".tr,
+                              hinttext: "Roll".tr),
                         )
                       ],
                     ),
@@ -307,11 +345,17 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Dropdownallemployee(
-                            title: "Gender", width: 250, type: "Gender"),
+                            title: "Gender".tr, width: 250, type: "Gender"),
                         Padding(
-                          padding: EdgeInsets.only(left: 20.0),
+                          padding: EdgeInsets.only(
+                              left: prefs!.getString(languageKey) == "ar"
+                                  ? 0
+                                  : 20.0,
+                              right: prefs!.getString(languageKey) == "ar"
+                                  ? 20
+                                  : 0),
                           child: Dropdownallemployee(
-                              title: "Family Status",
+                              title: "Family Status".tr,
                               width: 250,
                               type: "Family_Status"),
                         )
@@ -329,8 +373,8 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                         Textfildwithupper(
                             width: 250,
                             controller: Salary,
-                            Uptext: "Salary",
-                            hinttext: "Salary"),
+                            Uptext: "Salary".tr,
+                            hinttext: "Salary".tr),
                       ],
                     ),
                   ),
@@ -340,7 +384,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          "Social Media Info :",
+                          "Social Media Info".tr,
                           style: Get.theme.textTheme.titleLarge!
                               .copyWith(fontSize: 20),
                         )
@@ -354,15 +398,21 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                         Textfildwithupper(
                             width: 250,
                             controller: facebookUrl,
-                            Uptext: "Facebook URL",
-                            hinttext: "Facebook URL"),
+                            Uptext: "Facebook URL".tr,
+                            hinttext: "Facebook URL".tr),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
+                          padding: EdgeInsets.only(
+                              left: prefs!.getString(languageKey) == "ar"
+                                  ? 0
+                                  : 20.0,
+                              right: prefs!.getString(languageKey) == "ar"
+                                  ? 20
+                                  : 0),
                           child: Textfildwithupper(
                               width: 250,
                               controller: xPlatformUrl,
-                              Uptext: "X Platform URL",
-                              hinttext: "X Platform URL"),
+                              Uptext: "X Platform URL".tr,
+                              hinttext: "X Platform URL".tr),
                         )
                       ],
                     ),
@@ -374,15 +424,21 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                         Textfildwithupper(
                             width: 250,
                             controller: linkedinUrl,
-                            Uptext: "Linkedin URL",
-                            hinttext: "Linkedin URL"),
+                            Uptext: "Linkedin URL".tr,
+                            hinttext: "Linkedin URL".tr),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
+                          padding: EdgeInsets.only(
+                              left: prefs!.getString(languageKey) == "ar"
+                                  ? 0
+                                  : 20.0,
+                              right: prefs!.getString(languageKey) == "ar"
+                                  ? 20
+                                  : 0),
                           child: Textfildwithupper(
                               width: 250,
                               controller: instagramUrl,
-                              Uptext: "Instagram URL",
-                              hinttext: "Instagram URL"),
+                              Uptext: "Instagram URL".tr,
+                              hinttext: "Instagram URL".tr),
                         )
                       ],
                     ),
@@ -393,7 +449,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          "Teacher Bank Info :",
+                          "Employee Bank Info".tr,
                           style: Get.theme.textTheme.titleLarge!
                               .copyWith(fontSize: 20),
                         )
@@ -407,15 +463,21 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                         Textfildwithupper(
                             width: 250,
                             controller: bankAccountTitle,
-                            Uptext: "Bank Account Title",
-                            hinttext: "Bank Account Title"),
+                            Uptext: "Bank Account Title".tr,
+                            hinttext: "Bank Account Title".tr),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
+                          padding: EdgeInsets.only(
+                              left: prefs!.getString(languageKey) == "ar"
+                                  ? 0
+                                  : 20.0,
+                              right: prefs!.getString(languageKey) == "ar"
+                                  ? 20
+                                  : 0),
                           child: Textfildwithupper(
                               width: 250,
                               controller: bankName,
-                              Uptext: "Bank Name",
-                              hinttext: "Bank Name"),
+                              Uptext: "Bank Name".tr,
+                              hinttext: "Bank Name".tr),
                         )
                       ],
                     ),
@@ -427,15 +489,21 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                         Textfildwithupper(
                             width: 250,
                             controller: bankBranchName,
-                            Uptext: "Bank Branch Name",
-                            hinttext: "Bank Branch Name"),
+                            Uptext: "Bank Branch Name".tr,
+                            hinttext: "Bank Branch Name".tr),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
+                          padding: EdgeInsets.only(
+                              left: prefs!.getString(languageKey) == "ar"
+                                  ? 0
+                                  : 20.0,
+                              right: prefs!.getString(languageKey) == "ar"
+                                  ? 20
+                                  : 0),
                           child: Textfildwithupper(
                               width: 250,
                               controller: bankAccountNumber,
-                              Uptext: "Bank Account Number",
-                              hinttext: "Bank Account Number"),
+                              Uptext: "Bank Account Number".tr,
+                              hinttext: "Bank Account Number".tr),
                         )
                       ],
                     ),
@@ -449,8 +517,8 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                         Textfildwithupper(
                             width: 250,
                             controller: ifscCode,
-                            Uptext: "IFSC Code",
-                            hinttext: "IFSC Code"),
+                            Uptext: "IFSC Code".tr,
+                            hinttext: "IFSC Code".tr),
                       ],
                     ),
                   ),
@@ -469,7 +537,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                       children: [
                         LargeTextField(
                             controller: careerHistory,
-                            hinttext: "Career History"),
+                            hinttext: "Career History".tr),
                       ],
                     ),
                   ),
@@ -481,7 +549,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                       children: [
                         LargeTextField(
                             controller: Qualification,
-                            hinttext: "Qualification"),
+                            hinttext: "Qualification".tr),
                       ],
                     ),
                   ),
@@ -492,7 +560,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         LargeTextField(
-                            controller: Experience, hinttext: "Experience"),
+                            controller: Experience, hinttext: "Experience".tr),
                       ],
                     ),
                   ),
@@ -502,7 +570,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        LargeTextField(controller: Note, hinttext: "Note"),
+                        LargeTextField(controller: Note, hinttext: "Note".tr),
                       ],
                     ),
                   ),
@@ -511,7 +579,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
             ),
           );
         }),
-        apptitle: "Edit Employee",
+        apptitle: "Edit Employee".tr,
         subtitle: "none");
   }));
 }

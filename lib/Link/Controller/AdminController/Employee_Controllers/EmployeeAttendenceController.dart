@@ -60,7 +60,7 @@ class Employeeattendencecontroller extends GetxController {
 
     if (jopindex.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((emp) {
-        return emp.jobTitle?.toLowerCase() == jopindex.toLowerCase();
+        return emp.jobTitle?.tr.toLowerCase() == jopindex.tr.toLowerCase();
       }).toList();
     }
 

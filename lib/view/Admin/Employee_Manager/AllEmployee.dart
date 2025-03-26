@@ -4,6 +4,8 @@ import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_All_Employee_API
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/AddTeacherAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/Employee_Manager/Add_Full_Employee.dart';
 import 'package:vms_school/view/Admin/Employee_Manager/AllEmployeeGrid.dart';
 import 'package:vms_school/widgets/Admin_Employee/Export_Data.dart';
@@ -66,7 +68,7 @@ class _AllEmployeeState extends State<AllEmployee> {
                       Padding(
                           padding: const EdgeInsets.only(left: 8.0),
                           child: DropDownAllSessions(
-                            title: "Session",
+                            title: "Session".tr,
                             width: w / 6.5,
                             type: "session",
                             API: "AllEmployee",
@@ -74,7 +76,7 @@ class _AllEmployeeState extends State<AllEmployee> {
                       Padding(
                           padding: const EdgeInsets.only(left: 8.0),
                           child: Dropdownallemployee(
-                              title: "Job Title",
+                              title: "Job Title".tr,
                               width: w / 6.5,
                               type: "jobTitle")),
                       GetBuilder<Allempolyeecontroller>(builder: (controller) {
@@ -128,13 +130,13 @@ class _AllEmployeeState extends State<AllEmployee> {
                               size: 18,
                               color: Theme.of(context).highlightColor),
                           onSelected: (value) {
-                            if (value == "Add Employee") {
+                            if (value == "Add Employee".tr) {
                               Get.dialog(GetBuilder<Allempolyeecontroller>(
                                   builder: (cont) {
                                 return VMSAlertDialog(
                                     action: [
                                       ButtonDialog(
-                                          text: "Add Employee",
+                                          text: "Add Employee".tr,
                                           onPressed: () async {
                                             bool isRollEmpty = Get.find<
                                                         Allempolyeecontroller>()
@@ -524,24 +526,24 @@ class _AllEmployeeState extends State<AllEmployee> {
                                         ],
                                       ),
                                     ),
-                                    apptitle: "Add Employee",
+                                    apptitle: "Add Employee".tr,
                                     subtitle: "none");
                               }));
                             }
-                            if (value == "Add Full Employee") {
+                            if (value == "Add Full Employee".tr) {
                               Add_Full_Employee(context);
                             }
                           },
                           itemBuilder: (BuildContext context) =>
                               <PopupMenuEntry<String>>[
-                            const PopupMenuItem<String>(
-                                value: 'Add Employee',
+                            PopupMenuItem<String>(
+                                value: 'Add Employee'.tr,
                                 child: Text(
-                                  'Add Employee',
+                                  'Add Employee'.tr,
                                 )),
-                            const PopupMenuItem<String>(
-                                value: 'Add Full Employee',
-                                child: Text('Add Full Employee')),
+                            PopupMenuItem<String>(
+                                value: 'Add Full Employee'.tr,
+                                child: Text('Add Full Employee'.tr)),
                           ],
                         ),
                       ),

@@ -5,6 +5,8 @@ import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Add_Virtual_Employee
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_Virtual_Employee.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/All_Virtual_Employee_Controller.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/Employee_Manager/Virtual_User_Management_Grid.dart';
 import 'package:vms_school/widgets/Admin_employee/DropDownAllEmployee.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
