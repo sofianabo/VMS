@@ -9,6 +9,7 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Students_Marks_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeacherAtendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
@@ -37,6 +38,7 @@ class Getallclassapi {
       final StudentAttendencControlle = Get.find<StudentAttendencController>();
       final addStudentsControlle = Get.find<Add_Students_Controller>();
       final AdminSchoolTimeControllers = Get.find<AdminSchoolTimeController>();
+      final Students_Marks_Controllers = Get.find<Students_Marks_Controller>();
       final quiz = Get.find<TeachernoteAndGradeReco>();
 
       ClassController.setIsLoading(true);
@@ -49,6 +51,7 @@ class Getallclassapi {
       StudentAttendencControlle.setClassLoading(true);
       addStudentsControlle.SetIsLoadingClass(true);
       AdminSchoolTimeControllers.setIsLoadingClass(true);
+      Students_Marks_Controllers.SetisClassLoading(true);
 
       final controller = Get.find<Divisions_Controller>();
       controller.SetIsloading(true);
@@ -65,6 +68,7 @@ class Getallclassapi {
         AllClassModel classes = AllClassModel.fromJson(response.data);
         ClassController.setClasses(classes);
         controller.setClass(classes);
+        Students_Marks_Controllers.SetClass(classes);
         return classes;
       } else {
         ErrorHandler.handleDioError(DioException(

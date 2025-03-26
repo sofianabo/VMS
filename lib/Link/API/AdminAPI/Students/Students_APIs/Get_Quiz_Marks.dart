@@ -16,7 +16,7 @@ class Get_Quiz_Marks_API {
 
   Future<void> Get_Quiz_Marks({
     required int SemsterId,
-    required String ClassId,
+    required int ClassId,
     required int DivisionId,
     required int CurrId,
   }) async {

@@ -152,6 +152,7 @@ class Curriculumn_Controller extends GetxController {
 
   void SetCurriculum(Curriculum_Model curriculumModel) {
     curriculum = curriculumModel.curriculum;
+
     filteredCurriculum = List.from(curriculum!);
 
     if (filterName != null && filterName!.isNotEmpty) {
