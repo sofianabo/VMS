@@ -4,6 +4,7 @@ import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Quiz_Type/Get_Quiz_Type.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Guardian_APIS/AddGuardianAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Guardian_APIS/GetAllGuardiansAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Quiz_Marks.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/allGaurdianController.dart';
 import 'package:vms_school/view/Admin/Students_Manager/AllGuardianGrid.dart';
 import 'package:vms_school/view/Admin/Students_Manager/Students_Marks/Students_Marks_Grid.dart';
@@ -23,7 +24,8 @@ class _AllGuardiansState extends State<Students_Marks> {
   TextEditingController search = TextEditingController();
   @override
   void initState() {
-    Get_Quiz_Type_API().Get_Quiz_Type(SemsterId: 1, ClassId: "1");
+    Get_Quiz_Marks_API()
+        .Get_Quiz_Marks(SemsterId: 1, ClassId: "1", CurrId: 1, DivisionId: 1);
     super.initState();
   }
 
