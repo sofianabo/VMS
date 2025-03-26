@@ -53,7 +53,7 @@ class _EmployeeStatusState extends State<EmployeeStatus> {
                           padding: const EdgeInsets.only(left: 8.0),
                           child: DropDownAllSessions(
                               API: "EmpState",
-                              title: "session",
+                              title: "session".tr,
                               width: w / 5.5,
                               type: "session"),
                         ),
@@ -61,7 +61,7 @@ class _EmployeeStatusState extends State<EmployeeStatus> {
                           padding: const EdgeInsets.only(left: 8.0),
                           child: DropDownEmployeeAttendence(
                             type: "jobTitle",
-                            title: "Jop Title",
+                            title: "Job Title".tr,
                             width: w / 5.5,
                           ),
                         ),

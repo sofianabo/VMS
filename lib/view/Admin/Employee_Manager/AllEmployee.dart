@@ -4,6 +4,8 @@ import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_All_Employee_API
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/AddTeacherAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/Employee_Manager/Add_Full_Employee.dart';
 import 'package:vms_school/view/Admin/Employee_Manager/AllEmployeeGrid.dart';
 import 'package:vms_school/widgets/Admin_Employee/Export_Data.dart';
@@ -66,7 +68,7 @@ class _AllEmployeeState extends State<AllEmployee> {
                       Padding(
                           padding: const EdgeInsets.only(left: 8.0),
                           child: DropDownAllSessions(
-                            title: "Session",
+                            title: "Session".tr,
                             width: w / 6.5,
                             type: "session",
                             API: "AllEmployee",
@@ -74,7 +76,7 @@ class _AllEmployeeState extends State<AllEmployee> {
                       Padding(
                           padding: const EdgeInsets.only(left: 8.0),
                           child: Dropdownallemployee(
-                              title: "Job Title",
+                              title: "Job Title".tr,
                               width: w / 6.5,
                               type: "jobTitle")),
                       GetBuilder<Allempolyeecontroller>(builder: (controller) {
@@ -116,24 +118,25 @@ class _AllEmployeeState extends State<AllEmployee> {
                                   blurRadius: 1)
                             ]),
                         child: PopupMenuButton(
-                          style:  ButtonStyle(
-                              backgroundColor:
-                                  WidgetStatePropertyAll(Theme.of(context).cardColor),
+                          style: ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                  Theme.of(context).cardColor),
                               shape: WidgetStatePropertyAll(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
                           tooltip: "",
                           child: Icon(Icons.add,
-                              size: 18, color: Theme.of(context).highlightColor),
+                              size: 18,
+                              color: Theme.of(context).highlightColor),
                           onSelected: (value) {
-                            if (value == "Add Employee") {
+                            if (value == "Add Employee".tr) {
                               Get.dialog(GetBuilder<Allempolyeecontroller>(
                                   builder: (cont) {
                                 return VMSAlertDialog(
                                     action: [
                                       ButtonDialog(
-                                          text: "Add Employee",
+                                          text: "Add Employee".tr,
                                           onPressed: () async {
                                             await Addteacherapi(context)
                                                 .Addteacher(
@@ -146,7 +149,10 @@ class _AllEmployeeState extends State<AllEmployee> {
                                                     cont.GenderListIndex,
                                                     cont.ContractTypeIndex
                                                         .trim(),
-                                                    cont.ferollIndex == "Sub Admin" ? "subAdmin" : cont.ferollIndex,
+                                                    cont.ferollIndex ==
+                                                            "Sub Admin"
+                                                        ? "subAdmin"
+                                                        : cont.ferollIndex,
                                                     cont.fejopIndex,
                                                     password.text);
                                           },
@@ -159,19 +165,28 @@ class _AllEmployeeState extends State<AllEmployee> {
                                         Row(
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 15.0),
+                                              padding: EdgeInsets.only(
+                                                  right: prefs!.getString(
+                                                              languageKey) ==
+                                                          "ar"
+                                                      ? 0
+                                                      : 20.0,
+                                                  left: prefs!.getString(
+                                                              languageKey) ==
+                                                          "ar"
+                                                      ? 20
+                                                      : 0),
                                               child: Textfildwithupper(
-                                                  Uptext: "First Name",
+                                                  Uptext: "First Name".tr,
                                                   width: 220,
                                                   controller: firstName,
-                                                  hinttext: "First Name"),
+                                                  hinttext: "First Name".tr),
                                             ),
                                             Textfildwithupper(
-                                                Uptext: "Last Name",
+                                                Uptext: "Last Name".tr,
                                                 width: 220,
                                                 controller: lastName,
-                                                hinttext: "Last Name")
+                                                hinttext: "Last Name".tr)
                                           ],
                                         ),
                                         Padding(
@@ -180,19 +195,28 @@ class _AllEmployeeState extends State<AllEmployee> {
                                           child: Row(
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 15.0),
+                                                padding: EdgeInsets.only(
+                                                    right: prefs!.getString(
+                                                                languageKey) ==
+                                                            "ar"
+                                                        ? 0
+                                                        : 20.0,
+                                                    left: prefs!.getString(
+                                                                languageKey) ==
+                                                            "ar"
+                                                        ? 20
+                                                        : 0),
                                                 child: Textfildwithupper(
-                                                    Uptext: "Email",
+                                                    Uptext: "Email".tr,
                                                     width: 220,
                                                     controller: email,
-                                                    hinttext: "Email"),
+                                                    hinttext: "Email".tr),
                                               ),
                                               Textfildwithupper(
-                                                  Uptext: "Username",
+                                                  Uptext: "Username".tr,
                                                   width: 220,
                                                   controller: username,
-                                                  hinttext: "Username")
+                                                  hinttext: "Username".tr)
                                             ],
                                           ),
                                         ),
@@ -202,13 +226,23 @@ class _AllEmployeeState extends State<AllEmployee> {
                                           child: Row(
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 15.0),
+                                                padding: EdgeInsets.only(
+                                                    right: prefs!.getString(
+                                                                languageKey) ==
+                                                            "ar"
+                                                        ? 0
+                                                        : 20.0,
+                                                    left: prefs!.getString(
+                                                                languageKey) ==
+                                                            "ar"
+                                                        ? 20
+                                                        : 0),
                                                 child: Textfildwithupper(
-                                                    Uptext: "Phone Number",
+                                                    Uptext: "Phone Number".tr,
                                                     width: 220,
                                                     controller: phone,
-                                                    hinttext: "Phone Number"),
+                                                    hinttext:
+                                                        "Phone Number".tr),
                                               ),
                                               Column(
                                                 mainAxisAlignment:
@@ -218,48 +252,64 @@ class _AllEmployeeState extends State<AllEmployee> {
                                                 children: [
                                                   JoinDate(
                                                     width: 220,
-                                                    Uptext: "Join Date",
+                                                    Uptext: "Join Date".tr,
                                                   )
                                                 ],
                                               )
                                             ],
                                           ),
                                         ),
-                                        const Padding(
-                                          padding:
-                                              EdgeInsets.only(top: 15.0),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 15.0),
                                           child: Row(
                                             children: [
                                               Padding(
                                                 padding: EdgeInsets.only(
-                                                    right: 15.0),
+                                                    right: prefs!.getString(
+                                                                languageKey) ==
+                                                            "ar"
+                                                        ? 0
+                                                        : 20.0,
+                                                    left: prefs!.getString(
+                                                                languageKey) ==
+                                                            "ar"
+                                                        ? 20
+                                                        : 0),
                                                 child: Dropdownallemployee(
-                                                    title: "Job Title",
+                                                    title: "Job Title".tr,
                                                     width: 220,
                                                     type: "fejop"),
                                               ),
                                               Dropdownallemployee(
-                                                  title: "Roll",
+                                                  title: "Roll"..tr,
                                                   width: 220,
                                                   type: "feroll"),
                                             ],
                                           ),
                                         ),
-                                        const Padding(
-                                          padding:
-                                              EdgeInsets.only(top: 15.0),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 15.0),
                                           child: Row(
                                             children: [
                                               Padding(
                                                 padding: EdgeInsets.only(
-                                                    right: 15.0),
+                                                    right: prefs!.getString(
+                                                                languageKey) ==
+                                                            "ar"
+                                                        ? 0
+                                                        : 20.0,
+                                                    left: prefs!.getString(
+                                                                languageKey) ==
+                                                            "ar"
+                                                        ? 20
+                                                        : 0),
                                                 child: Dropdownallemployee(
-                                                    title: "Gender",
+                                                    title: "Gender".tr,
                                                     width: 220,
                                                     type: "Gender"),
                                               ),
                                               Dropdownallemployee(
-                                                  title: "Contract Type",
+                                                  title: "Contract Type".tr,
                                                   width: 220,
                                                   type: "Contract"),
                                             ],
@@ -271,42 +321,52 @@ class _AllEmployeeState extends State<AllEmployee> {
                                           child: Row(
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 15.0),
+                                                padding: EdgeInsets.only(
+                                                    right: prefs!.getString(
+                                                                languageKey) ==
+                                                            "ar"
+                                                        ? 0
+                                                        : 20.0,
+                                                    left: prefs!.getString(
+                                                                languageKey) ==
+                                                            "ar"
+                                                        ? 20
+                                                        : 0),
                                                 child: Textfildwithupper(
-                                                    Uptext: "Password",
+                                                    Uptext: "Password".tr,
                                                     width: 220,
                                                     controller: password,
-                                                    hinttext: "Password"),
+                                                    hinttext: "Password".tr),
                                               ),
                                               Textfildwithupper(
-                                                  Uptext: "Confirm Password",
+                                                  Uptext: "Confirm Password".tr,
                                                   width: 220,
                                                   controller: cPassword,
-                                                  hinttext: "Confirm Password")
+                                                  hinttext:
+                                                      "Confirm Password".tr)
                                             ],
                                           ),
                                         )
                                       ],
                                     ),
-                                    apptitle: "Add Employee",
+                                    apptitle: "Add Employee".tr,
                                     subtitle: "none");
                               }));
                             }
-                            if (value == "Add Full Employee") {
+                            if (value == "Add Full Employee".tr) {
                               Add_Full_Employee(context);
                             }
                           },
                           itemBuilder: (BuildContext context) =>
                               <PopupMenuEntry<String>>[
-                            const PopupMenuItem<String>(
-                                value: 'Add Employee',
+                            PopupMenuItem<String>(
+                                value: 'Add Employee'.tr,
                                 child: Text(
-                                  'Add Employee',
+                                  'Add Employee'.tr,
                                 )),
-                            const PopupMenuItem<String>(
-                                value: 'Add Full Employee',
-                                child: Text('Add Full Employee')),
+                            PopupMenuItem<String>(
+                                value: 'Add Full Employee'.tr,
+                                child: Text('Add Full Employee'.tr)),
                           ],
                         ),
                       ),
@@ -325,9 +385,9 @@ class _AllEmployeeState extends State<AllEmployee> {
                                     blurRadius: 1)
                               ]),
                           child: IconButton(
-                              style:  ButtonStyle(
-                                  backgroundColor:
-                                      WidgetStatePropertyAll(Theme.of(context).cardColor),
+                              style: ButtonStyle(
+                                  backgroundColor: WidgetStatePropertyAll(
+                                      Theme.of(context).cardColor),
                                   shape: WidgetStatePropertyAll(
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
@@ -338,7 +398,8 @@ class _AllEmployeeState extends State<AllEmployee> {
                                         .filteredreemployees);
                               },
                               icon: Icon(VMS_Icons.pdf,
-                                  size: 18, color: Theme.of(context).highlightColor)),
+                                  size: 18,
+                                  color: Theme.of(context).highlightColor)),
                         ),
                       ),
                       Container(
@@ -354,9 +415,9 @@ class _AllEmployeeState extends State<AllEmployee> {
                                   blurRadius: 1)
                             ]),
                         child: IconButton(
-                            style:  ButtonStyle(
-                                backgroundColor:
-                                    WidgetStatePropertyAll(Theme.of(context).cardColor),
+                            style: ButtonStyle(
+                                backgroundColor: WidgetStatePropertyAll(
+                                    Theme.of(context).cardColor),
                                 shape: WidgetStatePropertyAll(
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
@@ -367,7 +428,8 @@ class _AllEmployeeState extends State<AllEmployee> {
                                       .filteredreemployees);
                             },
                             icon: Icon(VMS_Icons.xl,
-                                size: 18, color: Theme.of(context).highlightColor)),
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
                       ),
                     ],
                   )

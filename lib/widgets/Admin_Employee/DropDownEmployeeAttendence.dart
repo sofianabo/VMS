@@ -23,7 +23,7 @@ class DropDownEmployeeAttendence extends StatelessWidget {
       switch (type) {
         case 'jobTitle':
           selectedValue = cont.selectejobTitleIndex.isNotEmpty
-              ? cont.selectejobTitleIndex
+              ? cont.selectejobTitleIndex.tr
               : title;
           break;
       }
@@ -70,7 +70,7 @@ class DropDownEmployeeAttendence extends StatelessWidget {
                     value: title,
                     enabled: false,
                     child: Text(
-                      title,
+                      title.tr,
                       style: Get.theme.textTheme.bodyMedium!.copyWith(
                         fontSize: 14,
                       ),
@@ -95,9 +95,9 @@ class DropDownEmployeeAttendence extends StatelessWidget {
       case 'jobTitle':
         items.addAll(cont.JobTitleList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value,
+            value: value.tr,
             child: Text(
-              value,
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );

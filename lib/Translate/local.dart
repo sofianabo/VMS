@@ -448,8 +448,44 @@ class Languages {
       'The reason for the absence of the all Teachers': 'سبب غياب كل المعلمين',
       'Vacation': 'إجازة',
       "sub": "مواد",
-
       'Subjects': '',
+
+      'Job Title': 'المسمى الوظيفي',
+      "Manager": "مدير",
+      "Dustman": "عامل نظافة",
+      "Guard": "حارس",
+      "Registration": "مدير قسم التسجيل",
+      "Secretariat": "أمين السر",
+      "Secretary": "سكرتير",
+      "Supervisor": "مشرف",
+      "Accountant": "محاسب",
+      "Media": "إعلامي",
+      "Technical Support Manager": "مدير الدعم التقني",
+      'Add Employee': 'إضافة موظف',
+      'Roll': 'الدور',
+      'Add Full Employee': 'إضافة موظف كامل',
+      'Observer': 'مراقب',
+      'Admin': "مدير المدرسة",
+      'Sub Admin': "مساعد مدير المدرسة",
+      "Salary": "الراتب",
+      'Employee Bank Info': 'معلومات الحساب البنكي للموظف',
+      'IFSC Code': 'شيفرة IFSC',
+      'This Employee Does Not Contain Any Data':
+          'هذا الموظف ليس لديه أي بيانات',
+      'Employeey': '',
+      'Do You Want To Deletey': 'هل تريد حذف الموظف',
+      'Delete Employee': 'حذف الموظف',
+      'No Employees': 'لا يوجد موظفين',
+      'Edit Employee': 'تعديل الموظف',
+      'The reason for the absence of the all employee':
+          'سبب غياب جميع الموظفين',
+      'The reason for the absence of the employee': 'سبب غياب الموظف',
+      'Add Virtual User': 'إضافة موظف افتراضي',
+      'No Virtual User': 'لا يوجد مزظفين افتراضيين',
+      'Do You Want To Deletec': 'هل تريد حذف الموظف الافتراضي',
+      'Virtual User': '',
+      'observer': "مراقب",
+      "class": "صف"
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -840,25 +876,21 @@ class Languages {
       'Edit Student': 'Edit Student',
       'Edite': 'Edit',
       'Info': 'Info',
-
       'Show only selected items': 'Show only selected items',
       'Do You Want To Deletee': 'Do You Want To Delete',
       'No Result': 'No Result',
-
       'Guardian Name': 'Guardian Name',
       'Guardian National ID': 'Guardian National ID',
       'Guardian Email': 'Guardian Email',
       'Guardian Phone Number': 'Guardian Phone Number',
       'Edit Guardian': 'Edit Guardian',
       'Confirm Password': 'Confirm Password',
-
       'Add Guardian': 'Add Guardian',
       'Email': 'Email',
       'Guardian Username': 'Guardian Username',
       'Name': 'Name',
       'phone Number': 'phone Number',
       'National ID': 'National ID',
-
       'Set All As a Holiday': 'Set All As a Holiday',
       'Cause': 'Cause',
       'Enter The Reason For Absence': 'Enter The Reason For Absence',
@@ -872,24 +904,19 @@ class Languages {
           'The reason for the absence of the student',
       'Attendance Today Has Been Uploaded':
           'Attendance Today Has Been Uploaded',
-
       'Attendence': 'Attendence',
       'Subject': 'Subject',
       'Add Teacher': 'Add Teacher',
       'Contract Type': 'Contract Type',
-
       'Full Time': 'Full Time',
       'hours': 'hours',
       'Hours': 'Hours',
-
       'This Teacher Does Not Contain Any Data':
           'This Teacher Does Not Contain Any Data',
       'Mobile: ': 'Mobile: ',
-
       'Teacherr': 'Teacherr',
       'Do You Want To Deletet': 'Do You Want To Delete',
       'Delete Teacher': 'Delete Teacher',
-
       'If You Deselected The Illness The File Will Remove':
           'If You Deselected The Illness The File Will Remove',
       'If You Click Yes The File Will Remove':
@@ -898,16 +925,58 @@ class Languages {
       'Vaccine File': 'Vaccine File',
       'Employee Illness': 'Employee Illness',
       'Teacher Illness': 'Teacher Illness',
-
       'The reason for the absence of the all Teachers':
           'The reason for the absence of the all Teachers',
       'Vacation': 'Vacation',
       "att": "",
       "sub": "",
-
       'Subjects': 'Subjects',
-      '': '',
-      '': '',
+
+      'Job Title': 'Job Title',
+      "Manager": "Manager",
+      "Dustman": "Dustman",
+      "Guard": "Guard",
+      "Registration": "Registration",
+      "Secretariat": "Secretariat",
+      "Secretary": "Secretary",
+      "Supervisor": "Supervisor",
+      "Accountant": "Accountant",
+      "Technical Support": "Technical Support",
+      "Media": "Media",
+      "Technical Support Manager": "Technical Support Manager",
+      'Add Employee': 'Add Employee',
+      'Roll': 'Role',
+      'Add Full Employee': 'Add Full Employee',
+      'Observer': 'Observer',
+      'Admin': "Admin",
+      'Sub Admin': "Sub Admin",
+      'Salary': 'Salary',
+      'Employee Bank Info': 'Employee Bank Info',
+      'IFSC Code': 'IFSC Code',
+
+      'This Employee Does Not Contain Any Data':
+          'This Employee Does Not Contain Any Data',
+      'Employeey': 'Employee',
+      'Do You Want To Deletey': 'Do You Want To Delete',
+      'Delete Employee': 'Delete Employee',
+      'No Employees': 'No Employees',
+
+      'Edit Employee': 'Edit Employee',
+      'The reason for the absence of the all employee':
+          'The reason for the absence of the all employee',
+
+      'The reason for the absence of the employee':
+          'The reason for the absence of the employee',
+
+      'Add Virtual User': 'Add Virtual User',
+      'No Virtual User': 'No Virtual User',
+      'Do You Want To Deletec': 'Do You Want To Delete',
+      'Virtual User': 'Virtual User',
+      'observer': 'observer',
+      'class': 'class',
+
+      'Class En - Name': 'Class En - Name',
+      'Class Ar - Name': 'Class Ar - Name',
       '': '',
       '': '',
       '': '',

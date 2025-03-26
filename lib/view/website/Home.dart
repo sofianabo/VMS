@@ -40,39 +40,42 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: SizedBox(
-          width: w,
-          child: Column(
-            children: [
-              AppbarCustom(
-                Section2Key: Section2Key,
-                Section3Key: Section3Key,
-                Section4Key: Section4Key,
-                Section5Key: Section5Key,
-                Section6Key: Section6Key,
-                Section7Key: Section7Key,
-              ),
-              Section1(),
-              Section2(
-                key: Section2Key,
-              ),
-              Section3(
-                key: Section3Key,
-              ),
-              Section4(
-                key: Section4Key,
-              ),
-              Section5(
-                key: Section5Key,
-              ),
-              Section6(
-                key: Section6Key,
-              ),
-              Section7(
-                key: Section7Key,
-              ),
-            ],
+      body: Directionality(
+        textDirection: TextDirection.rtl,
+        child: SingleChildScrollView(
+          child: SizedBox(
+            width: w,
+            child: Column(
+              children: [
+                AppbarCustom(
+                  Section2Key: Section2Key,
+                  Section3Key: Section3Key,
+                  Section4Key: Section4Key,
+                  Section5Key: Section5Key,
+                  Section6Key: Section6Key,
+                  Section7Key: Section7Key,
+                ),
+                Section1(),
+                Section2(
+                  key: Section2Key,
+                ),
+                Section3(
+                  key: Section3Key,
+                ),
+                Section4(
+                  key: Section4Key,
+                ),
+                Section5(
+                  key: Section5Key,
+                ),
+                Section6(
+                  key: Section6Key,
+                ),
+                Section7(
+                  key: Section7Key,
+                ),
+              ],
+            ),
           ),
         ),
       ),

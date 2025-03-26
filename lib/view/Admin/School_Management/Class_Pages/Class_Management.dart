@@ -56,7 +56,7 @@ class _ClassManagementState extends State<ClassManagement> {
               Row(
                 children: [
                   DropDownAllSessions(
-                    title: "Session",
+                    title: "Session".tr,
                     width: Get.width / 3,
                     type: "session",
                     API: 'class',
@@ -67,7 +67,7 @@ class _ClassManagementState extends State<ClassManagement> {
                           builder: (controller) {
                         return DropDownClassMgmt(
                             isLoading: controller.isLoading,
-                            title: "Grade",
+                            title: "Grade".tr,
                             width: Get.width / 3,
                             type: "grade");
                       })),
@@ -105,7 +105,7 @@ class _ClassManagementState extends State<ClassManagement> {
                             return VMSAlertDialog(
                                 action: [
                                   ButtonDialog(
-                                      text: "Add",
+                                      text: "Add".tr,
                                       onPressed: () async {
                                         await Add_Class_API(context).Add_Class(
                                             gradeId: controller.grades,
@@ -145,8 +145,8 @@ class _ClassManagementState extends State<ClassManagement> {
                                         Textfildwithupper(
                                             width: 250,
                                             controller: enName,
-                                            Uptext: "Class En - Name",
-                                            hinttext: "Class En - Name"),
+                                            Uptext: "Class En - Name".tr,
+                                            hinttext: "Class En - Name".tr),
                                         Padding(
                                           padding: const EdgeInsets.only(
                                               left: 15.0,
@@ -155,8 +155,8 @@ class _ClassManagementState extends State<ClassManagement> {
                                           child: Textfildwithupper(
                                               width: 250,
                                               controller: arName,
-                                              Uptext: "Class Ar - Name",
-                                              hinttext: "Class Ar - Name"),
+                                              Uptext: "Class Ar - Name".tr,
+                                              hinttext: "Class Ar - Name".tr),
                                         ),
                                       ],
                                     ),
@@ -164,7 +164,7 @@ class _ClassManagementState extends State<ClassManagement> {
                                       children: [
                                         DropDownClassMgmt(
                                             isLoading: controller.isLoading,
-                                            title: "Grade",
+                                            title: "Grade".tr,
                                             width: 250,
                                             type: "gradediag"),
                                         Padding(
