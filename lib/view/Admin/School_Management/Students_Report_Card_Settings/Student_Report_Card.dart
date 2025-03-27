@@ -70,16 +70,23 @@ class _ExcelToPdfScreenState extends State<ExcelToPdfScreen> {
     }
 
     try {
+      // التحقق من أن القيمة رقمية
+      int numericValue = int.tryParse(value) ?? 0;
+
       CellIndex cellIndex = CellIndex.indexByString(cell);
-      _sheet.updateCell(cellIndex, TextCellValue(value));
+
+      // استخدام IntCellValue بدلاً من TextCellValue
+      _sheet.updateCell(cellIndex, IntCellValue(numericValue));
+
       _textController.clear();
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('تمت الكتابة في الخانة $cell')),
+        SnackBar(
+            content: Text('تمت كتابة الرقم $numericValue في الخانة $cell')),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('خطأ في تحديد الخانة: $e')),
+        SnackBar(content: Text('خطأ في تحديد الخانة أو القيمة: $e')),
       );
     }
   }

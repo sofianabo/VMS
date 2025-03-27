@@ -206,7 +206,7 @@ class Languages {
 
       'AboutUs': 'حول',
       'WhyUs': 'لماذا نحن',
-      'Programs': 'البرمامج',
+      'Programs': 'البرنامج',
       'Enrollment': 'التسجيل',
       'Eligibility': 'المؤهلون',
 

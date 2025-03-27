@@ -72,15 +72,15 @@ class DropdownStudentsMark extends StatelessWidget {
                                     cont.Classlist.indexOf(newValue), 0);
                               }
                               if (type == 'Division') {
-                                Get_All_Curriculm_API(context).Get_All_Curriculm(
-                                    // Semesterid: cont.semesterId,
-                                    // classId:
-                                    //     Get.find<Dropdownclassescontroller>()
-                                    //         .Allclass[cont.Classlist.indexOf(
-                                    //             cont.ClassIndex)]
-                                    //         .id
-                                    //         .toString(),
-                                    );
+                                Get_All_Curriculm_API(context)
+                                    .Get_All_Curriculm(
+                                  Semesterid: cont.semesterId,
+                                  classId: Get.find<Dropdownclassescontroller>()
+                                      .Allclass[cont.Classlist.indexOf(
+                                          cont.ClassIndex)]
+                                      .id
+                                      .toString(),
+                                );
                                 cont.resetindivision();
                               }
                               if (type == 'Curriculum') {
