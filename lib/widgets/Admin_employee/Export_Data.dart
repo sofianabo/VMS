@@ -2,46 +2,57 @@ import 'package:excel/excel.dart';
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Students_Marks_Controller.dart';
 import 'dart:html' as html;
 
 import 'package:vms_school/Link/Model/AdminModel/All_Employee_Model.dart';
+
+import 'package:vms_school/Link/Model/AdminModel/Students_Models/Students_Marks_Model.dart';
 
 void exportToExcel(List<Map<String, dynamic>> data, List<String> headers) {
   if (data.isEmpty) {
     print("لا توجد بيانات للتصدير.");
     return;
   }
-  //
-  // var excel = Excel.createExcel();
-  // Sheet sheet = excel['Sheet1'];
-  //
-  // // Append headers to the sheet
-  // sheet.appendRow(headers);
-  //
-  // // Iterate over the data and append each row
-  // for (var school in data) {
-  //   sheet.appendRow(school.values.toList());
-  // }
-  //
-  // String fileName = 'SchoolInfo.xlsx';
-  // var bytes = excel.save();
-  //
-  // if (bytes != null) {
-  //   // Create a Blob from the byte array
-  //   final blob = html.Blob([bytes]);
-  //
-  //   // Create a URL from the Blob
-  //   final url = html.Url.createObjectUrlFromBlob(blob);
-  //
-  //   // Create a download link and trigger the download
-  //   final anchor = html.AnchorElement(href: url)
-  //     ..target = 'blank'
-  //     ..download = fileName
-  //     ..click();
-  //
-  //   // Revoke the Object URL after the download
-  //   html.Url.revokeObjectUrl(url);
-  // }
+
+  var excel = Excel.createExcel();
+  Sheet sheet = excel['Sheet1'];
+
+  // تحويل العناوين إلى List<TextCellValue>
+  sheet.appendRow(headers.map((header) => TextCellValue(header)).toList());
+
+  // إضافة البيانات
+  for (var row in data) {
+    List<CellValue?> rowData = [];
+
+    for (var value in row.values) {
+      if (value is String) {
+        rowData.add(TextCellValue(value));
+      } else if (value is int || value is double) {
+        rowData.add(TextCellValue(
+            value.toString())); // أو استخدام NumberCellValue إذا كان متاحاً
+      } else if (value is bool) {
+        rowData.add(TextCellValue(value ? 'نعم' : 'لا'));
+      } else {
+        rowData.add(TextCellValue(value.toString()));
+      }
+    }
+
+    sheet.appendRow(rowData);
+  }
+
+  String fileName = 'SchoolInfo.xlsx';
+  var bytes = excel.save();
+
+  if (bytes != null) {
+    final blob = html.Blob([Uint8List.fromList(bytes)]);
+    final url = html.Url.createObjectUrlFromBlob(blob);
+    final anchor = html.AnchorElement(href: url)
+      ..setAttribute('download', fileName)
+      ..click();
+
+    html.Url.revokeObjectUrl(url);
+  }
 }
 
 void exportEmployeesToExcel(List<Employees> employees) async {
