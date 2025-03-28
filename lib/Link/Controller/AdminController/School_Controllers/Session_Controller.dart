@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 
 class SessionController extends GetxController {
@@ -25,6 +26,8 @@ class SessionController extends GetxController {
         'hasStudents': stu.hasStudent == 1 ? true : false,
       });
     }
+    final sessionCont = Get.find<All_Screen_Sessions_Controller>();
+    sessionCont.setAllSession(sessions);
     update();
   }
 

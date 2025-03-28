@@ -21,8 +21,8 @@ class DashboardSecondRow extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 15.0),
                   child: Container(
-                    width: 375,
                     height: 170,
+                    width: 347,
                     padding: const EdgeInsets.all(13.0),
                     decoration: BoxDecoration(
                       color: const Color(0xffFBFBFB),
@@ -98,6 +98,8 @@ class DashboardSecondRow extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 15.0),
                 child: Container(
+                  height: 170,
+                  width: 347,
                   padding: const EdgeInsets.all(13.0),
                   decoration: BoxDecoration(
                     color: Theme.of(context).cardColor,
@@ -122,7 +124,7 @@ class DashboardSecondRow extends StatelessWidget {
                       Row(
                         children: [
                           DashedCircularProgressBar.square(
-                            dimensions: 110,
+                            dimensions: 100,
                             progress:
                                 controller.dsh!.percentageEmployeeAttendance ==
                                         null
@@ -144,10 +146,16 @@ class DashboardSecondRow extends StatelessWidget {
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Text(
-                                    "Employees\nAttendance".tr,
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium,
+                                  Container(
+                                    width: 80,
+                                    child: Text(
+                                      textAlign: TextAlign.center,
+                                      maxLines: 2,
+                                      "Employees\nAttendance".tr,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                    ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 5.0),
@@ -170,7 +178,7 @@ class DashboardSecondRow extends StatelessWidget {
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 10.0),
                             child: DashedCircularProgressBar.square(
-                              dimensions: 110,
+                              dimensions: 100,
                               progress: controller
                                           .dsh!.percentageStudentsAttendance ==
                                       null
@@ -193,11 +201,16 @@ class DashboardSecondRow extends StatelessWidget {
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Text(
-                                      "Students\nAttendance".tr,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium,
+                                    Container(
+                                      width: 75,
+                                      child: Text(
+                                        textAlign: TextAlign.center,
+                                        maxLines: 2,
+                                        "Students\nAttendance".tr,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium,
+                                      ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(top: 5.0),
@@ -218,7 +231,7 @@ class DashboardSecondRow extends StatelessWidget {
                             ),
                           ),
                           DashedCircularProgressBar.square(
-                            dimensions: 110,
+                            dimensions: 100,
                             progress:
                                 controller.dsh!.percentageTeachersAttendance ==
                                         null
@@ -241,11 +254,16 @@ class DashboardSecondRow extends StatelessWidget {
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Text(
-                                    "Teachers\nAttendance".tr,
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium,
-                                    textAlign: TextAlign.center,
+                                  Container(
+                                    width: 80,
+                                    child: Text(
+                                      textAlign: TextAlign.center,
+                                      maxLines: 2,
+                                      "Teachers\nAttendance".tr,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                    ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 5.0),

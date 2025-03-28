@@ -51,10 +51,6 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                       ),
                       child: Row(
                         children: [
-                          Icon(
-                            Icons.arrow_drop_down,
-                            color: Colors.black,
-                          ),
                           Expanded(
                             child: Padding(
                               padding: const EdgeInsets.only(left: 5.0),
@@ -73,10 +69,9 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                             padding: const EdgeInsets.only(
                                 left: 5.0, right: 5.0, top: 3.0, bottom: 3.0),
                             child: CircleAvatar(
-                              radius: 25,
-                              backgroundColor: Colors
-                                  .grey[300], // اللون الخلفي أثناء التحميل
-                              child: prefs!.getString("imageId") != null
+                              radius: 20,
+                              backgroundColor: Theme.of(context).primaryColor,
+                              child: prefs!.getString("imageId") != "null"
                                   ? ClipOval(
                                       child: Image.network(
                                         headers: {
@@ -122,7 +117,7 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                                           '',
                                       style: Get.textTheme.titleLarge?.copyWith(
                                         color: Colors.white,
-                                        fontSize: 14,
+                                        fontSize: 12,
                                       ),
                                     ),
                             ),

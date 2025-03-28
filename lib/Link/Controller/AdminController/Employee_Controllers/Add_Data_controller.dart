@@ -17,6 +17,7 @@ class Add_Data_controller extends GetxController {
 
   setMyData(My_Profile_Data data) {
     myData = data.myData;
+
     update();
   }
 
