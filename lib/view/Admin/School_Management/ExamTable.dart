@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable, file_names
 
 import 'package:dio/dio.dart';
+import 'package:duration_picker/duration_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
@@ -65,6 +66,7 @@ class _ExamTableState extends State<ExamTable> {
               child: Row(
                 children: [
                   DropDownexamTable(
+                    isLoading: controller.issemesterLoading,
                     title: "Semester".tr,
                     width: Get.width / 6.5,
                     type: 'season',
@@ -72,8 +74,8 @@ class _ExamTableState extends State<ExamTable> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                     child: DropDownexamTable(
-                      isDisabled: false,
-                      // isLoading: controller.isLoadingClass,
+                      isDisabled: controller.examSeasonIndex == "",
+                      isLoading: controller.isTypeLoading,
                       title: "Type".tr,
                       width: Get.width / 6.5,
                       type: 'type',
@@ -82,7 +84,7 @@ class _ExamTableState extends State<ExamTable> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                     child: DropDownexamTable(
-                      // isLoading: controller.c,
+                      isLoading: controller.isClassLoading,
                       isDisabled: false,
                       type: 'class',
                       title: "Class".tr,
@@ -110,146 +112,172 @@ class _ExamTableState extends State<ExamTable> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () async {
+                            onPressed: () {
                               controller.initialData();
-                              CancelToken cancelToken = CancelToken();
-                              Loading_Dialog(cancelToken: cancelToken);
-                              AllSemesterModel semester =
-                                  await Dropdownsemsesterapi(context)
-                                      .Dropdownsemsester();
-                              controller.setAllSemesterDialog(semester);
-
-                              Get.back();
-
-                              Get.dialog(VMSAlertDialog(
-                                  action: [
-                                    ButtonDialog(
-                                        text: "Add Exam".tr,
-                                        onPressed: () async {
-                                          await Addquizapi(context).Addquiz(
-                                              controller.curiculmDialogList
-                                                  .indexOf(controller
-                                                      .selectedCuriculmDialog),
-                                              controller.typeDialogList.indexOf(
-                                                  controller
-                                                      .selectedTypeDialog),
-                                              controller.dateindex.toString(),
-                                              period.text,
-                                              controller.classDialogList
-                                                  .indexOf(controller
-                                                      .selectedClassDailog),
-                                              max.text,
-                                              min.text);
-                                          Get.back();
-                                        },
-                                        color: Get.theme.primaryColor,
-                                        width: 120)
-                                  ],
-                                  contents: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 15.0),
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 15.0, left: 15),
-                                              child: DropDownexamTable(
-                                                  title: "Class".tr,
+                              Get.dialog(GetBuilder<ExamTableController>(
+                                  builder: (Econtroller) {
+                                return VMSAlertDialog(
+                                    action: [
+                                      ButtonDialog(
+                                          text: "Add Exam".tr,
+                                          onPressed: () async {
+                                            await Addquizapi(context).Addquiz(
+                                                controller.curiculmDialogList
+                                                    .indexOf(controller
+                                                        .selectedCuriculmDialog),
+                                                controller.typeDialogList
+                                                    .indexOf(controller
+                                                        .selectedTypeDialog),
+                                                controller.dateindex.toString(),
+                                                period.text,
+                                                controller.classDialogList
+                                                    .indexOf(controller
+                                                        .selectedClassDailog),
+                                                max.text,
+                                                min.text);
+                                            Get.back();
+                                          },
+                                          color: Get.theme.primaryColor,
+                                          width: 120)
+                                    ],
+                                    contents: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 15.0),
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 15.0, left: 15),
+                                                child: DropDownexamTable(
+                                                    isLoading: Econtroller
+                                                        .isClassLoading,
+                                                    title: "Class".tr,
+                                                    width: 220,
+                                                    type: "classDialog"),
+                                              ),
+                                              DropDownexamTable(
+                                                  isDisabled: Econtroller
+                                                          .classDialogIndex ==
+                                                      "",
+                                                  isLoading: Econtroller
+                                                      .isCuriculmLoading,
+                                                  title: "Curriculum".tr,
                                                   width: 220,
-                                                  type: "classDialog"),
-                                            ),
-                                            DropDownexamTable(
-                                                title: "Curriculum".tr,
-                                                width: 220,
-                                                type: "curiculmDialog"),
-                                          ],
+                                                  type: "curiculmDialog"),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 15.0),
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  right: 15.0, left: 15),
-                                              child: DropDownexamTable(
-                                                  title: "season".tr,
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 15.0),
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    right: 15.0, left: 15),
+                                                child: DropDownexamTable(
+                                                    isLoading: Econtroller
+                                                        .issemesterLoading,
+                                                    title: "season".tr,
+                                                    width: 220,
+                                                    type: "semesterDialog"),
+                                              ),
+                                              DropDownexamTable(
+                                                  isDisabled: Econtroller
+                                                          .semesterDialogIndex ==
+                                                      "",
+                                                  isLoading:
+                                                      Econtroller.isTypeLoading,
+                                                  title: "Type".tr,
                                                   width: 220,
-                                                  type: "semesterDialog"),
-                                            ),
-                                            DropDownexamTable(
-                                                title: "Type".tr,
-                                                width: 220,
-                                                type: "typeDialog"),
-                                          ],
+                                                  type: "typeDialog"),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 15.0),
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 15.0, left: 15),
-                                              child: Textfildwithupper(
-                                                  Uptext: "Max Mark".tr,
-                                                  width: 220,
-                                                  controller: max,
-                                                  hinttext: "Max Mark".tr),
-                                            ),
-                                            Textfildwithupper(
-                                                Uptext: "Min Mark".tr,
-                                                width: 220,
-                                                controller: min,
-                                                hinttext: "Min Mark".tr)
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 15.0),
-                                        child: Row(
-                                          children: [
-                                            Padding(
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 15.0),
+                                          child: Row(
+                                            children: [
+                                              Padding(
                                                 padding: const EdgeInsets.only(
                                                     right: 15.0, left: 15),
                                                 child: Textfildwithupper(
+                                                    Uptext: "Max Mark".tr,
+                                                    width: 220,
+                                                    controller: max,
+                                                    hinttext: "Max Mark".tr),
+                                              ),
+                                              Textfildwithupper(
+                                                  Uptext: "Min Mark".tr,
+                                                  width: 220,
+                                                  controller: min,
+                                                  hinttext: "Min Mark".tr)
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 15.0),
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 15.0, left: 15),
+                                                child: GestureDetector(
+                                                  onTap: () async {
+                                                    Duration? picked =
+                                                        await showDurationPicker(
+                                                      context: context,
+                                                      initialTime: Duration(
+                                                          hours: 0, minutes: 0),
+                                                    );
+                                                    if (picked != null) {
+                                                      period.text =
+                                                          "${picked.inHours.toString().padLeft(2, '0')}:"
+                                                          "${(picked.inMinutes % 60).toString().padLeft(2, '0')}:00";
+                                                    }
+                                                  },
+                                                  child: Textfildwithupper(
+                                                    enabled: false,
                                                     Uptext: "Period".tr,
                                                     width: 220,
                                                     controller: period,
-                                                    hinttext: "00:00:00")),
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          bottom: 5.0),
-                                                  child: RichText(
-                                                      text: TextSpan(
-                                                          text: "Date".tr,
-                                                          style:
-                                                              Theme.of(context)
-                                                                  .textTheme
-                                                                  .bodyMedium)),
+                                                    hinttext: "00:00:00",
+                                                  ),
                                                 ),
-                                                examDate(
-                                                  width: 220,
-                                                ),
-                                              ],
-                                            )
-                                          ],
+                                              ),
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            bottom: 5.0),
+                                                    child: RichText(
+                                                        text: TextSpan(
+                                                            text: "Date".tr,
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium)),
+                                                  ),
+                                                  examDate(
+                                                    width: 220,
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  apptitle: "Add Exam".tr,
-                                  subtitle: "none"));
+                                      ],
+                                    ),
+                                    apptitle: "Add Exam".tr,
+                                    subtitle: "none");
+                              }));
                             },
                             icon: Icon(Icons.add,
                                 size: 18,
@@ -424,29 +452,32 @@ class _ExamTableState extends State<ExamTable> {
                                   iconSize: 16,
                                   color: Colors.white,
                                   onPressed: () async {
-                                    CancelToken cancelToken = CancelToken();
-                                    Loading_Dialog(cancelToken: cancelToken);
                                     maxDialog.text = controller
                                         .filteredquiz![controller.filteredquiz!
                                             .indexOf(exam)]
                                         .maxMark
                                         .toString();
+
                                     minDialog.text = controller
                                         .filteredquiz![controller.filteredquiz!
                                             .indexOf(exam)]
                                         .passingMark
                                         .toString();
+
                                     periodDialog.text = controller
                                         .filteredquiz![controller.filteredquiz!
                                             .indexOf(exam)]
                                         .period
                                         .toString();
-                                    AllSemesterModel semester =
-                                        await Dropdownsemsesterapi(context)
-                                            .Dropdownsemsester();
-                                    controller.setAllSemesterDialog(semester);
 
-                                    Get.back();
+                                    controller.dateindex.value = DateTime.parse(
+                                        controller
+                                            .filteredquiz![controller
+                                                .filteredquiz!
+                                                .indexOf(exam)]
+                                            .startDate
+                                            .toString());
+
                                     Get.dialog(VMSAlertDialog(
                                         action: [
                                           ButtonDialog(
@@ -462,7 +493,8 @@ class _ExamTableState extends State<ExamTable> {
                                                                         exam)]
                                                             .id
                                                             .toString(),
-                                                        controller.dateindex
+                                                        controller
+                                                            .dateindex.value
                                                             .toString(),
                                                         periodDialog.text,
                                                         maxDialog.text,
@@ -510,13 +542,31 @@ class _ExamTableState extends State<ExamTable> {
                                                           const EdgeInsets.only(
                                                               right: 15.0,
                                                               left: 15),
-                                                      child: Textfildwithupper(
-                                                          Uptext: "Period".tr,
-                                                          width: 220,
-                                                          controller:
-                                                              periodDialog,
-                                                          hinttext:
-                                                              "00:00:00")),
+                                                      child: GestureDetector(
+                                                        onTap: () async {
+                                                          Duration? picked =
+                                                              await showDurationPicker(
+                                                            context: context,
+                                                            initialTime:
+                                                                Duration(
+                                                                    hours: 0,
+                                                                    minutes: 0),
+                                                          );
+                                                          if (picked != null) {
+                                                            periodDialog.text =
+                                                                "${picked.inHours.toString().padLeft(2, '0')}:"
+                                                                "${(picked.inMinutes % 60).toString().padLeft(2, '0')}:00";
+                                                          }
+                                                        },
+                                                        child: Textfildwithupper(
+                                                            enabled: false,
+                                                            Uptext: "Period".tr,
+                                                            width: 220,
+                                                            controller:
+                                                                periodDialog,
+                                                            hinttext:
+                                                                "00:00:00"),
+                                                      )),
                                                   Column(
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment

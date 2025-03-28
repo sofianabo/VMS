@@ -65,6 +65,7 @@ class _AdminHomeState extends State<AdminHome> {
     con.setisVerified(isVerified ?? false);
     con.sethasData(hasData ?? false);
     con.setEmail(email!);
+    con.setroll(prefs!.getString("role") ?? "");
     if (con.isVerified == true) {
       if (con.hasData == false) {
         WidgetsBinding.instance.addPostFrameCallback((_) {

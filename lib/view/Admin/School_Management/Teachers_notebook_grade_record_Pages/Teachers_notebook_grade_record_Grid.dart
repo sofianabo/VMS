@@ -24,6 +24,7 @@ class GradesTableScreen extends StatelessWidget {
                           },
                           child: Obx(() {
                             return Table(
+                              textDirection: TextDirection.rtl,
                               border: TableBorder.all(
                                   color: Colors.black, width: 1),
                               columnWidths: {

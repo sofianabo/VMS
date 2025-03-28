@@ -8,6 +8,7 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/ExamTableController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Students_Marks_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
@@ -27,6 +28,7 @@ class Getallclassapi {
   static getAllClasses({int? sessionID, int? Gradeid}) async {
     try {
       Dio dio = Dio();
+
       Dropdownclassescontroller ClassController =
           Get.find<Dropdownclassescontroller>();
       final Studentcontroller = Get.find<Allstudentscontroller>();
@@ -52,6 +54,7 @@ class Getallclassapi {
       addStudentsControlle.SetIsLoadingClass(true);
       AdminSchoolTimeControllers.setIsLoadingClass(true);
       Students_Marks_Controllers.SetisClassLoading(true);
+      Get.find<ExamTableController>().setisClassLoading(true);
 
       final controller = Get.find<Divisions_Controller>();
       controller.SetIsloading(true);
@@ -69,6 +72,8 @@ class Getallclassapi {
         ClassController.setClasses(classes);
         controller.setClass(classes);
         Students_Marks_Controllers.SetClass(classes);
+        Get.find<ExamTableController>().setisClassLoading(false);
+
         return classes;
       } else {
         ErrorHandler.handleDioError(DioException(

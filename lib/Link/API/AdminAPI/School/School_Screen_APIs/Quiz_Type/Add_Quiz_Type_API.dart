@@ -33,6 +33,7 @@ class Add_Quiz_Type_API {
                   return item;
                 }).toList()
               : [],
+          "selectedForSum": (group["selectedForSum"] as List?)?.toList() ?? [],
         };
       }).toList();
 

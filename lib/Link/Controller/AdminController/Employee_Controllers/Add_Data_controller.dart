@@ -9,6 +9,7 @@ class Add_Data_controller extends GetxController {
   bool isLoading = true;
   MyData? myData;
   String? email;
+  String? roll;
 
   setIsloading(bool value) {
     isLoading = value;
@@ -76,6 +77,11 @@ class Add_Data_controller extends GetxController {
 
   void sethasData(bool value) {
     hasData = value;
+    update();
+  }
+
+  void setroll(String value) {
+    roll = value;
     update();
   }
 

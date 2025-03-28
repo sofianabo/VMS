@@ -58,39 +58,13 @@ class _Teachers_notebook_grade_recordState
                         width: 250,
                         type: "semester"),
                     const Spacer(),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black12,
-                                offset: Offset(0, 2),
-                                blurRadius: 1)
-                          ]),
-                      child: IconButton(
-                          style: ButtonStyle(
-                              backgroundColor: WidgetStatePropertyAll(
-                                  Theme.of(context).cardColor),
-                              shape: WidgetStatePropertyAll(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(5))))),
-                          onPressed: () {
-                            Get.dialog(Add_Group());
-                          },
-                          icon: Icon(Icons.add,
-                              size: 18,
-                              color: Theme.of(context).highlightColor)),
-                    ),
+
                     Container(
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
                           color: controller.isClassLoading == true ||
-                                  controller.ClassIndex.trim().toString() == ""
+                              controller.ClassIndex.trim().toString() == ""
                               ? Get.theme.disabledColor
                               : Theme.of(context).cardColor,
                           borderRadius: BorderRadius.circular(5),
@@ -102,7 +76,7 @@ class _Teachers_notebook_grade_recordState
                           ]),
                       child: IconButton(
                           splashColor: controller.isClassLoading == true ||
-                                  controller.ClassIndex.trim().toString() == ""
+                              controller.ClassIndex.trim().toString() == ""
                               ? Get.theme.disabledColor
                               : Theme.of(context).cardColor,
                           style: ButtonStyle(
@@ -112,7 +86,49 @@ class _Teachers_notebook_grade_recordState
                                       : Theme.of(context).cardColor),
                               shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(5))))),
+                                  BorderRadius.all(Radius.circular(5))))),
+                          onPressed: () {
+                            if (controller.isClassLoading == true ||
+                                controller.ClassIndex.trim().toString() == "") {
+                              return;
+                            }
+                            Get.dialog(Add_Group());
+                          },
+                          icon: Icon(Icons.add,
+                              size: 18,
+                              color: controller.isClassLoading == true ||
+                                  controller.ClassIndex.trim().toString() == ""
+                                  ? Colors.white
+                                  : Theme.of(context).highlightColor)),
+                    ),
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: controller.isClassLoading == true ||
+                              controller.ClassIndex.trim().toString() == ""
+                              ? Get.theme.disabledColor
+                              : Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: IconButton(
+                          splashColor: controller.isClassLoading == true ||
+                              controller.ClassIndex.trim().toString() == ""
+                              ? Get.theme.disabledColor
+                              : Theme.of(context).cardColor,
+                          style: ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                  controller.isClassLoading == true || controller.ClassIndex.trim().toString() == ""
+                                      ? Get.theme.disabledColor
+                                      : Theme.of(context).cardColor),
+                              shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(5))))),
                           onPressed: () {
                             if (controller.isClassLoading == true ||
                                 controller.ClassIndex.trim().toString() == "") {
@@ -123,7 +139,7 @@ class _Teachers_notebook_grade_recordState
                           icon: Icon(Icons.save_outlined,
                               size: 18,
                               color: controller.isClassLoading == true ||
-                                      controller.ClassIndex.trim().toString() == ""
+                                  controller.ClassIndex.trim().toString() == ""
                                   ? Colors.white
                                   : Theme.of(context).highlightColor)),
                     ),

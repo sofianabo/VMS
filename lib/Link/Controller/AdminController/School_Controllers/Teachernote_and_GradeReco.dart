@@ -9,6 +9,7 @@ class TeachernoteAndGradeReco extends GetxController {
   bool isQuizTypeLoading = true;
   QuizType_Model? Qt_Model;
   String ClassIndex = "";
+
   String SemesterIndex = "The First Semester";
   int SemesterSendIndex = 1;
   var columnWidths = [].obs;
@@ -22,6 +23,60 @@ class TeachernoteAndGradeReco extends GetxController {
 
   var groups = <Map<String, dynamic>>[].obs;
   var items = [].obs;
+  var selectedItemsForSum = <String>[].obs;
+
+  void updateSelectedItems(List<String> selected) {
+    selectedItemsForSum.assignAll(selected);
+    update();
+  }
+
+  // لتخزين العناصر المختارة لكل Group
+  var selectedItemsMap = <int, List<String>>{}.obs;
+
+  // في الـ Controller، تأكد أن لديك تعريف واحد فقط لكل دالة:
+
+// دالة واحدة فقط بهذا الاسم
+  String getGroupName(dynamic itemId) {
+    for (var group in groups) {
+      if (group['items'] != null) {
+        for (var item in group['items']) {
+          if (item['id'] == itemId) {
+            return group['name'] ?? 'Unknown Group';
+          }
+        }
+      }
+    }
+    return 'Unknown Group';
+  }
+
+// دالة واحدة فقط بهذا الاسم
+  List<Map<String, dynamic>> getAllItems() {
+    List<Map<String, dynamic>> allItems = [];
+    for (var group in groups) {
+      print(group['items']);
+      print(group['name']);
+      if (group['items'] != null && (group['items'] as List).isNotEmpty) {
+        allItems.addAll(List<Map<String, dynamic>>.from(group['items']));
+      } else {
+        allItems.add({
+          'name': group['name'] ?? 'Unnamed Group',
+        });
+      }
+    }
+    return allItems;
+  }
+
+// 3. دالة لتحديد العناصر
+  void toggleItemSelection(String itemName, bool isSelected) {
+    if (isSelected) {
+      if (!selectedItemsForSum.contains(itemName)) {
+        selectedItemsForSum.add(itemName);
+      }
+    } else {
+      selectedItemsForSum.remove(itemName);
+    }
+    update();
+  }
 
   SetIsQuizType(bool value) {
     isQuizTypeLoading = value;
@@ -48,6 +103,14 @@ class TeachernoteAndGradeReco extends GetxController {
                     'isQuizable': item.isQuizable == 0 ? false : true,
                   })
               .toList(),
+
+          // 'selectedForSum': type.selectedForSum
+          //     ?.map((item) => {
+          //
+          //           'id': item.id,
+          //           'name': item.name,
+          //         })
+          //     .toList(),
         };
 
         if (groupIndex != -1) {
@@ -143,15 +206,20 @@ class TeachernoteAndGradeReco extends GetxController {
   }
 
   Add_Groub(String name, String ratio, List<Map<String, dynamic>> newItems) {
-    groups.add(
-      {
-        "name": name,
-        "ratio": double.parse(ratio),
-        "size": 100.0,
-        "items": List.from(newItems),
-      },
-    );
+    int newGroupIndex = groups.length;
+
+    groups.add({
+      "name": name,
+      "ratio": double.parse(ratio),
+      "size": 100.0,
+      "items": List.from(newItems),
+      "selectedForSum": List.from(selectedItemsForSum),
+    });
+
+    selectedItemsMap[newGroupIndex] = List.from(selectedItemsForSum);
+
     columnWidths.add(100.0);
+    selectedItemsForSum.clear();
     update();
   }
 

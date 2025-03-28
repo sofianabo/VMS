@@ -62,6 +62,66 @@ Add_Group() {
                     )),
               ],
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Select Items to Sum:",
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  Obx(() {
+                    final allItems = controller.getAllItems();
+
+                    if (allItems.isEmpty) {
+                      return Container(
+                        padding: EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Center(
+                          child: Text("No items available in any group"),
+                        ),
+                      );
+                    }
+
+                    return Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: ExpansionTile(
+                        title: Text(
+                          controller.selectedItemsForSum.isEmpty
+                              ? "Select items to sum"
+                              : "${controller.selectedItemsForSum.length} items selected",
+                        ),
+                        children: [
+                          Container(
+                            height: 200,
+                            child: ListView.builder(
+                              itemCount: allItems.length,
+                              itemBuilder: (context, index) {
+                                final item = allItems[index];
+                                return CheckboxListTile(
+                                  title: Text(item['name'] ?? 'Unnamed'),
+                                  value: controller.selectedItemsForSum
+                                      .contains(item['name']),
+                                  onChanged: (bool? value) {
+                                    controller.toggleItemSelection(
+                                        item['name'], value ?? false);
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+                ],
+              ),
+            ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(top: 15.0),
