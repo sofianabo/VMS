@@ -6,6 +6,8 @@ import 'package:vms_school/main.dart';
 
 class TeachernoteAndGradeReco extends GetxController {
   AllClassModel? Classmodel;
+  AllClassModel? NoneClassmodel;
+
   bool isQuizTypeLoading = true;
   QuizType_Model? Qt_Model;
   String ClassIndex = "";
@@ -20,6 +22,7 @@ class TeachernoteAndGradeReco extends GetxController {
     "The Third Semester",
   ];
   bool isClassLoading = true;
+  bool isClassDialogLoading = true;
 
   var groups = <Map<String, dynamic>>[].obs;
   var items = [].obs;
@@ -83,6 +86,11 @@ class TeachernoteAndGradeReco extends GetxController {
     update();
   }
 
+  SetisClassDialogLoading(bool value) {
+    isClassDialogLoading = value;
+    update();
+  }
+
   void updateGroup(QuizType_Model quizTypeModel) {
     groups.clear();
     columnWidths.clear();
@@ -118,7 +126,7 @@ class TeachernoteAndGradeReco extends GetxController {
         } else {
           groups.add(typeMap);
         }
-        columnWidths.add(type.size ?? 100); // افتراضي 0 إذا كان size null
+        columnWidths.add(type.size ?? 100);
       }
       Qt_Model = quizTypeModel;
     }
@@ -145,14 +153,18 @@ class TeachernoteAndGradeReco extends GetxController {
 
   void UpdateGroupItems({
     required int idx,
+    int? id,
+    required double size,
     required String groupName,
     required double ratioValue,
     required List<Map<String, dynamic>> items,
   }) {
     groups[idx] = {
+      'id': id,
       'name': groupName,
       'ratio': ratioValue,
       'items': items,
+      'size': size,
     };
     update();
   }
@@ -162,6 +174,7 @@ class TeachernoteAndGradeReco extends GetxController {
     double? ratioValue = double.tryParse(ratio);
     if (ratioValue != null) {
       items.add({
+        'id': null,
         "name": name,
         "ratio": ratioValue,
         "isQuizable": IsQuizable,
@@ -190,6 +203,7 @@ class TeachernoteAndGradeReco extends GetxController {
     double? ratioValue = double.tryParse(ratio);
     if (ratioValue != null) {
       items[idx] = {
+        'id': items[idx]['id'],
         "name": name,
         "ratio": ratioValue,
         "isQuizable": IsQuizable,
@@ -209,6 +223,7 @@ class TeachernoteAndGradeReco extends GetxController {
     int newGroupIndex = groups.length;
 
     groups.add({
+      'id': null,
       "name": name,
       "ratio": double.parse(ratio),
       "size": 100.0,
@@ -258,6 +273,22 @@ class TeachernoteAndGradeReco extends GetxController {
     update();
   }
 
+  SetNoneClass(AllClassModel ClassModel) {
+    NoneClassmodel = ClassModel;
+
+    selectedClasses.clear();
+    var classItem = ClassModel.classes?.firstWhereOrNull(
+      (element) => element.name == ClassIndex || element.enName == ClassIndex,
+    );
+
+    if (classItem != null) {
+      selectedClasses.add(classItem.id.toString());
+    }
+
+    isClassDialogLoading = false;
+    update();
+  }
+
   setIsClassLoading(bool value) {
     isClassLoading = value;
     update();
@@ -299,18 +330,15 @@ class TeachernoteAndGradeReco extends GetxController {
   List<String> selectedClasses = [];
 
   void toggleClassSelection(String classId) {
-    // البحث عن الصف الذي يطابق الاسم المخزن في ClassIndex
-    var selectedClassItem = Classmodel?.classes?.firstWhereOrNull(
+    var selectedClassItem = NoneClassmodel?.classes?.firstWhereOrNull(
       (element) => element.name == ClassIndex || element.enName == ClassIndex,
     );
 
-    // إذا لم يتم العثور على الصف أو كان الـ ID يطابق `classId`، لا تفعل شيئًا
     if (selectedClassItem == null ||
         selectedClassItem.id.toString() == classId) {
       return;
     }
 
-    // السماح بإضافة أو إزالة العناصر الأخرى بحرية
     if (selectedClasses.contains(classId)) {
       selectedClasses.remove(classId);
     } else {

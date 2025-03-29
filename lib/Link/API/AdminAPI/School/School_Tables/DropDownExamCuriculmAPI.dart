@@ -23,8 +23,9 @@ class Dropdownexamcuriculmapi {
     try {
       int? id = class_controller.Allclass[idx].id;
       Get.find<ExamTableController>().setisCurriculmLoading(true);
-      String myurl = "${global.hostPort}${global.getCurriculumbyClass}/$id";
-      var response = await dio.get(myurl, options: getDioOptions());
+      String myurl = "${global.hostPort}${global.getCurriculum}";
+      var response = await dio
+          .post(data: {"classId": id}, myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         DropDowmCuriculmModel curi =
             DropDowmCuriculmModel.fromJson(response.data);

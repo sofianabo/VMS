@@ -21,12 +21,14 @@ class Students_Marks_Model {
 }
 
 class Student {
+  int? id;
   String? fullName;
   List<Mark>? mark;
 
-  Student({this.fullName, this.mark});
+  Student({this.id, this.fullName, this.mark});
 
   Student.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     fullName = json['fullName'];
     if (json['mark'] != null) {
       mark = <Mark>[];
@@ -38,12 +40,14 @@ class Student {
 }
 
 class Mark {
+  int? id;
   String? type;
   int? mark;
 
-  Mark({this.type, this.mark});
+  Mark({this.id, this.type, this.mark});
 
   Mark.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     type = json['type'];
     mark = json['mark'];
   }

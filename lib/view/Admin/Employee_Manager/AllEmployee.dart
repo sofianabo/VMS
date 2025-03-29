@@ -408,6 +408,8 @@ class _AllEmployeeState extends State<AllEmployee> {
                                                       type: "fejop"),
                                                 ),
                                                 Dropdownallemployee(
+                                                    Disabled:
+                                                        cont.fejopIndex == "",
                                                     isError: cont.IsRollError,
                                                     title: "Roll",
                                                     width: 220,

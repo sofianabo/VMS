@@ -374,18 +374,14 @@ Add_Full_Employee(BuildContext context) {
                                   ? 20
                                   : 0),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 20.0),
-                          child: Dropdownallemployee(
-                              title: "Job Title".tr,
-                              isError: controller.IsJopError,
-                              width: 250,
-                              type: "dialogjobTitle"),
-                        )
+                        Dropdownallemployee(
+                            title: "Job Title".tr,
+                            isError: controller.IsJopError,
+                            width: 250,
+                            type: "dialogjobTitle")
                       ],
                     ),
                   ),
-                 
                   Padding(
                     padding: EdgeInsets.only(top: 22.0),
                     child: Row(

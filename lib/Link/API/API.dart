@@ -1,5 +1,5 @@
 // String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
-String hostPort = "http://192.168.1.115:8000/api/";
+String hostPort = "http://192.168.1.111:8000/api/";
 
 //..................... All ...................//
 
@@ -147,7 +147,6 @@ String getpdf = hostPort + "getpdf/";
 String examType = "getExamType";
 String getSemester = "getSemester";
 String examTable = "getQuiz";
-String getCurriculumbyClass = "getCurriculumbyClass";
 String addQuiz = "addQuiz";
 String deletetQuiz = "deleteQuiz";
 String updateQuiz = "updateQuiz";
@@ -156,6 +155,9 @@ String addStudyShare = "addStudyShare";
 String getDivisionStudyShare = "getDivisionStudyShare";
 String updatLessonByDay = "updatLessonByDay";
 String deleteStudyShare = "deleteStudyShare";
+
+String getNoneQuizTypeClass = "getNoneQuizTypeClass";
+String updateQuizType = "updateQuizType";
 
 //..................... All Users ...................//
 

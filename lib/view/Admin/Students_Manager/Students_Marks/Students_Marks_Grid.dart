@@ -422,7 +422,7 @@ class _Students_Marks_GenState extends State<Students_Marks_Gen> {
       height: 40,
       alignment: Alignment.center,
       child: IconButton(
-        icon: const Icon(Icons.more_vert, size: 20),
+        icon: const Icon(Icons.save_outlined, size: 20),
         onPressed: () => _printStudentData(student),
       ),
     );
@@ -430,7 +430,8 @@ class _Students_Marks_GenState extends State<Students_Marks_Gen> {
 
   void _printStudentData(Student student) {
     debugPrint("Student: ${student.fullName}");
-    // ... باقي كود الطباعة ...
+
+    debugPrint("Student: ${student.fullName}");
   }
 
   Map<int, TableColumnWidth> _buildColumnWidths(
@@ -446,7 +447,7 @@ class _Students_Marks_GenState extends State<Students_Marks_Gen> {
     }
 
     widths[controller.studentsMarksModel!.quizType!.length + 1] =
-        const FixedColumnWidth(102); // عمود الإجراءات
+        const FixedColumnWidth(102);
 
     return widths;
   }
