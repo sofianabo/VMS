@@ -55,7 +55,7 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                         Padding(
                             padding: const EdgeInsets.only(left: 8.0),
                             child: Dropdownallemployee(
-                                title: "Job Title",
+                                title: "Job Title".tr,
                                 width: w / 5,
                                 type: "roll")),
                         Padding(
@@ -108,7 +108,7 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                                   return VMSAlertDialog(
                                       action: [
                                         ButtonDialog(
-                                            text: "Add Virtual User",
+                                            text: "Add Virtual User".tr,
                                             onPressed: () {
                                               {
                                                 bool isUsernameEmpty = username
@@ -195,8 +195,17 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                                                 CrossAxisAlignment.end,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 15.0),
+                                                padding: EdgeInsets.only(
+                                                    right: prefs!.getString(
+                                                                languageKey) ==
+                                                            "ar"
+                                                        ? 0
+                                                        : 20.0,
+                                                    left: prefs!.getString(
+                                                                languageKey) ==
+                                                            "ar"
+                                                        ? 20
+                                                        : 0),
                                                 child: Textfildwithupper(
                                                     onChanged: (value) {
                                                       if (value.isNotEmpty) {
@@ -209,15 +218,15 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                                                     isRequired: true,
                                                     isError: Virtual_controller
                                                         .IsusernameError,
-                                                    Uptext: "Username",
+                                                    Uptext: "Username".tr,
                                                     width: 250,
                                                     controller: username,
-                                                    hinttext: "Username"),
+                                                    hinttext: "Username".tr),
                                               ),
                                               Dropdownallemployee(
                                                   isError: Virtual_controller
                                                       .IsJoptitleError,
-                                                  title: "Job Title",
+                                                  title: "Job Title".tr,
                                                   width: 250,
                                                   type: "rolldialog"),
                                             ],
@@ -228,9 +237,17 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                                             child: Row(
                                               children: [
                                                 Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 15.0),
+                                                  padding: EdgeInsets.only(
+                                                      right: prefs!.getString(
+                                                                  languageKey) ==
+                                                              "ar"
+                                                          ? 0
+                                                          : 20.0,
+                                                      left: prefs!.getString(
+                                                                  languageKey) ==
+                                                              "ar"
+                                                          ? 20
+                                                          : 0),
                                                   child: Textfildwithupper(
                                                       onChanged: (value) {
                                                         if (value.isNotEmpty) {
@@ -268,10 +285,10 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                                                           Virtual_controller
                                                               .ShowPassword,
                                                       isRequired: true,
-                                                      Uptext: "Password",
+                                                      Uptext: "Password".tr,
                                                       width: 250,
                                                       controller: password,
-                                                      hinttext: "Password"),
+                                                      hinttext: "Password".tr),
                                                 ),
                                                 Textfildwithupper(
                                                     onChanged: (value) {
@@ -309,17 +326,18 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                                                         Virtual_controller
                                                             .ShowConfirmPassword,
                                                     isRequired: true,
-                                                    Uptext: "Confirm Password",
+                                                    Uptext:
+                                                        "Confirm Password".tr,
                                                     width: 250,
                                                     controller: cPassword,
                                                     hinttext:
-                                                        "Confirm Password")
+                                                        "Confirm Password".tr)
                                               ],
                                             ),
                                           )
                                         ],
                                       ),
-                                      apptitle: "Add Virtual User",
+                                      apptitle: "Add Virtual User".tr,
                                       subtitle: "none");
                                 }));
                               },

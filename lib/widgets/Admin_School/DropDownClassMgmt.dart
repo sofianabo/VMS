@@ -254,7 +254,7 @@ class DropDownClassMgmt extends StatelessWidget {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
-              value,
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );

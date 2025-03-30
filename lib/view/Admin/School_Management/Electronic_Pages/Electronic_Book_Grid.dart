@@ -5,6 +5,8 @@ import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/DownloadFiles.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Labrary_Controller.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
@@ -164,7 +166,8 @@ class ElectronicBookGrid extends StatelessWidget {
                                           child: Center(
                                             child: Text(
                                               textAlign: TextAlign.center,
-                                              "${control.filteredEbook![index].enName}",
+                                              prefs!.getString(languageKey)=='ar'?
+                                              "${control.filteredEbook![index].name}":"${control.filteredEbook![index].enName}",
                                               style: const TextStyle(fontSize: 26),
                                             ),
                                           ),
@@ -192,7 +195,7 @@ class ElectronicBookGrid extends StatelessWidget {
                                               Get.dialog(VMSAlertDialog(
                                                 action: [
                                                   ButtonDialog(
-                                                      text: "Delete",
+                                                      text: "Delete".tr,
                                                       onPressed: () async {
                                                         await Delete_E_Book_API(
                                                                 context)
@@ -205,7 +208,7 @@ class ElectronicBookGrid extends StatelessWidget {
                                                       color: const Color(0xffB03D3D),
                                                       width: 80),
                                                   ButtonDialog(
-                                                      text: "Cancel",
+                                                      text: "Cancel".tr,
                                                       onPressed: () {
                                                         Get.back();
                                                       },
@@ -220,7 +223,7 @@ class ElectronicBookGrid extends StatelessWidget {
                                                               .start,
                                                       children: [
                                                         Text(
-                                                          "Do You Want To Delete ( ${control.filteredEbook![index].enName} ) Book",
+                                                          "Do You Want To Deletebook".tr+" ( ${control.filteredEbook![index].enName} ) "+"Book".tr,
                                                           style: Get
                                                               .theme
                                                               .textTheme
@@ -234,7 +237,7 @@ class ElectronicBookGrid extends StatelessWidget {
                                                       ],
                                                     )),
                                                 apptitle:
-                                                    "Delete Electronic Book",
+                                                    "Delete Electronic Book".tr,
                                                 subtitle: "none",
                                               ));
                                             },
@@ -255,7 +258,7 @@ class ElectronicBookGrid extends StatelessWidget {
                   },
                 )
               : Center(
-                  child: Text("No Electronic Book",
+                  child: Text("No Electronic Book".tr,
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontSize: 22, fontWeight: FontWeight.normal)));
     });

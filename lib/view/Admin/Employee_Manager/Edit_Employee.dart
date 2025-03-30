@@ -38,9 +38,9 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
   TextEditingController Username =
       TextEditingController(text: empolyeecontroller.employee!.userName);
   TextEditingController Joptitle =
-      TextEditingController(text: empolyeecontroller.employee!.jobTitle);
+      TextEditingController(text: empolyeecontroller.employee!.jobTitle!.tr);
   TextEditingController roll =
-      TextEditingController(text: empolyeecontroller.employee!.roll);
+      TextEditingController(text: empolyeecontroller.employee!.roll!.tr);
   TextEditingController facebookUrl =
       TextEditingController(text: empolyeecontroller.employee!.facebookUrl);
   TextEditingController xPlatformUrl =
@@ -312,15 +312,15 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 22.0),
+                    padding: EdgeInsets.only(top: 22.0),
                     child: Row(
                       children: [
                         Textfildwithupper(
                             readOnly: true,
                             width: 250,
                             controller: Joptitle,
-                            Uptext: "Joptitle".tr,
-                            hinttext: "Joptitle".tr),
+                            Uptext: "Job Title".tr,
+                            hinttext: "Job Title".tr),
                         Padding(
                           padding: EdgeInsets.only(
                               left: prefs!.getString(languageKey) == "ar"

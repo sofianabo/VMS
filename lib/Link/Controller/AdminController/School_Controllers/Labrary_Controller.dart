@@ -12,7 +12,7 @@ class Labrary_Controller extends GetxController {
   bool isLoading = true;
 
   bool isHoveringFile = false;
-  String fileStatus = "Click To Add File\nOr\nDrag And Drop File Here";
+  String fileStatus = "Click To Add File\nOr\nDrag And Drop File Here".tr;
 
   Rx<Uint8List?> selectedFile = Rx<Uint8List?>(null);
   RxString fileName = "".obs;
@@ -26,7 +26,7 @@ class Labrary_Controller extends GetxController {
       selectedFile.value = result.files.single.bytes;
       fileName.value = result.files.single.name;
       updateFieldError("file", false);
-      updateTextFile("Done Selected File");
+      updateTextFile("Done Selected File".tr);
     }
   }
 
@@ -101,7 +101,7 @@ class Labrary_Controller extends GetxController {
 
   void Clearfile() {
     updateFieldError("file", true);
-    fileStatus = "Click To Add File\nOr\nDrag And Drop File Here";
+    fileStatus = "Click To Add File\nOr\nDrag And Drop File Here".tr;
     isHoveringFile = false;
     selectedFile.value = null;
     update();

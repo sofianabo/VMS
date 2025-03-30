@@ -110,8 +110,8 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                             },
                                             width: 350,
                                             controller: name,
-                                            Uptext: "Name",
-                                            hinttext: "Name"),
+                                            Uptext: "Name".tr,
+                                            hinttext: "Name".tr),
                                         Padding(
                                           padding:
                                               const EdgeInsets.only(top: 10.0),
@@ -126,8 +126,8 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                               },
                                               width: 350,
                                               controller: enName,
-                                              Uptext: "English Name",
-                                              hinttext: "English Name"),
+                                              Uptext: "English Name".tr,
+                                              hinttext: "English Name".tr),
                                         ),
                                         Padding(
                                           padding:
@@ -212,21 +212,21 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                                                   .value =
                                                               fileName!;
                                                           controller.updateTextFile(
-                                                              "PDF File Successfully Dropped!");
+                                                              "PDF File Successfully Dropped!".tr);
                                                           controller
                                                               .updateFieldError(
                                                                   "file",
                                                                   false);
                                                         } else {
                                                           controller.updateTextFile(
-                                                              "Error: Unsupported File Type.");
+                                                              "Error: Unsupported File Type.".tr);
                                                           controller
                                                               .updateFieldError(
                                                                   "file", true);
                                                         }
                                                       } else {
                                                         controller.updateTextFile(
-                                                            "Error: Only One File Is Allowed.");
+                                                            "Error: Only One File Is Allowed.".tr);
                                                         controller
                                                             .updateFieldError(
                                                                 "file", true);
@@ -277,7 +277,7 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                         children: [
                                           ButtonDialog(
                                               width: 150,
-                                              text: "Add Book",
+                                              text: "Add Book".tr,
                                               onPressed: () async {
                                                 bool isArNameEmpty =
                                                     name.text.isEmpty;
@@ -316,7 +316,7 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                         ],
                                       )
                                     ],
-                                    apptitle: "Add Electronic Book",
+                                    apptitle: "Add Electronic Book".tr,
                                     subtitle: "none");
                               }));
                             },

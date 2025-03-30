@@ -232,7 +232,7 @@ class _ClassManagementState extends State<ClassManagement> {
                                                         .sessions!
                                                         .current!
                                                         .year),
-                                                hinttext: "Session")),
+                                                hinttext: "Session".tr)),
                                       ],
                                     ),
                                     Row(
@@ -248,14 +248,18 @@ class _ClassManagementState extends State<ClassManagement> {
                                                     controller.IsAccountError,
                                                 isLoading:
                                                     VECcontroller.isLoading,
-                                                title: "Admin Account",
+                                                title: "Admin Account".tr,
                                                 width: 250,
                                                 type: "admin");
                                           }),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(
-                                              top: 15.0, bottom: 15.0),
+                                            top: 15.0,
+                                            bottom: 15.0,
+                                            left: 15.0,
+                                            right: 15.0,
+                                          ),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
@@ -316,7 +320,7 @@ class _ClassManagementState extends State<ClassManagement> {
                                                                       .selectedCurriculumNames
                                                                       .join(
                                                                           ', ')
-                                                                  : 'No selected curriculum', // عرض رسالة عند عدم وجود مناهج مختارة
+                                                                  : 'No selected curriculum'.tr, // عرض رسالة عند عدم وجود مناهج مختارة
                                                             ),
                                                           );
                                                         },
@@ -349,8 +353,8 @@ class _ClassManagementState extends State<ClassManagement> {
                                             },
                                             width: 480,
                                             controller: driveUrl,
-                                            Uptext: "Drive URL",
-                                            hinttext: "Drive URL"),
+                                            Uptext: "Drive URL".tr,
+                                            hinttext: "Drive URL".tr),
                                         Padding(
                                           padding: const EdgeInsets.only(
                                               left: 5.0, top: 36.0),
@@ -362,7 +366,7 @@ class _ClassManagementState extends State<ClassManagement> {
                                     ),
                                   ],
                                 ),
-                                apptitle: "Add Class",
+                                apptitle: "Add Class".tr,
                                 subtitle: "none");
                           }));
                         },

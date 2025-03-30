@@ -159,7 +159,7 @@ class DropDownCurriMgmt extends StatelessWidget {
                               value: title,
                               enabled: false,
                               child: Text(
-                                title,
+                                title.tr,
                                 style: Get.theme.textTheme.bodyMedium!.copyWith(
                                   fontSize: 14,
                                 ),
@@ -175,7 +175,7 @@ class DropDownCurriMgmt extends StatelessWidget {
           ),
           if (isError)
             Text(
-              "يرجى اختيار قيمة صحيحة",
+              "Please select true value".tr,
               style: TextStyle(color: Colors.red, fontSize: 12),
             ),
         ],

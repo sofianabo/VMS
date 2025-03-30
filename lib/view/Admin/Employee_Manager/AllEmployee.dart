@@ -278,8 +278,17 @@ class _AllEmployeeState extends State<AllEmployee> {
                                           Row(
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 15.0),
+                                                padding: EdgeInsets.only(
+                                                    left: prefs!.getString(
+                                                                languageKey) ==
+                                                            'ar'
+                                                        ? 15
+                                                        : 0,
+                                                    right: prefs!.getString(
+                                                                languageKey) ==
+                                                            'ar'
+                                                        ? 0
+                                                        : 15),
                                                 child: Textfildwithupper(
                                                     onChanged: (value) {
                                                       if (value.isNotEmpty) {
@@ -290,10 +299,10 @@ class _AllEmployeeState extends State<AllEmployee> {
                                                     isRequired: true,
                                                     isError:
                                                         cont.ISfirstNameError,
-                                                    Uptext: "First Name",
+                                                    Uptext: "First Name".tr,
                                                     width: 220,
                                                     controller: firstName,
-                                                    hinttext: "First Name"),
+                                                    hinttext: "First Name".tr),
                                               ),
                                               Textfildwithupper(
                                                   onChanged: (value) {
@@ -304,10 +313,10 @@ class _AllEmployeeState extends State<AllEmployee> {
                                                   },
                                                   isRequired: true,
                                                   isError: cont.ISlastNameError,
-                                                  Uptext: "Last Name",
+                                                  Uptext: "Last Name".tr,
                                                   width: 220,
                                                   controller: lastName,
-                                                  hinttext: "Last Name")
+                                                  hinttext: "Last Name".tr)
                                             ],
                                           ),
                                           Padding(
@@ -316,9 +325,17 @@ class _AllEmployeeState extends State<AllEmployee> {
                                             child: Row(
                                               children: [
                                                 Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 15.0),
+                                                  padding: EdgeInsets.only(
+                                                      left: prefs!.getString(
+                                                                  languageKey) ==
+                                                              'ar'
+                                                          ? 15
+                                                          : 0,
+                                                      right: prefs!.getString(
+                                                                  languageKey) ==
+                                                              'ar'
+                                                          ? 0
+                                                          : 15),
                                                   child: Textfildwithupper(
                                                       onChanged: (value) {
                                                         if (value.isNotEmpty) {
@@ -330,10 +347,10 @@ class _AllEmployeeState extends State<AllEmployee> {
                                                       isRequired: true,
                                                       isError:
                                                           cont.ISemailError,
-                                                      Uptext: "Email",
+                                                      Uptext: "Email".tr,
                                                       width: 220,
                                                       controller: email,
-                                                      hinttext: "Email"),
+                                                      hinttext: "Email".tr),
                                                 ),
                                                 Textfildwithupper(
                                                     onChanged: (value) {
@@ -345,10 +362,10 @@ class _AllEmployeeState extends State<AllEmployee> {
                                                     isRequired: true,
                                                     isError:
                                                         cont.ISusernameError,
-                                                    Uptext: "Username",
+                                                    Uptext: "Username".tr,
                                                     width: 220,
                                                     controller: username,
-                                                    hinttext: "Username")
+                                                    hinttext: "Username".tr)
                                               ],
                                             ),
                                           ),
@@ -358,9 +375,17 @@ class _AllEmployeeState extends State<AllEmployee> {
                                             child: Row(
                                               children: [
                                                 Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 15.0),
+                                                  padding: EdgeInsets.only(
+                                                      left: prefs!.getString(
+                                                                  languageKey) ==
+                                                              'ar'
+                                                          ? 15
+                                                          : 0,
+                                                      right: prefs!.getString(
+                                                                  languageKey) ==
+                                                              'ar'
+                                                          ? 0
+                                                          : 15),
                                                   child: Textfildwithupper(
                                                       fieldType: "phone",
                                                       onChanged: (value) {
@@ -372,10 +397,11 @@ class _AllEmployeeState extends State<AllEmployee> {
                                                       isRequired: true,
                                                       isError:
                                                           cont.ISphoneError,
-                                                      Uptext: "Phone Number",
+                                                      Uptext: "Phone Number".tr,
                                                       width: 220,
                                                       controller: phone,
-                                                      hinttext: "Phone Number"),
+                                                      hinttext:
+                                                          "Phone Number".tr),
                                                 ),
                                                 Column(
                                                   mainAxisAlignment:
@@ -387,7 +413,7 @@ class _AllEmployeeState extends State<AllEmployee> {
                                                       isRequired: true,
                                                       isError: cont.IsJoinError,
                                                       width: 220,
-                                                      Uptext: "Join Date",
+                                                      Uptext: "Join Date".tr,
                                                     )
                                                   ],
                                                 )
@@ -400,16 +426,25 @@ class _AllEmployeeState extends State<AllEmployee> {
                                               children: [
                                                 Padding(
                                                   padding: EdgeInsets.only(
-                                                      right: 15.0),
+                                                      left: prefs!.getString(
+                                                                  languageKey) ==
+                                                              'ar'
+                                                          ? 15
+                                                          : 0,
+                                                      right: prefs!.getString(
+                                                                  languageKey) ==
+                                                              'ar'
+                                                          ? 0
+                                                          : 15),
                                                   child: Dropdownallemployee(
                                                       isError: cont.IsJopError,
-                                                      title: "Job Title",
+                                                      title: "Job Title".tr,
                                                       width: 220,
                                                       type: "fejop"),
                                                 ),
                                                 Dropdownallemployee(
                                                     isError: cont.IsRollError,
-                                                    title: "Roll",
+                                                    title: "Roll".tr,
                                                     width: 220,
                                                     type: "feroll"),
                                               ],
@@ -421,18 +456,27 @@ class _AllEmployeeState extends State<AllEmployee> {
                                               children: [
                                                 Padding(
                                                   padding: EdgeInsets.only(
-                                                      right: 15.0),
+                                                      left: prefs!.getString(
+                                                                  languageKey) ==
+                                                              'ar'
+                                                          ? 15
+                                                          : 0,
+                                                      right: prefs!.getString(
+                                                                  languageKey) ==
+                                                              'ar'
+                                                          ? 0
+                                                          : 15),
                                                   child: Dropdownallemployee(
                                                       isError:
                                                           cont.IsGenderError,
-                                                      title: "Gender",
+                                                      title: "Gender".tr,
                                                       width: 220,
                                                       type: "Gender"),
                                                 ),
                                                 Dropdownallemployee(
                                                     isError:
                                                         cont.IsContractError,
-                                                    title: "Contract Type",
+                                                    title: "Contract Type".tr,
                                                     width: 220,
                                                     type: "Contract"),
                                               ],
@@ -444,9 +488,17 @@ class _AllEmployeeState extends State<AllEmployee> {
                                             child: Row(
                                               children: [
                                                 Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 15.0),
+                                                  padding: EdgeInsets.only(
+                                                      left: prefs!.getString(
+                                                                  languageKey) ==
+                                                              'ar'
+                                                          ? 15
+                                                          : 0,
+                                                      right: prefs!.getString(
+                                                                  languageKey) ==
+                                                              'ar'
+                                                          ? 0
+                                                          : 15),
                                                   child: Textfildwithupper(
                                                       hidePassword:
                                                           cont.ShowPassword,
@@ -479,10 +531,10 @@ class _AllEmployeeState extends State<AllEmployee> {
                                                       isRequired: true,
                                                       isError:
                                                           cont.ISpasswordError,
-                                                      Uptext: "Password",
+                                                      Uptext: "Password".tr,
                                                       width: 220,
                                                       controller: password,
-                                                      hinttext: "Password"),
+                                                      hinttext: "Password".tr),
                                                 ),
                                                 Textfildwithupper(
                                                     hidePassword: cont
@@ -515,11 +567,12 @@ class _AllEmployeeState extends State<AllEmployee> {
                                                     isRequired: true,
                                                     isError:
                                                         cont.IScPasswordError,
-                                                    Uptext: "Confirm Password",
+                                                    Uptext:
+                                                        "Confirm Password".tr,
                                                     width: 220,
                                                     controller: cPassword,
                                                     hinttext:
-                                                        "Confirm Password")
+                                                        "Confirm Password".tr)
                                               ],
                                             ),
                                           )
