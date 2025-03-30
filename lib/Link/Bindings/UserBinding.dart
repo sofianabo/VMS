@@ -32,6 +32,7 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/PenaltiesAndRewardsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Students_Marks_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/allGaurdianController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AddTeacherController.dart';
@@ -119,6 +120,7 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => LocalizationController(), fenix: true);
     Get.lazyPut(() => Profile_DropDown_Controller(), fenix: true);
     Get.lazyPut(() => Add_Data_controller(), fenix: true);
+    Get.lazyPut(() => Students_Marks_Controller(), fenix: true);
     Get.lazyPut(() => RewardsController(20.0, true));
   }
 }

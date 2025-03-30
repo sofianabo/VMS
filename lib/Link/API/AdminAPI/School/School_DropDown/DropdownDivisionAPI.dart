@@ -8,6 +8,7 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Students_Marks_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
@@ -22,6 +23,7 @@ class Dropdowndivisionapi {
   final StudentAttendencControlle = Get.find<StudentAttendencController>();
   final Add_Students_Controlle = Get.find<Add_Students_Controller>();
   final AdminSchoolTimeControllers = Get.find<AdminSchoolTimeController>();
+  final Students_Marks_Controllers = Get.find<Students_Marks_Controller>();
 
   Dropdownclassescontroller class_controller =
       Get.find<Dropdownclassescontroller>();
@@ -38,6 +40,7 @@ class Dropdowndivisionapi {
       StudentAttendencControlle.setDivisionLoading(true);
       Add_Students_Controlle.SetIsLoadingDivision(true);
       AdminSchoolTimeControllers.setIsLoadingDivision(true);
+      Students_Marks_Controllers.SetisDivisionLoading(true);
 
       int? id = class_controller.Allclass[idx].id;
       String myurl = "$hostPort$getDivision";

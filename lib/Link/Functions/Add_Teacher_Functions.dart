@@ -41,29 +41,89 @@ Add_Group() {
       contents: Container(
         width: 500,
         height: 500,
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Textfildwithupper(
-                  width: 350,
-                  controller: groupname,
-                  Uptext: "Group Name",
-                  hinttext: "Group Name",
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Textfildwithupper(
+                    width: 350,
+                    controller: groupname,
+                    Uptext: "Group Name",
+                    hinttext: "Group Name",
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: Textfildwithupper(
+                        readOnly: controller.items.isEmpty ? false : true,
+                        width: 60,
+                        controller: ratio,
+                        Uptext: "ratio",
+                        hinttext: "ratio",
+                      )),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Select Items to Sum:",
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    Obx(() {
+                      final allItems = controller.getAllItems();
+
+                      if (allItems.isEmpty) {
+                        return Container(
+                          padding: EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Center(
+                            child: Text("No items available in any group"),
+                          ),
+                        );
+                      }
+
+                      return Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: ExpansionTile(
+                          title: Text(
+                            controller.selectedItemsForSum.isEmpty
+                                ? "Select items to sum"
+                                : "${controller.selectedItemsForSum.length} items selected",
+                          ),
+                          children: [
+                            Container(
+                              height: 200,
+                              child: ListView.builder(
+                                itemCount: allItems.length,
+                                itemBuilder: (context, index) {
+                                  final item = allItems[index];
+                                  return CheckboxListTile(
+                                    title: Text(item['name'] ?? 'Unnamed'),
+                                    value: controller.selectedItemsForSum
+                                        .contains(item['name']),
+                                    onChanged: (bool? value) {
+                                      controller.toggleItemSelection(
+                                          item['name'], value ?? false);
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }),
+                  ],
                 ),
-                Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: Textfildwithupper(
-                      readOnly: controller.items.isEmpty ? false : true,
-                      width: 60,
-                      controller: ratio,
-                      Uptext: "ratio",
-                      hinttext: "ratio",
-                    )),
-              ],
-            ),
-            Expanded(
-              child: Padding(
+              ),
+              Padding(
                 padding: const EdgeInsets.only(top: 15.0),
                 child: Column(
                   children: [
@@ -145,118 +205,113 @@ Add_Group() {
                         ),
                       ],
                     ),
-                    Expanded(
-                      child: Obx(() {
-                        var items = Get.find<TeachernoteAndGradeReco>().items;
+                    Obx(() {
+                      var items = Get.find<TeachernoteAndGradeReco>().items;
 
-                        return SingleChildScrollView(
-                          child: Table(
-                            border:
-                                TableBorder.all(color: Colors.black, width: 1),
-                            columnWidths: {
-                              0: FlexColumnWidth(),
-                              1: FlexColumnWidth(),
-                              2: FlexColumnWidth(),
-                            },
-                            children: List.generate(
-                              items.length,
-                              (index) => TableRow(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Center(
-                                      child:
-                                          Text(items[index]['name'] as String),
-                                    ),
+                      return SingleChildScrollView(
+                        child: Table(
+                          border:
+                              TableBorder.all(color: Colors.black, width: 1),
+                          columnWidths: {
+                            0: FlexColumnWidth(),
+                            1: FlexColumnWidth(),
+                            2: FlexColumnWidth(),
+                          },
+                          children: List.generate(
+                            items.length,
+                            (index) => TableRow(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Center(
+                                    child: Text(items[index]['name'] as String),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Center(
-                                        child: Text(
-                                            items[index]['ratio'].toString())),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          width: 30,
-                                          height: 30,
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            boxShadow: const [
-                                              BoxShadow(
-                                                color: Colors.black12,
-                                                offset: Offset(0, 2),
-                                                blurRadius: 1,
-                                              ),
-                                            ],
-                                          ),
-                                          child: IconButton(
-                                            onPressed: () {
-                                              Get.dialog(Edit_Items_Group(
-                                                  idx: index,
-                                                  name: controller.items[index]
-                                                      ['name'],
-                                                  isQuizables:
-                                                      controller.items[index]
-                                                          ['isQuizable'],
-                                                  rat: controller.items[index]
-                                                      ['ratio']));
-                                            },
-                                            icon: Icon(
-                                              Icons.edit,
-                                              size: 14,
-                                              color: Get.theme.primaryColor,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Center(
+                                      child: Text(
+                                          items[index]['ratio'].toString())),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        width: 30,
+                                        height: 30,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          boxShadow: const [
+                                            BoxShadow(
+                                              color: Colors.black12,
+                                              offset: Offset(0, 2),
+                                              blurRadius: 1,
                                             ),
+                                          ],
+                                        ),
+                                        child: IconButton(
+                                          onPressed: () {
+                                            Get.dialog(Edit_Items_Group(
+                                                idx: index,
+                                                name: controller.items[index]
+                                                    ['name'],
+                                                isQuizables: controller
+                                                    .items[index]['isQuizable'],
+                                                rat: controller.items[index]
+                                                    ['ratio']));
+                                          },
+                                          icon: Icon(
+                                            Icons.edit,
+                                            size: 14,
+                                            color: Get.theme.primaryColor,
                                           ),
                                         ),
-                                        SizedBox(width: 10),
-                                        Container(
-                                          width: 30,
-                                          height: 30,
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            boxShadow: const [
-                                              BoxShadow(
-                                                color: Colors.black12,
-                                                offset: Offset(0, 2),
-                                                blurRadius: 1,
-                                              ),
-                                            ],
-                                          ),
-                                          child: IconButton(
-                                            onPressed: () {
-                                              controller.RemoveItem(index);
-                                            },
-                                            icon: Icon(
-                                              Icons.delete,
-                                              size: 14,
-                                              color: Get.theme.primaryColor,
+                                      ),
+                                      SizedBox(width: 10),
+                                      Container(
+                                        width: 30,
+                                        height: 30,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          boxShadow: const [
+                                            BoxShadow(
+                                              color: Colors.black12,
+                                              offset: Offset(0, 2),
+                                              blurRadius: 1,
                                             ),
+                                          ],
+                                        ),
+                                        child: IconButton(
+                                          onPressed: () {
+                                            controller.RemoveItem(index);
+                                          },
+                                          icon: Icon(
+                                            Icons.delete,
+                                            size: 14,
+                                            color: Get.theme.primaryColor,
                                           ),
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
-                        );
-                      }),
-                    )
+                        ),
+                      );
+                    })
                   ],
                 ),
-              ),
-            ),
-          ],
+              )
+            ],
+          ),
         ),
       ),
       apptitle: "Add Group",
@@ -576,12 +631,13 @@ Edit_Group(int idx) {
           onPressed: () {
             double? ratioValue = double.tryParse(ratio.text);
             if (ratioValue != null) {
-              // تحديث الـ group مع الـ ratio المحسوب
               controller.UpdateGroupItems(
-                idx,
-                groupname.text,
-                ratioValue,
-                controller.items.toList().cast<Map<String, dynamic>>(),
+                id: group['id'],
+                size: group['size'],
+                idx: idx,
+                groupName: groupname.text,
+                ratioValue: ratioValue,
+                items: controller.items.toList().cast<Map<String, dynamic>>(),
               );
               Get.back();
             } else {

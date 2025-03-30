@@ -54,6 +54,8 @@ dependencies:
   fl_country_code_picker: ^0.1.9+1
   flutter_slidable: ^4.0.0
   reorderables: ^0.6.0
+  duration_picker: ^1.2.0
+
 
 
 dev_dependencies:

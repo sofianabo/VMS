@@ -1,9 +1,11 @@
 // ignore_for_file: must_be_immutable, file_names
 
 import 'package:dio/dio.dart';
+import 'package:duration_picker/duration_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownClassesAPI.dart';
@@ -38,7 +40,6 @@ class _ExamTableState extends State<ExamTable> {
 
   @override
   void initState() {
- 
     Examtableapi(context).Examtable();
 
     super.initState();
@@ -65,6 +66,7 @@ class _ExamTableState extends State<ExamTable> {
               child: Row(
                 children: [
                   DropDownexamTable(
+                    isLoading: controller.issemesterLoading,
                     title: "Semester".tr,
                     width: Get.width / 6.5,
                     type: 'season',
@@ -72,8 +74,8 @@ class _ExamTableState extends State<ExamTable> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                     child: DropDownexamTable(
-                      isDisabled: false,
-                      // isLoading: controller.isLoadingClass,
+                      isDisabled: controller.examSeasonIndex == "",
+                      isLoading: controller.isTypeLoading,
                       title: "Type".tr,
                       width: Get.width / 6.5,
                       type: 'type',
@@ -82,7 +84,7 @@ class _ExamTableState extends State<ExamTable> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                     child: DropDownexamTable(
-                      // isLoading: controller.c,
+                      isLoading: controller.isClassLoading,
                       isDisabled: false,
                       type: 'class',
                       title: "Class".tr,
@@ -110,146 +112,172 @@ class _ExamTableState extends State<ExamTable> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () async {
+                            onPressed: () {
                               controller.initialData();
-                              CancelToken cancelToken = CancelToken();
-                              Loading_Dialog(cancelToken: cancelToken);
-                              AllSemesterModel semester =
-                                  await Dropdownsemsesterapi(context)
-                                      .Dropdownsemsester();
-                              controller.setAllSemesterDialog(semester);
-
-                              Get.back();
-
-                              Get.dialog(VMSAlertDialog(
-                                  action: [
-                                    ButtonDialog(
-                                        text: "Add Exam".tr,
-                                        onPressed: () async {
-                                          await Addquizapi(context).Addquiz(
-                                              controller.curiculmDialogList
-                                                  .indexOf(controller
-                                                      .selectedCuriculmDialog),
-                                              controller.typeDialogList.indexOf(
-                                                  controller
-                                                      .selectedTypeDialog),
-                                              controller.dateindex.toString(),
-                                              period.text,
-                                              controller.classDialogList
-                                                  .indexOf(controller
-                                                      .selectedClassDailog),
-                                              max.text,
-                                              min.text);
-                                          Get.back();
-                                        },
-                                        color: Get.theme.primaryColor,
-                                        width: 120)
-                                  ],
-                                  contents: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 15.0),
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 15.0, left: 15),
-                                              child: DropDownexamTable(
-                                                  title: "Class".tr,
+                              Get.dialog(GetBuilder<ExamTableController>(
+                                  builder: (Econtroller) {
+                                return VMSAlertDialog(
+                                    action: [
+                                      ButtonDialog(
+                                          text: "Add Exam".tr,
+                                          onPressed: () async {
+                                            await Addquizapi(context).Addquiz(
+                                                controller.curiculmDialogList
+                                                    .indexOf(controller
+                                                        .selectedCuriculmDialog),
+                                                controller.typeDialogList
+                                                    .indexOf(controller
+                                                        .selectedTypeDialog),
+                                                controller.dateindex.toString(),
+                                                period.text,
+                                                controller.classDialogList
+                                                    .indexOf(controller
+                                                        .selectedClassDailog),
+                                                max.text,
+                                                min.text);
+                                            Get.back();
+                                          },
+                                          color: Get.theme.primaryColor,
+                                          width: 120)
+                                    ],
+                                    contents: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 15.0),
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 15.0, left: 15),
+                                                child: DropDownexamTable(
+                                                    isLoading: Econtroller
+                                                        .isClassLoading,
+                                                    title: "Class".tr,
+                                                    width: 220,
+                                                    type: "classDialog"),
+                                              ),
+                                              DropDownexamTable(
+                                                  isDisabled: Econtroller
+                                                          .classDialogIndex ==
+                                                      "",
+                                                  isLoading: Econtroller
+                                                      .isCuriculmLoading,
+                                                  title: "Curriculum".tr,
                                                   width: 220,
-                                                  type: "classDialog"),
-                                            ),
-                                            DropDownexamTable(
-                                                title: "Curriculum".tr,
-                                                width: 220,
-                                                type: "curiculmDialog"),
-                                          ],
+                                                  type: "curiculmDialog"),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 15.0),
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  right: 15.0, left: 15),
-                                              child: DropDownexamTable(
-                                                  title: "season".tr,
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 15.0),
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    right: 15.0, left: 15),
+                                                child: DropDownexamTable(
+                                                    isLoading: Econtroller
+                                                        .issemesterLoading,
+                                                    title: "season".tr,
+                                                    width: 220,
+                                                    type: "semesterDialog"),
+                                              ),
+                                              DropDownexamTable(
+                                                  isDisabled: Econtroller
+                                                          .semesterDialogIndex ==
+                                                      "",
+                                                  isLoading:
+                                                      Econtroller.isTypeLoading,
+                                                  title: "Type".tr,
                                                   width: 220,
-                                                  type: "semesterDialog"),
-                                            ),
-                                            DropDownexamTable(
-                                                title: "Type".tr,
-                                                width: 220,
-                                                type: "typeDialog"),
-                                          ],
+                                                  type: "typeDialog"),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 15.0),
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 15.0, left: 15),
-                                              child: Textfildwithupper(
-                                                  Uptext: "Max Mark".tr,
-                                                  width: 220,
-                                                  controller: max,
-                                                  hinttext: "Max Mark".tr),
-                                            ),
-                                            Textfildwithupper(
-                                                Uptext: "Min Mark".tr,
-                                                width: 220,
-                                                controller: min,
-                                                hinttext: "Min Mark".tr)
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 15.0),
-                                        child: Row(
-                                          children: [
-                                            Padding(
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 15.0),
+                                          child: Row(
+                                            children: [
+                                              Padding(
                                                 padding: const EdgeInsets.only(
                                                     right: 15.0, left: 15),
                                                 child: Textfildwithupper(
+                                                    Uptext: "Max Mark".tr,
+                                                    width: 220,
+                                                    controller: max,
+                                                    hinttext: "Max Mark".tr),
+                                              ),
+                                              Textfildwithupper(
+                                                  Uptext: "Min Mark".tr,
+                                                  width: 220,
+                                                  controller: min,
+                                                  hinttext: "Min Mark".tr)
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 15.0),
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 15.0, left: 15),
+                                                child: GestureDetector(
+                                                  onTap: () async {
+                                                    Duration? picked =
+                                                        await showDurationPicker(
+                                                      context: context,
+                                                      initialTime: Duration(
+                                                          hours: 0, minutes: 0),
+                                                    );
+                                                    if (picked != null) {
+                                                      period.text =
+                                                          "${picked.inHours.toString().padLeft(2, '0')}:"
+                                                          "${(picked.inMinutes % 60).toString().padLeft(2, '0')}:00";
+                                                    }
+                                                  },
+                                                  child: Textfildwithupper(
+                                                    enabled: false,
                                                     Uptext: "Period".tr,
                                                     width: 220,
                                                     controller: period,
-                                                    hinttext: "00:00:00")),
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          bottom: 5.0),
-                                                  child: RichText(
-                                                      text: TextSpan(
-                                                          text: "Date".tr,
-                                                          style:
-                                                              Theme.of(context)
-                                                                  .textTheme
-                                                                  .bodyMedium)),
+                                                    hinttext: "00:00:00",
+                                                  ),
                                                 ),
-                                                examDate(
-                                                  width: 220,
-                                                ),
-                                              ],
-                                            )
-                                          ],
+                                              ),
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            bottom: 5.0),
+                                                    child: RichText(
+                                                        text: TextSpan(
+                                                            text: "Date".tr,
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium)),
+                                                  ),
+                                                  examDate(
+                                                    width: 220,
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  apptitle: "Add Exam".tr,
-                                  subtitle: "none"));
+                                      ],
+                                    ),
+                                    apptitle: "Add Exam".tr,
+                                    subtitle: "none");
+                              }));
                             },
                             icon: Icon(Icons.add,
                                 size: 18,
@@ -309,203 +337,154 @@ class _ExamTableState extends State<ExamTable> {
                 ],
               ),
             ),
-            controller.isLoading
-                ? Container(
+            GetBuilder<ExamTableController>(builder: (controller) {
+              if (controller.isLoading) {
+                return Expanded(
+                  child: Container(
                     width: Get.width * 0.9,
-                    padding: const EdgeInsets.all(20),
-                    margin: EdgeInsets.only(top: 30),
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor,
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.white,
-                              offset: Offset(0, 2),
-                              blurRadius: 1)
-                        ]),
-                    child: DataTable(
-                      headingRowColor:
-                          WidgetStatePropertyAll(Theme.of(context).cardColor),
-                      border: TableBorder.all(
-                        color: Colors.grey,
-                        width: 1.0,
-                      ),
-                      columns: const [
-                        DataColumn(
-                          label: Text(
-                            "",
-                          ),
-                        ),
-                        DataColumn(label: Text('')),
-                        DataColumn(label: Text('')),
-                        DataColumn(label: Text('')),
-                        DataColumn(label: Text('')),
-                        DataColumn(label: Text('')),
-                        DataColumn(
-                          label: Text(''),
-                        ),
-                        DataColumn(
-                          label: Text(''),
-                        ),
-                      ],
-                      rows: List.generate(
-                        5, // عدد الصفوف في واجهة الانتظار
-                        (index) => const DataRow(
-                          cells: [
-                            DataCell(Text('')),
-                            DataCell(Text('')),
-                            DataCell(Text('')),
-                            DataCell(Text('')),
-                            DataCell(Text('')),
-                            DataCell(Text('')),
-                            DataCell(Text('')),
-                            DataCell(Text('')),
-                          ],
-                        ),
-                      ),
+                    child: LoadingAnimationWidget.inkDrop(
+                      color: Theme.of(context).primaryColor,
+                      size: 60,
                     ),
-                  )
-                    .animate(onPlay: (controller) => controller.repeat())
-                    .shimmer(
-                        angle: 1,
-                        color: Colors.white,
-                        duration: const Duration(milliseconds: 600),
-                        delay: const Duration(milliseconds: 200))
-                : Column(
-                    children: [
-                      Container(
-                        width: Get.width * 0.9,
-                        margin: const EdgeInsets.only(top: 20),
-                        child: SingleChildScrollView(child:
-                            GetBuilder<ExamTableController>(
-                                builder: (controller) {
-                          return DataTable(
-                            headingRowColor: WidgetStatePropertyAll(
-                                Theme.of(context).indicatorColor),
-                            border: TableBorder.all(
-                              color: Theme.of(context).primaryColor,
-                              width: 1.0,
-                            ),
-                            columns: [
-                              DataColumn(
-                                label: Text("Class".tr,
-                                    textAlign: TextAlign.center,
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge),
-                              ),
-                              DataColumn(label: Text('Type'.tr)),
-                              DataColumn(label: Text('Curriculum Name'.tr)),
-                              DataColumn(label: Text('Date'.tr)),
-                              DataColumn(label: Text('Period'.tr)),
-                              DataColumn(label: Text('Max Mark'.tr)),
-                              DataColumn(
-                                label: Text('Passing Mark'.tr),
-                              ),
-                              DataColumn(
-                                label: Text('Operations'.tr),
-                              ),
-                            ],
-                            rows: controller.filteredquiz!.map((exam) {
-                              return DataRow(cells: [
-                                DataCell(Text(
-                                    prefs!.getString(languageKey) == 'ar'
-                                        ? exam.classese?.name ?? ""
-                                        : exam.classese?.enName ?? '')),
-                                DataCell(Text(exam.type ?? '')),
-                                DataCell(Text(
-                                    prefs!.getString(languageKey) == 'ar'
-                                        ? exam.curriculumName ?? ''
-                                        : exam.curriculumEnName ?? '')),
-                                DataCell(Text(exam.startDate ?? '')),
-                                DataCell(Text(exam.period ?? '')),
-                                DataCell(Text(exam.maxMark?.toString() ?? '')),
-                                DataCell(
-                                    Text(exam.passingMark?.toString() ?? '')),
-                                DataCell(Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    IconButton(
-                                      style: ButtonStyle(
-                                          maximumSize: WidgetStateProperty.all(
-                                              const Size(35, 35)),
-                                          minimumSize: WidgetStateProperty.all(
-                                              const Size(35, 35)),
-                                          iconSize: WidgetStateProperty.all(14),
-                                          shape: WidgetStateProperty.all(
-                                              RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          )),
-                                          backgroundColor:
-                                              WidgetStateProperty.all(
-                                                  const Color(0xffB03D3D))),
-                                      icon: const Icon(VMS_Icons.bin),
-                                      iconSize: 16,
-                                      color: Colors.white,
-                                      onPressed: () async {
-                                        await DeletequizAPI(context).Deletequiz(
-                                            controller
-                                                .filteredquiz![controller
-                                                    .filteredquiz!
-                                                    .indexOf(exam)]
-                                                .id
-                                                .toString());
-                                      },
-                                    ),
-                                    IconButton(
-                                      style: ButtonStyle(
-                                          maximumSize: WidgetStateProperty.all(
-                                              const Size(35, 35)),
-                                          minimumSize: WidgetStateProperty.all(
-                                              const Size(35, 35)),
-                                          iconSize: WidgetStateProperty.all(14),
-                                          shape: WidgetStateProperty.all(
-                                              RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          )),
-                                          backgroundColor:
-                                              WidgetStateProperty.all(
-                                                  const Color.fromARGB(
-                                                      255, 2, 124, 49))),
-                                      icon: const Icon(VMS_Icons.edit),
-                                      iconSize: 16,
-                                      color: Colors.white,
-                                      onPressed: () async {
-                                        CancelToken cancelToken = CancelToken();
-                                        Loading_Dialog(
-                                            cancelToken: cancelToken);
-                                        maxDialog.text = controller
-                                            .filteredquiz![controller
-                                                .filteredquiz!
-                                                .indexOf(exam)]
-                                            .maxMark
-                                            .toString();
-                                        minDialog.text = controller
-                                            .filteredquiz![controller
-                                                .filteredquiz!
-                                                .indexOf(exam)]
-                                            .passingMark
-                                            .toString();
-                                        periodDialog.text = controller
-                                            .filteredquiz![controller
-                                                .filteredquiz!
-                                                .indexOf(exam)]
-                                            .period
-                                            .toString();
-                                        AllSemesterModel semester =
-                                            await Dropdownsemsesterapi(context)
-                                                .Dropdownsemsester();
+                  ),
+                );
+              }
+              if (controller.filteredquiz!.isEmpty) {
+                return Expanded(
+                  child: Container(
+                    width: Get.width * 0.9,
+                    child: Center(
+                      child: Text("No Data in Exam Table".tr,
+                          style: Get.theme.textTheme.titleLarge!.copyWith(
+                              fontSize: 16, fontWeight: FontWeight.normal)),
+                    ),
+                  ),
+                );
+              }
+              return Column(
+                children: [
+                  Container(
+                      width: Get.width * 0.9,
+                      margin: const EdgeInsets.only(top: 20),
+                      child: SingleChildScrollView(
+                          child: DataTable(
+                        headingRowColor: WidgetStatePropertyAll(
+                            Theme.of(context).indicatorColor),
+                        border: TableBorder.all(
+                          color: Theme.of(context).primaryColor,
+                          width: 1.0,
+                        ),
+                        columns: [
+                          DataColumn(
+                            label: Text("Class".tr,
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context).textTheme.titleLarge),
+                          ),
+                          DataColumn(label: Text('Type'.tr)),
+                          DataColumn(label: Text('Curriculum Name'.tr)),
+                          DataColumn(label: Text('Date'.tr)),
+                          DataColumn(label: Text('Period'.tr)),
+                          DataColumn(label: Text('Max Mark'.tr)),
+                          DataColumn(
+                            label: Text('Passing Mark'.tr),
+                          ),
+                          DataColumn(
+                            label: Text('Operations'.tr),
+                          ),
+                        ],
+                        rows: controller.filteredquiz!.map((exam) {
+                          return DataRow(cells: [
+                            DataCell(Text(prefs!.getString(languageKey) == 'ar'
+                                ? exam.classese?.name ?? ""
+                                : exam.classese?.enName ?? '')),
+                            DataCell(Text(exam.type ?? '')),
+                            DataCell(Text(prefs!.getString(languageKey) == 'ar'
+                                ? exam.curriculumName ?? ''
+                                : exam.curriculumEnName ?? '')),
+                            DataCell(Text(exam.startDate ?? '')),
+                            DataCell(Text(exam.period ?? '')),
+                            DataCell(Text(exam.maxMark?.toString() ?? '')),
+                            DataCell(Text(exam.passingMark?.toString() ?? '')),
+                            DataCell(Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                IconButton(
+                                  style: ButtonStyle(
+                                      maximumSize: WidgetStateProperty.all(
+                                          const Size(35, 35)),
+                                      minimumSize: WidgetStateProperty.all(
+                                          const Size(35, 35)),
+                                      iconSize: WidgetStateProperty.all(14),
+                                      shape: WidgetStateProperty.all(
+                                          RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                      )),
+                                      backgroundColor: WidgetStateProperty.all(
+                                          const Color(0xffB03D3D))),
+                                  icon: const Icon(VMS_Icons.bin),
+                                  iconSize: 16,
+                                  color: Colors.white,
+                                  onPressed: () async {
+                                    await DeletequizAPI(context).Deletequiz(
                                         controller
-                                            .setAllSemesterDialog(semester);
+                                            .filteredquiz![controller
+                                                .filteredquiz!
+                                                .indexOf(exam)]
+                                            .id
+                                            .toString());
+                                  },
+                                ),
+                                IconButton(
+                                  style: ButtonStyle(
+                                      maximumSize: WidgetStateProperty.all(
+                                          const Size(35, 35)),
+                                      minimumSize: WidgetStateProperty.all(
+                                          const Size(35, 35)),
+                                      iconSize: WidgetStateProperty.all(14),
+                                      shape: WidgetStateProperty.all(
+                                          RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                      )),
+                                      backgroundColor: WidgetStateProperty.all(
+                                          const Color.fromARGB(
+                                              255, 2, 124, 49))),
+                                  icon: const Icon(VMS_Icons.edit),
+                                  iconSize: 16,
+                                  color: Colors.white,
+                                  onPressed: () async {
+                                    maxDialog.text = controller
+                                        .filteredquiz![controller.filteredquiz!
+                                            .indexOf(exam)]
+                                        .maxMark
+                                        .toString();
 
-                                        Get.back();
-                                        Get.dialog(VMSAlertDialog(
-                                            action: [
-                                              ButtonDialog(
-                                                  text: "Edit Exam".tr,
-                                                  onPressed: () async {
-                                                    await Editquizapi(context).Editquiz(
+                                    minDialog.text = controller
+                                        .filteredquiz![controller.filteredquiz!
+                                            .indexOf(exam)]
+                                        .passingMark
+                                        .toString();
+
+                                    periodDialog.text = controller
+                                        .filteredquiz![controller.filteredquiz!
+                                            .indexOf(exam)]
+                                        .period
+                                        .toString();
+
+                                    controller.dateindex.value = DateTime.parse(
+                                        controller
+                                            .filteredquiz![controller
+                                                .filteredquiz!
+                                                .indexOf(exam)]
+                                            .startDate
+                                            .toString());
+
+                                    Get.dialog(VMSAlertDialog(
+                                        action: [
+                                          ButtonDialog(
+                                              text: "Edit Exam".tr,
+                                              onPressed: () async {
+                                                await Editquizapi(context)
+                                                    .Editquiz(
                                                         controller
                                                             .filteredquiz![
                                                                 controller
@@ -514,115 +493,120 @@ class _ExamTableState extends State<ExamTable> {
                                                                         exam)]
                                                             .id
                                                             .toString(),
-                                                        controller.dateindex
+                                                        controller
+                                                            .dateindex.value
                                                             .toString(),
                                                         periodDialog.text,
                                                         maxDialog.text,
                                                         minDialog.text);
-                                                    Get.back();
-                                                  },
-                                                  color: Get.theme.primaryColor,
-                                                  width: 120)
-                                            ],
-                                            contents: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 15.0),
-                                                  child: Row(
+                                                Get.back();
+                                              },
+                                              color: Get.theme.primaryColor,
+                                              width: 120)
+                                        ],
+                                        contents: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 15.0),
+                                              child: Row(
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            right: 15.0,
+                                                            left: 15),
+                                                    child: Textfildwithupper(
+                                                        Uptext: "Max Mark".tr,
+                                                        width: 220,
+                                                        controller: maxDialog,
+                                                        hinttext:
+                                                            "Max Mark".tr),
+                                                  ),
+                                                  Textfildwithupper(
+                                                      Uptext: "Min Mark".tr,
+                                                      width: 220,
+                                                      controller: minDialog,
+                                                      hinttext: "Min Mark".tr)
+                                                ],
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 15.0),
+                                              child: Row(
+                                                children: [
+                                                  Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              right: 15.0,
+                                                              left: 15),
+                                                      child: GestureDetector(
+                                                        onTap: () async {
+                                                          Duration? picked =
+                                                              await showDurationPicker(
+                                                            context: context,
+                                                            initialTime:
+                                                                Duration(
+                                                                    hours: 0,
+                                                                    minutes: 0),
+                                                          );
+                                                          if (picked != null) {
+                                                            periodDialog.text =
+                                                                "${picked.inHours.toString().padLeft(2, '0')}:"
+                                                                "${(picked.inMinutes % 60).toString().padLeft(2, '0')}:00";
+                                                          }
+                                                        },
+                                                        child: Textfildwithupper(
+                                                            enabled: false,
+                                                            Uptext: "Period".tr,
+                                                            width: 220,
+                                                            controller:
+                                                                periodDialog,
+                                                            hinttext:
+                                                                "00:00:00"),
+                                                      )),
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
                                                       Padding(
                                                         padding:
                                                             const EdgeInsets
                                                                 .only(
-                                                                right: 15.0,
-                                                                left: 15),
-                                                        child:
-                                                            Textfildwithupper(
-                                                                Uptext:
-                                                                    "Max Mark"
-                                                                        .tr,
-                                                                width: 220,
-                                                                controller:
-                                                                    maxDialog,
-                                                                hinttext:
-                                                                    "Max Mark"
-                                                                        .tr),
+                                                                bottom: 5.0),
+                                                        child: RichText(
+                                                            text: TextSpan(
+                                                                text: "Date".tr,
+                                                                style: Get
+                                                                    .theme
+                                                                    .textTheme
+                                                                    .bodyMedium)),
                                                       ),
-                                                      Textfildwithupper(
-                                                          Uptext: "Min Mark".tr,
-                                                          width: 220,
-                                                          controller: minDialog,
-                                                          hinttext:
-                                                              "Min Mark".tr)
+                                                      examDate(
+                                                        width: 220,
+                                                      ),
                                                     ],
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 15.0),
-                                                  child: Row(
-                                                    children: [
-                                                      Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .only(
-                                                                  right: 15.0,
-                                                                  left: 15),
-                                                          child: Textfildwithupper(
-                                                              Uptext:
-                                                                  "Period".tr,
-                                                              width: 220,
-                                                              controller:
-                                                                  periodDialog,
-                                                              hinttext:
-                                                                  "00:00:00")),
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .only(
-                                                                    bottom:
-                                                                        5.0),
-                                                            child: RichText(
-                                                                text: TextSpan(
-                                                                    text: "Date"
-                                                                        .tr,
-                                                                    style: Get
-                                                                        .theme
-                                                                        .textTheme
-                                                                        .bodyMedium)),
-                                                          ),
-                                                          examDate(
-                                                            width: 220,
-                                                          ),
-                                                        ],
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
+                                                  )
+                                                ],
+                                              ),
                                             ),
-                                            apptitle: "Edit Exam".tr,
-                                            subtitle: "none"));
-                                      },
-                                    ),
-                                  ],
-                                )),
-                              ]);
-                            }).toList(),
-                          );
-                        })),
-                      ),
-                    ],
-                  )
+                                          ],
+                                        ),
+                                        apptitle: "Edit Exam".tr,
+                                        subtitle: "none"));
+                                  },
+                                ),
+                              ],
+                            )),
+                          ]);
+                        }).toList(),
+                      ))),
+                ],
+              );
+            }),
           ],
         ),
       );

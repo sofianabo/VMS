@@ -27,6 +27,7 @@ class ExamTableController extends GetxController {
 
   bool isCuriculmLoading = true;
   bool isLoading = true;
+  bool issemesterLoading = true;
   bool isTypeLoading = true;
   bool isClassLoading = true;
 
@@ -35,15 +36,17 @@ class ExamTableController extends GetxController {
     update();
   }
 
+  setisTypeLoading(bool value) {
+    examTypeIndex = "";
+    typeDialogIndex = "";
+    isTypeLoading = value;
+    update();
+  }
+
   setSemesterIndex() {
     examSeasonIndex = '';
     examTypeIndex = '';
     examType = [];
-    update();
-  }
-
-  setIsTypeLoading(bool value) {
-    isTypeLoading = value;
     update();
   }
 
@@ -64,6 +67,7 @@ class ExamTableController extends GetxController {
     semesterDialogIndex = "";
     typeDialogList = [];
     curiculmDialogList = [];
+    dateindex.value = null;
     update();
   }
 
@@ -166,19 +170,6 @@ class ExamTableController extends GetxController {
     updateList("type", examType);
   }
 
-  void setAllSemesterDialog(AllSemesterModel sem) {
-    semesterDialogList.clear();
-    allSemester = sem.semester!;
-    for (int j = 0; j < sem.semester!.length; j++) {
-      if (prefs!.getString(languageKey) == 'ar')
-        semesterDialogList.add(sem.semester![j].name.toString());
-      else
-        semesterDialogList.add(sem.semester![j].enName.toString());
-    }
-    update();
-    updateList("semesterDialog", semesterDialogList);
-  }
-
   void setAllTypesDialog(AllExamTypeModel types) {
     typeDialogList.clear();
     for (int j = 0; j < types.type!.length; j++) {
@@ -220,14 +211,21 @@ class ExamTableController extends GetxController {
 
   void setAllSeason(AllSemesterModel semster) {
     examSeason.clear();
+    semesterDialogList.clear();
+    allSemester = semster.semester!;
     for (int l = 0; l < semster.semester!.length; l++) {
-      if (prefs!.getString(languageKey) == 'ar')
+      if (prefs!.getString(languageKey) == 'ar') {
+        semesterDialogList.add(semster.semester![l].name.toString());
         examSeason.add(semster.semester![l].name.toString());
-      else
+      } else {
+        semesterDialogList.add(semster.semester![l].enName.toString());
         examSeason.add(semster.semester![l].enName.toString());
+      }
     }
+
     update();
     updateList("season", examSeason);
+    updateList("semesterDialog", semesterDialogList);
   }
 
   void setAllCuriculm(DropDowmCuriculmModel model) {
@@ -274,7 +272,7 @@ class ExamTableController extends GetxController {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: dateindex.value ?? DateTime.now(),
-      firstDate: DateTime(2000),
+      firstDate: DateTime.now(),
       lastDate: DateTime(2100),
     );
     if (picked != null) {
@@ -292,4 +290,25 @@ class ExamTableController extends GetxController {
   String get selectedCuriculmDialog => curiculmDialogIndex;
   String get selectedSemesterDialog => semesterDialogIndex;
   Rx<DateTime?> get selectedexamDate => dateindex;
+
+  void setisSemesterLoading(bool bool) {
+    issemesterLoading = bool;
+    update();
+  }
+
+  void setisClassLoading(bool bool) {
+    isClassLoading = bool;
+    update();
+  }
+
+  SetEditDatetime(String Date) {
+    dateindex.value = DateTime.parse(Date);
+    update();
+  }
+
+  void setisCurriculmLoading(bool bool) {
+    curiculmDialogIndex = "";
+    isCuriculmLoading = bool;
+    update();
+  }
 }

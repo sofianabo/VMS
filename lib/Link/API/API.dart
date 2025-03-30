@@ -130,6 +130,7 @@ String addStudentPrize = "addStudentPrize";
 
 String addQuizType = "addQuizType";
 String getQuizType = "getAllQuizType";
+String getAllQuizType1 = "getAllQuizType1";
 
 //..................... Admin ...................//
 
@@ -146,7 +147,6 @@ String getpdf = hostPort + "getpdf/";
 String examType = "getExamType";
 String getSemester = "getSemester";
 String examTable = "getQuiz";
-String getCurriculumbyClass = "getCurriculumbyClass";
 String addQuiz = "addQuiz";
 String deletetQuiz = "deleteQuiz";
 String updateQuiz = "updateQuiz";
@@ -155,6 +155,9 @@ String addStudyShare = "addStudyShare";
 String getDivisionStudyShare = "getDivisionStudyShare";
 String updatLessonByDay = "updatLessonByDay";
 String deleteStudyShare = "deleteStudyShare";
+
+String getNoneQuizTypeClass = "getNoneQuizTypeClass";
+String updateQuizType = "updateQuizType";
 
 //..................... All Users ...................//
 

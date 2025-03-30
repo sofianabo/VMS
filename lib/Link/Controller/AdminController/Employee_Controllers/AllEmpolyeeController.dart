@@ -38,31 +38,67 @@ class Allempolyeecontroller extends GetxController {
     "Secretary",
     "Supervisor",
     "Accountant",
-    "Technical Support",
     "Media",
+    "Technical Support",
     "Technical Support Manager",
   ];
-  List<String> dialogjobTitleList = ["Dustman", "Guard", "Media"];
+  List<String> dialogjobTitleList = [
+    "Dustman",
+    "Guard",
+    "Media",
+    "Secretary",
+  ];
   List<String> rolllist = ['Class', 'Observer'];
   List<String> rolldialoglist = ['Class', 'Observer'];
   List<String> contractList = ['Full Time', 'Hours'];
-  List<String> feRoll = [
-    'Admin',
-    'Sub Admin',
-    'Registration',
-    'Supervisor',
-    'Accountant'
-  ];
+  List<String> feRoll = [];
   List<String> feJoptitle = [
     "Manager",
     "Registration",
     "Secretariat",
-    "Secretary",
     "Supervisor",
     "Accountant",
     "Technical Support",
     "Technical Support Manager",
   ];
+
+  void SetRollDropDown(String newValue) {
+    ferollIndex = "";
+    if (newValue == "Manager") {
+      feRoll = [
+        'Admin',
+      ];
+    }
+    if (newValue == "Registration") {
+      feRoll = [
+        'Registration',
+      ];
+    }
+    if (newValue == "Secretariat") {
+      feRoll = [
+        'Supervisor',
+      ];
+    }
+    if (newValue == "Supervisor") {
+      feRoll = [
+        'Supervisor',
+      ];
+    }
+    if (newValue == "Accountant") {
+      feRoll = ['Accountant'];
+    }
+    if (newValue == "Technical Support") {
+      feRoll = [
+        'Admin',
+      ];
+    }
+    if (newValue == "Technical Support Manager") {
+      feRoll = [
+        'Sub Admin',
+      ];
+    }
+  }
+
   Rx<DateTime?> Birthdate = Rx<DateTime?>(null);
   Rx<DateTime?> Joindate = Rx<DateTime?>(null);
 

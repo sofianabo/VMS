@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/ExamTableController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownExamTypeController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownSemsterController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllSemesterModel.dart';
@@ -17,10 +18,12 @@ class Dropdownsemsesterapi {
   Dropdownsemsester() async {
     try {
       String myurl = "${global.hostPort}${global.getSemester}";
+      Get.find<ExamTableController>().setisSemesterLoading(true);
       var response = await dio.get(myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         AllSemesterModel sem = AllSemesterModel.fromJson(response.data);
         c.setsemester(sem);
+        Get.find<ExamTableController>().setisSemesterLoading(false);
         return sem;
       } else {
         ErrorHandler.handleDioError(DioException(

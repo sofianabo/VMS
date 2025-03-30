@@ -5,20 +5,20 @@ import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 
-class Add_Quiz_Type_API {
-  Add_Quiz_Type_API();
+class Update_Quiz_Type_API {
+  Update_Quiz_Type_API();
 
   Dio dio = Dio();
 
-  Future<void> Add_Quiz_Type({
+  Future<void> Update_Quiz_Type({
     required int SemsterId,
-    required List<String> ClassId,
+    required int ClassId,
     required RxList<Map<String, dynamic>> groups, // تم تغيير نوع المصفوفة هنا
   }) async {
     try {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
-      List<int> classIdsAsInt = ClassId.map((e) => int.parse(e)).toList();
+
       List<Map<String, dynamic>> objectData = groups.map((group) {
         return {
           "name": group["name"],
@@ -37,11 +37,11 @@ class Add_Quiz_Type_API {
         };
       }).toList();
 
-      String myurl = "$hostPort$addQuizType";
+      String myurl = "$hostPort$updateQuizType";
       var requestData = {
         "semesterId": SemsterId,
-        "classId": classIdsAsInt,
-        "object": objectData, // هنا تم إرسال الـ object بشكل صحيح
+        "classId": ClassId,
+        "object": objectData,
       };
 
       var response = await dio.post(

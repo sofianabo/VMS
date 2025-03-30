@@ -24,6 +24,7 @@ class GradesTableScreen extends StatelessWidget {
                           },
                           child: Obx(() {
                             return Table(
+                              textDirection: TextDirection.rtl,
                               border: TableBorder.all(
                                   color: Colors.black, width: 1),
                               columnWidths: {
@@ -58,6 +59,7 @@ class GradesTableScreen extends StatelessWidget {
       BuildContext context, TeachernoteAndGradeReco controller) {
     List<TableRow> rows = [];
 
+    // صف الرأس (أسماء المجموعات)
     rows.add(TableRow(
       children: List.generate(
         controller.groups.length,
@@ -68,29 +70,69 @@ class GradesTableScreen extends StatelessWidget {
       ),
     ));
 
-    // صف لعرض العناصر (items) فقط
+    // صف العناصر والنسب مع دمج الخلايا الفارغة
     rows.add(TableRow(
       children: List.generate(controller.groups.length, (index) {
-        // تحويل items إلى List<dynamic>
         List<dynamic> items =
             controller.groups[index]['items'] as List<dynamic>;
-        if (items.isEmpty) {
-          return tableCell(context, " ", index);
-        }
-        return tableCellWithItems(context, items, index, isHeader: true);
-      }),
-    ));
+        dynamic ratio = controller.groups[index]['ratio'];
 
-    // صف لعرض نسبة كل مجموعة
-    rows.add(TableRow(
-      children: List.generate(controller.groups.length, (index) {
-        // تحويل items إلى List<dynamic>
-        List<dynamic> items =
-            controller.groups[index]['items'] as List<dynamic>;
-        if (controller.groups[index]['ratio'] == 0) {
-          return tableCell(context, " ", index);
+        if (items.isEmpty) {
+          // إذا لم يكن هناك items نعرض ratio في خلية واحدة كبيرة
+          return Container(
+            height: 90, // ارتفاع مضاعف لدمج الصفين
+            decoration: BoxDecoration(border: Border.all(width: 0.5)),
+            alignment: Alignment.center,
+            child: Text(
+              ratio == 0 ? " " : ratio.toString(),
+              textAlign: TextAlign.center,
+            ),
+          );
+        } else {
+          // إذا كان هناك items نعرضها في صفين
+          return Column(
+            children: [
+              // صف العناصر
+              Container(
+                height: 45,
+                child: Row(
+                  children: items.map((item) {
+                    return Expanded(
+                      child: Container(
+                        decoration:
+                            BoxDecoration(border: Border.all(width: 0.5)),
+                        alignment: Alignment.center,
+                        child: Text(
+                          item['name'],
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
+              // صف النسب
+              Container(
+                height: 45,
+                child: Row(
+                  children: items.map((item) {
+                    return Expanded(
+                      child: Container(
+                        decoration:
+                            BoxDecoration(border: Border.all(width: 0.5)),
+                        alignment: Alignment.center,
+                        child: Text(
+                          item['ratio'].toString(),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
+            ],
+          );
         }
-        return tableCellWithItems(context, items, index, showRatio: true);
       }),
     ));
 

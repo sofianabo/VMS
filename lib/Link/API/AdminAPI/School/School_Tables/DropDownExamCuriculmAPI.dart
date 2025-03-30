@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/ExamTableController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCuriculmController.dart';
 import 'package:vms_school/Link/Model/AdminModel/DropDownCuriculmModel.dart';
@@ -21,13 +22,15 @@ class Dropdownexamcuriculmapi {
   Dropdownexamcuriculm(int idx) async {
     try {
       int? id = class_controller.Allclass[idx].id;
-
-      String myurl = "${global.hostPort}${global.getCurriculumbyClass}/$id";
-      var response = await dio.get(myurl, options: getDioOptions());
+      Get.find<ExamTableController>().setisCurriculmLoading(true);
+      String myurl = "${global.hostPort}${global.getCurriculum}";
+      var response = await dio
+          .post(data: {"classId": id}, myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         DropDowmCuriculmModel curi =
             DropDowmCuriculmModel.fromJson(response.data);
         c.setCuriculm(curi);
+        Get.find<ExamTableController>().setisCurriculmLoading(false);
         return curi;
       } else {
         ErrorHandler.handleDioError(DioException(
