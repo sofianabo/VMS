@@ -454,7 +454,7 @@ class ClassGrid extends StatelessWidget {
                                                             Text(
                                                               "Do You Want To Deleteclass"
                                                                       .tr +
-                                                                  " (${control.filteredreclasses![index].enName}) " +
+                                                                  " (${prefs!.getString(languageKey) == 'ar'?control.filteredreclasses![index].name:control.filteredreclasses![index].enName}) " +
                                                                   "Class".tr,
                                                               style: Get
                                                                   .theme

@@ -5,6 +5,8 @@ import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Grade_Screen/Delete_Grade_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Grade_Screen/Edit_Grade_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Grade_Controller.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
@@ -18,49 +20,58 @@ class GradeTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<Grade_Controller>(
-      builder: (controller) {
-        return Container(
-          margin: const EdgeInsets.only(top: 20),
-          width: Get.width * 0.9,
-          child: controller.isLoading == true
-              ? LoadingAnimationWidget.inkDrop(
-                  color: Theme.of(context).primaryColor,
-                  size: 60,
-                )
-              : SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Table(
-                        border: TableBorder.all(
-                            color: Theme.of(context).primaryColor),
-                        children: [
-                          TableRow(
-                            decoration: BoxDecoration(
-                                color: Theme.of(context).indicatorColor),
-                            children: [
-                              _tableHeader('Operation', context),
-                              _tableHeader('Fee Count', context),
-                              _tableHeader('Grade Name', context),
-                            ],
-                          ),
-                          for (var row in controller.Grades.asMap().entries)
+    return Directionality(
+         textDirection: prefs!.getString(languageKey) == "ar"
+          ? TextDirection.rtl
+          : TextDirection.ltr,
+      child: GetBuilder<Grade_Controller>(
+        builder: (controller) {
+          return Container(
+            margin: const EdgeInsets.only(top: 20),
+            width: Get.width * 0.9,
+            child: controller.isLoading == true
+                ? LoadingAnimationWidget.inkDrop(
+                    color: Theme.of(context).primaryColor,
+                    size: 60,
+                  )
+                : SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Table(
+                          border: TableBorder.all(
+                              color: Theme.of(context).primaryColor),
+                          children: [
                             TableRow(
+                              decoration: BoxDecoration(
+                                  color: Theme.of(context).indicatorColor),
                               children: [
-                                _operationColumn(
-                                    row.value, controller, row.key, context),
-                                _dataColumn(row.value['feeCount'], context),
-                                _dataColumn(row.value['enName'], context),
+                                _tableHeader('Operation'.tr, context),
+                                _tableHeader('Fee Count'.tr, context),
+                                _tableHeader('Grade Name'.tr, context),
                               ],
                             ),
-                        ],
-                      ),
-                    ],
+                            for (var row in controller.Grades.asMap().entries)
+                              TableRow(
+                                children: [
+                                  _operationColumn(
+                                      row.value, controller, row.key, context),
+                                  _dataColumn(row.value['feeCount'], context),
+                                  _dataColumn(
+                                      prefs!.getString(languageKey) == 'ar'
+                                          ? row.value['name']
+                                          : row.value['enName'],
+                                      context),
+                                ],
+                              ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 
@@ -96,7 +107,7 @@ class GradeTable extends StatelessWidget {
                 VMSAlertDialog(
                   action: [
                     ButtonDialog(
-                        text: "Delete",
+                        text: "Delete".tr,
                         onPressed: () {
                           Delete_Grade_API(context).Delete_Grade(
                             gradeId: controller.Grades[index]['id'],
@@ -106,7 +117,7 @@ class GradeTable extends StatelessWidget {
                         color: const Color(0xffB03D3D),
                         width: 120),
                     ButtonDialog(
-                        text: "Cancel",
+                        text: "Cancel".tr,
                         onPressed: () {
                           Get.back();
                         },
@@ -119,13 +130,16 @@ class GradeTable extends StatelessWidget {
                       SizedBox(
                         width: 400,
                         child: Text(
-                          "Do You Want To Delete (${row['enName']}) Grade",
+                          "Do You Want To Deletegarde".tr +
+                              " ( ${  prefs!.getString(languageKey) == 'ar'?
+                                              "${row['name']}":"${row['enName']}"} ) " +
+                              "Gradee".tr,
                           style: const TextStyle(fontSize: 16),
                         ),
                       ),
                     ],
                   ),
-                  apptitle: "Delete Grade",
+                  apptitle: "Delete Grade".tr,
                   subtitle: "none",
                 ),
               );
@@ -136,14 +150,16 @@ class GradeTable extends StatelessWidget {
             color: Theme.of(context).primaryColor,
             onPressed: () {
               name.text = "${row['name']}";
-              enName.text = "${row['enName']}";
+              enName.text = prefs!.getString(languageKey) == 'ar'
+                  ? "${row['name']}"
+                  : "${row['enName']}";
               feeCount.text = "${row['feeCount']}";
               Get.dialog(
                 GetBuilder<Grade_Controller>(builder: (G_Controller) {
                   return VMSAlertDialog(
                       action: [
                         ButtonDialog(
-                            text: "Edit",
+                            text: "Edit".tr,
                             onPressed: () {
                               {
                                 bool isArNameEmpty = name.text.isEmpty;
@@ -192,8 +208,8 @@ class GradeTable extends StatelessWidget {
                                       }
                                     },
                                     controller: enName,
-                                    Uptext: "Grade En - Name",
-                                    hinttext: "Grade En - Name"),
+                                    Uptext: "Grade En - Name".tr,
+                                    hinttext: "Grade En - Name".tr),
                               ),
                               Textfildwithupper(
                                   isRequired: true,
@@ -205,8 +221,8 @@ class GradeTable extends StatelessWidget {
                                     }
                                   },
                                   controller: name,
-                                  Uptext: "Grade Ar - Name",
-                                  hinttext: "Grade Ar - Name"),
+                                  Uptext: "Grade Ar - Name".tr,
+                                  hinttext: "Grade Ar - Name".tr),
                             ],
                           ),
                           Row(
@@ -228,14 +244,14 @@ class GradeTable extends StatelessWidget {
                                     },
                                     fieldType: "number",
                                     controller: feeCount,
-                                    Uptext: "Fee Count",
-                                    hinttext: "Fee Count"),
+                                    Uptext: "Fee Count".tr,
+                                    hinttext: "Fee Count".tr),
                               ),
                             ],
                           ),
                         ],
                       ),
-                      apptitle: "Edit Grade",
+                      apptitle: "Edit Grade".tr,
                       subtitle: "none");
                 }),
               );

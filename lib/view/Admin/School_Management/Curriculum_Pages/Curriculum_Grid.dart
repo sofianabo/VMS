@@ -260,7 +260,7 @@ class CurriculumGrid extends StatelessWidget {
                                                       Row(
                                                         children: [
                                                           Text(
-                                                            "Do You Want To Deletecur".tr+" ( ${control.filteredCurriculum[index].name} ) "+"Curriculumm".tr,
+                                                            "Do You Want To Deletecur".tr+" ( ${prefs!.getString(languageKey) == 'ar'?control.filteredCurriculum[index].name:control.filteredCurriculum[index].enName} ) "+"Curriculumm".tr,
                                                             style: Get
                                                                 .theme
                                                                 .textTheme

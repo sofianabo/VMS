@@ -112,8 +112,8 @@ class _Ilness_ScreenState extends State<Ilness_Screen> {
                                           },
                                           width: 350,
                                           controller: name,
-                                          Uptext: "Name",
-                                          hinttext: "Name",
+                                          Uptext: "Name".tr,
+                                          hinttext: "Name".tr,
                                         ),
                                         Padding(
                                           padding:
@@ -129,8 +129,8 @@ class _Ilness_ScreenState extends State<Ilness_Screen> {
                                               },
                                               width: 350,
                                               controller: enName,
-                                              Uptext: "English Name",
-                                              hinttext: "English Name"),
+                                              Uptext: "English Name".tr,
+                                              hinttext: "English Name".tr),
                                         ),
                                         Padding(
                                           padding:
@@ -145,7 +145,7 @@ class _Ilness_ScreenState extends State<Ilness_Screen> {
                                                           value!);
                                                     },
                                                   )),
-                                              Text("Is Chronic",
+                                              Text("Is Chronic".tr,
                                                   style: Get.theme.textTheme
                                                       .bodyMedium!
                                                       .copyWith(fontSize: 16)),
@@ -161,7 +161,7 @@ class _Ilness_ScreenState extends State<Ilness_Screen> {
                                         children: [
                                           ButtonDialog(
                                               width: 150,
-                                              text: "Add Illness",
+                                              text: "Add Illness".tr,
                                               onPressed: () async {
                                                 bool isArNameEmpty =
                                                     name.text.isEmpty;
@@ -191,7 +191,7 @@ class _Ilness_ScreenState extends State<Ilness_Screen> {
                                         ],
                                       )
                                     ],
-                                    apptitle: "Add Illness",
+                                    apptitle: "Add Illness".tr,
                                     subtitle: "none");
                               }));
                             },

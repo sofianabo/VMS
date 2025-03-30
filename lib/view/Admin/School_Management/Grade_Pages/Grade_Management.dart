@@ -69,7 +69,7 @@ class _GradeManagementState extends State<GradeManagement> {
                             return VMSAlertDialog(
                                 action: [
                                   ButtonDialog(
-                                      text: "Add",
+                                      text: "Add".tr,
                                       onPressed: () async {
                                         bool isArNameEmpty =
                                             arName.text.isEmpty;
@@ -123,8 +123,8 @@ class _GradeManagementState extends State<GradeManagement> {
                                                     }
                                                   },
                                                   controller: enName,
-                                                  Uptext: "Grade En - Name",
-                                                  hinttext: "Grade En - Name"),
+                                                  Uptext: "Grade En - Name".tr,
+                                                  hinttext: "Grade En - Name".tr),
                                             ),
                                             Textfildwithupper(
                                                 isRequired: true,
@@ -137,8 +137,8 @@ class _GradeManagementState extends State<GradeManagement> {
                                                   }
                                                 },
                                                 controller: arName,
-                                                Uptext: "Grade Ar - Name",
-                                                hinttext: "Grade Ar - Name"),
+                                                Uptext: "Grade Ar - Name".tr,
+                                                hinttext: "Grade Ar - Name".tr),
                                           ],
                                         ),
                                         Row(
@@ -166,8 +166,8 @@ class _GradeManagementState extends State<GradeManagement> {
                                                   },
                                                   controller: feeCount,
                                                   fieldType: "number",
-                                                  Uptext: "Fee Count",
-                                                  hinttext: "Fee Count"),
+                                                  Uptext: "Fee Count".tr,
+                                                  hinttext: "Fee Count".tr),
                                             ),
                                           ],
                                         ),
@@ -175,7 +175,7 @@ class _GradeManagementState extends State<GradeManagement> {
                                     ),
                                   ],
                                 ),
-                                apptitle: "Add Grade",
+                                apptitle: "Add Grade".tr,
                                 subtitle: "none");
                           }));
                         },

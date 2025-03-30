@@ -51,7 +51,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
                 children: [
                   DropDownAllSessions(
                       API: "division",
-                      title: "Session",
+                      title: "Session".tr,
                       width: Get.width / 3,
                       type: "session"),
                   Padding(
@@ -60,7 +60,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
                         GetBuilder<Divisions_Controller>(builder: (controller) {
                       return DropDownDivisionMgmt(
                           isLoading: controller.isLoading,
-                          title: "Class",
+                          title: "Class".tr,
                           width: Get.width / 3,
                           type: "class");
                     }),
@@ -92,7 +92,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
                             return VMSAlertDialog(
                                 action: [
                                   ButtonDialog(
-                                      text: "Add",
+                                      text: "Add".tr,
                                       onPressed: () async {
                                         bool isArNameEmpty =
                                             arName.text.isEmpty;
@@ -157,8 +157,8 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                             },
                                             width: 250,
                                             controller: enName,
-                                            Uptext: "Division En - Name",
-                                            hinttext: "Division En - Name"),
+                                            Uptext: "Division En - Name".tr,
+                                            hinttext: "Division En - Name".tr),
                                         Padding(
                                           padding: const EdgeInsets.only(
                                               left: 15.0,
@@ -175,8 +175,9 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                               },
                                               width: 250,
                                               controller: arName,
-                                              Uptext: "Division Ar - Name",
-                                              hinttext: "Division Ar - Name"),
+                                              Uptext: "Division Ar - Name".tr,
+                                              hinttext:
+                                                  "Division Ar - Name".tr),
                                         ),
                                       ],
                                     ),
@@ -184,56 +185,50 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         GetBuilder<Divisions_Controller>(
                                             builder: (controller) {
                                           return DropDownDivisionMgmt(
                                               isError: controller.IsclassError,
                                               isLoading: controller.isLoading,
-                                              title: "Class",
+                                              title: "Class".tr,
                                               width: 250,
                                               type: "classDiag");
                                         }),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 15.0),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Textfildwithupper(
-                                                  isError:
-                                                      controller.IsmeetError,
-                                                  isRequired: true,
-                                                  onChanged: (value) {
-                                                    if (value.isNotEmpty) {
-                                                      controller
-                                                          .updateFieldError(
-                                                              "meet", false);
-                                                    }
-                                                  },
-                                                  width: 230,
-                                                  controller: driveUrl,
-                                                  Uptext: "Meet URL",
-                                                  hinttext: "Meet URL"),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 5.0, top: 36.0),
-                                                child: SvgPicture.asset(
-                                                    "../../images/meet.svg",
-                                                    width: 25),
-                                              )
-                                            ],
-                                          ),
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Textfildwithupper(
+                                                isError: controller.IsmeetError,
+                                                isRequired: true,
+                                                onChanged: (value) {
+                                                  if (value.isNotEmpty) {
+                                                    controller.updateFieldError(
+                                                        "meet", false);
+                                                  }
+                                                },
+                                                width: 230,
+                                                controller: driveUrl,
+                                                Uptext: "Meet URL".tr,
+                                                hinttext: "Meet URL".tr),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5.0, top: 36.0),
+                                              child: SvgPicture.asset(
+                                                  "../../images/meet.svg",
+                                                  width: 25),
+                                            )
+                                          ],
                                         ),
                                       ],
                                     ),
                                   ],
                                 ),
-                                apptitle: "Add Division",
+                                apptitle: "Add Division".tr,
                                 subtitle: "none");
                           }));
                         },
