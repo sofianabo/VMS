@@ -130,7 +130,7 @@ class _PenaltygridState extends State<Penaltygrid> {
                         width: 400,
                         child: Text(
                           "Do You Want To Delete".tr +
-                              " (${row['enName']})" +
+                              " (${prefs!.getString(languageKey) == 'ar' ? row['name'] : row['enName']})" +
                               "penalty".tr,
                           style: const TextStyle(fontSize: 16),
                         ),

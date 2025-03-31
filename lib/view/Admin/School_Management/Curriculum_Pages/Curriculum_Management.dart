@@ -59,7 +59,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                           padding: const EdgeInsets.only(left: 8.0),
                           child: DropDownCurriMgmt(
                             Isloading: controller.isLoading,
-                            title: "Subject",
+                            title: "Subject".tr,
                             width: w / 4,
                             type: "Subject",
                           ),
@@ -69,7 +69,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                         padding: const EdgeInsets.only(left: 8.0),
                         child: DropDownCurriMgmt(
                           Isloading: false,
-                          title: "Semester",
+                          title: "Semester".tr,
                           width: w / 4,
                           type: "semester",
                         ),
@@ -126,7 +126,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                 return VMSAlertDialog(
                                     action: [
                                       ButtonDialog(
-                                          text: "Add",
+                                          text: "Add".tr,
                                           onPressed: () async {
                                             bool isArNameEmpty =
                                                 name.text.isEmpty;
@@ -233,14 +233,14 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                       controller.IsSubjectError,
                                                   Isloading: subject_controller
                                                       .isLoading,
-                                                  title: "Subject",
+                                                  title: "Subject".tr,
                                                   width: 250,
                                                   type: "Dialog_Subject");
                                             }),
                                             DropDownCurriMgmt(
                                                 isError:
                                                     controller.IsSemesterError,
-                                                title: "Semester",
+                                                title: "Semester".tr,
                                                 width: 250,
                                                 type: "Dialog_semester")
                                           ],
@@ -250,7 +250,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                               top: 15.0, bottom: 15.0),
                                           child: Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                                MainAxisAlignment.spaceBetween,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.end,
                                             children: [
@@ -267,29 +267,28 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                   },
                                                   width: 250,
                                                   controller: name,
-                                                  Uptext: "Name Curriculum",
-                                                  hinttext: "Name Curriculum"),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 30.0),
-                                                child: Textfildwithupper(
-                                                    isError:
-                                                        controller.IsEnameError,
-                                                    isRequired: true,
-                                                    onChanged: (value) {
-                                                      if (value.isNotEmpty) {
-                                                        controller
-                                                            .updateFieldError(
-                                                                "ename", false);
-                                                      }
-                                                    },
-                                                    width: 250,
-                                                    controller: enname,
-                                                    Uptext:
-                                                        "English Name Curriculum",
-                                                    hinttext:
-                                                        "English Name Curriculum"),
-                                              ),
+                                                  Uptext: "Curriculum Name".tr,
+                                                  hinttext:
+                                                      "Curriculum Name".tr),
+                                              Textfildwithupper(
+                                                  isError:
+                                                      controller.IsEnameError,
+                                                  isRequired: true,
+                                                  onChanged: (value) {
+                                                    if (value.isNotEmpty) {
+                                                      controller
+                                                          .updateFieldError(
+                                                              "ename", false);
+                                                    }
+                                                  },
+                                                  width: 250,
+                                                  controller: enname,
+                                                  Uptext:
+                                                      "Curriculum English Name"
+                                                          .tr,
+                                                  hinttext:
+                                                      "Curriculum English Name"
+                                                          .tr),
                                             ],
                                           ),
                                         ),
@@ -308,8 +307,8 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                   }
                                                 },
                                                 controller: max,
-                                                Uptext: "Max Mark",
-                                                hinttext: "Max Mark"),
+                                                Uptext: "Max Mark".tr,
+                                                hinttext: "Max Mark".tr),
                                             Textfildwithupper(
                                                 fieldType: "number",
                                                 isError:
@@ -322,8 +321,8 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                   }
                                                 },
                                                 controller: Passing,
-                                                Uptext: "Passing Mark",
-                                                hinttext: "Passing Mark")
+                                                Uptext: "Passing Mark".tr,
+                                                hinttext: "Passing Mark".tr)
                                           ],
                                         ),
                                         Padding(
@@ -476,7 +475,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                               ),
                                               Padding(
                                                 padding: const EdgeInsets.only(
-                                                    left: 30.0),
+                                                    right: 30),
                                                 child: GestureDetector(
                                                   onTap: () {
                                                     controller.pickImage();
@@ -648,7 +647,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.start,
                                                 children: [
-                                                  const Text("Failing Subject"),
+                                                  Text("Failed subject".tr),
                                                   Column(
                                                     children: [
                                                       Row(
@@ -663,8 +662,9 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                                       value!); // Update the state
                                                             },
                                                           ),
-                                                          const Text(
-                                                              "Is Failing Subject"),
+                                                          Text(
+                                                              "Is Failed subject"
+                                                                  .tr),
                                                         ],
                                                       ),
                                                     ],
@@ -676,7 +676,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                         ),
                                       ],
                                     ),
-                                    apptitle: "Add Curriculum",
+                                    apptitle: "Add Curriculum".tr,
                                     subtitle: "none");
                               }));
                             },

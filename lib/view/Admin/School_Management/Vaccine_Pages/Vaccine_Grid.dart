@@ -5,6 +5,8 @@ import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Vaccines_APIs/Delete_Vaccines_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Theme/themeController.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
@@ -18,8 +20,7 @@ class Vaccine_Grid extends StatelessWidget {
     return GetBuilder<Vaccines_Controller>(builder: (control) {
       return control.isLoading == true
           ? GridView.builder(
-              padding:
-                  const EdgeInsets.only(top: 10, left: 40, right: 40),
+              padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: Get.width <= 1226 && Get.width >= 988
                       ? 3
@@ -49,8 +50,8 @@ class Vaccine_Grid extends StatelessWidget {
                           padding: const EdgeInsets.all(5),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
-                              border: Border.all(
-                                  color: Colors.grey, width: 0.5),
+                              border:
+                                  Border.all(color: Colors.grey, width: 0.5),
                               color: Theme.of(context).cardColor,
                               boxShadow: const [
                                 BoxShadow(
@@ -62,18 +63,16 @@ class Vaccine_Grid extends StatelessWidget {
                             children: [
                               Spacer(),
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.center,
-                                crossAxisAlignment:
-                                    CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Container(
                                     width: 50,
                                   ),
                                   Expanded(
                                     child: Center(
-                                      child: SchemaWidget(
-                                          width: 40, height: 15),
+                                      child:
+                                          SchemaWidget(width: 40, height: 15),
                                     ),
                                   )
                                 ],
@@ -81,11 +80,8 @@ class Vaccine_Grid extends StatelessWidget {
                               Spacer(),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment:
-                                    CrossAxisAlignment.end,
-                                children: [
-                                  SchemaWidget(width: 20, height: 20)
-                                ],
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [SchemaWidget(width: 20, height: 20)],
                               )
                             ],
                           )),
@@ -98,40 +94,35 @@ class Vaccine_Grid extends StatelessWidget {
                           )),
                     ],
                   ),
-                )
-                    .animate(onPlay: (controller) => controller.repeat())
-                    .shimmer(
-                        angle: 1,
-                        color: Colors.grey.withOpacity(0.2),
-                        duration: Duration(seconds: 1),
-                        delay: Duration(seconds: 1));
+                ).animate(onPlay: (controller) => controller.repeat()).shimmer(
+                    angle: 1,
+                    color: Colors.grey.withOpacity(0.2),
+                    duration: Duration(seconds: 1),
+                    delay: Duration(seconds: 1));
               },
             )
           : control.filteredvaccine!.isNotEmpty
               ? GridView.builder(
-                  padding:
-                      const EdgeInsets.only(top: 10, left: 40, right: 40),
+                  padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount:
-                          Get.width <= 1226 && Get.width >= 988
-                              ? 3
-                              : Get.width <= 987 && Get.width >= 759
-                                  ? 2
-                                  : Get.width <= 758
-                                      ? 1
-                                      : 4,
+                      crossAxisCount: Get.width <= 1226 && Get.width >= 988
+                          ? 3
+                          : Get.width <= 987 && Get.width >= 759
+                              ? 2
+                              : Get.width <= 758
+                                  ? 1
+                                  : 4,
                       crossAxisSpacing: 45.0,
                       mainAxisSpacing: 20.0,
-                      childAspectRatio:
-                          Get.width <= 1226 && Get.width >= 988
-                              ? 2.2
-                              : Get.width <= 987 && Get.width >= 759
-                                  ? 2.7
-                                  : Get.width <= 758 && Get.width >= 573
-                                      ? 3.8
-                                      : Get.width <= 573
-                                          ? 3.0
-                                          : 1.8),
+                      childAspectRatio: Get.width <= 1226 && Get.width >= 988
+                          ? 2.2
+                          : Get.width <= 987 && Get.width >= 759
+                              ? 2.7
+                              : Get.width <= 758 && Get.width >= 573
+                                  ? 3.8
+                                  : Get.width <= 573
+                                      ? 3.0
+                                      : 1.8),
                   itemCount: control.filteredvaccine!.length,
                   itemBuilder: (context, index) {
                     return HoverScaleCard(
@@ -143,8 +134,7 @@ class Vaccine_Grid extends StatelessWidget {
                             Container(
                                 padding: const EdgeInsets.all(5),
                                 decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.circular(5),
+                                    borderRadius: BorderRadius.circular(5),
                                     border: Border.all(
                                         color: Colors.grey, width: 0.5),
                                     color: Theme.of(context).cardColor,
@@ -171,17 +161,16 @@ class Vaccine_Grid extends StatelessWidget {
                                               child: Column(children: [
                                             Text(
                                               textAlign: TextAlign.center,
-                                              "${control.filteredvaccine![index].enName}",
-                                              style:
-                                                  TextStyle(fontSize: 26),
+                                              "${prefs!.getString(languageKey) == 'ar' ? control.filteredvaccine![index].name : control.filteredvaccine![index].enName}",
+                                              style: TextStyle(fontSize: 26),
                                             ),
                                             Text(
                                               textAlign: TextAlign.center,
-                                              "Location : ${control.filteredvaccine![index].location!.enName}",
+                                              "Location :".tr +
+                                                  " ${prefs!.getString(languageKey) == 'ar' ? control.filteredvaccine![index].location!.name : control.filteredvaccine![index].location!.enName}",
                                               style: TextStyle(
                                                   fontSize: 14,
-                                                  color:
-                                                      Color(0xffDAC43B)),
+                                                  color: Color(0xffDAC43B)),
                                             )
                                           ])),
                                         )
@@ -189,8 +178,7 @@ class Vaccine_Grid extends StatelessWidget {
                                     ),
                                     Spacer(),
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.end,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
                                       children: [
@@ -198,21 +186,19 @@ class Vaccine_Grid extends StatelessWidget {
                                             style: ButtonStyle(
                                                 backgroundColor:
                                                     WidgetStatePropertyAll(
-                                                        Color(
-                                                            0xffB03D3D)),
+                                                        Color(0xffB03D3D)),
                                                 shape: WidgetStatePropertyAll(
                                                     RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius
-                                                            .all(Radius
-                                                                .circular(
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
                                                                     5))))),
                                             onPressed: () {
                                               Get.dialog(VMSAlertDialog(
                                                 action: [
                                                   ButtonDialog(
-                                                      text: "Delete",
-                                                      onPressed:
-                                                          () async {
+                                                      text: "Delete".tr,
+                                                      onPressed: () async {
                                                         await Delete_Vaccines_API(
                                                                 context)
                                                             .Delete_Vaccines(
@@ -221,11 +207,10 @@ class Vaccine_Grid extends StatelessWidget {
                                                                         index]
                                                                     .id);
                                                       },
-                                                      color: Color(
-                                                          0xffB03D3D),
+                                                      color: Color(0xffB03D3D),
                                                       width: 80),
                                                   ButtonDialog(
-                                                      text: "Cancel",
+                                                      text: "Cancel".tr,
                                                       onPressed: () {
                                                         Get.back();
                                                       },
@@ -241,35 +226,35 @@ class Vaccine_Grid extends StatelessWidget {
                                                               .start,
                                                       children: [
                                                         Text(
-                                                          "Do You Want To Delete ( ${control.filteredvaccine![index].enName} ) Vaccine",
+                                                          "Do You Want To Deletevac"
+                                                                  .tr +
+                                                              " ( ${prefs!.getString(languageKey) == 'ar' ? control.filteredvaccine![index].name : control.filteredvaccine![index].enName} ) " +
+                                                              "Vaccinee".tr,
                                                           style: Get
                                                               .theme
                                                               .textTheme
                                                               .bodyMedium!
                                                               .copyWith(
-                                                                  fontSize:
-                                                                      16,
+                                                                  fontSize: 16,
                                                                   fontWeight:
-                                                                      FontWeight.normal),
+                                                                      FontWeight
+                                                                          .normal),
                                                         ),
                                                       ],
                                                     )),
-                                                apptitle:
-                                                    "Delete Vaccine",
+                                                apptitle: "Delete Vaccine".tr,
                                                 subtitle: "none",
                                               ));
                                             },
                                             icon: Icon(VMS_Icons.bin,
-                                                size: 16,
-                                                color: Colors.white)),
+                                                size: 16, color: Colors.white)),
                                       ],
                                     )
                                   ],
                                 )),
                             Align(
                                 alignment: Alignment(-1.5, 1),
-                                child: Image.asset(
-                                    "../../images/Vaction.png",
+                                child: Image.asset("../../images/Vaction.png",
                                     height: 150)),
                           ],
                         ),
@@ -278,7 +263,7 @@ class Vaccine_Grid extends StatelessWidget {
                   },
                 )
               : Center(
-                  child: Text("No Vaccine",
+                  child: Text("No Vaccine".tr,
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontSize: 22, fontWeight: FontWeight.normal)));
     });

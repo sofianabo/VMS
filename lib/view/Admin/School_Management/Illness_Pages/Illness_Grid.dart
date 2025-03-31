@@ -8,6 +8,8 @@ import 'package:vms_school/Link/API/DownloadFiles.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Labrary_Controller.dart';
 import 'package:vms_school/Theme/themeController.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
@@ -163,24 +165,45 @@ class Illness_Grid extends StatelessWidget {
                                           child: Center(
                                               child: Column(children: [
                                             Text(
+                                              textDirection: prefs!.getString(
+                                                          languageKey) ==
+                                                      "ar"
+                                                  ? TextDirection.rtl
+                                                  : TextDirection.ltr,
                                               textAlign: TextAlign.center,
-                                              "${control.filteredIllness![index].enName}",
-                                              style: TextStyle(fontSize: 26),
+                                              prefs!.getString(languageKey) ==
+                                                      'ar'
+                                                  ? "${control.filteredIllness![index].name}"
+                                                  : "${control.filteredIllness![index].enName}",
+                                              style: Get.textTheme.bodyMedium!
+                                                  .copyWith(fontSize: 26),
                                             ),
                                             control.filteredIllness![index]
                                                         .chronic ==
                                                     1
                                                 ? Text(
+                                                    textDirection: prefs!
+                                                                .getString(
+                                                                    languageKey) ==
+                                                            "ar"
+                                                        ? TextDirection.rtl
+                                                        : TextDirection.ltr,
                                                     textAlign: TextAlign.center,
-                                                    "Is chronic : Yes",
+                                                    "Is chronic : Yes".tr,
                                                     style: TextStyle(
                                                         fontSize: 14,
                                                         color:
                                                             Color(0xffB03D3D)),
                                                   )
                                                 : Text(
+                                                    textDirection: prefs!
+                                                                .getString(
+                                                                    languageKey) ==
+                                                            "ar"
+                                                        ? TextDirection.rtl
+                                                        : TextDirection.ltr,
                                                     textAlign: TextAlign.center,
-                                                    "Is chronic : No",
+                                                    "Is chronic : No".tr,
                                                     style:
                                                         TextStyle(fontSize: 14),
                                                   )
@@ -209,7 +232,7 @@ class Illness_Grid extends StatelessWidget {
                                               Get.dialog(VMSAlertDialog(
                                                 action: [
                                                   ButtonDialog(
-                                                      text: "Delete",
+                                                      text: "Delete".tr,
                                                       onPressed: () async {
                                                         await Delete_Illness_API(
                                                                 context)
@@ -222,7 +245,7 @@ class Illness_Grid extends StatelessWidget {
                                                       color: Color(0xffB03D3D),
                                                       width: 80),
                                                   ButtonDialog(
-                                                      text: "Cancel",
+                                                      text: "Cancel".tr,
                                                       onPressed: () {
                                                         Get.back();
                                                       },
@@ -238,7 +261,10 @@ class Illness_Grid extends StatelessWidget {
                                                               .start,
                                                       children: [
                                                         Text(
-                                                          "Do You Want To Delete ( ${control.filteredIllness![index].enName} ) Illness",
+                                                          "Do You Want To Deleteill"
+                                                                  .tr +
+                                                              " ( ${prefs!.getString(languageKey) == 'ar' ? "${control.filteredIllness![index].name}" : "${control.filteredIllness![index].enName}"} ) " +
+                                                              "Illnesss".tr,
                                                           style: Get
                                                               .theme
                                                               .textTheme
@@ -251,7 +277,7 @@ class Illness_Grid extends StatelessWidget {
                                                         ),
                                                       ],
                                                     )),
-                                                apptitle: "Delete Illness",
+                                                apptitle: "Delete Illness".tr,
                                                 subtitle: "none",
                                               ));
                                             },
@@ -272,7 +298,7 @@ class Illness_Grid extends StatelessWidget {
                   },
                 )
               : Center(
-                  child: Text("No Illness",
+                  child: Text("No Illness".tr,
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontSize: 22, fontWeight: FontWeight.normal)));
     });

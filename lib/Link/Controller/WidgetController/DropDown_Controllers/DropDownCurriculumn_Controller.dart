@@ -50,9 +50,9 @@ class Curriculumn_Controller extends GetxController {
   bool isFailingSubject = false;
   bool isLoading = true;
   bool isHoveringFile = false;
-  String fileStatus = "Click To Add File\nOr\nDrag And Drop File Here";
+  String fileStatus = "Click To Add File\nOr\nDrag And Drop File Here".tr;
   bool isHoveringimage = false;
-  String imageStatus = "Click To Add Image\nOr\nDrag And Drop Image Here";
+  String imageStatus = "Click To Add Image\nOr\nDrag And Drop Image Here".tr;
 
   Rx<Uint8List?> selectedImage = Rx<Uint8List?>(null);
 
@@ -68,7 +68,7 @@ class Curriculumn_Controller extends GetxController {
       Uint8List fileBytes = await pickedFile.readAsBytes();
       selectedImage.value = fileBytes;
       updateFieldError("image", false);
-      updateTextImage("Done Selected Image");
+      updateTextImage("Done Selected Image".tr);
     } else {}
   }
 
@@ -82,7 +82,7 @@ class Curriculumn_Controller extends GetxController {
       selectedFile.value = result.files.single.bytes;
       fileName.value = result.files.single.name;
       updateFieldError("file", false);
-      updateTextFile("Done Selected File");
+      updateTextFile("Done Selected File".tr);
     }
   }
 

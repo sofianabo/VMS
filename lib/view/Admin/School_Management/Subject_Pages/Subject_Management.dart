@@ -67,7 +67,7 @@ class _Subject_ManagementState extends State<Subject_Management> {
                             return VMSAlertDialog(
                                 action: [
                                   ButtonDialog(
-                                      text: "Add",
+                                      text: "Add".tr,
                                       onPressed: () async {
                                         bool isArNameEmpty =
                                             arName.text.isEmpty;
@@ -116,9 +116,9 @@ class _Subject_ManagementState extends State<Subject_Management> {
                                                     }
                                                   },
                                                   controller: enName,
-                                                  Uptext: "Subject En - Name",
+                                                  Uptext: "Subject En - Name".tr,
                                                   hinttext:
-                                                      "Subject En - Name"),
+                                                      "Subject En - Name".tr),
                                             ),
                                             Textfildwithupper(
                                                 isRequired: true,
@@ -131,15 +131,15 @@ class _Subject_ManagementState extends State<Subject_Management> {
                                                   }
                                                 },
                                                 controller: arName,
-                                                Uptext: "Subject Ar - Name",
-                                                hinttext: "Subject Ar - Name"),
+                                                Uptext: "Subject Ar - Name".tr,
+                                                hinttext: "Subject Ar - Name".tr),
                                           ],
                                         ),
                                       ],
                                     ),
                                   ],
                                 ),
-                                apptitle: "Add Subject",
+                                apptitle: "Add Subject".tr,
                                 subtitle: "none");
                           }));
                         },

@@ -67,7 +67,7 @@ class _SessionManagementState extends State<SessionManagement> {
                             return VMSAlertDialog(
                                 action: [
                                   ButtonDialog(
-                                      text: "Add",
+                                      text: "Add".tr,
                                       onPressed: () async {
                                         bool isStartEmpty =
                                             controller.startDate.value ==
@@ -135,8 +135,8 @@ class _SessionManagementState extends State<SessionManagement> {
                                               },
                                               isRequired: true,
                                               isError: controller.IsnameError,
-                                              Uptext: "Study Year",
-                                              hinttext: "Enter Year",
+                                              Uptext: "Study Year".tr,
+                                              hinttext: "Enter Year".tr,
                                               sessionController: yearController,
                                               borderColor:
                                                   controllers.borderColor,
@@ -175,7 +175,7 @@ class _SessionManagementState extends State<SessionManagement> {
                                             children: [
                                               DateSelector(
                                                 width: 300,
-                                                label: "Start Date",
+                                                label: "Start Date".tr,
                                                 dateValue: controller.startDate,
                                                 onSelectDate:
                                                     controller.selectStartDate,
@@ -196,7 +196,7 @@ class _SessionManagementState extends State<SessionManagement> {
                                               children: [
                                                 DateSelector(
                                                   width: 300,
-                                                  label: "End Date",
+                                                  label: "End Date".tr,
                                                   dateValue: controller.endDate,
                                                   onSelectDate:
                                                       controller.selectEndDate,
@@ -212,7 +212,7 @@ class _SessionManagementState extends State<SessionManagement> {
                                     )
                                   ],
                                 ),
-                                apptitle: "Add Session",
+                                apptitle: "Add Session".tr,
                                 subtitle: "none");
                           }));
                         },

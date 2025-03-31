@@ -5,6 +5,8 @@ import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Sessions/Delete_Session_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Sessions/Edit_Session_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Session_Controller.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
@@ -17,388 +19,378 @@ class SessionManagementGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SessionController>(builder: (control) {
-      return control.isLoading == false
-          ? GridView.builder(
-              padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 5,
-                  crossAxisSpacing: 20.0,
-                  mainAxisSpacing: 20.0,
-                  childAspectRatio: 1.1),
-              itemCount: control.Sessionss.length,
-              itemBuilder: (context, index) {
-                return HoverScaleCard(
-                  child: Stack(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          if (control.Sessionss[index]['status'] != "Closed") {
-                            Get.dialog(VMSAlertDialog(
-                                action: [
-                                  ButtonDialog(
-                                      text: "Yes Close",
-                                      onPressed: () {
-                                        control.updateStatus(index, "Closed");
-                                        Get.back();
-                                      },
-                                      color: const Color(0xff134B70),
-                                      width: 120),
-                                  ButtonDialog(
-                                      text: "Cansel",
-                                      onPressed: () {
-                                        Get.back();
-                                      },
-                                      color: const Color(0xffB03D3D),
-                                      width: 120),
-                                ],
-                                contents: SizedBox(
-                                    width: 400,
-                                    child: Text(
-                                      "Close ${control.Sessionss[index]['name']}",
-                                      style: const TextStyle(fontSize: 16),
-                                    )),
-                                apptitle: "Close Session",
-                                subtitle: "none"));
-                          }
-                        },
-                        child: Container(
-                            padding: const EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                border:
-                                    Border.all(color: Colors.grey, width: 0.5),
-                                color: Theme.of(context).cardColor,
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Colors.black26,
-                                      offset: Offset(0, 2),
-                                      blurRadius: 1)
-                                ]),
-                            child: Stack(
-                              fit: StackFit.passthrough,
-                              children: [
-                                Center(
-                                  child: Text(
-                                    "${control.Sessionss[index]['name']!.replaceRange(4, 9, "").replaceRange(0, 2, "20\n")}",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: const Color(0xff134B70)
-                                            .withOpacity(0.2),
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 60),
-                                  ),
-                                ),
-                                Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text("${control.Sessionss[index]['name']}",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium!
-                                            .copyWith(
-                                              fontSize: 20,
-                                            )),
-                                    Text(
-                                        "${control.Sessionss[index]['status']}",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium!
-                                            .copyWith(
-                                              fontSize: 26,
-                                              fontWeight: FontWeight.bold,
-                                              color: control.Sessionss[index]
-                                                          ['status'] ==
-                                                      "Closed"
-                                                  ? const Color(0xffB03D3D)
-                                                  : const Color(0xff2F9742),
-                                            )),
-                                    Row(
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                                "Start Date : ${control.Sessionss[index]['startDate']}",
-                                                style: Get.theme.textTheme
-                                                    .displayLarge!
-                                                    .copyWith(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.normal,
-                                                )),
-                                            Text(
-                                                "End Date : ${control.Sessionss[index]['endDate']}",
-                                                style: Get.theme.textTheme
-                                                    .displayLarge!
-                                                    .copyWith(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.normal,
-                                                )),
-                                          ],
-                                        )
-                                      ],
-                                    )
+    return Directionality(
+       textDirection: prefs!.getString(languageKey) == "ar"
+                    ? TextDirection.rtl
+                    : TextDirection.ltr,
+      child: GetBuilder<SessionController>(builder: (control) {
+        return control.isLoading == false
+            ? GridView.builder(
+                padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 5,
+                    crossAxisSpacing: 20.0,
+                    mainAxisSpacing: 20.0,
+                    childAspectRatio: 1.1),
+                itemCount: control.Sessionss.length,
+                itemBuilder: (context, index) {
+                  return HoverScaleCard(
+                    child: Stack(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            if (control.Sessionss[index]['status']
+                                    .toString()
+                                    .tr !=
+                                "Closed".tr) {
+                              Get.dialog(VMSAlertDialog(
+                                  action: [
+                                    ButtonDialog(
+                                        text: "Yes Close".tr,
+                                        onPressed: () {
+                                          control.updateStatus(
+                                              index, "Closed".tr);
+                                          Get.back();
+                                        },
+                                        color: const Color(0xff134B70),
+                                        width: 120),
+                                    ButtonDialog(
+                                        text: "Cancel".tr,
+                                        onPressed: () {
+                                          Get.back();
+                                        },
+                                        color: const Color(0xffB03D3D),
+                                        width: 120),
                                   ],
-                                ),
-                              ],
-                            )),
-                      ),
-                      control.Sessionss[index]['hasStudents'] == false
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                _iconButton(
-                                  iconData: VMS_Icons.bin,
-                                  color: const Color(0xffB03D3D),
-                                  onPressed: () {
-                                    Get.dialog(
-                                      VMSAlertDialog(
-                                        action: [
-                                          ButtonDialog(
-                                              text: "Delete",
-                                              onPressed: () async {
-                                                await Delete_Session_API(
-                                                        context)
-                                                    .Delete_Session(
-                                                        sessionId:
-                                                            control.Sessionss[
-                                                                index]['id']);
-                                              },
-                                              color: const Color(0xffB03D3D),
-                                              width: 120),
-                                          ButtonDialog(
-                                              text: "Cancel",
-                                              onPressed: () async {},
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                              width: 120)
-                                        ],
-                                        contents: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            SizedBox(
-                                              width: 400,
-                                              child: Text(
-                                                "Do You Want To Delete (${control.Sessionss[index]['name']}) Session",
-                                                style: const TextStyle(
-                                                    fontSize: 16),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        apptitle: "Delete Grade",
-                                        subtitle: "none",
-                                      ),
-                                    );
-                                  },
-                                ),
-                                _iconButton(
-                                  iconData: Icons.edit_note_outlined,
-                                  color: Theme.of(context).primaryColor,
-                                  onPressed: () {
-                                    Get.find<SessionController>()
-                                        .sessionController
-                                        .text = control.Sessionss[index]
-                                            ['name']
-                                        .toString()
-                                        .substring(0, 4);
-                                    Get.find<SessionController>()
-                                        .currentYear
-                                        .value = int.parse(control
-                                            .Sessionss[index]['name']
-                                            .toString()
-                                            .substring(0, 4)) +
-                                        1;
-                                    Get.find<SessionController>()
-                                            .startDate
-                                            .value =
-                                        DateTime.parse(control.Sessionss[index]
-                                            ['startDate']);
-                                    Get.find<SessionController>()
-                                            .endDate
-                                            .value =
-                                        DateTime.parse(control.Sessionss[index]
-                                            ['endDate']);
-
-                                    Get.dialog(GetBuilder<SessionController>(
-                                        builder: (controller) {
-                                      return VMSAlertDialog(
-                                          action: [
-                                            ButtonDialog(
-                                                text: "Edit Session",
-                                                onPressed: () async {
-                                                  bool isStartEmpty = controller
-                                                              .startDate
-                                                              .value ==
-                                                          null ||
-                                                      controller.startDate.value
-                                                              .toString() ==
-                                                          "";
-
-                                                  bool isEndEmpty = controller
-                                                              .endDate.value ==
-                                                          null ||
-                                                      controller.endDate.value
-                                                              .toString() ==
-                                                          "";
-                                                  bool isNameEmpty = controller
-                                                          .sessionController
-                                                          .text
-                                                          .trim()
-                                                          .isEmpty ||
-                                                      controller
-                                                              .sessionController
-                                                              .text
-                                                              .length <
-                                                          4 ||
-                                                      int.parse(controller
-                                                              .sessionController
-                                                              .text) >
-                                                          2098;
-
-                                                  controller.updateFieldError(
-                                                      "name", isNameEmpty);
-                                                  controller.updateFieldError(
-                                                      "start", isStartEmpty);
-                                                  controller.updateFieldError(
-                                                      "end", isEndEmpty);
-
-                                                  if (!(isNameEmpty ||
-                                                      isStartEmpty ||
-                                                      isEndEmpty)) {
-                                                    await Edit_Session_API(
-                                                            context)
-                                                        .Edit_Session(
-                                                      sessionId: control
-                                                              .Sessionss[index]
-                                                          ['id'],
-                                                      year:
-                                                          "${Get.find<SessionController>().sessionController.text}-${int.parse(Get.find<SessionController>().sessionController.text) + 1}",
-                                                      startDate: Get.find<
-                                                              SessionController>()
-                                                          .startDate
-                                                          .value
-                                                          .toString(),
-                                                      endDate: Get.find<
-                                                              SessionController>()
-                                                          .endDate
-                                                          .value
-                                                          .toString(),
-                                                    );
-                                                  }
-                                                },
-                                                color: Theme.of(context)
-                                                    .primaryColor,
-                                                width: 90)
-                                          ],
-                                          contents: Column(
-                                            mainAxisSize: MainAxisSize.min,
+                                  contents: SizedBox(
+                                      width: 400,
+                                      child: Text(
+                                        "Close".tr +
+                                            " ${control.Sessionss[index]['name']}",
+                                        style: const TextStyle(fontSize: 16),
+                                      )),
+                                  apptitle: "Close Session".tr,
+                                  subtitle: "none"));
+                            }
+                          },
+                          child: Container(
+                              padding: const EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  border:
+                                      Border.all(color: Colors.grey, width: 0.5),
+                                  color: Theme.of(context).cardColor,
+                                  boxShadow: const [
+                                    BoxShadow(
+                                        color: Colors.black26,
+                                        offset: Offset(0, 2),
+                                        blurRadius: 1)
+                                  ]),
+                              child: Stack(
+                                fit: StackFit.passthrough,
+                                children: [
+                                  Center(
+                                    child: Text(
+                                      "${control.Sessionss[index]['name']!.replaceRange(4, 9, "").replaceRange(0, 2, "20\n")}",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: const Color(0xff134B70)
+                                              .withOpacity(0.2),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 60),
+                                    ),
+                                  ),
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text("${control.Sessionss[index]['name']}",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(
+                                                fontSize: 20,
+                                              )),
+                                      Text(
+                                          "${control.Sessionss[index]['status']}"
+                                              .toString()
+                                              .tr,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(
+                                                fontSize: 26,
+                                                fontWeight: FontWeight.bold,
+                                                color: control.Sessionss[index]
+                                                                ['status']
+                                                            .toString()
+                                                            .tr ==
+                                                        "Closed".tr
+                                                    ? const Color(0xffB03D3D)
+                                                    : const Color(0xff2F9742),
+                                              )),
+                                      Row(
+                                        children: [
+                                          Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
                                             children: [
-                                              GetBuilder<SessionController>(
-                                                  builder: (controllers) {
-                                                return Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.end,
-                                                  children: [
-                                                    SizedBox(
-                                                      width: 220,
-                                                      child:
-                                                          Textfildwithupper_num(
-                                                        onChanged: (value) {
-                                                          controller.updateYear(
-                                                              value);
-                                                          if (value
-                                                              .isNotEmpty) {
-                                                            controller
-                                                                .updateFieldError(
-                                                                    "name",
-                                                                    false);
-                                                          }
-                                                        },
-                                                        isRequired: true,
-                                                        isError: controller
-                                                            .IsnameError,
-                                                        Uptext: "Study Year",
-                                                        hinttext: "Enter Year",
-                                                        sessionController:
-                                                            controller
-                                                                .sessionController,
-                                                        borderColor: controllers
-                                                            .borderColor,
-                                                      ),
-                                                    ),
-                                                    Obx(() {
-                                                      return Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                                left: 8.0,
-                                                                right: 8.0),
-                                                        child: Container(
-                                                          height: 40,
-                                                          alignment:
-                                                              Alignment.center,
-                                                          child: Text(
-                                                            "/${controllers.currentYear.value}",
-                                                            style: Get
-                                                                .theme
-                                                                .textTheme
-                                                                .displayLarge!
-                                                                .copyWith(
-                                                              fontSize: 22,
-                                                            ),
-                                                          ),
-                                                        ),
+                                              Text(
+                                                  "Start Date :".tr +
+                                                      " ${control.Sessionss[index]['startDate']}",
+                                                  style: Get.theme.textTheme
+                                                      .displayLarge!
+                                                      .copyWith(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.normal,
+                                                  )),
+                                              Text(
+                                                  "End Date :".tr +
+                                                      " ${control.Sessionss[index]['endDate']}",
+                                                  style: Get.theme.textTheme
+                                                      .displayLarge!
+                                                      .copyWith(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.normal,
+                                                  )),
+                                            ],
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              )),
+                        ),
+                        control.Sessionss[index]['hasStudents'] == false
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  _iconButton(
+                                    iconData: VMS_Icons.bin,
+                                    color: const Color(0xffB03D3D),
+                                    onPressed: () {
+                                      Get.dialog(
+                                        VMSAlertDialog(
+                                          action: [
+                                            ButtonDialog(
+                                                text: "Delete".tr,
+                                                onPressed: () async {
+                                                  await Delete_Session_API(
+                                                          context)
+                                                      .Delete_Session(
+                                                          sessionId:
+                                                              control.Sessionss[
+                                                                  index]['id']);
+                                                },
+                                                color: const Color(0xffB03D3D),
+                                                width: 120),
+                                            ButtonDialog(
+                                                text: "Cancel".tr,
+                                                onPressed: () async {},
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                                width: 120)
+                                          ],
+                                          contents: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              SizedBox(
+                                                width: 400,
+                                                child: Text(
+                                                  "Do You Want To Deletess".tr +
+                                                      " (${control.Sessionss[index]['name']}) " +
+                                                      "Sessionn".tr,
+                                                  style: const TextStyle(
+                                                      fontSize: 16),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          apptitle: "Delete Session".tr,
+                                          subtitle: "none",
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                  _iconButton(
+                                    iconData: Icons.edit_note_outlined,
+                                    color: Theme.of(context).primaryColor,
+                                    onPressed: () {
+                                      Get.find<SessionController>()
+                                          .sessionController
+                                          .text = control.Sessionss[index]
+                                              ['name']
+                                          .toString()
+                                          .substring(0, 4);
+                                      Get.find<SessionController>()
+                                          .currentYear
+                                          .value = int.parse(control
+                                              .Sessionss[index]['name']
+                                              .toString()
+                                              .substring(0, 4)) +
+                                          1;
+                                      Get.find<SessionController>()
+                                              .startDate
+                                              .value =
+                                          DateTime.parse(control.Sessionss[index]
+                                              ['startDate']);
+                                      Get.find<SessionController>()
+                                              .endDate
+                                              .value =
+                                          DateTime.parse(control.Sessionss[index]
+                                              ['endDate']);
+      
+                                      Get.dialog(GetBuilder<SessionController>(
+                                          builder: (controller) {
+                                        return VMSAlertDialog(
+                                            action: [
+                                              ButtonDialog(
+                                                  text: "Edit Session".tr,
+                                                  onPressed: () async {
+                                                    bool isStartEmpty = controller
+                                                                .startDate
+                                                                .value ==
+                                                            null ||
+                                                        controller.startDate.value
+                                                                .toString() ==
+                                                            "";
+      
+                                                    bool isEndEmpty = controller
+                                                                .endDate.value ==
+                                                            null ||
+                                                        controller.endDate.value
+                                                                .toString() ==
+                                                            "";
+                                                    bool isNameEmpty = controller
+                                                            .sessionController
+                                                            .text
+                                                            .trim()
+                                                            .isEmpty ||
+                                                        controller
+                                                                .sessionController
+                                                                .text
+                                                                .length <
+                                                            4 ||
+                                                        int.parse(controller
+                                                                .sessionController
+                                                                .text) >
+                                                            2098;
+      
+                                                    controller.updateFieldError(
+                                                        "name", isNameEmpty);
+                                                    controller.updateFieldError(
+                                                        "start", isStartEmpty);
+                                                    controller.updateFieldError(
+                                                        "end", isEndEmpty);
+      
+                                                    if (!(isNameEmpty ||
+                                                        isStartEmpty ||
+                                                        isEndEmpty)) {
+                                                      await Edit_Session_API(
+                                                              context)
+                                                          .Edit_Session(
+                                                        sessionId: control
+                                                                .Sessionss[index]
+                                                            ['id'],
+                                                        year:
+                                                            "${Get.find<SessionController>().sessionController.text}-${int.parse(Get.find<SessionController>().sessionController.text) + 1}",
+                                                        startDate: Get.find<
+                                                                SessionController>()
+                                                            .startDate
+                                                            .value
+                                                            .toString(),
+                                                        endDate: Get.find<
+                                                                SessionController>()
+                                                            .endDate
+                                                            .value
+                                                            .toString(),
                                                       );
-                                                    }),
-                                                  ],
-                                                );
-                                              }),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 15.0),
-                                                child: Row(
-                                                  children: [
-                                                    Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        DateSelector(
-                                                          width: 300,
-                                                          label: "Start Date",
-                                                          dateValue: controller
-                                                              .startDate,
-                                                          onSelectDate: controller
-                                                              .selectStartDate,
+                                                    }
+                                                  },
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                  width: 90)
+                                            ],
+                                            contents: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                GetBuilder<SessionController>(
+                                                    builder: (controllers) {
+                                                  return Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.end,
+                                                    children: [
+                                                      SizedBox(
+                                                        width: 220,
+                                                        child:
+                                                            Textfildwithupper_num(
+                                                          onChanged: (value) {
+                                                            controller.updateYear(
+                                                                value);
+                                                            if (value
+                                                                .isNotEmpty) {
+                                                              controller
+                                                                  .updateFieldError(
+                                                                      "name",
+                                                                      false);
+                                                            }
+                                                          },
                                                           isRequired: true,
                                                           isError: controller
-                                                                  .startDate
-                                                                  .value ==
-                                                              null, // تحقق من الخطأ
-                                                        )
-                                                      ],
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 20.0,
-                                                              right: 20.0),
-                                                      child: Column(
+                                                              .IsnameError,
+                                                          Uptext: "Study Year".tr,
+                                                          hinttext:
+                                                              "Enter Year".tr,
+                                                          sessionController:
+                                                              controller
+                                                                  .sessionController,
+                                                          borderColor: controllers
+                                                              .borderColor,
+                                                        ),
+                                                      ),
+                                                      Obx(() {
+                                                        return Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                                  left: 8.0,
+                                                                  right: 8.0),
+                                                          child: Container(
+                                                            height: 40,
+                                                            alignment:
+                                                                Alignment.center,
+                                                            child: Text(
+                                                              "/${controllers.currentYear.value}",
+                                                              style: Get
+                                                                  .theme
+                                                                  .textTheme
+                                                                  .displayLarge!
+                                                                  .copyWith(
+                                                                fontSize: 22,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }),
+                                                    ],
+                                                  );
+                                                }),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(
+                                                      top: 15.0),
+                                                  child: Row(
+                                                    children: [
+                                                      Column(
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
                                                                 .start,
@@ -408,102 +400,133 @@ class SessionManagementGrid extends StatelessWidget {
                                                         children: [
                                                           DateSelector(
                                                             width: 300,
-                                                            label: "End Date",
-                                                            dateValue:
-                                                                controller
-                                                                    .endDate,
-                                                            onSelectDate:
-                                                                controller
-                                                                    .selectEndDate,
+                                                            label:
+                                                                "Start Date".tr,
+                                                            dateValue: controller
+                                                                .startDate,
+                                                            onSelectDate: controller
+                                                                .selectStartDate,
                                                             isRequired: true,
                                                             isError: controller
-                                                                        .endDate
-                                                                        .value ==
-                                                                    null ||
-                                                                controller.endDate.value!.isBefore(controller
-                                                                        .startDate
-                                                                        .value
-                                                                        ?.add(Duration(
-                                                                            days:
-                                                                                1)) ??
-                                                                    DateTime
-                                                                        .now()),
+                                                                    .startDate
+                                                                    .value ==
+                                                                null, // تحقق من الخطأ
                                                           )
                                                         ],
                                                       ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                          apptitle: "Edit Session",
-                                          subtitle: "none");
-                                    }));
-                                  },
-                                ),
-                              ],
-                            )
-                          : const Text("")
-                    ],
-                  ),
-                );
-              },
-            )
-          : GridView.builder(
-              padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 5,
-                  crossAxisSpacing: 20.0,
-                  mainAxisSpacing: 20.0,
-                  childAspectRatio: 1.1),
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return Container(
-                        padding: const EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(color: Colors.grey, width: 0.5),
-                            color: Theme.of(context).cardColor,
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Colors.black26,
-                                  offset: Offset(0, 2),
-                                  blurRadius: 1)
-                            ]),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SchemaWidget(width: 120, height: 20),
-                            SchemaWidget(width: 100, height: 20),
-                            Row(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    SchemaWidget(width: 120, height: 20),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 8.0),
-                                      child:
-                                          SchemaWidget(width: 120, height: 20),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            )
-                          ],
-                        ))
-                    .animate(onPlay: (controller) => controller.repeat())
-                    .shimmer(
-                        angle: 1,
-                        color: Colors.grey.withOpacity(0.2),
-                        duration: const Duration(seconds: 1),
-                        delay: const Duration(seconds: 1));
-              },
-            );
-    });
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets.only(
+                                                                left: 20.0,
+                                                                right: 20.0),
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            DateSelector(
+                                                              width: 300,
+                                                              label:
+                                                                  "End Date".tr,
+                                                              dateValue:
+                                                                  controller
+                                                                      .endDate,
+                                                              onSelectDate:
+                                                                  controller
+                                                                      .selectEndDate,
+                                                              isRequired: true,
+                                                              isError: controller
+                                                                          .endDate
+                                                                          .value ==
+                                                                      null ||
+                                                                  controller.endDate.value!.isBefore(controller
+                                                                          .startDate
+                                                                          .value
+                                                                          ?.add(Duration(
+                                                                              days:
+                                                                                  1)) ??
+                                                                      DateTime
+                                                                          .now()),
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            apptitle: "Edit Session".tr,
+                                            subtitle: "none");
+                                      }));
+                                    },
+                                  ),
+                                ],
+                              )
+                            : const Text("")
+                      ],
+                    ),
+                  );
+                },
+              )
+            : GridView.builder(
+                padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 5,
+                    crossAxisSpacing: 20.0,
+                    mainAxisSpacing: 20.0,
+                    childAspectRatio: 1.1),
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Container(
+                          padding: const EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              border: Border.all(color: Colors.grey, width: 0.5),
+                              color: Theme.of(context).cardColor,
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.black26,
+                                    offset: Offset(0, 2),
+                                    blurRadius: 1)
+                              ]),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SchemaWidget(width: 120, height: 20),
+                              SchemaWidget(width: 100, height: 20),
+                              Row(
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      SchemaWidget(width: 120, height: 20),
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 8.0),
+                                        child:
+                                            SchemaWidget(width: 120, height: 20),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              )
+                            ],
+                          ))
+                      .animate(onPlay: (controller) => controller.repeat())
+                      .shimmer(
+                          angle: 1,
+                          color: Colors.grey.withOpacity(0.2),
+                          duration: const Duration(seconds: 1),
+                          delay: const Duration(seconds: 1));
+                },
+              );
+      }),
+    );
   }
 
   Widget _iconButton(

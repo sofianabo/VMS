@@ -66,7 +66,7 @@ class _EmployeeAttendanceManagmentState
                                             Get.dialog(VMSAlertDialog(
                                                 action: [
                                                   ButtonDialog(
-                                                      text: "Done",
+                                                      text: "Done".tr,
                                                       onPressed: () {
                                                         controller
                                                             .setAllAsHoliday(
@@ -87,15 +87,17 @@ class _EmployeeAttendanceManagmentState
                                                       Textfildwithupper(
                                                           width: 250,
                                                           controller: cuse,
-                                                          Uptext: "Cause",
-                                                          hinttext: "Cause")
+                                                          Uptext: "Cause".tr,
+                                                          hinttext: "Cause".tr)
                                                     ],
                                                   ),
                                                 ),
                                                 apptitle:
-                                                    "Enter The Reason For Absence",
+                                                    "Enter The Reason For Absence"
+                                                        .tr,
                                                 subtitle:
-                                                    "The reason for the absence of the all students"));
+                                                    "The reason for the absence of the all students"
+                                                        .tr));
                                           } else {
                                             controller.setAllAsHoliday(
                                                 value!, null);
@@ -103,7 +105,7 @@ class _EmployeeAttendanceManagmentState
                                         }
                                       },
                                     ),
-                                    const Text("Set All As a Holiday"),
+                                    Text("Set All As a Holiday".tr),
                                   ],
                                 ))),
                         SetTeacherDateAttendence(
