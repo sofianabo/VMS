@@ -40,19 +40,19 @@ Rewards_Dialog({
         Padding(
           padding: EdgeInsets.only(top: 15.0),
           child: Text(
-            "Tools",
+            "Tools".tr,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(color: Colors.white),
           ),
         ),
         _buildToolButton(
           icon: Icons.text_increase_outlined,
-          label: "Add Text",
+          label: "Add Text".tr,
           onPressed: controller.addTextOverlay,
         ),
         _buildToolButton(
             icon: Icons.picture_as_pdf,
-            label: "Export As Pdf",
+            label: "Export As Pdf".tr,
             onPressed: () async {
               await saveRewardsAsPdf(
                 key: newRewardsGloballKey,
@@ -227,7 +227,7 @@ class _DraggableTextState extends State<DraggableText> {
 
   void _showEditDialog() {
     Get.defaultDialog(
-      title: "تعديل النص",
+      title: "Edit text",
       content: GetBuilder<RewardsController>(
         init: RewardsController(fontSize, isBold),
         builder: (controller) {
@@ -239,11 +239,11 @@ class _DraggableTextState extends State<DraggableText> {
                 maxLines: 2,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: "أدخل النص",
+                  hintText: "Enter text",
                 ),
               ),
               SizedBox(height: 10),
-              Text("حجم الخط: ${controller.fontSize.toStringAsFixed(0)}"),
+              Text("Font Size: ".tr+" ${controller.fontSize.toStringAsFixed(0)}"),
               Slider(
                 min: 10,
                 max: 50,
@@ -287,11 +287,11 @@ class _DraggableTextState extends State<DraggableText> {
       ),
       actions: [
         TextButton(
-          child: Text("إلغاء"),
+          child: Text("Cancel".tr),
           onPressed: () => Get.back(),
         ),
         TextButton(
-          child: Text("تم"),
+          child: Text("Done".tr),
           onPressed: () {
             final controller = Get.find<RewardsController>();
             widget.onUpdate(

@@ -115,8 +115,8 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                                             },
                                             width: 350,
                                             controller: name,
-                                            Uptext: "Name",
-                                            hinttext: "Name"),
+                                            Uptext: "Name".tr,
+                                            hinttext: "Name".tr),
                                         Padding(
                                           padding:
                                               const EdgeInsets.only(top: 10.0),
@@ -131,8 +131,8 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                                               },
                                               width: 350,
                                               controller: enName,
-                                              Uptext: "English Name",
-                                              hinttext: "English Name"),
+                                              Uptext: "English Name".tr,
+                                              hinttext: "English Name".tr),
                                         ),
                                         Padding(
                                           padding:
@@ -140,7 +140,7 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                                           child: DropdownAddStudents(
                                               isLoading:
                                                   controller.isLoadingLocation,
-                                              title: "Location",
+                                              title: "Location".tr,
                                               width: 350,
                                               type: "Location"),
                                         ),
@@ -153,7 +153,7 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                                         children: [
                                           ButtonDialog(
                                               width: 150,
-                                              text: "Add Vaccine",
+                                              text: "Add Vaccine".tr,
                                               onPressed: () async {
                                                 bool isArNameEmpty =
                                                     name.text.isEmpty;
@@ -186,7 +186,7 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                                         ],
                                       )
                                     ],
-                                    apptitle: "Add Vaccine",
+                                    apptitle: "Add Vaccine".tr,
                                     subtitle: "none");
                               }));
                             },

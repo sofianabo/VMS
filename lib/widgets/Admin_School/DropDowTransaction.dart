@@ -108,7 +108,7 @@ class DropDowTransaction extends StatelessWidget {
                           value: title,
                           enabled: false,
                           child: Text(
-                            title,
+                            title.tr,
                             style: Get.theme.textTheme.bodyMedium!.copyWith(
                               fontSize: 14,
                             ),
@@ -134,7 +134,7 @@ class DropDowTransaction extends StatelessWidget {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
-              value,
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
@@ -156,7 +156,7 @@ class DropDowTransaction extends StatelessWidget {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
-              value,
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );

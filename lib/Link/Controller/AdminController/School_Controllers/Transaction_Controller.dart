@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Transaction_API.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Transaction_Model.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 
 class Transaction_Controller extends GetxController {
   bool isLoading = true;
@@ -54,7 +56,8 @@ class Transaction_Controller extends GetxController {
     }
     if (action.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((emp) {
-        return emp.action!.toLowerCase() == actionIndex.toLowerCase();
+        return emp.action!.toLowerCase() == actionIndex.toLowerCase() ||
+            emp.arAction!.toLowerCase() == actionIndex.toLowerCase();
       }).toList();
     }
 
@@ -143,8 +146,10 @@ class Transaction_Controller extends GetxController {
       AttendencetDate.value.toString(),
       actionIndex,
     );
-
-    actionlist = tran.transaction!.map((t) => t.action!).toSet().toList();
+    if (prefs!.getString(languageKey) == 'ar') {
+      actionlist = tran.transaction!.map((t) => t.arAction!).toSet().toList();
+    } else
+      actionlist = tran.transaction!.map((t) => t.action!).toSet().toList();
     update();
   }
 

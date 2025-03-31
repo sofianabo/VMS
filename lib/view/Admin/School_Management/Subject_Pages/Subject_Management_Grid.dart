@@ -5,6 +5,8 @@ import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Subject_Screen/Delete_Subject_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Subject_Screen/Edit_Subject_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Subject_Controller.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
@@ -40,8 +42,8 @@ class Subject_Management_Grid extends StatelessWidget {
                             decoration:
                                 const BoxDecoration(color: Color(0xffD4DFE5)),
                             children: [
-                              _tableHeader('Operation', context),
-                              _tableHeader('Subject Name', context),
+                              _tableHeader('Operation'.tr, context),
+                              _tableHeader('Subject Name'.tr, context),
                             ],
                           ),
                           for (var row in controller.Subjects.asMap().entries)
@@ -49,7 +51,7 @@ class Subject_Management_Grid extends StatelessWidget {
                               children: [
                                 _operationColumn(
                                     row.value, controller, row.key, context),
-                                _dataColumn(row.value['enName']),
+                                _dataColumn(prefs!.getString(languageKey)=='ar'? row.value['name']:row.value['enName']),
                               ],
                             ),
                         ],
@@ -95,7 +97,7 @@ class Subject_Management_Grid extends StatelessWidget {
                       VMSAlertDialog(
                         action: [
                           ButtonDialog(
-                              text: "Delete",
+                              text: "Delete".tr,
                               onPressed: () {
                                 Delete_Subject_API(context).Delete_Subject(
                                   id: controller.Subjects[index]['id'],
@@ -105,7 +107,7 @@ class Subject_Management_Grid extends StatelessWidget {
                               color: const Color(0xffB03D3D),
                               width: 120),
                           ButtonDialog(
-                              text: "Cancel",
+                              text: "Cancel".tr,
                               onPressed: () {
                                 Get.back();
                               },
@@ -118,13 +120,13 @@ class Subject_Management_Grid extends StatelessWidget {
                             SizedBox(
                               width: 400,
                               child: Text(
-                                "Do You Want To Delete (${row['enName']}) Subject",
+                                "Do You Want To Deletesub".tr+" (${prefs!.getString(languageKey)=='ar'? row['name']:row['enName']}) "+"Subjectt".tr,
                                 style: const TextStyle(fontSize: 16),
                               ),
                             ),
                           ],
                         ),
-                        apptitle: "Delete Subject",
+                        apptitle: "Delete Subject".tr,
                         subtitle: "none",
                       ),
                     );
@@ -146,7 +148,7 @@ class Subject_Management_Grid extends StatelessWidget {
                   return VMSAlertDialog(
                       action: [
                         ButtonDialog(
-                            text: "Edit",
+                            text: "Edit".tr,
                             onPressed: () async {
                               bool isArNameEmpty = name.text.isEmpty;
                               bool isEnNameEmpty = enName.text.isEmpty;
@@ -188,8 +190,8 @@ class Subject_Management_Grid extends StatelessWidget {
                                       }
                                     },
                                     controller: enName,
-                                    Uptext: "Subject En - Name",
-                                    hinttext: "Subject En - Name"),
+                                    Uptext: "Subject En - Name".tr,
+                                    hinttext: "Subject En - Name".tr),
                               ),
                               Textfildwithupper(
                                   isRequired: true,
@@ -201,13 +203,13 @@ class Subject_Management_Grid extends StatelessWidget {
                                     }
                                   },
                                   controller: name,
-                                  Uptext: "Subject Ar - Name",
-                                  hinttext: "Subject Ar - Name"),
+                                  Uptext: "Subject Ar - Name".tr,
+                                  hinttext: "Subject Ar - Name".tr),
                             ],
                           ),
                         ],
                       ),
-                      apptitle: "Edit Subject",
+                      apptitle: "Edit Subject".tr,
                       subtitle: "none");
                 }),
               );

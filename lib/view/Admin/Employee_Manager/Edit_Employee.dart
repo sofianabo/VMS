@@ -333,8 +333,8 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                               readOnly: true,
                               width: 250,
                               controller: roll,
-                              Uptext: "Roll".tr,
-                              hinttext: "Roll".tr),
+                              Uptext: "Role".tr,
+                              hinttext: "Role".tr),
                         )
                       ],
                     ),

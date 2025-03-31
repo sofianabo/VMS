@@ -43,14 +43,14 @@ class _Transaction_ManagementState extends State<Transaction_Management> {
                         padding: const EdgeInsets.only(left: 8.0),
                         child: DropDowTransaction(
                             isLoading: false,
-                            title: "Roll",
+                            title: "Role".tr,
                             width: Get.size.width / 6,
                             type: "roll")),
                     Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: DropDowTransaction(
                             isLoading: controller.isLoading,
-                            title: "Action",
+                            title: "Action".tr,
                             width: Get.size.width / 6,
                             type: "action")),
                     Padding(

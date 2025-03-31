@@ -7,15 +7,15 @@ class Transaction_Model {
     if (json['transaction'] != null) {
       transaction = <Transaction>[];
       json['transaction'].forEach((v) {
-        transaction!.add(Transaction.fromJson(v));
+        transaction!.add(new Transaction.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (transaction != null) {
-      data['transaction'] = transaction!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.transaction != null) {
+      data['transaction'] = this.transaction!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -28,6 +28,7 @@ class Transaction {
   String? deviceType;
   String? device;
   String? action;
+  String? arAction;
   String? detail;
   String? arDetail;
   String? userName;
@@ -42,6 +43,7 @@ class Transaction {
       this.deviceType,
       this.device,
       this.action,
+      this.arAction,
       this.detail,
       this.arDetail,
       this.userName,
@@ -56,6 +58,7 @@ class Transaction {
     deviceType = json['deviceType'];
     device = json['device'];
     action = json['action'];
+    arAction = json['arAction'];
     detail = json['detail'];
     arDetail = json['arDetail'];
     userName = json['userName'];
@@ -65,19 +68,20 @@ class Transaction {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['ip'] = ip;
-    data['platform'] = platform;
-    data['browserVersion'] = browserVersion;
-    data['deviceType'] = deviceType;
-    data['device'] = device;
-    data['action'] = action;
-    data['detail'] = detail;
-    data['arDetail'] = arDetail;
-    data['userName'] = userName;
-    data['roll'] = roll;
-    data['date'] = date;
-    data['time'] = time;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['ip'] = this.ip;
+    data['platform'] = this.platform;
+    data['browserVersion'] = this.browserVersion;
+    data['deviceType'] = this.deviceType;
+    data['device'] = this.device;
+    data['action'] = this.action;
+    data['arAction'] = this.arAction;
+    data['detail'] = this.detail;
+    data['arDetail'] = this.arDetail;
+    data['userName'] = this.userName;
+    data['roll'] = this.roll;
+    data['date'] = this.date;
+    data['time'] = this.time;
     return data;
   }
 }

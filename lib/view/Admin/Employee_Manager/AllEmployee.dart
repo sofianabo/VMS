@@ -446,7 +446,7 @@ class _AllEmployeeState extends State<AllEmployee> {
                                                     Disabled:
                                                         cont.fejopIndex == "",
                                                     isError: cont.IsRollError,
-                                                    title: "Roll".tr,
+                                                    title: "Role".tr,
                                                     width: 220,
                                                     type: "feroll"),
                                               ],

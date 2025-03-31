@@ -228,7 +228,7 @@ class AllStudentGrid extends StatelessWidget {
                                               subtitle: "Do You Want To Deletee"
                                                       .tr +
                                                   "${control.filteredStudents[index].fullName}" +
-                                                  "Student".tr));
+                                                  "Studentt".tr));
                                         },
                                         icon: const Icon(VMS_Icons.bin),
                                         color: Colors.white,
