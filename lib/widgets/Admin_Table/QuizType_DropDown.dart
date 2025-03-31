@@ -36,6 +36,11 @@ class QuizType_DropDown extends StatelessWidget {
           currentValue =
               cont.selectedClass.isNotEmpty ? cont.selectedClass : title;
           break;
+        case 'operation':
+          currentValue = cont.selectedOperationIndex.isNotEmpty
+              ? cont.selectedOperationIndex
+              : title;
+          break;
       }
 
       return Column(
@@ -80,19 +85,21 @@ class QuizType_DropDown extends StatelessWidget {
                                         cont.set_semesteridx(3);
                                       }
                                       break;
-                                  }
-                                  var selectedClassItem = cont
-                                      .Classmodel?.classes
-                                      ?.firstWhereOrNull(
-                                    (element) =>
-                                        element.name == cont.ClassIndex ||
-                                        element.enName == cont.ClassIndex,
-                                  );
+                                    case 'class':
+                                      var selectedClassItem = cont
+                                          .Classmodel?.classes
+                                          ?.firstWhereOrNull(
+                                        (element) =>
+                                            element.name == cont.ClassIndex ||
+                                            element.enName == cont.ClassIndex,
+                                      );
 
-                                  Get_Quiz_Type_API().Get_Quiz_Type(
-                                      SemsterId: cont.SemesterSendIndex,
-                                      ClassId:
-                                          selectedClassItem!.id.toString());
+                                      Get_Quiz_Type_API().Get_Quiz_Type(
+                                          SemsterId: cont.SemesterSendIndex,
+                                          ClassId:
+                                              selectedClassItem!.id.toString());
+                                      break;
+                                  }
                                 }
                               },
                               dropdownColor: Get.theme.cardColor,
@@ -158,6 +165,17 @@ class QuizType_DropDown extends StatelessWidget {
         break;
       case 'class':
         items.addAll(cont.ClassList.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(
+              value,
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+            ),
+          );
+        }).toList());
+        break;
+      case 'operation':
+        items.addAll(cont.OperationList.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(

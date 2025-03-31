@@ -6,7 +6,8 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Quiz_Type
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Quiz_Type/Get_Class_None_Quiz.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Quiz_Type/Update_Quiz_Type.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Teachernote_and_GradeReco.dart';
-import 'package:vms_school/Link/Functions/Add_Teacher_Functions.dart';
+import 'package:vms_school/Link/Functions/Add_Opiration_Dialog.dart';
+import 'package:vms_school/Link/Functions/Add_Table_Quiz_Functions.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/School_Management/Teachers_notebook_grade_record_Pages/Teachers_notebook_grade_record_Grid.dart';
@@ -103,6 +104,67 @@ class _Teachers_notebook_grade_recordState
                                   ? Colors.white
                                   : Theme.of(context).highlightColor)),
                     ),
+                    GetBuilder<TeachernoteAndGradeReco>(
+                      builder: (Con) {
+                        return Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: controller.isClassLoading == true ||
+                                      controller.ClassIndex.trim()
+                                          .isEmpty || // لا حاجة ل toString() هنا
+                                      (controller.Qt_Model?.type?.isEmpty ?? true)
+                                  ? Get.theme.disabledColor
+                                  : Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    offset: Offset(0, 2),
+                                    blurRadius: 1)
+                              ]),
+                          child: IconButton(
+                              splashColor: controller.isClassLoading == true ||
+                                      controller.ClassIndex.trim().isEmpty ||
+                                      (controller.Qt_Model?.type?.isEmpty ?? true)
+                                  ? Get.theme.disabledColor
+                                  : Theme.of(context).cardColor,
+                              style: ButtonStyle(
+                                  backgroundColor: WidgetStatePropertyAll(
+                                      controller.isClassLoading == true || controller.ClassIndex.trim().isEmpty || (controller.Qt_Model?.type?.isEmpty ?? true)
+                                          ? Get.theme.disabledColor
+                                          : Theme.of(context).cardColor),
+                                  shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5))))),
+                              onPressed: () {
+                                Get.dialog(Add_Oparation_Dialog(
+                                    controller: Con,
+                                    Class_Id: controller.Classmodel?.classes
+                                        ?.firstWhereOrNull(
+                                          (element) =>
+                                              element.name ==
+                                                  controller.ClassIndex ||
+                                              element.enName ==
+                                                  controller.ClassIndex,
+                                        )!
+                                        .id));
+                                if (controller.isClassLoading == true ||
+                                    controller.ClassIndex.trim().isEmpty ||
+                                    (controller.Qt_Model?.type?.isEmpty ?? true)) {
+                                  return;
+                                }
+                              },
+                              icon: Icon(Icons.calculate_outlined,
+                                  size: 18,
+                                  color: controller.isClassLoading == true ||
+                                          controller.ClassIndex.trim().isEmpty ||
+                                          (controller.Qt_Model?.type?.isEmpty ?? true)
+                                      ? Colors.white
+                                      : Theme.of(context).highlightColor)),
+                        );
+                      }
+                    ),
                     Container(
                       width: 40,
                       height: 40,
@@ -137,7 +199,6 @@ class _Teachers_notebook_grade_recordState
                               return;
                             }
                             if (controller.Qt_Model!.type!.isNotEmpty) {
-
                               await Update_Quiz_Type_API().Update_Quiz_Type(
                                 ClassId: controller
                                     .Classmodel!

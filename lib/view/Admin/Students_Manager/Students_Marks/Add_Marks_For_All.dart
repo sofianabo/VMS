@@ -10,7 +10,6 @@ void showAddMarkForAllDialog() {
   final TextEditingController markController = TextEditingController();
   String? selectedType;
 
-  // استخراج أنواع العلامات الفريدة من جميع الطلاب
   final allMarkTypes = <String>{};
 
   for (var student in marksController.studentsMarksModel?.student ?? []) {
@@ -92,7 +91,7 @@ void showAddMarkForAllDialog() {
                 return;
               }
 
-              final markValue = int.tryParse(markController.text);
+              final markValue = double.tryParse(markController.text);
               if (markValue == null) {
                 Get.snackbar('خطأ', 'الرجاء إدخال علامة صحيحة');
                 return;

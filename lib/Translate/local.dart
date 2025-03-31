@@ -211,6 +211,9 @@ class Languages {
       'Eligibility': 'المؤهلون',
 
       'Back': 'رجوع',
+      'Select Types:': 'حدد النوع:',
+      'Selected': 'تم تحديد:',
+      'Select Cell': 'حدد خلية',
       'Add Students': 'إضافة طالب',
       'Mobile Number :': 'رقم الهاتف:',
       'Select Garduans To Add Students': 'اختر ولي الأمر لإضافة طلاب',
@@ -721,6 +724,9 @@ class Languages {
       'by the Ministry of Education at Syrian Arab Republic':
           'by the Ministry of Education at Syrian Arab Republic',
       'Back': 'Back',
+      'Selected': 'Selected',
+      'Select Types:': 'Select Types:',
+      'Select Cell': 'Select Cell',
       'Add Students': 'Add Students',
       'Mobile Number :': 'Mobile Number :',
       'Select Garduans To Add Students': 'Select Garduans To Add Students',

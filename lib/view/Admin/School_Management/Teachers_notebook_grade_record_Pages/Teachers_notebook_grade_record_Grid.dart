@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Teachernote_and_GradeReco.dart';
-import 'package:vms_school/Link/Functions/Add_Teacher_Functions.dart';
+import 'package:vms_school/Link/Functions/Add_Table_Quiz_Functions.dart';
 
 class GradesTableScreen extends StatelessWidget {
   @override
