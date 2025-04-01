@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_All_Employee_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/AddTeacherAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
@@ -13,7 +14,7 @@ import 'package:vms_school/widgets/Admin_School/All_Screen_Sessions.dart';
 import 'package:vms_school/widgets/Admin_employee/DropDownAllEmployee.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
-import 'package:vms_school/widgets/DropDown.dart';
+import 'package:vms_school/widgets/Squer_Button_Enabled_Disabled.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 import '../../../Icons_File/v_m_s__icons_icons.dart';
 import '../../../widgets/TextFildWithUpper.dart';
@@ -118,17 +119,25 @@ class _AllEmployeeState extends State<AllEmployee> {
                                   blurRadius: 1)
                             ]),
                         child: PopupMenuButton(
+                          enabled: Get.find<Add_Data_controller>().roll !=
+                              "subAdmin",
                           style: ButtonStyle(
                               backgroundColor: WidgetStatePropertyAll(
-                                  Theme.of(context).cardColor),
-                              shape: WidgetStatePropertyAll(
+                                  Get.find<Add_Data_controller>().roll ==
+                                          "subAdmin"
+                                      ? Get.theme.disabledColor
+                                      : Theme.of(context).cardColor),
+                              shape: const WidgetStatePropertyAll(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
                           tooltip: "",
                           child: Icon(Icons.add,
                               size: 18,
-                              color: Theme.of(context).highlightColor),
+                              color: Get.find<Add_Data_controller>().roll ==
+                                      "subAdmin"
+                                  ? Get.theme.disabledColor
+                                  : Theme.of(context).highlightColor),
                           onSelected: (value) {
                             if (value == "Add Employee".tr) {
                               Get.dialog(GetBuilder<Allempolyeecontroller>(

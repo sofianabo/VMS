@@ -89,12 +89,12 @@ class Allempolyeecontroller extends GetxController {
     }
     if (newValue == "Technical Support") {
       feRoll = [
-        'Admin',
+        'Sub Admin',
       ];
     }
     if (newValue == "Technical Support Manager") {
       feRoll = [
-        'Sub Admin',
+        'Admin',
       ];
     }
   }

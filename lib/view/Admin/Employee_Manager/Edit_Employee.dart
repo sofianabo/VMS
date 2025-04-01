@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Edit_Employee_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Full_Employee_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
@@ -79,40 +80,44 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
           ButtonDialog(
               text: "Edit Employee".tr,
               onPressed: () async {
-                print(controller.Birthdate.value);
-                await EditEmployeeApi.EditEmployee(
-                  employeeId: employeeID,
-                  First_Name: firstName.text,
-                  Last_Name: lastName.text,
-                  Father_Name: fatherName.text,
-                  Mother_Name: motherName.text,
-                  Phone_Numper: phoneNumper.text,
-                  Emergency_Number: emergencyNumber.text,
-                  Address: Address.text,
-                  Current_Address: currentAddress.text,
-                  Birth_Date: controller.Birthdate.value.toString(),
-                  Join_Date: controller.Joindate.value.toString(),
-                  Gender: controller.GenderListIndex,
-                  Family_State: controller.Family_StatusIndex,
-                  Salary: Salary.text,
-                  selectedImage:
-                      Get.find<AddFullEmployeeController>().selectedImage.value,
-                  Facebook_URL: facebookUrl.text,
-                  X_Platform_URL: xPlatformUrl.text,
-                  Linkedin_URL: linkedinUrl.text,
-                  Instagram_URL: instagramUrl.text,
-                  Bank_Account_Title: bankAccountTitle.text,
-                  Bank_Name: bankName.text,
-                  Bank_Branch_Name: bankBranchName.text,
-                  Bank_Account_Number: bankAccountNumber.text,
-                  IFSC_Code: ifscCode.text,
-                  Career_History: careerHistory.text,
-                  Qualification: Qualification.text,
-                  Experience: Experience.text,
-                  Note: Note.text,
-                );
+                if (Get.find<Add_Data_controller>().roll != "subAdmin") {
+                  await EditEmployeeApi.EditEmployee(
+                    employeeId: employeeID,
+                    First_Name: firstName.text,
+                    Last_Name: lastName.text,
+                    Father_Name: fatherName.text,
+                    Mother_Name: motherName.text,
+                    Phone_Numper: phoneNumper.text,
+                    Emergency_Number: emergencyNumber.text,
+                    Address: Address.text,
+                    Current_Address: currentAddress.text,
+                    Birth_Date: controller.Birthdate.value.toString(),
+                    Join_Date: controller.Joindate.value.toString(),
+                    Gender: controller.GenderListIndex,
+                    Family_State: controller.Family_StatusIndex,
+                    Salary: Salary.text,
+                    selectedImage: Get.find<AddFullEmployeeController>()
+                        .selectedImage
+                        .value,
+                    Facebook_URL: facebookUrl.text,
+                    X_Platform_URL: xPlatformUrl.text,
+                    Linkedin_URL: linkedinUrl.text,
+                    Instagram_URL: instagramUrl.text,
+                    Bank_Account_Title: bankAccountTitle.text,
+                    Bank_Name: bankName.text,
+                    Bank_Branch_Name: bankBranchName.text,
+                    Bank_Account_Number: bankAccountNumber.text,
+                    IFSC_Code: ifscCode.text,
+                    Career_History: careerHistory.text,
+                    Qualification: Qualification.text,
+                    Experience: Experience.text,
+                    Note: Note.text,
+                  );
+                }
               },
-              color: Get.theme.primaryColor,
+              color: Get.find<Add_Data_controller>().roll == "subAdmin"
+                  ? Get.theme.disabledColor
+                  : Get.theme.primaryColor,
               width: 140)
         ],
         contents: GetBuilder<AddFullEmployeeController>(builder: (controller) {
@@ -130,7 +135,10 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                           Obx(
                             () => GestureDetector(
                               onTap: () async {
-                                await controller.pickImage(context);
+                                if (Get.find<Add_Data_controller>().roll !=
+                                    "subAdmin") {
+                                  await controller.pickImage(context);
+                                }
                               },
                               child: CircleAvatar(
                                 maxRadius: 100,

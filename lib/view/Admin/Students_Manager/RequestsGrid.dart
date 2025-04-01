@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Guardian_APIS/ApproveRequestAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Guardian_APIS/RejectEnrollRequestAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
@@ -320,92 +321,99 @@ class RequestsGrid extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 ButtonsGrid(
-                                  color: Theme.of(context).primaryColorLight,
+                                  color: Get.find<Add_Data_controller>().roll ==
+                                          "subAdmin"
+                                      ? Get.theme.disabledColor
+                                      : Theme.of(context).primaryColorLight,
                                   width: 150,
                                   height: 40,
                                   text: "Manage".tr,
                                   onPressed: () async {
-                                    Get.find<Dropdowndivisioncontroller>()
-                                        .setIsDisiabled(true);
-                                    controller.classIndex = "";
-                                    controller.divisionIndex = "";
-                                    Get.dialog(VMSAlertDialog(
-                                        action: [
-                                          ButtonDialog(
-                                            text: 'Reject'.tr,
-                                            onPressed: () async {
-                                              await Rejectenrollrequestapi(
-                                                      context)
-                                                  .Rejectenrollrequest(
-                                                      controller
-                                                          .filteredregistration[
-                                                              index]
-                                                          .acceptanceNumber!);
-                                              Get.back();
-                                            },
-                                            width: 80,
-                                            color: const Color(0xffB03D3D),
-                                          ),
-                                          ButtonDialog(
-                                            text: 'Approve'.tr,
-                                            onPressed: () async {
-                                              await Approverequestapi(context)
-                                                  .Approverequest(
-                                                      controller
-                                                          .filteredregistration[
-                                                              index]
-                                                          .acceptanceNumber!,
-                                                      controller
-                                                          .filteredregistration[
-                                                              index]
-                                                          .student!
-                                                          .id!,
-                                                      controller.classlist
-                                                          .indexOf(controller
-                                                              .selectedClassIndex),
-                                                      controller.divisionlist
-                                                          .indexOf(controller
-                                                              .selectedDivisionIndex));
-                                            },
-                                            width: 80,
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                          )
-                                        ],
-                                        contents: Row(
-                                          children: [
-                                            GetBuilder<
-                                                    Dropdownclassescontroller>(
-                                                builder: (controller) {
-                                              return Dropdownrequestenroll(
-                                                isLoading: controller.Isloading,
-                                                width: Get.width / 5.2,
-                                                type: "class",
-                                                title: 'Class'.tr,
-                                              );
-                                            }),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 20, left: 20.0),
-                                              child: GetBuilder<
-                                                      Dropdowndivisioncontroller>(
-                                                  builder: (controller) {
-                                                return Dropdownrequestenroll(
-                                                  isDisabled:
-                                                      controller.isDisiabled,
-                                                  isLoading:
-                                                      controller.isLoading,
-                                                  width: Get.width / 5.2,
-                                                  type: "division",
-                                                  title: 'Division'.tr,
-                                                );
-                                              }),
+                                    if (Get.find<Add_Data_controller>().roll !=
+                                        "subAdmin") {
+                                      Get.find<Dropdowndivisioncontroller>()
+                                          .setIsDisiabled(true);
+                                      controller.classIndex = "";
+                                      controller.divisionIndex = "";
+                                      Get.dialog(VMSAlertDialog(
+                                          action: [
+                                            ButtonDialog(
+                                              text: 'Reject'.tr,
+                                              onPressed: () async {
+                                                await Rejectenrollrequestapi(
+                                                        context)
+                                                    .Rejectenrollrequest(
+                                                        controller
+                                                            .filteredregistration[
+                                                                index]
+                                                            .acceptanceNumber!);
+                                                Get.back();
+                                              },
+                                              width: 80,
+                                              color: const Color(0xffB03D3D),
+                                            ),
+                                            ButtonDialog(
+                                              text: 'Approve'.tr,
+                                              onPressed: () async {
+                                                await Approverequestapi(context)
+                                                    .Approverequest(
+                                                        controller
+                                                            .filteredregistration[
+                                                                index]
+                                                            .acceptanceNumber!,
+                                                        controller
+                                                            .filteredregistration[
+                                                                index]
+                                                            .student!
+                                                            .id!,
+                                                        controller.classlist
+                                                            .indexOf(controller
+                                                                .selectedClassIndex),
+                                                        controller.divisionlist
+                                                            .indexOf(controller
+                                                                .selectedDivisionIndex));
+                                              },
+                                              width: 80,
+                                              color: Theme.of(context)
+                                                  .primaryColor,
                                             )
                                           ],
-                                        ),
-                                        apptitle: 'Manage Student'.tr,
-                                        subtitle:
-                                            '${controller.filteredregistration[index].student?.name}'));
+                                          contents: Row(
+                                            children: [
+                                              GetBuilder<
+                                                      Dropdownclassescontroller>(
+                                                  builder: (controller) {
+                                                return Dropdownrequestenroll(
+                                                  isLoading:
+                                                      controller.Isloading,
+                                                  width: Get.width / 5.2,
+                                                  type: "class",
+                                                  title: 'Class'.tr,
+                                                );
+                                              }),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 20, left: 20.0),
+                                                child: GetBuilder<
+                                                        Dropdowndivisioncontroller>(
+                                                    builder: (controller) {
+                                                  return Dropdownrequestenroll(
+                                                    isDisabled:
+                                                        controller.isDisiabled,
+                                                    isLoading:
+                                                        controller.isLoading,
+                                                    width: Get.width / 5.2,
+                                                    type: "division",
+                                                    title: 'Division'.tr,
+                                                  );
+                                                }),
+                                              )
+                                            ],
+                                          ),
+                                          apptitle: 'Manage Student'.tr,
+                                          subtitle:
+                                              '${controller.filteredregistration[index].student?.name}'));
+                                    }
                                   },
                                 ),
                                 Padding(

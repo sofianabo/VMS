@@ -203,7 +203,7 @@ class _AllStudentState extends State<AllStudent> {
             ),
           );
         }),
-        Expanded( 
+        Expanded(
             child: Padding(
           padding: const EdgeInsets.only(top: 15.0),
           child: AllStudentGrid(),

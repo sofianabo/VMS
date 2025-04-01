@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/UpdateEmployeeIllness.dart';
 import 'package:vms_school/Link/API/DownloadFiles.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
@@ -26,13 +27,17 @@ Show_Teacher_Illnes_By_Id(
           ButtonDialog(
               text: "Done".tr,
               onPressed: () {
-                Get.find<Illness_Controller>().SetFinalList();
-                Update_Employee_Illness_API(context).Update_Employee_Illness(
-                  id: id,
-                  illness: Get.find<Illness_Controller>().finalList,
-                );
+                if (Get.find<Add_Data_controller>().roll != "subAdmin") {
+                  Get.find<Illness_Controller>().SetFinalList();
+                  Update_Employee_Illness_API(context).Update_Employee_Illness(
+                    id: id,
+                    illness: Get.find<Illness_Controller>().finalList,
+                  );
+                }
               },
-              color: Get.theme.primaryColor,
+              color: Get.find<Add_Data_controller>().roll == "subAdmin"
+                  ? Get.theme.disabledColor
+                  : Get.theme.primaryColor,
               width: 65)
         ],
         contents: Padding(
@@ -112,7 +117,10 @@ Show_Teacher_Illnes_By_Id(
                         return HoverScaleCard(
                           child: GestureDetector(
                             onTap: () {
-                              control.toggleSelection(illness);
+                              if (Get.find<Add_Data_controller>().roll !=
+                                  "subAdmin") {
+                                control.toggleSelection(illness);
+                              }
                             },
                             child: Container(
                               padding: const EdgeInsets.all(20),
@@ -276,7 +284,8 @@ Show_Teacher_Illnes_By_Id(
             }),
           ),
         ),
-        apptitle: IsTeacher == true ? "Teacher Illness".tr : "Employee Illness".tr,
+        apptitle:
+            IsTeacher == true ? "Teacher Illness".tr : "Employee Illness".tr,
         subtitle: "none"));
   } catch (e) {
     print(e.toString());

@@ -9,6 +9,7 @@ import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Delete_Employee.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_Employee_By_Id_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/Get_Teacher_Illness.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
@@ -239,17 +240,26 @@ class AllEmployeeGrid extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       IconButton(
-                                          style: const ButtonStyle(
+                                          style: ButtonStyle(
                                               backgroundColor:
-                                                  WidgetStatePropertyAll(
-                                                      Color(0xffB03D3D)),
-                                              shape: WidgetStatePropertyAll(
+                                                  Get.find<Add_Data_controller>().roll ==
+                                                          "subAdmin"
+                                                      ? WidgetStatePropertyAll(Get
+                                                          .theme.disabledColor)
+                                                      : WidgetStatePropertyAll(
+                                                          Color(0xffB03D3D)),
+                                              shape: const WidgetStatePropertyAll(
                                                   RoundedRectangleBorder(
                                                       borderRadius:
                                                           BorderRadius.all(
                                                               Radius.circular(
                                                                   5))))),
                                           onPressed: () {
+                                            if (Get.find<Add_Data_controller>()
+                                                    .roll ==
+                                                "subAdmin") {
+                                              return;
+                                            }
                                             Get.dialog(VMSAlertDialog(
                                               action: [
                                                 ButtonDialog(
