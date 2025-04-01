@@ -417,7 +417,7 @@ class _Students_Marks_GenState extends State<Students_Marks_Gen> {
                   );
                 }
 
-                mark.mark = double.parse(maxMark.toString());
+                mark.mark = double.parse(parsedValue.toString());
               }
 
               final ctrl = Get.find<Students_Marks_Controller>();
@@ -432,6 +432,7 @@ class _Students_Marks_GenState extends State<Students_Marks_Gen> {
   }
 
   Widget _buildOptionsButton(Student student) {
+    var controller = Get.find<Students_Marks_Controller>();
     return Container(
       width: 40,
       height: 40,
@@ -439,59 +440,15 @@ class _Students_Marks_GenState extends State<Students_Marks_Gen> {
       child: IconButton(
         icon: const Icon(Icons.save_outlined, size: 20),
         onPressed: () async {
-          final api = AddStudentsMarksApi();
-          await api.saveSingleStudent(
-            curriculumId: 1,
+          AddStudentsMarksApi().saveSingleStudent(
+            curriculumId: controller
+                .CurriculumModel!
+                .curriculum![controller.Curriculumlist.indexOf(
+                    controller.CurriculumIndex)]
+                .id!,
             student: student,
           );
         },
-      ),
-    );
-  }
-
-  Widget _buildSaveAllButton() {
-    return ElevatedButton(
-      onPressed: () async {
-        try {
-          final controller = Get.find<Students_Marks_Controller>();
-          final api = AddStudentsMarksApi();
-
-          // التحقق من وجود درجات فارغة
-          bool hasEmptyMarks = false;
-          for (var student in controller.studentsMarksModel!.student!) {
-            if (student.mark == null ||
-                student.mark!.any((m) => m.mark == null)) {
-              hasEmptyMarks = true;
-              break;
-            }
-          }
-
-          if (hasEmptyMarks) {
-            Get.snackbar('تحذير', 'يوجد درجات فارغة لبعض الطلاب');
-            return;
-          }
-
-          Get.dialog(
-            Center(child: CircularProgressIndicator()),
-            barrierDismissible: false,
-          );
-
-          await api.saveAllStudents(
-            curriculumId: 1,
-            students: controller.studentsMarksModel!.student!,
-          );
-
-          Get.back();
-        } catch (e) {
-          Get.back();
-          Get.snackbar('خطأ', 'فشل في حفظ الدرجات: ${e.toString()}');
-        }
-      },
-      child: Text('حفظ الكل'),
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.green,
-        foregroundColor: Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       ),
     );
   }

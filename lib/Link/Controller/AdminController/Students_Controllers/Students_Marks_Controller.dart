@@ -140,6 +140,8 @@ class Students_Marks_Controller extends GetxController {
   }
 
   SetisCurriculumLoading(bool value) {
+    studentsMarksModel?.quizType?.clear();
+    studentsMarksModel?.student?.clear();
     isCurriculumLoading = value;
     update();
   }
@@ -175,11 +177,13 @@ class Students_Marks_Controller extends GetxController {
     update();
   }
 
+  Curriculum_Model? CurriculumModel;
+
   void SetCurriculum(Curriculum_Model curriculumModel) {
     isLoading = true;
     CurriculumIndex = "";
     Curriculumlist = [];
-
+    CurriculumModel = curriculumModel;
     List<String> curr = [];
     if (curriculumModel.curriculum != null) {
       for (var g in curriculumModel.curriculum!) {
@@ -195,6 +199,8 @@ class Students_Marks_Controller extends GetxController {
   }
 
   setIsLoading(bool value) {
+    studentsMarksModel?.quizType?.clear();
+    studentsMarksModel?.student?.clear();
     isLoading = value;
     update();
   }
@@ -202,7 +208,7 @@ class Students_Marks_Controller extends GetxController {
   void setStudentsMarksData(Students_Marks_Model studentsMarks) {
     studentsMarksModel = studentsMarks;
     filterdstudent = List.from(studentsMarks.student!);
-    setIsLoading(false);
+    isLoading = false;
     update();
   }
 
