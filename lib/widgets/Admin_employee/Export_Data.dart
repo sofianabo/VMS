@@ -106,7 +106,7 @@ void exportEmployeesToExcel(List<Employees> employees) async {
 
 void exportEmployeesToPDF(List<Employees> employees) async {
   // تحميل الشعار
-  ByteData bytes = await rootBundle.load('../../images/Logo.png');
+  ByteData bytes = await rootBundle.load('assets/images/Logo.png');
   Uint8List imageBytes = bytes.buffer.asUint8List();
   final image = pw.MemoryImage(imageBytes);
 
