@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/GetAllStudentAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
@@ -51,7 +52,7 @@ class _AllStudentState extends State<AllStudent> {
                           child: DropDownAllSessions(
                             title: "Session".tr,
                             type: "session",
-                            width: w / 6.5, 
+                            width: w / 6.5,
                             API: "AllStudents",
                           ),
                         ),
@@ -136,6 +137,8 @@ class _AllStudentState extends State<AllStudent> {
                                               Radius.circular(5))))),
                               onPressed: () {
                                 if (controller.isLoading == false) {
+                                  Get.find<Add_Students_Controller>()
+                                      .resetError();
                                   Add_Students_Dialog_Functions();
                                 }
                               },

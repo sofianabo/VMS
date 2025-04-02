@@ -133,7 +133,7 @@ All_Gurdians_Dialog() {
                               .isEmpty ||
                           Get.find<Add_Students_Controller>()
                                   .selectedLocationIndex ==
-                              "Syria".tr;
+                              "";
                       bool isclassEmpty = Get.find<Add_Students_Controller>()
                               .selectedClassIndex
                               .isEmpty ||
@@ -202,7 +202,7 @@ All_Gurdians_Dialog() {
                       addStudentsController.updateFieldError(
                           "division", isDivisionEmpty);
                       addStudentsController.updateFieldError(
-                          "password", ispasswordEmpty);
+                          "password", ispasswordEmpty || !isPasswordValid);
                       addStudentsController.updateFieldError(
                           "fathername", isfathernameEmpty);
                       addStudentsController.updateFieldError(
@@ -226,6 +226,7 @@ All_Gurdians_Dialog() {
                           isusernameEmpty ||
                           isDivisionEmpty ||
                           ispasswordEmpty ||
+                          !isPasswordValid ||
                           isfathernameEmpty ||
                           isFatherPhoneEmpty ||
                           isMotherNameEmpty ||
@@ -561,8 +562,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                   width: 300,
                                   Uptext: "Last Name".tr,
                                   hinttext: "Last Name".tr,
-                                                                    controller: widget.Last_Name,
-
+                                  controller: widget.Last_Name,
                                   onChanged: (value) {
                                     controller.updateLastName(value);
                                     if (value.isNotEmpty) {
@@ -589,8 +589,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                         "placeofbirth", false);
                                   }
                                 },
-                                                                controller: widget.Place_Of_Birth,
-
+                                controller: widget.Place_Of_Birth,
                                 width: 300,
                                 Uptext: "Place Of Birth".tr,
                                 hinttext: "Place Of Birth".tr),
@@ -934,9 +933,25 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                       ? 20
                                       : 0),
                               child: Textfildwithupper(
-                                  isRequired: true,
+                                  isRequired: false,
                                   width: 300,
                                   isError: controller.ISpasswordError,
+                                  fieldType: "password",
+                                  IconButton: IconButton(
+                                      onPressed: () {
+                                        controller.ChangeShowPassword(
+                                            !controller.ShowPassword);
+                                      },
+                                      icon: Icon(
+                                        controller.ShowPassword
+                                            ? Icons.visibility_off
+                                            : Icons.remove_red_eye_outlined,
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall!
+                                            .color,
+                                      )),
+                                  hidePassword: controller.ShowPassword,
                                   onChanged: (value) {
                                     if (value.isNotEmpty) {
                                       controller.updateFieldError(
