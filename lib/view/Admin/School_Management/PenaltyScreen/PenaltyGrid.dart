@@ -29,6 +29,11 @@ class _PenaltygridState extends State<Penaltygrid> {
   TextEditingController enName = TextEditingController();
 
   TextEditingController details = TextEditingController();
+  TextEditingController editName = TextEditingController();
+
+  TextEditingController editenName = TextEditingController();
+
+  TextEditingController editDetails = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -147,9 +152,9 @@ class _PenaltygridState extends State<Penaltygrid> {
             iconData: Icons.edit_note_outlined,
             color: const Color(0xff19478d),
             onPressed: () {
-              name.text = "${row['name']}";
-              enName.text = "${row['enName']}";
-              details.text = "${row['description']}";
+              editName.text = "${row['name']}";
+              editenName.text = "${row['enName']}";
+              editDetails.text = "${row['description']}";
               Get.dialog(
                 GetBuilder<Penaltycontroller>(builder: (controller) {
                   return VMSAlertDialog(
@@ -157,24 +162,25 @@ class _PenaltygridState extends State<Penaltygrid> {
                         ButtonDialog(
                             text: "Edit".tr,
                             onPressed: () async {
-                              bool isArNameEmpty = name.text.isEmpty;
-                              bool isEnNameEmpty = enName.text.isEmpty;
-                              bool isdetEmpty = details.text.isEmpty;
+                              bool isArNameEmpty = editName.text.isEmpty;
+                              bool isEnNameEmpty = editenName.text.isEmpty;
+                              bool isdetEmpty = editDetails.text.isEmpty;
 
                               controller.updateFieldError(
-                                  "arname", isArNameEmpty);
+                                  "editarname", isArNameEmpty);
                               controller.updateFieldError(
-                                  "enname", isEnNameEmpty);
-                              controller.updateFieldError("detail", isdetEmpty);
+                                  "editenname", isEnNameEmpty);
+                              controller.updateFieldError(
+                                  "editdetail", isdetEmpty);
 
                               if (!(isArNameEmpty ||
                                   isEnNameEmpty ||
                                   isdetEmpty)) {
                                 await Editpenaltyapi(context).Editpenalty(
                                   penaltyid: controller.Penalties[index]['id'],
-                                  details: details.text,
-                                  enName: enName.text,
-                                  name: name.text,
+                                  details: editDetails.text,
+                                  enName: editenName.text,
+                                  name: editName.text,
                                 );
                               }
                             },
@@ -191,27 +197,27 @@ class _PenaltygridState extends State<Penaltygrid> {
                                     left: 15.0, right: 15.0),
                                 child: Textfildwithupper(
                                     isRequired: true,
-                                    isError: controller.IsEnnameError,
+                                    isError: controller.IsEnnameErrorEdit,
                                     onChanged: (value) {
                                       if (value.isNotEmpty) {
                                         controller.updateFieldError(
-                                            "enname", false);
+                                            "editenname", false);
                                       }
                                     },
-                                    controller: enName,
+                                    controller: editenName,
                                     Uptext: "Penalty En - Name".tr,
                                     hinttext: "Penalty En - Name".tr),
                               ),
                               Textfildwithupper(
                                   isRequired: true,
-                                  isError: controller.IsArnameError,
+                                  isError: controller.IsArnameErrorEdit,
                                   onChanged: (value) {
                                     if (value.isNotEmpty) {
                                       controller.updateFieldError(
-                                          "arname", false);
+                                          "editarname", false);
                                     }
                                   },
-                                  controller: name,
+                                  controller: editName,
                                   Uptext: "Penalty Ar - Name".tr,
                                   hinttext: "Penalty Ar - Name".tr),
                             ],
@@ -226,14 +232,14 @@ class _PenaltygridState extends State<Penaltygrid> {
                                     left: 15.0, right: 15.0, top: 15.0),
                                 child: Textfildwithupper(
                                     isRequired: true,
-                                    isError: controller.IsdeError,
+                                    isError: controller.IsdeErrorEdit,
                                     onChanged: (value) {
                                       if (value.isNotEmpty) {
                                         controller.updateFieldError(
-                                            "detail", false);
+                                            "editdetail", false);
                                       }
                                     },
-                                    controller: details,
+                                    controller: editDetails,
                                     Uptext: "Details".tr,
                                     hinttext: "Details".tr),
                               ),

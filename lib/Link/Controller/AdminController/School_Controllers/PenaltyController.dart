@@ -36,6 +36,9 @@ class Penaltycontroller extends GetxController {
   bool IsArnameError = false;
   bool IsEnnameError = false;
   bool IsdeError = false;
+  bool IsArnameErrorEdit = false;
+  bool IsEnnameErrorEdit = false;
+  bool IsdeErrorEdit = false;
   void updateFieldError(String type, bool newValue) {
     switch (type) {
       case 'arname':
@@ -46,6 +49,15 @@ class Penaltycontroller extends GetxController {
         break;
       case 'detail':
         IsdeError = newValue;
+        break;
+      case 'editarname':
+        IsArnameErrorEdit = newValue;
+        break;
+      case 'editenname':
+        IsEnnameErrorEdit = newValue;
+        break;
+      case 'editdetail':
+        IsdeErrorEdit = newValue;
         break;
       default:
         print("Error: Invalid type");

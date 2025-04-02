@@ -216,7 +216,7 @@ class AllStudentGrid extends StatelessWidget {
                                                     text: "Cancel".tr,
                                                     onPressed: () {
                                                       Get.back();
-                                                    },
+                                                    }, 
                                                     color: Theme.of(context)
                                                         .primaryColor)
                                               ],

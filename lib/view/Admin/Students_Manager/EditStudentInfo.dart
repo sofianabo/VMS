@@ -26,12 +26,10 @@ EditStudentDialog(int idx, BuildContext context) async {
   final Controller = Get.find<Allstudentscontroller>();
   final add_controller = Get.find<Add_Students_Controller>();
   final Allempolyeecontrollers = Get.find<Allempolyeecontroller>();
-  final isArabic = Get.find<LocalizationController>()
-      .currentLocale
-      .value
-      .languageCode ==
-      'ar';
- add_controller.Initial();
+  final isArabic =
+      Get.find<LocalizationController>().currentLocale.value.languageCode ==
+          'ar';
+  add_controller.Initial();
   Controller.SetIDX(idx);
   TextEditingController First_Name =
       TextEditingController(text: Controller.student!.firstName);
@@ -77,7 +75,7 @@ EditStudentDialog(int idx, BuildContext context) async {
       Classindex: isArabic
           ? Controller.student!.classes!.name
           : Controller.student!.classes!.enName ?? "",
-      FamilyStateindex: Controller.student!.familystatus?? "",
+      FamilyStateindex: Controller.student!.familystatus ?? "",
       Genderindex: Controller.student!.gender ?? "",
       Locationindex: isArabic
           ? Controller.student!.location!.name
@@ -93,65 +91,155 @@ EditStudentDialog(int idx, BuildContext context) async {
         ButtonDialog(
             text: "Update Student".tr,
             onPressed: () async {
-              await Update_Student_API.Update_Student(
-                  Academic_sequence_FileID:
-                      Controller.student!.documantes!.academicSequence?.id,
-                  Certefecate_FileID:
-                      Controller.student!.documantes!.certificate?.id,
-                  FamilyNotbook_FileID:
-                      Controller.student!.documantes!.familyNotebook?.id,
-                  FatherPassport_FileID:
-                      Controller.student!.documantes!.fatherPassport?.id,
-                  MotherPassport_FileID:
-                      Controller.student!.documantes!.motherPassport?.id,
-                  SonPassport_FileID:
-                      Controller.student!.documantes!.sonPassport?.id,
-                  studentID: Controller.filteredStudents[idx].id,
-                  UserID_FileID: Controller.student!.documantes!.userID?.id,
-                  locationId: Get.find<Location_controller>()
-                      .location![add_controller.Locationlist.indexOf(
-                          add_controller.LocationIndex)]
-                      .id,
-                  firstName: First_Name.text,
-                  lastName: Last_Name.text,
-                  gender: add_controller.GenderIndex,
-                  birthDate: Get.find<Allempolyeecontroller>().Birthdate.value,
-                  placeOfBirth: Place_Of_Birth.text,
-                  religion: add_controller.RealagonIndex,
-                  mobileNumber: Mobile_Number.text,
-                  bloodType: add_controller.BloodTypeIndex,
-                  fatherName: Father_Name.text,
-                  fatherPhone: Father_Phone.text,
-                  motherName: Mother_Name.text,
-                  currentAdress: Current_Address.text,
-                  familystatus: add_controller.FamilyStateIndex,
-                  password: Password.text,
-                  classid: Get.find<Dropdownclassescontroller>()
-                      .Allclass[add_controller.Classlist.indexOf(
-                          add_controller.ClassIndex)]
-                      .id,
-                  divisionId: Get.find<Dropdowndivisioncontroller>()
-                      .allDivision[add_controller.Divisionlist.indexOf(add_controller.DivisionIndex)]
-                      .id,
-                  fatherWork: Father_Work.text,
-                  motherPhone: Mother_Phone.text,
-                  motherWork: Mother_Work.text,
-                  nationalNumber: National_ID.text,
-                  localID: LocalID.text,
-                  lastSchoolDetail: Last_School_Detail.text,
-                  note: Note.text,
-                  Fee_Discount: Fee_Discount.text,
-                  specialNeeds: add_controller.isSpecialNeed.value,
-                  martyrSon: add_controller.isMartySon.value,
-                  FatherPassport: add_controller.selectedFatherPassport.value,
-                  MotherPassport: add_controller.selectedMotherPassport.value,
-                  SonPassport: add_controller.selectedSonPassport.value,
-                  UserID: add_controller.selectedId.value,
-                  Certefecate: add_controller.selectedCertificate.value,
-                  Ispend: add_controller.isPendStudent.value,
-                  Academic_sequence: add_controller.selectedtsalsol.value,
-                  FamilyNotbook: add_controller.selectedFamilyBook.value,
-                  file: add_controller.selectedImage.value);
+              bool isgenderEmpty = Get.find<Add_Students_Controller>()
+                      .selectedGenderIndex
+                      .isEmpty ||
+                  Get.find<Add_Students_Controller>().selectedGenderIndex == "";
+
+              bool isreligionEmpty = Get.find<Add_Students_Controller>()
+                      .selectedRealagonIndex
+                      .isEmpty ||
+                  Get.find<Add_Students_Controller>().selectedRealagonIndex ==
+                      "";
+              bool isbloodEmpty = Get.find<Add_Students_Controller>()
+                      .selectedBloodTypeIndex
+                      .isEmpty ||
+                  Get.find<Add_Students_Controller>().selectedBloodTypeIndex ==
+                      "";
+              bool iscountryEmpty = Get.find<Add_Students_Controller>()
+                      .selectedLocationIndex
+                      .isEmpty ||
+                  Get.find<Add_Students_Controller>().selectedLocationIndex ==
+                      "Syria".tr;
+              bool isclassEmpty = Get.find<Add_Students_Controller>()
+                      .selectedClassIndex
+                      .isEmpty ||
+                  Get.find<Add_Students_Controller>().selectedClassIndex == "";
+              bool isDivisionEmpty = Get.find<Add_Students_Controller>()
+                      .selectedDivisionIndex
+                      .isEmpty ||
+                  Get.find<Add_Students_Controller>().selectedDivisionIndex ==
+                      "";
+
+              bool isFirstNameEmpty = First_Name.text.trim().isEmpty;
+              bool isLastNameEmpty = Last_Name.text.trim().isEmpty;
+              bool isPlaceofBirthEmpty = Place_Of_Birth.text.trim().isEmpty;
+              bool isphoneEmpty = Mobile_Number.text.trim().isEmpty;
+              bool isLocalIDEmpty = LocalID.text.trim().isEmpty;
+              bool isAddressEmpty = Current_Address.text.trim().isEmpty;
+              bool isusernameEmpty =
+                  add_controller.textController.text.trim().isEmpty;
+              bool ispasswordEmpty = Password.text.trim().isEmpty;
+              bool isfathernameEmpty = Father_Name.text.trim().isEmpty;
+              bool isFatherPhoneEmpty = Father_Phone.text.trim().isEmpty;
+              bool isMotherNameEmpty = Mother_Name.text.trim().isEmpty;
+              bool ismotehrPhoneEmpty = Mother_Phone.text.trim().isEmpty;
+              bool isbirthdateEmpty =
+                  Get.find<Allempolyeecontroller>().Birthdate.value == null;
+              RegExp passwordRegex = RegExp(r"^[a-zA-Z0-9]{8,}$");
+              bool isPasswordValid = passwordRegex.hasMatch(Password.text);
+
+              add_controller.updateFieldError("first", isFirstNameEmpty);
+              add_controller.updateFieldError("last", isLastNameEmpty);
+              add_controller.updateFieldError("birthdate", isbirthdateEmpty);
+              add_controller.updateFieldError(
+                  "placeofbirth", isPlaceofBirthEmpty);
+              add_controller.updateFieldError("gender", isgenderEmpty);
+              add_controller.updateFieldError("religion", isreligionEmpty);
+              add_controller.updateFieldError("blood", isbloodEmpty);
+              add_controller.updateFieldError("country", iscountryEmpty);
+              add_controller.updateFieldError("phone", isphoneEmpty);
+              add_controller.updateFieldError("localnational", isLocalIDEmpty);
+              add_controller.updateFieldError("class", isclassEmpty);
+
+              add_controller.updateFieldError("localaddress", isAddressEmpty);
+              add_controller.updateFieldError("username", isusernameEmpty);
+              add_controller.updateFieldError("division", isDivisionEmpty);
+              add_controller.updateFieldError("password", ispasswordEmpty);
+              add_controller.updateFieldError("fathername", isfathernameEmpty);
+              add_controller.updateFieldError(
+                  "fatherphone", isFatherPhoneEmpty);
+              add_controller.updateFieldError("mothername", isMotherNameEmpty);
+              add_controller.updateFieldError(
+                  "motherphone", ismotehrPhoneEmpty);
+              if (!(isFirstNameEmpty ||
+                  isLastNameEmpty ||
+                  isbirthdateEmpty ||
+                  isPlaceofBirthEmpty ||
+                  isgenderEmpty ||
+                  isreligionEmpty ||
+                  isbloodEmpty ||
+                  iscountryEmpty ||
+                  isphoneEmpty ||
+                  isLocalIDEmpty ||
+                  isclassEmpty ||
+                  isAddressEmpty ||
+                  isusernameEmpty ||
+                  isDivisionEmpty ||
+                  ispasswordEmpty ||
+                  isfathernameEmpty ||
+                  isFatherPhoneEmpty ||
+                  isMotherNameEmpty ||
+                  ismotehrPhoneEmpty)) {
+                await Update_Student_API.Update_Student(
+                    Academic_sequence_FileID:
+                        Controller.student!.documantes!.academicSequence?.id,
+                    Certefecate_FileID:
+                        Controller.student!.documantes!.certificate?.id,
+                    FamilyNotbook_FileID:
+                        Controller.student!.documantes!.familyNotebook?.id,
+                    FatherPassport_FileID:
+                        Controller.student!.documantes!.fatherPassport?.id,
+                    MotherPassport_FileID:
+                        Controller.student!.documantes!.motherPassport?.id,
+                    SonPassport_FileID:
+                        Controller.student!.documantes!.sonPassport?.id,
+                    studentID: Controller.filteredStudents[idx].id,
+                    UserID_FileID: Controller.student!.documantes!.userID?.id,
+                    locationId: Get.find<Location_controller>()
+                        .location![add_controller.Locationlist.indexOf(
+                            add_controller.LocationIndex)]
+                        .id,
+                    firstName: First_Name.text,
+                    lastName: Last_Name.text,
+                    gender: add_controller.GenderIndex,
+                    birthDate:
+                        Get.find<Allempolyeecontroller>().Birthdate.value,
+                    placeOfBirth: Place_Of_Birth.text,
+                    religion: add_controller.RealagonIndex,
+                    mobileNumber: Mobile_Number.text,
+                    bloodType: add_controller.BloodTypeIndex,
+                    fatherName: Father_Name.text,
+                    fatherPhone: Father_Phone.text,
+                    motherName: Mother_Name.text,
+                    currentAdress: Current_Address.text,
+                    familystatus: add_controller.FamilyStateIndex,
+                    password: Password.text,
+                    classid: Get.find<Dropdownclassescontroller>()
+                        .Allclass[
+                            add_controller.Classlist.indexOf(add_controller.ClassIndex)]
+                        .id,
+                    divisionId: Get.find<Dropdowndivisioncontroller>().allDivision[add_controller.Divisionlist.indexOf(add_controller.DivisionIndex)].id,
+                    fatherWork: Father_Work.text,
+                    motherPhone: Mother_Phone.text,
+                    motherWork: Mother_Work.text,
+                    nationalNumber: National_ID.text,
+                    localID: LocalID.text,
+                    lastSchoolDetail: Last_School_Detail.text,
+                    note: Note.text,
+                    Fee_Discount: Fee_Discount.text,
+                    specialNeeds: add_controller.isSpecialNeed.value,
+                    martyrSon: add_controller.isMartySon.value,
+                    FatherPassport: add_controller.selectedFatherPassport.value,
+                    MotherPassport: add_controller.selectedMotherPassport.value,
+                    SonPassport: add_controller.selectedSonPassport.value,
+                    UserID: add_controller.selectedId.value,
+                    Certefecate: add_controller.selectedCertificate.value,
+                    Ispend: add_controller.isPendStudent.value,
+                    Academic_sequence: add_controller.selectedtsalsol.value,
+                    FamilyNotbook: add_controller.selectedFamilyBook.value,
+                    file: add_controller.selectedImage.value);
+              }
             },
             color: Get.theme.primaryColor,
             width: 120)
@@ -317,10 +405,12 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                               isRequired: true,
                               width: 300,
                               controller: widget.First_Name,
+                              isError: controller.ISfirstNameError,
                               Uptext: "First Name".tr,
                               hinttext: "First Name".tr,
                               onChanged: (value) {
                                 controller.updateFirstName(value);
+                                controller.updateFieldError("first", false);
                               },
                             ),
                             Padding(
@@ -333,6 +423,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                                 hinttext: "Last Name",
                                 onChanged: (value) {
                                   controller.updateLastName(value);
+                                  controller.updateFieldError("last", false);
                                 },
                               ),
                             ),
@@ -348,6 +439,13 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                               isRequired: true,
                               width: 300,
                               controller: widget.Place_Of_Birth,
+                              isError: controller.IsPlaceOfBirthError,
+                              onChanged: (value) {
+                                if (value.isNotEmpty) {
+                                  controller.updateFieldError(
+                                      "placeofbirth", false);
+                                }
+                              },
                               Uptext: "Place Of Birth".tr,
                               hinttext: "Place Of Birth".tr),
                           Padding(
@@ -360,6 +458,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                                       : 0),
                               child: BirthDate(
                                 isRequired: true,
+                                isError: controller.IsBirthdateError,
                                 Uptext: "Birthdate".tr,
                                 width: 300,
                               ))
@@ -373,6 +472,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                         children: [
                           DropdownAddStudents(
                               isLoading: false,
+                              isError: controller.IsGenderError,
                               title: "Gender".tr,
                               width: 300,
                               type: "Gender"),
@@ -386,6 +486,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                                     : 0),
                             child: DropdownAddStudents(
                                 isLoading: false,
+                                isError: controller.IsReligionError,
                                 title: "Realagon".tr,
                                 width: 300,
                                 type: "Realagon"),
@@ -400,6 +501,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                         children: [
                           DropdownAddStudents(
                               isLoading: false,
+                              isError: controller.IsBloodError,
                               title: "Blood Type".tr,
                               width: 300,
                               type: "BloodType"),
@@ -414,6 +516,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                             child: DropdownAddStudents(
                                 isLoading: controller.isLoadingLocation,
                                 title: "Location".tr,
+                                isError: controller.IsCountryError,
                                 width: 300,
                                 type: "Location"),
                           )
@@ -427,6 +530,13 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                           Textfildwithupper(
                               isRequired: true,
                               width: 300,
+                              fieldType: "phone",
+                              isError: controller.ISphoneError,
+                              onChanged: (value) {
+                                if (value.isNotEmpty) {
+                                  controller.updateFieldError("phone", false);
+                                }
+                              },
                               controller: widget.Mobile_Number,
                               Uptext: "Mobile Number".tr,
                               hinttext: "Mobile Number".tr),
@@ -441,6 +551,13 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                             child: Textfildwithupper(
                                 isRequired: true,
                                 width: 300,
+                                isError: controller.ISLocalNationalIDError,
+                                onChanged: (value) {
+                                  if (value.isNotEmpty) {
+                                    controller.updateFieldError(
+                                        "localnational", false);
+                                  }
+                                },
                                 controller: widget.LocalID,
                                 Uptext: "Local ID".tr,
                                 hinttext: "Local ID".tr),
@@ -482,6 +599,13 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                             child: Textfildwithupper(
                                 isRequired: true,
                                 width: 300,
+                                isError: controller.ISLocalAddressError,
+                                onChanged: (value) {
+                                  if (value.isNotEmpty) {
+                                    controller.updateFieldError(
+                                        "localaddress", false);
+                                  }
+                                },
                                 controller: widget.Current_Address,
                                 Uptext: "Current Address".tr,
                                 hinttext: "Current Address".tr),
@@ -681,6 +805,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                         children: [
                           DropdownAddStudents(
                               isLoading: controller.isLoadingClass,
+                              isError: controller.ISclassError,
                               title: "Class".tr,
                               width: 300,
                               type: "Class"),
@@ -696,6 +821,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                                 isLoading: controller.isLoadingDivision,
                                 isDisabled:
                                     controller.ClassIndex == "" ? true : false,
+                                isError: controller.ISDivisionError,
                                 title: "Division".tr,
                                 width: 300,
                                 type: "Division"),
@@ -726,6 +852,13 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                             child: Textfildwithupper(
                                 isRequired: true,
                                 width: 300,
+                                isError: controller.ISpasswordError,
+                                onChanged: (value) {
+                                  if (value.isNotEmpty) {
+                                    controller.updateFieldError(
+                                        "password", false);
+                                  }
+                                },
                                 controller: widget.Password,
                                 Uptext: "Password".tr,
                                 hinttext: "Password".tr),
@@ -776,6 +909,13 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                           Textfildwithupper(
                               isRequired: true,
                               width: 300,
+                              isError: controller.ISFatherNameError,
+                              onChanged: (value) {
+                                if (value.isNotEmpty) {
+                                  controller.updateFieldError(
+                                      "fathername", false);
+                                }
+                              },
                               controller: widget.Father_Name,
                               Uptext: "Father Name".tr,
                               hinttext: "Father Name".tr),
@@ -790,6 +930,14 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                             child: Textfildwithupper(
                                 isRequired: true,
                                 width: 300,
+                                isError: controller.ISFatherphoneError,
+                                onChanged: (value) {
+                                  if (value.isNotEmpty) {
+                                    controller.updateFieldError(
+                                        "fatherphone", false);
+                                  }
+                                },
+                                fieldType: "phone",
                                 controller: widget.Father_Phone,
                                 Uptext: "Father Phone".tr,
                                 hinttext: "Father Phone".tr),
@@ -841,6 +989,13 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                               isRequired: true,
                               width: 300,
                               controller: widget.Mother_Name,
+                              isError: controller.ISMotherNameError,
+                              onChanged: (value) {
+                                if (value.isNotEmpty) {
+                                  controller.updateFieldError(
+                                      "mothername", false);
+                                }
+                              },
                               Uptext: "Mother Name".tr,
                               hinttext: "Mother Name".tr),
                           Padding(
@@ -854,6 +1009,14 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                             child: Textfildwithupper(
                                 isRequired: false,
                                 width: 300,
+                                fieldType: "phone",
+                                isError: controller.ISMotherPhoneError,
+                                onChanged: (value) {
+                                  if (value.isNotEmpty) {
+                                    controller.updateFieldError(
+                                        "motherphone", false);
+                                  }
+                                },
                                 controller: widget.Mother_Phone,
                                 Uptext: "Mother Phone".tr,
                                 hinttext: "Mother Phone".tr),
