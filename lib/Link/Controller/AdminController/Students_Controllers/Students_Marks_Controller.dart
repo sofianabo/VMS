@@ -217,7 +217,6 @@ class Students_Marks_Controller extends GetxController {
       return;
 
     for (var student in filterdstudent!) {
-      // البحث عن العلامة الحالية لهذا النوع
       final existingMarkIndex =
           student.mark?.indexWhere((m) => m.type == type) ?? -1;
 
