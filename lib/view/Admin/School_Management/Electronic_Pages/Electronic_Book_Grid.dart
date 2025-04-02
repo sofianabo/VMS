@@ -9,6 +9,7 @@ import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
+import 'package:vms_school/widgets/PDF_View.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
@@ -20,7 +21,7 @@ class ElectronicBookGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-         textDirection: prefs!.getString(languageKey) == "ar"
+      textDirection: prefs!.getString(languageKey) == "ar"
           ? TextDirection.rtl
           : TextDirection.ltr,
       child: GetBuilder<Labrary_Controller>(builder: (control) {
@@ -87,29 +88,34 @@ class ElectronicBookGrid extends StatelessWidget {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [SchemaWidget(width: 20, height: 20)],
+                                  children: [
+                                    SchemaWidget(width: 20, height: 20)
+                                  ],
                                 )
                               ],
                             )),
                         Align(
                             alignment: const Alignment(-1.5, 2),
                             child: Image.asset(
-                              "../../images/labrary3d.png",
+                              "assets/images/labrary3d.png",
                               height: 300,
                               color: Colors.grey.shade400,
                             )),
                       ],
                     ),
-                  ).animate(onPlay: (controller) => controller.repeat()).shimmer(
-                      angle: 1,
-                      color: Colors.grey.withOpacity(0.2),
-                      duration: const Duration(seconds: 1),
-                      delay: const Duration(seconds: 1));
+                  )
+                      .animate(onPlay: (controller) => controller.repeat())
+                      .shimmer(
+                          angle: 1,
+                          color: Colors.grey.withOpacity(0.2),
+                          duration: const Duration(seconds: 1),
+                          delay: const Duration(seconds: 1));
                 },
               )
             : control.filteredEbook!.isNotEmpty
                 ? GridView.builder(
-                    padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
+                    padding:
+                        const EdgeInsets.only(top: 10, left: 40, right: 40),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: Get.width <= 1226 && Get.width >= 988
                             ? 3
@@ -134,9 +140,9 @@ class ElectronicBookGrid extends StatelessWidget {
                       return HoverScaleCard(
                         child: GestureDetector(
                           onTap: () {
-                            final url =
-                                '$getimage${control.filteredEbook![index].fileId}';
-                            downloadFile(url, 'file.pdf');
+                            openFileInNewTab(
+                                filePath:
+                                    '$getpdf${control.filteredEbook![index].fileId}');
                           },
                           child: Stack(
                             alignment: Alignment.topLeft,
@@ -174,8 +180,8 @@ class ElectronicBookGrid extends StatelessWidget {
                                                         'ar'
                                                     ? "${control.filteredEbook![index].name}"
                                                     : "${control.filteredEbook![index].enName}",
-                                                style:
-                                                    const TextStyle(fontSize: 26),
+                                                style: const TextStyle(
+                                                    fontSize: 26),
                                               ),
                                             ),
                                           )
@@ -183,7 +189,13 @@ class ElectronicBookGrid extends StatelessWidget {
                                       ),
                                       const Spacer(),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        textDirection:
+                                            prefs!.getString(languageKey) ==
+                                                    "ar"
+                                                ? TextDirection.ltr
+                                                : TextDirection.ltr,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.end,
                                         children: [
@@ -196,8 +208,9 @@ class ElectronicBookGrid extends StatelessWidget {
                                                       RoundedRectangleBorder(
                                                           borderRadius:
                                                               BorderRadius.all(
-                                                                  Radius.circular(
-                                                                      5))))),
+                                                                  Radius
+                                                                      .circular(
+                                                                          5))))),
                                               onPressed: () {
                                                 Get.dialog(VMSAlertDialog(
                                                   action: [
@@ -241,7 +254,8 @@ class ElectronicBookGrid extends StatelessWidget {
                                                                 .textTheme
                                                                 .bodyMedium!
                                                                 .copyWith(
-                                                                    fontSize: 16,
+                                                                    fontSize:
+                                                                        16,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .normal),
@@ -249,19 +263,22 @@ class ElectronicBookGrid extends StatelessWidget {
                                                         ],
                                                       )),
                                                   apptitle:
-                                                      "Delete Electronic Book".tr,
+                                                      "Delete Electronic Book"
+                                                          .tr,
                                                   subtitle: "none",
                                                 ));
                                               },
                                               icon: const Icon(VMS_Icons.bin,
-                                                  size: 16, color: Colors.white)),
+                                                  size: 16,
+                                                  color: Colors.white)),
                                         ],
                                       )
                                     ],
                                   )),
                               Align(
                                   alignment: const Alignment(-1.5, 2),
-                                  child: Image.asset("../../images/labrary3d.png",
+                                  child: Image.asset(
+                                      "assets/images/labrary3d.png",
                                       height: 300)),
                             ],
                           ),

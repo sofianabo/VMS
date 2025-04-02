@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Rewards_APIs/Delete_Reward_API.dart';
-import 'package:vms_school/Link/API/DownloadFiles.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/PenaltiesAndRewardsController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
+import 'package:vms_school/widgets/PDF_View.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class Re_Pe_Page extends StatefulWidget {
@@ -116,10 +116,9 @@ class _Re_Pe_PageState extends State<Re_Pe_Page>
                                                                               5))))),
                                                           onPressed: () {
                                                             final url =
-                                                                '$getimage${PAR_Controller.Rewardsmodel!.prizes![index].fileId}';
-
-                                                            downloadFile("$url",
-                                                                "${widget.name}_${PAR_Controller.Rewardsmodel!.prizes![index].name}.pdf");
+                                                                '$getpdf${PAR_Controller.Rewardsmodel!.prizes![index].fileId}';
+                                                            openFileInNewTab(
+                                                                filePath: url);
                                                           },
                                                           icon: Icon(
                                                               Icons

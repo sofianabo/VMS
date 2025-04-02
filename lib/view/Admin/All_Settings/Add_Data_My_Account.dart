@@ -1025,7 +1025,7 @@ class _ProfileImageWithHoverDialogState
                   ),
                   child: ClipOval(
                     child: Image.asset(
-                      "../../images/Rectangle66.png",
+                      "assets/images/Rectangle66.png",
                       fit: BoxFit.cover,
                       width: 400,
                       height: 400,
@@ -1066,7 +1066,7 @@ class _ProfileImageWithHoverDialogState
           maxRadius: 35,
           child: ClipOval(
             child: Image.asset(
-              "../../images/Rectangle66.png",
+              "assets/images/Rectangle66.png",
               fit: BoxFit.cover,
               width: 70,
               height: 70,

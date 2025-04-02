@@ -29,7 +29,7 @@ class Section7 extends StatelessWidget {
                     height: 100,
                     width: 100,
                     child: Image.asset(
-                      "../../images/section5-image3.png",
+                      "assets/images/section5-image3.png",
                       width: 50,
                       height: 50,
                     )
@@ -79,7 +79,7 @@ class Section7 extends StatelessWidget {
                               width: 5,
                             ),
                             Image.asset(
-                              "../../images/time-icon.png",
+                              "assets/images/time-icon.png",
                               height: 20,
                               width: 20,
                             ),
@@ -97,7 +97,7 @@ class Section7 extends StatelessWidget {
                               width: 5,
                             ),
                             Image.asset(
-                              "../../images/time-icon.png",
+                              "assets/images/time-icon.png",
                               height: 20,
                               width: 20,
                             ),
@@ -111,7 +111,7 @@ class Section7 extends StatelessWidget {
                     Row(
                       children: [
                         Image.asset(
-                          "../../images/youtube-icon.png",
+                          "assets/images/youtube-icon.png",
                           width: 40,
                           height: 40,
                         ),
@@ -119,7 +119,7 @@ class Section7 extends StatelessWidget {
                           width: 5,
                         ),
                         Image.asset(
-                          "../../images/facebook-icon.png",
+                          "assets/images/facebook-icon.png",
                           width: 40,
                           height: 40,
                         ),
@@ -127,7 +127,7 @@ class Section7 extends StatelessWidget {
                           width: 5,
                         ),
                         Image.asset(
-                          "../../images/linkedin-icon.png",
+                          "assets/images/linkedin-icon.png",
                           width: 40,
                           height: 40,
                         ),

@@ -142,8 +142,8 @@ class _AppbarCustomState extends State<AppbarCustom> {
               children: [
                 Image.asset(
                   Theme.of(context) == theme.Dark_Theme
-                      ? "../../images/Logo.png"
-                      : "../../images/Logo2.png",
+                      ? "assets/images/Logo.png"
+                      : "assets/images/Logo2.png",
                 )
               ],
             ),

@@ -71,7 +71,7 @@ class _AppearanceState extends State<Appearance> {
                           SvgPicture.asset(
                             width: 200,
                             height: 160,
-                            "../../images/light.svg",
+                            "assets/images/light.svg",
                             fit: BoxFit.fitWidth,
                           ),
                           Text(
@@ -104,7 +104,7 @@ class _AppearanceState extends State<Appearance> {
                           SvgPicture.asset(
                             width: 200,
                             height: 160,
-                            "../../images/dark.svg",
+                            "assets/images/dark.svg",
                             fit: BoxFit.fitWidth,
                           ),
                           Text("Dark Theme".tr)

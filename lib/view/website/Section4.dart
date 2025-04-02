@@ -59,7 +59,7 @@ class Section4 extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Image.asset(
-                      "../../images/section4-image1.png",
+                      "assets/images/section4-image1.png",
                       height: h / 7.6,
                     ),
                     SizedBox(
@@ -82,7 +82,7 @@ class Section4 extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Image.asset(
-                      "../../images/section4-image2.png",
+                      "assets/images/section4-image2.png",
                       height: h / 7.6,
                     ),
                     SizedBox(
@@ -105,7 +105,7 @@ class Section4 extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Image.asset(
-                      "../../images/section4-image3.png",
+                      "assets/images/section4-image3.png",
                       height: h / 7.6,
                     ),
                     SizedBox(
@@ -137,7 +137,7 @@ class Section4 extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Image.asset(
-                      "../../images/section4-image4.png",
+                      "assets/images/section4-image4.png",
                       height: h / 7.6,
                     ),
                     SizedBox(
@@ -160,7 +160,7 @@ class Section4 extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Image.asset(
-                      "../../images/section4-image5.png",
+                      "assets/images/section4-image5.png",
                       height: h / 7.6,
                     ),
                     SizedBox(
@@ -182,7 +182,7 @@ class Section4 extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Image.asset(
-                      "../../images/section4-image6.png",
+                      "assets/images/section4-image6.png",
                       height: h / 7.6,
                     ),
                     SizedBox(

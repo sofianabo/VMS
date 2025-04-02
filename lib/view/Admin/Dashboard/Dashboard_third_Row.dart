@@ -122,7 +122,7 @@ class DashboardThirdRow extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 1.0),
                         child: SvgPicture.asset(
-                          "../../images/${dashed[index]['upIcon']}",
+                          "assets/images/${dashed[index]['upIcon']}",
                           width: 40.0,
                         ),
                       ),

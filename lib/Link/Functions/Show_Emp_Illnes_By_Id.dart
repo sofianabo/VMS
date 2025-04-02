@@ -11,6 +11,7 @@ import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
+import 'package:vms_school/widgets/PDF_View.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 import '../Model/AdminModel/School_Models/Illness_Model.dart';
@@ -163,72 +164,79 @@ Show_Teacher_Illnes_By_Id(
                                   Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 5.0, right: 5.0),
-                                        child: Container(
+                                      if (Get.find<Add_Data_controller>()
+                                              .roll !=
+                                          "subAdmin")
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 5.0, right: 5.0),
+                                          child: Container(
+                                            width: 35,
+                                            height: 35,
+                                            decoration: BoxDecoration(
+                                                color: hasNewFile == true ||
+                                                        hasOldFile == true
+                                                    ? Colors.white
+                                                    : Get.theme.disabledColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                boxShadow: const [
+                                                  BoxShadow(
+                                                      color: Colors.black12,
+                                                      offset: Offset(0, 2),
+                                                      blurRadius: 1)
+                                                ]),
+                                            child: IconButton(
+                                                onPressed: hasNewFile == true ||
+                                                        hasOldFile == true
+                                                    ? () {
+                                                        control
+                                                            .clearFile(illness);
+                                                      }
+                                                    : () {},
+                                                icon: Icon(
+                                                    Icons
+                                                        .delete_outline_outlined,
+                                                    size: 20,
+                                                    color: hasNewFile == true ||
+                                                            hasOldFile == true
+                                                        ? Get.theme.primaryColor
+                                                        : Colors.white)),
+                                          ),
+                                        ),
+                                      if (Get.find<Add_Data_controller>()
+                                              .roll !=
+                                          "subAdmin")
+                                        Container(
                                           width: 35,
                                           height: 35,
                                           decoration: BoxDecoration(
-                                              color: hasNewFile == true ||
-                                                      hasOldFile == true
-                                                  ? Colors.white
-                                                  : Get.theme.disabledColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              boxShadow: const [
-                                                BoxShadow(
-                                                    color: Colors.black12,
-                                                    offset: Offset(0, 2),
-                                                    blurRadius: 1)
-                                              ]),
-                                          child: IconButton(
-                                              onPressed: hasNewFile == true ||
-                                                      hasOldFile == true
-                                                  ? () {
-                                                      control
-                                                          .clearFile(illness);
-                                                    }
-                                                  : () {},
-                                              icon: Icon(
-                                                  Icons.delete_outline_outlined,
-                                                  size: 20,
-                                                  color: hasNewFile == true ||
-                                                          hasOldFile == true
-                                                      ? Get.theme.primaryColor
-                                                      : Colors.white)),
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 35,
-                                        height: 35,
-                                        decoration: BoxDecoration(
-                                          color: isSelected
-                                              ? Colors.white
-                                              : Get.theme.primaryColor,
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          boxShadow: const [
-                                            BoxShadow(
-                                              color: Colors.black12,
-                                              offset: Offset(0, 2),
-                                              blurRadius: 1,
-                                            )
-                                          ],
-                                        ),
-                                        child: IconButton(
-                                          onPressed: () {
-                                            control.attachFile(illness);
-                                          },
-                                          icon: Icon(
-                                            Icons.file_upload_outlined,
-                                            size: 20,
                                             color: isSelected
-                                                ? Get.theme.primaryColor
-                                                : Colors.white,
+                                                ? Colors.white
+                                                : Get.theme.primaryColor,
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Colors.black12,
+                                                offset: Offset(0, 2),
+                                                blurRadius: 1,
+                                              )
+                                            ],
+                                          ),
+                                          child: IconButton(
+                                            onPressed: () {
+                                              control.attachFile(illness);
+                                            },
+                                            icon: Icon(
+                                              Icons.file_upload_outlined,
+                                              size: 20,
+                                              color: isSelected
+                                                  ? Get.theme.primaryColor
+                                                  : Colors.white,
+                                            ),
                                           ),
                                         ),
-                                      ),
                                       Padding(
                                           padding: const EdgeInsets.only(
                                               left: 5.0, right: 5.0),
@@ -250,15 +258,9 @@ Show_Teacher_Illnes_By_Id(
                                             child: IconButton(
                                                 onPressed: hasOldFile == true
                                                     ? () {
-                                                        final url =
-                                                            '$getimage${control.finalList[index]['fileid']}';
-                                                        if (IsTeacher == true) {
-                                                          downloadFile("$url",
-                                                              "${Get.find<Allteachercontroller>().filteredTeacher![index_of_Emp!].fullName} $illnesName.pdf");
-                                                        } else {
-                                                          downloadFile("$url",
-                                                              "${Get.find<Allempolyeecontroller>().filteredreemployees[index_of_Emp!].fullName} $illnesName.pdf");
-                                                        }
+                                                        openFileInNewTab(
+                                                            filePath:
+                                                                '$getpdf${control.finalList[index]['fileid']}');
                                                       }
                                                     : () {},
                                                 icon: Icon(

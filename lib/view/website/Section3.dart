@@ -24,7 +24,7 @@ class Section3 extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Image.asset(
-                "../../images/section3-image1.jpg",
+                "assets/images/section3-image1.jpg",
                 height: h / 1.14,
                 width: w / 2.4,
               ),

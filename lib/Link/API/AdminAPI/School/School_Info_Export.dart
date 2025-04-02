@@ -52,11 +52,11 @@ void exportToExcel(List<Map<String, dynamic>> data, List<String> headers) {
 }
 
 Future<void> exportToPdf(List<Map<String, dynamic>> schoolInfo) async {
-  ByteData bytes = await rootBundle.load('../../images/Logo.png');
+  ByteData bytes = await rootBundle.load('assets/images/Logo.png');
   Uint8List imageBytes = bytes.buffer.asUint8List();
   final image = pw.MemoryImage(imageBytes);
 
-  ByteData fontData = await rootBundle.load('../../fonts/Cairo-Regular.ttf');
+  ByteData fontData = await rootBundle.load('assets/fonts/Cairo-Regular.ttf');
   final font = pw.Font.ttf(fontData);
 
   final pdf = pw.Document();
@@ -214,7 +214,7 @@ void ExleRequestsExport(List<Registration> registrations) async {
 void exportRequestsToPDF(List<Registration> registrations) async {
   // تحميل الصورة
   ByteData bytes =
-      await rootBundle.load('../../images/Logo.png'); // تأكد من صحة مسار الصورة
+      await rootBundle.load('assetsimages/Logo.png'); // تأكد من صحة مسار الصورة
   Uint8List imageBytes = bytes.buffer.asUint8List();
   final image = pw.MemoryImage(imageBytes);
 

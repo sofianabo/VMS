@@ -156,8 +156,8 @@ class _AppbarAdminState extends State<AppbarAdmin> {
               children: [
                 SvgPicture.asset(
                   Theme.of(context) == theme.Dark_Theme
-                      ? "../../images/logodark.svg"
-                      : "../../images/logolight.svg",
+                      ? "assets/images/logodark.svg"
+                      : "assets/images/logolight.svg",
                   width: 250,
                 )
               ],

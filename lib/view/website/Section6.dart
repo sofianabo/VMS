@@ -47,7 +47,7 @@ class Section6 extends StatelessWidget {
                       borderRadius: BorderRadius.circular(100),
                     ),
                     child: Image.asset(
-                      "../../images/section6-image1.jpg",
+                      "assets/images/section6-image1.jpg",
                       fit: BoxFit.cover,
                     ),
                   ),

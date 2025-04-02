@@ -8,50 +8,48 @@ class GradesTableScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<TeachernoteAndGradeReco>(builder: (controller) {
-      return Expanded(
-        child: controller.ClassIndex.trim().toString() != ""
-            ? controller.isQuizTypeLoading == true
-                ? LoadingAnimationWidget.inkDrop(
-                    color: Theme.of(context).primaryColor,
-                    size: 60,
-                  )
-                : controller.groups.isNotEmpty
-                    ? Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.dialog(Rerange_Group());
-                          },
-                          child: Obx(() {
-                            return Table(
-                              textDirection: TextDirection.rtl,
-                              border: TableBorder.all(
-                                  color: Colors.black, width: 1),
-                              columnWidths: {
-                                for (int i = 0;
-                                    i < controller.columnWidths.length;
-                                    i++)
-                                  i: FixedColumnWidth(
-                                      controller.columnWidths[i]),
-                              },
-                              children: _buildTableRows(context, controller),
-                            );
-                          }),
-                        ),
-                      )
-                    : Center(
-                        child: Text("No Quiz Type",
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.normal)))
-            : Center(
-                child: Text("Please Select Class First",
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        fontSize: 16, fontWeight: FontWeight.normal))),
-      );
+      return controller.ClassIndex.trim().toString() != ""
+          ? controller.isQuizTypeLoading == true
+              ? LoadingAnimationWidget.inkDrop(
+                  color: Theme.of(context).primaryColor,
+                  size: 60,
+                )
+              : controller.groups.isNotEmpty
+                  ? Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.dialog(Rerange_Group());
+                        },
+                        child: Obx(() {
+                          return Table(
+                            textDirection: TextDirection.rtl,
+                            border:
+                                TableBorder.all(color: Colors.black, width: 1),
+                            columnWidths: {
+                              for (int i = 0;
+                                  i < controller.columnWidths.length;
+                                  i++)
+                                i: FixedColumnWidth(controller.columnWidths[i]),
+                            },
+                            children: _buildTableRows(context, controller),
+                          );
+                        }),
+                      ),
+                    )
+                  : Center(
+                      child: Text("No Quiz Type",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(
+                                  fontSize: 16, fontWeight: FontWeight.normal)))
+          : Center(
+              child: Text("Please Select Class First",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge!
+                      .copyWith(fontSize: 16, fontWeight: FontWeight.normal)));
     });
   }
 

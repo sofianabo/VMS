@@ -224,7 +224,7 @@ class _TeacherStatusGridState extends State<TeacherStatusGrid> {
                                                         FontWeight.bold)),
                                       ),
                                       Image.asset(
-                                          "../../images/Rectangle66.png",
+                                          "assets/images/Rectangle66.png",
                                           height: 100,
                                           width: 100)
                                     ],

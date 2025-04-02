@@ -320,7 +320,8 @@ class _ClassManagementState extends State<ClassManagement> {
                                                                       .selectedCurriculumNames
                                                                       .join(
                                                                           ', ')
-                                                                  : 'No selected curriculum'.tr, // عرض رسالة عند عدم وجود مناهج مختارة
+                                                                  : 'No selected curriculum'
+                                                                      .tr, // عرض رسالة عند عدم وجود مناهج مختارة
                                                             ),
                                                           );
                                                         },
@@ -359,7 +360,7 @@ class _ClassManagementState extends State<ClassManagement> {
                                           padding: const EdgeInsets.only(
                                               left: 5.0, top: 36.0),
                                           child: SvgPicture.asset(
-                                              "../../images/drive.svg",
+                                              "assets/images/drive.svg",
                                               width: 25),
                                         )
                                       ],

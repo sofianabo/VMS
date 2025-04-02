@@ -352,7 +352,7 @@ class ClassGrid extends StatelessWidget {
                                           padding: const EdgeInsets.only(
                                               left: 5.0, top: 36.0),
                                           child: SvgPicture.asset(
-                                            "../../images/drive.svg",
+                                            "assets/images/drive.svg",
                                             width: 25,
                                           ),
                                         ),
@@ -454,7 +454,7 @@ class ClassGrid extends StatelessWidget {
                                                             Text(
                                                               "Do You Want To Deleteclass"
                                                                       .tr +
-                                                                  " (${prefs!.getString(languageKey) == 'ar'?control.filteredreclasses![index].name:control.filteredreclasses![index].enName}) " +
+                                                                  " (${prefs!.getString(languageKey) == 'ar' ? control.filteredreclasses![index].name : control.filteredreclasses![index].enName}) " +
                                                                   "Classs".tr,
                                                               style: Get
                                                                   .theme
@@ -521,7 +521,7 @@ class ClassGrid extends StatelessWidget {
                                                   fontSize: 16,
                                                 )),
                                         SvgPicture.asset(
-                                          "../../images/drive.svg",
+                                          "assets/images/drive.svg",
                                           width: 20,
                                         )
                                       ],

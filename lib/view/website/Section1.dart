@@ -46,7 +46,7 @@ class _Section1State extends State<Section1>
           SlideTransition(
             position: _animation,
             child: Image.asset(
-              "../../images/Home-Background.png",
+              "assets/images/Home-Background.png",
               fit: BoxFit.cover,
               height: h / 1.368,
               width: w,
@@ -56,7 +56,7 @@ class _Section1State extends State<Section1>
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Image.asset(
-                "../../images/Home-Background2.png",
+                "assets/images/Home-Background2.png",
                 width: w / 2.84,
                 height: h / 1.52,
               ),
@@ -133,11 +133,11 @@ class _Section1State extends State<Section1>
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             _buildInfoCard(control.teacher.toString(),
-                                "Teachers", "../../images/avatar1.png"),
+                                "Teachers", "assets/images/avatar1.png"),
                             _buildInfoCard(control.student.toString(),
-                                "Students", "../../images/avatar2.png"),
+                                "Students", "assets/images/avatar2.png"),
                             _buildInfoCard(control.visitor.toString(),
-                                "Visitors", "../../images/avatar3.png"),
+                                "Visitors", "assets/images/avatar3.png"),
                           ],
                         ),
                       );

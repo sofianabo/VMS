@@ -88,7 +88,7 @@ class Vaccine_Grid extends StatelessWidget {
                       Align(
                           alignment: Alignment(-1.5, 1),
                           child: Image.asset(
-                            "../../images/Vaction.png",
+                            "assets/images/Vaction.png",
                             height: 150,
                             color: Colors.grey.shade400,
                           )),
@@ -254,7 +254,7 @@ class Vaccine_Grid extends StatelessWidget {
                                 )),
                             Align(
                                 alignment: Alignment(-1.5, 1),
-                                child: Image.asset("../../images/Vaction.png",
+                                child: Image.asset("assets/images/Vaction.png",
                                     height: 150)),
                           ],
                         ),

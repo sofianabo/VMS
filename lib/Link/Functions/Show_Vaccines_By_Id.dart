@@ -11,6 +11,7 @@ import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
+import 'package:vms_school/widgets/PDF_View.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
@@ -267,11 +268,9 @@ Show_Vaccines_By_Id_Funcation(
                                                     onPressed:
                                                         hasOldFile == true
                                                             ? () {
-                                                                final url =
-                                                                    '$getimage${control.finalList[index]['fileid']}';
-                                                                downloadFile(
-                                                                    "$url",
-                                                                    "${Get.find<Allstudentscontroller>().filteredStudents[index_of_student!].fullName} $illnesName.pdf");
+                                                                openFileInNewTab(
+                                                                    filePath:
+                                                                        '$getpdf${control.finalList[index]['fileid']}');
                                                               }
                                                             : () {},
                                                     icon: Icon(

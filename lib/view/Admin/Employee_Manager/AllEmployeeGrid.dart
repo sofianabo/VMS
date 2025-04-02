@@ -196,7 +196,7 @@ class AllEmployeeGrid extends StatelessWidget {
                                       child: Column(
                                         children: [
                                           SvgPicture.asset(
-                                            "../../images/nodata.svg",
+                                            "assets/images/nodata.svg",
                                             width: 350,
                                             height: 350,
                                           ),

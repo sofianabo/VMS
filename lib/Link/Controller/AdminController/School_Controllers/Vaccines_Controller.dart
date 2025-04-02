@@ -171,7 +171,7 @@ class Vaccines_Controller extends gets.GetxController {
                           width: 400,
                           height: 200,
                           child: SvgPicture.asset(
-                            "../../images/warning.svg",
+                            "assets/images/warning.svg",
                             fit: BoxFit.fitWidth,
                           ),
                         ),
@@ -339,7 +339,7 @@ class Vaccines_Controller extends gets.GetxController {
                         width: 400,
                         height: 200,
                         child: SvgPicture.asset(
-                          "../../images/warning.svg",
+                          "assets/images/warning.svg",
                           fit: BoxFit.fitWidth,
                         ),
                       ),

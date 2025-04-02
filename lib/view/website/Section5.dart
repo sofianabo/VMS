@@ -49,7 +49,7 @@ class Section5 extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Image.asset(
-                            "../../images/section5-image1.png",
+                            "assets/images/section5-image1.png",
                             height: h / 1.71,
                             width: w / 12.8,
                           ),
@@ -83,7 +83,7 @@ class Section5 extends StatelessWidget {
                                   height: h / 34.2,
                                 ),
                                 Image.asset(
-                                  "../../images/section5-image3.png",
+                                  "assets/images/section5-image3.png",
                                   height: h / 6.84,
                                   width: w / 12.8,
                                 ),
@@ -99,14 +99,14 @@ class Section5 extends StatelessWidget {
                             width: w / 25.6,
                           ),
                           Image.asset(
-                            "../../images/section5-image2.png",
+                            "assets/images/section5-image2.png",
                             height: h / 1.71,
                             width: w / 12.8,
                           ),
                         ],
                       ),
                       Image.asset(
-                        "../../images/section5-image4.png",
+                        "assets/images/section5-image4.png",
                       ),
                     ],
                   ),

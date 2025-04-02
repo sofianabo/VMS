@@ -33,7 +33,7 @@ class LoginScreen extends StatelessWidget {
                 Padding(
                     padding: const EdgeInsets.only(top: 62.0),
                     child: Image.asset(
-                      "../../images/logo2.png",
+                      "assets/images/logo2.png",
                       width: 250,
                     )
                         .animate(onPlay: (controller) => controller.repeat())
@@ -52,7 +52,7 @@ class LoginScreen extends StatelessWidget {
                     Column(
                       children: [
                         Image.asset(
-                          "../../images/section5-image1.png",
+                          "assets/images/section5-image1.png",
                           width: w / 5.845,
                         )
                             .animate(
@@ -151,7 +151,7 @@ class LoginScreen extends StatelessWidget {
                     Column(
                       children: [
                         Image.asset(
-                          "../../images/section5-image2.png",
+                          "assets/images/section5-image2.png",
                           width: w / 6.095,
                         )
                             .animate(

@@ -35,7 +35,7 @@ class _DashboardFirstRowState extends State<DashboardFirstRow> {
               children: [
                 const CircleAvatar(
                   maxRadius: 60,
-                  foregroundImage: AssetImage("../../images/Rectangle66.png"),
+                  foregroundImage: AssetImage("assets/images/Rectangle66.png"),
                 ),
                 Column(
                   children: [
@@ -153,7 +153,7 @@ class _DashboardFirstRowState extends State<DashboardFirstRow> {
                 alignment: Alignment.bottomLeft,
                 children: [
                   Image.asset(
-                    "../../images/doctor.png",
+                    "assets/images/doctor.png",
                   ),
                   Column(
                     children: [
@@ -217,7 +217,7 @@ class _DashboardFirstRowState extends State<DashboardFirstRow> {
               child: Stack(
                 children: [
                   Image.asset(
-                    "../../images/party.png",
+                    "assets/images/party.png",
                   ),
                   Column(
                     children: [

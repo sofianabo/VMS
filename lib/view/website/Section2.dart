@@ -122,7 +122,7 @@ class Section2 extends StatelessWidget {
                 ],
               ),
               Image.asset(
-                "../../images/section2-image1.png",
+                "assets/images/section2-image1.png",
                 height: h / 1.52,
                 width: w / 2.56,
               )

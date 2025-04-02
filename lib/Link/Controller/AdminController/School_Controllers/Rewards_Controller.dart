@@ -18,11 +18,11 @@ class RewardsController extends GetxController {
     update();
   }
 
-  String selectedImage = "../../images/Certificate/c3.svg";
+  String selectedImage = "assets/images/Certificate/c3.svg";
 
   List<Map<String, dynamic>> Certificats = [
     {
-      "image": "../../images/Certificate/c2.svg",
+      "image": "assets/images/Certificate/c2.svg",
       "DataPosition": [
         {
           "islock": true,
@@ -88,7 +88,7 @@ class RewardsController extends GetxController {
       ]
     },
     {
-      "image": "../../images/Certificate/c1.svg",
+      "image": "assets/images/Certificate/c1.svg",
       "DataPosition": [
         {
           "islock": true,
@@ -154,7 +154,7 @@ class RewardsController extends GetxController {
       ]
     },
     {
-      "image": "../../images/Certificate/c4.svg",
+      "image": "assets/images/Certificate/c4.svg",
       "DataPosition": [
         {
           "islock": true,
@@ -220,7 +220,7 @@ class RewardsController extends GetxController {
       ]
     },
     {
-      "image": "../../images/Certificate/c3.svg",
+      "image": "assets/images/Certificate/c3.svg",
       "DataPosition": [
         {
           "islock": true,
@@ -286,7 +286,7 @@ class RewardsController extends GetxController {
       ]
     },
     {
-      "image": "../../images/Certificate/c5.svg",
+      "image": "assets/images/Certificate/c5.svg",
       "DataPosition": [
         {
           "islock": true,
@@ -354,7 +354,7 @@ class RewardsController extends GetxController {
   ];
   List<Map<String, dynamic>> DialogCertificats = [
     {
-      "image": "../../images/Certificate/c2.svg",
+      "image": "assets/images/Certificate/c2.svg",
       "DataPosition": [
         {
           "islock": true,
@@ -420,7 +420,7 @@ class RewardsController extends GetxController {
       ]
     },
     {
-      "image": "../../images/Certificate/c1.svg",
+      "image": "assets/images/Certificate/c1.svg",
       "DataPosition": [
         {
           "islock": true,
@@ -486,7 +486,7 @@ class RewardsController extends GetxController {
       ]
     },
     {
-      "image": "../../images/Certificate/c4.svg",
+      "image": "assets/images/Certificate/c4.svg",
       "DataPosition": [
         {
           "islock": true,
@@ -552,7 +552,7 @@ class RewardsController extends GetxController {
       ]
     },
     {
-      "image": "../../images/Certificate/c3.svg",
+      "image": "assets/images/Certificate/c3.svg",
       "DataPosition": [
         {
           "islock": true,
@@ -618,7 +618,7 @@ class RewardsController extends GetxController {
       ]
     },
     {
-      "image": "../../images/Certificate/c5.svg",
+      "image": "assets/images/Certificate/c5.svg",
       "DataPosition": [
         {
           "islock": true,

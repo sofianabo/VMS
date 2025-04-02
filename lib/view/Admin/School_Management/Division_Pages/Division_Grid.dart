@@ -230,7 +230,7 @@ class DivisionGrid extends StatelessWidget {
                                               padding: const EdgeInsets.only(
                                                   left: 5.0, top: 36.0),
                                               child: SvgPicture.asset(
-                                                "../../images/meet.svg",
+                                                "assets/images/meet.svg",
                                                 width: 25,
                                               ),
                                             ),
@@ -394,7 +394,7 @@ class DivisionGrid extends StatelessWidget {
                                                 fontSize: 16,
                                               )),
                                       SvgPicture.asset(
-                                        "../../images/meet.svg",
+                                        "assets/images/meet.svg",
                                         width: 20,
                                       )
                                     ],

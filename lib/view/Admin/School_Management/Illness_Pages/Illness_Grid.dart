@@ -15,8 +15,6 @@ import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
-import '../../../../Link/API/AdminAPI/School/School_Screen_APIs/Electronic_Library_API/Delete_Curriculm_API.dart';
-
 class Illness_Grid extends StatelessWidget {
   Illness_Grid({super.key});
 
@@ -93,7 +91,7 @@ class Illness_Grid extends StatelessWidget {
                       Align(
                           alignment: Alignment(-1.5, 1),
                           child: Image.asset(
-                            "../../images/Illness.png",
+                            "assets/images/Illness.png",
                             height: 120,
                             color: Colors.grey.shade400,
                           )),
@@ -289,7 +287,7 @@ class Illness_Grid extends StatelessWidget {
                                 )),
                             Align(
                                 alignment: Alignment(-1.5, 1),
-                                child: Image.asset("../../images/Illness.png",
+                                child: Image.asset("assets/images/Illness.png",
                                     height: 120)),
                           ],
                         ),
