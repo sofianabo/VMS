@@ -298,7 +298,7 @@ class Allempolyeecontroller extends GetxController {
   String get selecteddialogjobTitleIndex => dialogjobTitleIndex;
 
   bool ShowConfirmPassword = true;
-  bool ShowPassword = true;
+  bool ShowPassword = true; 
 
   bool IsJoinError = false;
   bool ISusernameError = false;

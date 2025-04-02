@@ -306,7 +306,7 @@ class Add_Students_Controller extends GetxController {
         return RealagonIndex;
       case 'BloodType':
         return BloodTypeIndex;
-      case 'Location':
+      case '  ':
         return LocationIndex;
       case 'FamilyState':
         return FamilyStateIndex;
@@ -602,6 +602,98 @@ class Add_Students_Controller extends GetxController {
     DivisionIndex = "";
     Locationlist = [];
     LocationIndex = "";
+    update();
+  }
+
+  bool ShowPassword = true;
+  bool ISfirstNameError = false;
+  bool ISlastNameError = false;
+  bool IsBirthdateError = false;
+  bool IsPlaceOfBirthError = false;
+  bool IsGenderError = false;
+  bool IsReligionError = false;
+  bool IsBloodError = false;
+  bool IsCountryError = false;
+  bool ISphoneError = false;
+  bool ISLocalNationalIDError = false;
+  bool ISLocalAddressError = false;
+  bool ISclassError = false;
+  bool ISDivisionError = false;
+  bool ISusernameError = false;
+  bool ISpasswordError = false;
+  bool ISFatherNameError = false;
+  bool ISFatherphoneError = false;
+  bool ISMotherNameError = false;
+  bool ISMotherPhoneError = false;
+
+  void updateFieldError(String type, bool newValue) {
+    switch (type) {
+      case 'first':
+        ISfirstNameError = newValue;
+        break;
+      case 'last':
+        ISlastNameError = newValue;
+        break;
+      case 'birthdate':
+        IsBirthdateError = newValue;
+        break;
+      case 'placeofbirth':
+        IsPlaceOfBirthError = newValue;
+        break;
+      case 'gender':
+        IsGenderError = newValue;
+        break;
+      case 'religion':
+        IsReligionError = newValue;
+        break;
+      case 'blood':
+        IsBloodError = newValue;
+        break;
+      case 'country':
+        IsCountryError = newValue;
+        break;
+      case 'phone':
+        ISphoneError = newValue;
+        break;
+      case 'localnational':
+        ISLocalNationalIDError = newValue;
+        break;
+      case 'class':
+        ISclassError = newValue;
+        break;
+
+      case 'localaddress':
+        ISLocalAddressError = newValue;
+        break;
+      case 'username':
+        ISusernameError = newValue;
+        break;
+      case 'division':
+        ISDivisionError = newValue;
+        break;
+      case 'password':
+        ISpasswordError = newValue;
+        break;
+      case 'fathername':
+        ISFatherNameError = newValue;
+        break;
+      case 'fatherphone':
+        ISFatherphoneError = newValue;
+        break;
+      case 'mothername':
+        ISMotherNameError = newValue;
+        break;
+      case 'motherphone':
+        ISMotherPhoneError = newValue;
+        break;
+
+      default:
+    }
+    update();
+  }
+
+  ChangeShowPassword(bool value) {
+    ShowPassword = value;
     update();
   }
 }

@@ -51,7 +51,7 @@ class _AllStudentState extends State<AllStudent> {
                           child: DropDownAllSessions(
                             title: "Session".tr,
                             type: "session",
-                            width: w / 6.5,
+                            width: w / 6.5, 
                             API: "AllStudents",
                           ),
                         ),

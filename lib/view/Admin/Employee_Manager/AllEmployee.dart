@@ -437,7 +437,7 @@ class _AllEmployeeState extends State<AllEmployee> {
                                                           ? 0
                                                           : 15),
                                                   child: Dropdownallemployee(
-                                                      isError: cont.IsJopError,
+                                                      isError: cont.IsJopError, 
                                                       title: "Job Title".tr,
                                                       width: 220,
                                                       type: "fejop"),
