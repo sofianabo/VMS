@@ -14,7 +14,7 @@ class Getallstudentapi {
   Getallstudentapi(this.context);
 
   static Getallstudent({
-    sessionID,
+    int? sessionID,
   }) async {
     try {
       final Allstudentscontroller c = gets.Get.find<Allstudentscontroller>();
@@ -25,7 +25,7 @@ class Getallstudentapi {
       if (sessionID != null &&
           sessionID.toString().trim().isNotEmpty &&
           sessionID.toString() != "null") {
-        formData.fields.add(MapEntry("sessionId", sessionID));
+        formData.fields.add(MapEntry("sessionId", sessionID.toString()));
       }
 
       String myurl = "$hostPort$getStudents";

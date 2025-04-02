@@ -4,6 +4,7 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownGrad
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/AddStudentAttendenceAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/IncreaseAttendanceAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AdminStudentsAttendens.dart';
+import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/Students_Manager/StudentsAttendanceManagmentGrid.dart';
@@ -25,6 +26,7 @@ class _StudentsAttendanceManagmentState
     extends State<StudentsAttendanceManagment> {
   @override
   void initState() {
+    Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
     Get.find<Student_attendence_controller>().AttendencetDate.value =
         DateTime.now();
     Getallgradeapi.Getallgrade();

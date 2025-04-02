@@ -22,7 +22,7 @@ class Increaseemployeattendenceapi {
     try {
       String myurl = "$hostPort$employeeIncreaseAttendance";
       var response = await dio
-          .get(data: {"date": DateTime}, myurl, options: getDioOptions());
+          .post(data: {"date": DateTime}, myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         IncreaseEmpolyeeAttendenceModel empolyee =
             IncreaseEmpolyeeAttendenceModel.fromJson(response.data);

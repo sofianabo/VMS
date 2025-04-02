@@ -1,5 +1,5 @@
-String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
-// String hostPort = "http://192.168.1.57:8000/api/";
+// String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
+String hostPort = "http://192.168.1.57:8000/api/";
 
 //..................... All ...................//
 

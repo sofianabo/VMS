@@ -6,7 +6,7 @@ class All_Screen_Sessions_Controller extends GetxController {
   String sessionIndex = "";
   String startSessionDate = "";
   String endSessionDate = "";
-  var sessionId ;
+  var sessionId;
   List<String> sessionlist = [];
 
   void selectIndex(String type, String? index) {
@@ -41,33 +41,33 @@ class All_Screen_Sessions_Controller extends GetxController {
 
   String get selectedsessionIndex => sessionIndex;
 
-   setSessionDefult() {
-    try{ 
+  setSessionDefult() {
+    try {
+      sessionId = sessions!.current!.id!;
       sessionIndex = sessions!.current!.year!;
       startSessionDate = sessions!.current!.startDate!;
       endSessionDate = sessions!.current!.endDate!;
       update();
-    }catch(e){
+    } catch (e) {
       print(e);
     }
-   }
+  }
 
-   setSessiondatepick() {
-    try{
+  setSessiondatepick() {
+    try {
       startSessionDate = sessions!.current!.startDate!;
       endSessionDate = sessions!.current!.endDate!;
       update();
-    }catch(e){
+    } catch (e) {
       print(e);
     }
-   }
-
-  void setsessionid(id) {
-     sessionId = id;
-     var session = sessions!.sessions!.firstWhere((session) => session.id == id);
-     startSessionDate = session.startDate!;
-     endSessionDate = session.endDate!;
-    update();
   }
 
+  void setsessionid(id) {
+    sessionId = id;
+    var session = sessions!.sessions!.firstWhere((session) => session.id == id);
+    startSessionDate = session.startDate!;
+    endSessionDate = session.endDate!;
+    update();
+  }
 }

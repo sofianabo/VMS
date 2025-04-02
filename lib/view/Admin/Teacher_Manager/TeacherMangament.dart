@@ -231,7 +231,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                               Get.find<Allempolyeecontroller>()
                                                   .ContractTypeIndex
                                                   .trim(),
-                                              "teacher",
+                                              "Teacher",
                                               "Teacher",
                                               password.text);
                                           Get.back();
