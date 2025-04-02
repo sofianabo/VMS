@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/add_Students_Marks_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Students_Marks_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/Students_Marks_Model.dart';
 import 'package:vms_school/Translate/local_controller.dart';
@@ -262,7 +263,10 @@ class _Students_Marks_GenState extends State<Students_Marks_Gen> {
           children: [
             _buildStudentNameCell(student.fullName ?? ""),
             ...controller.studentsMarksModel!.quizType!.map((quizType) {
-              return _buildEditableMarkCell(student, quizType);
+              return GetBuilder<Students_Marks_Controller>(
+                builder: (controller) =>
+                    _buildEditableMarkCell(student, quizType),
+              );
             }),
             _buildOptionsButton(student),
           ],
@@ -283,67 +287,6 @@ class _Students_Marks_GenState extends State<Students_Marks_Gen> {
     );
   }
 
-  Widget _buildItemsHeaderCell(QuizType quizType, bool isHeader,
-      {bool showRatio = false}) {
-    // إذا كان showRatio صحيحًا وكانت العناصر فارغة، نعرض نسبة المجموعة
-    if (showRatio && quizType.items!.isEmpty) {
-      return _buildHeaderCell(quizType.ratio.toString(), Colors.white);
-    }
-
-    // إذا كان showRatio صحيحًا وهناك عناصر، نعرض نسبة كل عنصر
-    if (showRatio && quizType.items!.isNotEmpty) {
-      return Container(
-        height: 45,
-        child: Row(
-          children: quizType.items!.map((item) {
-            return Expanded(
-              child: Container(
-                decoration: BoxDecoration(border: Border.all(width: 0.5)),
-                alignment: Alignment.center,
-                child: Text(
-                  item.ratio.toString(),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: isHeader ? FontWeight.bold : FontWeight.normal,
-                  ),
-                ),
-              ),
-            );
-          }).toList(),
-        ),
-      );
-    }
-
-    // إذا لم يكن showRatio صحيحًا، نعرض العناصر إن وجدت
-    if (quizType.items!.isNotEmpty) {
-      return Container(
-        height: 45,
-        child: Row(
-          children: quizType.items!.map((item) {
-            return Expanded(
-              child: Container(
-                decoration: BoxDecoration(border: Border.all(width: 0.5)),
-                alignment: Alignment.center,
-                child: Text(
-                  item.name.toString(),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: isHeader ? FontWeight.bold : FontWeight.normal,
-                  ),
-                ),
-              ),
-            );
-          }).toList(),
-        ),
-      );
-    }
-
-    // الحالة الافتراضية
-    return _buildHeaderCell(" ", Colors.white);
-  }
-
   Widget _buildStudentNameCell(String name) {
     return Container(
       height: 45,
@@ -356,13 +299,50 @@ class _Students_Marks_GenState extends State<Students_Marks_Gen> {
     );
   }
 
+  Widget _buildNonEditableCell(String value,
+      {Mark? mark, QuizType? quizType, Items? item}) {
+    return GetBuilder<Students_Marks_Controller>(
+      id: 'non_editable_cell_${mark?.id ?? value}',
+      builder: (controller) {
+        final displayValue = mark?.mark?.toString() ?? value;
+
+        final passingMark = item?.passingMark ?? quizType?.passingMark ?? 0;
+
+        final numericValue = double.tryParse(displayValue) ?? 0;
+
+        final textColor =
+            numericValue < passingMark ? Colors.red : Colors.black;
+
+        return Container(
+          height: 45,
+          alignment: Alignment.center,
+          child: Text(
+            displayValue,
+            textAlign: TextAlign.center,
+            style: TextStyle(color: textColor),
+          ),
+        );
+      },
+    );
+  }
+
   Widget _buildEditableMarkCell(Student student, QuizType quizType) {
+    if (quizType.operationType != null && quizType.operationType!.isNotEmpty) {
+      return GetBuilder<Students_Marks_Controller>(
+        id: 'calculated_fields',
+        builder: (controller) {
+          final value = controller.calculateOperationValue(student, quizType);
+          return _buildNonEditableCell(value.toString(), quizType: quizType);
+        },
+      );
+    }
+
     if (quizType.items == null || quizType.items!.isEmpty) {
       final mark = student.mark?.firstWhere(
-        (m) => m.type == quizType.name,
+        (m) => m.id == quizType.id,
         orElse: () => Mark(),
       );
-      return _buildMarkTextField(mark);
+      return _buildMarkTextField(mark, quizType, student);
     }
 
     return Container(
@@ -370,14 +350,14 @@ class _Students_Marks_GenState extends State<Students_Marks_Gen> {
       child: Row(
         children: quizType.items!.map((item) {
           final mark = student.mark?.firstWhere(
-            (m) => m.type == item.name,
+            (m) => m.id == item.id,
             orElse: () => Mark(),
           );
           return Expanded(
             child: Container(
               decoration: BoxDecoration(border: Border.all(width: 0.5)),
               alignment: Alignment.center,
-              child: _buildMarkTextField(mark),
+              child: _buildMarkTextField(mark, quizType, student, item: item),
             ),
           );
         }).toList(),
@@ -385,59 +365,98 @@ class _Students_Marks_GenState extends State<Students_Marks_Gen> {
     );
   }
 
-  Widget _buildMarkTextField(Mark? mark) {
-    final controller =
-        TextEditingController(text: mark?.mark?.toString() ?? "");
+  Widget _buildMarkTextField(Mark? mark, QuizType quizType, Student student,
+      {Items? item}) {
+    final initialValue = mark?.mark?.toString() ?? "0";
+    final controller = TextEditingController(text: initialValue);
     _controllers.add(controller);
 
-    return TextField(
-      controller: controller,
-      keyboardType: TextInputType.number,
-      maxLength: 4,
-      textAlign: TextAlign.center,
-      decoration: const InputDecoration(
-        counterText: "",
-        border: InputBorder.none,
-        contentPadding: EdgeInsets.zero,
-        isDense: true,
-      ),
-      onTap: () {
-        // تحديد كل النص عند النقر
-        controller.selection = TextSelection(
-          baseOffset: 0,
-          extentOffset: controller.text.length,
+    final maxMark = item?.maxMark ?? quizType.maxMark ?? double.infinity;
+    final passingMark = item?.passingMark ?? quizType.passingMark ?? 0;
+
+    return GetBuilder<Students_Marks_Controller>(
+      id: 'mark_color_${student.id}_${item?.id ?? quizType.id}',
+      builder: (ctrl) {
+        final currentValue = double.tryParse(controller.text) ?? 0;
+        final textColor =
+            currentValue < passingMark ? Colors.red : Colors.black;
+
+        return TextField(
+          controller: controller,
+          keyboardType: TextInputType.numberWithOptions(decimal: true),
+          inputFormatters: [
+            FilteringTextInputFormatter.allow(RegExp(
+                r'^\d*\.?\d{0,2}')), // السماح بعلامة عشرية وحد أقصى خانتين بعدها
+            _DecimalInputFormatter(
+                maxMark: double.parse(
+                    maxMark.toString())), // معالج مخصص للأرقام العشرية
+          ],
+          maxLength: 6, // زيادة الحد الأقصى لاستيعاب النقاط العشرية
+          textAlign: TextAlign.center,
+          style: TextStyle(color: textColor),
+          decoration: const InputDecoration(
+            counterText: "",
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.zero,
+            isDense: true,
+          ),
+          onChanged: (value) {
+            if (mark != null) {
+              final parsedValue =
+                  value.isEmpty ? 0 : double.tryParse(value) ?? 0;
+
+              if (parsedValue > maxMark) {
+                controller.text = maxMark.toString();
+                mark.mark = double.parse(maxMark.toString());
+              } else {
+                // معالجة القيم مثل ".5" لتصبح "0.5"
+                if (value.startsWith('.') && value.length > 1) {
+                  controller.text = '0$value';
+                  controller.selection = TextSelection.fromPosition(
+                    TextPosition(offset: controller.text.length),
+                  );
+                }
+
+                mark.mark = double.parse(parsedValue.toString());
+              }
+
+              final ctrl = Get.find<Students_Marks_Controller>();
+              ctrl.updateDependentFields(student, quizType);
+              ctrl.update(
+                  ['mark_color_${student.id}_${item?.id ?? quizType.id}']);
+            }
+          },
         );
-      },
-      onChanged: (value) {
-        if (value.isNotEmpty && mark != null) {
-          mark.mark = int.tryParse(value);
-        }
       },
     );
   }
 
   Widget _buildOptionsButton(Student student) {
+    var controller = Get.find<Students_Marks_Controller>();
     return Container(
       width: 40,
       height: 40,
       alignment: Alignment.center,
       child: IconButton(
         icon: const Icon(Icons.save_outlined, size: 20),
-        onPressed: () => _printStudentData(student),
+        onPressed: () async {
+          AddStudentsMarksApi().saveSingleStudent(
+            curriculumId: controller
+                .CurriculumModel!
+                .curriculum![controller.Curriculumlist.indexOf(
+                    controller.CurriculumIndex)]
+                .id!,
+            student: student,
+          );
+        },
       ),
     );
-  }
-
-  void _printStudentData(Student student) {
-    debugPrint("Student: ${student.fullName}");
-
-    debugPrint("Student: ${student.fullName}");
   }
 
   Map<int, TableColumnWidth> _buildColumnWidths(
       Students_Marks_Controller controller) {
     final widths = <int, TableColumnWidth>{};
-    widths[0] = const FixedColumnWidth(150); // عمود اسم الطالب
+    widths[0] = const FixedColumnWidth(150);
 
     for (int i = 0; i < controller.studentsMarksModel!.quizType!.length; i++) {
       widths[i + 1] = FixedColumnWidth(
@@ -522,5 +541,40 @@ class _Students_Marks_GenState extends State<Students_Marks_Gen> {
             fontWeight: isHeader ? FontWeight.bold : FontWeight.normal),
       ),
     );
+  }
+}
+
+class _DecimalInputFormatter extends TextInputFormatter {
+  final double maxMark;
+
+  _DecimalInputFormatter({required this.maxMark});
+
+  @override
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    // منع القيم الفارغة أو التي تحتوي على نقطة فقط
+    if (newValue.text.isEmpty || newValue.text == '.') {
+      return const TextEditingValue().copyWith(text: '0');
+    }
+
+    // منع الأصفار البادئة (مثل 001.5)
+    if (newValue.text.startsWith('0') &&
+        newValue.text.length > 1 &&
+        !newValue.text.startsWith('0.')) {
+      return oldValue;
+    }
+
+    // التحقق من أن القيمة لا تتجاوز الحد الأقصى
+    final parsedValue = double.tryParse(newValue.text) ?? 0;
+    if (parsedValue > maxMark) {
+      return TextEditingValue(
+        text: maxMark.toString(),
+        selection: TextSelection.collapsed(offset: maxMark.toString().length),
+      );
+    }
+
+    return newValue;
   }
 }

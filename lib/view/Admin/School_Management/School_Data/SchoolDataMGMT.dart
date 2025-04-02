@@ -5,9 +5,11 @@ import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Info_Export.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/School_Data_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Update_School_Data.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/School_Info_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
+import 'package:vms_school/widgets/Squer_Button_Enabled_Disabled.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 
 class SchoolDataMgmt extends StatefulWidget {
@@ -47,87 +49,68 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).cardColor,
-                      borderRadius: BorderRadius.circular(5),
-                      boxShadow: const [
-                        BoxShadow(
-                            color: Colors.black12,
-                            offset: Offset(0, 2),
-                            blurRadius: 1)
-                      ]),
-                  child: IconButton(
-                      style: const ButtonStyle(
-                          shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))))),
-                      onPressed: () {
-                        bool isSchool_NameEmpty =
-                            controller.School_Name.text.isEmpty;
+                Squer_Button_Enabled_Disabled(
+                  icon: Icons.save,
+                  onTap: () {
+                    bool isSchool_NameEmpty =
+                        controller.School_Name.text.isEmpty;
 
-                        bool isLicense_NumberEmpty =
-                            controller.License_Number.text.isEmpty;
+                    bool isLicense_NumberEmpty =
+                        controller.License_Number.text.isEmpty;
 
-                        bool isAddressEmpty = controller.Address.text.isEmpty;
+                    bool isAddressEmpty = controller.Address.text.isEmpty;
 
-                        bool isVillageEmpty = controller.Village.text.isEmpty;
+                    bool isVillageEmpty = controller.Village.text.isEmpty;
 
-                        bool isRegionEmpty = controller.Region.text.isEmpty;
+                    bool isRegionEmpty = controller.Region.text.isEmpty;
 
-                        bool isPhoneEmpty = controller.Phone.text.isEmpty;
-                        RegExp emailRegex = RegExp(
-                            r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
-                        bool isEmailValid =
-                            emailRegex.hasMatch(controller.Email.text);
-                        bool isEmailEmpty =
-                            controller.Email.text.isEmpty || !isEmailValid;
+                    bool isPhoneEmpty = controller.Phone.text.isEmpty;
+                    RegExp emailRegex = RegExp(
+                        r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+                    bool isEmailValid =
+                        emailRegex.hasMatch(controller.Email.text);
+                    bool isEmailEmpty =
+                        controller.Email.text.isEmpty || !isEmailValid;
 
-                        bool isCreation_YearEmpty =
-                            controller.Creation_Year.text.isEmpty;
+                    bool isCreation_YearEmpty =
+                        controller.Creation_Year.text.isEmpty;
 
-                        bool isCongregation_numberEmpty =
-                            controller.Congregation_number.text.isEmpty;
+                    bool isCongregation_numberEmpty =
+                        controller.Congregation_number.text.isEmpty;
 
-                        bool isTown_ChipEmpty =
-                            controller.Town_Chip.text.isEmpty;
+                    bool isTown_ChipEmpty = controller.Town_Chip.text.isEmpty;
 
-                        bool isWork_Begin_YearEmpty =
-                            controller.Work_Begin_Year.text.isEmpty;
+                    bool isWork_Begin_YearEmpty =
+                        controller.Work_Begin_Year.text.isEmpty;
 
-                        controller.updateFieldError("name", isSchool_NameEmpty);
-                        controller.updateFieldError(
-                            "lic", isLicense_NumberEmpty);
-                        controller.updateFieldError("address", isAddressEmpty);
-                        controller.updateFieldError("vill", isVillageEmpty);
-                        controller.updateFieldError("reg", isRegionEmpty);
-                        controller.updateFieldError("phone", isPhoneEmpty);
-                        controller.updateFieldError(
-                            "work", isWork_Begin_YearEmpty);
-                        controller.updateFieldError("cx", isCreation_YearEmpty);
-                        controller.updateFieldError("email", isEmailEmpty);
-                        controller.updateFieldError(
-                            "cnum", isCongregation_numberEmpty);
-                        controller.updateFieldError("twn", isTown_ChipEmpty);
+                    controller.updateFieldError("name", isSchool_NameEmpty);
+                    controller.updateFieldError("lic", isLicense_NumberEmpty);
+                    controller.updateFieldError("address", isAddressEmpty);
+                    controller.updateFieldError("vill", isVillageEmpty);
+                    controller.updateFieldError("reg", isRegionEmpty);
+                    controller.updateFieldError("phone", isPhoneEmpty);
+                    controller.updateFieldError("work", isWork_Begin_YearEmpty);
+                    controller.updateFieldError("cx", isCreation_YearEmpty);
+                    controller.updateFieldError("email", isEmailEmpty);
+                    controller.updateFieldError(
+                        "cnum", isCongregation_numberEmpty);
+                    controller.updateFieldError("twn", isTown_ChipEmpty);
 
-                        if (!(isSchool_NameEmpty ||
-                            isLicense_NumberEmpty ||
-                            isAddressEmpty ||
-                            isVillageEmpty ||
-                            isRegionEmpty ||
-                            isPhoneEmpty ||
-                            isEmailEmpty ||
-                            isCreation_YearEmpty ||
-                            isCongregation_numberEmpty ||
-                            isTown_ChipEmpty ||
-                            isWork_Begin_YearEmpty)) {
-                          Update_School_Data_API(context).Update_School_Data();
-                        }
-                      },
-                      icon: Icon(Icons.save,
-                          size: 18, color: Theme.of(context).highlightColor)),
+                    if (!(isSchool_NameEmpty ||
+                        isLicense_NumberEmpty ||
+                        isAddressEmpty ||
+                        isVillageEmpty ||
+                        isRegionEmpty ||
+                        isPhoneEmpty ||
+                        isEmailEmpty ||
+                        isCreation_YearEmpty ||
+                        isCongregation_numberEmpty ||
+                        isTown_ChipEmpty ||
+                        isWork_Begin_YearEmpty)) {
+                      Update_School_Data_API(context).Update_School_Data();
+                    }
+                  },
+                  validate: Get.find<Add_Data_controller>().roll == "subAdmin",
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0),
@@ -357,6 +340,9 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Textfildwithupper(
+                                        enabled: Get.find<Add_Data_controller>()
+                                                .roll !=
+                                            "subAdmin",
                                         isRequired: true,
                                         isError: controller.IsnameError,
                                         onChanged: (value) {
@@ -373,6 +359,10 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                       padding: const EdgeInsets.only(
                                           left: 20.0, right: 20.0),
                                       child: Textfildwithupper(
+                                          enabled:
+                                              Get.find<Add_Data_controller>()
+                                                      .roll !=
+                                                  "subAdmin",
                                           isError: controller.IslicError,
                                           onChanged: (value) {
                                             if (value.isNotEmpty) {
@@ -393,6 +383,9 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Textfildwithupper(
+                                        enabled: Get.find<Add_Data_controller>()
+                                                .roll !=
+                                            "subAdmin",
                                         isError: controller.IsaddressError,
                                         onChanged: (value) {
                                           if (value.isNotEmpty) {
@@ -409,6 +402,10 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                       padding: const EdgeInsets.only(
                                           left: 20.0, right: 20.0),
                                       child: Textfildwithupper(
+                                          enabled:
+                                              Get.find<Add_Data_controller>()
+                                                      .roll !=
+                                                  "subAdmin",
                                           isError: controller.IsvillError,
                                           onChanged: (value) {
                                             if (value.isNotEmpty) {
@@ -429,6 +426,9 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Textfildwithupper(
+                                        enabled: Get.find<Add_Data_controller>()
+                                                .roll !=
+                                            "subAdmin",
                                         isError: controller.IsregError,
                                         onChanged: (value) {
                                           if (value.isNotEmpty) {
@@ -445,6 +445,10 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                       padding: const EdgeInsets.only(
                                           left: 20.0, right: 20.0),
                                       child: Textfildwithupper(
+                                          enabled:
+                                              Get.find<Add_Data_controller>()
+                                                      .roll !=
+                                                  "subAdmin",
                                           isError: controller.Isphoneror,
                                           onChanged: (value) {
                                             if (value.isNotEmpty) {
@@ -466,6 +470,9 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Textfildwithupper(
+                                        enabled: Get.find<Add_Data_controller>()
+                                                .roll !=
+                                            "subAdmin",
                                         isError: controller.IsworkError,
                                         onChanged: (value) {
                                           if (value.isNotEmpty) {
@@ -483,6 +490,10 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                       padding: const EdgeInsets.only(
                                           left: 20.0, right: 20.0),
                                       child: Textfildwithupper(
+                                          enabled:
+                                              Get.find<Add_Data_controller>()
+                                                      .roll !=
+                                                  "subAdmin",
                                           isError: controller.IscxError,
                                           onChanged: (value) {
                                             if (value.isNotEmpty) {
@@ -504,6 +515,9 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Textfildwithupper(
+                                        enabled: Get.find<Add_Data_controller>()
+                                                .roll !=
+                                            "subAdmin",
                                         isError: controller.IsemailError,
                                         onChanged: (value) {
                                           if (value.isNotEmpty) {
@@ -521,6 +535,10 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                       padding: const EdgeInsets.only(
                                           left: 20.0, right: 20.0),
                                       child: Textfildwithupper(
+                                          enabled:
+                                              Get.find<Add_Data_controller>()
+                                                      .roll !=
+                                                  "subAdmin",
                                           width: Get.width / 2.5,
                                           controller: controller.Fax,
                                           Uptext: "Fax".tr,
@@ -533,6 +551,9 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Textfildwithupper(
+                                        enabled: Get.find<Add_Data_controller>()
+                                                .roll !=
+                                            "subAdmin",
                                         width: Get.width / 2.5,
                                         controller: controller.Clinic_Name,
                                         Uptext: "Clinic Name".tr,
@@ -541,6 +562,10 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                       padding: const EdgeInsets.only(
                                           left: 20.0, right: 20.0),
                                       child: Textfildwithupper(
+                                          enabled:
+                                              Get.find<Add_Data_controller>()
+                                                      .roll !=
+                                                  "subAdmin",
                                           fieldType: "number",
                                           isError: controller.IscnumError,
                                           onChanged: (value) {
@@ -563,6 +588,9 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Textfildwithupper(
+                                        enabled: Get.find<Add_Data_controller>()
+                                                .roll !=
+                                            "subAdmin",
                                         width: Get.width / 2.5,
                                         controller: controller.Previous_name,
                                         Uptext: "Previous name".tr,
@@ -571,6 +599,10 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                       padding: const EdgeInsets.only(
                                           left: 20.0, right: 20.0),
                                       child: Textfildwithupper(
+                                          enabled:
+                                              Get.find<Add_Data_controller>()
+                                                      .roll !=
+                                                  "subAdmin",
                                           isError: controller.IstwnError,
                                           onChanged: (value) {
                                             if (value.isNotEmpty) {
@@ -602,9 +634,14 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                                         .Outstanding_School
                                                         .value,
                                                     onChanged: (value) {
-                                                      controller
-                                                          .Outstanding_School
-                                                          .value = value!;
+                                                      if (Get.find<
+                                                                  Add_Data_controller>()
+                                                              .roll !=
+                                                          "subAdmin") {
+                                                        controller
+                                                            .Outstanding_School
+                                                            .value = value!;
+                                                      }
                                                     },
                                                   ),
                                                   Text("Outstanding School".tr),
@@ -617,9 +654,14 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                                     value: controller
                                                         .Taken_OverSchool.value,
                                                     onChanged: (value) {
-                                                      controller
-                                                          .Taken_OverSchool
-                                                          .value = value!;
+                                                      if (Get.find<
+                                                                  Add_Data_controller>()
+                                                              .roll !=
+                                                          "subAdmin") {
+                                                        controller
+                                                            .Taken_OverSchool
+                                                            .value = value!;
+                                                      }
                                                     },
                                                   ),
                                                   Text("Taken Over School".tr),
@@ -633,9 +675,14 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                                         .Reassignment_Teachers
                                                         .value,
                                                     onChanged: (value) {
-                                                      controller
-                                                          .Reassignment_Teachers
-                                                          .value = value!;
+                                                      if (Get.find<
+                                                                  Add_Data_controller>()
+                                                              .roll !=
+                                                          "subAdmin") {
+                                                        controller
+                                                            .Reassignment_Teachers
+                                                            .value = value!;
+                                                      }
                                                     },
                                                   ),
                                                   Text("Reassignment Teachers"
@@ -649,8 +696,13 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                                     value: controller
                                                         .Martyrs_Sons.value,
                                                     onChanged: (value) {
-                                                      controller.Martyrs_Sons
-                                                          .value = value!;
+                                                      if (Get.find<
+                                                                  Add_Data_controller>()
+                                                              .roll !=
+                                                          "subAdmin") {
+                                                        controller.Martyrs_Sons
+                                                            .value = value!;
+                                                      }
                                                     },
                                                   ),
                                                   Text("Martyrs Sons".tr),
@@ -674,9 +726,14 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                                           .Internet_Connection
                                                           .value,
                                                       onChanged: (value) {
-                                                        controller
-                                                            .Internet_Connection
-                                                            .value = value!;
+                                                        if (Get.find<
+                                                                    Add_Data_controller>()
+                                                                .roll !=
+                                                            "subAdmin") {
+                                                          controller
+                                                              .Internet_Connection
+                                                              .value = value!;
+                                                        }
                                                       },
                                                     ),
                                                     Text("Internet Connection"
@@ -691,9 +748,14 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                                           .Government_Connection
                                                           .value,
                                                       onChanged: (value) {
-                                                        controller
-                                                            .Government_Connection
-                                                            .value = value!;
+                                                        if (Get.find<
+                                                                    Add_Data_controller>()
+                                                                .roll !=
+                                                            "subAdmin") {
+                                                          controller
+                                                              .Government_Connection
+                                                              .value = value!;
+                                                        }
                                                       },
                                                     ),
                                                     Text("Government Connection"
@@ -707,9 +769,14 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                                       value: controller
                                                           .Joint_Building.value,
                                                       onChanged: (value) {
-                                                        controller
-                                                            .Joint_Building
-                                                            .value = value!;
+                                                        if (Get.find<
+                                                                    Add_Data_controller>()
+                                                                .roll !=
+                                                            "subAdmin") {
+                                                          controller
+                                                              .Joint_Building
+                                                              .value = value!;
+                                                        }
                                                       },
                                                     ),
                                                     Text("Joint Building".tr),
@@ -723,9 +790,14 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                                           .Industrial_Section
                                                           .value,
                                                       onChanged: (value) {
-                                                        controller
-                                                            .Industrial_Section
-                                                            .value = value!;
+                                                        if (Get.find<
+                                                                    Add_Data_controller>()
+                                                                .roll !=
+                                                            "subAdmin") {
+                                                          controller
+                                                              .Industrial_Section
+                                                              .value = value!;
+                                                        }
                                                       },
                                                     ),
                                                     Text("Industrial Section"

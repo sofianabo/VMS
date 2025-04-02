@@ -32,6 +32,29 @@ class DropdownStudentsMark extends StatelessWidget {
     return GetBuilder<Students_Marks_Controller>(builder: (cont) {
       String? selectedValue;
 
+      switch (type) {
+        case 'Class':
+          if (cont.Classlist.contains(cont.ClassIndex)) {
+            selectedValue = cont.ClassIndex;
+          }
+          break;
+        case 'Division':
+          if (cont.Divisionlist.contains(cont.DivisionIndex)) {
+            selectedValue = cont.DivisionIndex;
+          }
+          break;
+        case 'Semester':
+          if (cont.Semesterlist.contains(cont.SemesterIndex)) {
+            selectedValue = cont.SemesterIndex;
+          }
+          break;
+        case 'Curriculum':
+          if (cont.Curriculumlist.contains(cont.CurriculumIndex)) {
+            selectedValue = cont.CurriculumIndex;
+          }
+          break;
+      }
+
       return Container(
         padding: const EdgeInsets.all(6.0),
         alignment: Alignment.centerLeft,
@@ -115,15 +138,16 @@ class DropdownStudentsMark extends StatelessWidget {
                                     cont.set_semesteridx(3);
                                   }
                                   cont.resetinSemester();
-                                  Get_All_Curriculm_API(context).Get_All_Curriculm(
-                                      // Semesterid: cont.semesterId,
-                                      // classId:
-                                      //     Get.find<Dropdownclassescontroller>()
-                                      //         .Allclass[cont.Classlist.indexOf(
-                                      //             cont.ClassIndex)]
-                                      //         .id
-                                      //         .toString(),
-                                      );
+                                  Get_All_Curriculm_API(context)
+                                      .Get_All_Curriculm(
+                                    Semesterid: cont.semesterId,
+                                    classId:
+                                        Get.find<Dropdownclassescontroller>()
+                                            .Allclass[cont.Classlist.indexOf(
+                                                cont.ClassIndex)]
+                                            .id
+                                            .toString(),
+                                  );
                                   break;
                               }
                             }
@@ -160,7 +184,6 @@ class DropdownStudentsMark extends StatelessWidget {
     });
   }
 
-  /// 🔹 دالة لإرجاع القائمة بناءً على النوع
   List<String> _getListByType(Students_Marks_Controller cont) {
     switch (type) {
       case 'Class':
@@ -176,7 +199,6 @@ class DropdownStudentsMark extends StatelessWidget {
     }
   }
 
-  /// 🔹 دالة لإنشاء عناصر القائمة
   List<DropdownMenuItem<String>> _getDropdownItems(
       Students_Marks_Controller cont) {
     return _getListByType(cont).map((String value) {

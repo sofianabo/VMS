@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Guardian_APIS/EditGuardianAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/allGaurdianController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
@@ -252,53 +253,63 @@ class AllGuardianGrid extends StatelessWidget {
                                             width: 80,
                                             text: "Edit".tr,
                                             onPressed: () async {
-                                              bool isNameEmpty =
-                                                  gName.text.trim().isEmpty;
-                                              bool isPhoneEmpty =
-                                                  gphone.text.trim().isEmpty;
-                                              bool isNationalIDEmpty =
-                                                  gNationalID.text
-                                                      .trim()
-                                                      .isEmpty;
-                                              bool isEmailEmpty =
-                                                  gEmail.text.trim().isEmpty;
+                                              if (Get.find<
+                                                          Add_Data_controller>()
+                                                      .roll !=
+                                                  "subAdmin") {
+                                                bool isNameEmpty =
+                                                    gName.text.trim().isEmpty;
+                                                bool isPhoneEmpty =
+                                                    gphone.text.trim().isEmpty;
+                                                bool isNationalIDEmpty =
+                                                    gNationalID.text
+                                                        .trim()
+                                                        .isEmpty;
+                                                bool isEmailEmpty =
+                                                    gEmail.text.trim().isEmpty;
 
-                                              RegExp emailRegex = RegExp(
-                                                  r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
-                                              bool isEmailValid = emailRegex
-                                                  .hasMatch(gEmail.text);
+                                                RegExp emailRegex = RegExp(
+                                                    r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+                                                bool isEmailValid = emailRegex
+                                                    .hasMatch(gEmail.text);
 
-                                              controller.updateFieldError(
-                                                  "name", isNameEmpty);
-                                              controller.updateFieldError(
-                                                  "phone", isPhoneEmpty);
-                                              controller.updateFieldError(
-                                                  "nid", isNationalIDEmpty);
-                                              controller.updateFieldError(
-                                                  "email",
-                                                  isEmailEmpty ||
-                                                      !isEmailValid);
+                                                controller.updateFieldError(
+                                                    "name", isNameEmpty);
+                                                controller.updateFieldError(
+                                                    "phone", isPhoneEmpty);
+                                                controller.updateFieldError(
+                                                    "nid", isNationalIDEmpty);
+                                                controller.updateFieldError(
+                                                    "email",
+                                                    isEmailEmpty ||
+                                                        !isEmailValid);
 
-                                              if (!(isNameEmpty ||
-                                                  isPhoneEmpty ||
-                                                  isNationalIDEmpty ||
-                                                  isEmailEmpty ||
-                                                  !isEmailValid)) {
-                                                await Editguardianapi(context)
-                                                    .Editguardian(
-                                                        controller
-                                                            .filteredregaurdians![
-                                                                index]
-                                                            .id!,
-                                                        gName.text,
-                                                        gEmail.text,
-                                                        gNationalID.text,
-                                                        gphone.text,
-                                                        index);
+                                                if (!(isNameEmpty ||
+                                                    isPhoneEmpty ||
+                                                    isNationalIDEmpty ||
+                                                    isEmailEmpty ||
+                                                    !isEmailValid)) {
+                                                  await Editguardianapi(context)
+                                                      .Editguardian(
+                                                          controller
+                                                              .filteredregaurdians![
+                                                                  index]
+                                                              .id!,
+                                                          gName.text,
+                                                          gEmail.text,
+                                                          gNationalID.text,
+                                                          gphone.text,
+                                                          index);
+                                                }
                                               }
                                             },
                                             color:
-                                                Theme.of(context).primaryColor)
+                                                Get.find<Add_Data_controller>()
+                                                            .roll ==
+                                                        "subAdmin"
+                                                    ? Get.theme.disabledColor
+                                                    : Theme.of(context)
+                                                        .primaryColor)
                                       ],
                                     )
                                   ],

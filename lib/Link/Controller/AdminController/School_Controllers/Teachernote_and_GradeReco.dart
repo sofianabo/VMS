@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/QuizType_Model.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/Quiz_Type_For_Operation_Model.dart'
+    as qtf;
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 
@@ -9,80 +12,55 @@ class TeachernoteAndGradeReco extends GetxController {
   AllClassModel? NoneClassmodel;
 
   bool isQuizTypeLoading = true;
+  bool isQuizTypeOpirationLoading = true;
   QuizType_Model? Qt_Model;
   String ClassIndex = "";
+  String OperationIndex = "";
 
   String SemesterIndex = "The First Semester";
   int SemesterSendIndex = 1;
   var columnWidths = [].obs;
+
   List<String> ClassList = [];
   List<String> SemesterList = [
     "The First Semester",
     "The Second Semester",
     "The Third Semester",
   ];
+
+  List<String> OperationList = [
+    "Sum",
+    "Average",
+  ];
+
   bool isClassLoading = true;
   bool isClassDialogLoading = true;
 
   var groups = <Map<String, dynamic>>[].obs;
   var items = [].obs;
-  var selectedItemsForSum = <String>[].obs;
 
-  void updateSelectedItems(List<String> selected) {
-    selectedItemsForSum.assignAll(selected);
-    update();
-  }
+  var currentPage = 0.obs;
+  PageController pageController = PageController();
 
-  // لتخزين العناصر المختارة لكل Group
-  var selectedItemsMap = <int, List<String>>{}.obs;
-
-  // في الـ Controller، تأكد أن لديك تعريف واحد فقط لكل دالة:
-
-// دالة واحدة فقط بهذا الاسم
-  String getGroupName(dynamic itemId) {
-    for (var group in groups) {
-      if (group['items'] != null) {
-        for (var item in group['items']) {
-          if (item['id'] == itemId) {
-            return group['name'] ?? 'Unknown Group';
-          }
-        }
-      }
+  void goToPage(int page) {
+    if (page == 0) {
+      resetSelections();
     }
-    return 'Unknown Group';
-  }
-
-// دالة واحدة فقط بهذا الاسم
-  List<Map<String, dynamic>> getAllItems() {
-    List<Map<String, dynamic>> allItems = [];
-    for (var group in groups) {
-      print(group['items']);
-      print(group['name']);
-      if (group['items'] != null && (group['items'] as List).isNotEmpty) {
-        allItems.addAll(List<Map<String, dynamic>>.from(group['items']));
-      } else {
-        allItems.add({
-          'name': group['name'] ?? 'Unnamed Group',
-        });
-      }
-    }
-    return allItems;
-  }
-
-// 3. دالة لتحديد العناصر
-  void toggleItemSelection(String itemName, bool isSelected) {
-    if (isSelected) {
-      if (!selectedItemsForSum.contains(itemName)) {
-        selectedItemsForSum.add(itemName);
-      }
-    } else {
-      selectedItemsForSum.remove(itemName);
-    }
-    update();
+    currentPage.value = page;
+    pageController.animateToPage(
+      page,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
   }
 
   SetIsQuizType(bool value) {
     isQuizTypeLoading = value;
+    update();
+  }
+
+  SetIsQuizType_For_Opiration(bool value) {
+    isQuizTypeOpirationLoading = value;
     update();
   }
 
@@ -111,14 +89,6 @@ class TeachernoteAndGradeReco extends GetxController {
                     'isQuizable': item.isQuizable == 0 ? false : true,
                   })
               .toList(),
-
-          // 'selectedForSum': type.selectedForSum
-          //     ?.map((item) => {
-          //
-          //           'id': item.id,
-          //           'name': item.name,
-          //         })
-          //     .toList(),
         };
 
         if (groupIndex != -1) {
@@ -228,13 +198,9 @@ class TeachernoteAndGradeReco extends GetxController {
       "ratio": double.parse(ratio),
       "size": 100.0,
       "items": List.from(newItems),
-      "selectedForSum": List.from(selectedItemsForSum),
     });
 
-    selectedItemsMap[newGroupIndex] = List.from(selectedItemsForSum);
-
     columnWidths.add(100.0);
-    selectedItemsForSum.clear();
     update();
   }
 
@@ -302,6 +268,9 @@ class TeachernoteAndGradeReco extends GetxController {
       case 'class':
         ClassIndex = index ?? "";
         break;
+      case 'operation':
+        OperationIndex = index ?? "";
+        break;
     }
 
     update();
@@ -315,12 +284,16 @@ class TeachernoteAndGradeReco extends GetxController {
       case 'class':
         SemesterList = options;
         break;
+      case 'operation':
+        OperationList = options;
+        break;
     }
     update();
   }
 
   String get selectedClass => ClassIndex;
   String get selectedSemester => SemesterIndex;
+  String get selectedOperationIndex => OperationIndex;
 
   void set_semesteridx(int i) {
     SemesterSendIndex = i;
@@ -345,6 +318,38 @@ class TeachernoteAndGradeReco extends GetxController {
       selectedClasses.add(classId);
     }
 
+    update();
+  }
+
+  qtf.Type? selectedType;
+  List<int> selectedTypeIds = [];
+  void resetSelections() {
+    selectedType = null;
+    selectedTypeIds.clear();
+    update();
+  }
+
+  void selectType(qtf.Type type) {
+    OperationIndex = type.operationType ?? "";
+    selectedTypeIds.clear();
+    selectedType = type;
+
+    if (type.quizTypes != null && type.quizTypes!.isNotEmpty) {
+      for (var quizType in type.quizTypes!) {
+        if (!selectedTypeIds.contains(quizType.id)) {
+          selectedTypeIds.add(quizType.id!);
+        }
+      }
+    }
+    update();
+  }
+
+  qtf.Quiz_Type_For_Operation_Model? qtfModel;
+
+  void SetIsQuizType_For_OpirationData(
+      qtf.Quiz_Type_For_Operation_Model quiz_type_for_operation_model) {
+    qtfModel = quiz_type_for_operation_model;
+    isQuizTypeOpirationLoading = false;
     update();
   }
 }

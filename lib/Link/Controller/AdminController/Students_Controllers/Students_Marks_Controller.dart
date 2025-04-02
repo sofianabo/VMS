@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Curriculum_Model.dart';
@@ -26,6 +27,82 @@ class Students_Marks_Controller extends GetxController {
 
     filterdstudent = tempFilteredList;
     update();
+  }
+
+  double calculateOperationValue(Student student, QuizType quizType) {
+    if (quizType.quizTypes == null || quizType.quizTypes!.isEmpty) return 0;
+
+    double sum = 0;
+    double count = 0;
+
+    for (var id in quizType.quizTypes!) {
+      final mark = student.mark?.firstWhere(
+        (m) => m.id == id,
+        orElse: () => Mark(mark: 0),
+      );
+      sum += mark?.mark ?? 0;
+      count++;
+
+      debugPrint('جمع القيم: ${mark?.mark} (المجموع الحالي: $sum)');
+    }
+
+    if (quizType.operationType == 'Sum') {
+      return sum;
+    } else if (quizType.operationType == 'Average') {
+      return double.parse("${count > 0 ? (sum / count).round() : 0}");
+    }
+
+    return 0;
+  }
+
+  int? getPassingMarkForQuizType(QuizType quizType, int? markId) {
+    if (quizType.items?.isNotEmpty ?? false) {
+      return quizType.items!
+          .firstWhere((item) => item.id == markId, orElse: () => Items())
+          .passingMark;
+    } else {
+      return quizType.passingMark;
+    }
+  }
+
+  void updateMark(Student student, Mark mark, String value, QuizType quizType) {
+    mark.mark = double.tryParse(value) ?? 0;
+    updateDependentFields(student, quizType);
+    update(); // لتحديث الواجهة
+  }
+
+  int? getMaxMarkForQuizType(QuizType quizType, int? markId) {
+    if (quizType.items?.isNotEmpty ?? false) {
+      return quizType.items!
+          .firstWhere((item) => item.id == markId, orElse: () => Items())
+          .maxMark;
+    } else {
+      return quizType.maxMark;
+    }
+  }
+
+  void updateDependentFields(Student student, QuizType quizType) {
+    bool needsUpdate = false;
+
+    for (var qt in studentsMarksModel?.quizType ?? []) {
+      if (qt.operationType != null && qt.quizTypes != null) {
+        var dependentMark = student.mark?.firstWhere(
+          (m) => m.id == qt.id,
+          orElse: () => Mark(id: qt.id, type: qt.name, mark: 0),
+        );
+
+        final newValue = calculateOperationValue(student, qt);
+        if (dependentMark!.mark != newValue) {
+          dependentMark.mark = newValue; // تحديث النموذج أولاً
+          needsUpdate = true;
+          debugPrint('تم تحديث الحقل المحسوب ${qt.name} إلى $newValue');
+        }
+      }
+    }
+
+    if (needsUpdate) {
+      update(['calculated_fields']);
+    }
   }
 
   void clearFilter() {
@@ -63,6 +140,8 @@ class Students_Marks_Controller extends GetxController {
   }
 
   SetisCurriculumLoading(bool value) {
+    studentsMarksModel?.quizType?.clear();
+    studentsMarksModel?.student?.clear();
     isCurriculumLoading = value;
     update();
   }
@@ -98,11 +177,13 @@ class Students_Marks_Controller extends GetxController {
     update();
   }
 
+  Curriculum_Model? CurriculumModel;
+
   void SetCurriculum(Curriculum_Model curriculumModel) {
     isLoading = true;
     CurriculumIndex = "";
     Curriculumlist = [];
-
+    CurriculumModel = curriculumModel;
     List<String> curr = [];
     if (curriculumModel.curriculum != null) {
       for (var g in curriculumModel.curriculum!) {
@@ -118,6 +199,8 @@ class Students_Marks_Controller extends GetxController {
   }
 
   setIsLoading(bool value) {
+    studentsMarksModel?.quizType?.clear();
+    studentsMarksModel?.student?.clear();
     isLoading = value;
     update();
   }
@@ -125,11 +208,11 @@ class Students_Marks_Controller extends GetxController {
   void setStudentsMarksData(Students_Marks_Model studentsMarks) {
     studentsMarksModel = studentsMarks;
     filterdstudent = List.from(studentsMarks.student!);
-    setIsLoading(false);
+    isLoading = false;
     update();
   }
 
-  void addMarkForAllStudents({required int mark, required String type}) {
+  void addMarkForAllStudents({required double mark, required String type}) {
     if (studentsMarksModel == null || studentsMarksModel!.student == null)
       return;
 

@@ -12,7 +12,7 @@ class RoleBasedMiddleware extends GetMiddleware {
       return const RouteSettings(name: '/home');
     }
 
-    if (role == "admin") {
+    if (role == "admin" || role == "subAdmin") {
       return const RouteSettings(name: '/admin');
     } else {
       return const RouteSettings(name: '/home');

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/EditTeacherAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AddTeacherController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/widgets/Admin_teachers/DropDownAllTeacher.dart';
@@ -87,7 +88,10 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                             Obx(
                               () => GestureDetector(
                                 onTap: () async {
-                                  await addcontrol.pickImage(context);
+                                  if (Get.find<Add_Data_controller>().roll !=
+                                      "subAdmin") {
+                                    await addcontrol.pickImage(context);
+                                  }
                                 },
                                 child: CircleAvatar(
                                   maxRadius: 100,
@@ -483,40 +487,43 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
             ButtonDialog(
                 text: "Edit Employee",
                 onPressed: () async {
-                  print(control.Birthdate.value);
-                  await Editteacherapi.Editteacher(
-                    employeeId: teacherId,
-                    selectedImage:
-                        Get.find<Addteachercontroller>().selectedImage.value,
-                    First_Name: firstName.text,
-                    Last_Name: lastName.text,
-                    Father_Name: fatherName.text,
-                    Mother_Name: motherName.text,
-                    Phone_Numper: phoneNumber.text,
-                    Birth_Date: control.Birthdate.value.toString(),
-                    Emergency_Number: emergency.text,
-                    Join_Date: control.Joindate.value.toString(),
-                    Address: address.text,
-                    Current_Address: currentAddress.text,
-                    Gender: control.genderDialogIndex,
-                    Family_State: control.familyStatusDialogIndex,
-                    contractType: control.contractTypeDialogIndex,
-                    Facebook_URL: facebook.text,
-                    X_Platform_URL: x.text,
-                    Linkedin_URL: linkedin.text,
-                    Instagram_URL: insta.text,
-                    Bank_Account_Title: bankAccountTitle.text,
-                    Bank_Name: bankName.text,
-                    Bank_Branch_Name: bankBranchName.text,
-                    Bank_Account_Number: bankAccountNumber.text,
-                    IFSC_Code: ifsc.text,
-                    Career_History: careerHistory.text,
-                    Qualification: qualification.text,
-                    Experience: experience.text,
-                    Note: note.text,
-                  );
+                  if (Get.find<Add_Data_controller>().roll != "subAdmin") {
+                    await Editteacherapi.Editteacher(
+                      employeeId: teacherId,
+                      selectedImage:
+                          Get.find<Addteachercontroller>().selectedImage.value,
+                      First_Name: firstName.text,
+                      Last_Name: lastName.text,
+                      Father_Name: fatherName.text,
+                      Mother_Name: motherName.text,
+                      Phone_Numper: phoneNumber.text,
+                      Birth_Date: control.Birthdate.value.toString(),
+                      Emergency_Number: emergency.text,
+                      Join_Date: control.Joindate.value.toString(),
+                      Address: address.text,
+                      Current_Address: currentAddress.text,
+                      Gender: control.genderDialogIndex,
+                      Family_State: control.familyStatusDialogIndex,
+                      contractType: control.contractTypeDialogIndex,
+                      Facebook_URL: facebook.text,
+                      X_Platform_URL: x.text,
+                      Linkedin_URL: linkedin.text,
+                      Instagram_URL: insta.text,
+                      Bank_Account_Title: bankAccountTitle.text,
+                      Bank_Name: bankName.text,
+                      Bank_Branch_Name: bankBranchName.text,
+                      Bank_Account_Number: bankAccountNumber.text,
+                      IFSC_Code: ifsc.text,
+                      Career_History: careerHistory.text,
+                      Qualification: qualification.text,
+                      Experience: experience.text,
+                      Note: note.text,
+                    );
+                  }
                 },
-                color: Theme.of(context).primaryColor,
+                color: Get.find<Add_Data_controller>().roll == "subAdmin"
+                    ? Get.theme.disabledColor
+                    : Theme.of(context).primaryColor,
                 width: 140)
           ]);
     }),
