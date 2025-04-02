@@ -33,13 +33,37 @@
     flex-direction: column;
     }
 
-    .container {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      padding: 15px;
-    }
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  width: 100%; /* يأخذ كل العرض المتاح */
+  max-width: 1200px; /* أقصى عرض عند استخدام الشاشات الكبيرة */
+}
+
+/* شاشات الموبايل */
+@media (max-width: 768px) {
+  .container {
+    max-width: 50%; /* يجعل العنصر أصغر في الموبايل */
+  }
+}
+
+/* شاشات التابلت */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container {
+    max-width: 60%; /* حجم متوسط للتابلت */
+  }
+}
+
+/* شاشات الديسكتوب */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 70%; /* يكبر العنصر قليلاً في الديسكتوب */
+  }
+}
+
 
 .loader {
     display: flex;
