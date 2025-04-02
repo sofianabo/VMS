@@ -306,7 +306,7 @@ class Add_Students_Controller extends GetxController {
         return RealagonIndex;
       case 'BloodType':
         return BloodTypeIndex;
-      case '  ':
+      case 'Location':
         return LocationIndex;
       case 'FamilyState':
         return FamilyStateIndex;
@@ -694,6 +694,30 @@ class Add_Students_Controller extends GetxController {
 
   ChangeShowPassword(bool value) {
     ShowPassword = value;
+    update();
+  }
+
+   void resetError() {
+   ShowPassword = true;
+   ISfirstNameError = false;
+   ISlastNameError = false;
+   IsBirthdateError = false;
+   IsPlaceOfBirthError = false;
+   IsGenderError = false;
+   IsReligionError = false;
+   IsBloodError = false;
+   IsCountryError = false;
+   ISphoneError = false;
+   ISLocalNationalIDError = false;
+   ISLocalAddressError = false;
+   ISclassError = false;
+   ISDivisionError = false;
+   ISusernameError = false;
+   ISpasswordError = false;
+   ISFatherNameError = false;
+   ISFatherphoneError = false;
+   ISMotherNameError = false;
+   ISMotherPhoneError = false;
     update();
   }
 }

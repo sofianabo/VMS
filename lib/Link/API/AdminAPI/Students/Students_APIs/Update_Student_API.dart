@@ -95,6 +95,7 @@ class Update_Student_API {
         MapEntry("martyrSon", martyrSon == true ? "1" : "0"),
         MapEntry("pend", Ispend == true ? "1" : "0"),
         MapEntry("feeDiscount", Fee_Discount.toString()),
+        MapEntry("password", password.toString()),
       ]);
 
       if (password != null &&

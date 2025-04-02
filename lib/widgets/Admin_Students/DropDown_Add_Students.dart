@@ -108,7 +108,7 @@ class DropdownAddStudents extends StatelessWidget {
                                                             Add_Students_Controller>()
                                                         .updateFieldError(
                                                             field, true);
-                                                  } 
+                                                  }
                                                   cont.updateFieldError(
                                                       field, true);
                                                 });

@@ -11,6 +11,7 @@ import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Students
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Students_Vaccines.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
@@ -216,7 +217,7 @@ class AllStudentGrid extends StatelessWidget {
                                                     text: "Cancel".tr,
                                                     onPressed: () {
                                                       Get.back();
-                                                    }, 
+                                                    },
                                                     color: Theme.of(context)
                                                         .primaryColor)
                                               ],
@@ -319,6 +320,9 @@ class AllStudentGrid extends StatelessWidget {
                                                     Theme.of(context)
                                                         .primaryColorLight)),
                                         onPressed: () async {
+                                          Get.find<Add_Students_Controller>()
+                                              .resetError();
+
                                           await Get_Students_Information_API(
                                                   context)
                                               .Get_Students_Information(

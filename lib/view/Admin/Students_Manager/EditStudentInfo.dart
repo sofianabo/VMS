@@ -110,7 +110,7 @@ EditStudentDialog(int idx, BuildContext context) async {
                       .selectedLocationIndex
                       .isEmpty ||
                   Get.find<Add_Students_Controller>().selectedLocationIndex ==
-                      "Syria".tr;
+                      "";
               bool isclassEmpty = Get.find<Add_Students_Controller>()
                       .selectedClassIndex
                       .isEmpty ||
@@ -129,11 +129,12 @@ EditStudentDialog(int idx, BuildContext context) async {
               bool isAddressEmpty = Current_Address.text.trim().isEmpty;
               bool isusernameEmpty =
                   add_controller.textController.text.trim().isEmpty;
-              bool ispasswordEmpty = Password.text.trim().isEmpty;
               bool isfathernameEmpty = Father_Name.text.trim().isEmpty;
               bool isFatherPhoneEmpty = Father_Phone.text.trim().isEmpty;
               bool isMotherNameEmpty = Mother_Name.text.trim().isEmpty;
               bool ismotehrPhoneEmpty = Mother_Phone.text.trim().isEmpty;
+              bool isPasswordEmpty = Password.text.trim().isEmpty;
+
               bool isbirthdateEmpty =
                   Get.find<Allempolyeecontroller>().Birthdate.value == null;
               RegExp passwordRegex = RegExp(r"^[a-zA-Z0-9]{8,}$");
@@ -155,14 +156,13 @@ EditStudentDialog(int idx, BuildContext context) async {
               add_controller.updateFieldError("localaddress", isAddressEmpty);
               add_controller.updateFieldError("username", isusernameEmpty);
               add_controller.updateFieldError("division", isDivisionEmpty);
-              add_controller.updateFieldError("password", ispasswordEmpty);
               add_controller.updateFieldError("fathername", isfathernameEmpty);
               add_controller.updateFieldError(
                   "fatherphone", isFatherPhoneEmpty);
               add_controller.updateFieldError("mothername", isMotherNameEmpty);
               add_controller.updateFieldError(
                   "motherphone", ismotehrPhoneEmpty);
-              if (!(isFirstNameEmpty ||
+              if ((isFirstNameEmpty ||
                   isLastNameEmpty ||
                   isbirthdateEmpty ||
                   isPlaceofBirthEmpty ||
@@ -176,69 +176,69 @@ EditStudentDialog(int idx, BuildContext context) async {
                   isAddressEmpty ||
                   isusernameEmpty ||
                   isDivisionEmpty ||
-                  ispasswordEmpty ||
                   isfathernameEmpty ||
                   isFatherPhoneEmpty ||
                   isMotherNameEmpty ||
                   ismotehrPhoneEmpty)) {
-                await Update_Student_API.Update_Student(
-                    Academic_sequence_FileID:
-                        Controller.student!.documantes!.academicSequence?.id,
-                    Certefecate_FileID:
-                        Controller.student!.documantes!.certificate?.id,
-                    FamilyNotbook_FileID:
-                        Controller.student!.documantes!.familyNotebook?.id,
-                    FatherPassport_FileID:
-                        Controller.student!.documantes!.fatherPassport?.id,
-                    MotherPassport_FileID:
-                        Controller.student!.documantes!.motherPassport?.id,
-                    SonPassport_FileID:
-                        Controller.student!.documantes!.sonPassport?.id,
-                    studentID: Controller.filteredStudents[idx].id,
-                    UserID_FileID: Controller.student!.documantes!.userID?.id,
-                    locationId: Get.find<Location_controller>()
-                        .location![add_controller.Locationlist.indexOf(
-                            add_controller.LocationIndex)]
-                        .id,
-                    firstName: First_Name.text,
-                    lastName: Last_Name.text,
-                    gender: add_controller.GenderIndex,
-                    birthDate:
-                        Get.find<Allempolyeecontroller>().Birthdate.value,
-                    placeOfBirth: Place_Of_Birth.text,
-                    religion: add_controller.RealagonIndex,
-                    mobileNumber: Mobile_Number.text,
-                    bloodType: add_controller.BloodTypeIndex,
-                    fatherName: Father_Name.text,
-                    fatherPhone: Father_Phone.text,
-                    motherName: Mother_Name.text,
-                    currentAdress: Current_Address.text,
-                    familystatus: add_controller.FamilyStateIndex,
-                    password: Password.text,
-                    classid: Get.find<Dropdownclassescontroller>()
-                        .Allclass[
-                            add_controller.Classlist.indexOf(add_controller.ClassIndex)]
-                        .id,
-                    divisionId: Get.find<Dropdowndivisioncontroller>().allDivision[add_controller.Divisionlist.indexOf(add_controller.DivisionIndex)].id,
-                    fatherWork: Father_Work.text,
-                    motherPhone: Mother_Phone.text,
-                    motherWork: Mother_Work.text,
-                    nationalNumber: National_ID.text,
-                    localID: LocalID.text,
-                    lastSchoolDetail: Last_School_Detail.text,
-                    note: Note.text,
-                    Fee_Discount: Fee_Discount.text,
-                    specialNeeds: add_controller.isSpecialNeed.value,
-                    martyrSon: add_controller.isMartySon.value,
-                    FatherPassport: add_controller.selectedFatherPassport.value,
-                    MotherPassport: add_controller.selectedMotherPassport.value,
-                    SonPassport: add_controller.selectedSonPassport.value,
-                    UserID: add_controller.selectedId.value,
-                    Certefecate: add_controller.selectedCertificate.value,
-                    Ispend: add_controller.isPendStudent.value,
-                    Academic_sequence: add_controller.selectedtsalsol.value,
-                    FamilyNotbook: add_controller.selectedFamilyBook.value,
-                    file: add_controller.selectedImage.value);
+                if (isPasswordEmpty || (!isPasswordEmpty && isPasswordValid))
+                  await Update_Student_API.Update_Student(
+                      Academic_sequence_FileID:
+                          Controller.student!.documantes!.academicSequence?.id,
+                      Certefecate_FileID:
+                          Controller.student!.documantes!.certificate?.id,
+                      FamilyNotbook_FileID:
+                          Controller.student!.documantes!.familyNotebook?.id,
+                      FatherPassport_FileID:
+                          Controller.student!.documantes!.fatherPassport?.id,
+                      MotherPassport_FileID:
+                          Controller.student!.documantes!.motherPassport?.id,
+                      SonPassport_FileID:
+                          Controller.student!.documantes!.sonPassport?.id,
+                      studentID: Controller.filteredStudents[idx].id,
+                      UserID_FileID: Controller.student!.documantes!.userID?.id,
+                      locationId: Get.find<Location_controller>()
+                          .location![add_controller.Locationlist.indexOf(
+                              add_controller.LocationIndex)]
+                          .id,
+                      firstName: First_Name.text,
+                      lastName: Last_Name.text,
+                      gender: add_controller.GenderIndex,
+                      birthDate:
+                          Get.find<Allempolyeecontroller>().Birthdate.value,
+                      placeOfBirth: Place_Of_Birth.text,
+                      religion: add_controller.RealagonIndex,
+                      mobileNumber: Mobile_Number.text,
+                      bloodType: add_controller.BloodTypeIndex,
+                      fatherName: Father_Name.text,
+                      fatherPhone: Father_Phone.text,
+                      motherName: Mother_Name.text,
+                      currentAdress: Current_Address.text,
+                      familystatus: add_controller.FamilyStateIndex,
+                      password: Password.text,
+                      classid: Get.find<Dropdownclassescontroller>()
+                          .Allclass[
+                              add_controller.Classlist.indexOf(add_controller.ClassIndex)]
+                          .id,
+                      divisionId: Get.find<Dropdowndivisioncontroller>().allDivision[add_controller.Divisionlist.indexOf(add_controller.DivisionIndex)].id,
+                      fatherWork: Father_Work.text,
+                      motherPhone: Mother_Phone.text,
+                      motherWork: Mother_Work.text,
+                      nationalNumber: National_ID.text,
+                      localID: LocalID.text,
+                      lastSchoolDetail: Last_School_Detail.text,
+                      note: Note.text,
+                      Fee_Discount: Fee_Discount.text,
+                      specialNeeds: add_controller.isSpecialNeed.value,
+                      martyrSon: add_controller.isMartySon.value,
+                      FatherPassport: add_controller.selectedFatherPassport.value,
+                      MotherPassport: add_controller.selectedMotherPassport.value,
+                      SonPassport: add_controller.selectedSonPassport.value,
+                      UserID: add_controller.selectedId.value,
+                      Certefecate: add_controller.selectedCertificate.value,
+                      Ispend: add_controller.isPendStudent.value,
+                      Academic_sequence: add_controller.selectedtsalsol.value,
+                      FamilyNotbook: add_controller.selectedFamilyBook.value,
+                      file: add_controller.selectedImage.value);
               }
             },
             color: Get.theme.primaryColor,
@@ -850,9 +850,24 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                                     ? 20.0
                                     : 0),
                             child: Textfildwithupper(
-                                isRequired: true,
+                                isRequired: false,
                                 width: 300,
-                                isError: controller.ISpasswordError,
+                                fieldType: "password",
+                                IconButton: IconButton(
+                                    onPressed: () {
+                                      controller.ChangeShowPassword(
+                                          !controller.ShowPassword);
+                                    },
+                                    icon: Icon(
+                                      controller.ShowPassword
+                                          ? Icons.visibility_off
+                                          : Icons.remove_red_eye_outlined,
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall!
+                                          .color,
+                                    )),
+                                hidePassword: controller.ShowPassword,
                                 onChanged: (value) {
                                   if (value.isNotEmpty) {
                                     controller.updateFieldError(
