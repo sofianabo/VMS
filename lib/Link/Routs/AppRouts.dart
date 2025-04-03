@@ -14,14 +14,17 @@ class AppRoutes {
     GetPage(
       name: '/admin',
       page: () => AdminHome(),
+      middlewares: [RoleBasedMiddleware()],
     ),
     GetPage(
       name: '/login',
       page: () => LoginScreen(),
+      middlewares: [RoleBasedMiddleware()],
     ),
     GetPage(
       name: '/home',
       page: () => Home(),
+      middlewares: [RoleBasedMiddleware()],
     ),
   ];
 }

@@ -35,8 +35,7 @@ class LoginAPI {
         prefs!.setString("email", user.email!);
         prefs!.setString("imageId", user.imageId.toString());
         prefs!.setString("fullname", user.fullName.toString());
-
-        Get.offAllNamed('/');
+        Get.offAllNamed('/admin');
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
@@ -44,7 +43,6 @@ class LoginAPI {
           type: DioExceptionType.badResponse,
         ));
       }
-      return response.statusCode;
     } catch (e) {
       if (e is DioException) {
         ErrorHandler.handleDioError(e);

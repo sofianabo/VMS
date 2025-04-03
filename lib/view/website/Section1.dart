@@ -118,7 +118,7 @@ class _Section1State extends State<Section1>
                                       .copyWith(fontSize: 16)),
                             ),
                             onTap: () {
-                              Get.to(() => LoginScreen());
+                              Get.toNamed("/login");
                             },
                           ),
                         ],

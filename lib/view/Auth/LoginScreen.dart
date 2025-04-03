@@ -1,16 +1,11 @@
-// ignore_for_file: file_names, must_be_immutable
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Link/API/AuthAPI/LoginAPI.dart';
 import 'package:vms_school/Link/Controller/AuthController/UserController.dart';
-import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
-import 'package:vms_school/view/Admin/AdminHome.dart';
-import 'package:vms_school/widgets/AuthButton.dart';
 import 'package:vms_school/widgets/TextFieldAuth.dart';
 import 'package:vms_school/widgets/TextFieldPassword.dart';
 
@@ -192,7 +187,6 @@ class LoginScreen extends StatelessWidget {
                       ),
                       onPressed: () async {
                         if (controller.Isloading == false) {
-                          prefs!.setString("username", username.text);
                           await LoginAPI(context)
                               .login(username.text, password.text);
                         }
