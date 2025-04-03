@@ -34,7 +34,7 @@ class ErrorHandler {
           message = "المورد المطلوب غير موجود.";
           break;
         case 412:
-          message = "الشروط المحددة للطلب غير محققة.";
+          message = "اسم المستخدم موجود بالفعل";
           break;
         case 416:
           message = "نطاق البيانات المطلوب غير متاح.";
@@ -50,6 +50,9 @@ class ErrorHandler {
           break;
         case 431:
           message = "عذرا هذه الخانة تحتوي على حصة سابقة.";
+          break;
+        case 450:
+          message = "لا يمكن تكرار نفس الاسم";
           break;
         case 500:
           message = "حدث خطأ داخلي في الخادم. يرجى المحاولة لاحقًا.";

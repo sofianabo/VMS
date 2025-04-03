@@ -234,8 +234,6 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                               "Teacher",
                                               "Teacher",
                                               password.text);
-                                          Get.back();
-                                          Getallteachersapi.Getallteachers();
                                         }
                                       },
                                       color: Theme.of(context).primaryColor,
