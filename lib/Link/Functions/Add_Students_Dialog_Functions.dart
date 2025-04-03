@@ -87,7 +87,7 @@ All_Gurdians_Dialog() {
   TextEditingController LocalID = TextEditingController();
   TextEditingController Note = TextEditingController();
   TextEditingController Fee_Discount = TextEditingController();
-  final addStudentsController = Get.put(Add_Students_Controller());
+    final addStudentsController = Get.put(Add_Students_Controller());
   final class_controller = Get.find<Dropdownclassescontroller>();
   addStudentsController.resetData();
   return VMSAlertDialog(

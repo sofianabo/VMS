@@ -13,25 +13,38 @@ import 'package:vms_school/widgets/VMSAlertDialog.dart';
 Add_Group() {
   TextEditingController groupname = TextEditingController();
   TextEditingController ratio = TextEditingController();
+  final teachernoteAndGradeReco = Get.put(TeachernoteAndGradeReco());
+  teachernoteAndGradeReco.resetError(); // maybe error
   return GetBuilder<TeachernoteAndGradeReco>(builder: (controller) {
     double totalRatio = controller.items
         .fold(0, (sum, item) => sum + (item['ratio'] as num)); // حساب المجموع
     ratio.text = totalRatio.toString();
+    // controller.resetError();
+
     return VMSAlertDialog(
       action: [
         ButtonDialog(
-          text: "Add",
+          text: "Add".tr,
           onPressed: () {
-            double? ratioValue = double.tryParse(ratio.text);
-            if (ratioValue != null) {
-              controller.Add_Groub(
-                groupname.text,
-                ratioValue.toString(),
-                controller.items.toList().cast<Map<String, dynamic>>(),
-              );
-              Get.back();
-            } else {
-              Get.snackbar("Error", "Invalid ratio value");
+            bool isgroupnameError = groupname.text.trim().isEmpty;
+            bool isratioError = ratio.text.trim().isEmpty ||
+                int.parse(ratio.text.trim().toString()) > 0;
+            controller.updateFieldError("groupName", isgroupnameError);
+            controller.updateFieldError("ratio", isratioError);
+
+            if (!(isgroupnameError || isratioError)) {
+              double? ratioValue = double.tryParse(ratio.text);
+
+              if (ratioValue != null) {
+                controller.Add_Groub(
+                  groupname.text,
+                  ratioValue.toString(),
+                  controller.items.toList().cast<Map<String, dynamic>>(),
+                );
+                Get.back();
+              } else {
+                Get.snackbar("Error", "Invalid ratio value");
+              }
             }
           },
           color: Get.theme.primaryColor,
@@ -48,9 +61,16 @@ Add_Group() {
                 children: [
                   Textfildwithupper(
                     width: 350,
+                    isError: controller.isGroupNameError,
+                    isRequired: true,
+                    onChanged: (value) {
+                      if (value.isNotEmpty) {
+                        controller.updateFieldError("groupName", false);
+                      }
+                    },
                     controller: groupname,
-                    Uptext: "Group Name",
-                    hinttext: "Group Name",
+                    Uptext: "Group Name".tr,
+                    hinttext: "Group Name".tr,
                   ),
                   Padding(
                       padding: const EdgeInsets.only(left: 10.0),
@@ -58,8 +78,16 @@ Add_Group() {
                         readOnly: controller.items.isEmpty ? false : true,
                         width: 60,
                         controller: ratio,
-                        Uptext: "ratio",
-                        hinttext: "ratio",
+                        Uptext: "ratio".tr,
+                        hinttext: "ratio".tr,
+                        fieldType: "number",
+                        isError: controller.isRatioError,
+                        isRequired: true,
+                        onChanged: (value) {
+                          if (value.isNotEmpty) {
+                            controller.updateFieldError("ratio", false);
+                          }
+                        },
                       )),
                 ],
               ),
@@ -81,7 +109,7 @@ Add_Group() {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Group Items",
+                              "Group Items".tr,
                               style: TextStyle(color: Colors.white),
                             ),
                             Container(
@@ -131,15 +159,15 @@ Add_Group() {
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Center(child: Text("Item Name")),
+                              child: Center(child: Text("Item Name".tr)),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Center(child: Text("Item ratio")),
+                              child: Center(child: Text("Item ratio".tr)),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Center(child: Text("Operator")),
+                              child: Center(child: Text("Operations".tr)),
                             ),
                           ],
                         ),
@@ -254,8 +282,8 @@ Add_Group() {
           ),
         ),
       ),
-      apptitle: "Add Group",
-      subtitle: "Add a New Group",
+      apptitle: "Add Group".tr,
+      subtitle: "Add a New Group".tr,
     );
   });
 }
@@ -268,7 +296,7 @@ Add_Items_Group() {
   return VMSAlertDialog(
     action: [
       ButtonDialog(
-        text: "Add",
+        text: "Add".tr,
         onPressed: () {
           double? ratioValue = double.tryParse(ratio.text);
           if (ratioValue != null && ratioValue > 0) {
@@ -299,7 +327,7 @@ Add_Items_Group() {
                       isQuizable.value = value!;
                     },
                   )),
-              const Text("Is Quizable"),
+              Text("Is Quizable".tr),
             ],
           ),
           Row(
@@ -307,16 +335,16 @@ Add_Items_Group() {
               Textfildwithupper(
                 width: 350,
                 controller: itemName,
-                Uptext: "Item Name",
-                hinttext: "Item Name",
+                Uptext: "Item Name".tr,
+                hinttext: "Item Name".tr,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Textfildwithupper(
                   width: 60,
                   controller: ratio,
-                  Uptext: "Ratio",
-                  hinttext: "Ratio",
+                  Uptext: "Ratio".tr,
+                  hinttext: "Ratio".tr,
                 ),
               ),
             ],
@@ -324,8 +352,8 @@ Add_Items_Group() {
         ],
       ),
     ),
-    apptitle: "Add Item",
-    subtitle: "Add Group Item",
+    apptitle: "Add Item".tr,
+    subtitle: "Add Group Item".tr,
   );
 }
 
@@ -338,7 +366,7 @@ Edit_Items_Group(
   return VMSAlertDialog(
     action: [
       ButtonDialog(
-        text: "Edit",
+        text: "Edit".tr,
         onPressed: () {
           double? ratioValue = double.tryParse(ratio.text);
           if (ratioValue != null && ratioValue > 0) {
@@ -370,7 +398,7 @@ Edit_Items_Group(
                       isQuizable.value = value!;
                     },
                   )),
-              const Text("Is Quizable"),
+              Text("Is Quizable".tr),
             ],
           ),
           Row(
@@ -378,16 +406,16 @@ Edit_Items_Group(
               Textfildwithupper(
                 width: 350,
                 controller: itemName,
-                Uptext: "Item Name",
-                hinttext: "Item Name",
+                Uptext: "Item Name".tr,
+                hinttext: "Item Name".tr,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Textfildwithupper(
                   width: 60,
                   controller: ratio,
-                  Uptext: "Ratio",
-                  hinttext: "Ratio",
+                  Uptext: "Ratio".tr,
+                  hinttext: "Ratio".tr,
                 ),
               ),
             ],
@@ -395,8 +423,8 @@ Edit_Items_Group(
         ],
       ),
     ),
-    apptitle: "Edit Item",
-    subtitle: "Edit Group Item",
+    apptitle: "Edit Item".tr,
+    subtitle: "Edit Group Item".tr,
   );
 }
 
@@ -435,7 +463,7 @@ Rerange_Group() {
                                 backgroundColor: Colors.blue,
                                 foregroundColor: Colors.white,
                                 icon: Icons.edit,
-                                label: 'تعديل',
+                                label: 'Edit'.tr,
                               ),
                             ],
                           ),
@@ -450,7 +478,7 @@ Rerange_Group() {
                                 backgroundColor: Colors.red,
                                 foregroundColor: Colors.white,
                                 icon: Icons.delete,
-                                label: 'حذف',
+                                label: 'Delete'.tr,
                               ),
                             ],
                           ),
@@ -490,8 +518,8 @@ Rerange_Group() {
         );
       },
     ),
-    apptitle: "Rerange",
-    subtitle: "Rerange Group",
+    apptitle: "Rerange".tr,
+    subtitle: "Rerange Group".tr,
   );
 }
 
@@ -509,11 +537,11 @@ void _showDeleteConfirmationDialog(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Confirm Delete",
+              "Confirm Delete".tr,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16),
-            Text("Are you sure you want to delete this group?"),
+            Text("Are you sure you want to delete this group?".tr),
             SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -522,14 +550,14 @@ void _showDeleteConfirmationDialog(
                   onPressed: () {
                     Get.back();
                   },
-                  child: Text("Cancel"),
+                  child: Text("Cancel".tr),
                 ),
                 TextButton(
                   onPressed: () {
                     controller.RemoveGroup(index);
                     Get.back();
                   },
-                  child: Text("Delete"),
+                  child: Text("Delete".tr),
                 ),
               ],
             ),
@@ -567,7 +595,7 @@ Edit_Group(int idx) {
     return VMSAlertDialog(
       action: [
         ButtonDialog(
-          text: "Edit",
+          text: "Edit".tr,
           onPressed: () {
             double? ratioValue = double.tryParse(ratio.text);
             if (ratioValue != null) {
@@ -598,8 +626,8 @@ Edit_Group(int idx) {
                 Textfildwithupper(
                   width: 350,
                   controller: groupname,
-                  Uptext: "Group Name",
-                  hinttext: "Group Name",
+                  Uptext: "Group Name".tr,
+                  hinttext: "Group Name".tr,
                 ),
                 Padding(
                     padding: const EdgeInsets.only(left: 10.0),
@@ -608,8 +636,8 @@ Edit_Group(int idx) {
                       readOnly: controller.items.isNotEmpty,
                       width: 60,
                       controller: ratio,
-                      Uptext: "Ratio",
-                      hinttext: "Ratio",
+                      Uptext: "Ratio".tr,
+                      hinttext: "Ratio".tr,
                     )),
               ],
             ),
@@ -632,7 +660,7 @@ Edit_Group(int idx) {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Group Items",
+                              "Group Items".tr,
                               style: TextStyle(color: Colors.white),
                             ),
                             Container(
@@ -682,15 +710,15 @@ Edit_Group(int idx) {
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Center(child: Text("Item Name")),
+                              child: Center(child: Text("Item Name".tr)),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Center(child: Text("Item ratio")),
+                              child: Center(child: Text("Item ratio".tr)),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Center(child: Text("Operator")),
+                              child: Center(child: Text("Operations".tr)),
                             ),
                           ],
                         ),
@@ -810,8 +838,8 @@ Edit_Group(int idx) {
           ],
         ),
       ),
-      apptitle: "Edit Group",
-      subtitle: "Edit ${group['name']} Group",
+      apptitle: "Edit Group".tr,
+      subtitle: "Editgroup".tr + " ${group['name']} " + "Groupp".tr,
     );
   });
 }

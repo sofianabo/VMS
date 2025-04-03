@@ -77,6 +77,7 @@ class QuizType_DropDown extends StatelessWidget {
                                     case 'semester':
                                       if (newValue == "The First Semester") {
                                         cont.set_semesteridx(1);
+                                        print("sssssss");
                                       }
                                       if (newValue == "The Second Semester") {
                                         cont.set_semesteridx(2);
@@ -119,7 +120,7 @@ class QuizType_DropDown extends StatelessWidget {
                                   value: title,
                                   enabled: false,
                                   child: Text(
-                                    title,
+                                    title.tr,
                                     style: Get.theme.textTheme.bodyMedium!
                                         .copyWith(
                                       fontSize: 14,
@@ -135,7 +136,7 @@ class QuizType_DropDown extends StatelessWidget {
                       )
                     : Center(
                         child: Text(
-                          title,
+                          title.tr,
                           style: Get.theme.textTheme.bodyMedium!.copyWith(
                               fontSize: 14,
                               color: Theme.of(context).disabledColor),
@@ -157,7 +158,7 @@ class QuizType_DropDown extends StatelessWidget {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
-              value,
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
@@ -179,7 +180,7 @@ class QuizType_DropDown extends StatelessWidget {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
-              value,
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );

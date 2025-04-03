@@ -292,6 +292,11 @@ class Students_Marks_Controller extends GetxController {
     }
   }
 
+  setclassindex() {
+    ClassIndex = "";
+    update();
+  }
+
   void resetinClass() {
     isLoading = true;
     Divisionlist = [];

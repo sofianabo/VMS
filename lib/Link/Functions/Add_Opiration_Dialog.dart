@@ -209,7 +209,7 @@ class _TypeSelectionContainerState extends State<_TypeSelectionContainer> {
           }).toList(),
           const SizedBox(height: 10),
           Text(
-            'Selected: ${selectedIds.length}/${availableTypes.length}',
+            'Selected:'.tr+' ${selectedIds.length}/${availableTypes.length}',
             style: TextStyle(fontStyle: FontStyle.normal),
           ),
         ],

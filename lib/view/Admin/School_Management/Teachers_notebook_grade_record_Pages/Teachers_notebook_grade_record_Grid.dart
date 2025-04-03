@@ -38,14 +38,14 @@ class GradesTableScreen extends StatelessWidget {
                       ),
                     )
                   : Center(
-                      child: Text("No Quiz Type",
+                      child: Text("No Quiz Type".tr,
                           style: Theme.of(context)
                               .textTheme
                               .titleLarge!
                               .copyWith(
                                   fontSize: 16, fontWeight: FontWeight.normal)))
           : Center(
-              child: Text("Please Select Class First",
+              child: Text("Please Select Class First".tr,
                   style: Theme.of(context)
                       .textTheme
                       .titleLarge!

@@ -352,4 +352,27 @@ class TeachernoteAndGradeReco extends GetxController {
     isQuizTypeOpirationLoading = false;
     update();
   }
+
+  bool isGroupNameError = false;
+  bool isRatioError = false;
+  void updateFieldError(String type, bool newValue) {
+    switch (type) {
+      case "groupName":
+        isGroupNameError = newValue;
+        break;
+
+      case "ratio":
+        isRatioError = newValue;
+        break;
+      default:
+    }
+
+    update();
+  }
+
+  void resetError() {
+    isGroupNameError = false;
+    isRatioError = false;
+    update();
+  }
 }
