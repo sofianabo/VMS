@@ -37,7 +37,7 @@ void showAddMarkForAllDialog() {
 
   Get.dialog(
     VMSAlertDialog(
-      apptitle: "إضافة علامة للكل",
+      apptitle: "Add Marks For All".tr,
       subtitle: "none",
       contents: StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
