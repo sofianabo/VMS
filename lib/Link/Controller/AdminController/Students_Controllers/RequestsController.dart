@@ -151,8 +151,8 @@ class Requestscontroller extends GetxController {
     final picked = await showDatePicker(
       context: context,
       initialDate: requestDate.value ?? DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
+      firstDate: DateTime(2024),
+      lastDate: DateTime.now(),
     );
 
     setdate(picked!);

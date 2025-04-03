@@ -139,10 +139,6 @@ class ClassGrid extends StatelessWidget {
                                           curriculum:
                                               control.selectedCurriculums,
                                         );
-
-                                        arName.clear();
-                                        enName.clear();
-                                        driveUrl.clear();
                                         Get.back();
                                       }
                                     },
@@ -418,7 +414,7 @@ class ClassGrid extends StatelessWidget {
                                                       ButtonDialog(
                                                           text: "Delete".tr,
                                                           onPressed: () async {
-                                                            await Delete_Class_API(
+                                                            Delete_Class_API(
                                                                     context)
                                                                 .Delete_Class(
                                                                     classId: control
@@ -427,7 +423,6 @@ class ClassGrid extends StatelessWidget {
                                                                         .id,
                                                                     index:
                                                                         index);
-                                                            Get.back();
                                                           },
                                                           color: const Color(
                                                               0xffB03D3D),

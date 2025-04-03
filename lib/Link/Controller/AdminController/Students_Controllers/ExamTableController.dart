@@ -273,7 +273,7 @@ class ExamTableController extends GetxController {
       context: context,
       initialDate: dateindex.value ?? DateTime.now(),
       firstDate: DateTime.now(),
-      lastDate: DateTime(2100),
+      lastDate: DateTime(DateTime.now().year + 2),
     );
     if (picked != null) {
       dateindex.value = picked;

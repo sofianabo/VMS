@@ -54,8 +54,6 @@ class Add_Class_API {
     } catch (e) {
       if (e is DioException) {
         ErrorHandler.handleDioError(e);
-      } else if (e is Exception) {
-        ErrorHandler.handleException(e);
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }

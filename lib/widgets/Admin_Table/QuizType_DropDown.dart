@@ -75,15 +75,33 @@ class QuizType_DropDown extends StatelessWidget {
                                   cont.selectIndex(type, newValue);
                                   switch (type) {
                                     case 'semester':
+                                      var selectedClassItem = cont
+                                          .Classmodel?.classes
+                                          ?.firstWhereOrNull(
+                                        (element) =>
+                                            element.name == cont.ClassIndex ||
+                                            element.enName == cont.ClassIndex,
+                                      );
                                       if (newValue == "The First Semester") {
                                         cont.set_semesteridx(1);
-                                        print("sssssss");
+                                        Get_Quiz_Type_API().Get_Quiz_Type(
+                                            SemsterId: cont.SemesterSendIndex,
+                                            ClassId: selectedClassItem!.id
+                                                .toString());
                                       }
                                       if (newValue == "The Second Semester") {
                                         cont.set_semesteridx(2);
+                                        Get_Quiz_Type_API().Get_Quiz_Type(
+                                            SemsterId: cont.SemesterSendIndex,
+                                            ClassId: selectedClassItem!.id
+                                                .toString());
                                       }
                                       if (newValue == "The Third Semester") {
                                         cont.set_semesteridx(3);
+                                        Get_Quiz_Type_API().Get_Quiz_Type(
+                                            SemsterId: cont.SemesterSendIndex,
+                                            ClassId: selectedClassItem!.id
+                                                .toString());
                                       }
                                       break;
                                     case 'class':

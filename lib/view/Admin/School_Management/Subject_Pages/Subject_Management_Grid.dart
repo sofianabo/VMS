@@ -51,7 +51,10 @@ class Subject_Management_Grid extends StatelessWidget {
                               children: [
                                 _operationColumn(
                                     row.value, controller, row.key, context),
-                                _dataColumn(prefs!.getString(languageKey)=='ar'? row.value['name']:row.value['enName']),
+                                _dataColumn(
+                                    prefs!.getString(languageKey) == 'ar'
+                                        ? row.value['name']
+                                        : row.value['enName']),
                               ],
                             ),
                         ],
@@ -120,7 +123,9 @@ class Subject_Management_Grid extends StatelessWidget {
                             SizedBox(
                               width: 400,
                               child: Text(
-                                "Do You Want To Deletesub".tr+" (${prefs!.getString(languageKey)=='ar'? row['name']:row['enName']}) "+"Subjectt".tr,
+                                "Do You Want To Deletesub".tr +
+                                    " (${prefs!.getString(languageKey) == 'ar' ? row['name'] : row['enName']}) " +
+                                    "Subjectt".tr,
                                 style: const TextStyle(fontSize: 16),
                               ),
                             ),
@@ -164,9 +169,6 @@ class Subject_Management_Grid extends StatelessWidget {
                                   enName: enName.text,
                                   name: name.text,
                                 );
-
-                                name.clear();
-                                enName.clear();
                               }
                             },
                             color: Theme.of(context).primaryColor,

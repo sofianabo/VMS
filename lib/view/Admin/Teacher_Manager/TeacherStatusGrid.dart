@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/EmployeeAttendenceByIdAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/oneEmployeeAttendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeacherAtendenceController.dart';
@@ -223,10 +225,58 @@ class _TeacherStatusGridState extends State<TeacherStatusGrid> {
                                                     fontWeight:
                                                         FontWeight.bold)),
                                       ),
-                                      Image.asset(
-                                          "assets/images/Rectangle66.png",
-                                          height: 100,
-                                          width: 100)
+                                      FutureBuilder(
+                                        future: precacheImage(
+                                            NetworkImage(
+                                                "$getimage${controller.teacher[index].imageId}"),
+                                            context),
+                                        builder: (context, snapshot) {
+                                          if (snapshot.connectionState ==
+                                              ConnectionState.done) {
+                                            return CircleAvatar(
+                                              maxRadius: 60,
+                                              backgroundColor:
+                                                  const Color(0xffC4C4C4),
+                                              backgroundImage: controller
+                                                          .teacher[index]
+                                                          .imageId !=
+                                                      null
+                                                  ? NetworkImage(
+                                                      "$getimage${controller.teacher[index].imageId}")
+                                                  : null,
+                                              child: controller.teacher[index]
+                                                          .imageId ==
+                                                      null
+                                                  ? Text(
+                                                      controller.teacher[index]
+                                                          .fullName!
+                                                          .substring(0, 1)
+                                                          .toUpperCase(),
+                                                      style: Get
+                                                          .textTheme.titleLarge!
+                                                          .copyWith(
+                                                        fontSize: 26,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    )
+                                                  : null,
+                                            );
+                                          } else {
+                                            return CircleAvatar(
+                                              maxRadius: 60,
+                                              backgroundColor:
+                                                  const Color(0xffC4C4C4),
+                                              child: LoadingAnimationWidget
+                                                  .inkDrop(
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                                size: 15,
+                                              ),
+                                            );
+                                          }
+                                        },
+                                      ),
                                     ],
                                   ),
                                   Text(

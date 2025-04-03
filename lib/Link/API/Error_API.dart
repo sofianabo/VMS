@@ -36,6 +36,11 @@ class ErrorHandler {
         case 412:
           message = "اسم المستخدم موجود بالفعل";
           break;
+        case 409:
+          Get.back();
+          message = "لا تسمح بتداخل التواريخ";
+          ErrorMessage(message);
+          break;
         case 416:
           message = "نطاق البيانات المطلوب غير متاح.";
           break;
@@ -52,7 +57,9 @@ class ErrorHandler {
           message = "عذرا هذه الخانة تحتوي على حصة سابقة.";
           break;
         case 450:
+          Get.back();
           message = "لا يمكن تكرار نفس الاسم";
+          ErrorMessage(message);
           break;
         case 500:
           message = "حدث خطأ داخلي في الخادم. يرجى المحاولة لاحقًا.";
@@ -76,14 +83,7 @@ class ErrorHandler {
       message = "حدث خطأ أثناء معالجة الطلب. يرجى المحاولة لاحقًا.";
     }
 
-    Get.snackbar(
-      "خطأ",
-      message,
-      snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: Colors.red,
-      colorText: Colors.white,
-      duration: const Duration(seconds: 3),
-    );
+    ErrorMessage(message);
   }
 
   static void handleException(Exception e) {
@@ -101,4 +101,72 @@ class ErrorHandler {
       );
     }
   }
+}
+
+void ErrorMessage(String message) {
+  // تحديد العرض الثابت
+  final double fixedWidth = 350.0;
+
+  Get.showSnackbar(
+    GetSnackBar(
+      title: null,
+      message: null,
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: Colors.red[700]!,
+      duration: const Duration(seconds: 3),
+      borderRadius: 5.0,
+      margin: const EdgeInsets.only(top: 10, right: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      animationDuration: const Duration(milliseconds: 500),
+      forwardAnimationCurve: Curves.easeOutCubic,
+      reverseAnimationCurve: Curves.easeInCubic,
+      isDismissible: true,
+      dismissDirection: DismissDirection.horizontal,
+      icon: Padding(
+        padding: const EdgeInsets.only(left: 10),
+        child: IconButton(
+          icon: const Icon(Icons.close, size: 20, color: Colors.white),
+          onPressed: () => Get.back(),
+        ),
+      ),
+      mainButton: null,
+      onTap: (snack) => Get.back(),
+      shouldIconPulse: false,
+      barBlur: 0,
+      overlayBlur: 0,
+      snackStyle: SnackStyle.FLOATING,
+      maxWidth: fixedWidth, // استخدام العرض الثابت هنا
+      messageText: Container(
+        constraints: BoxConstraints(
+          maxHeight: 14.0 *
+              1.4 *
+              10, // 14 هو حجم الخط، 1.4 هو الارتفاع، 10 هو الحد الأقصى للأسطر
+        ),
+        width: fixedWidth - 40, // نطرح الـ padding الداخلي
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: SingleChildScrollView(
+          child: Text(
+            message,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 14,
+              height: 1.4,
+            ),
+            textAlign: TextAlign.right,
+            softWrap: true,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 10, // الحد الأقصى لعدد الأسطر
+          ),
+        ),
+      ),
+      boxShadows: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.2),
+          blurRadius: 8,
+          spreadRadius: 1,
+          offset: const Offset(0, 2),
+        ),
+      ],
+    ),
+  );
 }

@@ -191,7 +191,7 @@ class Allteachercontroller extends GetxController {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: Birthdate.value ?? DateTime.now(),
-      firstDate: DateTime(2000),
+      firstDate: DateTime(1950),
       lastDate: DateTime(2100),
     );
     if (picked != null) {
@@ -203,7 +203,7 @@ class Allteachercontroller extends GetxController {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: Joindate.value ?? DateTime.now(),
-      firstDate: DateTime(2000),
+      firstDate: DateTime(2020),
       lastDate: DateTime(2100),
     );
     if (picked != null) {

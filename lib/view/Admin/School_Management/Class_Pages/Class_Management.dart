@@ -158,10 +158,6 @@ class _ClassManagementState extends State<ClassManagement> {
                                               curriculum: Get.find<
                                                       ClassMgmtController>()
                                                   .selectedCurriculums);
-
-                                          arName.clear();
-                                          enName.clear();
-                                          driveUrl.clear();
                                           Get.back();
                                         }
                                       },
