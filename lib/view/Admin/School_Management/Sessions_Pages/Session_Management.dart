@@ -62,6 +62,8 @@ class _SessionManagementState extends State<SessionManagement> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5))))),
                         onPressed: () {
+                          yearController.clear();
+                          Get.find<SessionController>().initialData();
                           Get.dialog(GetBuilder<SessionController>(
                               builder: (controller) {
                             return VMSAlertDialog(

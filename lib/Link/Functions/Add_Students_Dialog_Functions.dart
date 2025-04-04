@@ -87,13 +87,12 @@ All_Gurdians_Dialog() {
   TextEditingController LocalID = TextEditingController();
   TextEditingController Note = TextEditingController();
   TextEditingController Fee_Discount = TextEditingController();
-    final addStudentsController = Get.put(Add_Students_Controller());
+  final addStudentsController = Get.put(Add_Students_Controller());
   final class_controller = Get.find<Dropdownclassescontroller>();
   addStudentsController.resetData();
   return VMSAlertDialog(
     action: [
       Obx(() {
-        BuildContext context;
         return addStudentsController.currentPage.value == 1
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

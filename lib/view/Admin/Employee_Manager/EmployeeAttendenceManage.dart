@@ -23,6 +23,7 @@ class _EmployeeAttendanceManagmentState
   void initState() {
     super.initState();
     Get.find<EmployeeController>().AttendencetDate.value = DateTime.now();
+    Get.find<EmployeeController>().allHolidayChecked.value = false;
     Increaseemployeattendenceapi.Increaseemployeattendence(
         DateTime:
             Get.find<EmployeeController>().AttendencetDate.value.toString());

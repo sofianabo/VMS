@@ -22,6 +22,7 @@ class _TeacherAttendanceManagmentState
   @override
   void initState() {
     Get.find<EmployeeController>().AttendencetDate.value = DateTime.now();
+    Get.find<EmployeeController>().allHolidayChecked.value = false;
     super.initState();
     Increaseteacherattendenceapi.Increaseteacherattendence(
         DateTime:

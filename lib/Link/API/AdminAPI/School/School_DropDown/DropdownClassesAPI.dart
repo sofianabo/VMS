@@ -42,6 +42,7 @@ class Getallclassapi {
       final AdminSchoolTimeControllers = Get.find<AdminSchoolTimeController>();
       final Students_Marks_Controllers = Get.find<Students_Marks_Controller>();
       final quiz = Get.find<TeachernoteAndGradeReco>();
+      final ExamController = Get.find<ExamTableController>();
 
       ClassController.setIsLoading(true);
       quiz.setIsClassLoading(true);
@@ -54,7 +55,7 @@ class Getallclassapi {
       addStudentsControlle.SetIsLoadingClass(true);
       AdminSchoolTimeControllers.setIsLoadingClass(true);
       Students_Marks_Controllers.SetisClassLoading(true);
-      Get.find<ExamTableController>().setisClassLoading(true);
+      ExamController.setisClassLoading(true);
 
       final controller = Get.find<Divisions_Controller>();
       controller.SetIsloading(true);
@@ -71,8 +72,10 @@ class Getallclassapi {
         AllClassModel classes = AllClassModel.fromJson(response.data);
         ClassController.setClasses(classes);
         controller.setClass(classes);
+        ExamController.setAllClasses(classes);
+        ExamController.setAllClassesDialog(classes);
         Students_Marks_Controllers.SetClass(classes);
-        Get.find<ExamTableController>().setisClassLoading(false);
+        ExamController.setisClassLoading(false);
 
         return classes;
       } else {

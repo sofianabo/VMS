@@ -21,6 +21,7 @@ class _StudyYearStudentsState extends State<StudyYearStudents> {
   @override
   initState() {
     Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
+    Get.find<StudyYearStudentsController>().initialData();
     Study_Year_Students_API(context).Study_Year_Students();
     Get_All_Benality_API(context).Get_All_Benality();
     super.initState();

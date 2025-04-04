@@ -133,4 +133,10 @@ class SessionController extends GetxController {
 
   Rx<DateTime?> get selectStartDateindex => startDate;
   Rx<DateTime?> get selectEndDateindex => endDate;
+
+  void initialData() {
+    startDate.value = null;
+    endDate.value = null;
+    update();
+  }
 }

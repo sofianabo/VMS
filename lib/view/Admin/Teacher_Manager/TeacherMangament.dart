@@ -33,6 +33,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
   @override
   void initState() {
     Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
+    Get.find<Allteachercontroller>().initialData();
     Getallteachersapi.Getallteachers();
     Get_Subject_Screen_API(context).Get_Subject_Screen();
     Getallclassapi.getAllClasses();
@@ -120,6 +121,13 @@ class _TeacherManagementState extends State<TeacherManagement> {
                     children: [
                       Squer_Button_Enabled_Disabled(
                         onTap: () {
+                          firstName.clear();
+                          lastName.clear();
+                          email.clear();
+                          username.clear();
+                          phone.clear();
+                          password.clear();
+                          cPassword.clear();
                           Get.dialog(GetBuilder<Allteachercontroller>(
                               builder: (controller) {
                             return VMSAlertDialog(

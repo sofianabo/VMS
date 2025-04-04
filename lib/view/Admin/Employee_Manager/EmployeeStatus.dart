@@ -9,8 +9,6 @@ import 'package:vms_school/view/Admin/Employee_Manager/EmployeeStatusGrid.dart';
 import 'package:vms_school/widgets/Admin_Employee/DropDownEmployeeAttendence.dart';
 import 'package:vms_school/widgets/Admin_School/All_Screen_Sessions.dart';
 import 'package:vms_school/widgets/Calender.dart';
-import 'package:vms_school/widgets/DropDown.dart';
-
 import '../../../Icons_File/v_m_s__icons_icons.dart';
 import '../../../widgets/TextFormSearch.dart';
 
@@ -28,6 +26,7 @@ class _EmployeeStatusState extends State<EmployeeStatus> {
     Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
     Get.find<Employeeattendencecontroller>().AttendencetDate.value =
         DateTime.now();
+    Get.find<Employeeattendencecontroller>().JopTitleIndex = "";
     Getemployeeattendenceapi(context).Getemployeeattendence();
     super.initState();
   }

@@ -27,6 +27,13 @@ class StudyYearStudentsController extends GetxController {
   bool isDivisionLoading = true;
   List<String> sessionlist = [];
 
+  initialStateDiag() {
+    penaltyIndex = "";
+    startdate.value = null;
+    enddate.value = null;
+    update();
+  }
+
   void clearFilter() {
     searchByName("", gradeIndex, classIndex, divisionIndex);
     update();
@@ -293,4 +300,12 @@ class StudyYearStudentsController extends GetxController {
   String get selecteddivisionIndex => divisionIndex;
 
   String get selectedPenaltyIndex => penaltyIndex;
+
+  void initialData() {
+    isGradeLoading = true;
+    gradeIndex = "";
+    classIndex = "";
+    divisionIndex = "";
+    update();
+  }
 }

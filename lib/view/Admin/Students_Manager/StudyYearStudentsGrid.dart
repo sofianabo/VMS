@@ -8,6 +8,7 @@ import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/PenaltyAPI/Get_All_Penalties_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Rewards_APIs/Get_All_Rewards_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/StudentPunishAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Rewards_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/PenaltiesAndRewardsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownPenaltyController.dart';
@@ -34,6 +35,10 @@ class StudyYearStudentGrid extends StatefulWidget {
 class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
     with SingleTickerProviderStateMixin {
   TextEditingController reason = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -343,6 +348,8 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                           tooltip: "".tr,
                                           onSelected: (value) {
                                             if (value == "Punishing".tr) {
+                                              controller.initialStateDiag();
+                                              reason.clear();
                                               Get.dialog(VMSAlertDialog(
                                                   action: [
                                                     ButtonDialog(
@@ -509,6 +516,8 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                                       "Punishing Student".tr,
                                                   subtitle: ""));
                                             } else {
+                                              Get.find<RewardsController>()
+                                                  .setRewards();
                                               Get.dialog(
                                                 Rewards_Dialog(
                                                     Studentname: controller

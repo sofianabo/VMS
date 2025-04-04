@@ -240,4 +240,12 @@ class StudentAttendencController extends GetxController {
   String get selecteddivisionIndex => divisionIndex;
 
   Rx<DateTime?> get selectDateindex => AttendencetDate;
+
+  void initialData() {
+    isGradeLoading = true;
+    gradeIndex = "";
+    classIndex = "";
+    divisionIndex = "";
+    update();
+  }
 }

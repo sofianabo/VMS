@@ -30,6 +30,7 @@ class Studentattendenceapi {
         AllStudentAttendenceModel student =
             AllStudentAttendenceModel.fromJson(response.data);
         c.setAllStudents(student);
+        c.initialData();
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

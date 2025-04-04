@@ -366,4 +366,17 @@ class Allempolyeecontroller extends GetxController {
     ShowPassword = value;
     update();
   }
+
+  void reset() {
+    ferollIndex = "";
+    fejopIndex = "";
+    rolldialogIndex = "";
+    dialogjobTitleIndex = "";
+    GenderListIndex = "";
+    Family_StatusIndex = "";
+    ContractTypeIndex = "";
+    Birthdate.value = null;
+    Joindate.value = null;
+    update();
+  }
 }

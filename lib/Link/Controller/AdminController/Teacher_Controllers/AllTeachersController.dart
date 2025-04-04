@@ -290,4 +290,11 @@ class Allteachercontroller extends GetxController {
     print(value);
     update();
   }
+
+  void initialData() {
+    classIndex = "";
+    SubjectIndex = "";
+    CurriculumIndex = "";
+    update();
+  }
 }
