@@ -68,14 +68,13 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
       TextEditingController(text: teacherControler.oTeacher!.note);
   Get.find<Allteachercontroller>().resetError();
 
-  return Get.dialog(
-    barrierDismissible: false,
-    GetBuilder<Allteachercontroller>(builder: (control) {
-      control.Joindate.value = DateTime.parse(
-          Get.find<Allteachercontroller>().oTeacher!.joinDate.toString());
-      control.Birthdate.value = DateTime.parse(
-          Get.find<Allteachercontroller>().oTeacher!.birthDate.toString());
-    Directionality(
+  return Get.dialog(barrierDismissible: false,
+      GetBuilder<Allteachercontroller>(builder: (control) {
+    control.Joindate.value = DateTime.parse(
+        Get.find<Allteachercontroller>().oTeacher!.joinDate.toString());
+    control.Birthdate.value = DateTime.parse(
+        Get.find<Allteachercontroller>().oTeacher!.birthDate.toString());
+    return Directionality(
       textDirection: prefs!.getString(languageKey) == "ar"
           ? TextDirection.rtl
           : TextDirection.ltr,
@@ -740,6 +739,6 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                   width: 140)
             ]);
       }),
-    ),
-  );
+    );
+  }));
 }
