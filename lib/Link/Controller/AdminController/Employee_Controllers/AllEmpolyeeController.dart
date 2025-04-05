@@ -255,7 +255,7 @@ class Allempolyeecontroller extends GetxController {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: Birthdate.value ?? DateTime.now(),
-      firstDate: DateTime(2000),
+      firstDate: DateTime(1950),
       lastDate: DateTime.now(),
     );
     if (picked != null) {
@@ -268,8 +268,8 @@ class Allempolyeecontroller extends GetxController {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: Joindate.value ?? DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
+      firstDate: DateTime(2020),
+      lastDate: DateTime(DateTime.now().year + 1),
     );
     if (picked != null) {
       Joindate.value = picked;
@@ -298,7 +298,7 @@ class Allempolyeecontroller extends GetxController {
   String get selecteddialogjobTitleIndex => dialogjobTitleIndex;
 
   bool ShowConfirmPassword = true;
-  bool ShowPassword = true; 
+  bool ShowPassword = true;
 
   bool IsJoinError = false;
   bool ISusernameError = false;
@@ -364,6 +364,19 @@ class Allempolyeecontroller extends GetxController {
 
   ChangeShowPassword(bool value) {
     ShowPassword = value;
+    update();
+  }
+
+  void reset() {
+    ferollIndex = "";
+    fejopIndex = "";
+    rolldialogIndex = "";
+    dialogjobTitleIndex = "";
+    GenderListIndex = "";
+    Family_StatusIndex = "";
+    ContractTypeIndex = "";
+    Birthdate.value = null;
+    Joindate.value = null;
     update();
   }
 }

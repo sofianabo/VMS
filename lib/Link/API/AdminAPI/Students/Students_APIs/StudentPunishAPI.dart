@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 
@@ -28,6 +29,7 @@ class Studentpunishapi {
           options: getDioOptions());
 
       if (response.statusCode == 200) {
+        Get.find<StudyYearStudentsController>().initialStateDiag();
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

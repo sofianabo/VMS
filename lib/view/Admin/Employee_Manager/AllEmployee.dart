@@ -140,6 +140,14 @@ class _AllEmployeeState extends State<AllEmployee> {
                                   : Theme.of(context).highlightColor),
                           onSelected: (value) {
                             if (value == "Add Employee".tr) {
+                              firstName.clear();
+                              lastName.clear();
+                              email.clear();
+                              username.clear();
+                              phone.clear();
+                              password.clear();
+                              cPassword.clear();
+                              Get.find<Allempolyeecontroller>().reset();
                               Get.dialog(GetBuilder<Allempolyeecontroller>(
                                   builder: (cont) {
                                 return VMSAlertDialog(
@@ -446,7 +454,7 @@ class _AllEmployeeState extends State<AllEmployee> {
                                                           ? 0
                                                           : 15),
                                                   child: Dropdownallemployee(
-                                                      isError: cont.IsJopError, 
+                                                      isError: cont.IsJopError,
                                                       title: "Job Title".tr,
                                                       width: 220,
                                                       type: "fejop"),
@@ -595,6 +603,7 @@ class _AllEmployeeState extends State<AllEmployee> {
                               }));
                             }
                             if (value == "Add Full Employee".tr) {
+                              Get.find<Allempolyeecontroller>().reset();
                               Add_Full_Employee(context);
                             }
                           },

@@ -27,6 +27,13 @@ class StudyYearStudentsController extends GetxController {
   bool isDivisionLoading = true;
   List<String> sessionlist = [];
 
+  initialStateDiag() {
+    penaltyIndex = "";
+    startdate.value = null;
+    enddate.value = null;
+    update();
+  }
+
   void clearFilter() {
     searchByName("", gradeIndex, classIndex, divisionIndex);
     update();
@@ -210,35 +217,77 @@ class StudyYearStudentsController extends GetxController {
     update();
   }
 
+// الحد الأدنى المسموح (2023)
+  final DateTime minAllowedDate = DateTime(2023);
+// الحد الأقصى المسموح (السنة الحالية + 4 سنوات)
+  final DateTime maxAllowedDate = DateTime(DateTime.now().year + 4, 12, 31);
+
   Rx<DateTime?> startdate = Rx<DateTime?>(null);
+  Rx<DateTime?> enddate = Rx<DateTime?>(null);
 
   void selectStartDatePenalty(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: startdate.value ?? DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
+      firstDate: minAllowedDate,
+      lastDate: enddate.value ?? maxAllowedDate,
     );
+
     if (picked != null) {
-      startdate.value = picked;
+      if (enddate.value != null && picked.isAfter(enddate.value!)) {
+        // إعادة تعيين التواريخ وعرض خطأ
+        startdate.value = null;
+        enddate.value = null;
+        Get.snackbar(
+          'خطأ',
+          'لا يمكن أن يكون تاريخ البداية بعد تاريخ النهاية',
+          snackPosition: SnackPosition.BOTTOM,
+          duration: Duration(seconds: 3),
+        );
+      } else {
+        startdate.value = picked;
+      }
     }
-    // setRequestDate(picked);
     update();
   }
-
-  Rx<DateTime?> enddate = Rx<DateTime?>(null);
 
   void selectEndDatePenalty(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: startdate.value ?? DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
+      initialDate: enddate.value ?? startdate.value ?? DateTime.now(),
+      firstDate: startdate.value ?? minAllowedDate,
+      lastDate: maxAllowedDate,
     );
+
     if (picked != null) {
-      enddate.value = picked;
+      if (startdate.value != null && picked.isBefore(startdate.value!)) {
+        enddate.value = null;
+        Get.snackbar(
+          'خطأ',
+          'لا يمكن أن يكون تاريخ النهاية قبل تاريخ البداية',
+          snackPosition: SnackPosition.BOTTOM,
+          duration: Duration(seconds: 3),
+        );
+      } else if (picked.isBefore(minAllowedDate)) {
+        enddate.value = null;
+        Get.snackbar(
+          'خطأ',
+          'يجب أن يكون التاريخ بعد عام 2023',
+          snackPosition: SnackPosition.BOTTOM,
+          duration: Duration(seconds: 3),
+        );
+      } else if (picked.isAfter(maxAllowedDate)) {
+        enddate.value = null;
+        Get.snackbar(
+          'خطأ',
+          'لا يمكن اختيار تاريخ بعد ${maxAllowedDate.year}',
+          snackPosition: SnackPosition.BOTTOM,
+          duration: Duration(seconds: 3),
+        );
+      } else {
+        enddate.value = picked;
+      }
     }
-    // setRequestDate(picked);
     update();
   }
 
@@ -251,4 +300,12 @@ class StudyYearStudentsController extends GetxController {
   String get selecteddivisionIndex => divisionIndex;
 
   String get selectedPenaltyIndex => penaltyIndex;
+
+  void initialData() {
+    isGradeLoading = true;
+    gradeIndex = "";
+    classIndex = "";
+    divisionIndex = "";
+    update();
+  }
 }

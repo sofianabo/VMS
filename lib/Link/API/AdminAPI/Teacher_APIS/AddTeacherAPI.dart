@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_All_Employee_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetAllTeachersAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 import '../../API.dart' as global;
@@ -49,10 +50,11 @@ class Addteacherapi {
       if (response.statusCode == 200) {
         Get.back();
         Get.back();
-
-        Get_All_Employee_API
-            .Get_All_Employee();
-
+        if (jobTitle == "Teacher") {
+          Getallteachersapi.Getallteachers();
+        } else {
+          Get_All_Employee_API.Get_All_Employee();
+        }
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
@@ -60,8 +62,12 @@ class Addteacherapi {
           type: DioExceptionType.badResponse,
         ));
       }
-      return response.statusCode;
     } catch (e) {
+      if (e is DioException && e.response?.statusCode == 412) {
+        Get.find<Allteachercontroller>().updateFieldError("username", true);
+        Get.find<Allempolyeecontroller>().updateFieldError("username", true);
+        Get.back();
+      }
       if (e is DioException) {
         ErrorHandler.handleDioError(e);
       } else if (e is Exception) {

@@ -23,6 +23,7 @@ class _AllStudentState extends State<AllStudent> {
   @override
   void initState() {
     Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
+    Get.find<Allstudentscontroller>().initialData();
     Getallstudentapi.Getallstudent();
     super.initState();
   }

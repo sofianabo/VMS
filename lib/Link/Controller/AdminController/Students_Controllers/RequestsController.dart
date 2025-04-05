@@ -8,6 +8,13 @@ import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 
 class Requestscontroller extends GetxController {
+  InitialRequests() {
+    statusindex = "";
+    requestDate.value = null;
+
+    update();
+  }
+
   List<Registration> registration = [], filteredregistration = [];
   String searchQuery = "",
       statusindex = "",
@@ -151,8 +158,8 @@ class Requestscontroller extends GetxController {
     final picked = await showDatePicker(
       context: context,
       initialDate: requestDate.value ?? DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
+      firstDate: DateTime(2024),
+      lastDate: DateTime.now(),
     );
 
     setdate(picked!);

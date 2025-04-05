@@ -34,6 +34,8 @@ class Edit_Subject_API {
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
+        Get.back();
+        Get_Subject_Screen_API(context).Get_Subject_Screen();
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
@@ -51,8 +53,6 @@ class Edit_Subject_API {
       }
     } finally {
       Get.back();
-      Get.back();
-      await Get_Subject_Screen_API(context).Get_Subject_Screen();
     }
   }
 }

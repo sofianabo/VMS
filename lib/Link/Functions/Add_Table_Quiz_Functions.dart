@@ -14,13 +14,11 @@ Add_Group() {
   TextEditingController groupname = TextEditingController();
   TextEditingController ratio = TextEditingController();
   final teachernoteAndGradeReco = Get.put(TeachernoteAndGradeReco());
-  teachernoteAndGradeReco.resetError(); // maybe error
+  teachernoteAndGradeReco.resetError();
   return GetBuilder<TeachernoteAndGradeReco>(builder: (controller) {
     double totalRatio = controller.items
         .fold(0, (sum, item) => sum + (item['ratio'] as num)); // حساب المجموع
     ratio.text = totalRatio.toString();
-    // controller.resetError();
-
     return VMSAlertDialog(
       action: [
         ButtonDialog(
@@ -28,7 +26,7 @@ Add_Group() {
           onPressed: () {
             bool isgroupnameError = groupname.text.trim().isEmpty;
             bool isratioError = ratio.text.trim().isEmpty ||
-                int.parse(ratio.text.trim().toString()) > 0;
+                int.parse(ratio.text.trim().toString()) == 0;
             controller.updateFieldError("groupName", isgroupnameError);
             controller.updateFieldError("ratio", isratioError);
 
@@ -78,16 +76,8 @@ Add_Group() {
                         readOnly: controller.items.isEmpty ? false : true,
                         width: 60,
                         controller: ratio,
-                        Uptext: "ratio".tr,
-                        hinttext: "ratio".tr,
-                        fieldType: "number",
-                        isError: controller.isRatioError,
-                        isRequired: true,
-                        onChanged: (value) {
-                          if (value.isNotEmpty) {
-                            controller.updateFieldError("ratio", false);
-                          }
-                        },
+                        Uptext: "ratio",
+                        hinttext: "ratio",
                       )),
                 ],
               ),

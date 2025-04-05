@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 
 class Add_Students_Controller extends GetxController {
   List<String> Genderlist = ["Male", "Female"];
@@ -697,27 +698,29 @@ class Add_Students_Controller extends GetxController {
     update();
   }
 
-   void resetError() {
-   ShowPassword = true;
-   ISfirstNameError = false;
-   ISlastNameError = false;
-   IsBirthdateError = false;
-   IsPlaceOfBirthError = false;
-   IsGenderError = false;
-   IsReligionError = false;
-   IsBloodError = false;
-   IsCountryError = false;
-   ISphoneError = false;
-   ISLocalNationalIDError = false;
-   ISLocalAddressError = false;
-   ISclassError = false;
-   ISDivisionError = false;
-   ISusernameError = false;
-   ISpasswordError = false;
-   ISFatherNameError = false;
-   ISFatherphoneError = false;
-   ISMotherNameError = false;
-   ISMotherPhoneError = false;
+  void resetError() {
+    ShowPassword = true;
+    ISfirstNameError = false;
+    ISlastNameError = false;
+    IsBirthdateError = false;
+    IsPlaceOfBirthError = false;
+    IsGenderError = false;
+    IsReligionError = false;
+    IsBloodError = false;
+    IsCountryError = false;
+    ISphoneError = false;
+    ISLocalNationalIDError = false;
+    ISLocalAddressError = false;
+    ISclassError = false;
+    ISDivisionError = false;
+    ISusernameError = false;
+    ISpasswordError = false;
+    ISFatherNameError = false;
+    ISFatherphoneError = false;
+
+    ISMotherNameError = false;
+    ISMotherPhoneError = false;
+    Get.find<Allempolyeecontroller>().Birthdate.value = null;
     update();
   }
 }

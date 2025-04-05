@@ -18,12 +18,16 @@ class Dropdownsemsesterapi {
   Dropdownsemsester() async {
     try {
       String myurl = "${global.hostPort}${global.getSemester}";
-      Get.find<ExamTableController>().setisSemesterLoading(true);
+
+      var ExamController = Get.find<ExamTableController>();
+      ExamController.setisSemesterLoading(true);
       var response = await dio.get(myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         AllSemesterModel sem = AllSemesterModel.fromJson(response.data);
         c.setsemester(sem);
-        Get.find<ExamTableController>().setisSemesterLoading(false);
+        ExamController.setAllSeason(sem);
+
+        ExamController.setisSemesterLoading(false);
         return sem;
       } else {
         ErrorHandler.handleDioError(DioException(

@@ -44,10 +44,27 @@ class Addguardianapi {
       }
       return response.statusCode;
     } catch (e) {
-      if (e is DioException) {
+      if (e is DioException && e.response?.statusCode == 412) {
+        u.updateFieldError("username", true);
+        Get.back();
+      }
+      if (e is DioException &&
+          e.response?.statusCode == 400 &&
+          e.response!.data['message']
+              .contains("studentinfo_mobilenumber_unique")) {
+        u.updateFieldError("phone", true);
+        await Future.delayed(Duration(milliseconds: 100));
+        Get.snackbar(
+          "خطأ",
+          "رقم الهاتف مستخدم مسبقاً",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+          duration: Duration(seconds: 3),
+        );
+        Get.back();
+      } else if (e is DioException) {
         ErrorHandler.handleDioError(e);
-      } else if (e is Exception) {
-        ErrorHandler.handleException(e);
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }

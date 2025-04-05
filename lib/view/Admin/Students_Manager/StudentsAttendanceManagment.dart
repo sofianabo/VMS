@@ -29,6 +29,7 @@ class _StudentsAttendanceManagmentState
     Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
     Get.find<Student_attendence_controller>().AttendencetDate.value =
         DateTime.now();
+    Get.find<Student_attendence_controller>().allHolidayChecked.value = false;
     Getallgradeapi.Getallgrade();
     IncreaseAttendanceAPI(context).GetIncreaseAttendance(
         DateTime: Get.find<Student_attendence_controller>()

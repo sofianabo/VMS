@@ -23,12 +23,7 @@ class Examtableapi {
   Examtable() async {
     try {
       c.setIsLoading(true);
-      AllSemesterModel semester =
-          await Dropdownsemsesterapi(context).Dropdownsemsester();
-      c.setAllSeason(semester);
-      AllClassModel cl = await Getallclassapi.getAllClasses();
-      c.setAllClasses(cl);
-      c.setAllClassesDialog(cl);
+
       String myurl = "$hostPort$examTable";
       var response = await dio.post(myurl, data: {}, options: getDioOptions());
       if (response.statusCode == 200) {

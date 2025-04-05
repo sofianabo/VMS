@@ -132,10 +132,6 @@ class DivisionGrid extends StatelessWidget {
                                               .filteredDivision![index].id,
                                           meeturl: meetUrl.text,
                                         );
-
-                                        arName.clear();
-                                        enName.clear();
-                                        meetUrl.clear();
                                         Get.back();
                                       }
                                     },

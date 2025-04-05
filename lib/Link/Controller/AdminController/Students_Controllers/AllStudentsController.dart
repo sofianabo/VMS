@@ -246,4 +246,12 @@ class Allstudentscontroller extends GetxController {
   String get selectedclassIndex => classIndex;
 
   String get selecteddivisionIndex => divisionIndex;
+
+  void initialData() {
+    isGradeLoading = true;
+    gradeIndex = "";
+    classIndex = "";
+    divisionIndex = "";
+    update();
+  }
 }

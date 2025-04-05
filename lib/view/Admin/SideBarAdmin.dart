@@ -88,8 +88,6 @@ class SideBarAdmin extends StatelessWidget {
                         onSelected: (value) {
                           if (value == "Exam Table".tr) {
                             cont.updateContent("Exam Table");
-                            Get.find<ExamTableController>().setClassIndex();
-                            Get.find<ExamTableController>().setSemesterIndex();
                           }
                           if (value == "School Time Table".tr) {
                             cont.updateContent("School Time Table");

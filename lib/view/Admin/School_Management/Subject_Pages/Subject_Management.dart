@@ -62,6 +62,8 @@ class _Subject_ManagementState extends State<Subject_Management> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5))))),
                         onPressed: () {
+                          arName.clear();
+                          enName.clear();
                           Get.dialog(GetBuilder<Subject_Controller>(
                               builder: (controller) {
                             return VMSAlertDialog(
@@ -85,9 +87,6 @@ class _Subject_ManagementState extends State<Subject_Management> {
                                             name: arName.text,
                                             enName: enName.text,
                                           );
-
-                                          arName.clear();
-                                          enName.clear();
                                         }
                                       },
                                       color: Theme.of(context).primaryColor,
@@ -116,7 +115,8 @@ class _Subject_ManagementState extends State<Subject_Management> {
                                                     }
                                                   },
                                                   controller: enName,
-                                                  Uptext: "Subject En - Name".tr,
+                                                  Uptext:
+                                                      "Subject En - Name".tr,
                                                   hinttext:
                                                       "Subject En - Name".tr),
                                             ),
@@ -132,7 +132,8 @@ class _Subject_ManagementState extends State<Subject_Management> {
                                                 },
                                                 controller: arName,
                                                 Uptext: "Subject Ar - Name".tr,
-                                                hinttext: "Subject Ar - Name".tr),
+                                                hinttext:
+                                                    "Subject Ar - Name".tr),
                                           ],
                                         ),
                                       ],

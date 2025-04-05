@@ -5,6 +5,7 @@ import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/GetAllStudentAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 
 class Add_Student_API {
@@ -192,8 +193,8 @@ class Add_Student_API {
         cancelToken: cancelToken,
         options: getDioOptions(),
       );
-
       if (response.statusCode == 200) {
+        gets.Get.back();
         gets.Get.back();
         Getallstudentapi.Getallstudent();
       } else {
@@ -204,15 +205,32 @@ class Add_Student_API {
         ));
       }
     } catch (e) {
-      if (e is DioException) {
+      if (e is DioException && e.response?.statusCode == 412) {
+        gets.Get.back();
+        gets.Get.find<Add_Students_Controller>()
+            .updateFieldError("username", true);
+      }
+      if (e is DioException &&
+          e.response?.statusCode == 400 &&
+          e.response!.data['message']
+              .contains("studentinfo_mobilenumber_unique")) {
+        gets.Get.back();
+        gets.Get.find<Add_Students_Controller>()
+            .updateFieldError("phone", true);
+        await Future.delayed(Duration(milliseconds: 100));
+        gets.Get.snackbar(
+          "خطأ",
+          "رقم الهاتف مستخدم مسبقاً",
+          snackPosition: gets.SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+          duration: Duration(seconds: 3),
+        );
+      } else if (e is DioException) {
         ErrorHandler.handleDioError(e);
-      } else if (e is Exception) {
-        ErrorHandler.handleException(e);
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    } finally {
-      gets.Get.back();
     }
   }
 }

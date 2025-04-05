@@ -41,7 +41,11 @@ class _ExamTableState extends State<ExamTable> {
   @override
   void initState() {
     Examtableapi(context).Examtable();
-
+    Dropdownsemsesterapi(context).Dropdownsemsester();
+    Getallclassapi.getAllClasses();
+    Get.find<ExamTableController>().setClassIndex();
+    Get.find<ExamTableController>().setSemesterIndex();
+    Get.find<ExamTableController>().initialData();
     super.initState();
   }
 
@@ -113,7 +117,6 @@ class _ExamTableState extends State<ExamTable> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
                             onPressed: () {
-                              controller.initialData();
                               Get.dialog(GetBuilder<ExamTableController>(
                                   builder: (Econtroller) {
                                 return VMSAlertDialog(
@@ -278,6 +281,10 @@ class _ExamTableState extends State<ExamTable> {
                                     apptitle: "Add Exam".tr,
                                     subtitle: "none");
                               }));
+                              Get.find<ExamTableController>().initialData();
+                              period.clear();
+                              max.clear();
+                              min.clear();
                             },
                             icon: Icon(Icons.add,
                                 size: 18,

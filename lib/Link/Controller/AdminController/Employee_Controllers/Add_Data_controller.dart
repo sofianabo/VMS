@@ -31,7 +31,7 @@ class Add_Data_controller extends GetxController {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: Birthdate.value ?? DateTime.now(),
-      firstDate: DateTime(2000),
+      firstDate: DateTime(1950),
       lastDate: DateTime(2100),
     );
     if (picked != null) {
@@ -43,8 +43,8 @@ class Add_Data_controller extends GetxController {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: Joindate.value ?? DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
+      firstDate: DateTime(2020),
+      lastDate: DateTime(DateTime.now().year + 1),
     );
     if (picked != null) {
       Joindate.value = picked;
