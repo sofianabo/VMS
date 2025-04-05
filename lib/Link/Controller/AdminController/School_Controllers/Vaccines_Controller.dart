@@ -484,4 +484,27 @@ class Vaccines_Controller extends gets.GetxController {
     }
     update();
   }
+
+  void selectIndex(String type, String? index) {
+    print(type);
+    print(index);
+    switch (type) {
+      case 'Location':
+        LocationIndex = index ?? "";
+        break;
+    }
+    update();
+  }
+
+  void updateList(
+    String type,
+    List<String> options,
+  ) {
+    switch (type) {
+      case 'Location':
+        Locationlist = options;
+        break;
+    }
+    update();
+  }
 }

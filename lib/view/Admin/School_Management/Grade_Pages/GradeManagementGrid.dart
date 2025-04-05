@@ -21,7 +21,7 @@ class GradeTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-         textDirection: prefs!.getString(languageKey) == "ar"
+      textDirection: prefs!.getString(languageKey) == "ar"
           ? TextDirection.rtl
           : TextDirection.ltr,
       child: GetBuilder<Grade_Controller>(
@@ -131,8 +131,7 @@ class GradeTable extends StatelessWidget {
                         width: 400,
                         child: Text(
                           "Do You Want To Deletegarde".tr +
-                              " ( ${  prefs!.getString(languageKey) == 'ar'?
-                                              "${row['name']}":"${row['enName']}"} ) " +
+                              " ( ${prefs!.getString(languageKey) == 'ar' ? "${row['name']}" : "${row['enName']}"} ) " +
                               "Gradee".tr,
                           style: const TextStyle(fontSize: 16),
                         ),
@@ -155,6 +154,7 @@ class GradeTable extends StatelessWidget {
                   : "${row['enName']}";
               feeCount.text = "${row['feeCount']}";
               Get.dialog(
+                barrierDismissible: false,
                 GetBuilder<Grade_Controller>(builder: (G_Controller) {
                   return VMSAlertDialog(
                       action: [

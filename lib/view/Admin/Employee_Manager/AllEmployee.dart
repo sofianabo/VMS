@@ -148,8 +148,9 @@ class _AllEmployeeState extends State<AllEmployee> {
                               password.clear();
                               cPassword.clear();
                               Get.find<Allempolyeecontroller>().reset();
-                              Get.dialog(GetBuilder<Allempolyeecontroller>(
-                                  builder: (cont) {
+                              Get.dialog(barrierDismissible: false,
+                                  GetBuilder<Allempolyeecontroller>(
+                                      builder: (cont) {
                                 return VMSAlertDialog(
                                     action: [
                                       ButtonDialog(

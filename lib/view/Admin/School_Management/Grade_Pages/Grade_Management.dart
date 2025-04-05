@@ -64,8 +64,12 @@ class _GradeManagementState extends State<GradeManagement> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5))))),
                         onPressed: () {
-                          Get.dialog(GetBuilder<Grade_Controller>(
-                              builder: (controller) {
+                          arName.clear();
+                          enName.clear();
+                          feeCount.clear();
+                          Get.dialog(barrierDismissible: false,
+                              GetBuilder<Grade_Controller>(
+                                  builder: (controller) {
                             return VMSAlertDialog(
                                 action: [
                                   ButtonDialog(
@@ -124,7 +128,8 @@ class _GradeManagementState extends State<GradeManagement> {
                                                   },
                                                   controller: enName,
                                                   Uptext: "Grade En - Name".tr,
-                                                  hinttext: "Grade En - Name".tr),
+                                                  hinttext:
+                                                      "Grade En - Name".tr),
                                             ),
                                             Textfildwithupper(
                                                 isRequired: true,

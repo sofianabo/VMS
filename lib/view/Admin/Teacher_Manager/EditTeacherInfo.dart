@@ -66,6 +66,7 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
       TextEditingController(text: teacherControler.oTeacher!.note);
 
   return Get.dialog(
+    barrierDismissible: false,
     GetBuilder<Allteachercontroller>(builder: (control) {
       control.Joindate.value = DateTime.parse(
           Get.find<Allteachercontroller>().oTeacher!.joinDate.toString());

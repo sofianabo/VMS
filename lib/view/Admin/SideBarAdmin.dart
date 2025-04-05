@@ -91,10 +91,6 @@ class SideBarAdmin extends StatelessWidget {
                           }
                           if (value == "School Time Table".tr) {
                             cont.updateContent("School Time Table");
-                            Get.find<AdminSchoolTimeController>()
-                                .setClassIndex();
-                            Get.find<AdminSchoolTimeController>()
-                                .setTimeLessonIndex();
                           }
                           if (value == "Quiz Type".tr) {
                             cont.updateContent("Quiz Type");

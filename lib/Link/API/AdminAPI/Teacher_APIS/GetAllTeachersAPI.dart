@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Employeeecontroller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
@@ -22,12 +23,15 @@ class Getallteachersapi {
     controller.setIsLoading(true);
 
     try {
+      Get.find<AdminSchoolTimeController>().SetisLoadingTeacher(true);
       String myurl = "$hostPort$getTeachers";
       var response = await dio.post(
           data: {'sessionId': sessionID}, myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         AllTeacherModel teacher = AllTeacherModel.fromJson(response.data);
         controller.setAllTeacher(teacher);
+        Get.find<AdminSchoolTimeController>().setAllTeacherDialog(teacher);
+        Get.find<AdminSchoolTimeController>().SetisLoadingTeacher(false);
         return teacher;
       } else {
         ErrorHandler.handleDioError(DioException(

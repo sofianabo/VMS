@@ -96,7 +96,9 @@ class _Teachers_notebook_grade_recordState
                               return;
                             }
                             controller.items.clear();
-                            Get.dialog(Add_Group());
+                            Get.dialog(
+                                barrierDismissible: false,
+                                Add_Group());
                           },
                           icon: Icon(Icons.add,
                               size: 18,
@@ -138,7 +140,9 @@ class _Teachers_notebook_grade_recordState
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5))))),
                             onPressed: () {
-                              Get.dialog(Add_Oparation_Dialog(
+                              Get.dialog(
+                                  barrierDismissible: false,
+                                  Add_Oparation_Dialog(
                                   controller: Con,
                                   Class_Id: controller.Classmodel?.classes
                                       ?.firstWhereOrNull(
@@ -209,7 +213,9 @@ class _Teachers_notebook_grade_recordState
                                 groups: controller.groups,
                               );
                             } else {
-                              Get.dialog(SelectedClass());
+                              Get.dialog(
+                                  barrierDismissible: false,
+                                  SelectedClass());
                             }
                           },
                           icon: Icon(Icons.save_outlined,

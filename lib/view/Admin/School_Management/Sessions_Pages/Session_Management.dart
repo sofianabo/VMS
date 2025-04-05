@@ -64,8 +64,9 @@ class _SessionManagementState extends State<SessionManagement> {
                         onPressed: () {
                           yearController.clear();
                           Get.find<SessionController>().initialData();
-                          Get.dialog(GetBuilder<SessionController>(
-                              builder: (controller) {
+                          Get.dialog(barrierDismissible: false,
+                              GetBuilder<SessionController>(
+                                  builder: (controller) {
                             return VMSAlertDialog(
                                 action: [
                                   ButtonDialog(

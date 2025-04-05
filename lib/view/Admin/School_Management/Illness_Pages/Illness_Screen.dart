@@ -92,8 +92,12 @@ class _Ilness_ScreenState extends State<Ilness_Screen> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
                             onPressed: () {
-                              Get.dialog(GetBuilder<Illness_Controller>(
-                                  builder: (controller) {
+                              var controller = Get.find<Illness_Controller>();
+                              controller.updateFieldError("arname", false);
+                              controller.updateFieldError("enname", false);
+                              Get.dialog(barrierDismissible: false,
+                                  GetBuilder<Illness_Controller>(
+                                      builder: (controller) {
                                 return VMSAlertDialog(
                                     contents: Column(
                                       mainAxisSize: MainAxisSize.min,

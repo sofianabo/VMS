@@ -168,4 +168,13 @@ class Transaction_Controller extends GetxController {
     searchRequestByName(filteredName, rollIndex, "", actionIndex);
     update();
   }
+
+  void ressetAll() {
+    rollIndex = "";
+    actionIndex = "";
+    rowsIndex = "25";
+    AttendencetDate.value = null;
+    searchRequestByName("", "", "", "");
+    update();
+  }
 }

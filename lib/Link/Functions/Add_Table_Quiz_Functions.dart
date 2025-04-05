@@ -118,7 +118,9 @@ Add_Group() {
                               ),
                               child: IconButton(
                                 onPressed: () {
-                                  Get.dialog(Add_Items_Group());
+                                  Get.dialog(
+                                      barrierDismissible: false,
+                                      Add_Items_Group());
                                 },
                                 icon: Icon(
                                   Icons.add,
@@ -213,14 +215,17 @@ Add_Group() {
                                         ),
                                         child: IconButton(
                                           onPressed: () {
-                                            Get.dialog(Edit_Items_Group(
-                                                idx: index,
-                                                name: controller.items[index]
-                                                    ['name'],
-                                                isQuizables: controller
-                                                    .items[index]['isQuizable'],
-                                                rat: controller.items[index]
-                                                    ['ratio']));
+                                            Get.dialog(
+                                                barrierDismissible: false,
+                                                Edit_Items_Group(
+                                                    idx: index,
+                                                    name: controller
+                                                        .items[index]['name'],
+                                                    isQuizables:
+                                                        controller.items[index]
+                                                            ['isQuizable'],
+                                                    rat: controller.items[index]
+                                                        ['ratio']));
                                           },
                                           icon: Icon(
                                             Icons.edit,
@@ -448,7 +453,9 @@ Rerange_Group() {
                             children: [
                               SlidableAction(
                                 onPressed: (context) {
-                                  Get.dialog(Edit_Group(index));
+                                  Get.dialog(
+                                      barrierDismissible: false,
+                                      Edit_Group(index));
                                 },
                                 backgroundColor: Colors.blue,
                                 foregroundColor: Colors.white,
@@ -669,7 +676,9 @@ Edit_Group(int idx) {
                               ),
                               child: IconButton(
                                 onPressed: () {
-                                  Get.dialog(Add_Items_Group());
+                                  Get.dialog(
+                                      barrierDismissible: false,
+                                      Add_Items_Group());
                                 },
                                 icon: Icon(
                                   Icons.add,
@@ -767,15 +776,18 @@ Edit_Group(int idx) {
                                           ),
                                           child: IconButton(
                                             onPressed: () {
-                                              Get.dialog(Edit_Items_Group(
-                                                  idx: index,
-                                                  name: controller.items[index]
-                                                      ['name'],
-                                                  isQuizables:
-                                                      controller.items[index]
+                                              Get.dialog(
+                                                  barrierDismissible: false,
+                                                  Edit_Items_Group(
+                                                      idx: index,
+                                                      name: controller
+                                                          .items[index]['name'],
+                                                      isQuizables: controller
+                                                              .items[index]
                                                           ['isQuizable'],
-                                                  rat: controller.items[index]
-                                                      ['ratio']));
+                                                      rat: controller
+                                                              .items[index]
+                                                          ['ratio']));
                                             },
                                             icon: Icon(
                                               Icons.edit,

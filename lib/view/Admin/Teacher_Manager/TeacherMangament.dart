@@ -121,6 +121,12 @@ class _TeacherManagementState extends State<TeacherManagement> {
                     children: [
                       Squer_Button_Enabled_Disabled(
                         onTap: () {
+                          Get.find<Allempolyeecontroller>().Joindate.value =
+                              null;
+                          Get.find<Allempolyeecontroller>().GenderListIndex =
+                              "";
+                          Get.find<Allempolyeecontroller>().ContractTypeIndex =
+                              "";
                           firstName.clear();
                           lastName.clear();
                           email.clear();
@@ -128,8 +134,9 @@ class _TeacherManagementState extends State<TeacherManagement> {
                           phone.clear();
                           password.clear();
                           cPassword.clear();
-                          Get.dialog(GetBuilder<Allteachercontroller>(
-                              builder: (controller) {
+                          Get.dialog(barrierDismissible: false,
+                              GetBuilder<Allteachercontroller>(
+                                  builder: (controller) {
                             return VMSAlertDialog(
                                 action: [
                                   ButtonDialog(

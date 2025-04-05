@@ -97,14 +97,18 @@ class DivisionGrid extends StatelessWidget {
                       return HoverScaleCard(
                         child: GestureDetector(
                           onTap: () {
+                            control.updateFieldError("ename", false);
+                            control.updateFieldError("arname", false);
+                            control.updateFieldError("meet", false);
                             arName.text =
                                 "${control.filteredDivision![index].name}";
                             enName.text =
                                 "${control.filteredDivision![index].enName}";
                             meetUrl.text =
                                 "${control.filteredDivision![index].meetUrl}";
-                            Get.dialog(GetBuilder<Divisions_Controller>(
-                                builder: (controller) {
+                            Get.dialog(barrierDismissible: false,
+                                GetBuilder<Divisions_Controller>(
+                                    builder: (controller) {
                               return VMSAlertDialog(
                                 action: [
                                   ButtonDialog(

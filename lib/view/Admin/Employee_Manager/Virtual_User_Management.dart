@@ -102,7 +102,12 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
                               onPressed: () {
-                                Get.dialog(
+                                username.clear();
+                                password.clear();
+                                cPassword.clear();
+                                Get.find<Allempolyeecontroller>()
+                                    .rolldialogIndex = "";
+                                Get.dialog(barrierDismissible: false,
                                     GetBuilder<All_Virtual_Employee_Controller>(
                                         builder: (Virtual_controller) {
                                   return VMSAlertDialog(

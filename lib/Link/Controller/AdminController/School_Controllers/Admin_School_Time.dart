@@ -106,13 +106,26 @@ class AdminSchoolTimeController extends GetxController {
     updateList("division", examDivision);
   }
 
+  bool isLoadingTeacher = true;
+  bool isLoadingCurr = true;
+
+  SetisLoadingTeacher(bool value) {
+    isLoadingTeacher = value;
+    update();
+  }
+
+  SetisLoadingcurr(bool value) {
+    isLoadingCurr = value;
+    update();
+  }
+
   void setAllTeacherDialog(AllTeacherModel teach) {
     teacherDialogList.clear();
     for (int j = 0; j < teach.teachers!.length; j++) {
       teacherDialogList.add(teach.teachers![j].fullName.toString());
     }
-    update();
     updateList("teacherDialog", teacherDialogList);
+    update();
   }
 
   void setAllSubjectDialog(DropDowmCuriculmModel? curr) {

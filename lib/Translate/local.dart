@@ -606,7 +606,7 @@ class Languages {
       'Do You Want To Deletess': 'هل تريد حذف السنة الدراسية',
       'Sessionn': '',
       'Delete Session': 'حذف سنة دراسية',
-      'Edit Session': 'تعديل السنة الدراسية',
+      'Edit Session': 'تعديل السنة',
       'Opened': 'مفتوح',
       'Subject En - Name': 'الاسم الإنكليزي للمادة',
       'Subject Ar - Name': 'الاسم العربي للمادة',

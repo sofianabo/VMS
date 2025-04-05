@@ -167,12 +167,31 @@ All_Gurdians_Dialog() {
                       bool isbirthdateEmpty =
                           Get.find<Allempolyeecontroller>().Birthdate.value ==
                               null;
+
+                      bool isfatherpassport =
+                          Get.find<Add_Students_Controller>()
+                                  .selectedFatherPassport
+                                  .value ==
+                              null;
+
+                      bool isFamilyPassport =
+                          Get.find<Add_Students_Controller>()
+                                  .selectedFamilyBook
+                                  .value ==
+                              null;
+
                       RegExp passwordRegex = RegExp(r"^[a-zA-Z0-9]{8,}$");
                       bool isPasswordValid =
                           passwordRegex.hasMatch(Password.text);
 
                       addStudentsController.updateFieldError(
                           "first", isFirstNameEmpty);
+
+                      addStudentsController.updateFieldError(
+                          "fatherpass", isfatherpassport);
+                      addStudentsController.updateFieldError(
+                          "familypass", isFamilyPassport);
+
                       addStudentsController.updateFieldError(
                           "last", isLastNameEmpty);
                       addStudentsController.updateFieldError(
@@ -221,6 +240,8 @@ All_Gurdians_Dialog() {
                           isphoneEmpty ||
                           isLocalIDEmpty ||
                           isclassEmpty ||
+                          isfatherpassport ||
+                          isFamilyPassport ||
                           isAddressEmpty ||
                           isusernameEmpty ||
                           isDivisionEmpty ||
@@ -1234,8 +1255,11 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5)),
-                                        border: Border.all(
-                                            color: Color(0xffD9D9D9)),
+                                        border:
+                                            controller.ISisfatherpassportError
+                                                ? Border.all(color: Colors.red)
+                                                : Border.all(
+                                                    color: Color(0xffD9D9D9)),
                                         color: controller
                                                     .isHoveringFatherPassport ||
                                                 controller
@@ -1856,8 +1880,11 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5)),
-                                        border: Border.all(
-                                            color: Color(0xffD9D9D9)),
+                                        border:
+                                            controller.ISisFamilyPassportError
+                                                ? Border.all(color: Colors.red)
+                                                : Border.all(
+                                                    color: Color(0xffD9D9D9)),
                                         color:
                                             controller.isHoveringFamilyBook ||
                                                     controller

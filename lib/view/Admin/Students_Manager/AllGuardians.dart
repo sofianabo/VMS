@@ -95,8 +95,9 @@ class _AllGuardiansState extends State<AllGuardians> {
                             name.clear();
                             phone.clear();
                             nationalId.clear();
-                            Get.dialog(GetBuilder<Allgaurdiancontroller>(
-                                builder: (controller) {
+                            Get.dialog(barrierDismissible: false,
+                                GetBuilder<Allgaurdiancontroller>(
+                                    builder: (controller) {
                               return VMSAlertDialog(
                                   contents: SizedBox(
                                       child: Column(

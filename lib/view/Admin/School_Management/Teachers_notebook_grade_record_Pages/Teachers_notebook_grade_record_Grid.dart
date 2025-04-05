@@ -19,7 +19,8 @@ class GradesTableScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(16.0),
                       child: GestureDetector(
                         onTap: () {
-                          Get.dialog(Rerange_Group());
+                          Get.dialog(
+                              barrierDismissible: false, Rerange_Group());
                         },
                         child: Obx(() {
                           return Table(

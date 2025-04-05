@@ -90,8 +90,20 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
                             onPressed: () {
-                              Get.dialog(GetBuilder<Labrary_Controller>(
-                                  builder: (controller) {
+                              var controller = Get.find<Labrary_Controller>();
+                              controller.selectedFile.value = null;
+                              name.clear();
+                              enName.clear();
+                              controller.updateTextFile(
+                                  "Click To Add File\nOr\nDrag And Drop File Here"
+                                      .tr);
+                              controller.updateFieldError("arname", false);
+                              controller.updateFieldError("enname", false);
+                              controller.updateFieldError("file", false);
+
+                              Get.dialog(barrierDismissible: false,
+                                  GetBuilder<Labrary_Controller>(
+                                      builder: (controller) {
                                 return VMSAlertDialog(
                                     contents: Column(
                                       mainAxisSize: MainAxisSize.min,
@@ -212,21 +224,24 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                                                   .value =
                                                               fileName!;
                                                           controller.updateTextFile(
-                                                              "PDF File Successfully Dropped!".tr);
+                                                              "PDF File Successfully Dropped!"
+                                                                  .tr);
                                                           controller
                                                               .updateFieldError(
                                                                   "file",
                                                                   false);
                                                         } else {
                                                           controller.updateTextFile(
-                                                              "Error: Unsupported File Type.".tr);
+                                                              "Error: Unsupported File Type."
+                                                                  .tr);
                                                           controller
                                                               .updateFieldError(
                                                                   "file", true);
                                                         }
                                                       } else {
                                                         controller.updateTextFile(
-                                                            "Error: Only One File Is Allowed.".tr);
+                                                            "Error: Only One File Is Allowed."
+                                                                .tr);
                                                         controller
                                                             .updateFieldError(
                                                                 "file", true);

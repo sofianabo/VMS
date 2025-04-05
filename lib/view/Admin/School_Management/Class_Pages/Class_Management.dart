@@ -32,6 +32,7 @@ class _ClassManagementState extends State<ClassManagement> {
     Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
     Get_All_Classes_API(context).Get_All_Classes();
     Getallgradeapi.Getallgrade();
+    Get.find<ClassMgmtController>().gradeIndex = "";
     super.initState();
   }
 
@@ -93,15 +94,25 @@ class _ClassManagementState extends State<ClassManagement> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5))))),
                         onPressed: () async {
+                          arName.clear();
+                          enName.clear();
+                          driveUrl.clear();
                           Get_Admin_Class_API(context).Get_Admin_Class();
-                          Get.find<ClassMgmtController>()
-                              .selectedCurriculumNames
-                              .clear();
-                          Get.find<ClassMgmtController>()
-                              .selectedCurriculums
-                              .clear();
-                          Get.dialog(GetBuilder<ClassMgmtController>(
-                              builder: (controller) {
+                          controllers.selectedCurriculumNames.clear();
+                          controllers.selectedCurriculums.clear();
+                          controllers.gradeDiagIndex = "";
+                          controllers.AdminDiagIndex = "";
+
+                          controllers.updateFieldError("arname", false);
+                          controllers.updateFieldError("enname", false);
+                          controllers.updateFieldError("grade", false);
+                          controllers.updateFieldError("curr", false);
+                          controllers.updateFieldError("drive", false);
+                          controllers.updateFieldError("account", false);
+
+                          Get.dialog(barrierDismissible: false,
+                              GetBuilder<ClassMgmtController>(
+                                  builder: (controller) {
                             return VMSAlertDialog(
                                 action: [
                                   ButtonDialog(

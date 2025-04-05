@@ -345,7 +345,7 @@ class Add_Students_Controller extends GetxController {
     if (result != null && result.files.single.bytes != null) {
       selectedFatherPassport.value = result.files.single.bytes;
       FatherPassportName.value = result.files.single.name;
-
+      updateFieldError("fatherpass", false);
       updateTextFather("Done Selected File".tr);
     }
   }
@@ -357,6 +357,7 @@ class Add_Students_Controller extends GetxController {
 
   void updateTextFather(String value) {
     FatherPassportStatus = value;
+    ISisfatherpassportError = false;
     update();
   }
 
@@ -506,7 +507,8 @@ class Add_Students_Controller extends GetxController {
     if (result != null && result.files.single.bytes != null) {
       selectedFamilyBook.value = result.files.single.bytes;
       FamilyBookName.value = result.files.single.name;
-
+      ISisFamilyPassportError = false;
+      updateFieldError("familypass", false);
       updateTextFamilyBook("Done Selected File".tr);
     }
   }
@@ -518,6 +520,7 @@ class Add_Students_Controller extends GetxController {
 
   void updateTextFamilyBook(String value) {
     FamilyBookStatus = value;
+    updateFieldError("familypass", false);
     update();
   }
 
@@ -531,6 +534,7 @@ class Add_Students_Controller extends GetxController {
 
   void ClearselectedFatherPassport() {
     selectedFatherPassport.value = null;
+    ISisfatherpassportError = true;
     updateHoverFather(false);
 
     updateTextFather(
@@ -626,6 +630,8 @@ class Add_Students_Controller extends GetxController {
   bool ISFatherphoneError = false;
   bool ISMotherNameError = false;
   bool ISMotherPhoneError = false;
+  bool ISisfatherpassportError = false;
+  bool ISisFamilyPassportError = false;
 
   void updateFieldError(String type, bool newValue) {
     switch (type) {
@@ -666,26 +672,41 @@ class Add_Students_Controller extends GetxController {
       case 'localaddress':
         ISLocalAddressError = newValue;
         break;
+
       case 'username':
         ISusernameError = newValue;
         break;
+
       case 'division':
         ISDivisionError = newValue;
         break;
+
       case 'password':
         ISpasswordError = newValue;
         break;
+
       case 'fathername':
         ISFatherNameError = newValue;
         break;
+
       case 'fatherphone':
         ISFatherphoneError = newValue;
         break;
+
       case 'mothername':
         ISMotherNameError = newValue;
         break;
+
       case 'motherphone':
         ISMotherPhoneError = newValue;
+        break;
+
+      case 'fatherpass':
+        ISisfatherpassportError = newValue;
+        break;
+
+      case 'familypass':
+        ISisFamilyPassportError = newValue;
         break;
 
       default:
@@ -717,8 +738,9 @@ class Add_Students_Controller extends GetxController {
     ISpasswordError = false;
     ISFatherNameError = false;
     ISFatherphoneError = false;
-
     ISMotherNameError = false;
+    ISisfatherpassportError = false;
+    ISisFamilyPassportError = false;
     ISMotherPhoneError = false;
     Get.find<Allempolyeecontroller>().Birthdate.value = null;
     update();

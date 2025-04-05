@@ -32,6 +32,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
     Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
     Get_All_Division_API(context).Get_All_Division();
     Getallclassapi.getAllClasses();
+    Get.find<Divisions_Controller>().ClassIndex = "";
     super.initState();
   }
 
@@ -87,8 +88,20 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5))))),
                         onPressed: () {
-                          Get.dialog(GetBuilder<Divisions_Controller>(
-                              builder: (controller) {
+                          arName.clear();
+                          enName.clear();
+                          driveUrl.clear();
+                          Get.find<Divisions_Controller>()
+                              .updateFieldError("ename", false);
+                          Get.find<Divisions_Controller>()
+                              .updateFieldError("arname", false);
+                          Get.find<Divisions_Controller>()
+                              .updateFieldError("meet", false);
+                          Get.find<Divisions_Controller>()
+                              .updateFieldError("class", false);
+                          Get.dialog(barrierDismissible: false,
+                              GetBuilder<Divisions_Controller>(
+                                  builder: (controller) {
                             return VMSAlertDialog(
                                 action: [
                                   ButtonDialog(

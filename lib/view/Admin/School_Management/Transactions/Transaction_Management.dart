@@ -21,6 +21,7 @@ class _Transaction_ManagementState extends State<Transaction_Management> {
   @override
   void initState() {
     Get_Transaction_Screen_API.Get_Transaction_Screen(rows: "25");
+    Get.find<Transaction_Controller>().ressetAll();
     super.initState();
   }
 
@@ -93,7 +94,7 @@ class _Transaction_ManagementState extends State<Transaction_Management> {
                         width: 40,
                         height: 40,
                         decoration: BoxDecoration(
-                            color:Theme.of(context).cardColor,
+                            color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(5),
                             boxShadow: const [
                               BoxShadow(
@@ -102,16 +103,17 @@ class _Transaction_ManagementState extends State<Transaction_Management> {
                                   blurRadius: 1)
                             ]),
                         child: IconButton(
-                            style:  ButtonStyle(
-                                backgroundColor:
-                                    WidgetStatePropertyAll(Theme.of(context).cardColor),
+                            style: ButtonStyle(
+                                backgroundColor: WidgetStatePropertyAll(
+                                    Theme.of(context).cardColor),
                                 shape: WidgetStatePropertyAll(
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
                             onPressed: () {},
                             icon: Icon(VMS_Icons.pdf,
-                                size: 18, color: Theme.of(context).highlightColor)),
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
                       ),
                     ),
                     Container(
@@ -127,16 +129,17 @@ class _Transaction_ManagementState extends State<Transaction_Management> {
                                 blurRadius: 1)
                           ]),
                       child: IconButton(
-                          style:  ButtonStyle(
-                              backgroundColor:
-                                  WidgetStatePropertyAll(Theme.of(context).cardColor),
+                          style: ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                  Theme.of(context).cardColor),
                               shape: WidgetStatePropertyAll(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
                           onPressed: () {},
                           icon: Icon(VMS_Icons.xl,
-                              size: 18, color: Theme.of(context).highlightColor)),
+                              size: 18,
+                              color: Theme.of(context).highlightColor)),
                     ),
                   ],
                 );

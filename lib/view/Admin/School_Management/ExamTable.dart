@@ -117,8 +117,9 @@ class _ExamTableState extends State<ExamTable> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
                             onPressed: () {
-                              Get.dialog(GetBuilder<ExamTableController>(
-                                  builder: (Econtroller) {
+                              Get.dialog(barrierDismissible: false,
+                                  GetBuilder<ExamTableController>(
+                                      builder: (Econtroller) {
                                 return VMSAlertDialog(
                                     action: [
                                       ButtonDialog(
@@ -485,13 +486,14 @@ class _ExamTableState extends State<ExamTable> {
                                             .startDate
                                             .toString());
 
-                                    Get.dialog(VMSAlertDialog(
-                                        action: [
-                                          ButtonDialog(
-                                              text: "Edit Exam".tr,
-                                              onPressed: () async {
-                                                await Editquizapi(context)
-                                                    .Editquiz(
+                                    Get.dialog(
+                                        barrierDismissible: false,
+                                        VMSAlertDialog(
+                                            action: [
+                                              ButtonDialog(
+                                                  text: "Edit Exam".tr,
+                                                  onPressed: () async {
+                                                    await Editquizapi(context).Editquiz(
                                                         controller
                                                             .filteredquiz![
                                                                 controller
@@ -506,104 +508,123 @@ class _ExamTableState extends State<ExamTable> {
                                                         periodDialog.text,
                                                         maxDialog.text,
                                                         minDialog.text);
-                                                Get.back();
-                                              },
-                                              color: Get.theme.primaryColor,
-                                              width: 120)
-                                        ],
-                                        contents: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 15.0),
-                                              child: Row(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            right: 15.0,
-                                                            left: 15),
-                                                    child: Textfildwithupper(
-                                                        Uptext: "Max Mark".tr,
-                                                        width: 220,
-                                                        controller: maxDialog,
-                                                        hinttext:
-                                                            "Max Mark".tr),
-                                                  ),
-                                                  Textfildwithupper(
-                                                      Uptext: "Min Mark".tr,
-                                                      width: 220,
-                                                      controller: minDialog,
-                                                      hinttext: "Min Mark".tr)
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 15.0),
-                                              child: Row(
-                                                children: [
-                                                  Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              right: 15.0,
-                                                              left: 15),
-                                                      child: GestureDetector(
-                                                        onTap: () async {
-                                                          Duration? picked =
-                                                              await showDurationPicker(
-                                                            context: context,
-                                                            initialTime:
-                                                                Duration(
-                                                                    hours: 0,
-                                                                    minutes: 0),
-                                                          );
-                                                          if (picked != null) {
-                                                            periodDialog.text =
-                                                                "${picked.inHours.toString().padLeft(2, '0')}:"
-                                                                "${(picked.inMinutes % 60).toString().padLeft(2, '0')}:00";
-                                                          }
-                                                        },
-                                                        child: Textfildwithupper(
-                                                            enabled: false,
-                                                            Uptext: "Period".tr,
-                                                            width: 220,
-                                                            controller:
-                                                                periodDialog,
-                                                            hinttext:
-                                                                "00:00:00"),
-                                                      )),
-                                                  Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                    Get.back();
+                                                  },
+                                                  color: Get.theme.primaryColor,
+                                                  width: 120)
+                                            ],
+                                            contents: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 15.0),
+                                                  child: Row(
                                                     children: [
                                                       Padding(
                                                         padding:
                                                             const EdgeInsets
                                                                 .only(
-                                                                bottom: 5.0),
-                                                        child: RichText(
-                                                            text: TextSpan(
-                                                                text: "Date".tr,
-                                                                style: Get
-                                                                    .theme
-                                                                    .textTheme
-                                                                    .bodyMedium)),
+                                                                right: 15.0,
+                                                                left: 15),
+                                                        child:
+                                                            Textfildwithupper(
+                                                                Uptext:
+                                                                    "Max Mark"
+                                                                        .tr,
+                                                                width: 220,
+                                                                controller:
+                                                                    maxDialog,
+                                                                hinttext:
+                                                                    "Max Mark"
+                                                                        .tr),
                                                       ),
-                                                      examDate(
-                                                        width: 220,
-                                                      ),
+                                                      Textfildwithupper(
+                                                          Uptext: "Min Mark".tr,
+                                                          width: 220,
+                                                          controller: minDialog,
+                                                          hinttext:
+                                                              "Min Mark".tr)
                                                     ],
-                                                  )
-                                                ],
-                                              ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 15.0),
+                                                  child: Row(
+                                                    children: [
+                                                      Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                                  right: 15.0,
+                                                                  left: 15),
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () async {
+                                                              Duration? picked =
+                                                                  await showDurationPicker(
+                                                                context:
+                                                                    context,
+                                                                initialTime:
+                                                                    Duration(
+                                                                        hours:
+                                                                            0,
+                                                                        minutes:
+                                                                            0),
+                                                              );
+                                                              if (picked !=
+                                                                  null) {
+                                                                periodDialog
+                                                                        .text =
+                                                                    "${picked.inHours.toString().padLeft(2, '0')}:"
+                                                                    "${(picked.inMinutes % 60).toString().padLeft(2, '0')}:00";
+                                                              }
+                                                            },
+                                                            child: Textfildwithupper(
+                                                                enabled: false,
+                                                                Uptext:
+                                                                    "Period".tr,
+                                                                width: 220,
+                                                                controller:
+                                                                    periodDialog,
+                                                                hinttext:
+                                                                    "00:00:00"),
+                                                          )),
+                                                      Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    bottom:
+                                                                        5.0),
+                                                            child: RichText(
+                                                                text: TextSpan(
+                                                                    text: "Date"
+                                                                        .tr,
+                                                                    style: Get
+                                                                        .theme
+                                                                        .textTheme
+                                                                        .bodyMedium)),
+                                                          ),
+                                                          examDate(
+                                                            width: 220,
+                                                          ),
+                                                        ],
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                          ],
-                                        ),
-                                        apptitle: "Edit Exam".tr,
-                                        subtitle: "none"));
+                                            apptitle: "Edit Exam".tr,
+                                            subtitle: "none"));
                                   },
                                 ),
                               ],

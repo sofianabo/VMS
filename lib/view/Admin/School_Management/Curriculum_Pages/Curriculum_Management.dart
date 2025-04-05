@@ -23,7 +23,6 @@ class Curriculum_Management extends StatefulWidget {
 
 class _Curriculum_ManagementState extends State<Curriculum_Management> {
   TextEditingController search = TextEditingController();
-
   TextEditingController name = TextEditingController();
   TextEditingController enname = TextEditingController();
   TextEditingController max = TextEditingController();
@@ -34,6 +33,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
   void initState() {
     Get_All_Curriculm_API(context).Get_All_Curriculm();
     Get_Subject_Screen_API(context).Get_Subject_Screen();
+    Get.find<Curriculumn_Controller>().initialScreen();
     super.initState();
   }
 
@@ -121,8 +121,32 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
                             onPressed: () {
-                              Get.dialog(GetBuilder<Curriculumn_Controller>(
-                                  builder: (controller) {
+                              var controller =
+                                  Get.find<Curriculumn_Controller>();
+                              controller.updateFieldError("aname", false);
+                              controller.updateFieldError("ename", false);
+                              controller.updateFieldError("max", false);
+                              controller.updateFieldError("passing", false);
+
+                              controller.updateFieldError("subject", false);
+                              controller.updateFieldError("semester", false);
+
+                              controller.updateFieldError("image", false);
+                              controller.updateFieldError("file", false);
+
+                              name.clear();
+                              enname.clear();
+                              max.clear();
+                              Passing.clear();
+                              controller.dialog_SubjectIndex = "";
+                              controller.dialog_SemesterIndex = "";
+                              controller.isFailingSubject = false;
+                              controller.selectedImage.value = null;
+                              controller.selectedFile.value = null;
+
+                              Get.dialog(barrierDismissible: false,
+                                  GetBuilder<Curriculumn_Controller>(
+                                      builder: (controller) {
                                 return VMSAlertDialog(
                                     action: [
                                       ButtonDialog(

@@ -40,4 +40,9 @@ class Penaltiesandrewardscontroller extends GetxController {
     Rewardsmodel!.prizes!.removeAt(ixd);
     update();
   }
+
+  void removeidx(int index) {
+    penaltiesModel!.penaltyStudent!.removeAt(index);
+    update();
+  }
 }

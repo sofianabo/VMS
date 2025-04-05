@@ -36,7 +36,8 @@ Add_Full_Employee(BuildContext context) {
   TextEditingController Experience = TextEditingController();
   TextEditingController Note = TextEditingController();
 
-  Get.dialog(GetBuilder<Allempolyeecontroller>(builder: (controller) {
+  Get.dialog(barrierDismissible: false,
+      GetBuilder<Allempolyeecontroller>(builder: (controller) {
     return VMSAlertDialog(
         action: [
           ButtonDialog(

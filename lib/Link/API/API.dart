@@ -1,5 +1,5 @@
 // String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
-String hostPort = "http://192.168.1.105:8000/api/";
+String hostPort = "http://192.168.1.21:8000/api/";
 
 //..................... All ...................//
 
@@ -128,6 +128,8 @@ String addPenalty = "addPenalty";
 
 String deletePenalty = "deletePenalty";
 String editPenalty = "updatePenalty";
+String deleteStudentPenalty = "deleteStudentPenalty";
+
 String addStudentPrize = "addStudentPrize";
 
 String addQuizType = "addQuizType";

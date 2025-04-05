@@ -146,9 +146,12 @@ class Subject_Management_Grid extends StatelessWidget {
             iconData: Icons.edit_note_outlined,
             color: Theme.of(context).primaryColor,
             onPressed: () {
+              controller.updateFieldError("arname", false);
+              controller.updateFieldError("enname", false);
               name.text = "${row['name']}";
               enName.text = "${row['enName']}";
               Get.dialog(
+                barrierDismissible: false,
                 GetBuilder<Subject_Controller>(builder: (controller) {
                   return VMSAlertDialog(
                       action: [

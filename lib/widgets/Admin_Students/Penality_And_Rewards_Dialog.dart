@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Rewards_APIs/Delete_Reward_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Delete_Student_Penality.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/PenaltiesAndRewardsController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
+import 'package:vms_school/widgets/ButtonsDialog.dart';
+import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/PDF_View.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
@@ -182,43 +186,177 @@ class _Re_Pe_PageState extends State<Re_Pe_Page>
                               : Container(
                                   padding: EdgeInsets.all(16.0),
                                   child: SingleChildScrollView(
-                                    scrollDirection: Axis.vertical,
-                                    child: DataTable(
-                                      border: TableBorder.all(
-                                        color: Get.theme.primaryColor,
-                                        width: 1.0,
+                                    child: Center(
+                                      child: Wrap(
+                                        crossAxisAlignment:
+                                            WrapCrossAlignment.center,
+                                        spacing: 15.0,
+                                        runAlignment:
+                                            WrapAlignment.spaceBetween,
+                                        alignment: WrapAlignment.spaceBetween,
+                                        runSpacing: 10.0,
+                                        children: List.generate(
+                                          PAR_Controller.penaltiesModel!
+                                              .penaltyStudent!.length,
+                                          (index) {
+                                            return HoverScaleCard(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                    border: Border.all(
+                                                        color: Colors.grey,
+                                                        width: 0.5),
+                                                    color: Get.theme.cardColor,
+                                                    boxShadow: const [
+                                                      BoxShadow(
+                                                          color: Colors.black26,
+                                                          offset: Offset(0, 2),
+                                                          blurRadius: 1)
+                                                    ]),
+                                                width: 250,
+                                                height: 250,
+                                                child: SingleChildScrollView(
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 7.0,
+                                                            left: 10.0,
+                                                            right: 5.0,
+                                                            bottom: 5.0),
+                                                    child: Column(
+                                                      spacing: 10.0,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Row(
+                                                          children: [
+                                                            IconButton(
+                                                                style: ButtonStyle(
+                                                                    backgroundColor:
+                                                                        WidgetStatePropertyAll(Color(
+                                                                            0xffB03D3D)),
+                                                                    shape: const WidgetStatePropertyAll(RoundedRectangleBorder(
+                                                                        borderRadius:
+                                                                            BorderRadius.all(Radius.circular(
+                                                                                5))))),
+                                                                onPressed: () {
+                                                                  Get.dialog(
+                                                                      VMSAlertDialog(
+                                                                    action: [
+                                                                      ButtonDialog(
+                                                                          text: "Delete"
+                                                                              .tr,
+                                                                          onPressed:
+                                                                              () async {
+                                                                            await deleteStudentPenalty_API().deleteStudentPenalty_AP(
+                                                                                index: index,
+                                                                                penaltyId: PAR_Controller.penaltiesModel!.penaltyStudent![index].id!);
+                                                                          },
+                                                                          color: const Color(
+                                                                              0xffB03D3D),
+                                                                          width:
+                                                                              80),
+                                                                      ButtonDialog(
+                                                                          text: "Cancel"
+                                                                              .tr,
+                                                                          onPressed:
+                                                                              () {
+                                                                            Get.back();
+                                                                          },
+                                                                          color: Theme.of(context)
+                                                                              .primaryColor,
+                                                                          width:
+                                                                              80)
+                                                                    ],
+                                                                    contents: SizedBox(
+                                                                        width: 500,
+                                                                        child: Row(
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.start,
+                                                                          children: [
+                                                                            Text(
+                                                                              "Do You Want To Delete".tr,
+                                                                              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 16, fontWeight: FontWeight.normal),
+                                                                            ),
+                                                                          ],
+                                                                        )),
+                                                                    apptitle:
+                                                                        "Delete Penalty"
+                                                                            .tr,
+                                                                    subtitle:
+                                                                        "none",
+                                                                  ));
+                                                                },
+                                                                icon: Icon(
+                                                                    VMS_Icons
+                                                                        .bin,
+                                                                    size: 16,
+                                                                    color: Colors
+                                                                        .white)),
+                                                          ],
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                                  top: 8.0,
+                                                                  bottom: 8.0),
+                                                          child: Text((prefs!
+                                                                      .getString(
+                                                                          languageKey) ==
+                                                                  'ar')
+                                                              ? "( ${PAR_Controller.penaltiesModel!.penaltyStudent![index].penalty![0].name} )"
+                                                              : "( ${PAR_Controller.penaltiesModel!.penaltyStudent![index].penalty![0].enName} )"),
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            Text("Start Date"
+                                                                    .tr +
+                                                                ": "),
+                                                            Text(
+                                                                "${PAR_Controller.penaltiesModel!.penaltyStudent![index].startDate}"),
+                                                          ],
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            Text("End Date".tr +
+                                                                ": "),
+                                                            Text(
+                                                                "${PAR_Controller.penaltiesModel!.penaltyStudent![index].endDate}"),
+                                                          ],
+                                                        ),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text("Cause".tr +
+                                                                ": "),
+                                                            Expanded(
+                                                              child: Text(
+                                                                  maxLines: 10,
+                                                                  "${PAR_Controller.penaltiesModel!.penaltyStudent![index].cause}"),
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ); // استبدل YourWidget بالويدجت الذي تريد توليده
+                                          },
+                                        ),
                                       ),
-                                      columns: [
-                                        DataColumn(label: Text('Penalty'.tr)),
-                                        DataColumn(
-                                            label: Text('Start Date'.tr)),
-                                        DataColumn(label: Text('End Date'.tr)),
-                                        DataColumn(label: Text('Reason'.tr)),
-                                      ],
-                                      rows: [
-                                        for (var i in PAR_Controller
-                                                .penaltiesModel
-                                                ?.penaltyStudent ??
-                                            [])
-                                          DataRow(cells: [
-                                            DataCell(Text(i.penalty != null &&
-                                                    i.penalty!.isNotEmpty &&
-                                                    prefs!.getString(
-                                                            languageKey) ==
-                                                        'ar'
-                                                ? i.penalty![0].name ?? "N/A"
-                                                : i.penalty != null &&
-                                                        i.penalty!.isNotEmpty
-                                                    ? i.penalty![0].enName
-                                                    : "N/A")),
-                                            DataCell(Text(
-                                                "${i.startDate ?? 'N/A'}")),
-                                            DataCell(
-                                                Text("${i.endDate ?? 'N/A'}")),
-                                            DataCell(
-                                                Text("${i.cause ?? 'N/A'}")),
-                                          ])
-                                      ],
                                     ),
                                   ),
                                 ),

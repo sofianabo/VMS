@@ -8,6 +8,7 @@ import 'package:vms_school/Link/Controller/AdminController/Location_controller.d
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/view/Admin/School_Management/Vaccine_Pages/Vaccine_Grid.dart';
+import 'package:vms_school/widgets/Admin_School/Vaccian_DropDown.dart';
 import 'package:vms_school/widgets/Admin_Students/DropDown_Add_Students.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
@@ -93,8 +94,15 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
                             onPressed: () {
-                              Get.dialog(GetBuilder<Vaccines_Controller>(
-                                  builder: (controller) {
+                              var controller = Get.find<Vaccines_Controller>();
+                              controller.updateFieldError("arname", false);
+                              controller.updateFieldError("enname", false);
+                              controller.LocationIndex = "Syria".tr;
+                              name.clear();
+                              enName.clear();
+                              Get.dialog(barrierDismissible: false,
+                                  GetBuilder<Vaccines_Controller>(
+                                      builder: (controller) {
                                 return VMSAlertDialog(
                                     contents: Column(
                                       mainAxisSize: MainAxisSize.min,
@@ -137,7 +145,7 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                                         Padding(
                                           padding:
                                               const EdgeInsets.only(top: 15.0),
-                                          child: DropdownAddStudents(
+                                          child: DropdownVaccian(
                                               isLoading:
                                                   controller.isLoadingLocation,
                                               title: "Location".tr,
@@ -176,9 +184,6 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                                                             Location_controller>()
                                                         .Locationsid,
                                                   );
-
-                                                  name.clear();
-                                                  enName.clear();
                                                 }
                                               },
                                               color:

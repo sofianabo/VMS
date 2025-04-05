@@ -106,8 +106,9 @@ class ClassGrid extends StatelessWidget {
                                 "${control.filteredreclasses![index].driveUrl}";
                             control.selectCurriculumsForClass(
                                 control.filteredreclasses![index].curriculum);
-                            Get.dialog(GetBuilder<ClassMgmtController>(
-                                builder: (controllers) {
+                            Get.dialog(barrierDismissible: false,
+                                GetBuilder<ClassMgmtController>(
+                                    builder: (controllers) {
                               return VMSAlertDialog(
                                 action: [
                                   ButtonDialog(

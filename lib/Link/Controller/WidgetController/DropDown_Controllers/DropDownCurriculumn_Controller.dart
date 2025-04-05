@@ -281,4 +281,10 @@ class Curriculumn_Controller extends GetxController {
     updateFieldError("image", true);
     update();
   }
+
+  void initialScreen() {
+    subjectIndex = "";
+    semesterIndex = "";
+    update();
+  }
 }

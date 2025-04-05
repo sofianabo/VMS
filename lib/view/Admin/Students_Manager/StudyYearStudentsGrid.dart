@@ -148,6 +148,7 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                               .toString()));
 
                           Get.dialog(
+                            barrierDismissible: false,
                             Re_Pe_Page(
                                 Id: controller.filteredStudents![index].id
                                     .toString(),

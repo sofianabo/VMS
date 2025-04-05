@@ -64,8 +64,13 @@ class _Subject_ManagementState extends State<Subject_Management> {
                         onPressed: () {
                           arName.clear();
                           enName.clear();
-                          Get.dialog(GetBuilder<Subject_Controller>(
-                              builder: (controller) {
+                          Get.find<Subject_Controller>()
+                              .updateFieldError("arname", false);
+                          Get.find<Subject_Controller>()
+                              .updateFieldError("enname", false);
+                          Get.dialog(barrierDismissible: false,
+                              GetBuilder<Subject_Controller>(
+                                  builder: (controller) {
                             return VMSAlertDialog(
                                 action: [
                                   ButtonDialog(
