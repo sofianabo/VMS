@@ -92,7 +92,7 @@ EditStudentDialog(int idx, BuildContext context) async {
             text: "Update Student".tr,
             onPressed: () async {
               bool isgenderEmpty = Get.find<Add_Students_Controller>()
-                      .selectedGenderIndex
+                      .selectedGenderIndex 
                       .isEmpty ||
                   Get.find<Add_Students_Controller>().selectedGenderIndex == "";
 

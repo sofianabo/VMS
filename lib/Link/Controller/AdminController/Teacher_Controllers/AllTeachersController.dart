@@ -240,8 +240,45 @@ class Allteachercontroller extends GetxController {
   bool IsGenderError = false;
   bool IsContractError = false;
 
+  bool IsFatherError = false;
+  bool IsMotherError = false;
+  bool IsbirthdateError = false;
+  bool IsEmergencyError = false;
+  bool IsAddressError = false;
+  bool IsCurrentAddressError = false;
+  bool IsFamilyStateError = false;
+  bool IsQualificationError = false;
+  bool IsExperinceError = false;
+
   void updateFieldError(String type, bool newValue) {
     switch (type) {
+       case 'qualification':
+        IsQualificationError = newValue;
+        break;
+         case 'exp':
+        IsExperinceError = newValue;
+        break;
+      case 'father':
+        IsFatherError = newValue;
+        break;
+        case 'mother':
+        IsMotherError = newValue;
+        break;
+        case 'birth':
+        IsbirthdateError = newValue;
+        break;
+        case 'emgn':
+        IsEmergencyError = newValue;
+        break;
+        case 'address':
+        IsAddressError = newValue;
+        break;
+        case 'caddress':
+        IsCurrentAddressError = newValue;
+        break;
+        case 'family':
+        IsFamilyStateError = newValue;
+        break;
       case 'join':
         IsJoinError = newValue;
         break;
@@ -295,6 +332,32 @@ class Allteachercontroller extends GetxController {
     classIndex = "";
     SubjectIndex = "";
     CurriculumIndex = "";
+    update();
+  }
+
+  void resetError() {
+    ShowConfirmPassword = true;
+    ShowPassword = true;
+    IsJoinError = false;
+    ISusernameError = false;
+    ISemailError = false;
+    ISfirstNameError = false;
+    ISlastNameError = false;
+    ISphoneError = false;
+    ISpasswordError = false;
+    IScPasswordError = false;
+    IsGenderError = false;
+    IsContractError = false;
+   IsFatherError = false;
+   IsMotherError = false;
+   IsbirthdateError = false;
+   IsEmergencyError = false;
+   IsAddressError = false;
+   IsCurrentAddressError = false;
+   IsFamilyStateError = false;
+     IsQualificationError = false;
+   IsExperinceError = false;
+
     update();
   }
 }

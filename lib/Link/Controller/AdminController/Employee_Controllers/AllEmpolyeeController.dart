@@ -379,4 +379,22 @@ class Allempolyeecontroller extends GetxController {
     Joindate.value = null;
     update();
   }
+
+  void resertError() {
+    ShowConfirmPassword = true;
+    ShowPassword = true;
+    IsJoinError = false;
+    ISusernameError = false;
+    ISemailError = false;
+    ISfirstNameError = false;
+    ISlastNameError = false;
+    ISphoneError = false;
+    ISpasswordError = false;
+    IScPasswordError = false;
+    IsGenderError = false;
+    IsContractError = false;
+    IsRollError = false;
+    IsJopError = false;
+    update();
+  }
 }

@@ -370,8 +370,8 @@ class TeacherManagementGrid extends StatelessWidget {
                                             .bodyMedium!
                                             .copyWith(
                                                 fontSize: 16,
-                                                color: Theme.of(context)
-                                                    .primaryColor)),
+                                                color: const Color.fromARGB(
+                                                    255, 59, 118, 206))),
                                   ),
                                 ],
                               ),

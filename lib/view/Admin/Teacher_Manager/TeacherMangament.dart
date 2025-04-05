@@ -121,6 +121,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                     children: [
                       Squer_Button_Enabled_Disabled(
                         onTap: () {
+                          Get.find<Allteachercontroller>().resetError();
                           Get.find<Allempolyeecontroller>().Joindate.value =
                               null;
                           Get.find<Allempolyeecontroller>().GenderListIndex =
