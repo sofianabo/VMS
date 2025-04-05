@@ -673,6 +673,7 @@ class Languages {
       'Selected:': 'مختار:',
       'Sum': 'مجموع',
       'Average': 'متوسط',
+      'Edit Teacher': 'تعديل المعلم',
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -1345,7 +1346,7 @@ class Languages {
       'Selected:': 'Selected:',
       'Sum': 'Sum',
       'Average': 'Average',
-      '': '',
+      'Edit Teacher': 'Edit Teacher',
       '': '',
       '': '',
       '': '',

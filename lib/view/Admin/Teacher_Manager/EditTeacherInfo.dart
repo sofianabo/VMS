@@ -130,15 +130,15 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                             Textfildwithupper(
                                 width: 250,
                                 controller: firstName,
-                                Uptext: "First Name",
-                                hinttext: "First Name"),
+                                Uptext: "First Name".tr,
+                                hinttext: "First Name".tr),
                             Padding(
                               padding: const EdgeInsets.only(top: 22.0),
                               child: Textfildwithupper(
                                   width: 250,
                                   controller: lastName,
-                                  Uptext: "Last Name",
-                                  hinttext: "Last Name"),
+                                  Uptext: "Last Name".tr,
+                                  hinttext: "Last Name".tr),
                             ),
                           ],
                         )
@@ -151,15 +151,15 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                           Textfildwithupper(
                               width: 250,
                               controller: fatherName,
-                              Uptext: "Father Name",
-                              hinttext: "Father Name"),
+                              Uptext: "Father Name".tr,
+                              hinttext: "Father Name".tr),
                           Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: Textfildwithupper(
                                 width: 250,
                                 controller: motherName,
-                                Uptext: "Mother Name",
-                                hinttext: "Mother Name"),
+                                Uptext: "Mother Name".tr,
+                                hinttext: "Mother Name".tr),
                           )
                         ],
                       ),
@@ -171,12 +171,12 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                           Textfildwithupper(
                               width: 250,
                               controller: phoneNumber,
-                              Uptext: "Phone Number",
-                              hinttext: "Phone Number"),
+                              Uptext: "Phone Number".tr,
+                              hinttext: "Phone Number".tr),
                           Padding(
                               padding: const EdgeInsets.only(left: 20.0),
                               child: EditBirthDateTeacher(
-                                Uptext: "Birthdate",
+                                Uptext: "Birthdate".tr,
                                 width: 250,
                               ))
                         ],
@@ -189,12 +189,12 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                           Textfildwithupper(
                               width: 250,
                               controller: emergency,
-                              Uptext: "Emergency Number",
-                              hinttext: "Emergency Number"),
+                              Uptext: "Emergency Number".tr,
+                              hinttext: "Emergency Number".tr),
                           Padding(
                               padding: const EdgeInsets.only(left: 20.0),
                               child: EditJoinDateTeacher(
-                                Uptext: "Join Date",
+                                Uptext: "Join Date".tr,
                                 width: 250,
                               ))
                         ],
@@ -207,15 +207,15 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                           Textfildwithupper(
                               width: 250,
                               controller: address,
-                              Uptext: "Address",
-                              hinttext: "Address"),
+                              Uptext: "Address".tr,
+                              hinttext: "Address".tr),
                           Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: Textfildwithupper(
                                 width: 250,
                                 controller: currentAddress,
-                                Uptext: "Current Address",
-                                hinttext: "Current Address"),
+                                Uptext: "Current Address".tr,
+                                hinttext: "Current Address".tr),
                           )
                         ],
                       ),
@@ -229,16 +229,16 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                               readOnly: true,
                               width: 250,
                               controller: email,
-                              Uptext: "Email",
-                              hinttext: "Email"),
+                              Uptext: "Email".tr,
+                              hinttext: "Email".tr),
                           Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: Textfildwithupper(
                                 readOnly: true,
                                 width: 250,
                                 controller: username,
-                                Uptext: "Username",
-                                hinttext: "Username"),
+                                Uptext: "Username".tr,
+                                hinttext: "Username".tr),
                           )
                         ],
                       ),
@@ -251,16 +251,16 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                               readOnly: true,
                               width: 250,
                               controller: salary,
-                              Uptext: "Salary",
-                              hinttext: "Salary"),
+                              Uptext: "Salary".tr,
+                              hinttext: "Salary".tr),
                           Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: Textfildwithupper(
                                 isRequired: true,
                                 width: 250,
                                 controller: jobTitle,
-                                Uptext: "Job Title",
-                                hinttext: "Job Title"),
+                                Uptext: "Job Title".tr,
+                                hinttext: "Job Title".tr),
                           )
                         ],
                       ),
@@ -272,14 +272,14 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Dropdownallteacher(
-                            title: "Gender",
+                            title: "Gender".tr,
                             type: "GenderDialog",
                             width: 250,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: Dropdownallteacher(
-                              title: "Family Status",
+                              title: "Family Status".tr,
                               type: "FamilyStatusDialog",
                               width: 250,
                             ),
@@ -293,7 +293,7 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Dropdownallteacher(
-                            title: "Contract Type",
+                            title: "Contract Type".tr,
                             type: "ContractTypeDialog",
                             width: 250,
                           ),
@@ -306,7 +306,7 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            "Social Media Info :",
+                            "Social Media Info :".tr,
                             style: Theme.of(context)
                                 .textTheme
                                 .titleLarge!
@@ -322,15 +322,15 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                           Textfildwithupper(
                               width: 250,
                               controller: facebook,
-                              Uptext: "Facebook URL",
-                              hinttext: "Facebook URL"),
+                              Uptext: "Facebook URL".tr,
+                              hinttext: "Facebook URL".tr),
                           Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: Textfildwithupper(
                                 width: 250,
                                 controller: x,
-                                Uptext: "X Platform URL",
-                                hinttext: "X Platform URL"),
+                                Uptext: "X Platform URL".tr,
+                                hinttext: "X Platform URL".tr),
                           )
                         ],
                       ),
@@ -342,15 +342,15 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                           Textfildwithupper(
                               width: 250,
                               controller: linkedin,
-                              Uptext: "Linkedin URL",
-                              hinttext: "Linkedin URL"),
+                              Uptext: "Linkedin URL".tr,
+                              hinttext: "Linkedin URL".tr),
                           Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: Textfildwithupper(
                                 width: 250,
                                 controller: insta,
-                                Uptext: "Instagram URL",
-                                hinttext: "Instagram URL"),
+                                Uptext: "Instagram URL".tr,
+                                hinttext: "Instagram URL".tr),
                           )
                         ],
                       ),
@@ -361,7 +361,7 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            "Teacher Bank Info :",
+                            "Teacher Bank Info :".tr,
                             style: Theme.of(context)
                                 .textTheme
                                 .titleLarge!
@@ -377,15 +377,15 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                           Textfildwithupper(
                               width: 250,
                               controller: bankAccountTitle,
-                              Uptext: "Bank Account Title",
-                              hinttext: "Bank Account Title"),
+                              Uptext: "Bank Account Title".tr,
+                              hinttext: "Bank Account Title".tr),
                           Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: Textfildwithupper(
                                 width: 250,
                                 controller: bankName,
-                                Uptext: "Bank Name",
-                                hinttext: "Bank Name"),
+                                Uptext: "Bank Name".tr,
+                                hinttext: "Bank Name".tr),
                           )
                         ],
                       ),
@@ -397,15 +397,15 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                           Textfildwithupper(
                               width: 250,
                               controller: bankBranchName,
-                              Uptext: "Bank Branch Name",
-                              hinttext: "Bank Branch Name"),
+                              Uptext: "Bank Branch Name".tr,
+                              hinttext: "Bank Branch Name".tr),
                           Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: Textfildwithupper(
                                 width: 250,
                                 controller: bankAccountNumber,
-                                Uptext: "Bank Account Number",
-                                hinttext: "Bank Account Number"),
+                                Uptext: "Bank Account Number".tr,
+                                hinttext: "Bank Account Number".tr),
                           )
                         ],
                       ),
@@ -419,8 +419,8 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                           Textfildwithupper(
                               width: 250,
                               controller: ifsc,
-                              Uptext: "IFSC Code",
-                              hinttext: "IFSC Code"),
+                              Uptext: "IFSC Code".tr,
+                              hinttext: "IFSC Code".tr),
                         ],
                       ),
                     ),
@@ -439,7 +439,7 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                         children: [
                           LargeTextField(
                               controller: careerHistory,
-                              hinttext: "Career History"),
+                              hinttext: "Career History".tr),
                         ],
                       ),
                     ),
@@ -451,7 +451,7 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                         children: [
                           LargeTextField(
                               controller: qualification,
-                              hinttext: "Qualification"),
+                              hinttext: "Qualification".tr),
                         ],
                       ),
                     ),
@@ -462,7 +462,7 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           LargeTextField(
-                              controller: experience, hinttext: "Experience"),
+                              controller: experience, hinttext: "Experience".tr),
                         ],
                       ),
                     ),
@@ -472,7 +472,7 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          LargeTextField(controller: note, hinttext: "Note"),
+                          LargeTextField(controller: note, hinttext: "Note".tr),
                         ],
                       ),
                     ),
@@ -481,11 +481,11 @@ EditTeacherDialog(BuildContext context, int idx, String teacherId) {
               ),
             );
           }),
-          apptitle: "Edit Teacher",
+          apptitle: "Edit Teacher".tr,
           subtitle: "none",
           action: [
             ButtonDialog(
-                text: "Edit Employee",
+                text: "Edit Teacher".tr,
                 onPressed: () async {
                   if (Get.find<Add_Data_controller>().roll != "subAdmin") {
                     await Editteacherapi.Editteacher(
