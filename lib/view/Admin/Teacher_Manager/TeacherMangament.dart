@@ -121,6 +121,7 @@ class _TeacherManagementState extends State<TeacherManagement> {
                     children: [
                       Squer_Button_Enabled_Disabled(
                         onTap: () {
+                          Get.find<Allteachercontroller>().resetError();
                           firstName.clear();
                           lastName.clear();
                           email.clear();

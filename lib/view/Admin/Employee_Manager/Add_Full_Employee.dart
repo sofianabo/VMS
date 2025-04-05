@@ -388,6 +388,7 @@ Add_Full_Employee(BuildContext context) {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Dropdownallemployee(
+                          isError: controller.IsGenderError,
                             title: "Gender".tr, width: 250, type: "Gender"),
                         Padding(
                           padding: EdgeInsets.only(
@@ -400,6 +401,7 @@ Add_Full_Employee(BuildContext context) {
                           child: Dropdownallemployee(
                               title: "Family Status".tr,
                               width: 250,
+                              isError: controller.IsFamilyError,
                               type: "Family_Status"),
                         )
 

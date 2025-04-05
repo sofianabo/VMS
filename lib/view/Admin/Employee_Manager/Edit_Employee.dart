@@ -80,7 +80,60 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
           ButtonDialog(
               text: "Edit Employee".tr,
               onPressed: () async {
-                if (Get.find<Add_Data_controller>().roll != "subAdmin") {
+                bool isJopEmpty = controller.dialogjobTitleIndex.isEmpty ||
+                    controller.dialogjobTitleIndex == "";
+                bool isGenderEmpty = controller.GenderListIndex.isEmpty ||
+                    controller.GenderListIndex == "";
+                bool isFamilyEmpty = controller.Family_StatusIndex.isEmpty ||
+                    controller.Family_StatusIndex == "";
+                bool isjoinEmpty = controller.Joindate.value == null ||
+                    controller.Joindate.value.toString() == "";
+                bool isBirthEmpty = controller.Birthdate.value == null ||
+                    controller.Birthdate.value.toString() == "";
+                bool isfirstEmpty = firstName.text.trim().isEmpty;
+                bool islastnameEmpty = lastName.text.trim().isEmpty;
+                bool isfatherEmpty = fatherName.text.trim().isEmpty;
+                bool ismotherEmpty = motherName.text.trim().isEmpty;
+                bool isphoneEmpty = phoneNumper.text.trim().isEmpty;
+                bool isemgnEmpty = emergencyNumber.text.trim().isEmpty;
+                bool isaddressEmpty = Address.text.trim().isEmpty;
+                bool isCurrentAdressEmpty = currentAddress.text.trim().isEmpty;
+                bool isQualEmpty = Qualification.text.trim().isEmpty;
+                bool isExpEmpty = Experience.text.trim().isEmpty;
+                final cont = Get.find<AddFullEmployeeController>();
+                cont.updateFieldError("first", isfirstEmpty);
+                cont.updateFieldError("last", islastnameEmpty);
+                cont.updateFieldError("father", isfatherEmpty);
+                cont.updateFieldError("mother", ismotherEmpty);
+                cont.updateFieldError("birth", isBirthEmpty);
+                cont.updateFieldError("phone", isphoneEmpty);
+                cont.updateFieldError("emgn", isemgnEmpty);
+                cont.updateFieldError("join", isjoinEmpty);
+                cont.updateFieldError("address", isaddressEmpty);
+                cont.updateFieldError("caddress", isCurrentAdressEmpty);
+                cont.updateFieldError("jop", isJopEmpty);
+                cont.updateFieldError("gender", isGenderEmpty);
+                cont.updateFieldError("family", isFamilyEmpty);
+                cont.updateFieldError("qua", isQualEmpty);
+                cont.updateFieldError("exp", isExpEmpty);
+
+                if (!(isJopEmpty ||
+                    isGenderEmpty ||
+                    isFamilyEmpty ||
+                    isjoinEmpty ||
+                    isBirthEmpty ||
+                    isfirstEmpty ||
+                    islastnameEmpty ||
+                    isfatherEmpty ||
+                    ismotherEmpty ||
+                    isphoneEmpty ||
+                    isemgnEmpty ||
+                    isaddressEmpty ||
+                    isCurrentAdressEmpty ||
+                    isQualEmpty ||
+                    isExpEmpty)) if (Get.find<Add_Data_controller>()
+                        .roll !=
+                    "subAdmin") {
                   await EditEmployeeApi.EditEmployee(
                     employeeId: employeeID,
                     First_Name: firstName.text,
@@ -176,6 +229,13 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                         children: [
                           Textfildwithupper(
                               width: 250,
+                              onChanged: (value) {
+                                if (value.isNotEmpty) {
+                                  controller.updateFieldError("first", false);
+                                }
+                              },
+                              isRequired: true,
+                              isError: controller.IsFirstError,
                               controller: firstName,
                               Uptext: "First Name".tr,
                               hinttext: "First Name".tr),
@@ -183,6 +243,13 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                             padding: const EdgeInsets.only(top: 22.0),
                             child: Textfildwithupper(
                                 width: 250,
+                                onChanged: (value) {
+                                  if (value.isNotEmpty) {
+                                    controller.updateFieldError("last", false);
+                                  }
+                                },
+                                isError: controller.IsLastError,
+                                isRequired: true,
                                 controller: lastName,
                                 Uptext: "Last Name".tr,
                                 hinttext: "Last Name".tr),
@@ -197,6 +264,13 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                       children: [
                         Textfildwithupper(
                             width: 250,
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError("father", false);
+                              }
+                            },
+                            isError: controller.IsFatherError,
+                            isRequired: true,
                             controller: fatherName,
                             Uptext: "Father Name".tr,
                             hinttext: "Father Name".tr),
@@ -210,6 +284,13 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                                   : 0),
                           child: Textfildwithupper(
                               width: 250,
+                              onChanged: (value) {
+                                if (value.isNotEmpty) {
+                                  controller.updateFieldError("mother", false);
+                                }
+                              },
+                              isError: controller.IsMotherError,
+                              isRequired: true,
                               controller: motherName,
                               Uptext: "Mother Name".tr,
                               hinttext: "Mother Name".tr),
@@ -223,6 +304,14 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                       children: [
                         Textfildwithupper(
                             width: 250,
+                            fieldType: "phone",
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError("phone", false);
+                              }
+                            },
+                            isError: controller.IsPhoneError,
+                            isRequired: true,
                             controller: phoneNumper,
                             Uptext: "Phone Number".tr,
                             hinttext: "Phone Number".tr),
@@ -236,6 +325,8 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                                     : 0),
                             child: BirthDate(
                               Uptext: "Birthdate".tr,
+                              isError: controller.IsBirthError,
+                              isRequired: true,
                               width: 250,
                             ))
                       ],
@@ -247,6 +338,14 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                       children: [
                         Textfildwithupper(
                             width: 250,
+                            fieldType: "phone",
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError("emgn", false);
+                              }
+                            },
+                            isError: controller.IsEmgnError,
+                            isRequired: true,
                             controller: emergencyNumber,
                             Uptext: "Emergency Number".tr,
                             hinttext: "Emergency Number".tr),
@@ -259,6 +358,8 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                                     ? 20
                                     : 0),
                             child: JoinDate(
+                              isError: controller.IsJoinError,
+                              isRequired: true,
                               Uptext: "Join Date".tr,
                               width: 250,
                             ))
@@ -271,6 +372,13 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                       children: [
                         Textfildwithupper(
                             width: 250,
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError("address", false);
+                              }
+                            },
+                            isError: controller.IsAddressError,
+                            isRequired: true,
                             controller: Address,
                             Uptext: "Address".tr,
                             hinttext: "Address".tr),
@@ -284,6 +392,14 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                                   : 0),
                           child: Textfildwithupper(
                               width: 250,
+                              onChanged: (value) {
+                                if (value.isNotEmpty) {
+                                  controller.updateFieldError(
+                                      "caddress", false);
+                                }
+                              },
+                              isError: controller.IsCAddressError,
+                              isRequired: true,
                               controller: currentAddress,
                               Uptext: "Current Address".tr,
                               hinttext: "Current Address".tr),
@@ -326,6 +442,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                         Textfildwithupper(
                             readOnly: true,
                             width: 250,
+                            isError: controller.IsJopError,
                             controller: Joptitle,
                             Uptext: "Job Title".tr,
                             hinttext: "Job Title".tr),
@@ -353,7 +470,10 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Dropdownallemployee(
-                            title: "Gender".tr, width: 250, type: "Gender"),
+                            isError: controller.IsGenderError,
+                            title: "Gender".tr,
+                            width: 250,
+                            type: "Gender"),
                         Padding(
                           padding: EdgeInsets.only(
                               left: prefs!.getString(languageKey) == "ar"
@@ -363,6 +483,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                                   ? 20
                                   : 0),
                           child: Dropdownallemployee(
+                              isError: controller.IsFamilyError,
                               title: "Family Status".tr,
                               width: 250,
                               type: "Family_Status"),
@@ -380,6 +501,7 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                       children: [
                         Textfildwithupper(
                             width: 250,
+                            readOnly: true,
                             controller: Salary,
                             Uptext: "Salary".tr,
                             hinttext: "Salary".tr),
@@ -556,6 +678,13 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         LargeTextField(
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError("qua", false);
+                              }
+                            },
+                            isError: controller.IsQualfError,
+                            isRequired: true,
                             controller: Qualification,
                             hinttext: "Qualification".tr),
                       ],
@@ -568,7 +697,15 @@ EditEmployee(BuildContext context, int idx, String employeeID) {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         LargeTextField(
-                            controller: Experience, hinttext: "Experience".tr),
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError("exp", false);
+                              }
+                            },
+                            isError: controller.IsExpError,
+                            isRequired: true,
+                            controller: Experience,
+                            hinttext: "Experience".tr),
                       ],
                     ),
                   ),

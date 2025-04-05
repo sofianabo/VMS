@@ -1126,7 +1126,7 @@ class EditJoinDateTeacher extends StatelessWidget {
               child: RichText(
                 text: TextSpan(
                   text: Uptext,
-                  style: const TextStyle(color: Colors.black, fontSize: 14),
+                  style: Theme.of(context).textTheme.bodyMedium,
                   children: isRequired
                       ? [
                           const TextSpan(
@@ -1216,7 +1216,7 @@ class EditBirthDateTeacher extends StatelessWidget {
               child: RichText(
                 text: TextSpan(
                   text: Uptext,
-                  style: const TextStyle(color: Colors.black, fontSize: 14),
+                  style: Theme.of(context).textTheme.bodyMedium,
                   children: isRequired
                       ? [
                           const TextSpan(

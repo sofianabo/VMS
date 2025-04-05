@@ -147,6 +147,8 @@ class _AllEmployeeState extends State<AllEmployee> {
                               phone.clear();
                               password.clear();
                               cPassword.clear();
+                              Get.find<Allempolyeecontroller>().resertError();
+
                               Get.find<Allempolyeecontroller>().reset();
                               Get.dialog(GetBuilder<Allempolyeecontroller>(
                                   builder: (cont) {
