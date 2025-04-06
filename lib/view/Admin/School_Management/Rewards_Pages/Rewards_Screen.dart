@@ -12,7 +12,7 @@ class Rewards_Screen extends StatelessWidget {
           Expanded(
               child: Padding(
             padding: const EdgeInsets.only(top: 15.0),
-            child: RewardsGrid(),
+            // child: RewardsGrid(),
           )),
         ],
       ),

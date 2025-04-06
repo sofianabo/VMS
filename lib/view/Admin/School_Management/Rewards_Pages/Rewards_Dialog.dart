@@ -8,11 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Rewards_Controller.dart';
+import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 GlobalKey newRewardsGloballKey = GlobalKey();
 
 Rewards_Dialog({
-  required String name,
   required String Studentname,
   required String id,
   required String FileType,
@@ -33,7 +33,7 @@ Rewards_Dialog({
           color: Get.theme.primaryColor,
           width: 150),
     ],
-    contents: RewardsGrids(name: name),
+    contents: RewardsGrids(name: Studentname),
     apptitle: "Rewards Students".tr,
     subtitle: Row(
       children: [
@@ -138,11 +138,14 @@ class _RewardsGridsState extends State<RewardsGrids> {
                         ),
                         for (int i = 0; i < controller.textOverlays.length; i++)
                           DraggableText(
-                            onDelete: () => controller.deleteText(i),
+                            key: ValueKey(controller
+                                .textOverlays[i].hashCode), // إضافة مفتاح فريد
                             overlay: controller.textOverlays[i],
                             onUpdate: (updatedOverlay) =>
                                 controller.updateTextOverlay(i, updatedOverlay),
                             onSelect: () => controller.selectText(i),
+                            onDelete: () => controller.deleteSelectedText(),
+
                             isSelected: controller.selectedTextIndex == i,
                           ),
                       ],
@@ -226,90 +229,88 @@ class _DraggableTextState extends State<DraggableText> {
   }
 
   void _showEditDialog() {
-    Get.defaultDialog(
-      title: "Edit text",
-      content: GetBuilder<RewardsController>(
-        init: RewardsController(fontSize, isBold),
-        builder: (controller) {
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: textController,
-                maxLines: 2,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: "Enter text",
+    Get.dialog(VMSAlertDialog(
+        action: [
+          TextButton(
+            child: Text("Done".tr),
+            onPressed: () {
+              final controller = Get.find<RewardsController>();
+              widget.onUpdate(
+                TextOverlay(
+                  type: widget.overlay.type,
+                  text: textController.text,
+                  position: position,
+                  fontSize: controller.fontSize,
+                  color: color,
+                  isBold: controller.isBold,
+                  isSelected: widget.isSelected,
                 ),
-              ),
-              SizedBox(height: 10),
-              Text("Font Size: ".tr+" ${controller.fontSize.toStringAsFixed(0)}"),
-              Slider(
-                min: 10,
-                max: 50,
-                value: controller.fontSize,
-                onChanged: (newSize) {
-                  controller.updateFontSize(newSize);
-                  // تفعيل setState مباشرة لتحديث القيم في واجهة المستخدم
-                  setState(() {
-                    fontSize = newSize;
-                  });
-                },
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                    icon: Icon(
-                      controller.isBold
-                          ? Icons.format_bold
-                          : Icons.format_bold_outlined,
+              );
+              controller.contup();
+              Get.back();
+            },
+          ),
+        ],
+        contents: GetBuilder<RewardsController>(
+          init: RewardsController(fontSize, isBold),
+          builder: (controller) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: textController,
+                  maxLines: 2,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: "Enter text",
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text("Font Size: ".tr +
+                    " ${controller.fontSize.toStringAsFixed(0)}"),
+                Slider(
+                  min: 10,
+                  max: 50,
+                  value: controller.fontSize,
+                  onChanged: (newSize) {
+                    controller.updateFontSize(newSize);
+                    // تفعيل setState مباشرة لتحديث القيم في واجهة المستخدم
+                    setState(() {
+                      fontSize = newSize;
+                    });
+                  },
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      icon: Icon(
+                        controller.isBold
+                            ? Icons.format_bold
+                            : Icons.format_bold_outlined,
+                      ),
+                      onPressed: () {
+                        controller.toggleBold();
+                        setState(() {
+                          isBold = controller.isBold;
+                        });
+                      },
                     ),
-                    onPressed: () {
-                      controller.toggleBold();
-                      setState(() {
-                        isBold = controller.isBold;
-                      });
-                    },
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.delete, color: Colors.red),
-                    onPressed: () {
-                      widget.onDelete();
-                      Get.back();
-                    },
-                  ),
-                ],
-              ),
-            ],
-          );
-        },
-      ),
-      actions: [
-        TextButton(
-          child: Text("Cancel".tr),
-          onPressed: () => Get.back(),
-        ),
-        TextButton(
-          child: Text("Done".tr),
-          onPressed: () {
-            final controller = Get.find<RewardsController>();
-            widget.onUpdate(
-              TextOverlay(
-                type: widget.overlay.type,
-                text: textController.text,
-                position: position,
-                fontSize: controller.fontSize,
-                color: color,
-                isBold: controller.isBold,
-                isSelected: widget.isSelected,
-              ),
+                    IconButton(
+                      icon: Icon(Icons.delete, color: Colors.red),
+                      onPressed: () {
+                        widget.onDelete();
+                        Get.back();
+                      },
+                    ),
+                  ],
+                ),
+              ],
             );
-            Get.back();
           },
         ),
-      ],
-    );
+        apptitle: "Edit text".tr,
+        subtitle: "none"));
   }
 
   @override

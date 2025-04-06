@@ -519,24 +519,23 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                             } else {
                                               Get.find<RewardsController>()
                                                   .setRewards();
+                                              Get.find<RewardsController>()
+                                                  .updateStudentName(controller
+                                                      .filteredStudents![index]
+                                                      .fullName!
+                                                      .toString());
                                               Get.dialog(
                                                 Rewards_Dialog(
-                                                    Studentname: controller
-                                                        .filteredStudents![
-                                                            index]
-                                                        .fullName!
-                                                        .toString(),
-                                                    FileType: "امتياز",
-                                                    id: controller
-                                                        .filteredStudents![
-                                                            index]
-                                                        .id!
-                                                        .toString(),
-                                                    name: controller
-                                                            .filteredStudents![
-                                                                index]
-                                                            .fullName ??
-                                                        "unKnow"),
+                                                  Studentname: controller
+                                                      .filteredStudents![index]
+                                                      .fullName!
+                                                      .toString(),
+                                                  FileType: "امتياز",
+                                                  id: controller
+                                                      .filteredStudents![index]
+                                                      .id!
+                                                      .toString(),
+                                                ),
                                                 barrierDismissible: false,
                                               );
                                             }

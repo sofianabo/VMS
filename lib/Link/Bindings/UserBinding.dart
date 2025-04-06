@@ -18,6 +18,7 @@ import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Il
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Labrary_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/PenaltyController.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Rewards_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/School_Content_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/School_Info_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Session_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Subject_Controller.dart';
@@ -123,6 +124,7 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Add_Data_controller(), fenix: true);
     Get.lazyPut(() => Students_Marks_Controller(), fenix: true);
     Get.lazyPut(() => SidebarController(), fenix: true);
+    Get.lazyPut(() => School_Content_Controller(), fenix: true);
     Get.lazyPut(() => RewardsController(20.0, true));
   }
 }

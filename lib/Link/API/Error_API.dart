@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/view/website/Home.dart';
 
 class ErrorHandler {
@@ -10,9 +11,8 @@ class ErrorHandler {
     if (error.type == DioExceptionType.badResponse) {
       int statusCode = error.response?.statusCode ?? 0;
       if (statusCode == 401) {
-        Get.off(
-          () => Home(),
-        );
+        prefs!.clear();
+        Get.offAllNamed("/home");
       }
       switch (statusCode) {
         case 232:
