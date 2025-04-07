@@ -1029,12 +1029,14 @@ class examDate extends StatelessWidget {
   final double width;
   final double? height;
   final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
+  final bool isError; // متغير لتحديد إذا كان الحقل مطلوبًا.
 
   const examDate({
     super.key,
     required this.width,
     this.height,
     this.isRequired = false, // افتراضي الحقل غير مطلوب.
+    this.isError = false, // افتراضي الحقل غير مطلوب.
   });
 
   @override
@@ -1068,15 +1070,22 @@ class examDate extends StatelessWidget {
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide:
-                        const BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                      width: 2,
+                    ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(color: Color(0xffD9D9D9)),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                    ),
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : Colors.grey,
+                    ),
                   ),
                   suffixIcon: IconButton(
                     icon: Icon(
@@ -1089,6 +1098,14 @@ class examDate extends StatelessWidget {
                 ),
               ),
             ),
+            if (isError)
+              const Padding(
+                padding: EdgeInsets.only(top: 5.0),
+                child: Text(
+                  "يجب إدخال تاريخ صحيح",
+                  style: TextStyle(color: Colors.red, fontSize: 12),
+                ),
+              ),
           ],
         ),
       ),

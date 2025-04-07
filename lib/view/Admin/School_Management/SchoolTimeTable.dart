@@ -342,6 +342,15 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                       .teacherDialogIndex = "";
                                                                 }
 
+                                                                controller
+                                                                    .updateFieldError(
+                                                                        "teach",
+                                                                        false);
+                                                                controller
+                                                                    .updateFieldError(
+                                                                        "sub",
+                                                                        false);
+
                                                                 Get.dialog(
                                                                     barrierDismissible:
                                                                         false,
@@ -351,11 +360,18 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                               ? ButtonDialog(
                                                                                   text: "Add".tr,
                                                                                   onPressed: () async {
+                                                                                    bool IsteachError = controller.teacherDialogIndex.isEmpty || controller.teacherDialogIndex == "";
+                                                                                    bool IssubError = controller.subjectDialogIndex.isEmpty || controller.subjectDialogIndex == "";
+
+                                                                                    controller.updateFieldError("teach", IsteachError);
+                                                                                    controller.updateFieldError("sub", IssubError);
+
                                                                                     final entryIndex = row.entries
                                                                                         .toList() // تحويل الكائنات إلى قائمة
                                                                                         .indexWhere((e) => e.value == entry.value); // البحث عن الفهرس
-
-                                                                                    await Addlessonapi(context).Addlesson(controller.subjectDialogList.indexOf(controller.selectedSubjectDialog), controller.examDivision.indexOf(controller.selectedExamDivision), controller.timeLessonIndex, controller.teacherDialogList.indexOf(controller.selectedTeacherDialog), entryIndex, row['Day'].toString());
+                                                                                    if (!(IsteachError || IssubError)) {
+                                                                                      await Addlessonapi(context).Addlesson(controller.subjectDialogList.indexOf(controller.selectedSubjectDialog), controller.examDivision.indexOf(controller.selectedExamDivision), controller.timeLessonIndex, controller.teacherDialogList.indexOf(controller.selectedTeacherDialog), entryIndex, row['Day'].toString());
+                                                                                    }
                                                                                   },
                                                                                   color: Get.theme.primaryColor,
                                                                                   width: 120)
@@ -370,12 +386,20 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
 
                                                                                     int selectedId = indexes[key]!;
 
-                                                                                    await Editstudyshareapi(context).EditLesson(
-                                                                                      controller.subjectDialogList.indexOf(controller.selectedSubjectDialog),
-                                                                                      controller.teacherDialogList.indexOf(controller.selectedTeacherDialog),
-                                                                                      selectedId,
-                                                                                    );
-                                                                                    Get.back();
+                                                                                    bool IsteachError = controller.teacherDialogIndex.isEmpty || controller.teacherDialogIndex == "";
+                                                                                    bool IssubError = controller.subjectDialogIndex.isEmpty || controller.subjectDialogIndex == "";
+
+                                                                                    controller.updateFieldError("teach", IsteachError);
+                                                                                    controller.updateFieldError("sub", IssubError);
+
+                                                                                    if (!(IsteachError || IssubError)) {
+                                                                                      await Editstudyshareapi(context).EditLesson(
+                                                                                        controller.subjectDialogList.indexOf(controller.selectedSubjectDialog),
+                                                                                        controller.teacherDialogList.indexOf(controller.selectedTeacherDialog),
+                                                                                        selectedId,
+                                                                                      );
+                                                                                      Get.back();
+                                                                                    }
                                                                                   },
                                                                                   color: Get.theme.primaryColor,
                                                                                   width: 120),
@@ -410,9 +434,9 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                                   children: [
                                                                                     Padding(
                                                                                       padding: const EdgeInsets.only(right: 15.0, left: 15),
-                                                                                      child: DropDownSchoolTime(isLoading: SchoolController.isLoadingCurr, title: "Curriculum".tr, width: 220, type: "subjectDialog"),
+                                                                                      child: DropDownSchoolTime(isError: controller.ISsubError, isLoading: SchoolController.isLoadingCurr, title: "Curriculum".tr, width: 220, type: "subjectDialog"),
                                                                                     ),
-                                                                                    DropDownSchoolTime(isLoading: SchoolController.isLoadingTeacher, title: "Teacher".tr, width: 220, type: "teacherDialog"),
+                                                                                    DropDownSchoolTime(isError: controller.IteacherError, isLoading: SchoolController.isLoadingTeacher, title: "Teacher".tr, width: 220, type: "teacherDialog"),
                                                                                   ],
                                                                                 ),
                                                                               ),

@@ -14,13 +14,17 @@ class Add_Content_Screen_API {
   Add_Content_Screen({
     required String name,
     required String count,
+    required String enname,
   }) async {
     String myURI = "$hostPort$addSchoolContents";
     try {
       var response = await dio.post(data: {
         "name": name,
+        "enName": enname,
+        "amount": count,
       }, myURI, options: getDioOptions());
       if (response.statusCode == 200) {
+        Get.back();
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

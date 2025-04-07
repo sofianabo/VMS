@@ -17,6 +17,7 @@ class DropDownSchoolTime extends StatelessWidget {
   final Color? color;
   bool isDisabled;
   bool isLoading;
+  bool isError;
   DropDownSchoolTime({
     super.key,
     required this.title,
@@ -25,6 +26,7 @@ class DropDownSchoolTime extends StatelessWidget {
     required this.type,
     this.isDisabled = false,
     this.isLoading = false,
+    this.isError = false,
   });
 
   @override
@@ -61,70 +63,88 @@ class DropDownSchoolTime extends StatelessWidget {
           break;
       }
 
-      return Container(
-        padding: const EdgeInsets.all(6.0),
-        alignment: Alignment.centerLeft,
-        width: width,
-        height: 40,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          border: Border.all(color: color ?? const Color(0xffD9D9D9)),
-        ),
-        child: isDisabled == true
-            ? Row(
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(color: Colors.grey),
-                  ),
-                ],
-              )
-            : isLoading == true
-                ? const Center(
-                    child: SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator(strokeWidth: 3),
-                    ),
-                  )
-                : DropdownButton<String>(
-                    dropdownColor: Theme.of(context).cardColor,
-                    iconDisabledColor: Colors.grey,
-                    iconEnabledColor: Theme.of(context).cardColor,
-                    value: selectedValue,
-                    isExpanded: true,
-                    underline: const SizedBox(),
-                    icon: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Icon(Icons.arrow_drop_down,
-                            color: Theme.of(context).secondaryHeaderColor),
-                      ],
-                    ),
-                    style: Theme.of(context).textTheme.bodyMedium!,
-                    onChanged: (newValue) {
-                      if (newValue != null) {
-                        if (type == "class") {
-                          cont.setDevisionindex();
-                        }
-                        if (type == "time") {
-                          cont.setClassIndex();
-                          cont.setDevisionindex();
-                        }
-                        cont.selectIndex(type, newValue);
-                      }
-                    },
-                    items: [
-                      DropdownMenuItem<String>(
-                        value: title,
-                        enabled: false,
-                        child: Text(title.tr,
-                            style: Theme.of(context).textTheme.bodyMedium),
+      return Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(6.0),
+            alignment: Alignment.centerLeft,
+            width: width,
+            height: 40,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              border: isError
+                  ? Border.all(color: Colors.red)
+                  : Border.all(color: color ?? const Color(0xffD9D9D9)),
+            ),
+            child: isDisabled == true
+                ? Row(
+                    children: [
+                      Text(
+                        title,
+                        style: const TextStyle(color: Colors.grey),
                       ),
-                      ..._getDropdownItems(cont, context),
                     ],
-                    borderRadius: BorderRadius.circular(3),
-                  ),
+                  )
+                : isLoading == true
+                    ? const Center(
+                        child: SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(strokeWidth: 3),
+                        ),
+                      )
+                    : DropdownButton<String>(
+                        dropdownColor: Theme.of(context).cardColor,
+                        iconDisabledColor: Colors.grey,
+                        iconEnabledColor: Theme.of(context).cardColor,
+                        value: selectedValue,
+                        isExpanded: true,
+                        underline: const SizedBox(),
+                        icon: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Icon(Icons.arrow_drop_down,
+                                color: Theme.of(context).secondaryHeaderColor),
+                          ],
+                        ),
+                        style: Theme.of(context).textTheme.bodyMedium!,
+                        onChanged: (newValue) {
+                          if (newValue != null) {
+                            if (type == "subjectDialog") {
+                              cont.updateFieldError("sub", false);
+                            }
+                            if (type == "teacherDialog") {
+                              cont.updateFieldError("teach", false);
+                            }
+
+                            if (type == "class") {
+                              cont.setDevisionindex();
+                            }
+                            if (type == "time") {
+                              cont.setClassIndex();
+                              cont.setDevisionindex();
+                            }
+                            cont.selectIndex(type, newValue);
+                          }
+                        },
+                        items: [
+                          DropdownMenuItem<String>(
+                            value: title,
+                            enabled: false,
+                            child: Text(title.tr,
+                                style: Theme.of(context).textTheme.bodyMedium),
+                          ),
+                          ..._getDropdownItems(cont, context),
+                        ],
+                        borderRadius: BorderRadius.circular(3),
+                      ),
+          ),
+          if (isError)
+            Text(
+              "لا يسمح بترك الحقل فارغ",
+              style: const TextStyle(color: Colors.red, fontSize: 12),
+            ),
+        ],
       );
     });
   }
@@ -188,8 +208,7 @@ class DropDownSchoolTime extends StatelessWidget {
         items.addAll(cont.subjectDialogList.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child:
-                Text(value, style: Theme.of(context).textTheme.bodyMedium),
+            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
           );
         }).toList());
         break;

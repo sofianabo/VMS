@@ -184,4 +184,19 @@ class AdminSchoolTimeController extends GetxController {
     setIsLoadingClass(false);
     update();
   }
+
+  bool IteacherError = false;
+  bool ISsubError = false;
+  void updateFieldError(String type, bool newValue) {
+    switch (type) {
+      case 'teach':
+        IteacherError = newValue;
+        break;
+      case 'sub':
+        ISsubError = newValue;
+        break;
+      default:
+    }
+    update();
+  }
 }

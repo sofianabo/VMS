@@ -17,6 +17,7 @@ class School_Content_Grid extends StatelessWidget {
 
   TextEditingController name = TextEditingController();
   TextEditingController enName = TextEditingController();
+  TextEditingController count = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

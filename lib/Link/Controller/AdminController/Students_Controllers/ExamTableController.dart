@@ -240,6 +240,45 @@ class ExamTableController extends GetxController {
     updateList("curiculmDialog", curiculmDialogList);
   }
 
+  bool IsclassError = false;
+  bool IscurrError = false;
+  bool IssemesterError = false;
+  bool IstypeError = false;
+  bool ISmaxError = false;
+  bool ISminError = false;
+  bool ISperiodError = false;
+  bool ISdateError = false;
+  void updateFieldError(String type, bool newValue) {
+    switch (type) {
+      case 'class':
+        IsclassError = newValue;
+        break;
+      case 'curr':
+        IscurrError = newValue;
+        break;
+      case 'semester':
+        IssemesterError = newValue;
+        break;
+      case 'type':
+        IstypeError = newValue;
+        break;
+      case 'max':
+        ISmaxError = newValue;
+        break;
+      case 'min':
+        ISminError = newValue;
+        break;
+      case 'per':
+        ISperiodError = newValue;
+        break;
+      case 'date':
+        ISdateError = newValue;
+        break;
+      default:
+    }
+    update();
+  }
+
   void updateList(String type, List<String> options) {
     switch (type) {
       case 'type':
@@ -276,6 +315,7 @@ class ExamTableController extends GetxController {
       lastDate: DateTime(DateTime.now().year + 2),
     );
     if (picked != null) {
+      updateFieldError("date", false);
       dateindex.value = picked;
     }
   }
