@@ -173,320 +173,337 @@ class RequestsGrid extends StatelessWidget {
             textDirection: prefs!.getString(languageKey) == "ar"
                 ? TextDirection.rtl
                 : TextDirection.ltr,
-            child: Container(
-              padding: const EdgeInsets.only(left: 30.0, right: 30.0),
-              child: GridView.builder(
-                shrinkWrap: true,
-                itemCount: controller.filteredregistration.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 25.0,
-                  mainAxisSpacing: 25.0,
-                  childAspectRatio: 1.3,
-                ),
-                itemBuilder: (context, index) {
-                  return HoverScaleCard(
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          border: Border.all(color: Colors.grey, width: 0.2),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(5)),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black12,
-                                offset: Offset(0, 2),
-                                blurRadius: 1)
-                          ]),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Guardian Info :".tr,
+            child: LayoutBuilder(builder: (context, constraints) {
+              final crossAxisCount = constraints.maxWidth > 1200
+                  ? 3
+                  : constraints.maxWidth > 800
+                      ? 2
+                      : 1;
+
+              // حساب عرض العنصر بناء على الشاشة
+              final childAspectRatio = constraints.maxWidth > 800 ? 1.3 : 1.0;
+
+              return Container(
+                padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  itemCount: controller.filteredregistration.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: crossAxisCount,
+                    crossAxisSpacing: 25.0,
+                    mainAxisSpacing: 25.0,
+                    childAspectRatio: childAspectRatio,
+                  ),
+                  itemBuilder: (context, index) {
+                    return HoverScaleCard(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            border: Border.all(color: Colors.grey, width: 0.2),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(5)),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 10.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Guardian Info :".tr,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge!
+                                          .copyWith(fontSize: 18),
+                                    ),
+                                    Text(
+                                        "${controller.filteredregistration[index].date}"),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5.0),
+                                child: Text(
+                                  "${"Name :".tr} ${controller.filteredregistration[index].guardian?.name}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.normal),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5.0),
+                                child: Text(
+                                  "${"Mobile:".tr} ${controller.filteredregistration[index].guardian?.phone}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.normal),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5.0),
+                                child: Text(
+                                  "Email: ".tr +
+                                      " ${controller.filteredregistration[index].guardian?.email}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.normal),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5.0),
+                                child: Text(
+                                  "${"National ID:".tr} ${controller.filteredregistration[index].guardian?.nationalId}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.normal),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5.0),
+                                child: Text("Student Info:".tr,
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleLarge!
-                                        .copyWith(fontSize: 18),
-                                  ),
-                                  Text(
-                                      "${controller.filteredregistration[index].date}"),
-                                ],
+                                        .copyWith(fontSize: 18)),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: Text(
-                                "${"Name :".tr} ${controller.filteredregistration[index].guardian?.name}",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.normal),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: Text(
-                                "${"Mobile:".tr} ${controller.filteredregistration[index].guardian?.phone}",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.normal),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: Text(
-                                "Email: ".tr +
-                                    " ${controller.filteredregistration[index].guardian?.email}",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.normal),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: Text(
-                                "${"National ID:".tr} ${controller.filteredregistration[index].guardian?.nationalId}",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.normal),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: Text("Student Info:".tr,
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5.0),
+                                child: Text(
+                                  "${"Name :".tr} ${controller.filteredregistration[index].student?.name}",
                                   style: Theme.of(context)
                                       .textTheme
-                                      .titleLarge!
-                                      .copyWith(fontSize: 18)),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: Text(
-                                "${"Name :".tr} ${controller.filteredregistration[index].student?.name}",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.normal),
+                                      .bodyMedium!
+                                      .copyWith(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.normal),
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: Text(
-                                "${"Current Class:".tr} ${controller.filteredregistration[index].student?.clas ?? "No Class"}",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.normal),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5.0),
+                                child: Text(
+                                  "${"Current Class:".tr} ${controller.filteredregistration[index].student?.clas ?? "No Class"}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.normal),
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 5.0, bottom: 15.0),
-                              child: Text(
-                                "${"Previous Class:".tr} ${controller.filteredregistration[index].student?.previousClass ?? "No Class"}",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.normal),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 5.0, bottom: 15.0),
+                                child: Text(
+                                  "${"Previous Class:".tr} ${controller.filteredregistration[index].student?.previousClass ?? "No Class"}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.normal),
+                                ),
                               ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                ButtonsGrid(
-                                  color: Get.find<Add_Data_controller>().roll ==
-                                          "subAdmin"
-                                      ? Get.theme.disabledColor
-                                      : Theme.of(context).primaryColorLight,
-                                  width: 150,
-                                  height: 40,
-                                  text: "Manage".tr,
-                                  onPressed: () async {
-                                    if (Get.find<Add_Data_controller>().roll !=
-                                        "subAdmin") {
-                                      Get.find<Dropdowndivisioncontroller>()
-                                          .setIsDisiabled(true);
-                                      controller.classIndex = "";
-                                      controller.divisionIndex = "";
-                                      Get.dialog(VMSAlertDialog(
-                                          action: [
-                                            ButtonDialog(
-                                              text: 'Reject'.tr,
-                                              onPressed: () async {
-                                                await Rejectenrollrequestapi(
-                                                        context)
-                                                    .Rejectenrollrequest(
-                                                        controller
-                                                            .filteredregistration[
-                                                                index]
-                                                            .acceptanceNumber!);
-                                                Get.back();
-                                              },
-                                              width: 80,
-                                              color: const Color(0xffB03D3D),
-                                            ),
-                                            ButtonDialog(
-                                              text: 'Approve'.tr,
-                                              onPressed: () async {
-                                                await Approverequestapi(context)
-                                                    .Approverequest(
-                                                        controller
-                                                            .filteredregistration[
-                                                                index]
-                                                            .acceptanceNumber!,
-                                                        controller
-                                                            .filteredregistration[
-                                                                index]
-                                                            .student!
-                                                            .id!,
-                                                        controller.classlist
-                                                            .indexOf(controller
-                                                                .selectedClassIndex),
-                                                        controller.divisionlist
-                                                            .indexOf(controller
-                                                                .selectedDivisionIndex));
-                                              },
-                                              width: 80,
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                            )
-                                          ],
-                                          contents: Row(
-                                            children: [
-                                              GetBuilder<
-                                                      Dropdownclassescontroller>(
-                                                  builder: (controller) {
-                                                return Dropdownrequestenroll(
-                                                  isLoading:
-                                                      controller.Isloading,
-                                                  width: Get.width / 5.2,
-                                                  type: "class",
-                                                  title: 'Class'.tr,
-                                                );
-                                              }),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 20, left: 20.0),
-                                                child: GetBuilder<
-                                                        Dropdowndivisioncontroller>(
-                                                    builder: (controller) {
-                                                  return Dropdownrequestenroll(
-                                                    isDisabled:
-                                                        controller.isDisiabled,
-                                                    isLoading:
-                                                        controller.isLoading,
-                                                    width: Get.width / 5.2,
-                                                    type: "division",
-                                                    title: 'Division'.tr,
-                                                  );
-                                                }),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  ButtonsGrid(
+                                    color: Get.find<Add_Data_controller>()
+                                                .roll ==
+                                            "subAdmin"
+                                        ? Get.theme.disabledColor
+                                        : Theme.of(context).primaryColorLight,
+                                    width: 150,
+                                    height: 40,
+                                    text: "Manage".tr,
+                                    onPressed: () async {
+                                      if (Get.find<Add_Data_controller>()
+                                              .roll !=
+                                          "subAdmin") {
+                                        Get.find<Dropdowndivisioncontroller>()
+                                            .setIsDisiabled(true);
+                                        controller.classIndex = "";
+                                        controller.divisionIndex = "";
+                                        Get.dialog(VMSAlertDialog(
+                                            action: [
+                                              ButtonDialog(
+                                                text: 'Reject'.tr,
+                                                onPressed: () async {
+                                                  await Rejectenrollrequestapi(
+                                                          context)
+                                                      .Rejectenrollrequest(controller
+                                                          .filteredregistration[
+                                                              index]
+                                                          .acceptanceNumber!);
+                                                  Get.back();
+                                                },
+                                                width: 80,
+                                                color: const Color(0xffB03D3D),
+                                              ),
+                                              ButtonDialog(
+                                                text: 'Approve'.tr,
+                                                onPressed: () async {
+                                                  await Approverequestapi(context).Approverequest(
+                                                      controller
+                                                          .filteredregistration[
+                                                              index]
+                                                          .acceptanceNumber!,
+                                                      controller
+                                                          .filteredregistration[
+                                                              index]
+                                                          .student!
+                                                          .id!,
+                                                      controller.classlist
+                                                          .indexOf(controller
+                                                              .selectedClassIndex),
+                                                      controller.divisionlist
+                                                          .indexOf(controller
+                                                              .selectedDivisionIndex));
+                                                },
+                                                width: 80,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
                                               )
                                             ],
-                                          ),
-                                          apptitle: 'Manage Student'.tr,
-                                          subtitle:
-                                              '${controller.filteredregistration[index].student?.name}'));
-                                    }
-                                  },
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 8.0),
-                                  child: Row(
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 8.0),
-                                        child: Text(
-                                          "${controller.filteredregistration[index].type!.tr}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(
-                                                  fontSize: 16,
-                                                  color: controller
-                                                              .filteredregistration[
-                                                                  index]
-                                                              .type ==
-                                                          "Rejected".tr
-                                                      ? const Color(0xffB27671)
-                                                      : controller
-                                                                  .filteredregistration[
-                                                                      index]
-                                                                  .type ==
-                                                              "Pending".tr
-                                                          ? const Color(
-                                                              0xff297686)
-                                                          : const Color(
-                                                              0xff779DB6),
-                                                  fontWeight:
-                                                      FontWeight.normal),
-                                        ),
-                                      ),
-                                      Icon(
-                                          controller.filteredregistration[index]
-                                                      .type ==
-                                                  "Rejected".tr
-                                              ? Icons.close
-                                              : controller
-                                                          .filteredregistration[
-                                                              index]
-                                                          .type ==
-                                                      "Pending".tr
-                                                  ? Icons.timelapse_outlined
-                                                  : Icons.timer,
-                                          color: controller
-                                                      .filteredregistration[
-                                                          index]
-                                                      .type ==
-                                                  "Rejected".tr
-                                              ? const Color(0xffB27671)
-                                              : controller
-                                                          .filteredregistration[
-                                                              index]
-                                                          .type ==
-                                                      "Pending".tr
-                                                  ? const Color(0xff297686)
-                                                  : const Color(0xff779DB6))
-                                    ],
+                                            contents: Row(
+                                              children: [
+                                                GetBuilder<
+                                                        Dropdownclassescontroller>(
+                                                    builder: (controller) {
+                                                  return Dropdownrequestenroll(
+                                                    isLoading:
+                                                        controller.Isloading,
+                                                    width: Get.width / 5.2,
+                                                    type: "class",
+                                                    title: 'Class'.tr,
+                                                  );
+                                                }),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 20,
+                                                          left: 20.0),
+                                                  child: GetBuilder<
+                                                          Dropdowndivisioncontroller>(
+                                                      builder: (controller) {
+                                                    return Dropdownrequestenroll(
+                                                      isDisabled: controller
+                                                          .isDisiabled,
+                                                      isLoading:
+                                                          controller.isLoading,
+                                                      width: Get.width / 5.2,
+                                                      type: "division",
+                                                      title: 'Division'.tr,
+                                                    );
+                                                  }),
+                                                )
+                                              ],
+                                            ),
+                                            apptitle: 'Manage Student'.tr,
+                                            subtitle:
+                                                '${controller.filteredregistration[index].student?.name}'));
+                                      }
+                                    },
                                   ),
-                                )
-                              ],
-                            )
-                          ],
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 8.0),
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 8.0),
+                                          child: Text(
+                                            "${controller.filteredregistration[index].type!.tr}",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
+                                                    fontSize: 16,
+                                                    color: controller
+                                                                .filteredregistration[
+                                                                    index]
+                                                                .type ==
+                                                            "Rejected".tr
+                                                        ? const Color(
+                                                            0xffB27671)
+                                                        : controller
+                                                                    .filteredregistration[
+                                                                        index]
+                                                                    .type ==
+                                                                "Pending".tr
+                                                            ? const Color(
+                                                                0xff297686)
+                                                            : const Color(
+                                                                0xff779DB6),
+                                                    fontWeight:
+                                                        FontWeight.normal),
+                                          ),
+                                        ),
+                                        Icon(
+                                            controller
+                                                        .filteredregistration[
+                                                            index]
+                                                        .type ==
+                                                    "Rejected".tr
+                                                ? Icons.close
+                                                : controller
+                                                            .filteredregistration[
+                                                                index]
+                                                            .type ==
+                                                        "Pending".tr
+                                                    ? Icons.timelapse_outlined
+                                                    : Icons.timer,
+                                            color: controller
+                                                        .filteredregistration[
+                                                            index]
+                                                        .type ==
+                                                    "Rejected".tr
+                                                ? const Color(0xffB27671)
+                                                : controller
+                                                            .filteredregistration[
+                                                                index]
+                                                            .type ==
+                                                        "Pending".tr
+                                                    ? const Color(0xff297686)
+                                                    : const Color(0xff779DB6))
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                },
-              ),
-            ),
+                    );
+                  },
+                ),
+              );
+            }),
           );
         }
       }

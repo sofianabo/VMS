@@ -387,6 +387,9 @@ class SideBarAdmin extends StatelessWidget {
                           if (value == "School Content".tr) {
                             cont.updateContent("School Content");
                           }
+                          if (value == "Penalties".tr) {
+                            cont.updateContent("Penalties");
+                          }
                         },
                         itemBuilder: (BuildContext context) =>
                             <PopupMenuEntry<String>>[
@@ -413,6 +416,10 @@ class SideBarAdmin extends StatelessWidget {
                           PopupMenuItem<String>(
                             value: 'Vaccine Screen'.tr,
                             child: Text('Vaccine Screen'.tr),
+                          ),
+                          PopupMenuItem<String>(
+                            value: 'Penalties'.tr,
+                            child: Text('Penalties'.tr),
                           ),
                         ],
                       ),

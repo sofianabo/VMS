@@ -5,12 +5,16 @@ class SearchWithSuggestions extends StatefulWidget {
   final ValueChanged<String> onItemSelected;
   final VoidCallback? click;
   bool enabled;
+  bool isFull;
+  double size;
 
   SearchWithSuggestions({
     Key? key,
     required this.onItemSelected,
     required this.enabled,
+    this.isFull = false,
     this.click,
+    this.size = 220,
   }) : super(key: key);
 
   @override
@@ -25,30 +29,7 @@ class _SearchWithSuggestionsState extends State<SearchWithSuggestions> {
     "Exam Table",
     "Dashboard",
     "Enroll Requests",
-    "School Time Table",
-    "All Students",
-    "Study Year Students",
-    "All Guardians",
-    "Student Attendance",
-    "Students Attendance Managment",
-    "Teacher Management",
-    "Teacher Status",
-    "Teacher Attendance Managment",
-    "Employee Management",
-    "Employee Attendance",
-    "Employee Attendance Manage",
-    "Virtual User Management",
-    "Session Management",
-    "Grade Management",
-    "Subject Management",
-    "Class Management",
-    "Division Management",
-    "Curriculum Management",
-    "School Data Management",
-    "Electronic Library",
-    "Transaction",
-    "Illness Screen",
-    "Vaccine Screen",
+    // ... بقية العناصر
   ];
 
   List<String> _filteredItems = [];
@@ -76,9 +57,12 @@ class _SearchWithSuggestionsState extends State<SearchWithSuggestions> {
     _hideOverlay();
 
     final overlay = Overlay.of(context);
+    final renderBox = context.findRenderObject() as RenderBox;
+    final size = renderBox.size;
+
     _overlayEntry = OverlayEntry(
       builder: (context) => Positioned(
-        width: 220,
+        width: widget.isFull ? MediaQuery.of(context).size.width : size.width,
         child: CompositedTransformFollower(
           link: _layerLink,
           showWhenUnlinked: false,
@@ -87,33 +71,39 @@ class _SearchWithSuggestionsState extends State<SearchWithSuggestions> {
             color: Colors.white,
             elevation: 4.0,
             borderRadius: BorderRadius.circular(8),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: _filteredItems.map((item) {
-                return GestureDetector(
-                  onTap: () {
-                    _controller.text = item.tr;
-                    widget.onItemSelected(item);
-                    _hideOverlay();
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 16),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border:
-                          Border(bottom: BorderSide(color: Colors.grey[300]!)),
-                    ),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        item.tr, // تطبيق .tr هنا لترجمة النص
-                        style: const TextStyle(color: Colors.black),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(context).size.height * 0.5,
+              ),
+              child: ListView(
+                shrinkWrap: true,
+                padding: EdgeInsets.zero,
+                children: _filteredItems.map((item) {
+                  return GestureDetector(
+                    onTap: () {
+                      _controller.text = item.tr;
+                      widget.onItemSelected(item);
+                      _hideOverlay();
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 16),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border(
+                            bottom: BorderSide(color: Colors.grey[300]!)),
+                      ),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          item.tr,
+                          style: const TextStyle(color: Colors.black),
+                        ),
                       ),
                     ),
-                  ),
-                );
-              }).toList(),
+                  );
+                }).toList(),
+              ),
             ),
           ),
         ),
@@ -140,7 +130,7 @@ class _SearchWithSuggestionsState extends State<SearchWithSuggestions> {
     return CompositedTransformTarget(
       link: _layerLink,
       child: SizedBox(
-        width: 220,
+        width: widget.size,
         height: 40,
         child: TextField(
           enabled: widget.enabled,

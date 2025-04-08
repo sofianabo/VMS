@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Get_My_Profile.dart';
+import 'package:vms_school/Link/Controller/AdminController/DrowerController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/All_Settings/Profile_Settings.dart';
 import 'package:vms_school/view/Admin/All_Settings/Verifing_Code_Dialog.dart';
+import 'package:vms_school/view/Admin/Drower_Sidebar.dart';
 import 'package:vms_school/view/Admin/School_Management/ExamTable.dart';
 import 'package:vms_school/view/Admin/School_Management/Illness_Pages/Illness_Screen.dart';
 import 'package:vms_school/view/Admin/School_Management/Mohtawayat/School_Content.dart';
@@ -42,6 +44,7 @@ import 'package:vms_school/view/Admin/Students_Manager/StudyYearStudent.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherAttendanceManagment.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherMangament.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherStatus.dart';
+import 'package:vms_school/widgets/Responsive.dart';
 
 class AdminHome extends StatefulWidget {
   const AdminHome({super.key});
@@ -97,112 +100,329 @@ class _AdminHomeState extends State<AdminHome> {
     return Directionality(
         textDirection: TextDirection.ltr,
         child: Scaffold(
-          body: Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 70.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    AppbarAdmin(),
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GetBuilder<AdminHomeContentController>(
-                              builder: (cont) {
-                            switch (cont.content) {
-                              case "Enroll Requests":
-                                return Requests();
-                              case "Exam Table":
-                                return ExamTable();
-                              case "Dashboard":
-                                return AdminDashboard();
-                              case "School Time Table":
-                                return SchoolTimeTable();
-                              case "All Students":
-                                return AllStudent();
-                              case "Study Year Students":
-                                return StudyYearStudents();
-                              case "All Guardians":
-                                return AllGuardians();
-                              case "Student Attendance":
-                                return StudentStatus();
-                              case "Teacher Management":
-                                return TeacherManagement();
-                              case "Teacher Status":
-                                return TeacherStatus();
-                              case "Employee Management":
-                                return AllEmployee();
-                              case "Employee Attendance":
-                                return EmployeeStatus();
-                              case "Employee Attendance Manage":
-                                return EmployeeAttendanceManagment();
-                              case "Teacher Attendance Managment":
-                                return TeacherAttendanceManagment();
-                              case "Students Attendance Managment":
-                                return StudentsAttendanceManagment();
-                              case "Grade Management":
-                                return GradeManagement();
-                              case "Subject Management":
-                                return Subject_Management();
-                              case "Class Management":
-                                return ClassManagement();
-                              case "Division Management":
-                                return DivisionManagement();
-                              case "Curriculum Management":
-                                return Curriculum_Management();
-                              case "Session Management":
-                                return SessionManagement();
-                              case "School Data Management":
-                                return SchoolDataMgmt();
-                              case "Electronic Library":
-                                return ElectronicBook();
-                              case "Illness Screen":
-                                return Ilness_Screen();
-                              case "Vaccine Screen":
-                                return Vaccine_Screen();
-                              case "Transaction":
-                                return Transaction_Management();
-                              case "Virtual User Management":
-                                return Virtual_User_Management();
-                              case "Penalties":
-                                return Penaltyscreen();
-                              case "Rewards":
-                                return Rewards_Screen();
-                              case "My Profile":
-                                return ProfileSettings();
-                              case "Quiz Type":
-                                return Teachers_notebook_grade_record();
-                              case "ExcelViewerScreen":
-                                return ExcelToPdfScreen();
-                              case "Students Marks":
-                                return Students_Marks();
-                              case "School Content":
-                                return School_Content();
-                              default:
-                                return AdminDashboard();
-                            }
-                          })
-                        ],
+          body: ResponsiveUI(
+            desktopScreen: Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 70.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AppbarAdmin(),
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GetBuilder<AdminHomeContentController>(
+                                builder: (cont) {
+                              switch (cont.content) {
+                                case "Enroll Requests":
+                                  return Requests();
+                                case "Exam Table":
+                                  return ExamTable();
+                                case "Dashboard":
+                                  return AdminDashboard();
+                                case "School Time Table":
+                                  return SchoolTimeTable();
+                                case "All Students":
+                                  return AllStudent();
+                                case "Study Year Students":
+                                  return StudyYearStudents();
+                                case "All Guardians":
+                                  return AllGuardians();
+                                case "Student Attendance":
+                                  return StudentStatus();
+                                case "Teacher Management":
+                                  return TeacherManagement();
+                                case "Teacher Status":
+                                  return TeacherStatus();
+                                case "Employee Management":
+                                  return AllEmployee();
+                                case "Employee Attendance":
+                                  return EmployeeStatus();
+                                case "Employee Attendance Manage":
+                                  return EmployeeAttendanceManagment();
+                                case "Teacher Attendance Managment":
+                                  return TeacherAttendanceManagment();
+                                case "Students Attendance Managment":
+                                  return StudentsAttendanceManagment();
+                                case "Grade Management":
+                                  return GradeManagement();
+                                case "Subject Management":
+                                  return Subject_Management();
+                                case "Class Management":
+                                  return ClassManagement();
+                                case "Division Management":
+                                  return DivisionManagement();
+                                case "Curriculum Management":
+                                  return Curriculum_Management();
+                                case "Session Management":
+                                  return SessionManagement();
+                                case "School Data Management":
+                                  return SchoolDataMgmt();
+                                case "Electronic Library":
+                                  return ElectronicBook();
+                                case "Illness Screen":
+                                  return Ilness_Screen();
+                                case "Vaccine Screen":
+                                  return Vaccine_Screen();
+                                case "Transaction":
+                                  return Transaction_Management();
+                                case "Virtual User Management":
+                                  return Virtual_User_Management();
+                                case "Penalties":
+                                  return Penaltyscreen();
+                                case "Rewards":
+                                  return Rewards_Screen();
+                                case "My Profile":
+                                  return ProfileSettings();
+                                case "Quiz Type":
+                                  return Teachers_notebook_grade_record();
+                                case "ExcelViewerScreen":
+                                  return ExcelToPdfScreen();
+                                case "Students Marks":
+                                  return Students_Marks();
+                                case "School Content":
+                                  return School_Content();
+                                default:
+                                  return AdminDashboard();
+                              }
+                            })
+                          ],
+                        ),
                       ),
-                    ),
-                    // Container(
-                    //   width: Get.width,
-                    //   child: GetBuilder<UserController>(
-                    //     builder: (userController) {
-                    //       return Text(userController.roll);
-                    //     },
-                    //   ),
-                    // ),
-                  ],
+                      // Container(
+                      //   width: Get.width,
+                      //   child: GetBuilder<UserController>(
+                      //     builder: (userController) {
+                      //       return Text(userController.roll);
+                      //     },
+                      //   ),
+                      // ),
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 70.0),
-                child: SizedBox(width: 70, child: SideBarAdmin()),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 70.0),
+                  child: SizedBox(width: 70, child: SideBarAdmin()),
+                ),
+              ],
+            ),
+            tabletScreen: Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 70.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AppbarAdmin(),
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GetBuilder<AdminHomeContentController>(
+                                builder: (cont) {
+                              switch (cont.content) {
+                                case "Enroll Requests":
+                                  return Requests();
+                                case "Exam Table":
+                                  return ExamTable();
+                                case "Dashboard":
+                                  return AdminDashboard();
+                                case "School Time Table":
+                                  return SchoolTimeTable();
+                                case "All Students":
+                                  return AllStudent();
+                                case "Study Year Students":
+                                  return StudyYearStudents();
+                                case "All Guardians":
+                                  return AllGuardians();
+                                case "Student Attendance":
+                                  return StudentStatus();
+                                case "Teacher Management":
+                                  return TeacherManagement();
+                                case "Teacher Status":
+                                  return TeacherStatus();
+                                case "Employee Management":
+                                  return AllEmployee();
+                                case "Employee Attendance":
+                                  return EmployeeStatus();
+                                case "Employee Attendance Manage":
+                                  return EmployeeAttendanceManagment();
+                                case "Teacher Attendance Managment":
+                                  return TeacherAttendanceManagment();
+                                case "Students Attendance Managment":
+                                  return StudentsAttendanceManagment();
+                                case "Grade Management":
+                                  return GradeManagement();
+                                case "Subject Management":
+                                  return Subject_Management();
+                                case "Class Management":
+                                  return ClassManagement();
+                                case "Division Management":
+                                  return DivisionManagement();
+                                case "Curriculum Management":
+                                  return Curriculum_Management();
+                                case "Session Management":
+                                  return SessionManagement();
+                                case "School Data Management":
+                                  return SchoolDataMgmt();
+                                case "Electronic Library":
+                                  return ElectronicBook();
+                                case "Illness Screen":
+                                  return Ilness_Screen();
+                                case "Vaccine Screen":
+                                  return Vaccine_Screen();
+                                case "Transaction":
+                                  return Transaction_Management();
+                                case "Virtual User Management":
+                                  return Virtual_User_Management();
+                                case "Penalties":
+                                  return Penaltyscreen();
+                                case "Rewards":
+                                  return Rewards_Screen();
+                                case "My Profile":
+                                  return ProfileSettings();
+                                case "Quiz Type":
+                                  return Teachers_notebook_grade_record();
+                                case "ExcelViewerScreen":
+                                  return ExcelToPdfScreen();
+                                case "Students Marks":
+                                  return Students_Marks();
+                                case "School Content":
+                                  return School_Content();
+                                default:
+                                  return AdminDashboard();
+                              }
+                            })
+                          ],
+                        ),
+                      ),
+                      // Container(
+                      //   width: Get.width,
+                      //   child: GetBuilder<UserController>(
+                      //     builder: (userController) {
+                      //       return Text(userController.roll);
+                      //     },
+                      //   ),
+                      // ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 70.0),
+                  child: SizedBox(width: 70, child: SideBarAdmin()),
+                ),
+              ],
+            ),
+            mobileScreen: GetBuilder<DraweController>(builder: (cont) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AppbarAdmin(),
+                  Expanded(
+                    child: Stack(
+                      children: [
+                        if (cont.isopen) DraweHome(),
+                        IgnorePointer(
+                          ignoring: cont.isopen,
+                          child: AnimatedContainer(
+                            curve: Easing.standard,
+                            transform: Matrix4.identity()
+                              ..translate(cont.isopen ? -90.0 : 0.0,
+                                  cont.isopen ? 130.0 : 0.0, 0.0)
+                              ..rotateX(cont.isopen ? 0.4 : 0.0)
+                              ..rotateY(cont.isopen ? 0.4 : 0.0)
+                              ..scale(cont.isopen ? 0.8 : 1.0),
+                            duration: Duration(milliseconds: 300),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                GetBuilder<AdminHomeContentController>(
+                                    builder: (cont) {
+                                  switch (cont.content) {
+                                    case "Enroll Requests":
+                                      return Requests();
+                                    case "Exam Table":
+                                      return ExamTable();
+                                    case "Dashboard":
+                                      return AdminDashboard();
+                                    case "School Time Table":
+                                      return SchoolTimeTable();
+                                    case "All Students":
+                                      return AllStudent();
+                                    case "Study Year Students":
+                                      return StudyYearStudents();
+                                    case "All Guardians":
+                                      return AllGuardians();
+                                    case "Student Attendance":
+                                      return StudentStatus();
+                                    case "Teacher Management":
+                                      return TeacherManagement();
+                                    case "Teacher Status":
+                                      return TeacherStatus();
+                                    case "Employee Management":
+                                      return AllEmployee();
+                                    case "Employee Attendance":
+                                      return EmployeeStatus();
+                                    case "Employee Attendance Manage":
+                                      return EmployeeAttendanceManagment();
+                                    case "Teacher Attendance Managment":
+                                      return TeacherAttendanceManagment();
+                                    case "Students Attendance Managment":
+                                      return StudentsAttendanceManagment();
+                                    case "Grade Management":
+                                      return GradeManagement();
+                                    case "Subject Management":
+                                      return Subject_Management();
+                                    case "Class Management":
+                                      return ClassManagement();
+                                    case "Division Management":
+                                      return DivisionManagement();
+                                    case "Curriculum Management":
+                                      return Curriculum_Management();
+                                    case "Session Management":
+                                      return SessionManagement();
+                                    case "School Data Management":
+                                      return SchoolDataMgmt();
+                                    case "Electronic Library":
+                                      return ElectronicBook();
+                                    case "Illness Screen":
+                                      return Ilness_Screen();
+                                    case "Vaccine Screen":
+                                      return Vaccine_Screen();
+                                    case "Transaction":
+                                      return Transaction_Management();
+                                    case "Virtual User Management":
+                                      return Virtual_User_Management();
+                                    case "Penalties":
+                                      return Penaltyscreen();
+                                    case "Rewards":
+                                      return Rewards_Screen();
+                                    case "My Profile":
+                                      return ProfileSettings();
+                                    case "Quiz Type":
+                                      return Teachers_notebook_grade_record();
+                                    case "ExcelViewerScreen":
+                                      return ExcelToPdfScreen();
+                                    case "Students Marks":
+                                      return Students_Marks();
+                                    case "School Content":
+                                      return School_Content();
+                                    default:
+                                      return AdminDashboard();
+                                  }
+                                })
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            }),
           ),
         ));
   }

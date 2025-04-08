@@ -132,11 +132,11 @@ class _Section1State extends State<Section1>
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            _buildInfoCard(control.teacher.toString(),
+                            _buildInfoCard(formatNumber(control.teacher),
                                 "Teachers", "assets/images/avatar1.png"),
-                            _buildInfoCard(control.student.toString(),
+                            _buildInfoCard(formatNumber(control.student),
                                 "Students", "assets/images/avatar2.png"),
-                            _buildInfoCard(control.visitor.toString(),
+                            _buildInfoCard(formatNumber(control.visitor),
                                 "Visitors", "assets/images/avatar3.png"),
                           ],
                         ),
@@ -185,5 +185,20 @@ class _Section1State extends State<Section1>
         ],
       ),
     );
+  }
+}
+
+String formatNumber(int num) {
+  if (num < 1000) {
+    return num.toString();
+  } else if (num < 1000000) {
+    double k = num / 1000;
+    return '${k.toStringAsFixed(k % 1 == 0 ? 0 : 1)}K';
+  } else if (num < 1000000000) {
+    double m = num / 1000000;
+    return '${m.toStringAsFixed(m % 1 == 0 ? 0 : 1)}M';
+  } else {
+    double b = num / 1000000000;
+    return '${b.toStringAsFixed(b % 1 == 0 ? 0 : 1)}B';
   }
 }

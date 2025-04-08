@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Controller/AdminController/DrowerController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Full_Employee_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
@@ -125,6 +126,7 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Students_Marks_Controller(), fenix: true);
     Get.lazyPut(() => SidebarController(), fenix: true);
     Get.lazyPut(() => School_Content_Controller(), fenix: true);
+    Get.lazyPut(() => DraweController(), fenix: true);
     Get.lazyPut(() => RewardsController(20.0, true));
   }
 }

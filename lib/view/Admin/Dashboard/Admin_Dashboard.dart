@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:vms_school/Link/API/AdminAPI/DashBoard_APIs/Dashboard_API.dart';
 import 'package:vms_school/view/Admin/Dashboard/Dashboard_First_Row.dart';
 import 'package:vms_school/view/Admin/Dashboard/Dashboard_Second_Row.dart';
-import 'package:vms_school/view/Admin/Dashboard/Dashboard_Second_Side.dart';
 import 'package:vms_school/view/Admin/Dashboard/Dashboard_third_Row.dart';
 
 class AdminDashboard extends StatefulWidget {
@@ -28,26 +27,18 @@ class _AdminDashboardState extends State<AdminDashboard> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 15.0, right: 15.0, left: 25.0),
+            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  flex: 6,
                   child: Column(
+                    spacing: 15.0,
                     children: [
                       const DashboardFirstRow(),
                       const DashboardSecondRow(),
                       DashboardThirdRow(),
-                    ],
-                  ),
-                ),
-                const Expanded(
-                  flex: 1,
-                  child: Column(
-                    children: [
-                      DashboardSecondSide(),
                     ],
                   ),
                 ),
