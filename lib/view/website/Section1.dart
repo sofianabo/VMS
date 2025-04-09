@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/HomeScreenController.dart';
 import 'package:vms_school/view/Auth/LoginScreen.dart';
+import 'package:vms_school/widgets/Responsive.dart';
 
 class Section1 extends StatefulWidget {
   const Section1({super.key});
@@ -35,74 +36,289 @@ class _Section1State extends State<Section1>
 
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
 
-    return SizedBox(
-      width: w,
-      height: h,
-      child: Stack(
-        children: [
-          SlideTransition(
-            position: _animation,
-            child: Image.asset(
-              "assets/images/Home-Background.png",
-              fit: BoxFit.cover,
-              height: h / 1.368,
-              width: w,
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        print(constraints.maxWidth);
+        if (constraints.maxWidth >= 1200) {
+          return Stack(
             children: [
-              Image.asset(
-                "assets/images/Home-Background2.png",
-                width: w / 2.84,
-                height: h / 1.52,
+              SlideTransition(
+                position: _animation,
+                child: Image.asset(
+                  "assets/images/Home-Background.png",
+                  width: width,
+                ),
               ),
-              // المحتوى النصي
-              Container(
-                margin: EdgeInsets.only(top: h / 13.68),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+              Padding(
+                padding: const EdgeInsets.only(top: 25.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text("WE CARE ABOUT \n YOUR FUTURE".tr,
+                    Image.asset(
+                      "assets/images/Home-Background2.png",
+                      width: width / 2.84,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text("WE CARE ABOUT \n YOUR FUTURE".tr,
+                            style: Get.theme.textTheme.titleLarge!
+                                .copyWith(fontSize: 60)),
+                        Padding(
+                          padding: EdgeInsets.only(top: 10.0, bottom: 20.0),
+                          child: Text(
+                            "Join us to enter a better world filled with advanced educational methods through Virtual Modern School"
+                                .tr,
+                            style: Get.theme.textTheme.titleLarge!
+                                .copyWith(fontSize: 14),
+                          ),
+                        ),
+
+                        // أزرار التسجيل والدخول
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                color: Get.theme.primaryColor, width: 1.0),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          height: 45,
+                          width: 352,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              GestureDetector(
+                                child: Container(
+                                  width: 175,
+                                  height: 45,
+                                  decoration: BoxDecoration(
+                                      color: Get.theme.primaryColor,
+                                      borderRadius: const BorderRadius.only(
+                                          topRight: Radius.circular(11),
+                                          bottomRight: Radius.circular(11))),
+                                  alignment: Alignment.center,
+                                  child: Text('Enroll'.tr,
+                                      style: Get.theme.textTheme.displayMedium!
+                                          .copyWith(fontSize: 16)),
+                                ),
+                                onTap: () {
+                                  // Get.to(() => Registration());
+                                },
+                              ),
+                              GestureDetector(
+                                child: Container(
+                                  width: 175,
+                                  height: 40,
+                                  alignment: Alignment.center,
+                                  child: Text('Sign In'.tr,
+                                      style: Get.theme.textTheme.titleLarge!
+                                          .copyWith(fontSize: 16)),
+                                ),
+                                onTap: () {
+                                  Get.toNamed("/login");
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        GetBuilder<Homescreencontroller>(builder: (control) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 22.0),
+                            child: SizedBox(
+                              width: 350,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  _buildInfoCard(formatNumber(control.teacher),
+                                      "Teachers", "assets/images/avatar1.png"),
+                                  _buildInfoCard(formatNumber(control.student),
+                                      "Students", "assets/images/avatar2.png"),
+                                  _buildInfoCard(formatNumber(control.visitor),
+                                      "Visitors", "assets/images/avatar3.png"),
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          );
+        } else if (constraints.maxWidth >= 983) {
+          return Stack(
+            children: [
+              SlideTransition(
+                position: _animation,
+                child: Image.asset(
+                  "assets/images/Home-Background.png",
+                  width: width,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 25.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Image.asset(
+                      "assets/images/Home-Background2.png",
+                      width: width / 2.84,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text("WE CARE ABOUT \n YOUR FUTURE".tr,
+                            style: Get.theme.textTheme.titleLarge!
+                                .copyWith(fontSize: 60)),
+                        Padding(
+                          padding: EdgeInsets.only(top: 10.0, bottom: 20.0),
+                          child: Text(
+                            "Join us to enter a better world filled with advanced educational methods through Virtual Modern School"
+                                .tr,
+                            style: Get.theme.textTheme.titleLarge!
+                                .copyWith(fontSize: 14),
+                          ),
+                        ),
+                        // أزرار التسجيل والدخول
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                color: Get.theme.primaryColor, width: 1.0),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          height: 45,
+                          width: 352,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              GestureDetector(
+                                child: Container(
+                                  width: 175,
+                                  height: 45,
+                                  decoration: BoxDecoration(
+                                      color: Get.theme.primaryColor,
+                                      borderRadius: const BorderRadius.only(
+                                          topRight: Radius.circular(11),
+                                          bottomRight: Radius.circular(11))),
+                                  alignment: Alignment.center,
+                                  child: Text('Enroll'.tr,
+                                      style: Get.theme.textTheme.displayMedium!
+                                          .copyWith(fontSize: 16)),
+                                ),
+                                onTap: () {
+                                  // Get.to(() => Registration());
+                                },
+                              ),
+                              GestureDetector(
+                                child: Container(
+                                  width: 175,
+                                  height: 40,
+                                  alignment: Alignment.center,
+                                  child: Text('Sign In'.tr,
+                                      style: Get.theme.textTheme.titleLarge!
+                                          .copyWith(fontSize: 16)),
+                                ),
+                                onTap: () {
+                                  Get.toNamed("/login");
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        GetBuilder<Homescreencontroller>(builder: (control) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 22.0),
+                            child: SizedBox(
+                              width: 350,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  _buildInfoCard(formatNumber(control.teacher),
+                                      "Teachers", "assets/images/avatar1.png"),
+                                  _buildInfoCard(formatNumber(control.student),
+                                      "Students", "assets/images/avatar2.png"),
+                                  _buildInfoCard(formatNumber(control.visitor),
+                                      "Visitors", "assets/images/avatar3.png"),
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          );
+        } else {
+          return Stack(
+            children: [
+              SlideTransition(
+                position: _animation,
+                child: Image.asset(
+                  "assets/images/Home-Background.png",
+                  width: width,
+                ),
+              ),
+              Container(
+                width: width,
+                child: Column(
+                  spacing: 8.5,
+                  children: [
+                    Container(
+                      width: 250,
+                      height: 250,
+                      child: Image.asset(
+                        "assets/images/Home-Background2.png",
+                        width: 150,
+                      ),
+                    ),
+                    Text("WE CARE ABOUT YOUR FUTURE".tr,
                         style: Get.theme.textTheme.titleLarge!
-                            .copyWith(fontSize: 60)),
+                            .copyWith(fontSize: 35)),
                     Padding(
-                      padding: EdgeInsets.only(top: h / 68.4),
+                      padding: EdgeInsets.only(
+                          top: 10.0, bottom: 20.0, left: 20.0, right: 20.0),
                       child: Text(
+                        textAlign: TextAlign.center,
                         "Join us to enter a better world filled with advanced educational methods through Virtual Modern School"
                             .tr,
                         style: Get.theme.textTheme.titleLarge!
                             .copyWith(fontSize: 14),
                       ),
                     ),
-                    SizedBox(height: h / 22.8),
-                    // أزرار التسجيل والدخول
                     Container(
                       decoration: BoxDecoration(
                         border: Border.all(
                             color: Get.theme.primaryColor, width: 1.0),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      height: h / 13.68,
-                      width: w / 3.657,
+                      height: 40,
+                      width: 202,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           GestureDetector(
                             child: Container(
-                              width: w / 6.808,
+                              width: 100,
+                              height: 40,
                               decoration: BoxDecoration(
                                   color: Get.theme.primaryColor,
                                   borderRadius: const BorderRadius.only(
-                                      topRight: Radius.circular(11),
-                                      bottomRight: Radius.circular(11))),
+                                      topRight: Radius.circular(5),
+                                      bottomRight: Radius.circular(5))),
                               alignment: Alignment.center,
                               child: Text('Enroll'.tr,
                                   style: Get.theme.textTheme.displayMedium!
-                                      .copyWith(fontSize: 16)),
+                                      .copyWith(fontSize: 12)),
                             ),
                             onTap: () {
                               // Get.to(() => Registration());
@@ -110,12 +326,12 @@ class _Section1State extends State<Section1>
                           ),
                           GestureDetector(
                             child: Container(
-                              width: w / 8,
-                              height: h / 13.68,
+                              width: 100,
+                              height: 30,
                               alignment: Alignment.center,
                               child: Text('Sign In'.tr,
                                   style: Get.theme.textTheme.titleLarge!
-                                      .copyWith(fontSize: 16)),
+                                      .copyWith(fontSize: 12)),
                             ),
                             onTap: () {
                               Get.toNamed("/login");
@@ -124,21 +340,34 @@ class _Section1State extends State<Section1>
                         ],
                       ),
                     ),
-                    // معلومات عن المعلمين والطلاب والزوار
                     GetBuilder<Homescreencontroller>(builder: (control) {
-                      return SizedBox(
-                        height: h / 3.42,
-                        width: w / 3.657,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            _buildInfoCard(formatNumber(control.teacher),
-                                "Teachers", "assets/images/avatar1.png"),
-                            _buildInfoCard(formatNumber(control.student),
-                                "Students", "assets/images/avatar2.png"),
-                            _buildInfoCard(formatNumber(control.visitor),
-                                "Visitors", "assets/images/avatar3.png"),
-                          ],
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 22.0),
+                        child: SizedBox(
+                          width: 250,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              _buildInfoCardPhone(
+                                  80,
+                                  120,
+                                  formatNumber(control.teacher),
+                                  "Teachers",
+                                  "assets/images/avatar1.png"),
+                              _buildInfoCardPhone(
+                                  80,
+                                  120,
+                                  formatNumber(control.student),
+                                  "Students",
+                                  "assets/images/avatar2.png"),
+                              _buildInfoCardPhone(
+                                  80,
+                                  120,
+                                  formatNumber(control.visitor),
+                                  "Visitors",
+                                  "assets/images/avatar3.png"),
+                            ],
+                          ),
                         ),
                       );
                     }),
@@ -146,9 +375,9 @@ class _Section1State extends State<Section1>
                 ),
               ),
             ],
-          ),
-        ],
-      ),
+          );
+        }
+      },
     );
   }
 
@@ -156,8 +385,8 @@ class _Section1State extends State<Section1>
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return Container(
-      height: h / 5.7,
-      width: w / 12.8,
+      height: 120,
+      width: 107,
       decoration: BoxDecoration(
         color: Get.theme.cardColor,
         borderRadius: BorderRadius.circular(21),
@@ -181,6 +410,44 @@ class _Section1State extends State<Section1>
           Padding(
             padding: EdgeInsets.only(top: h / 68.4),
             child: Text(subtitle.tr, style: Get.theme.textTheme.bodyMedium!),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildInfoCardPhone(double width, double hieght, String title,
+      String subtitle, String imagePath) {
+    return Container(
+      height: hieght,
+      width: width,
+      decoration: BoxDecoration(
+        color: Get.theme.cardColor,
+        borderRadius: BorderRadius.circular(21),
+        border: Border.all(color: Colors.grey, width: 2.0),
+      ),
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.only(top: 10.0),
+            height: 30,
+            width: 30,
+            decoration: BoxDecoration(
+                color: Get.theme.cardColor,
+                borderRadius: BorderRadius.circular(100)),
+            child: Image.asset(
+              imagePath,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 10.0),
+            child: Text(title,
+                style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 13)),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 10.0),
+            child: Text(subtitle.tr,
+                style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 13)),
           ),
         ],
       ),

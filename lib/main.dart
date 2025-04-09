@@ -14,7 +14,6 @@ SharedPreferences? prefs;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   prefs = await SharedPreferences.getInstance();
-
   final localizationController = LocalizationController();
   await localizationController.loadLanguageFromCache();
   runApp(VMS(localizationController: localizationController));

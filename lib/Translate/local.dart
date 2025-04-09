@@ -292,6 +292,7 @@ class Languages {
       /////////////////////////////////section 1 and home appbar////////////////////////
 
       'WE CARE ABOUT \n YOUR FUTURE': 'نحن نعتني\n بمستقبلك',
+      'WE CARE ABOUT YOUR FUTURE': 'نحن نعتني بمستقبلك',
       'Join us to enter a better world filled with advanced educational methods through Virtual Modern School':
           'انضم إلينا لدخول عالم أفضل مليء بالأساليب التعليمية المتطورة من خلال المدرسة الافتراضية الحديثة',
       'Enroll': 'تسجيل',
@@ -347,7 +348,7 @@ class Languages {
       'user - friendliness': 'مع المستخدم',
       'Instant live': 'دروس مباشرة ',
       'Lessons': 'فورية',
-      'Focus on results': 'التركيز على النتائج',
+      'Focus on results': 'التركيز على النتائج الاساسية',
       'Multiple registration': 'خيارات تسجيل',
       'options': 'متعددة',
       ///////////////////////////////////section 5//////////////////////////////////////
@@ -982,6 +983,7 @@ class Languages {
       'Join us to enter a better world filled with advanced educational methods through Virtual Modern School':
           'Join us to enter a better world filled with advanced educational methods through Virtual Modern School',
       'Enroll': 'Enroll',
+      'WE CARE ABOUT YOUR FUTURE': 'WE CARE ABOUT YOUR FUTURE',
       'Sign In': 'Sign In',
       'Teachers': 'Teachers',
       'Students': 'Students',

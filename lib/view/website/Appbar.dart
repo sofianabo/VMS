@@ -3,152 +3,128 @@ import 'package:get/get.dart';
 import 'package:vms_school/Theme/ThemeData.dart';
 import 'package:vms_school/widgets/Switcher.dart';
 
-class AppbarCustom extends StatefulWidget {
-  var Section2Key = GlobalKey();
-  var Section3Key = GlobalKey();
-  var Section4Key = GlobalKey();
-  var Section5Key = GlobalKey();
-  var Section6Key = GlobalKey();
-  var Section7Key = GlobalKey();
+class AppbarCustom extends StatelessWidget {
+  final GlobalKey section2Key;
+  final GlobalKey section3Key;
+  final GlobalKey section4Key;
+  final GlobalKey section5Key;
+  final GlobalKey section6Key;
+  final GlobalKey section7Key;
 
-  AppbarCustom({
+  const AppbarCustom({
     super.key,
-    required this.Section2Key,
-    required this.Section3Key,
-    required this.Section4Key,
-    required this.Section5Key,
-    required this.Section6Key,
-    required this.Section7Key,
+    required this.section2Key,
+    required this.section3Key,
+    required this.section4Key,
+    required this.section5Key,
+    required this.section6Key,
+    required this.section7Key,
   });
 
-  @override
-  State<AppbarCustom> createState() => _AppbarCustomState();
-}
-
-class _AppbarCustomState extends State<AppbarCustom> {
-  bool isArabic = true;
-  ScrollToKey(GlobalKey key) {
-    Scrollable.ensureVisible(key.currentContext!,
-        duration: Duration(milliseconds: 700), curve: Curves.easeInOut);
+  void scrollToSection(GlobalKey key) {
+    final context = key.currentContext;
+    if (context != null) {
+      Scrollable.ensureVisible(
+        context,
+        duration: const Duration(milliseconds: 700),
+        curve: Curves.easeInOut,
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    bool isDesktop = screenWidth >= 1200;
+    bool isTablet = screenWidth >= 983 && screenWidth < 1200;
+
+    List<Widget> navItems = [
+      buildNavItem("Eligibility".tr, () => scrollToSection(section2Key)),
+      buildNavItem("Enrollment".tr, () => scrollToSection(section3Key)),
+      buildNavItem("WhyUs".tr, () => scrollToSection(section4Key)),
+      buildNavItem("AboutUs".tr, () => scrollToSection(section5Key)),
+      buildNavItem("Programs".tr, () => scrollToSection(section6Key)),
+      buildNavItem("Contact Us".tr, () => scrollToSection(section7Key)),
+    ];
+    if (isDesktop || isTablet) {
+      Scaffold.of(context).closeDrawer();
+    }
     return Container(
-      height: 100,
-      margin: EdgeInsets.only(right: 25, left: 25),
+      height: (isDesktop || isTablet) ? 100 : 50,
+      padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              LanguageSwitcher(
-                onLanguageToggle: (bool) {
-                  print(bool);
-                },
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: SizedBox(
-                  width: 95,
-                  height: 20,
-                  child: MaterialButton(
-                    onPressed: () {
-                      ScrollToKey(widget.Section7Key);
-                    },
-                    child: Container(
-                      color: Get.theme.scaffoldBackgroundColor,
-                      child: Text(
-                        overflow: TextOverflow.ellipsis,
-                        "Contact Us".tr,
-                        style: Get.theme.textTheme.bodyMedium!,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 90,
-                height: 20,
-                child: MaterialButton(
-                  onPressed: () {
-                    ScrollToKey(widget.Section5Key);
+          // Left side (Menu or Buttons)
+          if (isDesktop || isTablet)
+            Row(
+              children: [
+                LanguageSwitcher(
+                  onLanguageToggle: (isArabic) {
+                    print('Language switched to Arabic: $isArabic');
                   },
-                  child: Text(
-                    "AboutUs".tr,
-                    style: Get.theme.textTheme.bodyMedium!,
-                  ),
                 ),
-              ),
-              SizedBox(
-                width: 90,
-                height: 20,
-                child: MaterialButton(
-                  onPressed: () {
-                    ScrollToKey(widget.Section4Key);
-                  },
-                  child: Text(
-                    "WhyUs".tr,
-                    style: Get.theme.textTheme.bodyMedium!,
-                  ),
+                const SizedBox(width: 16),
+                ...navItems,
+              ],
+            )
+          else
+            Builder(
+              builder: (context) => IconButton(
+                icon: Icon(
+                  Icons.menu,
+                  color: Theme.of(context).primaryColor,
                 ),
+                onPressed: () => Scaffold.of(context).openDrawer(),
               ),
-              SizedBox(
-                width: 90,
-                height: 20,
-                child: MaterialButton(
-                  onPressed: () {
-                    ScrollToKey(widget.Section6Key);
-                  },
-                  child: Text(
-                    "Programs".tr,
-                    style: Get.theme.textTheme.bodyMedium!,
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 90,
-                height: 20,
-                child: MaterialButton(
-                  onPressed: () {
-                    ScrollToKey(widget.Section3Key);
-                  },
-                  child: Text(
-                    "Enrollment".tr,
-                    style: Get.theme.textTheme.bodyMedium!,
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 90,
-                height: 20,
-                child: MaterialButton(
-                  onPressed: () {
-                    ScrollToKey(widget.Section2Key);
-                  },
-                  child: Text(
-                    "Eligibility".tr,
-                    style: Get.theme.textTheme.bodyMedium!,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            width: 300,
-            height: 70,
+            ),
+
+          // Right side (Logo)
+          Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Image.asset(
-                  Theme.of(context) == theme.Dark_Theme
-                      ? "assets/images/Logo.png"
-                      : "assets/images/Logo2.png",
-                )
+                if (isDesktop || isTablet)
+                  SizedBox(
+                    height: 70,
+                    child: Image.asset(
+                      Theme.of(context) == theme.Dark_Theme
+                          ? "assets/images/Logo.png"
+                          : "assets/images/Logo2.png",
+                      fit: BoxFit.contain,
+                    ),
+                  )
+                else
+                  SizedBox(
+                    height: 70,
+                    child: Image.asset(
+                      width: 100,
+                      Theme.of(context) == theme.Dark_Theme
+                          ? "assets/images/Logo.png"
+                          : "assets/images/Logo2.png",
+                      fit: BoxFit.contain,
+                    ),
+                  )
               ],
             ),
-          )
+          ),
         ],
+      ),
+    );
+  }
+
+  Widget buildNavItem(String title, VoidCallback onTap) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 6.0),
+      child: SizedBox(
+        height: 40,
+        child: TextButton(
+          onPressed: onTap,
+          child: Text(
+            title,
+            style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 13),
+          ),
+        ),
       ),
     );
   }
