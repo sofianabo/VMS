@@ -40,7 +40,6 @@ class _Section1State extends State<Section1>
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        print(constraints.maxWidth);
         if (constraints.maxWidth >= 1200) {
           return Stack(
             children: [
@@ -63,7 +62,9 @@ class _Section1State extends State<Section1>
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text("WE CARE ABOUT \n YOUR FUTURE".tr,
+                        Text(
+                            textAlign: TextAlign.center,
+                            "WE CARE ABOUT \n YOUR FUTURE".tr,
                             style: Get.theme.textTheme.titleLarge!
                                 .copyWith(fontSize: 60)),
                         Padding(
@@ -172,7 +173,9 @@ class _Section1State extends State<Section1>
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text("WE CARE ABOUT \n YOUR FUTURE".tr,
+                        Text(
+                            textAlign: TextAlign.center,
+                            "WE CARE ABOUT \n YOUR FUTURE".tr,
                             style: Get.theme.textTheme.titleLarge!
                                 .copyWith(fontSize: 60)),
                         Padding(
@@ -281,7 +284,9 @@ class _Section1State extends State<Section1>
                         width: 150,
                       ),
                     ),
-                    Text("WE CARE ABOUT YOUR FUTURE".tr,
+                    Text(
+                        textAlign: TextAlign.center,
+                        "WE CARE ABOUT YOUR FUTURE".tr,
                         style: Get.theme.textTheme.titleLarge!
                             .copyWith(fontSize: 35)),
                     Padding(
@@ -299,7 +304,7 @@ class _Section1State extends State<Section1>
                       decoration: BoxDecoration(
                         border: Border.all(
                             color: Get.theme.primaryColor, width: 1.0),
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(6),
                       ),
                       height: 40,
                       width: 202,

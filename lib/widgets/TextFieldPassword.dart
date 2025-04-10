@@ -7,12 +7,16 @@ class TextFormPassword extends StatelessWidget {
 
   TextEditingController controller;
   String hinttext;
-  Iterable<String> autofill ;
-
+  Iterable<String> autofill;
+  double? width;
+  double? hight;
   TextFormPassword({
     super.key,
     required this.controller,
-    required this.hinttext, required this.autofill,
+    this.width,
+    this.hight,
+    required this.hinttext,
+    required this.autofill,
   });
 
   @override
@@ -21,9 +25,9 @@ class TextFormPassword extends StatelessWidget {
     double w = MediaQuery.of(context).size.width;
     return Container(
       color: Colors.white,
-      margin:  EdgeInsets.only(top: h/136.8),
-      width: w / 2.56,
-      height: 50,
+      margin: EdgeInsets.only(top: 5),
+      width: width ?? w / 2.56,
+      height: hight ?? 50,
       child: GetBuilder<PasswordHintController>(builder: (password) {
         return TextFormField(
           autofillHints: autofill,
@@ -31,22 +35,26 @@ class TextFormPassword extends StatelessWidget {
           obscureText: pass.isVisible,
           decoration: InputDecoration(
             hintText: hinttext,
-            hintStyle: const TextStyle(
-                fontSize: 12,
-                color: Colors.grey
-            ),
+            hintStyle: const TextStyle(fontSize: 12, color: Colors.grey),
             suffixIcon: Padding(
-              padding: const EdgeInsets.only(left: 12.0 , right: 12.0),
+              padding: EdgeInsets.only(
+                  left: width == null ? 12.0 : 0,
+                  right: width == null ? 12.0 : 0),
               child: IconButton(
                 onPressed: () {
                   pass.isVisible ? pass.hint() : pass.notHint();
                 },
-                icon:  pass.isVisible ? const Icon(
-                  Icons.visibility_off ,
-                  color: Colors.grey,
-                ) : const Icon(Icons.visibility,
-                  color: Colors.grey,
-                ),
+                icon: pass.isVisible
+                    ? Icon(
+                        size: width != null ? 14 : null,
+                        Icons.visibility_off,
+                        color: Colors.grey,
+                      )
+                    : Icon(
+                        size: width != null ? 14 : null,
+                        Icons.visibility,
+                        color: Colors.grey,
+                      ),
               ),
             ),
             focusedBorder: OutlineInputBorder(
