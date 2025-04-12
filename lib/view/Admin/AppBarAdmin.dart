@@ -30,10 +30,10 @@ class _AppbarAdminState extends State<AppbarAdmin> {
   TextEditingController serch = TextEditingController();
 
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size.width;
     return Directionality(
       textDirection: TextDirection.rtl,
       child: GetBuilder<AdminHomeContentController>(builder: (cont) {
-        print(MediaQuery.of(context).size.width);
         return ResponsiveUI(
           desktopScreen: Container(
             margin: const EdgeInsets.only(right: 60, left: 30, top: 29),
@@ -207,7 +207,9 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                 )),
                 GestureDetector(
                   onTap: () {
-                    cont.updateContent("My Profile");
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      cont.updateContent("My Profile");
+                    });
                   },
                   child: Container(
                     height: 40,
@@ -328,7 +330,7 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                               ),
                             ),
                           ),
-                          if (MediaQuery.of(context).size.width <= 768)
+                          if (screenSize <= 768)
                             GetBuilder<DraweController>(builder: (cont) {
                               return IconButton(
                                   onPressed: () {

@@ -177,11 +177,21 @@ class _AdminHomeState extends State<AdminHome> {
                       ],
                     ),
                   ),
-                  if (MediaQuery.of(context).size.width >= 769)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 70.0),
-                      child: SizedBox(width: 70, child: SideBarAdmin()),
-                    ),
+                  LayoutBuilder(
+                    builder: (context, constraints) {
+                      if (constraints.maxWidth >= 769) {
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 70.0),
+                          child: SizedBox(
+                            width: 70,
+                            child: SideBarAdmin(),
+                          ),
+                        );
+                      } else {
+                        return SizedBox.shrink();
+                      }
+                    },
+                  ),
                 ],
               );
             });
