@@ -54,7 +54,7 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                         width: 200,
                         decoration: BoxDecoration(
                           color: controller.hasData
-                              ? Colors.white
+                              ? Theme.of(context).cardColor
                               : Theme.of(context).disabledColor,
                           border: Border.all(color: Color(0xffDAD0D0)),
                           borderRadius: BorderRadius.circular(5),
@@ -216,7 +216,7 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                     width: 200,
                     decoration: BoxDecoration(
                       color: controller.hasData
-                          ? Colors.white
+                          ? Theme.of(context).cardColor
                           : Theme.of(context).disabledColor,
                       border: Border.all(color: Color(0xffDAD0D0)),
                       borderRadius: BorderRadius.circular(5),
@@ -232,8 +232,8 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               "${prefs!.getString("fullname")}",
-                              style:
-                                  TextStyle(fontSize: 12, color: Colors.black),
+                              style: Get.theme.textTheme.bodyMedium!
+                                  .copyWith(fontSize: 12),
                             ),
                           ),
                         ),
@@ -288,7 +288,6 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                                             .toUpperCase() ??
                                         '',
                                     style: Get.textTheme.titleLarge?.copyWith(
-                                      color: Colors.white,
                                       fontSize: 12,
                                     ),
                                   ),

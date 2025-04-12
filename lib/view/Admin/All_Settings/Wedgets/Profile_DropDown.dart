@@ -150,7 +150,7 @@ class _Profile_DropDownState extends State<Profile_DropDown> {
                             value: widget.title,
                             enabled: false,
                             child: Text(
-                              widget.title,
+                              widget.title.tr,
                               style: Get.theme.textTheme.bodyMedium!.copyWith(
                                 fontSize: 14,
                                 color: widget.enabled ? null : Colors.grey,
@@ -183,7 +183,7 @@ class _Profile_DropDownState extends State<Profile_DropDown> {
             value: value,
             enabled: enabled,
             child: Text(
-              value,
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(
                 fontSize: 14,
                 color: enabled ? null : Colors.grey,
@@ -197,8 +197,8 @@ class _Profile_DropDownState extends State<Profile_DropDown> {
           return DropdownMenuItem<String>(
             value: value,
             enabled: enabled,
-            child: Text(
-              value,
+            child: Text(  
+              value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(
                 fontSize: 14,
                 color: enabled ? null : Colors.grey,

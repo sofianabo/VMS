@@ -125,6 +125,7 @@ class BarChartSample1State extends State<BarChartSample1> {
             return BarTooltipItem(
               '$country\n',
               const TextStyle(
+                overflow: TextOverflow.ellipsis,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 13,
@@ -133,6 +134,7 @@ class BarChartSample1State extends State<BarChartSample1> {
                 TextSpan(
                   text: '${(rod.toY - 1).toStringAsFixed(1)}%',
                   style: const TextStyle(
+                    overflow: TextOverflow.ellipsis,
                     color: Colors.greenAccent,
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
@@ -169,8 +171,12 @@ class BarChartSample1State extends State<BarChartSample1> {
             getTitlesWidget: (value, meta) {
               final index = value.toInt();
               if (index < widget.data.length) {
-                return Text(widget.data[index]['countryName'],
-                    style: Theme.of(context).textTheme.bodyMedium);
+                return Expanded(
+                  child: Text(widget.data[index]['countryName'],
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: Theme.of(context).textTheme.bodyMedium),
+                );
               }
               return const Text('');
             },
@@ -337,6 +343,7 @@ class BarChartSample2State extends State<BarChartSample2> {
             return BarTooltipItem(
               '$country\n',
               const TextStyle(
+                overflow: TextOverflow.ellipsis,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 13,
@@ -345,6 +352,7 @@ class BarChartSample2State extends State<BarChartSample2> {
                 TextSpan(
                   text: '${(rod.toY - 1).toStringAsFixed(1)}%',
                   style: const TextStyle(
+                    overflow: TextOverflow.ellipsis,
                     color: Colors.greenAccent,
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
@@ -381,8 +389,12 @@ class BarChartSample2State extends State<BarChartSample2> {
             getTitlesWidget: (value, meta) {
               final index = value.toInt();
               if (index < widget.data.length) {
-                return Text(widget.data[index]['countryName'],
-                    style: Theme.of(context).textTheme.bodyMedium);
+                return Expanded(
+                  child: Text(widget.data[index]['countryName'],
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: Theme.of(context).textTheme.bodyMedium),
+                );
               }
               return const Text('');
             },
