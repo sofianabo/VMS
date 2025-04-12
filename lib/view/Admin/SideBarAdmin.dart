@@ -10,11 +10,18 @@ import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Admin/SideBar_Path.dart';
 import '../../widgets/SidbarAnimation.dart';
 
-class SideBarAdmin extends StatelessWidget {
+class SideBarAdmin extends StatefulWidget {
   SideBarAdmin({super.key});
+
   @override
+  State<SideBarAdmin> createState() => _SideBarAdminState();
+}
+
+class _SideBarAdminState extends State<SideBarAdmin> {
+  @override
+  var controller = Get.find<Add_Data_controller>();
+
   Widget build(BuildContext context) {
-    var controller = Get.put(Add_Data_controller());
     double h = MediaQuery.of(context).size.height;
     return Stack(
       alignment: Alignment.center,

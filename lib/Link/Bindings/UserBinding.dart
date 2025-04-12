@@ -64,10 +64,7 @@ import 'package:vms_school/widgets/SidbarAnimation.dart';
 class UserBiniding extends Bindings {
   @override
   void dependencies() {
-    Get.put(
-      () => ThemeController(),
-      builder: () => ThemeController(),
-    );
+    Get.lazyPut(() => ThemeController(), fenix: true);
     Get.lazyPut(() => UserController(), fenix: true);
     Get.lazyPut(() => PasswordHintController(), fenix: true);
     Get.lazyPut(() => AdminHomeContentController(), fenix: true);

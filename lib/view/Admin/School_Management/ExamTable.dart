@@ -66,8 +66,8 @@ class _ExamTableState extends State<ExamTable> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
-              width: Get.width * 0.9,
-              child: Row(
+              width: Get.width,
+              child: Wrap(
                 children: [
                   DropDownexamTable(
                     isLoading: controller.issemesterLoading,

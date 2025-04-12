@@ -551,7 +551,6 @@ class Section7 extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  margin: const EdgeInsets.only(left: 50, right: 50),
                   child: Column(
                     children: [
                       Column(
