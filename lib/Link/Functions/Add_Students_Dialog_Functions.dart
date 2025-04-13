@@ -953,7 +953,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                       ? 20
                                       : 0),
                               child: Textfildwithupper(
-                                  isRequired: false,
+                                  isRequired: true,
                                   width: 300,
                                   isError: controller.ISpasswordError,
                                   fieldType: "password",

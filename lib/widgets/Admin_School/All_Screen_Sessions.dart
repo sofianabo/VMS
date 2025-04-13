@@ -132,6 +132,7 @@ class DropDownAllSessions extends StatelessWidget {
                     Studentattendenceapi(context).Studentattendence(
                       sessionID: cont.sessionId,
                     );
+                    // getgrade
                     Get.find<StudentAttendencController>()
                         .resetOnSessionChange();
                   } else {

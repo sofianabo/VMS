@@ -1022,7 +1022,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                                     ? 20.0
                                     : 0),
                             child: Textfildwithupper(
-                                isRequired: false,
+                                isRequired: true,
                                 width: 300,
                                 fieldType: "phone",
                                 isError: controller.ISMotherPhoneError,

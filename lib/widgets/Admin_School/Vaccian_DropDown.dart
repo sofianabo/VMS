@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Controller/AdminController/Location_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 
 class DropdownVaccian extends StatelessWidget {
@@ -84,6 +85,14 @@ class DropdownVaccian extends StatelessWidget {
                               onChanged: (newValue) {
                                 if (newValue != null) {
                                   cont.selectIndex(type, newValue);
+                                }
+
+                                if (type == 'Location') {
+                                  Get.find<Location_controller>()
+                                      .setLocationsid(
+                                          cont.Locationlist.indexOf(newValue!));
+                                  print(Get.find<Location_controller>()
+                                      .Locationsid);
                                 }
                               },
                               dropdownColor: Get.theme.cardColor,

@@ -46,18 +46,11 @@ void showAddMarkForAllDialog() {
             children: [
               DropdownButtonFormField<String>(
                 decoration: InputDecoration(
-                  labelText: 'نوع العلامة',
-                  border: const OutlineInputBorder(),
-                  labelStyle: TextStyle(
-                    color: Colors.black.withOpacity(0.6),
-                    fontSize: 14,
-                  ),
-                ),
-                dropdownColor: Colors.white,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 14,
-                ),
+                    labelText: 'نوع العلامة',
+                    border: const OutlineInputBorder(),
+                    labelStyle: Get.theme.textTheme.bodyMedium),
+                dropdownColor: Get.theme.cardColor,
+                style: Get.theme.textTheme.bodyMedium,
                 value: selectedType,
                 items: allMarkTypes.map((String type) {
                   return DropdownMenuItem<String>(
@@ -122,10 +115,7 @@ void showAddMarkForAllDialog() {
                   labelText: 'العلامة',
                   border: const OutlineInputBorder(),
                   counterText: '',
-                  labelStyle: TextStyle(
-                    color: Colors.black.withOpacity(0.6),
-                    fontSize: 14,
-                  ),
+                  labelStyle: Get.theme.textTheme.bodyMedium,
                   suffixText: selectedType != null ? '/ $maxMark' : null,
                 ),
                 validator: (value) {

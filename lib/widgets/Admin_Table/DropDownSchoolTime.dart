@@ -58,7 +58,7 @@ class DropDownSchoolTime extends StatelessWidget {
           break;
         case 'time':
           selectedValue = cont.selectedTimeLesson.isNotEmpty
-              ? cont.selectedTimeLesson.tr
+              ? cont.selectedTimeLesson
               : title;
           break;
       }
@@ -200,7 +200,8 @@ class DropDownSchoolTime extends StatelessWidget {
         items.addAll(cont.teacherDialogList.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
+            child:
+                Text(value.tr, style: Theme.of(context).textTheme.bodyMedium),
           );
         }).toList());
         break;
@@ -208,14 +209,15 @@ class DropDownSchoolTime extends StatelessWidget {
         items.addAll(cont.subjectDialogList.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
+            child:
+                Text(value.tr, style: Theme.of(context).textTheme.bodyMedium),
           );
         }).toList());
         break;
       case 'time':
         items.addAll(cont.timeLessonList.map((String value) {
           return DropdownMenuItem<String>(
-            value: value.tr,
+            value: value,
             child:
                 Text(value.tr, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () {

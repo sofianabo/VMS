@@ -380,21 +380,27 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                                 await Addlessonapi(context).Addlesson(controller.subjectDialogList.indexOf(controller.selectedSubjectDialog), controller.examDivision.indexOf(controller.selectedExamDivision), controller.timeLessonIndex, controller.teacherDialogList.indexOf(controller.selectedTeacherDialog), entryIndex, row['Day'].toString());
                                                                               }
                                                                             },
-                                                                            color: Get
-                                                                                .theme.primaryColor,
-                                                                            width:
-                                                                                120)
+                                                                            color:
+                                                                                Get.theme.primaryColor,
+                                                                            width: 120)
                                                                         : ButtonDialog(
-                                                                            text: "Edit"
-                                                                                .tr,
+                                                                            text:
+                                                                                "Edit".tr,
                                                                             onPressed:
                                                                                 () async {
-                                                                              final entryIndex = row.entries
-                                                                                  .toList() // تحويل الكائنات إلى قائمة
-                                                                                  .indexWhere((e) => e.value == entry.value);
+                                                                              // احصل على مفتاح العمود مباشرة
+                                                                              final columnKey = entry.key; // مثل 'First\n Lesson'
 
-                                                                              Pair<int, int> key = Pair(days[row["Day"].toString()]!, entryIndex);
+                                                                              // احصل على يوم الصف
+                                                                              final day = row['Day'].toString();
 
+                                                                              // استخدم lessions للعثور على رقم الدرس المقابل للعمود
+                                                                              final lessonNumber = lessions.entries.firstWhere((e) => e.value == columnKey, orElse: () => throw "Column not found").key;
+
+                                                                              // أنشئ الـ Pair باستخدام يوم ورقم الدرس
+                                                                              Pair<int, int> key = Pair(days[day]!, lessonNumber);
+
+                                                                              // احصل على الـ ID الفريد من الـ indexes
                                                                               int selectedId = indexes[key]!;
 
                                                                               bool IsteachError = controller.teacherDialogIndex.isEmpty || controller.teacherDialogIndex == "";
@@ -414,7 +420,9 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                             },
                                                                             color:
                                                                                 Get.theme.primaryColor,
-                                                                            width: 120),
+                                                                            width:
+                                                                                120,
+                                                                          ),
                                                                     entry.value.contains(
                                                                             "No Lesson")
                                                                         ? Container()
@@ -423,12 +431,17 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                                 .tr,
                                                                             onPressed:
                                                                                 () async {
-                                                                              final entryIndex = row.entries
-                                                                                  .toList() // تحويل الكائنات إلى قائمة
-                                                                                  .indexWhere((e) => e.value == entry.value);
-                                                                              Pair<int, int> key = Pair(days[row["Day"].toString()]!, entryIndex);
+                                                                              // احصل على الفهرس الصحيح للعمود مباشرة من المفتاح
+                                                                              final columnKey = entry.key; // هذا هو مفتاح العمود (مثل 'First\n Lesson')
 
-                                                                              // البحث عن الفهرس
+                                                                              // احصل على يوم الصف
+                                                                              final day = row['Day'].toString();
+
+                                                                              // استخدم Pair مع يوم ورقم العمود (بدلاً من البحث بالقيمة)
+                                                                              final lessonNumber = lessions.entries.firstWhere((e) => e.value == columnKey, orElse: () => throw "Column not found").key;
+
+                                                                              Pair<int, int> key = Pair(days[day]!, lessonNumber);
+
                                                                               int selectedId = indexes[key]!;
                                                                               await Deletestudyshareapi(context).Deletestudyshare(selectedId);
                                                                               Get.back();
