@@ -135,31 +135,35 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
   Widget build(BuildContext context) {
     return Expanded(
         child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
-          alignment: Alignment.center,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GetBuilder<AdminSchoolTimeController>(builder: (controller) {
-                return Row(
+          width: Get.width,
+          margin: const EdgeInsets.only(left: 30.0, right: 15.0, top: 15.0),
+          child: GetBuilder<AdminSchoolTimeController>(builder: (controller) {
+            return Wrap(
+              alignment: WrapAlignment.spaceBetween,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              runAlignment: WrapAlignment.spaceBetween,
+              spacing: 8.0,
+              runSpacing: 8.0,
+              children: [
+                Wrap(
+                  spacing: 8.0,
+                  runSpacing: 8.0,
                   children: [
                     DropDownSchoolTime(
                       type: "time",
                       title: "Time".tr,
-                      width: Get.width / 4,
+                      width: 220,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                      child: DropDownSchoolTime(
-                        isDisabled: false,
-                        isLoading: controller.isLoadingClass,
-                        type: "class",
-                        title: "Class".tr,
-                        width: Get.width / 4,
-                      ),
+                    DropDownSchoolTime(
+                      isDisabled: false,
+                      isLoading: controller.isLoadingClass,
+                      type: "class",
+                      title: "Class".tr,
+                      width: 220,
                     ),
                     DropDownSchoolTime(
                       isLoading: controller.isLoadingDivision,
@@ -167,36 +171,39 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                           controller.examClassIndex == "" ? true : false,
                       type: "division",
                       title: "Division".tr,
-                      width: Get.width / 4,
+                      width: 220,
                     ),
-                    const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).cardColor,
-                            borderRadius: BorderRadius.circular(5),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Colors.black12,
-                                  offset: Offset(0, 2),
-                                  blurRadius: 1)
-                            ]),
-                        child: IconButton(
-                            style: ButtonStyle(
-                                backgroundColor: WidgetStatePropertyAll(
-                                    Theme.of(context).cardColor),
-                                shape: WidgetStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5))))),
-                            onPressed: () {},
-                            icon: Icon(VMS_Icons.pdf,
-                                size: 18,
-                                color: Theme.of(context).highlightColor)),
-                      ),
+                  ],
+                ),
+                Spacer(),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  spacing: 8.0,
+                  children: [
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: IconButton(
+                          style: ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                  Theme.of(context).cardColor),
+                              shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5))))),
+                          onPressed: () {},
+                          icon: Icon(VMS_Icons.pdf,
+                              size: 18,
+                              color: Theme.of(context).highlightColor)),
                     ),
                     Container(
                       width: 40,
@@ -224,10 +231,10 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                               color: Theme.of(context).highlightColor)),
                     ),
                   ],
-                );
-              }),
-            ],
-          ),
+                )
+              ],
+            );
+          }),
         ),
         GetBuilder<AdminSchoolTimeController>(builder: (controller) {
           return Expanded(
@@ -256,232 +263,252 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                             padding:
                                 const EdgeInsets.only(left: 30.0, right: 30.0),
                             child: SingleChildScrollView(
-                                child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Table(
-                                      border: TableBorder.all(
-                                          color: Get.theme.primaryColor),
-                                      children: [
+                              scrollDirection: Axis.vertical,
+                              child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Table(
+                                    defaultColumnWidth: FixedColumnWidth(
+                                        160), // عرض ثابت لكل خلية
+                                    border: TableBorder.all(
+                                        color: Get.theme.primaryColor),
+                                    children: [
+                                      TableRow(
+                                        children: [
+                                          Container(
+                                            width: 160,
+                                            height: 50,
+                                            alignment: Alignment.center,
+                                            color: Theme.of(context)
+                                                .indicatorColor,
+                                            child: Center(
+                                              child: Text('Day'.tr,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .titleMedium!
+                                                      .copyWith(fontSize: 18)),
+                                            ),
+                                          ),
+                                          ...tableData[0]
+                                              .keys
+                                              .where((key) => key != 'Day')
+                                              .map((key) => Container(
+                                                    width: 160,
+                                                    height: 50,
+                                                    alignment: Alignment.center,
+                                                    color: Theme.of(context)
+                                                        .indicatorColor,
+                                                    child: Center(
+                                                      child: Text(
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          key.tr,
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyMedium),
+                                                    ),
+                                                  )),
+                                        ],
+                                      ),
+                                      for (var row in tableData)
                                         TableRow(
                                           children: [
                                             Container(
-                                              height: 50,
+                                              width: 160,
                                               alignment: Alignment.center,
+                                              height: 70,
                                               color: Theme.of(context)
                                                   .indicatorColor,
                                               child: Center(
-                                                child: Text('Day'.tr,
+                                                child: Text(
+                                                    row['Day']?.tr ?? '',
                                                     style: Theme.of(context)
                                                         .textTheme
-                                                        .titleMedium!
-                                                        .copyWith(
-                                                            fontSize: 18)),
+                                                        .bodyMedium),
                                               ),
                                             ),
-                                            ...tableData[0]
-                                                .keys
-                                                .where((key) => key != 'Day')
-                                                .map((key) => Container(
-                                                      height: 50,
-                                                      alignment:
-                                                          Alignment.center,
-                                                      color: Theme.of(context)
-                                                          .indicatorColor,
-                                                      child: Center(
-                                                        child: Text(
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            key.tr,
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .bodyMedium),
-                                                      ),
-                                                    )),
-                                          ],
-                                        ),
-                                        for (var row in tableData)
-                                          TableRow(
-                                            children: [
-                                              Container(
-                                                alignment: Alignment.center,
-                                                height: 70,
-                                                color: Theme.of(context)
-                                                    .indicatorColor,
-                                                child: Center(
-                                                  child: Text(
-                                                      row['Day']?.tr ?? '',
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .bodyMedium),
-                                                ),
-                                              ),
-                                              ...row.entries
-                                                  .where((entry) =>
-                                                      entry.key != 'Day')
-                                                  .map(
-                                                      (entry) =>
-                                                          GestureDetector(
-                                                            onTap: () async {
-                                                              if (m!.studyShare!
+                                            ...row.entries
+                                                .where((entry) =>
+                                                    entry.key != 'Day')
+                                                .map((entry) => GestureDetector(
+                                                      onTap: () async {
+                                                        if (m!.studyShare!
+                                                                .isEmpty &&
+                                                            controller
+                                                                .examDivision
+                                                                .isEmpty) {
+                                                        } else {
+                                                          if (entry.value
+                                                              .contains(
+                                                                  "No Lesson")) {
+                                                            controller
+                                                                .subjectDialogIndex = "";
+                                                            controller
+                                                                .teacherDialogIndex = "";
+                                                          }
+
+                                                          controller
+                                                              .updateFieldError(
+                                                                  "teach",
+                                                                  false);
+                                                          controller
+                                                              .updateFieldError(
+                                                                  "sub", false);
+
+                                                          Get.dialog(
+                                                              barrierDismissible:
+                                                                  false,
+                                                              VMSAlertDialog(
+                                                                  action: [
+                                                                    entry.value.contains(
+                                                                            "No Lesson")
+                                                                        ? ButtonDialog(
+                                                                            text: "Add"
+                                                                                .tr,
+                                                                            onPressed:
+                                                                                () async {
+                                                                              bool IsteachError = controller.teacherDialogIndex.isEmpty || controller.teacherDialogIndex == "";
+                                                                              bool IssubError = controller.subjectDialogIndex.isEmpty || controller.subjectDialogIndex == "";
+
+                                                                              controller.updateFieldError("teach", IsteachError);
+                                                                              controller.updateFieldError("sub", IssubError);
+
+                                                                              final entryIndex = row.entries
+                                                                                  .toList() // تحويل الكائنات إلى قائمة
+                                                                                  .indexWhere((e) => e.value == entry.value); // البحث عن الفهرس
+                                                                              if (!(IsteachError || IssubError)) {
+                                                                                await Addlessonapi(context).Addlesson(controller.subjectDialogList.indexOf(controller.selectedSubjectDialog), controller.examDivision.indexOf(controller.selectedExamDivision), controller.timeLessonIndex, controller.teacherDialogList.indexOf(controller.selectedTeacherDialog), entryIndex, row['Day'].toString());
+                                                                              }
+                                                                            },
+                                                                            color: Get
+                                                                                .theme.primaryColor,
+                                                                            width:
+                                                                                120)
+                                                                        : ButtonDialog(
+                                                                            text: "Edit"
+                                                                                .tr,
+                                                                            onPressed:
+                                                                                () async {
+                                                                              final entryIndex = row.entries
+                                                                                  .toList() // تحويل الكائنات إلى قائمة
+                                                                                  .indexWhere((e) => e.value == entry.value);
+
+                                                                              Pair<int, int> key = Pair(days[row["Day"].toString()]!, entryIndex);
+
+                                                                              int selectedId = indexes[key]!;
+
+                                                                              bool IsteachError = controller.teacherDialogIndex.isEmpty || controller.teacherDialogIndex == "";
+                                                                              bool IssubError = controller.subjectDialogIndex.isEmpty || controller.subjectDialogIndex == "";
+
+                                                                              controller.updateFieldError("teach", IsteachError);
+                                                                              controller.updateFieldError("sub", IssubError);
+
+                                                                              if (!(IsteachError || IssubError)) {
+                                                                                await Editstudyshareapi(context).EditLesson(
+                                                                                  controller.subjectDialogList.indexOf(controller.selectedSubjectDialog),
+                                                                                  controller.teacherDialogList.indexOf(controller.selectedTeacherDialog),
+                                                                                  selectedId,
+                                                                                );
+                                                                                Get.back();
+                                                                              }
+                                                                            },
+                                                                            color:
+                                                                                Get.theme.primaryColor,
+                                                                            width: 120),
+                                                                    entry.value.contains(
+                                                                            "No Lesson")
+                                                                        ? Container()
+                                                                        : ButtonDialog(
+                                                                            text: "Delete"
+                                                                                .tr,
+                                                                            onPressed:
+                                                                                () async {
+                                                                              final entryIndex = row.entries
+                                                                                  .toList() // تحويل الكائنات إلى قائمة
+                                                                                  .indexWhere((e) => e.value == entry.value);
+                                                                              Pair<int, int> key = Pair(days[row["Day"].toString()]!, entryIndex);
+
+                                                                              // البحث عن الفهرس
+                                                                              int selectedId = indexes[key]!;
+                                                                              await Deletestudyshareapi(context).Deletestudyshare(selectedId);
+                                                                              Get.back();
+                                                                            },
+                                                                            color:
+                                                                                Color(0xffB03D3D),
+                                                                            width: 120),
+                                                                  ],
+                                                                  contents: GetBuilder<
+                                                                          AdminSchoolTimeController>(
+                                                                      builder:
+                                                                          (SchoolController) {
+                                                                    return Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .min,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding: const EdgeInsets
+                                                                              .only(
+                                                                              top: 15.0),
+                                                                          child:
+                                                                              Wrap(
+                                                                            spacing:
+                                                                                8.0,
+                                                                            runSpacing:
+                                                                                8.0,
+                                                                            children: [
+                                                                              DropDownSchoolTime(isError: controller.ISsubError, isLoading: SchoolController.isLoadingCurr, title: "Curriculum".tr, width: 220, type: "subjectDialog"),
+                                                                              DropDownSchoolTime(isError: controller.IteacherError, isLoading: SchoolController.isLoadingTeacher, title: "Teacher".tr, width: 220, type: "teacherDialog"),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    );
+                                                                  }),
+                                                                  apptitle:
+                                                                      "Operation of Lessons"
+                                                                          .tr,
+                                                                  subtitle:
+                                                                      ""));
+                                                        }
+                                                      },
+                                                      child: Container(
+                                                          width: 160,
+                                                          alignment:
+                                                              Alignment.center,
+                                                          height: 70,
+                                                          child: m!.studyShare!
                                                                       .isEmpty &&
                                                                   controller
                                                                       .examDivision
-                                                                      .isEmpty) {
-                                                              } else {
-                                                                if (entry.value
-                                                                    .contains(
-                                                                        "No Lesson")) {
-                                                                  controller
-                                                                      .subjectDialogIndex = "";
-                                                                  controller
-                                                                      .teacherDialogIndex = "";
-                                                                }
-
-                                                                controller
-                                                                    .updateFieldError(
-                                                                        "teach",
-                                                                        false);
-                                                                controller
-                                                                    .updateFieldError(
-                                                                        "sub",
-                                                                        false);
-
-                                                                Get.dialog(
-                                                                    barrierDismissible:
-                                                                        false,
-                                                                    VMSAlertDialog(
-                                                                        action: [
-                                                                          entry.value.contains("No Lesson")
-                                                                              ? ButtonDialog(
-                                                                                  text: "Add".tr,
-                                                                                  onPressed: () async {
-                                                                                    bool IsteachError = controller.teacherDialogIndex.isEmpty || controller.teacherDialogIndex == "";
-                                                                                    bool IssubError = controller.subjectDialogIndex.isEmpty || controller.subjectDialogIndex == "";
-
-                                                                                    controller.updateFieldError("teach", IsteachError);
-                                                                                    controller.updateFieldError("sub", IssubError);
-
-                                                                                    final entryIndex = row.entries
-                                                                                        .toList() // تحويل الكائنات إلى قائمة
-                                                                                        .indexWhere((e) => e.value == entry.value); // البحث عن الفهرس
-                                                                                    if (!(IsteachError || IssubError)) {
-                                                                                      await Addlessonapi(context).Addlesson(controller.subjectDialogList.indexOf(controller.selectedSubjectDialog), controller.examDivision.indexOf(controller.selectedExamDivision), controller.timeLessonIndex, controller.teacherDialogList.indexOf(controller.selectedTeacherDialog), entryIndex, row['Day'].toString());
-                                                                                    }
-                                                                                  },
-                                                                                  color: Get.theme.primaryColor,
-                                                                                  width: 120)
-                                                                              : ButtonDialog(
-                                                                                  text: "Edit".tr,
-                                                                                  onPressed: () async {
-                                                                                    final entryIndex = row.entries
-                                                                                        .toList() // تحويل الكائنات إلى قائمة
-                                                                                        .indexWhere((e) => e.value == entry.value);
-
-                                                                                    Pair<int, int> key = Pair(days[row["Day"].toString()]!, entryIndex);
-
-                                                                                    int selectedId = indexes[key]!;
-
-                                                                                    bool IsteachError = controller.teacherDialogIndex.isEmpty || controller.teacherDialogIndex == "";
-                                                                                    bool IssubError = controller.subjectDialogIndex.isEmpty || controller.subjectDialogIndex == "";
-
-                                                                                    controller.updateFieldError("teach", IsteachError);
-                                                                                    controller.updateFieldError("sub", IssubError);
-
-                                                                                    if (!(IsteachError || IssubError)) {
-                                                                                      await Editstudyshareapi(context).EditLesson(
-                                                                                        controller.subjectDialogList.indexOf(controller.selectedSubjectDialog),
-                                                                                        controller.teacherDialogList.indexOf(controller.selectedTeacherDialog),
-                                                                                        selectedId,
-                                                                                      );
-                                                                                      Get.back();
-                                                                                    }
-                                                                                  },
-                                                                                  color: Get.theme.primaryColor,
-                                                                                  width: 120),
-                                                                          entry.value.contains("No Lesson")
-                                                                              ? Container()
-                                                                              : ButtonDialog(
-                                                                                  text: "Delete".tr,
-                                                                                  onPressed: () async {
-                                                                                    final entryIndex = row.entries
-                                                                                        .toList() // تحويل الكائنات إلى قائمة
-                                                                                        .indexWhere((e) => e.value == entry.value);
-                                                                                    Pair<int, int> key = Pair(days[row["Day"].toString()]!, entryIndex);
-
-                                                                                    // البحث عن الفهرس
-                                                                                    int selectedId = indexes[key]!;
-                                                                                    await Deletestudyshareapi(context).Deletestudyshare(selectedId);
-                                                                                    Get.back();
-                                                                                  },
-                                                                                  color: Color(0xffB03D3D),
-                                                                                  width: 120),
-                                                                        ],
-                                                                        contents:
-                                                                            GetBuilder<AdminSchoolTimeController>(builder:
-                                                                                (SchoolController) {
-                                                                          return Column(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.min,
-                                                                            children: [
-                                                                              Padding(
-                                                                                padding: const EdgeInsets.only(top: 15.0),
-                                                                                child: Row(
-                                                                                  children: [
-                                                                                    Padding(
-                                                                                      padding: const EdgeInsets.only(right: 15.0, left: 15),
-                                                                                      child: DropDownSchoolTime(isError: controller.ISsubError, isLoading: SchoolController.isLoadingCurr, title: "Curriculum".tr, width: 220, type: "subjectDialog"),
-                                                                                    ),
-                                                                                    DropDownSchoolTime(isError: controller.IteacherError, isLoading: SchoolController.isLoadingTeacher, title: "Teacher".tr, width: 220, type: "teacherDialog"),
-                                                                                  ],
-                                                                                ),
-                                                                              ),
-                                                                            ],
-                                                                          );
-                                                                        }),
-                                                                        apptitle:
-                                                                            "Operation of Lessons"
-                                                                                .tr,
-                                                                        subtitle:
-                                                                            ""));
-                                                              }
-                                                            },
-                                                            child: Container(
-                                                                alignment:
-                                                                    Alignment
-                                                                        .center,
-                                                                height: 70,
-                                                                child: m!.studyShare!
-                                                                            .isEmpty &&
-                                                                        controller
-                                                                            .examDivision
-                                                                            .isEmpty
-                                                                    ? Text("")
-                                                                    : entry.value.contains(
-                                                                            "No Lesson")!
-                                                                        ? Icon(
-                                                                            Icons.add_circle_outline,
-                                                                            color:
-                                                                                Get.theme.primaryColor,
-                                                                          )
-                                                                        : Text(
-                                                                            textAlign:
-                                                                                TextAlign.center,
-                                                                            entry.value,
-                                                                            style: Theme.of(context).textTheme.bodyMedium)),
-                                                          )),
-                                            ],
-                                          ),
-                                      ],
-                                    ),
-                                  ],
-                                )
-                              ],
-                            )),
+                                                                      .isEmpty
+                                                              ? Text("")
+                                                              : entry.value
+                                                                      .contains(
+                                                                          "No Lesson")!
+                                                                  ? Icon(
+                                                                      Icons
+                                                                          .add_circle_outline,
+                                                                      color: Get
+                                                                          .theme
+                                                                          .primaryColor,
+                                                                    )
+                                                                  : Text(
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
+                                                                      entry
+                                                                          .value,
+                                                                      style: Theme.of(
+                                                                              context)
+                                                                          .textTheme
+                                                                          .bodyMedium)),
+                                                    )),
+                                          ],
+                                        ),
+                                    ],
+                                  )),
+                            ),
                           ),
           ));
         }),

@@ -25,6 +25,7 @@ import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
+import 'package:vms_school/widgets/Responsive.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
@@ -55,48 +56,272 @@ class _ExamTableState extends State<ExamTable> {
   TextEditingController maxDialog = TextEditingController();
   TextEditingController minDialog = TextEditingController();
   TextEditingController periodDialog = TextEditingController();
+  Add_Dialog() {
+    var controller = Get.find<ExamTableController>();
+    controller.updateFieldError("class", false);
+    controller.updateFieldError("curr", false);
+    controller.updateFieldError("semester", false);
+    controller.updateFieldError("type", false);
+    controller.updateFieldError("max", false);
+    controller.updateFieldError("min", false);
+    controller.updateFieldError("per", false);
+    controller.updateFieldError("date", false);
+
+    Get.dialog(barrierDismissible: false,
+        GetBuilder<ExamTableController>(builder: (Econtroller) {
+      return VMSAlertDialog(
+          action: [
+            ButtonDialog(
+                text: "Add Exam".tr,
+                onPressed: () async {
+                  bool IsclassError = controller.classDialogIndex.isEmpty ||
+                      controller.classDialogIndex == "";
+                  bool IscurrError = controller.curiculmDialogIndex.isEmpty ||
+                      controller.curiculmDialogIndex == "";
+                  bool IssemesterError =
+                      controller.semesterDialogIndex.isEmpty ||
+                          controller.semesterDialogIndex == "";
+                  bool IstypeError = controller.typeDialogIndex.isEmpty ||
+                      controller.typeDialogIndex == "";
+                  bool IsmaxError = max.text.trim().isEmpty;
+                  bool IsminError = min.text.trim().isEmpty;
+                  bool IsperError = period.text.trim().isEmpty;
+                  bool IsdateError = controller.dateindex.value == null;
+
+                  Econtroller.updateFieldError("class", IsclassError);
+                  Econtroller.updateFieldError("curr", IscurrError);
+                  Econtroller.updateFieldError("semester", IssemesterError);
+                  Econtroller.updateFieldError("type", IstypeError);
+                  Econtroller.updateFieldError("max", IsmaxError);
+                  Econtroller.updateFieldError("min", IsminError);
+                  Econtroller.updateFieldError("per", IsperError);
+                  Econtroller.updateFieldError("date", IsdateError);
+
+                  if (!(IsclassError ||
+                      IscurrError ||
+                      IssemesterError ||
+                      IstypeError ||
+                      IsmaxError ||
+                      IsminError ||
+                      IsperError ||
+                      IsdateError)) {
+                    await Addquizapi(context).Addquiz(
+                        controller.curiculmDialogList
+                            .indexOf(controller.selectedCuriculmDialog),
+                        controller.typeDialogList
+                            .indexOf(controller.selectedTypeDialog),
+                        controller.dateindex.toString(),
+                        period.text,
+                        controller.classDialogList
+                            .indexOf(controller.selectedClassDailog),
+                        max.text,
+                        min.text);
+                    Get.back();
+                  }
+                },
+                color: Get.theme.primaryColor,
+                width: 120)
+          ],
+          contents: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 15.0),
+                  child: Wrap(
+                    runSpacing: 8.0,
+                    spacing: 8.0,
+                    children: [
+                      DropDownexamTable(
+                          IsError: Econtroller.IsclassError,
+                          isLoading: Econtroller.isClassLoading,
+                          title: "Class".tr,
+                          width: 220,
+                          type: "classDialog"),
+                      DropDownexamTable(
+                          IsError: Econtroller.IscurrError,
+                          isDisabled: Econtroller.classDialogIndex == "",
+                          isLoading: Econtroller.isCuriculmLoading,
+                          title: "Curriculum".tr,
+                          width: 220,
+                          type: "curiculmDialog"),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 15.0),
+                  child: Wrap(
+                    runSpacing: 8.0,
+                    spacing: 8.0,
+                    children: [
+                      DropDownexamTable(
+                          IsError: Econtroller.IssemesterError,
+                          isLoading: Econtroller.issemesterLoading,
+                          title: "season".tr,
+                          width: 220,
+                          type: "semesterDialog"),
+                      DropDownexamTable(
+                          IsError: Econtroller.IstypeError,
+                          isDisabled: Econtroller.semesterDialogIndex == "",
+                          isLoading: Econtroller.isTypeLoading,
+                          title: "Type".tr,
+                          width: 220,
+                          type: "typeDialog"),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 15.0),
+                  child: Wrap(
+                    runSpacing: 8.0,
+                    spacing: 8.0,
+                    children: [
+                      Textfildwithupper(
+                          fieldType: "number",
+                          onChanged: (value) {
+                            if (value.isNotEmpty) {
+                              if (value == "0") {
+                                max.text = "1";
+                              }
+                              Econtroller.updateFieldError("max", false);
+                            }
+                          },
+                          isRequired: true,
+                          isError: Econtroller.ISmaxError,
+                          Uptext: "Max Mark".tr,
+                          width: 220,
+                          controller: max,
+                          hinttext: "Max Mark".tr),
+                      Textfildwithupper(
+                          fieldType: "number",
+                          onChanged: (value) {
+                            if (value.isNotEmpty) {
+                              if (value == "0") {
+                                min.text = "1";
+                              }
+                              Econtroller.updateFieldError("min", false);
+                            }
+                          },
+                          isRequired: true,
+                          isError: Econtroller.ISminError,
+                          Uptext: "Min Mark".tr,
+                          width: 220,
+                          controller: min,
+                          hinttext: "Min Mark".tr)
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 15.0),
+                  child: Wrap(
+                    runSpacing: 8.0,
+                    spacing: 8.0,
+                    children: [
+                      GestureDetector(
+                        onTap: () async {
+                          Duration? picked = await showDurationPicker(
+                            context: context,
+                            initialTime: Duration(hours: 0, minutes: 0),
+                          );
+                          if (picked != null) {
+                            Econtroller.updateFieldError("per", false);
+                            period.text =
+                                "${picked.inHours.toString().padLeft(2, '0')}:"
+                                "${(picked.inMinutes % 60).toString().padLeft(2, '0')}:00";
+                          }
+                        },
+                        child: Textfildwithupper(
+                          isRequired: true,
+                          isError: Econtroller.ISperiodError,
+                          readOnly: true,
+                          enabled: false,
+                          Uptext: "Period".tr,
+                          width: 220,
+                          controller: period,
+                          hinttext: "00:00:00",
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 5.0),
+                            child: RichText(
+                                text: TextSpan(
+                                    text: "Date".tr,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium)),
+                          ),
+                          examDate(
+                            isError: Econtroller.ISdateError,
+                            isRequired: true,
+                            width: 220,
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          apptitle: "Add Exam".tr,
+          subtitle: "none");
+    }));
+    Get.find<ExamTableController>().initialData();
+    period.clear();
+    max.clear();
+    min.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ExamTableController>(builder: (controller) {
       return Padding(
-        padding: const EdgeInsets.only(top: 38.0, right: 25.0, left: 25.0),
+        padding: EdgeInsets.only(top: 38.0, right: 15, left: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(
-              width: Get.width,
+            Container(
+              padding: EdgeInsets.only(bottom: 25.0),
+              width: Get.width * 0.87,
               child: Wrap(
+                alignment: WrapAlignment.spaceBetween,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                runAlignment: WrapAlignment.spaceBetween,
+                spacing: 8.0,
+                runSpacing: 8.0,
                 children: [
-                  DropDownexamTable(
-                    isLoading: controller.issemesterLoading,
-                    title: "Semester".tr,
-                    width: Get.width / 6.5,
-                    type: 'season',
+                  Wrap(
+                    spacing: 8.0,
+                    runSpacing: 8.0,
+                    children: [
+                      DropDownexamTable(
+                        isLoading: controller.issemesterLoading,
+                        title: "Semester".tr,
+                        width: 220,
+                        type: 'season',
+                      ),
+                      DropDownexamTable(
+                        isDisabled: controller.examSeasonIndex == "",
+                        isLoading: controller.isTypeLoading,
+                        title: "Type".tr,
+                        width: 220,
+                        type: 'type',
+                      ),
+                      DropDownexamTable(
+                        isLoading: controller.isClassLoading,
+                        isDisabled: false,
+                        type: 'class',
+                        title: "Class".tr,
+                        width: 220,
+                      ),
+                    ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                    child: DropDownexamTable(
-                      isDisabled: controller.examSeasonIndex == "",
-                      isLoading: controller.isTypeLoading,
-                      title: "Type".tr,
-                      width: Get.width / 6.5,
-                      type: 'type',
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                    child: DropDownexamTable(
-                      isLoading: controller.isClassLoading,
-                      isDisabled: false,
-                      type: 'class',
-                      title: "Class".tr,
-                      width: Get.width / 6.5,
-                    ),
-                  ),
-                  const Spacer(),
                   Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Container(
                         width: 40,
@@ -117,287 +342,7 @@ class _ExamTableState extends State<ExamTable> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
                             onPressed: () {
-                              controller.updateFieldError("class", false);
-                              controller.updateFieldError("curr", false);
-                              controller.updateFieldError("semester", false);
-                              controller.updateFieldError("type", false);
-                              controller.updateFieldError("max", false);
-                              controller.updateFieldError("min", false);
-                              controller.updateFieldError("per", false);
-                              controller.updateFieldError("date", false);
-
-                              Get.dialog(barrierDismissible: false,
-                                  GetBuilder<ExamTableController>(
-                                      builder: (Econtroller) {
-                                return VMSAlertDialog(
-                                    action: [
-                                      ButtonDialog(
-                                          text: "Add Exam".tr,
-                                          onPressed: () async {
-                                            bool IsclassError = controller
-                                                    .classDialogIndex.isEmpty ||
-                                                controller.classDialogIndex ==
-                                                    "";
-                                            bool IscurrError = controller
-                                                    .curiculmDialogIndex
-                                                    .isEmpty ||
-                                                controller
-                                                        .curiculmDialogIndex ==
-                                                    "";
-                                            bool IssemesterError = controller
-                                                    .semesterDialogIndex
-                                                    .isEmpty ||
-                                                controller
-                                                        .semesterDialogIndex ==
-                                                    "";
-                                            bool IstypeError = controller
-                                                    .typeDialogIndex.isEmpty ||
-                                                controller.typeDialogIndex ==
-                                                    "";
-                                            bool IsmaxError =
-                                                max.text.trim().isEmpty;
-                                            bool IsminError =
-                                                min.text.trim().isEmpty;
-                                            bool IsperError =
-                                                period.text.trim().isEmpty;
-                                            bool IsdateError =
-                                                controller.dateindex.value ==
-                                                    null;
-
-                                            Econtroller.updateFieldError(
-                                                "class", IsclassError);
-                                            Econtroller.updateFieldError(
-                                                "curr", IscurrError);
-                                            Econtroller.updateFieldError(
-                                                "semester", IssemesterError);
-                                            Econtroller.updateFieldError(
-                                                "type", IstypeError);
-                                            Econtroller.updateFieldError(
-                                                "max", IsmaxError);
-                                            Econtroller.updateFieldError(
-                                                "min", IsminError);
-                                            Econtroller.updateFieldError(
-                                                "per", IsperError);
-                                            Econtroller.updateFieldError(
-                                                "date", IsdateError);
-
-                                            if (!(IsclassError ||
-                                                IscurrError ||
-                                                IssemesterError ||
-                                                IstypeError ||
-                                                IsmaxError ||
-                                                IsminError ||
-                                                IsperError ||
-                                                IsdateError)) {
-                                              await Addquizapi(context).Addquiz(
-                                                  controller.curiculmDialogList
-                                                      .indexOf(controller
-                                                          .selectedCuriculmDialog),
-                                                  controller.typeDialogList
-                                                      .indexOf(controller
-                                                          .selectedTypeDialog),
-                                                  controller.dateindex
-                                                      .toString(),
-                                                  period.text,
-                                                  controller.classDialogList
-                                                      .indexOf(controller
-                                                          .selectedClassDailog),
-                                                  max.text,
-                                                  min.text);
-                                              Get.back();
-                                            }
-                                          },
-                                          color: Get.theme.primaryColor,
-                                          width: 120)
-                                    ],
-                                    contents: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 15.0),
-                                          child: Row(
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 15.0, left: 15),
-                                                child: DropDownexamTable(
-                                                    IsError: Econtroller
-                                                        .IsclassError,
-                                                    isLoading: Econtroller
-                                                        .isClassLoading,
-                                                    title: "Class".tr,
-                                                    width: 220,
-                                                    type: "classDialog"),
-                                              ),
-                                              DropDownexamTable(
-                                                  IsError:
-                                                      Econtroller.IscurrError,
-                                                  isDisabled: Econtroller
-                                                          .classDialogIndex ==
-                                                      "",
-                                                  isLoading: Econtroller
-                                                      .isCuriculmLoading,
-                                                  title: "Curriculum".tr,
-                                                  width: 220,
-                                                  type: "curiculmDialog"),
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 15.0),
-                                          child: Row(
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                    right: 15.0, left: 15),
-                                                child: DropDownexamTable(
-                                                    IsError: Econtroller
-                                                        .IssemesterError,
-                                                    isLoading: Econtroller
-                                                        .issemesterLoading,
-                                                    title: "season".tr,
-                                                    width: 220,
-                                                    type: "semesterDialog"),
-                                              ),
-                                              DropDownexamTable(
-                                                  IsError:
-                                                      Econtroller.IstypeError,
-                                                  isDisabled: Econtroller
-                                                          .semesterDialogIndex ==
-                                                      "",
-                                                  isLoading:
-                                                      Econtroller.isTypeLoading,
-                                                  title: "Type".tr,
-                                                  width: 220,
-                                                  type: "typeDialog"),
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 15.0),
-                                          child: Row(
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 15.0, left: 15),
-                                                child: Textfildwithupper(
-                                                    fieldType: "number",
-                                                    onChanged: (value) {
-                                                      if (value.isNotEmpty) {
-                                                        if (value == "0") {
-                                                          max.text = "1";
-                                                        }
-                                                        Econtroller
-                                                            .updateFieldError(
-                                                                "max", false);
-                                                      }
-                                                    },
-                                                    isRequired: true,
-                                                    isError:
-                                                        Econtroller.ISmaxError,
-                                                    Uptext: "Max Mark".tr,
-                                                    width: 220,
-                                                    controller: max,
-                                                    hinttext: "Max Mark".tr),
-                                              ),
-                                              Textfildwithupper(
-                                                  fieldType: "number",
-                                                  onChanged: (value) {
-                                                    if (value.isNotEmpty) {
-                                                      if (value == "0") {
-                                                        min.text = "1";
-                                                      }
-                                                      Econtroller
-                                                          .updateFieldError(
-                                                              "min", false);
-                                                    }
-                                                  },
-                                                  isRequired: true,
-                                                  isError:
-                                                      Econtroller.ISminError,
-                                                  Uptext: "Min Mark".tr,
-                                                  width: 220,
-                                                  controller: min,
-                                                  hinttext: "Min Mark".tr)
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 15.0),
-                                          child: Row(
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 15.0, left: 15),
-                                                child: GestureDetector(
-                                                  onTap: () async {
-                                                    Duration? picked =
-                                                        await showDurationPicker(
-                                                      context: context,
-                                                      initialTime: Duration(
-                                                          hours: 0, minutes: 0),
-                                                    );
-                                                    if (picked != null) {
-                                                      Econtroller
-                                                          .updateFieldError(
-                                                              "per", false);
-                                                      period.text =
-                                                          "${picked.inHours.toString().padLeft(2, '0')}:"
-                                                          "${(picked.inMinutes % 60).toString().padLeft(2, '0')}:00";
-                                                    }
-                                                  },
-                                                  child: Textfildwithupper(
-                                                    isRequired: true,
-                                                    isError: Econtroller
-                                                        .ISperiodError,
-                                                    readOnly: true,
-                                                    enabled: false,
-                                                    Uptext: "Period".tr,
-                                                    width: 220,
-                                                    controller: period,
-                                                    hinttext: "00:00:00",
-                                                  ),
-                                                ),
-                                              ),
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            bottom: 5.0),
-                                                    child: RichText(
-                                                        text: TextSpan(
-                                                            text: "Date".tr,
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .bodyMedium)),
-                                                  ),
-                                                  examDate(
-                                                    isError:
-                                                        Econtroller.ISdateError,
-                                                    isRequired: true,
-                                                    width: 220,
-                                                  ),
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    apptitle: "Add Exam".tr,
-                                    subtitle: "none");
-                              }));
-                              Get.find<ExamTableController>().initialData();
-                              period.clear();
-                              max.clear();
-                              min.clear();
+                              Add_Dialog();
                             },
                             icon: Icon(Icons.add,
                                 size: 18,
@@ -461,7 +406,7 @@ class _ExamTableState extends State<ExamTable> {
               if (controller.isLoading) {
                 return Expanded(
                   child: Container(
-                    width: Get.width * 0.9,
+                    width: Get.width >= 768 ? Get.width - 120 : Get.width - 70,
                     child: LoadingAnimationWidget.inkDrop(
                       color: Theme.of(context).primaryColor,
                       size: 60,
@@ -472,7 +417,7 @@ class _ExamTableState extends State<ExamTable> {
               if (controller.filteredquiz!.isEmpty) {
                 return Expanded(
                   child: Container(
-                    width: Get.width * 0.9,
+                    width: Get.width >= 768 ? Get.width - 120 : Get.width - 70,
                     child: Center(
                       child: Text("No Data in Exam Table".tr,
                           style: Get.theme.textTheme.titleLarge!.copyWith(
@@ -481,331 +426,377 @@ class _ExamTableState extends State<ExamTable> {
                   ),
                 );
               }
-              return Column(
-                children: [
-                  Container(
-                      width: Get.width * 0.9,
-                      margin: const EdgeInsets.only(top: 20),
-                      child: SingleChildScrollView(
+              return Expanded(
+                child: Container(
+                  width: Get.width >= 768 ? Get.width - 120 : Get.width - 70,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      children: [
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
                           child: DataTable(
-                        headingRowColor: WidgetStatePropertyAll(
-                            Theme.of(context).indicatorColor),
-                        border: TableBorder.all(
-                          color: Theme.of(context).primaryColor,
-                          width: 1.0,
-                        ),
-                        columns: [
-                          DataColumn(
-                            label: Text("Class".tr,
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context).textTheme.titleLarge),
-                          ),
-                          DataColumn(label: Text('Type'.tr)),
-                          DataColumn(label: Text('Curriculum Name'.tr)),
-                          DataColumn(label: Text('Date'.tr)),
-                          DataColumn(label: Text('Period'.tr)),
-                          DataColumn(label: Text('Max Mark'.tr)),
-                          DataColumn(
-                            label: Text('Passing Mark'.tr),
-                          ),
-                          DataColumn(
-                            label: Text('Operations'.tr),
-                          ),
-                        ],
-                        rows: controller.filteredquiz!.map((exam) {
-                          return DataRow(cells: [
-                            DataCell(Text(prefs!.getString(languageKey) == 'ar'
-                                ? exam.classese?.name ?? ""
-                                : exam.classese?.enName ?? '')),
-                            DataCell(Text(exam.type ?? '')),
-                            DataCell(Text(prefs!.getString(languageKey) == 'ar'
-                                ? exam.curriculumName ?? ''
-                                : exam.curriculumEnName ?? '')),
-                            DataCell(Text(exam.startDate ?? '')),
-                            DataCell(Text(exam.period ?? '')),
-                            DataCell(Text(exam.maxMark?.toString() ?? '')),
-                            DataCell(Text(exam.passingMark?.toString() ?? '')),
-                            DataCell(Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                IconButton(
-                                  style: ButtonStyle(
-                                      maximumSize: WidgetStateProperty.all(
-                                          const Size(35, 35)),
-                                      minimumSize: WidgetStateProperty.all(
-                                          const Size(35, 35)),
-                                      iconSize: WidgetStateProperty.all(14),
-                                      shape: WidgetStateProperty.all(
-                                          RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5),
-                                      )),
-                                      backgroundColor: WidgetStateProperty.all(
-                                          const Color(0xffB03D3D))),
-                                  icon: const Icon(VMS_Icons.bin),
-                                  iconSize: 16,
-                                  color: Colors.white,
-                                  onPressed: () async {
-                                    await DeletequizAPI(context).Deletequiz(
-                                        controller
+                            headingRowColor: WidgetStatePropertyAll(
+                                Theme.of(context).indicatorColor),
+                            border: TableBorder.all(
+                              color: Theme.of(context).primaryColor,
+                              width: 1.0,
+                            ),
+                            columns: [
+                              DataColumn(
+                                label: Text("Class".tr,
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge),
+                              ),
+                              DataColumn(label: Text('Type'.tr)),
+                              DataColumn(label: Text('Curriculum Name'.tr)),
+                              DataColumn(label: Text('Date'.tr)),
+                              DataColumn(label: Text('Period'.tr)),
+                              DataColumn(label: Text('Max Mark'.tr)),
+                              DataColumn(
+                                label: Text('Passing Mark'.tr),
+                              ),
+                              DataColumn(
+                                label: Text('Operations'.tr),
+                              ),
+                            ],
+                            rows: controller.filteredquiz!.map((exam) {
+                              return DataRow(cells: [
+                                DataCell(Text(
+                                    prefs!.getString(languageKey) == 'ar'
+                                        ? exam.classese?.name ?? ""
+                                        : exam.classese?.enName ?? '')),
+                                DataCell(Text(exam.type ?? '')),
+                                DataCell(Text(
+                                    prefs!.getString(languageKey) == 'ar'
+                                        ? exam.curriculumName ?? ''
+                                        : exam.curriculumEnName ?? '')),
+                                DataCell(Text(exam.startDate ?? '')),
+                                DataCell(Text(exam.period ?? '')),
+                                DataCell(Text(exam.maxMark?.toString() ?? '')),
+                                DataCell(
+                                    Text(exam.passingMark?.toString() ?? '')),
+                                DataCell(Row(
+                                  spacing: 8.0,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    IconButton(
+                                      style: ButtonStyle(
+                                          maximumSize: WidgetStateProperty.all(
+                                              const Size(35, 35)),
+                                          minimumSize: WidgetStateProperty.all(
+                                              const Size(35, 35)),
+                                          iconSize: WidgetStateProperty.all(14),
+                                          shape: WidgetStateProperty.all(
+                                              RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          )),
+                                          backgroundColor:
+                                              WidgetStateProperty.all(
+                                                  const Color(0xffB03D3D))),
+                                      icon: const Icon(VMS_Icons.bin),
+                                      iconSize: 16,
+                                      color: Colors.white,
+                                      onPressed: () async {
+                                        await DeletequizAPI(context).Deletequiz(
+                                            controller
+                                                .filteredquiz![controller
+                                                    .filteredquiz!
+                                                    .indexOf(exam)]
+                                                .id
+                                                .toString());
+                                      },
+                                    ),
+                                    IconButton(
+                                      style: ButtonStyle(
+                                          maximumSize: WidgetStateProperty.all(
+                                              const Size(35, 35)),
+                                          minimumSize: WidgetStateProperty.all(
+                                              const Size(35, 35)),
+                                          iconSize: WidgetStateProperty.all(14),
+                                          shape: WidgetStateProperty.all(
+                                              RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          )),
+                                          backgroundColor:
+                                              WidgetStateProperty.all(
+                                                  const Color.fromARGB(
+                                                      255, 2, 124, 49))),
+                                      icon: const Icon(VMS_Icons.edit),
+                                      iconSize: 16,
+                                      color: Colors.white,
+                                      onPressed: () async {
+                                        maxDialog.text = controller
                                             .filteredquiz![controller
                                                 .filteredquiz!
                                                 .indexOf(exam)]
-                                            .id
-                                            .toString());
-                                  },
-                                ),
-                                IconButton(
-                                  style: ButtonStyle(
-                                      maximumSize: WidgetStateProperty.all(
-                                          const Size(35, 35)),
-                                      minimumSize: WidgetStateProperty.all(
-                                          const Size(35, 35)),
-                                      iconSize: WidgetStateProperty.all(14),
-                                      shape: WidgetStateProperty.all(
-                                          RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5),
-                                      )),
-                                      backgroundColor: WidgetStateProperty.all(
-                                          const Color.fromARGB(
-                                              255, 2, 124, 49))),
-                                  icon: const Icon(VMS_Icons.edit),
-                                  iconSize: 16,
-                                  color: Colors.white,
-                                  onPressed: () async {
-                                    maxDialog.text = controller
-                                        .filteredquiz![controller.filteredquiz!
-                                            .indexOf(exam)]
-                                        .maxMark
-                                        .toString();
+                                            .maxMark
+                                            .toString();
 
-                                    minDialog.text = controller
-                                        .filteredquiz![controller.filteredquiz!
-                                            .indexOf(exam)]
-                                        .passingMark
-                                        .toString();
-
-                                    periodDialog.text = controller
-                                        .filteredquiz![controller.filteredquiz!
-                                            .indexOf(exam)]
-                                        .period
-                                        .toString();
-
-                                    controller.dateindex.value = DateTime.parse(
-                                        controller
+                                        minDialog.text = controller
                                             .filteredquiz![controller
                                                 .filteredquiz!
                                                 .indexOf(exam)]
-                                            .startDate
-                                            .toString());
+                                            .passingMark
+                                            .toString();
 
-                                    controller.updateFieldError("max", false);
-                                    controller.updateFieldError("min", false);
-                                    controller.updateFieldError("per", false);
-                                    controller.updateFieldError("date", false);
+                                        periodDialog.text = controller
+                                            .filteredquiz![controller
+                                                .filteredquiz!
+                                                .indexOf(exam)]
+                                            .period
+                                            .toString();
 
-                                    Get.dialog(barrierDismissible: false,
-                                        GetBuilder<ExamTableController>(
-                                            builder: (Econtroller) {
-                                      return VMSAlertDialog(
-                                          action: [
-                                            ButtonDialog(
-                                                text: "Edit Exam".tr,
-                                                onPressed: () async {
-                                                  bool IsmaxError = maxDialog
-                                                      .text
-                                                      .trim()
-                                                      .isEmpty;
-                                                  bool IsminError = minDialog
-                                                      .text
-                                                      .trim()
-                                                      .isEmpty;
-                                                  bool IsperError = periodDialog
-                                                      .text
-                                                      .trim()
-                                                      .isEmpty;
-                                                  bool IsdateError = controller
-                                                          .dateindex.value ==
-                                                      null;
+                                        controller.dateindex.value =
+                                            DateTime.parse(controller
+                                                .filteredquiz![controller
+                                                    .filteredquiz!
+                                                    .indexOf(exam)]
+                                                .startDate
+                                                .toString());
 
-                                                  Econtroller.updateFieldError(
-                                                      "max", IsmaxError);
-                                                  Econtroller.updateFieldError(
-                                                      "min", IsminError);
-                                                  Econtroller.updateFieldError(
-                                                      "per", IsperError);
-                                                  Econtroller.updateFieldError(
-                                                      "date", IsdateError);
+                                        controller.updateFieldError(
+                                            "max", false);
+                                        controller.updateFieldError(
+                                            "min", false);
+                                        controller.updateFieldError(
+                                            "per", false);
+                                        controller.updateFieldError(
+                                            "date", false);
 
-                                                  if (!(IsmaxError ||
-                                                      IsminError ||
-                                                      IsperError ||
-                                                      IsdateError)) {
-                                                    await Editquizapi(context).Editquiz(
-                                                        controller
-                                                            .filteredquiz![
+                                        Get.dialog(barrierDismissible: false,
+                                            GetBuilder<ExamTableController>(
+                                                builder: (Econtroller) {
+                                          return VMSAlertDialog(
+                                              action: [
+                                                ButtonDialog(
+                                                    text: "Edit Exam".tr,
+                                                    onPressed: () async {
+                                                      bool IsmaxError =
+                                                          maxDialog.text
+                                                              .trim()
+                                                              .isEmpty;
+                                                      bool IsminError =
+                                                          minDialog.text
+                                                              .trim()
+                                                              .isEmpty;
+                                                      bool IsperError =
+                                                          periodDialog.text
+                                                              .trim()
+                                                              .isEmpty;
+                                                      bool IsdateError =
+                                                          controller.dateindex
+                                                                  .value ==
+                                                              null;
+
+                                                      Econtroller
+                                                          .updateFieldError(
+                                                              "max",
+                                                              IsmaxError);
+                                                      Econtroller
+                                                          .updateFieldError(
+                                                              "min",
+                                                              IsminError);
+                                                      Econtroller
+                                                          .updateFieldError(
+                                                              "per",
+                                                              IsperError);
+                                                      Econtroller
+                                                          .updateFieldError(
+                                                              "date",
+                                                              IsdateError);
+
+                                                      if (!(IsmaxError ||
+                                                          IsminError ||
+                                                          IsperError ||
+                                                          IsdateError)) {
+                                                        await Editquizapi(
+                                                                context)
+                                                            .Editquiz(
                                                                 controller
-                                                                    .filteredquiz!
-                                                                    .indexOf(
-                                                                        exam)]
-                                                            .id
-                                                            .toString(),
-                                                        controller
-                                                            .dateindex.value
-                                                            .toString(),
-                                                        periodDialog.text,
-                                                        maxDialog.text,
-                                                        minDialog.text);
-                                                    Get.back();
-                                                  }
-                                                },
-                                                color: Get.theme.primaryColor,
-                                                width: 120)
-                                          ],
-                                          contents: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 15.0),
-                                                child: Row(
+                                                                    .filteredquiz![controller
+                                                                        .filteredquiz!
+                                                                        .indexOf(
+                                                                            exam)]
+                                                                    .id
+                                                                    .toString(),
+                                                                controller
+                                                                    .dateindex
+                                                                    .value
+                                                                    .toString(),
+                                                                periodDialog
+                                                                    .text,
+                                                                maxDialog.text,
+                                                                minDialog.text);
+                                                        Get.back();
+                                                      }
+                                                    },
+                                                    color:
+                                                        Get.theme.primaryColor,
+                                                    width: 120)
+                                              ],
+                                              contents: SingleChildScrollView(
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
                                                   children: [
                                                     Padding(
                                                       padding:
                                                           const EdgeInsets.only(
-                                                              right: 15.0,
-                                                              left: 15),
-                                                      child: Textfildwithupper(
-                                                          fieldType: "number",
-                                                          onChanged: (value) {
-                                                            if (value
-                                                                .isNotEmpty) {
-                                                              if (value ==
-                                                                  "0") {
-                                                                maxDialog.text =
-                                                                    "1";
-                                                              }
-                                                              Econtroller
-                                                                  .updateFieldError(
-                                                                      "max",
-                                                                      false);
-                                                            }
-                                                          },
-                                                          Uptext: "Max Mark".tr,
-                                                          width: 220,
-                                                          isError: Econtroller
-                                                              .ISmaxError,
-                                                          controller: maxDialog,
-                                                          hinttext:
-                                                              "Max Mark".tr),
-                                                    ),
-                                                    Textfildwithupper(
-                                                        fieldType: "number",
-                                                        onChanged: (value) {
-                                                          if (value
-                                                              .isNotEmpty) {
-                                                            if (value == "0") {
-                                                              minDialog.text =
-                                                                  "1";
-                                                            }
-                                                            Econtroller
-                                                                .updateFieldError(
-                                                                    "min",
-                                                                    false);
-                                                          }
-                                                        },
-                                                        isError: Econtroller
-                                                            .ISminError,
-                                                        Uptext: "Min Mark".tr,
-                                                        width: 220,
-                                                        controller: minDialog,
-                                                        hinttext: "Min Mark".tr)
-                                                  ],
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 15.0),
-                                                child: Row(
-                                                  children: [
-                                                    Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                                right: 15.0,
-                                                                left: 15),
-                                                        child: GestureDetector(
-                                                          onTap: () async {
-                                                            Duration? picked =
-                                                                await showDurationPicker(
-                                                              context: context,
-                                                              initialTime:
-                                                                  Duration(
-                                                                      hours: 0,
-                                                                      minutes:
-                                                                          0),
-                                                            );
-                                                            if (picked !=
-                                                                null) {
-                                                              periodDialog
-                                                                      .text =
-                                                                  "${picked.inHours.toString().padLeft(2, '0')}:"
-                                                                  "${(picked.inMinutes % 60).toString().padLeft(2, '0')}:00";
-                                                            }
-                                                          },
-                                                          child: Textfildwithupper(
-                                                              isError: Econtroller
-                                                                  .ISperiodError,
-                                                              enabled: false,
+                                                              top: 15.0),
+                                                      child: Wrap(
+                                                        children: [
+                                                          Textfildwithupper(
+                                                              fieldType:
+                                                                  "number",
+                                                              onChanged:
+                                                                  (value) {
+                                                                if (value
+                                                                    .isNotEmpty) {
+                                                                  if (value ==
+                                                                      "0") {
+                                                                    maxDialog
+                                                                            .text =
+                                                                        "1";
+                                                                  }
+                                                                  Econtroller
+                                                                      .updateFieldError(
+                                                                          "max",
+                                                                          false);
+                                                                }
+                                                              },
                                                               Uptext:
-                                                                  "Period".tr,
+                                                                  "Max Mark".tr,
+                                                              width: 220,
+                                                              isError: Econtroller
+                                                                  .ISmaxError,
+                                                              controller:
+                                                                  maxDialog,
+                                                              hinttext:
+                                                                  "Max Mark"
+                                                                      .tr),
+                                                          Textfildwithupper(
+                                                              fieldType:
+                                                                  "number",
+                                                              onChanged:
+                                                                  (value) {
+                                                                if (value
+                                                                    .isNotEmpty) {
+                                                                  if (value ==
+                                                                      "0") {
+                                                                    minDialog
+                                                                            .text =
+                                                                        "1";
+                                                                  }
+                                                                  Econtroller
+                                                                      .updateFieldError(
+                                                                          "min",
+                                                                          false);
+                                                                }
+                                                              },
+                                                              isError: Econtroller
+                                                                  .ISminError,
+                                                              Uptext:
+                                                                  "Min Mark".tr,
                                                               width: 220,
                                                               controller:
-                                                                  periodDialog,
+                                                                  minDialog,
                                                               hinttext:
-                                                                  "00:00:00"),
-                                                        )),
-                                                    Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .only(
-                                                                  bottom: 5.0),
-                                                          child: RichText(
-                                                              text: TextSpan(
-                                                                  text:
-                                                                      "Date".tr,
-                                                                  style: Get
-                                                                      .theme
-                                                                      .textTheme
-                                                                      .bodyMedium)),
-                                                        ),
-                                                        examDate(
-                                                          isError: Econtroller
-                                                              .ISdateError,
-                                                          width: 220,
-                                                        ),
-                                                      ],
-                                                    )
+                                                                  "Min Mark".tr)
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 15.0),
+                                                      child: Wrap(
+                                                        children: [
+                                                          GestureDetector(
+                                                            onTap: () async {
+                                                              Duration? picked =
+                                                                  await showDurationPicker(
+                                                                context:
+                                                                    context,
+                                                                initialTime:
+                                                                    Duration(
+                                                                        hours:
+                                                                            0,
+                                                                        minutes:
+                                                                            0),
+                                                              );
+                                                              if (picked !=
+                                                                  null) {
+                                                                periodDialog
+                                                                        .text =
+                                                                    "${picked.inHours.toString().padLeft(2, '0')}:"
+                                                                    "${(picked.inMinutes % 60).toString().padLeft(2, '0')}:00";
+                                                              }
+                                                            },
+                                                            child: Textfildwithupper(
+                                                                isError: Econtroller
+                                                                    .ISperiodError,
+                                                                enabled: false,
+                                                                Uptext:
+                                                                    "Period".tr,
+                                                                width: 220,
+                                                                controller:
+                                                                    periodDialog,
+                                                                hinttext:
+                                                                    "00:00:00"),
+                                                          ),
+                                                          Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                        .only(
+                                                                        bottom:
+                                                                            5.0),
+                                                                child: RichText(
+                                                                    text: TextSpan(
+                                                                        text: "Date"
+                                                                            .tr,
+                                                                        style: Get
+                                                                            .theme
+                                                                            .textTheme
+                                                                            .bodyMedium)),
+                                                              ),
+                                                              examDate(
+                                                                isError: Econtroller
+                                                                    .ISdateError,
+                                                                width: 220,
+                                                              ),
+                                                            ],
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
                                                   ],
                                                 ),
                                               ),
-                                            ],
-                                          ),
-                                          apptitle: "Edit Exam".tr,
-                                          subtitle: "none");
-                                    }));
-                                  },
-                                ),
-                              ],
-                            )),
-                          ]);
-                        }).toList(),
-                      ))),
-                ],
+                                              apptitle: "Edit Exam".tr,
+                                              subtitle: "none");
+                                        }));
+                                      },
+                                    ),
+                                  ],
+                                )),
+                              ]);
+                            }).toList(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               );
             }),
           ],
