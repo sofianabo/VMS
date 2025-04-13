@@ -335,7 +335,7 @@ class _ProfileState extends State<Add_Data_account> {
                                           : "Edit Picture".tr,
                                       icon: Icon(
                                         Icons.edit,
-                                        color: Colors.black,
+                                        color: Get.theme.secondaryHeaderColor,
                                       ),
                                     ),
                                     if (picController.selectedImage.value !=

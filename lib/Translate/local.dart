@@ -676,6 +676,8 @@ class Languages {
       'Average': 'متوسط',
       'Edit Teacher': 'تعديل المعلم',
       'Teacher Bank Info': 'معلومات الحساب البنكي للمعلم',
+            'FullTime': 'دوام كامل',
+
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -1351,7 +1353,7 @@ class Languages {
       'Average': 'Average',
       'Edit Teacher': 'Edit Teacher',
       'Teacher Bank Info': 'Teacher Bank Info',
-      '': '',
+      'FullTime': 'Full Time',
       '': '',
       '': '',
       '': '',

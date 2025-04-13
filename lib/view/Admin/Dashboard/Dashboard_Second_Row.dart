@@ -179,7 +179,7 @@ class DashboardSecondRow extends StatelessWidget {
                             child: BarChartSample2(
                               headerText: "Presence this session students".tr,
                               data: convertNumberOfStudentsThisYearToWidgetData(
-                                  controller.dsh!.numberOfStudentsThisYear),
+                                  controller.dsh!.numberOfStudentsThisYear), 
                             ),
                           ),
                         ],

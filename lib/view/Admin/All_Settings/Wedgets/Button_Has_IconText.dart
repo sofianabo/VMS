@@ -16,7 +16,8 @@ class Button_Has_IconText extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
         style: ButtonStyle(
-            foregroundColor: WidgetStatePropertyAll(Colors.black),
+            foregroundColor:
+                WidgetStatePropertyAll(Get.theme.secondaryHeaderColor),
             shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                 side: BorderSide(color: Color(0xffECECEC), width: 1.4),
                 borderRadius: BorderRadius.all(Radius.circular(60))))),
@@ -32,7 +33,16 @@ class Button_Has_IconText extends StatelessWidget {
                 ? TextDirection.rtl
                 : TextDirection.ltr,
             spacing: 10.0,
-            children: [Text(text), icon],
+            children: [
+              Text(
+                text,
+                style: TextStyle(color: Get.theme.secondaryHeaderColor),
+              ),
+              Icon(
+                icon.icon,
+                color: Get.theme.secondaryHeaderColor,
+              )
+            ],
           ),
         ));
   }
