@@ -192,7 +192,7 @@ class DropDownexamTable extends StatelessWidget {
                           DropdownMenuItem<String>(
                             value: title,
                             enabled: false,
-                            child: Text(title,
+                            child: Text(title.tr,
                                 style: Theme.of(context).textTheme.bodyMedium),
                           ),
                           ..._getDropdownItems(cont, context),
