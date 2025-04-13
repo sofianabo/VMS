@@ -437,34 +437,36 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                                 Color(0xffB03D3D),
                                                                             width: 120),
                                                                   ],
-                                                                  contents: GetBuilder<
-                                                                          AdminSchoolTimeController>(
-                                                                      builder:
-                                                                          (SchoolController) {
-                                                                    return Column(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .min,
-                                                                      children: [
-                                                                        Padding(
-                                                                          padding: const EdgeInsets
-                                                                              .only(
-                                                                              top: 15.0),
-                                                                          child:
-                                                                              Wrap(
-                                                                            spacing:
-                                                                                8.0,
-                                                                            runSpacing:
-                                                                                8.0,
-                                                                            children: [
-                                                                              DropDownSchoolTime(isError: controller.ISsubError, isLoading: SchoolController.isLoadingCurr, title: "Curriculum".tr, width: 220, type: "subjectDialog"),
-                                                                              DropDownSchoolTime(isError: controller.IteacherError, isLoading: SchoolController.isLoadingTeacher, title: "Teacher".tr, width: 220, type: "teacherDialog"),
-                                                                            ],
+                                                                  contents:
+                                                                      Container(
+                                                                    width:
+                                                                        Get.width /
+                                                                            3,
+                                                                    child: GetBuilder<
+                                                                            AdminSchoolTimeController>(
+                                                                        builder:
+                                                                            (SchoolController) {
+                                                                      return Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        children: [
+                                                                          Padding(
+                                                                            padding:
+                                                                                const EdgeInsets.only(top: 15.0),
+                                                                            child:
+                                                                                Wrap(
+                                                                              spacing: 8.0,
+                                                                              runSpacing: 8.0,
+                                                                              children: [
+                                                                                DropDownSchoolTime(isError: controller.ISsubError, isLoading: SchoolController.isLoadingCurr, title: "Curriculum".tr, width: 220, type: "subjectDialog"),
+                                                                                DropDownSchoolTime(isError: controller.IteacherError, isLoading: SchoolController.isLoadingTeacher, title: "Teacher".tr, width: 220, type: "teacherDialog"),
+                                                                              ],
+                                                                            ),
                                                                           ),
-                                                                        ),
-                                                                      ],
-                                                                    );
-                                                                  }),
+                                                                        ],
+                                                                      );
+                                                                    }),
+                                                                  ),
                                                                   apptitle:
                                                                       "Operation of Lessons"
                                                                           .tr,
