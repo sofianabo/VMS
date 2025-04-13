@@ -13,10 +13,8 @@ import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Il
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
-import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
-import 'package:vms_school/view/Admin/Students_Manager/EditStudentInfo.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
@@ -28,6 +26,31 @@ class AllStudentGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    print(screenWidth);
+    int getCrossAxisCount() {
+      if (screenWidth >= 1800) return 5;
+      if (screenWidth >= 1278) return 4;
+      if (screenWidth >= 920) return 3;
+      if (screenWidth >= 906) return 3;
+      if (screenWidth >= 769) return 2;
+      return 1;
+    }
+
+    double getChildAspectRatio() {
+      if (screenWidth >= 1800) return 0.9;
+      if (screenWidth >= 1410) return 0.9;
+      if (screenWidth >= 1278) return 0.8;
+      if (screenWidth >= 1149) return 1.1;
+      if (screenWidth >= 1070) return 0.9;
+      if (screenWidth >= 920) return 0.7;
+      if (screenWidth >= 906) return 0.7;
+      if (screenWidth >= 769) return 0.9;
+      if (screenWidth >= 616) return 2.0;
+      return 0.9;
+    }
+
     return GetBuilder<Allstudentscontroller>(builder: (control) {
       return control.isLoading == false
           ? control.filteredStudents.isNotEmpty
@@ -39,34 +62,10 @@ class AllStudentGrid extends StatelessWidget {
                     padding:
                         const EdgeInsets.only(top: 10, left: 40, right: 40),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: Get.width <= 1278 && Get.width >= 1000
-                            ? 3
-                            : Get.width <= 999 && Get.width >= 759
-                                ? 2
-                                : Get.width <= 758
-                                    ? 1
-                                    : 4,
+                        crossAxisCount: getCrossAxisCount(),
                         crossAxisSpacing: 20.0,
                         mainAxisSpacing: 20.0,
-                        childAspectRatio: Get.width <= 1410 && Get.width >= 1278
-                            //THREE ITEMS
-                            ? 0.8
-                            : Get.width <= 1278 && Get.width >= 1149
-                                //THREE ITEMS
-                                ? 1.3
-                                : Get.width <= 1148 && Get.width >= 1045
-                                    ? 1.16
-                                    : Get.width <= 999 && Get.width >= 759
-                                        ? 1.2
-                                        : Get.width <= 758 && Get.width >= 714
-                                            ? 2.0
-                                            : Get.width <= 713 &&
-                                                    Get.width >= 569
-                                                ? 1.6
-                                                : Get.width <= 570
-                                                    ? 1.3
-                                                    //NORMAL ITEMS
-                                                    : 0.95),
+                        childAspectRatio: getChildAspectRatio()),
                     itemCount: control.filteredStudents.length,
                     itemBuilder: (context, index) {
                       return HoverScaleCard(
@@ -350,33 +349,11 @@ class AllStudentGrid extends StatelessWidget {
           : GridView.builder(
               padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: Get.width <= 1278 && Get.width >= 1000
-                      ? 3
-                      : Get.width <= 999 && Get.width >= 759
-                          ? 2
-                          : Get.width <= 758
-                              ? 1
-                              : 4,
-                  crossAxisSpacing: 20.0,
-                  mainAxisSpacing: 20.0,
-                  childAspectRatio: Get.width <= 1410 && Get.width >= 1278
-                      //THREE ITEMS
-                      ? 0.8
-                      : Get.width <= 1278 && Get.width >= 1149
-                          //THREE ITEMS
-                          ? 1.3
-                          : Get.width <= 1148 && Get.width >= 1045
-                              ? 1.16
-                              : Get.width <= 999 && Get.width >= 759
-                                  ? 1.2
-                                  : Get.width <= 758 && Get.width >= 714
-                                      ? 2.0
-                                      : Get.width <= 713 && Get.width >= 569
-                                          ? 1.6
-                                          : Get.width <= 570
-                                              ? 1.3
-                                              //NORMAL ITEMS
-                                              : 0.95),
+                crossAxisCount: getCrossAxisCount(),
+                childAspectRatio: getChildAspectRatio(),
+                crossAxisSpacing: 20.0,
+                mainAxisSpacing: 20.0,
+              ),
               itemCount: 8,
               itemBuilder: (context, index) {
                 return HoverScaleCard(

@@ -32,93 +32,221 @@ class _AllStudentState extends State<AllStudent> {
 
   @override
   Widget build(BuildContext context) {
-    double w = MediaQuery.of(context).size.width;
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Expanded(
         child: Column(
       children: [
-        GetBuilder<Allstudentscontroller>(builder: (controller) {
-          return Container(
-            margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
-            alignment: Alignment.center,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+        if (screenWidth > 769)
+          GetBuilder<Allstudentscontroller>(builder: (controller) {
+            return Container(
+              width: Get.width,
+              margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+              child: Wrap(
+                spacing: 8.0,
+                runSpacing: 8.0,
+                alignment: WrapAlignment.spaceBetween,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                runAlignment: WrapAlignment.spaceBetween,
+                children: [
+                  Wrap(
+                    spacing: 8.0,
+                    runSpacing: 8.0,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      DropDownAllSessions(
+                        title: "Session".tr,
+                        type: "session",
+                        width: 200,
+                        API: "AllStudents",
+                      ),
+                      DropDownAllStudents(
+                        isLoading: controller.isGradeLoading,
+                        type: "grade",
+                        title: "Grade".tr,
+                        width: 200,
+                      ),
+                      DropDownAllStudents(
+                        isDisabled: controller.gradeIndex == "" ? true : false,
+                        isLoading: controller.isClassLoading,
+                        type: "class",
+                        title: "Class".tr,
+                        width: 200,
+                      ),
+                      DropDownAllStudents(
+                        isLoading: controller.isDivisionLoading,
+                        isDisabled: controller.classIndex == "" ? true : false,
+                        type: "division",
+                        title: "Division".tr,
+                        width: 200,
+                      ),
+                      GetBuilder<Allstudentscontroller>(builder: (controller) {
+                        return TextFormSearch(
+                          click: () {
+                            controller.clearFilter();
+                          },
+                          onchange: (value) {
+                            controller.searchByName(
+                                value,
+                                controller.gradeIndex,
+                                controller.classIndex,
+                                controller.divisionIndex);
+                          },
+                          width: 200,
+                          radius: 5,
+                          controller: search,
+                          suffixIcon: search.text.isNotEmpty
+                              ? Icons.close
+                              : Icons.search,
+                        );
+                      }),
+                    ],
+                  ),
+                  Spacer(),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    spacing: 8.0,
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {
+                              if (controller.isLoading == false) {
+                                Get.find<Add_Students_Controller>()
+                                    .resetError();
+                                Add_Students_Dialog_Functions();
+                              }
+                            },
+                            icon: Icon(Icons.add,
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
+                      ),
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {
+                              //   exportStudintToExcel(controller.filteredStudents);
+                            },
+                            icon: Icon(VMS_Icons.xl,
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
+                      ),
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {},
+                            icon: Icon(VMS_Icons.pdf,
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            );
+          }),
+        if (screenWidth <= 769)
+          Padding(
+            padding:
+                EdgeInsets.only(left: 10.0, right: 10.0, top: 20.0, bottom: 15),
+            child: GetBuilder<Allstudentscontroller>(builder: (controller) {
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  spacing: 8.0,
                   children: [
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: DropDownAllSessions(
-                            title: "Session".tr,
-                            type: "session",
-                            width: w / 6.5,
-                            API: "AllStudents",
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: DropDownAllStudents(
-                            isLoading: controller.isGradeLoading,
-                            type: "grade",
-                            title: "Grade".tr,
-                            width: w / 6.5,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: DropDownAllStudents(
-                            isDisabled:
-                                controller.gradeIndex == "" ? true : false,
-                            isLoading: controller.isClassLoading,
-                            type: "class",
-                            title: "Class".tr,
-                            width: w / 6.5,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: DropDownAllStudents(
-                            isLoading: controller.isDivisionLoading,
-                            isDisabled:
-                                controller.classIndex == "" ? true : false,
-                            type: "division",
-                            title: "Division".tr,
-                            width: w / 6.5,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: GetBuilder<Allstudentscontroller>(
-                              builder: (controller) {
-                            return TextFormSearch(
-                              click: () {
-                                controller.clearFilter();
-                              },
-                              onchange: (value) {
-                                controller.searchByName(
-                                    value,
-                                    controller.gradeIndex,
-                                    controller.classIndex,
-                                    controller.divisionIndex);
-                              },
-                              width: w / 6.5,
-                              radius: 5,
-                              controller: search,
-                              suffixIcon: search.text.isNotEmpty
-                                  ? Icons.close
-                                  : Icons.search,
-                            );
-                          }),
-                        ),
-                      ],
+                    DropDownAllSessions(
+                      title: "Session".tr,
+                      type: "session",
+                      width: 200,
+                      API: "AllStudents",
                     ),
-                    Spacer(),
+                    DropDownAllStudents(
+                      isLoading: controller.isGradeLoading,
+                      type: "grade",
+                      title: "Grade".tr,
+                      width: 200,
+                    ),
+                    DropDownAllStudents(
+                      isDisabled: controller.gradeIndex == "" ? true : false,
+                      isLoading: controller.isClassLoading,
+                      type: "class",
+                      title: "Class".tr,
+                      width: 200,
+                    ),
+                    DropDownAllStudents(
+                      isLoading: controller.isDivisionLoading,
+                      isDisabled: controller.classIndex == "" ? true : false,
+                      type: "division",
+                      title: "Division".tr,
+                      width: 200,
+                    ),
+                    GetBuilder<Allstudentscontroller>(builder: (controller) {
+                      return TextFormSearch(
+                        click: () {
+                          controller.clearFilter();
+                        },
+                        onchange: (value) {
+                          controller.searchByName(value, controller.gradeIndex,
+                              controller.classIndex, controller.divisionIndex);
+                        },
+                        width: 200,
+                        radius: 5,
+                        controller: search,
+                        suffixIcon:
+                            search.text.isNotEmpty ? Icons.close : Icons.search,
+                      );
+                    }),
                     Row(
+                      mainAxisSize: MainAxisSize.min,
+                      spacing: 8.0,
                       children: [
                         Container(
-                          margin: EdgeInsets.only(right: 10.0),
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
@@ -172,41 +300,36 @@ class _AllStudentState extends State<AllStudent> {
                                   size: 18,
                                   color: Theme.of(context).highlightColor)),
                         ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(right: 10.0, left: 10.0),
-                          child: Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                color: Theme.of(context).cardColor,
-                                borderRadius: BorderRadius.circular(5),
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Colors.black12,
-                                      offset: Offset(0, 2),
-                                      blurRadius: 1)
-                                ]),
-                            child: IconButton(
-                                style: ButtonStyle(
-                                    shape: WidgetStatePropertyAll(
-                                        RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(5))))),
-                                onPressed: () {},
-                                icon: Icon(VMS_Icons.pdf,
-                                    size: 18,
-                                    color: Theme.of(context).highlightColor)),
-                          ),
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    offset: Offset(0, 2),
+                                    blurRadius: 1)
+                              ]),
+                          child: IconButton(
+                              style: ButtonStyle(
+                                  shape: WidgetStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))))),
+                              onPressed: () {},
+                              icon: Icon(VMS_Icons.pdf,
+                                  size: 18,
+                                  color: Theme.of(context).highlightColor)),
                         ),
                       ],
                     )
                   ],
                 ),
-              ],
-            ),
-          );
-        }),
+              );
+            }),
+          ),
         Expanded(
             child: Padding(
           padding: const EdgeInsets.only(top: 15.0),

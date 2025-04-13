@@ -18,65 +18,63 @@ class Drop_Edite_students extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 22.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Wrap(
+              spacing: 20.0,
+              runSpacing: 20.0,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              runAlignment: WrapAlignment.spaceBetween,
+              alignment: WrapAlignment.spaceBetween,
               children: [
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Container(
-                          width: 300,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Container(
+                      width: 300,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("Father Passport"),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text("Father Passport"),
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Container(
-                                    width: 35,
-                                    height: 35,
-                                    decoration: BoxDecoration(
-                                        color: add_controller
-                                                    .student!
-                                                    .documantes!
-                                                    .fatherPassport !=
-                                                null
-                                            ? Get.theme.primaryColor
-                                            : Get.theme.disabledColor,
-                                        borderRadius: BorderRadius.circular(5),
-                                        boxShadow: const [
-                                          BoxShadow(
-                                              color: Colors.black12,
-                                              offset: Offset(0, 2),
-                                              blurRadius: 1)
-                                        ]),
-                                    child: IconButton(
-                                        onPressed: () {
-                                          if (add_controller.student!
-                                                  .documantes!.fatherPassport !=
-                                              null) {
-                                            final url =
-                                                '$getimage${add_controller.student!.documantes!.fatherPassport!.id}';
-                                            downloadFile(url,
-                                                '${add_controller.filteredStudents[add_controller.idx].fullName!} Father Passport.${add_controller.student!.documantes!.fatherPassport!.fileType}');
-                                          }
-                                        },
-                                        icon: Icon(
-                                          Icons.file_download_outlined,
-                                          size: 20,
-                                          color: Colors.white,
-                                        )),
-                                  ),
-                                ],
-                              )
+                              Container(
+                                width: 35,
+                                height: 35,
+                                decoration: BoxDecoration(
+                                    color: add_controller.student!.documantes!
+                                                .fatherPassport !=
+                                            null
+                                        ? Get.theme.primaryColor
+                                        : Get.theme.disabledColor,
+                                    borderRadius: BorderRadius.circular(5),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          color: Colors.black12,
+                                          offset: Offset(0, 2),
+                                          blurRadius: 1)
+                                    ]),
+                                child: IconButton(
+                                    onPressed: () {
+                                      if (add_controller.student!.documantes!
+                                              .fatherPassport !=
+                                          null) {
+                                        final url =
+                                            '$getimage${add_controller.student!.documantes!.fatherPassport!.id}';
+                                        downloadFile(url,
+                                            '${add_controller.filteredStudents[add_controller.idx].fullName!} Father Passport.${add_controller.student!.documantes!.fatherPassport!.fileType}');
+                                      }
+                                    },
+                                    icon: Icon(
+                                      Icons.file_download_outlined,
+                                      size: 20,
+                                      color: Colors.white,
+                                    )),
+                              ),
                             ],
-                          ),
-                        ),
-                      ],
+                          )
+                        ],
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 10.0),
@@ -300,8 +298,12 @@ class Drop_Edite_students extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 22.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Wrap(
+              spacing: 20.0,
+              runSpacing: 20.0,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              runAlignment: WrapAlignment.spaceBetween,
+              alignment: WrapAlignment.spaceBetween,
               children: [
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -565,8 +567,12 @@ class Drop_Edite_students extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 22.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Wrap(
+              spacing: 20.0,
+              runSpacing: 20.0,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              runAlignment: WrapAlignment.spaceBetween,
+              alignment: WrapAlignment.spaceBetween,
               children: [
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -832,8 +838,12 @@ class Drop_Edite_students extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 22.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Wrap(
+              spacing: 20.0,
+              runSpacing: 20.0,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              runAlignment: WrapAlignment.spaceBetween,
+              alignment: WrapAlignment.spaceBetween,
               children: [
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
