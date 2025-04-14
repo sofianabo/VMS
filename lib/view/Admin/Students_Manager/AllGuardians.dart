@@ -46,7 +46,6 @@ class _AllGuardiansState extends State<AllGuardians> {
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
-    print(w);
     return Expanded(
         child: Column(
       children: [
