@@ -27,7 +27,7 @@ class Add_Curriculm_API {
     try {
       FormData formData = FormData.fromMap({
         'subjectId': '$subjectId',
-        'semesterId': '$semesterId',
+        'semesterId': [semesterId],
         'name': '$name',
         'enName': '$Ename',
         'maxMark': '$maxMark',

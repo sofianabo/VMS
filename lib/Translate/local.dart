@@ -619,7 +619,7 @@ class Languages {
       'Edit Subject': 'تعديل المادة',
       'Role': 'الدور',
       'Schedules': 'الجداول',
-      'Employees': 'الموضفين',
+      'Employees': 'الموظفين',
       'Management': 'إدارية',
       'General': 'عامة',
       'Action': 'الفعل',
@@ -676,8 +676,10 @@ class Languages {
       'Average': 'متوسط',
       'Edit Teacher': 'تعديل المعلم',
       'Teacher Bank Info': 'معلومات الحساب البنكي للمعلم',
-            'FullTime': 'دوام كامل',
-
+      'FullTime': 'دوام كامل',
+      
+      'Curriculum English Name - English Class Name': 'الاسم الإنكليزي للمنهاج - الاسم الإنكليزي للصف',
+      'Curriculum Name - Class Name': 'اسم المنهاج - اسم الصف',
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -1354,8 +1356,8 @@ class Languages {
       'Edit Teacher': 'Edit Teacher',
       'Teacher Bank Info': 'Teacher Bank Info',
       'FullTime': 'Full Time',
-      '': '',
-      '': '',
+      'Curriculum English Name - English Class Name': 'Curriculum English Name -English Class Name',
+      'Curriculum Name - Class Name': 'Curriculum Name - Class Name',
       '': '',
       '': '',
       '': '',

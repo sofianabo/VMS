@@ -293,7 +293,8 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                   controller: name,
                                                   Uptext: "Curriculum Name".tr,
                                                   hinttext:
-                                                      "Curriculum Name".tr),
+                                                      "Curriculum Name - Class Name"
+                                                          .tr),
                                               Textfildwithupper(
                                                   isError:
                                                       controller.IsEnameError,
@@ -311,7 +312,7 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                       "Curriculum English Name"
                                                           .tr,
                                                   hinttext:
-                                                      "Curriculum English Name"
+                                                      "Curriculum English Name - English Class Name"
                                                           .tr),
                                             ],
                                           ),
@@ -378,7 +379,8 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                             .isHoveringFile
                                                         ? Theme.of(context)
                                                             .primaryColor
-                                                        : Colors.white,
+                                                        : Theme.of(context)
+                                                            .cardColor,
                                                   ),
                                                   alignment: Alignment.center,
                                                   width: 250,
@@ -472,9 +474,8 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                                 icon: Icon(
                                                                   Icons
                                                                       .delete_outline_outlined,
-                                                                  color: Get
-                                                                      .theme
-                                                                      .primaryColor,
+                                                                  color: Colors
+                                                                      .redAccent,
                                                                 ))
                                                             : Text(
                                                                 textAlign:
@@ -525,7 +526,8 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                               .isHoveringimage
                                                           ? Theme.of(context)
                                                               .primaryColor
-                                                          : Colors.white,
+                                                          : Theme.of(context)
+                                                              .cardColor,
                                                     ),
                                                     alignment: Alignment.center,
                                                     width: 250,
@@ -625,9 +627,8 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                                   icon: Icon(
                                                                     Icons
                                                                         .delete_outline_outlined,
-                                                                    color: Get
-                                                                        .theme
-                                                                        .primaryColor,
+                                                                    color: Colors
+                                                                        .redAccent,
                                                                   ))
                                                               : Text(
                                                                   textAlign:

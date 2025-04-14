@@ -80,14 +80,7 @@ class GradeTable extends StatelessWidget {
       height: 50,
       alignment: Alignment.center,
       child: Center(
-        child: Text(
-          title,
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                color: Theme.of(context).primaryColor,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-        ),
+        child: Text(title, style: Theme.of(context).textTheme.headlineLarge),
       ),
     );
   }
@@ -149,9 +142,7 @@ class GradeTable extends StatelessWidget {
             color: Theme.of(context).primaryColor,
             onPressed: () {
               name.text = "${row['name']}";
-              enName.text = prefs!.getString(languageKey) == 'ar'
-                  ? "${row['name']}"
-                  : "${row['enName']}";
+              enName.text = "${row['enName']}";
               feeCount.text = "${row['feeCount']}";
               Get.dialog(
                 barrierDismissible: false,

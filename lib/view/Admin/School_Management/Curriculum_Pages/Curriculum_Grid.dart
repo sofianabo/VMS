@@ -151,18 +151,15 @@ class CurriculumGrid extends StatelessWidget {
                                               top: 5.0, bottom: 5.0),
                                           child: Center(
                                             child: Text(
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                              prefs!.getString(languageKey) ==
-                                                      "ar"
-                                                  ? "${control.filteredCurriculum[index].name}"
-                                                  : "${control.filteredCurriculum[index].enName}",
-                                              style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .primaryColor,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                                prefs!.getString(languageKey) ==
+                                                        "ar"
+                                                    ? "${control.filteredCurriculum[index].name}"
+                                                    : "${control.filteredCurriculum[index].enName}",
+                                                style: Get
+                                                    .theme.textTheme.titleLarge!
+                                                    .copyWith(fontSize: 18)),
                                           ),
                                         ),
                                       ),
@@ -178,16 +175,17 @@ class CurriculumGrid extends StatelessWidget {
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         children: [
-                                          Text(
-                                              "Max Mark :".tr+" ${control.filteredCurriculum[index].maxMark}"),
+                                          Text("Max Mark :".tr +
+                                              " ${control.filteredCurriculum[index].maxMark}"),
                                           Padding(
                                             padding: const EdgeInsets.only(
                                                 top: 5.0, bottom: 5.0),
-                                            child: Text(
-                                                "Passing Mark :".tr+" ${control.filteredCurriculum[index].passingMark}"),
+                                            child: Text("Passing Mark :".tr +
+                                                " ${control.filteredCurriculum[index].passingMark}"),
                                           ),
                                           Text(
-                                              "Is Failure Agent :".tr+" ${control.filteredCurriculum[index].type == 1 ? "Yes" : "No"}",
+                                              "Is Failure Agent :".tr +
+                                                  " ${control.filteredCurriculum[index].type == 1 ? "Yes" : "No"}",
                                               style: TextStyle(
                                                 color: control
                                                             .filteredCurriculum[
@@ -195,8 +193,8 @@ class CurriculumGrid extends StatelessWidget {
                                                             .type ==
                                                         1
                                                     ? const Color(0xffB03D3D)
-                                                    : Theme.of(context)
-                                                        .primaryColor,
+                                                    : Color.fromARGB(
+                                                        255, 49, 108, 197),
                                               )),
                                         ],
                                       ),
@@ -260,7 +258,11 @@ class CurriculumGrid extends StatelessWidget {
                                                       Row(
                                                         children: [
                                                           Text(
-                                                            "Do You Want To Deletecur".tr+" ( ${prefs!.getString(languageKey) == 'ar'?control.filteredCurriculum[index].name:control.filteredCurriculum[index].enName} ) "+"Curriculumm".tr,
+                                                            "Do You Want To Deletecur"
+                                                                    .tr +
+                                                                " ( ${prefs!.getString(languageKey) == 'ar' ? control.filteredCurriculum[index].name : control.filteredCurriculum[index].enName} ) " +
+                                                                "Curriculumm"
+                                                                    .tr,
                                                             style: Get
                                                                 .theme
                                                                 .textTheme
@@ -276,7 +278,8 @@ class CurriculumGrid extends StatelessWidget {
                                                       ),
                                                     ],
                                                   ),
-                                                  apptitle: "Delete Curriculum".tr,
+                                                  apptitle:
+                                                      "Delete Curriculum".tr,
                                                   subtitle: "none"));
                                             },
                                             icon: const Icon(VMS_Icons.bin,
