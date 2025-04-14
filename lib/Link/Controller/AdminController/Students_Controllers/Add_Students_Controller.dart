@@ -10,7 +10,7 @@ class Add_Students_Controller extends GetxController {
   List<String> Realagonlist = ["Muslim", "Christian"];
   List<String> BloodTypelist = [
     "A+",
-    "A-", 
+    "A-",
     "B+",
     "B-",
     "AB+",

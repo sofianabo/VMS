@@ -40,7 +40,7 @@ class Subject_Management_Grid extends StatelessWidget {
                         children: [
                           TableRow(
                             decoration:
-                                const BoxDecoration(color: Color(0xffD4DFE5)),
+                                 BoxDecoration(color:Get.theme.indicatorColor),
                             children: [
                               _tableHeader('Operation'.tr, context),
                               _tableHeader('Subject Name'.tr, context),
@@ -72,14 +72,7 @@ class Subject_Management_Grid extends StatelessWidget {
       height: 50,
       alignment: Alignment.center,
       child: Center(
-        child: Text(
-          title,
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                color: Theme.of(context).primaryColor,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-        ),
+        child: Text(title, style: Theme.of(context).textTheme.headlineLarge),
       ),
     );
   }
@@ -259,7 +252,7 @@ class Subject_Management_Grid extends StatelessWidget {
       height: 50,
       child: Text(
         data ?? '',
-        style: const TextStyle(color: Colors.black),
+        style: Get.theme.textTheme.bodyMedium,
       ),
     );
   }
