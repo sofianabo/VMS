@@ -42,6 +42,22 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
+    int getCrossAxisCount(double screenWidth) {
+      if (screenWidth >= 1200) return 4;
+      if (screenWidth >= 900) return 3;
+      if (screenWidth >= 600) return 2;
+      return 1;
+    }
+
+    double getChildAspectRatio(double screenWidth) {
+      if (screenWidth >= 1200) return 1.1;
+      if (screenWidth >= 900) return 1.2;
+      if (screenWidth >= 600) return 1.6;
+      return 1.3;
+    }
+
     double w = MediaQuery.of(context).size.width;
     return Directionality(
       textDirection: prefs!.getString(languageKey) == 'ar'
@@ -51,11 +67,11 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
         return controller.isLoading == true
             ? GridView.builder(
                 padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: getCrossAxisCount(width),
                     crossAxisSpacing: 20.0,
                     mainAxisSpacing: 20.0,
-                    childAspectRatio: 1.1),
+                    childAspectRatio: getChildAspectRatio(width)),
                 itemCount: 8,
                 itemBuilder: (context, index) {
                   return HoverScaleCard(
@@ -126,12 +142,11 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                 : GridView.builder(
                     padding:
                         const EdgeInsets.only(top: 10, left: 40, right: 40),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4,
-                            crossAxisSpacing: 20.0,
-                            mainAxisSpacing: 20.0,
-                            childAspectRatio: 1.0),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: getCrossAxisCount(width),
+                        crossAxisSpacing: 20.0,
+                        mainAxisSpacing: 20.0,
+                        childAspectRatio: getChildAspectRatio(width)),
                     itemCount: controller.filteredStudents!.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
