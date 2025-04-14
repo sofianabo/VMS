@@ -220,15 +220,19 @@ class AllStudentGrid extends StatelessWidget {
                                                     color: Theme.of(context)
                                                         .primaryColor)
                                               ],
-                                              contents: SizedBox(
-                                                width: 400,
-                                                height: 1,
+                                              contents: Container(
+                                                width: 300,
+                                                child: Text(
+                                                    style: TextStyle(
+                                                        color: Colors.black),
+                                                    maxLines: 3,
+                                                    "Do You Want To Deletee"
+                                                            .tr +
+                                                        "${control.filteredStudents[index].fullName}" +
+                                                        "Studentt".tr),
                                               ),
                                               apptitle: "Delete Students".tr,
-                                              subtitle: "Do You Want To Deletee"
-                                                      .tr +
-                                                  "${control.filteredStudents[index].fullName}" +
-                                                  "Studentt".tr));
+                                              subtitle: "none"));
                                         },
                                         icon: const Icon(VMS_Icons.bin),
                                         color: Colors.white,

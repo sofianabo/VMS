@@ -1,13 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/UpdateStudentsVaccines.dart';
-import 'package:vms_school/Link/API/DownloadFiles.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
-import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Vaccines_Model.dart';
-import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
@@ -15,293 +11,309 @@ import 'package:vms_school/widgets/PDF_View.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
-Show_Vaccines_By_Id_Funcation(
-    BuildContext context, id, index_of_student) async {
-  TextEditingController search = TextEditingController();
+class StudentVaccinesDialog extends StatefulWidget {
+  final String id;
+  final int? indexOfStudent;
 
-  try {
-    Get.find<Vaccines_Controller>().SetFinalList();
-    Get.dialog(VMSAlertDialog(
-        action: [
-          ButtonDialog(
+  const StudentVaccinesDialog({
+    Key? key,
+    required this.id,
+    this.indexOfStudent,
+  }) : super(key: key);
+
+  @override
+  _StudentVaccinesDialogState createState() => _StudentVaccinesDialogState();
+}
+
+class _StudentVaccinesDialogState extends State<StudentVaccinesDialog> {
+  final TextEditingController _searchController = TextEditingController();
+  late Vaccines_Controller _vaccinesController;
+
+  @override
+  void initState() {
+    super.initState();
+    _vaccinesController = Get.find<Vaccines_Controller>();
+    _vaccinesController.SetFinalList();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final dialogWidth = constraints.maxWidth * 0.5;
+
+        return VMSAlertDialog(
+          action: [
+            ButtonDialog(
               text: "Done".tr,
-              onPressed: () {
-                Get.find<Vaccines_Controller>().SetFinalList();
-                Update_Students_Vaccines_API(context).Update_Students_Vaccines(
-                  id: id,
-                  illness: Get.find<Vaccines_Controller>().finalList,
-                );
-              },
+              onPressed: _updateStudentVaccines,
               color: Get.theme.primaryColor,
-              width: 65)
-        ],
-        contents: Padding(
-          padding: const EdgeInsets.only(top: 25.0, bottom: 25.0),
-          child: SizedBox(
-            width: 700,
-            child: GetBuilder<Vaccines_Controller>(builder: (control) {
-              List<Vaccine> filteredList = control.isSelectedOnly
-                  ? control.filteredvaccine!
-                      .where((illness) => control.isSelected(illness))
-                      .toList()
-                  : control.filteredvaccine!;
+              width: 65,
+            )
+          ],
+          contents: Padding(
+            padding: const EdgeInsets.only(top: 25.0, bottom: 25.0),
+            child: SizedBox(
+              width: dialogWidth,
+              child: GetBuilder<Vaccines_Controller>(
+                builder: (controller) {
+                  final filteredList = _getFilteredList(controller);
 
-              return Column(
-                children: [
-                  Row(
+                  return Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: TextFormSearch(
-                          click: () {
-                            control.clearFilter();
-                          },
-                          onchange: (value) {
-                            control.searchByName(value);
-                          },
-                          width: 680,
-                          radius: 5,
-                          controller: search,
-                          suffixIcon: search.text.isNotEmpty
-                              ? Icons.close
-                              : Icons.search,
-                        ),
+                      _buildSearchRow(controller, dialogWidth),
+                      _buildFilterCheckbox(controller),
+                      Expanded(
+                        child: _buildVaccinesGrid(controller, filteredList),
                       ),
                     ],
-                  ),
-                  Row(
-                    children: [
-                      Checkbox(
-                        value: control.isSelectedOnly,
-                        onChanged: (value) {
-                          control.SetisSelectedOnly(value!);
-                        },
-                      ),
-                      Text('Show only selected items'.tr),
-                    ],
-                  ),
-                  Expanded(
-                    child: GridView.builder(
-                      padding:
-                          const EdgeInsets.only(top: 10, left: 10, right: 10),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 10.0,
-                        mainAxisSpacing: 10.0,
-                        childAspectRatio: 1.9,
-                      ),
-                      itemCount: filteredList.length,
-                      itemBuilder: (context, index) {
-                        final illness = filteredList[index];
-                        final isSelected = control.isSelected(illness);
-                        final hasOldFile = control.finalList.any((entry) =>
-                            entry['id'] == illness.id &&
-                            entry.containsKey('hasOldFile') &&
-                            entry['hasOldFile'] == true);
-                        final hasNewFile = control.finalList.any((entry) =>
-                            entry['id'] == illness.id &&
-                            entry.containsKey('hasNewFile') &&
-                            entry['hasNewFile'] == true);
-                        final illnesName = control.finalList.firstWhere(
-                          (entry) =>
-                              entry['id'] == illness.id &&
-                              entry.containsKey('illnesName'),
-                          orElse: () => {"illnesName": ""},
-                        )['illnesName'];
+                  );
+                },
+              ),
+            ),
+          ),
+          apptitle: "Student Vaccine".tr,
+          subtitle: "none",
+        );
+      },
+    );
+  }
 
-                        return HoverScaleCard(
-                          child: GestureDetector(
-                            onTap: () {
-                              control.toggleSelection(
-                                illness,
-                              );
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.all(20),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                border:
-                                    Border.all(color: Colors.grey, width: 0.5),
-                                color: isSelected
-                                    ? Get.theme.primaryColor
-                                    : Colors.white,
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Colors.black26,
-                                    offset: Offset(0, 2),
-                                    blurRadius: 1,
-                                  ),
-                                ],
-                              ),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                    child: Center(
-                                      child: Text(
-                                        textAlign: TextAlign.center,
-                                        prefs!.getString(languageKey) == 'ar'
-                                            ? "${illness.name}"
-                                            : "${illness.enName}",
-                                        style: Get.theme.textTheme.bodyMedium!
-                                            .copyWith(
-                                                fontSize: 18,
-                                                color: isSelected
-                                                    ? Colors.white
-                                                    : Get.theme.primaryColor),
-                                      ),
-                                    ),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text("${control.getFileName(illness)}",
-                                          style: Get.theme.textTheme.bodyMedium!
-                                              .copyWith(
-                                                  fontSize: 14,
-                                                  color: isSelected
-                                                      ? Colors.white
-                                                      : Get
-                                                          .theme.primaryColor)),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 5.0, right: 5.0),
-                                            child: Container(
-                                              width: 35,
-                                              height: 35,
-                                              decoration: BoxDecoration(
-                                                  color: hasNewFile == true ||
-                                                          hasOldFile == true
-                                                      ? Colors.white
-                                                      : Get.theme.disabledColor,
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                  boxShadow: const [
-                                                    BoxShadow(
-                                                        color: Colors.black12,
-                                                        offset: Offset(0, 2),
-                                                        blurRadius: 1)
-                                                  ]),
-                                              child: IconButton(
-                                                  onPressed:
-                                                      hasNewFile == true ||
-                                                              hasOldFile == true
-                                                          ? () {
-                                                              control.clearFile(
-                                                                illness,
-                                                              );
-                                                            }
-                                                          : () {},
-                                                  icon: Icon(
-                                                      Icons
-                                                          .delete_outline_outlined,
-                                                      size: 20,
-                                                      color: hasNewFile ==
-                                                                  true ||
-                                                              hasOldFile == true
-                                                          ? Get.theme
-                                                              .primaryColor
-                                                          : Colors.white)),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 35,
-                                            height: 35,
-                                            decoration: BoxDecoration(
-                                              color: isSelected
-                                                  ? Colors.white
-                                                  : Get.theme.primaryColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              boxShadow: const [
-                                                BoxShadow(
-                                                  color: Colors.black12,
-                                                  offset: Offset(0, 2),
-                                                  blurRadius: 1,
-                                                )
-                                              ],
-                                            ),
-                                            child: IconButton(
-                                              onPressed: () {
-                                                control.attachFile(
-                                                  illness,
-                                                );
-                                              },
-                                              icon: Icon(
-                                                Icons.file_upload_outlined,
-                                                size: 20,
-                                                color: isSelected
-                                                    ? Get.theme.primaryColor
-                                                    : Colors.white,
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 5.0, right: 5.0),
-                                              child: Container(
-                                                width: 35,
-                                                height: 35,
-                                                decoration: BoxDecoration(
-                                                    color: hasOldFile == true
-                                                        ? Colors.white
-                                                        : Get.theme
-                                                            .disabledColor,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                    boxShadow: const [
-                                                      BoxShadow(
-                                                          color: Colors.black12,
-                                                          offset: Offset(0, 2),
-                                                          blurRadius: 1)
-                                                    ]),
-                                                child: IconButton(
-                                                    onPressed:
-                                                        hasOldFile == true
-                                                            ? () {
-                                                                openFileInNewTab(
-                                                                    filePath:
-                                                                        '$getpdf${control.finalList[index]['fileid']}');
-                                                              }
-                                                            : () {},
-                                                    icon: Icon(
-                                                        Icons
-                                                            .file_download_outlined,
-                                                        size: 20,
-                                                        color: hasOldFile == true
-                                                            ? Get.theme
-                                                                .primaryColor
-                                                            : Colors.white)),
-                                              )),
-                                        ],
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  )
-                ],
-              );
-            }),
+  List<Vaccine> _getFilteredList(Vaccines_Controller controller) {
+    return controller.isSelectedOnly
+        ? controller.filteredvaccine!
+            .where((vaccine) => controller.isSelected(vaccine))
+            .toList()
+        : controller.filteredvaccine!;
+  }
+
+  Widget _buildSearchRow(Vaccines_Controller controller, double width) {
+    return Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: TextFormSearch(
+            click: () => controller.clearFilter(),
+            onchange: (value) => controller.searchByName(value),
+            width: width - 8, // مع هامش 20
+            radius: 5,
+            controller: _searchController,
+            suffixIcon:
+                _searchController.text.isNotEmpty ? Icons.close : Icons.search,
           ),
         ),
-        apptitle: "Student Vaccine".tr,
-        subtitle: "none"));
-  } catch (e) {
-    print(e.toString());
+      ],
+    );
+  }
+
+  Widget _buildFilterCheckbox(Vaccines_Controller controller) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+      child: Row(
+        children: [
+          Checkbox(
+            value: controller.isSelectedOnly,
+            onChanged: (value) => controller.SetisSelectedOnly(value!),
+          ),
+          Text('Show only selected items'.tr),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildVaccinesGrid(
+    Vaccines_Controller controller,
+    List<Vaccine> filteredList,
+  ) {
+    return GridView.builder(
+      padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: _getCrossAxisCount(MediaQuery.of(context).size.width),
+        crossAxisSpacing: 10.0,
+        mainAxisSpacing: 10.0,
+        childAspectRatio: 1.9,
+      ),
+      itemCount: filteredList.length,
+      itemBuilder: (context, index) {
+        final vaccine = filteredList[index];
+        final isSelected = controller.isSelected(vaccine);
+        final hasFile = _hasFile(controller, vaccine);
+        final fileName = controller.getFileName(vaccine);
+
+        return _buildVaccineCard(
+            controller, vaccine, isSelected, hasFile, fileName!, index);
+      },
+    );
+  }
+
+  Widget _buildVaccineCard(
+    Vaccines_Controller controller,
+    Vaccine vaccine,
+    bool isSelected,
+    bool hasFile,
+    String fileName,
+    int index,
+  ) {
+    return HoverScaleCard(
+      child: GestureDetector(
+        onTap: () => controller.toggleSelection(vaccine),
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(color: Colors.grey, width: 0.5),
+            color: isSelected ? Get.theme.primaryColor : Colors.white,
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black26,
+                offset: Offset(0, 2),
+                blurRadius: 1,
+              ),
+            ],
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildVaccineName(vaccine, isSelected,
+                  (MediaQuery.of(context).size.width * 0.5) - 50),
+              _buildFileActionsRow(controller, vaccine, isSelected, hasFile,
+                  fileName, index, MediaQuery.of(context).size.width),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildVaccineName(
+      Vaccine vaccine, bool isSelected, double contentWidth) {
+    return Expanded(
+      child: Center(
+        child: Text(
+          textAlign: TextAlign.center,
+          prefs!.getString('languageKey') == 'ar'
+              ? vaccine.name ?? ""
+              : vaccine.enName ?? "",
+          style: Get.theme.textTheme.bodyMedium!.copyWith(
+            fontSize: contentWidth >= 700 ? 18 : 14,
+            color: isSelected ? Colors.white : Get.theme.primaryColor,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFileActionsRow(
+    Vaccines_Controller controller,
+    Vaccine vaccine,
+    bool isSelected,
+    bool hasFile,
+    String fileName,
+    int index,
+    double maxWidth,
+  ) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Row(
+          spacing: 5.0,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _buildFileActionButton(
+              width: maxWidth,
+              icon: Icons.delete_outline_outlined,
+              isActive: hasFile,
+              onPressed: hasFile ? () => controller.clearFile(vaccine) : null,
+              isSelected: isSelected,
+            ),
+            _buildFileActionButton(
+              width: maxWidth,
+              icon: Icons.file_upload_outlined,
+              isActive: true,
+              onPressed: () => controller.attachFile(vaccine),
+              isSelected: isSelected,
+            ),
+            _buildFileActionButton(
+              width: maxWidth,
+              icon: Icons.file_download_outlined,
+              isActive: _hasOldFile(controller, vaccine),
+              onPressed: _hasOldFile(controller, vaccine)
+                  ? () => _openFile(controller, index)
+                  : null,
+              isSelected: isSelected,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildFileActionButton({
+    required IconData icon,
+    required bool isActive,
+    required double width,
+    required VoidCallback? onPressed,
+    required bool isSelected,
+  }) {
+    return Container(
+      width: width > 600 ? 35 : 25,
+      height: width > 600 ? 35 : 25,
+      decoration: BoxDecoration(
+        color: isActive
+            ? (isSelected ? Colors.white : Get.theme.primaryColor)
+            : Get.theme.disabledColor,
+        borderRadius: BorderRadius.circular(5),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black12,
+            offset: Offset(0, 2),
+            blurRadius: 1,
+          ),
+        ],
+      ),
+      child: IconButton(
+        onPressed: onPressed,
+        icon: Icon(
+          icon,
+          size: width > 600 ? 20 : 10,
+          color: isActive
+              ? (isSelected ? Get.theme.primaryColor : Colors.white)
+              : Colors.white,
+        ),
+      ),
+    );
+  }
+
+  bool _hasFile(Vaccines_Controller controller, Vaccine vaccine) {
+    return controller.finalList.any((entry) =>
+        entry['id'] == vaccine.id &&
+        (entry['hasNewFile'] == true || entry['hasOldFile'] == true));
+  }
+
+  bool _hasOldFile(Vaccines_Controller controller, Vaccine vaccine) {
+    return controller.finalList.any(
+        (entry) => entry['id'] == vaccine.id && entry['hasOldFile'] == true);
+  }
+
+  void _openFile(Vaccines_Controller controller, int index) {
+    openFileInNewTab(
+      filePath: '$getpdf${controller.finalList[index]['fileid']}',
+    );
+  }
+
+  void _updateStudentVaccines() {
+    _vaccinesController.SetFinalList();
+    Update_Students_Vaccines_API(Get.context!).Update_Students_Vaccines(
+      id: widget.id,
+      illness: _vaccinesController.finalList,
+    );
+  }
+
+  int _getCrossAxisCount(double width) {
+    print(width);
+    if (width > 1000) return 2;
+    return 1; // لعرض عمود واحد في الشاشات الصغيرة
   }
 }

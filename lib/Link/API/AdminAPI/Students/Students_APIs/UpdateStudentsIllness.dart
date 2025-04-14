@@ -7,8 +7,7 @@ import 'package:vms_school/widgets/Loading_Dialog.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 
 class Update_Students_Illness_API {
-  Update_Students_Illness_API(this.context);
-  BuildContext context;
+  Update_Students_Illness_API();
   Dio dio = Dio();
   Update_Students_Illness({id, List<Map<String, dynamic>>? illness}) async {
     String myurl = "$hostPort$updateStudentIll";

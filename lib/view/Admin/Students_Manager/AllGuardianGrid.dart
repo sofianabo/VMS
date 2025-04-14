@@ -21,6 +21,23 @@ class AllGuardianGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    int getCrossAxisCount(double screenWidth) {
+      if (screenWidth >= 1226) return 4;
+      if (screenWidth >= 988) return 3;
+      if (screenWidth >= 759) return 2;
+      return 1;
+    }
+
+// متغيرات لتحديد نسبة الطول/العرض للعناصر
+    double getChildAspectRatio(double screenWidth) {
+      if (screenWidth >= 1226) return 1.8;
+      if (screenWidth >= 988) return 2.2;
+      if (screenWidth >= 759) return 2.6;
+      if (screenWidth >= 573) return 3.8;
+      return 3.0;
+    }
+
     return Directionality(
       textDirection: prefs!.getString(languageKey) == 'ar'
           ? TextDirection.rtl
@@ -30,31 +47,12 @@ class AllGuardianGrid extends StatelessWidget {
             ? GridView.builder(
                 padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: Get.width <= 1226 && Get.width >= 988
-                        ? 3
-                        : Get.width <= 987 && Get.width >= 759
-                            ? 2
-                            : Get.width <= 758
-                                ? 1
-                                : 4,
-                    crossAxisSpacing: 20.0,
-                    mainAxisSpacing: 20.0,
-                    childAspectRatio: Get.width <= 1226 && Get.width >= 988
-                        ? 2.2
-                        : Get.width <= 987 && Get.width >= 759
-                            ? 2.7
-                            : Get.width <= 758 && Get.width >= 573
-                                ? 3.8
-                                : Get.width <= 573
-                                    ? 3.0
-                                    : 1.8),
-                itemCount: Get.width <= 1226 && Get.width >= 988
-                    ? 9
-                    : Get.width <= 987 && Get.width >= 759
-                        ? 6
-                        : Get.width <= 758
-                            ? 4
-                            : 12,
+                  crossAxisCount: getCrossAxisCount(width),
+                  crossAxisSpacing: 20.0,
+                  mainAxisSpacing: 20.0,
+                  childAspectRatio: getChildAspectRatio(width),
+                ),
+                itemCount: 12,
                 itemBuilder: (context, index) {
                   return HoverScaleCard(
                     child: Container(
@@ -101,24 +99,10 @@ class AllGuardianGrid extends StatelessWidget {
                     padding:
                         const EdgeInsets.only(top: 10, left: 40, right: 40),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: Get.width <= 1226 && Get.width >= 988
-                            ? 3
-                            : Get.width <= 987 && Get.width >= 759
-                                ? 2
-                                : Get.width <= 758
-                                    ? 1
-                                    : 4,
+                        crossAxisCount: getCrossAxisCount(width),
                         crossAxisSpacing: 20.0,
                         mainAxisSpacing: 20.0,
-                        childAspectRatio: Get.width <= 1226 && Get.width >= 988
-                            ? 2.2
-                            : Get.width <= 987 && Get.width >= 759
-                                ? 2.7
-                                : Get.width <= 758 && Get.width >= 573
-                                    ? 3.8
-                                    : Get.width <= 573
-                                        ? 3.0
-                                        : 1.8),
+                        childAspectRatio: getChildAspectRatio(width)),
                     itemCount: control.filteredregaurdians!.length,
                     itemBuilder: (context, index) {
                       return HoverScaleCard(

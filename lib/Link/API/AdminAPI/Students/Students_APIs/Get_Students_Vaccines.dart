@@ -40,7 +40,8 @@ class Get_Students_Vacciness_API {
         Students_Vaccines_Model students_vaccines_model =
             Students_Vaccines_Model.fromJson(response.data);
         vaccinesController.setIllnessSelected(students_vaccines_model);
-        Show_Vaccines_By_Id_Funcation(context, studentId, index_of_student);
+        Get.dialog(StudentVaccinesDialog(
+            id: studentId.toString(), indexOfStudent: index_of_student));
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,

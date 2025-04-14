@@ -46,6 +46,7 @@ class _AllGuardiansState extends State<AllGuardians> {
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
+    print(w);
     return Expanded(
         child: Column(
       children: [
@@ -56,111 +57,55 @@ class _AllGuardiansState extends State<AllGuardians> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Row(
-                    children: [
-                      GetBuilder<Allgaurdiancontroller>(builder: (controller) {
-                        return Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: TextFormSearch(
-                            click: () {
-                              controller.clearFilter();
-                            },
-                            onchange: (value) {
-                              controller.searchGaurdian(value);
-                            },
-                            width: w * 0.7,
-                            radius: 5,
-                            controller: search,
-                            suffixIcon: search.text.isNotEmpty
-                                ? Icons.close
-                                : Icons.search,
-                          ),
-                        );
-                      }),
-                    ],
-                  ),
-                  const Spacer(),
-                  Row(
-                    children: [
-                      Squer_Button_Enabled_Disabled(
-                        onTap: () {
-                          {
-                            Get.find<Allgaurdiancontroller>().resetError();
-                            email.clear();
-                            username.clear();
-                            pass.clear();
-                            cpass.clear();
-                            name.clear();
-                            phone.clear();
-                            nationalId.clear();
-                            Get.dialog(barrierDismissible: false,
-                                GetBuilder<Allgaurdiancontroller>(
-                                    builder: (controller) {
-                              return VMSAlertDialog(
-                                  contents: SizedBox(
-                                      child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 15.0, left: 15),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Textfildwithupper(
-                                                    onChanged: (value) {
-                                                      if (value.isNotEmpty) {
-                                                        controller
-                                                            .updateFieldError(
-                                                                "email", false);
-                                                      }
-                                                    },
-                                                    isError:
-                                                        controller.IsEmailError,
-                                                    fieldType: "email",
-                                                    isRequired: true,
-                                                    controller: email,
-                                                    hinttext: "Email".tr,
-                                                    Uptext: "Email".tr)
-                                              ],
-                                            ),
-                                          ),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Textfildwithupper(
-                                                  onChanged: (value) {
-                                                    if (value.isNotEmpty) {
-                                                      controller
-                                                          .updateFieldError(
-                                                              "username",
-                                                              false);
-                                                    }
-                                                  },
-                                                  isRequired: true,
-                                                  isError: controller
-                                                      .IsusernameError,
-                                                  controller: username,
-                                                  hinttext:
-                                                      "Guardian Username".tr,
-                                                  Uptext:
-                                                      "Guardian Username".tr)
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 20.0),
-                                        child: Row(
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Wrap(
+                  alignment: WrapAlignment.spaceBetween,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  runAlignment: WrapAlignment.spaceBetween,
+                  spacing: 8.0,
+                  runSpacing: 8.0,
+                  children: [
+                    GetBuilder<Allgaurdiancontroller>(builder: (controller) {
+                      return TextFormSearch(
+                        click: () {
+                          controller.clearFilter();
+                        },
+                        onchange: (value) {
+                          controller.searchGaurdian(value);
+                        },
+                        width: w >= 732 ? w * 0.7 : w * 0.9,
+                        radius: 5,
+                        controller: search,
+                        suffixIcon:
+                            search.text.isNotEmpty ? Icons.close : Icons.search,
+                      );
+                    }),
+                    const Spacer(),
+                    Row(
+                      spacing: 8.0,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Squer_Button_Enabled_Disabled(
+                          onTap: () {
+                            {
+                              Get.find<Allgaurdiancontroller>().resetError();
+                              email.clear();
+                              username.clear();
+                              pass.clear();
+                              cpass.clear();
+                              name.clear();
+                              phone.clear();
+                              nationalId.clear();
+                              Get.dialog(barrierDismissible: false,
+                                  GetBuilder<Allgaurdiancontroller>(
+                                      builder: (controller) {
+                                return VMSAlertDialog(
+                                    contents: SizedBox(
+                                        child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
@@ -176,73 +121,17 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                         if (value.isNotEmpty) {
                                                           controller
                                                               .updateFieldError(
-                                                                  "name",
+                                                                  "email",
                                                                   false);
                                                         }
                                                       },
-                                                      isRequired: true,
                                                       isError: controller
-                                                          .IsnameError,
-                                                      controller: name,
-                                                      Uptext: "Name".tr,
-                                                      hinttext: "Name".tr)
-                                                ],
-                                              ),
-                                            ),
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Textfildwithupper(
-                                                    fieldType: "phone",
-                                                    onChanged: (value) {
-                                                      if (value.isNotEmpty) {
-                                                        controller
-                                                            .updateFieldError(
-                                                                "phone", false);
-                                                      }
-                                                    },
-                                                    isRequired: true,
-                                                    isError:
-                                                        controller.IsphoneError,
-                                                    controller: phone,
-                                                    Uptext: "Phone Number".tr,
-                                                    hinttext: "Phone Number".tr)
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 20.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 15.0, left: 15),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Textfildwithupper(
-                                                      fieldType: "number",
-                                                      onChanged: (value) {
-                                                        if (value.isNotEmpty) {
-                                                          controller
-                                                              .updateFieldError(
-                                                                  "nid", false);
-                                                        }
-                                                      },
-                                                      isError:
-                                                          controller.IsnidError,
+                                                          .IsEmailError,
+                                                      fieldType: "email",
                                                       isRequired: true,
-                                                      controller: nationalId,
-                                                      hinttext:
-                                                          "National ID".tr,
-                                                      Uptext: "National ID".tr)
+                                                      controller: email,
+                                                      hinttext: "Email".tr,
+                                                      Uptext: "Email".tr)
                                                 ],
                                               ),
                                             ),
@@ -255,55 +144,118 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                       if (value.isNotEmpty) {
                                                         controller
                                                             .updateFieldError(
-                                                                "password",
+                                                                "username",
                                                                 false);
                                                       }
                                                     },
-                                                    isError: controller
-                                                        .IsPasswordError,
-                                                    fieldType: "password",
-                                                    IconButton: IconButton(
-                                                        onPressed: () {
-                                                          controller
-                                                              .ChangeShowPassword(
-                                                                  !controller
-                                                                      .ShowPassword);
-                                                        },
-                                                        icon: Icon(
-                                                          controller
-                                                                  .ShowPassword
-                                                              ? Icons
-                                                                  .visibility_off
-                                                              : Icons
-                                                                  .remove_red_eye_outlined,
-                                                          color:
-                                                              Theme.of(context)
-                                                                  .textTheme
-                                                                  .bodySmall!
-                                                                  .color,
-                                                        )),
-                                                    hidePassword:
-                                                        controller.ShowPassword,
                                                     isRequired: true,
-                                                    controller: pass,
-                                                    hinttext: "Password".tr,
-                                                    Uptext: "Password".tr)
+                                                    isError: controller
+                                                        .IsusernameError,
+                                                    controller: username,
+                                                    hinttext:
+                                                        "Guardian Username".tr,
+                                                    Uptext:
+                                                        "Guardian Username".tr)
                                               ],
                                             )
                                           ],
                                         ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 20.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 15.0, left: 15),
-                                              child: Column(
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 20.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 15.0, left: 15),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Textfildwithupper(
+                                                        onChanged: (value) {
+                                                          if (value
+                                                              .isNotEmpty) {
+                                                            controller
+                                                                .updateFieldError(
+                                                                    "name",
+                                                                    false);
+                                                          }
+                                                        },
+                                                        isRequired: true,
+                                                        isError: controller
+                                                            .IsnameError,
+                                                        controller: name,
+                                                        Uptext: "Name".tr,
+                                                        hinttext: "Name".tr)
+                                                  ],
+                                                ),
+                                              ),
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Textfildwithupper(
+                                                      fieldType: "phone",
+                                                      onChanged: (value) {
+                                                        if (value.isNotEmpty) {
+                                                          controller
+                                                              .updateFieldError(
+                                                                  "phone",
+                                                                  false);
+                                                        }
+                                                      },
+                                                      isRequired: true,
+                                                      isError: controller
+                                                          .IsphoneError,
+                                                      controller: phone,
+                                                      Uptext: "Phone Number".tr,
+                                                      hinttext:
+                                                          "Phone Number".tr)
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 20.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 15.0, left: 15),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Textfildwithupper(
+                                                        fieldType: "number",
+                                                        onChanged: (value) {
+                                                          if (value
+                                                              .isNotEmpty) {
+                                                            controller
+                                                                .updateFieldError(
+                                                                    "nid",
+                                                                    false);
+                                                          }
+                                                        },
+                                                        isError: controller
+                                                            .IsnidError,
+                                                        isRequired: true,
+                                                        controller: nationalId,
+                                                        hinttext:
+                                                            "National ID".tr,
+                                                        Uptext:
+                                                            "National ID".tr)
+                                                  ],
+                                                ),
+                                              ),
+                                              Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
@@ -312,23 +264,23 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                         if (value.isNotEmpty) {
                                                           controller
                                                               .updateFieldError(
-                                                                  "cpassword",
+                                                                  "password",
                                                                   false);
                                                         }
                                                       },
                                                       isError: controller
-                                                          .IsConfirmPasswordError,
+                                                          .IsPasswordError,
                                                       fieldType: "password",
                                                       IconButton: IconButton(
                                                           onPressed: () {
                                                             controller
-                                                                .ChangeShowConfirmPassword(
+                                                                .ChangeShowPassword(
                                                                     !controller
-                                                                        .ShowConfirmPassword);
+                                                                        .ShowPassword);
                                                           },
                                                           icon: Icon(
                                                             controller
-                                                                    .ShowConfirmPassword
+                                                                    .ShowPassword
                                                                 ? Icons
                                                                     .visibility_off
                                                                 : Icons
@@ -340,119 +292,182 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                                 .color,
                                                           )),
                                                       hidePassword: controller
-                                                          .ShowConfirmPassword,
+                                                          .ShowPassword,
                                                       isRequired: true,
-                                                      controller: cpass,
-                                                      hinttext:
-                                                          "Confirm Password".tr,
-                                                      Uptext:
-                                                          "Confirm Password".tr)
+                                                      controller: pass,
+                                                      hinttext: "Password".tr,
+                                                      Uptext: "Password".tr)
                                                 ],
-                                              ),
-                                            ),
-                                          ],
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  )),
-                                  action: [
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        ButtonDialog(
-                                            width: 150,
-                                            text: "Add Guardian".tr,
-                                            onPressed: () {
-                                              bool isUsernameEmpty =
-                                                  username.text.trim().isEmpty;
-                                              bool isNameEmpty =
-                                                  name.text.trim().isEmpty;
-                                              bool isPhoneEmpty =
-                                                  phone.text.trim().isEmpty;
-                                              bool isNationalIDEmpty =
-                                                  nationalId.text
-                                                      .trim()
-                                                      .isEmpty;
-                                              bool isEmailEmpty =
-                                                  email.text.trim().isEmpty;
-                                              bool isPasswordEmpty =
-                                                  pass.text.trim().isEmpty;
-                                              bool isConfirmPasswordEmpty =
-                                                  cpass.text.trim().isEmpty;
-
-                                              // التحقق من صحة البريد وكلمة المرور
-                                              RegExp emailRegex = RegExp(
-                                                  r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
-                                              bool isEmailValid = emailRegex
-                                                  .hasMatch(email.text);
-
-                                              RegExp passwordRegex =
-                                                  RegExp(r"^[a-zA-Z0-9]{8,}$");
-                                              bool isPasswordValid =
-                                                  passwordRegex
-                                                      .hasMatch(pass.text);
-
-                                              // تحديث الأخطاء بناءً على الإدخال
-                                              controller.updateFieldError(
-                                                  "username", isUsernameEmpty);
-                                              controller.updateFieldError(
-                                                  "name", isNameEmpty);
-                                              controller.updateFieldError(
-                                                  "phone", isPhoneEmpty);
-                                              controller.updateFieldError(
-                                                  "nid", isNationalIDEmpty);
-                                              controller.updateFieldError(
-                                                  "email",
-                                                  isEmailEmpty ||
-                                                      !isEmailValid);
-                                              controller.updateFieldError(
-                                                  "password",
-                                                  isPasswordEmpty ||
-                                                      !isPasswordValid);
-                                              controller.updateFieldError(
-                                                  "cpassword",
-                                                  isConfirmPasswordEmpty ||
-                                                      pass.text != cpass.text);
-
-                                              // إذا لم يكن هناك أي أخطاء، قم بإضافة ولي الأمر
-                                              if (!(isUsernameEmpty ||
-                                                  isNameEmpty ||
-                                                  isPhoneEmpty ||
-                                                  isNationalIDEmpty ||
-                                                  isEmailEmpty ||
-                                                  !isEmailValid ||
-                                                  isPasswordEmpty ||
-                                                  !isPasswordValid ||
-                                                  isConfirmPasswordEmpty ||
-                                                  pass.text != cpass.text)) {
-                                                Addguardianapi(context)
-                                                    .addguardian(
-                                                  name.text,
-                                                  email.text,
-                                                  nationalId.text,
-                                                  phone.text,
-                                                  username.text,
-                                                  pass.text,
-                                                );
-                                              }
-                                            },
-                                            color:
-                                                Theme.of(context).primaryColor)
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 20.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 15.0, left: 15),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Textfildwithupper(
+                                                        onChanged: (value) {
+                                                          if (value
+                                                              .isNotEmpty) {
+                                                            controller
+                                                                .updateFieldError(
+                                                                    "cpassword",
+                                                                    false);
+                                                          }
+                                                        },
+                                                        isError: controller
+                                                            .IsConfirmPasswordError,
+                                                        fieldType: "password",
+                                                        IconButton: IconButton(
+                                                            onPressed: () {
+                                                              controller
+                                                                  .ChangeShowConfirmPassword(
+                                                                      !controller
+                                                                          .ShowConfirmPassword);
+                                                            },
+                                                            icon: Icon(
+                                                              controller
+                                                                      .ShowConfirmPassword
+                                                                  ? Icons
+                                                                      .visibility_off
+                                                                  : Icons
+                                                                      .remove_red_eye_outlined,
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .bodySmall!
+                                                                  .color,
+                                                            )),
+                                                        hidePassword: controller
+                                                            .ShowConfirmPassword,
+                                                        isRequired: true,
+                                                        controller: cpass,
+                                                        hinttext:
+                                                            "Confirm Password"
+                                                                .tr,
+                                                        Uptext:
+                                                            "Confirm Password"
+                                                                .tr)
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                       ],
-                                    )
-                                  ],
-                                  apptitle: "Add Guardian".tr,
-                                  subtitle: "none");
-                            }));
-                          }
-                        },
-                        icon: Icons.add,
-                        validate:
-                            Get.find<Add_Data_controller>().roll == "subAdmin",
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10.0),
-                        child: Container(
+                                    )),
+                                    action: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          ButtonDialog(
+                                              width: 150,
+                                              text: "Add Guardian".tr,
+                                              onPressed: () {
+                                                bool isUsernameEmpty = username
+                                                    .text
+                                                    .trim()
+                                                    .isEmpty;
+                                                bool isNameEmpty =
+                                                    name.text.trim().isEmpty;
+                                                bool isPhoneEmpty =
+                                                    phone.text.trim().isEmpty;
+                                                bool isNationalIDEmpty =
+                                                    nationalId.text
+                                                        .trim()
+                                                        .isEmpty;
+                                                bool isEmailEmpty =
+                                                    email.text.trim().isEmpty;
+                                                bool isPasswordEmpty =
+                                                    pass.text.trim().isEmpty;
+                                                bool isConfirmPasswordEmpty =
+                                                    cpass.text.trim().isEmpty;
+
+                                                // التحقق من صحة البريد وكلمة المرور
+                                                RegExp emailRegex = RegExp(
+                                                    r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+                                                bool isEmailValid = emailRegex
+                                                    .hasMatch(email.text);
+
+                                                RegExp passwordRegex = RegExp(
+                                                    r"^[a-zA-Z0-9]{8,}$");
+                                                bool isPasswordValid =
+                                                    passwordRegex
+                                                        .hasMatch(pass.text);
+
+                                                // تحديث الأخطاء بناءً على الإدخال
+                                                controller.updateFieldError(
+                                                    "username",
+                                                    isUsernameEmpty);
+                                                controller.updateFieldError(
+                                                    "name", isNameEmpty);
+                                                controller.updateFieldError(
+                                                    "phone", isPhoneEmpty);
+                                                controller.updateFieldError(
+                                                    "nid", isNationalIDEmpty);
+                                                controller.updateFieldError(
+                                                    "email",
+                                                    isEmailEmpty ||
+                                                        !isEmailValid);
+                                                controller.updateFieldError(
+                                                    "password",
+                                                    isPasswordEmpty ||
+                                                        !isPasswordValid);
+                                                controller.updateFieldError(
+                                                    "cpassword",
+                                                    isConfirmPasswordEmpty ||
+                                                        pass.text !=
+                                                            cpass.text);
+
+                                                // إذا لم يكن هناك أي أخطاء، قم بإضافة ولي الأمر
+                                                if (!(isUsernameEmpty ||
+                                                    isNameEmpty ||
+                                                    isPhoneEmpty ||
+                                                    isNationalIDEmpty ||
+                                                    isEmailEmpty ||
+                                                    !isEmailValid ||
+                                                    isPasswordEmpty ||
+                                                    !isPasswordValid ||
+                                                    isConfirmPasswordEmpty ||
+                                                    pass.text != cpass.text)) {
+                                                  Addguardianapi(context)
+                                                      .addguardian(
+                                                    name.text,
+                                                    email.text,
+                                                    nationalId.text,
+                                                    phone.text,
+                                                    username.text,
+                                                    pass.text,
+                                                  );
+                                                }
+                                              },
+                                              color: Theme.of(context)
+                                                  .primaryColor)
+                                        ],
+                                      )
+                                    ],
+                                    apptitle: "Add Guardian".tr,
+                                    subtitle: "none");
+                              }));
+                            }
+                          },
+                          icon: Icons.add,
+                          validate: Get.find<Add_Data_controller>().roll ==
+                              "subAdmin",
+                        ),
+                        Container(
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
@@ -475,10 +490,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                   size: 18,
                                   color: Theme.of(context).highlightColor)),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                        child: Container(
+                        Container(
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
@@ -501,10 +513,10 @@ class _AllGuardiansState extends State<AllGuardians> {
                                   size: 18,
                                   color: Theme.of(context).highlightColor)),
                         ),
-                      ),
-                    ],
-                  )
-                ],
+                      ],
+                    )
+                  ],
+                ),
               ),
             ],
           ),

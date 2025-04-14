@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Class_API/Get_All_Classes.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Illness_APIs/Get_All_Illness_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Vaccines_APIs/Get_All_Vaccines_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Add_Students_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Location_API/Locations_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownClassesAPI.dart';
@@ -44,11 +47,12 @@ Add_Students_Dialog_Functions() async {
     var response = await dio.get(
         cancelToken: cancelToken, myurl, options: getDioOptions());
     if (response.statusCode == 200) {
-      AllGuardianModel classes = AllGuardianModel.fromJson(response.data);
-      c.setallGaurdian(classes);
+      AllGuardianModel Gardians = AllGuardianModel.fromJson(response.data);
+      c.setallGaurdian(Gardians);
       Get.back();
       Get_Location_API.Get_Locations();
-      Get.dialog(All_Gurdians_Dialog(), barrierDismissible: false);
+      Getallclassapi.getAllClasses();
+      Get.dialog(AllGuardiansDialog(), barrierDismissible: false);
     } else {
       ErrorHandler.handleDioError(DioError(
         requestOptions: response.requestOptions,
@@ -67,400 +71,452 @@ Add_Students_Dialog_Functions() async {
   }
 }
 
-All_Gurdians_Dialog() {
-  Getallclassapi.getAllClasses();
-  TextEditingController search = TextEditingController();
-  TextEditingController First_Name = TextEditingController();
-  TextEditingController Last_Name = TextEditingController();
-  TextEditingController Place_Of_Birth = TextEditingController();
-  TextEditingController Mobile_Number = TextEditingController();
-  TextEditingController Current_Address = TextEditingController();
-  TextEditingController National_ID = TextEditingController();
-  TextEditingController Password = TextEditingController();
-  TextEditingController Father_Name = TextEditingController();
-  TextEditingController Mother_Name = TextEditingController();
-  TextEditingController Father_Phone = TextEditingController();
-  TextEditingController Father_Work = TextEditingController();
-  TextEditingController Mother_Phone = TextEditingController();
-  TextEditingController Mother_Work = TextEditingController();
-  TextEditingController Last_School_Detail = TextEditingController();
-  TextEditingController LocalID = TextEditingController();
-  TextEditingController Note = TextEditingController();
-  TextEditingController Fee_Discount = TextEditingController();
-  final addStudentsController = Get.put(Add_Students_Controller());
-  final class_controller = Get.find<Dropdownclassescontroller>();
-  addStudentsController.resetData();
-  return VMSAlertDialog(
-    action: [
-      Obx(() {
-        return addStudentsController.currentPage.value == 1
-            ? Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ButtonDialog(
-                    text: "Back".tr,
-                    onPressed: () {
-                      addStudentsController.goToPage(0);
-                    },
-                    color: Get.theme.primaryColor,
-                    width: 100,
-                  ),
-                  ButtonDialog(
-                    text: "Add Students".tr,
-                    onPressed: () async {
-                      bool isgenderEmpty = Get.find<Add_Students_Controller>()
-                              .selectedGenderIndex
-                              .isEmpty ||
-                          Get.find<Add_Students_Controller>()
-                                  .selectedGenderIndex ==
-                              "";
+class AllGuardiansDialog extends StatefulWidget {
+  const AllGuardiansDialog({Key? key}) : super(key: key);
 
-                      bool isreligionEmpty = Get.find<Add_Students_Controller>()
-                              .selectedRealagonIndex
-                              .isEmpty ||
-                          Get.find<Add_Students_Controller>()
-                                  .selectedRealagonIndex ==
-                              "";
-                      bool isbloodEmpty = Get.find<Add_Students_Controller>()
-                              .selectedBloodTypeIndex
-                              .isEmpty ||
-                          Get.find<Add_Students_Controller>()
-                                  .selectedBloodTypeIndex ==
-                              "";
-                      bool iscountryEmpty = Get.find<Add_Students_Controller>()
-                              .selectedLocationIndex
-                              .isEmpty ||
-                          Get.find<Add_Students_Controller>()
-                                  .selectedLocationIndex ==
-                              "";
-                      bool isclassEmpty = Get.find<Add_Students_Controller>()
-                              .selectedClassIndex
-                              .isEmpty ||
-                          Get.find<Add_Students_Controller>()
-                                  .selectedClassIndex ==
-                              "";
-                      bool isDivisionEmpty = Get.find<Add_Students_Controller>()
-                              .selectedDivisionIndex
-                              .isEmpty ||
-                          Get.find<Add_Students_Controller>()
-                                  .selectedDivisionIndex ==
-                              "";
+  @override
+  _AllGuardiansDialogState createState() => _AllGuardiansDialogState();
+}
 
-                      bool isFirstNameEmpty = First_Name.text.trim().isEmpty;
-                      bool isLastNameEmpty = Last_Name.text.trim().isEmpty;
-                      bool isPlaceofBirthEmpty =
-                          Place_Of_Birth.text.trim().isEmpty;
-                      bool isphoneEmpty = Mobile_Number.text.trim().isEmpty;
-                      bool isLocalIDEmpty = LocalID.text.trim().isEmpty;
-                      bool isAddressEmpty = Current_Address.text.trim().isEmpty;
-                      bool isusernameEmpty = addStudentsController
-                          .textController.text
-                          .trim()
-                          .isEmpty;
-                      bool ispasswordEmpty = Password.text.trim().isEmpty;
-                      bool isfathernameEmpty = Father_Name.text.trim().isEmpty;
-                      bool isFatherPhoneEmpty =
-                          Father_Phone.text.trim().isEmpty;
-                      bool isMotherNameEmpty = Mother_Name.text.trim().isEmpty;
-                      bool ismotehrPhoneEmpty =
-                          Mother_Phone.text.trim().isEmpty;
-                      bool isbirthdateEmpty =
-                          Get.find<Allempolyeecontroller>().Birthdate.value ==
-                              null;
+class _AllGuardiansDialogState extends State<AllGuardiansDialog> {
+  // Controllers
+  late TextEditingController _searchController;
+  late TextEditingController _firstNameController;
+  late TextEditingController _lastNameController;
+  late TextEditingController _placeOfBirthController;
+  late TextEditingController _mobileNumberController;
+  late TextEditingController _currentAddressController;
+  late TextEditingController _nationalIdController;
+  late TextEditingController _passwordController;
+  late TextEditingController _fatherNameController;
+  late TextEditingController _motherNameController;
+  late TextEditingController _fatherPhoneController;
+  late TextEditingController _fatherWorkController;
+  late TextEditingController _motherPhoneController;
+  late TextEditingController _motherWorkController;
+  late TextEditingController _lastSchoolDetailController;
+  late TextEditingController _localIdController;
+  late TextEditingController _noteController;
+  late TextEditingController _feeDiscountController;
 
-                      bool isfatherpassport =
-                          Get.find<Add_Students_Controller>()
-                                  .selectedFatherPassport
-                                  .value ==
-                              null;
+  // Other variables
+  final _addStudentsController = Get.put(Add_Students_Controller());
+  late Dropdownclassescontroller _classController;
+  late Allgaurdiancontroller _guardianController;
+  late Allempolyeecontroller _employeeController;
+  late Location_controller _locationController;
+  late Dropdowndivisioncontroller _divisionController;
+  late Illness_Controller _illnessController;
+  late Vaccines_Controller _vaccinesController;
 
-                      bool isFamilyPassport =
-                          Get.find<Add_Students_Controller>()
-                                  .selectedFamilyBook
-                                  .value ==
-                              null;
+  @override
+  void initState() {
+    super.initState();
+    _initializeControllers();
+    _resetData();
+  }
 
-                      RegExp passwordRegex = RegExp(r"^[a-zA-Z0-9]{8,}$");
-                      bool isPasswordValid =
-                          passwordRegex.hasMatch(Password.text);
+  void _initializeControllers() {
+    _searchController = TextEditingController();
+    _firstNameController = TextEditingController();
+    _lastNameController = TextEditingController();
+    _placeOfBirthController = TextEditingController();
+    _mobileNumberController = TextEditingController();
+    _currentAddressController = TextEditingController();
+    _nationalIdController = TextEditingController();
+    _passwordController = TextEditingController();
+    _fatherNameController = TextEditingController();
+    _motherNameController = TextEditingController();
+    _fatherPhoneController = TextEditingController();
+    _fatherWorkController = TextEditingController();
+    _motherPhoneController = TextEditingController();
+    _motherWorkController = TextEditingController();
+    _lastSchoolDetailController = TextEditingController();
+    _localIdController = TextEditingController();
+    _noteController = TextEditingController();
+    _feeDiscountController = TextEditingController();
 
-                      addStudentsController.updateFieldError(
-                          "first", isFirstNameEmpty);
+    _classController = Get.find<Dropdownclassescontroller>();
+    _guardianController = Get.find<Allgaurdiancontroller>();
+    _employeeController = Get.find<Allempolyeecontroller>();
+    _locationController = Get.find<Location_controller>();
+    _divisionController = Get.find<Dropdowndivisioncontroller>();
+    _illnessController = Get.find<Illness_Controller>();
+    _vaccinesController = Get.find<Vaccines_Controller>();
+  }
 
-                      addStudentsController.updateFieldError(
-                          "fatherpass", isfatherpassport);
-                      addStudentsController.updateFieldError(
-                          "familypass", isFamilyPassport);
+  void _resetData() {
+    _addStudentsController.resetData();
+  }
 
-                      addStudentsController.updateFieldError(
-                          "last", isLastNameEmpty);
-                      addStudentsController.updateFieldError(
-                          "birthdate", isbirthdateEmpty);
-                      addStudentsController.updateFieldError(
-                          "placeofbirth", isPlaceofBirthEmpty);
-                      addStudentsController.updateFieldError(
-                          "gender", isgenderEmpty);
-                      addStudentsController.updateFieldError(
-                          "religion", isreligionEmpty);
-                      addStudentsController.updateFieldError(
-                          "blood", isbloodEmpty);
-                      addStudentsController.updateFieldError(
-                          "country", iscountryEmpty);
-                      addStudentsController.updateFieldError(
-                          "phone", isphoneEmpty);
-                      addStudentsController.updateFieldError(
-                          "localnational", isLocalIDEmpty);
-                      addStudentsController.updateFieldError(
-                          "class", isclassEmpty);
+  @override
+  void dispose() {
+    _searchController.dispose();
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _placeOfBirthController.dispose();
+    _mobileNumberController.dispose();
+    _currentAddressController.dispose();
+    _nationalIdController.dispose();
+    _passwordController.dispose();
+    _fatherNameController.dispose();
+    _motherNameController.dispose();
+    _fatherPhoneController.dispose();
+    _fatherWorkController.dispose();
+    _motherPhoneController.dispose();
+    _motherWorkController.dispose();
+    _lastSchoolDetailController.dispose();
+    _localIdController.dispose();
+    _noteController.dispose();
+    _feeDiscountController.dispose();
+    super.dispose();
+  }
 
-                      addStudentsController.updateFieldError(
-                          "localaddress", isAddressEmpty);
-                      addStudentsController.updateFieldError(
-                          "username", isusernameEmpty);
-                      addStudentsController.updateFieldError(
-                          "division", isDivisionEmpty);
-                      addStudentsController.updateFieldError(
-                          "password", ispasswordEmpty || !isPasswordValid);
-                      addStudentsController.updateFieldError(
-                          "fathername", isfathernameEmpty);
-                      addStudentsController.updateFieldError(
-                          "fatherphone", isFatherPhoneEmpty);
-                      addStudentsController.updateFieldError(
-                          "mothername", isMotherNameEmpty);
-                      addStudentsController.updateFieldError(
-                          "motherphone", ismotehrPhoneEmpty);
-                      if (!(isFirstNameEmpty ||
-                          isLastNameEmpty ||
-                          isbirthdateEmpty ||
-                          isPlaceofBirthEmpty ||
-                          isgenderEmpty ||
-                          isreligionEmpty ||
-                          isbloodEmpty ||
-                          iscountryEmpty ||
-                          isphoneEmpty ||
-                          isLocalIDEmpty ||
-                          isclassEmpty ||
-                          isfatherpassport ||
-                          isFamilyPassport ||
-                          isAddressEmpty ||
-                          isusernameEmpty ||
-                          isDivisionEmpty ||
-                          ispasswordEmpty ||
-                          !isPasswordValid ||
-                          isfathernameEmpty ||
-                          isFatherPhoneEmpty ||
-                          isMotherNameEmpty ||
-                          ismotehrPhoneEmpty)) {
-                        await Add_Student_API.Add_Student(
-                            locationId: Get.find<Location_controller>()
-                                .location![
-                                    addStudentsController.Locationlist.indexOf(
-                                        addStudentsController.LocationIndex)]
-                                .id,
-                            firstName: First_Name.text,
-                            lastName: Last_Name.text,
-                            gender: addStudentsController.GenderIndex,
-                            birthDate: Get.find<Allempolyeecontroller>()
-                                .Birthdate
-                                .value,
-                            placeOfBirth: Place_Of_Birth.text,
-                            religion: addStudentsController.RealagonIndex,
-                            mobileNumber: Mobile_Number.text,
-                            bloodType: addStudentsController.BloodTypeIndex,
-                            fatherName: Father_Name.text,
-                            fatherPhone: Father_Phone.text,
-                            motherName: Mother_Name.text,
-                            currentAdress: Current_Address.text,
-                            familystatus:
-                                addStudentsController.FamilyStateIndex,
-                            guardianId:
-                                Get.find<Allgaurdiancontroller>().garduansid,
-                            userName: addStudentsController.textController.text,
-                            password: Password.text,
-                            classid: class_controller
-                                .Allclass[
-                                    addStudentsController.Classlist.indexOf(
-                                        addStudentsController.ClassIndex)]
-                                .id,
-                            divisionId: Get.find<Dropdowndivisioncontroller>()
-                                .allDivision[
-                                    addStudentsController.Divisionlist.indexOf(
-                                        addStudentsController.DivisionIndex)]
-                                .id,
-                            fatherWork: Father_Work.text,
-                            motherPhone: Mother_Phone.text,
-                            motherWork: Mother_Work.text,
-                            nationalNumber: National_ID.text,
-                            localID: LocalID.text,
-                            lastSchoolDetail: Last_School_Detail.text,
-                            note: Note.text,
-                            Fee_Discount: Fee_Discount.text,
-                            specialNeeds: addStudentsController.isSpecialNeed.value,
-                            martyrSon: addStudentsController.isMartySon.value,
-                            FatherPassport: addStudentsController.selectedFatherPassport.value,
-                            MotherPassport: addStudentsController.selectedMotherPassport.value,
-                            SonPassport: addStudentsController.selectedSonPassport.value,
-                            UserID: addStudentsController.selectedId.value,
-                            Certefecate: addStudentsController.selectedCertificate.value,
-                            Academic_sequence: addStudentsController.selectedtsalsol.value,
-                            FamilyNotbook: addStudentsController.selectedFamilyBook.value,
-                            illness: Get.find<Illness_Controller>().files,
-                            vaccine: Get.find<Vaccines_Controller>().files,
-                            file: addStudentsController.selectedImage.value);
-                      }
-                    },
-                    color: Get.theme.primaryColor,
-                    width: 100,
-                  ),
-                ],
-              )
-            : SizedBox();
-      }),
-    ],
-    contents: Padding(
-      padding: const EdgeInsets.only(top: 25.0, bottom: 25.0),
-      child: SizedBox(
-        width: 700,
-        child: PageView(
-          physics: NeverScrollableScrollPhysics(),
-          allowImplicitScrolling: false,
-          scrollDirection: Axis.horizontal,
-          controller: addStudentsController.pageController,
-          onPageChanged: (index) {
-            addStudentsController.currentPage.value = index;
-          },
-          children: [
-            GetBuilder<Allgaurdiancontroller>(builder: (control) {
-              return Column(
-                children: [
-                  Row(
+  // Helper methods for grid configuration
+  int _getCrossAxisCount(double screenWidth) {
+    if (screenWidth >= 759) return 2;
+    return 1;
+  }
+
+  double _getChildAspectRatio(double screenWidth) {
+    if (screenWidth >= 759) return 1.8;
+    if (screenWidth >= 573) return 3.8;
+    return 3.0;
+  }
+
+  Future<void> _addStudent() async {
+    bool isGenderEmpty = _addStudentsController.selectedGenderIndex.isEmpty ||
+        _addStudentsController.selectedGenderIndex == "";
+
+    bool isReligionEmpty =
+        _addStudentsController.selectedRealagonIndex.isEmpty ||
+            _addStudentsController.selectedRealagonIndex == "";
+
+    bool isBloodEmpty = _addStudentsController.selectedBloodTypeIndex.isEmpty ||
+        _addStudentsController.selectedBloodTypeIndex == "";
+
+    bool isCountryEmpty =
+        _addStudentsController.selectedLocationIndex.isEmpty ||
+            _addStudentsController.selectedLocationIndex == "";
+
+    bool isClassEmpty = _addStudentsController.selectedClassIndex.isEmpty ||
+        _addStudentsController.selectedClassIndex == "";
+
+    bool isDivisionEmpty =
+        _addStudentsController.selectedDivisionIndex.isEmpty ||
+            _addStudentsController.selectedDivisionIndex == "";
+
+    bool isFirstNameEmpty = _firstNameController.text.trim().isEmpty;
+    bool isLastNameEmpty = _lastNameController.text.trim().isEmpty;
+    bool isPlaceofBirthEmpty = _placeOfBirthController.text.trim().isEmpty;
+    bool isPhoneEmpty = _mobileNumberController.text.trim().isEmpty;
+    bool isLocalIDEmpty = _localIdController.text.trim().isEmpty;
+    bool isAddressEmpty = _currentAddressController.text.trim().isEmpty;
+    bool isUsernameEmpty =
+        _addStudentsController.textController.text.trim().isEmpty;
+    bool isPasswordEmpty = _passwordController.text.trim().isEmpty;
+    bool isFatherNameEmpty = _fatherNameController.text.trim().isEmpty;
+    bool isFatherPhoneEmpty = _fatherPhoneController.text.trim().isEmpty;
+    bool isMotherNameEmpty = _motherNameController.text.trim().isEmpty;
+    bool isMotherPhoneEmpty = _motherPhoneController.text.trim().isEmpty;
+    bool isBirthdateEmpty = _employeeController.Birthdate.value == null;
+    bool isFatherPassport =
+        _addStudentsController.selectedFatherPassport.value == null;
+    bool isFamilyPassport =
+        _addStudentsController.selectedFamilyBook.value == null;
+
+    RegExp passwordRegex = RegExp(r"^[a-zA-Z0-9]{8,}$");
+    bool isPasswordValid = passwordRegex.hasMatch(_passwordController.text);
+
+    // Update error states
+    _addStudentsController.updateFieldError("first", isFirstNameEmpty);
+    _addStudentsController.updateFieldError("fatherpass", isFatherPassport);
+    _addStudentsController.updateFieldError("familypass", isFamilyPassport);
+    _addStudentsController.updateFieldError("last", isLastNameEmpty);
+    _addStudentsController.updateFieldError("birthdate", isBirthdateEmpty);
+    _addStudentsController.updateFieldError(
+        "placeofbirth", isPlaceofBirthEmpty);
+    _addStudentsController.updateFieldError("gender", isGenderEmpty);
+    _addStudentsController.updateFieldError("religion", isReligionEmpty);
+    _addStudentsController.updateFieldError("blood", isBloodEmpty);
+    _addStudentsController.updateFieldError("country", isCountryEmpty);
+    _addStudentsController.updateFieldError("phone", isPhoneEmpty);
+    _addStudentsController.updateFieldError("localnational", isLocalIDEmpty);
+    _addStudentsController.updateFieldError("class", isClassEmpty);
+    _addStudentsController.updateFieldError("localaddress", isAddressEmpty);
+    _addStudentsController.updateFieldError("username", isUsernameEmpty);
+    _addStudentsController.updateFieldError("division", isDivisionEmpty);
+    _addStudentsController.updateFieldError(
+        "password", isPasswordEmpty || !isPasswordValid);
+    _addStudentsController.updateFieldError("fathername", isFatherNameEmpty);
+    _addStudentsController.updateFieldError("fatherphone", isFatherPhoneEmpty);
+    _addStudentsController.updateFieldError("mothername", isMotherNameEmpty);
+    _addStudentsController.updateFieldError("motherphone", isMotherPhoneEmpty);
+
+    if (!(isFirstNameEmpty ||
+        isLastNameEmpty ||
+        isBirthdateEmpty ||
+        isPlaceofBirthEmpty ||
+        isGenderEmpty ||
+        isReligionEmpty ||
+        isBloodEmpty ||
+        isCountryEmpty ||
+        isPhoneEmpty ||
+        isLocalIDEmpty ||
+        isClassEmpty ||
+        isFatherPassport ||
+        isFamilyPassport ||
+        isAddressEmpty ||
+        isUsernameEmpty ||
+        isDivisionEmpty ||
+        isPasswordEmpty ||
+        !isPasswordValid ||
+        isFatherNameEmpty ||
+        isFatherPhoneEmpty ||
+        isMotherNameEmpty ||
+        isMotherPhoneEmpty)) {
+      await Add_Student_API.Add_Student(
+        locationId: _locationController
+            .location![_addStudentsController.Locationlist.indexOf(
+                _addStudentsController.LocationIndex)]
+            .id,
+        firstName: _firstNameController.text,
+        lastName: _lastNameController.text,
+        gender: _addStudentsController.GenderIndex,
+        birthDate: _employeeController.Birthdate.value,
+        placeOfBirth: _placeOfBirthController.text,
+        religion: _addStudentsController.RealagonIndex,
+        mobileNumber: _mobileNumberController.text,
+        bloodType: _addStudentsController.BloodTypeIndex,
+        fatherName: _fatherNameController.text,
+        fatherPhone: _fatherPhoneController.text,
+        motherName: _motherNameController.text,
+        currentAdress: _currentAddressController.text,
+        familystatus: _addStudentsController.FamilyStateIndex,
+        guardianId: _guardianController.garduansid,
+        userName: _addStudentsController.textController.text,
+        password: _passwordController.text,
+        classid: _classController
+            .Allclass[_addStudentsController.Classlist.indexOf(
+                _addStudentsController.ClassIndex)]
+            .id,
+        divisionId: _divisionController
+            .allDivision[_addStudentsController.Divisionlist.indexOf(
+                _addStudentsController.DivisionIndex)]
+            .id,
+        fatherWork: _fatherWorkController.text,
+        motherPhone: _motherPhoneController.text,
+        motherWork: _motherWorkController.text,
+        nationalNumber: _nationalIdController.text,
+        localID: _localIdController.text,
+        lastSchoolDetail: _lastSchoolDetailController.text,
+        note: _noteController.text,
+        Fee_Discount: _feeDiscountController.text,
+        specialNeeds: _addStudentsController.isSpecialNeed.value,
+        martyrSon: _addStudentsController.isMartySon.value,
+        FatherPassport: _addStudentsController.selectedFatherPassport.value,
+        MotherPassport: _addStudentsController.selectedMotherPassport.value,
+        SonPassport: _addStudentsController.selectedSonPassport.value,
+        UserID: _addStudentsController.selectedId.value,
+        Certefecate: _addStudentsController.selectedCertificate.value,
+        Academic_sequence: _addStudentsController.selectedtsalsol.value,
+        FamilyNotbook: _addStudentsController.selectedFamilyBook.value,
+        illness: _illnessController.files,
+        vaccine: _vaccinesController.files,
+        file: _addStudentsController.selectedImage.value,
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    double widthScreen = MediaQuery.of(context).size.width;
+    print(widthScreen);
+    return VMSAlertDialog(
+      action: [
+        Obx(() {
+          return _addStudentsController.currentPage.value == 1
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ButtonDialog(
+                      text: "Back".tr,
+                      onPressed: () {
+                        _addStudentsController.goToPage(0);
+                      },
+                      color: Get.theme.primaryColor,
+                      width: 100,
+                    ),
+                    ButtonDialog(
+                      text: "Add Students".tr,
+                      onPressed: _addStudent,
+                      color: Get.theme.primaryColor,
+                      width: 100,
+                    ),
+                  ],
+                )
+              : const SizedBox();
+        }),
+      ],
+      contents: Padding(
+        padding: const EdgeInsets.only(top: 25.0, bottom: 25.0),
+        child: SizedBox(
+          width: 700,
+          child: PageView(
+            physics: const NeverScrollableScrollPhysics(),
+            allowImplicitScrolling: false,
+            scrollDirection: Axis.horizontal,
+            controller: _addStudentsController.pageController,
+            onPageChanged: (index) {
+              _addStudentsController.currentPage.value = index;
+            },
+            children: [
+              GetBuilder<Allgaurdiancontroller>(
+                builder: (controller) {
+                  return Column(
                     children: [
-                      Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: TextFormSearch(
-                            click: () {
-                              control.clearFilter();
-                            },
-                            onchange: (value) {
-                              control.searchGaurdian(value);
-                            },
-                            width: 680,
-                            radius: 5,
-                            controller: search,
-                            suffixIcon: search.text.isNotEmpty
-                                ? Icons.close
-                                : Icons.search,
-                          )),
-                    ],
-                  ),
-                  Expanded(
-                      child: GridView.builder(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 10, right: 10),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 10.0,
-                        mainAxisSpacing: 10.0,
-                        childAspectRatio: 1.8),
-                    itemCount: control.filteredregaurdians!.length,
-                    itemBuilder: (context, index) {
-                      return HoverScaleCard(
-                        child: GestureDetector(
-                          onTap: () {
-                            control.garduansid = control
-                                .filteredregaurdians![index].id
-                                .toString();
-                            addStudentsController.goToPage(1);
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              border:
-                                  Border.all(color: Colors.grey, width: 0.5),
-                              color: Theme.of(context).cardColor,
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black26,
-                                    offset: Offset(0, 2),
-                                    blurRadius: 1)
-                              ],
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        "${control.filteredregaurdians![index].name}",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium!
-                                            .copyWith(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    Text(
-                                      "${control.filteredregaurdians![index].userName}",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleLarge!,
-                                    ),
-                                  ],
-                                ),
-                                Text(
-                                  "Email:".tr +
-                                      " ${control.filteredregaurdians![index].email}",
-                                  style:
-                                      Theme.of(context).textTheme.bodyMedium!,
-                                ),
-                                Text(
-                                  "Mobile Number :".tr +
-                                      " ${control.filteredregaurdians![index].phone}",
-                                  style:
-                                      Theme.of(context).textTheme.bodyMedium!,
-                                ),
-                              ],
+                      Row(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(left: 8.0, right: 8.0),
+                            child: TextFormSearch(
+                              click: () {
+                                controller.clearFilter();
+                              },
+                              onchange: (value) {
+                                controller.searchGaurdian(value);
+                              },
+                              width:
+                                  widthScreen >= 775 ? 684 : widthScreen * 0.8,
+                              radius: 5,
+                              controller: _searchController,
+                              suffixIcon: _searchController.text.isNotEmpty
+                                  ? Icons.close
+                                  : Icons.search,
                             ),
                           ),
+                        ],
+                      ),
+                      Expanded(
+                        child: GridView.builder(
+                          padding: const EdgeInsets.only(
+                              top: 10, left: 10, right: 10),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: _getCrossAxisCount(widthScreen),
+                            crossAxisSpacing: 10.0,
+                            mainAxisSpacing: 10.0,
+                            childAspectRatio: _getChildAspectRatio(widthScreen),
+                          ),
+                          itemCount: controller.filteredregaurdians!.length,
+                          itemBuilder: (context, index) {
+                            return HoverScaleCard(
+                              child: GestureDetector(
+                                onTap: () {
+                                  controller.garduansid = controller
+                                      .filteredregaurdians![index].id
+                                      .toString();
+                                  _addStudentsController.goToPage(1);
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(20),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    border: Border.all(
+                                        color: Colors.grey, width: 0.5),
+                                    color: Theme.of(context).cardColor,
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        color: Colors.black26,
+                                        offset: Offset(0, 2),
+                                        blurRadius: 1,
+                                      ),
+                                    ],
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Expanded(
+                                            child: Text(
+                                              "${controller.filteredregaurdians![index].name}",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                            ),
+                                          ),
+                                          Text(
+                                            "${controller.filteredregaurdians![index].userName}",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleLarge!,
+                                          ),
+                                        ],
+                                      ),
+                                      Text(
+                                        "Email:".tr +
+                                            " ${controller.filteredregaurdians![index].email}",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!,
+                                      ),
+                                      Text(
+                                        "Mobile Number :".tr +
+                                            " ${controller.filteredregaurdians![index].phone}",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
                         ),
-                      );
-                    },
-                  ))
-                ],
-              );
-            }),
-            Add_Students_page(
-              First_Name: First_Name,
-              Last_Name: Last_Name,
-              Place_Of_Birth: Place_Of_Birth,
-              Mobile_Number: Mobile_Number,
-              Current_Address: Current_Address,
-              National_ID: National_ID,
-              Password: Password,
-              Father_Name: Father_Name,
-              Mother_Name: Mother_Name,
-              Father_Phone: Father_Phone,
-              Father_Work: Father_Work,
-              Mother_Phone: Mother_Phone,
-              Mother_Work: Mother_Work,
-              Last_School_Detail: Last_School_Detail,
-              Note: Note,
-              LocalID: LocalID,
-              Fee_Discount: Fee_Discount,
-            ),
-          ],
+                      ),
+                    ],
+                  );
+                },
+              ),
+              Add_Students_page(
+                First_Name: _firstNameController,
+                Last_Name: _lastNameController,
+                Place_Of_Birth: _placeOfBirthController,
+                Mobile_Number: _mobileNumberController,
+                Current_Address: _currentAddressController,
+                National_ID: _nationalIdController,
+                Password: _passwordController,
+                Father_Name: _fatherNameController,
+                Mother_Name: _motherNameController,
+                Father_Phone: _fatherPhoneController,
+                Father_Work: _fatherWorkController,
+                Mother_Phone: _motherPhoneController,
+                Mother_Work: _motherWorkController,
+                Last_School_Detail: _lastSchoolDetailController,
+                Note: _noteController,
+                LocalID: _localIdController,
+                Fee_Discount: _feeDiscountController,
+              ),
+            ],
+          ),
         ),
       ),
-    ),
-    apptitle: "Add Students".tr,
-    subtitle: "Select Garduans To Add Students".tr,
-  );
+      apptitle: "Add Students".tr,
+      subtitle: "Select Garduans To Add Students".tr,
+    );
+  }
 }
 
 class Add_Students_page extends StatefulWidget {
@@ -512,6 +568,9 @@ class _Add_Students_pageState extends State<Add_Students_page> {
   DropzoneViewController? ctrl;
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double smallwidth = width >= 720 ? (width) - 20 : 300;
+    print(smallwidth);
     return Column(
       children: [
         GetBuilder<Add_Students_Controller>(builder: (controller) {
@@ -526,79 +585,95 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              Obx(
-                                () => GestureDetector(
-                                  onTap: () async {
-                                    await controller.pickImage(context);
-                                  },
-                                  child: CircleAvatar(
-                                    backgroundColor: const Color(0xffC4C4C4),
-                                    maxRadius: 100,
-                                    backgroundImage:
-                                        controller.selectedImage.value != null
-                                            ? MemoryImage(
-                                                controller.selectedImage.value!)
-                                            : null,
-                                    child:
-                                        controller.selectedImage.value == null
-                                            ? const Icon(
-                                                Icons.image_outlined,
-                                                color: Colors.white,
-                                                size: 40,
-                                              )
-                                            : null,
+                      Container(
+                        width: 620,
+                        child: Wrap(
+                          alignment: width <= 690
+                              ? WrapAlignment.center
+                              : WrapAlignment.spaceBetween,
+                          runAlignment: width <= 690
+                              ? WrapAlignment.center
+                              : WrapAlignment.spaceBetween,
+                          spacing: 22.0,
+                          runSpacing: 22.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          children: [
+                            Column(
+                              children: [
+                                Obx(
+                                  () => GestureDetector(
+                                    onTap: () async {
+                                      await controller.pickImage(context);
+                                    },
+                                    child: CircleAvatar(
+                                      backgroundColor: const Color(0xffC4C4C4),
+                                      maxRadius: 100,
+                                      backgroundImage: controller
+                                                  .selectedImage.value !=
+                                              null
+                                          ? MemoryImage(
+                                              controller.selectedImage.value!)
+                                          : null,
+                                      child:
+                                          controller.selectedImage.value == null
+                                              ? const Icon(
+                                                  Icons.image_outlined,
+                                                  color: Colors.white,
+                                                  size: 40,
+                                                )
+                                              : null,
+                                    ),
                                   ),
-                                ),
-                              )
-                            ],
-                          ),
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Textfildwithupper(
-                                isRequired: true,
-                                width: 300,
-                                controller: widget.First_Name,
-                                Uptext: "First Name".tr,
-                                hinttext: "First Name".tr,
-                                isError: controller.ISfirstNameError,
-                                onChanged: (value) {
-                                  controller.updateFirstName(value);
-                                  if (value.isNotEmpty) {
-                                    controller.updateFieldError("first", false);
-                                  }
-                                },
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 22.0),
-                                child: Textfildwithupper(
+                                )
+                              ],
+                            ),
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Textfildwithupper(
                                   isRequired: true,
-                                  isError: controller.ISlastNameError,
                                   width: 300,
-                                  Uptext: "Last Name".tr,
-                                  hinttext: "Last Name".tr,
-                                  controller: widget.Last_Name,
+                                  controller: widget.First_Name,
+                                  Uptext: "First Name".tr,
+                                  hinttext: "First Name".tr,
+                                  isError: controller.ISfirstNameError,
                                   onChanged: (value) {
-                                    controller.updateLastName(value);
+                                    controller.updateFirstName(value);
                                     if (value.isNotEmpty) {
                                       controller.updateFieldError(
-                                          "last", false);
+                                          "first", false);
                                     }
                                   },
                                 ),
-                              ),
-                            ],
-                          )
-                        ],
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 22.0),
+                                  child: Textfildwithupper(
+                                    isRequired: true,
+                                    isError: controller.ISlastNameError,
+                                    width: 300,
+                                    Uptext: "Last Name".tr,
+                                    hinttext: "Last Name".tr,
+                                    controller: widget.Last_Name,
+                                    onChanged: (value) {
+                                      controller.updateLastName(value);
+                                      if (value.isNotEmpty) {
+                                        controller.updateFieldError(
+                                            "last", false);
+                                      }
+                                    },
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 22.0),
-                        child: Row(
+                        child: Wrap(
+                          spacing: 20.0,
+                          runSpacing: 20.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
                             Textfildwithupper(
                                 isRequired: true,
@@ -613,27 +688,21 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                 width: 300,
                                 Uptext: "Place Of Birth".tr,
                                 hinttext: "Place Of Birth".tr),
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    left: prefs!.getString(languageKey) == "ar"
-                                        ? 0
-                                        : 20.0,
-                                    right: prefs!.getString(languageKey) == "ar"
-                                        ? 20
-                                        : 0),
-                                child: BirthDate(
-                                  isError: controller.IsBirthdateError,
-                                  isRequired: true,
-                                  Uptext: "Birthdate".tr,
-                                  width: 300,
-                                ))
+                            BirthDate(
+                              isError: controller.IsBirthdateError,
+                              isRequired: true,
+                              Uptext: "Birthdate".tr,
+                              width: 300,
+                            )
                           ],
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 22.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
+                        child: Wrap(
+                          spacing: 20.0,
+                          runSpacing: 20.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
                             DropdownAddStudents(
                                 isLoading: false,
@@ -641,28 +710,21 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                 title: "Gender".tr,
                                 width: 300,
                                 type: "Gender"),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: prefs!.getString(languageKey) == "ar"
-                                      ? 0
-                                      : 20.0,
-                                  right: prefs!.getString(languageKey) == "ar"
-                                      ? 20
-                                      : 0),
-                              child: DropdownAddStudents(
-                                  isLoading: false,
-                                  isError: controller.IsReligionError,
-                                  title: "Religion".tr,
-                                  width: 300,
-                                  type: "Realagon"),
-                            )
+                            DropdownAddStudents(
+                                isLoading: false,
+                                isError: controller.IsReligionError,
+                                title: "Religion".tr,
+                                width: 300,
+                                type: "Realagon")
                           ],
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 22.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
+                        child: Wrap(
+                          spacing: 20.0,
+                          runSpacing: 20.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
                             DropdownAddStudents(
                                 isLoading: false,
@@ -670,27 +732,21 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                 title: "Blood Type".tr,
                                 width: 300,
                                 type: "BloodType"),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: prefs!.getString(languageKey) == "ar"
-                                      ? 0
-                                      : 20.0,
-                                  right: prefs!.getString(languageKey) == "ar"
-                                      ? 20
-                                      : 0),
-                              child: DropdownAddStudents(
-                                  isLoading: controller.isLoadingLocation,
-                                  title: "Location".tr,
-                                  isError: controller.IsCountryError,
-                                  width: 300,
-                                  type: "Location"),
-                            )
+                            DropdownAddStudents(
+                                isLoading: controller.isLoadingLocation,
+                                title: "Location".tr,
+                                isError: controller.IsCountryError,
+                                width: 300,
+                                type: "Location")
                           ],
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 22.0),
-                        child: Row(
+                        child: Wrap(
+                          spacing: 20.0,
+                          runSpacing: 20.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
                             Textfildwithupper(
                                 isRequired: true,
@@ -705,47 +761,43 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                 controller: widget.Mobile_Number,
                                 Uptext: "Mobile Number".tr,
                                 hinttext: "Mobile Number".tr),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: prefs!.getString(languageKey) == "ar"
-                                      ? 0
-                                      : 20.0,
-                                  right: prefs!.getString(languageKey) == "ar"
-                                      ? 20
-                                      : 0),
-                              child: Textfildwithupper(
-                                  isRequired: true,
-                                  isError: controller.ISLocalNationalIDError,
-                                  onChanged: (value) {
-                                    if (value.isNotEmpty) {
-                                      controller.updateFieldError(
-                                          "localnational", false);
-                                    }
-                                  },
-                                  width: 300,
-                                  controller: widget.LocalID,
-                                  Uptext: "Local ID".tr,
-                                  hinttext: "Local ID".tr),
-                            )
+                            Textfildwithupper(
+                                isRequired: true,
+                                isError: controller.ISLocalNationalIDError,
+                                onChanged: (value) {
+                                  if (value.isNotEmpty) {
+                                    controller.updateFieldError(
+                                        "localnational", false);
+                                  }
+                                },
+                                width: 300,
+                                controller: widget.LocalID,
+                                Uptext: "Local ID".tr,
+                                hinttext: "Local ID".tr)
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 22.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            DropdownAddStudents(
+                      Wrap(
+                        spacing: 20.0,
+                        runSpacing: 20.0,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 22.0),
+                            child: DropdownAddStudents(
                                 isLoading: false,
                                 title: "Family State".tr,
-                                width: 620,
+                                width: width <= 690 ? smallwidth : 620,
                                 type: "FamilyState"),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 22.0),
-                        child: Row(
+                        child: Wrap(
+                          spacing: 20.0,
+                          runSpacing: 20.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
                             Textfildwithupper(
                                 isRequired: false,
@@ -753,121 +805,162 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                 controller: widget.National_ID,
                                 Uptext: "National Id".tr,
                                 hinttext: "National Id".tr),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: prefs!.getString(languageKey) == "ar"
-                                      ? 0
-                                      : 20.0,
-                                  right: prefs!.getString(languageKey) == "ar"
-                                      ? 20
-                                      : 0),
-                              child: Textfildwithupper(
-                                  isRequired: true,
-                                  isError: controller.ISLocalAddressError,
-                                  onChanged: (value) {
-                                    if (value.isNotEmpty) {
-                                      controller.updateFieldError(
-                                          "localaddress", false);
-                                    }
-                                  },
-                                  width: 300,
-                                  controller: widget.Current_Address,
-                                  Uptext: "Current Address".tr,
-                                  hinttext: "Current Address".tr),
-                            )
+                            Textfildwithupper(
+                                isRequired: true,
+                                isError: controller.ISLocalAddressError,
+                                onChanged: (value) {
+                                  if (value.isNotEmpty) {
+                                    controller.updateFieldError(
+                                        "localaddress", false);
+                                  }
+                                },
+                                width: 300,
+                                controller: widget.Current_Address,
+                                Uptext: "Current Address".tr,
+                                hinttext: "Current Address".tr)
                           ],
                         ),
                       ),
                       Padding(
                           padding: const EdgeInsets.only(top: 22.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Obx(() => Checkbox(
-                                              value: controller
-                                                  .isSpecialNeed.value,
-                                              onChanged: (value) {
-                                                controller
-                                                    .toggleSpecialNeed(value!);
-                                              },
-                                            )),
-                                        Text("Special need".tr,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium!
-                                                .copyWith(fontSize: 16)),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Obx(() => Checkbox(
-                                              value:
-                                                  controller.isMartySon.value,
-                                              onChanged: (value) {
-                                                controller
-                                                    .toggleMartySon(value!);
-                                              },
-                                            )),
-                                        Text("Martyr son".tr,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium!
-                                                .copyWith(fontSize: 16)),
-                                      ],
-                                    ),
-                                  ]),
-                              Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    GetBuilder<Illness_Controller>(
-                                        builder: (Ill_Controller) {
-                                      return ButtonDialog(
-                                          height: 60,
-                                          text: "Student Illness".tr +
-                                              " (${Ill_Controller.selectedIllnesses.length})",
-                                          onPressed: () async {
-                                            await Students_Illness_Funcation(
-                                                context);
-                                          },
-                                          color: Theme.of(context).primaryColor,
-                                          width: 145);
-                                    }),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          left: prefs!.getString(languageKey) ==
-                                                  "ar"
-                                              ? 0
-                                              : 10.0,
-                                          right:
-                                              prefs!.getString(languageKey) ==
-                                                      "ar"
-                                                  ? 10
-                                                  : 0),
-                                      child: GetBuilder<Vaccines_Controller>(
-                                          builder: (vac_Controller) {
+                          child: Container(
+                            width: 620,
+                            child: Wrap(
+                              spacing: 20.0,
+                              runSpacing: 20.0,
+                              crossAxisAlignment: WrapCrossAlignment.start,
+                              alignment: WrapAlignment.spaceBetween,
+                              runAlignment: WrapAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Obx(() => Checkbox(
+                                                value: controller
+                                                    .isSpecialNeed.value,
+                                                onChanged: (value) {
+                                                  controller.toggleSpecialNeed(
+                                                      value!);
+                                                },
+                                              )),
+                                          Text("Special need".tr,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(fontSize: 16)),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Obx(() => Checkbox(
+                                                value:
+                                                    controller.isMartySon.value,
+                                                onChanged: (value) {
+                                                  controller
+                                                      .toggleMartySon(value!);
+                                                },
+                                              )),
+                                          Text("Martyr son".tr,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(fontSize: 16)),
+                                        ],
+                                      ),
+                                    ]),
+                                Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      GetBuilder<Illness_Controller>(
+                                          builder: (Ill_Controller) {
                                         return ButtonDialog(
                                             height: 60,
-                                            text: "Student Vaccines".tr +
-                                                " (${vac_Controller.selectedIllnesses.length})",
+                                            text: "Student Illness".tr +
+                                                " (${Ill_Controller.selectedIllnesses.length})",
                                             onPressed: () async {
-                                              await Students_Vaccines_Funcation(
-                                                  context);
+                                              try {
+                                                CancelToken cancelToken =
+                                                    CancelToken();
+                                                Loading_Dialog(
+                                                    cancelToken: cancelToken);
+                                                if (await Get_Illness_API(
+                                                            context)
+                                                        .Get_Illness(
+                                                            cancelToken:
+                                                                cancelToken) ==
+                                                    200) {
+                                                  Get.back();
+                                                  await Get.dialog(
+                                                      const StudentsIllnessDialog(),
+                                                      barrierDismissible:
+                                                          false);
+                                                }
+                                              } catch (e) {
+                                                print(e);
+                                              }
                                             },
                                             color:
                                                 Theme.of(context).primaryColor,
                                             width: 145);
                                       }),
-                                    ),
-                                  ]),
-                            ],
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            left:
+                                                prefs!.getString(languageKey) ==
+                                                        "ar"
+                                                    ? 0
+                                                    : 10.0,
+                                            right:
+                                                prefs!.getString(languageKey) ==
+                                                        "ar"
+                                                    ? 10
+                                                    : 0),
+                                        child: GetBuilder<Vaccines_Controller>(
+                                            builder: (vac_Controller) {
+                                          return ButtonDialog(
+                                              height: 60,
+                                              text: "Student Vaccines".tr +
+                                                  " (${vac_Controller.selectedIllnesses.length})",
+                                              onPressed: () async {
+                                                try {
+                                                  CancelToken cancelToken =
+                                                      CancelToken();
+                                                  Loading_Dialog(
+                                                      cancelToken: cancelToken);
+                                                  if (await Get_Vaccines_API(
+                                                              Get.context!)
+                                                          .Get_Vaccines(
+                                                              cancelToken:
+                                                                  cancelToken) ==
+                                                      200) {
+                                                    Get.back();
+                                                    Get.dialog(
+                                                        StudentsVaccinesDialog(),
+                                                        barrierDismissible:
+                                                            false);
+                                                  }
+                                                } catch (e) {
+                                                  print(e);
+                                                }
+                                              },
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                              width: 145);
+                                        }),
+                                      ),
+                                    ]),
+                              ],
+                            ),
                           )),
                       Padding(
                           padding: const EdgeInsets.only(top: 22.0),
@@ -896,8 +989,10 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                           )),
                       Padding(
                         padding: const EdgeInsets.only(top: 22.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
+                        child: Wrap(
+                          spacing: 20.0,
+                          runSpacing: 20.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
                             DropdownAddStudents(
                                 isError: controller.ISclassError,
@@ -905,30 +1000,23 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                 title: "Class".tr,
                                 width: 300,
                                 type: "Class"),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: prefs!.getString(languageKey) == "ar"
-                                      ? 0
-                                      : 20.0,
-                                  right: prefs!.getString(languageKey) == "ar"
-                                      ? 20
-                                      : 0),
-                              child: DropdownAddStudents(
-                                  isError: controller.ISDivisionError,
-                                  isLoading: controller.isLoadingDivision,
-                                  isDisabled: controller.ClassIndex == ""
-                                      ? true
-                                      : false,
-                                  title: "Division".tr,
-                                  width: 300,
-                                  type: "Division"),
-                            )
+                            DropdownAddStudents(
+                                isError: controller.ISDivisionError,
+                                isLoading: controller.isLoadingDivision,
+                                isDisabled:
+                                    controller.ClassIndex == "" ? true : false,
+                                title: "Division".tr,
+                                width: 300,
+                                type: "Division")
                           ],
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 22.0),
-                        child: Row(
+                        child: Wrap(
+                          spacing: 20.0,
+                          runSpacing: 20.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
                             Textfildwithupper(
                               isRequired: true,
@@ -944,50 +1032,44 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                               Uptext: "Username".tr,
                               hinttext: "Username".tr,
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: prefs!.getString(languageKey) == "ar"
-                                      ? 0
-                                      : 20.0,
-                                  right: prefs!.getString(languageKey) == "ar"
-                                      ? 20
-                                      : 0),
-                              child: Textfildwithupper(
-                                  isRequired: true,
-                                  width: 300,
-                                  isError: controller.ISpasswordError,
-                                  fieldType: "password",
-                                  IconButton: IconButton(
-                                      onPressed: () {
-                                        controller.ChangeShowPassword(
-                                            !controller.ShowPassword);
-                                      },
-                                      icon: Icon(
-                                        controller.ShowPassword
-                                            ? Icons.visibility_off
-                                            : Icons.remove_red_eye_outlined,
-                                        color: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall!
-                                            .color,
-                                      )),
-                                  hidePassword: controller.ShowPassword,
-                                  onChanged: (value) {
-                                    if (value.isNotEmpty) {
-                                      controller.updateFieldError(
-                                          "password", false);
-                                    }
-                                  },
-                                  controller: widget.Password,
-                                  Uptext: "Password".tr,
-                                  hinttext: "Password".tr),
-                            )
+                            Textfildwithupper(
+                                isRequired: true,
+                                width: 300,
+                                isError: controller.ISpasswordError,
+                                fieldType: "password",
+                                IconButton: IconButton(
+                                    onPressed: () {
+                                      controller.ChangeShowPassword(
+                                          !controller.ShowPassword);
+                                    },
+                                    icon: Icon(
+                                      controller.ShowPassword
+                                          ? Icons.visibility_off
+                                          : Icons.remove_red_eye_outlined,
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall!
+                                          .color,
+                                    )),
+                                hidePassword: controller.ShowPassword,
+                                onChanged: (value) {
+                                  if (value.isNotEmpty) {
+                                    controller.updateFieldError(
+                                        "password", false);
+                                  }
+                                },
+                                controller: widget.Password,
+                                Uptext: "Password".tr,
+                                hinttext: "Password".tr)
                           ],
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 22.0),
-                        child: Row(
+                        child: Wrap(
+                          spacing: 20.0,
+                          runSpacing: 20.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
                             Textfildwithupper(
                                 isRequired: false,
@@ -1025,7 +1107,10 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                           )),
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0),
-                        child: Row(
+                        child: Wrap(
+                          spacing: 20.0,
+                          runSpacing: 20.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
                             Textfildwithupper(
                                 isRequired: true,
@@ -1040,36 +1125,29 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                 controller: widget.Father_Name,
                                 Uptext: "Father Name".tr,
                                 hinttext: "Father Name".tr),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: prefs!.getString(languageKey) == "ar"
-                                      ? 0
-                                      : 20.0,
-                                  right: prefs!.getString(languageKey) == "ar"
-                                      ? 20
-                                      : 0),
-                              child: Textfildwithupper(
-                                  isRequired: true,
-                                  width: 300,
-                                  isError: controller.ISFatherphoneError,
-                                  onChanged: (value) {
-                                    if (value.isNotEmpty) {
-                                      controller.updateFieldError(
-                                          "fatherphone", false);
-                                    }
-                                  },
-                                  fieldType: "phone",
-                                  controller: widget.Father_Phone,
-                                  Uptext: "Father Phone".tr,
-                                  hinttext: "Father Phone".tr),
-                            )
+                            Textfildwithupper(
+                                isRequired: true,
+                                width: 300,
+                                isError: controller.ISFatherphoneError,
+                                onChanged: (value) {
+                                  if (value.isNotEmpty) {
+                                    controller.updateFieldError(
+                                        "fatherphone", false);
+                                  }
+                                },
+                                fieldType: "phone",
+                                controller: widget.Father_Phone,
+                                Uptext: "Father Phone".tr,
+                                hinttext: "Father Phone".tr)
                           ],
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 22.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
+                        child: Wrap(
+                          spacing: 20.0,
+                          runSpacing: 20.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
                             Textfildwithupper(
                                 width: 300,
@@ -1106,7 +1184,10 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                           )),
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0),
-                        child: Row(
+                        child: Wrap(
+                          spacing: 20.0,
+                          runSpacing: 20.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
                             Textfildwithupper(
                                 isRequired: true,
@@ -1121,36 +1202,29 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                 controller: widget.Mother_Name,
                                 Uptext: "Mother Name".tr,
                                 hinttext: "Mother Name".tr),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: prefs!.getString(languageKey) == "ar"
-                                      ? 0
-                                      : 20.0,
-                                  right: prefs!.getString(languageKey) == "ar"
-                                      ? 20
-                                      : 0),
-                              child: Textfildwithupper(
-                                  isRequired: true,
-                                  width: 300,
-                                  fieldType: "phone",
-                                  isError: controller.ISMotherPhoneError,
-                                  onChanged: (value) {
-                                    if (value.isNotEmpty) {
-                                      controller.updateFieldError(
-                                          "motherphone", false);
-                                    }
-                                  },
-                                  controller: widget.Mother_Phone,
-                                  Uptext: "Mother Phone".tr,
-                                  hinttext: "Mother Phone".tr),
-                            )
+                            Textfildwithupper(
+                                isRequired: true,
+                                width: 300,
+                                fieldType: "phone",
+                                isError: controller.ISMotherPhoneError,
+                                onChanged: (value) {
+                                  if (value.isNotEmpty) {
+                                    controller.updateFieldError(
+                                        "motherphone", false);
+                                  }
+                                },
+                                controller: widget.Mother_Phone,
+                                Uptext: "Mother Phone".tr,
+                                hinttext: "Mother Phone".tr)
                           ],
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 22.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
+                        child: Wrap(
+                          spacing: 20.0,
+                          runSpacing: 20.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
                             Textfildwithupper(
                                 width: 300,
@@ -1191,7 +1265,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             LargeTextField(
-                                width: 620,
+                                width: width >= 720 ? 590 : (width) - 70,
                                 controller: widget.Last_School_Detail,
                                 hinttext: "Last School Details".tr),
                           ],
@@ -1203,7 +1277,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             LargeTextField(
-                                width: 620,
+                                width: width >= 720 ? 590 : (width) - 70,
                                 controller: widget.Note,
                                 hinttext: "Note".tr),
                           ],
@@ -1236,8 +1310,10 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                           )),
                       Padding(
                         padding: const EdgeInsets.only(top: 22.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        child: Wrap(
+                          spacing: 20.0,
+                          runSpacing: 20.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
                             Column(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -1453,8 +1529,10 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 22.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        child: Wrap(
+                          spacing: 20.0,
+                          runSpacing: 20.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
                             Column(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -1653,8 +1731,10 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 22.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        child: Wrap(
+                          spacing: 20.0,
+                          runSpacing: 20.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
                             Column(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -1861,8 +1941,10 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 22.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        child: Wrap(
+                          spacing: 20.0,
+                          runSpacing: 20.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(top: 10.0),

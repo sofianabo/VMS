@@ -40,7 +40,10 @@ class Get_Students_Illness_API {
         Students_Illness studentsIllness =
             Students_Illness.fromJson(response.data);
         illnessController.setIllnessSelected(studentsIllness);
-        Students_Illness_ByID_Funcation(context, studentId, index_of_Student);
+        Get.dialog(StudentsIllnessDialog(
+          id: studentId.toString(),
+          indexOfStudent: index_of_Student,
+        ));
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,
