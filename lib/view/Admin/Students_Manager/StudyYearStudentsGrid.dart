@@ -43,7 +43,7 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-
+    print(width);
     int getCrossAxisCount(double screenWidth) {
       if (screenWidth >= 1200) return 4;
       if (screenWidth >= 900) return 3;
@@ -52,10 +52,17 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
     }
 
     double getChildAspectRatio(double screenWidth) {
-      if (screenWidth >= 1200) return 1.1;
-      if (screenWidth >= 900) return 1.2;
-      if (screenWidth >= 600) return 1.6;
-      return 1.3;
+      if (screenWidth >= 1306) return 0.87;
+      if (screenWidth >= 1276) return 0.9;
+      if (screenWidth >= 1000) return 0.8;
+      if (screenWidth >= 900) return 0.71;
+      if (screenWidth >= 695) return 1.0;
+      if (screenWidth >= 600) return 0.8;
+      if (screenWidth >= 501 && screenWidth <= 599) return 1.1;
+      if (screenWidth >= 420) return 1.2;
+      if (screenWidth >= 377) return 0.85;
+      if (screenWidth >= 376) return 1.0;
+      return 0.8; // لأي قيمة أقل من 376
     }
 
     double w = MediaQuery.of(context).size.width;

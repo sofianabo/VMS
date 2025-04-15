@@ -37,14 +37,6 @@ Rewards_Dialog({
     apptitle: "Rewards Students".tr,
     subtitle: Row(
       children: [
-        Padding(
-          padding: EdgeInsets.only(top: 15.0),
-          child: Text(
-            "Tools".tr,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
         _buildToolButton(
           icon: Icons.text_increase_outlined,
           label: "Add Text".tr,
@@ -85,78 +77,94 @@ class _RewardsGridsState extends State<RewardsGrids> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<RewardsController>(
-      init: Get.find<RewardsController>(),
-      builder: (controller) {
-        controller.updateCertificates(
-            controller.DialogCertificats, widget.name);
-        return GestureDetector(
-          onTap: controller.deselectText,
-          child: SingleChildScrollView(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  width: 300,
-                  height: 450,
-                  decoration: BoxDecoration(
-                    color: const Color(0xff134B70),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      children: controller.DialogCertificats.map((certificate) {
-                        return GestureDetector(
-                          onTap: () {
-                            controller.selectDialogImage(certificate['image']);
-                          },
-                          child: SvgPicture.asset(
-                            certificate['image'],
-                            width: 300,
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Theme.of(context).primaryColor),
-                  ),
-                  width: 650,
-                  height: 450,
-                  child: RepaintBoundary(
-                    key: newRewardsGloballKey,
-                    child: Stack(
-                      children: [
-                        SvgPicture.asset(
-                          controller.selectedImage,
-                          fit: BoxFit.fitWidth,
-                          key: ValueKey(controller.selectedImage),
+    return Container(
+      width: 1000,
+      height: 450,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: GetBuilder<RewardsController>(
+            init: Get.find<RewardsController>(),
+            builder: (controller) {
+              controller.updateCertificates(
+                  controller.DialogCertificats, widget.name);
+              return GestureDetector(
+                onTap: controller.deselectText,
+                child: SingleChildScrollView(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 20),
+                        width: 300,
+                        height: 450,
+                        decoration: BoxDecoration(
+                          color: const Color(0xff134B70),
+                          borderRadius: BorderRadius.circular(5),
                         ),
-                        for (int i = 0; i < controller.textOverlays.length; i++)
-                          DraggableText(
-                            key: ValueKey(controller
-                                .textOverlays[i].hashCode), // إضافة مفتاح فريد
-                            overlay: controller.textOverlays[i],
-                            onUpdate: (updatedOverlay) =>
-                                controller.updateTextOverlay(i, updatedOverlay),
-                            onSelect: () => controller.selectText(i),
-                            onDelete: () => controller.deleteSelectedText(),
-
-                            isSelected: controller.selectedTextIndex == i,
+                        child: SingleChildScrollView(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            children:
+                                controller.DialogCertificats.map((certificate) {
+                              return GestureDetector(
+                                onTap: () {
+                                  controller
+                                      .selectDialogImage(certificate['image']);
+                                },
+                                child: SvgPicture.asset(
+                                  certificate['image'],
+                                  width: 300,
+                                ),
+                              );
+                            }).toList(),
                           ),
-                      ],
-                    ),
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          border:
+                              Border.all(color: Theme.of(context).primaryColor),
+                        ),
+                        width: 650,
+                        height: 450,
+                        child: RepaintBoundary(
+                          key: newRewardsGloballKey,
+                          child: Stack(
+                            children: [
+                              SvgPicture.asset(
+                                controller.selectedImage,
+                                fit: BoxFit.fitWidth,
+                                key: ValueKey(controller.selectedImage),
+                              ),
+                              for (int i = 0;
+                                  i < controller.textOverlays.length;
+                                  i++)
+                                DraggableText(
+                                  key: ValueKey(controller.textOverlays[i]
+                                      .hashCode), // إضافة مفتاح فريد
+                                  overlay: controller.textOverlays[i],
+                                  onUpdate: (updatedOverlay) => controller
+                                      .updateTextOverlay(i, updatedOverlay),
+                                  onSelect: () => controller.selectText(i),
+                                  onDelete: () =>
+                                      controller.deleteSelectedText(),
+
+                                  isSelected: controller.selectedTextIndex == i,
+                                ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              );
+            },
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
@@ -377,7 +385,7 @@ Widget RewardsDialogs_VMS({
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(right: 35.0, left: 35.0, top: 20.0),
+            padding: const EdgeInsets.only(right: 10.0, left: 10.0, top: 20.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,

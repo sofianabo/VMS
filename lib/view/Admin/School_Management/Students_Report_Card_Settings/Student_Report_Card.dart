@@ -30,6 +30,7 @@ class _ExcelToPdfScreenState extends State<ExcelToPdfScreen> {
 
     uploadInput.onChange.listen((e) async {
       final files = uploadInput.files;
+
       if (files!.isEmpty) return;
 
       final reader = html.FileReader();
