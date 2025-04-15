@@ -118,7 +118,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                     width: 40,
                     height: 40,
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Get.theme.cardColor,
                         borderRadius: BorderRadius.circular(5),
                         boxShadow: const [
                           BoxShadow(

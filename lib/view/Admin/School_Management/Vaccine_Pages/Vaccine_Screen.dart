@@ -197,7 +197,7 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                             },
                             icon: Icon(Icons.add,
                                 size: 18,
-                                color: Theme.of(context).primaryColor)),
+                                color: Theme.of(context).highlightColor)),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0),
@@ -222,7 +222,7 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                               onPressed: () {},
                               icon: Icon(VMS_Icons.pdf,
                                   size: 18,
-                                  color: Theme.of(context).primaryColor)),
+                                  color: Theme.of(context).highlightColor)),
                         ),
                       ),
                       Padding(
@@ -248,7 +248,7 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                               onPressed: () {},
                               icon: Icon(VMS_Icons.xl,
                                   size: 18,
-                                  color: Theme.of(context).primaryColor)),
+                                  color: Theme.of(context).highlightColor)),
                         ),
                       ),
                     ],
