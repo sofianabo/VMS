@@ -150,7 +150,7 @@ class _PenaltygridState extends State<Penaltygrid> {
           ),
           _iconButton(
             iconData: Icons.edit_note_outlined,
-            color: const Color(0xff19478d),
+            color: Get.theme.primaryColor,
             onPressed: () {
               editName.text = "${row['name']}";
               editenName.text = "${row['enName']}";

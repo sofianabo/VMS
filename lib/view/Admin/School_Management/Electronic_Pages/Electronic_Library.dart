@@ -164,7 +164,7 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                                 color: controller.isHoveringFile
                                                     ? Theme.of(context)
                                                         .primaryColor
-                                                    : Colors.white,
+                                                    : Get.theme.cardColor,
                                               ),
                                               alignment: Alignment.center,
                                               width: 350,
@@ -261,8 +261,8 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                                             icon: Icon(
                                                               Icons
                                                                   .delete_outline_outlined,
-                                                              color: Get.theme
-                                                                  .primaryColor,
+                                                              color: Colors
+                                                                  .redAccent,
                                                             ))
                                                         : Text(
                                                             textAlign: TextAlign
@@ -326,8 +326,7 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                                 }
                                               },
                                               color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary)
+                                                  .primaryColor)
                                         ],
                                       )
                                     ],
