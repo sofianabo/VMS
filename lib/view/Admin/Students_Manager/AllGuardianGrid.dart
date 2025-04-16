@@ -121,113 +121,109 @@ class AllGuardianGrid extends StatelessWidget {
                             Get.dialog(GetBuilder<Allgaurdiancontroller>(
                                 builder: (controller) {
                               return VMSAlertDialog(
-                                  contents: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                  contents: Container(
+                                    width: 550,
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          Textfildwithupper(
-                                              onChanged: (value) {
-                                                if (value.isNotEmpty) {
-                                                  controller.updateFieldError(
-                                                      "name", false);
-                                                }
-                                              },
-                                              isError: controller.IsnameError,
-                                              Uptext: "Guardian Name".tr,
-                                              isRequired: true,
-                                              controller: gName,
-                                              hinttext:
-                                                  "${controller.filteredregaurdians![index].name}"),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                left: prefs!.getString(
-                                                            languageKey) ==
-                                                        "ar"
-                                                    ? 0
-                                                    : 20.0,
-                                                right: prefs!.getString(
-                                                            languageKey) ==
-                                                        "ar"
-                                                    ? 20
-                                                    : 0),
-                                            child: Textfildwithupper(
-                                                fieldType: "number",
-                                                onChanged: (value) {
-                                                  if (value.isNotEmpty) {
-                                                    controller.updateFieldError(
-                                                        "nid", false);
-                                                  }
-                                                },
-                                                isError: controller.IsnidError,
-                                                Uptext:
-                                                    "Guardian National ID".tr,
-                                                isRequired: true,
-                                                controller: gNationalID,
-                                                hinttext:
-                                                    "${controller.filteredregaurdians![index].nationalId}"),
-                                          )
-                                        ],
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 20.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Textfildwithupper(
-                                                onChanged: (value) {
-                                                  if (value.isNotEmpty) {
-                                                    controller.updateFieldError(
-                                                        "email", false);
-                                                  }
-                                                },
-                                                isError:
-                                                    controller.IsEmailError,
-                                                isRequired: true,
-                                                fieldType: "email",
-                                                Uptext: "Guardian Email".tr,
-                                                controller: gEmail,
-                                                hinttext:
-                                                    "${controller.filteredregaurdians![index].email}"),
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: prefs!.getString(
-                                                              languageKey) ==
-                                                          "ar"
-                                                      ? 0
-                                                      : 20.0,
-                                                  right: prefs!.getString(
-                                                              languageKey) ==
-                                                          "ar"
-                                                      ? 20
-                                                      : 0),
-                                              child: Textfildwithupper(
+                                          Wrap(
+                                            alignment:
+                                                WrapAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                                WrapCrossAlignment.center,
+                                            runAlignment:
+                                                WrapAlignment.spaceBetween,
+                                            spacing: 8.0,
+                                            runSpacing: 8.0,
+                                            children: [
+                                              Textfildwithupper(
                                                   onChanged: (value) {
                                                     if (value.isNotEmpty) {
                                                       controller
                                                           .updateFieldError(
-                                                              "phone", false);
+                                                              "name", false);
                                                     }
                                                   },
-                                                  fieldType: "phone",
                                                   isError:
-                                                      controller.IsphoneError,
-                                                  Uptext:
-                                                      "Guardian Phone Number"
-                                                          .tr,
+                                                      controller.IsnameError,
+                                                  Uptext: "Guardian Name".tr,
                                                   isRequired: true,
-                                                  controller: gphone,
+                                                  controller: gName,
                                                   hinttext:
-                                                      "${controller.filteredregaurdians![index].phone}"),
-                                            )
-                                          ],
-                                        ),
-                                      )
-                                    ],
+                                                      "${controller.filteredregaurdians![index].name}"),
+                                              Textfildwithupper(
+                                                  fieldType: "number",
+                                                  onChanged: (value) {
+                                                    if (value.isNotEmpty) {
+                                                      controller
+                                                          .updateFieldError(
+                                                              "nid", false);
+                                                    }
+                                                  },
+                                                  isError:
+                                                      controller.IsnidError,
+                                                  Uptext:
+                                                      "Guardian National ID".tr,
+                                                  isRequired: true,
+                                                  controller: gNationalID,
+                                                  hinttext:
+                                                      "${controller.filteredregaurdians![index].nationalId}")
+                                            ],
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 20.0),
+                                            child: Wrap(
+                                              alignment:
+                                                  WrapAlignment.spaceBetween,
+                                              crossAxisAlignment:
+                                                  WrapCrossAlignment.center,
+                                              runAlignment:
+                                                  WrapAlignment.spaceBetween,
+                                              spacing: 8.0,
+                                              runSpacing: 8.0,
+                                              children: [
+                                                Textfildwithupper(
+                                                    onChanged: (value) {
+                                                      if (value.isNotEmpty) {
+                                                        controller
+                                                            .updateFieldError(
+                                                                "email", false);
+                                                      }
+                                                    },
+                                                    isError:
+                                                        controller.IsEmailError,
+                                                    isRequired: true,
+                                                    fieldType: "email",
+                                                    Uptext: "Guardian Email".tr,
+                                                    controller: gEmail,
+                                                    hinttext:
+                                                        "${controller.filteredregaurdians![index].email}"),
+                                                Textfildwithupper(
+                                                    onChanged: (value) {
+                                                      if (value.isNotEmpty) {
+                                                        controller
+                                                            .updateFieldError(
+                                                                "phone", false);
+                                                      }
+                                                    },
+                                                    fieldType: "phone",
+                                                    isError:
+                                                        controller.IsphoneError,
+                                                    Uptext:
+                                                        "Guardian Phone Number"
+                                                            .tr,
+                                                    isRequired: true,
+                                                    controller: gphone,
+                                                    hinttext:
+                                                        "${controller.filteredregaurdians![index].phone}")
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                   action: [
                                     Row(
