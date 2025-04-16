@@ -3,7 +3,7 @@ import 'package:vms_school/Link/Model/AdminModel/DropDownCuriculmModel.dart';
 
 class Dropdowncuriculmcontroller extends GetxController {
   List<String> curiculmList = [];
-  List<Curriculum> allCuriculm = [];
+  List<Curriculummm> allCuriculm = [];
   void setCuriculm(DropDowmCuriculmModel model) {
     curiculmList.clear();
     allCuriculm = model.curriculum!;

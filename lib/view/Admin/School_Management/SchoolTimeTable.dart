@@ -459,6 +459,27 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                             AdminSchoolTimeController>(
                                                                         builder:
                                                                             (SchoolController) {
+                                                                      List<String> s = entry
+                                                                          .value
+                                                                          .split(
+                                                                              ' \n');
+                                                                      print(SchoolController
+                                                                          .allteacherDialogList!
+                                                                          .elementAt(SchoolController
+                                                                              .teacherDialogList
+                                                                              .indexOf(s[1]))
+                                                                          .fullName);
+
+                                                                      SchoolController.set_Edite_Data(
+                                                                          teacherdialog: SchoolController
+                                                                              .allteacherDialogList!
+                                                                              .elementAt(SchoolController.teacherDialogList.indexOf(s[
+                                                                                  1]))
+                                                                              .fullName,
+                                                                          curriculmdialog: SchoolController
+                                                                              .allsubjectDialogList!
+                                                                              .elementAt(SchoolController.subjectDialogList.indexOf(s[0]))
+                                                                              .name);
                                                                       return Column(
                                                                         mainAxisSize:
                                                                             MainAxisSize.min,

@@ -20,12 +20,21 @@ class AdminSchoolTimeController extends GetxController {
   List<Division>? allDivision;
   List<String> subjectDialogList = [];
   List<String> teacherDialogList = [];
+    List<Teachers>? allteacherDialogList;
+
+  List<Curriculummm> allsubjectDialogList = [];
+
   List<StudyShare> studyshare = [];
   List<String> timeLessonList = ['Morning', 'Evening'];
 
   bool isLoading = true;
   bool isLoadingClass = true;
   bool isLoadingDivision = true;
+  set_Edite_Data({teacherdialog, curriculmdialog}) {
+    teacherdialog = teacherdialog;
+    curriculmdialog = curriculmdialog;
+    update();
+  }
 
   setTimeLessonIndex() {
     timeLessonIndex = 'Morning';
@@ -121,6 +130,7 @@ class AdminSchoolTimeController extends GetxController {
 
   void setAllTeacherDialog(AllTeacherModel teach) {
     teacherDialogList.clear();
+    allteacherDialogList = teach.teachers!;
     for (int j = 0; j < teach.teachers!.length; j++) {
       teacherDialogList.add(teach.teachers![j].fullName.toString());
     }
@@ -130,6 +140,7 @@ class AdminSchoolTimeController extends GetxController {
 
   void setAllSubjectDialog(DropDowmCuriculmModel? curr) {
     subjectDialogList.clear();
+    allsubjectDialogList = curr!.curriculum!;
     for (int j = 0; j < curr!.curriculum!.length; j++) {
       if (prefs!.getString(languageKey) == 'ar')
         subjectDialogList.add(curr.curriculum![j].name.toString());

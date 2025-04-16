@@ -1,13 +1,13 @@
 class DropDowmCuriculmModel {
-  List<Curriculum>? curriculum;
+  List<Curriculummm>? curriculum;
 
   DropDowmCuriculmModel({this.curriculum});
 
   DropDowmCuriculmModel.fromJson(Map<String, dynamic> json) {
     if (json['curriculum'] != null) {
-      curriculum = <Curriculum>[];
+      curriculum = <Curriculummm>[];
       json['curriculum'].forEach((v) {
-        curriculum!.add(Curriculum.fromJson(v));
+        curriculum!.add(Curriculummm.fromJson(v));
       });
     }
   }
@@ -21,14 +21,14 @@ class DropDowmCuriculmModel {
   }
 }
 
-class Curriculum {
+class Curriculummm {
   int? id;
   String? name;
   String? enName;
 
-  Curriculum({this.id, this.name});
+  Curriculummm({this.id, this.name});
 
-  Curriculum.fromJson(Map<String, dynamic> json) {
+  Curriculummm.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     enName = json['enName'];

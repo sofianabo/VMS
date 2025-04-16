@@ -69,7 +69,9 @@ EditStudentDialog(int idx, BuildContext context) async {
 
   add_controller.selectedImage.value = null;
   add_controller.set_Edite_Data(
-      DivisionIndexs: Controller.student!.division!.enName,
+      DivisionIndexs: isArabic
+          ? Controller.student!.division!.name
+          : Controller.student!.division!.enName,
       isPendStudents: Controller.student!.isPended,
       BloodTypeindex: Controller.student!.bloodType,
       Classindex: isArabic
