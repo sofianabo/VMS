@@ -47,57 +47,196 @@ class _StudentsAttendanceManagmentState
     return Expanded(
         child: Column(
       children: [
-        GetBuilder<Student_attendence_controller>(builder: (controller) {
-          return Container(
-            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
-            alignment: Alignment.center,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: DropDownStudentsAttendencemgmt(
+        if (w > 769)
+          GetBuilder<Student_attendence_controller>(builder: (controller) {
+            return Container(
+              width: w,
+              margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+              child: Wrap(
+                alignment: WrapAlignment.spaceBetween,
+                runAlignment: WrapAlignment.spaceBetween,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                runSpacing: 8.0,
+                spacing: 8.0,
+                children: [
+                  Wrap(
+                    alignment: WrapAlignment.start,
+                    runAlignment: WrapAlignment.start,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    runSpacing: 8.0,
+                    spacing: 8.0,
+                    children: [
+                      DropDownStudentsAttendencemgmt(
                         isLoading: controller.isGradeLoading,
                         type: "grade",
                         title: "Grade".tr,
-                        width: w / 6,
+                        width: 250,
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: DropDownStudentsAttendencemgmt(
+                      DropDownStudentsAttendencemgmt(
                         isDisabled: controller.gradeIndex == "" ? true : false,
                         isLoading: controller.isClassLoading,
                         type: "class",
                         title: "Class".tr,
-                        width: w / 6,
+                        width: 250,
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: DropDownStudentsAttendencemgmt(
+                      DropDownStudentsAttendencemgmt(
                         isLoading: controller.isDivisionLoading,
                         isDisabled: controller.classIndex == "" ? true : false,
                         type: "division",
                         title: "Division".tr,
-                        width: w / 6,
+                        width: 250,
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: SetStudentsDateAttendence(
+                      SetStudentsDateAttendence(
                         enable: !controller.isLoading,
                         allowedDates: controller.noAttendanceDatas ??
                             ["${DateTime.now()}"],
-                        width: w / 6,
+                        width: 250,
                       ),
+                      SizedBox(
+                          width: 250.0,
+                          child: Obx(() => Row(
+                                children: [
+                                  Checkbox(
+                                    shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(4))),
+                                    value: controller.allHolidayChecked.value,
+                                    onChanged: (value) {
+                                      if (controller.isUploaded == true ||
+                                          controller.isLoading == true) {
+                                      } else {
+                                        if (value == true) {
+                                          Get.dialog(Directionality(
+                                            textDirection:
+                                                prefs!.getString(languageKey) ==
+                                                        'ar'
+                                                    ? TextDirection.rtl
+                                                    : TextDirection.ltr,
+                                            child: VMSAlertDialog(
+                                                action: [
+                                                  ButtonDialog(
+                                                      text: "Done".tr,
+                                                      onPressed: () {
+                                                        controller
+                                                            .setAllAsHoliday(
+                                                                value!,
+                                                                cuse.text);
+                                                        Get.back();
+                                                      },
+                                                      color: Theme.of(context)
+                                                          .primaryColor,
+                                                      width: 65)
+                                                ],
+                                                contents: SizedBox(
+                                                  width: 500,
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      Textfildwithupper(
+                                                          width: 250,
+                                                          controller: cuse,
+                                                          Uptext: "Cause".tr,
+                                                          hinttext: "Cause".tr)
+                                                    ],
+                                                  ),
+                                                ),
+                                                apptitle:
+                                                    "Enter The Reason For Absence"
+                                                        .tr,
+                                                subtitle:
+                                                    "The reason for the absence of the all students"
+                                                        .tr),
+                                          ));
+                                        } else {
+                                          controller.setAllAsHoliday(
+                                              value!, null);
+                                        }
+                                      }
+                                    },
+                                  ),
+                                  Text("Set All As a Holiday".tr),
+                                ],
+                              ))),
+                    ],
+                  ),
+                  Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).cardColor,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(0, 2),
+                              blurRadius: 1)
+                        ]),
+                    child: IconButton(
+                        style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll(
+                                Theme.of(context).cardColor),
+                            shape: WidgetStatePropertyAll(
+                                RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5))))),
+                        onPressed: () async {
+                          if (controller.isLoading == false) {
+                            if (controller.isUploaded == false) {
+                              await Addstudentattendenceapi
+                                  .Addstudentattendence(
+                                      DateTime: controller.AttendencetDate.value
+                                          .toString(),
+                                      students: controller.students);
+                            }
+                          }
+                        },
+                        icon: Icon(Icons.file_upload_outlined,
+                            size: 22, color: Theme.of(context).highlightColor)),
+                  ),
+                ],
+              ),
+            );
+          }),
+        if (w <= 769)
+          GetBuilder<Student_attendence_controller>(builder: (controller) {
+            return Container(
+              width: w,
+              margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  spacing: 8.0,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    DropDownStudentsAttendencemgmt(
+                      isLoading: controller.isGradeLoading,
+                      type: "grade",
+                      title: "Grade".tr,
+                      width: 250,
+                    ),
+                    DropDownStudentsAttendencemgmt(
+                      isDisabled: controller.gradeIndex == "" ? true : false,
+                      isLoading: controller.isClassLoading,
+                      type: "class",
+                      title: "Class".tr,
+                      width: 250,
+                    ),
+                    DropDownStudentsAttendencemgmt(
+                      isLoading: controller.isDivisionLoading,
+                      isDisabled: controller.classIndex == "" ? true : false,
+                      type: "division",
+                      title: "Division".tr,
+                      width: 250,
+                    ),
+                    SetStudentsDateAttendence(
+                      enable: !controller.isLoading,
+                      allowedDates:
+                          controller.noAttendanceDatas ?? ["${DateTime.now()}"],
+                      width: 250,
                     ),
                     SizedBox(
-                        width: w / 6.0,
+                        width: 250.0,
                         child: Obx(() => Row(
                               children: [
                                 Checkbox(
@@ -200,10 +339,9 @@ class _StudentsAttendanceManagmentState
                     ),
                   ],
                 ),
-              ],
-            ),
-          );
-        }),
+              ),
+            );
+          }),
         Expanded(
             child: Padding(
           padding: const EdgeInsets.only(top: 15.0),

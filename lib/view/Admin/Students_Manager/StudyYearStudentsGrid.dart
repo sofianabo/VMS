@@ -403,137 +403,131 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                                       text: "Send".tr,
                                                     )
                                                   ],
-                                                  contents: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      const SizedBox(
-                                                        width: 350,
-                                                      ),
-                                                      GetBuilder<
-                                                              Dropdownpenaltycontroller>(
-                                                          builder:
-                                                              (PController) {
-                                                        return DropDownStudyYearStudents(
-                                                          isLoading: PController
-                                                              .Isloading,
-                                                          title: "Penaltyy".tr,
-                                                          type: "penalty",
-                                                          width: w / 3.6,
-                                                        );
-                                                      }),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                                top: 15.0),
-                                                        child: Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text(
-                                                                "The Reason".tr,
-                                                                style: Get
-                                                                    .theme
-                                                                    .textTheme
-                                                                    .labelSmall),
-                                                            Textfildwithupper(
-                                                                Uptext:
-                                                                    "The Reason"
-                                                                        .tr,
-                                                                isRequired:
-                                                                    true,
-                                                                width: w / 3.6,
-                                                                controller:
-                                                                    reason,
-                                                                hinttext:
-                                                                    "The Reason"
-                                                                        .tr),
-                                                          ],
+                                                  contents: Container(
+                                                    width: 350,
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        GetBuilder<
+                                                                Dropdownpenaltycontroller>(
+                                                            builder:
+                                                                (PController) {
+                                                          return DropDownStudyYearStudents(
+                                                            isLoading:
+                                                                PController
+                                                                    .Isloading,
+                                                            title:
+                                                                "Penaltyy".tr,
+                                                            type: "penalty",
+                                                            width: 300,
+                                                          );
+                                                        }),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                                  top: 15.0),
+                                                          child: Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Textfildwithupper(
+                                                                  Uptext:
+                                                                      "The Reason"
+                                                                          .tr,
+                                                                  isRequired:
+                                                                      true,
+                                                                  width: 300,
+                                                                  controller:
+                                                                      reason,
+                                                                  hinttext:
+                                                                      "The Reason"
+                                                                          .tr),
+                                                            ],
+                                                          ),
                                                         ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                                top: 15.0,
-                                                                bottom: 15.0),
-                                                        child: Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      bottom:
-                                                                          5.0),
-                                                              child: RichText(
-                                                                text: TextSpan(
-                                                                    text:
-                                                                        "Start Date"
-                                                                            .tr,
-                                                                    style: Get
-                                                                        .theme
-                                                                        .textTheme
-                                                                        .bodyMedium!
-                                                                        .copyWith(
-                                                                            fontSize:
-                                                                                14,
-                                                                            fontWeight:
-                                                                                FontWeight.normal),
-                                                                    children: const [
-                                                                      TextSpan(
-                                                                        text:
-                                                                            " *",
-                                                                        style: TextStyle(
-                                                                            color:
-                                                                                Colors.red,
-                                                                            fontSize: 16),
-                                                                      ),
-                                                                    ]),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                                  top: 15.0,
+                                                                  bottom: 15.0),
+                                                          child: Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                        .only(
+                                                                        bottom:
+                                                                            5.0),
+                                                                child: RichText(
+                                                                  text: TextSpan(
+                                                                      text: "Start Date"
+                                                                          .tr,
+                                                                      style: Get
+                                                                          .theme
+                                                                          .textTheme
+                                                                          .bodyMedium!
+                                                                          .copyWith(
+                                                                              fontSize: 14,
+                                                                              fontWeight: FontWeight.normal),
+                                                                      children: const [
+                                                                        TextSpan(
+                                                                          text:
+                                                                              " *",
+                                                                          style: TextStyle(
+                                                                              color: Colors.red,
+                                                                              fontSize: 16),
+                                                                        ),
+                                                                      ]),
+                                                                ),
                                                               ),
-                                                            ),
-                                                            penaltyStartDate(
-                                                                width: w / 3.6)
-                                                          ],
+                                                              penaltyStartDate(
+                                                                  width: 300)
+                                                            ],
+                                                          ),
                                                         ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                                top: 15.0,
-                                                                bottom: 15.0),
-                                                        child: Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text("End Date".tr,
-                                                                style: Get
-                                                                    .theme
-                                                                    .textTheme
-                                                                    .bodyMedium!),
-                                                            PenaltyEndDate(
-                                                                width: w / 3.6)
-                                                          ],
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                                  top: 15.0,
+                                                                  bottom: 15.0),
+                                                          child: Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                  "End Date".tr,
+                                                                  style: Get
+                                                                      .theme
+                                                                      .textTheme
+                                                                      .bodyMedium!),
+                                                              PenaltyEndDate(
+                                                                  width: 300)
+                                                            ],
+                                                          ),
                                                         ),
-                                                      ),
-                                                    ],
+                                                      ],
+                                                    ),
                                                   ),
                                                   apptitle:
                                                       "Punishing Student".tr,

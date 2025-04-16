@@ -28,7 +28,6 @@ class AllStudentGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
 
-    print(screenWidth);
     int getCrossAxisCount() {
       if (screenWidth >= 1800) return 5;
       if (screenWidth >= 1278) return 4;

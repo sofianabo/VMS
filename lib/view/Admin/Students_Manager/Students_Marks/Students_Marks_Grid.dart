@@ -26,13 +26,16 @@ class _Students_Marks_GenState extends State<Students_Marks_Gen> {
   void initState() {
     super.initState();
 
+    // مزامنة في كلا الاتجاهين
     _headerScrollController.addListener(_syncHeaderScroll);
+    _bodyScrollController.addListener(_syncBodyScroll);
   }
 
   @override
   void dispose() {
     _controllers.forEach((controller) => controller.dispose());
     _headerScrollController.removeListener(_syncHeaderScroll);
+    _bodyScrollController.removeListener(_syncBodyScroll);
     _headerScrollController.dispose();
     _bodyScrollController.dispose();
     _verticalScrollController.dispose();
@@ -40,7 +43,15 @@ class _Students_Marks_GenState extends State<Students_Marks_Gen> {
   }
 
   void _syncHeaderScroll() {
-    _bodyScrollController.jumpTo(_headerScrollController.offset);
+    if (_headerScrollController.offset != _bodyScrollController.offset) {
+      _bodyScrollController.jumpTo(_headerScrollController.offset);
+    }
+  }
+
+  void _syncBodyScroll() {
+    if (_bodyScrollController.offset != _headerScrollController.offset) {
+      _headerScrollController.jumpTo(_bodyScrollController.offset);
+    }
   }
 
   @override
