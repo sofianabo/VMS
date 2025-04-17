@@ -25,6 +25,32 @@ class TeacherManagementGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    int getCrossAxisCount() {
+      if (screenWidth >= 1800) return 5;
+      if (screenWidth >= 1278) return 4;
+      if (screenWidth >= 988) return 3;
+      if (screenWidth >= 600) return 2;
+
+      return 1;
+    }
+
+    double getChildAspectRatio() {
+      if (screenWidth >= 1800) return 0.9;
+      if (screenWidth >= 1278) return 0.8;
+      if (screenWidth >= 1109) return 1.0;
+      if (screenWidth >= 988) return 0.8;
+      if (screenWidth >= 946) return 1.24;
+      if (screenWidth >= 832) return 1.05;
+      if (screenWidth >= 700) return 0.9;
+      if (screenWidth >= 638) return 0.9;
+      if (screenWidth >= 600) return 0.7;
+      if (screenWidth >= 530) return 1.45;
+      if (screenWidth >= 440) return 1.2;
+      if (screenWidth >= 390) return 1.0;
+      return 0.8;
+    }
+
     return Directionality(
       textDirection: prefs!.getString(languageKey) == "ar"
           ? TextDirection.rtl
@@ -34,24 +60,11 @@ class TeacherManagementGrid extends StatelessWidget {
             ? GridView.builder(
                 padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: Get.width <= 1226 && Get.width >= 988
-                        ? 3
-                        : Get.width <= 987 && Get.width >= 759
-                            ? 2
-                            : Get.width <= 758
-                                ? 1
-                                : 4,
-                    crossAxisSpacing: 20.0,
-                    mainAxisSpacing: 20.0,
-                    childAspectRatio: Get.width <= 1226 && Get.width >= 988
-                        ? 2.2
-                        : Get.width <= 987 && Get.width >= 759
-                            ? 2.7
-                            : Get.width <= 758 && Get.width >= 573
-                                ? 3.8
-                                : Get.width <= 573
-                                    ? 3.0
-                                    : 0.9),
+                  crossAxisCount: getCrossAxisCount(),
+                  crossAxisSpacing: 20.0,
+                  mainAxisSpacing: 20.0,
+                  childAspectRatio: getChildAspectRatio(),
+                ),
                 itemCount: 12,
                 itemBuilder: (context, index) {
                   return HoverScaleCard(
@@ -156,24 +169,10 @@ class TeacherManagementGrid extends StatelessWidget {
             : GridView.builder(
                 padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: Get.width <= 1226 && Get.width >= 988
-                        ? 3
-                        : Get.width <= 987 && Get.width >= 759
-                            ? 2
-                            : Get.width <= 758
-                                ? 1
-                                : 4,
+                    crossAxisCount: getCrossAxisCount(),
                     crossAxisSpacing: 20.0,
                     mainAxisSpacing: 20.0,
-                    childAspectRatio: Get.width <= 1226 && Get.width >= 988
-                        ? 2.2
-                        : Get.width <= 987 && Get.width >= 759
-                            ? 2.7
-                            : Get.width <= 758 && Get.width >= 573
-                                ? 3.8
-                                : Get.width <= 573
-                                    ? 3.0
-                                    : 0.9),
+                    childAspectRatio: getChildAspectRatio()),
                 itemCount: control.filteredTeacher!.length,
                 itemBuilder: (context, index) {
                   return HoverScaleCard(

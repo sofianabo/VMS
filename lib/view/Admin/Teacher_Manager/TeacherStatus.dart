@@ -40,146 +40,223 @@ class _TeacherStatusState extends State<TeacherStatus> {
     return Expanded(
         child: Column(
       children: [
-        Container(
-          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
-          alignment: Alignment.center,
-          child: Row(
-            children: [
-              GetBuilder<Allteacheratendencecontroller>(builder: (controller) {
-                return Column(
-                  children: [
-                    Row(
-                      children: [
-                        Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: DropDownAllSessions(
-                              title: "Session".tr,
-                              width: w / 3.5,
-                              type: "session",
-                              API: "Teachersts",
-                            )),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: DropDownTeacherStatus(
-                            isLoading: controller.isClassLoading,
-                            width: w / 3.5,
-                            title: "Class".tr,
-                            type: 'Class',
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: DropDownTeacherStatus(
-                            isLoading: controller.isSubjectLoading,
-                            width: w / 3.5,
-                            title: "Subject".tr,
-                            type: 'Subject',
-                          ),
-                        ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(right: 10.0, left: 10.0),
-                          child: Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                color: Theme.of(context).cardColor,
-                                borderRadius: BorderRadius.circular(5),
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Colors.black12,
-                                      offset: Offset(0, 2),
-                                      blurRadius: 1)
-                                ]),
-                            child: IconButton(
-                                style: const ButtonStyle(
-                                    shape: WidgetStatePropertyAll(
-                                        RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(5))))),
-                                onPressed: () {},
-                                icon: Icon(VMS_Icons.pdf,
-                                    size: 18,
-                                    color: Theme.of(context).highlightColor)),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: DropDownTeacherStatus(
-                              isLoading: false,
-                              width: w / 3.5,
-                              title: "Type".tr,
-                              type: 'Type',
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: selectTeacherDateAttendence(
-                              width: w / 3.5,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: TextFormSearch(
-                              click: () {
-                                controller.clearFilter();
-                              },
-                              onchange: (value) {
-                                controller.searchRequestByName(
-                                    value,
-                                    controller.classIndex,
-                                    controller.SubjectIndex,
-                                    controller.TypeIndex);
-                              },
-                              width: w / 3.5,
-                              radius: 5,
-                              controller: serch,
-                              suffixIcon:
-                                  serch.text != "" ? Icons.clear : Icons.search,
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(right: 10.0, left: 10.0),
-                            child: Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                  color: Theme.of(context).cardColor,
-                                  borderRadius: BorderRadius.circular(5),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                        color: Colors.black12,
-                                        offset: Offset(0, 2),
-                                        blurRadius: 1)
-                                  ]),
-                              child: IconButton(
-                                  style: const ButtonStyle(
-                                      shape: WidgetStatePropertyAll(
-                                          RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(5))))),
-                                  onPressed: () {},
-                                  icon: Icon(VMS_Icons.xl,
-                                      size: 18,
-                                      color: Theme.of(context).highlightColor)),
-                            ),
-                          ),
-                        ],
+        if (w > 769)
+          Container(
+            width: w,
+            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+            child: GetBuilder<Allteacheratendencecontroller>(
+                builder: (controller) {
+              return Wrap(
+                alignment: WrapAlignment.spaceBetween,
+                runAlignment: WrapAlignment.spaceBetween,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                runSpacing: 10.0,
+                spacing: 10.0,
+                children: [
+                  DropDownAllSessions(
+                    title: "Session".tr,
+                    width: 220,
+                    type: "session",
+                    API: "Teachersts",
+                  ),
+                  DropDownTeacherStatus(
+                    isLoading: controller.isClassLoading,
+                    width: 220,
+                    title: "Class".tr,
+                    type: 'Class',
+                  ),
+                  DropDownTeacherStatus(
+                    isLoading: controller.isSubjectLoading,
+                    width: 220,
+                    title: "Subject".tr,
+                    type: 'Subject',
+                  ),
+                  DropDownTeacherStatus(
+                    isLoading: false,
+                    width: 220,
+                    title: "Type".tr,
+                    type: 'Type',
+                  ),
+                  selectTeacherDateAttendence(
+                    width: 220,
+                  ),
+                  TextFormSearch(
+                    click: () {
+                      controller.clearFilter();
+                    },
+                    onchange: (value) {
+                      controller.searchRequestByName(
+                          value,
+                          controller.classIndex,
+                          controller.SubjectIndex,
+                          controller.TypeIndex);
+                    },
+                    width: 220,
+                    radius: 5,
+                    controller: serch,
+                    suffixIcon: serch.text != "" ? Icons.clear : Icons.search,
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    spacing: 10.0,
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: const ButtonStyle(
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {},
+                            icon: Icon(VMS_Icons.pdf,
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
                       ),
-                    ),
-                  ],
-                );
-              }),
-            ],
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: const ButtonStyle(
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {},
+                            icon: Icon(VMS_Icons.xl,
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
+                      ),
+                    ],
+                  )
+                ],
+              );
+            }),
           ),
-        ),
+        if (w <= 769)
+          Container(
+            width: w,
+            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+            child: GetBuilder<Allteacheratendencecontroller>(
+                builder: (controller) {
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  spacing: 10.0,
+                  children: [
+                    DropDownAllSessions(
+                      title: "Session".tr,
+                      width: 220,
+                      type: "session",
+                      API: "Teachersts",
+                    ),
+                    DropDownTeacherStatus(
+                      isLoading: controller.isClassLoading,
+                      width: 220,
+                      title: "Class".tr,
+                      type: 'Class',
+                    ),
+                    DropDownTeacherStatus(
+                      isLoading: controller.isSubjectLoading,
+                      width: 220,
+                      title: "Subject".tr,
+                      type: 'Subject',
+                    ),
+                    DropDownTeacherStatus(
+                      isLoading: false,
+                      width: 220,
+                      title: "Type".tr,
+                      type: 'Type',
+                    ),
+                    selectTeacherDateAttendence(
+                      width: 220,
+                    ),
+                    TextFormSearch(
+                      click: () {
+                        controller.clearFilter();
+                      },
+                      onchange: (value) {
+                        controller.searchRequestByName(
+                            value,
+                            controller.classIndex,
+                            controller.SubjectIndex,
+                            controller.TypeIndex);
+                      },
+                      width: 220,
+                      radius: 5,
+                      controller: serch,
+                      suffixIcon: serch.text != "" ? Icons.clear : Icons.search,
+                    ),
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: IconButton(
+                          style: const ButtonStyle(
+                              shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5))))),
+                          onPressed: () {},
+                          icon: Icon(VMS_Icons.pdf,
+                              size: 18,
+                              color: Theme.of(context).highlightColor)),
+                    ),
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: IconButton(
+                          style: const ButtonStyle(
+                              shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5))))),
+                          onPressed: () {},
+                          icon: Icon(VMS_Icons.xl,
+                              size: 18,
+                              color: Theme.of(context).highlightColor)),
+                    )
+                  ],
+                ),
+              );
+            }),
+          ),
         Expanded(
             child: Padding(
           padding: const EdgeInsets.only(top: 15.0),

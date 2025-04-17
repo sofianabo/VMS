@@ -26,6 +26,33 @@ class TeacherStatusGrid extends StatefulWidget {
 class _TeacherStatusGridState extends State<TeacherStatusGrid> {
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    print(screenWidth);
+    int getCrossAxisCount() {
+      if (screenWidth >= 1800) return 5;
+      if (screenWidth >= 1400) return 4;
+      if (screenWidth >= 1000) return 3;
+      if (screenWidth >= 700) return 2;
+      return 1;
+    }
+
+    double getChildAspectRatio() {
+      if (screenWidth >= 1800) return 1.0;
+      if (screenWidth >= 1400) return 1.45;
+      if (screenWidth >= 1260) return 1.75;
+      if (screenWidth >= 1000) return 1.30;
+      if (screenWidth >= 930) return 1.85;
+      if (screenWidth >= 850) return 1.65;
+      if (screenWidth >= 750) return 1.45;
+      if (screenWidth >= 700) return 1.35;
+      if (screenWidth >= 584) return 2.45;
+      if (screenWidth >= 584) return 1.95;
+      if (screenWidth >= 492) return 1.90;
+      if (screenWidth >= 417) return 1.65;
+
+      return 1.25;
+    }
+
     return Directionality(
       textDirection: prefs!.getString(languageKey) == "ar"
           ? TextDirection.rtl
@@ -34,11 +61,11 @@ class _TeacherStatusGridState extends State<TeacherStatusGrid> {
         return controller.isLoading == true
             ? GridView.builder(
                 padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: getCrossAxisCount(),
                     crossAxisSpacing: 20.0,
                     mainAxisSpacing: 20.0,
-                    childAspectRatio: 1.5),
+                    childAspectRatio: getChildAspectRatio()),
                 itemCount: 8,
                 itemBuilder: (context, index) {
                   return HoverScaleCard(
@@ -79,12 +106,11 @@ class _TeacherStatusGridState extends State<TeacherStatusGrid> {
                 ? GridView.builder(
                     padding:
                         const EdgeInsets.only(top: 10, left: 40, right: 40),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4,
-                            crossAxisSpacing: 20.0,
-                            mainAxisSpacing: 20.0,
-                            childAspectRatio: 1.4),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: getCrossAxisCount(),
+                        crossAxisSpacing: 20.0,
+                        mainAxisSpacing: 20.0,
+                        childAspectRatio: getChildAspectRatio()),
                     itemCount: controller
                         .filteredTeacher!.length, // عدد العناصر في الشبكة
                     itemBuilder: (context, index) {

@@ -32,129 +32,122 @@ class _TeacherAttendanceManagmentState
   TextEditingController cuse = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    double w = MediaQuery.of(context).size.width;
     return GetBuilder<EmployeeController>(builder: (controller) {
       return Expanded(
           child: Column(
         children: [
           Container(
+            width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
-            alignment: Alignment.center,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Wrap(
+              alignment: WrapAlignment.spaceBetween,
+              runAlignment: WrapAlignment.spaceBetween,
+              runSpacing: 8.0,
+              spacing: 8.0,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Wrap(
+                  alignment: WrapAlignment.start,
+                  runAlignment: WrapAlignment.start,
+                  runSpacing: 8.0,
+                  spacing: 8.0,
                   children: [
-                    Row(
-                      spacing: 10.0,
-                      children: [
-                        SizedBox(
-                            width: w / 5.0,
-                            child: Obx(() => Row(
-                                  children: [
-                                    Checkbox(
-                                      shape: const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(4))),
-                                      value: controller.allHolidayChecked.value,
-                                      onChanged: (value) {
-                                        if (controller.teachers!.isEmpty ||
-                                            controller.Isloading == true) {
-                                        } else {
-                                          if (value == true) {
-                                            Get.dialog(VMSAlertDialog(
-                                                action: [
-                                                  ButtonDialog(
-                                                      text: "Done".tr,
-                                                      onPressed: () {
-                                                        controller
-                                                            .setAllAsHoliday(
-                                                                value!,
-                                                                cuse.text);
-                                                        Get.back();
-                                                      },
-                                                      color: Theme.of(context)
-                                                          .primaryColor,
-                                                      width: 65)
+                    SizedBox(
+                        width: 180,
+                        child: Obx(() => Row(
+                              children: [
+                                Checkbox(
+                                  shape: const RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(4))),
+                                  value: controller.allHolidayChecked.value,
+                                  onChanged: (value) {
+                                    if (controller.teachers!.isEmpty ||
+                                        controller.Isloading == true) {
+                                    } else {
+                                      if (value == true) {
+                                        Get.dialog(VMSAlertDialog(
+                                            action: [
+                                              ButtonDialog(
+                                                  text: "Done".tr,
+                                                  onPressed: () {
+                                                    controller.setAllAsHoliday(
+                                                        value!, cuse.text);
+                                                    Get.back();
+                                                  },
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                  width: 65)
+                                            ],
+                                            contents: SizedBox(
+                                              width: 500,
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Textfildwithupper(
+                                                      width: 250,
+                                                      controller: cuse,
+                                                      Uptext: "Cause".tr,
+                                                      hinttext: "Cause".tr)
                                                 ],
-                                                contents: SizedBox(
-                                                  width: 500,
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    children: [
-                                                      Textfildwithupper(
-                                                          width: 250,
-                                                          controller: cuse,
-                                                          Uptext: "Cause".tr,
-                                                          hinttext: "Cause".tr)
-                                                    ],
-                                                  ),
-                                                ),
-                                                apptitle:
-                                                    "Enter The Reason For Absence"
-                                                        .tr,
-                                                subtitle:
-                                                    "The reason for the absence of the all Teachers"
-                                                        .tr));
-                                          } else {
-                                            controller.setAllAsHoliday(
-                                                value!, null);
-                                          }
-                                        }
-                                      },
-                                    ),
-                                    Text("Set All As a Holiday".tr),
-                                  ],
-                                ))),
-                        SetTeacherDateAttendence(
-                          type: "teacher",
-                          allowedDates: controller.AttendanceDateTeacher ??
-                              ['${DateTime.now()}'],
-                          width: w / 5.0,
-                          enable: !controller.Isloading,
-                        )
-                      ],
-                    ),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black12,
-                                offset: Offset(0, 2),
-                                blurRadius: 1)
-                          ]),
-                      child: IconButton(
-                          style: ButtonStyle(
-                              backgroundColor: WidgetStatePropertyAll(
-                                  Theme.of(context).cardColor),
-                              shape: WidgetStatePropertyAll(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(5))))),
-                          onPressed: () async {
-                            if (controller.Isloading == false) {
-                              if (controller.teachers!.isNotEmpty) {
-                                await Add_Employee_Attendence_API
-                                    .Add_Employee_Attendence(
-                                        Datetime: controller
-                                            .AttendencetDate.value
-                                            .toString(),
-                                        employees: controller.Employees);
-                              }
-                            }
-                          },
-                          icon: Icon(Icons.file_upload_outlined,
-                              size: 22,
-                              color: Theme.of(context).highlightColor)),
-                    ),
+                                              ),
+                                            ),
+                                            apptitle:
+                                                "Enter The Reason For Absence"
+                                                    .tr,
+                                            subtitle:
+                                                "The reason for the absence of the all Teachers"
+                                                    .tr));
+                                      } else {
+                                        controller.setAllAsHoliday(
+                                            value!, null);
+                                      }
+                                    }
+                                  },
+                                ),
+                                Text("Set All As a Holiday".tr),
+                              ],
+                            ))),
+                    SetTeacherDateAttendence(
+                      type: "teacher",
+                      allowedDates: controller.AttendanceDateTeacher ??
+                          ['${DateTime.now()}'],
+                      width: 220,
+                      enable: !controller.Isloading,
+                    )
                   ],
+                ),
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: BorderRadius.circular(5),
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Colors.black12,
+                            offset: Offset(0, 2),
+                            blurRadius: 1)
+                      ]),
+                  child: IconButton(
+                      style: ButtonStyle(
+                          backgroundColor: WidgetStatePropertyAll(
+                              Theme.of(context).cardColor),
+                          shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5))))),
+                      onPressed: () async {
+                        if (controller.Isloading == false) {
+                          if (controller.teachers!.isNotEmpty) {
+                            await Add_Employee_Attendence_API
+                                .Add_Employee_Attendence(
+                                    Datetime: controller.AttendencetDate.value
+                                        .toString(),
+                                    employees: controller.Employees);
+                          }
+                        }
+                      },
+                      icon: Icon(Icons.file_upload_outlined,
+                          size: 22, color: Theme.of(context).highlightColor)),
                 ),
               ],
             ),

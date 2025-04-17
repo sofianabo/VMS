@@ -44,8 +44,8 @@ class _StudentStatusState extends State<StudentStatus> {
             child:
                 GetBuilder<StudentAttendencController>(builder: (controller) {
               return Wrap(
-                alignment: WrapAlignment.start,
-                runAlignment: WrapAlignment.start,
+                alignment: WrapAlignment.spaceBetween,
+                runAlignment: WrapAlignment.spaceBetween,
                 crossAxisAlignment: WrapCrossAlignment.center,
                 runSpacing: 10.0,
                 spacing: 10.0,
