@@ -163,7 +163,7 @@ class _AppearanceState extends State<Appearance> {
                             controller.currentLocale.value.languageCode;
 
                         String initialValue = currentLanguage == 'ar'
-                            ? 'Arabic'.tr
+                            ? 'Arabicc'.tr
                             : 'English'.tr;
 
                         return DropdownButton<String>(
@@ -177,7 +177,7 @@ class _AppearanceState extends State<Appearance> {
                             padding: const EdgeInsets.only(left: 15.0),
                             child: Icon(Icons.arrow_drop_down, size: 16),
                           ), // السهم في اليمين افتراضيًا
-                          items: ['English'.tr, 'Arabic'.tr]
+                          items: ['English'.tr, 'Arabicc'.tr]
                               .map((String language) {
                             return DropdownMenuItem<String>(
                               value: language,
@@ -188,7 +188,7 @@ class _AppearanceState extends State<Appearance> {
                           }).toList(),
                           onChanged: (String? newValue) {
                             // عند تغيير اللغة، سيتم التبديل بين اللغتين بناءً على القيمة المحددة
-                            if (newValue == "Arabic".tr) {
+                            if (newValue == "Arabicc".tr) {
                               Get.find<LocalizationController>()
                                   .changeLanguage(const Locale('ar'));
                             } else {

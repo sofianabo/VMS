@@ -120,7 +120,7 @@ class Languages {
       'Dark Theme': 'النمط الداكن',
       'Language': 'اللغة',
       'English': 'English',
-      'Arabic': 'العربية',
+      'Arabicc': 'العربية',
       'My Email': 'بريدي الالكتروني',
       'Edit Picture': 'تعديل الصورة',
       'Delete Picture': 'حذف الصورة',
@@ -677,9 +677,11 @@ class Languages {
       'Edit Teacher': 'تعديل المعلم',
       'Teacher Bank Info': 'معلومات الحساب البنكي للمعلم',
       'FullTime': 'دوام كامل',
-      
-      'Curriculum English Name - English Class Name': 'الاسم الإنكليزي للمنهاج - الاسم الإنكليزي للصف',
+
+      'Curriculum English Name - English Class Name':
+          'الاسم الإنكليزي للمنهاج - الاسم الإنكليزي للصف',
       'Curriculum Name - Class Name': 'اسم المنهاج - اسم الصف',
+      'Curriculum List': 'قائمة المناهج',
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -810,7 +812,7 @@ class Languages {
       'Dark Theme': 'Dark Theme',
       'Language': 'Language',
       'English': 'English',
-      'Arabic': 'العربية',
+      'Arabicc': 'العربية',
       'Logout': 'Logout',
       'Logout from Current Session': 'Logout from Current Session',
       'Logout from All Sessions': 'Logout from All Sessions',
@@ -1356,9 +1358,10 @@ class Languages {
       'Edit Teacher': 'Edit Teacher',
       'Teacher Bank Info': 'Teacher Bank Info',
       'FullTime': 'Full Time',
-      'Curriculum English Name - English Class Name': 'Curriculum English Name -English Class Name',
+      'Curriculum English Name - English Class Name':
+          'Curriculum English Name -English Class Name',
       'Curriculum Name - Class Name': 'Curriculum Name - Class Name',
-      '': '',
+      'Curriculum List': 'Curriculum List',
       '': '',
       '': '',
     }

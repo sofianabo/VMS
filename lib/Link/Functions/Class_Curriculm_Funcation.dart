@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Curriculm_API/Get_All_Curriculm.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Class_Mgmt_Controller.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
@@ -26,7 +28,7 @@ Class_Curriculm_Funcation(BuildContext context) async {
         return VMSAlertDialog(
           action: [
             ButtonDialog(
-                text: "Done",
+                text: "Done".tr,
                 onPressed: () {
                   if (control.selectedCurriculumNames.isNotEmpty ||
                       control.selectedCurriculums.isNotEmpty ||
@@ -115,7 +117,9 @@ Class_Curriculm_Funcation(BuildContext context) async {
                                       child: Text(
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
-                                        "${curriculum.enName}",
+                                        prefs!.getString(languageKey) == 'ar'
+                                            ? "${curriculum.name}"
+                                            : "${curriculum.enName}",
                                         textAlign: TextAlign.center,
                                         style: Get.theme.textTheme.bodyMedium!
                                             .copyWith(
@@ -139,7 +143,7 @@ Class_Curriculm_Funcation(BuildContext context) async {
               ),
             ),
           ),
-          apptitle: "Curriculum List",
+          apptitle: "Curriculum List".tr,
           subtitle: "none",
         );
       }));

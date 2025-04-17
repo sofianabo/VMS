@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Classes_Model.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Curriculum_Model.dart'
     as cur;
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 
 class ClassMgmtController extends GetxController {
   bool isLoading = true;
@@ -213,13 +215,20 @@ class ClassMgmtController extends GetxController {
   void toggleSelection(int curriculumId) {
     if (selectedCurriculums.contains(curriculumId)) {
       selectedCurriculums.remove(curriculumId);
-      selectedCurriculumNames.removeWhere((name) =>
-          name ==
-          curriculum!.firstWhere((cur) => cur.id == curriculumId).enName);
+      if (prefs!.getString(languageKey) == 'ar') {
+        selectedCurriculumNames.removeWhere((name) =>
+            name ==
+            curriculum!.firstWhere((cur) => cur.id == curriculumId).name);
+      } else {
+        selectedCurriculumNames.removeWhere((name) =>
+            name ==
+            curriculum!.firstWhere((cur) => cur.id == curriculumId).enName);
+      }
     } else {
       selectedCurriculums.add(curriculumId);
-      selectedCurriculumNames
-          .add(curriculum!.firstWhere((cur) => cur.id == curriculumId).enName!);
+      selectedCurriculumNames.add(prefs!.getString(languageKey) == 'ar'
+          ? curriculum!.firstWhere((cur) => cur.id == curriculumId).name!
+          : curriculum!.firstWhere((cur) => cur.id == curriculumId).enName!);
     }
     print("Selected Curriculum IDs: $selectedCurriculums");
     print("Selected Curriculum Names: $selectedCurriculumNames");

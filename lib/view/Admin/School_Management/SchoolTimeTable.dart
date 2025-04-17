@@ -9,6 +9,8 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/EditStudyShare
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetAllTeachersAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
 import 'package:vms_school/Link/Model/AdminModel/SchoolTimeModel.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/Admin_Table/DropDownSchoolTime.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
@@ -457,49 +459,53 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                             3,
                                                                     child: GetBuilder<
                                                                             AdminSchoolTimeController>(
+                                                                        id:
+                                                                            'dialog_data',
                                                                         builder:
                                                                             (SchoolController) {
-                                                                      List<String> s = entry
-                                                                          .value
-                                                                          .split(
-                                                                              ' \n');
-                                                                      print(SchoolController
-                                                                          .allteacherDialogList!
-                                                                          .elementAt(SchoolController
-                                                                              .teacherDialogList
-                                                                              .indexOf(s[1]))
-                                                                          .fullName);
+                                                                          // تخزين العنصر الختار ضمن مصفوفة و فصل عناصؤه
+                                                                          List<String>
+                                                                              s =
+                                                                              entry.value.split(' \n');
+                                                                          // التحقق من أن المصفوفة تحتوي على القيم الأساسية
+                                                                          if (s.length >=
+                                                                              2) {
+                                                                            //تخزين كل عنصر على حدا في متحول خاص به
+                                                                            int subjectIndex =
+                                                                                SchoolController.subjectDialogList.indexOf(s[0]);
 
-                                                                      SchoolController.set_Edite_Data(
-                                                                          teacherdialog: SchoolController
-                                                                              .allteacherDialogList!
-                                                                              .elementAt(SchoolController.teacherDialogList.indexOf(s[
-                                                                                  1]))
-                                                                              .fullName,
-                                                                          curriculmdialog: SchoolController
-                                                                              .allsubjectDialogList!
-                                                                              .elementAt(SchoolController.subjectDialogList.indexOf(s[0]))
-                                                                              .name);
-                                                                      return Column(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.min,
-                                                                        children: [
-                                                                          Padding(
-                                                                            padding:
-                                                                                const EdgeInsets.only(top: 15.0),
-                                                                            child:
-                                                                                Wrap(
-                                                                              spacing: 8.0,
-                                                                              runSpacing: 8.0,
-                                                                              children: [
-                                                                                DropDownSchoolTime(isError: controller.ISsubError, isLoading: SchoolController.isLoadingCurr, title: "Curriculum".tr, width: 220, type: "subjectDialog"),
-                                                                                DropDownSchoolTime(isError: controller.IteacherError, isLoading: SchoolController.isLoadingTeacher, title: "Teacher".tr, width: 220, type: "teacherDialog"),
-                                                                              ],
-                                                                            ),
-                                                                          ),
-                                                                        ],
-                                                                      );
-                                                                    }),
+                                                                            int teacherIndex =
+                                                                                SchoolController.teacherDialogList.indexOf(s[1]);
+                                                                            String
+                                                                                teach =
+                                                                                SchoolController.allteacherDialogList!.elementAt(teacherIndex).fullName.toString();
+                                                                            String sub = prefs!.getString(languageKey) == 'ar'
+                                                                                ? SchoolController.allsubjectDialogList!.elementAt(subjectIndex).name.toString()
+                                                                                : SchoolController.allsubjectDialogList!.elementAt(subjectIndex).enName.toString();
+                                                                            // التحقق من أن العناصر موجودة في المصفوفات الخاصة بها
+                                                                            if (subjectIndex >= 0 &&
+                                                                                teacherIndex >= 0) {
+                                                                              SchoolController.set_Edite_Data(teach, sub);
+                                                                            }
+                                                                          }
+                                                                          return Column(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.min,
+                                                                            children: [
+                                                                              Padding(
+                                                                                padding: const EdgeInsets.only(top: 15.0),
+                                                                                child: Wrap(
+                                                                                  spacing: 8.0,
+                                                                                  runSpacing: 8.0,
+                                                                                  children: [
+                                                                                    DropDownSchoolTime(isError: controller.ISsubError, isLoading: SchoolController.isLoadingCurr, title: "Curriculum".tr, width: 220, type: "subjectDialog"),
+                                                                                    DropDownSchoolTime(isError: controller.IteacherError, isLoading: SchoolController.isLoadingTeacher, title: "Teacher".tr, width: 220, type: "teacherDialog"),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          );
+                                                                        }),
                                                                   ),
                                                                   apptitle:
                                                                       "Operation of Lessons"
