@@ -40,26 +40,236 @@ class _AllGuardiansState extends State<Students_Marks> {
     return Expanded(
         child: Column(
       children: [
-        Container(
-          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
-          alignment: Alignment.center,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GetBuilder<Students_Marks_Controller>(builder: (controller) {
-                bool validate = controller.CurriculumIndex.isEmpty ||
-                    controller.studentsMarksModel?.quizType == null ||
-                    controller.studentsMarksModel!.quizType!.isEmpty;
-                return Column(
-                  children: [
-                    Row(
+        if (w > 769)
+          Container(
+            width: w,
+            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+            child: GetBuilder<Students_Marks_Controller>(builder: (controller) {
+              bool validate = controller.CurriculumIndex.isEmpty ||
+                  controller.studentsMarksModel?.quizType == null ||
+                  controller.studentsMarksModel!.quizType!.isEmpty;
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Wrap(
+                    spacing: 8.0,
+                    runSpacing: 8.0,
+                    alignment: WrapAlignment.start,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    runAlignment: WrapAlignment.start,
+                    children: [
+                      DropdownStudentsMark(
+                        isLoading: controller.isClassLoading,
+                        title: "Class".tr,
+                        width: 200,
+                        type: "Class",
+                      ),
+                      DropdownStudentsMark(
+                          isLoading: controller.isDivisionLoading,
+                          isDisabled:
+                              controller.ClassIndex == "" ? true : false,
+                          title: "Division".tr,
+                          width: 200,
+                          type: "Division"),
+                      DropdownStudentsMark(
+                        isLoading: false,
+                        isDisabled:
+                            controller.DivisionIndex == "" ? true : false,
+                        title: "Semester".tr,
+                        width: 200,
+                        type: "Semester",
+                      ),
+                      DropdownStudentsMark(
+                          isDisabled: controller.DivisionIndex == "",
+                          isLoading: controller.isCurriculumLoading,
+                          title: "Curriculum".tr,
+                          width: 200,
+                          type: "Curriculum"),
+                      TextFormSearch(
+                        click: () {
+                          controller.clearFilter();
+                        },
+                        onchange: (value) {
+                          controller.searchByName(value);
+                        },
+                        width: 200,
+                        radius: 5,
+                        controller: search,
+                        suffixIcon:
+                            search.text.isNotEmpty ? Icons.close : Icons.search,
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5.0),
+                    child: Row(
+                      spacing: 5.0,
+                      children: [
+                        const Spacer(),
+                        Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                color: validate
+                                    ? Get.theme.disabledColor
+                                    : Theme.of(context).cardColor,
+                                borderRadius: BorderRadius.circular(5),
+                                boxShadow: const [
+                                  BoxShadow(
+                                      color: Colors.black12,
+                                      offset: Offset(0, 2),
+                                      blurRadius: 1)
+                                ]),
+                            child: IconButton(
+                                splashColor: validate
+                                    ? Get.theme.disabledColor
+                                    : Theme.of(context).cardColor,
+                                style: ButtonStyle(
+                                    backgroundColor: WidgetStatePropertyAll(
+                                        validate
+                                            ? Get.theme.disabledColor
+                                            : Theme.of(context).cardColor),
+                                    shape: const WidgetStatePropertyAll(
+                                        RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5))))),
+                                onPressed: () {
+                                  if (!validate) {
+                                    showAddMarkForAllDialog();
+                                  }
+                                },
+                                icon: Icon(Icons.add_road_outlined,
+                                    size: 18,
+                                    color: validate
+                                        ? Colors.white
+                                        : Theme.of(context).highlightColor))),
+                        Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                color: validate
+                                    ? Get.theme.disabledColor
+                                    : Theme.of(context).cardColor,
+                                borderRadius: BorderRadius.circular(5),
+                                boxShadow: const [
+                                  BoxShadow(
+                                      color: Colors.black12,
+                                      offset: Offset(0, 2),
+                                      blurRadius: 1)
+                                ]),
+                            child: IconButton(
+                                splashColor: validate
+                                    ? Get.theme.disabledColor
+                                    : Theme.of(context).cardColor,
+                                style: ButtonStyle(
+                                    backgroundColor: WidgetStatePropertyAll(
+                                        validate
+                                            ? Get.theme.disabledColor
+                                            : Theme.of(context).cardColor),
+                                    shape: const WidgetStatePropertyAll(
+                                        RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5))))),
+                                onPressed: () {
+                                  if (!validate) {
+                                    for (var student in controller
+                                        .studentsMarksModel!.student!) {
+                                      if (student.mark == null ||
+                                          student.mark!
+                                              .any((m) => m.mark == null)) {
+                                        break;
+                                      }
+                                    }
+                                    AddStudentsMarksApi().saveAllStudents(
+                                      curriculumId: controller
+                                          .CurriculumModel!
+                                          .curriculum![
+                                              controller.Curriculumlist.indexOf(
+                                                  controller.CurriculumIndex)]
+                                          .id!,
+                                      students: controller
+                                          .studentsMarksModel!.student!,
+                                    );
+                                  }
+                                },
+                                icon: Icon(Icons.save_outlined,
+                                    size: 18,
+                                    color: validate
+                                        ? Colors.white
+                                        : Theme.of(context).highlightColor))),
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    offset: Offset(0, 2),
+                                    blurRadius: 1)
+                              ]),
+                          child: IconButton(
+                              style: const ButtonStyle(
+                                  shape: WidgetStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))))),
+                              onPressed: () {},
+                              icon: Icon(VMS_Icons.pdf,
+                                  size: 18,
+                                  color: Theme.of(context).highlightColor)),
+                        ),
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    offset: Offset(0, 2),
+                                    blurRadius: 1)
+                              ]),
+                          child: IconButton(
+                              style: const ButtonStyle(
+                                  shape: WidgetStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))))),
+                              onPressed: () {},
+                              icon: Icon(VMS_Icons.xl,
+                                  size: 18,
+                                  color: Theme.of(context).highlightColor)),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              );
+            }),
+          ),
+        if (w <= 769)
+          Container(
+            width: w,
+            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+            child: GetBuilder<Students_Marks_Controller>(builder: (controller) {
+              bool validate = controller.CurriculumIndex.isEmpty ||
+                  controller.studentsMarksModel?.quizType == null ||
+                  controller.studentsMarksModel!.quizType!.isEmpty;
+              return Column(
+                children: [
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
                       spacing: 8.0,
                       children: [
                         DropdownStudentsMark(
                           isLoading: controller.isClassLoading,
                           title: "Class".tr,
-                          width: w / 6.5,
+                          width: 200,
                           type: "Class",
                         ),
                         DropdownStudentsMark(
@@ -67,21 +277,21 @@ class _AllGuardiansState extends State<Students_Marks> {
                             isDisabled:
                                 controller.ClassIndex == "" ? true : false,
                             title: "Division".tr,
-                            width: w / 6.5,
+                            width: 200,
                             type: "Division"),
                         DropdownStudentsMark(
                           isLoading: false,
                           isDisabled:
                               controller.DivisionIndex == "" ? true : false,
                           title: "Semester".tr,
-                          width: w / 6.5,
+                          width: 200,
                           type: "Semester",
                         ),
                         DropdownStudentsMark(
                             isDisabled: controller.DivisionIndex == "",
                             isLoading: controller.isCurriculumLoading,
                             title: "Curriculum".tr,
-                            width: w / 6.5,
+                            width: 200,
                             type: "Curriculum"),
                         TextFormSearch(
                           click: () {
@@ -90,7 +300,7 @@ class _AllGuardiansState extends State<Students_Marks> {
                           onchange: (value) {
                             controller.searchByName(value);
                           },
-                          width: w / 6.5,
+                          width: 200,
                           radius: 5,
                           controller: search,
                           suffixIcon: search.text.isNotEmpty
@@ -99,155 +309,157 @@ class _AllGuardiansState extends State<Students_Marks> {
                         ),
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 5.0),
-                      child: Row(
-                        spacing: 5.0,
-                        children: [
-                          const Spacer(),
-                          Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                  color: validate
-                                      ? Get.theme.disabledColor
-                                      : Theme.of(context).cardColor,
-                                  borderRadius: BorderRadius.circular(5),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                        color: Colors.black12,
-                                        offset: Offset(0, 2),
-                                        blurRadius: 1)
-                                  ]),
-                              child: IconButton(
-                                  splashColor: validate
-                                      ? Get.theme.disabledColor
-                                      : Theme.of(context).cardColor,
-                                  style: ButtonStyle(
-                                      backgroundColor: WidgetStatePropertyAll(validate
-                                          ? Get.theme.disabledColor
-                                          : Theme.of(context).cardColor),
-                                      shape: const WidgetStatePropertyAll(RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))))),
-                                  onPressed: () {
-                                    if (!validate) {
-                                      showAddMarkForAllDialog();
-                                    }
-                                  },
-                                  icon: Icon(Icons.add_road_outlined,
-                                      size: 18,
-                                      color: validate
-                                          ? Colors.white
-                                          : Theme.of(context).highlightColor))),
-                          Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                  color: validate
-                                      ? Get.theme.disabledColor
-                                      : Theme.of(context).cardColor,
-                                  borderRadius: BorderRadius.circular(5),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                        color: Colors.black12,
-                                        offset: Offset(0, 2),
-                                        blurRadius: 1)
-                                  ]),
-                              child: IconButton(
-                                  splashColor: validate
-                                      ? Get.theme.disabledColor
-                                      : Theme.of(context).cardColor,
-                                  style: ButtonStyle(
-                                      backgroundColor: WidgetStatePropertyAll(validate
-                                          ? Get.theme.disabledColor
-                                          : Theme.of(context).cardColor),
-                                      shape: const WidgetStatePropertyAll(RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))))),
-                                  onPressed: () {
-                                    if (!validate) {
-                                      for (var student in controller
-                                          .studentsMarksModel!.student!) {
-                                        if (student.mark == null ||
-                                            student.mark!
-                                                .any((m) => m.mark == null)) {
-                                          break;
-                                        }
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5.0),
+                    child: Row(
+                      spacing: 5.0,
+                      children: [
+                        const Spacer(),
+                        Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                color: validate
+                                    ? Get.theme.disabledColor
+                                    : Theme.of(context).cardColor,
+                                borderRadius: BorderRadius.circular(5),
+                                boxShadow: const [
+                                  BoxShadow(
+                                      color: Colors.black12,
+                                      offset: Offset(0, 2),
+                                      blurRadius: 1)
+                                ]),
+                            child: IconButton(
+                                splashColor: validate
+                                    ? Get.theme.disabledColor
+                                    : Theme.of(context).cardColor,
+                                style: ButtonStyle(
+                                    backgroundColor: WidgetStatePropertyAll(
+                                        validate
+                                            ? Get.theme.disabledColor
+                                            : Theme.of(context).cardColor),
+                                    shape: const WidgetStatePropertyAll(
+                                        RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5))))),
+                                onPressed: () {
+                                  if (!validate) {
+                                    showAddMarkForAllDialog();
+                                  }
+                                },
+                                icon: Icon(Icons.add_road_outlined,
+                                    size: 18,
+                                    color: validate
+                                        ? Colors.white
+                                        : Theme.of(context).highlightColor))),
+                        Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                color: validate
+                                    ? Get.theme.disabledColor
+                                    : Theme.of(context).cardColor,
+                                borderRadius: BorderRadius.circular(5),
+                                boxShadow: const [
+                                  BoxShadow(
+                                      color: Colors.black12,
+                                      offset: Offset(0, 2),
+                                      blurRadius: 1)
+                                ]),
+                            child: IconButton(
+                                splashColor: validate
+                                    ? Get.theme.disabledColor
+                                    : Theme.of(context).cardColor,
+                                style: ButtonStyle(
+                                    backgroundColor: WidgetStatePropertyAll(
+                                        validate
+                                            ? Get.theme.disabledColor
+                                            : Theme.of(context).cardColor),
+                                    shape: const WidgetStatePropertyAll(
+                                        RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5))))),
+                                onPressed: () {
+                                  if (!validate) {
+                                    for (var student in controller
+                                        .studentsMarksModel!.student!) {
+                                      if (student.mark == null ||
+                                          student.mark!
+                                              .any((m) => m.mark == null)) {
+                                        break;
                                       }
-                                      AddStudentsMarksApi().saveAllStudents(
-                                        curriculumId: controller
-                                            .CurriculumModel!
-                                            .curriculum![controller
-                                                    .Curriculumlist
-                                                .indexOf(
-                                                    controller.CurriculumIndex)]
-                                            .id!,
-                                        students: controller
-                                            .studentsMarksModel!.student!,
-                                      );
                                     }
-                                  },
-                                  icon: Icon(Icons.save_outlined,
-                                      size: 18,
-                                      color: validate
-                                          ? Colors.white
-                                          : Theme.of(context).highlightColor))),
-                          Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                color: Theme.of(context).cardColor,
-                                borderRadius: BorderRadius.circular(5),
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Colors.black12,
-                                      offset: Offset(0, 2),
-                                      blurRadius: 1)
-                                ]),
-                            child: IconButton(
-                                style: const ButtonStyle(
-                                    shape: WidgetStatePropertyAll(
-                                        RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(5))))),
-                                onPressed: () {},
-                                icon: Icon(VMS_Icons.pdf,
+                                    AddStudentsMarksApi().saveAllStudents(
+                                      curriculumId: controller
+                                          .CurriculumModel!
+                                          .curriculum![
+                                              controller.Curriculumlist.indexOf(
+                                                  controller.CurriculumIndex)]
+                                          .id!,
+                                      students: controller
+                                          .studentsMarksModel!.student!,
+                                    );
+                                  }
+                                },
+                                icon: Icon(Icons.save_outlined,
                                     size: 18,
-                                    color: Theme.of(context).highlightColor)),
-                          ),
-                          Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                color: Theme.of(context).cardColor,
-                                borderRadius: BorderRadius.circular(5),
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Colors.black12,
-                                      offset: Offset(0, 2),
-                                      blurRadius: 1)
-                                ]),
-                            child: IconButton(
-                                style: const ButtonStyle(
-                                    shape: WidgetStatePropertyAll(
-                                        RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(5))))),
-                                onPressed: () {},
-                                icon: Icon(VMS_Icons.xl,
-                                    size: 18,
-                                    color: Theme.of(context).highlightColor)),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                );
-              }),
-            ],
+                                    color: validate
+                                        ? Colors.white
+                                        : Theme.of(context).highlightColor))),
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    offset: Offset(0, 2),
+                                    blurRadius: 1)
+                              ]),
+                          child: IconButton(
+                              style: const ButtonStyle(
+                                  shape: WidgetStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))))),
+                              onPressed: () {},
+                              icon: Icon(VMS_Icons.pdf,
+                                  size: 18,
+                                  color: Theme.of(context).highlightColor)),
+                        ),
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    offset: Offset(0, 2),
+                                    blurRadius: 1)
+                              ]),
+                          child: IconButton(
+                              style: const ButtonStyle(
+                                  shape: WidgetStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))))),
+                              onPressed: () {},
+                              icon: Icon(VMS_Icons.xl,
+                                  size: 18,
+                                  color: Theme.of(context).highlightColor)),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              );
+            }),
           ),
-        ),
         Expanded(
             child: Padding(
           padding: const EdgeInsets.only(top: 15.0),
