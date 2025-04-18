@@ -27,49 +27,100 @@ class GradeTable extends StatelessWidget {
       child: GetBuilder<Grade_Controller>(
         builder: (controller) {
           return Container(
-            margin: const EdgeInsets.only(top: 20),
-            width: Get.width * 0.9,
-            child: controller.isLoading == true
-                ? LoadingAnimationWidget.inkDrop(
-                    color: Theme.of(context).primaryColor,
-                    size: 60,
-                  )
-                : SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Table(
-                          border: TableBorder.all(
-                              color: Theme.of(context).primaryColor),
-                          children: [
-                            TableRow(
-                              decoration: BoxDecoration(
-                                  color: Theme.of(context).indicatorColor),
-                              children: [
-                                _tableHeader('Operation'.tr, context),
-                                _tableHeader('Fee Count'.tr, context),
-                                _tableHeader('Grade Name'.tr, context),
-                              ],
-                            ),
-                            for (var row in controller.Grades.asMap().entries)
-                              TableRow(
+              margin: const EdgeInsets.only(top: 20),
+              width: Get.width * 0.9,
+              child: controller.isLoading == true
+                  ? LoadingAnimationWidget.inkDrop(
+                      color: Theme.of(context).primaryColor,
+                      size: 60,
+                    )
+                  : Get.width >= 769
+                      ? SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Table(
+                                border: TableBorder.all(
+                                    color: Theme.of(context).primaryColor),
                                 children: [
-                                  _operationColumn(
-                                      row.value, controller, row.key, context),
-                                  _dataColumn(row.value['feeCount'], context),
-                                  _dataColumn(
-                                      prefs!.getString(languageKey) == 'ar'
-                                          ? row.value['name']
-                                          : row.value['enName'],
-                                      context),
+                                  TableRow(
+                                    decoration: BoxDecoration(
+                                        color:
+                                            Theme.of(context).indicatorColor),
+                                    children: [
+                                      _tableHeader('Operation'.tr, context),
+                                      _tableHeader('Fee Count'.tr, context),
+                                      _tableHeader('Grade Name'.tr, context),
+                                    ],
+                                  ),
+                                  for (var row
+                                      in controller.Grades.asMap().entries)
+                                    TableRow(
+                                      children: [
+                                        _operationColumn(row.value, controller,
+                                            row.key, context),
+                                        _dataColumn(
+                                            row.value['feeCount'], context),
+                                        _dataColumn(
+                                            prefs!.getString(languageKey) ==
+                                                    'ar'
+                                                ? row.value['name']
+                                                : row.value['enName'],
+                                            context),
+                                      ],
+                                    ),
                                 ],
                               ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-          );
+                            ],
+                          ),
+                        )
+                      : SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
+                            child: Container(
+                              width: 769,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Table(
+                                    border: TableBorder.all(
+                                        color: Theme.of(context).primaryColor),
+                                    children: [
+                                      TableRow(
+                                        decoration: BoxDecoration(
+                                            color: Theme.of(context)
+                                                .indicatorColor),
+                                        children: [
+                                          _tableHeader('Operation'.tr, context),
+                                          _tableHeader('Fee Count'.tr, context),
+                                          _tableHeader(
+                                              'Grade Name'.tr, context),
+                                        ],
+                                      ),
+                                      for (var row
+                                          in controller.Grades.asMap().entries)
+                                        TableRow(
+                                          children: [
+                                            _operationColumn(row.value,
+                                                controller, row.key, context),
+                                            _dataColumn(
+                                                row.value['feeCount'], context),
+                                            _dataColumn(
+                                                prefs!.getString(languageKey) ==
+                                                        'ar'
+                                                    ? row.value['name']
+                                                    : row.value['enName'],
+                                                context),
+                                          ],
+                                        ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ));
         },
       ),
     );
@@ -181,28 +232,27 @@ class GradeTable extends StatelessWidget {
                             color: Theme.of(context).primaryColor,
                             width: 120),
                       ],
-                      contents: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Row(
+                      contents: Container(
+                        width: 320,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 15.0, right: 15.0),
-                                child: Textfildwithupper(
-                                    isRequired: true,
-                                    isError: G_Controller.IsennameError,
-                                    onChanged: (value) {
-                                      if (value.isNotEmpty) {
-                                        G_Controller.updateFieldError(
-                                            "enname", false);
-                                      }
-                                    },
-                                    controller: enName,
-                                    Uptext: "Grade En - Name".tr,
-                                    hinttext: "Grade En - Name".tr),
-                              ),
                               Textfildwithupper(
+                                  width: 280,
+                                  isRequired: true,
+                                  isError: G_Controller.IsennameError,
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      G_Controller.updateFieldError(
+                                          "enname", false);
+                                    }
+                                  },
+                                  controller: enName,
+                                  Uptext: "Grade En - Name".tr,
+                                  hinttext: "Grade En - Name".tr),
+                              Textfildwithupper(
+                                  width: 280,
                                   isRequired: true,
                                   isError: G_Controller.IsarnameError,
                                   onChanged: (value) {
@@ -214,33 +264,23 @@ class GradeTable extends StatelessWidget {
                                   controller: name,
                                   Uptext: "Grade Ar - Name".tr,
                                   hinttext: "Grade Ar - Name".tr),
+                              Textfildwithupper(
+                                  width: 280,
+                                  isRequired: true,
+                                  isError: G_Controller.IsfeeError,
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      G_Controller.updateFieldError(
+                                          "fee", false);
+                                    }
+                                  },
+                                  fieldType: "number",
+                                  controller: feeCount,
+                                  Uptext: "Fee Count".tr,
+                                  hinttext: "Fee Count".tr),
                             ],
                           ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 15.0, right: 15.0, top: 15.0),
-                                child: Textfildwithupper(
-                                    isRequired: true,
-                                    isError: G_Controller.IsfeeError,
-                                    onChanged: (value) {
-                                      if (value.isNotEmpty) {
-                                        G_Controller.updateFieldError(
-                                            "fee", false);
-                                      }
-                                    },
-                                    fieldType: "number",
-                                    controller: feeCount,
-                                    Uptext: "Fee Count".tr,
-                                    hinttext: "Fee Count".tr),
-                              ),
-                            ],
-                          ),
-                        ],
+                        ),
                       ),
                       apptitle: "Edit Grade".tr,
                       subtitle: "none");

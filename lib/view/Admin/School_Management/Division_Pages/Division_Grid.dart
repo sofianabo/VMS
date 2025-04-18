@@ -23,6 +23,24 @@ class DivisionGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    int getCrossAxisCount() {
+      if (screenWidth >= 1278) return 5;
+      if (screenWidth >= 1070) return 4;
+      if (screenWidth >= 950) return 3;
+      if (screenWidth >= 769) return 2;
+      return 1;
+    }
+
+    double getChildAspectRatio() {
+      if (screenWidth >= 1070) return 1.1;
+      if (screenWidth >= 950) return 1.1;
+      if (screenWidth >= 838) return 1.6;
+      if (screenWidth >= 769) return 1.5;
+      if (screenWidth >= 539) return 2.2;
+      return 1.7;
+    }
+
     return Directionality(
       textDirection: prefs!.getString(languageKey) == "ar"
           ? TextDirection.rtl
@@ -31,11 +49,11 @@ class DivisionGrid extends StatelessWidget {
         return control.Isapiloading == true
             ? GridView.builder(
                 padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 5,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: getCrossAxisCount(),
                     crossAxisSpacing: 20.0,
                     mainAxisSpacing: 20.0,
-                    childAspectRatio: 1.1),
+                    childAspectRatio: getChildAspectRatio()),
                 itemCount: 10,
                 itemBuilder: (context, index) {
                   return HoverScaleCard(
@@ -86,12 +104,11 @@ class DivisionGrid extends StatelessWidget {
                 ? GridView.builder(
                     padding:
                         const EdgeInsets.only(top: 10, left: 40, right: 40),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 5,
-                            crossAxisSpacing: 20.0,
-                            mainAxisSpacing: 20.0,
-                            childAspectRatio: 1.1),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: getCrossAxisCount(),
+                        crossAxisSpacing: 20.0,
+                        mainAxisSpacing: 20.0,
+                        childAspectRatio: getChildAspectRatio()),
                     itemCount: control.filteredDivision!.length,
                     itemBuilder: (context, index) {
                       return HoverScaleCard(
