@@ -19,6 +19,25 @@ class SessionManagementGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    print(screenWidth);
+    int getCrossAxisCount() {
+      if (screenWidth >= 1278) return 5;
+      if (screenWidth >= 1070) return 4;
+      if (screenWidth >= 950) return 3;
+      if (screenWidth >= 769) return 2;
+      return 1;
+    }
+
+    double getChildAspectRatio() {
+      if (screenWidth >= 1070) return 1.1;
+      if (screenWidth >= 950) return 1.1;
+      if (screenWidth >= 838) return 1.6;
+      if (screenWidth >= 769) return 1.5;
+      if (screenWidth >= 539) return 2.2;
+      return 1.7;
+    }
+
     return Directionality(
       textDirection: prefs!.getString(languageKey) == "ar"
           ? TextDirection.rtl
@@ -27,11 +46,11 @@ class SessionManagementGrid extends StatelessWidget {
         return control.isLoading == false
             ? GridView.builder(
                 padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 5,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: getCrossAxisCount(),
                     crossAxisSpacing: 20.0,
                     mainAxisSpacing: 20.0,
-                    childAspectRatio: 1.1),
+                    childAspectRatio: getChildAspectRatio()),
                 itemCount: control.Sessionss.length,
                 itemBuilder: (context, index) {
                   return HoverScaleCard(
@@ -310,139 +329,120 @@ class SessionManagementGrid extends StatelessWidget {
                                                 Theme.of(context).primaryColor,
                                             width: 90)
                                       ],
-                                      contents: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          GetBuilder<SessionController>(
-                                              builder: (controllers) {
-                                            return Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.end,
-                                              children: [
-                                                SizedBox(
-                                                  width: 220,
-                                                  child: Textfildwithupper_num(
-                                                    onChanged: (value) {
-                                                      controller
-                                                          .updateYear(value);
-                                                      if (value.isNotEmpty) {
+                                      contents: Container(
+                                        width: 620,
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            GetBuilder<SessionController>(
+                                                builder: (controllers) {
+                                              return Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                children: [
+                                                  SizedBox(
+                                                    width: 220,
+                                                    child:
+                                                        Textfildwithupper_num(
+                                                      onChanged: (value) {
                                                         controller
-                                                            .updateFieldError(
-                                                                "name", false);
-                                                      }
-                                                    },
-                                                    isRequired: true,
-                                                    isError:
-                                                        controller.IsnameError,
-                                                    Uptext: "Study Year".tr,
-                                                    hinttext: "Enter Year".tr,
-                                                    sessionController:
-                                                        controller
-                                                            .sessionController,
-                                                    borderColor:
-                                                        controllers.borderColor,
-                                                  ),
-                                                ),
-                                                Obx(() {
-                                                  return Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 8.0,
-                                                            right: 8.0),
-                                                    child: Container(
-                                                      height: 40,
-                                                      alignment:
-                                                          Alignment.center,
-                                                      child: Text(
-                                                        "/${controllers.currentYear.value}",
-                                                        style: Get
-                                                            .theme
-                                                            .textTheme
-                                                            .displayLarge!
-                                                            .copyWith(
-                                                          fontSize: 22,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                }),
-                                              ],
-                                            );
-                                          }),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 15.0),
-                                            child: Row(
-                                              children: [
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  children: [
-                                                    DateSelector(
-                                                      width: 300,
-                                                      label: "Start Date".tr,
-                                                      dateValue:
-                                                          controller.startDate,
-                                                      onSelectDate: controller
-                                                          .selectStartDate,
+                                                            .updateYear(value);
+                                                        if (value.isNotEmpty) {
+                                                          controller
+                                                              .updateFieldError(
+                                                                  "name",
+                                                                  false);
+                                                        }
+                                                      },
                                                       isRequired: true,
                                                       isError: controller
-                                                              .startDate
-                                                              .value ==
-                                                          null, // تحقق من الخطأ
-                                                    )
-                                                  ],
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 20.0,
-                                                          right: 20.0),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    children: [
-                                                      DateSelector(
-                                                        width: 300,
-                                                        label: "End Date".tr,
-                                                        dateValue:
-                                                            controller.endDate,
-                                                        onSelectDate: controller
-                                                            .selectEndDate,
-                                                        isRequired: true,
-                                                        isError: controller
-                                                                    .endDate
-                                                                    .value ==
-                                                                null ||
-                                                            controller
-                                                                .endDate.value!
-                                                                .isBefore(controller
-                                                                        .startDate
-                                                                        .value
-                                                                        ?.add(Duration(
-                                                                            days:
-                                                                                1)) ??
-                                                                    DateTime
-                                                                        .now()),
-                                                      )
-                                                    ],
+                                                          .IsnameError,
+                                                      Uptext: "Study Year".tr,
+                                                      hinttext: "Enter Year".tr,
+                                                      sessionController:
+                                                          controller
+                                                              .sessionController,
+                                                      borderColor: controllers
+                                                          .borderColor,
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                        ],
+                                                  Obx(() {
+                                                    return Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 8.0,
+                                                              right: 8.0),
+                                                      child: Container(
+                                                        height: 40,
+                                                        alignment:
+                                                            Alignment.center,
+                                                        child: Text(
+                                                          "/${controllers.currentYear.value}",
+                                                          style: Get
+                                                              .theme
+                                                              .textTheme
+                                                              .displayLarge!
+                                                              .copyWith(
+                                                            fontSize: 22,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }),
+                                                ],
+                                              );
+                                            }),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 15.0),
+                                              child: Wrap(
+                                                spacing: 20.0,
+                                                runSpacing: 20.0,
+                                                children: [
+                                                  DateSelector(
+                                                    width: 300,
+                                                    label: "Start Date".tr,
+                                                    dateValue:
+                                                        controller.startDate,
+                                                    onSelectDate: controller
+                                                        .selectStartDate,
+                                                    isRequired: true,
+                                                    isError: controller
+                                                            .startDate.value ==
+                                                        null, // تحقق من الخطأ
+                                                  ),
+                                                  DateSelector(
+                                                    width: 300,
+                                                    label: "End Date".tr,
+                                                    dateValue:
+                                                        controller.endDate,
+                                                    onSelectDate: controller
+                                                        .selectEndDate,
+                                                    isRequired: true,
+                                                    isError: controller.endDate
+                                                                .value ==
+                                                            null ||
+                                                        controller
+                                                            .endDate.value!
+                                                            .isBefore(controller
+                                                                    .startDate
+                                                                    .value
+                                                                    ?.add(Duration(
+                                                                        days:
+                                                                            1)) ??
+                                                                DateTime.now()),
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                          ],
+                                        ),
                                       ),
                                       apptitle: "Edit Session".tr,
                                       subtitle: "none");
@@ -458,11 +458,11 @@ class SessionManagementGrid extends StatelessWidget {
               )
             : GridView.builder(
                 padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 5,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: getCrossAxisCount(),
                     crossAxisSpacing: 20.0,
                     mainAxisSpacing: 20.0,
-                    childAspectRatio: 1.1),
+                    childAspectRatio: getChildAspectRatio()),
                 itemCount: 10,
                 itemBuilder: (context, index) {
                   return Container(
