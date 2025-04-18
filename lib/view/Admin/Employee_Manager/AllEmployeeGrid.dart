@@ -25,6 +25,32 @@ class AllEmployeeGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    print(screenWidth);
+    int getCrossAxisCount() {
+      if (screenWidth >= 1800) return 5;
+      if (screenWidth >= 1278) return 4;
+      if (screenWidth >= 950) return 3;
+      if (screenWidth >= 769) return 2;
+      return 1;
+    }
+
+    double getChildAspectRatio() {
+      if (screenWidth >= 1800) return 1.4;
+      if (screenWidth >= 1410) return 1.4;
+      if (screenWidth >= 1278) return 1.3;
+      if (screenWidth >= 1149) return 1.5;
+      if (screenWidth >= 1070) return 1.4;
+      if (screenWidth >= 950) return 1.1;
+      if (screenWidth >= 838) return 1.6;
+      if (screenWidth >= 769) return 1.4;
+      if (screenWidth >= 616) return 2.65;
+      if (screenWidth >= 500) return 2.0;
+      if (screenWidth >= 430) return 1.6;
+      if (screenWidth >= 375) return 1.4;
+      return 1.2;
+    }
+
     return Directionality(
       textDirection: prefs!.getString(languageKey) == "ar"
           ? TextDirection.rtl
@@ -33,11 +59,11 @@ class AllEmployeeGrid extends StatelessWidget {
         return controller.isLoading
             ? GridView.builder(
                 padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: getCrossAxisCount(),
                     crossAxisSpacing: 20.0,
                     mainAxisSpacing: 20.0,
-                    childAspectRatio: 1.4),
+                    childAspectRatio: getChildAspectRatio()),
                 itemCount: 8,
                 itemBuilder: (context, index) {
                   return HoverScaleCard(
@@ -132,12 +158,11 @@ class AllEmployeeGrid extends StatelessWidget {
                 ? GridView.builder(
                     padding:
                         const EdgeInsets.only(top: 10, left: 40, right: 40),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4,
-                            crossAxisSpacing: 20.0,
-                            mainAxisSpacing: 20.0,
-                            childAspectRatio: 1.4),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: getCrossAxisCount(),
+                        crossAxisSpacing: 20.0,
+                        mainAxisSpacing: 20.0,
+                        childAspectRatio: getChildAspectRatio()),
                     itemCount: controller
                         .filteredreemployees.length, // عدد العناصر في الشبكة
                     itemBuilder: (context, index) {
