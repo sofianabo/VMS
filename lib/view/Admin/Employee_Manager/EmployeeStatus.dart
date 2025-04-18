@@ -1,5 +1,3 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/GetEmployeeAttendenceAPI.dart';
@@ -37,61 +35,155 @@ class _EmployeeStatusState extends State<EmployeeStatus> {
     return Expanded(
         child: Column(
       children: [
-        Container(
-          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
-          alignment: Alignment.center,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GetBuilder<Employeeattendencecontroller>(builder: (controller) {
-                return Row(
+        if (w > 769)
+          Container(
+            width: w,
+            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+            child:
+                GetBuilder<Employeeattendencecontroller>(builder: (controller) {
+              return Wrap(
+                alignment: WrapAlignment.spaceBetween,
+                runAlignment: WrapAlignment.spaceBetween,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                runSpacing: 10.0,
+                spacing: 10.0,
+                children: [
+                  Wrap(
+                    alignment: WrapAlignment.start,
+                    runAlignment: WrapAlignment.start,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    runSpacing: 10.0,
+                    spacing: 10.0,
+                    children: [
+                      DropDownAllSessions(
+                          API: "EmpState",
+                          title: "session".tr,
+                          width: 220,
+                          type: "session"),
+                      DropDownEmployeeAttendence(
+                        type: "jobTitle",
+                        title: "Job Title".tr,
+                        width: 220,
+                      ),
+                      selectEmployeeDateAttendence(
+                        width: 220,
+                      ),
+                      TextFormSearch(
+                        click: () {
+                          controller.clearFilter();
+                        },
+                        onchange: (value) {
+                          controller.searchRequestByName(
+                              value, controller.JopTitleIndex);
+                        },
+                        width: 220,
+                        radius: 5,
+                        controller: search,
+                        suffixIcon:
+                            search.text.isNotEmpty ? Icons.close : Icons.search,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    spacing: 10.0,
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: const ButtonStyle(
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {},
+                            icon: Icon(VMS_Icons.pdf,
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
+                      ),
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: const ButtonStyle(
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {},
+                            icon: Icon(VMS_Icons.xl,
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
+                      ),
+                    ],
+                  )
+                ],
+              );
+            }),
+          ),
+        if (w <= 769)
+          Container(
+            width: w,
+            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+            child:
+                GetBuilder<Employeeattendencecontroller>(builder: (controller) {
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  spacing: 8.0,
                   children: [
                     Row(
+                      spacing: 8.0,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: DropDownAllSessions(
-                              API: "EmpState",
-                              title: "session".tr,
-                              width: w / 5.5,
-                              type: "session"),
+                        DropDownAllSessions(
+                            API: "EmpState",
+                            title: "session".tr,
+                            width: 220,
+                            type: "session"),
+                        DropDownEmployeeAttendence(
+                          type: "jobTitle",
+                          title: "Job Title".tr,
+                          width: 220,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: DropDownEmployeeAttendence(
-                            type: "jobTitle",
-                            title: "Job Title".tr,
-                            width: w / 5.5,
-                          ),
+                        selectEmployeeDateAttendence(
+                          width: 220,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: selectEmployeeDateAttendence(
-                            width: w / 5.5,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: TextFormSearch(
-                            click: () {
-                              controller.clearFilter();
-                            },
-                            onchange: (value) {
-                              controller.searchRequestByName(
-                                  value, controller.JopTitleIndex);
-                            },
-                            width: w / 4,
-                            radius: 5,
-                            controller: search,
-                            suffixIcon: search.text.isNotEmpty
-                                ? Icons.close
-                                : Icons.search,
-                          ),
+                        TextFormSearch(
+                          click: () {
+                            controller.clearFilter();
+                          },
+                          onchange: (value) {
+                            controller.searchRequestByName(
+                                value, controller.JopTitleIndex);
+                          },
+                          width: 220,
+                          radius: 5,
+                          controller: search,
+                          suffixIcon: search.text.isNotEmpty
+                              ? Icons.close
+                              : Icons.search,
                         ),
                       ],
                     ),
-                    const Spacer(),
                     Row(
                       children: [
                         Container(
@@ -147,11 +239,10 @@ class _EmployeeStatusState extends State<EmployeeStatus> {
                       ],
                     )
                   ],
-                );
-              }),
-            ],
+                ),
+              );
+            }),
           ),
-        ),
         Expanded(
             child: Padding(
           padding: const EdgeInsets.only(top: 15.0),
