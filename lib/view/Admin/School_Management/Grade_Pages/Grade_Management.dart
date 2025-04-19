@@ -104,81 +104,60 @@ class _GradeManagementState extends State<GradeManagement> {
                                       color: Theme.of(context).primaryColor,
                                       width: 120),
                                 ],
-                                contents: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Column(
+                                contents: Container(
+                                  width: 320,
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      spacing: 8.0,
                                       mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: [
-                                        Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 15.0, right: 15.0),
-                                              child: Textfildwithupper(
-                                                  isRequired: true,
-                                                  isError:
-                                                      controller.IsennameError,
-                                                  onChanged: (value) {
-                                                    if (value.isNotEmpty) {
-                                                      controller
-                                                          .updateFieldError(
-                                                              "enname", false);
-                                                    }
-                                                  },
-                                                  controller: enName,
-                                                  Uptext: "Grade En - Name".tr,
-                                                  hinttext:
-                                                      "Grade En - Name".tr),
-                                            ),
-                                            Textfildwithupper(
-                                                isRequired: true,
-                                                isError:
-                                                    controller.IsarnameError,
-                                                onChanged: (value) {
-                                                  if (value.isNotEmpty) {
-                                                    controller.updateFieldError(
-                                                        "arname", false);
-                                                  }
-                                                },
-                                                controller: arName,
-                                                Uptext: "Grade Ar - Name".tr,
-                                                hinttext: "Grade Ar - Name".tr),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 15.0,
-                                                  right: 15.0,
-                                                  top: 15.0),
-                                              child: Textfildwithupper(
-                                                  isRequired: true,
-                                                  isError:
-                                                      controller.IsfeeError,
-                                                  onChanged: (value) {
-                                                    if (value.isNotEmpty) {
-                                                      controller
-                                                          .updateFieldError(
-                                                              "fee", false);
-                                                    }
-                                                  },
-                                                  controller: feeCount,
-                                                  fieldType: "number",
-                                                  Uptext: "Fee Count".tr,
-                                                  hinttext: "Fee Count".tr),
-                                            ),
-                                          ],
-                                        ),
+                                        Textfildwithupper(
+                                            width: 280,
+                                            isRequired: true,
+                                            isError: controller.IsennameError,
+                                            onChanged: (value) {
+                                              if (value.isNotEmpty) {
+                                                controller.updateFieldError(
+                                                    "enname", false);
+                                              }
+                                            },
+                                            controller: enName,
+                                            Uptext: "Grade En - Name".tr,
+                                            hinttext: "Grade En - Name".tr),
+                                        Textfildwithupper(
+                                            width: 280,
+                                            isRequired: true,
+                                            isError: controller.IsarnameError,
+                                            onChanged: (value) {
+                                              if (value.isNotEmpty) {
+                                                controller.updateFieldError(
+                                                    "arname", false);
+                                              }
+                                            },
+                                            controller: arName,
+                                            Uptext: "Grade Ar - Name".tr,
+                                            hinttext: "Grade Ar - Name".tr),
+                                        Textfildwithupper(
+                                            width: 280,
+                                            isRequired: true,
+                                            isError: controller.IsfeeError,
+                                            onChanged: (value) {
+                                              if (value.isNotEmpty) {
+                                                controller.updateFieldError(
+                                                    "fee", false);
+                                              }
+                                            },
+                                            controller: feeCount,
+                                            fieldType: "number",
+                                            Uptext: "Fee Count".tr,
+                                            hinttext: "Fee Count".tr),
                                       ],
                                     ),
-                                  ],
+                                  ),
                                 ),
                                 apptitle: "Add Grade".tr,
                                 subtitle: "none");

@@ -26,9 +26,6 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-
-    print(screenWidth);
-
     int getCrossAxisCount() {
       if (screenWidth >= 1800) return 5;
       if (screenWidth >= 1400) return 4;

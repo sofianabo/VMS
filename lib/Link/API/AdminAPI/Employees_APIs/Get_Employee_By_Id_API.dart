@@ -37,7 +37,11 @@ class GetEmployeeByIdApi {
             One_Employee_Model.fromJson(response.data);
         controller.setOneEmployee(oneEmployeeModel);
         Get.back();
-        EditEmployee(context, index, employeeID);
+        Get.dialog(
+          Edit_Employee(idx: index, employeeID: employeeID),
+          barrierDismissible: false,
+        );
+
         return response.statusCode;
       } else {
         ErrorHandler.handleDioError(DioException(
