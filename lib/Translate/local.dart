@@ -686,6 +686,9 @@ class Languages {
       'Content Name': 'اسم المحتوى',
       'Add Content': 'إضافة محتوى',
       'Edit Content': 'تعديل المحتوى',
+
+      'This Subjact has Curriculums': 'هذه المادة تحتوي على مناهج',
+      'You Can`t Delete This Subject': 'لا يمكنك حذف هذه المادة',
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -1370,8 +1373,8 @@ class Languages {
       'Content Name': 'Content Name',
       'Add Content': 'Add Content',
       'Edit Content': 'Edit Content',
-      '': '',
-      '': '',
+      'This Subjact has Curriculums': 'This Subjact has Curriculums',
+      'You Can`t Delete This Subject': 'You Can`t Delete This Subject',
       '': '',
       '': '',
       '': '',
