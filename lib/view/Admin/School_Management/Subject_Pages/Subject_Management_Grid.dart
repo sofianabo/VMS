@@ -30,38 +30,81 @@ class Subject_Management_Grid extends StatelessWidget {
                   color: Theme.of(context).primaryColor,
                   size: 60,
                 )
-              : SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Table(
-                        border: TableBorder.all(
-                            color: Theme.of(context).primaryColor),
+              : Get.width >= 600
+                  ? SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          TableRow(
-                            decoration:
-                                 BoxDecoration(color:Get.theme.indicatorColor),
+                          Table(
+                            border: TableBorder.all(
+                                color: Theme.of(context).primaryColor),
                             children: [
-                              _tableHeader('Operation'.tr, context),
-                              _tableHeader('Subject Name'.tr, context),
+                              TableRow(
+                                decoration: BoxDecoration(
+                                    color: Get.theme.indicatorColor),
+                                children: [
+                                  _tableHeader('Operation'.tr, context),
+                                  _tableHeader('Subject Name'.tr, context),
+                                ],
+                              ),
+                              for (var row
+                                  in controller.Subjects.asMap().entries)
+                                TableRow(
+                                  children: [
+                                    _operationColumn(row.value, controller,
+                                        row.key, context),
+                                    _dataColumn(
+                                        prefs!.getString(languageKey) == 'ar'
+                                            ? row.value['name']
+                                            : row.value['enName']),
+                                  ],
+                                ),
                             ],
                           ),
-                          for (var row in controller.Subjects.asMap().entries)
-                            TableRow(
-                              children: [
-                                _operationColumn(
-                                    row.value, controller, row.key, context),
-                                _dataColumn(
-                                    prefs!.getString(languageKey) == 'ar'
-                                        ? row.value['name']
-                                        : row.value['enName']),
-                              ],
-                            ),
                         ],
                       ),
-                    ],
-                  ),
-                ),
+                    )
+                  : SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Container(
+                          width: 600,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Table(
+                                border: TableBorder.all(
+                                    color: Theme.of(context).primaryColor),
+                                children: [
+                                  TableRow(
+                                    decoration: BoxDecoration(
+                                        color: Get.theme.indicatorColor),
+                                    children: [
+                                      _tableHeader('Operation'.tr, context),
+                                      _tableHeader('Subject Name'.tr, context),
+                                    ],
+                                  ),
+                                  for (var row
+                                      in controller.Subjects.asMap().entries)
+                                    TableRow(
+                                      children: [
+                                        _operationColumn(row.value, controller,
+                                            row.key, context),
+                                        _dataColumn(
+                                            prefs!.getString(languageKey) ==
+                                                    'ar'
+                                                ? row.value['name']
+                                                : row.value['enName']),
+                                      ],
+                                    ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
         );
       },
     );
@@ -132,8 +175,28 @@ class Subject_Management_Grid extends StatelessWidget {
                 )
               : _iconButton(
                   iconData: VMS_Icons.bin,
-                  color: Color(0xffB03D3D),
-                  onPressed: () {},
+                  color: Theme.of(context).disabledColor,
+                  onPressed: () {
+                    Get.dialog(
+                      VMSAlertDialog(
+                        action: [],
+                        contents: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SizedBox(
+                              width: 400,
+                              child: Text(
+                                "This Subjact has Curriculums".tr,
+                                style: const TextStyle(fontSize: 16),
+                              ),
+                            ),
+                          ],
+                        ),
+                        apptitle: "You Can`t Delete This Subject".tr,
+                        subtitle: "none",
+                      ),
+                    );
+                  },
                 ),
           _iconButton(
             iconData: Icons.edit_note_outlined,
@@ -170,28 +233,27 @@ class Subject_Management_Grid extends StatelessWidget {
                             color: Theme.of(context).primaryColor,
                             width: 120),
                       ],
-                      contents: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Row(
+                      contents: Container(
+                        width: 320,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 15.0, right: 15.0),
-                                child: Textfildwithupper(
-                                    isRequired: true,
-                                    isError: controller.IsEnnameError,
-                                    onChanged: (value) {
-                                      if (value.isNotEmpty) {
-                                        controller.updateFieldError(
-                                            "enname", false);
-                                      }
-                                    },
-                                    controller: enName,
-                                    Uptext: "Subject En - Name".tr,
-                                    hinttext: "Subject En - Name".tr),
-                              ),
                               Textfildwithupper(
+                                  isRequired: true,
+                                  width: 280,
+                                  isError: controller.IsEnnameError,
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      controller.updateFieldError(
+                                          "enname", false);
+                                    }
+                                  },
+                                  controller: enName,
+                                  Uptext: "Subject En - Name".tr,
+                                  hinttext: "Subject En - Name".tr),
+                              Textfildwithupper(
+                                  width: 280,
                                   isRequired: true,
                                   isError: controller.IsArnameError,
                                   onChanged: (value) {
@@ -205,7 +267,7 @@ class Subject_Management_Grid extends StatelessWidget {
                                   hinttext: "Subject Ar - Name".tr),
                             ],
                           ),
-                        ],
+                        ),
                       ),
                       apptitle: "Edit Subject".tr,
                       subtitle: "none");

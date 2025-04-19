@@ -97,53 +97,42 @@ class _Subject_ManagementState extends State<Subject_Management> {
                                       color: Theme.of(context).primaryColor,
                                       width: 120),
                                 ],
-                                contents: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 15.0, right: 15.0),
-                                              child: Textfildwithupper(
-                                                  isRequired: true,
-                                                  isError:
-                                                      controller.IsEnnameError,
-                                                  onChanged: (value) {
-                                                    if (value.isNotEmpty) {
-                                                      controller
-                                                          .updateFieldError(
-                                                              "enname", false);
-                                                    }
-                                                  },
-                                                  controller: enName,
-                                                  Uptext:
-                                                      "Subject En - Name".tr,
-                                                  hinttext:
-                                                      "Subject En - Name".tr),
-                                            ),
-                                            Textfildwithupper(
-                                                isRequired: true,
-                                                isError:
-                                                    controller.IsArnameError,
-                                                onChanged: (value) {
-                                                  if (value.isNotEmpty) {
-                                                    controller.updateFieldError(
-                                                        "arname", false);
-                                                  }
-                                                },
-                                                controller: arName,
-                                                Uptext: "Subject Ar - Name".tr,
-                                                hinttext:
-                                                    "Subject Ar - Name".tr),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                contents: SingleChildScrollView(
+                                  child: Column(
+                                    spacing: 8,
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Textfildwithupper(
+                                          width: 280,
+                                          isRequired: true,
+                                          isError: controller.IsEnnameError,
+                                          onChanged: (value) {
+                                            if (value.isNotEmpty) {
+                                              controller.updateFieldError(
+                                                  "enname", false);
+                                            }
+                                          },
+                                          controller: enName,
+                                          Uptext: "Subject En - Name".tr,
+                                          hinttext: "Subject En - Name".tr),
+                                      Textfildwithupper(
+                                          isRequired: true,
+                                          width: 280,
+                                          isError: controller.IsArnameError,
+                                          onChanged: (value) {
+                                            if (value.isNotEmpty) {
+                                              controller.updateFieldError(
+                                                  "arname", false);
+                                            }
+                                          },
+                                          controller: arName,
+                                          Uptext: "Subject Ar - Name".tr,
+                                          hinttext: "Subject Ar - Name".tr),
+                                    ],
+                                  ),
                                 ),
                                 apptitle: "Add Subject".tr,
                                 subtitle: "none");
