@@ -6,6 +6,7 @@ import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/School_Content_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/School_Info_Controller.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/SchoolContentModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/School_Data_Model.dart';
 
 class Get_Content_Screen_API {
@@ -19,7 +20,9 @@ class Get_Content_Screen_API {
       controller.SetisLoading(true);
       var response = await dio.get(myURI, options: getDioOptions());
       if (response.statusCode == 200) {
-        controller.SetisLoading(true);
+        controller.SetisLoading(false);
+        SchoolContentModel m = SchoolContentModel.fromJson(response.data);
+        controller.SetData(m);
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

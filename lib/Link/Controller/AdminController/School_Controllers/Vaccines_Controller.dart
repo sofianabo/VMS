@@ -35,6 +35,7 @@ class Vaccines_Controller extends gets.GetxController {
   SetLocationlist(List<String> data) {
     Locationlist = data;
     SetIsLoadingLocation(false);
+
     update();
   }
 
@@ -458,7 +459,7 @@ class Vaccines_Controller extends gets.GetxController {
         "hasNewFile": fileEntry["file"] != null ? true : false,
       });
     }
-    print(finalList);
+    // print(finalList);
     update();
   }
 
@@ -486,8 +487,6 @@ class Vaccines_Controller extends gets.GetxController {
   }
 
   void selectIndex(String type, String? index) {
-    print(type);
-    print(index);
     switch (type) {
       case 'Location':
         LocationIndex = index ?? "";
@@ -507,4 +506,6 @@ class Vaccines_Controller extends gets.GetxController {
     }
     update();
   }
+
+  String get selectedLocationIndex => LocationIndex;
 }

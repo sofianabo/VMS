@@ -26,7 +26,14 @@ class DropdownVaccian extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Vaccines_Controller>(builder: (cont) {
+      if (type == 'Location' && cont.LocationIndex == "Syria".tr) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          Get.find<Location_controller>()
+              .setLocationsid(cont.Locationlist.indexOf(cont.LocationIndex));
+        });
+      }
       String? selectedValue;
+
       switch (type) {
         case 'Location':
           selectedValue =
@@ -74,6 +81,7 @@ class DropdownVaccian extends StatelessWidget {
                                           ? null
                                           : () {
                                               cont.selectIndex(type, "");
+                                              print("sss");
                                             },
                                       child: Icon(
                                         Icons.arrow_drop_down_outlined,
@@ -85,14 +93,12 @@ class DropdownVaccian extends StatelessWidget {
                               onChanged: (newValue) {
                                 if (newValue != null) {
                                   cont.selectIndex(type, newValue);
-                                }
-
-                                if (type == 'Location') {
-                                  Get.find<Location_controller>()
-                                      .setLocationsid(
-                                          cont.Locationlist.indexOf(newValue!));
-                                  print(Get.find<Location_controller>()
-                                      .Locationsid);
+                                  if (type == 'Location') {
+                                    Get.find<Location_controller>()
+                                        .setLocationsid(
+                                            cont.Locationlist.indexOf(
+                                                newValue));
+                                  }
                                 }
                               },
                               dropdownColor: Get.theme.cardColor,

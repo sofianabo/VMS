@@ -134,7 +134,7 @@ class DropdownAddStudents extends StatelessWidget {
 
                                   if (type == 'Location') {
                                     Get.find<Location_controller>()
-                                        .setLocationsid(
+                                        .setLocationsid( 
                                             cont.Locationlist.indexOf(
                                                 newValue));
                                     print(Get.find<Location_controller>()

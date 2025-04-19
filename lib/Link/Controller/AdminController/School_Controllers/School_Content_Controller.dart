@@ -1,9 +1,41 @@
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/SchoolContentModel.dart';
+import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 
 class School_Content_Controller extends GetxController {
-  bool IsCountError = false;
   bool IsnameError = false;
   bool IsennameError = false;
+
+  List<Data>? model;
+  var Contents = <Map<String, dynamic>>[].obs;
+
+  DeleteContent(int index) {
+    model!.removeAt(index);
+    update();
+  }
+
+  SetData(SchoolContentModel m) {
+    model = m.data;
+    Contents.clear();
+
+    List<String> contentNames = [];
+    for (var contenet in m.data!) {
+      Contents.add({
+        'id': contenet.id,
+        'name': contenet.name,
+        'enName': contenet.enName,
+      
+      });
+      if (prefs!.getString(languageKey) == 'ar')
+        contentNames.add(contenet.name!);
+      else
+        contentNames.add(contenet.enName!);
+    }
+
+    SetisLoading(false);
+    update();
+  }
 
   void updateFieldError(String type, bool newValue) {
     switch (type) {
@@ -13,9 +45,7 @@ class School_Content_Controller extends GetxController {
       case 'enname':
         IsennameError = newValue;
         break;
-      case 'count':
-        IsCountError = newValue;
-        break;
+     
       default:
         print("Error: Invalid type");
     }

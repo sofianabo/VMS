@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/EditSchool.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Subject_Screen/Delete_Subject_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Subject_Screen/Edit_Subject_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/School_Content_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Subject_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
@@ -17,11 +19,10 @@ class School_Content_Grid extends StatelessWidget {
 
   TextEditingController name = TextEditingController();
   TextEditingController enName = TextEditingController();
-  TextEditingController count = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<Subject_Controller>(
+    return GetBuilder<School_Content_Controller>(
       builder: (controller) {
         return Container(
           margin: const EdgeInsets.only(top: 20),
@@ -44,10 +45,10 @@ class School_Content_Grid extends StatelessWidget {
                                 const BoxDecoration(color: Color(0xffD4DFE5)),
                             children: [
                               _tableHeader('Operation'.tr, context),
-                              _tableHeader('Subject Name'.tr, context),
+                              _tableHeader('Content Name'.tr, context),
                             ],
                           ),
-                          for (var row in controller.Subjects.asMap().entries)
+                          for (var row in controller.Contents!.asMap().entries)
                             TableRow(
                               children: [
                                 _operationColumn(
@@ -85,64 +86,13 @@ class School_Content_Grid extends StatelessWidget {
     );
   }
 
-  Widget _operationColumn(
-      Map row, Subject_Controller controller, int index, BuildContext context) {
+  Widget _operationColumn(Map row, School_Content_Controller controller,
+      int index, BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 5.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          controller.Subjects[index]['hasCurriculum'] == false
-              ? _iconButton(
-                  iconData: VMS_Icons.bin,
-                  color: const Color(0xffB03D3D),
-                  onPressed: () {
-                    Get.dialog(
-                      VMSAlertDialog(
-                        action: [
-                          ButtonDialog(
-                              text: "Delete".tr,
-                              onPressed: () {
-                                Delete_Subject_API(context).Delete_Subject(
-                                  id: controller.Subjects[index]['id'],
-                                  index: index,
-                                );
-                              },
-                              color: const Color(0xffB03D3D),
-                              width: 120),
-                          ButtonDialog(
-                              text: "Cancel".tr,
-                              onPressed: () {
-                                Get.back();
-                              },
-                              color: Theme.of(context).primaryColor,
-                              width: 120)
-                        ],
-                        contents: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SizedBox(
-                              width: 400,
-                              child: Text(
-                                "Do You Want To Deletesub".tr +
-                                    " (${prefs!.getString(languageKey) == 'ar' ? row['name'] : row['enName']}) " +
-                                    "Subjectt".tr,
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                            ),
-                          ],
-                        ),
-                        apptitle: "Delete Subject".tr,
-                        subtitle: "none",
-                      ),
-                    );
-                  },
-                )
-              : _iconButton(
-                  iconData: VMS_Icons.bin,
-                  color: Color(0xffB03D3D),
-                  onPressed: () {},
-                ),
           _iconButton(
             iconData: Icons.edit_note_outlined,
             color: Theme.of(context).primaryColor,
@@ -153,7 +103,7 @@ class School_Content_Grid extends StatelessWidget {
               enName.text = "${row['enName']}";
               Get.dialog(
                 barrierDismissible: false,
-                GetBuilder<Subject_Controller>(builder: (controller) {
+                GetBuilder<School_Content_Controller>(builder: (controller) {
                   return VMSAlertDialog(
                       action: [
                         ButtonDialog(
@@ -168,8 +118,8 @@ class School_Content_Grid extends StatelessWidget {
                                   "enname", isEnNameEmpty);
 
                               if (!(isArNameEmpty || isEnNameEmpty)) {
-                                await Edit_Subject_API(context).Edit_Subject(
-                                  SubjectId: controller.Subjects[index]['id'],
+                                await Edit_Content_API(context).Edit_Content(
+                                  id: controller.Contents[index]['id'],
                                   enName: enName.text,
                                   name: name.text,
                                 );
@@ -188,7 +138,7 @@ class School_Content_Grid extends StatelessWidget {
                                     left: 15.0, right: 15.0),
                                 child: Textfildwithupper(
                                     isRequired: true,
-                                    isError: controller.IsEnnameError,
+                                    isError: controller.IsennameError,
                                     onChanged: (value) {
                                       if (value.isNotEmpty) {
                                         controller.updateFieldError(
@@ -196,12 +146,12 @@ class School_Content_Grid extends StatelessWidget {
                                       }
                                     },
                                     controller: enName,
-                                    Uptext: "Subject En - Name".tr,
-                                    hinttext: "Subject En - Name".tr),
+                                    Uptext: "Content En Name".tr,
+                                    hinttext: "Content En Name".tr),
                               ),
                               Textfildwithupper(
                                   isRequired: true,
-                                  isError: controller.IsArnameError,
+                                  isError: controller.IsnameError,
                                   onChanged: (value) {
                                     if (value.isNotEmpty) {
                                       controller.updateFieldError(
@@ -209,13 +159,13 @@ class School_Content_Grid extends StatelessWidget {
                                     }
                                   },
                                   controller: name,
-                                  Uptext: "Subject Ar - Name".tr,
-                                  hinttext: "Subject Ar - Name".tr),
+                                  Uptext: "Content Name".tr,
+                                  hinttext: "Content Name".tr),
                             ],
                           ),
                         ],
                       ),
-                      apptitle: "Edit Subject".tr,
+                      apptitle: "Edit Content".tr,
                       subtitle: "none");
                 }),
               );

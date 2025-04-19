@@ -25,7 +25,6 @@ class _School_ContentState extends State<School_Content> {
 
   TextEditingController arName = TextEditingController();
   TextEditingController enName = TextEditingController();
-  TextEditingController count = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -65,13 +64,12 @@ class _School_ContentState extends State<School_Content> {
                         onPressed: () {
                           arName.clear();
                           enName.clear();
-                          count.clear();
+
                           Get.find<School_Content_Controller>()
                               .updateFieldError("arname", false);
                           Get.find<School_Content_Controller>()
                               .updateFieldError("enname", false);
-                          Get.find<School_Content_Controller>()
-                              .updateFieldError("count", false);
+
                           Get.dialog(barrierDismissible: false,
                               GetBuilder<School_Content_Controller>(
                                   builder: (controller) {
@@ -84,23 +82,18 @@ class _School_ContentState extends State<School_Content> {
                                             arName.text.isEmpty;
                                         bool isenNameEmpty =
                                             enName.text.isEmpty;
-                                        bool iscountEmpty = count.text.isEmpty;
 
                                         controller.updateFieldError(
                                             "arname", isArNameEmpty);
-                                        controller.updateFieldError(
-                                            "count", iscountEmpty);
+
                                         controller.updateFieldError(
                                             "enname", isenNameEmpty);
 
-                                        if (!(isArNameEmpty ||
-                                            iscountEmpty ||
-                                            isenNameEmpty)) {
+                                        if (!(isArNameEmpty || isenNameEmpty)) {
                                           await Add_Content_Screen_API(context)
                                               .Add_Content_Screen(
                                             name: arName.text,
                                             enname: enName.text,
-                                            count: count.text,
                                           );
                                         }
                                       },
@@ -143,37 +136,11 @@ class _School_ContentState extends State<School_Content> {
                                                 hinttext: "Content En Name".tr),
                                           ],
                                         ),
-                                        Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Textfildwithupper(
-                                                isRequired: true,
-                                                fieldType: "number",
-                                                isError:
-                                                    controller.IsCountError,
-                                                onChanged: (value) {
-                                                  if (value.isNotEmpty) {
-                                                    if (value == "0") {
-                                                      count.clear();
-                                                      count.text = "1";
-                                                    }
-                                                    controller.updateFieldError(
-                                                        "count", false);
-                                                  }
-                                                },
-                                                controller: count,
-                                                Uptext: "Count".tr,
-                                                hinttext: "Count".tr),
-                                          ],
-                                        )
                                       ],
                                     ),
                                   ],
                                 ),
-                                apptitle: "Add".tr,
+                                apptitle: "Add Content".tr,
                                 subtitle: "none");
                           }));
                         },

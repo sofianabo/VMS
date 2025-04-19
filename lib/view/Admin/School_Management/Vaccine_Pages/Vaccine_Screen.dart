@@ -175,6 +175,7 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
 
                                                 if (!(isArNameEmpty ||
                                                     isEnNameEmpty)) {
+                                              
                                                   await Add_Vaccines_API(
                                                           context)
                                                       .Add_Vaccines(
