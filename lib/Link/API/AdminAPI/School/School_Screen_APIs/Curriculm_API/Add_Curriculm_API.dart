@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Curriculm_API/Get_All_Curriculm.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
@@ -12,28 +13,38 @@ class Add_Curriculm_API {
   Add_Curriculm_API(this.context);
   Dio dio = Dio();
 
-  Add_Curriculm(
-      {subjectId,
-      semesterId,
-      name,
-      maxMark,
-      PassingMark,
-      file,
-      type,
-      Image,
-      Ename}) async {
+  Add_Curriculm({
+    subjectId,
+    semesterId,
+    name,
+    Ename,
+    maxMark,
+    PassingMark,
+    type,
+    Uint8List? file,
+    Uint8List? Image,
+  }) async {
     CancelToken cancelToken = CancelToken();
     Loading_Dialog(cancelToken: cancelToken);
     try {
-      FormData formData = FormData.fromMap({
-        'subjectId': '$subjectId',
-        'semesterId': [semesterId],
-        'name': '$name',
-        'enName': '$Ename',
-        'maxMark': '$maxMark',
-        'PassingMark': '$PassingMark',
-        'type': '${type == true ? 1 : 0}',
-      });
+      FormData formData = FormData();
+
+      formData.fields.addAll([
+        MapEntry('subjectId', subjectId.toString()),
+        MapEntry('name', name),
+        MapEntry('enName', Ename),
+        MapEntry('maxMark', maxMark.toString()),
+        MapEntry('PassingMark', PassingMark.toString()),
+        MapEntry(
+          'type',
+          '${type == true ? 1 : 0}',
+        ),
+      ]);
+
+      for (int i = 0; i < semesterId.length; i++) {
+        formData.fields
+            .add(MapEntry('semesterId[$i]', semesterId[i].toString()));
+      }
 
       if (file != null) {
         formData.files.add(MapEntry(
@@ -41,6 +52,7 @@ class Add_Curriculm_API {
           MultipartFile.fromBytes(file, filename: "file.pdf"),
         ));
       }
+
       if (Image != null) {
         formData.files.add(MapEntry(
           "Image",
@@ -51,14 +63,17 @@ class Add_Curriculm_API {
       String myurl = "$hostPort$createCurriculum";
 
       var response = await dio.post(
-          data: formData,
-          cancelToken: cancelToken,
-          myurl,
-          options: getDioOptions());
+        myurl,
+        data: formData,
+        cancelToken: cancelToken,
+        options: getDioOptions(),
+      );
 
       if (response.statusCode == 200) {
         gets.Get.back();
+
         gets.Get.back();
+
         Get_All_Curriculm_API(context).Get_All_Curriculm();
       } else {
         ErrorHandler.handleDioError(DioException(

@@ -39,6 +39,137 @@ class _DivisionManagementState extends State<DivisionManagement> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    AddDivision() {
+      return GetBuilder<Divisions_Controller>(builder: (controller) {
+        return VMSAlertDialog(
+            action: [
+              ButtonDialog(
+                  text: "Add".tr,
+                  onPressed: () async {
+                    bool isArNameEmpty = arName.text.isEmpty;
+                    bool isEnNameEmpty = enName.text.isEmpty;
+                    bool isDriveEmpty = driveUrl.text.isEmpty;
+                    bool isclassEmpty = controller.ClassDiagIndex.isEmpty ||
+                        controller.ClassDiagIndex.isEmpty == "";
+
+                    controller.updateFieldError("ename", isEnNameEmpty);
+                    controller.updateFieldError("arname", isArNameEmpty);
+                    controller.updateFieldError("meet", isDriveEmpty);
+                    controller.updateFieldError("class", isclassEmpty);
+
+                    if (!(isArNameEmpty ||
+                        isEnNameEmpty ||
+                        isDriveEmpty ||
+                        isclassEmpty)) {
+                      await Add_Division_API(context).Add_Division(
+                        classId: controller.dropDiagClasses,
+                        enName: enName.text,
+                        name: arName.text,
+                        meetUrl: driveUrl.text,
+                      );
+
+                      arName.clear();
+                      enName.clear();
+                      driveUrl.clear();
+                      Get.back();
+                    }
+                  },
+                  color: Theme.of(context).primaryColor,
+                  width: 120),
+            ],
+            contents: SingleChildScrollView(
+              child: Container(
+                width: 540,
+                child: Wrap(
+                  alignment: WrapAlignment.center,
+                  runAlignment: WrapAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  runSpacing: 10.0,
+                  spacing: 10.0,
+                  children: [
+                    Wrap(
+                      spacing: 8.0,
+                      runSpacing: 8.0,
+                      alignment: WrapAlignment.center,
+                      runAlignment: WrapAlignment.center,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        Textfildwithupper(
+                            isError: controller.IsennameError,
+                            isRequired: true,
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError("ename", false);
+                              }
+                            },
+                            width: 250,
+                            controller: enName,
+                            Uptext: "Division En - Name".tr,
+                            hinttext: "Division En - Name".tr),
+                        Textfildwithupper(
+                            isError: controller.IsarnameError,
+                            isRequired: true,
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError("arname", false);
+                              }
+                            },
+                            width: 250,
+                            controller: arName,
+                            Uptext: "Division Ar - Name".tr,
+                            hinttext: "Division Ar - Name".tr),
+                      ],
+                    ),
+                    Wrap(
+                      runSpacing: 8.0,
+                      spacing: 8.0,
+                      alignment: WrapAlignment.center,
+                      runAlignment: WrapAlignment.center,
+                      crossAxisAlignment: WrapCrossAlignment.end,
+                      children: [
+                        GetBuilder<Divisions_Controller>(builder: (controller) {
+                          return DropDownDivisionMgmt(
+                              isError: controller.IsclassError,
+                              isLoading: controller.isLoading,
+                              title: "Class".tr,
+                              width: 250,
+                              type: "classDiag");
+                        }),
+                        Row(
+                          spacing: 10.0,
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Textfildwithupper(
+                                isError: controller.IsmeetError,
+                                isRequired: true,
+                                onChanged: (value) {
+                                  if (value.isNotEmpty) {
+                                    controller.updateFieldError("meet", false);
+                                  }
+                                },
+                                width: 215,
+                                controller: driveUrl,
+                                Uptext: "Meet URL".tr,
+                                hinttext: "Meet URL".tr),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 36.0),
+                              child: SvgPicture.asset("assets/images/meet.svg",
+                                  width: 25),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            apptitle: "Add Division".tr,
+            subtitle: "none");
+      });
+    }
 
     return Expanded(
         child: Column(
@@ -103,6 +234,8 @@ class _DivisionManagementState extends State<DivisionManagement> {
                             arName.clear();
                             enName.clear();
                             driveUrl.clear();
+                            Get.find<Divisions_Controller>().ClassDiagIndex =
+                                "";
                             Get.find<Divisions_Controller>()
                                 .updateFieldError("ename", false);
                             Get.find<Divisions_Controller>()
@@ -111,152 +244,10 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                 .updateFieldError("meet", false);
                             Get.find<Divisions_Controller>()
                                 .updateFieldError("class", false);
-                            Get.dialog(barrierDismissible: false,
-                                GetBuilder<Divisions_Controller>(
-                                    builder: (controller) {
-                              return VMSAlertDialog(
-                                  action: [
-                                    ButtonDialog(
-                                        text: "Add".tr,
-                                        onPressed: () async {
-                                          bool isArNameEmpty =
-                                              arName.text.isEmpty;
-                                          bool isEnNameEmpty =
-                                              enName.text.isEmpty;
-                                          bool isDriveEmpty =
-                                              driveUrl.text.isEmpty;
-
-                                          bool isclassEmpty = controller
-                                                  .ClassDiagIndex.isEmpty ||
-                                              controller
-                                                      .ClassDiagIndex.isEmpty ==
-                                                  "";
-
-                                          controller.updateFieldError(
-                                              "ename", isEnNameEmpty);
-                                          controller.updateFieldError(
-                                              "arname", isArNameEmpty);
-                                          controller.updateFieldError(
-                                              "meet", isDriveEmpty);
-                                          controller.updateFieldError(
-                                              "class", isclassEmpty);
-
-                                          if (!(isArNameEmpty ||
-                                              isEnNameEmpty ||
-                                              isDriveEmpty ||
-                                              isclassEmpty)) {
-                                            await Add_Division_API(context)
-                                                .Add_Division(
-                                              classId:
-                                                  controller.dropDiagClasses,
-                                              enName: enName.text,
-                                              name: arName.text,
-                                              meetUrl: driveUrl.text,
-                                            );
-
-                                            arName.clear();
-                                            enName.clear();
-                                            driveUrl.clear();
-                                            Get.back();
-                                          }
-                                        },
-                                        color: Theme.of(context).primaryColor,
-                                        width: 120),
-                                  ],
-                                  contents: Container(
-                                    width: 540,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Textfildwithupper(
-                                                isError:
-                                                    controller.IsennameError,
-                                                isRequired: true,
-                                                onChanged: (value) {
-                                                  if (value.isNotEmpty) {
-                                                    controller.updateFieldError(
-                                                        "ename", false);
-                                                  }
-                                                },
-                                                width: 250,
-                                                controller: enName,
-                                                Uptext: "Division En - Name".tr,
-                                                hinttext:
-                                                    "Division En - Name".tr),
-                                            Textfildwithupper(
-                                                isError:
-                                                    controller.IsarnameError,
-                                                isRequired: true,
-                                                onChanged: (value) {
-                                                  if (value.isNotEmpty) {
-                                                    controller.updateFieldError(
-                                                        "arname", false);
-                                                  }
-                                                },
-                                                width: 250,
-                                                controller: arName,
-                                                Uptext: "Division Ar - Name".tr,
-                                                hinttext:
-                                                    "Division Ar - Name".tr),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            GetBuilder<Divisions_Controller>(
-                                                builder: (controller) {
-                                              return DropDownDivisionMgmt(
-                                                  isError:
-                                                      controller.IsclassError,
-                                                  isLoading:
-                                                      controller.isLoading,
-                                                  title: "Class".tr,
-                                                  width: 250,
-                                                  type: "classDiag");
-                                            }),
-                                            Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Textfildwithupper(
-                                                    isError:
-                                                        controller.IsmeetError,
-                                                    isRequired: true,
-                                                    onChanged: (value) {
-                                                      if (value.isNotEmpty) {
-                                                        controller
-                                                            .updateFieldError(
-                                                                "meet", false);
-                                                      }
-                                                    },
-                                                    width: 230,
-                                                    controller: driveUrl,
-                                                    Uptext: "Meet URL".tr,
-                                                    hinttext: "Meet URL".tr),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 36.0),
-                                                  child: SvgPicture.asset(
-                                                      "assets/images/meet.svg",
-                                                      width: 25),
-                                                )
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  apptitle: "Add Division".tr,
-                                  subtitle: "none");
-                            }));
+                            Get.dialog(
+                              AddDivision(),
+                              barrierDismissible: false,
+                            );
                           },
                           icon: Icon(Icons.add,
                               size: 18,
@@ -359,6 +350,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5))))),
                         onPressed: () {
+                          Get.find<Divisions_Controller>().ClassDiagIndex = "";
                           arName.clear();
                           enName.clear();
                           driveUrl.clear();
@@ -370,151 +362,10 @@ class _DivisionManagementState extends State<DivisionManagement> {
                               .updateFieldError("meet", false);
                           Get.find<Divisions_Controller>()
                               .updateFieldError("class", false);
-                          Get.dialog(barrierDismissible: false,
-                              GetBuilder<Divisions_Controller>(
-                                  builder: (controller) {
-                            return VMSAlertDialog(
-                                action: [
-                                  ButtonDialog(
-                                      text: "Add".tr,
-                                      onPressed: () async {
-                                        bool isArNameEmpty =
-                                            arName.text.isEmpty;
-                                        bool isEnNameEmpty =
-                                            enName.text.isEmpty;
-                                        bool isDriveEmpty =
-                                            driveUrl.text.isEmpty;
-
-                                        bool isclassEmpty = controller
-                                                .ClassDiagIndex.isEmpty ||
-                                            controller.ClassDiagIndex.isEmpty ==
-                                                "";
-
-                                        controller.updateFieldError(
-                                            "ename", isEnNameEmpty);
-                                        controller.updateFieldError(
-                                            "arname", isArNameEmpty);
-                                        controller.updateFieldError(
-                                            "meet", isDriveEmpty);
-                                        controller.updateFieldError(
-                                            "class", isclassEmpty);
-
-                                        if (!(isArNameEmpty ||
-                                            isEnNameEmpty ||
-                                            isDriveEmpty ||
-                                            isclassEmpty)) {
-                                          await Add_Division_API(context)
-                                              .Add_Division(
-                                            classId: controller.dropDiagClasses,
-                                            enName: enName.text,
-                                            name: arName.text,
-                                            meetUrl: driveUrl.text,
-                                          );
-
-                                          arName.clear();
-                                          enName.clear();
-                                          driveUrl.clear();
-                                          Get.back();
-                                        }
-                                      },
-                                      color: Theme.of(context).primaryColor,
-                                      width: 120),
-                                ],
-                                contents: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Textfildwithupper(
-                                            isError: controller.IsennameError,
-                                            isRequired: true,
-                                            onChanged: (value) {
-                                              if (value.isNotEmpty) {
-                                                controller.updateFieldError(
-                                                    "ename", false);
-                                              }
-                                            },
-                                            width: 250,
-                                            controller: enName,
-                                            Uptext: "Division En - Name".tr,
-                                            hinttext: "Division En - Name".tr),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 15.0,
-                                              right: 15.0,
-                                              bottom: 15.0),
-                                          child: Textfildwithupper(
-                                              isError: controller.IsarnameError,
-                                              isRequired: true,
-                                              onChanged: (value) {
-                                                if (value.isNotEmpty) {
-                                                  controller.updateFieldError(
-                                                      "arname", false);
-                                                }
-                                              },
-                                              width: 250,
-                                              controller: arName,
-                                              Uptext: "Division Ar - Name".tr,
-                                              hinttext:
-                                                  "Division Ar - Name".tr),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        GetBuilder<Divisions_Controller>(
-                                            builder: (controller) {
-                                          return DropDownDivisionMgmt(
-                                              isError: controller.IsclassError,
-                                              isLoading: controller.isLoading,
-                                              title: "Class".tr,
-                                              width: 250,
-                                              type: "classDiag");
-                                        }),
-                                        Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Textfildwithupper(
-                                                isError: controller.IsmeetError,
-                                                isRequired: true,
-                                                onChanged: (value) {
-                                                  if (value.isNotEmpty) {
-                                                    controller.updateFieldError(
-                                                        "meet", false);
-                                                  }
-                                                },
-                                                width: 230,
-                                                controller: driveUrl,
-                                                Uptext: "Meet URL".tr,
-                                                hinttext: "Meet URL".tr),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 5.0, top: 36.0),
-                                              child: SvgPicture.asset(
-                                                  "assets/images/meet.svg",
-                                                  width: 25),
-                                            )
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                apptitle: "Add Division".tr,
-                                subtitle: "none");
-                          }));
+                          Get.dialog(
+                            AddDivision(),
+                            barrierDismissible: false,
+                          );
                         },
                         icon: Icon(Icons.add,
                             size: 18, color: Theme.of(context).highlightColor)),

@@ -13,6 +13,10 @@ class Curriculumn_Controller extends GetxController {
   int? semesterId;
   int? subjectId;
 
+  List<String> selectedSemesterss = [];
+  List<int> selectedSemesterIds = [];
+  String selectdialog_SemesterIndex = '';
+
   void clearFilter() {
     searchByName("", semesterIndex, subjectIndex);
     update();
@@ -121,9 +125,9 @@ class Curriculumn_Controller extends GetxController {
   List<String> listsubject = [];
   List<String> list_Dialog_Subject = [];
   List<String> list_Dialog_semester = [
-    "The First Semester",
-    "The Second Semester",
-    "The Third Semester",
+    "The First Semester".tr,
+    "The Second Semester".tr,
+    "The Third Semester".tr,
   ];
   List<String> listSemester = [
     "The First Semester",
@@ -208,7 +212,6 @@ class Curriculumn_Controller extends GetxController {
   String get selectsemesterIndex => semesterIndex;
 
   String get selectdialog_SubjectIndex => dialog_SubjectIndex;
-  String get selectdialog_SemesterIndex => dialog_SemesterIndex;
 
   void SetIsLoading(bool value) {
     isLoading = value;

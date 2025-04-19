@@ -166,11 +166,11 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                         .dialog_SubjectIndex ==
                                                     "";
                                             bool isSemesterEmpty = controller
-                                                    .dialog_SemesterIndex
+                                                    .selectedSemesterIds
                                                     .isEmpty ||
                                                 controller
-                                                        .dialog_SemesterIndex ==
-                                                    "";
+                                                        .selectedSemesterIds ==
+                                                    [];
                                             bool isImageEmpty = controller
                                                     .selectedImage.value ==
                                                 null;
@@ -214,8 +214,8 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                         .selectedImage.value,
                                                     maxMark: max.text,
                                                     PassingMark: Passing.text,
-                                                    semesterId:
-                                                        controller.semesterId,
+                                                    semesterId: controller
+                                                        .selectedSemesterIds,
                                                     subjectId:
                                                         controller.subjectId,
                                                     type: controller
@@ -230,7 +230,10 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                                     .clear();
                                                 controller.selectedImage.value!
                                                     .clear();
-                                                controller.semesterIndex = "";
+                                                controller.selectedSemesterss =
+                                                    [];
+                                                controller.selectedSemesterIds =
+                                                    [];
                                                 controller.subjectIndex = "";
                                               }
                                             }

@@ -24,6 +24,7 @@ class DivisionGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+
     int getCrossAxisCount() {
       if (screenWidth >= 1278) return 5;
       if (screenWidth >= 1070) return 4;
@@ -39,6 +40,134 @@ class DivisionGrid extends StatelessWidget {
       if (screenWidth >= 769) return 1.5;
       if (screenWidth >= 539) return 2.2;
       return 1.7;
+    }
+
+    Edit_Division(String gradeid, String name) {
+      return GetBuilder<Divisions_Controller>(builder: (controller) {
+        return VMSAlertDialog(
+          action: [
+            ButtonDialog(
+              text: "Edit".tr,
+              onPressed: () async {
+                bool isArNameEmpty = arName.text.isEmpty;
+                bool isEnNameEmpty = enName.text.isEmpty;
+                bool isDriveEmpty = meetUrl.text.isEmpty;
+
+                controller.updateFieldError("ename", isEnNameEmpty);
+                controller.updateFieldError("arname", isArNameEmpty);
+                controller.updateFieldError("meet", isDriveEmpty);
+
+                if (!(isArNameEmpty || isEnNameEmpty || isDriveEmpty)) {
+                  await Edit_Division_API(context).Edit_Division(
+                    name: arName.text,
+                    enName: enName.text,
+                    gradeId: gradeid,
+                    meeturl: meetUrl.text,
+                  );
+                  Get.back();
+                }
+              },
+              color: Theme.of(context).primaryColor,
+              width: 120,
+            ),
+          ],
+          contents: Container(
+            width: 540,
+            child: SingleChildScrollView(
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                runAlignment: WrapAlignment.center,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                runSpacing: 10.0,
+                spacing: 10.0,
+                children: [
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    runAlignment: WrapAlignment.center,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    runSpacing: 10.0,
+                    spacing: 10.0,
+                    children: [
+                      Textfildwithupper(
+                        isError: controller.IsennameError,
+                        isRequired: true,
+                        onChanged: (value) {
+                          if (value.isNotEmpty) {
+                            controller.updateFieldError("ename", false);
+                          }
+                        },
+                        width: 250,
+                        controller: enName,
+                        Uptext: "Division En - Name".tr,
+                        hinttext: "Division En - Name".tr,
+                      ),
+                      Textfildwithupper(
+                        isError: controller.IsarnameError,
+                        isRequired: true,
+                        onChanged: (value) {
+                          if (value.isNotEmpty) {
+                            controller.updateFieldError("arname", false);
+                          }
+                        },
+                        width: 250,
+                        controller: arName,
+                        Uptext: "Division Ar - Name".tr,
+                        hinttext: "Division Ar - Name".tr,
+                      ),
+                    ],
+                  ),
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    runAlignment: WrapAlignment.center,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    runSpacing: 10.0,
+                    spacing: 10.0,
+                    children: [
+                      Textfildwithupper(
+                        readOnly: true,
+                        width: 250,
+                        controller: TextEditingController(text: name),
+                        Uptext: "Class".tr,
+                        hinttext: "Class".tr,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        spacing: 10.0,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Textfildwithupper(
+                            isError: controller.IsmeetError,
+                            isRequired: true,
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError("meet", false);
+                              }
+                            },
+                            width: 215,
+                            controller: meetUrl,
+                            Uptext: "Meet URL".tr,
+                            hinttext: "Meet URL".tr,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 36.0),
+                            child: SvgPicture.asset(
+                              "assets/images/meet.svg",
+                              width: 25,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+          apptitle: "Edit Division".tr,
+          subtitle: "none",
+        );
+      });
     }
 
     return Directionality(
@@ -123,144 +252,14 @@ class DivisionGrid extends StatelessWidget {
                                 "${control.filteredDivision![index].enName}";
                             meetUrl.text =
                                 "${control.filteredDivision![index].meetUrl}";
-                            Get.dialog(barrierDismissible: false,
-                                GetBuilder<Divisions_Controller>(
-                                    builder: (controller) {
-                              return VMSAlertDialog(
-                                action: [
-                                  ButtonDialog(
-                                    text: "Edit".tr,
-                                    onPressed: () async {
-                                      bool isArNameEmpty = arName.text.isEmpty;
-                                      bool isEnNameEmpty = enName.text.isEmpty;
-                                      bool isDriveEmpty = meetUrl.text.isEmpty;
-
-                                      controller.updateFieldError(
-                                          "ename", isEnNameEmpty);
-                                      controller.updateFieldError(
-                                          "arname", isArNameEmpty);
-                                      controller.updateFieldError(
-                                          "meet", isDriveEmpty);
-
-                                      if (!(isArNameEmpty ||
-                                          isEnNameEmpty ||
-                                          isDriveEmpty)) {
-                                        await Edit_Division_API(context)
-                                            .Edit_Division(
-                                          name: arName.text,
-                                          enName: enName.text,
-                                          gradeId: control
-                                              .filteredDivision![index].id,
-                                          meeturl: meetUrl.text,
-                                        );
-                                        Get.back();
-                                      }
-                                    },
-                                    color: Theme.of(context).primaryColor,
-                                    width: 120,
-                                  ),
-                                ],
-                                contents: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Textfildwithupper(
-                                          isError: controller.IsennameError,
-                                          isRequired: true,
-                                          onChanged: (value) {
-                                            if (value.isNotEmpty) {
-                                              controller.updateFieldError(
-                                                  "ename", false);
-                                            }
-                                          },
-                                          width: 250,
-                                          controller: enName,
-                                          Uptext: "Division En - Name".tr,
-                                          hinttext: "Division En - Name".tr,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 15.0,
-                                              right: 15.0,
-                                              bottom: 15.0),
-                                          child: Textfildwithupper(
-                                            isError: controller.IsarnameError,
-                                            isRequired: true,
-                                            onChanged: (value) {
-                                              if (value.isNotEmpty) {
-                                                controller.updateFieldError(
-                                                    "arname", false);
-                                              }
-                                            },
-                                            width: 250,
-                                            controller: arName,
-                                            Uptext: "Division Ar - Name".tr,
-                                            hinttext: "Division Ar - Name".tr,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Textfildwithupper(
-                                          readOnly: true,
-                                          width: 250,
-                                          controller: TextEditingController(
-                                              text: control
-                                                  .filteredDivision![index]
-                                                  .classes!
-                                                  .enName),
-                                          Uptext: "Class".tr,
-                                          hinttext: "Class".tr,
-                                        ),
-                                        Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Textfildwithupper(
-                                              isError: controller.IsmeetError,
-                                              isRequired: true,
-                                              onChanged: (value) {
-                                                if (value.isNotEmpty) {
-                                                  controller.updateFieldError(
-                                                      "meet", false);
-                                                }
-                                              },
-                                              width: 230,
-                                              controller: meetUrl,
-                                              Uptext: "Meet URL".tr,
-                                              hinttext: "Meet URL".tr,
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 5.0, top: 36.0),
-                                              child: SvgPicture.asset(
-                                                "assets/images/meet.svg",
-                                                width: 25,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                apptitle: "Edit Division".tr,
-                                subtitle: "none",
-                              );
-                            }));
+                            Get.dialog(
+                              Edit_Division(
+                                  control.filteredDivision![index].id
+                                      .toString(),
+                                  control.filteredDivision![index].classes!
+                                      .enName!),
+                              barrierDismissible: false,
+                            );
                           },
                           child: Container(
                               padding: const EdgeInsets.all(20),

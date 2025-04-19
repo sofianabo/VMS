@@ -14,8 +14,6 @@ import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 
 class Divisions_Controller extends GetxController {
-  List<Map<String, dynamic>> Divisions = [];
-
   AllClassModel? Classmodel;
   List<Division>? division;
   List<Division>? filteredDivision;
@@ -116,7 +114,6 @@ class Divisions_Controller extends GetxController {
   }
 
   setDivisions(Division_Model allDivisionModel) {
-    Divisions.clear();
     division = allDivisionModel.division;
     filteredDivision = List.from(division!);
 
@@ -127,16 +124,8 @@ class Divisions_Controller extends GetxController {
       }).toList();
     }
 
-    for (var div in division!) {
-      Divisions.add({
-        'arName': div.name.toString(),
-        'enName': div.enName.toString(),
-        'classname': div.classes!.name.toString(),
-        'classenname': div.classes!.enName.toString(),
-        'meet': div.meetUrl.toString(),
-        'hasStudent': div.hasStudent,
-      });
-    }
+    searchRequestByName(ClassIndex);
+
     SetIsapiloading(false);
     update();
   }
