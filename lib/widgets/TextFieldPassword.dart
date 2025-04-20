@@ -30,6 +30,7 @@ class TextFormPassword extends StatelessWidget {
       height: hight ?? 50,
       child: GetBuilder<PasswordHintController>(builder: (password) {
         return TextFormField(
+          style: TextStyle(color: Colors.black),
           autofillHints: autofill,
           controller: controller,
           obscureText: pass.isVisible,

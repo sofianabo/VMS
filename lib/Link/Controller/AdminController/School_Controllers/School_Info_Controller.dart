@@ -13,6 +13,8 @@ class SchoolInfoController extends GetxController {
   var Government_Connection = false.obs;
   var Joint_Building = false.obs;
   var Industrial_Section = false.obs;
+  var morning = false.obs;
+  var evening = false.obs;
 
   TextEditingController School_Name = TextEditingController();
   TextEditingController License_Number = TextEditingController();
@@ -30,7 +32,6 @@ class SchoolInfoController extends GetxController {
   TextEditingController Work_Begin_Year = TextEditingController();
 
   String CountryIndex = "";
-  String Work_TypeIndex = "";
 
   List<Map<String, dynamic>> SchoolInfo = [];
 
@@ -53,7 +54,6 @@ class SchoolInfoController extends GetxController {
         "Fax": "",
         "Work_Begin_Year": "",
         "Country": "",
-        "Work_Type": "",
         "Outstanding_School": "",
         "Taken_OverSchool": "",
         "Reassignment_Teachers": "",
@@ -62,6 +62,8 @@ class SchoolInfoController extends GetxController {
         "Government_Connection": "",
         "Joint_Building": "",
         "Industrial_Section": "",
+        "Morning_control": "",
+        "Evening_control": ""
       };
       SchoolInfo.add(newSchoolInfo);
     } else {
@@ -80,7 +82,6 @@ class SchoolInfoController extends GetxController {
       Fax.text = datas.fax ?? "";
       Work_Begin_Year.text = datas.workBeginYear.toString();
       CountryIndex = datas.country!.enName!;
-      Work_TypeIndex = datas.workType!;
       Outstanding_School.value = datas.outstandingSchool == 1 ? true : false;
       Taken_OverSchool.value = datas.takenOverSchool == 1 ? true : false;
       Reassignment_Teachers.value =
@@ -91,6 +92,8 @@ class SchoolInfoController extends GetxController {
           datas.governmentConnection == 1 ? true : false;
       Joint_Building.value = datas.jointBuilding == 1 ? true : false;
       Industrial_Section.value = datas.industrialSection == 1 ? true : false;
+      morning.value = datas.morning == true ? true : false;
+      evening.value = datas.evening == true ? true : false;
 
       Map<String, dynamic> newSchoolInfo = {
         "School_Name": School_Name.text,
@@ -108,7 +111,6 @@ class SchoolInfoController extends GetxController {
         "Fax": Fax.text,
         "Work_Begin_Year": int.parse(Work_Begin_Year.text),
         "Country": CountryIndex,
-        "Work_Type": Work_TypeIndex,
         "Outstanding_School": Outstanding_School.value,
         "Taken_OverSchool": Taken_OverSchool.value,
         "Reassignment_Teachers": Reassignment_Teachers.value,
@@ -117,6 +119,8 @@ class SchoolInfoController extends GetxController {
         "Government_Connection": Government_Connection.value,
         "Joint_Building": Joint_Building.value,
         "Industrial_Section": Industrial_Section.value,
+        "morning": morning.value,
+        "evening": evening.value,
       };
       SchoolInfo.clear();
       SchoolInfo.add(newSchoolInfo);
@@ -147,9 +151,6 @@ class SchoolInfoController extends GetxController {
       case 'Country':
         CountryIndex = index ?? "";
         break;
-      case 'Work_Type':
-        Work_TypeIndex = index ?? "";
-        break;
     }
     update();
   }
@@ -159,16 +160,11 @@ class SchoolInfoController extends GetxController {
       case 'Country':
         listCountry = options;
         break;
-      case 'Work_Type':
-        listWork_Type = options;
-        break;
     }
     update();
   }
 
   String get selectCountryIndex => CountryIndex;
-
-  String get selectWork_TypeIndex => Work_TypeIndex;
 
   void setIsLoading(bool value) {
     isLoading = value;

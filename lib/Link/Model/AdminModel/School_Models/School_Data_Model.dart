@@ -1,17 +1,14 @@
 class School_Data_Model {
-  String? massege;
   Data? data;
 
-  School_Data_Model({this.massege, this.data});
+  School_Data_Model({this.data});
 
   School_Data_Model.fromJson(Map<String, dynamic> json) {
-    massege = json['massege'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['massege'] = massege;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -44,34 +41,38 @@ class Data {
   int? outstandingSchool;
   int? takenOverSchool;
   int? reassignmentTeachers;
+  bool? morning;
+  bool? evening;
   Country? country;
 
   Data(
       {this.id,
-        this.schoolName,
-        this.licenseNumber,
-        this.congregationNumber,
-        this.previousName,
-        this.address,
-        this.village,
-        this.township,
-        this.region,
-        this.phone,
-        this.fax,
-        this.email,
-        this.creatYear,
-        this.workBeginYear,
-        this.workType,
-        this.clinicName,
-        this.internetConnection,
-        this.governmentConnection,
-        this.industrialSection,
-        this.jointBuilding,
-        this.martyrsSons,
-        this.outstandingSchool,
-        this.takenOverSchool,
-        this.reassignmentTeachers,
-        this.country});
+      this.schoolName,
+      this.licenseNumber,
+      this.congregationNumber,
+      this.previousName,
+      this.address,
+      this.village,
+      this.township,
+      this.region,
+      this.phone,
+      this.fax,
+      this.email,
+      this.creatYear,
+      this.workBeginYear,
+      this.workType,
+      this.clinicName,
+      this.internetConnection,
+      this.governmentConnection,
+      this.industrialSection,
+      this.jointBuilding,
+      this.martyrsSons,
+      this.outstandingSchool,
+      this.takenOverSchool,
+      this.reassignmentTeachers,
+      this.morning,
+      this.evening,
+      this.country});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -98,38 +99,42 @@ class Data {
     outstandingSchool = json['outstandingSchool'];
     takenOverSchool = json['takenOverSchool'];
     reassignmentTeachers = json['reassignmentTeachers'];
+    morning = json['Morning'];
+    evening = json['Evening'];
     country =
-    json['country'] != null ? Country.fromJson(json['country']) : null;
+        json['country'] != null ? new Country.fromJson(json['country']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['schoolName'] = schoolName;
-    data['licenseNumber'] = licenseNumber;
-    data['congregationNumber'] = congregationNumber;
-    data['previousName'] = previousName;
-    data['address'] = address;
-    data['village'] = village;
-    data['township'] = township;
-    data['region'] = region;
-    data['phone'] = phone;
-    data['fax'] = fax;
-    data['email'] = email;
-    data['creatYear'] = creatYear;
-    data['workBeginYear'] = workBeginYear;
-    data['workType'] = workType;
-    data['clinicName'] = clinicName;
-    data['internetConnection'] = internetConnection;
-    data['governmentConnection'] = governmentConnection;
-    data['industrialSection'] = industrialSection;
-    data['jointBuilding'] = jointBuilding;
-    data['martyrsSons'] = martyrsSons;
-    data['outstandingSchool'] = outstandingSchool;
-    data['takenOverSchool'] = takenOverSchool;
-    data['reassignmentTeachers'] = reassignmentTeachers;
-    if (country != null) {
-      data['country'] = country!.toJson();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['schoolName'] = this.schoolName;
+    data['licenseNumber'] = this.licenseNumber;
+    data['congregationNumber'] = this.congregationNumber;
+    data['previousName'] = this.previousName;
+    data['address'] = this.address;
+    data['village'] = this.village;
+    data['township'] = this.township;
+    data['region'] = this.region;
+    data['phone'] = this.phone;
+    data['fax'] = this.fax;
+    data['email'] = this.email;
+    data['creatYear'] = this.creatYear;
+    data['workBeginYear'] = this.workBeginYear;
+    data['workType'] = this.workType;
+    data['clinicName'] = this.clinicName;
+    data['internetConnection'] = this.internetConnection;
+    data['governmentConnection'] = this.governmentConnection;
+    data['industrialSection'] = this.industrialSection;
+    data['jointBuilding'] = this.jointBuilding;
+    data['martyrsSons'] = this.martyrsSons;
+    data['outstandingSchool'] = this.outstandingSchool;
+    data['takenOverSchool'] = this.takenOverSchool;
+    data['reassignmentTeachers'] = this.reassignmentTeachers;
+    data['Morning'] = this.morning;
+    data['Evening'] = this.evening;
+    if (this.country != null) {
+      data['country'] = this.country!.toJson();
     }
     return data;
   }
@@ -149,10 +154,10 @@ class Country {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['name'] = name;
-    data['enName'] = enName;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['enName'] = this.enName;
     return data;
   }
 }

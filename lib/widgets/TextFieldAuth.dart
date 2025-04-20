@@ -28,6 +28,7 @@ class TextFieldAuth extends StatelessWidget {
         autofillHints: autofill,
         autofocus: true,
         controller: controller,
+        style: TextStyle(color: Colors.black),
         decoration: InputDecoration(
           hintText: hinttext,
           hintStyle: const TextStyle(fontSize: 12, color: Colors.grey),
