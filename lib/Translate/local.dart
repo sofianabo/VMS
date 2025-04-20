@@ -291,8 +291,8 @@ class Languages {
 
       /////////////////////////////////section 1 and home appbar////////////////////////
 
-      'WE CARE ABOUT \n YOUR FUTURE': 'نحن نعتني\n بمستقبلك',
-      'WE CARE ABOUT YOUR FUTURE': 'نحن نعتني بمستقبلك',
+      'WE CARE ABOUT \n YOUR FUTURE': 'نحن نهتم\n بمستقبلك',
+      'WE CARE ABOUT YOUR FUTURE': 'نحن نهتم بمستقبلك',
       'Join us to enter a better world filled with advanced educational methods through Virtual Modern School':
           'انضم إلينا لدخول عالم أفضل مليء بالأساليب التعليمية المتطورة من خلال المدرسة الافتراضية الحديثة',
       'Enroll': 'تسجيل',

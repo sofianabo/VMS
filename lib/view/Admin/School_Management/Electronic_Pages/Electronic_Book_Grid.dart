@@ -20,6 +20,23 @@ class ElectronicBookGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    int getCrossAxisCount() {
+      if (screenWidth >= 1260) return 4;
+      if (screenWidth >= 1040) return 3;
+      if (screenWidth >= 769) return 2;
+      return 1;
+    }
+
+    double getChildAspectRatio() {
+      if (screenWidth >= 1070) return 1.8;
+      if (screenWidth >= 950) return 1.8;
+      if (screenWidth >= 838) return 2.3;
+      if (screenWidth >= 769) return 2.1;
+      if (screenWidth >= 539) return 2.8;
+      return 2.3;
+    }
+
     return Directionality(
       textDirection: prefs!.getString(languageKey) == "ar"
           ? TextDirection.rtl
@@ -29,24 +46,10 @@ class ElectronicBookGrid extends StatelessWidget {
             ? GridView.builder(
                 padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: Get.width <= 1226 && Get.width >= 988
-                        ? 3
-                        : Get.width <= 987 && Get.width >= 759
-                            ? 2
-                            : Get.width <= 758
-                                ? 1
-                                : 4,
+                    crossAxisCount: getCrossAxisCount(),
                     crossAxisSpacing: 45.0,
                     mainAxisSpacing: 20.0,
-                    childAspectRatio: Get.width <= 1226 && Get.width >= 988
-                        ? 2.2
-                        : Get.width <= 987 && Get.width >= 759
-                            ? 2.7
-                            : Get.width <= 758 && Get.width >= 573
-                                ? 3.8
-                                : Get.width <= 573
-                                    ? 3.0
-                                    : 1.8),
+                    childAspectRatio: getChildAspectRatio()),
                 itemCount: 12,
                 itemBuilder: (context, index) {
                   return HoverScaleCard(
@@ -117,24 +120,10 @@ class ElectronicBookGrid extends StatelessWidget {
                     padding:
                         const EdgeInsets.only(top: 10, left: 40, right: 40),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: Get.width <= 1226 && Get.width >= 988
-                            ? 3
-                            : Get.width <= 987 && Get.width >= 759
-                                ? 2
-                                : Get.width <= 758
-                                    ? 1
-                                    : 4,
+                        crossAxisCount: getCrossAxisCount(),
                         crossAxisSpacing: 45.0,
                         mainAxisSpacing: 20.0,
-                        childAspectRatio: Get.width <= 1226 && Get.width >= 988
-                            ? 2.2
-                            : Get.width <= 987 && Get.width >= 759
-                                ? 2.7
-                                : Get.width <= 758 && Get.width >= 573
-                                    ? 3.8
-                                    : Get.width <= 573
-                                        ? 3.0
-                                        : 1.8),
+                        childAspectRatio: getChildAspectRatio()),
                     itemCount: control.filteredEbook!.length,
                     itemBuilder: (context, index) {
                       return HoverScaleCard(
@@ -169,19 +158,23 @@ class ElectronicBookGrid extends StatelessWidget {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
-                                          Container(
-                                            width: 50,
-                                          ),
                                           Expanded(
                                             child: Center(
-                                              child: Text(
-                                                textAlign: TextAlign.center,
-                                                prefs!.getString(languageKey) ==
-                                                        'ar'
-                                                    ? "${control.filteredEbook![index].name}"
-                                                    : "${control.filteredEbook![index].enName}",
-                                                style: const TextStyle(
-                                                    fontSize: 26),
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 10.0),
+                                                child: Text(
+                                                  maxLines: 2,
+                                                  overflow: TextOverflow.fade,
+                                                  textAlign: TextAlign.center,
+                                                  prefs!.getString(
+                                                              languageKey) ==
+                                                          'ar'
+                                                      ? "${control.filteredEbook![index].name}"
+                                                      : "${control.filteredEbook![index].enName}",
+                                                  style: const TextStyle(
+                                                      fontSize: 26),
+                                                ),
                                               ),
                                             ),
                                           )

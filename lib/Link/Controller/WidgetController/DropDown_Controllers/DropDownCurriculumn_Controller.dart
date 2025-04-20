@@ -290,4 +290,27 @@ class Curriculumn_Controller extends GetxController {
     semesterIndex = "";
     update();
   }
+
+  initialAddCurr() {
+    selectedSemesterss = [];
+    selectedSemesterIds = [];
+    selectdialog_SemesterIndex = '';
+    fileStatus = "Click To Add File\nOr\nDrag And Drop File Here".tr;
+    imageStatus = "Click To Add Image\nOr\nDrag And Drop Image Here".tr;
+    dialog_SubjectIndex = "";
+    dialog_SemesterIndex = "";
+    isFailingSubject = false;
+    selectedImage.value = null;
+    selectedFile.value = null;
+    updateFieldError("aname", false);
+    updateFieldError("ename", false);
+    updateFieldError("max", false);
+    updateFieldError("passing", false);
+    updateFieldError("subject", false);
+    updateFieldError("semester", false);
+    updateFieldError("image", false);
+    updateFieldError("file", false);
+
+    update();
+  }
 }

@@ -101,43 +101,35 @@ class _School_ContentState extends State<School_Content> {
                                       width: 120),
                                 ],
                                 contents: Column(
+                                  spacing: 10.0,
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Row(
-                                          spacing: 10.0,
-                                          children: [
-                                            Textfildwithupper(
-                                                isRequired: true,
-                                                isError: controller.IsnameError,
-                                                onChanged: (value) {
-                                                  if (value.isNotEmpty) {
-                                                    controller.updateFieldError(
-                                                        "arname", false);
-                                                  }
-                                                },
-                                                controller: arName,
-                                                Uptext: "Content Name".tr,
-                                                hinttext: "Content Name".tr),
-                                            Textfildwithupper(
-                                                isRequired: true,
-                                                isError:
-                                                    controller.IsennameError,
-                                                onChanged: (value) {
-                                                  if (value.isNotEmpty) {
-                                                    controller.updateFieldError(
-                                                        "enname", false);
-                                                  }
-                                                },
-                                                controller: enName,
-                                                Uptext: "Content En Name".tr,
-                                                hinttext: "Content En Name".tr),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
+                                    Textfildwithupper(
+                                        width: 300,
+                                        isRequired: true,
+                                        isError: controller.IsnameError,
+                                        onChanged: (value) {
+                                          if (value.isNotEmpty) {
+                                            controller.updateFieldError(
+                                                "arname", false);
+                                          }
+                                        },
+                                        controller: arName,
+                                        Uptext: "Content Name".tr,
+                                        hinttext: "Content Name".tr),
+                                    Textfildwithupper(
+                                        width: 300,
+                                        isRequired: true,
+                                        isError: controller.IsennameError,
+                                        onChanged: (value) {
+                                          if (value.isNotEmpty) {
+                                            controller.updateFieldError(
+                                                "enname", false);
+                                          }
+                                        },
+                                        controller: enName,
+                                        Uptext: "Content En Name".tr,
+                                        hinttext: "Content En Name".tr),
                                   ],
                                 ),
                                 apptitle: "Add Content".tr,

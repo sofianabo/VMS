@@ -22,49 +22,55 @@ class School_Content_Grid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(Get.width);
     return GetBuilder<School_Content_Controller>(
       builder: (controller) {
         return Container(
-          margin: const EdgeInsets.only(top: 20),
-          width: Get.width * 0.9,
-          child: controller.isLoading == true
-              ? LoadingAnimationWidget.inkDrop(
-                  color: Theme.of(context).primaryColor,
-                  size: 60,
-                )
-              : SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Table(
-                        border: TableBorder.all(
-                            color: Theme.of(context).primaryColor),
-                        children: [
-                          TableRow(
-                            decoration:
-                                const BoxDecoration(color: Color(0xffD4DFE5)),
-                            children: [
-                              _tableHeader('Operation'.tr, context),
-                              _tableHeader('Content Name'.tr, context),
-                            ],
-                          ),
-                          for (var row in controller.Contents!.asMap().entries)
+            margin: const EdgeInsets.only(top: 20),
+            width: Get.width * 0.9,
+            child: controller.isLoading == true
+                ? LoadingAnimationWidget.inkDrop(
+                    color: Theme.of(context).primaryColor,
+                    size: 60,
+                  )
+                : SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Table(
+                          columnWidths: {
+                            0: Get.width >= 1048
+                                ? FixedColumnWidth(300)
+                                : FixedColumnWidth(120),
+                          },
+                          border: TableBorder.all(
+                              color: Theme.of(context).primaryColor),
+                          children: [
                             TableRow(
+                              decoration:
+                                  const BoxDecoration(color: Color(0xffD4DFE5)),
                               children: [
-                                _operationColumn(
-                                    row.value, controller, row.key, context),
-                                _dataColumn(
-                                    prefs!.getString(languageKey) == 'ar'
-                                        ? row.value['name']
-                                        : row.value['enName']),
+                                _tableHeader('Operation'.tr, context),
+                                _tableHeader('Content Name'.tr, context),
                               ],
                             ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-        );
+                            for (var row
+                                in controller.Contents!.asMap().entries)
+                              TableRow(
+                                children: [
+                                  _operationColumn(
+                                      row.value, controller, row.key, context),
+                                  _dataColumn(
+                                      prefs!.getString(languageKey) == 'ar'
+                                          ? row.value['name']
+                                          : row.value['enName']),
+                                ],
+                              ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ));
       },
     );
   }
@@ -128,15 +134,15 @@ class School_Content_Grid extends StatelessWidget {
                             color: Theme.of(context).primaryColor,
                             width: 120),
                       ],
-                      contents: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 15.0, right: 15.0),
-                                child: Textfildwithupper(
+                      contents: SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Column(
+                              spacing: 10.0,
+                              children: [
+                                Textfildwithupper(
+                                    width: 300,
                                     isRequired: true,
                                     isError: controller.IsennameError,
                                     onChanged: (value) {
@@ -148,22 +154,23 @@ class School_Content_Grid extends StatelessWidget {
                                     controller: enName,
                                     Uptext: "Content En Name".tr,
                                     hinttext: "Content En Name".tr),
-                              ),
-                              Textfildwithupper(
-                                  isRequired: true,
-                                  isError: controller.IsnameError,
-                                  onChanged: (value) {
-                                    if (value.isNotEmpty) {
-                                      controller.updateFieldError(
-                                          "arname", false);
-                                    }
-                                  },
-                                  controller: name,
-                                  Uptext: "Content Name".tr,
-                                  hinttext: "Content Name".tr),
-                            ],
-                          ),
-                        ],
+                                Textfildwithupper(
+                                    width: 300,
+                                    isRequired: true,
+                                    isError: controller.IsnameError,
+                                    onChanged: (value) {
+                                      if (value.isNotEmpty) {
+                                        controller.updateFieldError(
+                                            "arname", false);
+                                      }
+                                    },
+                                    controller: name,
+                                    Uptext: "Content Name".tr,
+                                    hinttext: "Content Name".tr),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                       apptitle: "Edit Content".tr,
                       subtitle: "none");
