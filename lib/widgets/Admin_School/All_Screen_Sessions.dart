@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/GetEmployeeAttendenceAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_All_Employee_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownClassesAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownGradeAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Class_API/Get_All_Classes.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Division_API/Get_All_Division.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/GetAllStudentAPI.dart';
@@ -135,6 +136,7 @@ class DropDownAllSessions extends StatelessWidget {
                     // getgrade
                     Get.find<StudentAttendencController>()
                         .resetOnSessionChange();
+                    await Getallgradeapi.Getallgrade();
                   } else {
                     if (await Get.find<StudentAttendencController>().selectDate(
                           context: context,
@@ -149,6 +151,7 @@ class DropDownAllSessions extends StatelessWidget {
                               .trim());
                       Get.find<StudentAttendencController>()
                           .resetOnSessionChange();
+                      await Getallgradeapi.Getallgrade();
                     } else {
                       cont.setSessionDefult();
                       return;

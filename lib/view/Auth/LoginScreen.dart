@@ -89,8 +89,9 @@ class LoginScreen extends StatelessWidget {
                                         children: [
                                           Text(
                                             "Username".tr,
-                                            style:
-                                                Get.theme.textTheme.bodyMedium!,
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.black),
                                           ),
                                           Padding(
                                             padding:
@@ -119,8 +120,9 @@ class LoginScreen extends StatelessWidget {
                                           children: [
                                             Text(
                                               "Password".tr,
-                                              style: Get
-                                                  .theme.textTheme.bodyMedium!,
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  color: Colors.black),
                                             ),
                                             Padding(
                                               padding: const EdgeInsets.only(
@@ -293,7 +295,9 @@ class LoginScreen extends StatelessWidget {
                                           Text(
                                             "Username".tr,
                                             style:
-                                                Get.theme.textTheme.bodyMedium!,
+                                                 TextStyle(
+                                                  fontSize: 14,
+                                                  color: Colors.black),
                                           ),
                                           Padding(
                                             padding:
@@ -322,8 +326,9 @@ class LoginScreen extends StatelessWidget {
                                           children: [
                                             Text(
                                               "Password".tr,
-                                              style: Get
-                                                  .theme.textTheme.bodyMedium!,
+                                              style:  TextStyle(
+                                                  fontSize: 14,
+                                                  color: Colors.black),
                                             ),
                                             Padding(
                                               padding: const EdgeInsets.only(
@@ -464,8 +469,9 @@ class LoginScreen extends StatelessWidget {
                                       children: [
                                         Text(
                                           "Username".tr,
-                                          style: Get.theme.textTheme.bodyMedium!
-                                              .copyWith(fontSize: 12),
+                                          style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: Colors.black),
                                         ),
                                         Padding(
                                           padding:
@@ -496,9 +502,9 @@ class LoginScreen extends StatelessWidget {
                                         children: [
                                           Text(
                                             "Password".tr,
-                                            style: Get
-                                                .theme.textTheme.bodyMedium!
-                                                .copyWith(fontSize: 12),
+                                            style:  TextStyle(
+                                                  fontSize: 12,
+                                                  color: Colors.black),
                                           ),
                                           Padding(
                                             padding:

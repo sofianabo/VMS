@@ -30,12 +30,6 @@ class School_Data_DropDown extends StatelessWidget {
               : title;
           break;
 
-        case 'Work_Type':
-          currentValue = cont.selectWork_TypeIndex.isNotEmpty
-              ? cont.selectWork_TypeIndex
-              : title;
-          break;
-
         default:
           break;
       }
@@ -59,7 +53,8 @@ class School_Data_DropDown extends StatelessWidget {
           icon: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Icon(Icons.arrow_drop_down , color: Get.theme.secondaryHeaderColor),
+              Icon(Icons.arrow_drop_down,
+                  color: Get.theme.secondaryHeaderColor),
             ],
           ),
           style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
@@ -97,20 +92,7 @@ class School_Data_DropDown extends StatelessWidget {
             value: value,
             child: Text(
               value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
-            ),
-          );
-        }).toList());
-        break;
-      case 'Work_Type':
-        items.addAll(cont.listWork_Type.map((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(
-              value,
-              style: Get.theme.textTheme.bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
             ),
           );
         }).toList());

@@ -708,6 +708,25 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                                   Text("Martyrs Sons".tr),
                                                 ],
                                               )),
+                                          Obx(() => Row(
+                                                children: [
+                                                  Checkbox(
+                                                    checkColor: Colors.white,
+                                                    value: controller
+                                                        .evening.value,
+                                                    onChanged: (value) {
+                                                      if (Get.find<
+                                                                  Add_Data_controller>()
+                                                              .roll !=
+                                                          "subAdmin") {
+                                                        controller.evening
+                                                            .value = value!;
+                                                      }
+                                                    },
+                                                  ),
+                                                  Text("Evening".tr),
+                                                ],
+                                              )),
                                         ],
                                       ),
                                     ),
@@ -802,6 +821,25 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                                     ),
                                                     Text("Industrial Section"
                                                         .tr),
+                                                  ],
+                                                )),
+                                            Obx(() => Row(
+                                                  children: [
+                                                    Checkbox(
+                                                      checkColor: Colors.white,
+                                                      value: controller
+                                                          .morning.value,
+                                                      onChanged: (value) {
+                                                        if (Get.find<
+                                                                    Add_Data_controller>()
+                                                                .roll !=
+                                                            "subAdmin") {
+                                                          controller.morning
+                                                              .value = value!;
+                                                        }
+                                                      },
+                                                    ),
+                                                    Text("Morning".tr),
                                                   ],
                                                 )),
                                           ],
