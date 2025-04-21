@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Guardian_APIS/ApproveRequestAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Guardian_APIS/RejectEnrollRequestAPI.dart';
+import 'package:vms_school/Link/API/DownloadFiles.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
@@ -14,6 +16,7 @@ import 'package:vms_school/widgets/Admin_Requests/DropDownRequestEnroll.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/ButtonsGrid.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
+import 'package:vms_school/widgets/PDF_View.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
@@ -389,25 +392,22 @@ class RequestsGrid extends StatelessWidget {
                                                     .primaryColor,
                                               )
                                             ],
-                                            contents: Row(
-                                              children: [
-                                                GetBuilder<
-                                                        Dropdownclassescontroller>(
-                                                    builder: (controller) {
-                                                  return Dropdownrequestenroll(
-                                                    isLoading:
-                                                        controller.Isloading,
-                                                    width: Get.width / 5.2,
-                                                    type: "class",
-                                                    title: 'Class'.tr,
-                                                  );
-                                                }),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 20,
-                                                          left: 20.0),
-                                                  child: GetBuilder<
+                                            contents: SingleChildScrollView(
+                                              child: Column(
+                                                spacing: 10.0,
+                                                children: [
+                                                  GetBuilder<
+                                                          Dropdownclassescontroller>(
+                                                      builder: (controller) {
+                                                    return Dropdownrequestenroll(
+                                                      isLoading:
+                                                          controller.Isloading,
+                                                      width: 300,
+                                                      type: "class",
+                                                      title: 'Class'.tr,
+                                                    );
+                                                  }),
+                                                  GetBuilder<
                                                           Dropdowndivisioncontroller>(
                                                       builder: (controller) {
                                                     return Dropdownrequestenroll(
@@ -415,13 +415,27 @@ class RequestsGrid extends StatelessWidget {
                                                           .isDisiabled,
                                                       isLoading:
                                                           controller.isLoading,
-                                                      width: Get.width / 5.2,
+                                                      width: 300,
                                                       type: "division",
                                                       title: 'Division'.tr,
                                                     );
                                                   }),
-                                                )
-                                              ],
+                                                  TextButton(
+                                                      onPressed: () {
+                                                        for (int i = 0;
+                                                            i <
+                                                                controller
+                                                                    .filteredregistration
+                                                                    .length;
+                                                            i++) {
+                                                          openFileInNewTab(
+                                                              filePath:
+                                                                  '$getpdf${controller.filteredregistration[index].fileId![i]}');
+                                                        }
+                                                      },
+                                                      child: Text("Show Files"))
+                                                ],
+                                              ),
                                             ),
                                             apptitle: 'Manage Student'.tr,
                                             subtitle:

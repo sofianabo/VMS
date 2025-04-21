@@ -7,15 +7,15 @@ class AllRequestsModel {
     if (json['registration'] != null) {
       registration = <Registration>[];
       json['registration'].forEach((v) {
-        registration!.add(Registration.fromJson(v));
+        registration!.add(new Registration.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (registration != null) {
-      data['registration'] = registration!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.registration != null) {
+      data['registration'] = this.registration!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -27,35 +27,40 @@ class Registration {
   String? date;
   int? acceptanceNumber;
   String? type;
+  List<int>? fileId;
 
   Registration(
       {this.guardian,
       this.student,
       this.date,
       this.acceptanceNumber,
-      this.type});
+      this.type,
+      this.fileId});
 
   Registration.fromJson(Map<String, dynamic> json) {
-    guardian =
-        json['guardian'] != null ? Guardian.fromJson(json['guardian']) : null;
+    guardian = json['guardian'] != null
+        ? new Guardian.fromJson(json['guardian'])
+        : null;
     student =
-        json['student'] != null ? Student.fromJson(json['student']) : null;
+        json['student'] != null ? new Student.fromJson(json['student']) : null;
     date = json['date'];
     acceptanceNumber = json['acceptanceNumber'];
     type = json['type'];
+    fileId = json['fileId'].cast<int>();
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (guardian != null) {
-      data['guardian'] = guardian!.toJson();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.guardian != null) {
+      data['guardian'] = this.guardian!.toJson();
     }
-    if (student != null) {
-      data['student'] = student!.toJson();
+    if (this.student != null) {
+      data['student'] = this.student!.toJson();
     }
-    data['date'] = date;
-    data['acceptanceNumber'] = acceptanceNumber;
-    data['type'] = type;
+    data['date'] = this.date;
+    data['acceptanceNumber'] = this.acceptanceNumber;
+    data['type'] = this.type;
+    data['fileId'] = this.fileId;
     return data;
   }
 }
@@ -86,13 +91,13 @@ class Guardian {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['name'] = name;
-    data['phone'] = phone;
-    data['nationalId'] = nationalId;
-    data['email'] = email;
-    data['userName'] = userName;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['phone'] = this.phone;
+    data['nationalId'] = this.nationalId;
+    data['email'] = this.email;
+    data['userName'] = this.userName;
     return data;
   }
 }
@@ -113,11 +118,11 @@ class Student {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['name'] = name;
-    data['class'] = clas;
-    data['previousClass'] = previousClass;
-    data['id'] = id;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['class'] = this.clas;
+    data['previousClass'] = this.previousClass;
+    data['id'] = this.id;
     return data;
   }
 }

@@ -14,7 +14,6 @@ class RoleBasedMiddleware extends GetMiddleware {
     bool isLoggedIn = prefs?.getBool("isLogin") ?? false;
     String? role = prefs?.getString("role");
 
-    // إذا لم يكن مسجل دخول ويحاول الوصول إلى صفحة غير مسموحة
     if (!isLoggedIn && route != '/home' && route != '/login') {
       return const RouteSettings(name: '/home');
     }
