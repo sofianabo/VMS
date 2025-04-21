@@ -530,7 +530,7 @@ class Languages {
       "The Second Semester": "الفصل الثاني",
       "The Third Semester": "الفصل الثالث",
       'Max Mark :': 'العلامة العظمى :',
-      'Passing Mark :': ' :علامة النجاح',
+      'Passing Mark :': 'علامة النجاح :',
       'Is Failure Agent :': 'هل المادة مرسبة :',
       'Do You Want To Deletecur': 'هل تريد حذف المادة',
       'Curriculumm': '',

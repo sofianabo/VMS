@@ -167,7 +167,8 @@ class _ClassManagementState extends State<ClassManagement> {
                                               isEnNameEmpty ||
                                               isGradeEmpty ||
                                               isCurrEmpty ||
-                                              isDriveEmpty)) {
+                                              isDriveEmpty ||
+                                              isAccountEmpty)) {
                                             await Add_Class_API(context).Add_Class(
                                                 gradeId: controller.grades,
                                                 driveUrl: driveUrl.text,
