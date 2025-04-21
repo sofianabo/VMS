@@ -75,6 +75,7 @@ Add_Group() {
                       child: Textfildwithupper(
                         readOnly: controller.items.isEmpty ? false : true,
                         width: 60,
+                        fieldType: "number",
                         controller: ratio,
                         Uptext: "ratio",
                         hinttext: "ratio",
@@ -287,69 +288,90 @@ Add_Items_Group() {
   TextEditingController itemName = TextEditingController();
   TextEditingController ratio = TextEditingController();
   var isQuizable = false.obs; // متغير لتحديد إذا كان العنصر كويزابل
+  Get.find<TeachernoteAndGradeReco>().resetError();
+  return GetBuilder<TeachernoteAndGradeReco>(builder: (controller) {
+    return VMSAlertDialog(
+      action: [
+        ButtonDialog(
+          text: "Add".tr,
+          onPressed: () {
+            bool isitemNameError = itemName.text.trim().isEmpty;
+            bool isratioError = ratio.text.trim().isEmpty ||
+                int.parse(ratio.text.trim().toString()) == 0;
+            controller.updateFieldError("item", isitemNameError);
+            controller.updateFieldError("itemratio", isratioError);
 
-  return VMSAlertDialog(
-    action: [
-      ButtonDialog(
-        text: "Add".tr,
-        onPressed: () {
-          double? ratioValue = double.tryParse(ratio.text);
-          if (ratioValue != null && ratioValue > 0) {
-            Get.find<TeachernoteAndGradeReco>().Add_Items(
-              name: itemName.text,
-              ratio: ratioValue.toString(),
-              IsQuizable: isQuizable.value,
-            );
-            Get.back();
-          } else {
-            Get.snackbar("Error", "Invalid ratio value");
-          }
-        },
-        color: Get.theme.primaryColor,
-        width: 100,
-      ),
-    ],
-    contents: Container(
-      width: 420,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            children: [
-              Obx(() => Checkbox(
-                    value: isQuizable.value,
-                    onChanged: (value) {
-                      isQuizable.value = value!;
-                    },
-                  )),
-              Text("Is Quizable".tr),
-            ],
-          ),
-          Row(
-            children: [
-              Textfildwithupper(
-                width: 350,
-                controller: itemName,
-                Uptext: "Item Name".tr,
-                hinttext: "Item Name".tr,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0),
-                child: Textfildwithupper(
-                  width: 60,
-                  controller: ratio,
-                  Uptext: "Ratio".tr,
-                  hinttext: "Ratio".tr,
+            if (!(isitemNameError || isratioError)) {
+              double? ratioValue = double.tryParse(ratio.text);
+              if (ratioValue != null && ratioValue > 0) {
+                Get.find<TeachernoteAndGradeReco>().Add_Items(
+                  name: itemName.text,
+                  ratio: ratioValue.toString(),
+                  IsQuizable: isQuizable.value,
+                );
+                Get.back();
+              } else {
+                Get.snackbar("Error", "Invalid ratio value");
+              }
+            }
+          },
+          color: Get.theme.primaryColor,
+          width: 100,
+        ),
+      ],
+      contents: Container(
+        width: 420,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                Obx(() => Checkbox(
+                      value: isQuizable.value,
+                      onChanged: (value) {
+                        isQuizable.value = value!;
+                      },
+                    )),
+                Text("Is Quizable".tr),
+              ],
+            ),
+            Row(
+              children: [
+                Textfildwithupper(
+                  width: 350,
+                  controller: itemName,
+                  isError: controller.isitemError,
+                  onChanged: (val) {
+                    if (val.isNotEmpty)
+                      controller.updateFieldError("item", false);
+                  },
+                  Uptext: "Item Name".tr,
+                  hinttext: "Item Name".tr,
                 ),
-              ),
-            ],
-          ),
-        ],
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  child: Textfildwithupper(
+                    width: 60,
+                    isError: controller.isitemRatioError,
+                    onChanged: (val) {
+                      if (val.isNotEmpty)
+                        controller.updateFieldError("itemratio", false);
+                    },
+                    controller: ratio,
+                    fieldType: "number",
+                    Uptext: "Ratio".tr,
+                    hinttext: "Ratio".tr,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
-    ),
-    apptitle: "Add Item".tr,
-    subtitle: "Add Group Item".tr,
-  );
+      apptitle: "Add Item".tr,
+      subtitle: "Add Group Item".tr,
+    );
+  });
 }
 
 Edit_Items_Group(
@@ -357,70 +379,90 @@ Edit_Items_Group(
   TextEditingController itemName = TextEditingController(text: name);
   TextEditingController ratio = TextEditingController(text: rat.toString());
   var isQuizable = (isQuizables ?? false).obs;
+  Get.find<TeachernoteAndGradeReco>().resetError();
+  return GetBuilder<TeachernoteAndGradeReco>(builder: (controller) {
+    return VMSAlertDialog(
+      action: [
+        ButtonDialog(
+          text: "Edit".tr,
+          onPressed: () {
+            bool isitemNameError = itemName.text.trim().isEmpty;
+            bool isratioError = ratio.text.trim().isEmpty ||
+                int.parse(ratio.text.trim().toString()) == 0;
+            controller.updateFieldError("item", isitemNameError);
+            controller.updateFieldError("itemratio", isratioError);
+            double? ratioValue = double.tryParse(ratio.text);
 
-  return VMSAlertDialog(
-    action: [
-      ButtonDialog(
-        text: "Edit".tr,
-        onPressed: () {
-          double? ratioValue = double.tryParse(ratio.text);
-          if (ratioValue != null && ratioValue > 0) {
-            Get.find<TeachernoteAndGradeReco>().EditItem(
-              idx: idx,
-              name: itemName.text,
-              ratio: ratioValue.toString(),
-              IsQuizable: isQuizable.value,
-            );
-            Get.back();
-          } else {
-            Get.snackbar("Error", "Invalid ratio value");
-          }
-        },
-        color: Get.theme.primaryColor,
-        width: 100,
-      ),
-    ],
-    contents: Container(
-      width: 420,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            children: [
-              Obx(() => Checkbox(
-                    value: isQuizable.value,
-                    onChanged: (value) {
-                      isQuizable.value = value!;
+            if (!(isitemNameError || isratioError)) {
+              if (ratioValue != null && ratioValue > 0) {
+                Get.find<TeachernoteAndGradeReco>().EditItem(
+                  idx: idx,
+                  name: itemName.text,
+                  ratio: ratioValue.toString(),
+                  IsQuizable: isQuizable.value,
+                );
+                Get.back();
+              } else {
+                Get.snackbar("Error", "Invalid ratio value");
+              }
+            }
+          },
+          color: Get.theme.primaryColor,
+          width: 100,
+        ),
+      ],
+      contents: Container(
+        width: 420,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                Obx(() => Checkbox(
+                      value: isQuizable.value,
+                      onChanged: (value) {
+                        isQuizable.value = value!;
+                      },
+                    )),
+                Text("Is Quizable".tr),
+              ],
+            ),
+            Row(
+              children: [
+                Textfildwithupper(
+                    width: 350,
+                    controller: itemName,
+                    Uptext: "Item Name".tr,
+                    hinttext: "Item Name".tr,
+                    isError: controller.isitemError,
+                    onChanged: (val) {
+                      if (val.isNotEmpty)
+                        controller.updateFieldError("item", false);
+                    }),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  child: Textfildwithupper(
+                    width: 60,
+                    controller: ratio,
+                    fieldType: "number",
+                    isError: controller.isitemRatioError,
+                    onChanged: (val) {
+                      if (val.isNotEmpty)
+                        controller.updateFieldError("itemratio", false);
                     },
-                  )),
-              Text("Is Quizable".tr),
-            ],
-          ),
-          Row(
-            children: [
-              Textfildwithupper(
-                width: 350,
-                controller: itemName,
-                Uptext: "Item Name".tr,
-                hinttext: "Item Name".tr,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0),
-                child: Textfildwithupper(
-                  width: 60,
-                  controller: ratio,
-                  Uptext: "Ratio".tr,
-                  hinttext: "Ratio".tr,
+                    Uptext: "Ratio".tr,
+                    hinttext: "Ratio".tr,
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
-    ),
-    apptitle: "Edit Item".tr,
-    subtitle: "Edit Group Item".tr,
-  );
+      apptitle: "Edit Item".tr,
+      subtitle: "Edit Group Item".tr,
+    );
+  });
 }
 
 Rerange_Group() {
@@ -632,6 +674,8 @@ Edit_Group(int idx) {
                       // عدم السماح بتعديل الـ ratio إذا كان هناك عناصر
                       readOnly: controller.items.isNotEmpty,
                       width: 60,
+                      fieldType: "number",
+
                       controller: ratio,
                       Uptext: "Ratio".tr,
                       hinttext: "Ratio".tr,

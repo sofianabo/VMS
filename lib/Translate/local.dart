@@ -689,6 +689,7 @@ class Languages {
 
       'This Subjact has Curriculums': 'هذه المادة تحتوي على مناهج',
       'You Can`t Delete This Subject': 'لا يمكنك حذف هذه المادة',
+      'Ratio': 'النسبة',
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -1375,7 +1376,7 @@ class Languages {
       'Edit Content': 'Edit Content',
       'This Subjact has Curriculums': 'This Subjact has Curriculums',
       'You Can`t Delete This Subject': 'You Can`t Delete This Subject',
-      '': '',
+      'Ratio': 'Ratio',
       '': '',
       '': '',
       '': '',

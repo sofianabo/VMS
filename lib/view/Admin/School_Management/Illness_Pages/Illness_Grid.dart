@@ -20,29 +20,34 @@ class Illness_Grid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    int getCrossAxisCount() {
+      if (screenWidth >= 1132) return 4;
+      if (screenWidth >= 950) return 3;
+      if (screenWidth >= 539) return 2;
+      return 1;
+    }
+
+    double getChildAspectRatio() {
+      if (screenWidth >= 1070) return 1.2;
+      if (screenWidth >= 950) return 1.2;
+      if (screenWidth >= 838) return 1.7;
+      if (screenWidth >= 769) return 1.6;
+      if (screenWidth >= 620) return 1.6;
+      if (screenWidth >= 539) return 1.8;
+      return 1.9;
+    }
+
     return GetBuilder<Illness_Controller>(builder: (control) {
       return control.isLoading == true
           ? GridView.builder(
               padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: Get.width <= 1226 && Get.width >= 988
-                      ? 3
-                      : Get.width <= 987 && Get.width >= 759
-                          ? 2
-                          : Get.width <= 758
-                              ? 1
-                              : 4,
-                  crossAxisSpacing: 45.0,
+                  crossAxisCount: getCrossAxisCount(),
+                  crossAxisSpacing: 20.0,
                   mainAxisSpacing: 20.0,
-                  childAspectRatio: Get.width <= 1226 && Get.width >= 988
-                      ? 2.2
-                      : Get.width <= 987 && Get.width >= 759
-                          ? 2.7
-                          : Get.width <= 758 && Get.width >= 573
-                              ? 3.8
-                              : Get.width <= 573
-                                  ? 3.0
-                                  : 1.8),
+                  childAspectRatio: getChildAspectRatio()),
               itemCount: 12,
               itemBuilder: (context, index) {
                 return HoverScaleCard(
@@ -108,24 +113,10 @@ class Illness_Grid extends StatelessWidget {
               ? GridView.builder(
                   padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: Get.width <= 1226 && Get.width >= 988
-                          ? 3
-                          : Get.width <= 987 && Get.width >= 759
-                              ? 2
-                              : Get.width <= 758
-                                  ? 1
-                                  : 4,
-                      crossAxisSpacing: 45.0,
+                      crossAxisCount: getCrossAxisCount(),
+                      crossAxisSpacing: 20.0,
                       mainAxisSpacing: 20.0,
-                      childAspectRatio: Get.width <= 1226 && Get.width >= 988
-                          ? 2.2
-                          : Get.width <= 987 && Get.width >= 759
-                              ? 2.7
-                              : Get.width <= 758 && Get.width >= 573
-                                  ? 3.8
-                                  : Get.width <= 573
-                                      ? 3.0
-                                      : 1.8),
+                      childAspectRatio: getChildAspectRatio()),
                   itemCount: control.filteredIllness!.length,
                   itemBuilder: (context, index) {
                     return HoverScaleCard(

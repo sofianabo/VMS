@@ -355,6 +355,8 @@ class TeachernoteAndGradeReco extends GetxController {
 
   bool isGroupNameError = false;
   bool isRatioError = false;
+  bool isitemError = false;
+  bool isitemRatioError = false;
   void updateFieldError(String type, bool newValue) {
     switch (type) {
       case "groupName":
@@ -363,6 +365,12 @@ class TeachernoteAndGradeReco extends GetxController {
 
       case "ratio":
         isRatioError = newValue;
+        break;
+      case "item":
+        isitemError = newValue;
+        break;
+      case "itemratio":
+        isitemRatioError = newValue;
         break;
       default:
     }
@@ -373,6 +381,8 @@ class TeachernoteAndGradeReco extends GetxController {
   void resetError() {
     isGroupNameError = false;
     isRatioError = false;
+       isitemError = false;
+   isitemRatioError = false;
     update();
   }
 }

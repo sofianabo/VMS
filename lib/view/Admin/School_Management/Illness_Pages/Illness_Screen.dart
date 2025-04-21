@@ -37,232 +37,129 @@ class _Ilness_ScreenState extends State<Ilness_Screen> {
         child: Column(
       children: [
         Container(
+          width: w,
           margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           alignment: Alignment.center,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Wrap(
+            alignment: WrapAlignment.spaceBetween,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            runAlignment: WrapAlignment.spaceBetween,
+            spacing: 10.0,
+            runSpacing: 8.0,
             children: [
-              Row(
-                children: [
-                  Row(
-                    children: [
-                      GetBuilder<Illness_Controller>(builder: (controller) {
-                        return Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: TextFormSearch(
-                            click: () {
-                              controller.clearFilter();
-                            },
-                            onchange: (value) {
-                              controller.searchByName(value);
-                            },
-                            width: w * 0.7,
-                            radius: 5,
-                            controller: search,
-                            suffixIcon: search.text.isNotEmpty
-                                ? Icons.close
-                                : Icons.search,
-                          ),
-                        );
-                      }),
-                    ],
+              GetBuilder<Illness_Controller>(builder: (controller) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: TextFormSearch(
+                    click: () {
+                      controller.clearFilter();
+                    },
+                    onchange: (value) {
+                      controller.searchByName(value);
+                    },
+                    width: w >= 1060
+                        ? w * 0.7
+                        : w >= 732
+                            ? w * 0.8
+                            : w * 0.9,
+                    radius: 5,
+                    controller: search,
+                    suffixIcon:
+                        search.text.isNotEmpty ? Icons.close : Icons.search,
                   ),
-                  Spacer(),
-                  Row(
-                    children: [
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).cardColor,
-                            borderRadius: BorderRadius.circular(5),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Colors.black12,
-                                  offset: Offset(0, 2),
-                                  blurRadius: 1)
-                            ]),
-                        child: IconButton(
-                            style: ButtonStyle(
-                                backgroundColor: WidgetStatePropertyAll(
-                                    Theme.of(context).cardColor),
-                                shape: WidgetStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5))))),
-                            onPressed: () {
-                              var controller = Get.find<Illness_Controller>();
-                              controller.updateFieldError("arname", false);
-                              controller.updateFieldError("enname", false);
-                              Get.dialog(barrierDismissible: false,
-                                  GetBuilder<Illness_Controller>(
-                                      builder: (controller) {
-                                return VMSAlertDialog(
-                                    contents: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Container(
-                                          width: 400,
-                                        ),
-                                        Textfildwithupper(
-                                          isRequired: true,
-                                          isError: controller.IsAnameError,
-                                          onChanged: (value) {
-                                            if (value.isNotEmpty) {
-                                              controller.updateFieldError(
-                                                  "arname", false);
-                                            }
-                                          },
-                                          width: 350,
-                                          controller: name,
-                                          Uptext: "Name".tr,
-                                          hinttext: "Name".tr,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 10.0),
-                                          child: Textfildwithupper(
-                                              isRequired: true,
-                                              isError: controller.IsEnameError,
-                                              onChanged: (value) {
-                                                if (value.isNotEmpty) {
-                                                  controller.updateFieldError(
-                                                      "enname", false);
-                                                }
-                                              },
-                                              width: 350,
-                                              controller: enName,
-                                              Uptext: "English Name".tr,
-                                              hinttext: "English Name".tr),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 10.0),
-                                          child: Row(
-                                            children: [
-                                              Obx(() => Checkbox(
-                                                    value: controller
-                                                        .chronic.value,
-                                                    onChanged: (value) {
-                                                      controller.togglechronic(
-                                                          value!);
-                                                    },
-                                                  )),
-                                              Text("Is Chronic".tr,
-                                                  style: Get.theme.textTheme
-                                                      .bodyMedium!
-                                                      .copyWith(fontSize: 16)),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    action: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          ButtonDialog(
-                                              width: 150,
-                                              text: "Add Illness".tr,
-                                              onPressed: () async {
-                                                bool isArNameEmpty =
-                                                    name.text.isEmpty;
-                                                bool isEnNameEmpty =
-                                                    enName.text.isEmpty;
-                                                controller.updateFieldError(
-                                                    "arname", isArNameEmpty);
-                                                controller.updateFieldError(
-                                                    "enname", isEnNameEmpty);
-
-                                                if (!(isArNameEmpty ||
-                                                    isEnNameEmpty)) {
-                                                  await Add_Illness_API(context)
-                                                      .Add_Illness(
-                                                    name: name.text,
-                                                    enName: enName.text,
-                                                    chronic: controller
-                                                        .chronic.value,
-                                                  );
-
-                                                  name.clear();
-                                                  enName.clear();
-                                                }
-                                              },
-                                              color:
-                                                  Theme.of(context).canvasColor)
-                                        ],
-                                      )
-                                    ],
-                                    apptitle: "Add Illness".tr,
-                                    subtitle: "none");
-                              }));
-                            },
-                            icon: Icon(Icons.add,
-                                size: 18,
-                                color: Theme.of(context).highlightColor)),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10.0),
-                        child: Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: Theme.of(context).cardColor,
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    offset: Offset(0, 2),
-                                    blurRadius: 1)
-                              ]),
-                          child: IconButton(
-                              style: ButtonStyle(
-                                  backgroundColor: WidgetStatePropertyAll(
-                                      Theme.of(context).cardColor),
-                                  shape: WidgetStatePropertyAll(
-                                      RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))))),
-                              onPressed: () {},
-                              icon: Icon(VMS_Icons.pdf,
-                                  size: 18,
-                                  color: Theme.of(context).highlightColor)),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                        child: Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: Theme.of(context).cardColor,
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    offset: Offset(0, 2),
-                                    blurRadius: 1)
-                              ]),
-                          child: IconButton(
-                              style: ButtonStyle(
-                                  backgroundColor: WidgetStatePropertyAll(
-                                      Theme.of(context).cardColor),
-                                  shape: WidgetStatePropertyAll(
-                                      RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))))),
-                              onPressed: () {},
-                              icon: Icon(VMS_Icons.xl,
-                                  size: 18,
-                                  color: Theme.of(context).highlightColor)),
-                        ),
-                      ),
-                    ],
-                  )
+                );
+              }),
+              Row(
+                spacing: 10.0,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).cardColor,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(0, 2),
+                              blurRadius: 1)
+                        ]),
+                    child: IconButton(
+                        style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll(
+                                Theme.of(context).cardColor),
+                            shape: WidgetStatePropertyAll(
+                                RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5))))),
+                        onPressed: () {
+                          var controller = Get.find<Illness_Controller>();
+                          controller.updateFieldError("arname", false);
+                          controller.updateFieldError("enname", false);
+                          Get.dialog(barrierDismissible: false, addIllDialog());
+                        },
+                        icon: Icon(Icons.add,
+                            size: 18, color: Theme.of(context).highlightColor)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: IconButton(
+                          style: ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                  Theme.of(context).cardColor),
+                              shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5))))),
+                          onPressed: () {},
+                          icon: Icon(VMS_Icons.pdf,
+                              size: 18,
+                              color: Theme.of(context).highlightColor)),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: IconButton(
+                          style: ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                  Theme.of(context).cardColor),
+                              shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5))))),
+                          onPressed: () {},
+                          icon: Icon(VMS_Icons.xl,
+                              size: 18,
+                              color: Theme.of(context).highlightColor)),
+                    ),
+                  ),
                 ],
-              ),
+              )
             ],
           ),
         ),
@@ -273,5 +170,101 @@ class _Ilness_ScreenState extends State<Ilness_Screen> {
         )),
       ],
     ));
+  }
+
+  addIllDialog() {
+    return GetBuilder<Illness_Controller>(builder: (controller) {
+      return VMSAlertDialog(
+          contents: SizedBox(
+            width: 400,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Wrap(
+                    spacing: 20.0,
+                    runSpacing: 20.0,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      Textfildwithupper(
+                        isRequired: true,
+                        isError: controller.IsAnameError,
+                        onChanged: (value) {
+                          if (value.isNotEmpty) {
+                            controller.updateFieldError("arname", false);
+                          }
+                        },
+                        width: 350,
+                        controller: name,
+                        Uptext: "Name".tr,
+                        hinttext: "Name".tr,
+                      ),
+                      Textfildwithupper(
+                          isRequired: true,
+                          isError: controller.IsEnameError,
+                          onChanged: (value) {
+                            if (value.isNotEmpty) {
+                              controller.updateFieldError("enname", false);
+                            }
+                          },
+                          width: 350,
+                          controller: enName,
+                          Uptext: "English Name".tr,
+                          hinttext: "English Name".tr),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Wrap(
+                      spacing: 20.0,
+                      runSpacing: 20.0,
+                      children: [
+                        Obx(() => Checkbox(
+                              value: controller.chronic.value,
+                              onChanged: (value) {
+                                controller.togglechronic(value!);
+                              },
+                            )),
+                        Text("Is Chronic".tr,
+                            style: Get.theme.textTheme.bodyMedium!
+                                .copyWith(fontSize: 16)),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          action: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ButtonDialog(
+                    width: 150,
+                    text: "Add Illness".tr,
+                    onPressed: () async {
+                      bool isArNameEmpty = name.text.isEmpty;
+                      bool isEnNameEmpty = enName.text.isEmpty;
+                      controller.updateFieldError("arname", isArNameEmpty);
+                      controller.updateFieldError("enname", isEnNameEmpty);
+
+                      if (!(isArNameEmpty || isEnNameEmpty)) {
+                        await Add_Illness_API(context).Add_Illness(
+                          name: name.text,
+                          enName: enName.text,
+                          chronic: controller.chronic.value,
+                        );
+
+                        name.clear();
+                        enName.clear();
+                      }
+                    },
+                    color: Theme.of(context).canvasColor)
+              ],
+            )
+          ],
+          apptitle: "Add Illness".tr,
+          subtitle: "none");
+    });
   }
 }

@@ -42,10 +42,12 @@ class _ElectronicBookState extends State<ElectronicBook> {
             width: screenWidth,
             margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
             alignment: Alignment.center,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Wrap(
+              alignment: WrapAlignment.spaceBetween,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              runAlignment: WrapAlignment.spaceBetween,
               spacing: 10.0,
+              runSpacing: 8.0,
               children: [
                 GetBuilder<Labrary_Controller>(builder: (controller) {
                   return TextFormSearch(
@@ -55,7 +57,11 @@ class _ElectronicBookState extends State<ElectronicBook> {
                     onchange: (value) {
                       controller.searchByName(value);
                     },
-                    width: screenWidth * 0.7,
+                    width: screenWidth >= 1060
+                        ? screenWidth * 0.7
+                        : screenWidth >= 732
+                            ? screenWidth * 0.8
+                            : screenWidth * 0.9,
                     radius: 5,
                     controller: search,
                     suffixIcon:
@@ -156,133 +162,6 @@ class _ElectronicBookState extends State<ElectronicBook> {
               ],
             ),
           ),
-        if (screenWidth <= 769)
-          Container(
-            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
-            alignment: Alignment.center,
-            child: Row(
-              children: [
-                Row(
-                  children: [
-                    GetBuilder<Labrary_Controller>(builder: (controller) {
-                      return Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: TextFormSearch(
-                          click: () {
-                            controller.clearFilter();
-                          },
-                          onchange: (value) {
-                            controller.searchByName(value);
-                          },
-                          width: screenWidth * 0.7,
-                          radius: 5,
-                          controller: search,
-                          suffixIcon: search.text.isNotEmpty
-                              ? Icons.close
-                              : Icons.search,
-                        ),
-                      );
-                    }),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black12,
-                                offset: Offset(0, 2),
-                                blurRadius: 1)
-                          ]),
-                      child: IconButton(
-                          style: const ButtonStyle(
-                              shape: WidgetStatePropertyAll(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(5))))),
-                          onPressed: () {
-                            var controller = Get.find<Labrary_Controller>();
-                            controller.selectedFile.value = null;
-                            name.clear();
-                            enName.clear();
-                            controller.updateTextFile(
-                                "Click To Add File\nOr\nDrag And Drop File Here"
-                                    .tr);
-                            controller.updateFieldError("arname", false);
-                            controller.updateFieldError("enname", false);
-                            controller.updateFieldError("file", false);
-
-                            Get.dialog(
-                              Add_Electronic_Book(),
-                              barrierDismissible: false,
-                            );
-                          },
-                          icon: Icon(Icons.add,
-                              size: 18,
-                              color: Theme.of(context).highlightColor)),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).cardColor,
-                            borderRadius: BorderRadius.circular(5),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Colors.black12,
-                                  offset: Offset(0, 2),
-                                  blurRadius: 1)
-                            ]),
-                        child: IconButton(
-                            style: const ButtonStyle(
-                                shape: WidgetStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5))))),
-                            onPressed: () {},
-                            icon: Icon(VMS_Icons.pdf,
-                                size: 18,
-                                color: Theme.of(context).highlightColor)),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).cardColor,
-                            borderRadius: BorderRadius.circular(5),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Colors.black12,
-                                  offset: Offset(0, 2),
-                                  blurRadius: 1)
-                            ]),
-                        child: IconButton(
-                            style: const ButtonStyle(
-                                shape: WidgetStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5))))),
-                            onPressed: () {},
-                            icon: Icon(VMS_Icons.xl,
-                                size: 18,
-                                color: Theme.of(context).highlightColor)),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-          ),
         Expanded(
             child: Padding(
           padding: const EdgeInsets.only(top: 15.0),
@@ -295,126 +174,151 @@ class _ElectronicBookState extends State<ElectronicBook> {
   Add_Electronic_Book() {
     return GetBuilder<Labrary_Controller>(builder: (controller) {
       return VMSAlertDialog(
-          contents: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 400,
-              ),
-              Textfildwithupper(
-                  isRequired: true,
-                  isError: controller.IsarnameError,
-                  onChanged: (value) {
-                    if (value.isNotEmpty) {
-                      controller.updateFieldError("arname", false);
-                    }
-                  },
-                  width: 350,
-                  controller: name,
-                  Uptext: "Name".tr,
-                  hinttext: "Name".tr),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: Textfildwithupper(
-                    isRequired: true,
-                    isError: controller.IsennameError,
-                    onChanged: (value) {
-                      if (value.isNotEmpty) {
-                        controller.updateFieldError("enname", false);
-                      }
-                    },
-                    width: 350,
-                    controller: enName,
-                    Uptext: "English Name".tr,
-                    hinttext: "English Name".tr),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: GestureDetector(
-                  onTap: () {
-                    controller.pickPDFFile();
-                  },
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 500),
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(5)),
-                      border: controller.IsfileError
-                          ? Border.all(color: Colors.redAccent)
-                          : Border.all(color: const Color(0xffD9D9D9)),
-                      color: controller.isHoveringFile
-                          ? Theme.of(context).primaryColor
-                          : Get.theme.cardColor,
-                    ),
-                    alignment: Alignment.center,
-                    width: 350,
-                    height: 100,
-                    child: Stack(
-                      children: [
-                        DropzoneView(
-                          operation: DragOperation.copy,
-                          cursor: CursorType.Default,
-                          onCreated: (DropzoneViewController controller) {
-                            ctrl = controller;
-                          },
-                          onHover: () {
-                            controller.updateHoverFile(true);
-                          },
-                          onLeave: () {
-                            controller.updateHoverFile(false);
-                          },
-                          onDropFiles:
-                              (List<DropzoneFileInterface>? files) async {
-                            if (files != null && files.length == 1) {
-                              final file = files.first;
-                              final mimeType = await ctrl?.getFileMIME(file);
-                              final fileName = await ctrl?.getFilename(file);
-                              final fileBytes = await ctrl?.getFileData(file);
-
-                              if (mimeType == 'application/pdf' ||
-                                  fileName!.toLowerCase().endsWith('.pdf')) {
-                                controller.selectedFile.value = fileBytes;
-                                controller.fileName.value = fileName!;
-                                controller.updateTextFile(
-                                    "PDF File Successfully Dropped!".tr);
-                                controller.updateFieldError("file", false);
-                              } else {
-                                controller.updateTextFile(
-                                    "Error: Unsupported File Type.".tr);
-                                controller.updateFieldError("file", true);
-                              }
-                            } else {
-                              controller.updateTextFile(
-                                  "Error: Only One File Is Allowed.".tr);
-                              controller.updateFieldError("file", true);
+          contents: SizedBox(
+            width: 550,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Wrap(
+                    spacing: 20.0,
+                    runSpacing: 20.0,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      Textfildwithupper(
+                          isRequired: true,
+                          isError: controller.IsarnameError,
+                          onChanged: (value) {
+                            if (value.isNotEmpty) {
+                              controller.updateFieldError("arname", false);
                             }
                           },
-                        ),
-                        Center(
-                          child: controller.selectedFile.value != null
-                              ? IconButton(
-                                  onPressed: () {
-                                    controller.Clearfile();
+                          width: 350,
+                          controller: name,
+                          Uptext: "Name".tr,
+                          hinttext: "Name".tr),
+                      Textfildwithupper(
+                          isRequired: true,
+                          isError: controller.IsennameError,
+                          onChanged: (value) {
+                            if (value.isNotEmpty) {
+                              controller.updateFieldError("enname", false);
+                            }
+                          },
+                          width: 350,
+                          controller: enName,
+                          Uptext: "English Name".tr,
+                          hinttext: "English Name".tr),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Wrap(
+                      spacing: 20.0,
+                      runSpacing: 20.0,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            controller.pickPDFFile();
+                          },
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 500),
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(5)),
+                              border: controller.IsfileError
+                                  ? Border.all(color: Colors.redAccent)
+                                  : Border.all(color: const Color(0xffD9D9D9)),
+                              color: controller.isHoveringFile
+                                  ? Theme.of(context).primaryColor
+                                  : Get.theme.cardColor,
+                            ),
+                            alignment: Alignment.center,
+                            width: 350,
+                            height: 100,
+                            child: Stack(
+                              children: [
+                                DropzoneView(
+                                  operation: DragOperation.copy,
+                                  cursor: CursorType.Default,
+                                  onCreated:
+                                      (DropzoneViewController controller) {
+                                    ctrl = controller;
                                   },
-                                  icon: Icon(
-                                    Icons.delete_outline_outlined,
-                                    color: Colors.redAccent,
-                                  ))
-                              : Text(
-                                  textAlign: TextAlign.center,
-                                  controller.fileStatus,
-                                  style: TextStyle(
-                                    color: controller.isHoveringFile
-                                        ? Colors.white
-                                        : const Color(0xffCBBFBF),
-                                  ),
+                                  onHover: () {
+                                    controller.updateHoverFile(true);
+                                  },
+                                  onLeave: () {
+                                    controller.updateHoverFile(false);
+                                  },
+                                  onDropFiles: (List<DropzoneFileInterface>?
+                                      files) async {
+                                    if (files != null && files.length == 1) {
+                                      final file = files.first;
+                                      final mimeType =
+                                          await ctrl?.getFileMIME(file);
+                                      final fileName =
+                                          await ctrl?.getFilename(file);
+                                      final fileBytes =
+                                          await ctrl?.getFileData(file);
+
+                                      if (mimeType == 'application/pdf' ||
+                                          fileName!
+                                              .toLowerCase()
+                                              .endsWith('.pdf')) {
+                                        controller.selectedFile.value =
+                                            fileBytes;
+                                        controller.fileName.value = fileName!;
+                                        controller.updateTextFile(
+                                            "PDF File Successfully Dropped!"
+                                                .tr);
+                                        controller.updateFieldError(
+                                            "file", false);
+                                      } else {
+                                        controller.updateTextFile(
+                                            "Error: Unsupported File Type.".tr);
+                                        controller.updateFieldError(
+                                            "file", true);
+                                      }
+                                    } else {
+                                      controller.updateTextFile(
+                                          "Error: Only One File Is Allowed."
+                                              .tr);
+                                      controller.updateFieldError("file", true);
+                                    }
+                                  },
                                 ),
+                                Center(
+                                  child: controller.selectedFile.value != null
+                                      ? IconButton(
+                                          onPressed: () {
+                                            controller.Clearfile();
+                                          },
+                                          icon: Icon(
+                                            Icons.delete_outline_outlined,
+                                            color: Colors.redAccent,
+                                          ))
+                                      : Text(
+                                          textAlign: TextAlign.center,
+                                          controller.fileStatus,
+                                          style: TextStyle(
+                                            color: controller.isHoveringFile
+                                                ? Colors.white
+                                                : const Color(0xffCBBFBF),
+                                          ),
+                                        ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ],
                     ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
           action: [
             Row(
