@@ -44,8 +44,9 @@ class LoginAPI {
         ));
       }
     } catch (e) {
-      if (e is DioException) {
-        ErrorHandler.handleDioError(e);
+      if (e.toString().contains("status code of 401")) {
+        ErrorMessage("اسم المستخدم أو كلمة المرور غير صحيحة");
+        return;
       } else if (e is Exception) {
         ErrorHandler.handleException(e);
       } else {

@@ -7,6 +7,7 @@ import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Co
 import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/Dashboard_Model.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/view/website/Home.dart' as hm;
 
 class Dashboard_API {
@@ -45,9 +46,8 @@ class Dashboard_API {
       } on DioException catch (e) {
         print("DioError occurred: ${e.message}, type: ${e.type}");
         if (e.response?.statusCode == 401) {
-          Get.off(
-            () => hm.Home(),
-          );
+          await prefs?.clear();
+          Get.offAllNamed('/home');
           return; // توقف عن المحاولة
         } else {
           retryCount++;

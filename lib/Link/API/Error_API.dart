@@ -6,105 +6,96 @@ import 'package:vms_school/view/website/Home.dart';
 
 class ErrorHandler {
   static void handleDioError(DioException error) {
-    String message;
-
-    if (error.type == DioExceptionType.badResponse) {
-      int statusCode = error.response?.statusCode ?? 0;
-      if (statusCode == 401) {
-        prefs!.clear();
-        Get.offAllNamed("/home");
-      }
-      switch (statusCode) {
-        case 232:
-          message = "عذرا لقد تم رفع الحضور لهذا اليوم سابقاً.";
-          break;
-        case 400:
-          message = "طلب غير صحيح. يرجى المحاولة مرة أخرى.";
-          break;
-        case 401:
-          message = "غير مصرح لك بالوصول. يرجى تسجيل الدخول.";
-          break;
-        case 402:
-          message = "محجوزة للطلبات المدفوعة.";
-          break;
-        case 403:
-          message = "تم رفض الوصول. ليس لديك الصلاحيات اللازمة.";
-          break;
-        case 404:
-          message = "المورد المطلوب غير موجود.";
-          break;
-        case 412:
-          message = "اسم المستخدم موجود بالفعل";
-          break;
-        case 409:
-          Get.back();
-          message = "لا تسمح بتداخل التواريخ";
-          ErrorMessage(message);
-          break;
-        case 416:
-          message = "نطاق البيانات المطلوب غير متاح.";
-          break;
-        case 418:
-          message = "حدث خطأ في ارسال البيانات.";
-          break;
-        case 422:
-          message = "لا يمكن معالجة البيانات المرسلة.";
-          break;
-        case 430:
-          message = "المدرس لديه حصة اخرى في هذا الوقت.";
-          break;
-        case 431:
-          message = "عذرا هذه الخانة تحتوي على حصة سابقة.";
-          break;
-        case 450:
-          Get.back();
-          message = "لا يمكن تكرار نفس الاسم";
-          ErrorMessage(message);
-          break;
-        case 500:
-          message = "حدث خطأ داخلي في الخادم. يرجى المحاولة لاحقًا.";
-          break;
-        case 503:
-          message = "الخدمة غير متوفرة حاليًا. حاول لاحقًا.";
-          break;
-        default:
-          message =
-              "حدث خطأ غير متوقع برمز: $statusCode. يرجى المحاولة لاحقًا.";
-      }
-    } else if (error.type == DioExceptionType.connectionTimeout) {
-      message = "انتهى وقت الاتصال بالخادم. يرجى التحقق من اتصالك.";
-    } else if (error.type == DioExceptionType.sendTimeout) {
-      message = "انتهى وقت إرسال الطلب. حاول مرة أخرى.";
-    } else if (error.type == DioExceptionType.receiveTimeout) {
-      message = "انتهى وقت استلام الرد من الخادم. حاول مرة أخرى.";
-    } else if (error.type == DioExceptionType.cancel) {
-      message = "تم إلغاء الطلب. حاول مرة أخرى.";
-    } else {
-      message = "حدث خطأ أثناء معالجة الطلب. يرجى المحاولة لاحقًا.";
+    if (error.response?.statusCode == 401) {
+      _clearSessionAndRedirect();
+      return;
     }
 
-    ErrorMessage(message);
+    String message = _getErrorMessage(error);
+    _showErrorSnackbar(message);
   }
 
   static void handleException(Exception e) {
     String message = "حدث خطأ أثناء معالجة الطلب. يرجى المحاولة لاحقًا.";
+    _showErrorSnackbar(message);
+  }
 
-    if (Get.isSnackbarOpen) {
-    } else {
-      Get.snackbar(
-        "خطأ",
-        message,
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-        duration: const Duration(seconds: 3),
-      );
+  static Future<void> _clearSessionAndRedirect() async {
+    await prefs?.clear();
+    Get.offAllNamed('/home');
+  }
+
+  static String _getErrorMessage(DioException error) {
+    if (error.type == DioExceptionType.badResponse) {
+      final statusCode = error.response?.statusCode ?? 0;
+      return _getMessageForStatusCode(statusCode);
     }
+
+    return _getMessageForErrorType(error.type);
+  }
+
+  static String _getMessageForStatusCode(int statusCode) {
+    switch (statusCode) {
+      case 232:
+        return "عذرا لقد تم رفع الحضور لهذا اليوم سابقاً.";
+      case 400:
+        return "طلب غير صحيح. يرجى المحاولة مرة أخرى.";
+      case 401:
+        return "غير مصرح لك بالوصول. يرجى تسجيل الدخول.";
+      case 402:
+        return "محجوزة للطلبات المدفوعة.";
+      case 403:
+        return "تم رفض الوصول. ليس لديك الصلاحيات اللازمة.";
+      case 404:
+        return "المورد المطلوب غير موجود.";
+      case 412:
+        return "اسم المستخدم موجود بالفعل";
+      case 409:
+        return "لا تسمح بتداخل التواريخ";
+      case 416:
+        return "نطاق البيانات المطلوب غير متاح.";
+      case 418:
+        return "حدث خطأ في ارسال البيانات.";
+      case 422:
+        return "لا يمكن معالجة البيانات المرسلة.";
+      case 430:
+        return "المدرس لديه حصة اخرى في هذا الوقت.";
+      case 431:
+        return "عذرا هذه الخانة تحتوي على حصة سابقة.";
+      case 450:
+        return "لا يمكن تكرار نفس الاسم";
+      case 500:
+        return "حدث خطأ داخلي في الخادم. يرجى المحاولة لاحقًا.";
+      case 503:
+        return "الخدمة غير متوفرة حاليًا. حاول لاحقًا.";
+      default:
+        return "حدث خطأ غير متوقع برمز: $statusCode. يرجى المحاولة لاحقًا.";
+    }
+  }
+
+  static String _getMessageForErrorType(DioExceptionType type) {
+    switch (type) {
+      case DioExceptionType.connectionTimeout:
+        return "انتهى وقت الاتصال بالخادم. يرجى التحقق من اتصالك.";
+      case DioExceptionType.sendTimeout:
+        return "انتهى وقت إرسال الطلب. حاول مرة أخرى.";
+      case DioExceptionType.receiveTimeout:
+        return "انتهى وقت استلام الرد من الخادم. حاول مرة أخرى.";
+      case DioExceptionType.cancel:
+        return "تم إلغاء الطلب. حاول مرة أخرى.";
+      default:
+        return "حدث خطأ أثناء معالجة الطلب. يرجى المحاولة لاحقًا.";
+    }
+  }
+
+  static void _showErrorSnackbar(String message) {
+    if (Get.isSnackbarOpen) return;
+
+    ErrorMessage(message);
   }
 }
 
 void ErrorMessage(String message) {
-  // تحديد العرض الثابت
   final double fixedWidth = 350.0;
 
   Get.showSnackbar(
@@ -135,14 +126,12 @@ void ErrorMessage(String message) {
       barBlur: 0,
       overlayBlur: 0,
       snackStyle: SnackStyle.FLOATING,
-      maxWidth: fixedWidth, // استخدام العرض الثابت هنا
+      maxWidth: fixedWidth,
       messageText: Container(
         constraints: BoxConstraints(
-          maxHeight: 14.0 *
-              1.4 *
-              10, // 14 هو حجم الخط، 1.4 هو الارتفاع، 10 هو الحد الأقصى للأسطر
+          maxHeight: 14.0 * 1.4 * 10,
         ),
-        width: fixedWidth - 40, // نطرح الـ padding الداخلي
+        width: fixedWidth - 40,
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: SingleChildScrollView(
           child: Text(
@@ -155,7 +144,7 @@ void ErrorMessage(String message) {
             textAlign: TextAlign.right,
             softWrap: true,
             overflow: TextOverflow.ellipsis,
-            maxLines: 10, // الحد الأقصى لعدد الأسطر
+            maxLines: 10,
           ),
         ),
       ),
