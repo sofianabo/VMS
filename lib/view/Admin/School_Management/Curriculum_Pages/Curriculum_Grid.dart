@@ -80,7 +80,7 @@ class CurriculumGrid extends StatelessWidget {
                                     padding: const EdgeInsets.only(
                                         top: 5.0, bottom: 5.0),
                                     child:
-                                        SchemaWidget(width: 150, height: 20)),
+                                        SchemaWidget(width: 145, height: 20)),
                               ],
                             ),
                             Row(
@@ -90,14 +90,14 @@ class CurriculumGrid extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    SchemaWidget(width: 150, height: 20),
+                                    SchemaWidget(width: 145, height: 20),
                                     Padding(
                                       padding: const EdgeInsets.only(
                                           top: 5.0, bottom: 5.0),
                                       child:
-                                          SchemaWidget(width: 150, height: 20),
+                                          SchemaWidget(width: 145, height: 20),
                                     ),
-                                    SchemaWidget(width: 150, height: 20),
+                                    SchemaWidget(width: 145, height: 20),
                                   ],
                                 ),
                                 SchemaWidget(width: 40, height: 40)
