@@ -107,81 +107,55 @@ class PenaltyscreenState extends State<Penaltyscreen> {
                                       color: Theme.of(context).primaryColor,
                                       width: 120),
                                 ],
-                                contents: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 15.0, right: 15.0),
-                                              child: Textfildwithupper(
-                                                  isRequired: true,
-                                                  isError:
-                                                      controller.IsEnnameError,
-                                                  onChanged: (value) {
-                                                    if (value.isNotEmpty) {
-                                                      controller
-                                                          .updateFieldError(
-                                                              "enname", false);
-                                                    }
-                                                  },
-                                                  controller: enName,
-                                                  Uptext:
-                                                      "Penalty En - Name".tr,
-                                                  hinttext:
-                                                      "Penalty En - Name".tr),
-                                            ),
-                                            Textfildwithupper(
-                                                isRequired: true,
-                                                isError:
-                                                    controller.IsArnameError,
-                                                onChanged: (value) {
-                                                  if (value.isNotEmpty) {
-                                                    controller.updateFieldError(
-                                                        "arname", false);
-                                                  }
-                                                },
-                                                controller: arName,
-                                                Uptext: "Penalty Ar - Name".tr,
-                                                hinttext:
-                                                    "Penalty Ar - Name".tr),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 15.0,
-                                                  right: 15.0,
-                                                  top: 15.0),
-                                              child: Textfildwithupper(
-                                                  isRequired: true,
-                                                  isError: controller.IsdeError,
-                                                  onChanged: (value) {
-                                                    if (value.isNotEmpty) {
-                                                      controller
-                                                          .updateFieldError(
-                                                              "detail", false);
-                                                    }
-                                                  },
-                                                  controller: details,
-                                                  Uptext: "Details".tr,
-                                                  hinttext: "Details".tr),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                contents: SingleChildScrollView(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    spacing: 8,
+                                    children: [
+                                      Textfildwithupper(
+                                          isRequired: true,
+                                          width: 280,
+                                          isError: controller.IsEnnameError,
+                                          onChanged: (value) {
+                                            if (value.isNotEmpty) {
+                                              controller.updateFieldError(
+                                                  "enname", false);
+                                            }
+                                          },
+                                          controller: enName,
+                                          Uptext: "Penalty En - Name".tr,
+                                          hinttext: "Penalty En - Name".tr),
+                                      Textfildwithupper(
+                                          width: 280,
+                                          isRequired: true,
+                                          isError: controller.IsArnameError,
+                                          onChanged: (value) {
+                                            if (value.isNotEmpty) {
+                                              controller.updateFieldError(
+                                                  "arname", false);
+                                            }
+                                          },
+                                          controller: arName,
+                                          Uptext: "Penalty Ar - Name".tr,
+                                          hinttext: "Penalty Ar - Name".tr),
+                                      Textfildwithupper(
+                                          isRequired: true,
+                                          width: 280,
+                                          isError: controller.IsdeError,
+                                          onChanged: (value) {
+                                            if (value.isNotEmpty) {
+                                              controller.updateFieldError(
+                                                  "detail", false);
+                                            }
+                                          },
+                                          controller: details,
+                                          Uptext: "Details".tr,
+                                          hinttext: "Details".tr),
+                                    ],
+                                  ),
                                 ),
                                 apptitle: "Add Penalty".tr,
                                 subtitle: "none");

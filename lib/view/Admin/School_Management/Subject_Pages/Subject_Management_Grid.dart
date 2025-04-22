@@ -237,6 +237,7 @@ class Subject_Management_Grid extends StatelessWidget {
                         width: 320,
                         child: SingleChildScrollView(
                           child: Column(
+                            spacing: 10,
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Textfildwithupper(

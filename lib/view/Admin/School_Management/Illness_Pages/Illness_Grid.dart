@@ -24,7 +24,7 @@ class Illness_Grid extends StatelessWidget {
 
     int getCrossAxisCount() {
       if (screenWidth >= 1132) return 4;
-      if (screenWidth >= 950) return 3;
+      if (screenWidth >= 700) return 3;
       if (screenWidth >= 539) return 2;
       return 1;
     }
@@ -33,10 +33,10 @@ class Illness_Grid extends StatelessWidget {
       if (screenWidth >= 1070) return 1.2;
       if (screenWidth >= 950) return 1.2;
       if (screenWidth >= 838) return 1.7;
-      if (screenWidth >= 769) return 1.6;
+      if (screenWidth >= 700) return 1.6;
       if (screenWidth >= 620) return 1.6;
       if (screenWidth >= 539) return 1.8;
-      return 1.9;
+      return 1.5;
     }
 
     return GetBuilder<Illness_Controller>(builder: (control) {
@@ -111,7 +111,10 @@ class Illness_Grid extends StatelessWidget {
             )
           : control.filteredIllness!.isNotEmpty
               ? GridView.builder(
-                  padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
+                  padding: EdgeInsets.only(
+                      left: screenWidth < 539 ? 80 : 40,
+                      right: screenWidth < 539 ? 80 : 40,
+                      top: 10),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: getCrossAxisCount(),
                       crossAxisSpacing: 20.0,
@@ -154,6 +157,7 @@ class Illness_Grid extends StatelessWidget {
                                           child: Center(
                                               child: Column(children: [
                                             Text(
+                                              overflow: TextOverflow.ellipsis,
                                               textDirection: prefs!.getString(
                                                           languageKey) ==
                                                       "ar"
@@ -279,7 +283,11 @@ class Illness_Grid extends StatelessWidget {
                             Align(
                                 alignment: Alignment(-1.5, 1),
                                 child: Image.asset("assets/images/Illness.png",
-                                    height: 120)),
+                                    height: screenWidth <= 420
+                                        ? 80
+                                        : screenWidth > 420
+                                            ? 110
+                                            : 120)),
                           ],
                         ),
                       ),

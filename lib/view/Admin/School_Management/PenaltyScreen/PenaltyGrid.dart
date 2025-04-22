@@ -47,40 +47,86 @@ class _PenaltygridState extends State<Penaltygrid> {
                   color: Theme.of(context).primaryColor,
                   size: 60,
                 )
-              : SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Table(
-                        border: TableBorder.all(
-                            color: Theme.of(context).primaryColor),
+              : Get.width >= 600
+                  ? SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          TableRow(
-                            decoration: BoxDecoration(
-                                color: Theme.of(context).indicatorColor),
+                          Table(
+                            border: TableBorder.all(
+                                color: Theme.of(context).primaryColor),
                             children: [
-                              _tableHeader('Penalty Name'.tr),
-                              _tableHeader('Details'.tr),
-                              _tableHeader('Operation'.tr),
+                              TableRow(
+                                decoration: BoxDecoration(
+                                    color: Theme.of(context).indicatorColor),
+                                children: [
+                                  _tableHeader('Penalty Name'.tr),
+                                  _tableHeader('Details'.tr),
+                                  _tableHeader('Operation'.tr),
+                                ],
+                              ),
+                              for (var row
+                                  in controller.Penalties.asMap().entries)
+                                TableRow(
+                                  children: [
+                                    _dataColumn(
+                                        prefs!.getString(languageKey) == 'ar'
+                                            ? row.value['name']
+                                            : row.value['enName']),
+                                    _dataColumn(row.value['description']),
+                                    _operationColumn(row.value, controller,
+                                        row.key, context),
+                                  ],
+                                ),
                             ],
                           ),
-                          for (var row in controller.Penalties.asMap().entries)
-                            TableRow(
-                              children: [
-                                _dataColumn(
-                                    prefs!.getString(languageKey) == 'ar'
-                                        ? row.value['name']
-                                        : row.value['enName']),
-                                _dataColumn(row.value['description']),
-                                _operationColumn(
-                                    row.value, controller, row.key, context),
-                              ],
-                            ),
                         ],
                       ),
-                    ],
-                  ),
-                ),
+                    )
+                  : SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Container(
+                          width: 600,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Table(
+                                border: TableBorder.all(
+                                    color: Theme.of(context).primaryColor),
+                                children: [
+                                  TableRow(
+                                    decoration: BoxDecoration(
+                                        color:
+                                            Theme.of(context).indicatorColor),
+                                    children: [
+                                      _tableHeader('Penalty Name'.tr),
+                                      _tableHeader('Details'.tr),
+                                      _tableHeader('Operation'.tr),
+                                    ],
+                                  ),
+                                  for (var row
+                                      in controller.Penalties.asMap().entries)
+                                    TableRow(
+                                      children: [
+                                        _dataColumn(
+                                            prefs!.getString(languageKey) ==
+                                                    'ar'
+                                                ? row.value['name']
+                                                : row.value['enName']),
+                                        _dataColumn(row.value['description']),
+                                        _operationColumn(row.value, controller,
+                                            row.key, context),
+                                      ],
+                                    ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
         );
       },
     );
@@ -187,28 +233,28 @@ class _PenaltygridState extends State<Penaltygrid> {
                             color: Theme.of(context).primaryColor,
                             width: 120),
                       ],
-                      contents: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Row(
+                      contents: Container(
+                        width: 320,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            spacing: 10,
+                            mainAxisSize: MainAxisSize.min,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 15.0, right: 15.0),
-                                child: Textfildwithupper(
-                                    isRequired: true,
-                                    isError: controller.IsEnnameErrorEdit,
-                                    onChanged: (value) {
-                                      if (value.isNotEmpty) {
-                                        controller.updateFieldError(
-                                            "editenname", false);
-                                      }
-                                    },
-                                    controller: editenName,
-                                    Uptext: "Penalty En - Name".tr,
-                                    hinttext: "Penalty En - Name".tr),
-                              ),
                               Textfildwithupper(
+                                  isRequired: true,
+                                  width: 280,
+                                  isError: controller.IsEnnameErrorEdit,
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      controller.updateFieldError(
+                                          "editenname", false);
+                                    }
+                                  },
+                                  controller: editenName,
+                                  Uptext: "Penalty En - Name".tr,
+                                  hinttext: "Penalty En - Name".tr),
+                              Textfildwithupper(
+                                  width: 280,
                                   isRequired: true,
                                   isError: controller.IsArnameErrorEdit,
                                   onChanged: (value) {
@@ -220,32 +266,22 @@ class _PenaltygridState extends State<Penaltygrid> {
                                   controller: editName,
                                   Uptext: "Penalty Ar - Name".tr,
                                   hinttext: "Penalty Ar - Name".tr),
+                              Textfildwithupper(
+                                  isRequired: true,
+                                  width: 280,
+                                  isError: controller.IsdeErrorEdit,
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      controller.updateFieldError(
+                                          "editdetail", false);
+                                    }
+                                  },
+                                  controller: editDetails,
+                                  Uptext: "Details".tr,
+                                  hinttext: "Details".tr),
                             ],
                           ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 15.0, right: 15.0, top: 15.0),
-                                child: Textfildwithupper(
-                                    isRequired: true,
-                                    isError: controller.IsdeErrorEdit,
-                                    onChanged: (value) {
-                                      if (value.isNotEmpty) {
-                                        controller.updateFieldError(
-                                            "editdetail", false);
-                                      }
-                                    },
-                                    controller: editDetails,
-                                    Uptext: "Details".tr,
-                                    hinttext: "Details".tr),
-                              ),
-                            ],
-                          ),
-                        ],
+                        ),
                       ),
                       apptitle: "Edit Penalty".tr,
                       subtitle: "none");

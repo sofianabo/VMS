@@ -41,221 +41,127 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
         child: Column(
       children: [
         Container(
+          width: w,
           margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
           alignment: Alignment.center,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Wrap(
+            alignment: WrapAlignment.spaceBetween,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            runAlignment: WrapAlignment.spaceBetween,
+            spacing: 10.0,
+            runSpacing: 8.0,
             children: [
-              Row(
-                children: [
-                  Row(
-                    children: [
-                      GetBuilder<Vaccines_Controller>(builder: (controller) {
-                        return Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: TextFormSearch(
-                            click: () {
-                              controller.clearFilter();
-                            },
-                            onchange: (value) {
-                              controller.searchByName(value);
-                            },
-                            width: w * 0.7,
-                            radius: 5,
-                            controller: search,
-                            suffixIcon: search.text.isNotEmpty
-                                ? Icons.close
-                                : Icons.search,
-                          ),
-                        );
-                      }),
-                    ],
+              GetBuilder<Vaccines_Controller>(builder: (controller) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: TextFormSearch(
+                    click: () {
+                      controller.clearFilter();
+                    },
+                    onchange: (value) {
+                      controller.searchByName(value);
+                    },
+                    width: w >= 1060
+                        ? w * 0.7
+                        : w >= 732
+                            ? w * 0.8
+                            : w * 0.9,
+                    radius: 5,
+                    controller: search,
+                    suffixIcon:
+                        search.text.isNotEmpty ? Icons.close : Icons.search,
                   ),
-                  Spacer(),
-                  Row(
-                    children: [
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).cardColor,
-                            borderRadius: BorderRadius.circular(5),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Colors.black12,
-                                  offset: Offset(0, 2),
-                                  blurRadius: 1)
-                            ]),
-                        child: IconButton(
-                            style: ButtonStyle(
-                                shape: WidgetStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5))))),
-                            onPressed: () {
-                              var controller = Get.find<Vaccines_Controller>();
-                              controller.updateFieldError("arname", false);
-                              controller.updateFieldError("enname", false);
-                              controller.LocationIndex = "Syria".tr;
-                              name.clear();
-                              enName.clear();
-                              Get.dialog(barrierDismissible: false,
-                                  GetBuilder<Vaccines_Controller>(
-                                      builder: (controller) {
-                                return VMSAlertDialog(
-                                    contents: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          width: 400,
-                                        ),
-                                        Textfildwithupper(
-                                            isRequired: true,
-                                            isError: controller.IsAnameError,
-                                            onChanged: (value) {
-                                              if (value.isNotEmpty) {
-                                                controller.updateFieldError(
-                                                    "arname", false);
-                                              }
-                                            },
-                                            width: 350,
-                                            controller: name,
-                                            Uptext: "Name".tr,
-                                            hinttext: "Name".tr),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 10.0),
-                                          child: Textfildwithupper(
-                                              isRequired: true,
-                                              isError: controller.IsEnameError,
-                                              onChanged: (value) {
-                                                if (value.isNotEmpty) {
-                                                  controller.updateFieldError(
-                                                      "enname", false);
-                                                }
-                                              },
-                                              width: 350,
-                                              controller: enName,
-                                              Uptext: "English Name".tr,
-                                              hinttext: "English Name".tr),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 15.0),
-                                          child: DropdownVaccian(
-                                              isLoading:
-                                                  controller.isLoadingLocation,
-                                              title: "Location".tr,
-                                              width: 350,
-                                              type: "Location"),
-                                        ),
-                                      ],
-                                    ),
-                                    action: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          ButtonDialog(
-                                              width: 150,
-                                              text: "Add Vaccine".tr,
-                                              onPressed: () async {
-                                                bool isArNameEmpty =
-                                                    name.text.isEmpty;
-                                                bool isEnNameEmpty =
-                                                    enName.text.isEmpty;
-
-                                                controller.updateFieldError(
-                                                    "arname", isArNameEmpty);
-                                                controller.updateFieldError(
-                                                    "enname", isEnNameEmpty);
-
-                                                if (!(isArNameEmpty ||
-                                                    isEnNameEmpty)) {
-                                              
-                                                  await Add_Vaccines_API(
-                                                          context)
-                                                      .Add_Vaccines(
-                                                    name: name.text,
-                                                    enName: enName.text,
-                                                    locationId: Get.find<
-                                                            Location_controller>()
-                                                        .Locationsid,
-                                                  );
-                                                }
-                                              },
-                                              color:
-                                                  Theme.of(context).canvasColor)
-                                        ],
-                                      )
-                                    ],
-                                    apptitle: "Add Vaccine".tr,
-                                    subtitle: "none");
-                              }));
-                            },
-                            icon: Icon(Icons.add,
-                                size: 18,
-                                color: Theme.of(context).highlightColor)),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10.0),
-                        child: Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: Theme.of(context).cardColor,
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    offset: Offset(0, 2),
-                                    blurRadius: 1)
-                              ]),
-                          child: IconButton(
-                              style: ButtonStyle(
-                                  shape: WidgetStatePropertyAll(
-                                      RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))))),
-                              onPressed: () {},
-                              icon: Icon(VMS_Icons.pdf,
-                                  size: 18,
-                                  color: Theme.of(context).highlightColor)),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                        child: Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: Theme.of(context).cardColor,
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    offset: Offset(0, 2),
-                                    blurRadius: 1)
-                              ]),
-                          child: IconButton(
-                              style: ButtonStyle(
-                                  shape: WidgetStatePropertyAll(
-                                      RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))))),
-                              onPressed: () {},
-                              icon: Icon(VMS_Icons.xl,
-                                  size: 18,
-                                  color: Theme.of(context).highlightColor)),
-                        ),
-                      ),
-                    ],
-                  )
+                );
+              }),
+              Row(
+                spacing: 10,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).cardColor,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(0, 2),
+                              blurRadius: 1)
+                        ]),
+                    child: IconButton(
+                        style: ButtonStyle(
+                            shape: WidgetStatePropertyAll(
+                                RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5))))),
+                        onPressed: () {
+                          var controller = Get.find<Vaccines_Controller>();
+                          controller.updateFieldError("arname", false);
+                          controller.updateFieldError("enname", false);
+                          controller.LocationIndex = "Syria".tr;
+                          name.clear();
+                          enName.clear();
+                          Get.dialog(
+                              barrierDismissible: false, addVaccineDialog());
+                        },
+                        icon: Icon(Icons.add,
+                            size: 18, color: Theme.of(context).highlightColor)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: IconButton(
+                          style: ButtonStyle(
+                              shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5))))),
+                          onPressed: () {},
+                          icon: Icon(VMS_Icons.pdf,
+                              size: 18,
+                              color: Theme.of(context).highlightColor)),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: IconButton(
+                          style: ButtonStyle(
+                              shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5))))),
+                          onPressed: () {},
+                          icon: Icon(VMS_Icons.xl,
+                              size: 18,
+                              color: Theme.of(context).highlightColor)),
+                    ),
+                  ),
                 ],
-              ),
+              )
             ],
           ),
         ),
@@ -266,5 +172,84 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
         )),
       ],
     ));
+  }
+
+  addVaccineDialog() {
+    return GetBuilder<Vaccines_Controller>(builder: (controller) {
+      return VMSAlertDialog(
+          contents: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                width: 400,
+              ),
+              Textfildwithupper(
+                  isRequired: true,
+                  isError: controller.IsAnameError,
+                  onChanged: (value) {
+                    if (value.isNotEmpty) {
+                      controller.updateFieldError("arname", false);
+                    }
+                  },
+                  width: 350,
+                  controller: name,
+                  Uptext: "Name".tr,
+                  hinttext: "Name".tr),
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: Textfildwithupper(
+                    isRequired: true,
+                    isError: controller.IsEnameError,
+                    onChanged: (value) {
+                      if (value.isNotEmpty) {
+                        controller.updateFieldError("enname", false);
+                      }
+                    },
+                    width: 350,
+                    controller: enName,
+                    Uptext: "English Name".tr,
+                    hinttext: "English Name".tr),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 15.0),
+                child: DropdownVaccian(
+                    isLoading: controller.isLoadingLocation,
+                    title: "Location".tr,
+                    width: 350,
+                    type: "Location"),
+              ),
+            ],
+          ),
+          action: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ButtonDialog(
+                    width: 150,
+                    text: "Add Vaccine".tr,
+                    onPressed: () async {
+                      bool isArNameEmpty = name.text.isEmpty;
+                      bool isEnNameEmpty = enName.text.isEmpty;
+
+                      controller.updateFieldError("arname", isArNameEmpty);
+                      controller.updateFieldError("enname", isEnNameEmpty);
+
+                      if (!(isArNameEmpty || isEnNameEmpty)) {
+                        await Add_Vaccines_API(context).Add_Vaccines(
+                          name: name.text,
+                          enName: enName.text,
+                          locationId:
+                              Get.find<Location_controller>().Locationsid,
+                        );
+                      }
+                    },
+                    color: Theme.of(context).canvasColor)
+              ],
+            )
+          ],
+          apptitle: "Add Vaccine".tr,
+          subtitle: "none");
+    });
   }
 }
