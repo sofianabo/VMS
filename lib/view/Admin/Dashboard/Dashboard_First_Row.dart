@@ -890,7 +890,7 @@ class _DashboardFirstRowState extends State<DashboardFirstRow> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             DashedCircularProgressBar.square(
-                              dimensions: 110,
+                              dimensions: 97,
                               progress:
                                   controller.dsh!.percentageStudents == null
                                       ? 0
@@ -930,7 +930,7 @@ class _DashboardFirstRowState extends State<DashboardFirstRow> {
                               ),
                             ),
                             DashedCircularProgressBar.square(
-                              dimensions: 110,
+                              dimensions: 97,
                               progress:
                                   controller.dsh!.percentageTeachers == null
                                       ? 0
@@ -970,7 +970,7 @@ class _DashboardFirstRowState extends State<DashboardFirstRow> {
                               ),
                             ),
                             DashedCircularProgressBar.square(
-                              dimensions: 110,
+                              dimensions: 97,
                               progress:
                                   controller.dsh!.percentageEmployees == null
                                       ? 0
@@ -1043,7 +1043,7 @@ class _DashboardFirstRowState extends State<DashboardFirstRow> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             DashedCircularProgressBar.square(
-                              dimensions: 110,
+                              dimensions: 97,
                               progress: controller
                                           .dsh!.percentageEmployeeAttendance ==
                                       null
@@ -1097,7 +1097,7 @@ class _DashboardFirstRowState extends State<DashboardFirstRow> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10.0),
                               child: DashedCircularProgressBar.square(
-                                dimensions: 110,
+                                dimensions: 97,
                                 progress: controller.dsh!
                                             .percentageStudentsAttendance ==
                                         null
@@ -1151,7 +1151,7 @@ class _DashboardFirstRowState extends State<DashboardFirstRow> {
                               ),
                             ),
                             DashedCircularProgressBar.square(
-                              dimensions: 110,
+                              dimensions: 97,
                               progress: controller
                                           .dsh!.percentageTeachersAttendance ==
                                       null

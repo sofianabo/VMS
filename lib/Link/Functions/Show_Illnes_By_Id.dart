@@ -16,9 +16,9 @@ class StudentsIllnessDialog extends StatefulWidget {
   final String id;
   final int? indexOfStudent;
 
-  const StudentsIllnessDialog({
+  const StudentsIllnessDialog({ 
     Key? key,
-    required this.id,
+    required this.id, 
     this.indexOfStudent,
   }) : super(key: key);
 

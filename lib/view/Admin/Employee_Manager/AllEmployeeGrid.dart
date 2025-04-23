@@ -37,7 +37,7 @@ class AllEmployeeGrid extends StatelessWidget {
     double getChildAspectRatio() {
       if (screenWidth >= 1800) return 1.4;
       if (screenWidth >= 1410) return 1.4;
-      if (screenWidth >= 1278) return 1.3;
+      if (screenWidth >= 1278) return 1.25;
       if (screenWidth >= 1149) return 1.5;
       if (screenWidth >= 1070) return 1.4;
       if (screenWidth >= 950) return 1.1;

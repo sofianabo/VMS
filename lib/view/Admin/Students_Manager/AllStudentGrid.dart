@@ -46,7 +46,7 @@ class AllStudentGrid extends StatelessWidget {
       if (screenWidth >= 920) return 0.7;
       if (screenWidth >= 906) return 0.7;
       if (screenWidth >= 769) return 0.9;
-      if (screenWidth >= 616) return 2.0;
+      if (screenWidth >= 616) return 1.92;
       return 0.9;
     }
 

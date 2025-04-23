@@ -38,7 +38,7 @@ class TeacherManagementGrid extends StatelessWidget {
     double getChildAspectRatio() {
       if (screenWidth >= 1800) return 0.9;
       if (screenWidth >= 1278) return 0.8;
-      if (screenWidth >= 1109) return 1.0;
+      if (screenWidth >= 1109) return 0.95;
       if (screenWidth >= 988) return 0.8;
       if (screenWidth >= 946) return 1.24;
       if (screenWidth >= 832) return 1.05;
@@ -46,7 +46,7 @@ class TeacherManagementGrid extends StatelessWidget {
       if (screenWidth >= 638) return 0.9;
       if (screenWidth >= 600) return 0.7;
       if (screenWidth >= 530) return 1.45;
-      if (screenWidth >= 440) return 1.2;
+      if (screenWidth >= 440) return 1.15;
       if (screenWidth >= 390) return 1.0;
       return 0.8;
     }

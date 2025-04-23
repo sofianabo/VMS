@@ -41,11 +41,10 @@ class Get_Teacher_Illness_API {
         Students_Illness studentsIllness =
             Students_Illness.fromJson(response.data);
         illnessController.setIllnessSelected(studentsIllness);
-        Show_Teacher_Illnes_By_Id(
-            context: context,
-            id: teachId,
+        Get.dialog(Show_Teacher_Illnes_By_Id(
+            id: teachId.toString(),
             index_of_Emp: index_of_Emp,
-            IsTeacher: IsTeacher);
+            IsTeacher: IsTeacher));
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,
