@@ -73,6 +73,8 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return GetBuilder<Add_Data_controller>(builder: (add_Data_controller) {
       if (add_Data_controller.isLoading == false) {
         fillControllersWithData();
@@ -101,12 +103,20 @@ class _ProfileState extends State<Profile> {
                 ),
                 GetBuilder<Add_Data_controller>(builder: (picController) {
                   return Container(
+                    width: screenWidth,
                     padding: EdgeInsets.all(15.0),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(15)),
                         border:
                             Border.all(color: Color(0xffF6F6F6), width: 1.5)),
-                    child: Row(
+                    child: Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      runAlignment: WrapAlignment.center,
+                      alignment: screenWidth >= 682
+                          ? WrapAlignment.spaceBetween
+                          : WrapAlignment.center,
+                      spacing: 10.0,
+                      runSpacing: 10.0,
                       textDirection: Get.find<LocalizationController>()
                                   .currentLocale
                                   .value
@@ -114,9 +124,13 @@ class _ProfileState extends State<Profile> {
                               'ar'
                           ? TextDirection.rtl
                           : TextDirection.ltr,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
+                        Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          runAlignment: WrapAlignment.center,
+                          alignment: WrapAlignment.center,
+                          spacing: 10.0,
+                          runSpacing: 10.0,
                           textDirection: Get.find<LocalizationController>()
                                       .currentLocale
                                       .value
@@ -231,54 +245,52 @@ class _ProfileState extends State<Profile> {
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 10.0, right: 10.0),
-                              child: Column(
-                                textDirection:
-                                    Get.find<LocalizationController>()
-                                                .currentLocale
-                                                .value
-                                                .languageCode ==
-                                            'ar'
-                                        ? TextDirection.rtl
-                                        : TextDirection.ltr,
-                                spacing: 5.0,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "${add_Data_controller.myData!.firstName} ${add_Data_controller.myData!.lastName}",
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              textDirection: Get.find<LocalizationController>()
+                                          .currentLocale
+                                          .value
+                                          .languageCode ==
+                                      'ar'
+                                  ? TextDirection.rtl
+                                  : TextDirection.ltr,
+                              spacing: 5.0,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${add_Data_controller.myData!.firstName} ${add_Data_controller.myData!.lastName}",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text("@${add_Data_controller.myData!.userName}",
                                     style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                      "@${add_Data_controller.myData!.userName}",
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                      )),
-                                  Text(
-                                      "${add_Data_controller.myData!.jobTitle}"
-                                          .tr,
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                      )),
-                                  Text(
-                                      "${add_Data_controller.myData!.contractType}"
-                                          .tr,
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                      )),
-                                ],
-                              ),
+                                      fontSize: 12,
+                                    )),
+                                Text(
+                                    "${add_Data_controller.myData!.jobTitle}"
+                                        .tr,
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                    )),
+                                Text(
+                                    "${add_Data_controller.myData!.contractType}"
+                                        .tr,
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                    )),
+                              ],
                             ),
                           ],
                         ),
-                        Column(
-                          spacing: 8.0,
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Button_Has_IconText(
+                              width: 140,
                               onPressed: () {
                                 add_Data_controller.pickImage(context, true);
                               },
@@ -292,6 +304,7 @@ class _ProfileState extends State<Profile> {
                             ),
                             if (add_Data_controller.myData!.imageId != null)
                               Button_Has_IconText(
+                                width: 140,
                                 onPressed: () {
                                   Update_Employee_Information
                                       .Update_Employee_Info(
@@ -310,6 +323,7 @@ class _ProfileState extends State<Profile> {
                   );
                 }),
                 Container(
+                  width: screenWidth,
                   margin: EdgeInsets.only(top: 15.0, bottom: 15.0),
                   padding: EdgeInsets.all(15.0),
                   decoration: BoxDecoration(
@@ -318,62 +332,71 @@ class _ProfileState extends State<Profile> {
                   child: Column(
                     spacing: 5.0,
                     children: [
-                      Row(
-                        textDirection: Get.find<LocalizationController>()
-                                    .currentLocale
-                                    .value
-                                    .languageCode ==
-                                'ar'
-                            ? TextDirection.rtl
-                            : TextDirection.ltr,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Personal Information".tr,
-                            style: TextStyle(fontSize: 18),
-                          ),
-                          Button_Has_IconText(
-                            onPressed: () {
-                              if (controller.enabledPublicInfo == true) {
-                                Update_Employee_Information
-                                    .Update_Employee_Info(
-                                        Type: "public",
-                                        First_Name: Firstname.text,
-                                        Last_Name: Lastname.text,
-                                        Mother_Name: Mothername.text,
-                                        Father_Name: Fathername.text,
-                                        Phone_Numper: phoneNumper.text,
-                                        Emergency_Number: emergencyNumber.text,
-                                        Address: Address.text,
-                                        Current_Address: currentAddress.text,
-                                        Career_History: careerHistory.text,
-                                        Qualification: Qualification.text,
-                                        Experience: Experience.text,
-                                        Note: Note.text,
-                                        Birth_Date: add_Data_controller
-                                            .Birthdate.value
-                                            .toString(),
-                                        Gender: Get.find<
-                                                Profile_DropDown_Controller>()
-                                            .selecteGenderIndex,
-                                        Family_State: Get.find<
-                                                Profile_DropDown_Controller>()
-                                            .selecteFamily_StatusIndex);
-                              } else {
-                                controller.ChangeenabledPublicInfo(true);
-                              }
-                            },
-                            text: controller.enabledPublicInfo
-                                ? "Save".tr
-                                : "Edit".tr,
-                            icon: Icon(
-                              controller.enabledPublicInfo
-                                  ? Icons.save_outlined
-                                  : Icons.edit,
-                              color: Colors.black,
+                      Container(
+                        width: screenWidth,
+                        child: Wrap(
+                          runSpacing: 10.0,
+                          textDirection: Get.find<LocalizationController>()
+                                      .currentLocale
+                                      .value
+                                      .languageCode ==
+                                  'ar'
+                              ? TextDirection.rtl
+                              : TextDirection.ltr,
+                          spacing: 10.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          alignment: WrapAlignment.spaceBetween,
+                          runAlignment: WrapAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Personal Information".tr,
+                              style: TextStyle(fontSize: 18),
                             ),
-                          )
-                        ],
+                            Button_Has_IconText(
+                              width: 103,
+                              onPressed: () {
+                                if (controller.enabledPublicInfo == true) {
+                                  Update_Employee_Information
+                                      .Update_Employee_Info(
+                                          Type: "public",
+                                          First_Name: Firstname.text,
+                                          Last_Name: Lastname.text,
+                                          Mother_Name: Mothername.text,
+                                          Father_Name: Fathername.text,
+                                          Phone_Numper: phoneNumper.text,
+                                          Emergency_Number:
+                                              emergencyNumber.text,
+                                          Address: Address.text,
+                                          Current_Address: currentAddress.text,
+                                          Career_History: careerHistory.text,
+                                          Qualification: Qualification.text,
+                                          Experience: Experience.text,
+                                          Note: Note.text,
+                                          Birth_Date: add_Data_controller
+                                              .Birthdate.value
+                                              .toString(),
+                                          Gender: Get.find<
+                                                  Profile_DropDown_Controller>()
+                                              .selecteGenderIndex,
+                                          Family_State: Get.find<
+                                                  Profile_DropDown_Controller>()
+                                              .selecteFamily_StatusIndex);
+                                } else {
+                                  controller.ChangeenabledPublicInfo(true);
+                                }
+                              },
+                              text: controller.enabledPublicInfo
+                                  ? "Save".tr
+                                  : "Edit".tr,
+                              icon: Icon(
+                                controller.enabledPublicInfo
+                                    ? Icons.save_outlined
+                                    : Icons.edit,
+                                color: Colors.black,
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 15.0),
@@ -563,45 +586,53 @@ class _ProfileState extends State<Profile> {
                   child: Column(
                     spacing: 5.0,
                     children: [
-                      Row(
-                        textDirection: Get.find<LocalizationController>()
-                                    .currentLocale
-                                    .value
-                                    .languageCode ==
-                                'ar'
-                            ? TextDirection.rtl
-                            : TextDirection.ltr,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "More Information".tr,
-                            style: TextStyle(fontSize: 18),
-                          ),
-                          Button_Has_IconText(
-                            onPressed: () {
-                              if (controller.enabledMoreInfo == true) {
-                                Update_Employee_Information
-                                    .Update_Employee_Info(
-                                        Type: "more",
-                                        Note: Note.text,
-                                        Experience: Experience.text,
-                                        Qualification: Qualification.text,
-                                        Career_History: careerHistory.text);
-                              } else {
-                                controller.ChangeenabledMoreInfo(true);
-                              }
-                            },
-                            text: controller.enabledMoreInfo
-                                ? "Save".tr
-                                : "Edit".tr,
-                            icon: Icon(
-                              controller.enabledMoreInfo
-                                  ? Icons.save_outlined
-                                  : Icons.edit,
-                              color: Colors.black,
+                      Container(
+                        width: screenWidth,
+                        child: Wrap(
+                          runSpacing: 10.0,
+                          textDirection: Get.find<LocalizationController>()
+                                      .currentLocale
+                                      .value
+                                      .languageCode ==
+                                  'ar'
+                              ? TextDirection.rtl
+                              : TextDirection.ltr,
+                          spacing: 10.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          alignment: WrapAlignment.spaceBetween,
+                          runAlignment: WrapAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "More Information".tr,
+                              style: TextStyle(fontSize: 18),
                             ),
-                          )
-                        ],
+                            Button_Has_IconText(
+                              width: 103,
+                              onPressed: () {
+                                if (controller.enabledMoreInfo == true) {
+                                  Update_Employee_Information
+                                      .Update_Employee_Info(
+                                          Type: "more",
+                                          Note: Note.text,
+                                          Experience: Experience.text,
+                                          Qualification: Qualification.text,
+                                          Career_History: careerHistory.text);
+                                } else {
+                                  controller.ChangeenabledMoreInfo(true);
+                                }
+                              },
+                              text: controller.enabledMoreInfo
+                                  ? "Save".tr
+                                  : "Edit".tr,
+                              icon: Icon(
+                                controller.enabledMoreInfo
+                                    ? Icons.save_outlined
+                                    : Icons.edit,
+                                color: Colors.black,
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 15.0),

@@ -38,81 +38,91 @@ class _AppearanceState extends State<Appearance> {
             ),
             Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Row(
-                textDirection: Get.find<LocalizationController>()
-                            .currentLocale
-                            .value
-                            .languageCode ==
-                        'ar'
-                    ? TextDirection.rtl
-                    : TextDirection.ltr,
-                spacing: 25.0,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Get.changeThemeMode(ThemeMode.light);
-                      setState(() {
-                        _isDarkMode.value = false;
-                        ThemeController.isDarkMode = _isDarkMode.value;
-                      });
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(3.0),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                          border: Border.all(
-                              color: _isDarkMode.value == true
-                                  ? Colors.transparent
-                                  : Color(0xffD9D9D9))),
-                      width: 200,
-                      height: 190,
-                      child: Column(
-                        children: [
-                          SvgPicture.asset(
-                            width: 200,
-                            height: 160,
-                            "assets/images/light.svg",
-                            fit: BoxFit.fitWidth,
-                          ),
-                          Text(
-                            "Light Theme".tr,
-                          )
-                        ],
+              child: Container(
+                width: Get.width,
+                child: Wrap(
+                  runAlignment: WrapAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  alignment: Get.width >= 552
+                      ? WrapAlignment.start
+                      : WrapAlignment.center,
+                  textDirection: Get.find<LocalizationController>()
+                              .currentLocale
+                              .value
+                              .languageCode ==
+                          'ar'
+                      ? TextDirection.rtl
+                      : TextDirection.ltr,
+                  spacing: 25.0,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Get.changeThemeMode(ThemeMode.light);
+                        setState(() {
+                          _isDarkMode.value = false;
+                          ThemeController.isDarkMode = _isDarkMode.value;
+                        });
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(3.0),
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(5.0)),
+                            border: Border.all(
+                                color: _isDarkMode.value == true
+                                    ? Colors.transparent
+                                    : Color(0xffD9D9D9))),
+                        width: 200,
+                        height: 190,
+                        child: Column(
+                          children: [
+                            SvgPicture.asset(
+                              width: 200,
+                              height: 160,
+                              "assets/images/light.svg",
+                              fit: BoxFit.fitWidth,
+                            ),
+                            Text(
+                              "Light Theme".tr,
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.changeThemeMode(ThemeMode.dark);
-                      setState(() {
-                        _isDarkMode.value = true;
-                        ThemeController.isDarkMode = _isDarkMode.value;
-                      });
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(3.0),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                          border: Border.all(
-                              color: _isDarkMode.value == true
-                                  ? Color(0xffD9D9D9)
-                                  : Colors.transparent)),
-                      width: 200,
-                      height: 190,
-                      child: Column(
-                        children: [
-                          SvgPicture.asset(
-                            width: 200,
-                            height: 160,
-                            "assets/images/dark.svg",
-                            fit: BoxFit.fitWidth,
-                          ),
-                          Text("Dark Theme".tr)
-                        ],
+                    GestureDetector(
+                      onTap: () {
+                        Get.changeThemeMode(ThemeMode.dark);
+                        setState(() {
+                          _isDarkMode.value = true;
+                          ThemeController.isDarkMode = _isDarkMode.value;
+                        });
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(3.0),
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(5.0)),
+                            border: Border.all(
+                                color: _isDarkMode.value == true
+                                    ? Color(0xffD9D9D9)
+                                    : Colors.transparent)),
+                        width: 200,
+                        height: 190,
+                        child: Column(
+                          children: [
+                            SvgPicture.asset(
+                              width: 200,
+                              height: 160,
+                              "assets/images/dark.svg",
+                              fit: BoxFit.fitWidth,
+                            ),
+                            Text("Dark Theme".tr)
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             Padding(

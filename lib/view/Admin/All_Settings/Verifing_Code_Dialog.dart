@@ -227,7 +227,7 @@ class _VerifingCodeDialogState extends State<VerifingCodeDialog> {
   Widget buildTextFormField(TextEditingController controller,
       FocusNode focusNode, int index, FocusNode? nextFocusNode) {
     return SizedBox(
-      width: 50,
+      width: 20,
       child: TextFormField(
         controller: controller,
         focusNode: focusNode,

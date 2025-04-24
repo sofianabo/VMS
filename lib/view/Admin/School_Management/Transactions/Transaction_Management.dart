@@ -27,37 +27,145 @@ class _Transaction_ManagementState extends State<Transaction_Management> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Expanded(
         child: Column(
       children: [
-        Container(
-          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
-          alignment: Alignment.center,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GetBuilder<Transaction_Controller>(builder: (controller) {
-                return Row(
+        if (screenWidth > 769)
+          Container(
+            width: screenWidth,
+            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+            child: GetBuilder<Transaction_Controller>(builder: (controller) {
+              return Wrap(
+                alignment: WrapAlignment.start,
+                runSpacing: 10.0,
+                spacing: 15.0,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                runAlignment: WrapAlignment.start,
+                children: [
+                  DropDowTransaction(
+                      isLoading: false,
+                      title: "Role".tr,
+                      width: 200,
+                      type: "roll"),
+                  DropDowTransaction(
+                      isLoading: controller.isLoading,
+                      title: "Action".tr,
+                      width: 200,
+                      type: "action"),
+                  selectTransactionDate(
+                    width: 200,
+                  ),
+                  TextFormSearch(
+                    click: () {
+                      controller.clearFilter();
+                    },
+                    onchange: (value) {
+                      controller.searchRequestByName(
+                          value,
+                          controller.rollIndex,
+                          controller.AttendencetDate.value.toString(),
+                          controller.actionIndex);
+                    },
+                    width: 250,
+                    radius: 5,
+                    controller: search,
+                    suffixIcon:
+                        search.text.isNotEmpty ? Icons.close : Icons.search,
+                  ),
+                  DropDowTransaction(
+                      isLoading: false,
+                      title: "Rows",
+                      width: 100,
+                      type: "rows"),
+                  Row(
+                    spacing: 10.0,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                backgroundColor: WidgetStatePropertyAll(
+                                    Theme.of(context).cardColor),
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {},
+                            icon: Icon(VMS_Icons.pdf,
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
+                      ),
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                backgroundColor: WidgetStatePropertyAll(
+                                    Theme.of(context).cardColor),
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {},
+                            icon: Icon(VMS_Icons.xl,
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
+                      ),
+                    ],
+                  )
+                ],
+              );
+            }),
+          ),
+        if (screenWidth <= 769)
+          Container(
+            width: screenWidth,
+            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+            child: GetBuilder<Transaction_Controller>(builder: (controller) {
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
                   children: [
                     Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: DropDowTransaction(
                             isLoading: false,
                             title: "Role".tr,
-                            width: Get.size.width / 6,
+                            width: 200,
                             type: "roll")),
                     Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: DropDowTransaction(
                             isLoading: controller.isLoading,
                             title: "Action".tr,
-                            width: Get.size.width / 6,
+                            width: 200,
                             type: "action")),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: selectTransactionDate(
-                        width: Get.size.width / 6,
+                        width: 200,
                       ),
                     ),
                     Padding(
@@ -73,7 +181,7 @@ class _Transaction_ManagementState extends State<Transaction_Management> {
                               controller.AttendencetDate.value.toString(),
                               controller.actionIndex);
                         },
-                        width: Get.size.width / 5,
+                        width: 250,
                         radius: 5,
                         controller: search,
                         suffixIcon:
@@ -87,7 +195,6 @@ class _Transaction_ManagementState extends State<Transaction_Management> {
                             title: "Rows",
                             width: 100,
                             type: "rows")),
-                    const Spacer(),
                     Padding(
                       padding: const EdgeInsets.only(right: 10.0, left: 10.0),
                       child: Container(
@@ -142,11 +249,10 @@ class _Transaction_ManagementState extends State<Transaction_Management> {
                               color: Theme.of(context).highlightColor)),
                     ),
                   ],
-                );
-              }),
-            ],
+                ),
+              );
+            }),
           ),
-        ),
         Expanded(
             child: Padding(
           padding: const EdgeInsets.only(top: 15.0),

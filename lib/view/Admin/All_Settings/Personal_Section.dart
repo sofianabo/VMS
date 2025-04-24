@@ -70,6 +70,8 @@ class _ProfileState extends State<Personal> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return GetBuilder<Add_Data_controller>(builder: (add_Data_controller) {
       if (add_Data_controller.isLoading == false) {
         fillControllersWithData();
@@ -105,45 +107,53 @@ class _ProfileState extends State<Personal> {
                   child: Column(
                     spacing: 5.0,
                     children: [
-                      Row(
-                        textDirection: Get.find<LocalizationController>()
-                                    .currentLocale
-                                    .value
-                                    .languageCode ==
-                                'ar'
-                            ? TextDirection.rtl
-                            : TextDirection.ltr,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Social Media Info".tr,
-                            style: TextStyle(fontSize: 18),
-                          ),
-                          Button_Has_IconText(
-                            onPressed: () {
-                              if (controller.enabledSocilaMediaInfo == true) {
-                                Update_Employee_Information
-                                    .Update_Employee_Info(
-                                        Type: "social",
-                                        Facebook_URL: facebookUrl.text,
-                                        Instagram_URL: instagramUrl.text,
-                                        Linkedin_URL: linkedinUrl.text,
-                                        X_Platform_URL: xPlatformUrl.text);
-                              } else {
-                                controller.ChangeenabledSocilaMediaInfo(true);
-                              }
-                            },
-                            text: controller.enabledSocilaMediaInfo
-                                ? "Save".tr
-                                : "Edit".tr,
-                            icon: Icon(
-                              controller.enabledSocilaMediaInfo
-                                  ? Icons.save_outlined
-                                  : Icons.edit,
-                              color: Colors.black,
+                      Container(
+                        width: screenWidth,
+                        child: Wrap(
+                          runSpacing: 10.0,
+                          textDirection: Get.find<LocalizationController>()
+                                      .currentLocale
+                                      .value
+                                      .languageCode ==
+                                  'ar'
+                              ? TextDirection.rtl
+                              : TextDirection.ltr,
+                          spacing: 10.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          alignment: WrapAlignment.spaceBetween,
+                          runAlignment: WrapAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Social Media Info".tr,
+                              style: TextStyle(fontSize: 18),
                             ),
-                          )
-                        ],
+                            Button_Has_IconText(
+                              width: 103,
+                              onPressed: () {
+                                if (controller.enabledSocilaMediaInfo == true) {
+                                  Update_Employee_Information
+                                      .Update_Employee_Info(
+                                          Type: "social",
+                                          Facebook_URL: facebookUrl.text,
+                                          Instagram_URL: instagramUrl.text,
+                                          Linkedin_URL: linkedinUrl.text,
+                                          X_Platform_URL: xPlatformUrl.text);
+                                } else {
+                                  controller.ChangeenabledSocilaMediaInfo(true);
+                                }
+                              },
+                              text: controller.enabledSocilaMediaInfo
+                                  ? "Save".tr
+                                  : "Edit".tr,
+                              icon: Icon(
+                                controller.enabledSocilaMediaInfo
+                                    ? Icons.save_outlined
+                                    : Icons.edit,
+                                color: Colors.black,
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 15.0),
@@ -224,47 +234,54 @@ class _ProfileState extends State<Personal> {
                   child: Column(
                     spacing: 5.0,
                     children: [
-                      Row(
-                        textDirection: Get.find<LocalizationController>()
-                                    .currentLocale
-                                    .value
-                                    .languageCode ==
-                                'ar'
-                            ? TextDirection.rtl
-                            : TextDirection.ltr,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Bank Info".tr,
-                            style: TextStyle(fontSize: 18),
-                          ),
-                          Button_Has_IconText(
-                            onPressed: () {
-                              if (controller.enabledBanlInfo == true) {
-                                Update_Employee_Information
-                                    .Update_Employee_Info(
-                                  Type: "bank",
-                                  Bank_Account_Title: bankAccountTitle.text,
-                                  Bank_Name: bankName.text,
-                                  Bank_Branch_Name: bankBranchName.text,
-                                  Bank_Account_Number: bankAccountNumber.text,
-                                  IFSC_Code: ifscCode.text,
-                                );
-                              } else {
-                                controller.ChangeenabledBanlInfo(true);
-                              }
-                            },
-                            text: controller.enabledBanlInfo
-                                ? "Save".tr
-                                : "Edit".tr,
-                            icon: Icon(
-                              controller.enabledBanlInfo
-                                  ? Icons.save_outlined
-                                  : Icons.edit,
-                              color: Colors.black,
+                      Container(
+                        width: screenWidth,
+                        child: Wrap(
+                          runSpacing: 10.0,
+                          textDirection: Get.find<LocalizationController>()
+                                      .currentLocale
+                                      .value
+                                      .languageCode ==
+                                  'ar'
+                              ? TextDirection.rtl
+                              : TextDirection.ltr,
+                          spacing: 10.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          alignment: WrapAlignment.spaceBetween,
+                          runAlignment: WrapAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Bank Info".tr,
+                              style: TextStyle(fontSize: 18),
                             ),
-                          )
-                        ],
+                            Button_Has_IconText(
+                              onPressed: () {
+                                if (controller.enabledBanlInfo == true) {
+                                  Update_Employee_Information
+                                      .Update_Employee_Info(
+                                    Type: "bank",
+                                    Bank_Account_Title: bankAccountTitle.text,
+                                    Bank_Name: bankName.text,
+                                    Bank_Branch_Name: bankBranchName.text,
+                                    Bank_Account_Number: bankAccountNumber.text,
+                                    IFSC_Code: ifscCode.text,
+                                  );
+                                } else {
+                                  controller.ChangeenabledBanlInfo(true);
+                                }
+                              },
+                              text: controller.enabledBanlInfo
+                                  ? "Save".tr
+                                  : "Edit".tr,
+                              icon: Icon(
+                                controller.enabledBanlInfo
+                                    ? Icons.save_outlined
+                                    : Icons.edit,
+                                color: Colors.black,
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 15.0),

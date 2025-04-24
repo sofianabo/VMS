@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
+import 'package:vms_school/Link/API/AdminAPI/Get_My_Profile.dart';
 import 'package:vms_school/Link/Controller/AdminController/DrowerController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
@@ -43,8 +44,11 @@ class _DraweHomeState extends State<DraweHome> {
                       padding: const EdgeInsets.only(top: 8.0, bottom: 10.0),
                       child: GestureDetector(
                         onTap: () {
-                          Get.find<AdminHomeContentController>()
-                              .updateContent("My Profile");
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            //Get_My_Profile.Get_My_Profile_Data();
+                            Get.find<AdminHomeContentController>()
+                                .updateContent("My Profile");
+                          });
                         },
                         child: Column(
                           children: [

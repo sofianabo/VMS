@@ -36,6 +36,8 @@ class _ProfileState extends State<Account_And_Password> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return GetBuilder<Add_Data_controller>(builder: (add_Data_controller) {
       if (isfilled == false) {
         if (add_Data_controller.isLoading == false) {
@@ -73,72 +75,80 @@ class _ProfileState extends State<Account_And_Password> {
                   child: Column(
                     spacing: 5.0,
                     children: [
-                      Row(
-                        textDirection: Get.find<LocalizationController>()
-                                    .currentLocale
-                                    .value
-                                    .languageCode ==
-                                'ar'
-                            ? TextDirection.rtl
-                            : TextDirection.ltr,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "My Email".tr,
-                            style: TextStyle(fontSize: 18),
-                          ),
-                          Button_Has_IconText(
-                            onPressed: () {
-                              if (controller.enabledEmailInfo) {
-                                if (controller.enabledchangeemaildInfo) {
-                                  RegExp emailRegex = RegExp(
-                                      r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
-                                  bool isEmailValid =
-                                      emailRegex.hasMatch(newemail.text);
-
-                                  RegExp passwordRegex =
-                                      RegExp(r"^[a-zA-Z0-9]{8,}$");
-                                  bool isPasswordValid =
-                                      passwordRegex.hasMatch(password.text);
-
-                                  if (!isEmailValid) {
-                                    Get.snackbar("خطأ",
-                                        "البريد الإلكتروني غير صالح. تأكد من احتوائه على @ و .com",
-                                        backgroundColor: Colors.red,
-                                        colorText: Colors.white);
-                                    return;
-                                  }
-
-                                  if (!isPasswordValid) {
-                                    Get.snackbar("خطأ",
-                                        "يجب أن تكون كلمة المرور 8 محارف على الأقل وأن تحتوي على أحرف إنجليزية فقط",
-                                        backgroundColor: Colors.red,
-                                        colorText: Colors.white);
-                                    return;
-                                  }
-
-                                  Re_Email_API().Re_Email(
-                                      email: newemail.text,
-                                      password: password.text,
-                                      showdiag: true);
-                                } else {
-                                  controller.ChangeenabledEmailInfo(false);
-                                }
-                              } else {
-                                controller.ChangeenabledEmailInfo(true);
-                              }
-                            },
-                            text: controller.enabledEmailInfo
-                                ? "Save".tr
-                                : "Edit".tr,
-                            icon: Icon(
-                              controller.enabledEmailInfo
-                                  ? Icons.save_outlined
-                                  : Icons.edit,
-                              color: Colors.black,
+                      Container(
+                        width: screenWidth,
+                        child: Wrap(
+                          runSpacing: 10.0,
+                          textDirection: Get.find<LocalizationController>()
+                                      .currentLocale
+                                      .value
+                                      .languageCode ==
+                                  'ar'
+                              ? TextDirection.rtl
+                              : TextDirection.ltr,
+                          spacing: 10.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          alignment: WrapAlignment.spaceBetween,
+                          runAlignment: WrapAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "My Email".tr,
+                              style: TextStyle(fontSize: 18),
                             ),
-                          )
-                        ],
+                            Button_Has_IconText(
+                              width: 103,
+                              onPressed: () {
+                                if (controller.enabledEmailInfo) {
+                                  if (controller.enabledchangeemaildInfo) {
+                                    RegExp emailRegex = RegExp(
+                                        r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+                                    bool isEmailValid =
+                                        emailRegex.hasMatch(newemail.text);
+
+                                    RegExp passwordRegex =
+                                        RegExp(r"^[a-zA-Z0-9]{8,}$");
+                                    bool isPasswordValid =
+                                        passwordRegex.hasMatch(password.text);
+
+                                    if (!isEmailValid) {
+                                      Get.snackbar("خطأ",
+                                          "البريد الإلكتروني غير صالح. تأكد من احتوائه على @ و .com",
+                                          backgroundColor: Colors.red,
+                                          colorText: Colors.white);
+                                      return;
+                                    }
+
+                                    if (!isPasswordValid) {
+                                      Get.snackbar("خطأ",
+                                          "يجب أن تكون كلمة المرور 8 محارف على الأقل وأن تحتوي على أحرف إنجليزية فقط",
+                                          backgroundColor: Colors.red,
+                                          colorText: Colors.white);
+                                      return;
+                                    }
+
+                                    Re_Email_API().Re_Email(
+                                        email: newemail.text,
+                                        password: password.text,
+                                        showdiag: true);
+                                  } else {
+                                    controller.ChangeenabledEmailInfo(false);
+                                  }
+                                } else {
+                                  controller.ChangeenabledEmailInfo(true);
+                                }
+                              },
+                              text: controller.enabledEmailInfo
+                                  ? "Save".tr
+                                  : "Edit".tr,
+                              icon: Icon(
+                                controller.enabledEmailInfo
+                                    ? Icons.save_outlined
+                                    : Icons.edit,
+                                color: Colors.black,
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                       Column(
                         spacing: 15.0,
@@ -152,79 +162,87 @@ class _ProfileState extends State<Account_And_Password> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            spacing: 12.0,
-                            textDirection: Get.find<LocalizationController>()
-                                        .currentLocale
-                                        .value
-                                        .languageCode ==
-                                    'ar'
-                                ? TextDirection.rtl
-                                : TextDirection.ltr,
-                            children: [
-                              if (add_Data_controller.isLoading == false)
-                                TextField_Profile(
-                                  fieldType: "email",
-                                  width: 350,
-                                  upicon: Icon(
-                                    Icons.email_outlined,
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall!
-                                        .color,
-                                    size: 20,
-                                  ),
-                                  controller: newemail,
-                                  Uptext: "My Email".tr,
-                                  enabled: controller.enabledEmailInfo,
-                                  onChanged: (value) {
-                                    if (value !=
-                                            "${add_Data_controller.myData!.email}" &&
-                                        value.isNotEmpty) {
-                                      controller.ChangeenabledchangeemaildInfo(
-                                          true);
-                                    } else {
-                                      controller.ChangeenabledchangeemaildInfo(
-                                          false);
-                                    }
-                                  },
-                                ),
-                              if (add_Data_controller.isLoading == true)
-                                SchemaWidget(radius: 50, width: 250, height: 40)
-                                    .animate(
-                                        onPlay: (controller) =>
-                                            controller.repeat())
-                                    .shimmer(
-                                        angle: 1,
-                                        color: Colors.grey.withOpacity(0.2),
-                                        duration: const Duration(seconds: 1),
-                                        delay: const Duration(seconds: 1)),
-                              if (controller.enabledEmailInfo == true)
-                                if (controller.enabledchangeemaildInfo == true)
+                          Container(
+                            width: screenWidth,
+                            child: Wrap(
+                              spacing: 12.0,
+                              textDirection: Get.find<LocalizationController>()
+                                          .currentLocale
+                                          .value
+                                          .languageCode ==
+                                      'ar'
+                                  ? TextDirection.rtl
+                                  : TextDirection.ltr,
+                              children: [
+                                if (add_Data_controller.isLoading == false)
                                   TextField_Profile(
-                                    isError: controller.IsPasswordError,
-                                    hidePassword: controller.ShowPassword,
-                                    IconButton: IconButton(
-                                        onPressed: () {
-                                          controller.ChangeShowPassword(
-                                              !controller.ShowPassword);
-                                        },
-                                        icon: Icon(controller.ShowPassword
-                                            ? Icons.visibility_off
-                                            : Icons.remove_red_eye_outlined)),
+                                    fieldType: "email",
+                                    width: 350,
                                     upicon: Icon(
-                                      Icons.password,
+                                      Icons.email_outlined,
                                       color: Theme.of(context)
                                           .textTheme
                                           .bodySmall!
                                           .color,
                                       size: 20,
                                     ),
-                                    controller: password,
-                                    Uptext: "Your Password".tr,
-                                    enabled: controller.enabledchangeemaildInfo,
+                                    controller: newemail,
+                                    Uptext: "My Email".tr,
+                                    enabled: controller.enabledEmailInfo,
+                                    onChanged: (value) {
+                                      if (value !=
+                                              "${add_Data_controller.myData!.email}" &&
+                                          value.isNotEmpty) {
+                                        controller
+                                            .ChangeenabledchangeemaildInfo(
+                                                true);
+                                      } else {
+                                        controller
+                                            .ChangeenabledchangeemaildInfo(
+                                                false);
+                                      }
+                                    },
                                   ),
-                            ],
+                                if (add_Data_controller.isLoading == true)
+                                  SchemaWidget(
+                                          radius: 50, width: 250, height: 40)
+                                      .animate(
+                                          onPlay: (controller) =>
+                                              controller.repeat())
+                                      .shimmer(
+                                          angle: 1,
+                                          color: Colors.grey.withOpacity(0.2),
+                                          duration: const Duration(seconds: 1),
+                                          delay: const Duration(seconds: 1)),
+                                if (controller.enabledEmailInfo == true)
+                                  if (controller.enabledchangeemaildInfo ==
+                                      true)
+                                    TextField_Profile(
+                                      isError: controller.IsPasswordError,
+                                      hidePassword: controller.ShowPassword,
+                                      IconButton: IconButton(
+                                          onPressed: () {
+                                            controller.ChangeShowPassword(
+                                                !controller.ShowPassword);
+                                          },
+                                          icon: Icon(controller.ShowPassword
+                                              ? Icons.visibility_off
+                                              : Icons.remove_red_eye_outlined)),
+                                      upicon: Icon(
+                                        Icons.password,
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall!
+                                            .color,
+                                        size: 20,
+                                      ),
+                                      controller: password,
+                                      Uptext: "Your Password".tr,
+                                      enabled:
+                                          controller.enabledchangeemaildInfo,
+                                    ),
+                              ],
+                            ),
                           )
                         ],
                       ),
@@ -240,87 +258,96 @@ class _ProfileState extends State<Account_And_Password> {
                   child: Column(
                     spacing: 0.0,
                     children: [
-                      Row(
-                        textDirection: Get.find<LocalizationController>()
-                                    .currentLocale
-                                    .value
-                                    .languageCode ==
-                                'ar'
-                            ? TextDirection.rtl
-                            : TextDirection.ltr,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Change Password".tr,
-                            style: TextStyle(fontSize: 18),
-                          ),
-                          Button_Has_IconText(
-                            onPressed: () async {
-                              if (controller.enabledPasswordInfo) {
-                                bool isOldEmpty =
-                                    oldpassword.text.trim().isEmpty;
-                                bool isNewEmpty =
-                                    newpassword.text.trim().isEmpty;
-                                bool isConfirmEmpty =
-                                    confnewpassword.text.trim().isEmpty;
-
-                                bool allEmpty =
-                                    isOldEmpty && isNewEmpty && isConfirmEmpty;
-                                bool allFilled = !isOldEmpty &&
-                                    !isNewEmpty &&
-                                    !isConfirmEmpty;
-
-                                if (allEmpty) {
-                                  controller.ChangeenabledPasswordInfo(false);
-                                  return;
-                                }
-
-                                // تحديث حالة الأخطاء للحقول الفارغة
-                                controller.updatePasswordError(
-                                    "old", isOldEmpty);
-                                controller.updatePasswordError(
-                                    "new", isNewEmpty);
-                                controller.updatePasswordError(
-                                    "confirm", isConfirmEmpty);
-
-                                // التحقق من تطابق الباسوورد الجديد مع التأكيد
-                                if (newpassword.text.trim() !=
-                                    confnewpassword.text.trim()) {
-                                  controller.updatePasswordError(
-                                      "confirm", true);
-                                  return; // إيقاف العملية حتى يتم التصحيح
-                                }
-
-                                // إرسال الطلب إذا كانت جميع الحقول ممتلئة وكلمات المرور متطابقة
-                                if (allFilled) {
-                                  if (await Re_Password_API().Re_Password(
-                                          oldPassword: oldpassword.text,
-                                          newPassword: newpassword.text) ==
-                                      200) {
-                                    oldpassword.clear();
-                                    newpassword.clear();
-                                    confnewpassword.clear();
-                                  }
-                                }
-                              } else {
-                                controller.updatePasswordError("old", false);
-                                controller.updatePasswordError("new", false);
-                                controller.updatePasswordError(
-                                    "confirm", false);
-                                controller.ChangeenabledPasswordInfo(true);
-                              }
-                            },
-                            text: controller.enabledPasswordInfo
-                                ? "Save".tr
-                                : "Edit".tr,
-                            icon: Icon(
-                              controller.enabledPasswordInfo
-                                  ? Icons.save_outlined
-                                  : Icons.edit,
-                              color: Colors.black,
+                      Container(
+                        width: screenWidth,
+                        child: Wrap(
+                          runSpacing: 10.0,
+                          textDirection: Get.find<LocalizationController>()
+                                      .currentLocale
+                                      .value
+                                      .languageCode ==
+                                  'ar'
+                              ? TextDirection.rtl
+                              : TextDirection.ltr,
+                          spacing: 10.0,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          alignment: WrapAlignment.spaceBetween,
+                          runAlignment: WrapAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Change Password".tr,
+                              style: TextStyle(fontSize: 18),
                             ),
-                          )
-                        ],
+                            Button_Has_IconText(
+                              width: 103,
+                              onPressed: () async {
+                                if (controller.enabledPasswordInfo) {
+                                  bool isOldEmpty =
+                                      oldpassword.text.trim().isEmpty;
+                                  bool isNewEmpty =
+                                      newpassword.text.trim().isEmpty;
+                                  bool isConfirmEmpty =
+                                      confnewpassword.text.trim().isEmpty;
+
+                                  bool allEmpty = isOldEmpty &&
+                                      isNewEmpty &&
+                                      isConfirmEmpty;
+                                  bool allFilled = !isOldEmpty &&
+                                      !isNewEmpty &&
+                                      !isConfirmEmpty;
+
+                                  if (allEmpty) {
+                                    controller.ChangeenabledPasswordInfo(false);
+                                    return;
+                                  }
+
+                                  // تحديث حالة الأخطاء للحقول الفارغة
+                                  controller.updatePasswordError(
+                                      "old", isOldEmpty);
+                                  controller.updatePasswordError(
+                                      "new", isNewEmpty);
+                                  controller.updatePasswordError(
+                                      "confirm", isConfirmEmpty);
+
+                                  // التحقق من تطابق الباسوورد الجديد مع التأكيد
+                                  if (newpassword.text.trim() !=
+                                      confnewpassword.text.trim()) {
+                                    controller.updatePasswordError(
+                                        "confirm", true);
+                                    return; // إيقاف العملية حتى يتم التصحيح
+                                  }
+
+                                  // إرسال الطلب إذا كانت جميع الحقول ممتلئة وكلمات المرور متطابقة
+                                  if (allFilled) {
+                                    if (await Re_Password_API().Re_Password(
+                                            oldPassword: oldpassword.text,
+                                            newPassword: newpassword.text) ==
+                                        200) {
+                                      oldpassword.clear();
+                                      newpassword.clear();
+                                      confnewpassword.clear();
+                                    }
+                                  }
+                                } else {
+                                  controller.updatePasswordError("old", false);
+                                  controller.updatePasswordError("new", false);
+                                  controller.updatePasswordError(
+                                      "confirm", false);
+                                  controller.ChangeenabledPasswordInfo(true);
+                                }
+                              },
+                              text: controller.enabledPasswordInfo
+                                  ? "Save".tr
+                                  : "Edit".tr,
+                              icon: Icon(
+                                controller.enabledPasswordInfo
+                                    ? Icons.save_outlined
+                                    : Icons.edit,
+                                color: Colors.black,
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                       Column(
                         mainAxisSize: MainAxisSize.min,
