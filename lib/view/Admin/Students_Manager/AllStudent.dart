@@ -102,7 +102,6 @@ class _AllStudentState extends State<AllStudent> {
                       }),
                     ],
                   ),
-                  Spacer(),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     spacing: 8.0,

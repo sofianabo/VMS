@@ -25,6 +25,32 @@ class RequestsGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    int getCrossAxisCount() {
+      if (screenWidth >= 1800) return 5;
+      if (screenWidth >= 1278) return 4;
+      if (screenWidth >= 988) return 3;
+      if (screenWidth >= 600) return 2;
+
+      return 1;
+    }
+
+    double getChildAspectRatio() {
+      if (screenWidth >= 1800) return 0.9;
+      if (screenWidth >= 1278) return 0.85;
+      if (screenWidth >= 1109) return 0.95;
+      if (screenWidth >= 988) return 0.85;
+      if (screenWidth >= 946) return 1.24;
+      if (screenWidth >= 832) return 1.05;
+      if (screenWidth >= 700) return 0.95;
+      if (screenWidth >= 638) return 0.87;
+      if (screenWidth >= 600) return 0.75;
+      if (screenWidth >= 530) return 1.5;
+      if (screenWidth >= 470) return 1.3;
+      if (screenWidth >= 405) return 1.1;
+      return 0.93;
+    }
+
     return GetBuilder<Requestscontroller>(builder: (controller) {
       if (controller.isLoading == true) {
         return Container(
@@ -32,11 +58,11 @@ class RequestsGrid extends StatelessWidget {
           child: GridView.builder(
             shrinkWrap: true,
             itemCount: 6,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: getCrossAxisCount(),
               crossAxisSpacing: 25.0,
               mainAxisSpacing: 25.0,
-              childAspectRatio: 1.3,
+              childAspectRatio: getChildAspectRatio(),
             ),
             itemBuilder: (context, index) {
               return HoverScaleCard(
@@ -67,11 +93,11 @@ class RequestsGrid extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   SchemaWidget(
-                                    width: 200,
+                                    width: 180,
                                     height: 20,
                                   ),
                                   SchemaWidget(
-                                    width: 100,
+                                    width: 80,
                                     height: 20,
                                   )
                                 ],
@@ -177,25 +203,16 @@ class RequestsGrid extends StatelessWidget {
                 ? TextDirection.rtl
                 : TextDirection.ltr,
             child: LayoutBuilder(builder: (context, constraints) {
-              final crossAxisCount = constraints.maxWidth > 1200
-                  ? 3
-                  : constraints.maxWidth > 800
-                      ? 2
-                      : 1;
-
-              // حساب عرض العنصر بناء على الشاشة
-              final childAspectRatio = constraints.maxWidth > 800 ? 1.3 : 1.0;
-
               return Container(
                 padding: const EdgeInsets.only(left: 30.0, right: 30.0),
                 child: GridView.builder(
                   shrinkWrap: true,
                   itemCount: controller.filteredregistration.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: crossAxisCount,
+                    crossAxisCount: getCrossAxisCount(),
                     crossAxisSpacing: 25.0,
                     mainAxisSpacing: 25.0,
-                    childAspectRatio: childAspectRatio,
+                    childAspectRatio: getChildAspectRatio(),
                   ),
                   itemBuilder: (context, index) {
                     return HoverScaleCard(
@@ -238,6 +255,8 @@ class RequestsGrid extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(top: 5.0),
                                 child: Text(
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
                                   "${"Name :".tr} ${controller.filteredregistration[index].guardian?.name}",
                                   style: Theme.of(context)
                                       .textTheme
@@ -250,6 +269,7 @@ class RequestsGrid extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(top: 5.0),
                                 child: Text(
+                                  overflow: TextOverflow.ellipsis,
                                   "${"Mobile:".tr} ${controller.filteredregistration[index].guardian?.phone}",
                                   style: Theme.of(context)
                                       .textTheme
@@ -262,6 +282,8 @@ class RequestsGrid extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(top: 5.0),
                                 child: Text(
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
                                   "Email: ".tr +
                                       " ${controller.filteredregistration[index].guardian?.email}",
                                   style: Theme.of(context)
@@ -275,6 +297,7 @@ class RequestsGrid extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(top: 5.0),
                                 child: Text(
+                                  overflow: TextOverflow.ellipsis,
                                   "${"National ID:".tr} ${controller.filteredregistration[index].guardian?.nationalId}",
                                   style: Theme.of(context)
                                       .textTheme
@@ -295,6 +318,8 @@ class RequestsGrid extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(top: 5.0),
                                 child: Text(
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
                                   "${"Name :".tr} ${controller.filteredregistration[index].student?.name}",
                                   style: Theme.of(context)
                                       .textTheme
@@ -307,6 +332,7 @@ class RequestsGrid extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(top: 5.0),
                                 child: Text(
+                                  overflow: TextOverflow.ellipsis,
                                   "${"Current Class:".tr} ${controller.filteredregistration[index].student?.clas ?? "No Class"}",
                                   style: Theme.of(context)
                                       .textTheme
@@ -320,6 +346,7 @@ class RequestsGrid extends StatelessWidget {
                                 padding: const EdgeInsets.only(
                                     top: 5.0, bottom: 15.0),
                                 child: Text(
+                                  overflow: TextOverflow.ellipsis,
                                   "${"Previous Class:".tr} ${controller.filteredregistration[index].student?.previousClass ?? "No Class"}",
                                   style: Theme.of(context)
                                       .textTheme

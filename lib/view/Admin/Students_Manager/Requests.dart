@@ -27,54 +27,176 @@ class _RequestsState extends State<Requests> {
 
   @override
   Widget build(BuildContext context) {
-    double w = MediaQuery.of(context).size.width;
+    double screenWidth = MediaQuery.of(context).size.width;
     return Expanded(
         child: Column(
       children: [
-        GetBuilder<Requestscontroller>(builder: (controller) {
-          return Container(
-            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
-            alignment: Alignment.center,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Row(
-                      children: [
-                        Dropdownrequestenroll(
-                            isLoading: false,
-                            title: "Status".tr,
-                            width: w / 5,
-                            type: "status"),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(left: 20.0, right: 20.0),
-                          child: selectDateRequest(
-                            width: w / 4.383,
-                          ),
-                        ),
-                        TextFormSearch(
-                          click: () {
-                            controller.clearName();
-                          },
-                          onchange: (value) {
-                            controller.searchByName(value,
-                                controller.statusindex, controller.filterDate);
-                          },
-                          radius: 5,
-                          controller: search,
-                          suffixIcon: search.text.isNotEmpty
-                              ? Icons.close
-                              : Icons.search,
-                        ),
-                      ],
+        if (screenWidth > 769)
+          GetBuilder<Requestscontroller>(builder: (controller) {
+            return Container(
+              width: Get.width,
+              margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+              child: Wrap(
+                alignment: WrapAlignment.spaceBetween,
+                runSpacing: 10.0,
+                spacing: 10.0,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                runAlignment: WrapAlignment.start,
+                children: [
+                  Wrap(
+                    runSpacing: 10.0,
+                    spacing: 10.0,
+                    children: [
+                      Dropdownrequestenroll(
+                          isLoading: false,
+                          title: "Status".tr,
+                          width: 200,
+                          type: "status"),
+                      selectDateRequest(
+                        width: 200,
+                      ),
+                      TextFormSearch(
+                        click: () {
+                          controller.clearName();
+                        },
+                        onchange: (value) {
+                          controller.searchByName(value, controller.statusindex,
+                              controller.filterDate);
+                        },
+                        radius: 5,
+                        width: 408,
+                        controller: search,
+                        suffixIcon:
+                            search.text.isNotEmpty ? Icons.close : Icons.search,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    spacing: 10.0,
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: const ButtonStyle(
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {
+                              ExleRequestsExport(controller.registration);
+                            },
+                            icon: Icon(VMS_Icons.xl,
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
+                      ),
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: const ButtonStyle(
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {
+                              exportRequestsToPDF(controller.registration);
+                            },
+                            icon: Icon(VMS_Icons.pdf,
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            );
+          }),
+        if (screenWidth <= 769)
+          GetBuilder<Requestscontroller>(builder: (controller) {
+            return SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                spacing: 10.0,
+                children: [
+                  Dropdownrequestenroll(
+                      isLoading: false,
+                      title: "Status".tr,
+                      width: 200,
+                      type: "status"),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: selectDateRequest(
+                      width: 200,
                     ),
-                    const Spacer(),
-                    Row(
-                      children: [
-                        Container(
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: TextFormSearch(
+                      click: () {
+                        controller.clearName();
+                      },
+                      onchange: (value) {
+                        controller.searchByName(value, controller.statusindex,
+                            controller.filterDate);
+                      },
+                      radius: 5,
+                      width: 408,
+                      controller: search,
+                      suffixIcon:
+                          search.text.isNotEmpty ? Icons.close : Icons.search,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: const ButtonStyle(
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {
+                              ExleRequestsExport(controller.registration);
+                            },
+                            icon: Icon(VMS_Icons.xl,
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+                        child: Container(
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
@@ -93,49 +215,19 @@ class _RequestsState extends State<Requests> {
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
                               onPressed: () {
-                                ExleRequestsExport(controller.registration);
+                                exportRequestsToPDF(controller.registration);
                               },
-                              icon: Icon(VMS_Icons.xl,
+                              icon: Icon(VMS_Icons.pdf,
                                   size: 18,
                                   color: Theme.of(context).highlightColor)),
                         ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(right: 10.0, left: 10.0),
-                          child: Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                color: Theme.of(context).cardColor,
-                                borderRadius: BorderRadius.circular(5),
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Colors.black12,
-                                      offset: Offset(0, 2),
-                                      blurRadius: 1)
-                                ]),
-                            child: IconButton(
-                                style: const ButtonStyle(
-                                    shape: WidgetStatePropertyAll(
-                                        RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(5))))),
-                                onPressed: () {
-                                  exportRequestsToPDF(controller.registration);
-                                },
-                                icon: Icon(VMS_Icons.pdf,
-                                    size: 18,
-                                    color: Theme.of(context).highlightColor)),
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ],
-            ),
-          );
-        }),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            );
+          }),
         Expanded(
             child: Padding(
           padding: const EdgeInsets.only(top: 15.0),
