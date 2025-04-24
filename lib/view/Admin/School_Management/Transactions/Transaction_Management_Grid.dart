@@ -20,20 +20,39 @@ class Transaction_Management_Grid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    print(screenWidth);
+    int getCrossAxisCount() {
+      if (screenWidth >= 1423) return 4;
+      if (screenWidth >= 1095) return 3;
+      if (screenWidth >= 778) return 2;
+
+      return 1;
+    }
+
+    double getChildAspectRatio() {
+      if (screenWidth >= 1070) return 1.1;
+      if (screenWidth >= 950) return 1.1;
+      if (screenWidth >= 838) return 1.1;
+      if (screenWidth >= 778) return 1.1;
+      if (screenWidth >= 539) return 1.8;
+      return 1.1;
+    }
+
     return Directionality(
-       textDirection: prefs!.getString(languageKey) == "ar"
-                    ? TextDirection.rtl
-                    : TextDirection.ltr,
+      textDirection: prefs!.getString(languageKey) == "ar"
+          ? TextDirection.rtl
+          : TextDirection.ltr,
       child: GetBuilder<Transaction_Controller>(builder: (control) {
         double size = 15;
         return control.isLoading == true
             ? GridView.builder(
                 padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: getCrossAxisCount(),
                     crossAxisSpacing: 20.0,
                     mainAxisSpacing: 20.0,
-                    childAspectRatio: 1.1),
+                    childAspectRatio: getChildAspectRatio()),
                 itemCount: 12,
                 itemBuilder: (context, index) {
                   return HoverScaleCard(
@@ -99,21 +118,24 @@ class Transaction_Management_Grid extends StatelessWidget {
                             ),
                           ],
                         )),
-                  ).animate(onPlay: (controller) => controller.repeat()).shimmer(
-                      angle: 1,
-                      color: Colors.grey.withOpacity(0.2),
-                      duration: const Duration(seconds: 1),
-                      delay: const Duration(seconds: 1));
+                  )
+                      .animate(onPlay: (controller) => controller.repeat())
+                      .shimmer(
+                          angle: 1,
+                          color: Colors.grey.withOpacity(0.2),
+                          duration: const Duration(seconds: 1),
+                          delay: const Duration(seconds: 1));
                 },
               )
             : control.filteredTransaction!.isNotEmpty
                 ? GridView.builder(
-                    padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 4,
+                    padding:
+                        const EdgeInsets.only(top: 10, left: 40, right: 40),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: getCrossAxisCount(),
                         crossAxisSpacing: 20.0,
                         mainAxisSpacing: 20.0,
-                        childAspectRatio: 1.1),
+                        childAspectRatio: getChildAspectRatio()),
                     itemCount: control.filteredTransaction!.length,
                     itemBuilder: (context, index) {
                       return HoverScaleCard(
@@ -147,10 +169,12 @@ class Transaction_Management_Grid extends StatelessWidget {
                                         ),
                                         Text(
                                             " ${control.filteredTransaction![index].date}",
-                                            style: Theme.of(context).textTheme.bodyMedium!
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
                                                 .copyWith(
-                                              fontSize: 14,
-                                            )),
+                                                  fontSize: 14,
+                                                )),
                                       ],
                                     ),
                                     Row(
@@ -161,10 +185,12 @@ class Transaction_Management_Grid extends StatelessWidget {
                                         ),
                                         Text(
                                             " ${control.filteredTransaction![index].time}",
-                                            style: Theme.of(context).textTheme.bodyMedium!
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
                                                 .copyWith(
-                                              fontSize: 14,
-                                            )),
+                                                  fontSize: 14,
+                                                )),
                                       ],
                                     ),
                                   ],
@@ -175,28 +201,29 @@ class Transaction_Management_Grid extends StatelessWidget {
                                   children: [
                                     Text(
                                         "${control.filteredTransaction![index].userName}",
-                                        style: Theme.of(context).textTheme.bodyMedium!
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
                                             .copyWith(
-                                          fontSize: 14,
-                                        )),
+                                              fontSize: 14,
+                                            )),
                                   ],
                                 ),
                                 Row(
-                  
-
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     SizedBox(
-                                      width: Get.size.width / 6,
+                                      width: 200,
                                       child: Text(
                                           textAlign: TextAlign.center,
-                                          "${  prefs!.getString(languageKey) == "ar"
-?control.filteredTransaction![index].arDetail:control.filteredTransaction![index].detail}",
-                                          style: Theme.of(context).textTheme.bodyMedium!
+                                          "${prefs!.getString(languageKey) == "ar" ? control.filteredTransaction![index].arDetail : control.filteredTransaction![index].detail}",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
                                               .copyWith(
-                                            fontSize: 14,
-                                          )),
+                                                fontSize: 14,
+                                              )),
                                     ),
                                   ],
                                 ),
@@ -205,13 +232,19 @@ class Transaction_Management_Grid extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    SvgPicture.asset("images/line.svg"),
+                                    if (screenWidth >= 381)
+                                      SvgPicture.asset(
+                                        "images/line.svg",
+                                      ),
                                     Text("Device Info".tr,
-                                        style: Theme.of(context).textTheme.bodyMedium!
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
                                             .copyWith(
-                                          fontSize: 14,
-                                        )),
-                                    SvgPicture.asset("images/line.svg"),
+                                              fontSize: 14,
+                                            )),
+                                    if (screenWidth >= 381)
+                                      SvgPicture.asset("images/line.svg"),
                                   ],
                                 ),
                                 Row(
@@ -227,10 +260,12 @@ class Transaction_Management_Grid extends StatelessWidget {
                                         ),
                                         Text(
                                             " ${control.filteredTransaction![index].ip}",
-                                            style: Theme.of(context).textTheme.bodyMedium!
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
                                                 .copyWith(
-                                              fontSize: 14,
-                                            )),
+                                                  fontSize: 14,
+                                                )),
                                       ],
                                     ),
                                     Row(
@@ -277,10 +312,12 @@ class Transaction_Management_Grid extends StatelessWidget {
                                                     ""
                                                 ? " ${control.filteredTransaction![index].browserVersion}"
                                                 : "Unknow Browser",
-                                            style: Theme.of(context).textTheme.bodyMedium!
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
                                                 .copyWith(
-                                              fontSize: 14,
-                                            )),
+                                                  fontSize: 14,
+                                                )),
                                       ],
                                     ),
                                   ],
@@ -331,10 +368,12 @@ class Transaction_Management_Grid extends StatelessWidget {
                                             size: size),
                                         Text(
                                             " ${control.filteredTransaction![index].platform}",
-                                            style: Theme.of(context).textTheme.bodyMedium!
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
                                                 .copyWith(
-                                              fontSize: 14,
-                                            )),
+                                                  fontSize: 14,
+                                                )),
                                       ],
                                     ),
                                     Row(
@@ -356,10 +395,12 @@ class Transaction_Management_Grid extends StatelessWidget {
                                             size: size),
                                         Text(
                                             " ${control.filteredTransaction![index].deviceType}",
-                                            style: Theme.of(context).textTheme.bodyMedium!
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
                                                 .copyWith(
-                                              fontSize: 14,
-                                            )),
+                                                  fontSize: 14,
+                                                )),
                                       ],
                                     ),
                                     Row(
@@ -367,10 +408,12 @@ class Transaction_Management_Grid extends StatelessWidget {
                                         Icon(VMS_Icons.admin, size: size),
                                         Text(
                                             " ${control.filteredTransaction![index].roll}",
-                                            style: Theme.of(context).textTheme.bodyMedium!
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
                                                 .copyWith(
-                                              fontSize: 14,
-                                            )),
+                                                  fontSize: 14,
+                                                )),
                                       ],
                                     ),
                                   ],

@@ -22,19 +22,20 @@ class ElectronicBookGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     int getCrossAxisCount() {
-      if (screenWidth >= 1260) return 4;
-      if (screenWidth >= 1040) return 3;
-      if (screenWidth >= 769) return 2;
+      if (screenWidth >= 1278) return 5;
+      if (screenWidth >= 1070) return 4;
+      if (screenWidth >= 950) return 3;
+      if (screenWidth >= 700) return 2;
       return 1;
     }
 
     double getChildAspectRatio() {
-      if (screenWidth >= 1070) return 1.8;
-      if (screenWidth >= 950) return 1.8;
-      if (screenWidth >= 838) return 2.3;
-      if (screenWidth >= 769) return 2.1;
-      if (screenWidth >= 539) return 2.8;
-      return 2.3;
+      if (screenWidth >= 1070) return 1.1;
+      if (screenWidth >= 950) return 1.1;
+      if (screenWidth >= 838) return 1.6;
+      if (screenWidth >= 700) return 1.5;
+      if (screenWidth >= 539) return 3.3;
+      return 2.0;
     }
 
     return Directionality(
@@ -98,10 +99,10 @@ class ElectronicBookGrid extends StatelessWidget {
                               ],
                             )),
                         Align(
-                            alignment: const Alignment(-1.5, 2),
+                            alignment: const Alignment(-1.5, 1),
                             child: Image.asset(
                               "assets/images/labrary3d.png",
-                              height: 300,
+                              height: 140,
                               color: Colors.grey.shade400,
                             )),
                       ],
@@ -173,7 +174,7 @@ class ElectronicBookGrid extends StatelessWidget {
                                                       ? "${control.filteredEbook![index].name}"
                                                       : "${control.filteredEbook![index].enName}",
                                                   style: const TextStyle(
-                                                      fontSize: 26),
+                                                      fontSize: 20),
                                                 ),
                                               ),
                                             ),
@@ -269,10 +270,12 @@ class ElectronicBookGrid extends StatelessWidget {
                                     ],
                                   )),
                               Align(
-                                  alignment: const Alignment(-1.5, 2),
+                                  alignment: screenWidth >= 767
+                                      ? Alignment(-1.5, 1)
+                                      : Alignment(-1, 1),
                                   child: Image.asset(
                                       "assets/images/labrary3d.png",
-                                      height: 300)),
+                                      height: 140)),
                             ],
                           ),
                         ),

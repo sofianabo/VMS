@@ -52,25 +52,22 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
             runSpacing: 8.0,
             children: [
               GetBuilder<Vaccines_Controller>(builder: (controller) {
-                return Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: TextFormSearch(
-                    click: () {
-                      controller.clearFilter();
-                    },
-                    onchange: (value) {
-                      controller.searchByName(value);
-                    },
-                    width: w >= 1060
-                        ? w * 0.7
-                        : w >= 732
-                            ? w * 0.8
-                            : w * 0.9,
-                    radius: 5,
-                    controller: search,
-                    suffixIcon:
-                        search.text.isNotEmpty ? Icons.close : Icons.search,
-                  ),
+                return TextFormSearch(
+                  click: () {
+                    controller.clearFilter();
+                  },
+                  onchange: (value) {
+                    controller.searchByName(value);
+                  },
+                  width: w >= 1060
+                      ? w * 0.7
+                      : w >= 732
+                          ? w * 0.8
+                          : w * 0.9,
+                  radius: 5,
+                  controller: search,
+                  suffixIcon:
+                      search.text.isNotEmpty ? Icons.close : Icons.search,
                 );
               }),
               Row(
@@ -108,57 +105,49 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                         icon: Icon(Icons.add,
                             size: 18, color: Theme.of(context).highlightColor)),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black12,
-                                offset: Offset(0, 2),
-                                blurRadius: 1)
-                          ]),
-                      child: IconButton(
-                          style: ButtonStyle(
-                              shape: WidgetStatePropertyAll(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(5))))),
-                          onPressed: () {},
-                          icon: Icon(VMS_Icons.pdf,
-                              size: 18,
-                              color: Theme.of(context).highlightColor)),
-                    ),
+                  Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).cardColor,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(0, 2),
+                              blurRadius: 1)
+                        ]),
+                    child: IconButton(
+                        style: ButtonStyle(
+                            shape: WidgetStatePropertyAll(
+                                RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5))))),
+                        onPressed: () {},
+                        icon: Icon(VMS_Icons.pdf,
+                            size: 18, color: Theme.of(context).highlightColor)),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black12,
-                                offset: Offset(0, 2),
-                                blurRadius: 1)
-                          ]),
-                      child: IconButton(
-                          style: ButtonStyle(
-                              shape: WidgetStatePropertyAll(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(5))))),
-                          onPressed: () {},
-                          icon: Icon(VMS_Icons.xl,
-                              size: 18,
-                              color: Theme.of(context).highlightColor)),
-                    ),
+                  Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).cardColor,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(0, 2),
+                              blurRadius: 1)
+                        ]),
+                    child: IconButton(
+                        style: ButtonStyle(
+                            shape: WidgetStatePropertyAll(
+                                RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5))))),
+                        onPressed: () {},
+                        icon: Icon(VMS_Icons.xl,
+                            size: 18, color: Theme.of(context).highlightColor)),
                   ),
                 ],
               )

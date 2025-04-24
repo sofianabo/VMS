@@ -36,7 +36,8 @@ class _AppbarAdminState extends State<AppbarAdmin> {
       child: GetBuilder<AdminHomeContentController>(builder: (cont) {
         return ResponsiveUI(
           desktopScreen: Container(
-            margin: const EdgeInsets.only(right: 60, left: 30, top: 29),
+            margin: const EdgeInsets.only(
+                right: 60, left: 30, top: 15, bottom: 15.0),
             height: 77,
             child: Row(
               children: [

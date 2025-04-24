@@ -21,22 +21,22 @@ class Illness_Grid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-
     int getCrossAxisCount() {
       if (screenWidth >= 1132) return 4;
-      if (screenWidth >= 700) return 3;
-      if (screenWidth >= 539) return 2;
+      if (screenWidth >= 967) return 3;
+      if (screenWidth >= 578) return 2;
       return 1;
     }
 
     double getChildAspectRatio() {
       if (screenWidth >= 1070) return 1.2;
-      if (screenWidth >= 950) return 1.2;
-      if (screenWidth >= 838) return 1.7;
-      if (screenWidth >= 700) return 1.6;
-      if (screenWidth >= 620) return 1.6;
-      if (screenWidth >= 539) return 1.8;
-      return 1.5;
+      if (screenWidth >= 967) return 1.2;
+      if (screenWidth >= 823) return 2.5;
+      if (screenWidth >= 719) return 2.0;
+      if (screenWidth >= 578) return 1.2;
+      if (screenWidth >= 520) return 2.0;
+
+      return 2.0;
     }
 
     return GetBuilder<Illness_Controller>(builder: (control) {
@@ -111,10 +111,7 @@ class Illness_Grid extends StatelessWidget {
             )
           : control.filteredIllness!.isNotEmpty
               ? GridView.builder(
-                  padding: EdgeInsets.only(
-                      left: screenWidth < 539 ? 80 : 40,
-                      right: screenWidth < 539 ? 80 : 40,
-                      top: 10),
+                  padding: EdgeInsets.only(left: 40, right: 40, top: 10),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: getCrossAxisCount(),
                       crossAxisSpacing: 20.0,
