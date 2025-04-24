@@ -32,8 +32,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
         child: GetBuilder<SchoolInfoController>(builder: (controller) {
       if (controller.isLoading) {
         return Expanded(
-          child: Container(
-            width: Get.width * 0.9,
+          child: Center(
             child: LoadingAnimationWidget.inkDrop(
               color: Theme.of(context).primaryColor,
               size: 60,
