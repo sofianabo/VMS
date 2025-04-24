@@ -39,7 +39,10 @@ class GetteacherbyidAPI {
         Oneteachermodel oneTeacher = Oneteachermodel.fromJson(response.data);
         controller.setOneTeacher(oneTeacher);
         Get.back();
-        EditTeacherDialog(context, index, TeacherId);
+      Get.dialog(
+          EditTeacherDialog(idx: index, teacherId: TeacherId),
+          barrierDismissible: false,
+        );
         return response.statusCode;
       } else {
         ErrorHandler.handleDioError(DioException(
