@@ -128,7 +128,6 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => School_Content_Controller(), fenix: true);
     Get.lazyPut(() => DraweController(), fenix: true);
     Get.lazyPut(() => EnrollController(), fenix: true);
-    Get.lazyPut(() => RewardsController(20.0, true));
     Get.lazyPut(() => Validateteachernoteandgradereco(), fenix: true);
   }
 }
