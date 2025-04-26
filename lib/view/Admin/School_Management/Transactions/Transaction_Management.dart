@@ -38,47 +38,56 @@ class _Transaction_ManagementState extends State<Transaction_Management> {
             margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
             child: GetBuilder<Transaction_Controller>(builder: (controller) {
               return Wrap(
-                alignment: WrapAlignment.start,
+                alignment: WrapAlignment.spaceBetween,
                 runSpacing: 10.0,
                 spacing: 15.0,
                 crossAxisAlignment: WrapCrossAlignment.center,
-                runAlignment: WrapAlignment.start,
+                runAlignment: WrapAlignment.spaceBetween,
                 children: [
-                  DropDowTransaction(
-                      isLoading: false,
-                      title: "Role".tr,
-                      width: 200,
-                      type: "roll"),
-                  DropDowTransaction(
-                      isLoading: controller.isLoading,
-                      title: "Action".tr,
-                      width: 200,
-                      type: "action"),
-                  selectTransactionDate(
-                    width: 200,
+                  Wrap(
+                    alignment: WrapAlignment.start,
+                    runSpacing: 10.0,
+                    spacing: 15.0,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    runAlignment: WrapAlignment.start,
+                    children: [
+                      DropDowTransaction(
+                          isLoading: false,
+                          title: "Role".tr,
+                          width: 200,
+                          type: "roll"),
+                      DropDowTransaction(
+                          isLoading: controller.isLoading,
+                          title: "Action".tr,
+                          width: 200,
+                          type: "action"),
+                      selectTransactionDate(
+                        width: 200,
+                      ),
+                      TextFormSearch(
+                        click: () {
+                          controller.clearFilter();
+                        },
+                        onchange: (value) {
+                          controller.searchRequestByName(
+                              value,
+                              controller.rollIndex,
+                              controller.AttendencetDate.value.toString(),
+                              controller.actionIndex);
+                        },
+                        width: 250,
+                        radius: 5,
+                        controller: search,
+                        suffixIcon:
+                            search.text.isNotEmpty ? Icons.close : Icons.search,
+                      ),
+                      DropDowTransaction(
+                          isLoading: false,
+                          title: "Rows",
+                          width: 100,
+                          type: "rows"),
+                    ],
                   ),
-                  TextFormSearch(
-                    click: () {
-                      controller.clearFilter();
-                    },
-                    onchange: (value) {
-                      controller.searchRequestByName(
-                          value,
-                          controller.rollIndex,
-                          controller.AttendencetDate.value.toString(),
-                          controller.actionIndex);
-                    },
-                    width: 250,
-                    radius: 5,
-                    controller: search,
-                    suffixIcon:
-                        search.text.isNotEmpty ? Icons.close : Icons.search,
-                  ),
-                  DropDowTransaction(
-                      isLoading: false,
-                      title: "Rows",
-                      width: 100,
-                      type: "rows"),
                   Row(
                     spacing: 10.0,
                     mainAxisSize: MainAxisSize.min,
