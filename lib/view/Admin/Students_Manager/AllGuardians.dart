@@ -38,6 +38,7 @@ class _AllGuardiansState extends State<AllGuardians> {
   TextEditingController cpass = TextEditingController();
 
   TextEditingController name = TextEditingController();
+  TextEditingController lastName = TextEditingController();
 
   TextEditingController phone = TextEditingController();
 
@@ -91,6 +92,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                           name.clear();
                           phone.clear();
                           nationalId.clear();
+                          lastName.clear();
                           Get.dialog(barrierDismissible: false,
                               GetBuilder<Allgaurdiancontroller>(
                                   builder: (controller) {
@@ -162,23 +164,22 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                     isError:
                                                         controller.IsnameError,
                                                     controller: name,
-                                                    Uptext: "Name".tr,
-                                                    hinttext: "Name".tr),
+                                                    Uptext: "First Name".tr,
+                                                    hinttext: "First Name".tr),
                                                 Textfildwithupper(
-                                                    fieldType: "phone",
                                                     onChanged: (value) {
                                                       if (value.isNotEmpty) {
                                                         controller
                                                             .updateFieldError(
-                                                                "phone", false);
+                                                                "last", false);
                                                       }
                                                     },
                                                     isRequired: true,
-                                                    isError:
-                                                        controller.IsphoneError,
-                                                    controller: phone,
-                                                    Uptext: "Phone Number".tr,
-                                                    hinttext: "Phone Number".tr)
+                                                    isError: controller
+                                                        .IsLastnameError,
+                                                    controller: lastName,
+                                                    Uptext: "Last Name".tr,
+                                                    hinttext: "Last Name".tr),
                                               ],
                                             ),
                                           ),
@@ -206,6 +207,36 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                     controller: nationalId,
                                                     hinttext: "National ID".tr,
                                                     Uptext: "National ID".tr),
+                                                Textfildwithupper(
+                                                    fieldType: "phone",
+                                                    onChanged: (value) {
+                                                      if (value.isNotEmpty) {
+                                                        controller
+                                                            .updateFieldError(
+                                                                "phone", false);
+                                                      }
+                                                    },
+                                                    isRequired: true,
+                                                    isError:
+                                                        controller.IsphoneError,
+                                                    controller: phone,
+                                                    Uptext: "Phone Number".tr,
+                                                    hinttext:
+                                                        "Phone Number".tr),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 20.0),
+                                            child: Wrap(
+                                              spacing: 20.0,
+                                              runSpacing: 20.0,
+                                              crossAxisAlignment:
+                                                  WrapCrossAlignment.start,
+                                              runAlignment: WrapAlignment.start,
+                                              alignment: WrapAlignment.start,
+                                              children: [
                                                 Textfildwithupper(
                                                     onChanged: (value) {
                                                       if (value.isNotEmpty) {
@@ -243,21 +274,7 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                     isRequired: true,
                                                     controller: pass,
                                                     hinttext: "Password".tr,
-                                                    Uptext: "Password".tr)
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 20.0),
-                                            child: Wrap(
-                                              spacing: 20.0,
-                                              runSpacing: 20.0,
-                                              crossAxisAlignment:
-                                                  WrapCrossAlignment.start,
-                                              runAlignment: WrapAlignment.start,
-                                              alignment: WrapAlignment.start,
-                                              children: [
+                                                    Uptext: "Password".tr),
                                                 Textfildwithupper(
                                                     onChanged: (value) {
                                                       if (value.isNotEmpty) {
@@ -316,6 +333,8 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                 username.text.trim().isEmpty;
                                             bool isNameEmpty =
                                                 name.text.trim().isEmpty;
+                                            bool isLastNameEmpty =
+                                                lastName.text.trim().isEmpty;
                                             bool isPhoneEmpty =
                                                 phone.text.trim().isEmpty;
                                             bool isNationalIDEmpty =
@@ -344,6 +363,8 @@ class _AllGuardiansState extends State<AllGuardians> {
                                             controller.updateFieldError(
                                                 "name", isNameEmpty);
                                             controller.updateFieldError(
+                                                "last", isLastNameEmpty);
+                                            controller.updateFieldError(
                                                 "phone", isPhoneEmpty);
                                             controller.updateFieldError(
                                                 "nid", isNationalIDEmpty);
@@ -365,13 +386,14 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                 isNationalIDEmpty ||
                                                 isEmailEmpty ||
                                                 !isEmailValid ||
+                                                isLastNameEmpty ||
                                                 isPasswordEmpty ||
                                                 !isPasswordValid ||
                                                 isConfirmPasswordEmpty ||
                                                 pass.text != cpass.text)) {
                                               Addguardianapi(context)
                                                   .addguardian(
-                                                name.text,
+                                                name.text + " " + lastName.text,
                                                 email.text,
                                                 nationalId.text,
                                                 phone.text,
