@@ -38,241 +38,229 @@ class _Teachers_notebook_grade_recordState
         child: Column(
       children: [
         Container(
-          width: Get.width * 0.87,
+          width: Get.width,
           margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
-          alignment: Alignment.centerLeft,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GetBuilder<TeachernoteAndGradeReco>(builder: (controller) {
-                return Wrap(
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  runAlignment: WrapAlignment.spaceBetween,
-                  alignment: WrapAlignment.spaceBetween,
-                  runSpacing: 8.0,
+          child: GetBuilder<TeachernoteAndGradeReco>(builder: (controller) {
+            return Wrap(
+              crossAxisAlignment: WrapCrossAlignment.center,
+              runAlignment: WrapAlignment.spaceBetween,
+              alignment: WrapAlignment.spaceBetween,
+              runSpacing: 8.0,
+              spacing: 15.0,
+              children: [
+                Wrap(
+                  runSpacing: 15.0,
                   spacing: 15.0,
                   children: [
-                    Wrap(
-                      runSpacing: 15.0,
-                      spacing: 15.0,
-                      children: [
-                        QuizType_DropDown(
-                            IsEnabled: true,
-                            Isloading: controller.isClassLoading,
-                            title: "Class".tr,
-                            width: 250,
-                            type: "class"),
-                        QuizType_DropDown(
-                            IsEnabled:
-                                controller.ClassIndex.trim().toString() != "",
-                            Isloading: false,
-                            title: "Semester".tr,
-                            width: 250,
-                            type: "semester"),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      spacing: 15.0,
-                      children: [
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: controller.isClassLoading == true ||
-                                      controller.ClassIndex.trim().toString() ==
-                                          ""
-                                  ? Get.theme.disabledColor
-                                  : Theme.of(context).cardColor,
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    offset: Offset(0, 2),
-                                    blurRadius: 1)
-                              ]),
-                          child: IconButton(
-                              splashColor: controller.isClassLoading == true || controller.ClassIndex.trim().toString() == ""
-                                  ? Get.theme.disabledColor
-                                  : Theme.of(context).cardColor,
-                              style: ButtonStyle(
-                                  backgroundColor: WidgetStatePropertyAll(
-                                      controller.isClassLoading == true || controller.ClassIndex.trim().toString() == ""
-                                          ? Get.theme.disabledColor
-                                          : Theme.of(context).cardColor),
-                                  shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(5))))),
-                              onPressed: () {
-                                if (controller.isClassLoading == true ||
-                                    controller.ClassIndex.trim().toString() ==
-                                        "") {
-                                  return;
-                                }
-                                controller.items.clear();
-                                Get.dialog(
-                                    barrierDismissible: false, Add_Group());
-                              },
-                              icon: Icon(Icons.add,
-                                  size: 18,
-                                  color: controller.isClassLoading == true ||
-                                          controller.ClassIndex.trim().toString() == ""
-                                      ? Colors.white
-                                      : Theme.of(context).highlightColor)),
-                        ),
-                        GetBuilder<TeachernoteAndGradeReco>(builder: (Con) {
-                          return Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                color: controller.isClassLoading == true ||
-                                        controller.ClassIndex.trim()
-                                            .isEmpty || // لا حاجة ل toString() هنا
-                                        (controller.Qt_Model?.type?.isEmpty ?? true)
-                                    ? Get.theme.disabledColor
-                                    : Theme.of(context).cardColor,
-                                borderRadius: BorderRadius.circular(5),
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Colors.black12,
-                                      offset: Offset(0, 2),
-                                      blurRadius: 1)
-                                ]),
-                            child: IconButton(
-                                splashColor: controller.isClassLoading == true ||
-                                        controller.ClassIndex.trim().isEmpty ||
-                                        (controller.Qt_Model?.type?.isEmpty ??
-                                            true)
-                                    ? Get.theme.disabledColor
-                                    : Theme.of(context).cardColor,
-                                style: ButtonStyle(
-                                    backgroundColor: WidgetStatePropertyAll(
-                                        controller.isClassLoading == true ||
-                                                controller.ClassIndex.trim()
-                                                    .isEmpty ||
-                                                (controller.Qt_Model?.type?.isEmpty ??
-                                                    true)
-                                            ? Get.theme.disabledColor
-                                            : Theme.of(context).cardColor),
-                                    shape: WidgetStatePropertyAll(
-                                        RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.all(Radius.circular(5))))),
-                                onPressed: () {
-                                  Get.dialog(
-                                      barrierDismissible: false,
-                                      Add_Oparation_Dialog(
-                                          controller: Con,
-                                          Class_Id: controller
-                                              .Classmodel?.classes
-                                              ?.firstWhereOrNull(
-                                                (element) =>
-                                                    element.name ==
-                                                        controller.ClassIndex ||
-                                                    element.enName ==
-                                                        controller.ClassIndex,
-                                              )!
-                                              .id));
-                                  if (controller.isClassLoading == true ||
-                                      controller.ClassIndex.trim().isEmpty ||
-                                      (controller.Qt_Model?.type?.isEmpty ??
-                                          true)) {
-                                    return;
-                                  }
-                                },
-                                icon: Icon(Icons.calculate_outlined, size: 18, color: controller.isClassLoading == true || controller.ClassIndex.trim().isEmpty || (controller.Qt_Model?.type?.isEmpty ?? true) ? Colors.white : Theme.of(context).highlightColor)),
-                          );
-                        }),
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: controller.isClassLoading == true ||
-                                      controller.ClassIndex.trim().toString() ==
-                                          ""
-                                  ? Get.theme.disabledColor
-                                  : Theme.of(context).cardColor,
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    offset: Offset(0, 2),
-                                    blurRadius: 1)
-                              ]),
-                          child: IconButton(
-                              splashColor: controller.isClassLoading == true || controller.ClassIndex.trim().toString() == ""
-                                  ? Get.theme.disabledColor
-                                  : Theme.of(context).cardColor,
-                              style: ButtonStyle(
-                                  backgroundColor: WidgetStatePropertyAll(
-                                      controller.isClassLoading == true || controller.ClassIndex.trim().toString() == ""
-                                          ? Get.theme.disabledColor
-                                          : Theme.of(context).cardColor),
-                                  shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(5))))),
-                              onPressed: () async {
-                                if (controller.isClassLoading == true ||
-                                    controller.ClassIndex.trim().toString() ==
-                                        "") {
-                                  return;
-                                }
-                                if (controller.Qt_Model!.type!.isNotEmpty) {
-                                  await Update_Quiz_Type_API().Update_Quiz_Type(
-                                    ClassId: controller
-                                        .Classmodel!
-                                        .classes![controller.ClassList.indexOf(
-                                            controller.ClassIndex)]
-                                        .id!,
-                                    SemsterId: controller.SemesterSendIndex,
-                                    groups: controller.groups,
-                                  );
-                                } else {
-                                  Get.dialog(
-                                      barrierDismissible: false,
-                                      SelectedClass());
-                                }
-                              },
-                              icon: Icon(Icons.save_outlined,
-                                  size: 18,
-                                  color: controller.isClassLoading == true ||
-                                          controller.ClassIndex.trim().toString() == ""
-                                      ? Colors.white
-                                      : Theme.of(context).highlightColor)),
-                        ),
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: Theme.of(context).cardColor,
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    offset: Offset(0, 2),
-                                    blurRadius: 1)
-                              ]),
-                          child: IconButton(
-                              style: ButtonStyle(
-                                  backgroundColor: WidgetStatePropertyAll(
-                                      Theme.of(context).cardColor),
-                                  shape: WidgetStatePropertyAll(
-                                      RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))))),
-                              onPressed: () {},
-                              icon: Icon(VMS_Icons.xl,
-                                  size: 18,
-                                  color: Theme.of(context).highlightColor)),
-                        ),
-                      ],
-                    )
+                    QuizType_DropDown(
+                        IsEnabled: true,
+                        Isloading: controller.isClassLoading,
+                        title: "Class".tr,
+                        width: 250,
+                        type: "class"),
+                    QuizType_DropDown(
+                        IsEnabled:
+                            controller.ClassIndex.trim().toString() != "",
+                        Isloading: false,
+                        title: "Semester".tr,
+                        width: 250,
+                        type: "semester"),
                   ],
-                );
-              }),
-            ],
-          ),
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  spacing: 15.0,
+                  children: [
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: controller.isClassLoading == true ||
+                                  controller.ClassIndex.trim().toString() == ""
+                              ? Get.theme.disabledColor
+                              : Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: IconButton(
+                          splashColor: controller.isClassLoading == true ||
+                                  controller.ClassIndex.trim().toString() == ""
+                              ? Get.theme.disabledColor
+                              : Theme.of(context).cardColor,
+                          style: ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                  controller.isClassLoading == true || controller.ClassIndex.trim().toString() == ""
+                                      ? Get.theme.disabledColor
+                                      : Theme.of(context).cardColor),
+                              shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5))))),
+                          onPressed: () {
+                            if (controller.isClassLoading == true ||
+                                controller.ClassIndex.trim().toString() == "") {
+                              return;
+                            }
+                            controller.items.clear();
+                            Get.dialog(barrierDismissible: false, Add_Group());
+                          },
+                          icon: Icon(Icons.add,
+                              size: 18,
+                              color: controller.isClassLoading == true ||
+                                      controller.ClassIndex.trim().toString() == ""
+                                  ? Colors.white
+                                  : Theme.of(context).highlightColor)),
+                    ),
+                    GetBuilder<TeachernoteAndGradeReco>(builder: (Con) {
+                      return Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: controller.isClassLoading == true ||
+                                    controller.ClassIndex.trim()
+                                        .isEmpty || // لا حاجة ل toString() هنا
+                                    (controller.Qt_Model?.type?.isEmpty ?? true)
+                                ? Get.theme.disabledColor
+                                : Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            splashColor: controller.isClassLoading == true ||
+                                    controller.ClassIndex.trim().isEmpty ||
+                                    (controller.Qt_Model?.type?.isEmpty ?? true)
+                                ? Get.theme.disabledColor
+                                : Theme.of(context).cardColor,
+                            style: ButtonStyle(
+                                backgroundColor: WidgetStatePropertyAll(
+                                    controller.isClassLoading == true || controller.ClassIndex.trim().isEmpty || (controller.Qt_Model?.type?.isEmpty ?? true)
+                                        ? Get.theme.disabledColor
+                                        : Theme.of(context).cardColor),
+                                shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5))))),
+                            onPressed: () {
+                              Get.dialog(
+                                  barrierDismissible: false,
+                                  Add_Oparation_Dialog(
+                                      controller: Con,
+                                      Class_Id: controller.Classmodel?.classes
+                                          ?.firstWhereOrNull(
+                                            (element) =>
+                                                element.name ==
+                                                    controller.ClassIndex ||
+                                                element.enName ==
+                                                    controller.ClassIndex,
+                                          )!
+                                          .id));
+                              if (controller.isClassLoading == true ||
+                                  controller.ClassIndex.trim().isEmpty ||
+                                  (controller.Qt_Model?.type?.isEmpty ??
+                                      true)) {
+                                return;
+                              }
+                            },
+                            icon: Icon(Icons.calculate_outlined,
+                                size: 18,
+                                color: controller.isClassLoading == true ||
+                                        controller.ClassIndex.trim().isEmpty ||
+                                        (controller.Qt_Model?.type?.isEmpty ?? true)
+                                    ? Colors.white
+                                    : Theme.of(context).highlightColor)),
+                      );
+                    }),
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: controller.isClassLoading == true ||
+                                  controller.ClassIndex.trim().toString() == ""
+                              ? Get.theme.disabledColor
+                              : Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: IconButton(
+                          splashColor: controller.isClassLoading == true ||
+                                  controller.ClassIndex.trim().toString() == ""
+                              ? Get.theme.disabledColor
+                              : Theme.of(context).cardColor,
+                          style: ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                  controller.isClassLoading == true || controller.ClassIndex.trim().toString() == ""
+                                      ? Get.theme.disabledColor
+                                      : Theme.of(context).cardColor),
+                              shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5))))),
+                          onPressed: () async {
+                            if (controller.isClassLoading == true ||
+                                controller.ClassIndex.trim().toString() == "") {
+                              return;
+                            }
+                            if (controller.Qt_Model!.type!.isNotEmpty) {
+                              await Update_Quiz_Type_API().Update_Quiz_Type(
+                                ClassId: controller
+                                    .Classmodel!
+                                    .classes![controller.ClassList.indexOf(
+                                        controller.ClassIndex)]
+                                    .id!,
+                                SemsterId: controller.SemesterSendIndex,
+                                groups: controller.groups,
+                              );
+                            } else {
+                              Get.dialog(
+                                  barrierDismissible: false, SelectedClass());
+                            }
+                          },
+                          icon: Icon(Icons.save_outlined,
+                              size: 18,
+                              color: controller.isClassLoading == true ||
+                                      controller.ClassIndex.trim().toString() == ""
+                                  ? Colors.white
+                                  : Theme.of(context).highlightColor)),
+                    ),
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: IconButton(
+                          style: ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                  Theme.of(context).cardColor),
+                              shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5))))),
+                          onPressed: () {},
+                          icon: Icon(VMS_Icons.xl,
+                              size: 18,
+                              color: Theme.of(context).highlightColor)),
+                    ),
+                  ],
+                )
+              ],
+            );
+          }),
         ),
         Expanded(
             child: Padding(

@@ -13,6 +13,7 @@ class Allgaurdiancontroller extends GetxController {
 //here is new error validate
   bool IsusernameError = false;
   bool IsnameError = false;
+  bool IsLastnameError = false;
   bool IsphoneError = false;
   bool IsnidError = false;
   bool IsEmailError = false;
@@ -26,6 +27,9 @@ class Allgaurdiancontroller extends GetxController {
         break;
       case 'name':
         IsnameError = newValue;
+        break;
+      case 'last':
+        IsLastnameError = newValue;
         break;
       case 'email':
         IsEmailError = newValue;
@@ -114,6 +118,7 @@ class Allgaurdiancontroller extends GetxController {
     IsEmailError = false;
     IsPasswordError = false;
     IsConfirmPasswordError = false;
+    IsLastnameError = false;
     update();
   }
 }
