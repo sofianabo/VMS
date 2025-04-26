@@ -28,7 +28,7 @@ class AppRoutes {
       middlewares: [RoleBasedMiddleware()],
     ),
     GetPage(
-      name: '/Enroll',
+      name: '/enroll',
       page: () => EnrollScreen(),
       middlewares: [RoleBasedMiddleware()],
     ),
