@@ -27,8 +27,6 @@ class RequestsGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     int getCrossAxisCount() {
-      if (screenWidth >= 1800) return 5;
-      if (screenWidth >= 1278) return 4;
       if (screenWidth >= 988) return 3;
       if (screenWidth >= 600) return 2;
 
@@ -36,8 +34,7 @@ class RequestsGrid extends StatelessWidget {
     }
 
     double getChildAspectRatio() {
-      if (screenWidth >= 1800) return 0.9;
-      if (screenWidth >= 1278) return 0.85;
+      if (screenWidth >= 1278) return 1.1;
       if (screenWidth >= 1109) return 0.95;
       if (screenWidth >= 988) return 0.85;
       if (screenWidth >= 946) return 1.24;
