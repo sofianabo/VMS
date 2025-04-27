@@ -276,6 +276,14 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                     hinttext: "Password".tr,
                                                     Uptext: "Password".tr),
                                                 Textfildwithupper(
+                                                    customErrorMessage: cpass
+                                                                    .text
+                                                                    .trim() !=
+                                                                "" &&
+                                                            cpass
+                                                                .text.isNotEmpty
+                                                        ? "كلمات المرور غير متطابقة"
+                                                        : "لا يمكن ترك الحقل فارغ",
                                                     onChanged: (value) {
                                                       if (value.isNotEmpty) {
                                                         controller

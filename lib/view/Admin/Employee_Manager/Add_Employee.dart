@@ -307,6 +307,10 @@ class _AddEmployeeState extends State<AddEmployee> {
                           controller: password,
                           hinttext: "Password".tr),
                       Textfildwithupper(
+                          customErrorMessage: cPassword.text.trim() != "" &&
+                                  cPassword.text.isNotEmpty
+                              ? "كلمات المرور غير متطابقة"
+                              : "لا يمكن ترك الحقل فارغ",
                           hidePassword: cont.ShowConfirmPassword,
                           IconButton: IconButton(
                               onPressed: () {

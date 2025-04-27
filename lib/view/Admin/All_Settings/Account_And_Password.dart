@@ -458,6 +458,11 @@ class _ProfileState extends State<Account_And_Password> {
                                 : TextDirection.ltr,
                             children: [
                               TextField_Profile(
+                                customErrorMessage:
+                                    confnewpassword.text.trim() != "" &&
+                                            confnewpassword.text.isNotEmpty
+                                        ? "كلمات المرور غير متطابقة"
+                                        : "لا يمكن ترك الحقل فارغ",
                                 fieldType: "password",
                                 isError: controller.IsConfirmPasswordError,
                                 hidePassword: controller.ShowConfirmPassword,

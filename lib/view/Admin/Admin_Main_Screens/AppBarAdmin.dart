@@ -13,8 +13,8 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Theme/ThemeData.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/All_Settings/Verifing_Code_Dialog.dart';
-import 'package:vms_school/view/Admin/Drower_Sidebar.dart';
-import 'package:vms_school/view/Admin/Search_Bar_widget.dart';
+import 'package:vms_school/view/Admin/Admin_Main_Screens/Drower_Sidebar.dart';
+import 'package:vms_school/view/Admin/Admin_Main_Screens/Search_Bar_widget.dart';
 import 'package:vms_school/widgets/Responsive.dart';
 import 'package:vms_school/widgets/SidbarAnimation.dart';
 

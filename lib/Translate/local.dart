@@ -5,6 +5,8 @@ class Languages {
       'Have A Nice Day At Work': 'أتمنى لك يوم جيد في العمل',
       'Illness and Vaccines': 'الأمراض و اللقحات',
       'Illness': 'الأمراض',
+      'Enroll Now': 'تسجيل الآن',
+      'You Have Account ?': 'هل تملك حساب ؟',
       'No Attendance': 'لا يوجد حظور بعد',
       'Vaccines': 'اللقحات',
       'Rewards and Penalties': 'المكافئات و العقوبات',
@@ -1114,6 +1116,8 @@ class Languages {
       'National ID': 'National ID',
       'Set All As a Holiday': 'Set All As a Holiday',
       'Cause': 'Cause',
+      'Enroll Now': 'Enroll Now',
+      'You Have Account ?': 'You Have Account ?',
       'Enter The Reason For Absence': 'Enter The Reason For Absence',
       'The reason for the absence of the all students':
           'The reason for the absence of the all student',
