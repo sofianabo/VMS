@@ -10,9 +10,9 @@ import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherManagementGrid.dart';
+import 'package:vms_school/widgets/Admin/Admin_Employee/DropDownAllEmployee.dart';
 import 'package:vms_school/widgets/Admin/Admin_School/All_Screen_Sessions.dart';
-import 'package:vms_school/widgets/Admin_employee/DropDownAllEmployee.dart';
-import 'package:vms_school/widgets/Admin_teachers/DropDownAllTeacher.dart';
+import 'package:vms_school/widgets/Admin/Admin_Teachers/DropDownAllTeacher.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
 import 'package:vms_school/widgets/Squer_Button_Enabled_Disabled.dart';

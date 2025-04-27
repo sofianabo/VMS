@@ -7,7 +7,7 @@ import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/A
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
-import 'package:vms_school/widgets/Admin_teachers/DropDownAllTeacher.dart';
+import 'package:vms_school/widgets/Admin/Admin_Teachers/DropDownAllTeacher.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
 import 'package:vms_school/widgets/LargeTextField.dart';

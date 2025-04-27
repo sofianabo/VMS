@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/AddTeacherAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
-import 'package:vms_school/widgets/Admin_employee/DropDownAllEmployee.dart';
+import 'package:vms_school/widgets/Admin/Admin_Employee/DropDownAllEmployee.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
 import '../../../widgets/TextFildWithUpper.dart';
