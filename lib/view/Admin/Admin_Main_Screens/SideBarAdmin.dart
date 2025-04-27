@@ -6,8 +6,8 @@ import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Students_Marks_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
-import 'package:vms_school/view/Admin/SideBar_Path.dart';
-import '../../widgets/SidbarAnimation.dart';
+import 'package:vms_school/view/Admin/Admin_Main_Screens/SideBar_Path.dart';
+import '../../../widgets/SidbarAnimation.dart';
 
 class SideBarAdmin extends StatefulWidget {
   SideBarAdmin({super.key});

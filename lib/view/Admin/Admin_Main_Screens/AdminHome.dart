@@ -8,7 +8,7 @@ import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/All_Settings/Profile_Settings.dart';
 import 'package:vms_school/view/Admin/All_Settings/Verifing_Code_Dialog.dart';
-import 'package:vms_school/view/Admin/Drower_Sidebar.dart';
+import 'package:vms_school/view/Admin/Admin_Main_Screens/Drower_Sidebar.dart';
 import 'package:vms_school/view/Admin/School_Management/Tables/ExamTable.dart';
 import 'package:vms_school/view/Admin/School_Management/Illness_Pages/Illness_Screen.dart';
 import 'package:vms_school/view/Admin/School_Management/Mohtawayat/School_Content.dart';
@@ -22,7 +22,7 @@ import 'package:vms_school/view/Admin/School_Management/Transactions/Transaction
 import 'package:vms_school/view/Admin/School_Management/Vaccine_Pages/Vaccine_Screen.dart';
 import 'package:vms_school/view/Admin/Students_Manager/AllGuardians.dart';
 import 'package:vms_school/view/Admin/Students_Manager/AllStudent.dart';
-import 'package:vms_school/view/Admin/AppBarAdmin.dart';
+import 'package:vms_school/view/Admin/Admin_Main_Screens/AppBarAdmin.dart';
 import 'package:vms_school/view/Admin/Dashboard/Admin_Dashboard.dart';
 import 'package:vms_school/view/Admin/Employee_Manager/AllEmployee.dart';
 import 'package:vms_school/view/Admin/Employee_Manager/EmployeeAttendenceManage.dart';
@@ -36,7 +36,7 @@ import 'package:vms_school/view/Admin/School_Management/Electronic_Pages/Electro
 import 'package:vms_school/view/Admin/School_Management/Grade_Pages/Grade_Management.dart';
 import 'package:vms_school/view/Admin/School_Management/School_Data/SchoolDataMGMT.dart';
 import 'package:vms_school/view/Admin/School_Management/Sessions_Pages/Session_Management.dart';
-import 'package:vms_school/view/Admin/SideBarAdmin.dart';
+import 'package:vms_school/view/Admin/Admin_Main_Screens/SideBarAdmin.dart';
 import 'package:vms_school/view/Admin/Students_Manager/StudentStatus.dart';
 import 'package:vms_school/view/Admin/Students_Manager/StudentsAttendanceManagment.dart';
 import 'package:vms_school/view/Admin/Students_Manager/Students_Marks/Students_Marks.dart';

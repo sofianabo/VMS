@@ -7,7 +7,7 @@ import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/
 import 'package:vms_school/Link/Controller/AuthController/UserController.dart';
 import 'package:vms_school/Link/Model/AuthModel/UserModel.dart';
 import 'package:vms_school/main.dart';
-import 'package:vms_school/view/Admin/AdminHome.dart';
+import 'package:vms_school/view/Admin/Admin_Main_Screens/AdminHome.dart';
 import '../API.dart' as global;
 
 class LoginAPI {

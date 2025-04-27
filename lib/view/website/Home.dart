@@ -19,6 +19,10 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
+void _precacheImage(BuildContext context) {
+  precacheImage(AssetImage("assets/images/Enroll_Images/2.jpg"), context);
+}
+
 class _HomeState extends State<Home> {
   final section2Key = GlobalKey();
   final section3Key = GlobalKey();
@@ -38,6 +42,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    _precacheImage(context);
     return Scaffold(
       drawer: Drawer(
         width: 200,

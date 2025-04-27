@@ -216,7 +216,7 @@ class _Section1State extends State<Section1>
                                           .copyWith(fontSize: 16)),
                                 ),
                                 onTap: () {
-                                  // Get.to(() => Registration());
+                                  Get.toNamed("/enroll");
                                 },
                               ),
                               GestureDetector(
@@ -328,7 +328,7 @@ class _Section1State extends State<Section1>
                                       .copyWith(fontSize: 12)),
                             ),
                             onTap: () {
-                              // Get.to(() => Registration());
+                              Get.toNamed("/enroll");
                             },
                           ),
                           GestureDetector(

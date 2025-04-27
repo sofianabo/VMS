@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // لاستيراد inputFormatters
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
@@ -17,10 +17,11 @@ class Textfildwithupper extends StatefulWidget {
     this.onChanged,
     this.enabled = true,
     this.hidePassword = false,
-    this.fieldType =
-        "text", // القيم الممكنة: "email" أو "password" أو "text" أو "phone" أو "number"
+    this.fieldType = "text",
     this.isError = false,
     this.IconButton,
+    this.customErrorMessage, // الجديد: رسالة الخطأ المخصصة
+    this.defaultErrorMessage, // الجديد: رسالة الخطأ الافتراضية لكل نوع حقل
   });
 
   final TextEditingController controller;
@@ -36,6 +37,8 @@ class Textfildwithupper extends StatefulWidget {
   final bool hidePassword;
   final String fieldType;
   final bool isError;
+  final String? customErrorMessage; // يمكن تمريرها من الخارج
+  final String? defaultErrorMessage; // رسالة افتراضية لكل نوع حقل
 
   @override
   State<Textfildwithupper> createState() => _TextfildwithupperState();
@@ -43,36 +46,55 @@ class Textfildwithupper extends StatefulWidget {
 
 class _TextfildwithupperState extends State<Textfildwithupper> {
   bool localError = false;
-  String errorMessage = "لا يسمح بترك الحقل فارغ";
+  late String errorMessage;
+
+  @override
+  void initState() {
+    super.initState();
+    // تحديد الرسالة الابتدائية بناء على ما إذا كان هناك رسالة مخصصة أو افتراضية
+    errorMessage = widget.customErrorMessage ??
+        widget.defaultErrorMessage ??
+        "لا يسمح بترك الحقل فارغ";
+  }
 
   void validateInput(String value) {
     bool isValid = true;
-    String error = "لا يسمح بترك الحقل فارغ";
+    String error = widget.customErrorMessage ??
+        widget.defaultErrorMessage ??
+        "لا يسمح بترك الحقل فارغ";
 
     if (widget.fieldType == "email") {
       RegExp emailRegex =
           RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
       isValid = emailRegex.hasMatch(value);
       if (!isValid) {
-        error = "عذرا البريد الإلكتروني غير صالح";
+        error = widget.customErrorMessage ??
+            widget.defaultErrorMessage ??
+            "عذرا البريد الإلكتروني غير صالح";
       }
     } else if (widget.fieldType == "password") {
       RegExp passwordRegex = RegExp(r"^[a-zA-Z0-9]{8,}$");
       isValid = passwordRegex.hasMatch(value);
       if (!isValid) {
-        error = "يجب أن لا تقل كلمة المرور عن 8 أحرف";
+        error = widget.customErrorMessage ??
+            widget.defaultErrorMessage ??
+            "يجب أن لا تقل كلمة المرور عن 8 أحرف";
       }
     } else if (widget.fieldType == "phone") {
-      RegExp phoneRegex = RegExp(r"^[0-9+]+$"); // ✅ يسمح فقط بالأرقام وعلامة +
+      RegExp phoneRegex = RegExp(r"^[0-9+]+$");
       isValid = phoneRegex.hasMatch(value);
       if (!isValid) {
-        error = "يُسمح بإدخال أرقام  وعلامة + فقط";
+        error = widget.customErrorMessage ??
+            widget.defaultErrorMessage ??
+            "يُسمح بإدخال أرقام وعلامة + فقط";
       }
     } else if (widget.fieldType == "number") {
-      RegExp numberRegex = RegExp(r"^[0-9]+$"); // ✅ يسمح فقط بالأرقام بدون "+"
+      RegExp numberRegex = RegExp(r"^[0-9]+$");
       isValid = numberRegex.hasMatch(value);
       if (!isValid) {
-        error = "يُسمح بإدخال الأرقام فقط";
+        error = widget.customErrorMessage ??
+            widget.defaultErrorMessage ??
+            "يُسمح بإدخال الأرقام فقط";
       }
     }
 
@@ -90,7 +112,6 @@ class _TextfildwithupperState extends State<Textfildwithupper> {
   Widget build(BuildContext context) {
     bool showError = widget.isError || localError;
 
-    // ✅ تحديد نوع لوحة المفاتيح بناءً على نوع الحقل
     TextInputType keyboardType;
     List<TextInputFormatter>? inputFormatters;
 
@@ -98,20 +119,16 @@ class _TextfildwithupperState extends State<Textfildwithupper> {
       keyboardType = TextInputType.emailAddress;
     } else if (widget.fieldType == "phone") {
       keyboardType = TextInputType.phone;
-      inputFormatters = [
-        FilteringTextInputFormatter.allow(
-            RegExp(r'[0-9+]')), // ✅ يسمح بالأرقام وعلامة +
-      ];
+      inputFormatters = [FilteringTextInputFormatter.allow(RegExp(r'[0-9+]'))];
     } else if (widget.fieldType == "number") {
       keyboardType = TextInputType.number;
-      inputFormatters = [
-        FilteringTextInputFormatter.digitsOnly, // ✅ يسمح فقط بالأرقام
-      ];
+      inputFormatters = [FilteringTextInputFormatter.digitsOnly];
     } else {
       keyboardType = TextInputType.text;
     }
 
     return Container(
+      height: 82,
       margin: const EdgeInsets.only(top: 2.0),
       width: widget.width ?? 250,
       child: Column(
@@ -151,9 +168,8 @@ class _TextfildwithupperState extends State<Textfildwithupper> {
               enabled: widget.enabled,
               readOnly: widget.readOnly,
               controller: widget.controller,
-              keyboardType: keyboardType, // ✅ تحديد نوع الكيبورد
-              inputFormatters:
-                  inputFormatters, // ✅ تحديد الفورمات لحقل الهاتف أو الرقم
+              keyboardType: keyboardType,
+              inputFormatters: inputFormatters,
               onChanged: (value) {
                 validateInput(value);
                 if (widget.Uptext == 'Username') {

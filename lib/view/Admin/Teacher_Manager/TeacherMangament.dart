@@ -316,6 +316,10 @@ class _TeacherManagementState extends State<TeacherManagement> {
                             controller: password,
                             hinttext: "Password".tr),
                         Textfildwithupper(
+                            customErrorMessage: cPassword.text.trim() != "" &&
+                                    cPassword.text.isNotEmpty
+                                ? "كلمات المرور غير متطابقة"
+                                : "لا يمكن ترك الحقل فارغ",
                             hidePassword: controller.ShowConfirmPassword,
                             IconButton: IconButton(
                                 onPressed: () {

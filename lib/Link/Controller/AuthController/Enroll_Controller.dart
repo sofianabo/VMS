@@ -1,60 +1,80 @@
-import 'dart:async';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class EnrollController extends GetxController {
-  final List<String> images = [
-    "assets/images/Enroll_Images/1.jpg",
-    "assets/images/Enroll_Images/2.jpg",
-    "assets/images/Enroll_Images/3.jpg",
-    "assets/images/Enroll_Images/4.jpg",
-    "assets/images/Enroll_Images/5.jpg",
-  ];
-//
-//   var currentPage = 0.obs;
-//   Timer? _timer;
-//   late PageController pageController;
-//
-//   @override
-//   void onInit() {
-//     pageController = PageController();
-//     super.onInit();
-//     _precacheImages(); // تحميل الصور مسبقاً
-//     WidgetsBinding.instance.addPostFrameCallback((_) {
-//       startAutoSlide();
-//     });
-//   }
-//
-//   Future<void> _precacheImages() async {
-//     for (var imagePath in images) {
-//       await precacheImage(AssetImage(imagePath), Get.context!);
-//     }
-//   }
-//
-//   @override
-//   void onClose() {
-//     _timer?.cancel();
-//     pageController.dispose();
-//     super.onClose();
-//   }
-//
-//   void startAutoSlide() {
-//     _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
-//       nextPage();
-//     });
-//   }
-//
-//   void nextPage() {
-//     final nextPage = currentPage.value + 1;
-//     if (nextPage < images.length) {
-//       currentPage.value = nextPage;
-//     } else {
-//       currentPage.value = 0;
-//     }
-//     pageController.animateToPage(
-//       currentPage.value,
-//       duration: const Duration(milliseconds: 800),
-//       curve: Curves.easeInOut,
-//     );
-//   }
+  bool Isloading = false;
+
+  SetIsloading(bool value) {
+    Isloading = value;
+    update();
+  }
+
+  bool ShowConfirmPassword = true;
+  bool ShowPassword = true;
+//here is new error validate
+  bool IsusernameError = false;
+  bool IsnameError = false;
+  bool IsLastnameError = false;
+  bool IsphoneError = false;
+  bool IsnidError = false;
+  bool IsEmailError = false;
+  bool IsPasswordError = false;
+  bool IsConfirmPasswordError = false;
+
+  void updateFieldError(String type, bool newValue) {
+    switch (type) {
+      case 'username':
+        IsusernameError = newValue;
+        break;
+      case 'name':
+        IsnameError = newValue;
+        break;
+      case 'last':
+        IsLastnameError = newValue;
+        break;
+      case 'email':
+        IsEmailError = newValue;
+        break;
+      case 'password':
+        IsPasswordError = newValue;
+        break;
+      case 'cpassword':
+        IsConfirmPasswordError = newValue;
+        break;
+      case 'phone':
+        IsphoneError = newValue;
+        break;
+      case 'nid':
+        IsnidError = newValue;
+        break;
+      default:
+        print("Error: Invalid type");
+    }
+    update();
+  }
+
+  ChangeShowConfirmPassword(bool value) {
+    ShowConfirmPassword = value;
+    print(value);
+    update();
+  }
+
+  ChangeShowPassword(bool value) {
+    ShowPassword = value;
+    print(value);
+    update();
+  }
+
+  void resetError() {
+    ShowConfirmPassword = true;
+    ShowPassword = true;
+    IsusernameError = false;
+    IsnameError = false;
+    IsphoneError = false;
+    IsnidError = false;
+    IsEmailError = false;
+    IsPasswordError = false;
+    IsConfirmPasswordError = false;
+    IsLastnameError = false;
+    update();
+  }
 }

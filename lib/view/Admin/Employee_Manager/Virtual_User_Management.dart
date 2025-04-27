@@ -296,6 +296,14 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                                                       hinttext: "Password".tr),
                                                 ),
                                                 Textfildwithupper(
+                                                    customErrorMessage: cPassword
+                                                                    .text
+                                                                    .trim() !=
+                                                                "" &&
+                                                            cPassword
+                                                                .text.isNotEmpty
+                                                        ? "كلمات المرور غير متطابقة"
+                                                        : "لا يمكن ترك الحقل فارغ",
                                                     onChanged: (value) {
                                                       if (value.isNotEmpty) {
                                                         Virtual_controller
