@@ -4,12 +4,12 @@ import 'package:get/get.dart';
 import 'package:pdf/widgets.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_All_Employee_API.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/SchoolTimeTableAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/SchoolTimeTableAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/ExamTableAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
-import 'package:vms_school/view/Admin/School_Management/SchoolTimeTable.dart';
+import 'package:vms_school/view/Admin/School_Management/Tables/SchoolTimeTable.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 
 class Deletestudyshareapi {

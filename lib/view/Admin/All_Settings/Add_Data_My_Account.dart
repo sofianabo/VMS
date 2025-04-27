@@ -6,11 +6,11 @@ import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_DropDown_Profile_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
 import 'package:vms_school/Translate/local_controller.dart';
-import 'package:vms_school/view/Admin/All_Settings/Wedgets/Button_Has_IconText.dart';
-import 'package:vms_school/view/Admin/All_Settings/Wedgets/Long_Text_Field.dart';
-import 'package:vms_school/view/Admin/All_Settings/Wedgets/Profile_DatePicker.dart';
-import 'package:vms_school/view/Admin/All_Settings/Wedgets/TextField_Profile.dart';
-import 'package:vms_school/view/Admin/All_Settings/Wedgets/Profile_DropDown.dart';
+import 'package:vms_school/widgets/Admin/AdminAllSettings/Button_Has_IconText.dart';
+import 'package:vms_school/widgets/Admin/AdminAllSettings/Long_Text_Field.dart';
+import 'package:vms_school/widgets/Admin/AdminAllSettings/Profile_DatePicker.dart';
+import 'package:vms_school/widgets/Admin/AdminAllSettings/Profile_DropDown.dart';
+import 'package:vms_school/widgets/Admin/AdminAllSettings/TextField_Profile.dart';
 
 class Add_Data_account extends StatefulWidget {
   const Add_Data_account({super.key});

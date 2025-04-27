@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllClassesModel.dart';
 
 class Dropdownclassescontroller extends GetxController {
   List<String> classes = [];

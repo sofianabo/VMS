@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/EditSchool.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/SchoolContentAPI/EditSchool.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Subject_Screen/Delete_Subject_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Subject_Screen/Edit_Subject_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/School_Content_Controller.dart';

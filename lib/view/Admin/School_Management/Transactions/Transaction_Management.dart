@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Transaction_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Transactions/Transaction_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Transaction_Controller.dart';
 import 'package:vms_school/view/Admin/School_Management/Transactions/Transaction_Management_Grid.dart';
-import 'package:vms_school/widgets/Admin_School/DropDowTransaction.dart';
+import 'package:vms_school/widgets/Admin/Admin_School/DropDowTransaction.dart';
 import 'package:vms_school/widgets/Calender.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 

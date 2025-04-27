@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Model/AdminModel/oneEmployeeAttendenceModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/EmployeeModels/oneEmployeeAttendenceModel.dart';
 
 class Oneemployeeattendencecontroller extends GetxController {
   late BuildContext context;

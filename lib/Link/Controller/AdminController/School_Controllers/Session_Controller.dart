@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllSessionModel.dart';
 
 class SessionController extends GetxController {
   var Sessionss = <Map<String, dynamic>>[].obs;

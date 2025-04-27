@@ -6,7 +6,7 @@ import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/Controller/AdminController/Location_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
-import 'package:vms_school/Link/Model/AdminModel/Location_Model.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/Location_Model.dart';
 
 class Get_Location_API {
   Get_Location_API(this.context);

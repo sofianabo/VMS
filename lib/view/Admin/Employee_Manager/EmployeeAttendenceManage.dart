@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Add_Employee_Attendence.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/IncreaseEmployeAttendenceAPI.dart';
-import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Employeeecontroller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Employeeecontroller.dart';
 import 'package:vms_school/view/Admin/Employee_Manager/EmployeeAttendenceManageGride.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';

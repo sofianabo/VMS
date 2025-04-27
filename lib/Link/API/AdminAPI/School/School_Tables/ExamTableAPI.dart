@@ -7,10 +7,10 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/DropDownExamTy
 import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/DropDownSemsesterAPI.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
-import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/ExamTableController.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllSemesterModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/ExamTableModel.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/ExamTableController.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllClassesModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllSemesterModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/ExamTableModel.dart';
 
 class Examtableapi {
   final ExamTableController c = Get.find<ExamTableController>();

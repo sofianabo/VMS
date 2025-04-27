@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllPenaltyModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllPenaltyModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllPenaltyModel.dart' as gr;
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllPenaltyModel.dart' as gr;
 
 class Penaltycontroller extends GetxController {
   var Penalties = <Map<String, dynamic>>[].obs;

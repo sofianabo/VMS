@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Transaction_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Transactions/Transaction_API.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Transaction_Model.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';

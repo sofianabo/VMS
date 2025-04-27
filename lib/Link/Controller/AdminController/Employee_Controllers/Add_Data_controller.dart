@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Update_Employee_Info.dart';
-import 'package:vms_school/Link/Model/AdminModel/My_Data_Model.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/My_Data_Model.dart';
 
 class Add_Data_controller extends GetxController {
   bool isLoading = true;

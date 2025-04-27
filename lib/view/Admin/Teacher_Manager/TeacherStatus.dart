@@ -4,10 +4,10 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownClas
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Subjects_API/Get_Subjects_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetTeacherAttendenceAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeacherAtendenceController.dart';
-import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherStatusGrid.dart';
-import 'package:vms_school/widgets/Admin_School/All_Screen_Sessions.dart';
-import 'package:vms_school/widgets/Admin_Teachers/DropDownTeacherStatus.dart';
+import 'package:vms_school/widgets/Admin/Admin_School/All_Screen_Sessions.dart';
+import 'package:vms_school/widgets/Admin/Admin_Teachers/DropDownTeacherStatus.dart';
 import 'package:vms_school/widgets/Calender.dart';
 import '../../../Icons_File/v_m_s__icons_icons.dart';
 import '../../../widgets/TextFormSearch.dart';

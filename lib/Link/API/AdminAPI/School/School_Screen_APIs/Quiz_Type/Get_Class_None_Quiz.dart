@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Teachernote_and_GradeReco.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllClassesModel.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 
 class Get_None_Class {

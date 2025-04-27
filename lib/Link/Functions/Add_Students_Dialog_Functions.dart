@@ -23,10 +23,10 @@ import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
 import 'package:vms_school/Link/Functions/Students_Illness_Funcation.dart';
 import 'package:vms_school/Link/Functions/Students_Vaccines_Funcation.dart';
-import 'package:vms_school/Link/Model/AdminModel/allGuardianModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/Students_Models/allGuardianModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
-import 'package:vms_school/widgets/Admin_Students/DropDown_Add_Students.dart';
+import 'package:vms_school/widgets/Admin/Admin_Students/DropDown_Add_Students.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';

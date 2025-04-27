@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
-import 'package:vms_school/Link/Model/AdminModel/Location_Model.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/Location_Model.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 

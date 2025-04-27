@@ -5,7 +5,7 @@ import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownGradeAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllStudentModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/Students_Models/AllStudentModel.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 
 class Getallstudentapi {

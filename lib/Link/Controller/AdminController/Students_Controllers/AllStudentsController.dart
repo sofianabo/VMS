@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllStudentModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllDivisionModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/Students_Models/AllStudentModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/Student_Info_model.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';

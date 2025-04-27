@@ -4,12 +4,12 @@ import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/GetAllStuden
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
-import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/Link/Functions/Add_Students_Dialog_Functions.dart';
 import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/view/Admin/Students_Manager/AllStudentGrid.dart';
-import 'package:vms_school/widgets/Admin_School/All_Screen_Sessions.dart';
-import 'package:vms_school/widgets/Admin_Students/DropDownAllStudents.dart';
+import 'package:vms_school/widgets/Admin/Admin_School/All_Screen_Sessions.dart';
+import 'package:vms_school/widgets/Admin/Admin_Students/DropDownAllStudents.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 
 class AllStudent extends StatefulWidget {

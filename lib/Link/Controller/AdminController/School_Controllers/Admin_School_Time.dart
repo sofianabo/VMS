@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllDivisionModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllTeacherModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/DropDownCuriculmModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/SchoolTimeModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllClassesModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllDivisionModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/TeacherModels/AllTeacherModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/DropDownCuriculmModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/SchoolTimeModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
-import 'package:vms_school/view/Admin/School_Management/SchoolTimeTable.dart';
+import 'package:vms_school/view/Admin/School_Management/Tables/SchoolTimeTable.dart';
 
 class AdminSchoolTimeController extends GetxController {
   String examClassIndex = "";

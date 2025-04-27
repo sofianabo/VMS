@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/StudentAttendenceAPI.dart';
-import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllStudentAttendenceModel.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
+import 'package:vms_school/Link/Model/AdminModel/Students_Models/AllStudentAttendenceModel.dart';
 
 class StudentAttendencController extends GetxController {
   List<Attendance> stud = [];

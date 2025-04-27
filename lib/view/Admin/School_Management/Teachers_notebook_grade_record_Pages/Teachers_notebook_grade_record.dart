@@ -11,7 +11,7 @@ import 'package:vms_school/Link/Functions/Add_Table_Quiz_Functions.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/School_Management/Teachers_notebook_grade_record_Pages/Teachers_notebook_grade_record_Grid.dart';
-import 'package:vms_school/widgets/Admin_Table/QuizType_DropDown.dart';
+import 'package:vms_school/widgets/Admin/Admin_Table/QuizType_DropDown.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';

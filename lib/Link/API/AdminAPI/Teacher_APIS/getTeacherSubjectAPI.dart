@@ -7,9 +7,9 @@ import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/oneStudentAttendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/TeacherSubjectsController.dart';
-import 'package:vms_school/Link/Model/AdminModel/OneStudentAttendenceModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/TeacherSubjectModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/oneEmployeeAttendenceModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/Students_Models/OneStudentAttendenceModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/TeacherModels/TeacherSubjectModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/EmployeeModels/oneEmployeeAttendenceModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';

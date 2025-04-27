@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Full_Employee_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/All_Virtual_Employee_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/All_Employee_Model.dart';
-import 'package:vms_school/Link/Model/AdminModel/One_Employee_Model.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllSessionModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/EmployeeModels/All_Employee_Model.dart';
+import 'package:vms_school/Link/Model/AdminModel/EmployeeModels/One_Employee_Model.dart';
 
 class Allempolyeecontroller extends GetxController {
   List<Employees> employees = [];

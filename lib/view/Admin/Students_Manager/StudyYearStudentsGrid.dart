@@ -16,8 +16,8 @@ import 'package:vms_school/Link/Model/AdminModel/Students_Models/PenaltiesAndRew
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/School_Management/Rewards_Pages/Rewards_Dialog.dart';
-import 'package:vms_school/widgets/Admin_Students/DropDownStudyYearStudents.dart';
-import 'package:vms_school/widgets/Admin_Students/Penality_And_Rewards_Dialog.dart';
+import 'package:vms_school/widgets/Admin/Admin_Students/DropDownStudyYearStudents.dart';
+import 'package:vms_school/widgets/Admin/Admin_Students/Penality_And_Rewards_Dialog.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';

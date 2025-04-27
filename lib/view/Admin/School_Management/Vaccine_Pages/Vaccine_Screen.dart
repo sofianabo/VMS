@@ -8,8 +8,8 @@ import 'package:vms_school/Link/Controller/AdminController/Location_controller.d
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/view/Admin/School_Management/Vaccine_Pages/Vaccine_Grid.dart';
-import 'package:vms_school/widgets/Admin_School/Vaccian_DropDown.dart';
-import 'package:vms_school/widgets/Admin_Students/DropDown_Add_Students.dart';
+import 'package:vms_school/widgets/Admin/Admin_School/Vaccian_DropDown.dart';
+import 'package:vms_school/widgets/Admin/Admin_Students/DropDown_Add_Students.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';

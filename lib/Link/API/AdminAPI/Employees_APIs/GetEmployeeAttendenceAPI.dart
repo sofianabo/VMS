@@ -6,10 +6,10 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownGrad
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/EmployeeAttendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllEmployeeAttendeceModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllStudentAttendenceModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllClassesModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/EmployeeModels/AllEmployeeAttendeceModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllSessionModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/Students_Models/AllStudentAttendenceModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dart';
 import '../../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';

@@ -14,7 +14,7 @@ import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/Students_Manager/Edite_Students_Drop_Files.dart';
-import 'package:vms_school/widgets/Admin_Students/DropDown_Add_Students.dart';
+import 'package:vms_school/widgets/Admin/Admin_Students/DropDown_Add_Students.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
 import 'package:vms_school/widgets/LargeTextField.dart';

@@ -8,7 +8,7 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Subjects_
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Subject_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCurriculumn_Controller.dart';
 import 'package:vms_school/view/Admin/School_Management/Curriculum_Pages/Curriculum_Grid.dart';
-import 'package:vms_school/widgets/Admin_School/DropDownCurriMgmt.dart';
+import 'package:vms_school/widgets/Admin/Admin_School/DropDownCurriMgmt.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';

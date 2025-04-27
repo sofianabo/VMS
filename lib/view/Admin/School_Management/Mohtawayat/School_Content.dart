@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Add_School_Content.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/School_Content_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/SchoolContentAPI/Add_School_Content.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/SchoolContentAPI/School_Content_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/School_Content_Controller.dart';
 import 'package:vms_school/view/Admin/School_Management/Mohtawayat/School_Content_Grid.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';

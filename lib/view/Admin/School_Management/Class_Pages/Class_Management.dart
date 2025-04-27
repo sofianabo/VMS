@@ -9,11 +9,11 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Class_API
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Virtual_Employee_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Class_Mgmt_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownGradeController.dart.dart';
-import 'package:vms_school/Link/Controller/WidgetController/Sessions_DropDown_Controller.dart';
+import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/Link/Functions/Class_Curriculm_Funcation.dart';
 import 'package:vms_school/view/Admin/School_Management/Class_Pages/Classes_Grid.dart';
-import 'package:vms_school/widgets/Admin_School/All_Screen_Sessions.dart';
-import 'package:vms_school/widgets/Admin_School/DropDownClassMgmt.dart';
+import 'package:vms_school/widgets/Admin/Admin_School/All_Screen_Sessions.dart';
+import 'package:vms_school/widgets/Admin/Admin_School/DropDownClassMgmt.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFieldDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';

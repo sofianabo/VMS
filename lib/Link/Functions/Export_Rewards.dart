@@ -11,7 +11,7 @@ import 'dart:html' as html; // استخدام html للويب
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Add_Students_Rewards.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Rewards_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/PenaltiesAndRewardsController.dart';
-import 'package:vms_school/widgets/Admin_Students/Penality_And_Rewards_Dialog.dart';
+import 'package:vms_school/widgets/Admin/Admin_Students/Penality_And_Rewards_Dialog.dart';
 
 Future saveRewardsAsPdf({
   required key,

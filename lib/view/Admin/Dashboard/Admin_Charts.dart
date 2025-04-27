@@ -1,7 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
-import 'package:vms_school/Link/Model/AdminModel/Dashboard_Model.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/Dashboard_Model.dart';
 import 'package:vms_school/Theme/themeController.dart';
 
 class BarChartSample1 extends StatefulWidget {

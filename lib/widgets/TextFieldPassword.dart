@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Controller/WidgetController/PasswordHintController.dart';
+import 'package:vms_school/Link/Controller/WidgetController/OtherWidget/PasswordHintController.dart';
 
 class TextFormPassword extends StatelessWidget {
   PasswordHintController pass = Get.find();

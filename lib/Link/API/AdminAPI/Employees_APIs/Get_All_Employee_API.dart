@@ -5,8 +5,8 @@ import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
-import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Employeeecontroller.dart';
-import 'package:vms_school/Link/Model/AdminModel/All_Employee_Model.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Employeeecontroller.dart';
+import 'package:vms_school/Link/Model/AdminModel/EmployeeModels/All_Employee_Model.dart';
 
 class Get_All_Employee_API {
   Get_All_Employee_API(this.context);

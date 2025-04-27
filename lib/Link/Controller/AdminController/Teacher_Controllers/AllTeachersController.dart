@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllClassesModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllTeacherModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/OneTeacherModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllClassesModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllSessionModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/TeacherModels/AllTeacherModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/TeacherModels/OneTeacherModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dart';
 
 class Allteachercontroller extends GetxController {

@@ -12,8 +12,8 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/view/Admin/Students_Manager/AllGuardianGrid.dart';
 import 'package:vms_school/view/Admin/Students_Manager/Students_Marks/Add_Marks_For_All.dart';
 import 'package:vms_school/view/Admin/Students_Manager/Students_Marks/Students_Marks_Grid.dart';
-import 'package:vms_school/widgets/Admin_Employee/Export_Data.dart';
-import 'package:vms_school/widgets/Admin_Students/DropdownStudentsMark.dart';
+import 'package:vms_school/widgets/Admin/Admin_Employee/Export_Data.dart';
+import 'package:vms_school/widgets/Admin/Admin_Students/DropdownStudentsMark.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';

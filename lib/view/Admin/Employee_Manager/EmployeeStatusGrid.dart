@@ -9,7 +9,7 @@ import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/EmployeeAttendenceBy
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/GetEmployeeAttendenceAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/EmployeeAttendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/oneEmployeeAttendenceController.dart';
-import 'package:vms_school/Link/Model/AdminModel/oneEmployeeAttendenceModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/EmployeeModels/oneEmployeeAttendenceModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';

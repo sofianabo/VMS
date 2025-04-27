@@ -4,7 +4,7 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Quiz_Type
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Quiz_Type/Get_Quiz_Type_For_Opiration.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Teachernote_and_GradeReco.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Quiz_Type_For_Operation_Model.dart';
-import 'package:vms_school/widgets/Admin_Table/QuizType_DropDown.dart';
+import 'package:vms_school/widgets/Admin/Admin_Table/QuizType_DropDown.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 

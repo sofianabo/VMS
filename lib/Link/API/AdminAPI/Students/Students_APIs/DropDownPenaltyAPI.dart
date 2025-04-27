@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownPenaltyController.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllPenaltyModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllPenaltyModel.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 
 class Get_All_Benality_API {

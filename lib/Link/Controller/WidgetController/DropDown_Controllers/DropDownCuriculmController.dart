@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Model/AdminModel/DropDownCuriculmModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/DropDownCuriculmModel.dart';
 
 class Dropdowncuriculmcontroller extends GetxController {
   List<String> curiculmList = [];

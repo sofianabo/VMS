@@ -9,7 +9,7 @@ import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Se
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Subject_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeacherAtendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllSessionModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllSessionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Subject_Model.dart';
 
 class Get_Subject_Screen_API {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Controller/HomeScreenController.dart';
+import 'package:vms_school/Link/Controller/HomeController/HomeScreenController.dart';
 import 'package:vms_school/view/Auth/LoginScreen.dart';
 import 'package:vms_school/widgets/Responsive.dart';
 

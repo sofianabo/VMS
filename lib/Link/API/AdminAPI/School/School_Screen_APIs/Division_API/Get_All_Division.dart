@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
-import 'package:vms_school/Link/Controller/AdminController/Years_Controllers/Divisions_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Divisions_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Division_Model.dart';
 
 class Get_All_Division_API {

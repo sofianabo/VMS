@@ -3,7 +3,7 @@ import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
-import 'package:vms_school/Link/Model/AdminModel/My_Data_Model.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/My_Data_Model.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/main.dart';
 

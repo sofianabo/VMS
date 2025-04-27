@@ -9,7 +9,7 @@ import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Pe
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Labrary_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCurriculumn_Controller.dart';
-import 'package:vms_school/Link/Model/AdminModel/AllPenaltyModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllPenaltyModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Curriculum_Model.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Vaccines_Model.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Labrary_Model.dart';

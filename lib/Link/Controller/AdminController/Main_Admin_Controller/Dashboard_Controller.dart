@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Model/AdminModel/Dashboard_Model.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/Dashboard_Model.dart';
 
 class Dashboard_Controller extends GetxController {
   DashboardModel? dsh;
