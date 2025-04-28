@@ -207,6 +207,7 @@ class Languages {
       'Next': 'التالي',
 
       'AboutUs': 'حول',
+      'You Don`t Have Account ?': 'ليس لديك حساب ؟',
       'WhyUs': 'لماذا نحن',
       'Programs': 'البرنامج',
       'Enrollment': 'التسجيل',
@@ -1116,6 +1117,7 @@ class Languages {
       'National ID': 'National ID',
       'Set All As a Holiday': 'Set All As a Holiday',
       'Cause': 'Cause',
+      'You Don`t Have Account ?': 'You Don`t Have Account ?',
       'Enroll Now': 'Enroll Now',
       'You Have Account ?': 'You Have Account ?',
       'Enter The Reason For Absence': 'Enter The Reason For Absence',

@@ -133,6 +133,7 @@ class BirthDate extends StatelessWidget {
     final Allempolyeecontroller controller = Get.put(Allempolyeecontroller());
     return Obx(
       () => Container(
+        height: 80,
         width: width,
         alignment: Alignment.center,
         child: Column(
@@ -140,7 +141,7 @@ class BirthDate extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 5.0),
+              padding: const EdgeInsets.only(bottom: 3.0),
               child: RichText(
                 text: TextSpan(
                   text: Uptext,
@@ -209,12 +210,9 @@ class BirthDate extends StatelessWidget {
             ),
             // ✅ عرض رسالة خطأ إذا كان هناك خطأ
             if (isError)
-              const Padding(
-                padding: EdgeInsets.only(top: 5.0),
-                child: Text(
-                  "يجب إدخال تاريخ صحيح",
-                  style: TextStyle(color: Colors.red, fontSize: 12),
-                ),
+              Text(
+                "يجب إدخال تاريخ صحيح",
+                style: TextStyle(color: Colors.red, fontSize: 12),
               ),
           ],
         ),
@@ -246,13 +244,14 @@ class JoinDate extends StatelessWidget {
     return Obx(
       () => Container(
         width: width,
+        height: 80,
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 5.0),
+              padding: const EdgeInsets.only(bottom: 3.0),
               child: RichText(
                 text: TextSpan(
                   text: Uptext,
@@ -321,14 +320,10 @@ class JoinDate extends StatelessWidget {
                 ),
               ),
             ),
-            // ✅ عرض رسالة خطأ إذا كان هناك خطأ
             if (isError)
-              const Padding(
-                padding: EdgeInsets.only(top: 5.0),
-                child: Text(
-                  "يجب إدخال تاريخ صحيح",
-                  style: TextStyle(color: Colors.red, fontSize: 12),
-                ),
+              Text(
+                "يجب إدخال تاريخ صحيح",
+                style: TextStyle(color: Colors.red, fontSize: 12),
               ),
           ],
         ),

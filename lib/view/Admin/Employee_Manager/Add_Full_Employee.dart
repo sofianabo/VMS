@@ -151,7 +151,7 @@ class _Add_Full_EmployeeState extends State<Add_Full_Employee> {
               width: 520,
               child: SingleChildScrollView(
                 child: Column(
-                  spacing: 10,
+                  spacing: 2,
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
@@ -159,7 +159,7 @@ class _Add_Full_EmployeeState extends State<Add_Full_Employee> {
                       child: Wrap(
                         spacing: 20.0,
                         crossAxisAlignment: WrapCrossAlignment.center,
-                        runSpacing: 20.0,
+                        runSpacing: 2.0,
                         alignment: screenWidth >= 589
                             ? WrapAlignment.spaceBetween
                             : WrapAlignment.center,
@@ -194,6 +194,7 @@ class _Add_Full_EmployeeState extends State<Add_Full_Employee> {
                             ],
                           ),
                           Column(
+                            spacing: 2.0,
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Textfildwithupper(
@@ -211,24 +212,21 @@ class _Add_Full_EmployeeState extends State<Add_Full_Employee> {
                                   controller: firstName,
                                   Uptext: "First Name".tr,
                                   hinttext: "First Name".tr),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 22.0),
-                                child: Textfildwithupper(
-                                    onChanged: (value) {
-                                      if (value.isNotEmpty) {
-                                        controller.updateFieldError(
-                                            "last", false);
-                                      }
-                                    },
-                                    isError: controller.IsLastError,
-                                    isRequired: true,
-                                    width: screenWidth >= 600
-                                        ? 250
-                                        : (screenWidth) - 70,
-                                    controller: lastName,
-                                    Uptext: "Last Name".tr,
-                                    hinttext: "Last Name".tr),
-                              ),
+                              Textfildwithupper(
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      controller.updateFieldError(
+                                          "last", false);
+                                    }
+                                  },
+                                  isError: controller.IsLastError,
+                                  isRequired: true,
+                                  width: screenWidth >= 600
+                                      ? 250
+                                      : (screenWidth) - 70,
+                                  controller: lastName,
+                                  Uptext: "Last Name".tr,
+                                  hinttext: "Last Name".tr),
                             ],
                           )
                         ],
@@ -237,7 +235,7 @@ class _Add_Full_EmployeeState extends State<Add_Full_Employee> {
                     Wrap(
                       spacing: 20.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
@@ -271,7 +269,7 @@ class _Add_Full_EmployeeState extends State<Add_Full_Employee> {
                     Wrap(
                       spacing: 20.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
@@ -299,7 +297,7 @@ class _Add_Full_EmployeeState extends State<Add_Full_Employee> {
                     Wrap(
                       spacing: 20.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
@@ -327,7 +325,7 @@ class _Add_Full_EmployeeState extends State<Add_Full_Employee> {
                     Wrap(
                       spacing: 20.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
@@ -360,8 +358,8 @@ class _Add_Full_EmployeeState extends State<Add_Full_Employee> {
                     ),
                     Wrap(
                       spacing: 20.0,
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      crossAxisAlignment: WrapCrossAlignment.end,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
@@ -382,7 +380,7 @@ class _Add_Full_EmployeeState extends State<Add_Full_Employee> {
                     Wrap(
                       spacing: 20.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         Dropdownallemployee(
@@ -405,20 +403,24 @@ class _Add_Full_EmployeeState extends State<Add_Full_Employee> {
                     Wrap(
                       spacing: 20.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
-                        Text(
-                          "Social Media Info".tr,
-                          style: Get.theme.textTheme.titleLarge!
-                              .copyWith(fontSize: 20),
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(top: 15.0, bottom: 25.0),
+                          child: Text(
+                            "Social Media Info".tr,
+                            style: Get.theme.textTheme.titleLarge!
+                                .copyWith(fontSize: 20),
+                          ),
                         )
                       ],
                     ),
                     Wrap(
                       spacing: 20.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
@@ -438,7 +440,7 @@ class _Add_Full_EmployeeState extends State<Add_Full_Employee> {
                     Wrap(
                       spacing: 20.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
@@ -458,20 +460,24 @@ class _Add_Full_EmployeeState extends State<Add_Full_Employee> {
                     Wrap(
                       spacing: 20.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
-                        Text(
-                          "Employee Bank Info".tr,
-                          style: Get.theme.textTheme.titleLarge!
-                              .copyWith(fontSize: 20),
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(top: 15.0, bottom: 25.0),
+                          child: Text(
+                            "Employee Bank Info".tr,
+                            style: Get.theme.textTheme.titleLarge!
+                                .copyWith(fontSize: 20),
+                          ),
                         )
                       ],
                     ),
                     Wrap(
                       spacing: 20.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
@@ -491,7 +497,7 @@ class _Add_Full_EmployeeState extends State<Add_Full_Employee> {
                     Wrap(
                       spacing: 20.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
@@ -511,7 +517,7 @@ class _Add_Full_EmployeeState extends State<Add_Full_Employee> {
                     Wrap(
                       spacing: 20.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
@@ -522,14 +528,17 @@ class _Add_Full_EmployeeState extends State<Add_Full_Employee> {
                             hinttext: "IFSC Code".tr),
                       ],
                     ),
-                    Divider(
-                      color: Get.theme.primaryColor,
-                      height: 1,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15.0, bottom: 25.0),
+                      child: Divider(
+                        color: Get.theme.primaryColor,
+                        height: 1,
+                      ),
                     ),
                     Wrap(
                       spacing: 20.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         LargeTextField(
@@ -542,7 +551,7 @@ class _Add_Full_EmployeeState extends State<Add_Full_Employee> {
                     Wrap(
                       spacing: 20.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         LargeTextField(
@@ -562,7 +571,7 @@ class _Add_Full_EmployeeState extends State<Add_Full_Employee> {
                     Wrap(
                       spacing: 20.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         LargeTextField(
@@ -582,7 +591,7 @@ class _Add_Full_EmployeeState extends State<Add_Full_Employee> {
                     Wrap(
                       spacing: 20.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         LargeTextField(

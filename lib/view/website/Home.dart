@@ -21,6 +21,7 @@ class Home extends StatefulWidget {
 
 void _precacheImage(BuildContext context) {
   precacheImage(AssetImage("assets/images/Enroll_Images/2.jpg"), context);
+  precacheImage(AssetImage("assets/images/Enroll_Images/5.jpg"), context);
 }
 
 class _HomeState extends State<Home> {
