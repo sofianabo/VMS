@@ -29,9 +29,19 @@ class RoleBasedMiddleware extends GetMiddleware {
       }
     }
 
+    if (isLoggedIn && (role == "guardian")) {
+      CheeckGuaIsVeri();
+      if (route != '/guardian') {
+        return const RouteSettings(name: '/guardian');
+      }
+    }
+
     // إذا كان مسجل دخول ولكن ليس له صلاحيات admin
-    if (isLoggedIn && role != "admin" && role != "subAdmin") {
-      if (route == '/admin') {
+    if (isLoggedIn &&
+        role != "admin" &&
+        role != "subAdmin" &&
+        role != "guardian") {
+      if (route == '/admin' || route == '/guardian') {
         return const RouteSettings(name: '/home');
       }
     }
@@ -72,5 +82,20 @@ CheeckHasData() {
         Get_My_Profile.Get_My_Profile_Data();
       });
     }
+  }
+}
+
+CheeckGuaIsVeri() {
+  final con = Get.put(Add_Data_controller());
+  bool? isVerified = prefs!.getBool("isVerified");
+  con.setisVerified(isVerified ?? false);
+  con.setroll(prefs!.getString("role") ?? "");
+  if (con.isVerified == false) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.dialog(
+        VerifingCodeDialog(),
+        barrierDismissible: false,
+      );
+    });
   }
 }

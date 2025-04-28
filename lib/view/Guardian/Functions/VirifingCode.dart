@@ -1,19 +1,23 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/API/AdminAPI/Users/Resend_Verifying_Code.dart';
-import 'package:vms_school/Link/API/AdminAPI/Users/Verify.dart';
-import 'package:vms_school/Link/API/AuthAPI/LogoutAPI.dart';
-import 'package:vms_school/main.dart';
+import 'package:vms_school/Link/API/API.dart';
+import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/Link/API/Guardians_API/Guardians_Verifing_API.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 
-class VerifingCodeDialog extends StatefulWidget {
+class GuaVerifingDialog extends StatefulWidget {
+  String email;
+  String data;
+
+  GuaVerifingDialog({super.key, required this.email, required this.data});
   @override
-  _VerifingCodeDialogState createState() => _VerifingCodeDialogState();
+  _GuaVerifingDialogState createState() => _GuaVerifingDialogState();
 }
 
 enum LoadingStatus { loading, done, normal }
 
-class _VerifingCodeDialogState extends State<VerifingCodeDialog> {
+class _GuaVerifingDialogState extends State<GuaVerifingDialog> {
   final TextEditingController controller1 = TextEditingController();
   final TextEditingController controller2 = TextEditingController();
   final TextEditingController controller3 = TextEditingController();
@@ -60,7 +64,7 @@ class _VerifingCodeDialogState extends State<VerifingCodeDialog> {
   }
 
   // This method validates the code and handles the "Enter" key press.
-  void validateCode() async {
+  void validateCode({required String data}) async {
     setState(() {
       showError = controllers.any((controller) => controller.text.isEmpty);
     });
@@ -70,7 +74,9 @@ class _VerifingCodeDialogState extends State<VerifingCodeDialog> {
         isLoading = LoadingStatus.loading;
       });
       String code = controllers.map((controller) => controller.text).join();
-      if (await Verify_Account_API().Verify_Account(code: code) == 200) {
+      if (await Verify_Gua_API().Verify_Account(
+              email: widget.email, code: code, enroll_token: data) ==
+          200) {
         setState(() {
           isLoading = LoadingStatus.done;
           Get.back();
@@ -83,12 +89,28 @@ class _VerifingCodeDialogState extends State<VerifingCodeDialog> {
     }
   }
 
-  void SendEmailCode() async {
-    print("object");
+  Resend_Verifying_Code(String data) async {
+    Dio dio = Dio();
+    String myURI = "$hostPort$resendCodeGurdian";
+    try {
+      var response = await dio.post(data: {"enroll_token": data}, myURI);
+      if (response.statusCode == 200) {
+      } else {
+        ErrorHandler.handleDioError(DioException(
+          requestOptions: response.requestOptions,
+          response: response,
+          type: DioExceptionType.badResponse,
+        ));
+      }
+      return response.statusCode;
+    } catch (e) {}
+  }
+
+  void SendEmailCode({required String data}) async {
     setState(() {
       isEmailLoading = LoadingStatus.loading;
     });
-    if (await Resend_Verifying_Code_API().Resend_Verifying_Code() == 200) {
+    if (await Resend_Verifying_Code(data) == 200) {
       setState(() {
         isEmailLoading = LoadingStatus.normal;
       });
@@ -122,11 +144,11 @@ class _VerifingCodeDialogState extends State<VerifingCodeDialog> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text("${prefs!.getString("email")}"),
+                    Text("${widget.email}"),
                     if (isEmailLoading == LoadingStatus.normal)
                       GestureDetector(
                         onTap: () {
-                          SendEmailCode();
+                          SendEmailCode(data: widget.data);
                         },
                         child: Text(
                           "Resend!",
@@ -167,7 +189,7 @@ class _VerifingCodeDialogState extends State<VerifingCodeDialog> {
                   color: Get.theme.primaryColor,
                   text: "Verify",
                   onPressed: () {
-                    validateCode();
+                    validateCode(data: '${widget.data}');
                   },
                 )
               : isLoading == LoadingStatus.loading
@@ -206,15 +228,15 @@ class _VerifingCodeDialogState extends State<VerifingCodeDialog> {
                     ),
           GestureDetector(
             onTap: () async {
-              await Logoutapi(context).Logout(Type: "now");
+              Get.back();
             },
             child: Row(
               children: [
-                Icon(Icons.logout, size: 14, color: Color(0xffB03D3D)),
+                Icon(Icons.close_sharp, size: 14, color: Color(0xffB03D3D)),
                 SizedBox(width: 8),
                 Text(
                   style: TextStyle(fontSize: 12, color: Color(0xffB03D3D)),
-                  "Logout from Current Session".tr,
+                  "Stop Completion and Verification".tr,
                 ),
               ],
             ),
@@ -253,7 +275,7 @@ class _VerifingCodeDialogState extends State<VerifingCodeDialog> {
           }
         },
         onEditingComplete: () {
-          validateCode();
+          validateCode(data: '${widget.data}');
         },
         onTap: () {
           if (index != 0) {

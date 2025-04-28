@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AuthController/Enroll_Controller.dart';
-import 'package:vms_school/Link/Model/AuthModel/UserModel.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
+import 'package:vms_school/view/Guardian/Functions/VirifingCode.dart';
 
 class Enroll_API {
   Dio dio = Dio();
@@ -33,15 +33,13 @@ class Enroll_API {
           options: getDioOptions());
 
       if (response.statusCode == 200) {
-        UserModel user = UserModel.fromJson(response.data);
         controller.SetIsloading(false);
-        // prefs!.setBool("isLogin", true);
-        // prefs!.setString("role", user.roll!);
-        // prefs!.setBool("hasData", user.hasData!);
-        // prefs!.setBool("isVerified", user.verified!);
-        // prefs!.setString("email", user.email!);
-        // prefs!.setString("fullname", user.fullName.toString());
-        Get.offAllNamed('/admin');
+        Get.dialog(
+            barrierDismissible: false,
+            GuaVerifingDialog(
+              email: email,
+              data: response.data['enroll_token'],
+            ));
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

@@ -23,6 +23,7 @@ class ErrorHandler {
   static Future<void> _clearSessionAndRedirect() async {
     await prefs?.clear();
     Get.offAllNamed('/home');
+    ErrorMessage("انتهت صلاحية الجلسة قم بتسجيل الدخول مرة اخرى");
   }
 
   static String _getErrorMessage(DioException error) {
@@ -141,7 +142,7 @@ void ErrorMessage(String message) {
               fontSize: 14,
               height: 1.4,
             ),
-            textAlign: TextAlign.right,
+            textAlign: TextAlign.center,
             softWrap: true,
             overflow: TextOverflow.ellipsis,
             maxLines: 10,

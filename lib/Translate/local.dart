@@ -207,6 +207,7 @@ class Languages {
       'Next': 'التالي',
 
       'AboutUs': 'حول',
+      'Stop Completion and Verification': 'ايقاف الاكمال والتحقق',
       'You Don`t Have Account ?': 'ليس لديك حساب ؟',
       'WhyUs': 'لماذا نحن',
       'Programs': 'البرنامج',
@@ -753,6 +754,7 @@ class Languages {
       'Presence this session students': 'Presence 2024 students',
       'Total this year': 'Total this year',
       'Add': 'Add',
+      'Stop Completion and Verification': 'Stop Completion and Verification',
       'Penalty En - Name': 'Penalty En - Name',
       'Penalty Ar - Name': 'Penalty Ar - Name',
       'Details': 'Details',
