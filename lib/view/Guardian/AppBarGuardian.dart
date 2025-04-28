@@ -2,22 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
-import 'package:vms_school/Link/API/AdminAPI/Get_My_Profile.dart';
-import 'package:vms_school/Link/Controller/AdminController/DrowerController.dart';
-import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
-import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
-import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
-import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Students_Marks_Controller.dart';
 import 'package:vms_school/Link/Controller/GuardianController/GuardianMainScreenController.dart';
-import 'package:vms_school/Theme/ThemeData.dart';
 import 'package:vms_school/main.dart';
-import 'package:vms_school/view/Admin/All_Settings/Verifing_Code_Dialog.dart';
-import 'package:vms_school/view/Admin/Drower_Sidebar.dart';
-import 'package:vms_school/view/Admin/Search_Bar_widget.dart';
 import 'package:vms_school/widgets/Responsive.dart';
-import 'package:vms_school/widgets/SidbarAnimation.dart';
 
 class Appbarguardian extends StatefulWidget {
   Appbarguardian({super.key});

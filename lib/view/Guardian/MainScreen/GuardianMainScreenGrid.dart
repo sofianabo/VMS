@@ -5,13 +5,20 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Curriculm_API/Delete_Curriculm_API.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Students_Illness.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Students_Vaccines.dart';
 import 'package:vms_school/Link/API/DownloadFiles.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/PenaltiesAndRewardsController.dart';
 import 'package:vms_school/Link/Controller/GuardianController/GuardianMainScreenController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCurriculumn_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
+import 'package:vms_school/widgets/Guardian/ChildPenaltiesDialog.dart';
+import 'package:vms_school/widgets/Guardian/ChildRewardsDialog.dart';
 import 'package:vms_school/widgets/PDF_View.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
@@ -24,22 +31,28 @@ class GuardianMainScreenGrid extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
 
     int getCrossAxisCount() {
-      if (screenWidth >= 1132) return 4;
-      if (screenWidth >= 950) return 3;
-      if (screenWidth >= 620) return 2;
+      if (screenWidth >= 1800) return 5;
+      if (screenWidth >= 1278) return 4;
+      if (screenWidth >= 920) return 3;
+      if (screenWidth >= 906) return 3;
+      if (screenWidth >= 769) return 2;
       return 1;
     }
 
     double getChildAspectRatio() {
-      if (screenWidth >= 1132) return 0.75;
-
+      if (screenWidth >= 1800) return 0.9;
+      if (screenWidth >= 1410) return 1.1;
+      if (screenWidth >= 1278) return 0.8;
+      if (screenWidth >= 1149) return 1;
       if (screenWidth >= 1070) return 0.9;
-      if (screenWidth >= 950) return 0.87;
-      if (screenWidth >= 838) return 1.2;
-      if (screenWidth >= 769) return 1.05;
-      if (screenWidth >= 620) return 0.8;
-      if (screenWidth >= 539) return 1.4;
-      return 0.85;
+      if (screenWidth >= 920) return 0.85;
+      if (screenWidth >= 906) return 0.75;
+      if (screenWidth >= 769) return 1.1;
+      if (screenWidth >= 616) return 1.92;
+      if (screenWidth >= 527) return 1.6;
+      if (screenWidth >= 400) return 1.1;
+
+      return 1;
     }
 
     return Directionality(
@@ -144,7 +157,7 @@ class GuardianMainScreenGrid extends StatelessWidget {
                               blurRadius: 1)
                         ]),
                     child: Column(
-                      spacing: 10,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // control.filteredStudents[index].fileId !=
@@ -195,147 +208,225 @@ class GuardianMainScreenGrid extends StatelessWidget {
                         //       ),
                         //     ),
                         //   ),
+
+                        Expanded(
+                          child: Center(
+                            child: Text(
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                prefs!.getString(languageKey) == "ar"
+                                    ? "الاسم العربي" //"${control.filteredCurriculum[index].name}"
+                                    : "english name", //"${control.filteredCurriculum[index].enName}"
+                                style: Get.theme.textTheme.titleLarge!
+                                    .copyWith(fontSize: 18)),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 20.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "the fisrt class".tr,
+                                // + " ${control.filteredCurriculum[index].maxMark}"
+                                style: Get.theme.textTheme.bodyMedium,
+                              ),
+                              Text(
+                                "the first division"
+                                    .tr, //  + " ${control.filteredCurriculum[index].passingMark}"
+                                style: Get.theme.textTheme.bodyMedium,
+                              ),
+                            ],
+                          ),
+                        ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 5.0, bottom: 5.0),
-                                child: Center(
-                                  child: Text(
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      prefs!.getString(languageKey) == "ar"
-                                          ? "الاسم العربي" //"${control.filteredCurriculum[index].name}"
-                                          : "english name", //"${control.filteredCurriculum[index].enName}"
-                                      style: Get.theme.textTheme.titleLarge!
-                                          .copyWith(fontSize: 18)),
+                            PopupMenuButton<String>(
+                              icon: Container(
+                                height: 40,
+                                width: 40,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Get.theme.primaryColor,
+                                ),
+                                child: Icon(
+                                  VMS_Icons.dose,
+                                  size: 16,
+                                  color: Colors.white,
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text("the fisrt class".tr
-                                    // + " ${control.filteredCurriculum[index].maxMark}"
+
+                              itemBuilder: (BuildContext context) {
+                                return [
+                                  PopupMenuItem<String>(
+                                    value: 'Vaccines',
+                                    child: Text('Vaccines'.tr,
+                                        style: Get.theme.textTheme.bodyMedium),
+                                    onTap: () {
+                                      Get.find<Vaccines_Controller>()
+                                          .initialdata();
+                                      //  Get_Students_Vacciness_API(
+                                      //         context)
+                                      //     .Get_Students_Vacciness(
+                                      //         studentId: control
+                                      //             .filteredStudents[index]
+                                      //             .id,
+                                      //         index_of_student: index);
+                                    },
+                                  ),
+                                  PopupMenuItem<String>(
+                                    value: 'Illness',
+                                    child: Text(
+                                      'Illness'.tr,
+                                      style: Get.theme.textTheme.bodyMedium,
                                     ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 5.0, bottom: 5.0),
-                                  child: Text("the first division"
-                                          .tr //  + " ${control.filteredCurriculum[index].passingMark}"
-                                      ),
+                                    onTap: () {
+                                      Get.find<Illness_Controller>()
+                                          .initialdata();
+                                      //  Get_Students_Illness_API(
+                                      //         context)
+                                      //     .Get_Students_Illness(
+                                      //         studentId: control
+                                      //             .filteredStudents[index]
+                                      //             .id,
+                                      //         index_of_Student: index);
+                                    },
+                                  ),
+                                ];
+                              },
+                              onSelected: (String value) {
+                                // Handle selection here
+                              },
+                              color: Get.theme.cardColor, // لون الخلفية
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(5), // زوايا دائرية
+                              ),
+                            ),
+                            Container(
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                  color: Theme.of(context).cardColor,
+                                  borderRadius: BorderRadius.circular(5),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                        color: Colors.black12,
+                                        offset: Offset(0, 2),
+                                        blurRadius: 1)
+                                  ]),
+                              child: IconButton(
+                                  style: ButtonStyle(
+                                      backgroundColor: WidgetStatePropertyAll(
+                                          Get.theme.primaryColor),
+                                      shape: WidgetStatePropertyAll(
+                                          RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(5))))),
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.access_time,
+                                      size: 20, color: Colors.white)),
+                            ),
+                            Container(
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                  color: Theme.of(context).cardColor,
+                                  borderRadius: BorderRadius.circular(5),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                        color: Colors.black12,
+                                        offset: Offset(0, 2),
+                                        blurRadius: 1)
+                                  ]),
+                              child: IconButton(
+                                  style: ButtonStyle(
+                                      backgroundColor: WidgetStatePropertyAll(
+                                          Get.theme.primaryColor),
+                                      shape: WidgetStatePropertyAll(
+                                          RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(5))))),
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                      Icons.my_library_books_outlined,
+                                      size: 16,
+                                      color: Colors.white)),
+                            ),
+                            PopupMenuButton<String>(
+                              icon: Container(
+                                height: 40,
+                                width: 40,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Get.theme.primaryColor,
                                 ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              width: 35,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                  color: Theme.of(context).cardColor,
-                                  borderRadius: BorderRadius.circular(5),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                        color: Colors.black12,
-                                        offset: Offset(0, 2),
-                                        blurRadius: 1)
-                                  ]),
-                              child: IconButton(
-                                  style: ButtonStyle(
-                                      backgroundColor: WidgetStatePropertyAll(
-                                          Get.theme.primaryColor),
-                                      shape: WidgetStatePropertyAll(
-                                          RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(5))))),
-                                  onPressed: () {},
-                                  icon: const Icon(VMS_Icons.bin,
-                                      size: 16, color: Colors.white)),
-                            ),
-                            Container(
-                              width: 35,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                  color: Theme.of(context).cardColor,
-                                  borderRadius: BorderRadius.circular(5),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                        color: Colors.black12,
-                                        offset: Offset(0, 2),
-                                        blurRadius: 1)
-                                  ]),
-                              child: IconButton(
-                                  style: ButtonStyle(
-                                      backgroundColor: WidgetStatePropertyAll(
-                                          Get.theme.primaryColor),
-                                      shape: WidgetStatePropertyAll(
-                                          RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(5))))),
-                                  onPressed: () {},
-                                  icon: const Icon(VMS_Icons.bin,
-                                      size: 16, color: Colors.white)),
-                            ),
-                            Container(
-                              width: 35,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                  color: Theme.of(context).cardColor,
-                                  borderRadius: BorderRadius.circular(5),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                        color: Colors.black12,
-                                        offset: Offset(0, 2),
-                                        blurRadius: 1)
-                                  ]),
-                              child: IconButton(
-                                  style: ButtonStyle(
-                                      backgroundColor: WidgetStatePropertyAll(
-                                          Get.theme.primaryColor),
-                                      shape: WidgetStatePropertyAll(
-                                          RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(5))))),
-                                  onPressed: () {},
-                                  icon: const Icon(VMS_Icons.bin,
-                                      size: 16, color: Colors.white)),
-                            ),
-                            Container(
-                              width: 35,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                  color: Theme.of(context).cardColor,
-                                  borderRadius: BorderRadius.circular(5),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                        color: Colors.black12,
-                                        offset: Offset(0, 2),
-                                        blurRadius: 1)
-                                  ]),
-                              child: IconButton(
-                                  style: ButtonStyle(
-                                      backgroundColor: WidgetStatePropertyAll(
-                                          Get.theme.primaryColor),
-                                      shape: WidgetStatePropertyAll(
-                                          RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(5))))),
-                                  onPressed: () {},
-                                  icon: const Icon(VMS_Icons.bin,
-                                      size: 16, color: Colors.white)),
+                                child: Icon(
+                                  Icons.analytics_sharp,
+                                  size: 16,
+                                  color: Colors.white,
+                                ),
+                              ),
+
+                              itemBuilder: (BuildContext context) {
+                                return [
+                                  PopupMenuItem<String>(
+                                    value: 'Rewards',
+                                    child: Text('Rewards'.tr,
+                                        style: Get.theme.textTheme.bodyMedium),
+                                    onTap: () {
+                                      final controllers = Get.put(
+                                          Penaltiesandrewardscontroller());
+                                      //  controllers.fetchRewards(int.parse(control
+                                      // .filteredStudents![index].id
+                                      // .toString()));
+
+                                      //       Get.dialog(
+                                      //   barrierDismissible: false,
+                                      //   Childrewardsdialog(
+                                      //       Id: control.filteredStudents![index].id
+                                      //           .toString(),
+                                      //       name: control
+                                      //           .filteredStudents![index].fullName
+                                      //           .toString()),
+                                      // );
+                                    },
+                                  ),
+                                  PopupMenuItem<String>(
+                                    value: 'Penalties',
+                                    child: Text(
+                                      'Penalties'.tr,
+                                      style: Get.theme.textTheme.bodyMedium,
+                                    ),
+                                    onTap: () {
+                                      final controllers = Get.put(
+                                          Penaltiesandrewardscontroller());
+                                      //         controllers.fetchPenalties(int.parse(control
+                                      // .filteredStudents![index].id
+                                      // .toString()));
+
+                                      //            Get.dialog(
+                                      //   barrierDismissible: false,
+                                      //   Childpenaltiesdialog(
+                                      //       Id: control.filteredStudents![index].id
+                                      //           .toString(),
+                                      //       name: control
+                                      //           .filteredStudents![index].fullName
+                                      //           .toString()),
+                                      // );
+                                    },
+                                  ),
+                                ];
+                              },
+                              onSelected: (String value) {
+                                // Handle selection here
+                              },
+                              color: Get.theme.cardColor, // لون الخلفية
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(5), // زوايا دائرية
+                              ),
                             ),
                           ],
                         ),
