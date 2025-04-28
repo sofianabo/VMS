@@ -243,12 +243,13 @@ class GuardianMainScreenGrid extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             PopupMenuButton<String>(
+                              tooltip: "",
                               icon: Container(
                                 height: 40,
                                 width: 40,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
-                                  color: Get.theme.primaryColor,
+                                  color: Theme.of(context).primaryColorLight,
                                 ),
                                 child: Icon(
                                   VMS_Icons.dose,
@@ -308,7 +309,7 @@ class GuardianMainScreenGrid extends StatelessWidget {
                               width: 40,
                               height: 40,
                               decoration: BoxDecoration(
-                                  color: Theme.of(context).cardColor,
+                                  color: Theme.of(context).primaryColorLight,
                                   borderRadius: BorderRadius.circular(5),
                                   boxShadow: const [
                                     BoxShadow(
@@ -319,7 +320,7 @@ class GuardianMainScreenGrid extends StatelessWidget {
                               child: IconButton(
                                   style: ButtonStyle(
                                       backgroundColor: WidgetStatePropertyAll(
-                                          Get.theme.primaryColor),
+                                          Theme.of(context).primaryColorLight),
                                       shape: WidgetStatePropertyAll(
                                           RoundedRectangleBorder(
                                               borderRadius: BorderRadius.all(
@@ -332,7 +333,7 @@ class GuardianMainScreenGrid extends StatelessWidget {
                               width: 40,
                               height: 40,
                               decoration: BoxDecoration(
-                                  color: Theme.of(context).cardColor,
+                                  color: Theme.of(context).primaryColorLight,
                                   borderRadius: BorderRadius.circular(5),
                                   boxShadow: const [
                                     BoxShadow(
@@ -343,7 +344,7 @@ class GuardianMainScreenGrid extends StatelessWidget {
                               child: IconButton(
                                   style: ButtonStyle(
                                       backgroundColor: WidgetStatePropertyAll(
-                                          Get.theme.primaryColor),
+                                          Theme.of(context).primaryColorLight),
                                       shape: WidgetStatePropertyAll(
                                           RoundedRectangleBorder(
                                               borderRadius: BorderRadius.all(
@@ -355,12 +356,13 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                       color: Colors.white)),
                             ),
                             PopupMenuButton<String>(
+                              tooltip: "",
                               icon: Container(
                                 height: 40,
                                 width: 40,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
-                                  color: Get.theme.primaryColor,
+                                  color: Theme.of(context).primaryColorLight,
                                 ),
                                 child: Icon(
                                   Icons.analytics_sharp,

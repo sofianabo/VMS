@@ -57,8 +57,8 @@ class _AppbarguardianState extends State<Appbarguardian> {
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   "${prefs!.getString("fullname")}",
-                                  style: TextStyle(
-                                      fontSize: 12, color: Colors.black),
+                                  style: Get.theme.textTheme.bodyMedium!
+                                      .copyWith(fontSize: 12),
                                 ),
                               ),
                             ),
@@ -188,8 +188,8 @@ class _AppbarguardianState extends State<Appbarguardian> {
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   "${prefs!.getString("fullname")}",
-                                  style: TextStyle(
-                                      fontSize: 12, color: Colors.black),
+                                  style: Get.theme.textTheme.bodyMedium!
+                                      .copyWith(fontSize: 12),
                                 ),
                               ),
                             ),
