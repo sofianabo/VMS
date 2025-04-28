@@ -23,71 +23,63 @@ class MyChildren {
 
 class Students {
   int? id;
-  String? firstName;
-  String? lastName;
-  int? fileId;
-  String? type;
   String? fullName;
-  Classes? classes;
-  Classes? division;
+  int? fileId;
+  Division? division;
+  Division? classes;
+  String? type;
 
   Students(
       {this.id,
-      this.firstName,
-      this.lastName,
-      this.fileId,
-      this.type,
       this.fullName,
+      this.fileId,
+      this.division,
       this.classes,
-      this.division});
+      this.type});
 
   Students.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    firstName = json['firstName'];
-    lastName = json['lastName'];
-    fileId = json['fileId'];
-    type = json['Type'];
     fullName = json['fullName'];
-    classes =
-        json['classes'] != null ? new Classes.fromJson(json['classes']) : null;
+    fileId = json['fileId'];
     division = json['division'] != null
-        ? new Classes.fromJson(json['division'])
+        ? new Division.fromJson(json['division'])
         : null;
+    classes =
+        json['classes'] != null ? new Division.fromJson(json['classes']) : null;
+    type = json['Type'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['firstName'] = this.firstName;
-    data['lastName'] = this.lastName;
-    data['fileId'] = this.fileId;
-    data['Type'] = this.type;
     data['fullName'] = this.fullName;
-    if (this.classes != null) {
-      data['classes'] = this.classes!.toJson();
-    }
+    data['fileId'] = this.fileId;
     if (this.division != null) {
       data['division'] = this.division!.toJson();
     }
+    if (this.classes != null) {
+      data['classes'] = this.classes!.toJson();
+    }
+    data['Type'] = this.type;
     return data;
   }
 }
 
-class Classes {
+class Division {
   String? name;
   String? enName;
 
-  Classes({this.name, this.enName});
+  Division({this.name, this.enName});
 
-  Classes.fromJson(Map<String, dynamic> json) {
+  Division.fromJson(Map<String, dynamic> json) {
     name = json['name'];
-    enName = json['enName'];
+    enName = json['EnName'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['name'] = this.name;
-    data['enName'] = this.enName;
+    data['EnName'] = this.enName;
     return data;
   }
 }
