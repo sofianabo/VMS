@@ -1,19 +1,24 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
+import 'package:vms_school/Link/Controller/GuardianController/MyChildren_Controller.dart';
+import 'package:vms_school/Link/Model/Guardian_Model/MyChildren.dart';
 
-class Renamed {
-  Renamed(this.context);
-  BuildContext context;
+class Get_My_Children_API {
   Dio dio = Dio();
-  add() async {
-    String myURI = "$hostPort$addFullEmployee";
+  Get_My_Children() async {
+    String myURI = "$hostPort$getMyChildren";
     try {
-      var response = await dio.post(myURI, data: {}, options: getDioOptions());
-
+      var controller = Get.find<MyChildren_Controller>();
+      var response = await dio.post(myURI, options: getDioOptions());
+      controller.setIsloading(true);
       if (response.statusCode == 200) {
+        MyChildren myChildren = MyChildren.fromJson(response.data);
+        controller.setMyChildren(myChildren);
+        controller.setIsloading(false);
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

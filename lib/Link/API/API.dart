@@ -172,6 +172,7 @@ String updateQuizType = "updateQuizType";
 String enroll = "Enroll";
 String resendCodeGurdian = "resendCodeGurdian";
 String verifyCodeAndEnroll = "verifyCodeAndEnroll";
+String getMyChildren = "getMyChildren";
 
 // ..................... All Users ...................//
 

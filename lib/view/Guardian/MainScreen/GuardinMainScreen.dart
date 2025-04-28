@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Electronic_Library_API/Add_E_Book_API.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Electronic_Library_API/Get_All_E_Book.dart';
-import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Labrary_Controller.dart';
-import 'package:vms_school/Link/Controller/GuardianController/GuardianMainScreenController.dart';
-import 'package:vms_school/view/Admin/School_Management/Electronic_Pages/Electronic_Book_Grid.dart';
+import 'package:vms_school/Link/API/Guardians_API/Get_My_Children_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
+import 'package:vms_school/Link/Controller/GuardianController/MyChildren_Controller.dart';
 import 'package:vms_school/view/Guardian/AppBarGuardian.dart';
+import 'package:vms_school/view/Guardian/Functions/Add_Student_For_Guardian.dart';
 import 'package:vms_school/view/Guardian/MainScreen/GuardianMainScreenGrid.dart';
-import 'package:vms_school/widgets/ButtonsDialog.dart';
-import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
-import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class GuardianMainScreen extends StatefulWidget {
   const GuardianMainScreen({super.key});
@@ -26,14 +20,13 @@ class _GuardianMainScreenState extends State<GuardianMainScreen> {
 
   @override
   void initState() {
-    // Get_All_E_Book_API(context).Get_All_E_Book();
+    Get_My_Children_API().Get_My_Children();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    print(screenWidth);
     return Scaffold(
       body: Expanded(
           child: Column(
@@ -50,24 +43,25 @@ class _GuardianMainScreenState extends State<GuardianMainScreen> {
                 spacing: 10.0,
                 runSpacing: 8.0,
                 children: [
-                  //getbuidler
-                  TextFormSearch(
-                    click: () {
-                      // controller.clearFilter();
-                    },
-                    onchange: (value) {
-                      // controller.searchByName(value);
-                    },
-                    width: screenWidth >= 1060
-                        ? screenWidth * 0.7
-                        : screenWidth >= 732
-                            ? screenWidth * 0.8
-                            : screenWidth * 0.9,
-                    radius: 5,
-                    controller: search,
-                    suffixIcon:
-                        search.text.isNotEmpty ? Icons.close : Icons.search,
-                  ),
+                  GetBuilder<MyChildren_Controller>(builder: (controller) {
+                    return TextFormSearch(
+                      click: () {
+                        controller.clearFilter();
+                      },
+                      onchange: (value) {
+                        controller.searchByName(value);
+                      },
+                      width: screenWidth >= 1060
+                          ? screenWidth * 0.7
+                          : screenWidth >= 732
+                              ? screenWidth * 0.8
+                              : screenWidth * 0.9,
+                      radius: 5,
+                      controller: search,
+                      suffixIcon:
+                          search.text.isNotEmpty ? Icons.close : Icons.search,
+                    );
+                  }),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     spacing: 10.0,
@@ -91,21 +85,8 @@ class _GuardianMainScreenState extends State<GuardianMainScreen> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
                             onPressed: () {
-                              // var controller = Get.find<Labrary_Controller>();
-                              // controller.selectedFile.value = null;
-                              // name.clear();
-                              // enName.clear();
-                              // controller.updateTextFile(
-                              //     "Click To Add File\nOr\nDrag And Drop File Here"
-                              //         .tr);
-                              // controller.updateFieldError("arname", false);
-                              // controller.updateFieldError("enname", false);
-                              // controller.updateFieldError("file", false);
-
-                              // Get.dialog(
-                              //   Add_Electronic_Book(),
-                              //   barrierDismissible: false,
-                              // );
+                              Get.find<Add_Students_Controller>().resetError();
+                              Add_Students_Guardian_Functions();
                             },
                             icon: Icon(Icons.add,
                                 size: 18,
@@ -125,24 +106,25 @@ class _GuardianMainScreenState extends State<GuardianMainScreen> {
                 child: Row(
                   spacing: 10.0,
                   children: [
-                    //getbuilder
-                    TextFormSearch(
-                      click: () {
-                        // controller.clearFilter();
-                      },
-                      onchange: (value) {
-                        // controller.searchByName(value);
-                      },
-                      width: screenWidth >= 1060
-                          ? screenWidth * 0.7
-                          : screenWidth >= 732
-                              ? screenWidth * 0.8
-                              : screenWidth * 0.9,
-                      radius: 5,
-                      controller: search,
-                      suffixIcon:
-                          search.text.isNotEmpty ? Icons.close : Icons.search,
-                    ),
+                    GetBuilder<MyChildren_Controller>(builder: (controller) {
+                      return TextFormSearch(
+                        click: () {
+                          controller.clearFilter();
+                        },
+                        onchange: (value) {
+                          controller.searchByName(value);
+                        },
+                        width: screenWidth >= 1060
+                            ? screenWidth * 0.7
+                            : screenWidth >= 732
+                                ? screenWidth * 0.8
+                                : screenWidth * 0.9,
+                        radius: 5,
+                        controller: search,
+                        suffixIcon:
+                            search.text.isNotEmpty ? Icons.close : Icons.search,
+                      );
+                    }),
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       spacing: 10.0,
@@ -166,21 +148,9 @@ class _GuardianMainScreenState extends State<GuardianMainScreen> {
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
                               onPressed: () {
-                                // var controller = Get.find<Labrary_Controller>();
-                                // controller.selectedFile.value = null;
-                                // name.clear();
-                                // enName.clear();
-                                // controller.updateTextFile(
-                                //     "Click To Add File\nOr\nDrag And Drop File Here"
-                                //         .tr);
-                                // controller.updateFieldError("arname", false);
-                                // controller.updateFieldError("enname", false);
-                                // controller.updateFieldError("file", false);
-
-                                // Get.dialog(
-                                //   Add_Electronic_Book(),
-                                //   barrierDismissible: false,
-                                // );
+                                Get.find<Add_Students_Controller>()
+                                    .resetError();
+                                Add_Students_Guardian_Functions();
                               },
                               icon: Icon(Icons.add,
                                   size: 18,

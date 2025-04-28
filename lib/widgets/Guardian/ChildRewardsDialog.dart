@@ -13,18 +13,13 @@ import 'package:vms_school/widgets/PDF_View.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class Childrewardsdialog extends StatefulWidget {
-  Childrewardsdialog({required this.Id, required this.name, super.key});
-  String Id;
-  String name;
+  const Childrewardsdialog({super.key});
 
   @override
   State<Childrewardsdialog> createState() => _ChildrewardsdialogState();
 }
 
-class _ChildrewardsdialogState extends State<Childrewardsdialog>
-    with SingleTickerProviderStateMixin {
-
-
+class _ChildrewardsdialogState extends State<Childrewardsdialog> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Penaltiesandrewardscontroller>(
@@ -43,9 +38,11 @@ class _ChildrewardsdialogState extends State<Childrewardsdialog>
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                 ),
-               
                 Expanded(
                   child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       PAR_Controller.Rewards_isLoading
                           ? Center(child: CircularProgressIndicator())
@@ -59,9 +56,8 @@ class _ChildrewardsdialogState extends State<Childrewardsdialog>
                                               fontSize: 22,
                                               fontWeight: FontWeight.normal)))
                               : Container(
-                                  height: 600,
-                                  width: 400,
-                                  padding: EdgeInsets.all(16.0),
+                                  height: 540,
+                                  width: 550,
                                   child: SingleChildScrollView(
                                     child: ListView.builder(
                                       shrinkWrap: true,
@@ -105,7 +101,6 @@ class _ChildrewardsdialogState extends State<Childrewardsdialog>
                                                               size: 20,
                                                               color: Colors
                                                                   .white)),
-                                                   
                                                     ],
                                                   ),
                                                 ],
@@ -118,8 +113,6 @@ class _ChildrewardsdialogState extends State<Childrewardsdialog>
                                     ),
                                   ),
                                 ),
-
-                     
                     ],
                   ),
                 ),

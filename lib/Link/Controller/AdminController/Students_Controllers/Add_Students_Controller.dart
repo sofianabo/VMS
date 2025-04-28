@@ -632,9 +632,13 @@ class Add_Students_Controller extends GetxController {
   bool ISMotherPhoneError = false;
   bool ISisfatherpassportError = false;
   bool ISisFamilyPassportError = false;
+  bool IsPreviosClassError = false;
 
   void updateFieldError(String type, bool newValue) {
     switch (type) {
+      case 'pclass':
+        IsPreviosClassError = newValue;
+        break;
       case 'first':
         ISfirstNameError = newValue;
         break;

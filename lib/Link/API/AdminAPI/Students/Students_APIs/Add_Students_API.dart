@@ -5,6 +5,7 @@ import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/GetAllStudentAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
+import 'package:vms_school/Link/API/Guardians_API/Get_My_Children_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 
@@ -52,6 +53,7 @@ class Add_Student_API {
     illness,
     vaccine,
     Fee_Discount,
+    previousClass,
   }) async {
     Dio dio = Dio();
     String myURI = "${hostPort}${addStudentInfo}";
@@ -75,11 +77,8 @@ class Add_Student_API {
         "motherName": motherName,
         "currentAdress": currentAdress,
         "familystatus": familystatus,
-        "guardianId": guardianId,
         "userName": userName,
         "password": password,
-        "classid": classid,
-        "divisionId": divisionId,
         "fatherWork": fatherWork,
         "motherPhone": motherPhone,
         "motherWork": motherWork,
@@ -89,7 +88,6 @@ class Add_Student_API {
         "note": note,
         "specialNeeds": specialNeeds == true ? 1 : 0,
         "martyrSon": martyrSon == true ? 1 : 0,
-        "feeDiscount": Fee_Discount,
       };
 
       List<Map<String, dynamic>> files = [];
@@ -110,6 +108,33 @@ class Add_Student_API {
             file,
             filename: '$firstName ${lastName}Student Profile Image',
           )
+        });
+      }
+      if (guardianId != null) {
+        formDataMap.addAll({
+          "guardianId": guardianId,
+        });
+      }
+      if (Fee_Discount != null) {
+        formDataMap.addAll({
+          "feeDiscount": Fee_Discount,
+        });
+      }
+      if (previousClass != null) {
+        formDataMap.addAll({
+          "previousClass": previousClass,
+        });
+      }
+
+      if (classid != null) {
+        formDataMap.addAll({
+          "classid": classid,
+        });
+      }
+
+      if (divisionId != null) {
+        formDataMap.addAll({
+          "divisionId": divisionId,
         });
       }
 
@@ -196,7 +221,11 @@ class Add_Student_API {
       if (response.statusCode == 200) {
         gets.Get.back();
         gets.Get.back();
-        Getallstudentapi.Getallstudent();
+        if (Fee_Discount != null) {
+          Getallstudentapi.Getallstudent();
+        } else {
+          Get_My_Children_API().Get_My_Children();
+        }
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

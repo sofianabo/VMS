@@ -33,11 +33,7 @@ class _AppbarguardianState extends State<Appbarguardian> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     GestureDetector(
-                      onTap: () {
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          cont.updateContent("My Profile");
-                        });
-                      },
+                      onTap: () {},
                       child: Container(
                         height: 40,
                         width: 200,
@@ -60,66 +56,6 @@ class _AppbarguardianState extends State<Appbarguardian> {
                                   style: Get.theme.textTheme.bodyMedium!
                                       .copyWith(fontSize: 12),
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 5.0, right: 5.0, top: 3.0, bottom: 3.0),
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Theme.of(context).primaryColor,
-                                child: prefs!.getString("imageId") != "null"
-                                    ? ClipOval(
-                                        child: Image.network(
-                                          headers: {
-                                            "ngrok-skip-browser-warning":
-                                                "true",
-                                            'User-Agent': 'Custom User-Agent',
-                                            'accept': 'application/json',
-                                            'authorization':
-                                                'Bearer ${prefs!.getString("token")}',
-                                          },
-                                          "$getimage${prefs!.getString("imageId")}",
-                                          fit: BoxFit.cover,
-                                          loadingBuilder: (context, child,
-                                              loadingProgress) {
-                                            if (loadingProgress == null) {
-                                              // الصورة تم تحميلها بنجاح
-                                              return child;
-                                            } else {
-                                              // الصورة قيد التحميل، عرض شريط تحميل أبيض
-                                              return Center(
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  value: loadingProgress
-                                                              .expectedTotalBytes !=
-                                                          null
-                                                      ? loadingProgress
-                                                              .cumulativeBytesLoaded /
-                                                          (loadingProgress
-                                                                  .expectedTotalBytes ??
-                                                              1)
-                                                      : null,
-                                                  color: Colors
-                                                      .white, // شريط التحميل باللون الأبيض
-                                                ),
-                                              );
-                                            }
-                                          },
-                                        ),
-                                      )
-                                    : Text(
-                                        prefs!
-                                                .getString("fullname")
-                                                ?.substring(0, 1)
-                                                .toUpperCase() ??
-                                            '',
-                                        style:
-                                            Get.textTheme.titleLarge?.copyWith(
-                                          color: Colors.white,
-                                          fontSize: 12,
-                                        ),
-                                      ),
                               ),
                             ),
                           ],
@@ -164,11 +100,7 @@ class _AppbarguardianState extends State<Appbarguardian> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     GestureDetector(
-                      onTap: () {
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          cont.updateContent("My Profile");
-                        });
-                      },
+                      onTap: () {},
                       child: Container(
                         height: 40,
                         width: 200,
@@ -191,66 +123,6 @@ class _AppbarguardianState extends State<Appbarguardian> {
                                   style: Get.theme.textTheme.bodyMedium!
                                       .copyWith(fontSize: 12),
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 5.0, right: 5.0, top: 3.0, bottom: 3.0),
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Theme.of(context).primaryColor,
-                                child: prefs!.getString("imageId") != "null"
-                                    ? ClipOval(
-                                        child: Image.network(
-                                          headers: {
-                                            "ngrok-skip-browser-warning":
-                                                "true",
-                                            'User-Agent': 'Custom User-Agent',
-                                            'accept': 'application/json',
-                                            'authorization':
-                                                'Bearer ${prefs!.getString("token")}',
-                                          },
-                                          "$getimage${prefs!.getString("imageId")}",
-                                          fit: BoxFit.cover,
-                                          loadingBuilder: (context, child,
-                                              loadingProgress) {
-                                            if (loadingProgress == null) {
-                                              // الصورة تم تحميلها بنجاح
-                                              return child;
-                                            } else {
-                                              // الصورة قيد التحميل، عرض شريط تحميل أبيض
-                                              return Center(
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  value: loadingProgress
-                                                              .expectedTotalBytes !=
-                                                          null
-                                                      ? loadingProgress
-                                                              .cumulativeBytesLoaded /
-                                                          (loadingProgress
-                                                                  .expectedTotalBytes ??
-                                                              1)
-                                                      : null,
-                                                  color: Colors
-                                                      .white, // شريط التحميل باللون الأبيض
-                                                ),
-                                              );
-                                            }
-                                          },
-                                        ),
-                                      )
-                                    : Text(
-                                        prefs!
-                                                .getString("fullname")
-                                                ?.substring(0, 1)
-                                                .toUpperCase() ??
-                                            '',
-                                        style:
-                                            Get.textTheme.titleLarge?.copyWith(
-                                          color: Colors.white,
-                                          fontSize: 12,
-                                        ),
-                                      ),
                               ),
                             ),
                           ],
@@ -302,11 +174,7 @@ class _AppbarguardianState extends State<Appbarguardian> {
                       width: 150,
                     ),
                     GestureDetector(
-                      onTap: () {
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          cont.updateContent("My Profile");
-                        });
-                      },
+                      onTap: () {},
                       child: Container(
                         height: 40,
                         width: 120,
@@ -329,65 +197,6 @@ class _AppbarguardianState extends State<Appbarguardian> {
                                   style: Get.theme.textTheme.bodyMedium!
                                       .copyWith(fontSize: 12),
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 5.0, right: 5.0, top: 3.0, bottom: 3.0),
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Theme.of(context).primaryColor,
-                                child: prefs!.getString("imageId") != "null"
-                                    ? ClipOval(
-                                        child: Image.network(
-                                          headers: {
-                                            "ngrok-skip-browser-warning":
-                                                "true",
-                                            'User-Agent': 'Custom User-Agent',
-                                            'accept': 'application/json',
-                                            'authorization':
-                                                'Bearer ${prefs!.getString("token")}',
-                                          },
-                                          "$getimage${prefs!.getString("imageId")}",
-                                          fit: BoxFit.cover,
-                                          loadingBuilder: (context, child,
-                                              loadingProgress) {
-                                            if (loadingProgress == null) {
-                                              // الصورة تم تحميلها بنجاح
-                                              return child;
-                                            } else {
-                                              // الصورة قيد التحميل، عرض شريط تحميل أبيض
-                                              return Center(
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  value: loadingProgress
-                                                              .expectedTotalBytes !=
-                                                          null
-                                                      ? loadingProgress
-                                                              .cumulativeBytesLoaded /
-                                                          (loadingProgress
-                                                                  .expectedTotalBytes ??
-                                                              1)
-                                                      : null,
-                                                  color: Colors
-                                                      .white, // شريط التحميل باللون الأبيض
-                                                ),
-                                              );
-                                            }
-                                          },
-                                        ),
-                                      )
-                                    : Text(
-                                        prefs!
-                                                .getString("fullname")
-                                                ?.substring(0, 1)
-                                                .toUpperCase() ??
-                                            '',
-                                        style:
-                                            Get.textTheme.titleLarge?.copyWith(
-                                          fontSize: 12,
-                                        ),
-                                      ),
                               ),
                             ),
                           ],
