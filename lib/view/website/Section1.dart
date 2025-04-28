@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/HomeController/HomeScreenController.dart';
 import 'package:vms_school/view/Auth/LoginScreen.dart';
+import 'package:vms_school/view/Guardian/MainScreen/GuardinMainScreen.dart';
 import 'package:vms_school/widgets/Responsive.dart';
 
 class Section1 extends StatefulWidget {
@@ -117,6 +118,7 @@ class _Section1State extends State<Section1>
                                           .copyWith(fontSize: 16)),
                                 ),
                                 onTap: () {
+                                  // Get.to(GuardianMainScreen());
                                   Get.toNamed("/login");
                                 },
                               ),
