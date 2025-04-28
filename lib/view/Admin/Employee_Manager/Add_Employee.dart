@@ -128,14 +128,14 @@ class _AddEmployeeState extends State<AddEmployee> {
             width: 500,
             child: SingleChildScrollView(
               child: Column(
-                spacing: 10.0,
+                spacing: 2.0,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Wrap(
                     spacing: 10.0,
                     runAlignment: WrapAlignment.center,
                     crossAxisAlignment: WrapCrossAlignment.center,
-                    runSpacing: 10.0,
+                    runSpacing: 2.0,
                     alignment: WrapAlignment.center,
                     children: [
                       Textfildwithupper(
@@ -168,7 +168,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                     spacing: 10.0,
                     runAlignment: WrapAlignment.center,
                     crossAxisAlignment: WrapCrossAlignment.center,
-                    runSpacing: 10.0,
+                    runSpacing: 2.0,
                     alignment: WrapAlignment.center,
                     children: [
                       Textfildwithupper(
@@ -202,7 +202,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                     spacing: 10.0,
                     runAlignment: WrapAlignment.center,
                     crossAxisAlignment: WrapCrossAlignment.center,
-                    runSpacing: 10.0,
+                    runSpacing: 2.0,
                     alignment: WrapAlignment.center,
                     children: [
                       Textfildwithupper(
@@ -218,18 +218,11 @@ class _AddEmployeeState extends State<AddEmployee> {
                           width: screenWidth >= 520 ? 220 : (screenWidth) - 70,
                           controller: phone,
                           hinttext: "Phone Number".tr),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          JoinDate(
-                            isRequired: true,
-                            isError: cont.IsJoinError,
-                            width:
-                                screenWidth >= 520 ? 220 : (screenWidth) - 70,
-                            Uptext: "Join Date".tr,
-                          )
-                        ],
+                      JoinDate(
+                        isRequired: true,
+                        isError: cont.IsJoinError,
+                        width: screenWidth >= 520 ? 220 : (screenWidth) - 70,
+                        Uptext: "Join Date".tr,
                       )
                     ],
                   ),
@@ -237,7 +230,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                     spacing: 10.0,
                     runAlignment: WrapAlignment.center,
                     crossAxisAlignment: WrapCrossAlignment.center,
-                    runSpacing: 10.0,
+                    runSpacing: 2.0,
                     alignment: WrapAlignment.center,
                     children: [
                       Dropdownallemployee(
@@ -257,7 +250,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                     spacing: 10.0,
                     runAlignment: WrapAlignment.center,
                     crossAxisAlignment: WrapCrossAlignment.center,
-                    runSpacing: 10.0,
+                    runSpacing: 2.0,
                     alignment: WrapAlignment.center,
                     children: [
                       Dropdownallemployee(
@@ -276,7 +269,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                     spacing: 10.0,
                     runAlignment: WrapAlignment.center,
                     crossAxisAlignment: WrapCrossAlignment.center,
-                    runSpacing: 10.0,
+                    runSpacing: 2.0,
                     alignment: WrapAlignment.center,
                     children: [
                       Textfildwithupper(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Link/API/AuthAPI/LoginAPI.dart';
@@ -17,512 +18,90 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double w = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: const Color(0xfff9f8fd),
-      body: ResponsiveUI(
-        desktopScreen: SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                      padding: const EdgeInsets.only(top: 62.0),
-                      child: Image.asset(
-                        "assets/images/logo2.png",
-                        width: 250,
+      body: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          if (width >= 883)
+            Container(
+              height: height,
+              width: width * 0.4,
+              child: Opacity(
+                opacity: 1, // 25% opacity
+                child: Image.asset(
+                  "assets/images/Enroll_Images/5.jpg",
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ).animate(onPlay: (controller) => controller.repeat()).shimmer(
+                angle: 1,
+                color: Colors.white.withOpacity(0.4),
+                duration: const Duration(seconds: 5),
+                delay: const Duration(seconds: 1)),
+          GetBuilder<UserController>(builder: (controller) {
+            return Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    spacing: 20.0,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        Theme.of(context).brightness == Brightness.dark
+                            ? "assets/images/logodark.svg"
+                            : "assets/images/logolight.svg",
+                        width: 310,
                       )
                           .animate(onPlay: (controller) => controller.repeat())
                           .shimmer(
-                              duration: const Duration(seconds: 4),
-                              color: Colors.white.withOpacity(0.8))),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 0),
-                child: SizedBox(
-                  width: w / 1.1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          Image.asset(
-                            "assets/images/section5-image1.png",
-                            width: w / 5.845,
-                          )
-                              .animate(
-                                  onPlay: (controller) => controller.repeat())
-                              .moveY(
-                                begin: 1,
-                                end: 30,
-                                duration: const Duration(seconds: 2),
-                                delay: const Duration(milliseconds: 1),
-                              )
-                              .then()
-                              .moveY(
-                                begin: 30,
-                                end: 1,
-                                duration: const Duration(seconds: 2),
-                                delay: const Duration(milliseconds: 1),
-                              )
-                        ],
-                      ),
-                      Center(
-                        child: Directionality(
-                          textDirection: prefs!.getString(languageKey) == 'ar'
-                              ? TextDirection.rtl
-                              : TextDirection.ltr,
-                          child: Form(
-                            child: AutofillGroup(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Text(
-                                            "Username".tr,
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                color: Colors.black),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 5.0),
-                                            child: TextFieldAuth(
-                                              autofill: const [
-                                                AutofillHints.username
-                                              ],
-                                              controller: username,
-                                              hinttext: "Username".tr,
-                                            ),
-                                          )
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 25.0),
-                                    child: Row(
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Text(
-                                              "Password".tr,
-                                              style: TextStyle(
-                                                  fontSize: 14,
-                                                  color: Colors.black),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 5.0),
-                                              child: TextFormPassword(
-                                                  autofill: const [
-                                                    AutofillHints.password
-                                                  ],
-                                                  controller: password,
-                                                  hinttext: "Password".tr),
-                                            ),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              )
-                                  .animate()
-                                  .fadeIn(duration: const Duration(seconds: 1)),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Column(
-                        children: [
-                          Image.asset(
-                            "assets/images/section5-image2.png",
-                            width: w / 6.095,
-                          )
-                              .animate(
-                                  onPlay: (controller) => controller.repeat())
-                              .moveY(
-                                begin: 30,
-                                end: 1,
-                                duration: const Duration(seconds: 2),
-                                delay: const Duration(milliseconds: 1),
-                              )
-                              .then()
-                              .moveY(
-                                begin: 1,
-                                end: 30,
-                                duration: const Duration(seconds: 2),
-                                delay: const Duration(milliseconds: 1),
-                              )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              GetBuilder<UserController>(builder: (controller) {
-                return TextButton(
-                        style: ButtonStyle(
-                          shape: WidgetStatePropertyAll(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                          ),
-                          backgroundColor:
-                              WidgetStatePropertyAll(Get.theme.primaryColor),
-                          maximumSize:
-                              const WidgetStatePropertyAll(Size(200, 60)),
-                          minimumSize:
-                              const WidgetStatePropertyAll(Size(200, 60)),
-                        ),
-                        onPressed: () async {
-                          if (controller.Isloading == false) {
-                            await LoginAPI(context)
-                                .login(username.text, password.text);
-                          }
-                        },
-                        child: controller.Isloading == true
-                            ? LoadingAnimationWidget.inkDrop(
-                                color: Colors.white,
-                                size: 25,
-                              )
-                            : Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Login".tr,
-                                    style: Get.theme.textTheme.displayMedium!
-                                        .copyWith(fontSize: 15),
-                                  ),
-                                  const Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 8.0, right: 8.0),
-                                    child: Icon(
-                                      Icons.login,
-                                      color: Colors.white,
-                                      size: 17,
-                                    ),
-                                  ),
-                                ],
-                              ))
-                    .animate()
-                    .fadeIn(duration: const Duration(seconds: 1));
-              })
-            ],
-          ),
-        ),
-        tabletScreen: SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                      padding: const EdgeInsets.only(top: 62.0),
-                      child: Image.asset(
-                        "assets/images/logo2.png",
-                        width: 250,
-                      )
-                          .animate(onPlay: (controller) => controller.repeat())
-                          .shimmer(
-                              duration: const Duration(seconds: 4),
-                              color: Colors.white.withOpacity(0.8))),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 0),
-                child: SizedBox(
-                  width: w / 1.1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          Image.asset(
-                            "assets/images/section5-image1.png",
-                            width: w / 5.845,
-                          )
-                              .animate(
-                                  onPlay: (controller) => controller.repeat())
-                              .moveY(
-                                begin: 1,
-                                end: 30,
-                                duration: const Duration(seconds: 2),
-                                delay: const Duration(milliseconds: 1),
-                              )
-                              .then()
-                              .moveY(
-                                begin: 30,
-                                end: 1,
-                                duration: const Duration(seconds: 2),
-                                delay: const Duration(milliseconds: 1),
-                              )
-                        ],
-                      ),
-                      Center(
-                        child: Directionality(
-                          textDirection: prefs!.getString(languageKey) == 'ar'
-                              ? TextDirection.rtl
-                              : TextDirection.ltr,
-                          child: Form(
-                            child: AutofillGroup(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Text(
-                                            "Username".tr,
-                                            style:
-                                                 TextStyle(
-                                                  fontSize: 14,
-                                                  color: Colors.black),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 5.0),
-                                            child: TextFieldAuth(
-                                              autofill: const [
-                                                AutofillHints.username
-                                              ],
-                                              controller: username,
-                                              hinttext: "Username".tr,
-                                            ),
-                                          )
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 25.0),
-                                    child: Row(
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Text(
-                                              "Password".tr,
-                                              style:  TextStyle(
-                                                  fontSize: 14,
-                                                  color: Colors.black),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 5.0),
-                                              child: TextFormPassword(
-                                                  autofill: const [
-                                                    AutofillHints.password
-                                                  ],
-                                                  controller: password,
-                                                  hinttext: "Password".tr),
-                                            ),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              )
-                                  .animate()
-                                  .fadeIn(duration: const Duration(seconds: 1)),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Column(
-                        children: [
-                          Image.asset(
-                            "assets/images/section5-image2.png",
-                            width: w / 6.095,
-                          )
-                              .animate(
-                                  onPlay: (controller) => controller.repeat())
-                              .moveY(
-                                begin: 30,
-                                end: 1,
-                                duration: const Duration(seconds: 2),
-                                delay: const Duration(milliseconds: 1),
-                              )
-                              .then()
-                              .moveY(
-                                begin: 1,
-                                end: 30,
-                                duration: const Duration(seconds: 2),
-                                delay: const Duration(milliseconds: 1),
-                              )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              GetBuilder<UserController>(builder: (controller) {
-                return TextButton(
-                        style: ButtonStyle(
-                          shape: WidgetStatePropertyAll(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                          ),
-                          backgroundColor:
-                              WidgetStatePropertyAll(Get.theme.primaryColor),
-                          maximumSize:
-                              const WidgetStatePropertyAll(Size(200, 60)),
-                          minimumSize:
-                              const WidgetStatePropertyAll(Size(200, 60)),
-                        ),
-                        onPressed: () async {
-                          if (controller.Isloading == false) {
-                            await LoginAPI(context)
-                                .login(username.text, password.text);
-                          }
-                        },
-                        child: controller.Isloading == true
-                            ? LoadingAnimationWidget.inkDrop(
-                                color: Colors.white,
-                                size: 25,
-                              )
-                            : Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Login".tr,
-                                    style: Get.theme.textTheme.displayMedium!
-                                        .copyWith(fontSize: 15),
-                                  ),
-                                  const Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 8.0, right: 8.0),
-                                    child: Icon(
-                                      Icons.login,
-                                      color: Colors.white,
-                                      size: 17,
-                                    ),
-                                  ),
-                                ],
-                              ))
-                    .animate()
-                    .fadeIn(duration: const Duration(seconds: 1));
-              })
-            ],
-          ),
-        ),
-        mobileScreen: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset(
-                  "assets/images/logo2.png",
-                  width: w / 2,
-                ).animate(onPlay: (controller) => controller.repeat()).shimmer(
-                    duration: const Duration(seconds: 4),
-                    color: Colors.white.withOpacity(0.8)),
-                Padding(
-                  padding: const EdgeInsets.only(top: 50),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Directionality(
-                        textDirection: prefs!.getString(languageKey) == 'ar'
-                            ? TextDirection.rtl
-                            : TextDirection.ltr,
+                              angle: 1,
+                              color: Colors.white.withOpacity(0.4),
+                              duration: const Duration(seconds: 5),
+                              delay: const Duration(seconds: 1)),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 100.0, bottom: 30),
                         child: Form(
                           child: AutofillGroup(
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              spacing: 10.0,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Row(
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Text(
-                                          "Username".tr,
-                                          style: TextStyle(
-                                                  fontSize: 12,
-                                                  color: Colors.black),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 5.0),
-                                          child: TextFieldAuth(
-                                            width: w - 60,
-                                            hight: 40,
-                                            autofill: const [
-                                              AutofillHints.username
-                                            ],
-                                            controller: username,
-                                            hinttext: "Username".tr,
-                                          ),
-                                        )
-                                      ],
-                                    )
-                                  ],
+                                TextFieldAuth(
+                                  width:
+                                      width >= 883 ? width * 0.5 : width - 80,
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      controller.updateFieldError(
+                                          "username", false);
+                                    }
+                                  },
+                                  isError: controller.IsusernameError,
+                                  Uptext: "Username".tr,
+                                  autofill: const [AutofillHints.username],
+                                  controller: username,
+                                  hinttext: "Username".tr,
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 25.0),
-                                  child: Row(
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Text(
-                                            "Password".tr,
-                                            style:  TextStyle(
-                                                  fontSize: 12,
-                                                  color: Colors.black),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 5.0),
-                                            child: TextFormPassword(
-                                                width: w - 60,
-                                                hight: 40,
-                                                autofill: const [
-                                                  AutofillHints.password
-                                                ],
-                                                controller: password,
-                                                hinttext: "Password".tr),
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ),
+                                TextFormPassword(
+                                    width:
+                                        width >= 883 ? width * 0.5 : width - 80,
+                                    onChanged: (value) {
+                                      if (value.isNotEmpty) {
+                                        controller.updateFieldError(
+                                            "password", false);
+                                      }
+                                    },
+                                    isError: controller.IsPasswordError,
+                                    Uptext: "Password".tr,
+                                    autofill: const [AutofillHints.password],
+                                    controller: password,
+                                    hinttext: "Password".tr),
                               ],
                             )
                                 .animate()
@@ -530,67 +109,107 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+                      Column(
+                        spacing: 15.0,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          TextButton(
+                                  style: ButtonStyle(
+                                    shape: WidgetStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                    ),
+                                    backgroundColor: WidgetStatePropertyAll(
+                                        Get.theme.primaryColor),
+                                    maximumSize: const WidgetStatePropertyAll(
+                                        Size(250, 50)),
+                                    minimumSize: const WidgetStatePropertyAll(
+                                        Size(250, 50)),
+                                  ),
+                                  onPressed: () async {
+                                    if (controller.Isloading == false) {
+                                      bool isUsernameEmpty =
+                                          username.text.trim().isEmpty;
+
+                                      bool isPasswordEmpty =
+                                          password.text.trim().isEmpty;
+
+                                      controller.updateFieldError(
+                                          "username", isUsernameEmpty);
+
+                                      controller.updateFieldError(
+                                          "password", isPasswordEmpty);
+
+                                      // إذا لم يكن هناك أي أخطاء، قم بإضافة ولي الأمر
+                                      if (!(isUsernameEmpty ||
+                                          isPasswordEmpty)) {
+                                        await LoginAPI(context).login(
+                                            username.text, password.text);
+                                      }
+                                    }
+                                  },
+                                  child: controller.Isloading == true
+                                      ? LoadingAnimationWidget.inkDrop(
+                                          color: Colors.white,
+                                          size: 25,
+                                        )
+                                      : Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "Login".tr,
+                                              style: Get.theme.textTheme
+                                                  .displayMedium!
+                                                  .copyWith(fontSize: 12),
+                                            ),
+                                            const Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 8.0, right: 8.0),
+                                              child: Icon(
+                                                Icons.login,
+                                                color: Colors.white,
+                                                size: 13,
+                                              ),
+                                            ),
+                                          ],
+                                        ))
+                              .animate()
+                              .fadeIn(duration: const Duration(seconds: 1)),
+                          Row(
+                            spacing: 10.0,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("You Don`t Have Account ?".tr),
+                              GestureDetector(
+                                onTap: () {
+                                  Get.toNamed("/enroll");
+                                },
+                                child: MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: Text(
+                                    "Enroll Now".tr,
+                                    style: TextStyle(
+                                      color: Theme.of(context).primaryColor,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 45.0),
-                  child: GetBuilder<UserController>(builder: (controller) {
-                    return TextButton(
-                            style: ButtonStyle(
-                              shape: WidgetStatePropertyAll(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                              ),
-                              backgroundColor: WidgetStatePropertyAll(
-                                  Get.theme.primaryColor),
-                              maximumSize:
-                                  WidgetStatePropertyAll(Size((w - 80), 40)),
-                              minimumSize:
-                                  WidgetStatePropertyAll(Size((w - 80), 40)),
-                            ),
-                            onPressed: () async {
-                              if (controller.Isloading == false) {
-                                await LoginAPI(context)
-                                    .login(username.text, password.text);
-                              }
-                            },
-                            child: controller.Isloading == true
-                                ? LoadingAnimationWidget.inkDrop(
-                                    color: Colors.white,
-                                    size: 16,
-                                  )
-                                : Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "Login".tr,
-                                        style: Get
-                                            .theme.textTheme.displayMedium!
-                                            .copyWith(fontSize: 12),
-                                      ),
-                                      const Padding(
-                                        padding: EdgeInsets.only(
-                                            left: 8.0, right: 8.0),
-                                        child: Icon(
-                                          Icons.login,
-                                          color: Colors.white,
-                                          size: 13,
-                                        ),
-                                      ),
-                                    ],
-                                  ))
-                        .animate()
-                        .fadeIn(duration: const Duration(seconds: 1));
-                  }),
-                )
-              ],
-            ),
-          ),
-        ),
+              ),
+            );
+          }),
+        ],
       ),
     );
   }

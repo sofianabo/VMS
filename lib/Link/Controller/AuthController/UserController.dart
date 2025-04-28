@@ -10,7 +10,7 @@ class UserController extends GetxController {
 
   bool Isloading = false;
 
-  SetIsloading(bool value){
+  SetIsloading(bool value) {
     Isloading = value;
     update();
   }
@@ -22,6 +22,22 @@ class UserController extends GetxController {
     hasData = user.hasData;
     prefs!.setString("token", token!);
     SetIsloading(false);
+    update();
+  }
+
+  bool IsusernameError = false;
+  bool IsPasswordError = false;
+
+  void updateFieldError(String type, bool newValue) {
+    switch (type) {
+      case 'username':
+        IsusernameError = newValue;
+        break;
+      case 'password':
+        IsPasswordError = newValue;
+        break;
+      default:
+    }
     update();
   }
 }
