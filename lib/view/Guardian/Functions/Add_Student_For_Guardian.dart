@@ -10,30 +10,21 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Illness_A
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Vaccines_APIs/Get_All_Vaccines_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Add_Students_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Location_API/Locations_API.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownClassesAPI.dart';
-import 'package:vms_school/Link/API/DioOption.dart';
-import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Location_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
-import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/allGaurdianController.dart';
-import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
-import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
 import 'package:vms_school/Link/Functions/Students_Illness_Funcation.dart';
 import 'package:vms_school/Link/Functions/Students_Vaccines_Funcation.dart';
-import 'package:vms_school/Link/Model/AdminModel/Students_Models/allGuardianModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/Admin/Admin_Students/DropDown_Add_Students.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
-import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/LargeTextField.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
-import 'package:vms_school/widgets/TextFormSearch.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 Add_Students_Guardian_Functions() async {
@@ -70,10 +61,8 @@ class _AllGuardiansDialogState extends State<AllGuardiansDialog> {
 
   // Other variables
   final _addStudentsController = Get.put(Add_Students_Controller());
-  late Dropdownclassescontroller _classController;
   late Allempolyeecontroller _employeeController;
   late Location_controller _locationController;
-  late Dropdowndivisioncontroller _divisionController;
   late Illness_Controller _illnessController;
   late Vaccines_Controller _vaccinesController;
 
@@ -103,11 +92,8 @@ class _AllGuardiansDialogState extends State<AllGuardiansDialog> {
     _localIdController = TextEditingController();
     _noteController = TextEditingController();
     _previousClass = TextEditingController();
-
-    _classController = Get.find<Dropdownclassescontroller>();
     _employeeController = Get.find<Allempolyeecontroller>();
     _locationController = Get.find<Location_controller>();
-    _divisionController = Get.find<Dropdowndivisioncontroller>();
     _illnessController = Get.find<Illness_Controller>();
     _vaccinesController = Get.find<Vaccines_Controller>();
   }
