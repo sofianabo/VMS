@@ -1,17 +1,15 @@
 // String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
-String hostPort = "http://192.168.1.18:8000/api/";
+String hostPort = "http://192.168.1.12:8000/api/";
 
-//..................... All ...................//
+//..................... Guardians API Start ...................//
+String enroll = "Enroll";
+String resendCodeGurdian = "resendCodeGurdian";
+String verifyCodeAndEnroll = "verifyCodeAndEnroll";
+String getMyChildren = "getMyChildren";
+//..................... Guardians API End ...................//
 
-String Home = "homeScreen";
-
-//..................... Auth ...................//
-
-String LOGIN = "login";
-String logout = "logout";
-
+//..................... Admin API Start ...................//
 //..................... Students ...................//
-
 String addGuardian = "addGuardian";
 String getguardians = "getAllGuardian";
 String editGuardian = "updateGuardian";
@@ -167,12 +165,16 @@ String deleteStudyShare = "deleteStudyShare";
 
 String getNoneQuizTypeClass = "getNoneQuizTypeClass";
 String updateQuizType = "updateQuizType";
+//..................... Admin API End ...................//
 
-//..................... All Guardian ...................//
-String enroll = "Enroll";
-String resendCodeGurdian = "resendCodeGurdian";
-String verifyCodeAndEnroll = "verifyCodeAndEnroll";
-String getMyChildren = "getMyChildren";
+//..................... All ...................//
+
+String Home = "homeScreen";
+
+//..................... Auth ...................//
+
+String LOGIN = "login";
+String logout = "logout";
 
 // ..................... All Users ...................//
 
