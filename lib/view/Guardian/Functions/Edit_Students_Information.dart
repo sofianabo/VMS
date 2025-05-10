@@ -55,17 +55,15 @@ EditStudentDialogForGua(BuildContext context, bool canEdit) async {
       TextEditingController(text: Controller.student!.birthDate);
   TextEditingController Class = TextEditingController(
       text: isArabic
-          ? Controller.student!.classes!.name
-          : Controller.student!.classes!.enName);
+          ? Controller.student?.classes?.name ?? ""
+          : Controller.student?.classes?.enName ?? "");
   TextEditingController Division = TextEditingController(
       text: isArabic
-          ? Controller.student!.division!.name
-          : Controller.student!.division!.enName);
+          ? Controller.student?.division?.name ?? ""
+          : Controller.student?.division?.enName ?? "");
 
-  TextEditingController Gender = TextEditingController(
-      text: isArabic
-          ? Controller.student!.division!.name
-          : Controller.student!.division!.enName);
+  TextEditingController Gender =
+      TextEditingController(text: Controller.student!.gender!.tr);
 
   TextEditingController Realagon =
       TextEditingController(text: Controller.student!.religion!.tr);
@@ -75,8 +73,8 @@ EditStudentDialogForGua(BuildContext context, bool canEdit) async {
 
   TextEditingController Location = TextEditingController(
       text: isArabic
-          ? Controller.student!.location!.name
-          : Controller.student!.location!.enName);
+          ? Controller.student!.location?.name
+          : Controller.student!.location?.enName);
 
   TextEditingController Family_State =
       TextEditingController(text: Controller.student!.familystatus!.tr);
@@ -244,6 +242,7 @@ EditStudentDialogForGua(BuildContext context, bool canEdit) async {
         //     width: 120)
       ],
       contents: Edite_Students_page(
+        canEdit: canEdit,
         First_Name: First_Name,
         Last_Name: Last_Name,
         Place_Of_Birth: Place_Of_Birth,
@@ -270,10 +269,10 @@ EditStudentDialogForGua(BuildContext context, bool canEdit) async {
         Location: Location,
         Family_State: Family_State,
       ),
-      apptitle: "Edit Student".tr,
-      subtitle: "Edite".tr +
-          " ${Controller.student!.firstName} ${Controller.student!.lastName}" +
-          "Info".tr));
+      apptitle: "Student Information".tr,
+      subtitle:
+          "${Controller.student!.firstName} ${Controller.student!.lastName}" +
+              "Info".tr));
 
   add_controller.initialdata();
 }
@@ -306,8 +305,10 @@ class Edite_Students_page extends StatefulWidget {
     required this.Blood_Type,
     required this.Location,
     required this.Family_State,
+    required this.canEdit,
   });
 
+  bool canEdit;
   TextEditingController First_Name;
   TextEditingController Last_Name;
   TextEditingController Place_Of_Birth;
@@ -411,7 +412,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Textfildwithupper(
-                                enabled: false,
+                                enabled: widget.canEdit,
                                 width: smallwidth,
                                 controller: widget.First_Name,
                                 isError: controller.ISfirstNameError,
@@ -423,7 +424,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                                 },
                               ),
                               Textfildwithupper(
-                                enabled: false,
+                                enabled: widget.canEdit,
                                 width: smallwidth,
                                 controller: widget.Last_Name,
                                 Uptext: "Last Name".tr,
@@ -446,7 +447,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
                           Textfildwithupper(
-                              enabled: false,
+                              enabled: widget.canEdit,
                               width: smallwidth,
                               controller: widget.Place_Of_Birth,
                               isError: controller.IsPlaceOfBirthError,
@@ -459,7 +460,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                               Uptext: "Place Of Birth".tr,
                               hinttext: "Place Of Birth".tr),
                           Textfildwithupper(
-                              enabled: false,
+                              enabled: widget.canEdit,
                               width: smallwidth,
                               controller: widget.Birthdate,
                               Uptext: "Place Of Birth".tr,
@@ -473,13 +474,13 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         Textfildwithupper(
-                            enabled: false,
+                            enabled: widget.canEdit,
                             width: smallwidth,
                             controller: widget.Gender,
                             Uptext: "Gender".tr,
                             hinttext: "Gender".tr),
                         Textfildwithupper(
-                            enabled: false,
+                            enabled: widget.canEdit,
                             width: smallwidth,
                             controller: widget.Realagon,
                             Uptext: "Realagon".tr,
@@ -492,13 +493,13 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         Textfildwithupper(
-                            enabled: false,
+                            enabled: widget.canEdit,
                             width: smallwidth,
                             controller: widget.Blood_Type,
                             Uptext: "Blood Type".tr,
                             hinttext: "Blood Type".tr),
                         Textfildwithupper(
-                            enabled: false,
+                            enabled: widget.canEdit,
                             width: smallwidth,
                             controller: widget.Location,
                             Uptext: "Location".tr,
@@ -511,7 +512,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         Textfildwithupper(
-                            enabled: false,
+                            enabled: widget.canEdit,
                             width: smallwidth,
                             fieldType: "phone",
                             isError: controller.ISphoneError,
@@ -524,7 +525,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                             Uptext: "Mobile Number".tr,
                             hinttext: "Mobile Number".tr),
                         Textfildwithupper(
-                            enabled: false,
+                            enabled: widget.canEdit,
                             width: smallwidth,
                             controller: widget.LocalID,
                             Uptext: "Local ID".tr,
@@ -537,7 +538,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         Textfildwithupper(
-                            enabled: false,
+                            enabled: widget.canEdit,
                             width: width <= 690 ? smallwidth : 620,
                             controller: widget.Family_State,
                             Uptext: "Family State".tr,
@@ -550,14 +551,14 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         Textfildwithupper(
-                            enabled: false,
+                            enabled: widget.canEdit,
                             isRequired: false,
                             width: smallwidth,
                             controller: widget.National_ID,
                             Uptext: "National Id".tr,
                             hinttext: "National Id".tr),
                         Textfildwithupper(
-                            enabled: false,
+                            enabled: widget.canEdit,
                             width: smallwidth,
                             isError: controller.ISLocalAddressError,
                             controller: widget.Current_Address,
@@ -630,14 +631,14 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         Textfildwithupper(
-                            enabled: false,
+                            enabled: widget.canEdit,
                             isRequired: false,
                             width: smallwidth,
                             controller: widget.Class,
                             Uptext: "Class".tr,
                             hinttext: "Class".tr),
                         Textfildwithupper(
-                            enabled: false,
+                            enabled: widget.canEdit,
                             width: smallwidth,
                             controller: widget.Division,
                             Uptext: "Division".tr,
@@ -650,14 +651,14 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         Textfildwithupper(
-                          enabled: false,
+                          enabled: widget.canEdit,
                           width: smallwidth,
                           controller: widget.username,
                           Uptext: "Username".tr,
                           hinttext: "Username".tr,
                         ),
                         Textfildwithupper(
-                            enabled: false,
+                            enabled: widget.canEdit,
                             isRequired: false,
                             width: smallwidth,
                             controller: widget.Fee_Discount,
@@ -694,14 +695,14 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         Textfildwithupper(
-                            enabled: false,
+                            enabled: widget.canEdit,
                             width: smallwidth,
                             isError: controller.ISFatherNameError,
                             controller: widget.Father_Name,
                             Uptext: "Father Name".tr,
                             hinttext: "Father Name".tr),
                         Textfildwithupper(
-                            enabled: false,
+                            enabled: widget.canEdit,
                             width: smallwidth,
                             isError: controller.ISFatherphoneError,
                             onChanged: (value) {
@@ -722,7 +723,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         Textfildwithupper(
-                            enabled: false,
+                            enabled: widget.canEdit,
                             width: smallwidth,
                             controller: widget.Father_Work,
                             Uptext: "Father Work".tr,
@@ -758,7 +759,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         Textfildwithupper(
-                            enabled: false,
+                            enabled: widget.canEdit,
                             width: smallwidth,
                             controller: widget.Mother_Name,
                             isError: controller.ISMotherNameError,
@@ -771,7 +772,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                             Uptext: "Mother Name".tr,
                             hinttext: "Mother Name".tr),
                         Textfildwithupper(
-                            enabled: false,
+                            enabled: widget.canEdit,
                             isRequired: false,
                             width: smallwidth,
                             fieldType: "phone",
@@ -793,7 +794,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         Textfildwithupper(
-                            enabled: false,
+                            enabled: widget.canEdit,
                             width: smallwidth,
                             controller: widget.Mother_Work,
                             Uptext: "Mother Work".tr,
@@ -827,7 +828,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         LargeTextField(
-                            readOnly: true,
+                            readOnly: !widget.canEdit,
                             width: width >= 720 ? 620 : (width) - 70,
                             controller: widget.Last_School_Detail,
                             hinttext: "Last School Detail".tr),
@@ -837,7 +838,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         LargeTextField(
-                            readOnly: true,
+                            readOnly: !widget.canEdit,
                             width: width >= 720 ? 620 : (width) - 70,
                             controller: widget.Note,
                             hinttext: "Note".tr),
@@ -865,7 +866,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                       ],
                     ),
                     Drop_Edite_students(
-                      isAdmin: false,
+                      isAdmin: widget.canEdit,
                     )
                   ],
                 ),

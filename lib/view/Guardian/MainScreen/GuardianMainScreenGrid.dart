@@ -414,7 +414,6 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                             );
                                           }),
 
-                                          // زر الوقت (بدون منيو)
                                           Builder(builder: (context) {
                                             return IconButton(
                                               style: ButtonStyle(
@@ -515,7 +514,6 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                                               .id,
                                                           index_of_student:
                                                               index);
-                                                 
                                                 } else if (selected ==
                                                     'StudyShareTable') {
                                                   // Get.find<Illness_Controller>()
@@ -683,368 +681,398 @@ class GuardianMainScreenGrid extends StatelessWidget {
                       } else {
                         return HoverScaleCard(
                           child: AnimatedBorder(
-                            child: Container(
-                                padding: const EdgeInsets.all(20),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    border: Border.all(
-                                        color: Theme.of(context).primaryColor,
-                                        width: 0.5),
-                                    color: Theme.of(context).cardColor,
-                                    boxShadow: const [
-                                      BoxShadow(
-                                          color: Colors.black26,
-                                          offset: Offset(0, 2),
-                                          blurRadius: 1)
-                                    ]),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        control.filteredStudents[index]
-                                                    .fileId !=
-                                                null
-                                            ? FutureBuilder(
-                                                future: precacheImage(
-                                                  NetworkImage(
-                                                      "$getimage${control.filteredStudents[index].fileId}"),
-                                                  context,
-                                                ),
-                                                builder: (context, snapshot) {
-                                                  if (snapshot
-                                                          .connectionState ==
-                                                      ConnectionState.done) {
-                                                    return CircleAvatar(
-                                                      maxRadius: 60,
-                                                      backgroundColor:
-                                                          const Color(
-                                                              0xffC4C4C4),
-                                                      backgroundImage: NetworkImage(
-                                                          "$getimage${control.filteredStudents[index].fileId}"),
-                                                    );
-                                                  } else {
-                                                    return CircleAvatar(
-                                                      maxRadius: 60,
-                                                      backgroundColor:
-                                                          const Color(
-                                                              0xffC4C4C4),
-                                                      child:
-                                                          LoadingAnimationWidget
-                                                              .inkDrop(
-                                                        color: Theme.of(context)
-                                                            .primaryColor,
-                                                        size: 30,
-                                                      ),
-                                                    );
-                                                  }
-                                                },
-                                              )
-                                            : CircleAvatar(
-                                                maxRadius: 60,
-                                                backgroundColor:
-                                                    const Color(0xffC4C4C4),
-                                                child: Text(
-                                                  control
-                                                      .filteredStudents[index]
-                                                      .fullName!
-                                                      .substring(0, 1)
-                                                      .toUpperCase(),
-                                                  style: Get
-                                                      .textTheme.titleLarge!
-                                                      .copyWith(
-                                                    fontSize: 26,
-                                                    fontWeight: FontWeight.bold,
+                            child: GestureDetector(
+                              onTap: () async {
+                                Get.find<Add_Students_Controller>()
+                                    .resetError();
+                                await Get_Students_Information_API_Gua(context)
+                                    .Get_Students_Information(
+                                        canEdit: false,
+                                        StudentsID:
+                                            control.filteredStudents[index].id,
+                                        index: index);
+                              },
+                              child: Container(
+                                  padding: const EdgeInsets.all(20),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      border: Border.all(
+                                          color: Theme.of(context).primaryColor,
+                                          width: 0.5),
+                                      color: Theme.of(context).cardColor,
+                                      boxShadow: const [
+                                        BoxShadow(
+                                            color: Colors.black26,
+                                            offset: Offset(0, 2),
+                                            blurRadius: 1)
+                                      ]),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          control.filteredStudents[index]
+                                                      .fileId !=
+                                                  null
+                                              ? FutureBuilder(
+                                                  future: precacheImage(
+                                                    NetworkImage(
+                                                        "$getimage${control.filteredStudents[index].fileId}"),
+                                                    context,
+                                                  ),
+                                                  builder: (context, snapshot) {
+                                                    if (snapshot
+                                                            .connectionState ==
+                                                        ConnectionState.done) {
+                                                      return CircleAvatar(
+                                                        maxRadius: 60,
+                                                        backgroundColor:
+                                                            const Color(
+                                                                0xffC4C4C4),
+                                                        backgroundImage:
+                                                            NetworkImage(
+                                                                "$getimage${control.filteredStudents[index].fileId}"),
+                                                      );
+                                                    } else {
+                                                      return CircleAvatar(
+                                                        maxRadius: 60,
+                                                        backgroundColor:
+                                                            const Color(
+                                                                0xffC4C4C4),
+                                                        child:
+                                                            LoadingAnimationWidget
+                                                                .inkDrop(
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .primaryColor,
+                                                          size: 30,
+                                                        ),
+                                                      );
+                                                    }
+                                                  },
+                                                )
+                                              : CircleAvatar(
+                                                  maxRadius: 60,
+                                                  backgroundColor:
+                                                      const Color(0xffC4C4C4),
+                                                  child: Text(
+                                                    control
+                                                        .filteredStudents[index]
+                                                        .fullName!
+                                                        .substring(0, 1)
+                                                        .toUpperCase(),
+                                                    style: Get
+                                                        .textTheme.titleLarge!
+                                                        .copyWith(
+                                                      fontSize: 26,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                      ],
-                                    ),
-                                    Text(
-                                      "${control.filteredStudents[index].fullName}",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium!
-                                          .copyWith(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 8.0),
-                                      child: Column(
-                                        spacing: 15.0,
-                                        children: [
-                                          Text(
-                                            "Request State".tr,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium!
-                                                .copyWith(
-                                                    fontSize: 18,
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                        FontWeight.normal),
-                                          ),
-                                          Row(
-                                            spacing: 25.0,
-                                            mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                "${control.filteredStudents[index].type!.tr}",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyMedium!
-                                                    .copyWith(
-                                                        fontSize: 16,
-                                                        color: control
+                                        ],
+                                      ),
+                                      Text(
+                                        "${control.filteredStudents[index].fullName}",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
+                                            .copyWith(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 8.0),
+                                        child: Column(
+                                          spacing: 15.0,
+                                          children: [
+                                            Text(
+                                              "Request State".tr,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                      fontSize: 18,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.normal),
+                                            ),
+                                            Row(
+                                              spacing: 25.0,
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  "${control.filteredStudents[index].type!.tr}",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .copyWith(
+                                                          fontSize: 16,
+                                                          color: control
+                                                                      .filteredStudents[
+                                                                          index]
+                                                                      .type ==
+                                                                  "Rejected".tr
+                                                              ? const Color(
+                                                                  0xffB27671)
+                                                              : control
+                                                                          .filteredStudents[
+                                                                              index]
+                                                                          .type ==
+                                                                      "Pending"
+                                                                          .tr
+                                                                  ? const Color(
+                                                                      0xff297686)
+                                                                  : const Color(
+                                                                      0xff779DB6),
+                                                          fontWeight: FontWeight
+                                                              .normal),
+                                                ),
+                                                Icon(
+                                                    control
+                                                                .filteredStudents[
+                                                                    index]
+                                                                .type ==
+                                                            "Rejected".tr
+                                                        ? Icons.close
+                                                        : control
                                                                     .filteredStudents[
                                                                         index]
                                                                     .type ==
-                                                                "Rejected".tr
+                                                                "Pending".tr
+                                                            ? Icons
+                                                                .timelapse_outlined
+                                                            : Icons.timer,
+                                                    color: control
+                                                                .filteredStudents[
+                                                                    index]
+                                                                .type ==
+                                                            "Rejected".tr
+                                                        ? const Color(
+                                                            0xffB27671)
+                                                        : control
+                                                                    .filteredStudents[
+                                                                        index]
+                                                                    .type ==
+                                                                "Pending".tr
                                                             ? const Color(
-                                                                0xffB27671)
-                                                            : control
-                                                                        .filteredStudents[
-                                                                            index]
-                                                                        .type ==
-                                                                    "Pending".tr
-                                                                ? const Color(
-                                                                    0xff297686)
-                                                                : const Color(
-                                                                    0xff779DB6),
-                                                        fontWeight:
-                                                            FontWeight.normal),
-                                              ),
-                                              Icon(
-                                                  control
-                                                              .filteredStudents[
-                                                                  index]
-                                                              .type ==
-                                                          "Rejected".tr
-                                                      ? Icons.close
-                                                      : control
-                                                                  .filteredStudents[
-                                                                      index]
-                                                                  .type ==
-                                                              "Pending".tr
-                                                          ? Icons
-                                                              .timelapse_outlined
-                                                          : Icons.timer,
-                                                  color: control
-                                                              .filteredStudents[
-                                                                  index]
-                                                              .type ==
-                                                          "Rejected".tr
-                                                      ? const Color(0xffB27671)
-                                                      : control
-                                                                  .filteredStudents[
-                                                                      index]
-                                                                  .type ==
-                                                              "Pending".tr
-                                                          ? const Color(
-                                                              0xff297686)
-                                                          : const Color(
-                                                              0xff779DB6))
-                                            ],
-                                          ),
-                                        ],
+                                                                0xff297686)
+                                                            : const Color(
+                                                                0xff779DB6))
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          IconButton(
-                                            style: ButtonStyle(
-                                                maximumSize:
-                                                    WidgetStateProperty.all(
-                                                        const Size(35, 35)),
-                                                minimumSize:
-                                                    WidgetStateProperty.all(
-                                                        const Size(35, 35)),
-                                                iconSize:
-                                                    WidgetStateProperty.all(14),
-                                                shape: WidgetStateProperty.all(
-                                                    RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                )),
-                                                backgroundColor:
-                                                    WidgetStateProperty.all(
-                                                        const Color(
-                                                            0xffB03D3D))),
-                                            onPressed: () {
-                                              Get.dialog(VMSAlertDialog(
-                                                  action: [
-                                                    ButtonDialog(
-                                                      width: 100,
-                                                      text: "Delete".tr,
-                                                      onPressed: () async {
-                                                        // await Delete_Student_API(
-                                                        //     context)
-                                                        //     .Delete_Student(
-                                                        //     id: control
-                                                        //         .filteredStudents[
-                                                        //     index]
-                                                        //         .id
-                                                        //         .toString());
-                                                      },
-                                                      color: const Color(
-                                                          0xffB03D3D),
-                                                    ),
-                                                    const SizedBox(
-                                                      width: 10,
-                                                    ),
-                                                    ButtonDialog(
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 8.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            IconButton(
+                                              style: ButtonStyle(
+                                                  maximumSize:
+                                                      WidgetStateProperty.all(
+                                                          const Size(35, 35)),
+                                                  minimumSize:
+                                                      WidgetStateProperty.all(
+                                                          const Size(35, 35)),
+                                                  iconSize:
+                                                      WidgetStateProperty.all(
+                                                          14),
+                                                  shape: WidgetStateProperty.all(
+                                                      RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  )),
+                                                  backgroundColor:
+                                                      WidgetStateProperty.all(
+                                                          const Color(
+                                                              0xffB03D3D))),
+                                              onPressed: () {
+                                                Get.dialog(VMSAlertDialog(
+                                                    action: [
+                                                      ButtonDialog(
                                                         width: 100,
-                                                        text: "Cancel".tr,
-                                                        onPressed: () {
-                                                          Get.back();
+                                                        text: "Delete".tr,
+                                                        onPressed: () async {
+                                                          // await Delete_Student_API(
+                                                          //     context)
+                                                          //     .Delete_Student(
+                                                          //     id: control
+                                                          //         .filteredStudents[
+                                                          //     index]
+                                                          //         .id
+                                                          //         .toString());
                                                         },
-                                                        color: Theme.of(context)
-                                                            .primaryColor)
-                                                  ],
-                                                  contents: Container(
-                                                    width: 300,
-                                                    child: Text(
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.black),
-                                                        maxLines: 3,
-                                                        "Do You Want To Deletee"
-                                                                .tr +
-                                                            "${control.filteredStudents[index].fullName}" +
-                                                            "Studentt".tr),
-                                                  ),
-                                                  apptitle:
-                                                      "Delete Students".tr,
-                                                  subtitle: "none"));
-                                            },
-                                            icon: const Icon(VMS_Icons.bin),
-                                            color: Colors.white,
-                                          ),
-                                          IconButton(
-                                            style: ButtonStyle(
-                                                maximumSize:
-                                                    WidgetStateProperty.all(
-                                                        const Size(35, 35)),
-                                                minimumSize:
-                                                    WidgetStateProperty.all(
-                                                        const Size(35, 35)),
-                                                iconSize:
-                                                    WidgetStateProperty.all(14),
-                                                shape: WidgetStateProperty.all(
-                                                    RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                )),
-                                                backgroundColor:
-                                                    WidgetStateProperty.all(
-                                                        Theme.of(context)
-                                                            .primaryColorLight)),
-                                            onPressed: () async {
-                                              Get.find<Illness_Controller>()
-                                                  .initialdata();
-                                              await Get_Students_Illness_API(
-                                                      context)
-                                                  .Get_Students_Illness(
-                                                      studentId: control
-                                                          .filteredStudents[
-                                                              index]
-                                                          .id,
-                                                      index_of_Student: index);
-                                            },
-                                            icon: const Icon(VMS_Icons.vir),
-                                            color: Colors.white,
-                                          ),
-                                          IconButton(
-                                            style: ButtonStyle(
-                                                maximumSize:
-                                                    WidgetStateProperty.all(
-                                                        const Size(35, 35)),
-                                                minimumSize:
-                                                    WidgetStateProperty.all(
-                                                        const Size(35, 35)),
-                                                iconSize:
-                                                    WidgetStateProperty.all(14),
-                                                shape: WidgetStateProperty.all(
-                                                    RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                )),
-                                                backgroundColor:
-                                                    WidgetStateProperty.all(
-                                                        Theme.of(context)
-                                                            .primaryColorLight)),
-                                            onPressed: () async {
-                                              Get.find<Vaccines_Controller>()
-                                                  .initialdata();
-                                              await Get_Students_Vacciness_API(
-                                                      context)
-                                                  .Get_Students_Vacciness(
-                                                      studentId: control
-                                                          .filteredStudents[
-                                                              index]
-                                                          .id,
-                                                      index_of_student: index);
-                                            },
-                                            icon: const Icon(VMS_Icons.dose),
-                                            color: Colors.white,
-                                          ),
-                                          IconButton(
-                                            style: ButtonStyle(
-                                                maximumSize:
-                                                    WidgetStateProperty.all(
-                                                        const Size(35, 35)),
-                                                minimumSize:
-                                                    WidgetStateProperty.all(
-                                                        const Size(35, 35)),
-                                                iconSize:
-                                                    WidgetStateProperty.all(14),
-                                                shape: WidgetStateProperty.all(
-                                                    RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                )),
-                                                backgroundColor:
-                                                    WidgetStateProperty.all(
-                                                        Theme.of(context)
-                                                            .primaryColorLight)),
-                                            onPressed: () async {
-                                              Get.find<
-                                                      Add_Students_Controller>()
-                                                  .resetError();
+                                                        color: const Color(
+                                                            0xffB03D3D),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      ButtonDialog(
+                                                          width: 100,
+                                                          text: "Cancel".tr,
+                                                          onPressed: () {
+                                                            Get.back();
+                                                          },
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .primaryColor)
+                                                    ],
+                                                    contents: Container(
+                                                      width: 300,
+                                                      child: Text(
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.black),
+                                                          maxLines: 3,
+                                                          "Do You Want To Deletee"
+                                                                  .tr +
+                                                              "${control.filteredStudents[index].fullName}" +
+                                                              "Studentt".tr),
+                                                    ),
+                                                    apptitle:
+                                                        "Delete Students".tr,
+                                                    subtitle: "none"));
+                                              },
+                                              icon: const Icon(VMS_Icons.bin),
+                                              color: Colors.white,
+                                            ),
+                                            IconButton(
+                                              style: ButtonStyle(
+                                                  maximumSize:
+                                                      WidgetStateProperty.all(
+                                                          const Size(35, 35)),
+                                                  minimumSize:
+                                                      WidgetStateProperty.all(
+                                                          const Size(35, 35)),
+                                                  iconSize:
+                                                      WidgetStateProperty.all(
+                                                          14),
+                                                  shape: WidgetStateProperty.all(
+                                                      RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  )),
+                                                  backgroundColor:
+                                                      WidgetStateProperty.all(
+                                                          Theme.of(context)
+                                                              .primaryColorLight)),
+                                              onPressed: () async {
+                                                Get.find<Illness_Controller>()
+                                                    .initialdata();
+                                                await Get_Students_Illness_API(
+                                                        context)
+                                                    .Get_Students_Illness(
+                                                        studentId: control
+                                                            .filteredStudents[
+                                                                index]
+                                                            .id,
+                                                        index_of_Student:
+                                                            index);
+                                              },
+                                              icon: const Icon(VMS_Icons.vir),
+                                              color: Colors.white,
+                                            ),
+                                            IconButton(
+                                              style: ButtonStyle(
+                                                  maximumSize:
+                                                      WidgetStateProperty.all(
+                                                          const Size(35, 35)),
+                                                  minimumSize:
+                                                      WidgetStateProperty.all(
+                                                          const Size(35, 35)),
+                                                  iconSize:
+                                                      WidgetStateProperty.all(
+                                                          14),
+                                                  shape: WidgetStateProperty.all(
+                                                      RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  )),
+                                                  backgroundColor:
+                                                      WidgetStateProperty.all(
+                                                          Theme.of(context)
+                                                              .primaryColorLight)),
+                                              onPressed: () async {
+                                                Get.find<Vaccines_Controller>()
+                                                    .initialdata();
+                                                await Get_Students_Vacciness_API(
+                                                        context)
+                                                    .Get_Students_Vacciness(
+                                                        studentId: control
+                                                            .filteredStudents[
+                                                                index]
+                                                            .id,
+                                                        index_of_student:
+                                                            index);
+                                              },
+                                              icon: const Icon(VMS_Icons.dose),
+                                              color: Colors.white,
+                                            ),
+                                            IconButton(
+                                              style: ButtonStyle(
+                                                  maximumSize:
+                                                      WidgetStateProperty.all(
+                                                          const Size(35, 35)),
+                                                  minimumSize:
+                                                      WidgetStateProperty.all(
+                                                          const Size(35, 35)),
+                                                  iconSize:
+                                                      WidgetStateProperty.all(
+                                                          14),
+                                                  shape: WidgetStateProperty.all(
+                                                      RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  )),
+                                                  backgroundColor:
+                                                      WidgetStateProperty.all(
+                                                          Theme.of(context)
+                                                              .primaryColorLight)),
+                                              onPressed: () async {
+                                                Get.find<
+                                                        Add_Students_Controller>()
+                                                    .resetError();
 
-                                              await Get_Students_Information_API_Gua(
-                                                      context)
-                                                  .Get_Students_Information(
-                                                      canEdit: false,
-                                                      StudentsID: control
-                                                          .filteredStudents[
-                                                              index]
-                                                          .id,
-                                                      index: index);
-                                            },
-                                            icon: const Icon(VMS_Icons.vcard),
-                                            color: Colors.white,
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                )),
+                                                await Get_Students_Information_API_Gua(
+                                                        context)
+                                                    .Get_Students_Information(
+                                                        canEdit: false,
+                                                        StudentsID: control
+                                                            .filteredStudents[
+                                                                index]
+                                                            .id,
+                                                        index: index);
+                                              },
+                                              icon: const Icon(VMS_Icons.vcard),
+                                              color: Colors.white,
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  )),
+                            ),
                           ),
                         );
                       }
