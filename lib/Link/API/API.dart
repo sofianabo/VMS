@@ -6,6 +6,7 @@ String enroll = "Enroll";
 String resendCodeGurdian = "resendCodeGurdian";
 String verifyCodeAndEnroll = "verifyCodeAndEnroll";
 String getMyChildren = "getMyChildren";
+String getStudentQuiz = 'getStudentQuiz';
 //..................... Guardians API End ...................//
 
 //..................... Admin API Start ...................//

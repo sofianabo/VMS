@@ -9,11 +9,13 @@ import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Students
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Students_Information.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Students_Vaccines.dart';
 import 'package:vms_school/Link/API/DownloadFiles.dart';
+import 'package:vms_school/Link/API/Guardians_API/GetChildExamTableAPI.dart';
 import 'package:vms_school/Link/API/Guardians_API/Get_Students_Information_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/PenaltiesAndRewardsController.dart';
+import 'package:vms_school/Link/Controller/GuardianController/ChildExamTableController.dart';
 import 'package:vms_school/Link/Controller/GuardianController/GuardianMainScreenController.dart';
 import 'package:vms_school/Link/Controller/GuardianController/MyChildren_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCurriculumn_Controller.dart';
@@ -413,34 +415,124 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                           }),
 
                                           // زر الوقت (بدون منيو)
-                                          IconButton(
-                                            style: ButtonStyle(
-                                              maximumSize:
-                                                  WidgetStateProperty.all(
-                                                      const Size(35, 35)),
-                                              minimumSize:
-                                                  WidgetStateProperty.all(
-                                                      const Size(35, 35)),
-                                              iconSize:
-                                                  WidgetStateProperty.all(14),
-                                              shape: WidgetStateProperty.all(
-                                                RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
+                                          Builder(builder: (context) {
+                                            return IconButton(
+                                              style: ButtonStyle(
+                                                maximumSize:
+                                                    WidgetStateProperty.all(
+                                                        const Size(35, 35)),
+                                                minimumSize:
+                                                    WidgetStateProperty.all(
+                                                        const Size(35, 35)),
+                                                iconSize:
+                                                    WidgetStateProperty.all(14),
+                                                shape: WidgetStateProperty.all(
+                                                  RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  ),
+                                                ),
+                                                backgroundColor:
+                                                    WidgetStateProperty.all(
+                                                  Theme.of(context)
+                                                      .primaryColorLight,
                                                 ),
                                               ),
-                                              backgroundColor:
-                                                  WidgetStateProperty.all(
-                                                Theme.of(context)
-                                                    .primaryColorLight,
-                                              ),
-                                            ),
-                                            icon: const Icon(Icons.access_time),
-                                            color: Colors.white,
-                                            onPressed: () {
-                                              // ضع الوظيفة هنا
-                                            },
-                                          ),
+                                              icon:
+                                                  const Icon(Icons.access_time),
+                                              color: Colors.white,
+                                              onPressed: () async {
+                                                final RenderBox button =
+                                                    context.findRenderObject()
+                                                        as RenderBox;
+                                                final RenderBox overlay =
+                                                    Overlay.of(context)
+                                                            .context
+                                                            .findRenderObject()
+                                                        as RenderBox;
+                                                final Offset position = button
+                                                    .localToGlobal(Offset.zero,
+                                                        ancestor: overlay);
+
+                                                final selected =
+                                                    await showMenu<String>(
+                                                  context: context,
+                                                  position:
+                                                      RelativeRect.fromLTRB(
+                                                    position.dx,
+                                                    position.dy +
+                                                        button.size.height,
+                                                    overlay.size.width -
+                                                        position.dx,
+                                                    0,
+                                                  ),
+                                                  color: Get.theme.cardColor,
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5)),
+                                                  items: [
+                                                    PopupMenuItem<String>(
+                                                      value: 'ExamTable',
+                                                      child: Text(
+                                                          'Exam Table'.tr,
+                                                          style: Get
+                                                              .theme
+                                                              .textTheme
+                                                              .bodyMedium),
+                                                    ),
+                                                    PopupMenuItem<String>(
+                                                      value: 'StudyShare Table',
+                                                      child: Text(
+                                                          'StudyShareTable'.tr,
+                                                          style: Get
+                                                              .theme
+                                                              .textTheme
+                                                              .bodyMedium),
+                                                    ),
+                                                    PopupMenuItem<String>(
+                                                      value: 'Attendence',
+                                                      child: Text(
+                                                          'Attendence'.tr,
+                                                          style: Get
+                                                              .theme
+                                                              .textTheme
+                                                              .bodyMedium),
+                                                    ),
+                                                  ],
+                                                );
+
+                                                if (selected == 'ExamTable') {
+                                                  Get.find<
+                                                          Childexamtablecontroller>()
+                                                      .initialData();
+                                                  Getchildexamtableapi(context)
+                                                      .Getchildexamtable(
+                                                          studentId: control
+                                                              .filteredStudents[
+                                                                  index]
+                                                              .id,
+                                                          index_of_student:
+                                                              index);
+                                                 
+                                                } else if (selected ==
+                                                    'StudyShareTable') {
+                                                  // Get.find<Illness_Controller>()
+                                                  //     .initialdata();
+                                                  // Get_Students_Illness_API(
+                                                  //         context)
+                                                  //     .Get_Students_Illness(
+                                                  //   studentId: control
+                                                  //       .filteredStudents[index]
+                                                  //       .id,
+                                                  //   index_of_Student: index,
+                                                  // );
+                                                } else if (selected ==
+                                                    'Attendence') {}
+                                              },
+                                            );
+                                          }),
 
                                           // زر الملاحظات (بدون منيو)
                                           IconButton(

@@ -46,6 +46,7 @@ import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/T
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/oneStudentAttendenceController.dart';
 import 'package:vms_school/Link/Controller/AuthController/Enroll_Controller.dart';
 import 'package:vms_school/Link/Controller/AuthController/UserController.dart';
+import 'package:vms_school/Link/Controller/GuardianController/ChildExamTableController.dart';
 import 'package:vms_school/Link/Controller/GuardianController/GuardianMainScreenController.dart';
 import 'package:vms_school/Link/Controller/GuardianController/MyChildren_Controller.dart';
 import 'package:vms_school/Link/Controller/HomeController/HomeScreenController.dart';
@@ -133,5 +134,6 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => Validateteachernoteandgradereco(), fenix: true);
     Get.lazyPut(() => Guardianmainscreencontroller(), fenix: true);
     Get.lazyPut(() => MyChildren_Controller(), fenix: true);
+    Get.lazyPut(() => Childexamtablecontroller(), fenix: true);
   }
 }
