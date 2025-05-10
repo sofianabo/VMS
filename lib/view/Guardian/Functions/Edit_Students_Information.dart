@@ -66,7 +66,6 @@ EditStudentDialogForGua(int idx, BuildContext context, bool canEdit) async {
   TextEditingController username = TextEditingController();
 
   add_controller.selectedImage.value = null;
-  print("im here");
   add_controller.set_Edite_Data(
       isPendStudents: false,
       DivisionIndexs: !canEdit
@@ -88,10 +87,8 @@ EditStudentDialogForGua(int idx, BuildContext context, bool canEdit) async {
       Specialneed: Controller.student!.specialNeeds == 1 ? true : false,
       Martyson: Controller.student!.martyrSon == 1 ? true : false,
       Realagonindex: Controller.student!.religion ?? "");
-  print("im here 1");
   Allempolyeecontrollers.Birthdate.value =
       DateTime.parse(Controller.student!.birthDate.toString());
-  print("im here 2");
   Get.dialog(VMSAlertDialog(
       action: [
         ButtonDialog(
@@ -256,10 +253,9 @@ EditStudentDialogForGua(int idx, BuildContext context, bool canEdit) async {
       ),
       apptitle: "Edit Student".tr,
       subtitle: "Edite".tr +
-          " ${Controller.filteredStudents[idx].fullName}" +
+          "${Controller.filteredStudents[idx].fullName}" +
           "Info".tr));
 
-  await Getallclassapi.getAllClasses();
   await Get_Location_API.Get_Locations();
   add_controller.initialdata();
   add_controller.SetIsLoadingDivision(true);
