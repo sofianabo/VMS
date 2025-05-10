@@ -70,6 +70,9 @@ class _AllGuardiansDialogState extends State<AllGuardiansDialog> {
   void initState() {
     super.initState();
     _initializeControllers();
+    
+    _illnessController = Get.find<Illness_Controller>();
+    _vaccinesController = Get.find<Vaccines_Controller>();
     _resetData();
   }
 
