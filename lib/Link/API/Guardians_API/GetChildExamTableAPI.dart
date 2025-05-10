@@ -1,0 +1,65 @@
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:vms_school/Link/API/API.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Vaccines_APIs/Get_All_Vaccines_API.dart';
+import 'package:vms_school/Link/API/DioOption.dart';
+import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/ExamTableController.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
+import 'package:vms_school/Link/Controller/GuardianController/ChildExamTableController.dart';
+import 'package:vms_school/Link/Functions/Show_Vaccines_By_Id.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/ExamTableModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/Students_Models/Students_Vaccines_Model.dart';
+import 'package:vms_school/view/Guardian/Functions/ExamTableForChild.dart';
+import 'package:vms_school/widgets/Loading_Dialog.dart';
+
+class Getchildexamtableapi {
+  final BuildContext context;
+  final Dio dio = Dio();
+
+  Getchildexamtableapi(this.context);
+
+  Future<void> Getchildexamtable(
+      {int? studentId, required int? index_of_student}) async {
+    final controller = Get.find<Childexamtablecontroller>();
+
+    controller.setIsLoading(true);
+
+    try {
+      String apiUrl = "${hostPort}${getStudentQuiz}";
+      CancelToken cancelToken = CancelToken();
+      Loading_Dialog(cancelToken: cancelToken);
+
+      var response = await dio.post(
+        apiUrl,
+        data: {"studentId": studentId},
+        cancelToken: cancelToken,
+        options: getDioOptions(),
+      );
+
+      Get.back();
+      if (response.statusCode == 200) {
+        ExamTableModel examtablechildmodel =
+            ExamTableModel.fromJson(response.data);
+        controller.setAllQuiz(examtablechildmodel);
+        Get.dialog(Examtableforchild(
+            id: studentId.toString(), indexOfStudent: index_of_student));
+      } else {
+        ErrorHandler.handleDioError(DioError(
+          requestOptions: response.requestOptions,
+          response: response,
+          type: DioErrorType.badResponse,
+        ));
+      }
+    } catch (e) {
+      if (e is DioError) {
+        ErrorHandler.handleDioError(e);
+      } else {
+        ErrorHandler.handleException(Exception(e.toString()));
+      }
+    } finally {
+      controller.setIsLoading(false);
+    }
+  }
+}
