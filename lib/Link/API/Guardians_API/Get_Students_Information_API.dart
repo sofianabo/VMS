@@ -27,7 +27,7 @@ class Get_Students_Information_API_Gua {
         Student_Info_model student_info_model =
             Student_Info_model.fromJson(response.data);
         controller.Set_Selected_Student(student_info_model);
-        EditStudentDialogForGua(index, context, canEdit);
+        EditStudentDialogForGua(context, canEdit);
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,
