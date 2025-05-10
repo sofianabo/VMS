@@ -483,9 +483,9 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                                               .bodyMedium),
                                                     ),
                                                     PopupMenuItem<String>(
-                                                      value: 'StudyShare Table',
+                                                      value: 'StudyShareTable',
                                                       child: Text(
-                                                          'StudyShareTable'.tr,
+                                                          'StudyShare Table'.tr,
                                                           style: Get
                                                               .theme
                                                               .textTheme
@@ -494,7 +494,7 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                                     PopupMenuItem<String>(
                                                       value: 'Attendence',
                                                       child: Text(
-                                                          'Attendence'.tr,
+                                                          'Attendences'.tr,
                                                           style: Get
                                                               .theme
                                                               .textTheme
@@ -515,7 +515,6 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                                               .id,
                                                           index_of_student:
                                                               index);
-                                                 
                                                 } else if (selected ==
                                                     'StudyShareTable') {
                                                   // Get.find<Illness_Controller>()
@@ -787,7 +786,6 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                                 .bodyMedium!
                                                 .copyWith(
                                                     fontSize: 18,
-                                                    color: Colors.black,
                                                     fontWeight:
                                                         FontWeight.normal),
                                           ),

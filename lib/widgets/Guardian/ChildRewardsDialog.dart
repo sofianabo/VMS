@@ -39,81 +39,83 @@ class _ChildrewardsdialogState extends State<Childrewardsdialog> {
                   ),
                 ),
                 Expanded(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      PAR_Controller.Rewards_isLoading
-                          ? Center(child: CircularProgressIndicator())
-                          : PAR_Controller.Rewardsmodel!.prizes!.isEmpty
-                              ? Center(
-                                  child: Text("No Rewards".tr,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleLarge!
-                                          .copyWith(
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.normal)))
-                              : Container(
-                                  height: 540,
-                                  width: 550,
-                                  child: SingleChildScrollView(
-                                    child: ListView.builder(
-                                      shrinkWrap: true,
-                                      itemCount: PAR_Controller
-                                          .Rewardsmodel!.prizes!.length,
-                                      itemBuilder: (context, index) {
-                                        return Container(
-                                          height: 70,
-                                          child: Column(
-                                            spacing: 5.0,
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Text(
-                                                      "${PAR_Controller.Rewardsmodel!.prizes![index].name}"),
-                                                  Spacer(),
-                                                  Row(
-                                                    spacing: 10.0,
-                                                    children: [
-                                                      IconButton(
-                                                          style: ButtonStyle(
-                                                              backgroundColor:
-                                                                  WidgetStatePropertyAll(Get
-                                                                      .theme
-                                                                      .primaryColor),
-                                                              shape: WidgetStatePropertyAll(
-                                                                  RoundedRectangleBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius.all(Radius.circular(
-                                                                              5))))),
-                                                          onPressed: () {
-                                                            final url =
-                                                                '$getpdf${PAR_Controller.Rewardsmodel!.prizes![index].fileId}';
-                                                            openFileInNewTab(
-                                                                filePath: url);
-                                                          },
-                                                          icon: Icon(
-                                                              Icons
-                                                                  .file_download_outlined,
-                                                              size: 20,
-                                                              color: Colors
-                                                                  .white)),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                              Divider(),
-                                            ],
-                                          ),
-                                        );
-                                      },
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        PAR_Controller.Rewards_isLoading
+                            ? Center(child: CircularProgressIndicator())
+                            : PAR_Controller.Rewardsmodel!.prizes!.isEmpty
+                                ? Center(
+                                    child: Text("No Rewards".tr,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge!
+                                            .copyWith(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.normal)))
+                                : Container(
+                                    height: 540,
+                                    width: 550,
+                                    child: SingleChildScrollView(
+                                      child: ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: PAR_Controller
+                                            .Rewardsmodel!.prizes!.length,
+                                        itemBuilder: (context, index) {
+                                          return Container(
+                                            height: 70,
+                                            child: Column(
+                                              spacing: 5.0,
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                        "${PAR_Controller.Rewardsmodel!.prizes![index].name}"),
+                                                    Spacer(),
+                                                    Row(
+                                                      spacing: 10.0,
+                                                      children: [
+                                                        IconButton(
+                                                            style: ButtonStyle(
+                                                                backgroundColor:
+                                                                    WidgetStatePropertyAll(Get
+                                                                        .theme
+                                                                        .primaryColor),
+                                                                shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.all(Radius.circular(
+                                                                            5))))),
+                                                            onPressed: () {
+                                                              final url =
+                                                                  '$getpdf${PAR_Controller.Rewardsmodel!.prizes![index].fileId}';
+                                                              openFileInNewTab(
+                                                                  filePath:
+                                                                      url);
+                                                            },
+                                                            icon: Icon(
+                                                                Icons
+                                                                    .file_download_outlined,
+                                                                size: 20,
+                                                                color: Colors
+                                                                    .white)),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                                Divider(),
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      ),
                                     ),
                                   ),
-                                ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],
