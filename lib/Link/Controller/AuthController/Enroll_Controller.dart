@@ -10,6 +10,7 @@ class EnrollController extends GetxController {
 
   bool ShowConfirmPassword = true;
   bool ShowPassword = true;
+  bool ShowoldPassword = true;
 //here is new error validate
   bool IsusernameError = false;
   bool IsnameError = false;
@@ -19,6 +20,7 @@ class EnrollController extends GetxController {
   bool IsEmailError = false;
   bool IsPasswordError = false;
   bool IsConfirmPasswordError = false;
+  bool IsoldPasswordError = false;
 
   void updateFieldError(String type, bool newValue) {
     switch (type) {
@@ -40,6 +42,9 @@ class EnrollController extends GetxController {
       case 'cpassword':
         IsConfirmPasswordError = newValue;
         break;
+      case 'oldpassword':
+        IsoldPasswordError = newValue;
+        break;
       case 'phone':
         IsphoneError = newValue;
         break;
@@ -60,6 +65,12 @@ class EnrollController extends GetxController {
 
   ChangeShowPassword(bool value) {
     ShowPassword = value;
+    print(value);
+    update();
+  }
+
+  ChangeShowoldPassword(bool value) {
+    ShowoldPassword = value;
     print(value);
     update();
   }

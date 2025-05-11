@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/Controller/GuardianController/GuardianMainScreenController.dart';
 import 'package:vms_school/main.dart';
+import 'package:vms_school/view/Guardian/Profile_Screens/My_Profile.dart';
 import 'package:vms_school/widgets/Responsive.dart';
 
 class Appbarguardian extends StatefulWidget {
@@ -33,7 +34,9 @@ class _AppbarguardianState extends State<Appbarguardian> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Get.dialog(ProfileDialog());
+                      },
                       child: Container(
                         height: 40,
                         width: 200,
@@ -100,7 +103,9 @@ class _AppbarguardianState extends State<Appbarguardian> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Get.dialog(ProfileDialog());
+                      },
                       child: Container(
                         height: 40,
                         width: 200,
@@ -174,7 +179,9 @@ class _AppbarguardianState extends State<Appbarguardian> {
                       width: 150,
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Get.dialog(ProfileDialog());
+                      },
                       child: Container(
                         height: 40,
                         width: 120,

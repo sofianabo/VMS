@@ -67,9 +67,11 @@ class GuardianMainScreenGrid extends StatelessWidget {
     }
 
     return Directionality(
-      textDirection: prefs!.getString(languageKey) == "ar"
-          ? TextDirection.rtl
-          : TextDirection.ltr,
+      textDirection:
+          Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
+              ? TextDirection.rtl
+              : TextDirection.ltr,
       child: GetBuilder<MyChildren_Controller>(builder: (control) {
         return control.IsLoading
             ? GridView.builder(
@@ -287,8 +289,11 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            prefs!.getString(languageKey) ==
-                                                    "ar"
+                                            Get.find<LocalizationController>()
+                                                        .currentLocale
+                                                        .value
+                                                        .languageCode ==
+                                                    'ar'
                                                 ? "${"Class".tr}: ${control.filteredStudents[index].classes!.name}"
                                                     .tr
                                                 : "${"Class".tr}: ${control.filteredStudents[index].classes!.enName}"
@@ -297,8 +302,11 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                                 Get.theme.textTheme.bodyMedium,
                                           ),
                                           Text(
-                                            prefs!.getString(languageKey) ==
-                                                    "ar"
+                                            Get.find<LocalizationController>()
+                                                        .currentLocale
+                                                        .value
+                                                        .languageCode ==
+                                                    'ar'
                                                 ? " ${"Division".tr}: ${control.filteredStudents[index].division!.name}"
                                                     .tr
                                                 : " ${"Division".tr}: ${control.filteredStudents[index].division!.enName}"

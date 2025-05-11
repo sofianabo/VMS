@@ -162,7 +162,11 @@ class _TextfildwithupperState extends State<Textfildwithupper> {
                   .textTheme
                   .bodyMedium
                   ?.copyWith(fontSize: 14),
-              textAlign: prefs!.getString(languageKey) == 'ar'
+              textAlign: Get.find<LocalizationController>()
+                          .currentLocale
+                          .value
+                          .languageCode ==
+                      'ar'
                   ? TextAlign.right
                   : TextAlign.left,
               enabled: widget.enabled,
