@@ -8,19 +8,26 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Curriculm
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Students_Illness.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Students_Information.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Students_Vaccines.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/StudentAttendenceByIdAPI.dart';
 import 'package:vms_school/Link/API/DownloadFiles.dart';
 import 'package:vms_school/Link/API/Guardians_API/GetChildExamTableAPI.dart';
+import 'package:vms_school/Link/API/Guardians_API/GetChildStudyShareAPI.dart';
 import 'package:vms_school/Link/API/Guardians_API/Get_Students_Information_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/PenaltiesAndRewardsController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/oneStudentAttendenceController.dart';
 import 'package:vms_school/Link/Controller/GuardianController/ChildExamTableController.dart';
 import 'package:vms_school/Link/Controller/GuardianController/GuardianMainScreenController.dart';
 import 'package:vms_school/Link/Controller/GuardianController/MyChildren_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCurriculumn_Controller.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/SchoolTimeModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/Students_Models/OneStudentAttendenceModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
+import 'package:vms_school/view/Guardian/Functions/StudyShareForChild.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/Guardian/Animated_Requests.dart';
@@ -516,18 +523,139 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                                               index);
                                                 } else if (selected ==
                                                     'StudyShareTable') {
-                                                  // Get.find<Illness_Controller>()
-                                                  //     .initialdata();
-                                                  // Get_Students_Illness_API(
-                                                  //         context)
-                                                  //     .Get_Students_Illness(
-                                                  //   studentId: control
-                                                  //       .filteredStudents[index]
-                                                  //       .id,
-                                                  //   index_of_Student: index,
-                                                  // );
+                                                  m = await Getchildstudyshareapi(
+                                                          context)
+                                                      .Getchildstudyshare(
+                                                          control
+                                                              .filteredStudents[
+                                                                  index]
+                                                              .id);
+                                                  Get.find<
+                                                          AdminSchoolTimeController>()
+                                                      .setStudyShare(m!);
+                                                  Get.dialog(VMSAlertDialog(
+                                                      action: [],
+                                                      contents: m == null
+                                                          ? Text(
+                                                              "StudyShare is not found")
+                                                          : Studyshareforchild(),
+                                                      apptitle:
+                                                          "StudyShare table",
+                                                      subtitle: ""));
                                                 } else if (selected ==
-                                                    'Attendence') {}
+                                                    'Attendence') {
+                                                  OneStudentAttendenceModel
+                                                      attendanceModel =
+                                                      await Studentattendencebyidapi(
+                                                              context)
+                                                          .Studentattendencebyid(
+                                                              control
+                                                                  .filteredStudents[
+                                                                      index]
+                                                                  .id!);
+                                                  Get.dialog(GetBuilder<
+                                                      Onestudentattendencecontroller>(
+                                                    builder: (oneControl) {
+                                                      return VMSAlertDialog(
+                                                        action: [],
+                                                        contents: SizedBox(
+                                                          width: 600,
+                                                          height: Get.height,
+                                                          child: Column(
+                                                            children: [
+                                                              SizedBox(
+                                                                width:
+                                                                    Get.width,
+                                                                child:
+                                                                    SingleChildScrollView(
+                                                                  child:
+                                                                      DataTable(
+                                                                    border:
+                                                                        TableBorder
+                                                                            .all(
+                                                                      color: Theme.of(
+                                                                              context)
+                                                                          .primaryColor,
+                                                                      width:
+                                                                          1.0,
+                                                                    ),
+                                                                    columns: [
+                                                                      DataColumn(
+                                                                        label:
+                                                                            Text(
+                                                                          'Date'
+                                                                              .tr,
+                                                                          style: Get
+                                                                              .theme
+                                                                              .textTheme
+                                                                              .bodyMedium,
+                                                                        ),
+                                                                      ),
+                                                                      DataColumn(
+                                                                        label:
+                                                                            Text(
+                                                                          'Status'
+                                                                              .tr,
+                                                                          style: Get
+                                                                              .theme
+                                                                              .textTheme
+                                                                              .bodyMedium,
+                                                                        ),
+                                                                      ),
+                                                                      DataColumn(
+                                                                        label:
+                                                                            Text(
+                                                                          'Cause'
+                                                                              .tr,
+                                                                          style: Get
+                                                                              .theme
+                                                                              .textTheme
+                                                                              .bodyMedium,
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                    rows: [
+                                                                      for (var studentAttendance
+                                                                          in attendanceModel.studentAt ??
+                                                                              [])
+                                                                        DataRow(
+                                                                          cells: [
+                                                                            DataCell(
+                                                                              Text(
+                                                                                studentAttendance.date ?? 'N/A',
+                                                                                style: Theme.of(context).textTheme.bodyMedium,
+                                                                              ),
+                                                                            ),
+                                                                            //status
+                                                                            DataCell(
+                                                                              Text(
+                                                                                studentAttendance.status.toString().tr ?? 'N/A',
+                                                                                style: Theme.of(context).textTheme.bodyMedium,
+                                                                              ),
+                                                                            ),
+                                                                            DataCell(
+                                                                              Text(
+                                                                                studentAttendance.cause ?? 'N/A',
+                                                                                style: Theme.of(context).textTheme.bodyMedium,
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        apptitle: "att".tr +
+                                                            " ${control.filteredStudents[index].fullName}" +
+                                                            "Attendence".tr,
+                                                        subtitle: "none",
+                                                      );
+                                                    },
+                                                  ));
+                                                }
                                               },
                                             );
                                           }),
