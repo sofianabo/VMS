@@ -131,11 +131,7 @@ Map<Pair<int, int>, int> indexes = {};
 SchoolTimeModel? m;
 
 class _StudyshareforchildState extends State<Studyshareforchild> {
-  @override
-  void initState() {
-   
-    super.initState();
-  }
+late AdminSchoolTimeController c;
 
   @override
   Widget build(BuildContext context) {

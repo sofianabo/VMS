@@ -524,22 +524,22 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                                               index);
                                                 } else if (selected ==
                                                     'StudyShareTable') {
+                                                  m = await Getchildstudyshareapi(
+                                                          context)
+                                                      .Getchildstudyshare(
+                                                          control
+                                                              .filteredStudents[
+                                                                  index]
+                                                              .id);
                                                   Get.find<
                                                           AdminSchoolTimeController>()
-                                                      .initStudyShare();
-                                                  SchoolTimeModel m =
-                                                      await Getchildstudyshareapi(
-                                                              context)
-                                                          .Getchildstudyshare(
-                                                              control
-                                                                  .filteredStudents[
-                                                                      index]
-                                                                  .id);
-
+                                                      .setStudyShare(m!);
                                                   Get.dialog(VMSAlertDialog(
                                                       action: [],
-                                                      contents:
-                                                          Studyshareforchild(),
+                                                      contents: m == null
+                                                          ? Text(
+                                                              "StudyShare is not found")
+                                                          : Studyshareforchild(),
                                                       apptitle:
                                                           "StudyShare table",
                                                       subtitle: ""));

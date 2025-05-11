@@ -27,6 +27,7 @@ class Getchildstudyshareapi {
       Loading_Dialog(cancelToken: cancelToken);
       var response = await dio.post(myurl,
           data: {"studentId": id}, options: getDioOptions());
+      Get.back();
       if (response.statusCode == 200) {
         SchoolTimeModel model = SchoolTimeModel.fromJson(response.data);
 
