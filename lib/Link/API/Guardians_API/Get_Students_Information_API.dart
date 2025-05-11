@@ -14,7 +14,10 @@ class Get_Students_Information_API_Gua {
   BuildContext context;
   Dio dio = Dio();
   Get_Students_Information(
-      {required StudentsID, required int index, required bool canEdit}) async {
+      {required StudentsID,
+      required int index,
+      required bool canEdit,
+      bool isRequest = false}) async {
     String myURI = "${hostPort}${getStudentInformation}";
     try {
       final controller = Get.find<Allstudentscontroller>();
@@ -30,9 +33,7 @@ class Get_Students_Information_API_Gua {
         Student_Info_model student_info_model =
             Student_Info_model.fromJson(response.data);
         controller.Set_Selected_Student(student_info_model);
-        print(student_info_model.student!.firstName);
-        print(student_info_model.student!.division?.enName ?? "losdl");
-        EditStudentDialogForGua(context, canEdit);
+        EditStudentDialogForGua(context, canEdit, isRequest);
       } else {
         ErrorHandler.handleDioError(DioError(
           requestOptions: response.requestOptions,

@@ -10,7 +10,8 @@ import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 import '../../../Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 
-EditStudentDialogForGua(BuildContext context, bool canEdit) async {
+EditStudentDialogForGua(
+    BuildContext context, bool canEdit, bool isRequest) async {
   final Controller = Get.find<Allstudentscontroller>();
   final add_controller = Get.find<Add_Students_Controller>();
   final Allempolyeecontrollers = Get.find<Allempolyeecontroller>();
@@ -87,14 +88,14 @@ EditStudentDialogForGua(BuildContext context, bool canEdit) async {
       isPendStudents: false,
       DivisionIndexs: !canEdit
           ? isArabic
-              ? Controller.student!.division!.name
-              : Controller.student!.division!.enName
+              ? Controller.student!.division?.name ?? ""
+              : Controller.student!.division?.enName ?? ""
           : "",
       BloodTypeindex: Controller.student!.bloodType,
       Classindex: !canEdit
           ? isArabic
-              ? Controller.student!.classes!.name
-              : Controller.student!.classes!.enName ?? ""
+              ? Controller.student!.classes?.name ?? ""
+              : Controller.student!.classes?.enName ?? ""
           : "",
       FamilyStateindex: Controller.student!.familystatus ?? "",
       Genderindex: Controller.student!.gender ?? "",
@@ -269,7 +270,7 @@ EditStudentDialogForGua(BuildContext context, bool canEdit) async {
         Location: Location,
         Family_State: Family_State,
       ),
-      apptitle: "Student Information".tr,
+      apptitle: isRequest ? "Request Information".tr : "Student Information".tr,
       subtitle:
           "${Controller.student!.firstName} ${Controller.student!.lastName}" +
               "Info".tr));
@@ -371,39 +372,47 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                         children: [
                           Column(
                             children: [
-                              CircleAvatar(
-                                maxRadius: 100,
-                                backgroundColor: const Color(0xffC4C4C4),
-                                backgroundImage: controller
-                                            .selectedImage.value !=
-                                        null
-                                    ? MemoryImage(
-                                        controller.selectedImage.value!)
-                                    : Get.find<Allstudentscontroller>()
-                                                .student!
-                                                .fileId !=
-                                            null
-                                        ? NetworkImage(getimage +
-                                            "${Get.find<Allstudentscontroller>().student!.fileId}")
-                                        : null,
-                                child: controller.selectedImage.value == null &&
-                                        Get.find<Allstudentscontroller>()
-                                                .student!
-                                                .fileId ==
-                                            null
-                                    ? Text(
-                                        Get.find<Allstudentscontroller>()
-                                            .student!
-                                            .firstName!
-                                            .substring(0, 1)
-                                            .toUpperCase(),
-                                        style:
-                                            Get.textTheme.titleLarge!.copyWith(
-                                          fontSize: 42,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      )
-                                    : null,
+                              GestureDetector(
+                                onTap: () async {
+                                  if (widget.canEdit) {
+                                    await controller.pickImage(context);
+                                  }
+                                },
+                                child: CircleAvatar(
+                                  maxRadius: 100,
+                                  backgroundColor: const Color(0xffC4C4C4),
+                                  backgroundImage: controller
+                                              .selectedImage.value !=
+                                          null
+                                      ? MemoryImage(
+                                          controller.selectedImage.value!)
+                                      : Get.find<Allstudentscontroller>()
+                                                  .student!
+                                                  .fileId !=
+                                              null
+                                          ? NetworkImage(getimage +
+                                              "${Get.find<Allstudentscontroller>().student!.fileId}")
+                                          : null,
+                                  child:
+                                      controller.selectedImage.value == null &&
+                                              Get.find<Allstudentscontroller>()
+                                                      .student!
+                                                      .fileId ==
+                                                  null
+                                          ? Text(
+                                              Get.find<Allstudentscontroller>()
+                                                  .student!
+                                                  .firstName!
+                                                  .substring(0, 1)
+                                                  .toUpperCase(),
+                                              style: Get.textTheme.titleLarge!
+                                                  .copyWith(
+                                                fontSize: 42,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            )
+                                          : null,
+                                ),
                               )
                             ],
                           ),

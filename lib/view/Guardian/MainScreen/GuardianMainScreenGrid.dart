@@ -685,8 +685,10 @@ class GuardianMainScreenGrid extends StatelessWidget {
                               onTap: () async {
                                 Get.find<Add_Students_Controller>()
                                     .resetError();
+
                                 await Get_Students_Information_API_Gua(context)
                                     .Get_Students_Information(
+                                        isRequest: true,
                                         canEdit: false,
                                         StudentsID:
                                             control.filteredStudents[index].id,
@@ -1049,22 +1051,8 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                                       WidgetStateProperty.all(
                                                           Theme.of(context)
                                                               .primaryColorLight)),
-                                              onPressed: () async {
-                                                Get.find<
-                                                        Add_Students_Controller>()
-                                                    .resetError();
-
-                                                await Get_Students_Information_API_Gua(
-                                                        context)
-                                                    .Get_Students_Information(
-                                                        canEdit: false,
-                                                        StudentsID: control
-                                                            .filteredStudents[
-                                                                index]
-                                                            .id,
-                                                        index: index);
-                                              },
-                                              icon: const Icon(VMS_Icons.vcard),
+                                              onPressed: () async {},
+                                              icon: const Icon(Icons.edit),
                                               color: Colors.white,
                                             ),
                                           ],
