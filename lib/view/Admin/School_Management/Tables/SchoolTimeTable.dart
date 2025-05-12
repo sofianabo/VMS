@@ -155,7 +155,7 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                   spacing: 8.0,
                   runSpacing: 8.0,
                   children: [
-                    DropDownSchoolTime(
+                    DropDownSchoolTime( 
                       type: "time",
                       title: "Time".tr,
                       width: 220,

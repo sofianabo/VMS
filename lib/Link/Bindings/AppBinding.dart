@@ -46,6 +46,7 @@ import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/T
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/oneStudentAttendenceController.dart';
 import 'package:vms_school/Link/Controller/AuthController/Enroll_Controller.dart';
 import 'package:vms_school/Link/Controller/AuthController/UserController.dart';
+import 'package:vms_school/Link/Controller/GuardianController/AddGurdianChildController.dart';
 import 'package:vms_school/Link/Controller/GuardianController/ChildExamTableController.dart';
 import 'package:vms_school/Link/Controller/GuardianController/Guardian_My_Data_Controller.dart';
 import 'package:vms_school/Link/Controller/GuardianController/MyChildren_Controller.dart';
@@ -69,6 +70,7 @@ import 'package:vms_school/widgets/SidbarAnimation.dart';
 class AppBindings extends Bindings {
   @override
   void dependencies() {
+    Get.lazyPut(() => ThemeController(), fenix: true);
     Get.lazyPut(() => UserController(), fenix: true);
     Get.lazyPut(() => PasswordHintController(), fenix: true);
     Get.lazyPut(() => ThemeController(), fenix: true);
@@ -135,5 +137,6 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => MyChildren_Controller(), fenix: true);
     Get.lazyPut(() => Childexamtablecontroller(), fenix: true);
     Get.lazyPut(() => Guardian_My_Data_Controller(), fenix: true);
+    Get.lazyPut(() => Addgurdianchildcontroller(), fenix: true);
   }
 }

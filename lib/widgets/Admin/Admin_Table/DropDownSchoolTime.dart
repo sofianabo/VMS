@@ -175,7 +175,7 @@ class DropDownSchoolTime extends StatelessWidget {
               cont.setAllSubjectDialog(curr);
             },
           );
-        }).toList());
+        }).toList()); 
         break;
       case 'division':
         items.addAll(cont.examDivision.map((String value) {

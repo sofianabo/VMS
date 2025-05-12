@@ -36,7 +36,7 @@ class Schooltimetableapi {
         SchoolTimeModel model = SchoolTimeModel.fromJson(response.data);
 
         c.setStudyShare(model);
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 5; i++) 
           for (int j = 1; j < 8; j++) {
             String s = "No Lesson";
             for (int k = 0; k < j; k++) s += " ";
