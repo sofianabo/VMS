@@ -14,7 +14,7 @@ import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Location_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
-import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
+import 'package:vms_school/Link/Controller/GuardianController/AddGurdianChildController.dart';
 import 'package:vms_school/Link/Functions/Students_Illness_Funcation.dart';
 import 'package:vms_school/Link/Functions/Students_Vaccines_Funcation.dart';
 import 'package:vms_school/Translate/local_controller.dart';
@@ -22,6 +22,7 @@ import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/Admin/Admin_Students/DropDown_Add_Students.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
+import 'package:vms_school/widgets/Guardian/AddGuardianChild.dart';
 import 'package:vms_school/widgets/LargeTextField.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
@@ -60,7 +61,7 @@ class _AllGuardiansDialogState extends State<AllGuardiansDialog> {
   late TextEditingController _previousClass;
 
   // Other variables
-  final _addStudentsController = Get.put(Add_Students_Controller());
+  final _addStudentsController = Get.put(Addgurdianchildcontroller());
   late Allempolyeecontroller _employeeController;
   late Location_controller _locationController;
   late Illness_Controller _illnessController;
@@ -70,7 +71,7 @@ class _AllGuardiansDialogState extends State<AllGuardiansDialog> {
   void initState() {
     super.initState();
     _initializeControllers();
-    
+
     _illnessController = Get.find<Illness_Controller>();
     _vaccinesController = Get.find<Vaccines_Controller>();
     _resetData();
@@ -263,7 +264,7 @@ class _AllGuardiansDialogState extends State<AllGuardiansDialog> {
           text: "Add Students".tr,
           onPressed: _addStudent,
           color: Get.theme.primaryColor,
-          width: 100,
+          width: 120,
         ),
       ],
       contents: Padding(
@@ -351,7 +352,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
     print(smallwidth);
     return Column(
       children: [
-        GetBuilder<Add_Students_Controller>(builder: (controller) {
+        GetBuilder<Addgurdianchildcontroller>(builder: (controller) {
           return Expanded(
             child: SizedBox(
               width: 620,
@@ -478,13 +479,13 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                         runSpacing: 2.0,
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
-                          DropdownAddStudents(
+                          AddguardianchildDropdown(
                               isLoading: false,
                               isError: controller.IsGenderError,
                               title: "Gender".tr,
                               width: 300,
                               type: "Gender"),
-                          DropdownAddStudents(
+                          AddguardianchildDropdown(
                               isLoading: false,
                               isError: controller.IsReligionError,
                               title: "Religion".tr,
@@ -497,13 +498,13 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                         runSpacing: 2.0,
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
-                          DropdownAddStudents(
+                          AddguardianchildDropdown(
                               isLoading: false,
                               isError: controller.IsBloodError,
                               title: "Blood Type".tr,
                               width: 300,
                               type: "BloodType"),
-                          DropdownAddStudents(
+                          AddguardianchildDropdown(
                               isLoading: controller.isLoadingLocation,
                               title: "Location".tr,
                               isError: controller.IsCountryError,
@@ -551,7 +552,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(top: 22.0),
-                            child: DropdownAddStudents(
+                            child: AddguardianchildDropdown(
                                 isLoading: false,
                                 title: "Family State".tr,
                                 width: width <= 690 ? smallwidth : 620,
