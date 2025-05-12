@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllDivisionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/AllStudyYearModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
@@ -238,12 +239,8 @@ class StudyYearStudentsController extends GetxController {
         // إعادة تعيين التواريخ وعرض خطأ
         startdate.value = null;
         enddate.value = null;
-        Get.snackbar(
-          'خطأ',
-          'لا يمكن أن يكون تاريخ البداية بعد تاريخ النهاية',
-          snackPosition: SnackPosition.BOTTOM,
-          duration: Duration(seconds: 3),
-        );
+
+        ErrorMessage("لا يمكن أن يكون تاريخ البداية بعد تاريخ النهاية");
       } else {
         startdate.value = picked;
       }
@@ -270,12 +267,8 @@ class StudyYearStudentsController extends GetxController {
         );
       } else if (picked.isBefore(minAllowedDate)) {
         enddate.value = null;
-        Get.snackbar(
-          'خطأ',
-          'يجب أن يكون التاريخ بعد عام 2023',
-          snackPosition: SnackPosition.BOTTOM,
-          duration: Duration(seconds: 3),
-        );
+
+        ErrorMessage("يجب أن يكون التاريخ بعد عام 2023");
       } else if (picked.isAfter(maxAllowedDate)) {
         enddate.value = null;
         Get.snackbar(

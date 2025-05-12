@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:vms_school/Link/API/Error_API.dart';
 
 class Addteachercontroller extends GetxController {
   Rx<Uint8List?> selectedImage = Rx<Uint8List?>(null);
@@ -16,7 +17,7 @@ class Addteachercontroller extends GetxController {
 
       selectedImage.value = fileBytes;
     } else {
-      Get.snackbar("No image selected", "Please select a valid image.");
+      ErrorMessage("Please select a valid image.");
     }
   }
 }

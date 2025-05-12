@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/QuizType_Model.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Quiz_Type_For_Operation_Model.dart'
@@ -151,7 +152,7 @@ class TeachernoteAndGradeReco extends GetxController {
       });
       update();
     } else {
-      Get.snackbar("خطأ", "قيمة النسبة غير صالحة");
+      ErrorMessage("قيمة النسبة غير صالحة");
     }
   }
 
@@ -352,6 +353,4 @@ class TeachernoteAndGradeReco extends GetxController {
     isQuizTypeOpirationLoading = false;
     update();
   }
-
- 
 }

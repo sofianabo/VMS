@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Users/RePassword.dart';
 import 'package:vms_school/Link/API/AdminAPI/Users/Re_Email_API.dart';
+import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
 import 'package:vms_school/Translate/local_controller.dart';
@@ -111,18 +112,18 @@ class _ProfileState extends State<Account_And_Password> {
                                         passwordRegex.hasMatch(password.text);
 
                                     if (!isEmailValid) {
-                                      Get.snackbar("خطأ",
-                                          "البريد الإلكتروني غير صالح. تأكد من احتوائه على @ و .com",
-                                          backgroundColor: Colors.red,
-                                          colorText: Colors.white);
+                                      ErrorMessage(
+                                        "البريد الإلكتروني غير صالح. تأكد من احتوائه على @ و .com",
+                                      );
+
                                       return;
                                     }
 
                                     if (!isPasswordValid) {
-                                      Get.snackbar("خطأ",
-                                          "يجب أن تكون كلمة المرور 8 محارف على الأقل وأن تحتوي على أحرف إنجليزية فقط",
-                                          backgroundColor: Colors.red,
-                                          colorText: Colors.white);
+                                      ErrorMessage(
+                                        "يجب أن تكون كلمة المرور 8 محارف على الأقل وأن تحتوي على أحرف إنجليزية فقط",
+                                      );
+
                                       return;
                                     }
 

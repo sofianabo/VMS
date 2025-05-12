@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
@@ -20,13 +21,9 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/PenaltiesAndRewardsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/oneStudentAttendenceController.dart';
 import 'package:vms_school/Link/Controller/GuardianController/ChildExamTableController.dart';
-import 'package:vms_school/Link/Controller/GuardianController/GuardianMainScreenController.dart';
 import 'package:vms_school/Link/Controller/GuardianController/MyChildren_Controller.dart';
-import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCurriculumn_Controller.dart';
-import 'package:vms_school/Link/Model/AdminModel/School_Models/SchoolTimeModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/OneStudentAttendenceModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
-import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Guardian/Functions/StudyShareForChild.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
@@ -348,7 +345,10 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                                       .primaryColorLight,
                                                 ),
                                               ),
-                                              icon: const Icon(VMS_Icons.dose),
+                                              icon: FaIcon(
+                                                FontAwesomeIcons.shieldVirus,
+                                                color: Colors.white,
+                                              ),
                                               color: Colors.white,
                                               onPressed: () async {
                                                 final RenderBox button =
@@ -453,8 +453,10 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                                       .primaryColorLight,
                                                 ),
                                               ),
-                                              icon:
-                                                  const Icon(Icons.access_time),
+                                              icon: FaIcon(
+                                                FontAwesomeIcons.clock,
+                                                color: Colors.white,
+                                              ),
                                               color: Colors.white,
                                               onPressed: () async {
                                                 final RenderBox button =
@@ -691,8 +693,10 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                                     .primaryColorLight,
                                               ),
                                             ),
-                                            icon: const Icon(Icons
-                                                .my_library_books_outlined),
+                                            icon: FaIcon(
+                                              FontAwesomeIcons.markdown,
+                                              color: Colors.white,
+                                            ),
                                             color: Colors.white,
                                             onPressed: () {
                                               // ضع الوظيفة هنا
@@ -724,8 +728,10 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                                       .primaryColorLight,
                                                 ),
                                               ),
-                                              icon: const Icon(
-                                                  Icons.analytics_sharp),
+                                              icon: FaIcon(
+                                                FontAwesomeIcons.gift,
+                                                color: Colors.white,
+                                              ),
                                               color: Colors.white,
                                               onPressed: () async {
                                                 final RenderBox button =
@@ -1094,106 +1100,94 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                             ),
                                             IconButton(
                                               style: ButtonStyle(
-                                                  maximumSize:
-                                                      WidgetStateProperty.all(
-                                                          const Size(35, 35)),
-                                                  minimumSize:
-                                                      WidgetStateProperty.all(
-                                                          const Size(35, 35)),
-                                                  iconSize:
-                                                      WidgetStateProperty.all(
-                                                          14),
-                                                  shape: WidgetStateProperty.all(
-                                                      RoundedRectangleBorder(
+                                                maximumSize:
+                                                    WidgetStateProperty.all(
+                                                        const Size(35, 35)),
+                                                minimumSize:
+                                                    WidgetStateProperty.all(
+                                                        const Size(35, 35)),
+                                                iconSize:
+                                                    WidgetStateProperty.all(14),
+                                                shape: WidgetStateProperty.all(
+                                                  RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             5),
-                                                  )),
-                                                  backgroundColor:
-                                                      WidgetStateProperty.all(
-                                                          Theme.of(context)
-                                                              .primaryColorLight)),
-                                              onPressed: () async {
-                                                Get.find<Illness_Controller>()
-                                                    .initialdata();
-                                                await Get_Students_Illness_API(
-                                                        context)
-                                                    .Get_Students_Illness(
-                                                        studentId: control
-                                                            .filteredStudents[
-                                                                index]
-                                                            .id,
-                                                        index_of_Student:
-                                                            index);
-                                              },
-                                              icon: const Icon(VMS_Icons.vir),
-                                              color: Colors.white,
+                                                  ),
+                                                ),
+                                                backgroundColor:
+                                                    WidgetStateProperty.all(
+                                                  Theme.of(context)
+                                                      .disabledColor,
+                                                ),
+                                              ),
+                                              icon: FaIcon(
+                                                FontAwesomeIcons.clock,
+                                                color: Colors.white,
+                                              ),
+                                              onPressed: () {},
                                             ),
                                             IconButton(
                                               style: ButtonStyle(
-                                                  maximumSize:
-                                                      WidgetStateProperty.all(
-                                                          const Size(35, 35)),
-                                                  minimumSize:
-                                                      WidgetStateProperty.all(
-                                                          const Size(35, 35)),
-                                                  iconSize:
-                                                      WidgetStateProperty.all(
-                                                          14),
-                                                  shape: WidgetStateProperty.all(
-                                                      RoundedRectangleBorder(
+                                                maximumSize:
+                                                    WidgetStateProperty.all(
+                                                        const Size(35, 35)),
+                                                minimumSize:
+                                                    WidgetStateProperty.all(
+                                                        const Size(35, 35)),
+                                                iconSize:
+                                                    WidgetStateProperty.all(14),
+                                                shape: WidgetStateProperty.all(
+                                                  RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             5),
-                                                  )),
-                                                  backgroundColor:
-                                                      WidgetStateProperty.all(
-                                                          Theme.of(context)
-                                                              .primaryColorLight)),
-                                              onPressed: () async {
-                                                Get.find<Vaccines_Controller>()
-                                                    .initialdata();
-                                                await Get_Students_Vacciness_API(
-                                                        context)
-                                                    .Get_Students_Vacciness(
-                                                        studentId: control
-                                                            .filteredStudents[
-                                                                index]
-                                                            .id,
-                                                        index_of_student:
-                                                            index);
-                                              },
-                                              icon: const Icon(VMS_Icons.dose),
-                                              color: Colors.white,
+                                                  ),
+                                                ),
+                                                backgroundColor:
+                                                    WidgetStateProperty.all(
+                                                  Theme.of(context)
+                                                      .disabledColor,
+                                                ),
+                                              ),
+                                              icon: FaIcon(
+                                                FontAwesomeIcons.markdown,
+                                                color: Colors.white,
+                                              ),
+                                              onPressed: () {},
                                             ),
                                             IconButton(
                                               style: ButtonStyle(
-                                                  maximumSize:
-                                                      WidgetStateProperty.all(
-                                                          const Size(35, 35)),
-                                                  minimumSize:
-                                                      WidgetStateProperty.all(
-                                                          const Size(35, 35)),
-                                                  iconSize:
-                                                      WidgetStateProperty.all(
-                                                          14),
-                                                  shape: WidgetStateProperty.all(
-                                                      RoundedRectangleBorder(
+                                                maximumSize:
+                                                    WidgetStateProperty.all(
+                                                        const Size(35, 35)),
+                                                minimumSize:
+                                                    WidgetStateProperty.all(
+                                                        const Size(35, 35)),
+                                                iconSize:
+                                                    WidgetStateProperty.all(14),
+                                                shape: WidgetStateProperty.all(
+                                                  RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             5),
-                                                  )),
-                                                  backgroundColor:
-                                                      WidgetStateProperty.all(
-                                                          Theme.of(context)
-                                                              .primaryColorLight)),
-                                              onPressed: () async {},
-                                              icon: const Icon(Icons.edit),
-                                              color: Colors.white,
+                                                  ),
+                                                ),
+                                                backgroundColor:
+                                                    WidgetStateProperty.all(
+                                                  Theme.of(context)
+                                                      .disabledColor,
+                                                ),
+                                              ),
+                                              icon: FaIcon(
+                                                FontAwesomeIcons.gift,
+                                                color: Colors.white,
+                                              ),
+                                              onPressed: () {},
                                             ),
                                           ],
                                         ),
-                                      )
+                                      ),
                                     ],
                                   )),
                             ),

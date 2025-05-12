@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
+import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Dashboard_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllSessionModel.dart';
@@ -62,11 +63,8 @@ class Dashboard_API {
     }
 
     if (!isSuccessful && retryCount >= maxRetries) {
-      Get.snackbar(
-        "Error",
+      ErrorMessage(
         "Unable to fetch dashboard data after multiple attempts.",
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
       );
     }
   }

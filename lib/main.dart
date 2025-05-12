@@ -5,8 +5,8 @@ import 'package:vms_school/Theme/ThemeData.dart';
 import 'package:vms_school/Translate/local_controller.dart'
     show LocalizationController, localeController;
 import 'package:vms_school/Theme/themeController.dart';
-import 'package:vms_school/link/Bindings/UserBinding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'Link/Bindings/AppBinding.dart';
 import 'Translate/local.dart';
 
 SharedPreferences? prefs;
@@ -28,7 +28,7 @@ class VMS extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialBinding: UserBiniding(),
+      initialBinding: AppBindings(),
       locale: localizationController.currentLocale.value,
       translations: MyTranslations(),
       fallbackLocale: const Locale('ar'),

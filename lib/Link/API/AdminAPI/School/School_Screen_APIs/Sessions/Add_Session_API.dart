@@ -46,14 +46,11 @@ class Add_Session_API {
       if (e.toString().contains("status code of 409")) {
         Get.find<SessionController>().updateFieldError("start", true);
         Get.back();
-        Get.snackbar(
-          "خطأ",
+
+        ErrorMessage(
           "لا يسمح باضافة تاريخ بدء لانه يوجد سنة مفتوحة ضمن النطاق المحدد",
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-          duration: const Duration(seconds: 3),
         );
+
         return;
       }
       if (e is DioException) {

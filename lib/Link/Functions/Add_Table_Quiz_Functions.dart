@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:reorderables/reorderables.dart';
+import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Teachernote_and_GradeReco.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/ValidateTeacherNoteAndGradeReco.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
@@ -44,7 +45,7 @@ Add_Group() {
                   );
                   Get.back();
                 } else {
-                  Get.snackbar("Error", "Invalid ratio value");
+                  ErrorMessage("Invalid ratio value");
                 }
               }
             },
@@ -432,7 +433,7 @@ Edit_Items_Group(
                 );
                 Get.back();
               } else {
-                Get.snackbar("Error", "Invalid ratio value");
+                ErrorMessage("Invalid ratio value");
               }
             }
           },

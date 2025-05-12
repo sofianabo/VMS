@@ -47,7 +47,7 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Controller/AuthController/Enroll_Controller.dart';
 import 'package:vms_school/Link/Controller/AuthController/UserController.dart';
 import 'package:vms_school/Link/Controller/GuardianController/ChildExamTableController.dart';
-import 'package:vms_school/Link/Controller/GuardianController/GuardianMainScreenController.dart';
+import 'package:vms_school/Link/Controller/GuardianController/Guardian_My_Data_Controller.dart';
 import 'package:vms_school/Link/Controller/GuardianController/MyChildren_Controller.dart';
 import 'package:vms_school/Link/Controller/HomeController/HomeScreenController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
@@ -66,12 +66,12 @@ import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/widgets/SidbarAnimation.dart';
 
-class UserBiniding extends Bindings {
+class AppBindings extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => ThemeController(), fenix: true);
     Get.lazyPut(() => UserController(), fenix: true);
     Get.lazyPut(() => PasswordHintController(), fenix: true);
+    Get.lazyPut(() => ThemeController(), fenix: true);
     Get.lazyPut(() => AdminHomeContentController(), fenix: true);
     Get.lazyPut(() => Homescreencontroller(), fenix: true);
     Get.lazyPut(() => ExamTableController(), fenix: true);
@@ -132,8 +132,8 @@ class UserBiniding extends Bindings {
     Get.lazyPut(() => DraweController(), fenix: true);
     Get.lazyPut(() => EnrollController(), fenix: true);
     Get.lazyPut(() => Validateteachernoteandgradereco(), fenix: true);
-    Get.lazyPut(() => Guardianmainscreencontroller(), fenix: true);
     Get.lazyPut(() => MyChildren_Controller(), fenix: true);
     Get.lazyPut(() => Childexamtablecontroller(), fenix: true);
+    Get.lazyPut(() => Guardian_My_Data_Controller(), fenix: true);
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Students_Marks_Controller.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
@@ -164,19 +165,18 @@ void showAddMarkForAllDialog() {
           text: "Done".tr,
           onPressed: () {
             if (selectedType == null) {
-              Get.snackbar('خطأ', 'الرجاء اختيار نوع العلامة');
+              ErrorMessage('الرجاء اختيار نوع العلامة');
               return;
             }
 
             final markValue = double.tryParse(markController.text);
             if (markValue == null) {
-              Get.snackbar('خطأ', 'الرجاء إدخال علامة صحيحة');
+              ErrorMessage('الرجاء إدخال علامة صحيحة');
               return;
             }
 
             if (markValue > maxMark) {
-              Get.snackbar(
-                  'خطأ', 'العلامة المدخلة أكبر من الحد الأقصى ($maxMark)');
+              ErrorMessage('العلامة المدخلة أكبر من الحد الأقصى ($maxMark)');
               return;
             }
 

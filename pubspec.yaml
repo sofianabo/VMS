@@ -55,6 +55,7 @@ dependencies:
   flutter_slidable: ^4.0.0
   reorderables: ^0.6.0
   duration_picker: ^1.2.0
+  font_awesome_flutter: ^10.8.0
 
 
 

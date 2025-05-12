@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/API/API.dart';
-import 'package:vms_school/Link/Controller/GuardianController/GuardianMainScreenController.dart';
+import 'package:vms_school/Link/API/Guardians_API/Get_My_Data_API.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Guardian/Profile_Screens/My_Profile.dart';
 import 'package:vms_school/widgets/Responsive.dart';
@@ -21,9 +20,8 @@ class _AppbarguardianState extends State<Appbarguardian> {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size.width;
     return Directionality(
-      textDirection: TextDirection.rtl,
-      child: GetBuilder<Guardianmainscreencontroller>(builder: (cont) {
-        return ResponsiveUI(
+        textDirection: TextDirection.rtl,
+        child: ResponsiveUI(
           desktopScreen: Container(
             margin: const EdgeInsets.only(
                 right: 60, left: 30, top: 15, bottom: 15.0),
@@ -35,6 +33,7 @@ class _AppbarguardianState extends State<Appbarguardian> {
                   children: [
                     GestureDetector(
                       onTap: () {
+                        Get_My_Data_API().Get_My_Data();
                         Get.dialog(ProfileDialog());
                       },
                       child: Container(
@@ -70,7 +69,7 @@ class _AppbarguardianState extends State<Appbarguardian> {
                 Expanded(
                   child: Center(
                     child: Text(
-                      cont.content.tr,
+                      "My Children".tr,
                       style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -104,6 +103,7 @@ class _AppbarguardianState extends State<Appbarguardian> {
                   children: [
                     GestureDetector(
                       onTap: () {
+                        Get_My_Data_API().Get_My_Data();
                         Get.dialog(ProfileDialog());
                       },
                       child: Container(
@@ -139,7 +139,7 @@ class _AppbarguardianState extends State<Appbarguardian> {
                 Expanded(
                   child: Center(
                     child: Text(
-                      cont.content.tr,
+                      "My Children".tr,
                       style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -180,6 +180,7 @@ class _AppbarguardianState extends State<Appbarguardian> {
                     ),
                     GestureDetector(
                       onTap: () {
+                        Get_My_Data_API().Get_My_Data();
                         Get.dialog(ProfileDialog());
                       },
                       child: Container(
@@ -219,7 +220,7 @@ class _AppbarguardianState extends State<Appbarguardian> {
                       child: Text(
                         maxLines: 2,
                         textAlign: TextAlign.center,
-                        cont.content.tr,
+                        "My Children".tr,
                         style: TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
@@ -231,8 +232,6 @@ class _AppbarguardianState extends State<Appbarguardian> {
               ],
             ),
           ),
-        );
-      }),
-    );
+        ));
   }
 }

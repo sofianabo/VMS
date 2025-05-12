@@ -54,14 +54,9 @@ class Addguardianapi {
               .contains("studentinfo_mobilenumber_unique")) {
         u.updateFieldError("phone", true);
         await Future.delayed(Duration(milliseconds: 100));
-        Get.snackbar(
-          "خطأ",
-          "رقم الهاتف مستخدم مسبقاً",
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-          duration: Duration(seconds: 3),
-        );
+
+        ErrorMessage("رقم الهاتف مستخدم مسبقاً");
+
         Get.back();
       } else if (e is DioException) {
         ErrorHandler.handleDioError(e);
