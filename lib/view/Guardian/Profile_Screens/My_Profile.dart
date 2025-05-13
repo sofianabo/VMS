@@ -74,79 +74,81 @@ class _ProfileDialogState extends State<ProfileDialog> {
                     child: TabBarView(
                       children: [
                         // المحتوى الأول
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          spacing: 10.0,
-                          children: [
-                            Appearance(),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 35.0, right: 15.0, top: 15.0),
-                              child: Divider(
-                                height: 1,
-                                color: Color(0xffD9D9D9),
+                        SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            spacing: 10.0,
+                            children: [
+                              Appearance(),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 35.0, right: 15.0, top: 15.0),
+                                child: Divider(
+                                  height: 1,
+                                  color: Color(0xffD9D9D9),
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 10.0, bottom: 10.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 10.0, bottom: 10.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Logout".tr,
+                                      style: TextStyle(
+                                        color: Get
+                                            .theme.textTheme.bodyMedium!.color,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Column(
                                 children: [
-                                  Text(
-                                    "Logout".tr,
-                                    style: TextStyle(
-                                      color:
-                                          Get.theme.textTheme.bodyMedium!.color,
-                                      fontSize: 16,
+                                  TextButton(
+                                    onPressed: () async {
+                                      await Logoutapi(context)
+                                          .Logout(Type: "now");
+                                    },
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(Icons.logout,
+                                            size: 18, color: Color(0xffB03D3D)),
+                                        SizedBox(width: 8),
+                                        Text(
+                                            style: TextStyle(
+                                                color: Color(0xffB03D3D)),
+                                            "Logout from Current Session".tr),
+                                      ],
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () async {
+                                      await Logoutapi(context)
+                                          .Logout(Type: "all");
+                                    },
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(Icons.mobile_off,
+                                            size: 18, color: Color(0xffB03D3D)),
+                                        SizedBox(width: 8),
+                                        Text(
+                                            style: TextStyle(
+                                                color: Color(0xffB03D3D)),
+                                            "Logout from All Sessions".tr),
+                                      ],
                                     ),
                                   ),
                                 ],
-                              ),
-                            ),
-                            Column(
-                              children: [
-                                TextButton(
-                                  onPressed: () async {
-                                    await Logoutapi(context)
-                                        .Logout(Type: "now");
-                                  },
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Icon(Icons.logout,
-                                          size: 18, color: Color(0xffB03D3D)),
-                                      SizedBox(width: 8),
-                                      Text(
-                                          style: TextStyle(
-                                              color: Color(0xffB03D3D)),
-                                          "Logout from Current Session".tr),
-                                    ],
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () async {
-                                    await Logoutapi(context)
-                                        .Logout(Type: "all");
-                                  },
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Icon(Icons.mobile_off,
-                                          size: 18, color: Color(0xffB03D3D)),
-                                      SizedBox(width: 8),
-                                      Text(
-                                          style: TextStyle(
-                                              color: Color(0xffB03D3D)),
-                                          "Logout from All Sessions".tr),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
+                              )
+                            ],
+                          ),
                         ),
 
                         // المحتوى الثاني
