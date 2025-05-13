@@ -16,13 +16,13 @@ void main() async {
   prefs = await SharedPreferences.getInstance();
   final localizationController = LocalizationController();
   await localizationController.loadLanguageFromCache();
-  runApp(VMS(localizationController: localizationController));
+  runApp(VMS_Main(localizationController: localizationController));
 }
 
-class VMS extends StatelessWidget {
+class VMS_Main extends StatelessWidget {
   final LocalizationController localizationController;
   final ThemeController themeController = Get.put(ThemeController());
-  VMS({Key? key, required this.localizationController}) : super(key: key);
+  VMS_Main({Key? key, required this.localizationController}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
