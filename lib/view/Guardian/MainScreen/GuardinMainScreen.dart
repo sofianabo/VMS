@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Guardians_API/Get_My_Children_API.dart';
-import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
+import 'package:vms_school/Link/Controller/GuardianController/AddGurdianChildController.dart';
 import 'package:vms_school/Link/Controller/GuardianController/MyChildren_Controller.dart';
 import 'package:vms_school/view/Guardian/AppBarGuardian.dart';
 import 'package:vms_school/view/Guardian/Functions/Add_Student_For_Guardian.dart';
@@ -78,7 +78,7 @@ class _GuardianMainScreenState extends State<GuardianMainScreen> {
                       ),
                     ),
                     onPressed: () {
-                      Get.find<Add_Students_Controller>().resetError();
+                      Get.find<Addgurdianchildcontroller>().resetError();
                       Add_Students_Guardian_Functions();
                     },
                     icon: Icon(
