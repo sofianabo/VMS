@@ -23,7 +23,8 @@ class RoleBasedMiddleware extends GetMiddleware {
     }
 
     // إذا كان مسجل دخول وله صلاحيات admin
-    if (isLoggedIn && (role == "admin" || role == "subAdmin")) {
+    if (isLoggedIn &&
+        (role == "admin" || role == "subAdmin" || role == "observer")) {
       CheeckHasData();
       if (route != '/admin') {
         return const RouteSettings(name: '/admin');
@@ -41,6 +42,7 @@ class RoleBasedMiddleware extends GetMiddleware {
     if (isLoggedIn &&
         role != "admin" &&
         role != "subAdmin" &&
+        role != "observer" &&
         role != "guardian") {
       if (route == '/admin' || route == '/guardian') {
         return const RouteSettings(name: '/home');

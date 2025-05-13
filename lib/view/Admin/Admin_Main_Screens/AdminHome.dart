@@ -44,6 +44,7 @@ import 'package:vms_school/view/Admin/Students_Manager/StudyYearStudent.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherAttendanceManagment.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherMangament.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherStatus.dart';
+import 'package:vms_school/view/Observer/Observer_AppBar.dart';
 import 'package:vms_school/widgets/Responsive.dart';
 
 class AdminHome extends StatefulWidget {
@@ -71,7 +72,10 @@ class _AdminHomeState extends State<AdminHome> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        AppbarAdmin(),
+                        if (Get.find<Add_Data_controller>().roll != "observer")
+                          AppbarAdmin(),
+                        if (Get.find<Add_Data_controller>().roll == "observer")
+                          AppbarObserver(),
                         Expanded(
                           child: Stack(
                             children: [

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/DropDownPenaltyAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/GetStudyYearStudentAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/view/Admin/Students_Manager/StudyYearStudentsGrid.dart';
@@ -94,58 +95,59 @@ class _StudyYearStudentsState extends State<StudyYearStudents> {
                     ],
                   ),
                   Spacer(),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    spacing: 10.0,
-                    children: [
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).cardColor,
-                            borderRadius: BorderRadius.circular(5),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Colors.black12,
-                                  offset: Offset(0, 2),
-                                  blurRadius: 1)
-                            ]),
-                        child: IconButton(
-                            style: const ButtonStyle(
-                                shape: WidgetStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5))))),
-                            onPressed: () {},
-                            icon: Icon(VMS_Icons.xl,
-                                size: 18,
-                                color: Theme.of(context).highlightColor)),
-                      ),
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).cardColor,
-                            borderRadius: BorderRadius.circular(5),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Colors.black12,
-                                  offset: Offset(0, 2),
-                                  blurRadius: 1)
-                            ]),
-                        child: IconButton(
-                            style: const ButtonStyle(
-                                shape: WidgetStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5))))),
-                            onPressed: () {},
-                            icon: Icon(VMS_Icons.pdf,
-                                size: 18,
-                                color: Theme.of(context).highlightColor)),
-                      ),
-                    ],
-                  )
+                  if (Get.find<Add_Data_controller>().roll != "observer")
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      spacing: 10.0,
+                      children: [
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    offset: Offset(0, 2),
+                                    blurRadius: 1)
+                              ]),
+                          child: IconButton(
+                              style: const ButtonStyle(
+                                  shape: WidgetStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))))),
+                              onPressed: () {},
+                              icon: Icon(VMS_Icons.xl,
+                                  size: 18,
+                                  color: Theme.of(context).highlightColor)),
+                        ),
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    offset: Offset(0, 2),
+                                    blurRadius: 1)
+                              ]),
+                          child: IconButton(
+                              style: const ButtonStyle(
+                                  shape: WidgetStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))))),
+                              onPressed: () {},
+                              icon: Icon(VMS_Icons.pdf,
+                                  size: 18,
+                                  color: Theme.of(context).highlightColor)),
+                        ),
+                      ],
+                    )
                 ],
               ),
             );
@@ -209,58 +211,61 @@ class _StudyYearStudentsState extends State<StudyYearStudents> {
                           suffixIcon:
                               search.text != "" ? Icons.clear : Icons.search,
                         ),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          spacing: 10.0,
-                          children: [
-                            Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                  color: Theme.of(context).cardColor,
-                                  borderRadius: BorderRadius.circular(5),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                        color: Colors.black12,
-                                        offset: Offset(0, 2),
-                                        blurRadius: 1)
-                                  ]),
-                              child: IconButton(
-                                  style: const ButtonStyle(
-                                      shape: WidgetStatePropertyAll(
-                                          RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(5))))),
-                                  onPressed: () {},
-                                  icon: Icon(VMS_Icons.xl,
-                                      size: 18,
-                                      color: Theme.of(context).highlightColor)),
-                            ),
-                            Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                  color: Theme.of(context).cardColor,
-                                  borderRadius: BorderRadius.circular(5),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                        color: Colors.black12,
-                                        offset: Offset(0, 2),
-                                        blurRadius: 1)
-                                  ]),
-                              child: IconButton(
-                                  style: const ButtonStyle(
-                                      shape: WidgetStatePropertyAll(
-                                          RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(5))))),
-                                  onPressed: () {},
-                                  icon: Icon(VMS_Icons.pdf,
-                                      size: 18,
-                                      color: Theme.of(context).highlightColor)),
-                            ),
-                          ],
-                        )
+                        if (Get.find<Add_Data_controller>().roll != "observer")
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            spacing: 10.0,
+                            children: [
+                              Container(
+                                width: 40,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    color: Theme.of(context).cardColor,
+                                    borderRadius: BorderRadius.circular(5),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          color: Colors.black12,
+                                          offset: Offset(0, 2),
+                                          blurRadius: 1)
+                                    ]),
+                                child: IconButton(
+                                    style: const ButtonStyle(
+                                        shape: WidgetStatePropertyAll(
+                                            RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(5))))),
+                                    onPressed: () {},
+                                    icon: Icon(VMS_Icons.xl,
+                                        size: 18,
+                                        color:
+                                            Theme.of(context).highlightColor)),
+                              ),
+                              Container(
+                                width: 40,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    color: Theme.of(context).cardColor,
+                                    borderRadius: BorderRadius.circular(5),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          color: Colors.black12,
+                                          offset: Offset(0, 2),
+                                          blurRadius: 1)
+                                    ]),
+                                child: IconButton(
+                                    style: const ButtonStyle(
+                                        shape: WidgetStatePropertyAll(
+                                            RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(5))))),
+                                    onPressed: () {},
+                                    icon: Icon(VMS_Icons.pdf,
+                                        size: 18,
+                                        color:
+                                            Theme.of(context).highlightColor)),
+                              ),
+                            ],
+                          )
                       ],
                     ),
                   ],

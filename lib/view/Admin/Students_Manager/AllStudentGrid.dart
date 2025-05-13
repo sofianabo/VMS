@@ -9,6 +9,7 @@ import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Delete_Stude
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Students_Illness.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Students_Information.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Students_Vaccines.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
@@ -170,72 +171,75 @@ class AllStudentGrid extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      IconButton(
-                                        style: ButtonStyle(
-                                            maximumSize:
-                                                WidgetStateProperty.all(
-                                                    const Size(35, 35)),
-                                            minimumSize:
-                                                WidgetStateProperty.all(
-                                                    const Size(35, 35)),
-                                            iconSize:
-                                                WidgetStateProperty.all(14),
-                                            shape: WidgetStateProperty.all(
-                                                RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                            )),
-                                            backgroundColor:
-                                                WidgetStateProperty.all(
-                                                    const Color(0xffB03D3D))),
-                                        onPressed: () {
-                                          Get.dialog(VMSAlertDialog(
-                                              action: [
-                                                ButtonDialog(
-                                                  width: 100,
-                                                  text: "Delete".tr,
-                                                  onPressed: () async {
-                                                    await Delete_Student_API(
-                                                            context)
-                                                        .Delete_Student(
-                                                            id: control
-                                                                .filteredStudents[
-                                                                    index]
-                                                                .id
-                                                                .toString());
-                                                  },
-                                                  color:
-                                                      const Color(0xffB03D3D),
-                                                ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                ButtonDialog(
+                                      if (Get.find<Add_Data_controller>()
+                                              .roll !=
+                                          "observer")
+                                        IconButton(
+                                          style: ButtonStyle(
+                                              maximumSize:
+                                                  WidgetStateProperty.all(
+                                                      const Size(35, 35)),
+                                              minimumSize:
+                                                  WidgetStateProperty.all(
+                                                      const Size(35, 35)),
+                                              iconSize:
+                                                  WidgetStateProperty.all(14),
+                                              shape: WidgetStateProperty.all(
+                                                  RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                              )),
+                                              backgroundColor:
+                                                  WidgetStateProperty.all(
+                                                      const Color(0xffB03D3D))),
+                                          onPressed: () {
+                                            Get.dialog(VMSAlertDialog(
+                                                action: [
+                                                  ButtonDialog(
                                                     width: 100,
-                                                    text: "Cancel".tr,
-                                                    onPressed: () {
-                                                      Get.back();
+                                                    text: "Delete".tr,
+                                                    onPressed: () async {
+                                                      await Delete_Student_API(
+                                                              context)
+                                                          .Delete_Student(
+                                                              id: control
+                                                                  .filteredStudents[
+                                                                      index]
+                                                                  .id
+                                                                  .toString());
                                                     },
-                                                    color: Theme.of(context)
-                                                        .primaryColor)
-                                              ],
-                                              contents: Container(
-                                                width: 300,
-                                                child: Text(
-                                                    style: TextStyle(
-                                                        color: Colors.black),
-                                                    maxLines: 3,
-                                                    "Do You Want To Deletee"
-                                                            .tr +
-                                                        "${control.filteredStudents[index].fullName}" +
-                                                        "Studentt".tr),
-                                              ),
-                                              apptitle: "Delete Students".tr,
-                                              subtitle: "none"));
-                                        },
-                                        icon: const Icon(VMS_Icons.bin),
-                                        color: Colors.white,
-                                      ),
+                                                    color:
+                                                        const Color(0xffB03D3D),
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  ButtonDialog(
+                                                      width: 100,
+                                                      text: "Cancel".tr,
+                                                      onPressed: () {
+                                                        Get.back();
+                                                      },
+                                                      color: Theme.of(context)
+                                                          .primaryColor)
+                                                ],
+                                                contents: Container(
+                                                  width: 300,
+                                                  child: Text(
+                                                      style: TextStyle(
+                                                          color: Colors.black),
+                                                      maxLines: 3,
+                                                      "Do You Want To Deletee"
+                                                              .tr +
+                                                          "${control.filteredStudents[index].fullName}" +
+                                                          "Studentt".tr),
+                                                ),
+                                                apptitle: "Delete Students".tr,
+                                                subtitle: "none"));
+                                          },
+                                          icon: const Icon(VMS_Icons.bin),
+                                          color: Colors.white,
+                                        ),
                                       IconButton(
                                         style: ButtonStyle(
                                             maximumSize:
@@ -411,10 +415,12 @@ class AllStudentGrid extends StatelessWidget {
                                   width: 35,
                                   height: 35,
                                 ),
-                                SchemaWidget(
-                                  width: 35,
-                                  height: 35,
-                                ),
+                                if (Get.find<Add_Data_controller>().roll !=
+                                    "observer")
+                                  SchemaWidget(
+                                    width: 35,
+                                    height: 35,
+                                  ),
                                 SchemaWidget(
                                   width: 35,
                                   height: 35,
