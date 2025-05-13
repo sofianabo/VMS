@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Get_My_Profile.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
+import 'package:vms_school/Link/Controller/GuardianController/MyChildren_Controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/All_Settings/Verifing_Code_Dialog.dart';
 
@@ -87,7 +88,10 @@ CheeckHasData() {
 
 CheeckGuaIsVeri() {
   final con = Get.put(Add_Data_controller());
+  final myChildren_Controller = Get.put(MyChildren_Controller());
   bool? isVerified = prefs!.getBool("isVerified");
+  String? name = prefs!.getString("fullname");
+  myChildren_Controller.Setname(name ?? "");
   con.setisVerified(isVerified ?? false);
   con.setroll(prefs!.getString("role") ?? "");
   if (con.isVerified == false) {

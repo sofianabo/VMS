@@ -25,8 +25,15 @@ class MyChildren_Controller extends GetxController {
 
   String? filterName = '';
 
+  String? guaName;
+
   void clearFilter() {
     searchByName("");
+    update();
+  }
+
+  void Setname(String value) {
+    guaName = value;
     update();
   }
 
