@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Guardians_API/Get_My_Children_API.dart';
@@ -6,6 +7,7 @@ import 'package:vms_school/Link/Controller/GuardianController/MyChildren_Control
 import 'package:vms_school/view/Guardian/AppBarGuardian.dart';
 import 'package:vms_school/view/Guardian/Functions/Add_Student_For_Guardian.dart';
 import 'package:vms_school/view/Guardian/MainScreen/GuardianMainScreenGrid.dart';
+import 'package:vms_school/widgets/Loading_Dialog.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 
 class GuardianMainScreen extends StatefulWidget {
@@ -79,6 +81,7 @@ class _GuardianMainScreenState extends State<GuardianMainScreen> {
                     ),
                     onPressed: () {
                       Get.find<Addgurdianchildcontroller>().resetError();
+                     
                       Add_Students_Guardian_Functions();
                     },
                     icon: Icon(

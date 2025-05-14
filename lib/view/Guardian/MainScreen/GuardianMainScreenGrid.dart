@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -32,6 +33,7 @@ import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/Guardian/Animated_Requests.dart';
 import 'package:vms_school/widgets/Guardian/ChildPenaltiesDialog.dart';
 import 'package:vms_school/widgets/Guardian/ChildRewardsDialog.dart';
+import 'package:vms_school/widgets/Loading_Dialog.dart';
 import 'package:vms_school/widgets/PDF_View.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
@@ -543,14 +545,15 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                                               .filteredStudents[
                                                                   index]
                                                               .id);
-
-                                                  Get.dialog(VMSAlertDialog(
-                                                      action: [],
-                                                      contents:
-                                                          Studyshareforchild(),
-                                                      apptitle:
-                                                          "StudyShare table".tr,
-                                                      subtitle: ""));
+                                                  if (mod != null)
+                                                    Get.dialog(VMSAlertDialog(
+                                                        action: [],
+                                                        contents:
+                                                            Studyshareforchild(),
+                                                        apptitle:
+                                                            "StudyShare table"
+                                                                .tr,
+                                                        subtitle: ""));
                                                 } else if (selected ==
                                                     'Attendence') {
                                                   OneStudentAttendenceModel

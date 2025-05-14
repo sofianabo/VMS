@@ -19,14 +19,15 @@ class Getchildstudyshareapi {
 
   Getchildstudyshare(int? id) async {
     try {
+      CancelToken cancelToken = CancelToken();
+      Loading_Dialog(cancelToken: cancelToken);
       c.setIsLoading(true);
 
       String myurl = "${global.hostPort}${global.getDivisionStudyShare}";
-      CancelToken cancelToken = CancelToken();
-      Loading_Dialog(cancelToken: cancelToken);
+
       var response = await dio.post(myurl,
+      cancelToken: cancelToken,
           data: {"studentId": id}, options: getDioOptions());
-      Get.back();
       if (response.statusCode == 200) {
         SchoolTimeModel model = SchoolTimeModel.fromJson(response.data);
 
@@ -44,6 +45,7 @@ class Getchildstudyshareapi {
                   [lessionsChild[model.studyShare![i].lessonId]!] =
               model.studyShare![i].toString();
         }
+        Get.back();
 
         mod = model;
 
@@ -63,9 +65,6 @@ class Getchildstudyshareapi {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    } finally {
-      c.setIsLoading(false);
-      Get.back();
     }
   }
 }

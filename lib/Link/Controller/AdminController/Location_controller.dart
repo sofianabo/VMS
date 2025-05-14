@@ -27,7 +27,8 @@ class Location_controller extends GetxController {
     List<String> newList = [];
 
     for (int i = 0; i < locations.location!.length; i++) {
-      if (prefs!.getString(languageKey) == "ar")
+      if (Get.find<LocalizationController>().currentLocale.value.languageCode ==
+          'ar')
         newList.add(locations.location![i].name.toString());
       else
         newList.add(locations.location![i].enName.toString());

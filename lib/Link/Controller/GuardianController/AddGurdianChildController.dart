@@ -73,7 +73,7 @@ class Addgurdianchildcontroller extends GetxController {
   String RealagonIndex = "";
   String BloodTypeIndex = "";
 
-  String LocationIndex = "Syria";
+  String LocationIndex = "";
   String FamilyStateIndex = "Single";
   String ClassIndex = "";
   String DivisionIndex = "";
@@ -90,7 +90,7 @@ class Addgurdianchildcontroller extends GetxController {
     GenderIndex = "";
     RealagonIndex = "";
     BloodTypeIndex = "";
-    LocationIndex = "Syria".tr;
+    LocationIndex = "";
     FamilyStateIndex = "Single";
     ClassIndex = "";
 
@@ -208,6 +208,8 @@ class Addgurdianchildcontroller extends GetxController {
 
   SetLocationlist(List<String> data) {
     Locationlist = data;
+    LocationIndex = "Syria".tr;
+
     SetIsLoadingLocation(false);
     update();
   }

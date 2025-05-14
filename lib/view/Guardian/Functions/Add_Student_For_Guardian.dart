@@ -29,7 +29,11 @@ import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 Add_Students_Guardian_Functions() async {
-  Get_Location_API.Get_Locations();
+  // CancelToken cancelToken = CancelToken();
+  // Loading_Dialog(cancelToken: cancelToken);
+   Get_Location_API.Get_Locations();
+  // Get.back();
+
   Get.dialog(AllGuardiansDialog(), barrierDismissible: false);
 }
 
@@ -293,7 +297,7 @@ class _AllGuardiansDialogState extends State<AllGuardiansDialog> {
         ),
       ),
       apptitle: "Add Students".tr,
-      subtitle: "Select Garduans To Add Students".tr,
+      subtitle: "",
     );
   }
 }
@@ -358,7 +362,11 @@ class _Add_Students_pageState extends State<Add_Students_page> {
               width: 620,
               child: SingleChildScrollView(
                 child: Directionality(
-                  textDirection: prefs!.getString(languageKey) == "ar"
+                  textDirection: Get.find<LocalizationController>()
+                              .currentLocale
+                              .value
+                              .languageCode ==
+                          'ar'
                       ? TextDirection.rtl
                       : TextDirection.ltr,
                   child: Column(
@@ -671,14 +679,21 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                   }),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        left: prefs!.getString(languageKey) ==
-                                                "ar"
+                                        left: Get.find<LocalizationController>()
+                                                    .currentLocale
+                                                    .value
+                                                    .languageCode ==
+                                                'ar'
                                             ? 0
                                             : 10.0,
-                                        right: prefs!.getString(languageKey) ==
-                                                "ar"
-                                            ? 10
-                                            : 0),
+                                        right:
+                                            Get.find<LocalizationController>()
+                                                        .currentLocale
+                                                        .value
+                                                        .languageCode ==
+                                                    'ar'
+                                                ? 10
+                                                : 0),
                                     child: GetBuilder<Vaccines_Controller>(
                                         builder: (vac_Controller) {
                                       return ButtonDialog(

@@ -35,7 +35,7 @@ class Drop_Edite_students extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Father Passport"),
+                          Text("Father Passport".tr),
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -172,7 +172,7 @@ class Drop_Edite_students extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Mother Passport"),
+                          Text("Mother Passport".tr),
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -321,7 +321,7 @@ class Drop_Edite_students extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Son Passport"),
+                          Text("Son Passport".tr),
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -456,7 +456,7 @@ class Drop_Edite_students extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("ID File"),
+                          Text("ID File".tr),
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -598,7 +598,7 @@ class Drop_Edite_students extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Certificate"),
+                          Text("Certificate".tr),
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -733,7 +733,7 @@ class Drop_Edite_students extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Academic sequence"),
+                          Text("Academic sequence".tr),
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -877,7 +877,7 @@ class Drop_Edite_students extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Family notebook"),
+                          Text("Family notebook".tr),
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
