@@ -20,6 +20,8 @@ class Edit_Employee extends StatefulWidget {
   State<Edit_Employee> createState() => _Edit_EmployeeState();
 }
 
+bool notReadOnly = Get.find<Add_Data_controller>().roll != "observer";
+
 class _Edit_EmployeeState extends State<Edit_Employee> {
   @override
   Widget build(BuildContext context) {
@@ -209,9 +211,12 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                               Obx(
                                 () => GestureDetector(
                                   onTap: () async {
-                                    if (Get.find<Add_Data_controller>().roll !=
-                                        "subAdmin") {
-                                      await controller.pickImage(context);
+                                    if (notReadOnly) {
+                                      if (Get.find<Add_Data_controller>()
+                                              .roll !=
+                                          "subAdmin") {
+                                        await controller.pickImage(context);
+                                      }
                                     }
                                   },
                                   child: CircleAvatar(
@@ -252,6 +257,7 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                             spacing: 10,
                             children: [
                               Textfildwithupper(
+                                  enabled: notReadOnly,
                                   width: screenWidth >= 600
                                       ? 250
                                       : (screenWidth) - 70,
@@ -267,6 +273,7 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                                   Uptext: "First Name".tr,
                                   hinttext: "First Name".tr),
                               Textfildwithupper(
+                                  enabled: notReadOnly,
                                   width: screenWidth >= 600
                                       ? 250
                                       : (screenWidth) - 70,
@@ -293,6 +300,7 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
+                            enabled: notReadOnly,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
                             onChanged: (value) {
@@ -306,6 +314,7 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                             Uptext: "Father Name".tr,
                             hinttext: "Father Name".tr),
                         Textfildwithupper(
+                            enabled: notReadOnly,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
                             onChanged: (value) {
@@ -327,6 +336,7 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
+                            enabled: notReadOnly,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
                             fieldType: "phone",
@@ -355,6 +365,7 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
+                            enabled: notReadOnly,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
                             fieldType: "phone",
@@ -383,6 +394,7 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
+                            enabled: notReadOnly,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
                             onChanged: (value) {
@@ -396,6 +408,7 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                             Uptext: "Address".tr,
                             hinttext: "Address".tr),
                         Textfildwithupper(
+                            enabled: notReadOnly,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
                             onChanged: (value) {
@@ -417,6 +430,7 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
+                            enabled: notReadOnly,
                             readOnly: true,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
@@ -424,6 +438,7 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                             Uptext: "Email".tr,
                             hinttext: "Email".tr),
                         Textfildwithupper(
+                            enabled: notReadOnly,
                             readOnly: true,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
@@ -439,6 +454,7 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
+                            enabled: notReadOnly,
                             readOnly: true,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
@@ -447,6 +463,7 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                             Uptext: "Job Title".tr,
                             hinttext: "Job Title".tr),
                         Textfildwithupper(
+                            enabled: notReadOnly,
                             readOnly: true,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
@@ -462,12 +479,14 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       runAlignment: WrapAlignment.center,
                       children: [
                         Dropdownallemployee(
+                            Disabled: !notReadOnly,
                             isError: controller.IsGenderError,
                             title: "Gender".tr,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
                             type: "Gender"),
                         Dropdownallemployee(
+                            Disabled: !notReadOnly,
                             isError: controller.IsFamilyError,
                             title: "Family Status".tr,
                             width:
@@ -486,6 +505,7 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       alignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
+                            enabled: notReadOnly,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
                             readOnly: true,
@@ -511,12 +531,14 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
+                            enabled: notReadOnly,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
                             controller: facebookUrl,
                             Uptext: "Facebook URL".tr,
                             hinttext: "Facebook URL".tr),
                         Textfildwithupper(
+                            enabled: notReadOnly,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
                             controller: xPlatformUrl,
@@ -531,12 +553,14 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
+                            enabled: notReadOnly,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
                             controller: linkedinUrl,
                             Uptext: "Linkedin URL".tr,
                             hinttext: "Linkedin URL".tr),
                         Textfildwithupper(
+                            enabled: notReadOnly,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
                             controller: instagramUrl,
@@ -561,12 +585,14 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
+                            enabled: notReadOnly,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
                             controller: bankAccountTitle,
                             Uptext: "Bank Account Title".tr,
                             hinttext: "Bank Account Title".tr),
                         Textfildwithupper(
+                            enabled: notReadOnly,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
                             controller: bankName,
@@ -581,12 +607,14 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
+                            enabled: notReadOnly,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
                             controller: bankBranchName,
                             Uptext: "Bank Branch Name".tr,
                             hinttext: "Bank Branch Name".tr),
                         Textfildwithupper(
+                            enabled: notReadOnly,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
                             controller: bankAccountNumber,
@@ -602,6 +630,7 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       alignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
+                            enabled: notReadOnly,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
                             controller: ifscCode,
@@ -616,6 +645,7 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                     Row(
                       children: [
                         LargeTextField(
+                            readOnly: !notReadOnly,
                             width:
                                 screenWidth >= 590 ? 500 : (screenWidth) - 70,
                             controller: careerHistory,
@@ -627,6 +657,7 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         LargeTextField(
+                            readOnly: !notReadOnly,
                             width:
                                 screenWidth >= 590 ? 500 : (screenWidth) - 70,
                             onChanged: (value) {
@@ -645,6 +676,7 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         LargeTextField(
+                            readOnly: !notReadOnly,
                             width:
                                 screenWidth >= 590 ? 500 : (screenWidth) - 70,
                             onChanged: (value) {
@@ -663,6 +695,7 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         LargeTextField(
+                            readOnly: !notReadOnly,
                             width:
                                 screenWidth >= 590 ? 500 : (screenWidth) - 70,
                             controller: Note,

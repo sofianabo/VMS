@@ -15,6 +15,7 @@ import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/All_Settings/Verifing_Code_Dialog.dart';
 import 'package:vms_school/view/Admin/Admin_Main_Screens/Drower_Sidebar.dart';
 import 'package:vms_school/view/Admin/Admin_Main_Screens/Search_Bar_widget.dart';
+import 'package:vms_school/view/Guardian/Profile_Screens/My_Profile.dart';
 import 'package:vms_school/widgets/Responsive.dart';
 import 'package:vms_school/widgets/SidbarAnimation.dart';
 
@@ -46,7 +47,7 @@ class _AppbarAdminState extends State<AppbarObserver> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        //Observer Settings
+                        Get.dialog(ProfileDialog());
                       },
                       child: Container(
                         height: 40,
@@ -145,7 +146,9 @@ class _AppbarAdminState extends State<AppbarObserver> {
                   ),
                 )),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Get.dialog(ProfileDialog());
+                  },
                   child: Container(
                     height: 40,
                     width: 200,
@@ -246,7 +249,7 @@ class _AppbarAdminState extends State<AppbarObserver> {
                               SearchWithSuggestions(
                                 size: constraints.maxWidth,
                                 isFull: true,
-                                enabled: controller.hasData,
+                                enabled: true,
                                 onItemSelected: (value) {
                                   cont.updateContent(value);
                                 },

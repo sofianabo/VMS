@@ -30,7 +30,7 @@ class _AllStudentState extends State<AllStudent> {
   }
 
   TextEditingController search = TextEditingController();
-
+  var addController = Get.find<Add_Data_controller>();
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -103,7 +103,7 @@ class _AllStudentState extends State<AllStudent> {
                       }),
                     ],
                   ),
-                  if (Get.find<Add_Data_controller>().roll != "observer")
+                  if (addController.roll != "observer")
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       spacing: 8.0,
@@ -243,7 +243,7 @@ class _AllStudentState extends State<AllStudent> {
                             search.text.isNotEmpty ? Icons.close : Icons.search,
                       );
                     }),
-                    if (Get.find<Add_Data_controller>().roll != "observer")
+                    if (addController.roll != "observer")
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         spacing: 8.0,

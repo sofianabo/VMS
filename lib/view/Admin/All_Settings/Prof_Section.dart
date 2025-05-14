@@ -25,7 +25,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  var add_Data_controller = Get.put(Add_Data_controller());
+  var add_Data_controller = Get.find<Add_Data_controller>();
 
   TextEditingController Firstname = TextEditingController();
   TextEditingController Lastname = TextEditingController();

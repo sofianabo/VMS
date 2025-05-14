@@ -16,7 +16,7 @@ class Personal extends StatefulWidget {
 }
 
 class _ProfileState extends State<Personal> {
-  var add_Data_controller = Get.put(Add_Data_controller());
+  var add_Data_controller = Get.find<Add_Data_controller>();
 
   TextEditingController facebookUrl = TextEditingController();
   TextEditingController xPlatformUrl = TextEditingController();

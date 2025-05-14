@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Link/API/AuthAPI/LogoutAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/GuardianController/Guardian_My_Data_Controller.dart';
 import 'package:vms_school/view/Admin/All_Settings/Apperance.dart';
 
@@ -57,14 +58,16 @@ class _ProfileDialogState extends State<ProfileDialog> {
                           icon: Icon(Icons.generating_tokens_outlined),
                           text: "General".tr,
                         ),
-                        Tab(
-                          icon: Icon(Icons.person_2_outlined),
-                          text: "Personal".tr,
-                        ),
-                        Tab(
-                          icon: Icon(Icons.contact_mail_outlined),
-                          text: "Account".tr,
-                        ),
+                        if (Get.find<Add_Data_controller>().roll != "observer")
+                          Tab(
+                            icon: Icon(Icons.person_2_outlined),
+                            text: "Personal".tr,
+                          ),
+                        if (Get.find<Add_Data_controller>().roll != "observer")
+                          Tab(
+                            icon: Icon(Icons.contact_mail_outlined),
+                            text: "Account".tr,
+                          ),
                       ],
                     ),
                   ),
@@ -151,24 +154,24 @@ class _ProfileDialogState extends State<ProfileDialog> {
                           ),
                         ),
 
-                        // المحتوى الثاني
-                        Center(
+                        if (Get.find<Add_Data_controller>().roll != "observer")
+                          Center(
+                              child: controller.isLoading
+                                  ? LoadingAnimationWidget.inkDrop(
+                                      color: Theme.of(context).primaryColor,
+                                      size: 30,
+                                    )
+                                  : Personal()),
+                        if (Get.find<Add_Data_controller>().roll != "observer")
+                          Padding(
+                            padding: const EdgeInsets.only(top: 25.0),
                             child: controller.isLoading
                                 ? LoadingAnimationWidget.inkDrop(
                                     color: Theme.of(context).primaryColor,
                                     size: 30,
                                   )
-                                : Personal()),
-
-                        Padding(
-                          padding: const EdgeInsets.only(top: 25.0),
-                          child: controller.isLoading
-                              ? LoadingAnimationWidget.inkDrop(
-                                  color: Theme.of(context).primaryColor,
-                                  size: 30,
-                                )
-                              : MyAccount(),
-                        ),
+                                : MyAccount(),
+                          ),
                       ],
                     ),
                   ),

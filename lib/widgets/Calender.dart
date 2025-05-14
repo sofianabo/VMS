@@ -7,6 +7,7 @@ import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/IncreaseAtte
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/StudentAttendenceAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetTeacherAttendenceAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/IncreaseTeacherAttendenceAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/EmployeeAttendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/ExamTableController.dart';
@@ -169,7 +170,11 @@ class BirthDate extends StatelessWidget {
                       : '',
                 ),
                 readOnly: true,
-                onTap: () => controller.selectBirthDate(context),
+                onTap: () {
+                  if (Get.find<Add_Data_controller>().roll != "observer") {
+                    controller.selectBirthDate(context);
+                  }
+                },
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Theme.of(context)
@@ -203,7 +208,11 @@ class BirthDate extends StatelessWidget {
                       color: Theme.of(context).primaryColor,
                       size: 16,
                     ),
-                    onPressed: () => controller.selectBirthDate(context),
+                    onPressed: () {
+                      if (Get.find<Add_Data_controller>().roll != "observer") {
+                        controller.selectBirthDate(context);
+                      }
+                    },
                   ),
                 ),
               ),
@@ -281,7 +290,11 @@ class JoinDate extends StatelessWidget {
                       : '',
                 ),
                 readOnly: true,
-                onTap: () => controller.selectJoinDate(context),
+                onTap: () {
+                  if (Get.find<Add_Data_controller>().roll != "observer") {
+                    controller.selectJoinDate(context);
+                  }
+                },
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Theme.of(context)
@@ -315,7 +328,11 @@ class JoinDate extends StatelessWidget {
                       color: Theme.of(context).primaryColor,
                       size: 16,
                     ),
-                    onPressed: () => controller.selectJoinDate(context),
+                    onPressed: () {
+                      if (Get.find<Add_Data_controller>().roll != "observer") {
+                        controller.selectJoinDate(context);
+                      }
+                    },
                   ),
                 ),
               ),
@@ -1114,11 +1131,15 @@ class EditJoinDateTeacher extends StatelessWidget {
   final double? height;
   final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
 
+  final bool isError; // متغير لتحديد إذا كان الحقل مطلوبًا.
+
   const EditJoinDateTeacher({
     super.key,
     required this.width,
     required this.Uptext,
     this.height,
+    this.isError = false, // افتراضي الحقل غير مطلوب.
+
     this.isRequired = false, // افتراضي الحقل غير مطلوب.
   });
 
@@ -1161,24 +1182,35 @@ class EditJoinDateTeacher extends StatelessWidget {
                       : '',
                 ),
                 readOnly: true,
-                onTap: () => controller.selectJoinDate(context),
+                onTap: () {
+                  if (Get.find<Add_Data_controller>().roll != "observer") {
+                    controller.selectJoinDate(context);
+                  }
+                },
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Theme.of(context)
                       .textTheme
-                      .bodyMedium!
+                      .titleMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide:
-                        const BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                      width: 2,
+                    ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(color: Color(0xffD9D9D9)),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                    ),
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : Colors.grey,
+                    ),
                   ),
                   suffixIcon: IconButton(
                     icon: Icon(
@@ -1186,11 +1218,23 @@ class EditJoinDateTeacher extends StatelessWidget {
                       color: Theme.of(context).primaryColor,
                       size: 16,
                     ),
-                    onPressed: () => controller.selectJoinDate(context),
+                    onPressed: () {
+                      if (Get.find<Add_Data_controller>().roll != "observer") {
+                        controller.selectJoinDate(context);
+                      }
+                    },
                   ),
                 ),
               ),
             ),
+            if (isError)
+              const Padding(
+                padding: EdgeInsets.only(top: 5.0),
+                child: Text(
+                  "يجب إدخال تاريخ صحيح",
+                  style: TextStyle(color: Colors.red, fontSize: 12),
+                ),
+              ),
           ],
         ),
       ),
@@ -1202,12 +1246,17 @@ class EditBirthDateTeacher extends StatelessWidget {
   final double width;
   final String Uptext;
   final double? height;
+
+  final bool isError; // متغير لتحديد إذا كان الحقل مطلوبًا.
+
   final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
 
   const EditBirthDateTeacher({
     super.key,
     required this.width,
     required this.Uptext,
+    this.isError = false, // افتراضي الحقل غير مطلوب.
+
     this.height,
     this.isRequired = false, // افتراضي الحقل غير مطلوب.
   });
@@ -1251,24 +1300,35 @@ class EditBirthDateTeacher extends StatelessWidget {
                       : '',
                 ),
                 readOnly: true,
-                onTap: () => controller.selectBirthDate(context),
+                onTap: () {
+                  if (Get.find<Add_Data_controller>().roll != "observer") {
+                    controller.selectBirthDate(context);
+                  }
+                },
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
                   hintStyle: Theme.of(context)
                       .textTheme
-                      .bodyMedium!
+                      .titleMedium!
                       .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide:
-                        const BorderSide(color: Color(0xffD9D9D9), width: 2),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                      width: 2,
+                    ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
-                    borderSide: const BorderSide(color: Color(0xffD9D9D9)),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                    ),
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : Colors.grey,
+                    ),
                   ),
                   suffixIcon: IconButton(
                     icon: Icon(
@@ -1276,11 +1336,23 @@ class EditBirthDateTeacher extends StatelessWidget {
                       color: Theme.of(context).primaryColor,
                       size: 16,
                     ),
-                    onPressed: () => controller.selectBirthDate(context),
+                    onPressed: () {
+                      if (Get.find<Add_Data_controller>().roll != "observer") {
+                        controller.selectBirthDate(context);
+                      }
+                    },
                   ),
                 ),
               ),
             ),
+            if (isError)
+              const Padding(
+                padding: EdgeInsets.only(top: 5.0),
+                child: Text(
+                  "يجب إدخال تاريخ صحيح",
+                  style: TextStyle(color: Colors.red, fontSize: 12),
+                ),
+              ),
           ],
         ),
       ),

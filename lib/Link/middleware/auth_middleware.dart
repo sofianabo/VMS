@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vms_school/Link/API/AdminAPI/Get_My_Profile.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
@@ -22,7 +23,6 @@ class RoleBasedMiddleware extends GetMiddleware {
       return const RouteSettings(name: '/home');
     }
 
-    // إذا كان مسجل دخول وله صلاحيات admin
     if (isLoggedIn &&
         (role == "admin" || role == "subAdmin" || role == "observer")) {
       CheeckHasData();
@@ -38,7 +38,6 @@ class RoleBasedMiddleware extends GetMiddleware {
       }
     }
 
-    // إذا كان مسجل دخول ولكن ليس له صلاحيات admin
     if (isLoggedIn &&
         role != "admin" &&
         role != "subAdmin" &&
@@ -49,47 +48,58 @@ class RoleBasedMiddleware extends GetMiddleware {
       }
     }
 
-    return null; // يسمح بالاستمرار إذا لم يكن هناك تحويل مطلوب
+    return null;
   }
 }
 
-CheeckHasData() {
-  final con = Get.put(Add_Data_controller());
-  final con2 = Get.put(Admin_Profile_Content());
-  bool? hasData = prefs!.getBool("hasData");
-  bool? isVerified = prefs!.getBool("isVerified");
-  String? email = prefs!.getString("email");
-  con.setisVerified(isVerified ?? false);
-  con.sethasData(hasData ?? false);
-  con.setEmail(email!);
-  con.setroll(prefs!.getString("role") ?? "");
-  if (con.isVerified == true) {
-    if (con.hasData == false) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        con2.ChangeCurruntValue("addData");
-        Get.find<AdminHomeContentController>().updateContent("My Profile");
-        Get_My_Profile.Get_My_Profile_Data();
-      });
+Future<void> CheeckHasData() async {
+  try {
+    final con = Get.put(Add_Data_controller());
+    final con2 = Get.put(Admin_Profile_Content());
+    final prefs = await SharedPreferences.getInstance();
+    final hasData = prefs.getBool("hasData") ?? false;
+    final isVerified = prefs.getBool("isVerified") ?? false;
+    final email = prefs.getString("email") ?? "";
+    final role = prefs.getString("role") ?? "";
+
+    con.setisVerified(isVerified);
+    con.sethasData(hasData);
+    con.setEmail(email);
+    con.setroll(role);
+
+    if (!isVerified) {
+      await showVerificationDialog();
     }
-  } else {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Get.dialog(
-        VerifingCodeDialog(),
-        barrierDismissible: false,
-      );
-    });
-    if (con.hasData == false) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        con2.ChangeCurruntValue("addData");
-        Get.find<AdminHomeContentController>().updateContent("My Profile");
-        Get_My_Profile.Get_My_Profile_Data();
-      });
+
+    if (!hasData) {
+      await handleDataLoading(con2);
     }
+
+    if (role == "observer") {
+      Get.find<AdminHomeContentController>()
+          .updateContent("School Data Management");
+    }
+  } catch (e) {
+    print('Error in CheeckHasData: $e');
+    rethrow;
   }
 }
 
-CheeckGuaIsVeri() {
-  final con = Get.put(Add_Data_controller());
+Future<void> showVerificationDialog() async {
+  await Get.dialog(
+    VerifingCodeDialog(),
+    barrierDismissible: false,
+  );
+}
+
+Future<void> handleDataLoading(Admin_Profile_Content con2) async {
+  await Get_My_Profile.Get_My_Profile_Data();
+  Get.find<AdminHomeContentController>().updateContent("My Profile");
+  con2.ChangeCurruntValue("addData");
+}
+
+CheeckGuaIsVeri() async {
+  final con = Get.find<Add_Data_controller>();
   final myChildren_Controller = Get.put(MyChildren_Controller());
   bool? isVerified = prefs!.getBool("isVerified");
   String? name = prefs!.getString("fullname");

@@ -27,7 +27,7 @@ class _ProfileState extends State<Account_And_Password> {
   TextEditingController confnewpassword = TextEditingController();
   bool isfilled = false;
 
-  var add_Data_controller = Get.put(Add_Data_controller());
+  var add_Data_controller = Get.find<Add_Data_controller>();
 
   @override
   void fillControllersWithData() {

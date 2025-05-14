@@ -23,7 +23,7 @@ class Profile_BirthDate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Add_Data_controller controller = Get.put(Add_Data_controller());
+    final Add_Data_controller controller = Get.find<Add_Data_controller>();
     return Obx(
       () => Container(
         width: width,

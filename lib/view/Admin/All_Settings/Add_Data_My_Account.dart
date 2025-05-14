@@ -20,7 +20,7 @@ class Add_Data_account extends StatefulWidget {
 }
 
 class _ProfileState extends State<Add_Data_account> {
-  var add_Data_controller = Get.put(Add_Data_controller());
+  var add_Data_controller = Get.find<Add_Data_controller>();
   TextEditingController Firstname = TextEditingController();
   TextEditingController Lastname = TextEditingController();
   TextEditingController Mothername = TextEditingController();

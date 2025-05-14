@@ -55,8 +55,11 @@ class AllStudentGrid extends StatelessWidget {
       return control.isLoading == false
           ? control.filteredStudents.isNotEmpty
               ? Directionality(
-                  textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
+                  textDirection: Get.find<LocalizationController>()
+                              .currentLocale
+                              .value
+                              .languageCode ==
+                          'ar'
                       ? TextDirection.rtl
                       : TextDirection.ltr,
                   child: GridView.builder(
@@ -163,8 +166,7 @@ class AllStudentGrid extends StatelessWidget {
                                     style:
                                         Theme.of(context).textTheme.bodyMedium),
                                 Text(
-                                    "${"Grade Level:".tr}${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar' ? control.filteredStudents[index].grade!.name : control.filteredStudents[index].grade!.enName}",
+                                    "${"Grade Level:".tr}${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? control.filteredStudents[index].grade!.name : control.filteredStudents[index].grade!.enName}",
                                     style:
                                         Theme.of(context).textTheme.bodyMedium),
                                 Padding(

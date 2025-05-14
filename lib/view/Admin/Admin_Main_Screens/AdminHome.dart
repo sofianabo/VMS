@@ -5,6 +5,7 @@ import 'package:vms_school/Link/Controller/AdminController/DrowerController.dart
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
+import 'package:vms_school/Link/middleware/auth_middleware.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/All_Settings/Profile_Settings.dart';
 import 'package:vms_school/view/Admin/All_Settings/Verifing_Code_Dialog.dart';
@@ -54,6 +55,8 @@ class AdminHome extends StatefulWidget {
   State<AdminHome> createState() => _AdminHomeState();
 }
 
+var addController = Get.find<Add_Data_controller>();
+
 class _AdminHomeState extends State<AdminHome> {
   @override
   Widget build(BuildContext context) {
@@ -72,10 +75,8 @@ class _AdminHomeState extends State<AdminHome> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if (Get.find<Add_Data_controller>().roll != "observer")
-                          AppbarAdmin(),
-                        if (Get.find<Add_Data_controller>().roll == "observer")
-                          AppbarObserver(),
+                        if (addController.roll != "observer") AppbarAdmin(),
+                        if (addController.roll == "observer") AppbarObserver(),
                         Expanded(
                           child: Stack(
                             children: [

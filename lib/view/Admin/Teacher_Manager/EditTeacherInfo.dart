@@ -23,6 +23,8 @@ class EditTeacherDialog extends StatefulWidget {
   State<EditTeacherDialog> createState() => _EditTeacherDialogState();
 }
 
+bool notReadOnly = Get.find<Add_Data_controller>().roll != "observer";
+
 class _EditTeacherDialogState extends State<EditTeacherDialog> {
   @override
   Widget build(BuildContext context) {
@@ -46,11 +48,13 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
     TextEditingController username =
         TextEditingController(text: teacherControler.oTeacher!.userName);
     TextEditingController salary = TextEditingController(
-        text: teacherControler.oTeacher!.salary.toString());
+        text: teacherControler.oTeacher!.salary != null
+            ? teacherControler.oTeacher!.salary.toString()
+            : "0");
     TextEditingController fatherName =
         TextEditingController(text: teacherControler.oTeacher!.fatherName);
     TextEditingController jobTitle =
-        TextEditingController(text: teacherControler.oTeacher!.jobTitle);
+        TextEditingController(text: teacherControler.oTeacher!.jobTitle!.tr);
     TextEditingController facebook =
         TextEditingController(text: teacherControler.oTeacher!.facebookUrl);
     TextEditingController motherName =
@@ -85,8 +89,11 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
       control.Birthdate.value = DateTime.parse(
           Get.find<Allteachercontroller>().oTeacher!.birthDate.toString());
       return Directionality(
-        textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
+        textDirection: Get.find<LocalizationController>()
+                    .currentLocale
+                    .value
+                    .languageCode ==
+                'ar'
             ? TextDirection.rtl
             : TextDirection.ltr,
         child: GetBuilder<Allteachercontroller>(builder: (control) {
@@ -101,15 +108,15 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                   width: 520,
                   child: SingleChildScrollView(
                     child: Column(
-                      spacing: 10,
+                      spacing: 5,
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Container(
                           width: 520,
                           child: Wrap(
-                            spacing: 20.0,
+                            spacing: 10.0,
                             crossAxisAlignment: WrapCrossAlignment.center,
-                            runSpacing: 20.0,
+                            runSpacing: 2.0,
                             alignment: screenWidth >= 589
                                 ? WrapAlignment.spaceBetween
                                 : WrapAlignment.center,
@@ -120,10 +127,12 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                                   Obx(
                                     () => GestureDetector(
                                       onTap: () async {
-                                        if (Get.find<Add_Data_controller>()
-                                                .roll !=
-                                            "subAdmin") {
-                                          await addcontrol.pickImage(context);
+                                        if (notReadOnly) {
+                                          if (Get.find<Add_Data_controller>()
+                                                  .roll !=
+                                              "subAdmin") {
+                                            await addcontrol.pickImage(context);
+                                          }
                                         }
                                       },
                                       child: CircleAvatar(
@@ -162,9 +171,10 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                                 ],
                               ),
                               Column(
-                                spacing: 20,
+                                spacing: 10,
                                 children: [
                                   Textfildwithupper(
+                                      enabled: notReadOnly,
                                       onChanged: (value) {
                                         if (value.isNotEmpty) {
                                           control.updateFieldError(
@@ -180,8 +190,9 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                                       Uptext: "First Name".tr,
                                       hinttext: "First Name".tr),
                                   Padding(
-                                    padding: const EdgeInsets.only(top: 22.0),
+                                    padding: const EdgeInsets.only(top: 2.0),
                                     child: Textfildwithupper(
+                                        enabled: notReadOnly,
                                         onChanged: (value) {
                                           if (value.isNotEmpty) {
                                             control.updateFieldError(
@@ -203,12 +214,13 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                           ),
                         ),
                         Wrap(
-                          spacing: 20.0,
+                          spacing: 10.0,
                           crossAxisAlignment: WrapCrossAlignment.center,
-                          runSpacing: 20.0,
+                          runSpacing: 2.0,
                           runAlignment: WrapAlignment.center,
                           children: [
                             Textfildwithupper(
+                                enabled: notReadOnly,
                                 onChanged: (value) {
                                   if (value.isNotEmpty) {
                                     control.updateFieldError("father", false);
@@ -223,6 +235,7 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                                 Uptext: "Father Name".tr,
                                 hinttext: "Father Name".tr),
                             Textfildwithupper(
+                                enabled: notReadOnly,
                                 onChanged: (value) {
                                   if (value.isNotEmpty) {
                                     control.updateFieldError("mother", false);
@@ -239,12 +252,13 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                           ],
                         ),
                         Wrap(
-                          spacing: 20.0,
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          runSpacing: 20.0,
+                          spacing: 10.0,
+                          crossAxisAlignment: WrapCrossAlignment.start,
+                          runSpacing: 2.0,
                           runAlignment: WrapAlignment.center,
                           children: [
                             Textfildwithupper(
+                                enabled: notReadOnly,
                                 width: screenWidth >= 600
                                     ? 250
                                     : (screenWidth) - 70,
@@ -268,12 +282,13 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                           ],
                         ),
                         Wrap(
-                          spacing: 20.0,
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          runSpacing: 20.0,
+                          spacing: 10.0,
+                          crossAxisAlignment: WrapCrossAlignment.start,
+                          runSpacing: 2.0,
                           runAlignment: WrapAlignment.center,
                           children: [
                             Textfildwithupper(
+                                enabled: notReadOnly,
                                 width: screenWidth >= 600
                                     ? 250
                                     : (screenWidth) - 70,
@@ -298,12 +313,13 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                         Padding(
                           padding: const EdgeInsets.only(top: 22.0),
                           child: Wrap(
-                            spacing: 20.0,
+                            spacing: 10.0,
                             crossAxisAlignment: WrapCrossAlignment.center,
-                            runSpacing: 20.0,
+                            runSpacing: 2.0,
                             runAlignment: WrapAlignment.center,
                             children: [
                               Textfildwithupper(
+                                  enabled: notReadOnly,
                                   width: screenWidth >= 600
                                       ? 250
                                       : (screenWidth) - 70,
@@ -319,6 +335,7 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                                   Uptext: "Address".tr,
                                   hinttext: "Address".tr),
                               Textfildwithupper(
+                                  enabled: notReadOnly,
                                   width: screenWidth >= 600
                                       ? 250
                                       : (screenWidth) - 70,
@@ -338,12 +355,13 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                         ),
 
                         Wrap(
-                          spacing: 20.0,
+                          spacing: 10.0,
                           crossAxisAlignment: WrapCrossAlignment.center,
-                          runSpacing: 20.0,
+                          runSpacing: 2.0,
                           runAlignment: WrapAlignment.center,
                           children: [
                             Textfildwithupper(
+                                enabled: notReadOnly,
                                 readOnly: true,
                                 width: screenWidth >= 600
                                     ? 250
@@ -352,6 +370,7 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                                 Uptext: "Email".tr,
                                 hinttext: "Email".tr),
                             Textfildwithupper(
+                                enabled: notReadOnly,
                                 readOnly: true,
                                 width: screenWidth >= 600
                                     ? 250
@@ -362,12 +381,13 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                           ],
                         ),
                         Wrap(
-                          spacing: 20.0,
+                          spacing: 10.0,
                           crossAxisAlignment: WrapCrossAlignment.center,
-                          runSpacing: 20.0,
+                          runSpacing: 2.0,
                           runAlignment: WrapAlignment.center,
                           children: [
                             Textfildwithupper(
+                                enabled: notReadOnly,
                                 readOnly: true,
                                 width: screenWidth >= 600
                                     ? 250
@@ -376,6 +396,7 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                                 Uptext: "Salary".tr,
                                 hinttext: "Salary".tr),
                             Textfildwithupper(
+                                enabled: notReadOnly,
                                 isRequired: true,
                                 readOnly: true,
                                 width: screenWidth >= 600
@@ -388,18 +409,20 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                         ),
                         //ddddddddddddd
                         Wrap(
-                          spacing: 20.0,
+                          spacing: 10.0,
                           crossAxisAlignment: WrapCrossAlignment.center,
-                          runSpacing: 20.0,
+                          runSpacing: 2.0,
                           runAlignment: WrapAlignment.center,
                           children: [
                             Dropdownallteacher(
+                              isDisabled: !notReadOnly,
                               title: "Gender".tr,
                               type: "GenderDialog",
                               width:
                                   screenWidth >= 600 ? 250 : (screenWidth) - 70,
                             ),
                             Dropdownallteacher(
+                              isDisabled: !notReadOnly,
                               title: "Family Status".tr,
                               type: "FamilyStatusDialog",
                               width:
@@ -408,12 +431,13 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                           ],
                         ),
                         Wrap(
-                          spacing: 20.0,
+                          spacing: 10.0,
                           crossAxisAlignment: WrapCrossAlignment.center,
-                          runSpacing: 20.0,
+                          runSpacing: 2.0,
                           runAlignment: WrapAlignment.center,
                           children: [
                             Dropdownallteacher(
+                              isDisabled: !notReadOnly,
                               title: "Contract Type".tr,
                               type: "ContractTypeDialog",
                               width:
@@ -434,12 +458,13 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                           ],
                         ),
                         Wrap(
-                          spacing: 20.0,
+                          spacing: 10.0,
                           crossAxisAlignment: WrapCrossAlignment.center,
-                          runSpacing: 20.0,
+                          runSpacing: 2.0,
                           runAlignment: WrapAlignment.center,
                           children: [
                             Textfildwithupper(
+                                enabled: notReadOnly,
                                 width: screenWidth >= 600
                                     ? 250
                                     : (screenWidth) - 70,
@@ -447,6 +472,7 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                                 Uptext: "Facebook URL".tr,
                                 hinttext: "Facebook URL".tr),
                             Textfildwithupper(
+                                enabled: notReadOnly,
                                 width: screenWidth >= 600
                                     ? 250
                                     : (screenWidth) - 70,
@@ -456,12 +482,13 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                           ],
                         ),
                         Wrap(
-                          spacing: 20.0,
+                          spacing: 10.0,
                           crossAxisAlignment: WrapCrossAlignment.center,
-                          runSpacing: 20.0,
+                          runSpacing: 2.0,
                           runAlignment: WrapAlignment.center,
                           children: [
                             Textfildwithupper(
+                                enabled: notReadOnly,
                                 width: screenWidth >= 600
                                     ? 250
                                     : (screenWidth) - 70,
@@ -469,6 +496,7 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                                 Uptext: "Linkedin URL".tr,
                                 hinttext: "Linkedin URL".tr),
                             Textfildwithupper(
+                                enabled: notReadOnly,
                                 width: screenWidth >= 600
                                     ? 250
                                     : (screenWidth) - 70,
@@ -490,12 +518,13 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                           ],
                         ),
                         Wrap(
-                          spacing: 20.0,
+                          spacing: 10.0,
                           crossAxisAlignment: WrapCrossAlignment.center,
-                          runSpacing: 20.0,
+                          runSpacing: 2.0,
                           runAlignment: WrapAlignment.center,
                           children: [
                             Textfildwithupper(
+                                enabled: notReadOnly,
                                 width: screenWidth >= 600
                                     ? 250
                                     : (screenWidth) - 70,
@@ -503,6 +532,7 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                                 Uptext: "Bank Account Title".tr,
                                 hinttext: "Bank Account Title".tr),
                             Textfildwithupper(
+                                enabled: notReadOnly,
                                 width: screenWidth >= 600
                                     ? 250
                                     : (screenWidth) - 70,
@@ -512,12 +542,13 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                           ],
                         ),
                         Wrap(
-                          spacing: 20.0,
+                          spacing: 10.0,
                           crossAxisAlignment: WrapCrossAlignment.center,
-                          runSpacing: 20.0,
+                          runSpacing: 2.0,
                           runAlignment: WrapAlignment.center,
                           children: [
                             Textfildwithupper(
+                                enabled: notReadOnly,
                                 width: screenWidth >= 600
                                     ? 250
                                     : (screenWidth) - 70,
@@ -525,6 +556,7 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                                 Uptext: "Bank Branch Name".tr,
                                 hinttext: "Bank Branch Name".tr),
                             Textfildwithupper(
+                                enabled: notReadOnly,
                                 width: screenWidth >= 600
                                     ? 250
                                     : (screenWidth) - 70,
@@ -534,13 +566,14 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                           ],
                         ),
                         Wrap(
-                          spacing: 20.0,
+                          spacing: 10.0,
                           crossAxisAlignment: WrapCrossAlignment.center,
-                          runSpacing: 20.0,
+                          runSpacing: 2.0,
                           runAlignment: WrapAlignment.center,
                           alignment: WrapAlignment.center,
                           children: [
                             Textfildwithupper(
+                                enabled: notReadOnly,
                                 width: screenWidth >= 600
                                     ? 250
                                     : (screenWidth) - 70,
@@ -558,6 +591,7 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             LargeTextField(
+                                readOnly: !notReadOnly,
                                 width: screenWidth >= 590
                                     ? 500
                                     : (screenWidth) - 70,
@@ -570,6 +604,7 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             LargeTextField(
+                                readOnly: !notReadOnly,
                                 onChanged: (value) {
                                   if (value.isNotEmpty) {
                                     control.updateFieldError(
@@ -590,6 +625,7 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             LargeTextField(
+                                readOnly: !notReadOnly,
                                 onChanged: (value) {
                                   if (value.isNotEmpty) {
                                     control.updateFieldError("exp", false);
@@ -609,6 +645,7 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             LargeTextField(
+                                readOnly: !notReadOnly,
                                 width: screenWidth >= 590
                                     ? 500
                                     : (screenWidth) - 70,
@@ -624,104 +661,108 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
               apptitle: "Edit Teacher".tr,
               subtitle: "none",
               action: [
-                ButtonDialog(
-                    text: "Edit Teacher".tr,
-                    onPressed: () async {
-                      bool isGenderEmpty = control.genderDialogIndex.isEmpty ||
-                          control.genderDialogIndex == "";
-                      bool iscontractTypeEmpty =
-                          control.contractTypeDialogIndex.isEmpty ||
-                              control.contractTypeDialogIndex == "";
-                      bool isFamilyEmpty =
-                          control.familyStatusDialogIndex.isEmpty ||
-                              control.familyStatusDialogIndex == "";
-                      bool isjoinEmpty = control.Joindate.value == null ||
-                          control.Joindate.value.toString() == "";
-                      bool isBirthEmpty = control.Birthdate.value == null ||
-                          control.Birthdate.value.toString() == "";
-                      bool isfirstEmpty = firstName.text.trim().isEmpty;
-                      bool islastnameEmpty = lastName.text.trim().isEmpty;
-                      bool isfatherEmpty = fatherName.text.trim().isEmpty;
-                      bool ismotherEmpty = motherName.text.trim().isEmpty;
-                      bool isphoneEmpty = phoneNumber.text.trim().isEmpty;
-                      bool isemgnEmpty = emergency.text.trim().isEmpty;
-                      bool isaddressEmpty = address.text.trim().isEmpty;
-                      bool isCurrentAdressEmpty =
-                          currentAddress.text.trim().isEmpty;
-                      bool isQualEmpty = qualification.text.trim().isEmpty;
-                      bool isExpEmpty = experience.text.trim().isEmpty;
+                if (notReadOnly)
+                  ButtonDialog(
+                      text: "Edit Teacher".tr,
+                      onPressed: () async {
+                        bool isGenderEmpty =
+                            control.genderDialogIndex.isEmpty ||
+                                control.genderDialogIndex == "";
+                        bool iscontractTypeEmpty =
+                            control.contractTypeDialogIndex.isEmpty ||
+                                control.contractTypeDialogIndex == "";
+                        bool isFamilyEmpty =
+                            control.familyStatusDialogIndex.isEmpty ||
+                                control.familyStatusDialogIndex == "";
+                        bool isjoinEmpty = control.Joindate.value == null ||
+                            control.Joindate.value.toString() == "";
+                        bool isBirthEmpty = control.Birthdate.value == null ||
+                            control.Birthdate.value.toString() == "";
+                        bool isfirstEmpty = firstName.text.trim().isEmpty;
+                        bool islastnameEmpty = lastName.text.trim().isEmpty;
+                        bool isfatherEmpty = fatherName.text.trim().isEmpty;
+                        bool ismotherEmpty = motherName.text.trim().isEmpty;
+                        bool isphoneEmpty = phoneNumber.text.trim().isEmpty;
+                        bool isemgnEmpty = emergency.text.trim().isEmpty;
+                        bool isaddressEmpty = address.text.trim().isEmpty;
+                        bool isCurrentAdressEmpty =
+                            currentAddress.text.trim().isEmpty;
+                        bool isQualEmpty = qualification.text.trim().isEmpty;
+                        bool isExpEmpty = experience.text.trim().isEmpty;
 
-                      control.updateFieldError("first", isfirstEmpty);
-                      control.updateFieldError("last", islastnameEmpty);
-                      control.updateFieldError("father", isfatherEmpty);
-                      control.updateFieldError("mother", ismotherEmpty);
-                      control.updateFieldError("birth", isBirthEmpty);
-                      control.updateFieldError("phone", isphoneEmpty);
-                      control.updateFieldError("emgn", isemgnEmpty);
-                      control.updateFieldError("join", isjoinEmpty);
-                      control.updateFieldError("address", isaddressEmpty);
-                      control.updateFieldError(
-                          "caddress", isCurrentAdressEmpty);
-                      control.updateFieldError("gender", isGenderEmpty);
-                      control.updateFieldError("family", isFamilyEmpty);
-                      control.updateFieldError("qualification", isQualEmpty);
-                      control.updateFieldError("exp", isExpEmpty);
-                      control.updateFieldError("contract", iscontractTypeEmpty);
-                      if (!(iscontractTypeEmpty ||
-                          isGenderEmpty ||
-                          isFamilyEmpty ||
-                          isjoinEmpty ||
-                          isBirthEmpty ||
-                          isfirstEmpty ||
-                          islastnameEmpty ||
-                          isfatherEmpty ||
-                          ismotherEmpty ||
-                          isphoneEmpty ||
-                          isemgnEmpty ||
-                          isaddressEmpty ||
-                          isCurrentAdressEmpty ||
-                          isQualEmpty ||
-                          isExpEmpty)) if (Get.find<Add_Data_controller>()
-                              .roll !=
-                          "subAdmin") {
-                        await Editteacherapi.Editteacher(
-                          employeeId: widget.teacherId,
-                          selectedImage: Get.find<Addteachercontroller>()
-                              .selectedImage
-                              .value,
-                          First_Name: firstName.text,
-                          Last_Name: lastName.text,
-                          Father_Name: fatherName.text,
-                          Mother_Name: motherName.text,
-                          Phone_Numper: phoneNumber.text,
-                          Birth_Date: control.Birthdate.value.toString(),
-                          Emergency_Number: emergency.text,
-                          Join_Date: control.Joindate.value.toString(),
-                          Address: address.text,
-                          Current_Address: currentAddress.text,
-                          Gender: control.genderDialogIndex,
-                          Family_State: control.familyStatusDialogIndex,
-                          contractType: control.contractTypeDialogIndex,
-                          Facebook_URL: facebook.text,
-                          X_Platform_URL: x.text,
-                          Linkedin_URL: linkedin.text,
-                          Instagram_URL: insta.text,
-                          Bank_Account_Title: bankAccountTitle.text,
-                          Bank_Name: bankName.text,
-                          Bank_Branch_Name: bankBranchName.text,
-                          Bank_Account_Number: bankAccountNumber.text,
-                          IFSC_Code: ifsc.text,
-                          Career_History: careerHistory.text,
-                          Qualification: qualification.text,
-                          Experience: experience.text,
-                          Note: note.text,
-                        );
-                      }
-                    },
-                    color: Get.find<Add_Data_controller>().roll == "subAdmin"
-                        ? Get.theme.disabledColor
-                        : Theme.of(context).primaryColor,
-                    width: 140)
+                        control.updateFieldError("first", isfirstEmpty);
+                        control.updateFieldError("last", islastnameEmpty);
+                        control.updateFieldError("father", isfatherEmpty);
+                        control.updateFieldError("mother", ismotherEmpty);
+                        control.updateFieldError("birth", isBirthEmpty);
+                        control.updateFieldError("phone", isphoneEmpty);
+                        control.updateFieldError("emgn", isemgnEmpty);
+                        control.updateFieldError("join", isjoinEmpty);
+                        control.updateFieldError("address", isaddressEmpty);
+                        control.updateFieldError(
+                            "caddress", isCurrentAdressEmpty);
+                        control.updateFieldError("gender", isGenderEmpty);
+                        control.updateFieldError("family", isFamilyEmpty);
+                        control.updateFieldError("qualification", isQualEmpty);
+                        control.updateFieldError("exp", isExpEmpty);
+                        control.updateFieldError(
+                            "contract", iscontractTypeEmpty);
+                        if (!(iscontractTypeEmpty ||
+                            isGenderEmpty ||
+                            isFamilyEmpty ||
+                            isjoinEmpty ||
+                            isBirthEmpty ||
+                            isfirstEmpty ||
+                            islastnameEmpty ||
+                            isfatherEmpty ||
+                            ismotherEmpty ||
+                            isphoneEmpty ||
+                            isemgnEmpty ||
+                            isaddressEmpty ||
+                            isCurrentAdressEmpty ||
+                            isQualEmpty ||
+                            isExpEmpty)) if (Get.find<Add_Data_controller>()
+                                .roll !=
+                            "subAdmin") {
+                          await Editteacherapi.Editteacher(
+                            employeeId: widget.teacherId,
+                            selectedImage: Get.find<Addteachercontroller>()
+                                .selectedImage
+                                .value,
+                            First_Name: firstName.text,
+                            Last_Name: lastName.text,
+                            Father_Name: fatherName.text,
+                            Mother_Name: motherName.text,
+                            Phone_Numper: phoneNumber.text,
+                            Birth_Date:
+                                control.Birthdate.value.toString() ?? "",
+                            Emergency_Number: emergency.text,
+                            Join_Date: control.Joindate.value.toString() ?? "",
+                            Address: address.text,
+                            Current_Address: currentAddress.text,
+                            Gender: control.genderDialogIndex,
+                            Family_State: control.familyStatusDialogIndex,
+                            contractType: control.contractTypeDialogIndex,
+                            Facebook_URL: facebook.text,
+                            X_Platform_URL: x.text,
+                            Linkedin_URL: linkedin.text,
+                            Instagram_URL: insta.text,
+                            Bank_Account_Title: bankAccountTitle.text,
+                            Bank_Name: bankName.text,
+                            Bank_Branch_Name: bankBranchName.text,
+                            Bank_Account_Number: bankAccountNumber.text,
+                            IFSC_Code: ifsc.text,
+                            Career_History: careerHistory.text,
+                            Qualification: qualification.text,
+                            Experience: experience.text,
+                            Note: note.text,
+                          );
+                        }
+                      },
+                      color: Get.find<Add_Data_controller>().roll == "subAdmin"
+                          ? Get.theme.disabledColor
+                          : Theme.of(context).primaryColor,
+                      width: 140)
               ]);
         }),
       );

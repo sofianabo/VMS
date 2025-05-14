@@ -12,7 +12,6 @@ import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/Get_Teacher_Illness.da
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
-import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Schema_Widget.dart';
 import '../../../Icons_File/v_m_s__icons_icons.dart';
@@ -21,7 +20,9 @@ import '../../../widgets/VMSAlertDialog.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class AllEmployeeGrid extends StatelessWidget {
-  const AllEmployeeGrid({super.key});
+  AllEmployeeGrid({super.key});
+
+  var addController = Get.find<Add_Data_controller>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +52,11 @@ class AllEmployeeGrid extends StatelessWidget {
     }
 
     return Directionality(
-      textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+      textDirection:
+          Get.find<LocalizationController>().currentLocale.value.languageCode ==
                   'ar'
-          ? TextDirection.rtl
-          : TextDirection.ltr,
+              ? TextDirection.rtl
+              : TextDirection.ltr,
       child: GetBuilder<Allempolyeecontroller>(builder: (controller) {
         return controller.isLoading
             ? GridView.builder(
@@ -87,8 +89,7 @@ class AllEmployeeGrid extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              if (Get.find<Add_Data_controller>().roll !=
-                                  "observer")
+                              if (addController.roll != "observer")
                                 SchemaWidget(
                                   width: 80,
                                   height: 80,
@@ -270,11 +271,11 @@ class AllEmployeeGrid extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      if (Get.find<Add_Data_controller>().roll !=
-                                          "observer")
+                                      if (addController.roll != "observer")
                                         IconButton(
                                             style: ButtonStyle(
-                                                backgroundColor: Get.find<Add_Data_controller>().roll ==
+                                                backgroundColor: addController
+                                                            .roll ==
                                                         "subAdmin"
                                                     ? WidgetStatePropertyAll(
                                                         Get.theme.disabledColor)
@@ -282,9 +283,10 @@ class AllEmployeeGrid extends StatelessWidget {
                                                         Color(0xffB03D3D)),
                                                 shape: const WidgetStatePropertyAll(
                                                     RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius.all(
-                                                            Radius.circular(
-                                                                5))))),
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    5))))),
                                             onPressed: () {
                                               if (Get.find<
                                                           Add_Data_controller>()
