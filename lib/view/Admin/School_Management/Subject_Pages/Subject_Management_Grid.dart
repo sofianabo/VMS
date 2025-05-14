@@ -4,6 +4,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Subject_Screen/Delete_Subject_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Subject_Screen/Edit_Subject_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Subject_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
@@ -43,7 +44,9 @@ class Subject_Management_Grid extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     color: Get.theme.indicatorColor),
                                 children: [
-                                  _tableHeader('Operation'.tr, context),
+                                  if (Get.find<Add_Data_controller>().roll !=
+                                      "observer")
+                                    _tableHeader('Operation'.tr, context),
                                   _tableHeader('Subject Name'.tr, context),
                                 ],
                               ),
@@ -51,11 +54,16 @@ class Subject_Management_Grid extends StatelessWidget {
                                   in controller.Subjects.asMap().entries)
                                 TableRow(
                                   children: [
-                                    _operationColumn(row.value, controller,
-                                        row.key, context),
+                                    if (Get.find<Add_Data_controller>().roll !=
+                                        "observer")
+                                      _operationColumn(row.value, controller,
+                                          row.key, context),
                                     _dataColumn(
-                                         Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
+                                        Get.find<LocalizationController>()
+                                                    .currentLocale
+                                                    .value
+                                                    .languageCode ==
+                                                'ar'
                                             ? row.value['name']
                                             : row.value['enName']),
                                   ],
@@ -82,7 +90,10 @@ class Subject_Management_Grid extends StatelessWidget {
                                     decoration: BoxDecoration(
                                         color: Get.theme.indicatorColor),
                                     children: [
-                                      _tableHeader('Operation'.tr, context),
+                                      if (Get.find<Add_Data_controller>()
+                                              .roll !=
+                                          "observer")
+                                        _tableHeader('Operation'.tr, context),
                                       _tableHeader('Subject Name'.tr, context),
                                     ],
                                   ),
@@ -90,8 +101,11 @@ class Subject_Management_Grid extends StatelessWidget {
                                       in controller.Subjects.asMap().entries)
                                     TableRow(
                                       children: [
-                                        _operationColumn(row.value, controller,
-                                            row.key, context),
+                                        if (Get.find<Add_Data_controller>()
+                                                .roll !=
+                                            "observer")
+                                          _operationColumn(row.value,
+                                              controller, row.key, context),
                                         _dataColumn(
                                             prefs!.getString(languageKey) ==
                                                     'ar'
@@ -161,8 +175,7 @@ class Subject_Management_Grid extends StatelessWidget {
                               width: 400,
                               child: Text(
                                 "Do You Want To Deletesub".tr +
-                                    " (${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar' ? row['name'] : row['enName']}) " +
+                                    " (${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? row['name'] : row['enName']}) " +
                                     "Subjectt".tr,
                                 style: const TextStyle(fontSize: 16),
                               ),

@@ -5,6 +5,7 @@ import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownClassesAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Division_API/Add_Division_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Division_API/Get_All_Division.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Divisions_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/view/Admin/School_Management/Division_Pages/Division_Grid.dart';
@@ -174,23 +175,150 @@ class _DivisionManagementState extends State<DivisionManagement> {
     return Expanded(
         child: Column(
       children: [
-        if (screenWidth > 769)
-          Container(
-            width: screenWidth,
-            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
-            child: Wrap(
-              alignment: WrapAlignment.spaceBetween,
-              runSpacing: 10.0,
-              spacing: 10.0,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              runAlignment: WrapAlignment.spaceBetween,
-              children: [
-                Wrap(
-                  alignment: WrapAlignment.start,
-                  runSpacing: 10.0,
+        if (Get.find<Add_Data_controller>().roll != "observer")
+          if (screenWidth > 769)
+            Container(
+              width: screenWidth,
+              margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+              child: Wrap(
+                alignment: WrapAlignment.spaceBetween,
+                runSpacing: 10.0,
+                spacing: 10.0,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                runAlignment: WrapAlignment.spaceBetween,
+                children: [
+                  Wrap(
+                    alignment: WrapAlignment.start,
+                    runSpacing: 10.0,
+                    spacing: 10.0,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    runAlignment: WrapAlignment.start,
+                    children: [
+                      DropDownAllSessions(
+                          API: "division",
+                          title: "Session".tr,
+                          width: 250,
+                          type: "session"),
+                      GetBuilder<Divisions_Controller>(builder: (controller) {
+                        return DropDownDivisionMgmt(
+                            isLoading: controller.isLoading,
+                            title: "Class".tr,
+                            width: 250,
+                            type: "class");
+                      }),
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    spacing: 10.0,
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                backgroundColor: WidgetStatePropertyAll(
+                                    Theme.of(context).cardColor),
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {
+                              arName.clear();
+                              enName.clear();
+                              driveUrl.clear();
+                              Get.find<Divisions_Controller>().ClassDiagIndex =
+                                  "";
+                              Get.find<Divisions_Controller>()
+                                  .updateFieldError("ename", false);
+                              Get.find<Divisions_Controller>()
+                                  .updateFieldError("arname", false);
+                              Get.find<Divisions_Controller>()
+                                  .updateFieldError("meet", false);
+                              Get.find<Divisions_Controller>()
+                                  .updateFieldError("class", false);
+                              Get.dialog(
+                                AddDivision(),
+                                barrierDismissible: false,
+                              );
+                            },
+                            icon: Icon(Icons.add,
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
+                      ),
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                backgroundColor: WidgetStatePropertyAll(
+                                    Theme.of(context).cardColor),
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {},
+                            icon: Icon(VMS_Icons.pdf,
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
+                      ),
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                backgroundColor: WidgetStatePropertyAll(
+                                    Theme.of(context).cardColor),
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {},
+                            icon: Icon(VMS_Icons.xl,
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+        if (Get.find<Add_Data_controller>().roll != "observer")
+          if (screenWidth <= 769)
+            Container(
+              width: screenWidth,
+              margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
                   spacing: 10.0,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  runAlignment: WrapAlignment.start,
                   children: [
                     DropDownAllSessions(
                         API: "division",
@@ -204,12 +332,6 @@ class _DivisionManagementState extends State<DivisionManagement> {
                           width: 250,
                           type: "class");
                     }),
-                  ],
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  spacing: 10.0,
-                  children: [
                     Container(
                       width: 40,
                       height: 40,
@@ -231,11 +353,11 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
                           onPressed: () {
+                            Get.find<Divisions_Controller>().ClassDiagIndex =
+                                "";
                             arName.clear();
                             enName.clear();
                             driveUrl.clear();
-                            Get.find<Divisions_Controller>().ClassDiagIndex =
-                                "";
                             Get.find<Divisions_Controller>()
                                 .updateFieldError("ename", false);
                             Get.find<Divisions_Controller>()
@@ -304,124 +426,9 @@ class _DivisionManagementState extends State<DivisionManagement> {
                               color: Theme.of(context).highlightColor)),
                     ),
                   ],
-                )
-              ],
-            ),
-          ),
-        if (screenWidth <= 769)
-          Container(
-            width: screenWidth,
-            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                spacing: 10.0,
-                children: [
-                  DropDownAllSessions(
-                      API: "division",
-                      title: "Session".tr,
-                      width: 250,
-                      type: "session"),
-                  GetBuilder<Divisions_Controller>(builder: (controller) {
-                    return DropDownDivisionMgmt(
-                        isLoading: controller.isLoading,
-                        title: "Class".tr,
-                        width: 250,
-                        type: "class");
-                  }),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor,
-                        borderRadius: BorderRadius.circular(5),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Colors.black12,
-                              offset: Offset(0, 2),
-                              blurRadius: 1)
-                        ]),
-                    child: IconButton(
-                        style: ButtonStyle(
-                            backgroundColor: WidgetStatePropertyAll(
-                                Theme.of(context).cardColor),
-                            shape: WidgetStatePropertyAll(
-                                RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))))),
-                        onPressed: () {
-                          Get.find<Divisions_Controller>().ClassDiagIndex = "";
-                          arName.clear();
-                          enName.clear();
-                          driveUrl.clear();
-                          Get.find<Divisions_Controller>()
-                              .updateFieldError("ename", false);
-                          Get.find<Divisions_Controller>()
-                              .updateFieldError("arname", false);
-                          Get.find<Divisions_Controller>()
-                              .updateFieldError("meet", false);
-                          Get.find<Divisions_Controller>()
-                              .updateFieldError("class", false);
-                          Get.dialog(
-                            AddDivision(),
-                            barrierDismissible: false,
-                          );
-                        },
-                        icon: Icon(Icons.add,
-                            size: 18, color: Theme.of(context).highlightColor)),
-                  ),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor,
-                        borderRadius: BorderRadius.circular(5),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Colors.black12,
-                              offset: Offset(0, 2),
-                              blurRadius: 1)
-                        ]),
-                    child: IconButton(
-                        style: ButtonStyle(
-                            backgroundColor: WidgetStatePropertyAll(
-                                Theme.of(context).cardColor),
-                            shape: WidgetStatePropertyAll(
-                                RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))))),
-                        onPressed: () {},
-                        icon: Icon(VMS_Icons.pdf,
-                            size: 18, color: Theme.of(context).highlightColor)),
-                  ),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor,
-                        borderRadius: BorderRadius.circular(5),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Colors.black12,
-                              offset: Offset(0, 2),
-                              blurRadius: 1)
-                        ]),
-                    child: IconButton(
-                        style: ButtonStyle(
-                            backgroundColor: WidgetStatePropertyAll(
-                                Theme.of(context).cardColor),
-                            shape: WidgetStatePropertyAll(
-                                RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))))),
-                        onPressed: () {},
-                        icon: Icon(VMS_Icons.xl,
-                            size: 18, color: Theme.of(context).highlightColor)),
-                  ),
-                ],
+                ),
               ),
             ),
-          ),
         Expanded(
             child: Padding(
           padding: const EdgeInsets.only(top: 15.0),

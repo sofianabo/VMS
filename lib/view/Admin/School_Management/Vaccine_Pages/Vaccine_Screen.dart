@@ -4,6 +4,7 @@ import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/Location_API/Locations_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Vaccines_APIs/Add_Vaccines_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Vaccines_APIs/Get_All_Vaccines_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Location_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Theme/themeController.dart';
@@ -70,87 +71,91 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                       search.text.isNotEmpty ? Icons.close : Icons.search,
                 );
               }),
-              Row(
-                spacing: 10,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor,
-                        borderRadius: BorderRadius.circular(5),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Colors.black12,
-                              offset: Offset(0, 2),
-                              blurRadius: 1)
-                        ]),
-                    child: IconButton(
-                        style: ButtonStyle(
-                            shape: WidgetStatePropertyAll(
-                                RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))))),
-                        onPressed: () {
-                          var controller = Get.find<Vaccines_Controller>();
-                          controller.updateFieldError("arname", false);
-                          controller.updateFieldError("enname", false);
-                          controller.LocationIndex = "Syria".tr;
-                          name.clear();
-                          enName.clear();
-                          Get.dialog(
-                              barrierDismissible: false, addVaccineDialog());
-                        },
-                        icon: Icon(Icons.add,
-                            size: 18, color: Theme.of(context).highlightColor)),
-                  ),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor,
-                        borderRadius: BorderRadius.circular(5),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Colors.black12,
-                              offset: Offset(0, 2),
-                              blurRadius: 1)
-                        ]),
-                    child: IconButton(
-                        style: ButtonStyle(
-                            shape: WidgetStatePropertyAll(
-                                RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))))),
-                        onPressed: () {},
-                        icon: Icon(VMS_Icons.pdf,
-                            size: 18, color: Theme.of(context).highlightColor)),
-                  ),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor,
-                        borderRadius: BorderRadius.circular(5),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Colors.black12,
-                              offset: Offset(0, 2),
-                              blurRadius: 1)
-                        ]),
-                    child: IconButton(
-                        style: ButtonStyle(
-                            shape: WidgetStatePropertyAll(
-                                RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))))),
-                        onPressed: () {},
-                        icon: Icon(VMS_Icons.xl,
-                            size: 18, color: Theme.of(context).highlightColor)),
-                  ),
-                ],
-              )
+              if (Get.find<Add_Data_controller>().roll != "observer")
+                Row(
+                  spacing: 10,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: IconButton(
+                          style: ButtonStyle(
+                              shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5))))),
+                          onPressed: () {
+                            var controller = Get.find<Vaccines_Controller>();
+                            controller.updateFieldError("arname", false);
+                            controller.updateFieldError("enname", false);
+                            controller.LocationIndex = "Syria".tr;
+                            name.clear();
+                            enName.clear();
+                            Get.dialog(
+                                barrierDismissible: false, addVaccineDialog());
+                          },
+                          icon: Icon(Icons.add,
+                              size: 18,
+                              color: Theme.of(context).highlightColor)),
+                    ),
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: IconButton(
+                          style: ButtonStyle(
+                              shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5))))),
+                          onPressed: () {},
+                          icon: Icon(VMS_Icons.pdf,
+                              size: 18,
+                              color: Theme.of(context).highlightColor)),
+                    ),
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: IconButton(
+                          style: ButtonStyle(
+                              shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5))))),
+                          onPressed: () {},
+                          icon: Icon(VMS_Icons.xl,
+                              size: 18,
+                              color: Theme.of(context).highlightColor)),
+                    ),
+                  ],
+                )
             ],
           ),
         ),

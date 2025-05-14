@@ -787,6 +787,7 @@ class DateSelector extends StatelessWidget {
   final double? height;
   final bool isRequired;
   final bool isError;
+  final bool enabled;
   final Rx<DateTime?> dateValue;
   final Function(BuildContext) onSelectDate;
 
@@ -799,6 +800,7 @@ class DateSelector extends StatelessWidget {
     this.height,
     this.isRequired = false,
     this.isError = false,
+    this.enabled = true,
   });
 
   @override
@@ -834,6 +836,7 @@ class DateSelector extends StatelessWidget {
             SizedBox(
               height: height ?? 40,
               child: TextFormField(
+                enabled: enabled,
                 style: const TextStyle(fontSize: 14),
                 controller: TextEditingController(
                   text: dateValue.value != null

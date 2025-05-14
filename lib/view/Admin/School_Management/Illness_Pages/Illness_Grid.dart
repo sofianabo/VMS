@@ -5,6 +5,7 @@ import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Illness_APIs/Delete_Illness_API.dart';
 import 'package:vms_school/Link/API/DownloadFiles.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Labrary_Controller.dart';
 import 'package:vms_school/Theme/themeController.dart';
@@ -202,80 +203,86 @@ class Illness_Grid extends StatelessWidget {
                                       ],
                                     ),
                                     Spacer(),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        IconButton(
-                                            style: ButtonStyle(
-                                                backgroundColor:
-                                                    WidgetStatePropertyAll(
-                                                        Color(0xffB03D3D)),
-                                                shape: WidgetStatePropertyAll(
-                                                    RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    5))))),
-                                            onPressed: () {
-                                              Get.dialog(VMSAlertDialog(
-                                                action: [
-                                                  ButtonDialog(
-                                                      text: "Delete".tr,
-                                                      onPressed: () async {
-                                                        await Delete_Illness_API(
-                                                                context)
-                                                            .Delete_Illness(
-                                                                Eid: control
-                                                                    .filteredIllness![
-                                                                        index]
-                                                                    .id);
-                                                      },
-                                                      color: Color(0xffB03D3D),
-                                                      width: 80),
-                                                  ButtonDialog(
-                                                      text: "Cancel".tr,
-                                                      onPressed: () {
-                                                        Get.back();
-                                                      },
-                                                      color: Theme.of(context)
-                                                          .canvasColor,
-                                                      width: 80)
-                                                ],
-                                                contents: Container(
-                                                    width: 500,
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          "Do You Want To Deleteill"
-                                                                  .tr +
-                                                              " ( ${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar' ? "${control.filteredIllness![index].name}" : "${control.filteredIllness![index].enName}"} ) " +
-                                                              "Illnesss".tr,
-                                                          style: Get
-                                                              .theme
-                                                              .textTheme
-                                                              .bodyMedium!
-                                                              .copyWith(
-                                                                  fontSize: 16,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal),
-                                                        ),
-                                                      ],
-                                                    )),
-                                                apptitle: "Delete Illness".tr,
-                                                subtitle: "none",
-                                              ));
-                                            },
-                                            icon: Icon(VMS_Icons.bin,
-                                                size: 16, color: Colors.white)),
-                                      ],
-                                    )
+                                    if (Get.find<Add_Data_controller>().roll !=
+                                        "observer")
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          IconButton(
+                                              style: ButtonStyle(
+                                                  backgroundColor:
+                                                      WidgetStatePropertyAll(
+                                                          Color(0xffB03D3D)),
+                                                  shape: WidgetStatePropertyAll(
+                                                      RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          5))))),
+                                              onPressed: () {
+                                                Get.dialog(VMSAlertDialog(
+                                                  action: [
+                                                    ButtonDialog(
+                                                        text: "Delete".tr,
+                                                        onPressed: () async {
+                                                          await Delete_Illness_API(
+                                                                  context)
+                                                              .Delete_Illness(
+                                                                  Eid: control
+                                                                      .filteredIllness![
+                                                                          index]
+                                                                      .id);
+                                                        },
+                                                        color:
+                                                            Color(0xffB03D3D),
+                                                        width: 80),
+                                                    ButtonDialog(
+                                                        text: "Cancel".tr,
+                                                        onPressed: () {
+                                                          Get.back();
+                                                        },
+                                                        color: Theme.of(context)
+                                                            .canvasColor,
+                                                        width: 80)
+                                                  ],
+                                                  contents: Container(
+                                                      width: 500,
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            "Do You Want To Deleteill"
+                                                                    .tr +
+                                                                " ( ${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? "${control.filteredIllness![index].name}" : "${control.filteredIllness![index].enName}"} ) " +
+                                                                "Illnesss".tr,
+                                                            style: Get
+                                                                .theme
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                    fontSize:
+                                                                        16,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal),
+                                                          ),
+                                                        ],
+                                                      )),
+                                                  apptitle: "Delete Illness".tr,
+                                                  subtitle: "none",
+                                                ));
+                                              },
+                                              icon: Icon(VMS_Icons.bin,
+                                                  size: 16,
+                                                  color: Colors.white)),
+                                        ],
+                                      )
                                   ],
                                 )),
                             Align(

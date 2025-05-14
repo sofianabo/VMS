@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
 
 class SearchWithSuggestions extends StatefulWidget {
   final ValueChanged<String> onItemSelected;
@@ -25,12 +27,7 @@ class _SearchWithSuggestionsState extends State<SearchWithSuggestions> {
   final TextEditingController _controller = TextEditingController();
   final LayerLink _layerLink = LayerLink();
   OverlayEntry? _overlayEntry;
-  final List<String> items = [
-    "Exam Table",
-    "Dashboard",
-    "Enroll Requests",
-    // ... بقية العناصر
-  ];
+  List<String> items = [];
 
   List<String> _filteredItems = [];
 
@@ -39,7 +36,85 @@ class _SearchWithSuggestionsState extends State<SearchWithSuggestions> {
       _hideOverlay();
       return;
     }
+    items = Get.find<Add_Data_controller>().roll != "observer"
+        ? [
+            // من Dashboard و Enroll Requests
+            "Dashboard",
+            "Enroll Requests",
 
+            // من Schedules -> PopupMenuButton
+            "Exam Table",
+            "School Time Table",
+            "Quiz Type",
+
+            // من Students -> PopupMenuButton
+            "All Students",
+            "Study Year Students",
+            "All Guardians",
+            "Student Attendance",
+            "Students Attendance Managment",
+            "Students Marks",
+
+            // من Teachers -> PopupMenuButton
+            "Teacher Management",
+            "Teacher Status",
+            "Teacher Attendance Managment",
+
+            // من Employees -> PopupMenuButton
+            "Employee Management",
+            "Employee Attendance",
+            "Employee Attendance Manage",
+            "Virtual User Management",
+
+            // من Management -> PopupMenuButton
+            "Session Management",
+            "Grade Management",
+            "Subject Management",
+            "Class Management",
+            "Division Management",
+            "Curriculum Management",
+
+            // من General -> PopupMenuButton
+            "School Data Management",
+            "Electronic Library",
+            "Transaction",
+            "Illness Screen",
+            "Vaccine Screen",
+            "School Content",
+            "Penalties"
+          ]
+        : [
+            // من Schedules -> PopupMenuButton
+            "Exam Table",
+            "School Time Table",
+            "Quiz Type",
+
+            // من Students -> PopupMenuButton
+            "All Students",
+            "Study Year Students",
+
+            // من Teachers -> PopupMenuButton
+            "Teacher Management",
+
+            // من Employees -> PopupMenuButton
+            "Employee Management",
+
+            // من Management -> PopupMenuButton
+            "Session Management",
+            "Grade Management",
+            "Subject Management",
+            "Class Management",
+            "Division Management",
+            "Curriculum Management",
+
+            // من General -> PopupMenuButton
+            "School Data Management",
+            "Electronic Library",
+            "Illness Screen",
+            "Vaccine Screen",
+            "School Content",
+            "Penalties"
+          ];
     _filteredItems = items.where((item) {
       final localized = item.tr.toLowerCase();
       return item.toLowerCase().contains(query.toLowerCase()) ||
@@ -143,6 +218,19 @@ class _SearchWithSuggestionsState extends State<SearchWithSuggestions> {
             suffixIcon: GestureDetector(
               onTap: () {
                 if (_controller.text.isNotEmpty) {
+                  // if (Get.find<AdminHomeContentController>().content !=
+                  //     "Dashboard" ||
+                  //     Get.find<AdminHomeContentController>().content !=
+                  //         "School Data Management") {
+                  //   if (Get.find<Add_Data_controller>().roll != "observer") {
+                  //     Get.find<AdminHomeContentController>()
+                  //         .updateContent("Dashboard");
+                  //   } else {
+                  //     Get.find<AdminHomeContentController>()
+                  //         .updateContent("School Data Management");
+                  //   }
+                  // }
+
                   _controller.clear();
                   if (widget.click != null) {
                     widget.click!();

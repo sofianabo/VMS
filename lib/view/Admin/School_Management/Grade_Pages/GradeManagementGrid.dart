@@ -4,6 +4,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Grade_Screen/Delete_Grade_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Grade_Screen/Edit_Grade_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Grade_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
@@ -21,10 +22,11 @@ class GradeTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+      textDirection:
+          Get.find<LocalizationController>().currentLocale.value.languageCode ==
                   'ar'
-          ? TextDirection.rtl
-          : TextDirection.ltr,
+              ? TextDirection.rtl
+              : TextDirection.ltr,
       child: GetBuilder<Grade_Controller>(
         builder: (controller) {
           return Container(
@@ -49,7 +51,10 @@ class GradeTable extends StatelessWidget {
                                         color:
                                             Theme.of(context).indicatorColor),
                                     children: [
-                                      _tableHeader('Operation'.tr, context),
+                                      if (Get.find<Add_Data_controller>()
+                                              .roll !=
+                                          "observer")
+                                        _tableHeader('Operation'.tr, context),
                                       _tableHeader('Fee Count'.tr, context),
                                       _tableHeader('Grade Name'.tr, context),
                                     ],
@@ -58,8 +63,11 @@ class GradeTable extends StatelessWidget {
                                       in controller.Grades.asMap().entries)
                                     TableRow(
                                       children: [
-                                        _operationColumn(row.value, controller,
-                                            row.key, context),
+                                        if (Get.find<Add_Data_controller>()
+                                                .roll !=
+                                            "observer")
+                                          _operationColumn(row.value,
+                                              controller, row.key, context),
                                         _dataColumn(
                                             row.value['feeCount'], context),
                                         _dataColumn(
@@ -93,7 +101,11 @@ class GradeTable extends StatelessWidget {
                                             color: Theme.of(context)
                                                 .indicatorColor),
                                         children: [
-                                          _tableHeader('Operation'.tr, context),
+                                          if (Get.find<Add_Data_controller>()
+                                                  .roll !=
+                                              "observer")
+                                            _tableHeader(
+                                                'Operation'.tr, context),
                                           _tableHeader('Fee Count'.tr, context),
                                           _tableHeader(
                                               'Grade Name'.tr, context),
@@ -103,8 +115,11 @@ class GradeTable extends StatelessWidget {
                                           in controller.Grades.asMap().entries)
                                         TableRow(
                                           children: [
-                                            _operationColumn(row.value,
-                                                controller, row.key, context),
+                                            if (Get.find<Add_Data_controller>()
+                                                    .roll !=
+                                                "observer")
+                                              _operationColumn(row.value,
+                                                  controller, row.key, context),
                                             _dataColumn(
                                                 row.value['feeCount'], context),
                                             _dataColumn(
@@ -176,8 +191,7 @@ class GradeTable extends StatelessWidget {
                         width: 400,
                         child: Text(
                           "Do You Want To Deletegarde".tr +
-                              " ( ${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar' ? "${row['name']}" : "${row['enName']}"} ) " +
+                              " ( ${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? "${row['name']}" : "${row['enName']}"} ) " +
                               "Gradee".tr,
                           style: const TextStyle(fontSize: 16),
                         ),

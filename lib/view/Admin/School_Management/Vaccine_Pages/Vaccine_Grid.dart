@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Vaccines_APIs/Delete_Vaccines_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
@@ -158,8 +159,7 @@ class Vaccine_Grid extends StatelessWidget {
                                                   ? TextDirection.rtl
                                                   : TextDirection.ltr,
                                               textAlign: TextAlign.center,
-                                              "${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar' ? control.filteredvaccine![index].name : control.filteredvaccine![index].enName}",
+                                              "${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? control.filteredvaccine![index].name : control.filteredvaccine![index].enName}",
                                               style: TextStyle(fontSize: 26),
                                             ),
                                             Text(
@@ -171,8 +171,7 @@ class Vaccine_Grid extends StatelessWidget {
                                                   : TextDirection.ltr,
                                               textAlign: TextAlign.center,
                                               "Location :".tr +
-                                                  " ${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar' ? control.filteredvaccine![index].location!.name : control.filteredvaccine![index].location!.enName}",
+                                                  " ${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? control.filteredvaccine![index].location!.name : control.filteredvaccine![index].location!.enName}",
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   color: Color(0xffDAC43B)),
@@ -182,80 +181,86 @@ class Vaccine_Grid extends StatelessWidget {
                                       ],
                                     ),
                                     Spacer(),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        IconButton(
-                                            style: ButtonStyle(
-                                                backgroundColor:
-                                                    WidgetStatePropertyAll(
-                                                        Color(0xffB03D3D)),
-                                                shape: WidgetStatePropertyAll(
-                                                    RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    5))))),
-                                            onPressed: () {
-                                              Get.dialog(VMSAlertDialog(
-                                                action: [
-                                                  ButtonDialog(
-                                                      text: "Delete".tr,
-                                                      onPressed: () async {
-                                                        await Delete_Vaccines_API(
-                                                                context)
-                                                            .Delete_Vaccines(
-                                                                Eid: control
-                                                                    .filteredvaccine![
-                                                                        index]
-                                                                    .id);
-                                                      },
-                                                      color: Color(0xffB03D3D),
-                                                      width: 80),
-                                                  ButtonDialog(
-                                                      text: "Cancel".tr,
-                                                      onPressed: () {
-                                                        Get.back();
-                                                      },
-                                                      color: Theme.of(context)
-                                                          .canvasColor,
-                                                      width: 80)
-                                                ],
-                                                contents: Container(
-                                                    width: 500,
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          "Do You Want To Deletevac"
-                                                                  .tr +
-                                                              " ( ${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar' ? control.filteredvaccine![index].name : control.filteredvaccine![index].enName} ) " +
-                                                              "Vaccinee".tr,
-                                                          style: Get
-                                                              .theme
-                                                              .textTheme
-                                                              .bodyMedium!
-                                                              .copyWith(
-                                                                  fontSize: 16,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal),
-                                                        ),
-                                                      ],
-                                                    )),
-                                                apptitle: "Delete Vaccine".tr,
-                                                subtitle: "none",
-                                              ));
-                                            },
-                                            icon: Icon(VMS_Icons.bin,
-                                                size: 16, color: Colors.white)),
-                                      ],
-                                    )
+                                    if (Get.find<Add_Data_controller>().roll !=
+                                        "observer")
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          IconButton(
+                                              style: ButtonStyle(
+                                                  backgroundColor:
+                                                      WidgetStatePropertyAll(
+                                                          Color(0xffB03D3D)),
+                                                  shape: WidgetStatePropertyAll(
+                                                      RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          5))))),
+                                              onPressed: () {
+                                                Get.dialog(VMSAlertDialog(
+                                                  action: [
+                                                    ButtonDialog(
+                                                        text: "Delete".tr,
+                                                        onPressed: () async {
+                                                          await Delete_Vaccines_API(
+                                                                  context)
+                                                              .Delete_Vaccines(
+                                                                  Eid: control
+                                                                      .filteredvaccine![
+                                                                          index]
+                                                                      .id);
+                                                        },
+                                                        color:
+                                                            Color(0xffB03D3D),
+                                                        width: 80),
+                                                    ButtonDialog(
+                                                        text: "Cancel".tr,
+                                                        onPressed: () {
+                                                          Get.back();
+                                                        },
+                                                        color: Theme.of(context)
+                                                            .canvasColor,
+                                                        width: 80)
+                                                  ],
+                                                  contents: Container(
+                                                      width: 500,
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            "Do You Want To Deletevac"
+                                                                    .tr +
+                                                                " ( ${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? control.filteredvaccine![index].name : control.filteredvaccine![index].enName} ) " +
+                                                                "Vaccinee".tr,
+                                                            style: Get
+                                                                .theme
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                    fontSize:
+                                                                        16,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal),
+                                                          ),
+                                                        ],
+                                                      )),
+                                                  apptitle: "Delete Vaccine".tr,
+                                                  subtitle: "none",
+                                                ));
+                                              },
+                                              icon: Icon(VMS_Icons.bin,
+                                                  size: 16,
+                                                  color: Colors.white)),
+                                        ],
+                                      )
                                   ],
                                 )),
                             Align(

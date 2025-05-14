@@ -28,7 +28,6 @@ class AppbarObserver extends StatefulWidget {
 
 class _AppbarAdminState extends State<AppbarObserver> {
   var controller = Get.find<Add_Data_controller>();
-  TextEditingController serch = TextEditingController();
 
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size.width;

@@ -5,6 +5,7 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Grade_Scr
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Grade_Screen/Grade_Screen_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/PenaltyAPI/AddPenaltyAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/PenaltyAPI/getPenaltyAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Grade_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/PenaltyController.dart';
 import 'package:vms_school/Theme/themeController.dart';
@@ -45,128 +46,158 @@ class PenaltyscreenState extends State<Penaltyscreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  const Spacer(),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor,
-                        borderRadius: BorderRadius.circular(5),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Colors.black12,
-                              offset: Offset(0, 2),
-                              blurRadius: 1)
-                        ]),
-                    child: IconButton(
-                        style: ButtonStyle(
-                            backgroundColor: WidgetStatePropertyAll(
-                                Theme.of(context).cardColor),
-                            shape: WidgetStatePropertyAll(
-                                RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))))),
-                        onPressed: () {
-                          Get.dialog(GetBuilder<Penaltycontroller>(
-                              builder: (controller) {
-                            return VMSAlertDialog(
-                                action: [
-                                  ButtonDialog(
-                                      text: "Add".tr,
-                                      onPressed: () async {
-                                        bool isArNameEmpty =
-                                            arName.text.isEmpty;
-                                        bool isEnNameEmpty =
-                                            enName.text.isEmpty;
-                                        bool isdetEmpty = details.text.isEmpty;
+              if (Get.find<Add_Data_controller>().roll != "observer")
+                Row(
+                  children: [
+                    const Spacer(),
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black12,
+                                offset: Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: IconButton(
+                          style: ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                  Theme.of(context).cardColor),
+                              shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5))))),
+                          onPressed: () {
+                            Get.dialog(GetBuilder<Penaltycontroller>(
+                                builder: (controller) {
+                              return VMSAlertDialog(
+                                  action: [
+                                    ButtonDialog(
+                                        text: "Add".tr,
+                                        onPressed: () async {
+                                          bool isArNameEmpty =
+                                              arName.text.isEmpty;
+                                          bool isEnNameEmpty =
+                                              enName.text.isEmpty;
+                                          bool isdetEmpty =
+                                              details.text.isEmpty;
 
-                                        controller.updateFieldError(
-                                            "arname", isArNameEmpty);
-                                        controller.updateFieldError(
-                                            "enname", isEnNameEmpty);
-                                        controller.updateFieldError(
-                                            "detail", isdetEmpty);
+                                          controller.updateFieldError(
+                                              "arname", isArNameEmpty);
+                                          controller.updateFieldError(
+                                              "enname", isEnNameEmpty);
+                                          controller.updateFieldError(
+                                              "detail", isdetEmpty);
 
-                                        if (!(isArNameEmpty ||
-                                            isEnNameEmpty ||
-                                            isdetEmpty)) {
-                                          await Addpenaltyapi(context)
-                                              .Addpenalty(
-                                            name: arName.text,
-                                            enName: enName.text,
-                                            discription: details.text,
-                                          );
+                                          if (!(isArNameEmpty ||
+                                              isEnNameEmpty ||
+                                              isdetEmpty)) {
+                                            await Addpenaltyapi(context)
+                                                .Addpenalty(
+                                              name: arName.text,
+                                              enName: enName.text,
+                                              discription: details.text,
+                                            );
 
-                                          arName.clear();
-                                          enName.clear();
-                                          details.clear();
-                                        }
-                                      },
-                                      color: Theme.of(context).primaryColor,
-                                      width: 120),
-                                ],
-                                contents: SingleChildScrollView(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    spacing: 8,
-                                    children: [
-                                      Textfildwithupper(
-                                          isRequired: true,
-                                          width: 280,
-                                          isError: controller.IsEnnameError,
-                                          onChanged: (value) {
-                                            if (value.isNotEmpty) {
-                                              controller.updateFieldError(
-                                                  "enname", false);
-                                            }
-                                          },
-                                          controller: enName,
-                                          Uptext: "Penalty En - Name".tr,
-                                          hinttext: "Penalty En - Name".tr),
-                                      Textfildwithupper(
-                                          width: 280,
-                                          isRequired: true,
-                                          isError: controller.IsArnameError,
-                                          onChanged: (value) {
-                                            if (value.isNotEmpty) {
-                                              controller.updateFieldError(
-                                                  "arname", false);
-                                            }
-                                          },
-                                          controller: arName,
-                                          Uptext: "Penalty Ar - Name".tr,
-                                          hinttext: "Penalty Ar - Name".tr),
-                                      Textfildwithupper(
-                                          isRequired: true,
-                                          width: 280,
-                                          isError: controller.IsdeError,
-                                          onChanged: (value) {
-                                            if (value.isNotEmpty) {
-                                              controller.updateFieldError(
-                                                  "detail", false);
-                                            }
-                                          },
-                                          controller: details,
-                                          Uptext: "Details".tr,
-                                          hinttext: "Details".tr),
-                                    ],
+                                            arName.clear();
+                                            enName.clear();
+                                            details.clear();
+                                          }
+                                        },
+                                        color: Theme.of(context).primaryColor,
+                                        width: 120),
+                                  ],
+                                  contents: SingleChildScrollView(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      spacing: 8,
+                                      children: [
+                                        Textfildwithupper(
+                                            isRequired: true,
+                                            width: 280,
+                                            isError: controller.IsEnnameError,
+                                            onChanged: (value) {
+                                              if (value.isNotEmpty) {
+                                                controller.updateFieldError(
+                                                    "enname", false);
+                                              }
+                                            },
+                                            controller: enName,
+                                            Uptext: "Penalty En - Name".tr,
+                                            hinttext: "Penalty En - Name".tr),
+                                        Textfildwithupper(
+                                            width: 280,
+                                            isRequired: true,
+                                            isError: controller.IsArnameError,
+                                            onChanged: (value) {
+                                              if (value.isNotEmpty) {
+                                                controller.updateFieldError(
+                                                    "arname", false);
+                                              }
+                                            },
+                                            controller: arName,
+                                            Uptext: "Penalty Ar - Name".tr,
+                                            hinttext: "Penalty Ar - Name".tr),
+                                        Textfildwithupper(
+                                            isRequired: true,
+                                            width: 280,
+                                            isError: controller.IsdeError,
+                                            onChanged: (value) {
+                                              if (value.isNotEmpty) {
+                                                controller.updateFieldError(
+                                                    "detail", false);
+                                              }
+                                            },
+                                            controller: details,
+                                            Uptext: "Details".tr,
+                                            hinttext: "Details".tr),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                apptitle: "Add Penalty".tr,
-                                subtitle: "none");
-                          }));
-                        },
-                        icon: Icon(Icons.add,
-                            size: 18, color: Theme.of(context).highlightColor)),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                    child: Container(
+                                  apptitle: "Add Penalty".tr,
+                                  subtitle: "none");
+                            }));
+                          },
+                          icon: Icon(Icons.add,
+                              size: 18,
+                              color: Theme.of(context).highlightColor)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                backgroundColor: WidgetStatePropertyAll(
+                                    Theme.of(context).cardColor),
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {},
+                            icon: Icon(VMS_Icons.pdf,
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
+                      ),
+                    ),
+                    Container(
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
@@ -187,37 +218,12 @@ class PenaltyscreenState extends State<Penaltyscreen> {
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
                           onPressed: () {},
-                          icon: Icon(VMS_Icons.pdf,
+                          icon: Icon(VMS_Icons.xl,
                               size: 18,
                               color: Theme.of(context).highlightColor)),
                     ),
-                  ),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor,
-                        borderRadius: BorderRadius.circular(5),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Colors.black12,
-                              offset: Offset(0, 2),
-                              blurRadius: 1)
-                        ]),
-                    child: IconButton(
-                        style: ButtonStyle(
-                            backgroundColor: WidgetStatePropertyAll(
-                                Theme.of(context).cardColor),
-                            shape: WidgetStatePropertyAll(
-                                RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5))))),
-                        onPressed: () {},
-                        icon: Icon(VMS_Icons.xl,
-                            size: 18, color: Theme.of(context).highlightColor)),
-                  ),
-                ],
-              ),
+                  ],
+                ),
             ],
           ),
         ),

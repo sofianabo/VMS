@@ -8,6 +8,7 @@ import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Students_Marks_Controller.dart';
 import 'package:vms_school/main.dart';
+import 'package:vms_school/view/Guardian/Profile_Screens/My_Profile.dart';
 import 'package:vms_school/widgets/SidbarAnimation.dart';
 
 class DraweHome extends StatefulWidget {
@@ -44,11 +45,16 @@ class _DraweHomeState extends State<DraweHome> {
                       padding: const EdgeInsets.only(top: 8.0, bottom: 10.0),
                       child: GestureDetector(
                         onTap: () {
-                          WidgetsBinding.instance.addPostFrameCallback((_) {
-                            //Get_My_Profile.Get_My_Profile_Data();
-                            Get.find<AdminHomeContentController>()
-                                .updateContent("My Profile");
-                          });
+                          if (Get.find<Add_Data_controller>().roll !=
+                              "observer") {
+                            WidgetsBinding.instance.addPostFrameCallback((_) {
+                              //Get_My_Profile.Get_My_Profile_Data();
+                              Get.find<AdminHomeContentController>()
+                                  .updateContent("My Profile");
+                            });
+                          } else {
+                            Get.dialog(ProfileDialog());
+                          }
                         },
                         child: Column(
                           children: [
@@ -144,59 +150,65 @@ class _DraweHomeState extends State<DraweHome> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              HoverScale(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    if (controller.hasData == true) {
-                                      cont.updateContent("Dashboard");
-                                    }
-                                  },
-                                  child: Row(
-                                    spacing: 8.0,
-                                    children: [
-                                      Text(
-                                        "Dashboard".tr,
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                      Icon(
-                                        VMS_Icons.a1,
-                                        size: 18,
-                                        color: controller.hasData == true
-                                            ? Colors.white
-                                            : Theme.of(context).disabledColor,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: h / 34.2),
-                                child: HoverScale(
+                              if (Get.find<Add_Data_controller>().roll !=
+                                  "observer")
+                                HoverScale(
                                   child: GestureDetector(
                                     onTap: () {
                                       if (controller.hasData == true) {
-                                        cont.updateContent("Enroll Requests");
+                                        cont.updateContent("Dashboard");
                                       }
                                     },
                                     child: Row(
                                       spacing: 8.0,
                                       children: [
                                         Text(
-                                          "Enroll Requests".tr,
+                                          "Dashboard".tr,
                                           style: TextStyle(color: Colors.white),
                                         ),
                                         Icon(
-                                          VMS_Icons.a2,
+                                          VMS_Icons.a1,
+                                          size: 18,
                                           color: controller.hasData == true
                                               ? Colors.white
                                               : Theme.of(context).disabledColor,
-                                          size: 18,
                                         ),
                                       ],
                                     ),
                                   ),
                                 ),
-                              ),
+                              if (Get.find<Add_Data_controller>().roll !=
+                                  "observer")
+                                Padding(
+                                  padding: EdgeInsets.only(top: h / 34.2),
+                                  child: HoverScale(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        if (controller.hasData == true) {
+                                          cont.updateContent("Enroll Requests");
+                                        }
+                                      },
+                                      child: Row(
+                                        spacing: 8.0,
+                                        children: [
+                                          Text(
+                                            "Enroll Requests".tr,
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                          Icon(
+                                            VMS_Icons.a2,
+                                            color: controller.hasData == true
+                                                ? Colors.white
+                                                : Theme.of(context)
+                                                    .disabledColor,
+                                            size: 18,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               Padding(
                                 padding: EdgeInsets.only(top: h / 34.2),
                                 child: HoverScale(
@@ -312,24 +324,37 @@ class _DraweHomeState extends State<DraweHome> {
                                         value: 'Study Year Students'.tr,
                                         child: Text('Study Year Students'.tr),
                                       ),
-                                      PopupMenuItem<String>(
-                                        value: 'All Guardians'.tr,
-                                        child: Text('All Guardians'.tr),
-                                      ),
-                                      PopupMenuItem<String>(
-                                        value: 'Student Attendance'.tr,
-                                        child: Text('Student Attendance'.tr),
-                                      ),
-                                      PopupMenuItem<String>(
-                                        value:
-                                            'Students Attendance Managment'.tr,
-                                        child: Text(
-                                            'Students Attendance Managment'.tr),
-                                      ),
-                                      PopupMenuItem<String>(
-                                        value: 'Students Marks'.tr,
-                                        child: Text('Students Marks'.tr),
-                                      ),
+                                      if (Get.find<Add_Data_controller>()
+                                              .roll !=
+                                          "observer")
+                                        PopupMenuItem<String>(
+                                          value: 'All Guardians'.tr,
+                                          child: Text('All Guardians'.tr),
+                                        ),
+                                      if (Get.find<Add_Data_controller>()
+                                              .roll !=
+                                          "observer")
+                                        PopupMenuItem<String>(
+                                          value: 'Student Attendance'.tr,
+                                          child: Text('Student Attendance'.tr),
+                                        ),
+                                      if (Get.find<Add_Data_controller>()
+                                              .roll !=
+                                          "observer")
+                                        PopupMenuItem<String>(
+                                          value: 'Students Attendance Managment'
+                                              .tr,
+                                          child: Text(
+                                              'Students Attendance Managment'
+                                                  .tr),
+                                        ),
+                                      if (Get.find<Add_Data_controller>()
+                                              .roll !=
+                                          "observer")
+                                        PopupMenuItem<String>(
+                                          value: 'Students Marks'.tr,
+                                          child: Text('Students Marks'.tr),
+                                        ),
                                     ],
                                   ),
                                 ),
@@ -376,16 +401,23 @@ class _DraweHomeState extends State<DraweHome> {
                                         value: 'Teacher Management'.tr,
                                         child: Text('Teacher Management'.tr),
                                       ),
-                                      PopupMenuItem<String>(
-                                        value: 'Teacher Status'.tr,
-                                        child: Text('Teacher Status'.tr),
-                                      ),
-                                      PopupMenuItem<String>(
-                                        value:
-                                            'Teacher Attendance Managment'.tr,
-                                        child: Text(
-                                            'Teacher Attendance Managment'.tr),
-                                      ),
+                                      if (Get.find<Add_Data_controller>()
+                                              .roll !=
+                                          "observer")
+                                        PopupMenuItem<String>(
+                                          value: 'Teacher Status'.tr,
+                                          child: Text('Teacher Status'.tr),
+                                        ),
+                                      if (Get.find<Add_Data_controller>()
+                                              .roll !=
+                                          "observer")
+                                        PopupMenuItem<String>(
+                                          value:
+                                              'Teacher Attendance Managment'.tr,
+                                          child: Text(
+                                              'Teacher Attendance Managment'
+                                                  .tr),
+                                        ),
                                     ],
                                   ),
                                 ),
@@ -438,20 +470,30 @@ class _DraweHomeState extends State<DraweHome> {
                                         value: 'Employee Management'.tr,
                                         child: Text('Employee Management'.tr),
                                       ),
-                                      PopupMenuItem<String>(
-                                        value: 'Employee Attendance'.tr,
-                                        child: Text('Employee Attendance'.tr),
-                                      ),
-                                      PopupMenuItem<String>(
-                                        value: 'Employee Attendance Manage'.tr,
-                                        child: Text(
-                                            'Employee Attendance Manage'.tr),
-                                      ),
-                                      PopupMenuItem<String>(
-                                        value: 'Virtual User Management'.tr,
-                                        child:
-                                            Text('Virtual User Management'.tr),
-                                      ),
+                                      if (Get.find<Add_Data_controller>()
+                                              .roll !=
+                                          "observer")
+                                        PopupMenuItem<String>(
+                                          value: 'Employee Attendance'.tr,
+                                          child: Text('Employee Attendance'.tr),
+                                        ),
+                                      if (Get.find<Add_Data_controller>()
+                                              .roll !=
+                                          "observer")
+                                        PopupMenuItem<String>(
+                                          value:
+                                              'Employee Attendance Manage'.tr,
+                                          child: Text(
+                                              'Employee Attendance Manage'.tr),
+                                        ),
+                                      if (Get.find<Add_Data_controller>()
+                                              .roll !=
+                                          "observer")
+                                        PopupMenuItem<String>(
+                                          value: 'Virtual User Management'.tr,
+                                          child: Text(
+                                              'Virtual User Management'.tr),
+                                        ),
                                     ],
                                   ),
                                 ),
@@ -587,18 +629,24 @@ class _DraweHomeState extends State<DraweHome> {
                                         child:
                                             Text('School Data Management'.tr),
                                       ),
-                                      PopupMenuItem<String>(
-                                        value: 'School Content'.tr,
-                                        child: Text('School Content'.tr),
-                                      ),
+                                      if (Get.find<Add_Data_controller>()
+                                              .roll !=
+                                          "observer")
+                                        PopupMenuItem<String>(
+                                          value: 'School Content'.tr,
+                                          child: Text('School Content'.tr),
+                                        ),
                                       PopupMenuItem<String>(
                                         value: 'Electronic Library'.tr,
                                         child: Text('Electronic Library'.tr),
                                       ),
-                                      PopupMenuItem<String>(
-                                        value: 'Transaction'.tr,
-                                        child: Text('Transaction'.tr),
-                                      ),
+                                      if (Get.find<Add_Data_controller>()
+                                              .roll !=
+                                          "observer")
+                                        PopupMenuItem<String>(
+                                          value: 'Transaction'.tr,
+                                          child: Text('Transaction'.tr),
+                                        ),
                                       PopupMenuItem<String>(
                                         value: 'Illness Screen'.tr,
                                         child: Text('Illness Screen'.tr),

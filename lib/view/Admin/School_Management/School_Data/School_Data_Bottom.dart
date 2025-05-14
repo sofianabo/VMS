@@ -7,6 +7,8 @@ import 'package:vms_school/widgets/TextFildWithUpper.dart';
 class School_Data extends StatelessWidget {
   School_Data({super.key});
 
+  bool enabled = Get.find<Add_Data_controller>().roll == "admin";
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -34,8 +36,7 @@ class School_Data extends StatelessWidget {
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       Textfildwithupper(
-                          enabled: Get.find<Add_Data_controller>().roll !=
-                              "subAdmin",
+                          enabled: enabled,
                           isRequired: true,
                           isError: controller.IsnameError,
                           onChanged: (value) {
@@ -48,8 +49,7 @@ class School_Data extends StatelessWidget {
                           Uptext: "School Name".tr,
                           hinttext: "School Name".tr),
                       Textfildwithupper(
-                          enabled: Get.find<Add_Data_controller>().roll !=
-                              "subAdmin",
+                          enabled: enabled,
                           isError: controller.IslicError,
                           onChanged: (value) {
                             if (value.isNotEmpty) {
@@ -71,8 +71,7 @@ class School_Data extends StatelessWidget {
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       Textfildwithupper(
-                          enabled: Get.find<Add_Data_controller>().roll !=
-                              "subAdmin",
+                          enabled: enabled,
                           isError: controller.IsaddressError,
                           onChanged: (value) {
                             if (value.isNotEmpty) {
@@ -85,8 +84,7 @@ class School_Data extends StatelessWidget {
                           Uptext: "Address".tr,
                           hinttext: "Address".tr),
                       Textfildwithupper(
-                          enabled: Get.find<Add_Data_controller>().roll !=
-                              "subAdmin",
+                          enabled: enabled,
                           isError: controller.IsvillError,
                           onChanged: (value) {
                             if (value.isNotEmpty) {
@@ -108,8 +106,7 @@ class School_Data extends StatelessWidget {
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       Textfildwithupper(
-                          enabled: Get.find<Add_Data_controller>().roll !=
-                              "subAdmin",
+                          enabled: enabled,
                           isError: controller.IsregError,
                           onChanged: (value) {
                             if (value.isNotEmpty) {
@@ -122,8 +119,7 @@ class School_Data extends StatelessWidget {
                           Uptext: "Region".tr,
                           hinttext: "Region".tr),
                       Textfildwithupper(
-                          enabled: Get.find<Add_Data_controller>().roll !=
-                              "subAdmin",
+                          enabled: enabled,
                           isError: controller.Isphoneror,
                           onChanged: (value) {
                             if (value.isNotEmpty) {
@@ -146,8 +142,7 @@ class School_Data extends StatelessWidget {
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       Textfildwithupper(
-                          enabled: Get.find<Add_Data_controller>().roll !=
-                              "subAdmin",
+                          enabled: enabled,
                           isError: controller.IsworkError,
                           onChanged: (value) {
                             if (value.isNotEmpty) {
@@ -161,8 +156,7 @@ class School_Data extends StatelessWidget {
                           Uptext: "Work Begin Year".tr,
                           hinttext: "Work Begin Year".tr),
                       Textfildwithupper(
-                          enabled: Get.find<Add_Data_controller>().roll !=
-                              "subAdmin",
+                          enabled: enabled,
                           isError: controller.IscxError,
                           onChanged: (value) {
                             if (value.isNotEmpty) {
@@ -185,8 +179,7 @@ class School_Data extends StatelessWidget {
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       Textfildwithupper(
-                          enabled: Get.find<Add_Data_controller>().roll !=
-                              "subAdmin",
+                          enabled: enabled,
                           isError: controller.IsemailError,
                           onChanged: (value) {
                             if (value.isNotEmpty) {
@@ -200,8 +193,7 @@ class School_Data extends StatelessWidget {
                           Uptext: "Email".tr,
                           hinttext: "Email".tr),
                       Textfildwithupper(
-                          enabled: Get.find<Add_Data_controller>().roll !=
-                              "subAdmin",
+                          enabled: enabled,
                           width: screenWidth >= 616 ? screenWidth / 2.8 : 300,
                           controller: controller.Fax,
                           Uptext: "Fax".tr,
@@ -216,15 +208,13 @@ class School_Data extends StatelessWidget {
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       Textfildwithupper(
-                          enabled: Get.find<Add_Data_controller>().roll !=
-                              "subAdmin",
+                          enabled: enabled,
                           width: screenWidth >= 616 ? screenWidth / 2.8 : 300,
                           controller: controller.Clinic_Name,
                           Uptext: "Clinic Name".tr,
                           hinttext: "Clinic Name".tr),
                       Textfildwithupper(
-                          enabled: Get.find<Add_Data_controller>().roll !=
-                              "subAdmin",
+                          enabled: enabled,
                           fieldType: "number",
                           isError: controller.IscnumError,
                           onChanged: (value) {
@@ -247,15 +237,13 @@ class School_Data extends StatelessWidget {
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       Textfildwithupper(
-                          enabled: Get.find<Add_Data_controller>().roll !=
-                              "subAdmin",
+                          enabled: enabled,
                           width: screenWidth >= 616 ? screenWidth / 2.8 : 300,
                           controller: controller.Previous_name,
                           Uptext: "Previous name".tr,
                           hinttext: "Previous name".tr),
                       Textfildwithupper(
-                          enabled: Get.find<Add_Data_controller>().roll !=
-                              "subAdmin",
+                          enabled: enabled,
                           isError: controller.IstwnError,
                           onChanged: (value) {
                             if (value.isNotEmpty) {
@@ -286,14 +274,17 @@ class School_Data extends StatelessWidget {
                                       checkColor: Colors.white,
                                       value:
                                           controller.Outstanding_School.value,
-                                      onChanged: (value) {
-                                        if (Get.find<Add_Data_controller>()
-                                                .roll !=
-                                            "subAdmin") {
-                                          controller.Outstanding_School.value =
-                                              value!;
-                                        }
-                                      },
+                                      onChanged: enabled
+                                          ? (value) {
+                                              if (Get.find<
+                                                          Add_Data_controller>()
+                                                      .roll !=
+                                                  "subAdmin") {
+                                                controller.Outstanding_School
+                                                    .value = value!;
+                                              }
+                                            }
+                                          : null,
                                     ),
                                     Text("Outstanding School".tr),
                                   ],
@@ -303,14 +294,17 @@ class School_Data extends StatelessWidget {
                                     Checkbox(
                                       checkColor: Colors.white,
                                       value: controller.Taken_OverSchool.value,
-                                      onChanged: (value) {
-                                        if (Get.find<Add_Data_controller>()
-                                                .roll !=
-                                            "subAdmin") {
-                                          controller.Taken_OverSchool.value =
-                                              value!;
-                                        }
-                                      },
+                                      onChanged: enabled
+                                          ? (value) {
+                                              if (Get.find<
+                                                          Add_Data_controller>()
+                                                      .roll !=
+                                                  "subAdmin") {
+                                                controller.Taken_OverSchool
+                                                    .value = value!;
+                                              }
+                                            }
+                                          : null,
                                     ),
                                     Text("Taken Over School".tr),
                                   ],
@@ -321,14 +315,17 @@ class School_Data extends StatelessWidget {
                                       checkColor: Colors.white,
                                       value: controller
                                           .Reassignment_Teachers.value,
-                                      onChanged: (value) {
-                                        if (Get.find<Add_Data_controller>()
-                                                .roll !=
-                                            "subAdmin") {
-                                          controller.Reassignment_Teachers
-                                              .value = value!;
-                                        }
-                                      },
+                                      onChanged: enabled
+                                          ? (value) {
+                                              if (Get.find<
+                                                          Add_Data_controller>()
+                                                      .roll !=
+                                                  "subAdmin") {
+                                                controller.Reassignment_Teachers
+                                                    .value = value!;
+                                              }
+                                            }
+                                          : null,
                                     ),
                                     Text("Reassignment Teachers".tr),
                                   ],
@@ -338,14 +335,17 @@ class School_Data extends StatelessWidget {
                                     Checkbox(
                                       checkColor: Colors.white,
                                       value: controller.Martyrs_Sons.value,
-                                      onChanged: (value) {
-                                        if (Get.find<Add_Data_controller>()
-                                                .roll !=
-                                            "subAdmin") {
-                                          controller.Martyrs_Sons.value =
-                                              value!;
-                                        }
-                                      },
+                                      onChanged: enabled
+                                          ? (value) {
+                                              if (Get.find<
+                                                          Add_Data_controller>()
+                                                      .roll !=
+                                                  "subAdmin") {
+                                                controller.Martyrs_Sons.value =
+                                                    value!;
+                                              }
+                                            }
+                                          : null,
                                     ),
                                     Text("Martyrs Sons".tr),
                                   ],
@@ -355,13 +355,17 @@ class School_Data extends StatelessWidget {
                                     Checkbox(
                                       checkColor: Colors.white,
                                       value: controller.evening.value,
-                                      onChanged: (value) {
-                                        if (Get.find<Add_Data_controller>()
-                                                .roll !=
-                                            "subAdmin") {
-                                          controller.evening.value = value!;
-                                        }
-                                      },
+                                      onChanged: enabled
+                                          ? (value) {
+                                              if (Get.find<
+                                                          Add_Data_controller>()
+                                                      .roll !=
+                                                  "subAdmin") {
+                                                controller.evening.value =
+                                                    value!;
+                                              }
+                                            }
+                                          : null,
                                     ),
                                     Text("Evening".tr),
                                   ],
@@ -379,14 +383,17 @@ class School_Data extends StatelessWidget {
                                       checkColor: Colors.white,
                                       value:
                                           controller.Internet_Connection.value,
-                                      onChanged: (value) {
-                                        if (Get.find<Add_Data_controller>()
-                                                .roll !=
-                                            "subAdmin") {
-                                          controller.Internet_Connection.value =
-                                              value!;
-                                        }
-                                      },
+                                      onChanged: enabled
+                                          ? (value) {
+                                              if (Get.find<
+                                                          Add_Data_controller>()
+                                                      .roll !=
+                                                  "subAdmin") {
+                                                controller.Internet_Connection
+                                                    .value = value!;
+                                              }
+                                            }
+                                          : null,
                                     ),
                                     Text("Internet Connection".tr),
                                   ],
@@ -397,14 +404,17 @@ class School_Data extends StatelessWidget {
                                       checkColor: Colors.white,
                                       value: controller
                                           .Government_Connection.value,
-                                      onChanged: (value) {
-                                        if (Get.find<Add_Data_controller>()
-                                                .roll !=
-                                            "subAdmin") {
-                                          controller.Government_Connection
-                                              .value = value!;
-                                        }
-                                      },
+                                      onChanged: enabled
+                                          ? (value) {
+                                              if (Get.find<
+                                                          Add_Data_controller>()
+                                                      .roll !=
+                                                  "subAdmin") {
+                                                controller.Government_Connection
+                                                    .value = value!;
+                                              }
+                                            }
+                                          : null,
                                     ),
                                     Text("Government Connection".tr),
                                   ],
@@ -414,14 +424,17 @@ class School_Data extends StatelessWidget {
                                     Checkbox(
                                       checkColor: Colors.white,
                                       value: controller.Joint_Building.value,
-                                      onChanged: (value) {
-                                        if (Get.find<Add_Data_controller>()
-                                                .roll !=
-                                            "subAdmin") {
-                                          controller.Joint_Building.value =
-                                              value!;
-                                        }
-                                      },
+                                      onChanged: enabled
+                                          ? (value) {
+                                              if (Get.find<
+                                                          Add_Data_controller>()
+                                                      .roll !=
+                                                  "subAdmin") {
+                                                controller.Joint_Building
+                                                    .value = value!;
+                                              }
+                                            }
+                                          : null,
                                     ),
                                     Text("Joint Building".tr),
                                   ],
@@ -432,14 +445,17 @@ class School_Data extends StatelessWidget {
                                       checkColor: Colors.white,
                                       value:
                                           controller.Industrial_Section.value,
-                                      onChanged: (value) {
-                                        if (Get.find<Add_Data_controller>()
-                                                .roll !=
-                                            "subAdmin") {
-                                          controller.Industrial_Section.value =
-                                              value!;
-                                        }
-                                      },
+                                      onChanged: enabled
+                                          ? (value) {
+                                              if (Get.find<
+                                                          Add_Data_controller>()
+                                                      .roll !=
+                                                  "subAdmin") {
+                                                controller.Industrial_Section
+                                                    .value = value!;
+                                              }
+                                            }
+                                          : null,
                                     ),
                                     Text("Industrial Section".tr),
                                   ],
@@ -449,13 +465,17 @@ class School_Data extends StatelessWidget {
                                     Checkbox(
                                       checkColor: Colors.white,
                                       value: controller.morning.value,
-                                      onChanged: (value) {
-                                        if (Get.find<Add_Data_controller>()
-                                                .roll !=
-                                            "subAdmin") {
-                                          controller.morning.value = value!;
-                                        }
-                                      },
+                                      onChanged: enabled
+                                          ? (value) {
+                                              if (Get.find<
+                                                          Add_Data_controller>()
+                                                      .roll !=
+                                                  "subAdmin") {
+                                                controller.morning.value =
+                                                    value!;
+                                              }
+                                            }
+                                          : null,
                                     ),
                                     Text("Morning".tr),
                                   ],

@@ -9,6 +9,7 @@ class Textfildwithupper_num extends StatefulWidget {
   final Rx<Color> borderColor;
   final bool isRequired;
   final bool isError;
+  final bool enabled;
   final Function(String)? onChanged;
 
   const Textfildwithupper_num({
@@ -19,6 +20,7 @@ class Textfildwithupper_num extends StatefulWidget {
     required this.borderColor,
     this.isRequired = false,
     this.isError = false,
+    this.enabled = true,
     this.onChanged,
   });
 
@@ -97,6 +99,7 @@ class _Textfildwithupper_numState extends State<Textfildwithupper_num> {
         SizedBox(
           height: 40,
           child: Obx(() => TextFormField(
+                enabled: widget.enabled,
                 controller: widget.sessionController,
                 keyboardType: TextInputType.number,
                 inputFormatters: [

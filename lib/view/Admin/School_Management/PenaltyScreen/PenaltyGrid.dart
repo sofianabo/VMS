@@ -7,6 +7,7 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Grade_Scr
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Grade_Screen/Edit_Grade_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/PenaltyAPI/DeletePenaltyAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/PenaltyAPI/EditPenaltyAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Grade_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/PenaltyController.dart';
 import 'package:vms_school/Theme/themeController.dart';
@@ -62,7 +63,9 @@ class _PenaltygridState extends State<Penaltygrid> {
                                 children: [
                                   _tableHeader('Penalty Name'.tr),
                                   _tableHeader('Details'.tr),
-                                  _tableHeader('Operation'.tr),
+                                  if (Get.find<Add_Data_controller>().roll !=
+                                      "observer")
+                                    _tableHeader('Operation'.tr),
                                 ],
                               ),
                               for (var row
@@ -70,13 +73,18 @@ class _PenaltygridState extends State<Penaltygrid> {
                                 TableRow(
                                   children: [
                                     _dataColumn(
-                                         Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
+                                        Get.find<LocalizationController>()
+                                                    .currentLocale
+                                                    .value
+                                                    .languageCode ==
+                                                'ar'
                                             ? row.value['name']
                                             : row.value['enName']),
                                     _dataColumn(row.value['description']),
-                                    _operationColumn(row.value, controller,
-                                        row.key, context),
+                                    if (Get.find<Add_Data_controller>().roll !=
+                                        "observer")
+                                      _operationColumn(row.value, controller,
+                                          row.key, context),
                                   ],
                                 ),
                             ],
@@ -104,7 +112,10 @@ class _PenaltygridState extends State<Penaltygrid> {
                                     children: [
                                       _tableHeader('Penalty Name'.tr),
                                       _tableHeader('Details'.tr),
-                                      _tableHeader('Operation'.tr),
+                                      if (Get.find<Add_Data_controller>()
+                                              .roll !=
+                                          "observer")
+                                        _tableHeader('Operation'.tr),
                                     ],
                                   ),
                                   for (var row
@@ -117,8 +128,11 @@ class _PenaltygridState extends State<Penaltygrid> {
                                                 ? row.value['name']
                                                 : row.value['enName']),
                                         _dataColumn(row.value['description']),
-                                        _operationColumn(row.value, controller,
-                                            row.key, context),
+                                        if (Get.find<Add_Data_controller>()
+                                                .roll !=
+                                            "observer")
+                                          _operationColumn(row.value,
+                                              controller, row.key, context),
                                       ],
                                     ),
                                 ],
@@ -182,8 +196,7 @@ class _PenaltygridState extends State<Penaltygrid> {
                         width: 400,
                         child: Text(
                           "Do You Want To Delete".tr +
-                              " (${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar' ? row['name'] : row['enName']})" +
+                              " (${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? row['name'] : row['enName']})" +
                               "penalty".tr,
                           style: const TextStyle(fontSize: 16),
                         ),

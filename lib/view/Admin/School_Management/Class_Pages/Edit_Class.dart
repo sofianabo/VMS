@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Class_API/Edit_Class_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Class_Mgmt_Controller.dart';
 import 'package:vms_school/Link/Functions/Class_Curriculm_Funcation.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
@@ -39,6 +40,7 @@ class _Edit_ClassState extends State<Edit_Class> {
     super.initState();
   }
 
+  bool isNotReadOnly = (Get.find<Add_Data_controller>().roll != "observer");
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -46,31 +48,32 @@ class _Edit_ClassState extends State<Edit_Class> {
     return GetBuilder<ClassMgmtController>(builder: (controllers) {
       return VMSAlertDialog(
         action: [
-          ButtonDialog(
-            text: "Edit".tr,
-            onPressed: () async {
-              bool isArNameEmpty = arName.text.trim().isEmpty;
-              bool isEnNameEmpty = enName.text.isEmpty;
-              bool isDriveEmpty = driveUrl.text.trim().isEmpty;
+          if (isNotReadOnly)
+            ButtonDialog(
+              text: "Edit".tr,
+              onPressed: () async {
+                bool isArNameEmpty = arName.text.trim().isEmpty;
+                bool isEnNameEmpty = enName.text.isEmpty;
+                bool isDriveEmpty = driveUrl.text.trim().isEmpty;
 
-              controllers.updateFieldError("arname", isArNameEmpty);
-              controllers.updateFieldError("enname", isEnNameEmpty);
-              controllers.updateFieldError("drive", isDriveEmpty);
+                controllers.updateFieldError("arname", isArNameEmpty);
+                controllers.updateFieldError("enname", isEnNameEmpty);
+                controllers.updateFieldError("drive", isDriveEmpty);
 
-              if (!(isArNameEmpty || isEnNameEmpty || isDriveEmpty)) {
-                await Edit_Class_API(context).Edit_Class(
-                  name: arName.text,
-                  enName: enName.text,
-                  driveUrl: driveUrl.text,
-                  classId: widget.id,
-                  curriculum: controllers.selectedCurriculums,
-                );
-                Get.back();
-              }
-            },
-            color: Theme.of(context).primaryColor,
-            width: 120,
-          ),
+                if (!(isArNameEmpty || isEnNameEmpty || isDriveEmpty)) {
+                  await Edit_Class_API(context).Edit_Class(
+                    name: arName.text,
+                    enName: enName.text,
+                    driveUrl: driveUrl.text,
+                    classId: widget.id,
+                    curriculum: controllers.selectedCurriculums,
+                  );
+                  Get.back();
+                }
+              },
+              color: Theme.of(context).primaryColor,
+              width: 120,
+            ),
         ],
         contents: Container(
           width: 530,
@@ -87,6 +90,7 @@ class _Edit_ClassState extends State<Edit_Class> {
                   spacing: 8.0,
                   children: [
                     Textfildwithupper(
+                      enabled: isNotReadOnly,
                       isError: controllers.IsEnnameError,
                       isRequired: true,
                       onChanged: (value) {
@@ -100,6 +104,7 @@ class _Edit_ClassState extends State<Edit_Class> {
                       hinttext: "Class En - Name".tr,
                     ),
                     Textfildwithupper(
+                      enabled: isNotReadOnly,
                       isError: controllers.IsArnameError,
                       isRequired: true,
                       onChanged: (value) {
@@ -122,6 +127,7 @@ class _Edit_ClassState extends State<Edit_Class> {
                   spacing: 8.0,
                   children: [
                     Textfildwithupper(
+                      enabled: isNotReadOnly,
                       width: screenWidth >= 574 ? 250 : screenWidth * 0.8,
                       controller:
                           TextEditingController(text: "${widget.enName}"),
@@ -130,6 +136,7 @@ class _Edit_ClassState extends State<Edit_Class> {
                       readOnly: true,
                     ),
                     Textfildwithupper(
+                      enabled: isNotReadOnly,
                       width: screenWidth >= 574 ? 250 : screenWidth * 0.8,
                       controller: TextEditingController(text: "${widget.year}"),
                       Uptext: "Session".tr,
@@ -139,13 +146,14 @@ class _Edit_ClassState extends State<Edit_Class> {
                   ],
                 ),
                 Wrap(
-                  crossAxisAlignment: WrapCrossAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.start,
                   alignment: WrapAlignment.center,
                   runAlignment: WrapAlignment.center,
                   runSpacing: 8.0,
                   spacing: 8.0,
                   children: [
                     Textfildwithupper(
+                      enabled: isNotReadOnly,
                       width: screenWidth >= 574 ? 250 : screenWidth * 0.8,
                       controller:
                           TextEditingController(text: "${widget.username}"),
@@ -161,7 +169,11 @@ class _Edit_ClassState extends State<Edit_Class> {
                           child: Text("Curriculums".tr),
                         ),
                         GestureDetector(
-                          onTap: () => Class_Curriculm_Funcation(context),
+                          onTap: () {
+                            if (isNotReadOnly) {
+                              Class_Curriculm_Funcation(context);
+                            }
+                          },
                           child: Container(
                             padding: EdgeInsets.only(left: 5.0, right: 5.0),
                             width: screenWidth >= 574 ? 250 : screenWidth * 0.8,
@@ -220,6 +232,7 @@ class _Edit_ClassState extends State<Edit_Class> {
                   spacing: 8.0,
                   children: [
                     Textfildwithupper(
+                      enabled: isNotReadOnly,
                       isError: controllers.IsDriveError,
                       isRequired: true,
                       onChanged: (value) {

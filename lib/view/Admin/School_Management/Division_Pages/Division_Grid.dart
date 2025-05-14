@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Division_API/Delete_Division_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Division_API/Edit_Division_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Divisions_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
@@ -46,30 +47,31 @@ class DivisionGrid extends StatelessWidget {
       return GetBuilder<Divisions_Controller>(builder: (controller) {
         return VMSAlertDialog(
           action: [
-            ButtonDialog(
-              text: "Edit".tr,
-              onPressed: () async {
-                bool isArNameEmpty = arName.text.isEmpty;
-                bool isEnNameEmpty = enName.text.isEmpty;
-                bool isDriveEmpty = meetUrl.text.isEmpty;
+            if (Get.find<Add_Data_controller>().roll != "observer")
+              ButtonDialog(
+                text: "Edit".tr,
+                onPressed: () async {
+                  bool isArNameEmpty = arName.text.isEmpty;
+                  bool isEnNameEmpty = enName.text.isEmpty;
+                  bool isDriveEmpty = meetUrl.text.isEmpty;
 
-                controller.updateFieldError("ename", isEnNameEmpty);
-                controller.updateFieldError("arname", isArNameEmpty);
-                controller.updateFieldError("meet", isDriveEmpty);
+                  controller.updateFieldError("ename", isEnNameEmpty);
+                  controller.updateFieldError("arname", isArNameEmpty);
+                  controller.updateFieldError("meet", isDriveEmpty);
 
-                if (!(isArNameEmpty || isEnNameEmpty || isDriveEmpty)) {
-                  await Edit_Division_API(context).Edit_Division(
-                    name: arName.text,
-                    enName: enName.text,
-                    gradeId: gradeid,
-                    meeturl: meetUrl.text,
-                  );
-                  Get.back();
-                }
-              },
-              color: Theme.of(context).primaryColor,
-              width: 120,
-            ),
+                  if (!(isArNameEmpty || isEnNameEmpty || isDriveEmpty)) {
+                    await Edit_Division_API(context).Edit_Division(
+                      name: arName.text,
+                      enName: enName.text,
+                      gradeId: gradeid,
+                      meeturl: meetUrl.text,
+                    );
+                    Get.back();
+                  }
+                },
+                color: Theme.of(context).primaryColor,
+                width: 120,
+              ),
           ],
           contents: Container(
             width: 540,
@@ -89,6 +91,8 @@ class DivisionGrid extends StatelessWidget {
                     spacing: 10.0,
                     children: [
                       Textfildwithupper(
+                        enabled:
+                            Get.find<Add_Data_controller>().roll != "observer",
                         isError: controller.IsennameError,
                         isRequired: true,
                         onChanged: (value) {
@@ -102,6 +106,8 @@ class DivisionGrid extends StatelessWidget {
                         hinttext: "Division En - Name".tr,
                       ),
                       Textfildwithupper(
+                        enabled:
+                            Get.find<Add_Data_controller>().roll != "observer",
                         isError: controller.IsarnameError,
                         isRequired: true,
                         onChanged: (value) {
@@ -124,6 +130,8 @@ class DivisionGrid extends StatelessWidget {
                     spacing: 10.0,
                     children: [
                       Textfildwithupper(
+                        enabled:
+                            Get.find<Add_Data_controller>().roll != "observer",
                         readOnly: true,
                         width: 250,
                         controller: TextEditingController(text: name),
@@ -137,6 +145,8 @@ class DivisionGrid extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Textfildwithupper(
+                            enabled: Get.find<Add_Data_controller>().roll !=
+                                "observer",
                             isError: controller.IsmeetError,
                             isRequired: true,
                             onChanged: (value) {
@@ -171,10 +181,11 @@ class DivisionGrid extends StatelessWidget {
     }
 
     return Directionality(
-      textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+      textDirection:
+          Get.find<LocalizationController>().currentLocale.value.languageCode ==
                   'ar'
-          ? TextDirection.rtl
-          : TextDirection.ltr,
+              ? TextDirection.rtl
+              : TextDirection.ltr,
       child: GetBuilder<Divisions_Controller>(builder: (control) {
         return control.Isapiloading == true
             ? GridView.builder(
@@ -257,8 +268,15 @@ class DivisionGrid extends StatelessWidget {
                               Edit_Division(
                                   control.filteredDivision![index].id
                                       .toString(),
-                                  control.filteredDivision![index].classes!
-                                      .enName!),
+                                  Get.find<LocalizationController>()
+                                              .currentLocale
+                                              .value
+                                              .languageCode ==
+                                          'ar'
+                                      ? control.filteredDivision![index]
+                                          .classes!.name!
+                                      : control.filteredDivision![index]
+                                          .classes!.enName!),
                               barrierDismissible: false,
                             );
                           },
@@ -350,8 +368,7 @@ class DivisionGrid extends StatelessWidget {
                                                             Text(
                                                               "Do You Want To Deletediv"
                                                                       .tr +
-                                                                  " (${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar' ? control.filteredDivision![index].name : control.filteredDivision![index].enName} ) " +
+                                                                  " (${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? control.filteredDivision![index].name : control.filteredDivision![index].enName} ) " +
                                                                   "Divisionn"
                                                                       .tr,
                                                               style: Theme.of(
@@ -383,8 +400,7 @@ class DivisionGrid extends StatelessWidget {
                                         CrossAxisAlignment.center,
                                     children: [
                                       Text(
-                                          "${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar' ? control.filteredDivision![index].name : control.filteredDivision![index].enName}",
+                                          "${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? control.filteredDivision![index].name : control.filteredDivision![index].enName}",
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium!
@@ -394,8 +410,7 @@ class DivisionGrid extends StatelessWidget {
                                     ],
                                   ),
                                   Text(
-                                      "${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar' ? control.filteredDivision![index].classes!.name : control.filteredDivision![index].classes!.enName}",
+                                      "${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? control.filteredDivision![index].classes!.name : control.filteredDivision![index].classes!.enName}",
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium!

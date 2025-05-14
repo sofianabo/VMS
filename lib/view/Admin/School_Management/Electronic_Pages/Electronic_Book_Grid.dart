@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/DownloadFiles.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Labrary_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
@@ -39,10 +40,11 @@ class ElectronicBookGrid extends StatelessWidget {
     }
 
     return Directionality(
-      textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+      textDirection:
+          Get.find<LocalizationController>().currentLocale.value.languageCode ==
                   'ar'
-          ? TextDirection.rtl
-          : TextDirection.ltr,
+              ? TextDirection.rtl
+              : TextDirection.ltr,
       child: GetBuilder<Labrary_Controller>(builder: (control) {
         return control.isLoading == true
             ? GridView.builder(
@@ -183,92 +185,94 @@ class ElectronicBookGrid extends StatelessWidget {
                                         ],
                                       ),
                                       const Spacer(),
-                                      Row(
-                                        textDirection:
-                                            prefs!.getString(languageKey) ==
-                                                    "ar"
-                                                ? TextDirection.ltr
-                                                : TextDirection.ltr,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          IconButton(
-                                              style: const ButtonStyle(
-                                                  backgroundColor:
-                                                      WidgetStatePropertyAll(
-                                                          Color(0xffB03D3D)),
-                                                  shape: WidgetStatePropertyAll(
-                                                      RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          5))))),
-                                              onPressed: () {
-                                                Get.dialog(VMSAlertDialog(
-                                                  action: [
-                                                    ButtonDialog(
-                                                        text: "Delete".tr,
-                                                        onPressed: () async {
-                                                          await Delete_E_Book_API(
-                                                                  context)
-                                                              .Delete_E_Book(
-                                                                  Eid: control
-                                                                      .filteredEbook![
-                                                                          index]
-                                                                      .id);
-                                                        },
-                                                        color: const Color(
-                                                            0xffB03D3D),
-                                                        width: 80),
-                                                    ButtonDialog(
-                                                        text: "Cancel".tr,
-                                                        onPressed: () {
-                                                          Get.back();
-                                                        },
-                                                        color: Theme.of(context)
-                                                            .primaryColor,
-                                                        width: 80)
-                                                  ],
-                                                  contents: SizedBox(
-                                                      width: 500,
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            "Do You Want To Deletebook"
-                                                                    .tr +
-                                                                " ( ${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar' ? control.filteredEbook![index].name : control.filteredEbook![index].enName} ) " +
-                                                                "Book".tr,
-                                                            style: Get
-                                                                .theme
-                                                                .textTheme
-                                                                .bodyMedium!
-                                                                .copyWith(
-                                                                    fontSize:
-                                                                        16,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal),
-                                                          ),
-                                                        ],
-                                                      )),
-                                                  apptitle:
-                                                      "Delete Electronic Book"
-                                                          .tr,
-                                                  subtitle: "none",
-                                                ));
-                                              },
-                                              icon: const Icon(VMS_Icons.bin,
-                                                  size: 16,
-                                                  color: Colors.white)),
-                                        ],
-                                      )
+                                      if (Get.find<Add_Data_controller>()
+                                              .roll !=
+                                          "observer")
+                                        Row(
+                                          textDirection:
+                                              prefs!.getString(languageKey) ==
+                                                      "ar"
+                                                  ? TextDirection.ltr
+                                                  : TextDirection.ltr,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          children: [
+                                            IconButton(
+                                                style: const ButtonStyle(
+                                                    backgroundColor:
+                                                        WidgetStatePropertyAll(
+                                                            Color(0xffB03D3D)),
+                                                    shape: WidgetStatePropertyAll(
+                                                        RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius.all(
+                                                                    Radius.circular(
+                                                                        5))))),
+                                                onPressed: () {
+                                                  Get.dialog(VMSAlertDialog(
+                                                    action: [
+                                                      ButtonDialog(
+                                                          text: "Delete".tr,
+                                                          onPressed: () async {
+                                                            await Delete_E_Book_API(
+                                                                    context)
+                                                                .Delete_E_Book(
+                                                                    Eid: control
+                                                                        .filteredEbook![
+                                                                            index]
+                                                                        .id);
+                                                          },
+                                                          color: const Color(
+                                                              0xffB03D3D),
+                                                          width: 80),
+                                                      ButtonDialog(
+                                                          text: "Cancel".tr,
+                                                          onPressed: () {
+                                                            Get.back();
+                                                          },
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .primaryColor,
+                                                          width: 80)
+                                                    ],
+                                                    contents: SizedBox(
+                                                        width: 500,
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                              "Do You Want To Deletebook"
+                                                                      .tr +
+                                                                  " ( ${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? control.filteredEbook![index].name : control.filteredEbook![index].enName} ) " +
+                                                                  "Book".tr,
+                                                              style: Get
+                                                                  .theme
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                      fontSize:
+                                                                          16,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .normal),
+                                                            ),
+                                                          ],
+                                                        )),
+                                                    apptitle:
+                                                        "Delete Electronic Book"
+                                                            .tr,
+                                                    subtitle: "none",
+                                                  ));
+                                                },
+                                                icon: const Icon(VMS_Icons.bin,
+                                                    size: 16,
+                                                    color: Colors.white)),
+                                          ],
+                                        )
                                     ],
                                   )),
                               Align(
