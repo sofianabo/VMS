@@ -66,7 +66,7 @@ class GuardianMainScreenGrid extends StatelessWidget {
       if (screenWidth >= 616) return 1.92;
       return 0.9;
     }
-
+ 
     return Directionality(
       textDirection:
           Get.find<LocalizationController>().currentLocale.value.languageCode ==

@@ -253,7 +253,8 @@ class Illness_Grid extends StatelessWidget {
                                                         Text(
                                                           "Do You Want To Deleteill"
                                                                   .tr +
-                                                              " ( ${prefs!.getString(languageKey) == 'ar' ? "${control.filteredIllness![index].name}" : "${control.filteredIllness![index].enName}"} ) " +
+                                                              " ( ${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar' ? "${control.filteredIllness![index].name}" : "${control.filteredIllness![index].enName}"} ) " +
                                                               "Illnesss".tr,
                                                           style: Get
                                                               .theme

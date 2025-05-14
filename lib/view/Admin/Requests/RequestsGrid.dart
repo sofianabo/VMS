@@ -196,7 +196,8 @@ class RequestsGrid extends StatelessWidget {
                       .copyWith(fontSize: 22, fontWeight: FontWeight.normal)));
         } else {
           return Directionality(
-            textDirection: prefs!.getString(languageKey) == "ar"
+            textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                 ? TextDirection.rtl
                 : TextDirection.ltr,
             child: LayoutBuilder(builder: (context, constraints) {

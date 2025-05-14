@@ -56,7 +56,8 @@ class _EmpolyeeStatusGridState extends State<EmpolyeeStatusGrid> {
     }
 
     return Directionality(
-      textDirection: prefs!.getString(languageKey) == "ar"
+      textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
           ? TextDirection.rtl
           : TextDirection.ltr,
       child: GetBuilder<Employeeattendencecontroller>(builder: (controller) {

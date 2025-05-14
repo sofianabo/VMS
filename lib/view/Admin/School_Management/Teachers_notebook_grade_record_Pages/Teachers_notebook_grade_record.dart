@@ -341,7 +341,8 @@ SelectedClass() {
                                 : null,
                           ),
                           child: Text(
-                            prefs!.getString(languageKey) == 'ar'
+                             Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                 ? "${classItem.name}"
                                 : "${classItem.enName}",
                             style: TextStyle(color: Colors.white, fontSize: 16),

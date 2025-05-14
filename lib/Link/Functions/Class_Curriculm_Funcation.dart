@@ -117,7 +117,8 @@ Class_Curriculm_Funcation(BuildContext context) async {
                                       child: Text(
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
-                                        prefs!.getString(languageKey) == 'ar'
+                                         Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                             ? "${curriculum.name}"
                                             : "${curriculum.enName}",
                                         textAlign: TextAlign.center,

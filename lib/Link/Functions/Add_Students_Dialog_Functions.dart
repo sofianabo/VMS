@@ -579,7 +579,8 @@ class _Add_Students_pageState extends State<Add_Students_page> {
               width: 620,
               child: SingleChildScrollView(
                 child: Directionality(
-                  textDirection: prefs!.getString(languageKey) == "ar"
+                  textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                       ? TextDirection.rtl
                       : TextDirection.ltr,
                   child: Column(

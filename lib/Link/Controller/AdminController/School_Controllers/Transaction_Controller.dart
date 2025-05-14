@@ -146,7 +146,8 @@ class Transaction_Controller extends GetxController {
       AttendencetDate.value.toString(),
       actionIndex,
     );
-    if (prefs!.getString(languageKey) == 'ar') {
+    if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar') {
       actionlist = tran.transaction!.map((t) => t.arAction!).toSet().toList();
     } else
       actionlist = tran.transaction!.map((t) => t.action!).toSet().toList();

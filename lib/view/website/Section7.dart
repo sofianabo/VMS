@@ -253,7 +253,8 @@ class Section7 extends StatelessWidget {
                   height: 30,
                 ),
                 Directionality(
-                  textDirection: prefs!.getString(languageKey) == 'ar'
+                  textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                       ? TextDirection.rtl
                       : TextDirection.ltr,
                   child: Row(
@@ -276,7 +277,8 @@ class Section7 extends StatelessWidget {
                   ),
                 ),
                 Directionality(
-                  textDirection: prefs!.getString(languageKey) == 'ar'
+                  textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                       ? TextDirection.rtl
                       : TextDirection.ltr,
                   child: Row(
@@ -498,7 +500,8 @@ class Section7 extends StatelessWidget {
                   height: 30,
                 ),
                 Directionality(
-                  textDirection: prefs!.getString(languageKey) == 'ar'
+                  textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                       ? TextDirection.rtl
                       : TextDirection.ltr,
                   child: Row(
@@ -521,7 +524,8 @@ class Section7 extends StatelessWidget {
                   ),
                 ),
                 Directionality(
-                  textDirection: prefs!.getString(languageKey) == 'ar'
+                  textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                       ? TextDirection.rtl
                       : TextDirection.ltr,
                   child: Row(
@@ -733,7 +737,8 @@ class Section7 extends StatelessWidget {
                   padding: EdgeInsets.only(right: 20.0, left: 20.0),
                   width: MediaQuery.of(context).size.width,
                   child: Directionality(
-                    textDirection: prefs!.getString(languageKey) == 'ar'
+                    textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                         ? TextDirection.rtl
                         : TextDirection.ltr,
                     child: Row(
@@ -789,7 +794,8 @@ class Section7 extends StatelessWidget {
                   ),
                 ),
                 Directionality(
-                  textDirection: prefs!.getString(languageKey) == 'ar'
+                  textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                       ? TextDirection.rtl
                       : TextDirection.ltr,
                   child: Row(

@@ -104,12 +104,14 @@ class _ExamtableforchildState extends State<Examtableforchild> {
                                 rows: controller.quizList!.map((exam) {
                                   return DataRow(cells: [
                                     DataCell(Text(
-                                        prefs!.getString(languageKey) == 'ar'
+                                         Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                             ? exam.classese?.name ?? ""
                                             : exam.classese?.enName ?? '')),
                                     DataCell(Text(exam.type ?? '')),
                                     DataCell(Text(
-                                        prefs!.getString(languageKey) == 'ar'
+                                         Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                             ? exam.curriculumName ?? ''
                                             : exam.curriculumEnName ?? '')),
                                     DataCell(Text(exam.startDate ?? '')),

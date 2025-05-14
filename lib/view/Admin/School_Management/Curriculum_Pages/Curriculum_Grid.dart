@@ -39,7 +39,8 @@ class CurriculumGrid extends StatelessWidget {
     }
 
     return Directionality(
-      textDirection: prefs!.getString(languageKey) == "ar"
+      textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
           ? TextDirection.rtl
           : TextDirection.ltr,
       child: GetBuilder<Curriculumn_Controller>(builder: (control) {
@@ -278,7 +279,8 @@ class CurriculumGrid extends StatelessWidget {
                                                           Text(
                                                             "Do You Want To Deletecur"
                                                                     .tr +
-                                                                " ( ${prefs!.getString(languageKey) == 'ar' ? control.filteredCurriculum[index].name : control.filteredCurriculum[index].enName} ) " +
+                                                                " ( ${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar' ? control.filteredCurriculum[index].name : control.filteredCurriculum[index].enName} ) " +
                                                                 "Curriculumm"
                                                                     .tr,
                                                             style: Get

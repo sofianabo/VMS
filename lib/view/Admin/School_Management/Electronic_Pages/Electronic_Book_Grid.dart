@@ -39,7 +39,8 @@ class ElectronicBookGrid extends StatelessWidget {
     }
 
     return Directionality(
-      textDirection: prefs!.getString(languageKey) == "ar"
+      textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
           ? TextDirection.rtl
           : TextDirection.ltr,
       child: GetBuilder<Labrary_Controller>(builder: (control) {
@@ -241,7 +242,8 @@ class ElectronicBookGrid extends StatelessWidget {
                                                           Text(
                                                             "Do You Want To Deletebook"
                                                                     .tr +
-                                                                " ( ${prefs!.getString(languageKey) == 'ar' ? control.filteredEbook![index].name : control.filteredEbook![index].enName} ) " +
+                                                                " ( ${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar' ? control.filteredEbook![index].name : control.filteredEbook![index].enName} ) " +
                                                                 "Book".tr,
                                                             style: Get
                                                                 .theme

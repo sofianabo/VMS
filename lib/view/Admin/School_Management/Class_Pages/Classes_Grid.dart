@@ -37,7 +37,8 @@ class ClassGrid extends StatelessWidget {
     }
 
     return Directionality(
-      textDirection: prefs!.getString(languageKey) == "ar"
+      textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
           ? TextDirection.rtl
           : TextDirection.ltr,
       child: GetBuilder<ClassMgmtController>(builder: (control) {
@@ -216,7 +217,8 @@ class ClassGrid extends StatelessWidget {
                                                             Text(
                                                               "Do You Want To Deleteclass"
                                                                       .tr +
-                                                                  " (${prefs!.getString(languageKey) == 'ar' ? control.filteredreclasses![index].name : control.filteredreclasses![index].enName}) " +
+                                                                  " (${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar' ? control.filteredreclasses![index].name : control.filteredreclasses![index].enName}) " +
                                                                   "Classs".tr,
                                                               style: Get
                                                                   .theme
@@ -247,7 +249,8 @@ class ClassGrid extends StatelessWidget {
                                         CrossAxisAlignment.center,
                                     children: [
                                       Text(
-                                          prefs!.getString(languageKey) == 'ar'
+                                           Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                               ? "${control.filteredreclasses![index].name}"
                                               : "${control.filteredreclasses![index].enName}",
                                           style: Theme.of(context)
@@ -259,7 +262,8 @@ class ClassGrid extends StatelessWidget {
                                     ],
                                   ),
                                   Text(
-                                      prefs!.getString(languageKey) == 'ar'
+                                       Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                           ? "${control.filteredreclasses![index].grade!.name}"
                                           : "${control.filteredreclasses![index].grade!.enName}",
                                       style: Theme.of(context)

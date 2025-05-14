@@ -90,7 +90,7 @@ class _TextFormPasswordState extends State<TextFormPassword> {
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium
-                      ?.copyWith(fontSize: 14),
+                      ?.copyWith(fontSize: 14, color: Colors.black),
                   children: widget.isRequired
                       ? [
                           const TextSpan(
@@ -109,7 +109,7 @@ class _TextFormPasswordState extends State<TextFormPassword> {
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium
-                    ?.copyWith(fontSize: 14),
+                    ?.copyWith(fontSize: 14, color: Colors.black),
                 autofillHints: widget.autofill,
                 controller: widget.controller,
                 obscureText: pass.isVisible,
@@ -156,9 +156,7 @@ class _TextFormPasswordState extends State<TextFormPassword> {
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
                     borderSide: BorderSide(
-                        color: showError
-                            ? Colors.red
-                            : Get.theme.colorScheme.primary,
+                        color: showError ? Colors.red : Color(0xff19478d),
                         width: 2),
                   ),
                   enabledBorder: OutlineInputBorder(

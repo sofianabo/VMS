@@ -40,7 +40,8 @@ class Transaction_Management_Grid extends StatelessWidget {
     }
 
     return Directionality(
-      textDirection: prefs!.getString(languageKey) == "ar"
+      textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
           ? TextDirection.rtl
           : TextDirection.ltr,
       child: GetBuilder<Transaction_Controller>(builder: (control) {
@@ -217,7 +218,8 @@ class Transaction_Management_Grid extends StatelessWidget {
                                       width: 200,
                                       child: Text(
                                           textAlign: TextAlign.center,
-                                          "${prefs!.getString(languageKey) == "ar" ? control.filteredTransaction![index].arDetail : control.filteredTransaction![index].detail}",
+                                          "${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar' ? control.filteredTransaction![index].arDetail : control.filteredTransaction![index].detail}",
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium!

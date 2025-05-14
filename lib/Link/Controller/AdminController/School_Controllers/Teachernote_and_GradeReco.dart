@@ -227,7 +227,8 @@ class TeachernoteAndGradeReco extends GetxController {
     List<String> classess = [];
     if (ClassModel.classes != null) {
       for (var g in ClassModel.classes!) {
-        if (prefs!.getString(languageKey) == 'ar')
+        if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar')
           classess.add(g.name.toString());
         else
           classess.add(g.enName.toString());

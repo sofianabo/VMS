@@ -80,8 +80,8 @@ class Getteachersubjectapi {
                                 cells: [
                                   DataCell(
                                     Text(
-                                      prefs!.getString(languageKey) == 'ar'
-                                          ? emp.subjects.name
+ Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'                                          ? emp.subjects.name
                                           : emp.subjects.enName ?? 'N/A',
                                       style: Get.theme.textTheme.bodyMedium,
                                     ),
@@ -89,16 +89,16 @@ class Getteachersubjectapi {
                                   //status
                                   DataCell(
                                     Text(
-                                      prefs!.getString(languageKey) == 'ar'
-                                          ? emp.classes.name
+ Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'                                          ? emp.classes.name
                                           : emp.classes.enName ?? 'N/A',
                                       style: Get.theme.textTheme.bodyMedium,
                                     ),
                                   ),
                                   DataCell(
                                     Text(
-                                      prefs!.getString(languageKey) == 'ar'
-                                          ? emp.division.name
+ Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'                                          ? emp.division.name
                                           : emp.division.enName ?? 'N/A',
                                       style: Get.theme.textTheme.bodyMedium,
                                     ),

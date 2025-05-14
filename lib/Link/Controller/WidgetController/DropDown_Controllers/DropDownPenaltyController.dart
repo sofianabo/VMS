@@ -15,7 +15,8 @@ class Dropdownpenaltycontroller extends GetxController {
     List<String> newlis = [];
     for (int i = 0; i < penalt.penalty!.length; i++) {
       penalties.add(penalt.penalty![i].enName.toString());
-      if (prefs!.getString(languageKey) == 'ar')
+      if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar')
         newlis.add(penalt.penalty![i].name.toString());
       else
         newlis.add(penalt.penalty![i].enName.toString());

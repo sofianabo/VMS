@@ -61,7 +61,8 @@ class School_Content_Grid extends StatelessWidget {
                                   _operationColumn(
                                       row.value, controller, row.key, context),
                                   _dataColumn(
-                                      prefs!.getString(languageKey) == 'ar'
+                                       Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                           ? row.value['name']
                                           : row.value['enName']),
                                 ],

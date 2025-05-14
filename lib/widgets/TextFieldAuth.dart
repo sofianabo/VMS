@@ -146,7 +146,7 @@ class _TextFieldAuthState extends State<TextFieldAuth> {
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium
-                      ?.copyWith(fontSize: 14),
+                      ?.copyWith(fontSize: 14, color: Colors.black),
                   children: widget.isRequired
                       ? [
                           const TextSpan(
@@ -166,7 +166,7 @@ class _TextFieldAuthState extends State<TextFieldAuth> {
               style: Theme.of(context)
                   .textTheme
                   .bodyMedium
-                  ?.copyWith(fontSize: 14),
+                  ?.copyWith(fontSize: 14, color: Colors.black),
               enabled: widget.enabled,
               readOnly: widget.readOnly,
               controller: widget.controller,
@@ -188,9 +188,7 @@ class _TextFieldAuthState extends State<TextFieldAuth> {
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5),
                   borderSide: BorderSide(
-                      color: showError
-                          ? Colors.red
-                          : Get.theme.colorScheme.primary,
+                      color: showError ? Colors.red : Color(0xff19478d),
                       width: 2),
                 ),
                 enabledBorder: OutlineInputBorder(

@@ -70,7 +70,8 @@ class _PenaltygridState extends State<Penaltygrid> {
                                 TableRow(
                                   children: [
                                     _dataColumn(
-                                        prefs!.getString(languageKey) == 'ar'
+                                         Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                             ? row.value['name']
                                             : row.value['enName']),
                                     _dataColumn(row.value['description']),
@@ -181,7 +182,8 @@ class _PenaltygridState extends State<Penaltygrid> {
                         width: 400,
                         child: Text(
                           "Do You Want To Delete".tr +
-                              " (${prefs!.getString(languageKey) == 'ar' ? row['name'] : row['enName']})" +
+                              " (${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar' ? row['name'] : row['enName']})" +
                               "penalty".tr,
                           style: const TextStyle(fontSize: 16),
                         ),

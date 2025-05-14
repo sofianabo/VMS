@@ -94,7 +94,8 @@ class AdminSchoolTimeController extends GetxController {
   void setAllClasses(AllClassModel clas) {
     examClass.clear();
     for (int j = 0; j < clas.classes!.length; j++) {
-      if (prefs!.getString(languageKey) == 'ar')
+      if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar')
         examClass.add(clas.classes![j].name.toString());
       else
         examClass.add(clas.classes![j].enName.toString());
@@ -108,7 +109,8 @@ class AdminSchoolTimeController extends GetxController {
     setIsLoadingDivision(false);
     allDivision = division.division;
     for (int j = 0; j < division.division!.length; j++) {
-      if (prefs!.getString(languageKey) == 'ar')
+      if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar')
         examDivision.add(division.division![j].name.toString());
       else
         examDivision.add(division.division![j].enName.toString());
@@ -144,7 +146,8 @@ class AdminSchoolTimeController extends GetxController {
     subjectDialogList.clear();
     allsubjectDialogList = curr.curriculum!;
     for (int j = 0; j < curr.curriculum!.length; j++) {
-      if (prefs!.getString(languageKey) == 'ar')
+      if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar')
         subjectDialogList.add(curr.curriculum![j].name.toString());
       else
         subjectDialogList.add(curr.curriculum![j].enName.toString());

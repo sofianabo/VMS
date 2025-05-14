@@ -472,7 +472,8 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
 
                                                                               int teacherIndex = SchoolController.teacherDialogList.indexOf(s[1]);
                                                                               String teach = SchoolController.allteacherDialogList!.elementAt(teacherIndex).fullName.toString();
-                                                                              String sub = prefs!.getString(languageKey) == 'ar' ? SchoolController.allsubjectDialogList!.elementAt(subjectIndex).name.toString() : SchoolController.allsubjectDialogList!.elementAt(subjectIndex).enName.toString();
+                                                                              String sub =  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar' ? SchoolController.allsubjectDialogList!.elementAt(subjectIndex).name.toString() : SchoolController.allsubjectDialogList!.elementAt(subjectIndex).enName.toString();
                                                                               // التحقق من أن العناصر موجودة في المصفوفات الخاصة بها
                                                                               if (subjectIndex >= 0 && teacherIndex >= 0) {
                                                                                 SchoolController.set_Edite_Data(teach, sub);

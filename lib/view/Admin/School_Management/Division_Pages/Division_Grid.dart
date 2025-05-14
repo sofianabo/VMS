@@ -171,7 +171,8 @@ class DivisionGrid extends StatelessWidget {
     }
 
     return Directionality(
-      textDirection: prefs!.getString(languageKey) == "ar"
+      textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
           ? TextDirection.rtl
           : TextDirection.ltr,
       child: GetBuilder<Divisions_Controller>(builder: (control) {
@@ -349,7 +350,8 @@ class DivisionGrid extends StatelessWidget {
                                                             Text(
                                                               "Do You Want To Deletediv"
                                                                       .tr +
-                                                                  " (${prefs!.getString(languageKey) == "ar" ? control.filteredDivision![index].name : control.filteredDivision![index].enName} ) " +
+                                                                  " (${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar' ? control.filteredDivision![index].name : control.filteredDivision![index].enName} ) " +
                                                                   "Divisionn"
                                                                       .tr,
                                                               style: Theme.of(
@@ -381,7 +383,8 @@ class DivisionGrid extends StatelessWidget {
                                         CrossAxisAlignment.center,
                                     children: [
                                       Text(
-                                          "${prefs!.getString(languageKey) == "ar" ? control.filteredDivision![index].name : control.filteredDivision![index].enName}",
+                                          "${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar' ? control.filteredDivision![index].name : control.filteredDivision![index].enName}",
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium!
@@ -391,7 +394,8 @@ class DivisionGrid extends StatelessWidget {
                                     ],
                                   ),
                                   Text(
-                                      "${prefs!.getString(languageKey) == "ar" ? control.filteredDivision![index].classes!.name : control.filteredDivision![index].classes!.enName}",
+                                      "${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar' ? control.filteredDivision![index].classes!.name : control.filteredDivision![index].classes!.enName}",
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium!

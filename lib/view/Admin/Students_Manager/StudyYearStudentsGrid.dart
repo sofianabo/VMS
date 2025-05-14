@@ -65,7 +65,8 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
 
     double w = MediaQuery.of(context).size.width;
     return Directionality(
-      textDirection: prefs!.getString(languageKey) == 'ar'
+      textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
           ? TextDirection.rtl
           : TextDirection.ltr,
       child: GetBuilder<StudyYearStudentsController>(builder: (controller) {
@@ -290,7 +291,8 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                                       : const Color.fromARGB(
                                                           255, 44, 134, 194))),
                                   Text(
-                                      "${"Grade Level:".tr} ${prefs!.getString(languageKey) == 'ar' ? controller.filteredStudents![index].grade!.name : controller.filteredStudents![index].grade!.enName}",
+                                      "${"Grade Level:".tr} ${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar' ? controller.filteredStudents![index].grade!.name : controller.filteredStudents![index].grade!.enName}",
                                       style: Get.theme.textTheme.bodyMedium),
                                   if (Get.find<Add_Data_controller>().roll !=
                                       "observer")

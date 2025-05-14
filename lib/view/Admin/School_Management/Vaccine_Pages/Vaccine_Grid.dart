@@ -158,7 +158,8 @@ class Vaccine_Grid extends StatelessWidget {
                                                   ? TextDirection.rtl
                                                   : TextDirection.ltr,
                                               textAlign: TextAlign.center,
-                                              "${prefs!.getString(languageKey) == 'ar' ? control.filteredvaccine![index].name : control.filteredvaccine![index].enName}",
+                                              "${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar' ? control.filteredvaccine![index].name : control.filteredvaccine![index].enName}",
                                               style: TextStyle(fontSize: 26),
                                             ),
                                             Text(
@@ -170,7 +171,8 @@ class Vaccine_Grid extends StatelessWidget {
                                                   : TextDirection.ltr,
                                               textAlign: TextAlign.center,
                                               "Location :".tr +
-                                                  " ${prefs!.getString(languageKey) == 'ar' ? control.filteredvaccine![index].location!.name : control.filteredvaccine![index].location!.enName}",
+                                                  " ${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar' ? control.filteredvaccine![index].location!.name : control.filteredvaccine![index].location!.enName}",
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   color: Color(0xffDAC43B)),
@@ -231,7 +233,8 @@ class Vaccine_Grid extends StatelessWidget {
                                                         Text(
                                                           "Do You Want To Deletevac"
                                                                   .tr +
-                                                              " ( ${prefs!.getString(languageKey) == 'ar' ? control.filteredvaccine![index].name : control.filteredvaccine![index].enName} ) " +
+                                                              " ( ${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar' ? control.filteredvaccine![index].name : control.filteredvaccine![index].enName} ) " +
                                                               "Vaccinee".tr,
                                                           style: Get
                                                               .theme

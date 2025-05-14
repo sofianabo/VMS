@@ -53,9 +53,11 @@ class _TeacherStatusGridState extends State<TeacherStatusGrid> {
     }
 
     return Directionality(
-      textDirection: prefs!.getString(languageKey) == "ar"
-          ? TextDirection.rtl
-          : TextDirection.ltr,
+      textDirection:
+          Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
+              ? TextDirection.rtl
+              : TextDirection.ltr,
       child: GetBuilder<Allteacheratendencecontroller>(builder: (controller) {
         return controller.isLoading == true
             ? GridView.builder(

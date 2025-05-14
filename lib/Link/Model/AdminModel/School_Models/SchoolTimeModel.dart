@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 
@@ -67,7 +68,8 @@ class StudyShare {
   @override
   String toString() {
     String s = "";
-    if (prefs!.getString(languageKey) == 'ar') {
+    if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar') {
       //language
       s += "${name} \n";
       s += "${fullName} \n";

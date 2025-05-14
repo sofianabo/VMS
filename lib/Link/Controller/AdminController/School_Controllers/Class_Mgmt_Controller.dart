@@ -215,7 +215,8 @@ class ClassMgmtController extends GetxController {
   void toggleSelection(int curriculumId) {
     if (selectedCurriculums.contains(curriculumId)) {
       selectedCurriculums.remove(curriculumId);
-      if (prefs!.getString(languageKey) == 'ar') {
+      if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar') {
         selectedCurriculumNames.removeWhere((name) =>
             name ==
             curriculum!.firstWhere((cur) => cur.id == curriculumId).name);
@@ -226,7 +227,8 @@ class ClassMgmtController extends GetxController {
       }
     } else {
       selectedCurriculums.add(curriculumId);
-      selectedCurriculumNames.add(prefs!.getString(languageKey) == 'ar'
+      selectedCurriculumNames.add( Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
           ? curriculum!.firstWhere((cur) => cur.id == curriculumId).name!
           : curriculum!.firstWhere((cur) => cur.id == curriculumId).enName!);
     }

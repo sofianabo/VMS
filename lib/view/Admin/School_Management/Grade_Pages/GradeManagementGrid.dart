@@ -21,7 +21,8 @@ class GradeTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: prefs!.getString(languageKey) == "ar"
+      textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
           ? TextDirection.rtl
           : TextDirection.ltr,
       child: GetBuilder<Grade_Controller>(
@@ -175,7 +176,8 @@ class GradeTable extends StatelessWidget {
                         width: 400,
                         child: Text(
                           "Do You Want To Deletegarde".tr +
-                              " ( ${prefs!.getString(languageKey) == 'ar' ? "${row['name']}" : "${row['enName']}"} ) " +
+                              " ( ${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar' ? "${row['name']}" : "${row['enName']}"} ) " +
                               "Gradee".tr,
                           style: const TextStyle(fontSize: 16),
                         ),

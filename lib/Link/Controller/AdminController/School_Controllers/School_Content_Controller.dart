@@ -27,7 +27,8 @@ class School_Content_Controller extends GetxController {
         'enName': contenet.enName,
       
       });
-      if (prefs!.getString(languageKey) == 'ar')
+      if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar')
         contentNames.add(contenet.name!);
       else
         contentNames.add(contenet.enName!);

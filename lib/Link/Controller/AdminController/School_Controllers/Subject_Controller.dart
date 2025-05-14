@@ -29,7 +29,8 @@ class Subject_Controller extends GetxController {
         'enName': subg.enName,
         'hasCurriculum': subg.hasCurriculum,
       });
-      if (prefs!.getString(languageKey) == 'ar')
+      if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar')
         subjectNames.add(subg.name!);
       else
         subjectNames.add(subg.enName!);

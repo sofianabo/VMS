@@ -52,7 +52,8 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
     }
 
     return Directionality(
-      textDirection: prefs!.getString(languageKey) == "ar"
+      textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
           ? TextDirection.rtl
           : TextDirection.ltr,
       child: GetBuilder<StudentAttendencController>(
@@ -352,7 +353,8 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                                   Expanded(
                                     child: Text(
                                         "Grade Level:".tr +
-                                            "${prefs!.getString(languageKey) == "ar" ? control.filteredStudents[index].grade!.name : control.filteredStudents[index].grade!.enName}",
+                                            "${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar' ? control.filteredStudents[index].grade!.name : control.filteredStudents[index].grade!.enName}",
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyMedium!

@@ -53,9 +53,7 @@ class LoginScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SvgPicture.asset(
-                        Theme.of(context).brightness == Brightness.dark
-                            ? "assets/images/logodark.svg"
-                            : "assets/images/logolight.svg",
+                        "assets/images/logolight.svg",
                         width: 310,
                       )
                           .animate(onPlay: (controller) => controller.repeat())
@@ -121,7 +119,7 @@ class LoginScreen extends StatelessWidget {
                                       ),
                                     ),
                                     backgroundColor: WidgetStatePropertyAll(
-                                        Get.theme.primaryColor),
+                                        const Color(0xff19478d)),
                                     maximumSize: const WidgetStatePropertyAll(
                                         Size(250, 50)),
                                     minimumSize: const WidgetStatePropertyAll(
@@ -164,7 +162,9 @@ class LoginScreen extends StatelessWidget {
                                               "Login".tr,
                                               style: Get.theme.textTheme
                                                   .displayMedium!
-                                                  .copyWith(fontSize: 12),
+                                                  .copyWith(
+                                                      color: Colors.white,
+                                                      fontSize: 12),
                                             ),
                                             const Padding(
                                               padding: EdgeInsets.only(
@@ -183,7 +183,11 @@ class LoginScreen extends StatelessWidget {
                             spacing: 10.0,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("You Don`t Have Account ?".tr),
+                              Text(
+                                "You Don`t Have Account ?".tr,
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 14),
+                              ),
                               GestureDetector(
                                 onTap: () {
                                   Get.toNamed("/enroll");
@@ -193,7 +197,7 @@ class LoginScreen extends StatelessWidget {
                                   child: Text(
                                     "Enroll Now".tr,
                                     style: TextStyle(
-                                      color: Theme.of(context).primaryColor,
+                                      color: const Color(0xff19478d),
                                       fontSize: 14,
                                     ),
                                   ),

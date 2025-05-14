@@ -34,7 +34,8 @@ class Dropdowndivisioncontroller extends GetxController {
     List<String> newList = [];
     for (int i = 0; i < div.division!.length; i++) {
       division.add(div.division![i].enName.toString());
-      if (prefs!.getString(languageKey) == 'ar')
+      if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar')
         newList.add(div.division![i].name.toString());
       else
         newList.add(div.division![i].enName.toString());

@@ -310,7 +310,8 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
           Expanded(
             child: SingleChildScrollView(
               child: Directionality(
-                textDirection: prefs!.getString(languageKey) == "ar"
+                textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                     ? TextDirection.rtl
                     : TextDirection.ltr,
                 child: Padding(

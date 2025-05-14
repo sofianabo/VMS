@@ -85,7 +85,8 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
       control.Birthdate.value = DateTime.parse(
           Get.find<Allteachercontroller>().oTeacher!.birthDate.toString());
       return Directionality(
-        textDirection: prefs!.getString(languageKey) == "ar"
+        textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
             ? TextDirection.rtl
             : TextDirection.ltr,
         child: GetBuilder<Allteachercontroller>(builder: (control) {

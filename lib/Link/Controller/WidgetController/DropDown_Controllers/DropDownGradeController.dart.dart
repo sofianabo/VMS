@@ -35,7 +35,8 @@ class Dropdowngradecontroller extends GetxController {
           'name': g.enName.toString(),
           'arName': g.name.toString()
         });
-        if (prefs!.getString(languageKey) == 'ar')
+        if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar')
           gradeNames.add(g.name.toString());
         else {
           gradeNames.add(g.enName.toString());

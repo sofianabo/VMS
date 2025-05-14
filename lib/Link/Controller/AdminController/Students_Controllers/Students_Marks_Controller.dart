@@ -155,7 +155,8 @@ class Students_Marks_Controller extends GetxController {
     List<String> classess = [];
     if (ClassModel.classes != null) {
       for (var g in ClassModel.classes!) {
-        if (prefs!.getString(languageKey) == 'ar')
+        if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar')
           classess.add(g.name.toString());
         else
           classess.add(g.enName.toString());
@@ -187,7 +188,8 @@ class Students_Marks_Controller extends GetxController {
     List<String> curr = [];
     if (curriculumModel.curriculum != null) {
       for (var g in curriculumModel.curriculum!) {
-        if (prefs!.getString(languageKey) == 'ar')
+        if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar')
           curr.add(g.name.toString());
         else
           curr.add(g.enName.toString());

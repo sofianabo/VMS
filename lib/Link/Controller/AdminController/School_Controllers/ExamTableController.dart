@@ -182,7 +182,8 @@ class ExamTableController extends GetxController {
   void setAllClasses(AllClassModel clas) {
     examClass.clear();
     for (int j = 0; j < clas.classes!.length; j++) {
-      if (prefs!.getString(languageKey) == 'ar')
+      if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar')
         examClass.add(clas.classes![j].name.toString());
       else
         examClass.add(clas.classes![j].enName.toString());
@@ -195,7 +196,8 @@ class ExamTableController extends GetxController {
     classDialogList.clear();
     Allclass = clas.classes!;
     for (int j = 0; j < clas.classes!.length; j++) {
-      if (prefs!.getString(languageKey) == 'ar')
+      if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar')
         classDialogList.add(clas.classes![j].name.toString());
       else
         classDialogList.add(clas.classes![j].enName.toString());
@@ -214,7 +216,8 @@ class ExamTableController extends GetxController {
     semesterDialogList.clear();
     allSemester = semster.semester!;
     for (int l = 0; l < semster.semester!.length; l++) {
-      if (prefs!.getString(languageKey) == 'ar') {
+      if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar') {
         semesterDialogList.add(semster.semester![l].name.toString());
         examSeason.add(semster.semester![l].name.toString());
       } else {
@@ -231,7 +234,8 @@ class ExamTableController extends GetxController {
   void setAllCuriculm(DropDowmCuriculmModel model) {
     curiculmDialogList.clear();
     for (int l = 0; l < model.curriculum!.length; l++) {
-      if (prefs!.getString(languageKey) == 'ar')
+      if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar')
         curiculmDialogList.add(model.curriculum![l].name.toString());
       else
         curiculmDialogList.add(model.curriculum![l].enName.toString());

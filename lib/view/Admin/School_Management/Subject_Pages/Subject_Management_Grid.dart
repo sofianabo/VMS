@@ -54,7 +54,8 @@ class Subject_Management_Grid extends StatelessWidget {
                                     _operationColumn(row.value, controller,
                                         row.key, context),
                                     _dataColumn(
-                                        prefs!.getString(languageKey) == 'ar'
+                                         Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                             ? row.value['name']
                                             : row.value['enName']),
                                   ],
@@ -160,7 +161,8 @@ class Subject_Management_Grid extends StatelessWidget {
                               width: 400,
                               child: Text(
                                 "Do You Want To Deletesub".tr +
-                                    " (${prefs!.getString(languageKey) == 'ar' ? row['name'] : row['enName']}) " +
+                                    " (${ Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar' ? row['name'] : row['enName']}) " +
                                     "Subjectt".tr,
                                 style: const TextStyle(fontSize: 16),
                               ),

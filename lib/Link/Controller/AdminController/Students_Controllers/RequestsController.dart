@@ -141,14 +141,16 @@ class Requestscontroller extends GetxController {
   }
 
   void setAllClassDialog(AllClassModel clas) async {
-    classlist = await prefs!.getString(languageKey) == 'ar'
+    classlist = await  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
         ? clas.classes!.map((c) => c.name!).toList()
         : clas.classes!.map((c) => c.enName!).toList();
     update();
   }
 
   void setAllDivisionDialog(AllDivisionModel division) {
-    prefs!.getString(languageKey) == 'ar'
+     Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
         ? divisionlist = division.division!.map((d) => d.name!).toList()
         : divisionlist = division.division!.map((d) => d.enName!).toList();
     update();

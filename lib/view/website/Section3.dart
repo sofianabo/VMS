@@ -33,7 +33,8 @@ class Section3 extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(left: w / 64),
                     child: Directionality(
-                      textDirection: prefs!.getString(languageKey) == 'ar'
+                      textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                           ? TextDirection.rtl
                           : TextDirection.ltr,
                       child: Column(
@@ -104,7 +105,8 @@ class Section3 extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(left: 20.0, right: 20.0),
                     child: Directionality(
-                      textDirection: prefs!.getString(languageKey) == 'ar'
+                      textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                           ? TextDirection.rtl
                           : TextDirection.ltr,
                       child: Column(
@@ -170,7 +172,8 @@ class Section3 extends StatelessWidget {
                     padding: EdgeInsets.only(left: 25.0, right: 25.0),
                     width: w,
                     child: Directionality(
-                      textDirection: prefs!.getString(languageKey) == 'ar'
+                      textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                           ? TextDirection.rtl
                           : TextDirection.ltr,
                       child: Column(

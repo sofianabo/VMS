@@ -182,7 +182,8 @@ class StudyYearStudentsController extends GetxController {
     divisionlist.clear();
     print(division.division!.length);
     for (int k = 0; k < division.division!.length; k++) {
-      if (prefs!.getString(languageKey) == 'ar')
+      if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar')
         divisionlist.add(division.division![k].name.toString());
       else
         divisionlist.add(division.division![k].enName.toString());
