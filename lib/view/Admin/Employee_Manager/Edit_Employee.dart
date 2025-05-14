@@ -85,102 +85,104 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
 
       return VMSAlertDialog(
           action: [
-            ButtonDialog(
-                text: "Edit Employee".tr,
-                onPressed: () async {
-                  bool isJopEmpty = controller.dialogjobTitleIndex.isEmpty ||
-                      controller.dialogjobTitleIndex == "";
-                  bool isGenderEmpty = controller.GenderListIndex.isEmpty ||
-                      controller.GenderListIndex == "";
-                  bool isFamilyEmpty = controller.Family_StatusIndex.isEmpty ||
-                      controller.Family_StatusIndex == "";
-                  bool isjoinEmpty = controller.Joindate.value == null ||
-                      controller.Joindate.value.toString() == "";
-                  bool isBirthEmpty = controller.Birthdate.value == null ||
-                      controller.Birthdate.value.toString() == "";
-                  bool isfirstEmpty = firstName.text.trim().isEmpty;
-                  bool islastnameEmpty = lastName.text.trim().isEmpty;
-                  bool isfatherEmpty = fatherName.text.trim().isEmpty;
-                  bool ismotherEmpty = motherName.text.trim().isEmpty;
-                  bool isphoneEmpty = phoneNumper.text.trim().isEmpty;
-                  bool isemgnEmpty = emergencyNumber.text.trim().isEmpty;
-                  bool isaddressEmpty = Address.text.trim().isEmpty;
-                  bool isCurrentAdressEmpty =
-                      currentAddress.text.trim().isEmpty;
-                  bool isQualEmpty = Qualification.text.trim().isEmpty;
-                  bool isExpEmpty = Experience.text.trim().isEmpty;
-                  final cont = Get.find<AddFullEmployeeController>();
-                  cont.updateFieldError("first", isfirstEmpty);
-                  cont.updateFieldError("last", islastnameEmpty);
-                  cont.updateFieldError("father", isfatherEmpty);
-                  cont.updateFieldError("mother", ismotherEmpty);
-                  cont.updateFieldError("birth", isBirthEmpty);
-                  cont.updateFieldError("phone", isphoneEmpty);
-                  cont.updateFieldError("emgn", isemgnEmpty);
-                  cont.updateFieldError("join", isjoinEmpty);
-                  cont.updateFieldError("address", isaddressEmpty);
-                  cont.updateFieldError("caddress", isCurrentAdressEmpty);
-                  cont.updateFieldError("jop", isJopEmpty);
-                  cont.updateFieldError("gender", isGenderEmpty);
-                  cont.updateFieldError("family", isFamilyEmpty);
-                  cont.updateFieldError("qua", isQualEmpty);
-                  cont.updateFieldError("exp", isExpEmpty);
+            if (Get.find<Add_Data_controller>().roll != "observer")
+              ButtonDialog(
+                  text: "Edit Employee".tr,
+                  onPressed: () async {
+                    bool isJopEmpty = controller.dialogjobTitleIndex.isEmpty ||
+                        controller.dialogjobTitleIndex == "";
+                    bool isGenderEmpty = controller.GenderListIndex.isEmpty ||
+                        controller.GenderListIndex == "";
+                    bool isFamilyEmpty =
+                        controller.Family_StatusIndex.isEmpty ||
+                            controller.Family_StatusIndex == "";
+                    bool isjoinEmpty = controller.Joindate.value == null ||
+                        controller.Joindate.value.toString() == "";
+                    bool isBirthEmpty = controller.Birthdate.value == null ||
+                        controller.Birthdate.value.toString() == "";
+                    bool isfirstEmpty = firstName.text.trim().isEmpty;
+                    bool islastnameEmpty = lastName.text.trim().isEmpty;
+                    bool isfatherEmpty = fatherName.text.trim().isEmpty;
+                    bool ismotherEmpty = motherName.text.trim().isEmpty;
+                    bool isphoneEmpty = phoneNumper.text.trim().isEmpty;
+                    bool isemgnEmpty = emergencyNumber.text.trim().isEmpty;
+                    bool isaddressEmpty = Address.text.trim().isEmpty;
+                    bool isCurrentAdressEmpty =
+                        currentAddress.text.trim().isEmpty;
+                    bool isQualEmpty = Qualification.text.trim().isEmpty;
+                    bool isExpEmpty = Experience.text.trim().isEmpty;
+                    final cont = Get.find<AddFullEmployeeController>();
+                    cont.updateFieldError("first", isfirstEmpty);
+                    cont.updateFieldError("last", islastnameEmpty);
+                    cont.updateFieldError("father", isfatherEmpty);
+                    cont.updateFieldError("mother", ismotherEmpty);
+                    cont.updateFieldError("birth", isBirthEmpty);
+                    cont.updateFieldError("phone", isphoneEmpty);
+                    cont.updateFieldError("emgn", isemgnEmpty);
+                    cont.updateFieldError("join", isjoinEmpty);
+                    cont.updateFieldError("address", isaddressEmpty);
+                    cont.updateFieldError("caddress", isCurrentAdressEmpty);
+                    cont.updateFieldError("jop", isJopEmpty);
+                    cont.updateFieldError("gender", isGenderEmpty);
+                    cont.updateFieldError("family", isFamilyEmpty);
+                    cont.updateFieldError("qua", isQualEmpty);
+                    cont.updateFieldError("exp", isExpEmpty);
 
-                  if (!(isJopEmpty ||
-                      isGenderEmpty ||
-                      isFamilyEmpty ||
-                      isjoinEmpty ||
-                      isBirthEmpty ||
-                      isfirstEmpty ||
-                      islastnameEmpty ||
-                      isfatherEmpty ||
-                      ismotherEmpty ||
-                      isphoneEmpty ||
-                      isemgnEmpty ||
-                      isaddressEmpty ||
-                      isCurrentAdressEmpty ||
-                      isQualEmpty ||
-                      isExpEmpty)) if (Get.find<Add_Data_controller>()
-                          .roll !=
-                      "subAdmin") {
-                    await EditEmployeeApi.EditEmployee(
-                      employeeId: widget.employeeID,
-                      First_Name: firstName.text,
-                      Last_Name: lastName.text,
-                      Father_Name: fatherName.text,
-                      Mother_Name: motherName.text,
-                      Phone_Numper: phoneNumper.text,
-                      Emergency_Number: emergencyNumber.text,
-                      Address: Address.text,
-                      Current_Address: currentAddress.text,
-                      Birth_Date: controller.Birthdate.value.toString(),
-                      Join_Date: controller.Joindate.value.toString(),
-                      Gender: controller.GenderListIndex,
-                      Family_State: controller.Family_StatusIndex,
-                      Salary: Salary.text,
-                      selectedImage: Get.find<AddFullEmployeeController>()
-                          .selectedImage
-                          .value,
-                      Facebook_URL: facebookUrl.text,
-                      X_Platform_URL: xPlatformUrl.text,
-                      Linkedin_URL: linkedinUrl.text,
-                      Instagram_URL: instagramUrl.text,
-                      Bank_Account_Title: bankAccountTitle.text,
-                      Bank_Name: bankName.text,
-                      Bank_Branch_Name: bankBranchName.text,
-                      Bank_Account_Number: bankAccountNumber.text,
-                      IFSC_Code: ifscCode.text,
-                      Career_History: careerHistory.text,
-                      Qualification: Qualification.text,
-                      Experience: Experience.text,
-                      Note: Note.text,
-                    );
-                  }
-                },
-                color: Get.find<Add_Data_controller>().roll == "subAdmin"
-                    ? Get.theme.disabledColor
-                    : Get.theme.primaryColor,
-                width: 140)
+                    if (!(isJopEmpty ||
+                        isGenderEmpty ||
+                        isFamilyEmpty ||
+                        isjoinEmpty ||
+                        isBirthEmpty ||
+                        isfirstEmpty ||
+                        islastnameEmpty ||
+                        isfatherEmpty ||
+                        ismotherEmpty ||
+                        isphoneEmpty ||
+                        isemgnEmpty ||
+                        isaddressEmpty ||
+                        isCurrentAdressEmpty ||
+                        isQualEmpty ||
+                        isExpEmpty)) if (Get.find<Add_Data_controller>()
+                            .roll !=
+                        "subAdmin") {
+                      await EditEmployeeApi.EditEmployee(
+                        employeeId: widget.employeeID,
+                        First_Name: firstName.text,
+                        Last_Name: lastName.text,
+                        Father_Name: fatherName.text,
+                        Mother_Name: motherName.text,
+                        Phone_Numper: phoneNumper.text,
+                        Emergency_Number: emergencyNumber.text,
+                        Address: Address.text,
+                        Current_Address: currentAddress.text,
+                        Birth_Date: controller.Birthdate.value.toString(),
+                        Join_Date: controller.Joindate.value.toString(),
+                        Gender: controller.GenderListIndex,
+                        Family_State: controller.Family_StatusIndex,
+                        Salary: Salary.text,
+                        selectedImage: Get.find<AddFullEmployeeController>()
+                            .selectedImage
+                            .value,
+                        Facebook_URL: facebookUrl.text,
+                        X_Platform_URL: xPlatformUrl.text,
+                        Linkedin_URL: linkedinUrl.text,
+                        Instagram_URL: instagramUrl.text,
+                        Bank_Account_Title: bankAccountTitle.text,
+                        Bank_Name: bankName.text,
+                        Bank_Branch_Name: bankBranchName.text,
+                        Bank_Account_Number: bankAccountNumber.text,
+                        IFSC_Code: ifscCode.text,
+                        Career_History: careerHistory.text,
+                        Qualification: Qualification.text,
+                        Experience: Experience.text,
+                        Note: Note.text,
+                      );
+                    }
+                  },
+                  color: Get.find<Add_Data_controller>().roll == "subAdmin"
+                      ? Get.theme.disabledColor
+                      : Get.theme.primaryColor,
+                  width: 140)
           ],
           contents:
               GetBuilder<AddFullEmployeeController>(builder: (controller) {
@@ -188,13 +190,13 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
               width: 520,
               child: SingleChildScrollView(
                 child: Column(
-                  spacing: 10,
+                  spacing: 5,
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
                       width: 520,
                       child: Wrap(
-                        spacing: 20.0,
+                        spacing: 10.0,
                         crossAxisAlignment: WrapCrossAlignment.center,
                         runSpacing: 20.0,
                         alignment: screenWidth >= 589
@@ -247,7 +249,7 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                             ],
                           ),
                           Column(
-                            spacing: 20,
+                            spacing: 10,
                             children: [
                               Textfildwithupper(
                                   width: screenWidth >= 600
@@ -285,9 +287,9 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       ),
                     ),
                     Wrap(
-                      spacing: 20.0,
+                      spacing: 10.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
@@ -319,9 +321,9 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       ],
                     ),
                     Wrap(
-                      spacing: 20.0,
+                      spacing: 10.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
@@ -347,9 +349,9 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       ],
                     ),
                     Wrap(
-                      spacing: 20.0,
+                      spacing: 10.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
@@ -375,9 +377,9 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       ],
                     ),
                     Wrap(
-                      spacing: 20.0,
+                      spacing: 10.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
@@ -409,9 +411,9 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       ],
                     ),
                     Wrap(
-                      spacing: 20.0,
+                      spacing: 10.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
@@ -431,9 +433,9 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       ],
                     ),
                     Wrap(
-                      spacing: 20.0,
+                      spacing: 10.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
@@ -454,9 +456,9 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       ],
                     ),
                     Wrap(
-                      spacing: 20.0,
+                      spacing: 10.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         Dropdownallemployee(
@@ -477,9 +479,9 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       ],
                     ),
                     Wrap(
-                      spacing: 20.0,
+                      spacing: 10.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       alignment: WrapAlignment.center,
                       children: [
@@ -503,9 +505,9 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       ],
                     ),
                     Wrap(
-                      spacing: 20.0,
+                      spacing: 10.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
@@ -523,9 +525,9 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       ],
                     ),
                     Wrap(
-                      spacing: 20.0,
+                      spacing: 10.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
@@ -553,9 +555,9 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       ],
                     ),
                     Wrap(
-                      spacing: 20.0,
+                      spacing: 10.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
@@ -573,9 +575,9 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       ],
                     ),
                     Wrap(
-                      spacing: 20.0,
+                      spacing: 10.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       children: [
                         Textfildwithupper(
@@ -593,9 +595,9 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       ],
                     ),
                     Wrap(
-                      spacing: 20.0,
+                      spacing: 10.0,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      runSpacing: 20.0,
+                      runSpacing: 2.0,
                       runAlignment: WrapAlignment.center,
                       alignment: WrapAlignment.center,
                       children: [

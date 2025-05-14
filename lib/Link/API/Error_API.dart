@@ -10,6 +10,11 @@ class ErrorHandler {
       _clearSessionAndRedirect();
       return;
     }
+    if (error.response?.statusCode == 450) {
+      ErrorMessage("لا يمكن تكرار نفس الاسم");
+
+      return;
+    }
 
     String message = _getErrorMessage(error);
     _showErrorSnackbar(message);

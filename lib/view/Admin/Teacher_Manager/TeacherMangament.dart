@@ -412,70 +412,71 @@ class _TeacherManagementState extends State<TeacherManagement> {
                     ],
                   );
                 }),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  spacing: 8.0,
-                  children: [
-                    Squer_Button_Enabled_Disabled(
-                      onTap: () {
-                        Add_Dialog();
-                      },
-                      icon: Icons.add,
-                      validate:
-                          Get.find<Add_Data_controller>().roll == "subAdmin",
-                    ),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.black12,
-                                offset: Offset(0, 2),
-                                blurRadius: 1)
-                          ]),
-                      child: IconButton(
-                          style: ButtonStyle(
-                              backgroundColor: WidgetStatePropertyAll(
-                                  Theme.of(context).cardColor),
-                              shape: WidgetStatePropertyAll(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(5))))),
-                          onPressed: () {},
-                          icon: Icon(VMS_Icons.pdf,
-                              size: 18,
-                              color: Theme.of(context).highlightColor)),
-                    ),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.black12,
-                                offset: Offset(0, 2),
-                                blurRadius: 1)
-                          ]),
-                      child: IconButton(
-                          style: ButtonStyle(
-                              backgroundColor: WidgetStatePropertyAll(
-                                  Theme.of(context).cardColor),
-                              shape: WidgetStatePropertyAll(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(5))))),
-                          onPressed: () {},
-                          icon: Icon(VMS_Icons.xl,
-                              size: 18,
-                              color: Theme.of(context).highlightColor)),
-                    ),
-                  ],
-                )
+                if (Get.find<Add_Data_controller>().roll != "observer")
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    spacing: 8.0,
+                    children: [
+                      Squer_Button_Enabled_Disabled(
+                        onTap: () {
+                          Add_Dialog();
+                        },
+                        icon: Icons.add,
+                        validate:
+                            Get.find<Add_Data_controller>().roll == "subAdmin",
+                      ),
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                backgroundColor: WidgetStatePropertyAll(
+                                    Theme.of(context).cardColor),
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {},
+                            icon: Icon(VMS_Icons.pdf,
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
+                      ),
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                backgroundColor: WidgetStatePropertyAll(
+                                    Theme.of(context).cardColor),
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {},
+                            icon: Icon(VMS_Icons.xl,
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
+                      ),
+                    ],
+                  )
               ],
             ),
           ),
@@ -521,70 +522,71 @@ class _TeacherManagementState extends State<TeacherManagement> {
                       suffixIcon:
                           search.text.isNotEmpty ? Icons.close : Icons.search,
                     ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      spacing: 8.0,
-                      children: [
-                        Squer_Button_Enabled_Disabled(
-                          onTap: () {
-                            Add_Dialog();
-                          },
-                          icon: Icons.add,
-                          validate: Get.find<Add_Data_controller>().roll ==
-                              "subAdmin",
-                        ),
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: Theme.of(context).cardColor,
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    offset: Offset(0, 2),
-                                    blurRadius: 1)
-                              ]),
-                          child: IconButton(
-                              style: ButtonStyle(
-                                  backgroundColor: WidgetStatePropertyAll(
-                                      Theme.of(context).cardColor),
-                                  shape: WidgetStatePropertyAll(
-                                      RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))))),
-                              onPressed: () {},
-                              icon: Icon(VMS_Icons.pdf,
-                                  size: 18,
-                                  color: Theme.of(context).highlightColor)),
-                        ),
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: Theme.of(context).cardColor,
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    offset: Offset(0, 2),
-                                    blurRadius: 1)
-                              ]),
-                          child: IconButton(
-                              style: ButtonStyle(
-                                  backgroundColor: WidgetStatePropertyAll(
-                                      Theme.of(context).cardColor),
-                                  shape: WidgetStatePropertyAll(
-                                      RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))))),
-                              onPressed: () {},
-                              icon: Icon(VMS_Icons.xl,
-                                  size: 18,
-                                  color: Theme.of(context).highlightColor)),
-                        ),
-                      ],
-                    )
+                    if (Get.find<Add_Data_controller>().roll != "observer")
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        spacing: 8.0,
+                        children: [
+                          Squer_Button_Enabled_Disabled(
+                            onTap: () {
+                              Add_Dialog();
+                            },
+                            icon: Icons.add,
+                            validate: Get.find<Add_Data_controller>().roll ==
+                                "subAdmin",
+                          ),
+                          Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                color: Theme.of(context).cardColor,
+                                borderRadius: BorderRadius.circular(5),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black12,
+                                      offset: Offset(0, 2),
+                                      blurRadius: 1)
+                                ]),
+                            child: IconButton(
+                                style: ButtonStyle(
+                                    backgroundColor: WidgetStatePropertyAll(
+                                        Theme.of(context).cardColor),
+                                    shape: WidgetStatePropertyAll(
+                                        RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5))))),
+                                onPressed: () {},
+                                icon: Icon(VMS_Icons.pdf,
+                                    size: 18,
+                                    color: Theme.of(context).highlightColor)),
+                          ),
+                          Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                color: Theme.of(context).cardColor,
+                                borderRadius: BorderRadius.circular(5),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black12,
+                                      offset: Offset(0, 2),
+                                      blurRadius: 1)
+                                ]),
+                            child: IconButton(
+                                style: ButtonStyle(
+                                    backgroundColor: WidgetStatePropertyAll(
+                                        Theme.of(context).cardColor),
+                                    shape: WidgetStatePropertyAll(
+                                        RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5))))),
+                                onPressed: () {},
+                                icon: Icon(VMS_Icons.xl,
+                                    size: 18,
+                                    color: Theme.of(context).highlightColor)),
+                          ),
+                        ],
+                      )
                   ],
                 );
               }),

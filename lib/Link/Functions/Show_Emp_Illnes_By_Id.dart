@@ -48,25 +48,25 @@ class _Show_Teacher_Illnes_By_IdState extends State<Show_Teacher_Illnes_By_Id> {
     return LayoutBuilder(
       builder: (context, constraints) {
         final dialogWidth = constraints.maxWidth * 0.5; // 80% من عرض الشاشة
-        final contentWidth = dialogWidth - 50;
         return VMSAlertDialog(
             action: [
-              ButtonDialog(
-                  text: "Done".tr,
-                  onPressed: () {
-                    if (Get.find<Add_Data_controller>().roll != "subAdmin") {
-                      Get.find<Illness_Controller>().SetFinalList();
-                      Update_Employee_Illness_API(context)
-                          .Update_Employee_Illness(
-                        id: widget.id,
-                        illness: Get.find<Illness_Controller>().finalList,
-                      );
-                    }
-                  },
-                  color: Get.find<Add_Data_controller>().roll == "subAdmin"
-                      ? Get.theme.disabledColor
-                      : Get.theme.primaryColor,
-                  width: 65)
+              if (Get.find<Add_Data_controller>().roll != "observer")
+                ButtonDialog(
+                    text: "Done".tr,
+                    onPressed: () {
+                      if (Get.find<Add_Data_controller>().roll != "subAdmin") {
+                        Get.find<Illness_Controller>().SetFinalList();
+                        Update_Employee_Illness_API(context)
+                            .Update_Employee_Illness(
+                          id: widget.id,
+                          illness: Get.find<Illness_Controller>().finalList,
+                        );
+                      }
+                    },
+                    color: Get.find<Add_Data_controller>().roll == "subAdmin"
+                        ? Get.theme.disabledColor
+                        : Get.theme.primaryColor,
+                    width: 65)
             ],
             contents: Padding(
               padding: const EdgeInsets.only(top: 25.0, bottom: 25.0),
@@ -105,20 +105,21 @@ class _Show_Teacher_Illnes_By_IdState extends State<Show_Teacher_Illnes_By_Id> {
                           ),
                         ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                        child: Row(
-                          children: [
-                            Checkbox(
-                              value: control.isSelectedOnly,
-                              onChanged: (value) {
-                                control.SetisSelectedOnly(value!);
-                              },
-                            ),
-                            Text('Show only selected items'.tr),
-                          ],
+                      if (Get.find<Add_Data_controller>().roll != "observer")
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                          child: Row(
+                            children: [
+                              Checkbox(
+                                value: control.isSelectedOnly,
+                                onChanged: (value) {
+                                  control.SetisSelectedOnly(value!);
+                                },
+                              ),
+                              Text('Show only selected items'.tr),
+                            ],
+                          ),
                         ),
-                      ),
                       Expanded(
                         child: GridView.builder(
                           padding: const EdgeInsets.only(
@@ -154,8 +155,11 @@ class _Show_Teacher_Illnes_By_IdState extends State<Show_Teacher_Illnes_By_Id> {
                               child: GestureDetector(
                                 onTap: () {
                                   if (Get.find<Add_Data_controller>().roll !=
-                                      "subAdmin") {
-                                    control.toggleSelection(illness);
+                                      "observer") {
+                                    if (Get.find<Add_Data_controller>().roll !=
+                                        "subAdmin") {
+                                      control.toggleSelection(illness);
+                                    }
                                   }
                                 },
                                 child: Container(
@@ -206,11 +210,70 @@ class _Show_Teacher_Illnes_By_IdState extends State<Show_Teacher_Illnes_By_Id> {
                                         children: [
                                           if (Get.find<Add_Data_controller>()
                                                   .roll !=
-                                              "subAdmin")
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 5.0, right: 5.0),
-                                              child: Container(
+                                              "observer")
+                                            if (Get.find<Add_Data_controller>()
+                                                    .roll !=
+                                                "subAdmin")
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 5.0, right: 5.0),
+                                                child: Container(
+                                                  width:
+                                                      constraints.maxWidth > 600
+                                                          ? 35
+                                                          : 25,
+                                                  height:
+                                                      constraints.maxWidth > 600
+                                                          ? 35
+                                                          : 25,
+                                                  decoration: BoxDecoration(
+                                                      color: hasNewFile ==
+                                                                  true ||
+                                                              hasOldFile == true
+                                                          ? Colors.white
+                                                          : Get.theme
+                                                              .disabledColor,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      boxShadow: const [
+                                                        BoxShadow(
+                                                            color:
+                                                                Colors.black12,
+                                                            offset:
+                                                                Offset(0, 2),
+                                                            blurRadius: 1)
+                                                      ]),
+                                                  child: IconButton(
+                                                      onPressed: hasNewFile ==
+                                                                  true ||
+                                                              hasOldFile == true
+                                                          ? () {
+                                                              control.clearFile(
+                                                                  illness);
+                                                            }
+                                                          : () {},
+                                                      icon: Icon(
+                                                          Icons
+                                                              .delete_outline_outlined,
+                                                          size:
+                                                              w > 600 ? 20 : 10,
+                                                          color: hasNewFile ==
+                                                                      true ||
+                                                                  hasOldFile ==
+                                                                      true
+                                                              ? Get.theme
+                                                                  .primaryColor
+                                                              : Colors.white)),
+                                                ),
+                                              ),
+                                          if (Get.find<Add_Data_controller>()
+                                                  .roll !=
+                                              "observer")
+                                            if (Get.find<Add_Data_controller>()
+                                                    .roll !=
+                                                "subAdmin")
+                                              Container(
                                                 width:
                                                     constraints.maxWidth > 600
                                                         ? 35
@@ -220,79 +283,32 @@ class _Show_Teacher_Illnes_By_IdState extends State<Show_Teacher_Illnes_By_Id> {
                                                         ? 35
                                                         : 25,
                                                 decoration: BoxDecoration(
-                                                    color: hasNewFile == true ||
-                                                            hasOldFile == true
-                                                        ? Colors.white
-                                                        : Get.theme
-                                                            .disabledColor,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                    boxShadow: const [
-                                                      BoxShadow(
-                                                          color: Colors.black12,
-                                                          offset: Offset(0, 2),
-                                                          blurRadius: 1)
-                                                    ]),
-                                                child: IconButton(
-                                                    onPressed: hasNewFile ==
-                                                                true ||
-                                                            hasOldFile == true
-                                                        ? () {
-                                                            control.clearFile(
-                                                                illness);
-                                                          }
-                                                        : () {},
-                                                    icon: Icon(
-                                                        Icons
-                                                            .delete_outline_outlined,
-                                                        size: w > 600 ? 20 : 10,
-                                                        color: hasNewFile ==
-                                                                    true ||
-                                                                hasOldFile ==
-                                                                    true
-                                                            ? Get.theme
-                                                                .primaryColor
-                                                            : Colors.white)),
-                                              ),
-                                            ),
-                                          if (Get.find<Add_Data_controller>()
-                                                  .roll !=
-                                              "subAdmin")
-                                            Container(
-                                              width: constraints.maxWidth > 600
-                                                  ? 35
-                                                  : 25,
-                                              height: constraints.maxWidth > 600
-                                                  ? 35
-                                                  : 25,
-                                              decoration: BoxDecoration(
-                                                color: isSelected
-                                                    ? Colors.white
-                                                    : Get.theme.primaryColor,
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                                boxShadow: const [
-                                                  BoxShadow(
-                                                    color: Colors.black12,
-                                                    offset: Offset(0, 2),
-                                                    blurRadius: 1,
-                                                  )
-                                                ],
-                                              ),
-                                              child: IconButton(
-                                                onPressed: () {
-                                                  control.attachFile(illness);
-                                                },
-                                                icon: Icon(
-                                                  Icons.file_upload_outlined,
-                                                  size: w > 600 ? 20 : 10,
                                                   color: isSelected
-                                                      ? Get.theme.primaryColor
-                                                      : Colors.white,
+                                                      ? Colors.white
+                                                      : Get.theme.primaryColor,
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  boxShadow: const [
+                                                    BoxShadow(
+                                                      color: Colors.black12,
+                                                      offset: Offset(0, 2),
+                                                      blurRadius: 1,
+                                                    )
+                                                  ],
+                                                ),
+                                                child: IconButton(
+                                                  onPressed: () {
+                                                    control.attachFile(illness);
+                                                  },
+                                                  icon: Icon(
+                                                    Icons.file_upload_outlined,
+                                                    size: w > 600 ? 20 : 10,
+                                                    color: isSelected
+                                                        ? Get.theme.primaryColor
+                                                        : Colors.white,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
                                           Padding(
                                               padding: const EdgeInsets.only(
                                                   left: 5.0, right: 5.0),

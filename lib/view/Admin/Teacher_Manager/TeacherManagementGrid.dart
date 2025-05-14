@@ -151,11 +151,13 @@ class TeacherManagementGrid extends StatelessWidget {
                                     radius: 5,
                                   ),
                                 ),
-                                SchemaWidget(
-                                  width: 35,
-                                  height: 35,
-                                  radius: 5,
-                                ),
+                                if (Get.find<Add_Data_controller>().roll !=
+                                    "observer")
+                                  SchemaWidget(
+                                    width: 35,
+                                    height: 35,
+                                    radius: 5,
+                                  ),
                               ],
                             )
                           ],
@@ -414,78 +416,81 @@ class TeacherManagementGrid extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  IconButton(
-                                      style: ButtonStyle(
-                                          maximumSize: WidgetStateProperty.all(
-                                              const Size(35, 35)),
-                                          minimumSize: WidgetStateProperty.all(
-                                              const Size(35, 35)),
-                                          backgroundColor:
-                                              Get.find<Add_Data_controller>().roll ==
-                                                      "subAdmin"
-                                                  ? WidgetStatePropertyAll(
-                                                      Get.theme.disabledColor)
-                                                  : WidgetStatePropertyAll(
-                                                      Color(0xffB03D3D)),
-                                          shape: WidgetStatePropertyAll(
-                                              RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.all(
-                                                      Radius.circular(5))))),
-                                      onPressed: () {
-                                        if (Get.find<Add_Data_controller>()
-                                                .roll !=
-                                            "subAdmin") {
-                                          Get.dialog(VMSAlertDialog(
-                                            action: [
-                                              ButtonDialog(
-                                                  text: "Delete".tr,
-                                                  onPressed: () async {
-                                                    await Deleteteacherapi(
-                                                            context)
-                                                        .Deleteteacher(control
-                                                            .filteredTeacher![
-                                                                index]
-                                                            .id!);
-                                                  },
-                                                  color: Color(0xffB03D3D),
-                                                  width: 80),
-                                              ButtonDialog(
-                                                  text: "Cancel".tr,
-                                                  onPressed: () {
-                                                    Get.back();
-                                                  },
-                                                  color: Theme.of(context)
-                                                      .primaryColor,
-                                                  width: 80)
-                                            ],
-                                            contents: SizedBox(
-                                                width: 500,
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      "Do You Want To Deletet"
-                                                              .tr +
-                                                          "( ${control.filteredTeacher![index].fullName} )" +
-                                                          "Teacherr".tr,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .bodyMedium!
-                                                          .copyWith(
-                                                              fontSize: 16,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal),
-                                                    ),
-                                                  ],
-                                                )),
-                                            apptitle: "Delete Teacher".tr,
-                                            subtitle: "none",
-                                          ));
-                                        }
-                                      },
-                                      icon: const Icon(VMS_Icons.bin, size: 16, color: Colors.white)),
+                                  if (Get.find<Add_Data_controller>().roll !=
+                                      "observer")
+                                    IconButton(
+                                        style: ButtonStyle(
+                                            maximumSize: WidgetStateProperty.all(
+                                                const Size(35, 35)),
+                                            minimumSize: WidgetStateProperty.all(
+                                                const Size(35, 35)),
+                                            backgroundColor:
+                                                Get.find<Add_Data_controller>()
+                                                            .roll ==
+                                                        "subAdmin"
+                                                    ? WidgetStatePropertyAll(
+                                                        Get.theme.disabledColor)
+                                                    : WidgetStatePropertyAll(
+                                                        Color(0xffB03D3D)),
+                                            shape: WidgetStatePropertyAll(
+                                                RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.all(Radius.circular(5))))),
+                                        onPressed: () {
+                                          if (Get.find<Add_Data_controller>()
+                                                  .roll !=
+                                              "subAdmin") {
+                                            Get.dialog(VMSAlertDialog(
+                                              action: [
+                                                ButtonDialog(
+                                                    text: "Delete".tr,
+                                                    onPressed: () async {
+                                                      await Deleteteacherapi(
+                                                              context)
+                                                          .Deleteteacher(control
+                                                              .filteredTeacher![
+                                                                  index]
+                                                              .id!);
+                                                    },
+                                                    color: Color(0xffB03D3D),
+                                                    width: 80),
+                                                ButtonDialog(
+                                                    text: "Cancel".tr,
+                                                    onPressed: () {
+                                                      Get.back();
+                                                    },
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    width: 80)
+                                              ],
+                                              contents: SizedBox(
+                                                  width: 500,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                        "Do You Want To Deletet"
+                                                                .tr +
+                                                            "( ${control.filteredTeacher![index].fullName} )" +
+                                                            "Teacherr".tr,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .copyWith(
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal),
+                                                      ),
+                                                    ],
+                                                  )),
+                                              apptitle: "Delete Teacher".tr,
+                                              subtitle: "none",
+                                            ));
+                                          }
+                                        },
+                                        icon: const Icon(VMS_Icons.bin, size: 16, color: Colors.white)),
                                   Padding(
                                     padding: const EdgeInsets.only(
                                         top: 10.0, bottom: 10.0),
