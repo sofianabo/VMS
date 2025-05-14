@@ -7,6 +7,7 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/AddLessonAPI.d
 import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/DeleteStudyShareAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/EditStudyShareAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetAllTeachersAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/SchoolTimeModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
@@ -155,7 +156,7 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                   spacing: 8.0,
                   runSpacing: 8.0,
                   children: [
-                    DropDownSchoolTime( 
+                    DropDownSchoolTime(
                       type: "time",
                       title: "Time".tr,
                       width: 220,
@@ -178,62 +179,63 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                   ],
                 ),
                 Spacer(),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  spacing: 8.0,
-                  children: [
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black12,
-                                offset: Offset(0, 2),
-                                blurRadius: 1)
-                          ]),
-                      child: IconButton(
-                          style: ButtonStyle(
-                              backgroundColor: WidgetStatePropertyAll(
-                                  Theme.of(context).cardColor),
-                              shape: WidgetStatePropertyAll(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(5))))),
-                          onPressed: () {},
-                          icon: Icon(VMS_Icons.pdf,
-                              size: 18,
-                              color: Theme.of(context).highlightColor)),
-                    ),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black12,
-                                offset: Offset(0, 2),
-                                blurRadius: 1)
-                          ]),
-                      child: IconButton(
-                          style: ButtonStyle(
-                              backgroundColor: WidgetStatePropertyAll(
-                                  Theme.of(context).cardColor),
-                              shape: WidgetStatePropertyAll(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(5))))),
-                          onPressed: () {},
-                          icon: Icon(VMS_Icons.xl,
-                              size: 18,
-                              color: Theme.of(context).highlightColor)),
-                    ),
-                  ],
-                )
+                if (Get.find<Add_Data_controller>().roll != "observer")
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    spacing: 8.0,
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                backgroundColor: WidgetStatePropertyAll(
+                                    Theme.of(context).cardColor),
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {},
+                            icon: Icon(VMS_Icons.pdf,
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
+                      ),
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                backgroundColor: WidgetStatePropertyAll(
+                                    Theme.of(context).cardColor),
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {},
+                            icon: Icon(VMS_Icons.xl,
+                                size: 18,
+                                color: Theme.of(context).highlightColor)),
+                      ),
+                    ],
+                  )
               ],
             );
           }),
@@ -334,190 +336,178 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                     entry.key != 'Day')
                                                 .map((entry) => GestureDetector(
                                                       onTap: () async {
-                                                        if (m!.studyShare!
-                                                                .isEmpty &&
+                                                        if (Get.find<
+                                                                    Add_Data_controller>()
+                                                                .roll !=
+                                                            "observer") {
+                                                          if (m!.studyShare!
+                                                                  .isEmpty &&
+                                                              controller
+                                                                  .examDivision
+                                                                  .isEmpty) {
+                                                          } else {
+                                                            if (entry.value
+                                                                .contains(
+                                                                    "No Lesson")) {
+                                                              controller
+                                                                  .subjectDialogIndex = "";
+                                                              controller
+                                                                  .teacherDialogIndex = "";
+                                                            }
+
                                                             controller
-                                                                .examDivision
-                                                                .isEmpty) {
-                                                        } else {
-                                                          if (entry.value
-                                                              .contains(
-                                                                  "No Lesson")) {
+                                                                .updateFieldError(
+                                                                    "teach",
+                                                                    false);
                                                             controller
-                                                                .subjectDialogIndex = "";
-                                                            controller
-                                                                .teacherDialogIndex = "";
-                                                          }
+                                                                .updateFieldError(
+                                                                    "sub",
+                                                                    false);
 
-                                                          controller
-                                                              .updateFieldError(
-                                                                  "teach",
-                                                                  false);
-                                                          controller
-                                                              .updateFieldError(
-                                                                  "sub", false);
+                                                            Get.dialog(
+                                                                barrierDismissible:
+                                                                    false,
+                                                                VMSAlertDialog(
+                                                                    action: [
+                                                                      entry.value
+                                                                              .contains("No Lesson")
+                                                                          ? ButtonDialog(
+                                                                              text: "Add".tr,
+                                                                              onPressed: () async {
+                                                                                bool IsteachError = controller.teacherDialogIndex.isEmpty || controller.teacherDialogIndex == "";
+                                                                                bool IssubError = controller.subjectDialogIndex.isEmpty || controller.subjectDialogIndex == "";
 
-                                                          Get.dialog(
-                                                              barrierDismissible:
-                                                                  false,
-                                                              VMSAlertDialog(
-                                                                  action: [
-                                                                    entry.value.contains(
-                                                                            "No Lesson")
-                                                                        ? ButtonDialog(
-                                                                            text: "Add"
-                                                                                .tr,
-                                                                            onPressed:
-                                                                                () async {
-                                                                              bool IsteachError = controller.teacherDialogIndex.isEmpty || controller.teacherDialogIndex == "";
-                                                                              bool IssubError = controller.subjectDialogIndex.isEmpty || controller.subjectDialogIndex == "";
+                                                                                controller.updateFieldError("teach", IsteachError);
+                                                                                controller.updateFieldError("sub", IssubError);
 
-                                                                              controller.updateFieldError("teach", IsteachError);
-                                                                              controller.updateFieldError("sub", IssubError);
+                                                                                final entryIndex = row.entries
+                                                                                    .toList() // تحويل الكائنات إلى قائمة
+                                                                                    .indexWhere((e) => e.value == entry.value); // البحث عن الفهرس
+                                                                                if (!(IsteachError || IssubError)) {
+                                                                                  await Addlessonapi(context).Addlesson(controller.subjectDialogList.indexOf(controller.selectedSubjectDialog), controller.examDivision.indexOf(controller.selectedExamDivision), controller.timeLessonIndex, controller.teacherDialogList.indexOf(controller.selectedTeacherDialog), entryIndex, row['Day'].toString());
+                                                                                }
+                                                                              },
+                                                                              color: Get.theme.primaryColor,
+                                                                              width: 120)
+                                                                          : ButtonDialog(
+                                                                              text: "Edit".tr,
+                                                                              onPressed: () async {
+                                                                                // احصل على مفتاح العمود مباشرة
+                                                                                final columnKey = entry.key; // مثل 'First\n Lesson'
 
-                                                                              final entryIndex = row.entries
-                                                                                  .toList() // تحويل الكائنات إلى قائمة
-                                                                                  .indexWhere((e) => e.value == entry.value); // البحث عن الفهرس
-                                                                              if (!(IsteachError || IssubError)) {
-                                                                                await Addlessonapi(context).Addlesson(controller.subjectDialogList.indexOf(controller.selectedSubjectDialog), controller.examDivision.indexOf(controller.selectedExamDivision), controller.timeLessonIndex, controller.teacherDialogList.indexOf(controller.selectedTeacherDialog), entryIndex, row['Day'].toString());
-                                                                              }
-                                                                            },
-                                                                            color:
-                                                                                Get.theme.primaryColor,
-                                                                            width: 120)
-                                                                        : ButtonDialog(
-                                                                            text:
-                                                                                "Edit".tr,
-                                                                            onPressed:
-                                                                                () async {
-                                                                              // احصل على مفتاح العمود مباشرة
-                                                                              final columnKey = entry.key; // مثل 'First\n Lesson'
+                                                                                // احصل على يوم الصف
+                                                                                final day = row['Day'].toString();
 
-                                                                              // احصل على يوم الصف
-                                                                              final day = row['Day'].toString();
+                                                                                // استخدم lessions للعثور على رقم الدرس المقابل للعمود
+                                                                                final lessonNumber = lessions.entries.firstWhere((e) => e.value == columnKey, orElse: () => throw "Column not found").key;
 
-                                                                              // استخدم lessions للعثور على رقم الدرس المقابل للعمود
-                                                                              final lessonNumber = lessions.entries.firstWhere((e) => e.value == columnKey, orElse: () => throw "Column not found").key;
+                                                                                // أنشئ الـ Pair باستخدام يوم ورقم الدرس
+                                                                                Pair<int, int> key = Pair(days[day]!, lessonNumber);
 
-                                                                              // أنشئ الـ Pair باستخدام يوم ورقم الدرس
-                                                                              Pair<int, int> key = Pair(days[day]!, lessonNumber);
+                                                                                // احصل على الـ ID الفريد من الـ indexes
+                                                                                int selectedId = indexes[key]!;
 
-                                                                              // احصل على الـ ID الفريد من الـ indexes
-                                                                              int selectedId = indexes[key]!;
+                                                                                bool IsteachError = controller.teacherDialogIndex.isEmpty || controller.teacherDialogIndex == "";
+                                                                                bool IssubError = controller.subjectDialogIndex.isEmpty || controller.subjectDialogIndex == "";
 
-                                                                              bool IsteachError = controller.teacherDialogIndex.isEmpty || controller.teacherDialogIndex == "";
-                                                                              bool IssubError = controller.subjectDialogIndex.isEmpty || controller.subjectDialogIndex == "";
+                                                                                controller.updateFieldError("teach", IsteachError);
+                                                                                controller.updateFieldError("sub", IssubError);
 
-                                                                              controller.updateFieldError("teach", IsteachError);
-                                                                              controller.updateFieldError("sub", IssubError);
+                                                                                if (!(IsteachError || IssubError)) {
+                                                                                  await Editstudyshareapi(context).EditLesson(
+                                                                                    controller.subjectDialogList.indexOf(controller.selectedSubjectDialog),
+                                                                                    controller.teacherDialogList.indexOf(controller.selectedTeacherDialog),
+                                                                                    selectedId,
+                                                                                  );
+                                                                                  Get.back();
+                                                                                }
+                                                                              },
+                                                                              color: Get.theme.primaryColor,
+                                                                              width: 120,
+                                                                            ),
+                                                                      entry.value
+                                                                              .contains("No Lesson")
+                                                                          ? Container()
+                                                                          : ButtonDialog(
+                                                                              text: "Delete".tr,
+                                                                              onPressed: () async {
+                                                                                // احصل على الفهرس الصحيح للعمود مباشرة من المفتاح
+                                                                                final columnKey = entry.key; // هذا هو مفتاح العمود (مثل 'First\n Lesson')
 
-                                                                              if (!(IsteachError || IssubError)) {
-                                                                                await Editstudyshareapi(context).EditLesson(
-                                                                                  controller.subjectDialogList.indexOf(controller.selectedSubjectDialog),
-                                                                                  controller.teacherDialogList.indexOf(controller.selectedTeacherDialog),
-                                                                                  selectedId,
-                                                                                );
+                                                                                // احصل على يوم الصف
+                                                                                final day = row['Day'].toString();
+
+                                                                                // استخدم Pair مع يوم ورقم العمود (بدلاً من البحث بالقيمة)
+                                                                                final lessonNumber = lessions.entries.firstWhere((e) => e.value == columnKey, orElse: () => throw "Column not found").key;
+
+                                                                                Pair<int, int> key = Pair(days[day]!, lessonNumber);
+
+                                                                                int selectedId = indexes[key]!;
+                                                                                await Deletestudyshareapi(context).Deletestudyshare(selectedId);
                                                                                 Get.back();
+                                                                              },
+                                                                              color: Color(0xffB03D3D),
+                                                                              width: 120),
+                                                                    ],
+                                                                    contents:
+                                                                        Container(
+                                                                      width:
+                                                                          Get.width /
+                                                                              3,
+                                                                      child: GetBuilder<
+                                                                              AdminSchoolTimeController>(
+                                                                          id:
+                                                                              'dialog_data',
+                                                                          builder:
+                                                                              (SchoolController) {
+                                                                            // تخزين العنصر الختار ضمن مصفوفة و فصل عناصؤه
+                                                                            List<String>
+                                                                                s =
+                                                                                entry.value.split(' \n');
+                                                                            // التحقق من أن المصفوفة تحتوي على القيم الأساسية
+                                                                            if (s.length >=
+                                                                                2) {
+                                                                              //تخزين كل عنصر على حدا في متحول خاص به
+                                                                              int subjectIndex = SchoolController.subjectDialogList.indexOf(s[0]);
+
+                                                                              int teacherIndex = SchoolController.teacherDialogList.indexOf(s[1]);
+                                                                              String teach = SchoolController.allteacherDialogList!.elementAt(teacherIndex).fullName.toString();
+                                                                              String sub = prefs!.getString(languageKey) == 'ar' ? SchoolController.allsubjectDialogList!.elementAt(subjectIndex).name.toString() : SchoolController.allsubjectDialogList!.elementAt(subjectIndex).enName.toString();
+                                                                              // التحقق من أن العناصر موجودة في المصفوفات الخاصة بها
+                                                                              if (subjectIndex >= 0 && teacherIndex >= 0) {
+                                                                                SchoolController.set_Edite_Data(teach, sub);
                                                                               }
-                                                                            },
-                                                                            color:
-                                                                                Get.theme.primaryColor,
-                                                                            width:
-                                                                                120,
-                                                                          ),
-                                                                    entry.value.contains(
-                                                                            "No Lesson")
-                                                                        ? Container()
-                                                                        : ButtonDialog(
-                                                                            text: "Delete"
-                                                                                .tr,
-                                                                            onPressed:
-                                                                                () async {
-                                                                              // احصل على الفهرس الصحيح للعمود مباشرة من المفتاح
-                                                                              final columnKey = entry.key; // هذا هو مفتاح العمود (مثل 'First\n Lesson')
-
-                                                                              // احصل على يوم الصف
-                                                                              final day = row['Day'].toString();
-
-                                                                              // استخدم Pair مع يوم ورقم العمود (بدلاً من البحث بالقيمة)
-                                                                              final lessonNumber = lessions.entries.firstWhere((e) => e.value == columnKey, orElse: () => throw "Column not found").key;
-
-                                                                              Pair<int, int> key = Pair(days[day]!, lessonNumber);
-
-                                                                              int selectedId = indexes[key]!;
-                                                                              await Deletestudyshareapi(context).Deletestudyshare(selectedId);
-                                                                              Get.back();
-                                                                            },
-                                                                            color:
-                                                                                Color(0xffB03D3D),
-                                                                            width: 120),
-                                                                  ],
-                                                                  contents:
-                                                                      Container(
-                                                                    width:
-                                                                        Get.width /
-                                                                            3,
-                                                                    child: GetBuilder<
-                                                                            AdminSchoolTimeController>(
-                                                                        id:
-                                                                            'dialog_data',
-                                                                        builder:
-                                                                            (SchoolController) {
-                                                                          // تخزين العنصر الختار ضمن مصفوفة و فصل عناصؤه
-                                                                          List<String>
-                                                                              s =
-                                                                              entry.value.split(' \n');
-                                                                          // التحقق من أن المصفوفة تحتوي على القيم الأساسية
-                                                                          if (s.length >=
-                                                                              2) {
-                                                                            //تخزين كل عنصر على حدا في متحول خاص به
-                                                                            int subjectIndex =
-                                                                                SchoolController.subjectDialogList.indexOf(s[0]);
-
-                                                                            int teacherIndex =
-                                                                                SchoolController.teacherDialogList.indexOf(s[1]);
-                                                                            String
-                                                                                teach =
-                                                                                SchoolController.allteacherDialogList!.elementAt(teacherIndex).fullName.toString();
-                                                                            String sub = prefs!.getString(languageKey) == 'ar'
-                                                                                ? SchoolController.allsubjectDialogList!.elementAt(subjectIndex).name.toString()
-                                                                                : SchoolController.allsubjectDialogList!.elementAt(subjectIndex).enName.toString();
-                                                                            // التحقق من أن العناصر موجودة في المصفوفات الخاصة بها
-                                                                            if (subjectIndex >= 0 &&
-                                                                                teacherIndex >= 0) {
-                                                                              SchoolController.set_Edite_Data(teach, sub);
                                                                             }
-                                                                          }
-                                                                          return Column(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.min,
-                                                                            children: [
-                                                                              Padding(
-                                                                                padding: const EdgeInsets.only(top: 15.0),
-                                                                                child: Wrap(
-                                                                                  spacing: 8.0,
-                                                                                  runSpacing: 8.0,
-                                                                                  children: [
-                                                                                    DropDownSchoolTime(isError: controller.ISsubError, isLoading: SchoolController.isLoadingCurr, title: "Curriculum".tr, width: 220, type: "subjectDialog"),
-                                                                                    DropDownSchoolTime(isError: controller.IteacherError, isLoading: SchoolController.isLoadingTeacher, title: "Teacher".tr, width: 220, type: "teacherDialog"),
-                                                                                  ],
+                                                                            return Column(
+                                                                              mainAxisSize: MainAxisSize.min,
+                                                                              children: [
+                                                                                Padding(
+                                                                                  padding: const EdgeInsets.only(top: 15.0),
+                                                                                  child: Wrap(
+                                                                                    spacing: 8.0,
+                                                                                    runSpacing: 8.0,
+                                                                                    children: [
+                                                                                      DropDownSchoolTime(isError: controller.ISsubError, isLoading: SchoolController.isLoadingCurr, title: "Curriculum".tr, width: 220, type: "subjectDialog"),
+                                                                                      DropDownSchoolTime(isError: controller.IteacherError, isLoading: SchoolController.isLoadingTeacher, title: "Teacher".tr, width: 220, type: "teacherDialog"),
+                                                                                    ],
+                                                                                  ),
                                                                                 ),
-                                                                              ),
-                                                                            ],
-                                                                          );
-                                                                        }),
-                                                                  ),
-                                                                  apptitle:
-                                                                      "Operation of Lessons"
-                                                                          .tr,
-                                                                  subtitle:
-                                                                      ""));
+                                                                              ],
+                                                                            );
+                                                                          }),
+                                                                    ),
+                                                                    apptitle:
+                                                                        "Operation of Lessons"
+                                                                            .tr,
+                                                                    subtitle:
+                                                                        ""));
+                                                          }
                                                         }
                                                       },
                                                       child: Container(
                                                           width: 160,
-                                                          alignment:
-                                                              Alignment.center,
+                                                          alignment: Alignment
+                                                              .center,
                                                           height: 70,
                                                           child: m!.studyShare!
                                                                       .isEmpty &&
@@ -528,13 +518,19 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                               : entry.value
                                                                       .contains(
                                                                           "No Lesson")!
-                                                                  ? Icon(
-                                                                      Icons
-                                                                          .add_circle_outline,
-                                                                      color: Get
-                                                                          .theme
-                                                                          .primaryColor,
-                                                                    )
+                                                                  ? (Get.find<Add_Data_controller>()
+                                                                              .roll !=
+                                                                          "observer")
+                                                                      ? Icon(
+                                                                          Icons
+                                                                              .add_circle_outline,
+                                                                          color: Get
+                                                                              .theme
+                                                                              .primaryColor,
+                                                                        )
+                                                                      : Text(
+                                                                          "No Lesson"
+                                                                              .tr)
                                                                   : Text(
                                                                       textAlign:
                                                                           TextAlign

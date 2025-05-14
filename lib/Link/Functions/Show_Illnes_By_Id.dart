@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/UpdateStudentsIllness.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
@@ -45,18 +46,19 @@ class _StudentsIllnessDialogState extends State<StudentsIllnessDialog> {
 
         return VMSAlertDialog(
           action: [
-            ButtonDialog(
-              text: "Done".tr,
-              onPressed: () {
-                control.SetFinalList();
-                Update_Students_Illness_API().Update_Students_Illness(
-                  id: widget.id,
-                  illness: control.finalList,
-                );
-              },
-              color: Get.theme.primaryColor,
-              width: 65,
-            )
+            if (Get.find<Add_Data_controller>().roll != "observer")
+              ButtonDialog(
+                text: "Done".tr,
+                onPressed: () {
+                  control.SetFinalList();
+                  Update_Students_Illness_API().Update_Students_Illness(
+                    id: widget.id,
+                    illness: control.finalList,
+                  );
+                },
+                color: Get.theme.primaryColor,
+                width: 65,
+              )
           ],
           contents: Padding(
             padding: const EdgeInsets.only(top: 25.0, bottom: 25.0),
@@ -89,20 +91,21 @@ class _StudentsIllnessDialogState extends State<StudentsIllnessDialog> {
                           ),
                         ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                        child: Row(
-                          children: [
-                            Checkbox(
-                              value: control.isSelectedOnly,
-                              onChanged: (value) {
-                                control.SetisSelectedOnly(value!);
-                              },
-                            ),
-                            Text('Show only selected items'.tr),
-                          ],
+                      if (Get.find<Add_Data_controller>().roll != "observer")
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                          child: Row(
+                            children: [
+                              Checkbox(
+                                value: control.isSelectedOnly,
+                                onChanged: (value) {
+                                  control.SetisSelectedOnly(value!);
+                                },
+                              ),
+                              Text('Show only selected items'.tr),
+                            ],
+                          ),
                         ),
-                      ),
                       Expanded(
                         child: GridView.builder(
                           padding: const EdgeInsets.only(
@@ -129,7 +132,12 @@ class _StudentsIllnessDialogState extends State<StudentsIllnessDialog> {
                                 entry['hasNewFile'] == true);
                             return HoverScaleCard(
                               child: GestureDetector(
-                                onTap: () => control.toggleSelection(illness),
+                                onTap: () {
+                                  if (Get.find<Add_Data_controller>().roll !=
+                                      "observer") {
+                                    control.toggleSelection(illness);
+                                  }
+                                },
                                 child: Container(
                                   padding: const EdgeInsets.all(20),
                                   decoration: BoxDecoration(
@@ -177,25 +185,33 @@ class _StudentsIllnessDialogState extends State<StudentsIllnessDialog> {
                                         spacing: 5.0,
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          _buildIconButton(
-                                            width: constraints.maxWidth,
-                                            icon: Icons.delete_outline_outlined,
-                                            isActive: hasNewFile || hasOldFile,
-                                            onPressed: (hasNewFile ||
-                                                    hasOldFile)
-                                                ? () =>
-                                                    control.clearFile(illness)
-                                                : null,
-                                            isSelected: isSelected,
-                                          ),
-                                          _buildIconButton(
-                                            width: constraints.maxWidth,
-                                            icon: Icons.file_upload_outlined,
-                                            isActive: true,
-                                            onPressed: () =>
-                                                control.attachFile(illness),
-                                            isSelected: isSelected,
-                                          ),
+                                          if (Get.find<Add_Data_controller>()
+                                                  .roll !=
+                                              "observer")
+                                            _buildIconButton(
+                                              width: constraints.maxWidth,
+                                              icon:
+                                                  Icons.delete_outline_outlined,
+                                              isActive:
+                                                  hasNewFile || hasOldFile,
+                                              onPressed: (hasNewFile ||
+                                                      hasOldFile)
+                                                  ? () =>
+                                                      control.clearFile(illness)
+                                                  : null,
+                                              isSelected: isSelected,
+                                            ),
+                                          if (Get.find<Add_Data_controller>()
+                                                  .roll !=
+                                              "observer")
+                                            _buildIconButton(
+                                              width: constraints.maxWidth,
+                                              icon: Icons.file_upload_outlined,
+                                              isActive: true,
+                                              onPressed: () =>
+                                                  control.attachFile(illness),
+                                              isSelected: isSelected,
+                                            ),
                                           _buildIconButton(
                                             width: constraints.maxWidth,
                                             icon: Icons.file_download_outlined,

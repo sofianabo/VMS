@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/UpdateStudentsVaccines.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Vaccines_Model.dart';
 import 'package:vms_school/main.dart';
@@ -44,12 +45,13 @@ class _StudentVaccinesDialogState extends State<StudentVaccinesDialog> {
 
         return VMSAlertDialog(
           action: [
-            ButtonDialog(
-              text: "Done".tr,
-              onPressed: _updateStudentVaccines,
-              color: Get.theme.primaryColor,
-              width: 65,
-            )
+            if (Get.find<Add_Data_controller>().roll != "observer")
+              ButtonDialog(
+                text: "Done".tr,
+                onPressed: _updateStudentVaccines,
+                color: Get.theme.primaryColor,
+                width: 65,
+              )
           ],
           contents: Padding(
             padding: const EdgeInsets.only(top: 25.0, bottom: 25.0),
@@ -62,7 +64,8 @@ class _StudentVaccinesDialogState extends State<StudentVaccinesDialog> {
                   return Column(
                     children: [
                       _buildSearchRow(controller, dialogWidth),
-                      _buildFilterCheckbox(controller),
+                      if (Get.find<Add_Data_controller>().roll != "observer")
+                        _buildFilterCheckbox(controller),
                       Expanded(
                         child: _buildVaccinesGrid(controller, filteredList),
                       ),
@@ -156,7 +159,11 @@ class _StudentVaccinesDialogState extends State<StudentVaccinesDialog> {
   ) {
     return HoverScaleCard(
       child: GestureDetector(
-        onTap: () => controller.toggleSelection(vaccine),
+        onTap: () {
+          if (Get.find<Add_Data_controller>().roll != "observer") {
+            controller.toggleSelection(vaccine);
+          }
+        },
         child: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
@@ -221,20 +228,22 @@ class _StudentVaccinesDialogState extends State<StudentVaccinesDialog> {
           spacing: 5.0,
           mainAxisSize: MainAxisSize.min,
           children: [
-            _buildFileActionButton(
-              width: maxWidth,
-              icon: Icons.delete_outline_outlined,
-              isActive: hasFile,
-              onPressed: hasFile ? () => controller.clearFile(vaccine) : null,
-              isSelected: isSelected,
-            ),
-            _buildFileActionButton(
-              width: maxWidth,
-              icon: Icons.file_upload_outlined,
-              isActive: true,
-              onPressed: () => controller.attachFile(vaccine),
-              isSelected: isSelected,
-            ),
+            if (Get.find<Add_Data_controller>().roll != "observer")
+              _buildFileActionButton(
+                width: maxWidth,
+                icon: Icons.delete_outline_outlined,
+                isActive: hasFile,
+                onPressed: hasFile ? () => controller.clearFile(vaccine) : null,
+                isSelected: isSelected,
+              ),
+            if (Get.find<Add_Data_controller>().roll != "observer")
+              _buildFileActionButton(
+                width: maxWidth,
+                icon: Icons.file_upload_outlined,
+                isActive: true,
+                onPressed: () => controller.attachFile(vaccine),
+                isSelected: isSelected,
+              ),
             _buildFileActionButton(
               width: maxWidth,
               icon: Icons.file_download_outlined,

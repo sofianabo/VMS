@@ -4,6 +4,7 @@ import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Rewards_APIs/Delete_Reward_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Delete_Student_Penality.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/PenaltiesAndRewardsController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
@@ -144,33 +145,34 @@ class _Re_Pe_PageState extends State<Re_Pe_Page>
                                                               size: 20,
                                                               color: Colors
                                                                   .white)),
-                                                      IconButton(
-                                                          style: ButtonStyle(
-                                                              backgroundColor:
-                                                                  WidgetStatePropertyAll(Get
-                                                                      .theme
-                                                                      .primaryColor),
-                                                              shape: WidgetStatePropertyAll(
-                                                                  RoundedRectangleBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius.all(Radius.circular(
-                                                                              5))))),
-                                                          onPressed: () async {
-                                                            await Delete_Reward_API()
-                                                                .Delete_Reward(
-                                                                    Rewards_ID: PAR_Controller
-                                                                        .Rewardsmodel!
-                                                                        .prizes![
-                                                                            index]
-                                                                        .id!,
-                                                                    ixd: index);
-                                                          },
-                                                          icon: Icon(
-                                                              Icons
-                                                                  .delete_outline_outlined,
-                                                              size: 20,
-                                                              color: Colors
-                                                                  .white)),
+                                                      if (Get.find<Add_Data_controller>()
+                                                              .roll !=
+                                                          "observer")
+                                                        IconButton(
+                                                            style: ButtonStyle(
+                                                                backgroundColor:
+                                                                    WidgetStatePropertyAll(Get
+                                                                        .theme
+                                                                        .primaryColor),
+                                                                shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.all(Radius.circular(
+                                                                            5))))),
+                                                            onPressed:
+                                                                () async {
+                                                              await Delete_Reward_API().Delete_Reward(
+                                                                  Rewards_ID: PAR_Controller
+                                                                      .Rewardsmodel!
+                                                                      .prizes![
+                                                                          index]
+                                                                      .id!,
+                                                                  ixd: index);
+                                                            },
+                                                            icon: Icon(
+                                                                Icons
+                                                                    .delete_outline_outlined,
+                                                                size: 20,
+                                                                color: Colors.white)),
                                                     ],
                                                   ),
                                                 ],
@@ -244,78 +246,77 @@ class _Re_Pe_PageState extends State<Re_Pe_Page>
                                                 children: [
                                                   Row(
                                                     children: [
-                                                      IconButton(
-                                                          style: ButtonStyle(
-                                                              backgroundColor:
-                                                                  WidgetStatePropertyAll(
-                                                                      Color(
-                                                                          0xffB03D3D)),
-                                                              shape: const WidgetStatePropertyAll(
-                                                                  RoundedRectangleBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius.all(Radius.circular(
-                                                                              5))))),
-                                                          onPressed: () {
-                                                            Get.dialog(
-                                                                VMSAlertDialog(
-                                                              action: [
-                                                                ButtonDialog(
-                                                                    text:
-                                                                        "Delete"
-                                                                            .tr,
-                                                                    onPressed:
-                                                                        () async {
-                                                                      await deleteStudentPenalty_API().deleteStudentPenalty_AP(
-                                                                          index:
-                                                                              index,
-                                                                          penaltyId: PAR_Controller
-                                                                              .penaltiesModel!
-                                                                              .penaltyStudent![index]
-                                                                              .id!);
-                                                                    },
-                                                                    color: const Color(
-                                                                        0xffB03D3D),
-                                                                    width: 80),
-                                                                ButtonDialog(
-                                                                    text:
-                                                                        "Cancel"
-                                                                            .tr,
-                                                                    onPressed:
-                                                                        () {
-                                                                      Get.back();
-                                                                    },
-                                                                    color: Theme.of(
-                                                                            context)
-                                                                        .primaryColor,
-                                                                    width: 80)
-                                                              ],
-                                                              contents:
-                                                                  SizedBox(
+                                                      if (Get.find<Add_Data_controller>()
+                                                              .roll !=
+                                                          "observer")
+                                                        IconButton(
+                                                            style: ButtonStyle(
+                                                                backgroundColor:
+                                                                    WidgetStatePropertyAll(
+                                                                        Color(
+                                                                            0xffB03D3D)),
+                                                                shape: const WidgetStatePropertyAll(RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.all(Radius.circular(
+                                                                            5))))),
+                                                            onPressed: () {
+                                                              Get.dialog(
+                                                                  VMSAlertDialog(
+                                                                action: [
+                                                                  ButtonDialog(
+                                                                      text: "Delete"
+                                                                          .tr,
+                                                                      onPressed:
+                                                                          () async {
+                                                                        await deleteStudentPenalty_API().deleteStudentPenalty_AP(
+                                                                            index:
+                                                                                index,
+                                                                            penaltyId:
+                                                                                PAR_Controller.penaltiesModel!.penaltyStudent![index].id!);
+                                                                      },
+                                                                      color: const Color(
+                                                                          0xffB03D3D),
                                                                       width:
-                                                                          500,
-                                                                      child:
-                                                                          Row(
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.start,
-                                                                        children: [
-                                                                          Text(
-                                                                            "Do You Want To Delete".tr,
-                                                                            style:
-                                                                                Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 16, fontWeight: FontWeight.normal),
-                                                                          ),
-                                                                        ],
-                                                                      )),
-                                                              apptitle:
-                                                                  "Delete Penalty"
-                                                                      .tr,
-                                                              subtitle: "none",
-                                                            ));
-                                                          },
-                                                          icon: Icon(
-                                                              VMS_Icons.bin,
-                                                              size: 16,
-                                                              color: Colors
-                                                                  .white)),
+                                                                          80),
+                                                                  ButtonDialog(
+                                                                      text: "Cancel"
+                                                                          .tr,
+                                                                      onPressed:
+                                                                          () {
+                                                                        Get.back();
+                                                                      },
+                                                                      color: Theme.of(
+                                                                              context)
+                                                                          .primaryColor,
+                                                                      width: 80)
+                                                                ],
+                                                                contents:
+                                                                    SizedBox(
+                                                                        width:
+                                                                            500,
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.start,
+                                                                          children: [
+                                                                            Text(
+                                                                              "Do You Want To Delete".tr,
+                                                                              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 16, fontWeight: FontWeight.normal),
+                                                                            ),
+                                                                          ],
+                                                                        )),
+                                                                apptitle:
+                                                                    "Delete Penalty"
+                                                                        .tr,
+                                                                subtitle:
+                                                                    "none",
+                                                              ));
+                                                            },
+                                                            icon: Icon(
+                                                                VMS_Icons.bin,
+                                                                size: 16,
+                                                                color: Colors
+                                                                    .white)),
                                                     ],
                                                   ),
                                                   Padding(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Teachernote_and_GradeReco.dart';
 import 'package:vms_school/Link/Functions/Add_Table_Quiz_Functions.dart';
 
@@ -19,8 +20,10 @@ class GradesTableScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(16.0),
                       child: GestureDetector(
                         onTap: () {
-                          Get.dialog(
-                              barrierDismissible: false, Rerange_Group());
+                          if (Get.find<Add_Data_controller>().roll !=
+                              "observer")
+                            Get.dialog(
+                                barrierDismissible: false, Rerange_Group());
                         },
                         child: Obx(() {
                           return Table(
@@ -53,7 +56,7 @@ class GradesTableScreen extends StatelessWidget {
                       .copyWith(fontSize: 16, fontWeight: FontWeight.normal)));
     });
   }
- 
+
   List<TableRow> _buildTableRows(
       BuildContext context, TeachernoteAndGradeReco controller) {
     List<TableRow> rows = [];
@@ -196,38 +199,44 @@ class GradesTableScreen extends StatelessWidget {
       {bool isHeader = false}) {
     return GestureDetector(
       onHorizontalDragUpdate: (details) {
-        // حساب نصف عرض A4 بالنقاط المنطقية
-        double widthInPixels =
-            210 * 3.7795 * MediaQuery.of(context).devicePixelRatio;
-        double maxWidth = widthInPixels / 2;
+        if (Get.find<Add_Data_controller>().roll != "observer") {
+          // حساب نصف عرض A4 بالنقاط المنطقية
+          double widthInPixels =
+              210 * 3.7795 * MediaQuery.of(context).devicePixelRatio;
+          double maxWidth = widthInPixels / 2;
 
-        // حساب العرض الجديد بعد التغيير
-        double newWidth =
-            Get.find<TeachernoteAndGradeReco>().columnWidths[index] +
-                details.primaryDelta!;
+          // حساب العرض الجديد بعد التغيير
+          double newWidth =
+              Get.find<TeachernoteAndGradeReco>().columnWidths[index] +
+                  details.primaryDelta!;
 
-        // طباعة لتتأكد من القيمة التي تحسبها
-        print('maxWidth: $maxWidth, newWidth: $newWidth');
+          // طباعة لتتأكد من القيمة التي تحسبها
+          print('maxWidth: $maxWidth, newWidth: $newWidth');
 
-        // التأكد أن العرض الجديد لا يتجاوز الحد الأقصى ولا أقل من الحد الأدنى
-        if (newWidth >= 80.0 && newWidth <= maxWidth) {
-          Get.find<TeachernoteAndGradeReco>()
-              .resizeColumn(index, details.primaryDelta!);
-        } else {
-          // تطبيق الحد الأقصى أو الأدنى هنا
-          if (newWidth > maxWidth) {
-            Get.find<TeachernoteAndGradeReco>().resizeColumn(
-                index,
-                maxWidth -
-                    Get.find<TeachernoteAndGradeReco>().columnWidths[index]);
-          } else if (newWidth < 80.0) {
-            Get.find<TeachernoteAndGradeReco>().resizeColumn(index,
-                80.0 - Get.find<TeachernoteAndGradeReco>().columnWidths[index]);
+          // التأكد أن العرض الجديد لا يتجاوز الحد الأقصى ولا أقل من الحد الأدنى
+          if (newWidth >= 80.0 && newWidth <= maxWidth) {
+            Get.find<TeachernoteAndGradeReco>()
+                .resizeColumn(index, details.primaryDelta!);
+          } else {
+            // تطبيق الحد الأقصى أو الأدنى هنا
+            if (newWidth > maxWidth) {
+              Get.find<TeachernoteAndGradeReco>().resizeColumn(
+                  index,
+                  maxWidth -
+                      Get.find<TeachernoteAndGradeReco>().columnWidths[index]);
+            } else if (newWidth < 80.0) {
+              Get.find<TeachernoteAndGradeReco>().resizeColumn(
+                  index,
+                  80.0 -
+                      Get.find<TeachernoteAndGradeReco>().columnWidths[index]);
+            }
           }
         }
       },
       child: MouseRegion(
-        cursor: SystemMouseCursors.resizeLeftRight,
+        cursor: Get.find<Add_Data_controller>().roll != "observer"
+            ? SystemMouseCursors.resizeLeftRight
+            : SystemMouseCursors.basic,
         child: Container(
           width: Get.find<TeachernoteAndGradeReco>().columnWidths[index],
           padding: EdgeInsets.all(8),

@@ -129,18 +129,13 @@ EditStudentDialog(int idx, BuildContext context) async {
               bool isphoneEmpty = Mobile_Number.text.trim().isEmpty;
               bool isLocalIDEmpty = LocalID.text.trim().isEmpty;
               bool isAddressEmpty = Current_Address.text.trim().isEmpty;
-              bool isusernameEmpty =
-                  add_controller.textController.text.trim().isEmpty;
               bool isfathernameEmpty = Father_Name.text.trim().isEmpty;
               bool isFatherPhoneEmpty = Father_Phone.text.trim().isEmpty;
               bool isMotherNameEmpty = Mother_Name.text.trim().isEmpty;
               bool ismotehrPhoneEmpty = Mother_Phone.text.trim().isEmpty;
-              bool isPasswordEmpty = Password.text.trim().isEmpty;
 
               bool isbirthdateEmpty =
                   Get.find<Allempolyeecontroller>().Birthdate.value == null;
-              RegExp passwordRegex = RegExp(r"^[a-zA-Z0-9]{8,}$");
-              bool isPasswordValid = passwordRegex.hasMatch(Password.text);
 
               add_controller.updateFieldError("first", isFirstNameEmpty);
               add_controller.updateFieldError("last", isLastNameEmpty);
@@ -156,7 +151,6 @@ EditStudentDialog(int idx, BuildContext context) async {
               add_controller.updateFieldError("class", isclassEmpty);
 
               add_controller.updateFieldError("localaddress", isAddressEmpty);
-              add_controller.updateFieldError("username", isusernameEmpty);
               add_controller.updateFieldError("division", isDivisionEmpty);
               add_controller.updateFieldError("fathername", isfathernameEmpty);
               add_controller.updateFieldError(
@@ -164,7 +158,26 @@ EditStudentDialog(int idx, BuildContext context) async {
               add_controller.updateFieldError("mothername", isMotherNameEmpty);
               add_controller.updateFieldError(
                   "motherphone", ismotehrPhoneEmpty);
-              if ((isFirstNameEmpty ||
+
+              print("isFirstNameEmpty $isFirstNameEmpty");
+              print("isLastNameEmpty $isLastNameEmpty");
+              print("isbirthdateEmpty $isbirthdateEmpty");
+              print("isPlaceofBirthEmpty $isPlaceofBirthEmpty");
+              print("isgenderEmpty $isgenderEmpty");
+              print("isreligionEmpty $isreligionEmpty");
+              print("isbloodEmpty $isbloodEmpty");
+              print("iscountryEmpty $iscountryEmpty");
+              print("isphoneEmpty $isphoneEmpty");
+              print("isLocalIDEmpty $isLocalIDEmpty");
+              print("isclassEmpty $isclassEmpty");
+              print("isAddressEmpty $isAddressEmpty");
+              print("isDivisionEmpty $isDivisionEmpty");
+              print("isfathernameEmpty $isfathernameEmpty");
+              print("isFatherPhoneEmpty $isFatherPhoneEmpty");
+              print("isMotherNameEmpty $isMotherNameEmpty");
+              print("ismotehrPhoneEmpty $ismotehrPhoneEmpty");
+
+              if (!(isFirstNameEmpty ||
                   isLastNameEmpty ||
                   isbirthdateEmpty ||
                   isPlaceofBirthEmpty ||
@@ -176,71 +189,69 @@ EditStudentDialog(int idx, BuildContext context) async {
                   isLocalIDEmpty ||
                   isclassEmpty ||
                   isAddressEmpty ||
-                  isusernameEmpty ||
                   isDivisionEmpty ||
                   isfathernameEmpty ||
                   isFatherPhoneEmpty ||
                   isMotherNameEmpty ||
                   ismotehrPhoneEmpty)) {
-                if (isPasswordEmpty || (!isPasswordEmpty && isPasswordValid))
-                  await Update_Student_API.Update_Student(
-                      Academic_sequence_FileID:
-                          Controller.student!.documantes!.academicSequence?.id,
-                      Certefecate_FileID:
-                          Controller.student!.documantes!.certificate?.id,
-                      FamilyNotbook_FileID:
-                          Controller.student!.documantes!.familyNotebook?.id,
-                      FatherPassport_FileID:
-                          Controller.student!.documantes!.fatherPassport?.id,
-                      MotherPassport_FileID:
-                          Controller.student!.documantes!.motherPassport?.id,
-                      SonPassport_FileID:
-                          Controller.student!.documantes!.sonPassport?.id,
-                      studentID: Controller.filteredStudents[idx].id,
-                      UserID_FileID: Controller.student!.documantes!.userID?.id,
-                      locationId: Get.find<Location_controller>()
-                          .location![add_controller.Locationlist.indexOf(
-                              add_controller.LocationIndex)]
-                          .id,
-                      firstName: First_Name.text,
-                      lastName: Last_Name.text,
-                      gender: add_controller.GenderIndex,
-                      birthDate:
-                          Get.find<Allempolyeecontroller>().Birthdate.value,
-                      placeOfBirth: Place_Of_Birth.text,
-                      religion: add_controller.RealagonIndex,
-                      mobileNumber: Mobile_Number.text,
-                      bloodType: add_controller.BloodTypeIndex,
-                      fatherName: Father_Name.text,
-                      fatherPhone: Father_Phone.text,
-                      motherName: Mother_Name.text,
-                      currentAdress: Current_Address.text,
-                      familystatus: add_controller.FamilyStateIndex,
-                      password: Password.text,
-                      classid: Get.find<Dropdownclassescontroller>()
-                          .Allclass[
-                              add_controller.Classlist.indexOf(add_controller.ClassIndex)]
-                          .id,
-                      divisionId: Get.find<Dropdowndivisioncontroller>().allDivision[add_controller.Divisionlist.indexOf(add_controller.DivisionIndex)].id,
-                      fatherWork: Father_Work.text,
-                      motherPhone: Mother_Phone.text,
-                      motherWork: Mother_Work.text,
-                      nationalNumber: National_ID.text,
-                      localID: LocalID.text,
-                      lastSchoolDetail: Last_School_Detail.text,
-                      note: Note.text,
-                      Fee_Discount: Fee_Discount.text,
-                      specialNeeds: add_controller.isSpecialNeed.value,
-                      martyrSon: add_controller.isMartySon.value,
-                      FatherPassport: add_controller.selectedFatherPassport.value,
-                      MotherPassport: add_controller.selectedMotherPassport.value,
-                      SonPassport: add_controller.selectedSonPassport.value,
-                      UserID: add_controller.selectedId.value,
-                      Certefecate: add_controller.selectedCertificate.value,
-                      Ispend: add_controller.isPendStudent.value,
-                      Academic_sequence: add_controller.selectedtsalsol.value,
-                      FamilyNotbook: add_controller.selectedFamilyBook.value,
-                      file: add_controller.selectedImage.value);
+                await Update_Student_API.Update_Student(
+                    Academic_sequence_FileID:
+                        Controller.student!.documantes!.academicSequence?.id,
+                    Certefecate_FileID:
+                        Controller.student!.documantes!.certificate?.id,
+                    FamilyNotbook_FileID:
+                        Controller.student!.documantes!.familyNotebook?.id,
+                    FatherPassport_FileID:
+                        Controller.student!.documantes!.fatherPassport?.id,
+                    MotherPassport_FileID:
+                        Controller.student!.documantes!.motherPassport?.id,
+                    SonPassport_FileID:
+                        Controller.student!.documantes!.sonPassport?.id,
+                    studentID: Controller.filteredStudents[idx].id,
+                    UserID_FileID: Controller.student!.documantes!.userID?.id,
+                    locationId: Get.find<Location_controller>()
+                        .location![add_controller.Locationlist.indexOf(
+                            add_controller.LocationIndex)]
+                        .id,
+                    firstName: First_Name.text,
+                    lastName: Last_Name.text,
+                    gender: add_controller.GenderIndex,
+                    birthDate:
+                        Get.find<Allempolyeecontroller>().Birthdate.value,
+                    placeOfBirth: Place_Of_Birth.text,
+                    religion: add_controller.RealagonIndex,
+                    mobileNumber: Mobile_Number.text,
+                    bloodType: add_controller.BloodTypeIndex,
+                    fatherName: Father_Name.text,
+                    fatherPhone: Father_Phone.text,
+                    motherName: Mother_Name.text,
+                    currentAdress: Current_Address.text,
+                    familystatus: add_controller.FamilyStateIndex,
+                    password: Password.text,
+                    classid: Get.find<Dropdownclassescontroller>()
+                        .Allclass[
+                            add_controller.Classlist.indexOf(add_controller.ClassIndex)]
+                        .id,
+                    divisionId: Get.find<Dropdowndivisioncontroller>().allDivision[add_controller.Divisionlist.indexOf(add_controller.DivisionIndex)].id,
+                    fatherWork: Father_Work.text,
+                    motherPhone: Mother_Phone.text,
+                    motherWork: Mother_Work.text,
+                    nationalNumber: National_ID.text,
+                    localID: LocalID.text,
+                    lastSchoolDetail: Last_School_Detail.text,
+                    note: Note.text,
+                    Fee_Discount: Fee_Discount.text,
+                    specialNeeds: add_controller.isSpecialNeed.value,
+                    martyrSon: add_controller.isMartySon.value,
+                    FatherPassport: add_controller.selectedFatherPassport.value,
+                    MotherPassport: add_controller.selectedMotherPassport.value,
+                    SonPassport: add_controller.selectedSonPassport.value,
+                    UserID: add_controller.selectedId.value,
+                    Certefecate: add_controller.selectedCertificate.value,
+                    Ispend: add_controller.isPendStudent.value,
+                    Academic_sequence: add_controller.selectedtsalsol.value,
+                    FamilyNotbook: add_controller.selectedFamilyBook.value,
+                    file: add_controller.selectedImage.value);
               }
             },
             color: Get.theme.primaryColor,
@@ -1070,7 +1081,9 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                             ),
                           ],
                         )),
-                    Drop_Edite_students()
+                    Drop_Edite_students(
+                      isAdmin: true,
+                    )
                   ],
                 ),
               ),

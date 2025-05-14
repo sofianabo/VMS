@@ -6,6 +6,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/StudentPunishAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Rewards_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/PenaltiesAndRewardsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
@@ -291,283 +292,294 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                   Text(
                                       "${"Grade Level:".tr} ${prefs!.getString(languageKey) == 'ar' ? controller.filteredStudents![index].grade!.name : controller.filteredStudents![index].grade!.enName}",
                                       style: Get.theme.textTheme.bodyMedium),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 8.0),
-                                    child: Column(
-                                      spacing: 10.0,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        TextButton(
-                                            style: ButtonStyle(
-                                                backgroundColor:
-                                                    const WidgetStatePropertyAll(
-                                                        Colors.transparent),
-                                                shape: WidgetStatePropertyAll(
-                                                    RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      const BorderRadius.all(
-                                                          Radius.circular(3)),
-                                                  side: BorderSide(
-                                                      color: Get.theme
-                                                          .highlightColor),
-                                                ))),
-                                            onPressed: () {},
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  VMS_Icons.vcard,
-                                                  color:
-                                                      Get.theme.highlightColor,
-                                                  size: 14,
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 5.0,
-                                                          right: 5.0),
-                                                  child: Text(
-                                                    'Export Certificate'.tr,
-                                                    style: Get.theme.textTheme
-                                                        .headlineMedium,
-                                                  ),
-                                                ),
-                                              ],
-                                            )),
-                                        PopupMenuButton<String>(
-                                          child: Container(
-                                            padding: EdgeInsets.all(8.0),
-                                            decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(3)),
-                                                border: Border.all(
+                                  if (Get.find<Add_Data_controller>().roll !=
+                                      "observer")
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 8.0),
+                                      child: Column(
+                                        spacing: 10.0,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          TextButton(
+                                              style: ButtonStyle(
+                                                  backgroundColor:
+                                                      const WidgetStatePropertyAll(
+                                                          Colors.transparent),
+                                                  shape: WidgetStatePropertyAll(
+                                                      RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        const BorderRadius.all(
+                                                            Radius.circular(3)),
+                                                    side: BorderSide(
+                                                        color: Get.theme
+                                                            .highlightColor),
+                                                  ))),
+                                              onPressed: () {},
+                                              child: Row(
+                                                children: [
+                                                  Icon(
+                                                    VMS_Icons.vcard,
                                                     color: Get
-                                                        .theme.highlightColor)),
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.gavel,
-                                                  color:
-                                                      Get.theme.highlightColor,
-                                                  size: 14,
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 5.0,
-                                                          right: 5.0),
-                                                  child: Text(
-                                                    'Rewards & Penalties'.tr,
-                                                    style: Get.theme.textTheme
-                                                        .headlineMedium,
+                                                        .theme.highlightColor,
+                                                    size: 14,
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          tooltip: "".tr,
-                                          onSelected: (value) {
-                                            if (value == "Punishing".tr) {
-                                              controller.initialStateDiag();
-                                              reason.clear();
-                                              Get.dialog(VMSAlertDialog(
-                                                  action: [
-                                                    ButtonDialog(
-                                                      width: 90,
-                                                      onPressed: () async {
-                                                        await Studentpunishapi(
-                                                                context)
-                                                            .Studentpunish(
-                                                                Get.find<
-                                                                        Dropdownpenaltycontroller>()
-                                                                    .penid!,
-                                                                reason.text,
-                                                                controller
-                                                                    .startdate
-                                                                    .value
-                                                                    .toString(),
-                                                                controller
-                                                                    .enddate
-                                                                    .value
-                                                                    .toString(),
-                                                                controller
-                                                                    .filteredStudents![
-                                                                        index]
-                                                                    .id!);
-                                                      },
-                                                      color: Get
-                                                          .theme.primaryColor,
-                                                      text: "Send".tr,
-                                                    )
-                                                  ],
-                                                  contents: Container(
-                                                    width: 350,
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        GetBuilder<
-                                                                Dropdownpenaltycontroller>(
-                                                            builder:
-                                                                (PController) {
-                                                          return DropDownStudyYearStudents(
-                                                            isLoading:
-                                                                PController
-                                                                    .Isloading,
-                                                            title:
-                                                                "Penaltyy".tr,
-                                                            type: "penalty",
-                                                            width: 300,
-                                                          );
-                                                        }),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .only(
-                                                                  top: 15.0),
-                                                          child: Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Textfildwithupper(
-                                                                  Uptext:
-                                                                      "The Reason"
-                                                                          .tr,
-                                                                  isRequired:
-                                                                      true,
-                                                                  width: 300,
-                                                                  controller:
-                                                                      reason,
-                                                                  hinttext:
-                                                                      "The Reason"
-                                                                          .tr),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .only(
-                                                                  top: 15.0,
-                                                                  bottom: 15.0),
-                                                          child: Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                        .only(
-                                                                        bottom:
-                                                                            5.0),
-                                                                child: RichText(
-                                                                  text: TextSpan(
-                                                                      text: "Start Date"
-                                                                          .tr,
-                                                                      style: Get
-                                                                          .theme
-                                                                          .textTheme
-                                                                          .bodyMedium!
-                                                                          .copyWith(
-                                                                              fontSize: 14,
-                                                                              fontWeight: FontWeight.normal),
-                                                                      children: const [
-                                                                        TextSpan(
-                                                                          text:
-                                                                              " *",
-                                                                          style: TextStyle(
-                                                                              color: Colors.red,
-                                                                              fontSize: 16),
-                                                                        ),
-                                                                      ]),
-                                                                ),
-                                                              ),
-                                                              penaltyStartDate(
-                                                                  width: 300)
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .only(
-                                                                  top: 15.0,
-                                                                  bottom: 15.0),
-                                                          child: Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Text(
-                                                                  "End Date".tr,
-                                                                  style: Get
-                                                                      .theme
-                                                                      .textTheme
-                                                                      .bodyMedium!),
-                                                              PenaltyEndDate(
-                                                                  width: 300)
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ],
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 5.0,
+                                                            right: 5.0),
+                                                    child: Text(
+                                                      'Export Certificate'.tr,
+                                                      style: Get.theme.textTheme
+                                                          .headlineMedium,
                                                     ),
                                                   ),
-                                                  apptitle:
-                                                      "Punishing Student".tr,
-                                                  subtitle: ""));
-                                            } else {
-                                              Get.find<RewardsController>()
-                                                  .setRewards();
-                                              Get.find<RewardsController>()
-                                                  .updateStudentName(controller
-                                                      .filteredStudents![index]
-                                                      .fullName!
-                                                      .toString());
-                                              Get.dialog(
-                                                Rewards_Dialog(
-                                                  Studentname: controller
-                                                      .filteredStudents![index]
-                                                      .fullName!
-                                                      .toString(),
-                                                  FileType: "امتياز",
-                                                  id: controller
-                                                      .filteredStudents![index]
-                                                      .id!
-                                                      .toString(),
-                                                ),
-                                                barrierDismissible: false,
-                                              );
-                                            }
-                                          },
-                                          itemBuilder: (BuildContext context) =>
-                                              <PopupMenuEntry<String>>[
-                                            PopupMenuItem<String>(
-                                              value: 'Punishing'.tr,
-                                              child: Text('Punishing'.tr),
+                                                ],
+                                              )),
+                                          PopupMenuButton<String>(
+                                            child: Container(
+                                              padding: EdgeInsets.all(8.0),
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(3)),
+                                                  border: Border.all(
+                                                      color: Get.theme
+                                                          .highlightColor)),
+                                              child: Row(
+                                                children: [
+                                                  Icon(
+                                                    Icons.gavel,
+                                                    color: Get
+                                                        .theme.highlightColor,
+                                                    size: 14,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 5.0,
+                                                            right: 5.0),
+                                                    child: Text(
+                                                      'Rewards & Penalties'.tr,
+                                                      style: Get.theme.textTheme
+                                                          .headlineMedium,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                            PopupMenuItem<String>(
-                                              value: 'Rewards'.tr,
-                                              child: Text('Rewards'.tr),
-                                            ),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  )
+                                            tooltip: "".tr,
+                                            onSelected: (value) {
+                                              if (value == "Punishing".tr) {
+                                                controller.initialStateDiag();
+                                                reason.clear();
+                                                Get.dialog(VMSAlertDialog(
+                                                    action: [
+                                                      ButtonDialog(
+                                                        width: 90,
+                                                        onPressed: () async {
+                                                          await Studentpunishapi(
+                                                                  context)
+                                                              .Studentpunish(
+                                                                  Get.find<
+                                                                          Dropdownpenaltycontroller>()
+                                                                      .penid!,
+                                                                  reason.text,
+                                                                  controller
+                                                                      .startdate
+                                                                      .value
+                                                                      .toString(),
+                                                                  controller
+                                                                      .enddate
+                                                                      .value
+                                                                      .toString(),
+                                                                  controller
+                                                                      .filteredStudents![
+                                                                          index]
+                                                                      .id!);
+                                                        },
+                                                        color: Get
+                                                            .theme.primaryColor,
+                                                        text: "Send".tr,
+                                                      )
+                                                    ],
+                                                    contents: Container(
+                                                      width: 350,
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          GetBuilder<
+                                                                  Dropdownpenaltycontroller>(
+                                                              builder:
+                                                                  (PController) {
+                                                            return DropDownStudyYearStudents(
+                                                              isLoading:
+                                                                  PController
+                                                                      .Isloading,
+                                                              title:
+                                                                  "Penaltyy".tr,
+                                                              type: "penalty",
+                                                              width: 300,
+                                                            );
+                                                          }),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    top: 15.0),
+                                                            child: Column(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Textfildwithupper(
+                                                                    Uptext:
+                                                                        "The Reason"
+                                                                            .tr,
+                                                                    isRequired:
+                                                                        true,
+                                                                    width: 300,
+                                                                    controller:
+                                                                        reason,
+                                                                    hinttext:
+                                                                        "The Reason"
+                                                                            .tr),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    top: 15.0,
+                                                                    bottom:
+                                                                        15.0),
+                                                            child: Column(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Padding(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                          .only(
+                                                                          bottom:
+                                                                              5.0),
+                                                                  child:
+                                                                      RichText(
+                                                                    text: TextSpan(
+                                                                        text: "Start Date"
+                                                                            .tr,
+                                                                        style: Get
+                                                                            .theme
+                                                                            .textTheme
+                                                                            .bodyMedium!
+                                                                            .copyWith(
+                                                                                fontSize: 14,
+                                                                                fontWeight: FontWeight.normal),
+                                                                        children: const [
+                                                                          TextSpan(
+                                                                            text:
+                                                                                " *",
+                                                                            style:
+                                                                                TextStyle(color: Colors.red, fontSize: 16),
+                                                                          ),
+                                                                        ]),
+                                                                  ),
+                                                                ),
+                                                                penaltyStartDate(
+                                                                    width: 300)
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    top: 15.0,
+                                                                    bottom:
+                                                                        15.0),
+                                                            child: Column(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(
+                                                                    "End Date"
+                                                                        .tr,
+                                                                    style: Get
+                                                                        .theme
+                                                                        .textTheme
+                                                                        .bodyMedium!),
+                                                                PenaltyEndDate(
+                                                                    width: 300)
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    apptitle:
+                                                        "Punishing Student".tr,
+                                                    subtitle: ""));
+                                              } else {
+                                                Get.find<RewardsController>()
+                                                    .setRewards();
+                                                Get.find<RewardsController>()
+                                                    .updateStudentName(
+                                                        controller
+                                                            .filteredStudents![
+                                                                index]
+                                                            .fullName!
+                                                            .toString());
+                                                Get.dialog(
+                                                  Rewards_Dialog(
+                                                    Studentname: controller
+                                                        .filteredStudents![
+                                                            index]
+                                                        .fullName!
+                                                        .toString(),
+                                                    FileType: "امتياز",
+                                                    id: controller
+                                                        .filteredStudents![
+                                                            index]
+                                                        .id!
+                                                        .toString(),
+                                                  ),
+                                                  barrierDismissible: false,
+                                                );
+                                              }
+                                            },
+                                            itemBuilder:
+                                                (BuildContext context) =>
+                                                    <PopupMenuEntry<String>>[
+                                              PopupMenuItem<String>(
+                                                value: 'Punishing'.tr,
+                                                child: Text('Punishing'.tr),
+                                              ),
+                                              PopupMenuItem<String>(
+                                                value: 'Rewards'.tr,
+                                                child: Text('Rewards'.tr),
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    )
                                 ],
                               )),
                         ),
