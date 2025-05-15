@@ -488,6 +488,8 @@ class _TeacherManagementState extends State<TeacherManagement> {
               scrollDirection: Axis.horizontal,
               child: GetBuilder<Allteachercontroller>(builder: (controller) {
                 return Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   spacing: 8.0,
                   children: [
                     DropDownAllSessions(

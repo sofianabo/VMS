@@ -309,7 +309,10 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                           style:
                                                               Theme.of(context)
                                                                   .textTheme
-                                                                  .bodyMedium),
+                                                                  .titleMedium!
+                                                                  .copyWith(
+                                                                      fontSize:
+                                                                          13)),
                                                     ),
                                                   )),
                                         ],
@@ -328,7 +331,9 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                     row['Day']?.tr ?? '',
                                                     style: Theme.of(context)
                                                         .textTheme
-                                                        .bodyMedium),
+                                                        .titleMedium!
+                                                        .copyWith(
+                                                            fontSize: 16)),
                                               ),
                                             ),
                                             ...row.entries
@@ -472,8 +477,7 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
 
                                                                               int teacherIndex = SchoolController.teacherDialogList.indexOf(s[1]);
                                                                               String teach = SchoolController.allteacherDialogList!.elementAt(teacherIndex).fullName.toString();
-                                                                              String sub =  Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar' ? SchoolController.allsubjectDialogList!.elementAt(subjectIndex).name.toString() : SchoolController.allsubjectDialogList!.elementAt(subjectIndex).enName.toString();
+                                                                              String sub = Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? SchoolController.allsubjectDialogList!.elementAt(subjectIndex).name.toString() : SchoolController.allsubjectDialogList!.elementAt(subjectIndex).enName.toString();
                                                                               // التحقق من أن العناصر موجودة في المصفوفات الخاصة بها
                                                                               if (subjectIndex >= 0 && teacherIndex >= 0) {
                                                                                 SchoolController.set_Edite_Data(teach, sub);
@@ -507,8 +511,8 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                       },
                                                       child: Container(
                                                           width: 160,
-                                                          alignment: Alignment
-                                                              .center,
+                                                          alignment:
+                                                              Alignment.center,
                                                           height: 70,
                                                           child: m!.studyShare!
                                                                       .isEmpty &&
@@ -531,7 +535,11 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                                                         )
                                                                       : Text(
                                                                           "No Lesson"
-                                                                              .tr)
+                                                                              .tr,
+                                                                          style: Theme.of(context)
+                                                                              .textTheme
+                                                                              .headlineMedium,
+                                                                        )
                                                                   : Text(
                                                                       textAlign:
                                                                           TextAlign
