@@ -20,7 +20,12 @@ class TextFormPassword extends StatefulWidget {
     this.isError = false,
     this.customErrorMessage,
     this.defaultErrorMessage,
+    this.textInputAction, // أضف هذا
+    this.onSubmitted,
   });
+
+  final TextInputAction? textInputAction; // أضف هذا
+  final ValueChanged<String>? onSubmitted; // أضف هذا
 
   final TextEditingController controller;
   final String hinttext;
@@ -106,6 +111,8 @@ class _TextFormPasswordState extends State<TextFormPassword> {
             height: widget.Uptext != null ? 50 : (widget.hight ?? 60),
             child: GetBuilder<PasswordHintController>(builder: (password) {
               return TextFormField(
+                textInputAction: widget.textInputAction, // أضف هذا
+                onFieldSubmitted: widget.onSubmitted, // أضف هذا
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium

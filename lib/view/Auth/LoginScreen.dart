@@ -44,6 +44,20 @@ class LoginScreen extends StatelessWidget {
                 duration: const Duration(seconds: 5),
                 delay: const Duration(seconds: 1)),
           GetBuilder<UserController>(builder: (controller) {
+            Future<void> _performLogin(BuildContext context) async {
+              if (controller.Isloading == false) {
+                bool isUsernameEmpty = username.text.trim().isEmpty;
+                bool isPasswordEmpty = password.text.trim().isEmpty;
+
+                controller.updateFieldError("username", isUsernameEmpty);
+                controller.updateFieldError("password", isPasswordEmpty);
+
+                if (!(isUsernameEmpty || isPasswordEmpty)) {
+                  await LoginAPI(context).login(username.text, password.text);
+                }
+              }
+            }
+
             return Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(32.0),
@@ -80,6 +94,9 @@ class LoginScreen extends StatelessWidget {
                                           "username", false);
                                     }
                                   },
+                                  textInputAction: TextInputAction.next,
+                                  onSubmitted: (_) => FocusScope.of(context)
+                                      .nextFocus(), // عند الضغط على Enter
                                   isError: controller.IsusernameError,
                                   Uptext: "Username".tr,
                                   autofill: const [AutofillHints.username],
@@ -87,19 +104,29 @@ class LoginScreen extends StatelessWidget {
                                   hinttext: "Username".tr,
                                 ),
                                 TextFormPassword(
-                                    width:
-                                        width >= 883 ? width * 0.5 : width - 80,
-                                    onChanged: (value) {
-                                      if (value.isNotEmpty) {
-                                        controller.updateFieldError(
-                                            "password", false);
-                                      }
-                                    },
-                                    isError: controller.IsPasswordError,
-                                    Uptext: "Password".tr,
-                                    autofill: const [AutofillHints.password],
-                                    controller: password,
-                                    hinttext: "Password".tr),
+                                  width:
+                                      width >= 883 ? width * 0.5 : width - 80,
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      controller.updateFieldError(
+                                          "password", false);
+                                    }
+                                  },
+                                  textInputAction: TextInputAction
+                                      .done, // لتنفيذ الإجراء عند الضغط على Enter
+                                  onSubmitted: (_) {
+                                    // تنفيذ الإجراء فقط إذا كانت الحقول غير فارغة
+                                    if (username.text.trim().isNotEmpty &&
+                                        password.text.trim().isNotEmpty) {
+                                      _performLogin(context);
+                                    }
+                                  },
+                                  isError: controller.IsPasswordError,
+                                  Uptext: "Password".tr,
+                                  autofill: const [AutofillHints.password],
+                                  controller: password,
+                                  hinttext: "Password".tr,
+                                ),
                               ],
                             )
                                 .animate()
@@ -107,106 +134,48 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Column(
-                        spacing: 15.0,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          TextButton(
-                                  style: ButtonStyle(
-                                    shape: WidgetStatePropertyAll(
-                                      RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                    ),
-                                    backgroundColor: WidgetStatePropertyAll(
-                                        const Color(0xff19478d)),
-                                    maximumSize: const WidgetStatePropertyAll(
-                                        Size(250, 50)),
-                                    minimumSize: const WidgetStatePropertyAll(
-                                        Size(250, 50)),
-                                  ),
-                                  onPressed: () async {
-                                    if (controller.Isloading == false) {
-                                      bool isUsernameEmpty =
-                                          username.text.trim().isEmpty;
-
-                                      bool isPasswordEmpty =
-                                          password.text.trim().isEmpty;
-
-                                      controller.updateFieldError(
-                                          "username", isUsernameEmpty);
-
-                                      controller.updateFieldError(
-                                          "password", isPasswordEmpty);
-
-                                      // إذا لم يكن هناك أي أخطاء، قم بإضافة ولي الأمر
-                                      if (!(isUsernameEmpty ||
-                                          isPasswordEmpty)) {
-                                        await LoginAPI(context).login(
-                                            username.text, password.text);
-                                      }
-                                    }
-                                  },
-                                  child: controller.Isloading == true
-                                      ? LoadingAnimationWidget.inkDrop(
-                                          color: Colors.white,
-                                          size: 25,
-                                        )
-                                      : Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              "Login".tr,
-                                              style: Get.theme.textTheme
-                                                  .displayMedium!
-                                                  .copyWith(
-                                                      color: Colors.white,
-                                                      fontSize: 12),
-                                            ),
-                                            const Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: 8.0, right: 8.0),
-                                              child: Icon(
-                                                Icons.login,
-                                                color: Colors.white,
-                                                size: 13,
-                                              ),
-                                            ),
-                                          ],
-                                        ))
-                              .animate()
-                              .fadeIn(duration: const Duration(seconds: 1)),
-                          Row(
-                            spacing: 10.0,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "You Don`t Have Account ?".tr,
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 14),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Get.toNamed("/enroll");
-                                },
-                                child: MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: Text(
-                                    "Enroll Now".tr,
-                                    style: TextStyle(
-                                      color: const Color(0xff19478d),
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
+                      TextButton(
+                        style: ButtonStyle(
+                          shape: WidgetStatePropertyAll(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
                           ),
-                        ],
-                      ),
+                          backgroundColor:
+                              WidgetStatePropertyAll(const Color(0xff19478d)),
+                          maximumSize:
+                              const WidgetStatePropertyAll(Size(250, 50)),
+                          minimumSize:
+                              const WidgetStatePropertyAll(Size(250, 50)),
+                        ),
+                        onPressed: () => _performLogin(context),
+                        child: controller.Isloading == true
+                            ? LoadingAnimationWidget.inkDrop(
+                                color: Colors.white,
+                                size: 25,
+                              )
+                            : Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Login".tr,
+                                    style: Get.theme.textTheme.displayMedium!
+                                        .copyWith(
+                                            color: Colors.white, fontSize: 12),
+                                  ),
+                                  const Padding(
+                                    padding:
+                                        EdgeInsets.only(left: 8.0, right: 8.0),
+                                    child: Icon(
+                                      Icons.login,
+                                      color: Colors.white,
+                                      size: 13,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                      )
                     ],
                   ),
                 ),

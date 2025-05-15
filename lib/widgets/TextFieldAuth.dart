@@ -24,7 +24,12 @@ class TextFieldAuth extends StatefulWidget {
     this.IconButton,
     this.customErrorMessage,
     this.defaultErrorMessage,
+    this.textInputAction, // أضف هذا
+    this.onSubmitted,
   });
+
+  final TextInputAction? textInputAction; // أضف هذا
+  final ValueChanged<String>? onSubmitted; // أضف هذا
 
   final TextEditingController controller;
   final String hinttext;
@@ -161,6 +166,8 @@ class _TextFieldAuthState extends State<TextFieldAuth> {
           SizedBox(
             height: widget.Uptext != null ? 50 : (widget.hight ?? 60),
             child: TextFormField(
+              textInputAction: widget.textInputAction, // أضف هذا
+              onFieldSubmitted: widget.onSubmitted, // أضف هذا
               autofillHints: widget.autofill,
               obscureText: widget.hidePassword,
               style: Theme.of(context)
