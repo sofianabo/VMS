@@ -1,5 +1,5 @@
 // String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
-String hostPort = "http://192.168.1.12:8000/api/";
+String hostPort = "http://192.168.1.18:8000/api/";
 
 //..................... Guardians API Start ...................//
 String enroll = "Enroll";
@@ -10,6 +10,12 @@ String getStudentQuiz = 'getStudentQuiz';
 String getMyData = 'getMyData';
 String updateGuardian = 'updateGuardian';
 //..................... Guardians API End ...................//
+
+//..................... Teacher API Start ...................//
+
+String getStudentByTeacher = "getStudentByTeacher";
+
+//..................... Teacher API End ...................//
 
 //..................... Admin API Start ...................//
 //..................... Students ...................//
