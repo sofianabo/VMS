@@ -11,6 +11,12 @@ String getMyData = 'getMyData';
 String updateGuardian = 'updateGuardian';
 //..................... Guardians API End ...................//
 
+//..................... Teacher API Start ...................//
+
+String getStudentByTeacher = "getStudentByTeacher";
+
+//..................... Teacher API End ...................//
+
 //..................... Admin API Start ...................//
 //..................... Students ...................//
 String addGuardian = "addGuardian";

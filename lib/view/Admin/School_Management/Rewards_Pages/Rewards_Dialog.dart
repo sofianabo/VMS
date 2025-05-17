@@ -15,6 +15,7 @@ GlobalKey newRewardsGloballKey = GlobalKey();
 Rewards_Dialog({
   required String Studentname,
   required String id,
+  required bool isTeacher,
   required String FileType,
 }) {
   final controller = Get.find<RewardsController>();
@@ -24,6 +25,7 @@ Rewards_Dialog({
           text: "Done".tr,
           onPressed: () async {
             await saveRewardsAsPdf(
+                isTeacher: isTeacher,
                 StudentFullName: Studentname,
                 key: newRewardsGloballKey,
                 rewardsName: FileType,
@@ -47,6 +49,7 @@ Rewards_Dialog({
             label: "Export As Pdf".tr,
             onPressed: () async {
               await saveRewardsAsPdf(
+                isTeacher: isTeacher,
                 key: newRewardsGloballKey,
                 saveLocal: true,
               );

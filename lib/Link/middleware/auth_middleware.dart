@@ -37,9 +37,16 @@ class RoleBasedMiddleware extends GetMiddleware {
         return const RouteSettings(name: '/guardian');
       }
     }
+    if (isLoggedIn && (role == "teacher")) {
+      CheeckGuaIsVeri();
+      if (route != '/teacher') {
+        return const RouteSettings(name: '/teacher');
+      }
+    }
 
     if (isLoggedIn &&
         role != "admin" &&
+        role != "teacher" &&
         role != "subAdmin" &&
         role != "observer" &&
         role != "guardian") {

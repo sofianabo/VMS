@@ -19,6 +19,7 @@ Future saveRewardsAsPdf({
   String? rewardsName,
   String? StuId,
   String? StudentFullName,
+  required bool isTeacher,
 }) async {
   final controller = Get.find<RewardsController>();
 
@@ -105,12 +106,17 @@ Future saveRewardsAsPdf({
         Get.back();
         final controllers = Get.put(Penaltiesandrewardscontroller());
 
-        controllers.fetchPenalties(int.parse(StuId.toString()));
+        if (isTeacher == false) {
+          controllers.fetchPenalties(int.parse(StuId.toString()));
+        }
 
         controllers.fetchRewards(int.parse(StuId.toString()));
 
         Get.dialog(
-          Re_Pe_Page(Id: StuId.toString(), name: StudentFullName!),
+          Re_Pe_Page(
+              isTeacher: isTeacher,
+              Id: StuId.toString(),
+              name: StudentFullName!),
         );
       }
     }
