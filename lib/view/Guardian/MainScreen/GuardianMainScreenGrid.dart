@@ -16,6 +16,7 @@ import 'package:vms_school/Link/API/Guardians_API/DeleteRequestChildAPI.dart';
 import 'package:vms_school/Link/API/Guardians_API/GetChildExamTableAPI.dart';
 import 'package:vms_school/Link/API/Guardians_API/GetChildStudyShareAPI.dart';
 import 'package:vms_school/Link/API/Guardians_API/Get_Students_Information_API.dart';
+import 'package:vms_school/Link/API/Guardians_API/Get_Students_Marks_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
@@ -28,6 +29,7 @@ import 'package:vms_school/Link/Controller/GuardianController/MyChildren_Control
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/OneStudentAttendenceModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Guardian/Functions/StudyShareForChild.dart';
+import 'package:vms_school/view/Guardian/My_Students_Marks/Students_Marks_Grid.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
 import 'package:vms_school/widgets/Guardian/Animated_Requests.dart';
@@ -66,7 +68,7 @@ class GuardianMainScreenGrid extends StatelessWidget {
       if (screenWidth >= 616) return 1.92;
       return 0.9;
     }
- 
+
     return Directionality(
       textDirection:
           Get.find<LocalizationController>().currentLocale.value.languageCode ==
@@ -701,6 +703,13 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                             ),
                                             color: Colors.white,
                                             onPressed: () {
+                                              Get_Students_Marks_API_Gua()
+                                                  .Get_Students_Marks(
+                                                      StudentsID: control
+                                                          .filteredStudents[
+                                                              index]
+                                                          .id);
+
                                               // ضع الوظيفة هنا
                                             },
                                           ),

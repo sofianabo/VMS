@@ -57,10 +57,11 @@ class _Students_Marks_GenState extends State<Students_Marks_Gen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+      textDirection:
+          Get.find<LocalizationController>().currentLocale.value.languageCode ==
                   'ar'
-          ? TextDirection.rtl
-          : TextDirection.ltr,
+              ? TextDirection.rtl
+              : TextDirection.ltr,
       child: GetBuilder<Students_Marks_Controller>(builder: (controller) {
         if (controller.ClassIndex == "") {
           return Center(

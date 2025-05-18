@@ -9,6 +9,7 @@ String getMyChildren = "getMyChildren";
 String getStudentQuiz = 'getStudentQuiz';
 String getMyData = 'getMyData';
 String updateGuardian = 'updateGuardian';
+String getStudentMarksById = 'getStudentMarksById';
 //..................... Guardians API End ...................//
 
 //..................... Teacher API Start ...................//

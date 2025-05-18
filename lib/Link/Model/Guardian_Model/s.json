@@ -1,0 +1,271 @@
+{
+  "data": {
+    "The First Semester": {
+      "curriculum": [
+        {
+          "enName": "kjk",
+          "name": "iug",
+          "mark": [
+            {
+              "id": 5,
+              "type": "شفهي",
+              "mark": 20
+            },
+            {
+              "id": 9,
+              "type": "مذاكرة",
+              "mark": 20
+            },
+            {
+              "id": 7,
+              "type": "امتحان",
+              "mark": 40
+            },
+            {
+              "id": 10,
+              "type": "المجموع",
+              "mark": 80
+            }
+          ],
+          "isRate": true
+        },
+        {
+          "enName": "arabic",
+          "name": "عربي",
+          "mark": 0,
+          "isRate": false
+        }
+      ],
+      "quizTypes": [
+        {
+          "id": 4,
+          "name": "الاختبارات",
+          "ratio": 40,
+          "isQuizable": 0,
+          "size": 242,
+          "items": [
+            {
+              "id": 5,
+              "name": "شفهي",
+              "ratio": 20,
+              "isQuizable": 0,
+              "maxMark": 24,
+              "PassingMark": 2
+            },
+            {
+              "id": 9,
+              "name": "مذاكرة",
+              "ratio": 20,
+              "isQuizable": 1,
+              "maxMark": 24,
+              "PassingMark": 2
+            }
+          ],
+          "operationType": null,
+          "quizTypes": [],
+          "maxMark": 49,
+          "PassingMark": 4
+        },
+        {
+          "id": 6,
+          "name": "امتحان الفصل",
+          "ratio": 50,
+          "isQuizable": 0,
+          "size": 100,
+          "items": [
+            {
+              "id": 7,
+              "name": "امتحان",
+              "ratio": 50,
+              "isQuizable": 1,
+              "maxMark": 61,
+              "PassingMark": 6
+            }
+          ],
+          "operationType": null,
+          "quizTypes": [],
+          "maxMark": 61,
+          "PassingMark": 6
+        }
+      ]
+    },
+    "The Second Semester": {
+      "curriculum": [
+        {
+          "enName": "kjk",
+          "name": "iug",
+          "mark": [
+            {
+              "id": 5,
+              "type": "شفهي",
+              "mark": 20
+            },
+            {
+              "id": 9,
+              "type": "مذاكرة",
+              "mark": 20
+            },
+            {
+              "id": 7,
+              "type": "امتحان",
+              "mark": 40
+            },
+            {
+              "id": 10,
+              "type": "المجموع",
+              "mark": 80
+            }
+          ],
+          "isRate": true
+        },
+        {
+          "enName": "arabic",
+          "name": "عربي",
+          "mark": 0,
+          "isRate": false
+        }
+      ],
+      "quizTypes": [
+        {
+          "id": 4,
+          "name": "الاختبارات",
+          "ratio": 40,
+          "isQuizable": 0,
+          "size": 242,
+          "items": [
+            {
+              "id": 5,
+              "name": "شفهي",
+              "ratio": 20,
+              "isQuizable": 0,
+              "maxMark": 24,
+              "PassingMark": 2
+            },
+            {
+              "id": 9,
+              "name": "مذاكرة",
+              "ratio": 20,
+              "isQuizable": 1,
+              "maxMark": 24,
+              "PassingMark": 2
+            }
+          ],
+          "operationType": null,
+          "quizTypes": [],
+          "maxMark": 49,
+          "PassingMark": 4
+        },
+        {
+          "id": 6,
+          "name": "امتحان الفصل",
+          "ratio": 50,
+          "isQuizable": 0,
+          "size": 100,
+          "items": [
+            {
+              "id": 7,
+              "name": "امتحان",
+              "ratio": 50,
+              "isQuizable": 1,
+              "maxMark": 61,
+              "PassingMark": 6
+            }
+          ],
+          "operationType": null,
+          "quizTypes": [],
+          "maxMark": 61,
+          "PassingMark": 6
+        }
+      ]
+    },
+    "The Third Semester": {
+      "curriculum": [
+        {
+          "enName": "kjk",
+          "name": "iug",
+          "mark": [
+            {
+              "id": 5,
+              "type": "شفهي",
+              "mark": 20
+            },
+            {
+              "id": 9,
+              "type": "مذاكرة",
+              "mark": 20
+            },
+            {
+              "id": 7,
+              "type": "امتحان",
+              "mark": 40
+            },
+            {
+              "id": 10,
+              "type": "المجموع",
+              "mark": 80
+            }
+          ],
+          "isRate": true
+        },
+        {
+          "enName": "arabic",
+          "name": "عربي",
+          "mark": 0,
+          "isRate": false
+        }
+      ],
+      "quizTypes": [
+        {
+          "id": 4,
+          "name": "الاختبارات",
+          "ratio": 40,
+          "isQuizable": 0,
+          "size": 242,
+          "items": [
+            {
+              "id": 5,
+              "name": "شفهي",
+              "ratio": 20,
+              "isQuizable": 0,
+              "maxMark": 24,
+              "PassingMark": 2
+            },
+            {
+              "id": 9,
+              "name": "مذاكرة",
+              "ratio": 20,
+              "isQuizable": 1,
+              "maxMark": 24,
+              "PassingMark": 2
+            }
+          ],
+          "operationType": null,
+          "quizTypes": [],
+          "maxMark": 49,
+          "PassingMark": 4
+        },
+        {
+          "id": 6,
+          "name": "امتحان الفصل",
+          "ratio": 50,
+          "isQuizable": 0,
+          "size": 100,
+          "items": [
+            {
+              "id": 7,
+              "name": "امتحان",
+              "ratio": 50,
+              "isQuizable": 1,
+              "maxMark": 61,
+              "PassingMark": 6
+            }
+          ],
+          "operationType": null,
+          "quizTypes": [],
+          "maxMark": 61,
+          "PassingMark": 6
+        }
+      ]
+    }
+  }
+}
