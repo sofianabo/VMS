@@ -123,8 +123,8 @@ class _PenaltygridState extends State<Penaltygrid> {
                                     TableRow(
                                       children: [
                                         _dataColumn(
-                                            prefs!.getString(languageKey) ==
-                                                    'ar'
+                                            Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                                 ? row.value['name']
                                                 : row.value['enName']),
                                         _dataColumn(row.value['description']),

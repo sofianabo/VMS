@@ -71,8 +71,8 @@ class GradeTable extends StatelessWidget {
                                         _dataColumn(
                                             row.value['feeCount'], context),
                                         _dataColumn(
-                                            prefs!.getString(languageKey) ==
-                                                    'ar'
+                                        Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                                 ? row.value['name']
                                                 : row.value['enName'],
                                             context),
@@ -123,8 +123,8 @@ class GradeTable extends StatelessWidget {
                                             _dataColumn(
                                                 row.value['feeCount'], context),
                                             _dataColumn(
-                                                prefs!.getString(languageKey) ==
-                                                        'ar'
+                                               Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                                     ? row.value['name']
                                                     : row.value['enName'],
                                                 context),

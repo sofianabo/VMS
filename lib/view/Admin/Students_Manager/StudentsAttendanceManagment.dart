@@ -108,8 +108,8 @@ class _StudentsAttendanceManagmentState
                                         if (value == true) {
                                           Get.dialog(Directionality(
                                             textDirection:
-                                                prefs!.getString(languageKey) ==
-                                                        'ar'
+                                                Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                                     ? TextDirection.rtl
                                                     : TextDirection.ltr,
                                             child: VMSAlertDialog(
@@ -251,8 +251,8 @@ class _StudentsAttendanceManagmentState
                                       if (value == true) {
                                         Get.dialog(Directionality(
                                           textDirection:
-                                              prefs!.getString(languageKey) ==
-                                                      'ar'
+                                              Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                                   ? TextDirection.rtl
                                                   : TextDirection.ltr,
                                           child: VMSAlertDialog(

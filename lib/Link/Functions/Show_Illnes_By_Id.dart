@@ -165,8 +165,8 @@ class _StudentsIllnessDialogState extends State<StudentsIllnessDialog> {
                                         child: Center(
                                           child: Text(
                                             textAlign: TextAlign.center,
-                                            prefs!.getString(languageKey) ==
-                                                    "ar"
+                                          Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                                 ? "${illness.name}"
                                                 : "${illness.enName}",
                                             style: Get

@@ -52,6 +52,8 @@ import 'package:vms_school/Link/Controller/GuardianController/Guardian_My_Data_C
 import 'package:vms_school/Link/Controller/GuardianController/MyChildren_Controller.dart';
 import 'package:vms_school/Link/Controller/HomeController/HomeScreenController.dart';
 import 'package:vms_school/Link/Controller/Teacher_Controller/My_Students_Controller.dart';
+import 'package:vms_school/Link/Controller/Teacher_Controller/QuizTableTeacherController.dart';
+import 'package:vms_school/Link/Controller/Teacher_Controller/StudyShareTeacherController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCuriculmController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCurriculumn_Controller.dart';
@@ -140,5 +142,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => Guardian_My_Data_Controller(), fenix: true);
     Get.lazyPut(() => Addgurdianchildcontroller(), fenix: true);
     Get.lazyPut(() => My_Students_Controller(), fenix: true);
+    Get.lazyPut(() => Studyshareteachercontroller(), fenix: true);
+    Get.lazyPut(() => Quiztableteachercontroller(), fenix: true);
   }
 }

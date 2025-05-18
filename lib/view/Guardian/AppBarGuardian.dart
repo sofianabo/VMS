@@ -70,7 +70,7 @@ class _AppbarguardianState extends State<Appbarguardian> {
                   Expanded(
                     child: Center(
                       child: Text(
-                        "My Children".tr,
+                        "Main Page".tr,
                         style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,

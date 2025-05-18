@@ -31,7 +31,7 @@ import 'package:vms_school/widgets/VMSAlertDialog.dart';
 Add_Students_Guardian_Functions() async {
   // CancelToken cancelToken = CancelToken();
   // Loading_Dialog(cancelToken: cancelToken);
-   Get_Location_API.Get_Locations();
+  Get_Location_API.Get_Locations();
   // Get.back();
 
   Get.dialog(AllGuardiansDialog(), barrierDismissible: false);
@@ -644,6 +644,7 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                   ),
                                 ]),
                             Row(
+                                spacing: 10,
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -677,54 +678,36 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                                         color: Theme.of(context).primaryColor,
                                         width: 145);
                                   }),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: Get.find<LocalizationController>()
-                                                    .currentLocale
-                                                    .value
-                                                    .languageCode ==
-                                                'ar'
-                                            ? 0
-                                            : 10.0,
-                                        right:
-                                            Get.find<LocalizationController>()
-                                                        .currentLocale
-                                                        .value
-                                                        .languageCode ==
-                                                    'ar'
-                                                ? 10
-                                                : 0),
-                                    child: GetBuilder<Vaccines_Controller>(
-                                        builder: (vac_Controller) {
-                                      return ButtonDialog(
-                                          height: 60,
-                                          text: "Student Vaccines".tr +
-                                              " (${vac_Controller.selectedIllnesses.length})",
-                                          onPressed: () async {
-                                            try {
-                                              CancelToken cancelToken =
-                                                  CancelToken();
-                                              Loading_Dialog(
-                                                  cancelToken: cancelToken);
-                                              if (await Get_Vaccines_API(
-                                                          Get.context!)
-                                                      .Get_Vaccines(
-                                                          cancelToken:
-                                                              cancelToken) ==
-                                                  200) {
-                                                Get.back();
-                                                Get.dialog(
-                                                    StudentsVaccinesDialog(),
-                                                    barrierDismissible: false);
-                                              }
-                                            } catch (e) {
-                                              print(e);
+                                  GetBuilder<Vaccines_Controller>(
+                                      builder: (vac_Controller) {
+                                    return ButtonDialog(
+                                        height: 60,
+                                        text: "Student Vaccines".tr +
+                                            " (${vac_Controller.selectedIllnesses.length})",
+                                        onPressed: () async {
+                                          try {
+                                            CancelToken cancelToken =
+                                                CancelToken();
+                                            Loading_Dialog(
+                                                cancelToken: cancelToken);
+                                            if (await Get_Vaccines_API(
+                                                        Get.context!)
+                                                    .Get_Vaccines(
+                                                        cancelToken:
+                                                            cancelToken) ==
+                                                200) {
+                                              Get.back();
+                                              Get.dialog(
+                                                  StudentsVaccinesDialog(),
+                                                  barrierDismissible: false);
                                             }
-                                          },
-                                          color: Theme.of(context).primaryColor,
-                                          width: 145);
-                                    }),
-                                  ),
+                                          } catch (e) {
+                                            print(e);
+                                          }
+                                        },
+                                        color: Theme.of(context).primaryColor,
+                                        width: 145);
+                                  }),
                                 ]),
                           ],
                         ),
