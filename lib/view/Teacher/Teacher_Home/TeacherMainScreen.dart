@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Teacher_API/Get_My_Student.dart';
 import 'package:vms_school/Link/Controller/Teacher_Controller/My_Students_Controller.dart';
+import 'package:vms_school/view/Teacher/TeacherAppBar.dart';
 import 'package:vms_school/view/Teacher/Teacher_Home/TeacherMainScreenGrid.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 
@@ -27,7 +28,7 @@ class _GuardianMainScreenState extends State<TeacherMainScreen> {
       body: Expanded(
           child: Column(
         children: [
-          //AppbarTeacher(),
+          Teacherappbar(),
           Container(
             width: double.infinity,
             margin:

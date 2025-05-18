@@ -190,8 +190,8 @@ class ElectronicBookGrid extends StatelessWidget {
                                           "observer")
                                         Row(
                                           textDirection:
-                                              prefs!.getString(languageKey) ==
-                                                      "ar"
+                                              Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                                   ? TextDirection.ltr
                                                   : TextDirection.ltr,
                                           mainAxisAlignment:

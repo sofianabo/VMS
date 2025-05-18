@@ -156,14 +156,13 @@ class Illness_Grid extends StatelessWidget {
                                               child: Column(children: [
                                             Text(
                                               overflow: TextOverflow.ellipsis,
-                                              textDirection: prefs!.getString(
-                                                          languageKey) ==
-                                                      "ar"
+                                              textDirection: Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                                   ? TextDirection.rtl
                                                   : TextDirection.ltr,
                                               textAlign: TextAlign.center,
-                                              prefs!.getString(languageKey) ==
-                                                      'ar'
+                                             Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                                   ? "${control.filteredIllness![index].name}"
                                                   : "${control.filteredIllness![index].enName}",
                                               style: Get.textTheme.bodyMedium!

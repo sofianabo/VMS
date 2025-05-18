@@ -189,8 +189,8 @@ class _Show_Teacher_Illnes_By_IdState extends State<Show_Teacher_Illnes_By_Id> {
                                         child: Center(
                                           child: Text(
                                             textAlign: TextAlign.center,
-                                            prefs!.getString(languageKey) ==
-                                                    'ar'
+                                          Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                                 ? "${illness.name}"
                                                 : "${illness.enName}",
                                             style: Get

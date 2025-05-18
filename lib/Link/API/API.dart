@@ -15,6 +15,9 @@ String getStudentMarksById = 'getStudentMarksById';
 //..................... Teacher API Start ...................//
 
 String getStudentByTeacher = "getStudentByTeacher";
+String getMyStudyShare = "getMyStudyShare";
+String getMyQuiz = "getMyQuiz";
+String getMyAttendence = "getMyAttendance";
 
 //..................... Teacher API End ...................//
 

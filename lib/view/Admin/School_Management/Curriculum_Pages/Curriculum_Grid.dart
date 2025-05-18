@@ -174,8 +174,8 @@ class CurriculumGrid extends StatelessWidget {
                                             child: Text(
                                                 maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,
-                                                prefs!.getString(languageKey) ==
-                                                        "ar"
+                                               Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                                     ? "${control.filteredCurriculum[index].name}"
                                                     : "${control.filteredCurriculum[index].enName}",
                                                 style: Get
