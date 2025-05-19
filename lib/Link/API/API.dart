@@ -18,6 +18,9 @@ String getStudentByTeacher = "getStudentByTeacher";
 String getMyStudyShare = "getMyStudyShare";
 String getMyQuiz = "getMyQuiz";
 String getMyAttendence = "getMyAttendance";
+String getClassesByTeacher = "getClassesByTeacher";
+String getDivionByTeacher = "getDivionByTeacher";
+String getCurriculumByTeacher = "getCurriculumByTeacher";
 
 //..................... Teacher API End ...................//
 
