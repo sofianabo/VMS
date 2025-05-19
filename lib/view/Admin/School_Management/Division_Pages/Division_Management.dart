@@ -8,12 +8,16 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Division_
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Divisions_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
+import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Admin/School_Management/Division_Pages/Division_Grid.dart';
 import 'package:vms_school/widgets/Admin/Admin_School/All_Screen_Sessions.dart';
 import 'package:vms_school/widgets/Admin/Admin_School/DropDownDivisionMgmt.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/Division_Model.dart';
 
 class DivisionManagement extends StatefulWidget {
   const DivisionManagement({super.key});
@@ -275,7 +279,38 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportDataToPdf<Division>(
+                                items: Get.find<Divisions_Controller>()
+                                    .filteredDivision!,
+                                headers: [
+                                  "Name".tr,
+                                  "Class".tr,
+                                  "Meet URL".tr,
+                                ],
+                                fieldMappings: {
+                                  "Name".tr: (reg) =>
+                                      Get.find<LocalizationController>()
+                                                  .currentLocale
+                                                  .value
+                                                  .languageCode ==
+                                              'ar'
+                                          ? reg.name
+                                          : reg.enName ?? "",
+                                  "Class".tr: (reg) =>
+                                      Get.find<LocalizationController>()
+                                                  .currentLocale
+                                                  .value
+                                                  .languageCode ==
+                                              'ar'
+                                          ? reg.classes!.name
+                                          : reg.classes!.enName,
+                                  "Meet URL".tr: (reg) => reg.meetUrl ?? "",
+                                },
+                                fileName: "Division".tr +
+                                    '${DateTime.now().toIso8601String()}',
+                              );
+                            },
                             icon: Icon(VMS_Icons.pdf,
                                 size: 18,
                                 color: Theme.of(context).highlightColor)),
@@ -300,7 +335,38 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportDataToExcel<Division>(
+                                items: Get.find<Divisions_Controller>()
+                                    .filteredDivision!,
+                                headers: [
+                                  "Name".tr,
+                                  "Class".tr,
+                                  "Meet URL".tr,
+                                ],
+                                fieldMappings: {
+                                  "Name".tr: (reg) =>
+                                      Get.find<LocalizationController>()
+                                                  .currentLocale
+                                                  .value
+                                                  .languageCode ==
+                                              'ar'
+                                          ? reg.name
+                                          : reg.enName ?? "",
+                                  "Class".tr: (reg) =>
+                                      Get.find<LocalizationController>()
+                                                  .currentLocale
+                                                  .value
+                                                  .languageCode ==
+                                              'ar'
+                                          ? reg.classes!.name
+                                          : reg.classes!.enName,
+                                  "Meet URL".tr: (reg) => reg.meetUrl ?? "",
+                                },
+                                fileName: "Division".tr +
+                                    '${DateTime.now().toIso8601String()}',
+                              );
+                            },
                             icon: Icon(VMS_Icons.xl,
                                 size: 18,
                                 color: Theme.of(context).highlightColor)),
@@ -395,7 +461,38 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
-                          onPressed: () {},
+                          onPressed: () {
+                            exportDataToPdf<Division>(
+                              items: Get.find<Divisions_Controller>()
+                                  .filteredDivision!,
+                              headers: [
+                                "Name".tr,
+                                "Class".tr,
+                                "Meet URL".tr,
+                              ],
+                              fieldMappings: {
+                                "Name".tr: (reg) =>
+                                    Get.find<LocalizationController>()
+                                                .currentLocale
+                                                .value
+                                                .languageCode ==
+                                            'ar'
+                                        ? reg.name
+                                        : reg.enName ?? "",
+                                "Class".tr: (reg) =>
+                                    Get.find<LocalizationController>()
+                                                .currentLocale
+                                                .value
+                                                .languageCode ==
+                                            'ar'
+                                        ? reg.classes!.name
+                                        : reg.classes!.enName,
+                                "Meet URL".tr: (reg) => reg.meetUrl ?? "",
+                              },
+                              fileName: "Division".tr +
+                                  '${DateTime.now().toIso8601String()}',
+                            );
+                          },
                           icon: Icon(VMS_Icons.pdf,
                               size: 18,
                               color: Theme.of(context).highlightColor)),
@@ -420,7 +517,38 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
-                          onPressed: () {},
+                          onPressed: () {
+                            exportDataToExcel<Division>(
+                              items: Get.find<Divisions_Controller>()
+                                  .filteredDivision!,
+                              headers: [
+                                "Name".tr,
+                                "Class".tr,
+                                "Meet URL".tr,
+                              ],
+                              fieldMappings: {
+                                "Name".tr: (reg) =>
+                                    Get.find<LocalizationController>()
+                                                .currentLocale
+                                                .value
+                                                .languageCode ==
+                                            'ar'
+                                        ? reg.name
+                                        : reg.enName ?? "",
+                                "Class".tr: (reg) =>
+                                    Get.find<LocalizationController>()
+                                                .currentLocale
+                                                .value
+                                                .languageCode ==
+                                            'ar'
+                                        ? reg.classes!.name
+                                        : reg.classes!.enName,
+                                "Meet URL".tr: (reg) => reg.meetUrl ?? "",
+                              },
+                              fileName: "Division".tr +
+                                  '${DateTime.now().toIso8601String()}',
+                            );
+                          },
                           icon: Icon(VMS_Icons.xl,
                               size: 18,
                               color: Theme.of(context).highlightColor)),

@@ -88,23 +88,32 @@ class _SidbarAnimationState extends State<SidbarAnimation>
               child: Obx(
                 () => AnimatedSwitcher(
                   duration: const Duration(milliseconds: 200),
+                  switchInCurve: Curves.easeIn,
+                  switchOutCurve: Curves.easeOut,
+                  transitionBuilder:
+                      (Widget child, Animation<double> animation) {
+                    return child;
+                    // return FadeTransition(
+                    //   opacity: animation,
+                    //   child: child,
+                    // );
+                  },
+                  layoutBuilder:
+                      (Widget? currentChild, List<Widget> previousChildren) {
+                    return Stack(
+                      alignment: Alignment.centerLeft,
+                      children: <Widget>[
+                        ...previousChildren,
+                        if (currentChild != null) currentChild,
+                      ],
+                    );
+                  },
                   child: sidebarController.isHovered
-                      ? Align(
-                          key: ValueKey('hover-text'),
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            widget.hoverText!,
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 14),
-                          )
-                              .animate()
-                              .slideX(
-                                duration: const Duration(milliseconds: 250),
-                              )
-                              .fade(
-                                  duration: const Duration(milliseconds: 500)),
+                      ? _HoverTextWidget(
+                          key: UniqueKey(), // مفتاح فريد مطلق
+                          text: widget.hoverText!,
                         )
-                      : const SizedBox.shrink(),
+                      : _EmptyWidget(key: UniqueKey()), // مفتاح فريد مطلق
                 ),
               ),
             ),
@@ -229,5 +238,33 @@ class _HoverScaleState extends State<HoverScale>
         child: widget.child,
       ),
     );
+  }
+}
+
+// ويدجت مخصصة للنص لتجنب إعادة البناء غير الضرورية
+class _HoverTextWidget extends StatelessWidget {
+  final String text;
+
+  const _HoverTextWidget({required Key key, required this.text})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+        alignment: Alignment.centerLeft,
+        child: Text(
+          text,
+          style: const TextStyle(color: Colors.white, fontSize: 14),
+        ));
+  }
+}
+
+// ويدجت مخصصة للحالة الفارغة
+class _EmptyWidget extends StatelessWidget {
+  const _EmptyWidget({required Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox.shrink();
   }
 }

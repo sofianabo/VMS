@@ -5,6 +5,9 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Subjects_
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetTeacherAttendenceAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeacherAtendenceController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
+import 'package:vms_school/Link/Model/AdminModel/TeacherModels/AllTeacherAttendenceModel.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherStatusGrid.dart';
 import 'package:vms_school/widgets/Admin/Admin_School/All_Screen_Sessions.dart';
 import 'package:vms_school/widgets/Admin/Admin_Teachers/DropDownTeacherStatus.dart';
@@ -118,7 +121,21 @@ class _TeacherStatusState extends State<TeacherStatus> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportDataToPdf<Teacherattendance>(
+                                items: controller.filteredTeacher!,
+                                headers: [
+                                  "Full Name".tr,
+                                  "State".tr,
+                                ],
+                                fieldMappings: {
+                                  "Full Name".tr: (reg) => reg.fullName ?? "",
+                                  "State".tr: (reg) => reg.status!.tr ?? "",
+                                },
+                                fileName: "Teacher Attendance".tr +
+                                    '${DateTime.now().toIso8601String()}',
+                              );
+                            },
                             icon: Icon(VMS_Icons.pdf,
                                 size: 18,
                                 color: Theme.of(context).highlightColor)),
@@ -141,7 +158,21 @@ class _TeacherStatusState extends State<TeacherStatus> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportDataToExcel<Teacherattendance>(
+                                items: controller.filteredTeacher!,
+                                headers: [
+                                  "Full Name".tr,
+                                  "State".tr,
+                                ],
+                                fieldMappings: {
+                                  "Full Name".tr: (reg) => reg.fullName ?? "",
+                                  "State".tr: (reg) => reg.status!.tr ?? "",
+                                },
+                                fileName: "Teacher Attendance".tr +
+                                    '${DateTime.now().toIso8601String()}',
+                              );
+                            },
                             icon: Icon(VMS_Icons.xl,
                                 size: 18,
                                 color: Theme.of(context).highlightColor)),
@@ -224,7 +255,21 @@ class _TeacherStatusState extends State<TeacherStatus> {
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
-                          onPressed: () {},
+                          onPressed: () {
+                            exportDataToPdf<Teacherattendance>(
+                              items: controller.filteredTeacher!,
+                              headers: [
+                                "Full Name".tr,
+                                "State".tr,
+                              ],
+                              fieldMappings: {
+                                "Full Name".tr: (reg) => reg.fullName ?? "",
+                                "State".tr: (reg) => reg.status!.tr ?? "",
+                              },
+                              fileName: "Teacher Attendance".tr +
+                                  '${DateTime.now().toIso8601String()}',
+                            );
+                          },
                           icon: Icon(VMS_Icons.pdf,
                               size: 18,
                               color: Theme.of(context).highlightColor)),
@@ -247,7 +292,21 @@ class _TeacherStatusState extends State<TeacherStatus> {
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
-                          onPressed: () {},
+                          onPressed: () {
+                            exportDataToExcel<Teacherattendance>(
+                              items: controller.filteredTeacher!,
+                              headers: [
+                                "Full Name".tr,
+                                "State".tr,
+                              ],
+                              fieldMappings: {
+                                "Full Name".tr: (reg) => reg.fullName ?? "",
+                                "State".tr: (reg) => reg.status!.tr ?? "",
+                              },
+                              fileName: "Teacher Attendance".tr +
+                                  '${DateTime.now().toIso8601String()}',
+                            );
+                          },
                           icon: Icon(VMS_Icons.xl,
                               size: 18,
                               color: Theme.of(context).highlightColor)),

@@ -27,6 +27,7 @@ class DeletequizAPI {
       );
 
       if (response.statusCode == 200) {
+        Get.back();
         await Examtableapi(context).Examtable();
       } else {
         ErrorHandler.handleDioError(DioException(
@@ -43,8 +44,6 @@ class DeletequizAPI {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    } finally {
-      Get.back();
     }
     return true;
   }

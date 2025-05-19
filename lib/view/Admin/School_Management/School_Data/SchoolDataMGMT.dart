@@ -7,6 +7,7 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/SchoolDat
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/SchoolDataAPI/Update_School_Data.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/School_Info_Controller.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/School_Management/School_Data/School_Data_Bottom.dart';
@@ -307,21 +308,38 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                   isCongregation_numberEmpty ||
                                   isTown_ChipEmpty ||
                                   isWork_Begin_YearEmpty)) {
-                                exportToExcel(controller.SchoolInfo, [
-                                  'مرحبا',
-                                  'مرحبا',
-                                  'مرحبا',
-                                  'مرحبا',
-                                  'مرحبا',
-                                  'مرحبا',
-                                  'مرحبا',
-                                  'مرحبا',
-                                  'مرحبا',
-                                  'مرحبا',
-                                  'مرحبا',
-                                  'مرحبا',
-                                  'مرحبا',
-                                ]);
+                                // exportDataToExcel<Curriculum>(
+                                //   items: controller.SchoolInfo,
+                                //   headers: [
+                                //     "Name".tr,
+                                //     "English Name".tr,
+                                //     "Max Mark".tr,
+                                //     "Passing Mark".tr,
+                                //     "Subject".tr,
+                                //     "Failed subject".tr,
+                                //   ],
+                                //   fieldMappings: {
+                                //     "Name".tr: (reg) => reg.name ?? "",
+                                //     "English Name".tr: (reg) =>
+                                //         reg.enName ?? "",
+                                //     "Max Mark".tr: (reg) => reg.maxMark ?? "",
+                                //     "Passing Mark".tr: (reg) =>
+                                //         reg.passingMark ?? "",
+                                //     "Subject".tr: (reg) =>
+                                //         Get.find<LocalizationController>()
+                                //                     .currentLocale
+                                //                     .value
+                                //                     .languageCode ==
+                                //                 'ar'
+                                //             ? reg.subject!.name
+                                //             : reg.subject!.enName ?? "",
+                                //     "Failed subject".tr: (reg) => reg.type == 1
+                                //         ? "Yes".tr
+                                //         : "No".tr ?? "",
+                                //   },
+                                //   fileName: "Curriculum".tr +
+                                //       '${DateTime.now().toIso8601String()}',
+                                // );
                               }
                             },
                             icon: Icon(VMS_Icons.xl,

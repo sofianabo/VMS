@@ -5,10 +5,14 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Subject_S
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Subjects_API/Get_Subjects_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Subject_Controller.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
 import 'package:vms_school/view/Admin/School_Management/Subject_Pages/Subject_Management_Grid.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
+
+import '../../../../Link/Model/AdminModel/School_Models/Subject_Model.dart';
 
 class Subject_Management extends StatefulWidget {
   const Subject_Management({super.key});
@@ -168,7 +172,21 @@ class _Subject_ManagementState extends State<Subject_Management> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportDataToPdf<Subject>(
+                                items: Get.find<Subject_Controller>().subject!,
+                                headers: [
+                                  "Name".tr,
+                                  "English Name".tr,
+                                ],
+                                fieldMappings: {
+                                  "Name".tr: (reg) => reg.name ?? "",
+                                  "English Name".tr: (reg) => reg.enName ?? "",
+                                },
+                                fileName: "Subjectssss".tr +
+                                    '${DateTime.now().toIso8601String()}',
+                              );
+                            },
                             icon: Icon(VMS_Icons.pdf,
                                 size: 18,
                                 color: Theme.of(context).highlightColor)),
@@ -194,7 +212,21 @@ class _Subject_ManagementState extends State<Subject_Management> {
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
-                          onPressed: () {},
+                          onPressed: () {
+                            exportDataToExcel<Subject>(
+                              items: Get.find<Subject_Controller>().subject!,
+                              headers: [
+                                "Name".tr,
+                                "English Name".tr,
+                              ],
+                              fieldMappings: {
+                                "Name".tr: (reg) => reg.name ?? "",
+                                "English Name".tr: (reg) => reg.enName ?? "",
+                              },
+                              fileName: "Subjectssss".tr +
+                                  '${DateTime.now().toIso8601String()}',
+                            );
+                          },
                           icon: Icon(VMS_Icons.xl,
                               size: 18,
                               color: Theme.of(context).highlightColor)),

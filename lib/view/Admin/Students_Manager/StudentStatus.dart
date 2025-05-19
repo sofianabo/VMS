@@ -4,12 +4,16 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownGrad
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/StudentAttendenceAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
+import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Admin/Students_Manager/StudentStatusGrid.dart';
 import 'package:vms_school/widgets/Admin/Admin_School/All_Screen_Sessions.dart';
 import 'package:vms_school/widgets/Admin/Admin_Students/DropDownStudentsAttendence.dart';
 import 'package:vms_school/widgets/Calender.dart';
 import '../../../Icons_File/v_m_s__icons_icons.dart';
 import '../../../widgets/TextFormSearch.dart';
+import 'package:vms_school/Link/Model/AdminModel/Students_Models/AllStudentAttendenceModel.dart';
 
 class StudentStatus extends StatefulWidget {
   const StudentStatus({super.key});
@@ -116,7 +120,23 @@ class _StudentStatusState extends State<StudentStatus> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportDataToPdfFromText<Attendance>(
+                                  items: controller.filteredStudents,
+                                  headers: [
+                                    "Full Name".tr,
+                                    "State".tr,
+                                  ],
+                                  fieldMappings: {
+                                    "Full Name".tr: (reg) => reg.fullName ?? "",
+                                    "State".tr: (reg) => reg.status!.tr ?? "",
+                                  },
+                                  fileName: "Student Attendance".tr +
+                                      '${DateTime.now().toIso8601String()}',
+                                  UpText: "Student Attendance".tr +
+                                      "\n ${controller.AttendencetDate.value!.day}/ ${controller.AttendencetDate.value!.month}/ ${controller.AttendencetDate.value!.year}\n" +
+                                      " ( ${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? controller.filteredStudents[0].classes?.name : controller.filteredStudents[0].classes?.enName ?? ""} - ${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? controller.filteredStudents[0].division?.name : controller.filteredStudents[0].division?.enName ?? ""} )");
+                            },
                             icon: Icon(VMS_Icons.pdf,
                                 size: 18,
                                 color: Theme.of(context).primaryColor)),
@@ -139,7 +159,21 @@ class _StudentStatusState extends State<StudentStatus> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportDataToExcel<Attendance>(
+                                items: controller.filteredStudents,
+                                headers: [
+                                  "Full Name".tr,
+                                  "State".tr,
+                                ],
+                                fieldMappings: {
+                                  "Full Name".tr: (reg) => reg.fullName ?? "",
+                                  "State".tr: (reg) => reg.status!.tr ?? "",
+                                },
+                                fileName: "Student Attendance".tr +
+                                    '${DateTime.now().toIso8601String()}',
+                              );
+                            },
                             icon: Icon(VMS_Icons.xl,
                                 size: 18,
                                 color: Theme.of(context).primaryColor)),
@@ -228,7 +262,24 @@ class _StudentStatusState extends State<StudentStatus> {
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
-                              onPressed: () {},
+                              onPressed: () {
+                                exportDataToPdfFromText<Attendance>(
+                                    items: controller.filteredStudents,
+                                    headers: [
+                                      "Full Name".tr,
+                                      "State".tr,
+                                    ],
+                                    fieldMappings: {
+                                      "Full Name".tr: (reg) =>
+                                          reg.fullName ?? "",
+                                      "State".tr: (reg) => reg.status!.tr ?? "",
+                                    },
+                                    fileName: "Student Attendance".tr +
+                                        '${DateTime.now().toIso8601String()}',
+                                    UpText: "Student Attendance".tr +
+                                        "\n ${controller.AttendencetDate.value!.day}/ ${controller.AttendencetDate.value!.month}/ ${controller.AttendencetDate.value!.year}\n" +
+                                        " ( ${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? controller.filteredStudents[0].classes?.name : controller.filteredStudents[0].classes?.enName ?? ""} - ${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? controller.filteredStudents[0].division?.name : controller.filteredStudents[0].division?.enName ?? ""} )");
+                              },
                               icon: Icon(VMS_Icons.pdf,
                                   size: 18,
                                   color: Theme.of(context).primaryColor)),
@@ -251,7 +302,21 @@ class _StudentStatusState extends State<StudentStatus> {
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
-                              onPressed: () {},
+                              onPressed: () {
+                                exportDataToExcel<Attendance>(
+                                  items: controller.filteredStudents,
+                                  headers: [
+                                    "Full Name".tr,
+                                    "State".tr,
+                                  ],
+                                  fieldMappings: {
+                                    "Full Name".tr: (reg) => reg.fullName ?? "",
+                                    "State".tr: (reg) => reg.status!.tr ?? "",
+                                  },
+                                  fileName: "Student Attendance".tr +
+                                      '${DateTime.now().toIso8601String()}',
+                                );
+                              },
                               icon: Icon(VMS_Icons.xl,
                                   size: 18,
                                   color: Theme.of(context).primaryColor)),

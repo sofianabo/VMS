@@ -3,7 +3,6 @@ import 'package:vms_school/Link/Model/AdminModel/School_Models/AllDivisionModel.
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/AllStudentModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/Student_Info_model.dart';
 import 'package:vms_school/Translate/local_controller.dart';
-import 'package:vms_school/main.dart';
 
 class Allstudentscontroller extends GetxController {
   List<Students> stud = [];
@@ -230,8 +229,8 @@ class Allstudentscontroller extends GetxController {
   void setAllDivision(AllDivisionModel division) {
     divisionlist.clear();
     for (int k = 0; k < division.division!.length; k++) {
-      if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar')
+      if (Get.find<LocalizationController>().currentLocale.value.languageCode ==
+          'ar')
         divisionlist.add(division.division![k].name.toString());
       else
         divisionlist.add(division.division![k].enName.toString());

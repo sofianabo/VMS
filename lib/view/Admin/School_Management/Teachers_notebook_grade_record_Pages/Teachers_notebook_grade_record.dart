@@ -236,31 +236,6 @@ class _Teachers_notebook_grade_recordState
                                     ? Colors.white
                                     : Theme.of(context).highlightColor)),
                       ),
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).cardColor,
-                            borderRadius: BorderRadius.circular(5),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Colors.black12,
-                                  offset: Offset(0, 2),
-                                  blurRadius: 1)
-                            ]),
-                        child: IconButton(
-                            style: ButtonStyle(
-                                backgroundColor: WidgetStatePropertyAll(
-                                    Theme.of(context).cardColor),
-                                shape: WidgetStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5))))),
-                            onPressed: () {},
-                            icon: Icon(VMS_Icons.xl,
-                                size: 18,
-                                color: Theme.of(context).highlightColor)),
-                      ),
                     ],
                   )
               ],

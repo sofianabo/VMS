@@ -12,6 +12,9 @@ import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Cl
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownGradeController.dart.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/Link/Functions/Class_Curriculm_Funcation.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
+import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Admin/School_Management/Class_Pages/Classes_Grid.dart';
 import 'package:vms_school/widgets/Admin/Admin_School/All_Screen_Sessions.dart';
 import 'package:vms_school/widgets/Admin/Admin_School/DropDownClassMgmt.dart';
@@ -19,6 +22,7 @@ import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFieldDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/Classes_Model.dart';
 
 class ClassManagement extends StatefulWidget {
   const ClassManagement({super.key});
@@ -435,7 +439,44 @@ class _ClassManagementState extends State<ClassManagement> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportDataToPdf<Classes>(
+                                items: Get.find<ClassMgmtController>()
+                                    .filteredreclasses!,
+                                headers: [
+                                  "Name".tr,
+                                  "Grade".tr,
+                                  "Session".tr,
+                                  "Drive URL".tr,
+                                  "Admin Account".tr,
+                                ],
+                                fieldMappings: {
+                                  "Name".tr: (reg) =>
+                                      Get.find<LocalizationController>()
+                                                  .currentLocale
+                                                  .value
+                                                  .languageCode ==
+                                              'ar'
+                                          ? reg.name
+                                          : reg.enName ?? "",
+                                  "Grade".tr: (reg) =>
+                                      Get.find<LocalizationController>()
+                                                  .currentLocale
+                                                  .value
+                                                  .languageCode ==
+                                              'ar'
+                                          ? reg.grade!.name
+                                          : reg.grade!.enName,
+                                  "Drive URL".tr: (reg) => reg.driveUrl ?? "",
+                                  "Session".tr: (reg) =>
+                                      reg.session!.year ?? "",
+                                  "Admin Account".tr: (reg) =>
+                                      reg.admin!.userName ?? "",
+                                },
+                                fileName: "Class".tr +
+                                    '${DateTime.now().toIso8601String()}',
+                              );
+                            },
                             icon: Icon(VMS_Icons.pdf,
                                 size: 18,
                                 color: Theme.of(context).highlightColor)),
@@ -460,7 +501,41 @@ class _ClassManagementState extends State<ClassManagement> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportDataToExcel<Classes>(
+                                items: Get.find<ClassMgmtController>()
+                                    .filteredreclasses!,
+                                headers: [
+                                  "Name".tr,
+                                  "Grade".tr,
+                                  "Drive URL".tr,
+                                  "Admin Account".tr,
+                                ],
+                                fieldMappings: {
+                                  "Name".tr: (reg) =>
+                                      Get.find<LocalizationController>()
+                                                  .currentLocale
+                                                  .value
+                                                  .languageCode ==
+                                              'ar'
+                                          ? reg.name
+                                          : reg.enName ?? "",
+                                  "Grade".tr: (reg) =>
+                                      Get.find<LocalizationController>()
+                                                  .currentLocale
+                                                  .value
+                                                  .languageCode ==
+                                              'ar'
+                                          ? reg.grade!.name
+                                          : reg.grade!.enName,
+                                  "Drive URL".tr: (reg) => reg.driveUrl ?? "",
+                                  "Admin Account".tr: (reg) =>
+                                      reg.admin!.userName ?? "",
+                                },
+                                fileName: "Class".tr +
+                                    '${DateTime.now().toIso8601String()}',
+                              );
+                            },
                             icon: Icon(VMS_Icons.xl,
                                 size: 18,
                                 color: Theme.of(context).highlightColor)),
@@ -828,7 +903,41 @@ class _ClassManagementState extends State<ClassManagement> {
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
-                          onPressed: () {},
+                          onPressed: () {
+                            exportDataToPdf<Classes>(
+                              items: Get.find<ClassMgmtController>()
+                                  .filteredreclasses!,
+                              headers: [
+                                "Name".tr,
+                                "Grade".tr,
+                                "Drive URL".tr,
+                                "Admin Account".tr,
+                              ],
+                              fieldMappings: {
+                                "Name".tr: (reg) =>
+                                    Get.find<LocalizationController>()
+                                                .currentLocale
+                                                .value
+                                                .languageCode ==
+                                            'ar'
+                                        ? reg.name
+                                        : reg.enName ?? "",
+                                "Grade".tr: (reg) =>
+                                    Get.find<LocalizationController>()
+                                                .currentLocale
+                                                .value
+                                                .languageCode ==
+                                            'ar'
+                                        ? reg.grade!.name
+                                        : reg.grade!.enName,
+                                "Drive URL".tr: (reg) => reg.driveUrl ?? "",
+                                "Admin Account".tr: (reg) =>
+                                    reg.admin!.userName ?? "",
+                              },
+                              fileName: "Class".tr +
+                                  '${DateTime.now().toIso8601String()}',
+                            );
+                          },
                           icon: Icon(VMS_Icons.pdf,
                               size: 18,
                               color: Theme.of(context).highlightColor)),
@@ -853,7 +962,41 @@ class _ClassManagementState extends State<ClassManagement> {
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
-                          onPressed: () {},
+                          onPressed: () {
+                            exportDataToExcel<Classes>(
+                              items: Get.find<ClassMgmtController>()
+                                  .filteredreclasses!,
+                              headers: [
+                                "Name".tr,
+                                "Grade".tr,
+                                "Admin Account".tr,
+                                "Drive URL".tr,
+                              ],
+                              fieldMappings: {
+                                "Name".tr: (reg) =>
+                                    Get.find<LocalizationController>()
+                                                .currentLocale
+                                                .value
+                                                .languageCode ==
+                                            'ar'
+                                        ? reg.name
+                                        : reg.enName ?? "",
+                                "Grade".tr: (reg) =>
+                                    Get.find<LocalizationController>()
+                                                .currentLocale
+                                                .value
+                                                .languageCode ==
+                                            'ar'
+                                        ? reg.grade!.name
+                                        : reg.grade!.enName,
+                                "Admin Account".tr: (reg) =>
+                                    reg.admin!.userName ?? "",
+                                "Drive URL".tr: (reg) => reg.driveUrl ?? "",
+                              },
+                              fileName: "Class".tr +
+                                  '${DateTime.now().toIso8601String()}',
+                            );
+                          },
                           icon: Icon(VMS_Icons.xl,
                               size: 18,
                               color: Theme.of(context).highlightColor)),

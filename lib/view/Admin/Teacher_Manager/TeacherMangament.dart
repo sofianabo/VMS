@@ -9,6 +9,9 @@ import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
+import 'package:vms_school/Link/Model/AdminModel/TeacherModels/AllTeacherModel.dart';
 import 'package:vms_school/view/Admin/Teacher_Manager/TeacherManagementGrid.dart';
 import 'package:vms_school/widgets/Admin/Admin_Employee/DropDownAllEmployee.dart';
 import 'package:vms_school/widgets/Admin/Admin_School/All_Screen_Sessions.dart';
@@ -445,7 +448,32 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportDataToPdf<Teachers>(
+                                items: Get.find<Allteachercontroller>()
+                                    .filteredTeacher!,
+                                headers: [
+                                  "Name".tr,
+                                  "Gender".tr,
+                                  "Contract Type".tr,
+                                  "Subjects Count".tr,
+                                  "Phone Number".tr,
+                                  "Email".tr,
+                                ],
+                                fieldMappings: {
+                                  "Name".tr: (reg) => reg.fullName ?? "",
+                                  "Phone Number".tr: (reg) => reg.phone ?? "",
+                                  "Email".tr: (reg) => reg.email ?? "",
+                                  "Contract Type".tr: (reg) =>
+                                      reg.contractType!.tr ?? "",
+                                  "Gender".tr: (reg) => reg.gender!.tr ?? "",
+                                  "Subjects Count".tr: (reg) =>
+                                      reg.subject!.length ?? "",
+                                },
+                                fileName: "Teachers".tr +
+                                    ' ${DateTime.now().toIso8601String()}',
+                              );
+                            },
                             icon: Icon(VMS_Icons.pdf,
                                 size: 18,
                                 color: Theme.of(context).highlightColor)),
@@ -470,7 +498,32 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportDataToExcel<Teachers>(
+                                items: Get.find<Allteachercontroller>()
+                                    .filteredTeacher!,
+                                headers: [
+                                  "Name".tr,
+                                  "Gender".tr,
+                                  "Contract Type".tr,
+                                  "Subjects Count".tr,
+                                  "Phone Number".tr,
+                                  "Email".tr,
+                                ],
+                                fieldMappings: {
+                                  "Name".tr: (reg) => reg.fullName ?? "",
+                                  "Phone Number".tr: (reg) => reg.phone ?? "",
+                                  "Email".tr: (reg) => reg.email ?? "",
+                                  "Contract Type".tr: (reg) =>
+                                      reg.contractType!.tr ?? "",
+                                  "Gender".tr: (reg) => reg.gender!.tr ?? "",
+                                  "Subjects Count".tr: (reg) =>
+                                      reg.subject!.length ?? "",
+                                },
+                                fileName: "Teachers".tr +
+                                    ' ${DateTime.now().toIso8601String()}',
+                              );
+                            },
                             icon: Icon(VMS_Icons.xl,
                                 size: 18,
                                 color: Theme.of(context).highlightColor)),
@@ -557,7 +610,34 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                         RoundedRectangleBorder(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(5))))),
-                                onPressed: () {},
+                                onPressed: () {
+                                  exportDataToPdf<Teachers>(
+                                    items: Get.find<Allteachercontroller>()
+                                        .filteredTeacher!,
+                                    headers: [
+                                      "Name".tr,
+                                      "Gender".tr,
+                                      "Contract Type".tr,
+                                      "Subjects Count".tr,
+                                      "Phone Number".tr,
+                                      "Email".tr,
+                                    ],
+                                    fieldMappings: {
+                                      "Name".tr: (reg) => reg.fullName ?? "",
+                                      "Phone Number".tr: (reg) =>
+                                          reg.phone ?? "",
+                                      "Email".tr: (reg) => reg.email ?? "",
+                                      "Contract Type".tr: (reg) =>
+                                          reg.contractType!.tr ?? "",
+                                      "Gender".tr: (reg) =>
+                                          reg.gender!.tr ?? "",
+                                      "Subjects Count".tr: (reg) =>
+                                          reg.subject!.length ?? "",
+                                    },
+                                    fileName: "Teachers".tr +
+                                        ' ${DateTime.now().toIso8601String()}',
+                                  );
+                                },
                                 icon: Icon(VMS_Icons.pdf,
                                     size: 18,
                                     color: Theme.of(context).highlightColor)),
@@ -582,7 +662,34 @@ class _TeacherManagementState extends State<TeacherManagement> {
                                         RoundedRectangleBorder(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(5))))),
-                                onPressed: () {},
+                                onPressed: () {
+                                  exportDataToExcel<Teachers>(
+                                    items: Get.find<Allteachercontroller>()
+                                        .filteredTeacher!,
+                                    headers: [
+                                      "Name".tr,
+                                      "Gender".tr,
+                                      "Contract Type".tr,
+                                      "Subjects Count".tr,
+                                      "Phone Number".tr,
+                                      "Email".tr,
+                                    ],
+                                    fieldMappings: {
+                                      "Name".tr: (reg) => reg.fullName ?? "",
+                                      "Phone Number".tr: (reg) =>
+                                          reg.phone ?? "",
+                                      "Email".tr: (reg) => reg.email ?? "",
+                                      "Contract Type".tr: (reg) =>
+                                          reg.contractType!.tr ?? "",
+                                      "Gender".tr: (reg) =>
+                                          reg.gender!.tr ?? "",
+                                      "Subjects Count".tr: (reg) =>
+                                          reg.subject!.length ?? "",
+                                    },
+                                    fileName: "Teachers".tr +
+                                        ' ${DateTime.now().toIso8601String()}',
+                                  );
+                                },
                                 icon: Icon(VMS_Icons.xl,
                                     size: 18,
                                     color: Theme.of(context).highlightColor)),

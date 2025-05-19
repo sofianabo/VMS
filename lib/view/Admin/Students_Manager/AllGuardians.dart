@@ -5,6 +5,9 @@ import 'package:vms_school/Link/API/AdminAPI/Students/Guardian_APIS/AddGuardianA
 import 'package:vms_school/Link/API/AdminAPI/Students/Guardian_APIS/GetAllGuardiansAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/allGaurdianController.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
+import 'package:vms_school/Link/Model/AdminModel/Students_Models/allGuardianModel.dart';
 import 'package:vms_school/view/Admin/Students_Manager/AllGuardianGrid.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Squer_Button_Enabled_Disabled.dart';
@@ -441,7 +444,28 @@ class _AllGuardiansState extends State<AllGuardians> {
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
-                          onPressed: () {},
+                          onPressed: () {
+                            exportDataToPdf<Gaurdians>(
+                              items: Get.find<Allgaurdiancontroller>()
+                                  .filteredregaurdians!,
+                              headers: [
+                                "Name".tr,
+                                "Phone Number".tr,
+                                "Email".tr,
+                                "National Id".tr,
+                                "Username".tr,
+                              ],
+                              fieldMappings: {
+                                "Name".tr: (reg) => reg.name ?? "",
+                                "Phone Number".tr: (reg) => reg.phone ?? "",
+                                "Email".tr: (reg) => reg.email ?? "",
+                                "National Id".tr: (reg) => reg.nationalId ?? "",
+                                "Username".tr: (reg) => reg.userName ?? "",
+                              },
+                              fileName:
+                                  'Guardians${DateTime.now().toIso8601String()}',
+                            );
+                          },
                           icon: Icon(VMS_Icons.pdf,
                               size: 18,
                               color: Theme.of(context).highlightColor)),
@@ -464,7 +488,28 @@ class _AllGuardiansState extends State<AllGuardians> {
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
-                          onPressed: () {},
+                          onPressed: () {
+                            exportDataToExcel<Gaurdians>(
+                              items: Get.find<Allgaurdiancontroller>()
+                                  .filteredregaurdians!,
+                              headers: [
+                                "Name".tr,
+                                "Phone Number".tr,
+                                "Email".tr,
+                                "National Id".tr,
+                                "Username".tr,
+                              ],
+                              fieldMappings: {
+                                "Name".tr: (reg) => reg.name ?? "",
+                                "Phone Number".tr: (reg) => reg.phone ?? "",
+                                "Email".tr: (reg) => reg.email ?? "",
+                                "National Id".tr: (reg) => reg.nationalId ?? "",
+                                "Username".tr: (reg) => reg.userName ?? "",
+                              },
+                              fileName:
+                                  'Guardians${DateTime.now().toIso8601String()}',
+                            );
+                          },
                           icon: Icon(VMS_Icons.xl,
                               size: 18,
                               color: Theme.of(context).highlightColor)),

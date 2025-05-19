@@ -5,10 +5,14 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Grade_Scr
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Grade_Screen/Grade_Screen_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Grade_Controller.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
+import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Admin/School_Management/Grade_Pages/GradeManagementGrid.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dart';
 
 class GradeManagement extends StatefulWidget {
   const GradeManagement({super.key});
@@ -192,7 +196,28 @@ class _GradeManagementState extends State<GradeManagement> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportDataToPdf<Grades>(
+                                items: Get.find<Grade_Controller>().grades!,
+                                headers: [
+                                  "Name".tr,
+                                  "Fee Count".tr,
+                                ],
+                                fieldMappings: {
+                                  "Name".tr: (reg) =>
+                                      Get.find<LocalizationController>()
+                                                  .currentLocale
+                                                  .value
+                                                  .languageCode ==
+                                              'ar'
+                                          ? reg.name
+                                          : reg.enName ?? "",
+                                  "Fee Count".tr: (reg) => reg.feeCount ?? "",
+                                },
+                                fileName: "Grade".tr +
+                                    '${DateTime.now().toIso8601String()}',
+                              );
+                            },
                             icon: Icon(VMS_Icons.pdf,
                                 size: 18,
                                 color: Theme.of(context).highlightColor)),
@@ -218,7 +243,28 @@ class _GradeManagementState extends State<GradeManagement> {
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
-                          onPressed: () {},
+                          onPressed: () {
+                            exportDataToExcel<Grades>(
+                              items: Get.find<Grade_Controller>().grades!,
+                              headers: [
+                                "Name".tr,
+                                "Fee Count".tr,
+                              ],
+                              fieldMappings: {
+                                "Name".tr: (reg) =>
+                                    Get.find<LocalizationController>()
+                                                .currentLocale
+                                                .value
+                                                .languageCode ==
+                                            'ar'
+                                        ? reg.name
+                                        : reg.enName ?? "",
+                                "Fee Count".tr: (reg) => reg.feeCount ?? "",
+                              },
+                              fileName: "Grade".tr +
+                                  '${DateTime.now().toIso8601String()}',
+                            );
+                          },
                           icon: Icon(VMS_Icons.xl,
                               size: 18,
                               color: Theme.of(context).highlightColor)),

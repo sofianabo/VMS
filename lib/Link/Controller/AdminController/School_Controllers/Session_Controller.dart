@@ -8,13 +8,13 @@ import 'package:vms_school/Link/Model/AdminModel/School_Models/AllSessionModel.d
 class SessionController extends GetxController {
   var Sessionss = <Map<String, dynamic>>[].obs;
 
-  List<Sessions>? sessions;
+  List<Sessions>? sessionsss;
 
   bool isLoading = true;
 
   setData(AllSessionModel sessions) {
-    sessions = sessions;
     Sessionss.clear();
+    sessionsss = sessions.sessions;
     setIsLoading(false);
     for (var stu in sessions.sessions!) {
       Sessionss.add({

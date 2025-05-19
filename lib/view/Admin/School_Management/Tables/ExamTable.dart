@@ -16,8 +16,11 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/EditQuizAPI.da
 import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/ExamTableAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/ExamTableController.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllSemesterModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/ExamTableModel.dart';
 import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
@@ -374,7 +377,48 @@ class _ExamTableState extends State<ExamTable> {
                                         RoundedRectangleBorder(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(5))))),
-                                onPressed: () {},
+                                onPressed: () {
+                                  exportDataToExcel<Quiz>(
+                                    items: controller.filteredquiz!,
+                                    headers: [
+                                      "Class".tr,
+                                      "Type".tr,
+                                      "Name".tr,
+                                      "Start Date".tr,
+                                      "Period".tr,
+                                      "Max Mark".tr,
+                                      "Passing Mark".tr,
+                                    ],
+                                    fieldMappings: {
+                                      "Class".tr: (exam) =>
+                                          Get.find<LocalizationController>()
+                                                      .currentLocale
+                                                      .value
+                                                      .languageCode ==
+                                                  'ar'
+                                              ? exam.classese?.name
+                                              : exam.classese?.enName ?? "",
+                                      "Type".tr: (exam) => exam.type ?? "",
+                                      "Name".tr: (exam) =>
+                                          Get.find<LocalizationController>()
+                                                      .currentLocale
+                                                      .value
+                                                      .languageCode ==
+                                                  'ar'
+                                              ? exam.curriculumName
+                                              : exam.curriculumEnName ?? "",
+                                      "Start Date".tr: (exam) =>
+                                          exam.startDate?.toString() ?? "",
+                                      "Period".tr: (exam) => exam.period ?? "",
+                                      "Max Mark".tr: (exam) =>
+                                          exam.maxMark ?? "",
+                                      "Passing Mark".tr: (exam) =>
+                                          exam.passingMark ?? "",
+                                    },
+                                    fileName:
+                                        'Exam Table${DateTime.now().toIso8601String()}',
+                                  );
+                                },
                                 icon: Icon(VMS_Icons.xl,
                                     size: 18,
                                     color: Theme.of(context).highlightColor)),
@@ -398,7 +442,47 @@ class _ExamTableState extends State<ExamTable> {
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
-                              onPressed: () {},
+                              onPressed: () {
+                                exportDataToPdf<Quiz>(
+                                  items: controller.filteredquiz!,
+                                  headers: [
+                                    "Class".tr,
+                                    "Type".tr,
+                                    "Name".tr,
+                                    "Start Date".tr,
+                                    "Period".tr,
+                                    "Max Mark".tr,
+                                    "Passing Mark".tr,
+                                  ],
+                                  fieldMappings: {
+                                    "Class".tr: (exam) =>
+                                        Get.find<LocalizationController>()
+                                                    .currentLocale
+                                                    .value
+                                                    .languageCode ==
+                                                'ar'
+                                            ? exam.classese?.name
+                                            : exam.classese?.enName ?? "",
+                                    "Type".tr: (exam) => exam.type ?? "",
+                                    "Name".tr: (exam) =>
+                                        Get.find<LocalizationController>()
+                                                    .currentLocale
+                                                    .value
+                                                    .languageCode ==
+                                                'ar'
+                                            ? exam.curriculumName
+                                            : exam.curriculumEnName ?? "",
+                                    "Start Date".tr: (exam) =>
+                                        exam.startDate?.toString() ?? "",
+                                    "Period".tr: (exam) => exam.period ?? "",
+                                    "Max Mark".tr: (exam) => exam.maxMark ?? "",
+                                    "Passing Mark".tr: (exam) =>
+                                        exam.passingMark ?? "",
+                                  },
+                                  fileName:
+                                      'Exam Table${DateTime.now().toIso8601String()}',
+                                );
+                              },
                               icon: Icon(VMS_Icons.pdf,
                                   size: 18,
                                   color: Theme.of(context).highlightColor)),
@@ -471,17 +555,21 @@ class _ExamTableState extends State<ExamTable> {
                             ],
                             rows: controller.filteredquiz!.map((exam) {
                               return DataRow(cells: [
-                                DataCell(Text(
-                                     Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
-                                        ? exam.classese?.name ?? ""
-                                        : exam.classese?.enName ?? '')),
+                                DataCell(Text(Get.find<LocalizationController>()
+                                            .currentLocale
+                                            .value
+                                            .languageCode ==
+                                        'ar'
+                                    ? exam.classese?.name ?? ""
+                                    : exam.classese?.enName ?? '')),
                                 DataCell(Text(exam.type ?? '')),
-                                DataCell(Text(
-                                     Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
-                                        ? exam.curriculumName ?? ''
-                                        : exam.curriculumEnName ?? '')),
+                                DataCell(Text(Get.find<LocalizationController>()
+                                            .currentLocale
+                                            .value
+                                            .languageCode ==
+                                        'ar'
+                                    ? exam.curriculumName ?? ''
+                                    : exam.curriculumEnName ?? '')),
                                 DataCell(Text(exam.startDate ?? '')),
                                 DataCell(Text(exam.period ?? '')),
                                 DataCell(Text(exam.maxMark?.toString() ?? '')),

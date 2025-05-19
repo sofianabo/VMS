@@ -4,7 +4,6 @@ import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllDivisionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/AllStudyYearModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
-import 'package:vms_school/main.dart';
 
 class StudyYearStudentsController extends GetxController {
   String penaltyIndex = "";
@@ -182,8 +181,8 @@ class StudyYearStudentsController extends GetxController {
     divisionlist.clear();
     print(division.division!.length);
     for (int k = 0; k < division.division!.length; k++) {
-      if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar')
+      if (Get.find<LocalizationController>().currentLocale.value.languageCode ==
+          'ar')
         divisionlist.add(division.division![k].name.toString());
       else
         divisionlist.add(division.division![k].enName.toString());

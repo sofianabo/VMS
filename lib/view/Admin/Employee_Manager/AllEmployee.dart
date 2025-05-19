@@ -4,6 +4,8 @@ import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_All_Employee_API
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
 import 'package:vms_school/view/Admin/Employee_Manager/Add_Employee.dart';
 import 'package:vms_school/view/Admin/Employee_Manager/Add_Full_Employee.dart';
 import 'package:vms_school/view/Admin/Employee_Manager/AllEmployeeGrid.dart';
@@ -12,6 +14,7 @@ import 'package:vms_school/widgets/Admin/Admin_Employee/Export_Data.dart';
 import 'package:vms_school/widgets/Admin/Admin_School/All_Screen_Sessions.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 import '../../../Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/Model/AdminModel/EmployeeModels/All_Employee_Model.dart';
 
 class AllEmployee extends StatefulWidget {
   const AllEmployee({super.key});
@@ -167,9 +170,27 @@ class _AllEmployeeState extends State<AllEmployee> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
                             onPressed: () {
-                              exportEmployeesToPDF(
-                                  Get.find<Allempolyeecontroller>()
-                                      .filteredreemployees);
+                              exportDataToPdf<Employees>(
+                                items: Get.find<Allempolyeecontroller>()
+                                    .filteredreemployees,
+                                headers: [
+                                  "Name".tr,
+                                  "Username".tr,
+                                  "Job Title".tr,
+                                  "Salary".tr,
+                                  "Email".tr,
+                                ],
+                                fieldMappings: {
+                                  "Name".tr: (reg) => reg.fullName ?? "",
+                                  "Username".tr: (reg) => reg.userName ?? "",
+                                  "Job Title".tr: (reg) =>
+                                      reg.jobTitle!.tr ?? "",
+                                  "Salary".tr: (reg) => reg.salary ?? "",
+                                  "Email".tr: (reg) => reg.email ?? "",
+                                },
+                                fileName: "Employee".tr +
+                                    ' ${DateTime.now().toIso8601String()}',
+                              );
                             },
                             icon: Icon(VMS_Icons.pdf,
                                 size: 18,
@@ -196,9 +217,27 @@ class _AllEmployeeState extends State<AllEmployee> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
                             onPressed: () {
-                              exportEmployeesToExcel(
-                                  Get.find<Allempolyeecontroller>()
-                                      .filteredreemployees);
+                              exportDataToExcel<Employees>(
+                                items: Get.find<Allempolyeecontroller>()
+                                    .filteredreemployees,
+                                headers: [
+                                  "Name".tr,
+                                  "Username".tr,
+                                  "Job Title".tr,
+                                  "Salary".tr,
+                                  "Email".tr,
+                                ],
+                                fieldMappings: {
+                                  "Name".tr: (reg) => reg.fullName ?? "",
+                                  "Username".tr: (reg) => reg.userName ?? "",
+                                  "Job Title".tr: (reg) =>
+                                      reg.jobTitle!.tr ?? "",
+                                  "Salary".tr: (reg) => reg.salary ?? "",
+                                  "Email".tr: (reg) => reg.email ?? "",
+                                },
+                                fileName: "Employee".tr +
+                                    ' ${DateTime.now().toIso8601String()}',
+                              );
                             },
                             icon: Icon(VMS_Icons.xl,
                                 size: 18,
@@ -346,9 +385,28 @@ class _AllEmployeeState extends State<AllEmployee> {
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(5))))),
                                 onPressed: () {
-                                  exportEmployeesToPDF(
-                                      Get.find<Allempolyeecontroller>()
-                                          .filteredreemployees);
+                                  exportDataToPdf<Employees>(
+                                    items: Get.find<Allempolyeecontroller>()
+                                        .filteredreemployees,
+                                    headers: [
+                                      "Name".tr,
+                                      "Username".tr,
+                                      "Job Title".tr,
+                                      "Salary".tr,
+                                      "Email".tr,
+                                    ],
+                                    fieldMappings: {
+                                      "Name".tr: (reg) => reg.fullName ?? "",
+                                      "Username".tr: (reg) =>
+                                          reg.userName ?? "",
+                                      "Job Title".tr: (reg) =>
+                                          reg.jobTitle!.tr ?? "",
+                                      "Salary".tr: (reg) => reg.salary ?? "",
+                                      "Email".tr: (reg) => reg.email ?? "",
+                                    },
+                                    fileName: "Employee".tr +
+                                        ' ${DateTime.now().toIso8601String()}',
+                                  );
                                 },
                                 icon: Icon(VMS_Icons.pdf,
                                     size: 18,
@@ -376,9 +434,27 @@ class _AllEmployeeState extends State<AllEmployee> {
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
                               onPressed: () {
-                                exportEmployeesToExcel(
-                                    Get.find<Allempolyeecontroller>()
-                                        .filteredreemployees);
+                                exportDataToExcel<Employees>(
+                                  items: Get.find<Allempolyeecontroller>()
+                                      .filteredreemployees,
+                                  headers: [
+                                    "Name".tr,
+                                    "Username".tr,
+                                    "Job Title".tr,
+                                    "Salary".tr,
+                                    "Email".tr,
+                                  ],
+                                  fieldMappings: {
+                                    "Name".tr: (reg) => reg.fullName ?? "",
+                                    "Username".tr: (reg) => reg.userName ?? "",
+                                    "Job Title".tr: (reg) =>
+                                        reg.jobTitle!.tr ?? "",
+                                    "Salary".tr: (reg) => reg.salary ?? "",
+                                    "Email".tr: (reg) => reg.email ?? "",
+                                  },
+                                  fileName: "Employee".tr +
+                                      ' ${DateTime.now().toIso8601String()}',
+                                );
                               },
                               icon: Icon(VMS_Icons.xl,
                                   size: 18,

@@ -5,6 +5,9 @@ import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Add_Virtual_Employee
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_Virtual_Employee.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/All_Virtual_Employee_Controller.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/Virtual_Employee_Model.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/Employee_Manager/Virtual_User_Management_Grid.dart';
@@ -13,6 +16,7 @@ import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/Link/Model/AdminModel/EmployeeModels/All_Employee_Model.dart';
 
 class Virtual_User_Management extends StatefulWidget {
   const Virtual_User_Management({super.key});
@@ -381,7 +385,24 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                                         RoundedRectangleBorder(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(5))))),
-                                onPressed: () {},
+                                onPressed: () {
+                                  exportDataToPdf<ViraulUser>(
+                                    items: Get.find<
+                                            All_Virtual_Employee_Controller>()
+                                        .filteredviraulUser!,
+                                    headers: [
+                                      "Username".tr,
+                                      "Roll".tr,
+                                    ],
+                                    fieldMappings: {
+                                      "Username".tr: (reg) =>
+                                          reg.userName ?? "",
+                                      "Roll".tr: (reg) => reg.roll!.tr ?? "",
+                                    },
+                                    fileName: "Virtual Employee".tr +
+                                        ' ${DateTime.now().toIso8601String()}',
+                                  );
+                                },
                                 icon: Icon(VMS_Icons.pdf,
                                     size: 18,
                                     color: Theme.of(context).highlightColor)),
@@ -407,7 +428,23 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
-                              onPressed: () {},
+                              onPressed: () {
+                                exportDataToExcel<ViraulUser>(
+                                  items: Get.find<
+                                          All_Virtual_Employee_Controller>()
+                                      .filteredviraulUser!,
+                                  headers: [
+                                    "Username".tr,
+                                    "Roll".tr,
+                                  ],
+                                  fieldMappings: {
+                                    "Username".tr: (reg) => reg.userName ?? "",
+                                    "Roll".tr: (reg) => reg.roll!.tr ?? "",
+                                  },
+                                  fileName: "Virtual Employee".tr +
+                                      ' ${DateTime.now().toIso8601String()}',
+                                );
+                              },
                               icon: Icon(VMS_Icons.xl,
                                   size: 18,
                                   color: Theme.of(context).highlightColor)),

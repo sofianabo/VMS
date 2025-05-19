@@ -4,6 +4,10 @@ import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Info_Export.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/RequestsAPI/RequestsAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
+import 'package:vms_school/Link/Model/AdminModel/Students_Models/RequestsModel.dart';
+import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Admin/Requests/RequestsGrid.dart';
 import 'package:vms_school/widgets/Admin/Admin_Requests/DropDownRequestEnroll.dart';
 import 'package:vms_school/widgets/Calender.dart';
@@ -94,7 +98,42 @@ class _RequestsState extends State<Requests> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
                             onPressed: () {
-                              ExleRequestsExport(controller.registration);
+                              exportDataToExcel<Registration>(
+                                items: controller.filteredregistration,
+                                headers: [
+                                  "Guardian Name".tr,
+                                  "Guardian Email".tr,
+                                  "Guardian Mobile".tr,
+                                  "Guardian National ID".tr,
+                                  "Student Name".tr,
+                                  "Student Class".tr,
+                                  "Previous Class".tr,
+                                  "Request Date".tr,
+                                  "Request State".tr,
+                                ],
+                                fieldMappings: {
+                                  "Guardian Name".tr: (reg) =>
+                                      reg.guardian?.name ?? "",
+                                  "Guardian Email".tr: (reg) =>
+                                      reg.guardian?.email ?? "",
+                                  "Guardian Mobile".tr: (reg) =>
+                                      reg.guardian?.phone?.toString() ?? "",
+                                  "Guardian National ID".tr: (reg) =>
+                                      reg.guardian?.nationalId ?? "",
+                                  "Student Name".tr: (reg) =>
+                                      reg.student?.name ?? "",
+                                  "Student Class".tr: (reg) =>
+                                      reg.student?.clas ?? "",
+                                  "Previous Class".tr: (reg) =>
+                                      reg.student?.previousClass?.toString() ??
+                                      "",
+                                  "Request Date".tr: (reg) =>
+                                      reg.date?.toString() ?? "",
+                                  "Request State".tr: (reg) => reg.type ?? "",
+                                },
+                                fileName:
+                                    'registrations_export_${DateTime.now().toIso8601String()}',
+                              );
                             },
                             icon: Icon(VMS_Icons.xl,
                                 size: 18,
@@ -119,7 +158,42 @@ class _RequestsState extends State<Requests> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
                             onPressed: () {
-                              exportRequestsToPDF(controller.registration);
+                              exportDataToPdf<Registration>(
+                                items: controller.filteredregistration,
+                                headers: [
+                                  "Guardian Name".tr,
+                                  "Guardian Email".tr,
+                                  "Guardian Mobile".tr,
+                                  "Guardian National ID".tr,
+                                  "Student Name".tr,
+                                  "Student Class".tr,
+                                  "Previous Class".tr,
+                                  "Request Date".tr,
+                                  "Request State".tr,
+                                ],
+                                fieldMappings: {
+                                  "Guardian Name".tr: (reg) =>
+                                      reg.guardian?.name ?? "",
+                                  "Guardian Email".tr: (reg) =>
+                                      reg.guardian?.email ?? "",
+                                  "Guardian Mobile".tr: (reg) =>
+                                      reg.guardian?.phone?.toString() ?? "",
+                                  "Guardian National ID".tr: (reg) =>
+                                      reg.guardian?.nationalId ?? "",
+                                  "Student Name".tr: (reg) =>
+                                      reg.student?.name ?? "",
+                                  "Student Class".tr: (reg) =>
+                                      reg.student?.clas ?? "",
+                                  "Previous Class".tr: (reg) =>
+                                      reg.student?.previousClass?.toString() ??
+                                      "",
+                                  "Request Date".tr: (reg) =>
+                                      reg.date?.toString() ?? "",
+                                  "Request State".tr: (reg) => reg.type ?? "",
+                                },
+                                fileName:
+                                    'registrations_export_${DateTime.now().toIso8601String()}',
+                              );
                             },
                             icon: Icon(VMS_Icons.pdf,
                                 size: 18,
@@ -188,7 +262,42 @@ class _RequestsState extends State<Requests> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
                             onPressed: () {
-                              ExleRequestsExport(controller.registration);
+                              exportDataToExcel<Registration>(
+                                items: controller.filteredregistration,
+                                headers: [
+                                  "Guardian Name".tr,
+                                  "Guardian Email".tr,
+                                  "Guardian Mobile".tr,
+                                  "Guardian National ID".tr,
+                                  "Student Name".tr,
+                                  "Student Class".tr,
+                                  "Previous Class".tr,
+                                  "Request Date".tr,
+                                  "Request State".tr,
+                                ],
+                                fieldMappings: {
+                                  "Guardian Name".tr: (reg) =>
+                                      reg.guardian?.name ?? "",
+                                  "Guardian Email".tr: (reg) =>
+                                      reg.guardian?.email ?? "",
+                                  "Guardian Mobile".tr: (reg) =>
+                                      reg.guardian?.phone?.toString() ?? "",
+                                  "Guardian National ID".tr: (reg) =>
+                                      reg.guardian?.nationalId ?? "",
+                                  "Student Name".tr: (reg) =>
+                                      reg.student?.name ?? "",
+                                  "Student Class".tr: (reg) =>
+                                      reg.student?.clas ?? "",
+                                  "Previous Class".tr: (reg) =>
+                                      reg.student?.previousClass?.toString() ??
+                                      "",
+                                  "Request Date".tr: (reg) =>
+                                      reg.date?.toString() ?? "",
+                                  "Request State".tr: (reg) => reg.type ?? "",
+                                },
+                                fileName:
+                                    'registrations_export_${DateTime.now().toIso8601String()}',
+                              );
                             },
                             icon: Icon(VMS_Icons.xl,
                                 size: 18,
@@ -215,7 +324,43 @@ class _RequestsState extends State<Requests> {
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
                               onPressed: () {
-                                exportRequestsToPDF(controller.registration);
+                                exportDataToPdf<Registration>(
+                                  items: controller.filteredregistration,
+                                  headers: [
+                                    "Guardian Name".tr,
+                                    "Guardian Email".tr,
+                                    "Guardian Mobile".tr,
+                                    "Guardian National ID".tr,
+                                    "Student Name".tr,
+                                    "Student Class".tr,
+                                    "Previous Class".tr,
+                                    "Request Date".tr,
+                                    "Request State".tr,
+                                  ],
+                                  fieldMappings: {
+                                    "Guardian Name".tr: (reg) =>
+                                        reg.guardian?.name ?? "",
+                                    "Guardian Email".tr: (reg) =>
+                                        reg.guardian?.email ?? "",
+                                    "Guardian Mobile".tr: (reg) =>
+                                        reg.guardian?.phone?.toString() ?? "",
+                                    "Guardian National ID".tr: (reg) =>
+                                        reg.guardian?.nationalId ?? "",
+                                    "Student Name".tr: (reg) =>
+                                        reg.student?.name ?? "",
+                                    "Student Class".tr: (reg) =>
+                                        reg.student?.clas ?? "",
+                                    "Previous Class".tr: (reg) =>
+                                        reg.student?.previousClass
+                                            ?.toString() ??
+                                        "",
+                                    "Request Date".tr: (reg) =>
+                                        reg.date?.toString() ?? "",
+                                    "Request State".tr: (reg) => reg.type ?? "",
+                                  },
+                                  fileName:
+                                      'registrations_export_${DateTime.now().toIso8601String()}',
+                                );
                               },
                               icon: Icon(VMS_Icons.pdf,
                                   size: 18,

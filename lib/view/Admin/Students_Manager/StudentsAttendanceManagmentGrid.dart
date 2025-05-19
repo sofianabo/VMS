@@ -44,7 +44,7 @@ class StudentsAttendanceManagmentGrid extends StatelessWidget {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               SizedBox(
-                                                width: 200,
+                                                width: 288,
                                                 child: Row(
                                                   children: [
                                                     FutureBuilder(
@@ -251,7 +251,7 @@ class StudentsAttendanceManagmentGrid extends StatelessWidget {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             SizedBox(
-                                              width: 200,
+                                              width: 288,
                                               child: Row(
                                                 children: [
                                                   FutureBuilder(

@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Model/AdminModel/Students_Models/AllStudyYearModel.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/DropDownPenaltyAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/GetStudyYearStudentAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
+import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Admin/Students_Manager/StudyYearStudentsGrid.dart';
 import 'package:vms_school/widgets/Admin/Admin_School/All_Screen_Sessions.dart';
 import 'package:vms_school/widgets/Admin/Admin_Students/DropDownStudyYearStudents.dart';
@@ -118,7 +122,41 @@ class _StudyYearStudentsState extends State<StudyYearStudents> {
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
-                              onPressed: () {},
+                              onPressed: () {
+                                exportDataToExcel<Students>(
+                                  items: controller.filteredStudents!,
+                                  headers: [
+                                    "Full Name".tr,
+                                    "Email".tr,
+                                    "Class".tr,
+                                    "Division".tr,
+                                    "State".tr,
+                                  ],
+                                  fieldMappings: {
+                                    "Full Name".tr: (reg) => reg.fullName ?? "",
+                                    "Email".tr: (reg) => reg.email ?? "",
+                                    "Class".tr: (reg) =>
+                                        Get.find<LocalizationController>()
+                                                    .currentLocale
+                                                    .value
+                                                    .languageCode ==
+                                                'ar'
+                                            ? reg.classes?.name
+                                            : reg.classes?.enName ?? "",
+                                    "Division".tr: (reg) =>
+                                        Get.find<LocalizationController>()
+                                                    .currentLocale
+                                                    .value
+                                                    .languageCode ==
+                                                'ar'
+                                            ? reg.division?.name
+                                            : reg.division?.enName ?? "",
+                                    "State".tr: (reg) => reg.state!.tr ?? "",
+                                  },
+                                  fileName:
+                                      'Students_${DateTime.now().toIso8601String()}',
+                                );
+                              },
                               icon: Icon(VMS_Icons.xl,
                                   size: 18,
                                   color: Theme.of(context).highlightColor)),
@@ -141,7 +179,41 @@ class _StudyYearStudentsState extends State<StudyYearStudents> {
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
-                              onPressed: () {},
+                              onPressed: () {
+                                exportDataToPdf<Students>(
+                                  items: controller.filteredStudents!,
+                                  headers: [
+                                    "Full Name".tr,
+                                    "Email".tr,
+                                    "Class".tr,
+                                    "Division".tr,
+                                    "State".tr,
+                                  ],
+                                  fieldMappings: {
+                                    "Full Name".tr: (reg) => reg.fullName ?? "",
+                                    "Email".tr: (reg) => reg.email ?? "",
+                                    "Class".tr: (reg) =>
+                                        Get.find<LocalizationController>()
+                                                    .currentLocale
+                                                    .value
+                                                    .languageCode ==
+                                                'ar'
+                                            ? reg.classes?.name
+                                            : reg.classes?.enName ?? "",
+                                    "Division".tr: (reg) =>
+                                        Get.find<LocalizationController>()
+                                                    .currentLocale
+                                                    .value
+                                                    .languageCode ==
+                                                'ar'
+                                            ? reg.division?.name
+                                            : reg.division?.enName ?? "",
+                                    "State".tr: (reg) => reg.state!.tr ?? "",
+                                  },
+                                  fileName:
+                                      'Students_${DateTime.now().toIso8601String()}',
+                                );
+                              },
                               icon: Icon(VMS_Icons.pdf,
                                   size: 18,
                                   color: Theme.of(context).highlightColor)),
@@ -234,7 +306,43 @@ class _StudyYearStudentsState extends State<StudyYearStudents> {
                                             RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.all(
                                                     Radius.circular(5))))),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      exportDataToExcel<Students>(
+                                        items: controller.filteredStudents!,
+                                        headers: [
+                                          "Full Name".tr,
+                                          "Email".tr,
+                                          "Class".tr,
+                                          "Division".tr,
+                                          "State".tr,
+                                        ],
+                                        fieldMappings: {
+                                          "Full Name".tr: (reg) =>
+                                              reg.fullName ?? "",
+                                          "Email".tr: (reg) => reg.email ?? "",
+                                          "Class".tr: (reg) =>
+                                              Get.find<LocalizationController>()
+                                                          .currentLocale
+                                                          .value
+                                                          .languageCode ==
+                                                      'ar'
+                                                  ? reg.classes?.name
+                                                  : reg.classes?.enName ?? "",
+                                          "Division".tr: (reg) =>
+                                              Get.find<LocalizationController>()
+                                                          .currentLocale
+                                                          .value
+                                                          .languageCode ==
+                                                      'ar'
+                                                  ? reg.division?.name
+                                                  : reg.division?.enName ?? "",
+                                          "State".tr: (reg) =>
+                                              reg.state!.tr ?? "",
+                                        },
+                                        fileName:
+                                            'Students_${DateTime.now().toIso8601String()}',
+                                      );
+                                    },
                                     icon: Icon(VMS_Icons.xl,
                                         size: 18,
                                         color:
@@ -258,7 +366,43 @@ class _StudyYearStudentsState extends State<StudyYearStudents> {
                                             RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.all(
                                                     Radius.circular(5))))),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      exportDataToPdf<Students>(
+                                        items: controller.filteredStudents!,
+                                        headers: [
+                                          "Full Name".tr,
+                                          "Email".tr,
+                                          "Class".tr,
+                                          "Division".tr,
+                                          "State".tr,
+                                        ],
+                                        fieldMappings: {
+                                          "Full Name".tr: (reg) =>
+                                              reg.fullName ?? "",
+                                          "Email".tr: (reg) => reg.email ?? "",
+                                          "Class".tr: (reg) =>
+                                              Get.find<LocalizationController>()
+                                                          .currentLocale
+                                                          .value
+                                                          .languageCode ==
+                                                      'ar'
+                                                  ? reg.classes?.name
+                                                  : reg.classes?.enName ?? "",
+                                          "Division".tr: (reg) =>
+                                              Get.find<LocalizationController>()
+                                                          .currentLocale
+                                                          .value
+                                                          .languageCode ==
+                                                      'ar'
+                                                  ? reg.division?.name
+                                                  : reg.division?.enName ?? "",
+                                          "State".tr: (reg) =>
+                                              reg.state!.tr ?? "",
+                                        },
+                                        fileName:
+                                            'Students_${DateTime.now().toIso8601String()}',
+                                      );
+                                    },
                                     icon: Icon(VMS_Icons.pdf,
                                         size: 18,
                                         color:

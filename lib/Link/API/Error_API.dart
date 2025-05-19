@@ -11,6 +11,11 @@ class ErrorHandler {
       return;
     }
     if (error.response?.statusCode == 450) {
+      if (Get.isSnackbarOpen) {
+        Get.closeCurrentSnackbar();
+      }
+      Get.back();
+      ErrorMessage("لا يمكن تكرار نفس الاسم");
       ErrorMessage("لا يمكن تكرار نفس الاسم");
 
       return;
@@ -68,8 +73,6 @@ class ErrorHandler {
         return "المدرس لديه حصة اخرى في هذا الوقت.";
       case 431:
         return "عذرا هذه الخانة تحتوي على حصة سابقة.";
-      case 450:
-        return "لا يمكن تكرار نفس الاسم";
       case 500:
         return "حدث خطأ داخلي في الخادم. يرجى المحاولة لاحقًا.";
       case 503:

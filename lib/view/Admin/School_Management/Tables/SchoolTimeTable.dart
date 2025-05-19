@@ -9,6 +9,8 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/EditStudyShare
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetAllTeachersAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/SchoolTimeModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
@@ -204,7 +206,16 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportTableToPdf(
+                                classes: controller.examClassIndex,
+                                division: controller.examDivisionIndex,
+                                type: controller.timeLessonIndex.tr,
+                                tableData: controller.studyshare,
+                                fileName:
+                                    "${controller.examClassIndex}_${controller.examDivisionIndex}_${controller.timeLessonIndex.tr}",
+                              );
+                            },
                             icon: Icon(VMS_Icons.pdf,
                                 size: 18,
                                 color: Theme.of(context).highlightColor)),
@@ -229,7 +240,16 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportTableToExcel(
+                                classes: controller.examClassIndex,
+                                division: controller.examDivisionIndex,
+                                type: controller.timeLessonIndex.tr,
+                                tableData: controller.studyshare,
+                                fileName:
+                                    "${controller.examClassIndex}_${controller.examDivisionIndex}_${controller.timeLessonIndex.tr}",
+                              );
+                            },
                             icon: Icon(VMS_Icons.xl,
                                 size: 18,
                                 color: Theme.of(context).highlightColor)),

@@ -9,6 +9,8 @@ import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Quiz_Mar
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/add_Students_Marks_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Students_Marks_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/allGaurdianController.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
 import 'package:vms_school/view/Admin/Students_Manager/AllGuardianGrid.dart';
 import 'package:vms_school/view/Admin/Students_Manager/Students_Marks/Add_Marks_For_All.dart';
 import 'package:vms_school/view/Admin/Students_Manager/Students_Marks/Students_Marks_Grid.dart';
@@ -216,7 +218,17 @@ class _AllGuardiansState extends State<Students_Marks> {
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
-                              onPressed: () {},
+                              onPressed: () {
+                                exportQuizResultToPdf(
+                                    fileName: "Students Marks".tr +
+                                        "_${controller.ClassIndex}_${controller.DivisionIndex}_${controller.CurriculumIndex}_${controller.SemesterIndex.tr}",
+                                    Curr: "Students Marks in".tr +
+                                        "  ( ${controller.CurriculumIndex} )",
+                                    students:
+                                        controller.studentsMarksModel!.student!,
+                                    quizTypes: controller
+                                        .studentsMarksModel!.quizType!);
+                              },
                               icon: Icon(VMS_Icons.pdf,
                                   size: 18,
                                   color: Theme.of(context).highlightColor)),
@@ -239,7 +251,15 @@ class _AllGuardiansState extends State<Students_Marks> {
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
-                              onPressed: () {},
+                              onPressed: () {
+                                exportStudentMarksToExcel(
+                                    fileName: "Students Marks".tr +
+                                        "_${controller.ClassIndex}_${controller.DivisionIndex}_${controller.CurriculumIndex}_${controller.SemesterIndex.tr}",
+                                    students:
+                                        controller.studentsMarksModel!.student!,
+                                    quizTypes: controller
+                                        .studentsMarksModel!.quizType!);
+                              },
                               icon: Icon(VMS_Icons.xl,
                                   size: 18,
                                   color: Theme.of(context).highlightColor)),
@@ -425,7 +445,17 @@ class _AllGuardiansState extends State<Students_Marks> {
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
-                              onPressed: () {},
+                              onPressed: () {
+                                exportQuizResultToPdf(
+                                    fileName: "Students Marks".tr +
+                                        "_${controller.ClassIndex}_${controller.DivisionIndex}_${controller.CurriculumIndex}_${controller.SemesterIndex.tr}",
+                                    Curr: "Students Marks in".tr +
+                                        "  ( ${controller.CurriculumIndex} )",
+                                    students:
+                                        controller.studentsMarksModel!.student!,
+                                    quizTypes: controller
+                                        .studentsMarksModel!.quizType!);
+                              },
                               icon: Icon(VMS_Icons.pdf,
                                   size: 18,
                                   color: Theme.of(context).highlightColor)),
@@ -448,7 +478,15 @@ class _AllGuardiansState extends State<Students_Marks> {
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
-                              onPressed: () {},
+                              onPressed: () {
+                                exportStudentMarksToExcel(
+                                    fileName: "Students Marks".tr +
+                                        "_${controller.ClassIndex}_${controller.DivisionIndex}_${controller.CurriculumIndex}_${controller.SemesterIndex.tr}",
+                                    students:
+                                        controller.studentsMarksModel!.student!,
+                                    quizTypes: controller
+                                        .studentsMarksModel!.quizType!);
+                              },
                               icon: Icon(VMS_Icons.xl,
                                   size: 18,
                                   color: Theme.of(context).highlightColor)),

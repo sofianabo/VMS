@@ -4,11 +4,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/GetEmployeeAttendenceAPI.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
-import 'package:vms_school/Link/Model/AdminModel/School_Models/AllClassesModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/School_Models/AllDivisionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/EmployeeModels/AllEmployeeAttendeceModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/School_Models/AllSessionModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/School_Models/AllGradeModel.dart';
 
 class Employeeattendencecontroller extends GetxController {
   late BuildContext context;

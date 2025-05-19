@@ -3,12 +3,15 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/GetEmployeeAttendenceAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/EmployeeAttendenceController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
 import 'package:vms_school/view/Admin/Employee_Manager/EmployeeStatusGrid.dart';
 import 'package:vms_school/widgets/Admin/Admin_Employee/DropDownEmployeeAttendence.dart';
 import 'package:vms_school/widgets/Admin/Admin_School/All_Screen_Sessions.dart';
 import 'package:vms_school/widgets/Calender.dart';
 import '../../../Icons_File/v_m_s__icons_icons.dart';
 import '../../../widgets/TextFormSearch.dart';
+import 'package:vms_school/Link/Model/AdminModel/EmployeeModels/AllEmployeeAttendeceModel.dart';
 
 class EmployeeStatus extends StatefulWidget {
   const EmployeeStatus({super.key});
@@ -106,7 +109,21 @@ class _EmployeeStatusState extends State<EmployeeStatus> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportDataToPdf<Attendance>(
+                                items: controller.filteredreemployees,
+                                headers: [
+                                  "Full Name".tr,
+                                  "State".tr,
+                                ],
+                                fieldMappings: {
+                                  "Full Name".tr: (reg) => reg.fullName ?? "",
+                                  "State".tr: (reg) => reg.status!.tr ?? "",
+                                },
+                                fileName: "Employee Attendance".tr +
+                                    '${DateTime.now().toIso8601String()}',
+                              );
+                            },
                             icon: Icon(VMS_Icons.pdf,
                                 size: 18,
                                 color: Theme.of(context).highlightColor)),
@@ -129,7 +146,21 @@ class _EmployeeStatusState extends State<EmployeeStatus> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportDataToExcel<Attendance>(
+                                items: controller.filteredreemployees,
+                                headers: [
+                                  "Full Name".tr,
+                                  "State".tr,
+                                ],
+                                fieldMappings: {
+                                  "Full Name".tr: (reg) => reg.fullName ?? "",
+                                  "State".tr: (reg) => reg.status!.tr ?? "",
+                                },
+                                fileName: "Employee Attendance".tr +
+                                    '${DateTime.now().toIso8601String()}',
+                              );
+                            },
                             icon: Icon(VMS_Icons.xl,
                                 size: 18,
                                 color: Theme.of(context).highlightColor)),
@@ -204,7 +235,21 @@ class _EmployeeStatusState extends State<EmployeeStatus> {
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
-                              onPressed: () {},
+                              onPressed: () {
+                                exportDataToExcel<Attendance>(
+                                  items: controller.filteredreemployees,
+                                  headers: [
+                                    "Full Name".tr,
+                                    "State".tr,
+                                  ],
+                                  fieldMappings: {
+                                    "Full Name".tr: (reg) => reg.fullName ?? "",
+                                    "State".tr: (reg) => reg.status!.tr ?? "",
+                                  },
+                                  fileName: "Employee Attendance".tr +
+                                      '${DateTime.now().toIso8601String()}',
+                                );
+                              },
                               icon: Icon(VMS_Icons.xl,
                                   size: 18,
                                   color: Theme.of(context).highlightColor)),
@@ -230,7 +275,22 @@ class _EmployeeStatusState extends State<EmployeeStatus> {
                                         RoundedRectangleBorder(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(5))))),
-                                onPressed: () {},
+                                onPressed: () {
+                                  exportDataToPdf<Attendance>(
+                                    items: controller.filteredreemployees,
+                                    headers: [
+                                      "Full Name".tr,
+                                      "State".tr,
+                                    ],
+                                    fieldMappings: {
+                                      "Full Name".tr: (reg) =>
+                                          reg.fullName ?? "",
+                                      "State".tr: (reg) => reg.status!.tr ?? "",
+                                    },
+                                    fileName: "Employee Attendance".tr +
+                                        '${DateTime.now().toIso8601String()}',
+                                  );
+                                },
                                 icon: Icon(VMS_Icons.pdf,
                                     size: 18,
                                     color: Theme.of(context).highlightColor)),

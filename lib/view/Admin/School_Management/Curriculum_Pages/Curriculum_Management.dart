@@ -8,12 +8,16 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Subjects_
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Subject_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCurriculumn_Controller.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
+import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Admin/School_Management/Curriculum_Pages/Curriculum_Grid.dart';
 import 'package:vms_school/widgets/Admin/Admin_School/DropDownCurriMgmt.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/TextFormSearch.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/Curriculum_Model.dart';
 
 class Curriculum_Management extends StatefulWidget {
   const Curriculum_Management({super.key});
@@ -551,7 +555,39 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportDataToPdf<Curriculum>(
+                                items: Get.find<Curriculumn_Controller>()
+                                    .filteredCurriculum!,
+                                headers: [
+                                  "Name".tr,
+                                  "English Name".tr,
+                                  "Max Mark".tr,
+                                  "Passing Mark".tr,
+                                  "Subject".tr,
+                                  "Failed subject".tr,
+                                ],
+                                fieldMappings: {
+                                  "Name".tr: (reg) => reg.name ?? "",
+                                  "English Name".tr: (reg) => reg.enName ?? "",
+                                  "Max Mark".tr: (reg) => reg.maxMark ?? "",
+                                  "Passing Mark".tr: (reg) =>
+                                      reg.passingMark ?? "",
+                                  "Subject".tr: (reg) =>
+                                      Get.find<LocalizationController>()
+                                                  .currentLocale
+                                                  .value
+                                                  .languageCode ==
+                                              'ar'
+                                          ? reg.subject!.name
+                                          : reg.subject!.enName ?? "",
+                                  "Failed subject".tr: (reg) =>
+                                      reg.type == 1 ? "Yes".tr : "No".tr ?? "",
+                                },
+                                fileName: "Curriculum".tr +
+                                    '${DateTime.now().toIso8601String()}',
+                              );
+                            },
                             icon: Icon(VMS_Icons.pdf,
                                 size: 18,
                                 color: Theme.of(context).highlightColor)),
@@ -576,7 +612,39 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportDataToExcel<Curriculum>(
+                                items: Get.find<Curriculumn_Controller>()
+                                    .filteredCurriculum!,
+                                headers: [
+                                  "Name".tr,
+                                  "English Name".tr,
+                                  "Max Mark".tr,
+                                  "Passing Mark".tr,
+                                  "Subject".tr,
+                                  "Failed subject".tr,
+                                ],
+                                fieldMappings: {
+                                  "Name".tr: (reg) => reg.name ?? "",
+                                  "English Name".tr: (reg) => reg.enName ?? "",
+                                  "Max Mark".tr: (reg) => reg.maxMark ?? "",
+                                  "Passing Mark".tr: (reg) =>
+                                      reg.passingMark ?? "",
+                                  "Subject".tr: (reg) =>
+                                      Get.find<LocalizationController>()
+                                                  .currentLocale
+                                                  .value
+                                                  .languageCode ==
+                                              'ar'
+                                          ? reg.subject!.name
+                                          : reg.subject!.enName ?? "",
+                                  "Failed subject".tr: (reg) =>
+                                      reg.type == 1 ? "Yes".tr : "No".tr ?? "",
+                                },
+                                fileName: "Curriculum".tr +
+                                    '${DateTime.now().toIso8601String()}',
+                              );
+                            },
                             icon: Icon(VMS_Icons.xl,
                                 size: 18,
                                 color: Theme.of(context).highlightColor)),
@@ -694,7 +762,41 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
-                              onPressed: () {},
+                              onPressed: () {
+                                exportDataToPdf<Curriculum>(
+                                  items: Get.find<Curriculumn_Controller>()
+                                      .filteredCurriculum!,
+                                  headers: [
+                                    "Name".tr,
+                                    "English Name".tr,
+                                    "Max Mark".tr,
+                                    "Passing Mark".tr,
+                                    "Subject".tr,
+                                    "Failed subject".tr,
+                                  ],
+                                  fieldMappings: {
+                                    "Name".tr: (reg) => reg.name ?? "",
+                                    "English Name".tr: (reg) =>
+                                        reg.enName ?? "",
+                                    "Max Mark".tr: (reg) => reg.maxMark ?? "",
+                                    "Passing Mark".tr: (reg) =>
+                                        reg.passingMark ?? "",
+                                    "Subject".tr: (reg) =>
+                                        Get.find<LocalizationController>()
+                                                    .currentLocale
+                                                    .value
+                                                    .languageCode ==
+                                                'ar'
+                                            ? reg.subject!.name
+                                            : reg.subject!.enName ?? "",
+                                    "Failed subject".tr: (reg) => reg.type == 1
+                                        ? "Yes".tr
+                                        : "No".tr ?? "",
+                                  },
+                                  fileName: "Curriculum".tr +
+                                      '${DateTime.now().toIso8601String()}',
+                                );
+                              },
                               icon: Icon(VMS_Icons.pdf,
                                   size: 18,
                                   color: Theme.of(context).highlightColor)),
@@ -719,7 +821,41 @@ class _Curriculum_ManagementState extends State<Curriculum_Management> {
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
-                              onPressed: () {},
+                              onPressed: () {
+                                exportDataToExcel<Curriculum>(
+                                  items: Get.find<Curriculumn_Controller>()
+                                      .filteredCurriculum!,
+                                  headers: [
+                                    "Name".tr,
+                                    "English Name".tr,
+                                    "Max Mark".tr,
+                                    "Passing Mark".tr,
+                                    "Subject".tr,
+                                    "Failed subject".tr,
+                                  ],
+                                  fieldMappings: {
+                                    "Name".tr: (reg) => reg.name ?? "",
+                                    "English Name".tr: (reg) =>
+                                        reg.enName ?? "",
+                                    "Max Mark".tr: (reg) => reg.maxMark ?? "",
+                                    "Passing Mark".tr: (reg) =>
+                                        reg.passingMark ?? "",
+                                    "Subject".tr: (reg) =>
+                                        Get.find<LocalizationController>()
+                                                    .currentLocale
+                                                    .value
+                                                    .languageCode ==
+                                                'ar'
+                                            ? reg.subject!.name
+                                            : reg.subject!.enName ?? "",
+                                    "Failed subject".tr: (reg) => reg.type == 1
+                                        ? "Yes".tr
+                                        : "No".tr ?? "",
+                                  },
+                                  fileName: "Curriculum".tr +
+                                      '${DateTime.now().toIso8601String()}',
+                                );
+                              },
                               icon: Icon(VMS_Icons.xl,
                                   size: 18,
                                   color: Theme.of(context).highlightColor)),
