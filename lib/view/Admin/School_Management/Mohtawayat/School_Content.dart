@@ -4,10 +4,13 @@ import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/SchoolContentAPI/Add_School_Content.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/SchoolContentAPI/School_Content_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/School_Content_Controller.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
 import 'package:vms_school/view/Admin/School_Management/Mohtawayat/School_Content_Grid.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/SchoolContentModel.dart';
 
 class School_Content extends StatefulWidget {
   const School_Content({super.key});
@@ -161,7 +164,22 @@ class _School_ContentState extends State<School_Content> {
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
-                          onPressed: () {},
+                          onPressed: () {
+                            exportDataToPdf<Data>(
+                              items:
+                                  Get.find<School_Content_Controller>().model!,
+                              headers: [
+                                "Name".tr,
+                                "English Name".tr,
+                              ],
+                              fieldMappings: {
+                                "Name".tr: (reg) => reg.name ?? "",
+                                "English Name".tr: (reg) => reg.enName ?? "",
+                              },
+                              fileName: "School Content".tr +
+                                  '${DateTime.now().toIso8601String()}',
+                            );
+                          },
                           icon: Icon(VMS_Icons.pdf,
                               size: 18,
                               color: Theme.of(context).highlightColor)),
@@ -187,7 +205,21 @@ class _School_ContentState extends State<School_Content> {
                                 RoundedRectangleBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5))))),
-                        onPressed: () {},
+                        onPressed: () {
+                          exportDataToExcel<Data>(
+                            items: Get.find<School_Content_Controller>().model!,
+                            headers: [
+                              "Name".tr,
+                              "English Name".tr,
+                            ],
+                            fieldMappings: {
+                              "Name".tr: (reg) => reg.name ?? "",
+                              "English Name".tr: (reg) => reg.enName ?? "",
+                            },
+                            fileName: "School Content".tr +
+                                '${DateTime.now().toIso8601String()}',
+                          );
+                        },
                         icon: Icon(VMS_Icons.xl,
                             size: 18, color: Theme.of(context).highlightColor)),
                   ),

@@ -56,7 +56,7 @@ Future<void> exportToPdf(List<Map<String, dynamic>> schoolInfo) async {
   Uint8List imageBytes = bytes.buffer.asUint8List();
   final image = pw.MemoryImage(imageBytes);
 
-  ByteData fontData = await rootBundle.load('assets/fonts/Cairo-Regular.ttf');
+  ByteData fontData = await rootBundle.load('fonts/Cairo-Regular.ttf');
   final font = pw.Font.ttf(fontData);
 
   final pdf = pw.Document();

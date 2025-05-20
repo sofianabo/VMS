@@ -3,6 +3,10 @@ import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Transactions/Transaction_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Transaction_Controller.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/Transaction_Model.dart';
+import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Admin/School_Management/Transactions/Transaction_Management_Grid.dart';
 import 'package:vms_school/widgets/Admin/Admin_School/DropDowTransaction.dart';
 import 'package:vms_school/widgets/Calender.dart';
@@ -112,7 +116,41 @@ class _Transaction_ManagementState extends State<Transaction_Management> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportDataToPdf<Transaction>(
+                                items: controller.filteredTransaction!,
+                                headers: [
+                                  "Username".tr,
+                                  "Roll".tr,
+                                  "IP Address".tr,
+                                  "Action".tr,
+                                  "Platform".tr,
+                                  "Device Type".tr,
+                                  "Date".tr,
+                                  "Time".tr,
+                                ],
+                                fieldMappings: {
+                                  "IP Address".tr: (reg) => reg.ip ?? "",
+                                  "Platform".tr: (reg) => reg.platform ?? "",
+                                  "Device Type".tr: (reg) =>
+                                      reg.deviceType ?? "",
+                                  "Action".tr: (reg) =>
+                                      Get.find<LocalizationController>()
+                                                  .currentLocale
+                                                  .value
+                                                  .languageCode ==
+                                              'ar'
+                                          ? reg.arAction
+                                          : reg.action ?? "",
+                                  "Username".tr: (reg) => reg.userName ?? "",
+                                  "Roll".tr: (reg) => reg.roll!.tr ?? "",
+                                  "Date".tr: (reg) => reg.date ?? "",
+                                  "Time".tr: (reg) => reg.time ?? "",
+                                },
+                                fileName: "Transaction".tr +
+                                    '${DateTime.now().toIso8601String()}',
+                              );
+                            },
                             icon: Icon(VMS_Icons.pdf,
                                 size: 18,
                                 color: Theme.of(context).highlightColor)),
@@ -137,7 +175,41 @@ class _Transaction_ManagementState extends State<Transaction_Management> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportDataToExcel<Transaction>(
+                                items: controller.filteredTransaction!,
+                                headers: [
+                                  "Username".tr,
+                                  "Roll".tr,
+                                  "IP Address".tr,
+                                  "Action".tr,
+                                  "Platform".tr,
+                                  "Device Type".tr,
+                                  "Date".tr,
+                                  "Time".tr,
+                                ],
+                                fieldMappings: {
+                                  "IP Address".tr: (reg) => reg.ip ?? "",
+                                  "Platform".tr: (reg) => reg.platform ?? "",
+                                  "Device Type".tr: (reg) =>
+                                      reg.deviceType ?? "",
+                                  "Action".tr: (reg) =>
+                                      Get.find<LocalizationController>()
+                                                  .currentLocale
+                                                  .value
+                                                  .languageCode ==
+                                              'ar'
+                                          ? reg.arAction
+                                          : reg.action ?? "",
+                                  "Username".tr: (reg) => reg.userName ?? "",
+                                  "Roll".tr: (reg) => reg.roll!.tr ?? "",
+                                  "Date".tr: (reg) => reg.date ?? "",
+                                  "Time".tr: (reg) => reg.time ?? "",
+                                },
+                                fileName: "Transaction".tr +
+                                    '${DateTime.now().toIso8601String()}',
+                              );
+                            },
                             icon: Icon(VMS_Icons.xl,
                                 size: 18,
                                 color: Theme.of(context).highlightColor)),
@@ -226,7 +298,41 @@ class _Transaction_ManagementState extends State<Transaction_Management> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportDataToPdf<Transaction>(
+                                items: controller.filteredTransaction!,
+                                headers: [
+                                  "Username".tr,
+                                  "Roll".tr,
+                                  "IP Address".tr,
+                                  "Action".tr,
+                                  "Platform".tr,
+                                  "Device Type".tr,
+                                  "Date".tr,
+                                  "Time".tr,
+                                ],
+                                fieldMappings: {
+                                  "IP Address".tr: (reg) => reg.ip ?? "",
+                                  "Platform".tr: (reg) => reg.platform ?? "",
+                                  "Device Type".tr: (reg) =>
+                                      reg.deviceType ?? "",
+                                  "Action".tr: (reg) =>
+                                      Get.find<LocalizationController>()
+                                                  .currentLocale
+                                                  .value
+                                                  .languageCode ==
+                                              'ar'
+                                          ? reg.arAction
+                                          : reg.action ?? "",
+                                  "Username".tr: (reg) => reg.userName ?? "",
+                                  "Roll".tr: (reg) => reg.roll!.tr ?? "",
+                                  "Date".tr: (reg) => reg.date ?? "",
+                                  "Time".tr: (reg) => reg.time ?? "",
+                                },
+                                fileName: "Transaction".tr +
+                                    '${DateTime.now().toIso8601String()}',
+                              );
+                            },
                             icon: Icon(VMS_Icons.pdf,
                                 size: 18,
                                 color: Theme.of(context).highlightColor)),
@@ -252,7 +358,40 @@ class _Transaction_ManagementState extends State<Transaction_Management> {
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
-                          onPressed: () {},
+                          onPressed: () {
+                            exportDataToExcel<Transaction>(
+                              items: controller.filteredTransaction!,
+                              headers: [
+                                "Username".tr,
+                                "Roll".tr,
+                                "IP Address".tr,
+                                "Action".tr,
+                                "Platform".tr,
+                                "Device Type".tr,
+                                "Date".tr,
+                                "Time".tr,
+                              ],
+                              fieldMappings: {
+                                "IP Address".tr: (reg) => reg.ip ?? "",
+                                "Platform".tr: (reg) => reg.platform ?? "",
+                                "Device Type".tr: (reg) => reg.deviceType ?? "",
+                                "Action".tr: (reg) =>
+                                    Get.find<LocalizationController>()
+                                                .currentLocale
+                                                .value
+                                                .languageCode ==
+                                            'ar'
+                                        ? reg.arAction
+                                        : reg.action ?? "",
+                                "Username".tr: (reg) => reg.userName ?? "",
+                                "Roll".tr: (reg) => reg.roll!.tr ?? "",
+                                "Date".tr: (reg) => reg.date ?? "",
+                                "Time".tr: (reg) => reg.time ?? "",
+                              },
+                              fileName: "Transaction".tr +
+                                  '${DateTime.now().toIso8601String()}',
+                            );
+                          },
                           icon: Icon(VMS_Icons.xl,
                               size: 18,
                               color: Theme.of(context).highlightColor)),

@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/OpenURLs.dart';
+import 'package:vms_school/Link/Controller/HomeController/HomeScreenController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/Responsive.dart';
 
 class Section7 extends StatelessWidget {
-  const Section7({super.key});
+  Section7({super.key});
+  bool IsArabic =
+      Get.find<LocalizationController>().currentLocale.value.languageCode ==
+          'ar';
 
   @override
   Widget build(BuildContext context) {
@@ -76,11 +81,15 @@ class Section7 extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
-                                  Text("8 AM -----> 1 PM".tr,
-                                      style: Get.theme.textTheme.bodyMedium!
-                                          .copyWith(
-                                              fontSize: 16,
-                                              color: Colors.white)),
+                                  GetBuilder<Homescreencontroller>(
+                                      builder: (controller) {
+                                    return Text(
+                                        "${_formatTime(controller.morningShiftStartHours)} -----> ${_formatTime(controller.morningClosingHours)}",
+                                        style: Get.theme.textTheme.bodyMedium!
+                                            .copyWith(
+                                                fontSize: 16,
+                                                color: Colors.white));
+                                  }),
                                   const SizedBox(
                                     width: 5,
                                   ),
@@ -96,11 +105,15 @@ class Section7 extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Text("3 PM -----> 8 PM".tr,
-                                      style: Get.theme.textTheme.bodyMedium!
-                                          .copyWith(
-                                              fontSize: 16,
-                                              color: Colors.white)),
+                                  GetBuilder<Homescreencontroller>(
+                                      builder: (controller) {
+                                    return Text(
+                                        "${_formatTime(controller.eveningShiftStartHours)} -----> ${_formatTime(controller.eveningClosingHours)}",
+                                        style: Get.theme.textTheme.bodyMedium!
+                                            .copyWith(
+                                                fontSize: 16,
+                                                color: Colors.white));
+                                  }),
                                   const SizedBox(
                                     width: 5,
                                   ),
@@ -118,27 +131,43 @@ class Section7 extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              Image.asset(
-                                "assets/images/youtube-icon.png",
-                                width: 40,
-                                height: 40,
-                              ),
+                              GetBuilder<Homescreencontroller>(
+                                  builder: (controller) {
+                                return GestureDetector(
+                                  onTap: () => controller.urlYoutube != null
+                                      ? launchLink(
+                                          url: "${controller.urlYoutube}",
+                                          type: LinkType.youtube,
+                                          context: context,
+                                        )
+                                      : null,
+                                  child: Image.asset(
+                                    "assets/images/youtube-icon.png",
+                                    width: 40,
+                                    height: 40,
+                                  ),
+                                );
+                              }),
                               const SizedBox(
                                 width: 5,
                               ),
-                              Image.asset(
-                                "assets/images/facebook-icon.png",
-                                width: 40,
-                                height: 40,
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Image.asset(
-                                "assets/images/linkedin-icon.png",
-                                width: 40,
-                                height: 40,
-                              ),
+                              GetBuilder<Homescreencontroller>(
+                                  builder: (controller) {
+                                return GestureDetector(
+                                  onTap: () => controller.urlFaceBook != null
+                                      ? launchLink(
+                                          url: "${controller.urlFaceBook}",
+                                          type: LinkType.facebook,
+                                          context: context,
+                                        )
+                                      : null,
+                                  child: Image.asset(
+                                    "assets/images/facebook-icon.png",
+                                    width: 40,
+                                    height: 40,
+                                  ),
+                                );
+                              }),
                             ],
                           ),
                         ],
@@ -166,11 +195,24 @@ class Section7 extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
-                                  Text("SYR: 00963 994 005157",
-                                      style: Get.theme.textTheme.bodyMedium!
-                                          .copyWith(
-                                              fontSize: 14,
-                                              color: Colors.white)),
+                                  GetBuilder<Homescreencontroller>(
+                                      builder: (controller) {
+                                    return GestureDetector(
+                                      onTap: () => controller.phonNumber != null
+                                          ? launchLink(
+                                              url: "${controller.phonNumber}",
+                                              type: LinkType.phone,
+                                              context: context,
+                                            )
+                                          : null,
+                                      child: Text(
+                                          "${controller.phonNumber ?? "No Phone Number yet".tr}",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                                  fontSize: 14,
+                                                  color: Colors.white)),
+                                    );
+                                  }),
                                   const SizedBox(
                                     width: 8,
                                   ),
@@ -193,11 +235,26 @@ class Section7 extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Text("USA: 001 817 583 0666",
-                                      style: Get.theme.textTheme.bodyMedium!
-                                          .copyWith(
-                                              fontSize: 14,
-                                              color: Colors.white)),
+                                  GetBuilder<Homescreencontroller>(
+                                      builder: (controller) {
+                                    return GestureDetector(
+                                      onTap: () =>
+                                          controller.whatsAppNumber != null
+                                              ? launchLink(
+                                                  url:
+                                                      "${controller.whatsAppNumber}",
+                                                  type: LinkType.phone,
+                                                  context: context,
+                                                )
+                                              : null,
+                                      child: Text(
+                                          "${controller.whatsAppNumber ?? "No Phone Number yet".tr}",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                                  fontSize: 14,
+                                                  color: Colors.white)),
+                                    );
+                                  }),
                                   const SizedBox(
                                     width: 8,
                                   ),
@@ -220,11 +277,24 @@ class Section7 extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Text("virtualmodernschoolmedia@gmail.com",
-                                      style: Get.theme.textTheme.bodyMedium!
-                                          .copyWith(
-                                              fontSize: 14,
-                                              color: Colors.white)),
+                                  GetBuilder<Homescreencontroller>(
+                                      builder: (controller) {
+                                    return GestureDetector(
+                                      onTap: () => controller.email != null
+                                          ? launchLink(
+                                              url: "${controller.email}",
+                                              type: LinkType.email,
+                                              context: context,
+                                            )
+                                          : null,
+                                      child: Text(
+                                          "${controller.email ?? "No Email yet"}",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                                  fontSize: 14,
+                                                  color: Colors.white)),
+                                    );
+                                  }),
                                   const SizedBox(
                                     width: 8,
                                   ),
@@ -253,8 +323,11 @@ class Section7 extends StatelessWidget {
                   height: 30,
                 ),
                 Directionality(
-                  textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
+                  textDirection: Get.find<LocalizationController>()
+                              .currentLocale
+                              .value
+                              .languageCode ==
+                          'ar'
                       ? TextDirection.rtl
                       : TextDirection.ltr,
                   child: Row(
@@ -268,17 +341,21 @@ class Section7 extends StatelessWidget {
                       const SizedBox(
                         width: 15,
                       ),
-                      Text(
-                          "Shakib Arslan Street - Engineers Syndicate Building - 2nd Floor - AlSuwaidaa - Syria"
-                              .tr,
-                          style: Get.theme.textTheme.bodyMedium!
-                              .copyWith(fontSize: 16, color: Colors.white)),
+                      GetBuilder<Homescreencontroller>(builder: (controller) {
+                        return Text(
+                            "${controller.address != null && controller.address != "" ? IsArabic ? controller.address : controller.enAddress : "No Address yet".tr}",
+                            style: Get.theme.textTheme.bodyMedium!
+                                .copyWith(fontSize: 16, color: Colors.white));
+                      }),
                     ],
                   ),
                 ),
                 Directionality(
-                  textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
+                  textDirection: Get.find<LocalizationController>()
+                              .currentLocale
+                              .value
+                              .languageCode ==
+                          'ar'
                       ? TextDirection.rtl
                       : TextDirection.ltr,
                   child: Row(
@@ -323,11 +400,15 @@ class Section7 extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
-                                  Text("8 AM -----> 1 PM".tr,
-                                      style: Get.theme.textTheme.bodyMedium!
-                                          .copyWith(
-                                              fontSize: 16,
-                                              color: Colors.white)),
+                                  GetBuilder<Homescreencontroller>(
+                                      builder: (controller) {
+                                    return Text(
+                                        "${_formatTime(controller.morningShiftStartHours)} -----> ${_formatTime(controller.morningClosingHours)}",
+                                        style: Get.theme.textTheme.bodyMedium!
+                                            .copyWith(
+                                                fontSize: 16,
+                                                color: Colors.white));
+                                  }),
                                   const SizedBox(
                                     width: 5,
                                   ),
@@ -343,11 +424,15 @@ class Section7 extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Text("3 PM -----> 8 PM".tr,
-                                      style: Get.theme.textTheme.bodyMedium!
-                                          .copyWith(
-                                              fontSize: 16,
-                                              color: Colors.white)),
+                                  GetBuilder<Homescreencontroller>(
+                                      builder: (controller) {
+                                    return Text(
+                                        "${_formatTime(controller.eveningShiftStartHours)} -----> ${_formatTime(controller.eveningClosingHours)}",
+                                        style: Get.theme.textTheme.bodyMedium!
+                                            .copyWith(
+                                                fontSize: 16,
+                                                color: Colors.white));
+                                  }),
                                   const SizedBox(
                                     width: 5,
                                   ),
@@ -365,27 +450,43 @@ class Section7 extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              Image.asset(
-                                "assets/images/youtube-icon.png",
-                                width: 40,
-                                height: 40,
-                              ),
+                              GetBuilder<Homescreencontroller>(
+                                  builder: (controller) {
+                                return GestureDetector(
+                                  onTap: () => controller.urlYoutube != null
+                                      ? launchLink(
+                                          url: "${controller.urlYoutube}",
+                                          type: LinkType.youtube,
+                                          context: context,
+                                        )
+                                      : null,
+                                  child: Image.asset(
+                                    "assets/images/youtube-icon.png",
+                                    width: 40,
+                                    height: 40,
+                                  ),
+                                );
+                              }),
                               const SizedBox(
                                 width: 5,
                               ),
-                              Image.asset(
-                                "assets/images/facebook-icon.png",
-                                width: 40,
-                                height: 40,
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Image.asset(
-                                "assets/images/linkedin-icon.png",
-                                width: 40,
-                                height: 40,
-                              ),
+                              GetBuilder<Homescreencontroller>(
+                                  builder: (controller) {
+                                return GestureDetector(
+                                  onTap: () => controller.urlFaceBook != null
+                                      ? launchLink(
+                                          url: "${controller.urlFaceBook}",
+                                          type: LinkType.facebook,
+                                          context: context,
+                                        )
+                                      : null,
+                                  child: Image.asset(
+                                    "assets/images/facebook-icon.png",
+                                    width: 40,
+                                    height: 40,
+                                  ),
+                                );
+                              }),
                             ],
                           ),
                         ],
@@ -413,11 +514,24 @@ class Section7 extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
-                                  Text("SYR: 00963 994 005157",
-                                      style: Get.theme.textTheme.bodyMedium!
-                                          .copyWith(
-                                              fontSize: 14,
-                                              color: Colors.white)),
+                                  GetBuilder<Homescreencontroller>(
+                                      builder: (controller) {
+                                    return GestureDetector(
+                                      onTap: () => controller.urlYoutube != null
+                                          ? launchLink(
+                                              url: "${controller.phonNumber}",
+                                              type: LinkType.phone,
+                                              context: context,
+                                            )
+                                          : null,
+                                      child: Text(
+                                          "${controller.phonNumber ?? "No Phone Number yet".tr}",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                                  fontSize: 14,
+                                                  color: Colors.white)),
+                                    );
+                                  }),
                                   const SizedBox(
                                     width: 8,
                                   ),
@@ -440,11 +554,26 @@ class Section7 extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Text("USA: 001 817 583 0666",
-                                      style: Get.theme.textTheme.bodyMedium!
-                                          .copyWith(
-                                              fontSize: 14,
-                                              color: Colors.white)),
+                                  GetBuilder<Homescreencontroller>(
+                                      builder: (controller) {
+                                    return GestureDetector(
+                                      onTap: () =>
+                                          controller.whatsAppNumber != null
+                                              ? launchLink(
+                                                  url:
+                                                      "${controller.whatsAppNumber}",
+                                                  type: LinkType.phone,
+                                                  context: context,
+                                                )
+                                              : null,
+                                      child: Text(
+                                          "${controller.whatsAppNumber ?? "No Phone Number yet".tr}",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                                  fontSize: 14,
+                                                  color: Colors.white)),
+                                    );
+                                  }),
                                   const SizedBox(
                                     width: 8,
                                   ),
@@ -467,11 +596,24 @@ class Section7 extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Text("virtualmodernschoolmedia@gmail.com",
-                                      style: Get.theme.textTheme.bodyMedium!
-                                          .copyWith(
-                                              fontSize: 16,
-                                              color: Colors.white)),
+                                  GetBuilder<Homescreencontroller>(
+                                      builder: (controller) {
+                                    return GestureDetector(
+                                      onTap: () => controller.email != null
+                                          ? launchLink(
+                                              url: "${controller.email}",
+                                              type: LinkType.email,
+                                              context: context,
+                                            )
+                                          : null,
+                                      child: Text(
+                                          "${controller.email ?? "No Email yet"}",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                                  fontSize: 16,
+                                                  color: Colors.white)),
+                                    );
+                                  }),
                                   const SizedBox(
                                     width: 8,
                                   ),
@@ -500,8 +642,11 @@ class Section7 extends StatelessWidget {
                   height: 30,
                 ),
                 Directionality(
-                  textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
+                  textDirection: Get.find<LocalizationController>()
+                              .currentLocale
+                              .value
+                              .languageCode ==
+                          'ar'
                       ? TextDirection.rtl
                       : TextDirection.ltr,
                   child: Row(
@@ -515,17 +660,21 @@ class Section7 extends StatelessWidget {
                       const SizedBox(
                         width: 15,
                       ),
-                      Text(
-                          "Shakib Arslan Street - Engineers Syndicate Building - 2nd Floor - AlSuwaidaa - Syria"
-                              .tr,
-                          style: Get.theme.textTheme.bodyMedium!
-                              .copyWith(fontSize: 16, color: Colors.white)),
+                      GetBuilder<Homescreencontroller>(builder: (controller) {
+                        return Text(
+                            "${controller.address != null && controller.address != "" ? IsArabic ? controller.address : controller.enAddress : "No Address yet".tr}",
+                            style: Get.theme.textTheme.bodyMedium!
+                                .copyWith(fontSize: 16, color: Colors.white));
+                      }),
                     ],
                   ),
                 ),
                 Directionality(
-                  textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
+                  textDirection: Get.find<LocalizationController>()
+                              .currentLocale
+                              .value
+                              .languageCode ==
+                          'ar'
                       ? TextDirection.rtl
                       : TextDirection.ltr,
                   child: Row(
@@ -574,11 +723,15 @@ class Section7 extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text("8 AM -----> 1 PM".tr,
-                                      style: Get.theme.textTheme.bodyMedium!
-                                          .copyWith(
-                                              fontSize: 16,
-                                              color: Colors.white)),
+                                  GetBuilder<Homescreencontroller>(
+                                      builder: (controller) {
+                                    return Text(
+                                        "${_formatTime(controller.morningShiftStartHours)} -----> ${_formatTime(controller.morningClosingHours)}",
+                                        style: Get.theme.textTheme.bodyMedium!
+                                            .copyWith(
+                                                fontSize: 16,
+                                                color: Colors.white));
+                                  }),
                                   const SizedBox(
                                     width: 5,
                                   ),
@@ -596,11 +749,15 @@ class Section7 extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text("3 PM -----> 8 PM".tr,
-                                      style: Get.theme.textTheme.bodyMedium!
-                                          .copyWith(
-                                              fontSize: 16,
-                                              color: Colors.white)),
+                                  GetBuilder<Homescreencontroller>(
+                                      builder: (controller) {
+                                    return Text(
+                                        "${_formatTime(controller.eveningShiftStartHours)} -----> ${_formatTime(controller.eveningClosingHours)}",
+                                        style: Get.theme.textTheme.bodyMedium!
+                                            .copyWith(
+                                                fontSize: 16,
+                                                color: Colors.white));
+                                  }),
                                   const SizedBox(
                                     width: 5,
                                   ),
@@ -643,11 +800,24 @@ class Section7 extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text("SYR: 00963 994 005157",
-                                      style: Get.theme.textTheme.bodyMedium!
-                                          .copyWith(
-                                              fontSize: 14,
-                                              color: Colors.white)),
+                                  GetBuilder<Homescreencontroller>(
+                                      builder: (controller) {
+                                    return GestureDetector(
+                                      onTap: () => controller.phonNumber != null
+                                          ? launchLink(
+                                              url: "${controller.phonNumber}",
+                                              type: LinkType.phone,
+                                              context: context,
+                                            )
+                                          : null,
+                                      child: Text(
+                                          "${controller.phonNumber ?? "No Phone Number yet".tr}",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                                  fontSize: 14,
+                                                  color: Colors.white)),
+                                    );
+                                  }),
                                   const SizedBox(
                                     width: 8,
                                   ),
@@ -672,11 +842,26 @@ class Section7 extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text("USA: 001 817 583 0666",
-                                      style: Get.theme.textTheme.bodyMedium!
-                                          .copyWith(
-                                              fontSize: 14,
-                                              color: Colors.white)),
+                                  GetBuilder<Homescreencontroller>(
+                                      builder: (controller) {
+                                    return GestureDetector(
+                                      onTap: () =>
+                                          controller.whatsAppNumber != null
+                                              ? launchLink(
+                                                  url:
+                                                      "${controller.whatsAppNumber}",
+                                                  type: LinkType.phone,
+                                                  context: context,
+                                                )
+                                              : null,
+                                      child: Text(
+                                          "${controller.whatsAppNumber ?? "No Phone Number yet".tr}",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                                  fontSize: 14,
+                                                  color: Colors.white)),
+                                    );
+                                  }),
                                   const SizedBox(
                                     width: 8,
                                   ),
@@ -701,11 +886,24 @@ class Section7 extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text("virtualmodernschoolmedia@gmail.com",
-                                      style: Get.theme.textTheme.bodyMedium!
-                                          .copyWith(
-                                              fontSize: 16,
-                                              color: Colors.white)),
+                                  GetBuilder<Homescreencontroller>(
+                                      builder: (controller) {
+                                    return GestureDetector(
+                                      onTap: () => controller.email != null
+                                          ? launchLink(
+                                              url: "${controller.email}",
+                                              type: LinkType.email,
+                                              context: context,
+                                            )
+                                          : null,
+                                      child: Text(
+                                          "${controller.email ?? "No Email yet"}",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                                  fontSize: 16,
+                                                  color: Colors.white)),
+                                    );
+                                  }),
                                   const SizedBox(
                                     width: 8,
                                   ),
@@ -737,8 +935,11 @@ class Section7 extends StatelessWidget {
                   padding: EdgeInsets.only(right: 20.0, left: 20.0),
                   width: MediaQuery.of(context).size.width,
                   child: Directionality(
-                    textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
+                    textDirection: Get.find<LocalizationController>()
+                                .currentLocale
+                                .value
+                                .languageCode ==
+                            'ar'
                         ? TextDirection.rtl
                         : TextDirection.ltr,
                     child: Row(
@@ -751,13 +952,15 @@ class Section7 extends StatelessWidget {
                           size: 16,
                         ),
                         Expanded(
-                          child: Text(
-                              textAlign: TextAlign.center,
-                              maxLines: 3,
-                              "Shakib Arslan Street - Engineers Syndicate Building - 2nd Floor - AlSuwaidaa - Syria"
-                                  .tr,
-                              style: Get.theme.textTheme.bodyMedium!
-                                  .copyWith(fontSize: 16, color: Colors.white)),
+                          child: GetBuilder<Homescreencontroller>(
+                              builder: (controller) {
+                            return Text(
+                                textAlign: TextAlign.center,
+                                maxLines: 3,
+                                "${controller.address != null && controller.address != "" ? IsArabic ? controller.address : controller.enAddress : "No Address yet".tr}",
+                                style: Get.theme.textTheme.bodyMedium!.copyWith(
+                                    fontSize: 16, color: Colors.white));
+                          }),
                         ),
                       ],
                     ),
@@ -769,33 +972,48 @@ class Section7 extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset(
-                        "assets/images/youtube-icon.png",
-                        width: 40,
-                        height: 40,
-                      ),
+                      GetBuilder<Homescreencontroller>(builder: (controller) {
+                        return GestureDetector(
+                          onTap: () => controller.urlYoutube != null
+                              ? launchLink(
+                                  url: "${controller.urlYoutube}",
+                                  type: LinkType.youtube,
+                                  context: context,
+                                )
+                              : null,
+                          child: Image.asset(
+                            "assets/images/youtube-icon.png",
+                            width: 40,
+                            height: 40,
+                          ),
+                        );
+                      }),
                       const SizedBox(
                         width: 5,
                       ),
-                      Image.asset(
-                        "assets/images/facebook-icon.png",
-                        width: 40,
-                        height: 40,
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Image.asset(
-                        "assets/images/linkedin-icon.png",
-                        width: 40,
-                        height: 40,
-                      ),
+                      GetBuilder<Homescreencontroller>(builder: (controller) {
+                        return GestureDetector(
+                          onTap: () => launchLink(
+                            url: "${controller.urlFaceBook}",
+                            type: LinkType.facebook,
+                            context: context,
+                          ),
+                          child: Image.asset(
+                            "assets/images/facebook-icon.png",
+                            width: 40,
+                            height: 40,
+                          ),
+                        );
+                      }),
                     ],
                   ),
                 ),
                 Directionality(
-                  textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
+                  textDirection: Get.find<LocalizationController>()
+                              .currentLocale
+                              .value
+                              .languageCode ==
+                          'ar'
                       ? TextDirection.rtl
                       : TextDirection.ltr,
                   child: Row(
@@ -826,4 +1044,23 @@ class Section7 extends StatelessWidget {
       ),
     );
   }
+}
+
+String _formatTime(String? time) {
+  if (time == null) return "No Time yet".tr;
+
+  final upperTime = time.toUpperCase();
+  final isAm = upperTime.contains("AM");
+  final isPm = upperTime.contains("PM");
+
+  final timePart =
+      time.replaceAll(RegExp(r'AM|PM', caseSensitive: false), '').trim();
+
+  final period = isAm
+      ? "AM".tr
+      : isPm
+          ? "PM".tr
+          : "";
+
+  return "$timePart $period";
 }

@@ -1,14 +1,14 @@
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Model/AdminModel/School_Models/AllPenaltyModel.dart' as gr;
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllPenaltyModel.dart';
 
 class Penaltycontroller extends GetxController {
   var Penalties = <Map<String, dynamic>>[].obs;
 
-  List<gr.Penalty>? penalt;
+  List<Penalty>? penalt;
 
   bool isLoading = true;
 
-  setData(gr.AllPenaltyModel pen) {
+  setData(AllPenaltyModel pen) {
     penalt = pen.penalty;
     Penalties.clear();
     for (var stu in pen.penalty!) {

@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Grade_Screen/Add_Grade_API.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Grade_Screen/Grade_Screen_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/PenaltyAPI/AddPenaltyAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/PenaltyAPI/getPenaltyAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
-import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Grade_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/PenaltyController.dart';
-import 'package:vms_school/Theme/themeController.dart';
-import 'package:vms_school/view/Admin/School_Management/Grade_Pages/GradeManagementGrid.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
+import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Admin/School_Management/PenaltyScreen/PenaltyGrid.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllPenaltyModel.dart';
 
 class Penaltyscreen extends StatefulWidget {
   const Penaltyscreen({super.key});
@@ -191,7 +190,28 @@ class PenaltyscreenState extends State<Penaltyscreen> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportDataToPdf<Penalty>(
+                                items: Get.find<Penaltycontroller>().penalt!,
+                                headers: [
+                                  "Name".tr,
+                                  "Details".tr,
+                                ],
+                                fieldMappings: {
+                                  "Name".tr: (reg) =>
+                                      Get.find<LocalizationController>()
+                                                  .currentLocale
+                                                  .value
+                                                  .languageCode ==
+                                              'ar'
+                                          ? reg.name
+                                          : reg.enName ?? "",
+                                  "Details".tr: (reg) => reg.description ?? "",
+                                },
+                                fileName: "Penalty".tr +
+                                    '${DateTime.now().toIso8601String()}',
+                              );
+                            },
                             icon: Icon(VMS_Icons.pdf,
                                 size: 18,
                                 color: Theme.of(context).highlightColor)),
@@ -217,7 +237,28 @@ class PenaltyscreenState extends State<Penaltyscreen> {
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
-                          onPressed: () {},
+                          onPressed: () {
+                            exportDataToExcel<Penalty>(
+                              items: Get.find<Penaltycontroller>().penalt!,
+                              headers: [
+                                "Name".tr,
+                                "Details".tr,
+                              ],
+                              fieldMappings: {
+                                "Name".tr: (reg) =>
+                                    Get.find<LocalizationController>()
+                                                .currentLocale
+                                                .value
+                                                .languageCode ==
+                                            'ar'
+                                        ? reg.name
+                                        : reg.enName ?? "",
+                                "Details".tr: (reg) => reg.description ?? "",
+                              },
+                              fileName: "Penalty".tr +
+                                  '${DateTime.now().toIso8601String()}',
+                            );
+                          },
                           icon: Icon(VMS_Icons.xl,
                               size: 18,
                               color: Theme.of(context).highlightColor)),

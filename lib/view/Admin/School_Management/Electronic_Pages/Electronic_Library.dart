@@ -6,6 +6,9 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Electroni
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Electronic_Library_API/Get_All_E_Book.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Labrary_Controller.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/Labrary_Model.dart';
 import 'package:vms_school/view/Admin/School_Management/Electronic_Pages/Electronic_Book_Grid.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
@@ -129,7 +132,22 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportDataToPdf<Books>(
+                                items: Get.find<Labrary_Controller>()
+                                    .filteredEbook!,
+                                headers: [
+                                  "Name".tr,
+                                  "English Name".tr,
+                                ],
+                                fieldMappings: {
+                                  "Name".tr: (reg) => reg.name ?? "",
+                                  "English Name".tr: (reg) => reg.enName ?? "",
+                                },
+                                fileName: "School Content".tr +
+                                    '${DateTime.now().toIso8601String()}',
+                              );
+                            },
                             icon: Icon(VMS_Icons.pdf,
                                 size: 18,
                                 color: Theme.of(context).highlightColor)),
@@ -152,7 +170,22 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))))),
-                            onPressed: () {},
+                            onPressed: () {
+                              exportDataToExcel<Books>(
+                                items: Get.find<Labrary_Controller>()
+                                    .filteredEbook!,
+                                headers: [
+                                  "Name".tr,
+                                  "English Name".tr,
+                                ],
+                                fieldMappings: {
+                                  "Name".tr: (reg) => reg.name ?? "",
+                                  "English Name".tr: (reg) => reg.enName ?? "",
+                                },
+                                fileName: "School Content".tr +
+                                    '${DateTime.now().toIso8601String()}',
+                              );
+                            },
                             icon: Icon(VMS_Icons.xl,
                                 size: 18,
                                 color: Theme.of(context).highlightColor)),
@@ -252,7 +285,23 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
-                              onPressed: () {},
+                              onPressed: () {
+                                exportDataToPdf<Books>(
+                                  items: Get.find<Labrary_Controller>()
+                                      .filteredEbook!,
+                                  headers: [
+                                    "Name".tr,
+                                    "English Name".tr,
+                                  ],
+                                  fieldMappings: {
+                                    "Name".tr: (reg) => reg.name ?? "",
+                                    "English Name".tr: (reg) =>
+                                        reg.enName ?? "",
+                                  },
+                                  fileName: "School Content".tr +
+                                      '${DateTime.now().toIso8601String()}',
+                                );
+                              },
                               icon: Icon(VMS_Icons.pdf,
                                   size: 18,
                                   color: Theme.of(context).highlightColor)),
@@ -275,7 +324,23 @@ class _ElectronicBookState extends State<ElectronicBook> {
                                       RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(5))))),
-                              onPressed: () {},
+                              onPressed: () {
+                                exportDataToExcel<Books>(
+                                  items: Get.find<Labrary_Controller>()
+                                      .filteredEbook!,
+                                  headers: [
+                                    "Name".tr,
+                                    "English Name".tr,
+                                  ],
+                                  fieldMappings: {
+                                    "Name".tr: (reg) => reg.name ?? "",
+                                    "English Name".tr: (reg) =>
+                                        reg.enName ?? "",
+                                  },
+                                  fileName: "School Content".tr +
+                                      '${DateTime.now().toIso8601String()}',
+                                );
+                              },
                               icon: Icon(VMS_Icons.xl,
                                   size: 18,
                                   color: Theme.of(context).highlightColor)),

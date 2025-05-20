@@ -499,3 +499,130 @@ Future<void> exportQuizResultToPdf({
     ..click();
   html.Url.revokeObjectUrl(url);
 }
+
+void exportSchoolDataToPdf<T>({
+  required List<T> items,
+  required List<String> headers,
+  required Map<String, dynamic Function(T item)> fieldMappings,
+  String fileName = 'exported_data',
+}) async {
+  try {
+    List<Map<String, dynamic>> data = items.map((item) {
+      return Map.fromEntries(
+        fieldMappings.entries.map((entry) {
+          return MapEntry(entry.key, entry.value(item));
+        }),
+      );
+    }).toList();
+
+    await exportSchoolToPdf(
+      data: data,
+      headers: headers,
+      fileName: fileName,
+    );
+
+    print('تم التصدير إلى PDF بنجاح');
+  } catch (e) {
+    print('حدث خطأ أثناء التصدير: $e');
+  }
+}
+
+Future<void> exportSchoolToPdf({
+  required List<Map<String, dynamic>> data,
+  required List<String> headers,
+  required String fileName,
+}) async {
+  try {
+    if (data.isEmpty) {
+      ErrorMessage("No data available for export".tr);
+      return;
+    }
+    final Uint8List imageData =
+        (await rootBundle.load('assets/images/logo2.png')).buffer.asUint8List();
+    final pw.ImageProvider image = pw.MemoryImage(imageData);
+    ByteData fontData = await rootBundle.load('fonts/Cairo-Regular.ttf');
+    final ttf = pw.Font.ttf(fontData);
+
+    final pdf = pw.Document();
+
+    const int rowsPerPage = 12; // عدد الأسطر (الهيدرات) في كل صفحة
+
+    for (var row in data) {
+      int totalPages = (headers.length / rowsPerPage).ceil();
+
+      for (int pageIndex = 0; pageIndex < totalPages; pageIndex++) {
+        final currentHeaders =
+            headers.skip(pageIndex * rowsPerPage).take(rowsPerPage).toList();
+
+        pdf.addPage(
+          pw.Page(
+            pageFormat: PdfPageFormat.a4,
+            build: (pw.Context context) {
+              return pw.Directionality(
+                textDirection: pw.TextDirection.rtl,
+                child: pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: [
+                    pw.Center(
+                      child: pw.Image(image, width: 200),
+                    ),
+                    pw.SizedBox(height: 20),
+                    pw.Table(
+                      columnWidths: {
+                        0: pw.FlexColumnWidth(3),
+                        1: pw.FlexColumnWidth(2),
+                      },
+                      border: pw.TableBorder.all(color: PdfColors.grey700),
+                      children: currentHeaders.map((header) {
+                        final value = _convertToStrings(row[header]);
+                        return pw.TableRow(
+                          children: [
+                            pw.Container(
+                              padding: const pw.EdgeInsets.all(8),
+                              child: pw.Text(
+                                  textAlign: pw.TextAlign.center,
+                                  value,
+                                  style: pw.TextStyle(font: ttf)),
+                            ),
+                            pw.Container(
+                              padding: const pw.EdgeInsets.all(8),
+                              color: PdfColor.fromHex("#19478DFF"),
+                              child: pw.Text(
+                                  textAlign: pw.TextAlign.center,
+                                  header,
+                                  style: pw.TextStyle(
+                                      color: PdfColors.white,
+                                      font: ttf,
+                                      fontWeight: pw.FontWeight.bold)),
+                            ),
+                          ],
+                        );
+                      }).toList(),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        );
+      }
+    }
+
+    final bytes = await pdf.save();
+    final blob = html.Blob([Uint8List.fromList(bytes)]);
+    final url = html.Url.createObjectUrlFromBlob(blob);
+    final anchor = html.AnchorElement(href: url)
+      ..setAttribute(
+          'download', fileName.endsWith('.pdf') ? fileName : '$fileName.pdf')
+      ..click();
+    html.Url.revokeObjectUrl(url);
+  } catch (e) {
+    print("حدث خطأ أثناء التصدير إلى PDF: $e");
+  }
+}
+
+String _convertToStrings(dynamic value) {
+  if (value == null) return '';
+  if (value is List || value is Map) return value.toString();
+  return value.toString();
+}

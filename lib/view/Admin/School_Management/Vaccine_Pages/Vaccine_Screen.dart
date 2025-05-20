@@ -7,6 +7,9 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Vaccines_
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Location_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
+import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/Vaccines_Model.dart';
 import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/view/Admin/School_Management/Vaccine_Pages/Vaccine_Grid.dart';
 import 'package:vms_school/widgets/Admin/Admin_School/Vaccian_DropDown.dart';
@@ -126,7 +129,22 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
-                          onPressed: () {},
+                          onPressed: () {
+                            exportDataToPdf<Vaccine>(
+                              items: Get.find<Vaccines_Controller>()
+                                  .filteredvaccine!,
+                              headers: [
+                                "Name".tr,
+                                "English Name".tr,
+                              ],
+                              fieldMappings: {
+                                "Name".tr: (reg) => reg.name ?? "",
+                                "English Name".tr: (reg) => reg.enName ?? "",
+                              },
+                              fileName: "Vaccine".tr +
+                                  '${DateTime.now().toIso8601String()}',
+                            );
+                          },
                           icon: Icon(VMS_Icons.pdf,
                               size: 18,
                               color: Theme.of(context).highlightColor)),
@@ -149,7 +167,22 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(5))))),
-                          onPressed: () {},
+                          onPressed: () {
+                            exportDataToExcel<Vaccine>(
+                              items: Get.find<Vaccines_Controller>()
+                                  .filteredvaccine!,
+                              headers: [
+                                "Name".tr,
+                                "English Name".tr,
+                              ],
+                              fieldMappings: {
+                                "Name".tr: (reg) => reg.name ?? "",
+                                "English Name".tr: (reg) => reg.enName ?? "",
+                              },
+                              fileName: "Vaccine".tr +
+                                  '${DateTime.now().toIso8601String()}',
+                            );
+                          },
                           icon: Icon(VMS_Icons.xl,
                               size: 18,
                               color: Theme.of(context).highlightColor)),

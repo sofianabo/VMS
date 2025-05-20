@@ -20,9 +20,14 @@ class Data {
   int? id;
   String? schoolName;
   String? licenseNumber;
+  String? whatsAppNumber;
+  String? urlYoutube;
+  String? urlFaceBook;
   String? congregationNumber;
   String? previousName;
   String? address;
+  String? enAddress;
+  String? enVillage;
   String? village;
   String? township;
   String? region;
@@ -43,15 +48,24 @@ class Data {
   int? reassignmentTeachers;
   bool? morning;
   bool? evening;
+  String? morningShiftStartHours;
+  String? morningClosingHours;
+  String? eveningShiftStartHours;
+  String? eveningClosingHours;
   Country? country;
 
   Data(
       {this.id,
       this.schoolName,
       this.licenseNumber,
+      this.whatsAppNumber,
+      this.urlYoutube,
+      this.urlFaceBook,
       this.congregationNumber,
       this.previousName,
       this.address,
+      this.enAddress,
+      this.enVillage,
       this.village,
       this.township,
       this.region,
@@ -72,15 +86,24 @@ class Data {
       this.reassignmentTeachers,
       this.morning,
       this.evening,
+      this.morningShiftStartHours,
+      this.morningClosingHours,
+      this.eveningShiftStartHours,
+      this.eveningClosingHours,
       this.country});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     schoolName = json['schoolName'];
     licenseNumber = json['licenseNumber'];
+    whatsAppNumber = json['whatsAppNumber'];
+    urlYoutube = json['urlYoutube'];
+    urlFaceBook = json['urlFaceBook'];
     congregationNumber = json['congregationNumber'];
     previousName = json['previousName'];
     address = json['address'];
+    enAddress = json['enAddress'];
+    enVillage = json['enVillage'];
     village = json['village'];
     township = json['township'];
     region = json['region'];
@@ -101,6 +124,10 @@ class Data {
     reassignmentTeachers = json['reassignmentTeachers'];
     morning = json['Morning'];
     evening = json['Evening'];
+    morningShiftStartHours = json['MorningShiftStartHours'];
+    morningClosingHours = json['MorningClosingHours'];
+    eveningShiftStartHours = json['EveningShiftStartHours'];
+    eveningClosingHours = json['EveningClosingHours'];
     country =
         json['country'] != null ? new Country.fromJson(json['country']) : null;
   }
@@ -110,9 +137,14 @@ class Data {
     data['id'] = this.id;
     data['schoolName'] = this.schoolName;
     data['licenseNumber'] = this.licenseNumber;
+    data['whatsAppNumber'] = this.whatsAppNumber;
+    data['urlYoutube'] = this.urlYoutube;
+    data['urlFaceBook'] = this.urlFaceBook;
     data['congregationNumber'] = this.congregationNumber;
     data['previousName'] = this.previousName;
     data['address'] = this.address;
+    data['enAddress'] = this.enAddress;
+    data['enVillage'] = this.enVillage;
     data['village'] = this.village;
     data['township'] = this.township;
     data['region'] = this.region;
@@ -133,6 +165,10 @@ class Data {
     data['reassignmentTeachers'] = this.reassignmentTeachers;
     data['Morning'] = this.morning;
     data['Evening'] = this.evening;
+    data['MorningShiftStartHours'] = this.morningShiftStartHours;
+    data['MorningClosingHours'] = this.morningClosingHours;
+    data['EveningShiftStartHours'] = this.eveningShiftStartHours;
+    data['EveningClosingHours'] = this.eveningClosingHours;
     if (this.country != null) {
       data['country'] = this.country!.toJson();
     }

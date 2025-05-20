@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/School_Info_Controller.dart';
+import 'package:vms_school/view/Admin/School_Management/School_Data/TimePick.dart';
+import 'package:vms_school/widgets/Admin/Admin_School/School_Data_DropDown.dart';
 import 'package:vms_school/widgets/TextFildWithUpper.dart';
 
 class School_Data extends StatelessWidget {
@@ -72,30 +74,67 @@ class School_Data extends StatelessWidget {
                     children: [
                       Textfildwithupper(
                           enabled: enabled,
-                          isError: controller.IsaddressError,
+                          isError: controller.IsArabicaddressError,
                           onChanged: (value) {
                             if (value.isNotEmpty) {
-                              controller.updateFieldError("address", false);
+                              controller.updateFieldError(
+                                  "Arabicaddress", false);
                             }
                           },
                           isRequired: true,
                           width: screenWidth >= 616 ? screenWidth / 2.8 : 300,
-                          controller: controller.Address,
-                          Uptext: "Address".tr,
-                          hinttext: "Address".tr),
+                          controller: controller.ArabicAddress,
+                          Uptext: "Arabic Address".tr,
+                          hinttext: "Arabic Address".tr),
                       Textfildwithupper(
                           enabled: enabled,
-                          isError: controller.IsvillError,
+                          isError: controller.IsEnglishaddressError,
                           onChanged: (value) {
                             if (value.isNotEmpty) {
-                              controller.updateFieldError("vill", false);
+                              controller.updateFieldError(
+                                  "Englishaddress", false);
                             }
                           },
                           isRequired: true,
                           width: screenWidth >= 616 ? screenWidth / 2.8 : 300,
-                          controller: controller.Village,
-                          Uptext: "Village".tr,
-                          hinttext: "Village".tr)
+                          controller: controller.EnglishAddress,
+                          Uptext: "English Address".tr,
+                          hinttext: "English Address".tr),
+                    ],
+                  ),
+                  Wrap(
+                    spacing: 10.0,
+                    runSpacing: 10.0,
+                    alignment: WrapAlignment.spaceBetween,
+                    runAlignment: WrapAlignment.spaceBetween,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      Textfildwithupper(
+                          enabled: enabled,
+                          isError: controller.IsEnglishvillError,
+                          onChanged: (value) {
+                            if (value.isNotEmpty) {
+                              controller.updateFieldError("Englishvill", false);
+                            }
+                          },
+                          isRequired: true,
+                          width: screenWidth >= 616 ? screenWidth / 2.8 : 300,
+                          controller: controller.EnglishVillage,
+                          Uptext: "English Village".tr,
+                          hinttext: "English Village".tr),
+                      Textfildwithupper(
+                          enabled: enabled,
+                          isError: controller.IsArabicvillError,
+                          onChanged: (value) {
+                            if (value.isNotEmpty) {
+                              controller.updateFieldError("Arabicvill", false);
+                            }
+                          },
+                          isRequired: true,
+                          width: screenWidth >= 616 ? screenWidth / 2.8 : 300,
+                          controller: controller.ArabicVillage,
+                          Uptext: "Arabic Village".tr,
+                          hinttext: "Arabic Village".tr),
                     ],
                   ),
                   Wrap(
@@ -255,6 +294,115 @@ class School_Data extends StatelessWidget {
                           controller: controller.Town_Chip,
                           Uptext: "Town Chip".tr,
                           hinttext: "Town Chip".tr)
+                    ],
+                  ),
+                  Wrap(
+                    spacing: 10.0,
+                    runSpacing: 10.0,
+                    alignment: WrapAlignment.spaceBetween,
+                    runAlignment: WrapAlignment.spaceBetween,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      School_Data_DropDown(
+                        isRequired: true,
+                        isLoading: controller.isCountryLoading,
+                        isError: controller.IsCountryError,
+                        type: "Country",
+                        title: "Country".tr,
+                        width: screenWidth >= 616 ? screenWidth / 2.8 : 300,
+                        isDisabled: !enabled,
+                      ),
+                      Textfildwithupper(
+                          fieldType: "phone",
+                          enabled: enabled,
+                          isRequired: false,
+                          width: screenWidth >= 616 ? screenWidth / 2.8 : 300,
+                          controller: controller.whatsapp,
+                          Uptext: "Whatsapp Number".tr,
+                          hinttext: "Whatsapp Number".tr)
+                    ],
+                  ),
+                  Wrap(
+                    spacing: 10.0,
+                    runSpacing: 10.0,
+                    alignment: WrapAlignment.spaceBetween,
+                    runAlignment: WrapAlignment.spaceBetween,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      Wrap(
+                        spacing: 5.0,
+                        runSpacing: 5.0,
+                        alignment: WrapAlignment.spaceBetween,
+                        runAlignment: WrapAlignment.spaceBetween,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        children: [
+                          TimePickerField(
+                            label: "Start Time (Morning)".tr,
+                            hint: "Select start time",
+                            width: screenWidth >= 616 ? screenWidth / 5.7 : 145,
+                            enabled: enabled,
+                            timeValue: controller.morningStartTime,
+                            controller: controller.Morning_working_hours_Start,
+                          ),
+                          TimePickerField(
+                            label: "End Time (Morning)".tr,
+                            hint: "Select end time",
+                            width: screenWidth >= 616 ? screenWidth / 5.7 : 145,
+                            enabled: enabled,
+                            timeValue: controller.morningEndTime,
+                            controller: controller.Morning_working_hours_End,
+                          ),
+                        ],
+                      ),
+                      Wrap(
+                        spacing: 5.0,
+                        runSpacing: 5.0,
+                        alignment: WrapAlignment.spaceBetween,
+                        runAlignment: WrapAlignment.spaceBetween,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        children: [
+                          TimePickerField(
+                            label: "Start Time (Evening)".tr,
+                            hint: "Select start time",
+                            width: screenWidth >= 616 ? screenWidth / 5.7 : 145,
+                            enabled: enabled,
+                            timeValue: controller.eveningStartTime,
+                            controller: controller.Evening_working_hours_Start,
+                          ),
+                          TimePickerField(
+                            label: "End Time (Evening)".tr,
+                            hint: "Select end time",
+                            width: screenWidth >= 616 ? screenWidth / 5.7 : 145,
+                            enabled: enabled,
+                            timeValue: controller.eveningEndTime,
+                            controller: controller.Evening_working_hours_End,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Wrap(
+                    spacing: 10.0,
+                    runSpacing: 10.0,
+                    alignment: WrapAlignment.spaceBetween,
+                    runAlignment: WrapAlignment.spaceBetween,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      Textfildwithupper(
+                          enabled: enabled,
+                          isRequired: false,
+                          width: screenWidth >= 616 ? screenWidth / 2.8 : 300,
+                          controller: controller.facebook,
+                          Uptext: "Facebook URL".tr,
+                          hinttext: "Facebook URL".tr),
+                      Textfildwithupper(
+                          enabled: enabled,
+                          isError: controller.IsevnError,
+                          isRequired: false,
+                          width: screenWidth >= 616 ? screenWidth / 2.8 : 300,
+                          controller: controller.youtube,
+                          Uptext: "Youtube URL".tr,
+                          hinttext: "Youtube URL".tr)
                     ],
                   ),
                   Wrap(

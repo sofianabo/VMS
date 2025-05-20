@@ -54,17 +54,18 @@ class School_Content_Grid extends StatelessWidget {
                                 _tableHeader('Content Name'.tr, context),
                               ],
                             ),
-                            for (var row
-                                in controller.Contents!.asMap().entries)
+                            for (var row in controller.Contents.asMap().entries)
                               TableRow(
                                 children: [
                                   _operationColumn(
                                       row.value, controller, row.key, context),
-                                  _dataColumn(
-                                       Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
-                                          ? row.value['name']
-                                          : row.value['enName']),
+                                  _dataColumn(Get.find<LocalizationController>()
+                                              .currentLocale
+                                              .value
+                                              .languageCode ==
+                                          'ar'
+                                      ? row.value['name']
+                                      : row.value['enName']),
                                 ],
                               ),
                           ],

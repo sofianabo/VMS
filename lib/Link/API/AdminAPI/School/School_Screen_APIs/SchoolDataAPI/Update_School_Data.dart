@@ -6,6 +6,7 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/SchoolDat
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/School_Info_Controller.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/School_Data_Model.dart';
 import 'package:vms_school/widgets/Loading_Dialog.dart';
 
 class Update_School_Data_API {
@@ -20,13 +21,19 @@ class Update_School_Data_API {
       final controller = Get.find<SchoolInfoController>();
       var response = await dio.post(myURI,
           data: {
-            "countryId": 3,
+            "countryId": controller.data?.country?.id != null
+                ? controller.countruId == 0
+                    ? controller.data!.country!.id
+                    : controller.countruId
+                : 10,
             "schoolName": controller.School_Name.text,
             "licenseNumber": controller.License_Number.text,
             "congregationNumber": controller.Congregation_number.text,
             "previousName": controller.Previous_name.text,
-            "address": controller.Address.text,
-            "village": controller.Village.text,
+            "address": controller.ArabicAddress.text,
+            "enAddress": controller.EnglishAddress.text,
+            "village": controller.ArabicVillage.text,
+            "enVillage": controller.EnglishVillage.text,
             "township": controller.Town_Chip.text,
             "region": controller.Region.text,
             "phone": controller.Phone.text,
@@ -34,7 +41,6 @@ class Update_School_Data_API {
             "email": controller.Email.text,
             "creatYear": controller.Creation_Year.text,
             "workBeginYear": controller.Work_Begin_Year.text,
-            // "workType":"",
             'Morning': controller.morning.value,
             'Evening': controller.evening.value,
             "clinicName": controller.Clinic_Name.text,
@@ -45,11 +51,20 @@ class Update_School_Data_API {
             "martyrsSons": controller.Martyrs_Sons.value,
             "outstandingSchool": controller.Outstanding_School.value,
             "takenOverSchool": controller.Taken_OverSchool.value,
-            "reassignmentTeachers": controller.Reassignment_Teachers.value
+            "reassignmentTeachers": controller.Reassignment_Teachers.value,
+            "MorningWorkingHours":
+                "${controller.morningStartTime.value},${controller.morningEndTime.value}",
+            "EveningWorkingHours":
+                "${controller.eveningStartTime.value},${controller.eveningEndTime.value}",
+            "whatsAppNumber": controller.whatsapp.text,
+            "urlYoutube": controller.youtube.text,
+            "urlFaceBook": controller.facebook.text,
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
-        await School_Data_API(context).School_Data();
+        School_Data_Model schoolDataModel =
+            School_Data_Model.fromJson(response.data);
+        controller.setData(schoolDataModel.data);
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

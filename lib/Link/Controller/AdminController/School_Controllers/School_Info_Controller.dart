@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/Country_Model.dart'
+    as co;
 import 'package:vms_school/Link/Model/AdminModel/School_Models/School_Data_Model.dart';
+import 'package:vms_school/Translate/local_controller.dart';
 
 class SchoolInfoController extends GetxController {
   bool isLoading = true;
+  bool isCountryLoading = true;
 
   var Outstanding_School = false.obs;
   var Taken_OverSchool = false.obs;
@@ -16,10 +20,19 @@ class SchoolInfoController extends GetxController {
   var morning = false.obs;
   var evening = false.obs;
 
+  // أوقات الدوام الصباحي
+  RxString morningStartTime = ''.obs;
+  RxString morningEndTime = ''.obs;
+
+  RxString eveningStartTime = ''.obs;
+  RxString eveningEndTime = ''.obs;
+
   TextEditingController School_Name = TextEditingController();
   TextEditingController License_Number = TextEditingController();
-  TextEditingController Address = TextEditingController();
-  TextEditingController Village = TextEditingController();
+  TextEditingController ArabicAddress = TextEditingController();
+  TextEditingController EnglishAddress = TextEditingController();
+  TextEditingController ArabicVillage = TextEditingController();
+  TextEditingController EnglishVillage = TextEditingController();
   TextEditingController Region = TextEditingController();
   TextEditingController Phone = TextEditingController();
   TextEditingController Email = TextEditingController();
@@ -30,18 +43,34 @@ class SchoolInfoController extends GetxController {
   TextEditingController Town_Chip = TextEditingController();
   TextEditingController Fax = TextEditingController();
   TextEditingController Work_Begin_Year = TextEditingController();
+  TextEditingController whatsapp = TextEditingController();
+  TextEditingController Morning_working_hours_Start = TextEditingController();
+  TextEditingController Morning_working_hours_End = TextEditingController();
+  TextEditingController Evening_working_hours_Start = TextEditingController();
+  TextEditingController Evening_working_hours_End = TextEditingController();
+  TextEditingController facebook = TextEditingController();
+  TextEditingController youtube = TextEditingController();
 
   String CountryIndex = "";
+  List<String> CountryList = [];
 
   List<Map<String, dynamic>> SchoolInfo = [];
-
+  Data? data;
   void setData(Data? datas) {
-    if (datas!.schoolName == null) {
+    data = datas;
+    if (datas == null || datas.schoolName == null) {
+      morningStartTime.value = "8:00 AM";
+      morningEndTime.value = "2:00 PM";
+      eveningStartTime.value = "3:00 PM";
+      eveningEndTime.value = "6:00 PM";
+
       SchoolInfo.clear();
       Map<String, dynamic> newSchoolInfo = {
         "School_Name": "",
         "License_Number": "",
         "Address": "",
+        "enAddress": "",
+        "enVillage": "",
         "Village": "",
         "Region": "",
         "Phone": "",
@@ -63,25 +92,46 @@ class SchoolInfoController extends GetxController {
         "Joint_Building": "",
         "Industrial_Section": "",
         "Morning_control": "",
-        "Evening_control": ""
+        "Evening_control": "",
+        "whatsAppNumber": "",
+        "urlYoutube": "",
+        "urlFaceBook": "",
+        "MorningShiftStartHours": "8:00 AM",
+        "MorningClosingHours": "2:00 PM",
+        "EveningShiftStartHours": "3:00 PM",
+        "EveningClosingHours": "6:00 PM",
       };
       SchoolInfo.add(newSchoolInfo);
     } else {
-      School_Name.text = datas.schoolName!;
-      License_Number.text = datas.licenseNumber!;
-      Address.text = datas.address!;
-      Village.text = datas.village!;
-      Region.text = datas.region!;
-      Phone.text = datas.phone!;
-      Email.text = datas.email!;
+      School_Name.text = datas.schoolName ?? "";
+
+      whatsapp.text = datas.whatsAppNumber ?? "";
+      facebook.text = datas.urlFaceBook ?? "";
+      youtube.text = datas.urlYoutube ?? "";
+      Morning_working_hours_Start.text = datas.morningShiftStartHours ?? "";
+      Morning_working_hours_End.text = datas.morningClosingHours ?? "";
+      Evening_working_hours_Start.text = datas.eveningShiftStartHours ?? "";
+      Evening_working_hours_End.text = datas.eveningClosingHours ?? "";
+      morningStartTime.value = datas.morningShiftStartHours ?? "";
+      morningEndTime.value = datas.morningClosingHours ?? "";
+      eveningStartTime.value = datas.eveningShiftStartHours ?? "";
+      eveningEndTime.value = datas.eveningClosingHours ?? "";
+
+      License_Number.text = datas.licenseNumber ?? "";
+      ArabicAddress.text = datas.address ?? "";
+      EnglishAddress.text = datas.enAddress ?? "";
+      ArabicVillage.text = datas.village ?? "";
+      EnglishVillage.text = datas.enVillage ?? "";
+      Region.text = datas.region ?? "";
+      Phone.text = datas.phone ?? "";
+      Email.text = datas.email ?? "";
       Creation_Year.text = datas.creatYear.toString();
       Clinic_Name.text = datas.clinicName ?? "";
-      Congregation_number.text = datas.congregationNumber!;
+      Congregation_number.text = datas.congregationNumber ?? "";
       Previous_name.text = datas.previousName ?? "";
-      Town_Chip.text = datas.township!;
+      Town_Chip.text = datas.township ?? "";
       Fax.text = datas.fax ?? "";
       Work_Begin_Year.text = datas.workBeginYear.toString();
-      CountryIndex = datas.country!.enName!;
       Outstanding_School.value = datas.outstandingSchool == 1 ? true : false;
       Taken_OverSchool.value = datas.takenOverSchool == 1 ? true : false;
       Reassignment_Teachers.value =
@@ -94,12 +144,19 @@ class SchoolInfoController extends GetxController {
       Industrial_Section.value = datas.industrialSection == 1 ? true : false;
       morning.value = datas.morning == true ? true : false;
       evening.value = datas.evening == true ? true : false;
+      CountryIndex =
+          Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
+              ? datas.country!.name!
+              : datas.country!.enName!;
 
       Map<String, dynamic> newSchoolInfo = {
         "School_Name": School_Name.text,
         "License_Number": License_Number.text,
-        "Address": Address.text,
-        "Village": Village.text,
+        "Address": ArabicAddress.text,
+        "enAddress": EnglishAddress.text,
+        "Village": ArabicVillage.text,
+        "enVillage": EnglishVillage.text,
         "Region": Region.text,
         "Phone": Phone.text,
         "Email": Email.text,
@@ -121,6 +178,13 @@ class SchoolInfoController extends GetxController {
         "Industrial_Section": Industrial_Section.value,
         "morning": morning.value,
         "evening": evening.value,
+        "whatsAppNumber": whatsapp.text,
+        "urlYoutube": youtube.text,
+        "urlFaceBook": facebook.text,
+        "MorningShiftStartHours": "${morningStartTime.value}",
+        "MorningClosingHours": "${morningEndTime.value}",
+        "EveningShiftStartHours": "${eveningStartTime.value}",
+        "EveningClosingHours": "${eveningEndTime.value}",
       };
       SchoolInfo.clear();
       SchoolInfo.add(newSchoolInfo);
@@ -145,6 +209,8 @@ class SchoolInfoController extends GetxController {
     "Eighth Scientific Grade",
     "Seventh Scientific Grade"
   ];
+
+  int countruId = 10;
 
   void selectIndex(String type, String? index) {
     switch (type) {
@@ -173,8 +239,10 @@ class SchoolInfoController extends GetxController {
 
   bool IsnameError = false;
   bool IslicError = false;
-  bool IsaddressError = false;
-  bool IsvillError = false;
+  bool IsEnglishaddressError = false;
+  bool IsArabicaddressError = false;
+  bool IsEnglishvillError = false;
+  bool IsArabicvillError = false;
   bool IsregError = false;
   bool Isphoneror = false;
   bool IsworkError = false;
@@ -182,20 +250,44 @@ class SchoolInfoController extends GetxController {
   bool IsemailError = false;
   bool IscnumError = false;
   bool IstwnError = false;
+  bool IsmorError = false;
+  bool IsCountryError = false;
+  bool IsevnError = false;
+  bool IsWhatsappNumberError = false;
 
   void updateFieldError(String type, bool newValue) {
     switch (type) {
       case 'name':
         IsnameError = newValue;
         break;
+      case 'Country':
+        IsCountryError = newValue;
+        break;
+
+      case 'mor':
+        IsmorError = newValue;
+        break;
+      case 'evn':
+        IsevnError = newValue;
+        break;
+
+      case 'Whatsapp':
+        IsWhatsappNumberError = newValue;
+        break;
       case 'lic':
         IslicError = newValue;
         break;
-      case 'address':
-        IsaddressError = newValue;
+      case 'Englishaddress':
+        IsEnglishaddressError = newValue;
         break;
-      case 'vill':
-        IsvillError = newValue;
+      case 'Arabicaddress':
+        IsArabicaddressError = newValue;
+        break;
+      case 'Englishvill':
+        IsEnglishvillError = newValue;
+        break;
+      case 'Arabicvill':
+        IsArabicvillError = newValue;
         break;
       case 'reg':
         IsregError = newValue;
@@ -221,6 +313,42 @@ class SchoolInfoController extends GetxController {
       default:
         print("Error: Invalid type");
     }
+    update();
+  }
+
+  void setCountryIsLoading(bool value) {
+    isCountryLoading = value;
+    update();
+  }
+
+  List<co.Country>? countryData;
+
+  void setCountryData(List<co.Country>? country) {
+    CountryList =
+        Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                'ar'
+            ? country!.map((e) => e.name!).toList()
+            : country!.map((e) => e.enName!).toList();
+    countryData = country;
+    SelectCountryId(country.indexWhere((element) => element.id == 1));
+    if (data!.country == null) {
+      CountryIndex = "As-Suwayda".tr;
+    }
+    isCountryLoading = false;
+    update();
+  }
+
+  String getSelectedIndex(String type) {
+    switch (type) {
+      case 'Country':
+        return CountryIndex;
+      default:
+        return '';
+    }
+  }
+
+  void SelectCountryId(int indexOf) {
+    countruId = indexOf;
     update();
   }
 }

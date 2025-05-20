@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/SchoolContentModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
-import 'package:vms_school/main.dart';
 
 class School_Content_Controller extends GetxController {
   bool IsnameError = false;
@@ -25,10 +24,9 @@ class School_Content_Controller extends GetxController {
         'id': contenet.id,
         'name': contenet.name,
         'enName': contenet.enName,
-      
       });
-      if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar')
+      if (Get.find<LocalizationController>().currentLocale.value.languageCode ==
+          'ar')
         contentNames.add(contenet.name!);
       else
         contentNames.add(contenet.enName!);
@@ -46,7 +44,7 @@ class School_Content_Controller extends GetxController {
       case 'enname':
         IsennameError = newValue;
         break;
-     
+
       default:
         print("Error: Invalid type");
     }

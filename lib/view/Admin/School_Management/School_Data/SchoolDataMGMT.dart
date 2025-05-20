@@ -3,11 +3,13 @@ import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Info_Export.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/SchoolDataAPI/Get_Country_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/SchoolDataAPI/School_Data_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/SchoolDataAPI/Update_School_Data.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/School_Info_Controller.dart';
 import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
+import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/School_Management/School_Data/School_Data_Bottom.dart';
@@ -24,6 +26,7 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
   @override
   void initState() {
     School_Data_API(context).School_Data();
+
     super.initState();
   }
 
@@ -61,9 +64,15 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                         bool isLicense_NumberEmpty =
                             controller.License_Number.text.isEmpty;
 
-                        bool isAddressEmpty = controller.Address.text.isEmpty;
+                        bool isEnglishAddressEmpty =
+                            controller.EnglishAddress.text.isEmpty;
+                        bool isArabicAddressEmpty =
+                            controller.ArabicAddress.text.isEmpty;
 
-                        bool isVillageEmpty = controller.Village.text.isEmpty;
+                        bool isEnglishVillageEmpty =
+                            controller.EnglishVillage.text.isEmpty;
+                        bool isArabicVillageEmpty =
+                            controller.ArabicVillage.text.isEmpty;
 
                         bool isRegionEmpty = controller.Region.text.isEmpty;
 
@@ -90,8 +99,14 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                         controller.updateFieldError("name", isSchool_NameEmpty);
                         controller.updateFieldError(
                             "lic", isLicense_NumberEmpty);
-                        controller.updateFieldError("address", isAddressEmpty);
-                        controller.updateFieldError("vill", isVillageEmpty);
+                        controller.updateFieldError(
+                            "Englishaddress", isEnglishAddressEmpty);
+                        controller.updateFieldError(
+                            "Arabicaddress", isArabicAddressEmpty);
+                        controller.updateFieldError(
+                            "Englishvill", isEnglishVillageEmpty);
+                        controller.updateFieldError(
+                            "Arabicvill", isArabicVillageEmpty);
                         controller.updateFieldError("reg", isRegionEmpty);
                         controller.updateFieldError("phone", isPhoneEmpty);
                         controller.updateFieldError(
@@ -104,8 +119,10 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
 
                         if (!(isSchool_NameEmpty ||
                             isLicense_NumberEmpty ||
-                            isAddressEmpty ||
-                            isVillageEmpty ||
+                            isEnglishAddressEmpty ||
+                            isArabicAddressEmpty ||
+                            isEnglishVillageEmpty ||
+                            isArabicVillageEmpty ||
                             isRegionEmpty ||
                             isPhoneEmpty ||
                             isEmailEmpty ||
@@ -146,11 +163,17 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                               bool isLicense_NumberEmpty =
                                   controller.License_Number.text.isEmpty;
 
-                              bool isAddressEmpty =
-                                  controller.Address.text.isEmpty;
+                              bool isArabicAddressEmpty =
+                                  controller.ArabicAddress.text.isEmpty;
 
-                              bool isVillageEmpty =
-                                  controller.Village.text.isEmpty;
+                              bool isEnglishAddressEmpty =
+                                  controller.EnglishAddress.text.isEmpty;
+
+                              bool isArabicVillageEmpty =
+                                  controller.ArabicVillage.text.isEmpty;
+
+                              bool isEnglishVillageEmpty =
+                                  controller.EnglishVillage.text.isEmpty;
 
                               bool isRegionEmpty =
                                   controller.Region.text.isEmpty;
@@ -180,10 +203,16 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                   "name", isSchool_NameEmpty);
                               controller.updateFieldError(
                                   "lic", isLicense_NumberEmpty);
+
                               controller.updateFieldError(
-                                  "address", isAddressEmpty);
+                                  "Englishaddress", isEnglishAddressEmpty);
                               controller.updateFieldError(
-                                  "vill", isVillageEmpty);
+                                  "Arabicaddress", isArabicAddressEmpty);
+                              controller.updateFieldError(
+                                  "Englishvill", isEnglishVillageEmpty);
+                              controller.updateFieldError(
+                                  "Arabicvill", isArabicVillageEmpty);
+
                               controller.updateFieldError("reg", isRegionEmpty);
                               controller.updateFieldError(
                                   "phone", isPhoneEmpty);
@@ -200,8 +229,10 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
 
                               if (!(isSchool_NameEmpty ||
                                   isLicense_NumberEmpty ||
-                                  isAddressEmpty ||
-                                  isVillageEmpty ||
+                                  isEnglishAddressEmpty ||
+                                  isArabicAddressEmpty ||
+                                  isEnglishVillageEmpty ||
+                                  isArabicVillageEmpty ||
                                   isRegionEmpty ||
                                   isPhoneEmpty ||
                                   isEmailEmpty ||
@@ -209,7 +240,132 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                   isCongregation_numberEmpty ||
                                   isTown_ChipEmpty ||
                                   isWork_Begin_YearEmpty)) {
-                                await exportToPdf(controller.SchoolInfo);
+                                exportSchoolDataToPdf<Map<String, dynamic>>(
+                                  items: controller
+                                      .SchoolInfo, // هذا هو التعديل المهم
+                                  headers: [
+                                    "School Name".tr,
+                                    "License Number".tr,
+                                    "Address".tr,
+                                    "Village".tr,
+                                    "Region".tr,
+                                    "Phone".tr,
+                                    "Email".tr,
+                                    "Creation Year".tr,
+                                    "Clinic Name".tr,
+                                    "Congregation number".tr,
+                                    "Previous name".tr,
+                                    "Town Chip".tr,
+                                    "Fax".tr,
+                                    "Work Begin Year".tr,
+                                    "Country".tr,
+                                    "Morning Time".tr,
+                                    "Evening Time".tr,
+                                    "Whatsapp Number".tr,
+                                    "Youtube URL".tr,
+                                    "Facebook URL".tr,
+                                    "Outstanding School".tr,
+                                    "Taken Over School".tr,
+                                    "Reassignment Teachers".tr,
+                                    "Martyrs Sons".tr,
+                                    "Internet Connection".tr,
+                                    "Government Connection".tr,
+                                    "Joint Building".tr,
+                                    "Industrial Section".tr,
+                                    "Morning".tr,
+                                    "Evening".tr,
+                                  ],
+                                  fieldMappings: {
+                                    "School Name".tr: (item) =>
+                                        item["School_Name"],
+                                    "License Number".tr: (item) =>
+                                        item["License_Number"],
+                                    "Address".tr: (item) =>
+                                        Get.find<LocalizationController>()
+                                                    .currentLocale
+                                                    .value
+                                                    .languageCode ==
+                                                'ar'
+                                            ? item["Address"]
+                                            : item["enAddress"],
+                                    "Village".tr: (item) =>
+                                        Get.find<LocalizationController>()
+                                                    .currentLocale
+                                                    .value
+                                                    .languageCode ==
+                                                'ar'
+                                            ? item["Village"]
+                                            : item["enVillage"],
+                                    "Region".tr: (item) => item["Region"],
+                                    "Phone".tr: (item) => item["Phone"],
+                                    "Email".tr: (item) => item["Email"],
+                                    "Creation Year".tr: (item) =>
+                                        item["Creation_Year"],
+                                    "Clinic Name".tr: (item) =>
+                                        item["Clinic_Name"],
+                                    "Congregation number".tr: (item) =>
+                                        item["Congregation_number"],
+                                    "Previous name".tr: (item) =>
+                                        item["Previous_name"],
+                                    "Town Chip".tr: (item) => item["Town_Chip"],
+                                    "Fax".tr: (item) => item["Fax"],
+                                    "Work Begin Year".tr: (item) =>
+                                        item["Work_Begin_Year"],
+                                    "Country".tr: (item) => item["Country"],
+                                    "Outstanding School".tr: (item) =>
+                                        item["Outstanding_School"] == true
+                                            ? "Yes".tr
+                                            : "No".tr,
+                                    "Taken Over School".tr: (item) =>
+                                        item["Taken_OverSchool"] == true
+                                            ? "Yes".tr
+                                            : "No".tr,
+                                    "Reassignment Teachers".tr: (item) =>
+                                        item["Reassignment_Teachers"] == true
+                                            ? "Yes".tr
+                                            : "No".tr,
+                                    "Martyrs Sons".tr: (item) =>
+                                        item["Martyrs_Sons"] == true
+                                            ? "Yes".tr
+                                            : "No".tr,
+                                    "Internet Connection".tr: (item) =>
+                                        item["Internet_Connection"] == true
+                                            ? "Yes".tr
+                                            : "No".tr,
+                                    "Government Connection".tr: (item) =>
+                                        item["Government_Connection"] == true
+                                            ? "Yes".tr
+                                            : "No".tr,
+                                    "Joint Building".tr: (item) =>
+                                        item["Joint_Building"] == true
+                                            ? "Yes".tr
+                                            : "No".tr,
+                                    "Industrial Section".tr: (item) =>
+                                        item["Industrial_Section"] == true
+                                            ? "Yes".tr
+                                            : "No".tr,
+                                    "Morning".tr: (item) =>
+                                        item["morning"] == true
+                                            ? "Yes".tr
+                                            : "No".tr,
+                                    "Evening".tr: (item) =>
+                                        item["evening"] == true
+                                            ? "Yes".tr
+                                            : "No".tr,
+                                    "Morning Time".tr: (item) =>
+                                        "${item["MorningShiftStartHours"]},${item["MorningClosingHours"]}",
+                                    "Evening Time".tr: (item) =>
+                                        "${item["EveningShiftStartHours"]},${item["EveningClosingHours"]}",
+                                    "Whatsapp Number".tr: (item) =>
+                                        item["whatsAppNumber"],
+                                    "Youtube URL".tr: (item) =>
+                                        item["urlYoutube"],
+                                    "Facebook URL".tr: (item) =>
+                                        item["urlFaceBook"],
+                                  },
+                                  fileName: "School Data".tr +
+                                      "${DateTime.now().toIso8601String()}",
+                                );
                               }
                             },
                             icon: Icon(VMS_Icons.pdf,
@@ -244,11 +400,17 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                               bool isLicense_NumberEmpty =
                                   controller.License_Number.text.isEmpty;
 
-                              bool isAddressEmpty =
-                                  controller.Address.text.isEmpty;
+                              bool isArabicAddressEmpty =
+                                  controller.ArabicAddress.text.isEmpty;
 
-                              bool isVillageEmpty =
-                                  controller.Village.text.isEmpty;
+                              bool isArabicVillageEmpty =
+                                  controller.ArabicVillage.text.isEmpty;
+
+                              bool isEnglishAddressEmpty =
+                                  controller.EnglishAddress.text.isEmpty;
+
+                              bool isEnglishVillageEmpty =
+                                  controller.EnglishVillage.text.isEmpty;
 
                               bool isRegionEmpty =
                                   controller.Region.text.isEmpty;
@@ -280,9 +442,14 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                               controller.updateFieldError(
                                   "lic", isLicense_NumberEmpty);
                               controller.updateFieldError(
-                                  "address", isAddressEmpty);
+                                  "Englishaddress", isEnglishAddressEmpty);
                               controller.updateFieldError(
-                                  "vill", isVillageEmpty);
+                                  "Arabicaddress", isArabicAddressEmpty);
+                              controller.updateFieldError(
+                                  "Englishvill", isEnglishVillageEmpty);
+                              controller.updateFieldError(
+                                  "Arabicvill", isArabicVillageEmpty);
+
                               controller.updateFieldError("reg", isRegionEmpty);
                               controller.updateFieldError(
                                   "phone", isPhoneEmpty);
@@ -299,8 +466,10 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
 
                               if (!(isSchool_NameEmpty ||
                                   isLicense_NumberEmpty ||
-                                  isAddressEmpty ||
-                                  isVillageEmpty ||
+                                  isEnglishAddressEmpty ||
+                                  isArabicAddressEmpty ||
+                                  isEnglishVillageEmpty ||
+                                  isArabicVillageEmpty ||
                                   isRegionEmpty ||
                                   isPhoneEmpty ||
                                   isEmailEmpty ||
@@ -308,38 +477,113 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                                   isCongregation_numberEmpty ||
                                   isTown_ChipEmpty ||
                                   isWork_Begin_YearEmpty)) {
-                                // exportDataToExcel<Curriculum>(
-                                //   items: controller.SchoolInfo,
-                                //   headers: [
-                                //     "Name".tr,
-                                //     "English Name".tr,
-                                //     "Max Mark".tr,
-                                //     "Passing Mark".tr,
-                                //     "Subject".tr,
-                                //     "Failed subject".tr,
-                                //   ],
-                                //   fieldMappings: {
-                                //     "Name".tr: (reg) => reg.name ?? "",
-                                //     "English Name".tr: (reg) =>
-                                //         reg.enName ?? "",
-                                //     "Max Mark".tr: (reg) => reg.maxMark ?? "",
-                                //     "Passing Mark".tr: (reg) =>
-                                //         reg.passingMark ?? "",
-                                //     "Subject".tr: (reg) =>
-                                //         Get.find<LocalizationController>()
-                                //                     .currentLocale
-                                //                     .value
-                                //                     .languageCode ==
-                                //                 'ar'
-                                //             ? reg.subject!.name
-                                //             : reg.subject!.enName ?? "",
-                                //     "Failed subject".tr: (reg) => reg.type == 1
-                                //         ? "Yes".tr
-                                //         : "No".tr ?? "",
-                                //   },
-                                //   fileName: "Curriculum".tr +
-                                //       '${DateTime.now().toIso8601String()}',
-                                // );
+                                {
+                                  exportDataToExcel<Map<String, dynamic>>(
+                                    items: controller
+                                        .SchoolInfo, // هذا هو التعديل المهم
+                                    headers: [
+                                      "School Name".tr,
+                                      "License Number".tr,
+                                      "Address".tr,
+                                      "Village".tr,
+                                      "Region".tr,
+                                      "Phone".tr,
+                                      "Email".tr,
+                                      "Creation Year".tr,
+                                      "Clinic Name".tr,
+                                      "Congregation number".tr,
+                                      "Previous name".tr,
+                                      "Town Chip".tr,
+                                      "Fax".tr,
+                                      "Work Begin Year".tr,
+                                      "Country".tr,
+                                      "Morning Time".tr,
+                                      "Evening Time".tr,
+                                      "Whatsapp Number".tr,
+                                      "Youtube URL".tr,
+                                      "Facebook URL".tr,
+                                      "Outstanding School".tr,
+                                      "Taken Over School".tr,
+                                      "Reassignment Teachers".tr,
+                                      "Martyrs Sons".tr,
+                                      "Internet Connection".tr,
+                                      "Government Connection".tr,
+                                      "Joint Building".tr,
+                                      "Industrial Section".tr,
+                                      "Morning".tr,
+                                      "Evening".tr,
+                                    ],
+                                    fieldMappings: {
+                                      "School Name".tr: (item) =>
+                                          item["School_Name"],
+                                      "License Number".tr: (item) =>
+                                          item["License_Number"],
+                                      "Address".tr: (item) =>
+                                          Get.find<LocalizationController>()
+                                                      .currentLocale
+                                                      .value
+                                                      .languageCode ==
+                                                  'ar'
+                                              ? item["Address"]
+                                              : item["enAddress"],
+                                      "Village".tr: (item) =>
+                                          Get.find<LocalizationController>()
+                                                      .currentLocale
+                                                      .value
+                                                      .languageCode ==
+                                                  'ar'
+                                              ? item["Village"]
+                                              : item["enVillage"],
+                                      "Region".tr: (item) => item["Region"],
+                                      "Phone".tr: (item) => item["Phone"],
+                                      "Email".tr: (item) => item["Email"],
+                                      "Creation Year".tr: (item) =>
+                                          item["Creation_Year"],
+                                      "Clinic Name".tr: (item) =>
+                                          item["Clinic_Name"],
+                                      "Congregation number".tr: (item) =>
+                                          item["Congregation_number"],
+                                      "Previous name".tr: (item) =>
+                                          item["Previous_name"],
+                                      "Town Chip".tr: (item) =>
+                                          item["Town_Chip"],
+                                      "Fax".tr: (item) => item["Fax"],
+                                      "Work Begin Year".tr: (item) =>
+                                          item["Work_Begin_Year"],
+                                      "Country".tr: (item) => item["Country"],
+                                      "Outstanding School".tr: (item) =>
+                                          item["Outstanding_School"],
+                                      "Taken Over School".tr: (item) =>
+                                          item["Taken_OverSchool"],
+                                      "Reassignment Teachers".tr: (item) =>
+                                          item["Reassignment_Teachers"],
+                                      "Martyrs Sons".tr: (item) =>
+                                          item["Martyrs_Sons"],
+                                      "Internet Connection".tr: (item) =>
+                                          item["Internet_Connection"],
+                                      "Government Connection".tr: (item) =>
+                                          item["Government_Connection"],
+                                      "Joint Building".tr: (item) =>
+                                          item["Joint_Building"],
+                                      "Industrial Section".tr: (item) =>
+                                          item["Industrial_Section"],
+                                      "Morning".tr: (item) => item["morning"],
+                                      "Evening".tr: (item) => item["evening"],
+                                      "Morning Time".tr: (item) =>
+                                          "${item["MorningShiftStartHours"]},${item["MorningClosingHours"]}",
+                                      "Evening Time".tr: (item) =>
+                                          "${item["EveningShiftStartHours"]},${item["EveningClosingHours"]}",
+                                      "Whatsapp Number".tr: (item) =>
+                                          item["whatsAppNumber"],
+                                      "Youtube URL".tr: (item) =>
+                                          item["urlYoutube"],
+                                      "Facebook URL".tr: (item) =>
+                                          item["urlFaceBook"],
+                                    },
+                                    fileName: "School Data".tr +
+                                        "${DateTime.now().toIso8601String()}",
+                                  );
+                                }
                               }
                             },
                             icon: Icon(VMS_Icons.xl,
