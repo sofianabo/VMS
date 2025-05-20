@@ -6,6 +6,7 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Students_Marks_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
+import 'package:vms_school/Link/Controller/Teacher_Controller/My_Students_Controller.dart';
 import 'package:vms_school/Link/Controller/Teacher_Controller/StudentMarks_TeacherController.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllDivisionModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
@@ -49,6 +50,7 @@ class Dropdowndivisioncontroller extends GetxController {
     Get.find<Add_Students_Controller>().SetDivisionlist(newList);
     Get.find<Students_Marks_Controller>().SetDivisionList(newList);
     Get.find<StudentmarksTeachercontroller>().SetDivisionList(newList);
+    Get.find<My_Students_Controller>().setDivisionList(newList);
     setIsLoading(false);
     update();
   }

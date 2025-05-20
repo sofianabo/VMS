@@ -147,125 +147,114 @@ class _TeacherappbarState extends State<Teacherappbar> {
                                     contents: Studyshareteacher(),
                                     apptitle: "StudyShare table".tr,
                                     subtitle: ""));
-                            }
-                             else    if (selected == 'ExamTable') {
-                                  Get.find<
-                                          Quiztableteachercontroller>()
-                                      .initialData();
-                                  Getmyquizapi(context)
-                                      .Getmyquiz(
-                                        );
-                                }
-
-                               else if (selected ==
-                                    'Attendence') {
-                                  oneEmployeeAttendenceModel
-                                      attendanceModel =
-                                      await Getmyattendenceapi(
-                                              context)
-                                          .Getmyattendence(
-                                             );
-                                  Get.dialog(GetBuilder<
-                                      Oneemployeeattendencecontroller>(
-                                    builder: (oneControl) {
-                                      return VMSAlertDialog(
-                                        action: [],
-                                        contents: SizedBox(
-                                          width: 600,
-                                          height: Get.height,
-                                          child: Column(
-                                            children: [
-                                              SizedBox(
-                                                width:
-                                                    Get.width,
-                                                child:
-                                                    SingleChildScrollView(
-                                                  child:
-                                                      DataTable(
-                                                    border:
-                                                        TableBorder
-                                                            .all(
-                                                      color: Theme.of(
-                                                              context)
-                                                          .primaryColor,
-                                                      width:
-                                                          1.0,
-                                                    ),
-                                                    columns: [
-                                                      DataColumn(
-                                                        label:
-                                                            Text(
-                                                          'Date'
-                                                              .tr,
-                                                          style: Get
-                                                              .theme
-                                                              .textTheme
-                                                              .bodyMedium,
-                                                        ),
-                                                      ),
-                                                      DataColumn(
-                                                        label:
-                                                            Text(
-                                                          'Status'
-                                                              .tr,
-                                                          style: Get
-                                                              .theme
-                                                              .textTheme
-                                                              .bodyMedium,
-                                                        ),
-                                                      ),
-                                                      DataColumn(
-                                                        label:
-                                                            Text(
-                                                          'Cause'
-                                                              .tr,
-                                                          style: Get
-                                                              .theme
-                                                              .textTheme
-                                                              .bodyMedium,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                    rows: [
-                                                      for (var studentAttendance
-                                                          in attendanceModel.employeeAttendance ??
-                                                              [])
-                                                        DataRow(
-                                                          cells: [
-                                                            DataCell(
-                                                              Text(
-                                                                studentAttendance.date ?? 'N/A',
-                                                                style: Theme.of(context).textTheme.bodyMedium,
-                                                              ),
-                                                            ),
-                                                            //status
-                                                            DataCell(
-                                                              Text(
-                                                                studentAttendance.status.toString().tr ?? 'N/A',
-                                                                style: Theme.of(context).textTheme.bodyMedium,
-                                                              ),
-                                                            ),
-                                                            DataCell(
-                                                              Text(
-                                                                studentAttendance.cause ?? 'N/A',
-                                                                style: Theme.of(context).textTheme.bodyMedium,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                    ],
-                                                  ),
+                            } else if (selected == 'ExamTable') {
+                              Get.find<Quiztableteachercontroller>()
+                                  .initialData();
+                              Getmyquizapi(context).Getmyquiz();
+                            } else if (selected == 'Attendence') {
+                              oneEmployeeAttendenceModel attendanceModel =
+                                  await Getmyattendenceapi(context)
+                                      .Getmyattendence();
+                              Get.dialog(
+                                  GetBuilder<Oneemployeeattendencecontroller>(
+                                builder: (oneControl) {
+                                  return VMSAlertDialog(
+                                    action: [],
+                                    contents: SizedBox(
+                                      width: 600,
+                                      height: Get.height,
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            width: Get.width,
+                                            child: SingleChildScrollView(
+                                              child: DataTable(
+                                                border: TableBorder.all(
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                  width: 1.0,
                                                 ),
+                                                columns: [
+                                                  DataColumn(
+                                                    label: Text(
+                                                      'Date'.tr,
+                                                      style: Get.theme.textTheme
+                                                          .bodyMedium,
+                                                    ),
+                                                  ),
+                                                  DataColumn(
+                                                    label: Text(
+                                                      'Status'.tr,
+                                                      style: Get.theme.textTheme
+                                                          .bodyMedium,
+                                                    ),
+                                                  ),
+                                                  DataColumn(
+                                                    label: Text(
+                                                      'Cause'.tr,
+                                                      style: Get.theme.textTheme
+                                                          .bodyMedium,
+                                                    ),
+                                                  ),
+                                                ],
+                                                rows: [
+                                                  for (var studentAttendance
+                                                      in attendanceModel
+                                                              .employeeAttendance ??
+                                                          [])
+                                                    DataRow(
+                                                      cells: [
+                                                        DataCell(
+                                                          Text(
+                                                            studentAttendance
+                                                                    .date ??
+                                                                'N/A',
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium,
+                                                          ),
+                                                        ),
+                                                        //status
+                                                        DataCell(
+                                                          Text(
+                                                            studentAttendance
+                                                                    .status
+                                                                    .toString()
+                                                                    .tr ??
+                                                                'N/A',
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium,
+                                                          ),
+                                                        ),
+                                                        DataCell(
+                                                          Text(
+                                                            studentAttendance
+                                                                    .cause ??
+                                                                'N/A',
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                ],
                                               ),
-                                            ],
+                                            ),
                                           ),
-                                        ),
-                                        apptitle: "Attendences".tr,
-                                        subtitle: "none",
-                                      );
-                                    },
-                                  ));
-                                }
+                                        ],
+                                      ),
+                                    ),
+                                    apptitle: "Attendences".tr,
+                                    subtitle: "none",
+                                  );
+                                },
+                              ));
+                            }
                           },
                         );
                       }),
@@ -344,7 +333,7 @@ class _TeacherappbarState extends State<Teacherappbar> {
                   Expanded(
                     child: Center(
                       child: Text(
-                        "My Children".tr,
+                        "Main Page ".tr,
                         style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
@@ -425,7 +414,7 @@ class _TeacherappbarState extends State<Teacherappbar> {
                         child: Text(
                           maxLines: 2,
                           textAlign: TextAlign.center,
-                          "My Children".tr,
+                          "Main Page".tr,
                           style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,

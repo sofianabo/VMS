@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllDivisionModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import '../../Model/Teacher_Model/My_Students_Model.dart';
@@ -89,10 +90,23 @@ class My_Students_Controller extends GetxController {
     update();
   }
 
-  setClassList(List<String> value) {
+  setClassList(AllClassModel ClassModel) {
+    List<String> classess = [];
+    if (ClassModel.classes != null) {
+      for (var g in ClassModel.classes!) {
+        if (Get.find<LocalizationController>()
+                .currentLocale
+                .value
+                .languageCode ==
+            'ar')
+          classess.add(g.name.toString());
+        else
+          classess.add(g.enName.toString());
+      }
+    }
     classIndex = "";
     classlist.clear();
-    classlist = value;
+    classlist = classess;
     setClassLoading(false);
     update();
   }
@@ -103,10 +117,11 @@ class My_Students_Controller extends GetxController {
   }
 
   setDivisionList(List<String> value) {
-    setDivisionLoading(false);
     divisionlist.clear();
     divisionIndex = "";
     divisionlist = value;
+        setDivisionLoading(false);
+
     update();
   }
 
@@ -122,6 +137,20 @@ class My_Students_Controller extends GetxController {
     update();
   }
 
+
+ void selectIndex(String type, String? index) {
+    switch (type) {
+      case 'Class':
+        classIndex = index ?? "";
+        break;
+
+      case 'Division':
+        divisionIndex = index ?? "";
+        break;
+
+    }
+    update();
+  }
   void updateList(
     String type,
     List<String> options,
@@ -136,7 +165,17 @@ class My_Students_Controller extends GetxController {
     }
     update();
   }
-
+  String getSelectedIndex(String type) {
+    switch (type) {
+      case 'Class':
+        return classIndex;
+      case 'Division':
+        return divisionIndex;
+    
+      default:
+        return '';
+    }
+  }
   void setAllDivision(AllDivisionModel division) {
     divisionlist.clear();
     for (int k = 0; k < division.division!.length; k++) {

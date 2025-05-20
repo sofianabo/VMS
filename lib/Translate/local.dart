@@ -777,6 +777,11 @@ class Languages {
       'Certificate': 'الشهادات',
       'Academic sequence': 'التسلسل الأكديمي',
       'Family notebook': 'دفتر العائلة',
+      'Add Rewards': 'إضافة مكافأة',
+       'Do You Want To DeleteeAtt': 'هل تريد حذف حضور',
+      'Attendenceatt': '',
+            'Delete Attendence': 'حذف حضور',
+
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -1544,6 +1549,26 @@ class Languages {
       'End Time (Morning)': 'Morning End Time',
 
       'As-Suwayda': 'As-Suwayda',
+      'Add Rewards': 'Add Reward',
+      'Do You Want To DeleteeAtt': 'Do You Want To Delete',
+      'Attendenceatt': 'Attendence',
+      'Delete Attendence': 'Delete Attendence',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
+      '': '',
     }
   };
 }
