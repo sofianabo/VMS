@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Divisions_Controller.dart';
+import 'package:vms_school/Link/Controller/Teacher_Controller/My_Students_Controller.dart';
 import 'package:vms_school/Link/Controller/Teacher_Controller/StudentMarks_TeacherController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllClassesModel.dart';
@@ -20,9 +21,10 @@ class Getteacherclassapi {
           Get.find<Dropdownclassescontroller>();
 
       final StudentmarksTeacher = Get.find<StudentmarksTeachercontroller>();
+      final My_Student = Get.find<My_Students_Controller>();
 
       ClassController.setIsLoading(true);
-
+      My_Student.setClassLoading(true);
       StudentmarksTeacher.SetisClassLoading(true);
 
       final controller = Get.find<Divisions_Controller>();
@@ -41,7 +43,7 @@ class Getteacherclassapi {
         controller.setClass(classes);
 
         StudentmarksTeacher.SetClass(classes);
-
+        My_Student.setClassList(classes);
         return classes;
       } else {
         ErrorHandler.handleDioError(DioException(

@@ -38,7 +38,7 @@ class TeacherMainScreenGrid extends StatelessWidget {
       if (screenWidth >= 920) return 0.7;
       if (screenWidth >= 906) return 0.7;
       if (screenWidth >= 769) return 0.9;
-      if (screenWidth >= 616) return 1.92;
+      if (screenWidth >= 630) return 1.78;
       return 0.9;
     }
 
@@ -276,175 +276,127 @@ class TeacherMainScreenGrid extends StatelessWidget {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 8.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        // زر الملاحظات (بدون منيو)
-                                        IconButton(
-                                          style: ButtonStyle(
-                                            maximumSize:
-                                                WidgetStateProperty.all(
-                                                    const Size(35, 35)),
-                                            minimumSize:
-                                                WidgetStateProperty.all(
-                                                    const Size(35, 35)),
-                                            iconSize:
-                                                WidgetStateProperty.all(14),
-                                            shape: WidgetStateProperty.all(
-                                              RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
+                                    child: Builder(builder: (context) {
+                                      return MaterialButton(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Theme.of(context)
+                                                .primaryColorLight,
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            spacing: 15,
+                                            children: [
+                                              Text(
+                                                "Rewards".tr,
+                                                style: Get
+                                                    .theme.textTheme.bodyMedium!
+                                                    .copyWith(
+                                                        color: Colors.white),
                                               ),
-                                            ),
-                                            backgroundColor:
-                                                WidgetStateProperty.all(
-                                              Theme.of(context)
-                                                  .primaryColorLight,
-                                            ),
+                                              FaIcon(
+                                                FontAwesomeIcons.gift,
+                                                color: Colors.white,
+                                                size: 17,
+                                              ),
+                                            ],
                                           ),
-                                          icon: FaIcon(
-                                            FontAwesomeIcons.markdown,
-                                            color: Colors.white,
-                                          ),
-                                          color: Colors.white,
-                                          onPressed: () {
-                                            // ضع الوظيفة هنا
-                                          },
                                         ),
+                                        color:
+                                            Theme.of(context).primaryColorLight,
+                                        onPressed: () async {
+                                          final RenderBox button = context
+                                              .findRenderObject() as RenderBox;
+                                          final RenderBox overlay =
+                                              Overlay.of(context)
+                                                      .context
+                                                      .findRenderObject()
+                                                  as RenderBox;
+                                          final Offset position =
+                                              button.localToGlobal(Offset.zero,
+                                                  ancestor: overlay);
 
-                                        Builder(builder: (context) {
-                                          return IconButton(
-                                            style: ButtonStyle(
-                                              maximumSize:
-                                                  WidgetStateProperty.all(
-                                                      const Size(35, 35)),
-                                              minimumSize:
-                                                  WidgetStateProperty.all(
-                                                      const Size(35, 35)),
-                                              iconSize:
-                                                  WidgetStateProperty.all(14),
-                                              shape: WidgetStateProperty.all(
-                                                RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                ),
-                                              ),
-                                              backgroundColor:
-                                                  WidgetStateProperty.all(
-                                                Theme.of(context)
-                                                    .primaryColorLight,
-                                              ),
+                                          final selected =
+                                              await showMenu<String>(
+                                            context: context,
+                                            position: RelativeRect.fromLTRB(
+                                              position.dx,
+                                              position.dy + button.size.height,
+                                              overlay.size.width - position.dx,
+                                              0,
                                             ),
-                                            icon: FaIcon(
-                                              FontAwesomeIcons.gift,
-                                              color: Colors.white,
-                                            ),
-                                            color: Colors.white,
-                                            onPressed: () async {
-                                              final RenderBox button =
-                                                  context.findRenderObject()
-                                                      as RenderBox;
-                                              final RenderBox overlay =
-                                                  Overlay.of(context)
-                                                          .context
-                                                          .findRenderObject()
-                                                      as RenderBox;
-                                              final Offset position = button
-                                                  .localToGlobal(Offset.zero,
-                                                      ancestor: overlay);
-
-                                              final selected =
-                                                  await showMenu<String>(
-                                                context: context,
-                                                position: RelativeRect.fromLTRB(
-                                                  position.dx,
-                                                  position.dy +
-                                                      button.size.height,
-                                                  overlay.size.width -
-                                                      position.dx,
-                                                  0,
-                                                ),
-                                                color: Get.theme.cardColor,
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5)),
-                                                items: [
-                                                  PopupMenuItem<String>(
-                                                    value: 'Rewards',
-                                                    child: Text('Rewards'.tr,
-                                                        style: Get
-                                                            .theme
-                                                            .textTheme
-                                                            .bodyMedium),
-                                                  ),
-                                                  PopupMenuItem<String>(
-                                                    value: 'Add Rewards',
-                                                    child: Text(
-                                                        'Add Rewards'.tr,
-                                                        style: Get
-                                                            .theme
-                                                            .textTheme
-                                                            .bodyMedium),
-                                                  ),
-                                                ],
-                                              );
-
-                                              if (selected == 'Rewards') {
-                                                Get.find<
-                                                        Penaltiesandrewardscontroller>()
-                                                    .fetchRewards(int.parse(
-                                                        control
-                                                            .filteredStudents[
-                                                                index]
-                                                            .id
-                                                            .toString()));
-                                                Get.dialog(
-                                                  Re_Pe_Page(
-                                                      isTeacher: true,
-                                                      Id: control
-                                                          .filteredStudents[
-                                                              index]
-                                                          .id
-                                                          .toString(),
-                                                      name: control
-                                                          .filteredStudents[
-                                                              index]
-                                                          .fullName!),
-                                                );
-                                              } else if (selected ==
-                                                  'Add Rewards') {
-                                                Get.find<RewardsController>()
-                                                    .setRewards();
-                                                Get.find<RewardsController>()
-                                                    .updateStudentName(control
-                                                        .filteredStudents[index]
-                                                        .fullName!
-                                                        .toString());
-                                                Get.dialog(
-                                                  Rewards_Dialog(
-                                                    isTeacher: true,
-                                                    Studentname: control
-                                                        .filteredStudents[index]
-                                                        .fullName!
-                                                        .toString(),
-                                                    FileType: "امتياز",
-                                                    id: control
-                                                        .filteredStudents[index]
-                                                        .id!
-                                                        .toString(),
-                                                  ),
-                                                  barrierDismissible: false,
-                                                );
-
-                                                //Add Rewards Here
-                                              }
-                                            },
+                                            color: Get.theme.cardColor,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5)),
+                                            items: [
+                                              PopupMenuItem<String>(
+                                                value: 'Rewards',
+                                                child: Text('Rewards'.tr,
+                                                    style: Get.theme.textTheme
+                                                        .bodyMedium),
+                                              ),
+                                              PopupMenuItem<String>(
+                                                value: 'Add Rewards',
+                                                child: Text('Add Rewards'.tr,
+                                                    style: Get.theme.textTheme
+                                                        .bodyMedium),
+                                              ),
+                                            ],
                                           );
-                                        }),
-                                      ],
-                                    ),
+
+                                          if (selected == 'Rewards') {
+                                            Get.find<
+                                                    Penaltiesandrewardscontroller>()
+                                                .fetchRewards(int.parse(control
+                                                    .filteredStudents[index].id
+                                                    .toString()));
+                                            Get.dialog(
+                                              Re_Pe_Page(
+                                                  isTeacher: true,
+                                                  Id: control
+                                                      .filteredStudents[index]
+                                                      .id
+                                                      .toString(),
+                                                  name: control
+                                                      .filteredStudents[index]
+                                                      .fullName!),
+                                            );
+                                          } else if (selected ==
+                                              'Add Rewards') {
+                                            Get.find<RewardsController>()
+                                                .setRewards();
+                                            Get.find<RewardsController>()
+                                                .updateStudentName(control
+                                                    .filteredStudents[index]
+                                                    .fullName!
+                                                    .toString());
+                                            Get.dialog(
+                                              Rewards_Dialog(
+                                                isTeacher: true,
+                                                Studentname: control
+                                                    .filteredStudents[index]
+                                                    .fullName!
+                                                    .toString(),
+                                                FileType: "امتياز",
+                                                id: control
+                                                    .filteredStudents[index].id!
+                                                    .toString(),
+                                              ),
+                                              barrierDismissible: false,
+                                            );
+
+                                            //Add Rewards Here
+                                          }
+                                        },
+                                      );
+                                    }),
                                   ),
                                 ],
                               )),

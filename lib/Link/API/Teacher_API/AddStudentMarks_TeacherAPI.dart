@@ -79,8 +79,6 @@ class AddstudentmarksTeacherapi {
       ErrorHandler.handleDioError(e);
     } on Exception catch (e) {
       ErrorHandler.handleException(e);
-    } finally {
-      Get.back();
     }
     return null;
   }

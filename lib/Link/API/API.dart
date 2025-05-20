@@ -73,6 +73,7 @@ String updateEmployeeIll = "updateEmployeeIll";
 String getEmployeeIll = "getEmployeeIll";
 String getMyEmployee = "getMyEmployee";
 String addEmployeeInfo = "addEmployeeInfo";
+String deleteEmployeeAttendance = "deleteEmployeeAttendance";
 
 //..................... Teachers ...................//
 

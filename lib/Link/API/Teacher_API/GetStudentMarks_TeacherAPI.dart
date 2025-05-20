@@ -54,8 +54,6 @@ class GetstudentmarksTeacherapi {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    } finally {
-      Get.back();
     }
   }
 }
