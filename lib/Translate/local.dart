@@ -778,10 +778,9 @@ class Languages {
       'Academic sequence': 'التسلسل الأكديمي',
       'Family notebook': 'دفتر العائلة',
       'Add Rewards': 'إضافة مكافأة',
-       'Do You Want To DeleteeAtt': 'هل تريد حذف حضور',
+      'Do You Want To DeleteeAtt': 'هل تريد حذف حضور',
       'Attendenceatt': '',
-            'Delete Attendence': 'حذف حضور',
-
+      'Delete Attendence': 'حذف حضور',
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
