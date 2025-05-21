@@ -75,59 +75,50 @@ class TeacherMainScreenGrid extends StatelessWidget {
                             ]),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Expanded(
-                                    child: SchemaWidget(
-                                  width: 50,
-                                  height: 10,
-                                )),
                                 SchemaWidget(
-                                  width: 100,
-                                  height: 100,
+                                  width: 120,
+                                  height: 120,
+                                  radius: 60,
                                 )
                               ],
                             ),
                             SchemaWidget(
-                              width: 60,
+                              width: 120,
                               height: 10,
-                            ),
-                            SchemaWidget(
-                              width: 55,
-                              height: 10,
-                            ),
-                            SchemaWidget(
-                              width: 30,
-                              height: 10,
+                              radius: 60,
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Row(
+                              padding: const EdgeInsets.only(bottom: 20.0),
+                              child: Column(
+                                spacing: 20,
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   SchemaWidget(
-                                    width: 35,
-                                    height: 35,
+                                    width: 60,
+                                    height: 10,
+                                    radius: 60,
                                   ),
                                   SchemaWidget(
-                                    width: 35,
-                                    height: 35,
-                                  ),
-                                  SchemaWidget(
-                                    width: 35,
-                                    height: 35,
-                                  ),
-                                  SchemaWidget(
-                                    width: 35,
-                                    height: 35,
+                                    width: 60,
+                                    height: 10,
+                                    radius: 60,
                                   ),
                                 ],
                               ),
-                            )
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: SchemaWidget(
+                                  width: double.infinity,
+                                  height: 40,
+                                  radius: 5),
+                            ),
                           ],
                         )),
                   )
@@ -282,6 +273,7 @@ class TeacherMainScreenGrid extends StatelessWidget {
                                             borderRadius:
                                                 BorderRadius.circular(5)),
                                         child: Container(
+                                          height: 35,
                                           decoration: BoxDecoration(
                                             color: Theme.of(context)
                                                 .primaryColorLight,
