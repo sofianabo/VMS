@@ -288,7 +288,7 @@ class Section7 extends StatelessWidget {
                                             )
                                           : null,
                                       child: Text(
-                                          "${controller.email ?? "No Email yet"}",
+                                          "${controller.email ?? "No Email yet".tr}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
@@ -607,7 +607,7 @@ class Section7 extends StatelessWidget {
                                             )
                                           : null,
                                       child: Text(
-                                          "${controller.email ?? "No Email yet"}",
+                                          "${controller.email ?? "No Email yet".tr}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 16,
@@ -897,7 +897,7 @@ class Section7 extends StatelessWidget {
                                             )
                                           : null,
                                       child: Text(
-                                          "${controller.email ?? "No Email yet"}",
+                                          "${controller.email ?? "No Email yet".tr}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 16,
