@@ -10,9 +10,7 @@ import 'package:vms_school/Link/API/DioOption.dart';
 class Getteacherattendenceapi {
   final Allteacheratendencecontroller c =
       Get.find<Allteacheratendencecontroller>();
-  BuildContext context;
 
-  Getteacherattendenceapi(this.context);
 
   Dio dio = Dio();
 

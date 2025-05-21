@@ -28,7 +28,7 @@ class _TeacherStatusState extends State<TeacherStatus> {
   @override
   void initState() {
     Get.find<All_Screen_Sessions_Controller>().setSessionDefult();
-    Getteacherattendenceapi(context).Getteacherattendence();
+    Getteacherattendenceapi().Getteacherattendence();
     Getallclassapi.getAllClasses();
     Get_Subject_Screen_API(context).Get_Subject_Screen();
     Get.find<Allteacheratendencecontroller>().setdefualtDropdown();

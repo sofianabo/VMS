@@ -28,7 +28,7 @@ class _EmployeeStatusState extends State<EmployeeStatus> {
     Get.find<Employeeattendencecontroller>().AttendencetDate.value =
         DateTime.now();
     Get.find<Employeeattendencecontroller>().JopTitleIndex = "";
-    Getemployeeattendenceapi(context).Getemployeeattendence();
+    Getemployeeattendenceapi().Getemployeeattendence();
     super.initState();
   }
 

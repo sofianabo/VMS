@@ -89,7 +89,7 @@ class DropDownAllSessions extends StatelessWidget {
                   Getallclassapi.getAllClasses(sessionID: cont.sessionId);
                   break;
                 case 'Teachersts':
-                  Getteacherattendenceapi(context)
+                  Getteacherattendenceapi()
                       .Getteacherattendence(sessionID: cont.sessionId);
                   Getallclassapi.getAllClasses(sessionID: cont.sessionId);
                   break;
@@ -130,7 +130,7 @@ class DropDownAllSessions extends StatelessWidget {
                     Get.find<StudentAttendencController>()
                         .selectDateindex
                         .value = DateTime.now();
-                    Studentattendenceapi(context).Studentattendence(
+                    Studentattendenceapi().Studentattendence(
                       sessionID: cont.sessionId,
                     );
                     // getgrade
@@ -142,7 +142,7 @@ class DropDownAllSessions extends StatelessWidget {
                           context: context,
                         ) ==
                         true) {
-                      Studentattendenceapi(context).Studentattendence(
+                      Studentattendenceapi().Studentattendence(
                           date: Get.find<StudentAttendencController>()
                               .selectDateindex
                               .value
@@ -167,14 +167,14 @@ class DropDownAllSessions extends StatelessWidget {
                     Get.find<Employeeattendencecontroller>()
                         .selectDateindex
                         .value = null;
-                    Getemployeeattendenceapi(context).Getemployeeattendence();
+                    Getemployeeattendenceapi().Getemployeeattendence();
                   } else {
                     if (await Get.find<Employeeattendencecontroller>()
                             .selectDate(
                           context: context,
                         ) ==
                         true) {
-                      Studentattendenceapi(context).Studentattendence(
+                      Studentattendenceapi().Studentattendence(
                           date: Get.find<Employeeattendencecontroller>()
                               .selectDateindex
                               .value
