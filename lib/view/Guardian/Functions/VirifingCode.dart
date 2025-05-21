@@ -126,6 +126,7 @@ class _GuaVerifingDialogState extends State<GuaVerifingDialog> {
     return Directionality(
       textDirection: TextDirection.ltr,
       child: AlertDialog(
+        insetPadding: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(10))),
         content: Container(

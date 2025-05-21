@@ -116,6 +116,7 @@ class _Re_VerifingCodeDialogState extends State<Re_VerifingCodeDialog> {
     return Directionality(
       textDirection: TextDirection.ltr,
       child: AlertDialog(
+        insetPadding: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(10))),
         content: Container(
