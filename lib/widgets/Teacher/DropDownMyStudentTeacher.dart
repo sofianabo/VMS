@@ -110,10 +110,29 @@ class Dropdownmystudentteacher extends StatelessWidget {
                           value: selectedValue,
                           isExpanded: true,
                           underline: const SizedBox(),
-                          icon: Icon(
-                            Icons.arrow_drop_down,
-                            color: Get.theme.secondaryHeaderColor,
-                          ),
+                          icon: selectedValue != null && selectedValue != title
+                              ? GestureDetector(
+                                  onTap: () {
+                                    cont.selectIndex(type, "");
+                                    if (type == "Class") {
+                                      cont.searchByName(
+                                          cont.filterName, "", "");
+                                      cont.divisionIndex = "";
+                                    } else {
+                                      cont.searchByName(cont.filterName,
+                                          cont.classIndex, cont.divisionIndex);
+                                    }
+                                  },
+                                  child: Icon(
+                                    Icons.close,
+                                    color:
+                                        Theme.of(context).secondaryHeaderColor,
+                                  ),
+                                )
+                              : Icon(
+                                  Icons.arrow_drop_down,
+                                  color: Get.theme.secondaryHeaderColor,
+                                ),
                           style: Get.theme.textTheme.bodyMedium!
                               .copyWith(fontSize: 14),
                           items: [

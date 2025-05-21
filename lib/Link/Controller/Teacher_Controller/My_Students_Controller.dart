@@ -120,7 +120,7 @@ class My_Students_Controller extends GetxController {
     divisionlist.clear();
     divisionIndex = "";
     divisionlist = value;
-        setDivisionLoading(false);
+    setDivisionLoading(false);
 
     update();
   }
@@ -137,8 +137,7 @@ class My_Students_Controller extends GetxController {
     update();
   }
 
-
- void selectIndex(String type, String? index) {
+  void selectIndex(String type, String? index) {
     switch (type) {
       case 'Class':
         classIndex = index ?? "";
@@ -147,10 +146,11 @@ class My_Students_Controller extends GetxController {
       case 'Division':
         divisionIndex = index ?? "";
         break;
-
     }
+    searchByName(filterName.toString(), classIndex, divisionIndex);
     update();
   }
+
   void updateList(
     String type,
     List<String> options,
@@ -165,17 +165,19 @@ class My_Students_Controller extends GetxController {
     }
     update();
   }
+
   String getSelectedIndex(String type) {
     switch (type) {
       case 'Class':
         return classIndex;
       case 'Division':
         return divisionIndex;
-    
+
       default:
         return '';
     }
   }
+
   void setAllDivision(AllDivisionModel division) {
     divisionlist.clear();
     for (int k = 0; k < division.division!.length; k++) {
