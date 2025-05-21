@@ -249,7 +249,7 @@ class _GuaVerifingDialogState extends State<GuaVerifingDialog> {
   Widget buildTextFormField(TextEditingController controller,
       FocusNode focusNode, int index, FocusNode? nextFocusNode) {
     return SizedBox(
-      width: 40,
+      width: MediaQuery.of(context).size.width >= 407 ? 50 : 40,
       child: TextFormField(
         controller: controller,
         focusNode: focusNode,
