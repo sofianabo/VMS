@@ -329,9 +329,8 @@ class _Re_Pe_PageState extends State<Re_Pe_Page>
                                                           const EdgeInsets.only(
                                                               top: 8.0,
                                                               bottom: 8.0),
-                                                      child: Text((prefs!.getString(
-                                                                  languageKey) ==
-                                                              'ar')
+                                                      child: Text(Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                                           ? "( ${PAR_Controller.penaltiesModel!.penaltyStudent![index].penalty![0].name} )"
                                                           : "( ${PAR_Controller.penaltiesModel!.penaltyStudent![index].penalty![0].enName} )"),
                                                     ),

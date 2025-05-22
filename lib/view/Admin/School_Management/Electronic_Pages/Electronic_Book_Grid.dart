@@ -171,9 +171,8 @@ class ElectronicBookGrid extends StatelessWidget {
                                                   maxLines: 2,
                                                   overflow: TextOverflow.fade,
                                                   textAlign: TextAlign.center,
-                                                  prefs!.getString(
-                                                              languageKey) ==
-                                                          'ar'
+                                                Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                                       ? "${control.filteredEbook![index].name}"
                                                       : "${control.filteredEbook![index].enName}",
                                                   style: const TextStyle(

@@ -10,22 +10,22 @@ import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllDivisionModel.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 
-class Getteacherdivisionapi {
+class Getteacherdivisionmarksapi {
   Dropdowndivisioncontroller c = Get.find<Dropdowndivisioncontroller>();
 
-  final My_Student = Get.find<My_Students_Controller>();
+  final StudentmarksTeacher = Get.find<StudentmarksTeachercontroller>();
 
   Dropdownclassescontroller class_controller =
       Get.find<Dropdownclassescontroller>();
   BuildContext context;
-  Getteacherdivisionapi(this.context);
+  Getteacherdivisionmarksapi(this.context);
   Dio dio = Dio();
 
-  Getteacherdivision(int idx, int idx2) async {
+  Getteacherdivisionmarks(int idx, int idx2) async {
     try {
       c.setIsLoading(true);
 
-      My_Student.setDivisionLoading(true);
+      StudentmarksTeacher.SetisDivisionLoading(true);
 
       int? id = class_controller.Allclass[idx].id;
       String myurl = "$hostPort$getDivionByTeacher";
@@ -33,7 +33,7 @@ class Getteacherdivisionapi {
           data: {"classId": id}, options: getDioOptions());
       if (response.statusCode == 200) {
         AllDivisionModel division = AllDivisionModel.fromJson(response.data);
-
+      
         c.setDivision(division);
 
         return division;

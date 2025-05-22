@@ -143,7 +143,6 @@ class _SideBarAdminState extends State<SideBarAdmin> {
                         onSelected: (value) {
                           if (value == "All Students".tr) {
                             cont.updateContent("All Students");
-                            print(languageKey);
                           }
                           if (value == "Study Year Students".tr) {
                             cont.updateContent("Study Year Students");

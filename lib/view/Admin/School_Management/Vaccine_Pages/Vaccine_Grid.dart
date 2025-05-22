@@ -153,9 +153,8 @@ class Vaccine_Grid extends StatelessWidget {
                                               child: Column(children: [
                                             Text(
                                               overflow: TextOverflow.ellipsis,
-                                              textDirection: prefs!.getString(
-                                                          languageKey) ==
-                                                      "ar"
+                                              textDirection: Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                                   ? TextDirection.rtl
                                                   : TextDirection.ltr,
                                               textAlign: TextAlign.center,
@@ -164,9 +163,8 @@ class Vaccine_Grid extends StatelessWidget {
                                             ),
                                             Text(
                                               overflow: TextOverflow.ellipsis,
-                                              textDirection: prefs!.getString(
-                                                          languageKey) ==
-                                                      "ar"
+                                              textDirection: Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                                   ? TextDirection.rtl
                                                   : TextDirection.ltr,
                                               textAlign: TextAlign.center,

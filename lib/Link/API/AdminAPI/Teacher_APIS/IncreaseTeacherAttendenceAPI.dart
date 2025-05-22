@@ -20,7 +20,7 @@ class Increaseteacherattendenceapi {
 
     try {
       String myurl = "$hostPort$teacherIncreaseAttendance";
-      var response = await dio.get(data: {
+      var response = await dio.post(data: {
         "date": DateTime,
       }, myurl, options: getDioOptions());
       if (response.statusCode == 200) {

@@ -133,12 +133,15 @@ class _DivisionManagementState extends State<DivisionManagement> {
                       crossAxisAlignment: WrapCrossAlignment.end,
                       children: [
                         GetBuilder<Divisions_Controller>(builder: (controller) {
-                          return DropDownDivisionMgmt(
-                              isError: controller.IsclassError,
-                              isLoading: controller.isLoading,
-                              title: "Class".tr,
-                              width: 250,
-                              type: "classDiag");
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 17.0),
+                            child: DropDownDivisionMgmt(
+                                isError: controller.IsclassError,
+                                isLoading: controller.isLoading,
+                                title: "Class".tr,
+                                width: 250,
+                                type: "classDiag"),
+                          );
                         }),
                         Row(
                           spacing: 10.0,
