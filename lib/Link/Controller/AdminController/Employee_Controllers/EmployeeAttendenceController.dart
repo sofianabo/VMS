@@ -114,9 +114,7 @@ class Employeeattendencecontroller extends GetxController {
     String? storedDate = AttendencetDate.value != null
         ? format.format(AttendencetDate.value!)
         : null;
-    print(todayFormatted);
-    print("ssssssssssssss");
-    print(storedDate);
+  
     return storedDate == todayFormatted || storedDate == yesterdayFormatted;
   }
 

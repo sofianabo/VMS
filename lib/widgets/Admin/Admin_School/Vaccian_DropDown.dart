@@ -81,7 +81,7 @@ class DropdownVaccian extends StatelessWidget {
                                           ? null
                                           : () {
                                               cont.selectIndex(type, "");
-                                              print("sss");
+                                          
                                             },
                                       child: Icon(
                                         Icons.arrow_drop_down_outlined,
