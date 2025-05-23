@@ -18,7 +18,7 @@ class Allteachercontroller extends GetxController {
   List<String> classlist = [];
   List<String> Curriculumlist = [];
   List<String> Subjectlist = [];
-  TeacherById? oTeacher;
+  Teacher? oTeacher;
   String genderDialogIndex = "";
   String familyStatusDialogIndex = "";
   String contractTypeDialogIndex = "";
@@ -216,6 +216,11 @@ class Allteachercontroller extends GetxController {
     genderDialogIndex = oTeacher?.gender ?? "";
     familyStatusDialogIndex = oTeacher?.familystatus ?? "";
     contractTypeDialogIndex = oTeacher?.contractType ?? "";
+    isPendAccount.value = oTeacher?.ispend != null
+        ? oTeacher?.ispend == 0
+            ? false
+            : true
+        : false;
     update();
   }
 
@@ -252,31 +257,31 @@ class Allteachercontroller extends GetxController {
 
   void updateFieldError(String type, bool newValue) {
     switch (type) {
-       case 'qualification':
+      case 'qualification':
         IsQualificationError = newValue;
         break;
-         case 'exp':
+      case 'exp':
         IsExperinceError = newValue;
         break;
       case 'father':
         IsFatherError = newValue;
         break;
-        case 'mother':
+      case 'mother':
         IsMotherError = newValue;
         break;
-        case 'birth':
+      case 'birth':
         IsbirthdateError = newValue;
         break;
-        case 'emgn':
+      case 'emgn':
         IsEmergencyError = newValue;
         break;
-        case 'address':
+      case 'address':
         IsAddressError = newValue;
         break;
-        case 'caddress':
+      case 'caddress':
         IsCurrentAddressError = newValue;
         break;
-        case 'family':
+      case 'family':
         IsFamilyStateError = newValue;
         break;
       case 'join':
@@ -348,16 +353,22 @@ class Allteachercontroller extends GetxController {
     IScPasswordError = false;
     IsGenderError = false;
     IsContractError = false;
-   IsFatherError = false;
-   IsMotherError = false;
-   IsbirthdateError = false;
-   IsEmergencyError = false;
-   IsAddressError = false;
-   IsCurrentAddressError = false;
-   IsFamilyStateError = false;
-     IsQualificationError = false;
-   IsExperinceError = false;
+    IsFatherError = false;
+    IsMotherError = false;
+    IsbirthdateError = false;
+    IsEmergencyError = false;
+    IsAddressError = false;
+    IsCurrentAddressError = false;
+    IsFamilyStateError = false;
+    IsQualificationError = false;
+    IsExperinceError = false;
 
     update();
+  }
+
+  var isPendAccount = false.obs;
+
+  void togglePindTeacher(bool value) {
+    isPendAccount.value = value;
   }
 }

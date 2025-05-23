@@ -4,9 +4,8 @@ class One_Employee_Model {
   One_Employee_Model({this.employee});
 
   One_Employee_Model.fromJson(Map<String, dynamic> json) {
-    employee = json['employee'] != null
-        ? Employee.fromJson(json['employee'])
-        : null;
+    employee =
+        json['employee'] != null ? Employee.fromJson(json['employee']) : null;
   }
 }
 
@@ -44,41 +43,42 @@ class Employee {
   String? userName;
   String? roll;
   int? salary;
-
+  int? ispend;
   Employee(
       {this.id,
-        this.imageId,
-        this.firstName,
-        this.lastName,
-        this.fatherName,
-        this.motherName,
-        this.gender,
-        this.birthDate,
-        this.joinDate,
-        this.phone,
-        this.emergencyNumber,
-        this.familystatus,
-        this.currentAddress,
-        this.address,
-        this.qualification,
-        this.experience,
-        this.note,
-        this.contractType,
-        this.bankAccountTitle,
-        this.bankName,
-        this.bankBranchName,
-        this.bankAccountNumber,
-        this.iFSCCode,
-        this.facebookUrl,
-        this.twitterUrl,
-        this.lenkedinUrl,
-        this.instagramUrl,
-        this.careerHistory,
-        this.jobTitle,
-        this.email,
-        this.userName,
-        this.roll,
-        this.salary});
+      this.imageId,
+      this.firstName,
+      this.lastName,
+      this.fatherName,
+      this.motherName,
+      this.gender,
+      this.birthDate,
+      this.joinDate,
+      this.phone,
+      this.emergencyNumber,
+      this.familystatus,
+      this.currentAddress,
+      this.address,
+      this.qualification,
+      this.experience,
+      this.note,
+      this.contractType,
+      this.bankAccountTitle,
+      this.bankName,
+      this.bankBranchName,
+      this.bankAccountNumber,
+      this.iFSCCode,
+      this.facebookUrl,
+      this.twitterUrl,
+      this.lenkedinUrl,
+      this.instagramUrl,
+      this.careerHistory,
+      this.jobTitle,
+      this.email,
+      this.userName,
+      this.roll,
+      this.ispend,
+      this.salary});
 
   Employee.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -113,6 +113,7 @@ class Employee {
     email = json['email'];
     userName = json['userName'];
     roll = json['roll'];
+    ispend = json['ispend'];
     salary = json['salary'];
   }
 }

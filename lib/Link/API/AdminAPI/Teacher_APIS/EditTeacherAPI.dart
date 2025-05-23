@@ -41,6 +41,8 @@ class Editteacherapi {
     String? Qualification,
     String? Experience,
     String? Note,
+    String? email,
+    bool pend = false,
   }) async {
     CancelToken cancelToken = CancelToken();
     String myURI = "$hostPort$updateTeacher";
@@ -73,7 +75,9 @@ class Editteacherapi {
         "lenkedinUrl": Linkedin_URL,
         "instagramUrl": Instagram_URL,
         "careerHistory": Career_History,
-        'ownData': true
+        "email": email,
+        'ownData': true,
+        "pend": pend == true ? "1" : "0",
       });
 
       if (selectedImage != null) {

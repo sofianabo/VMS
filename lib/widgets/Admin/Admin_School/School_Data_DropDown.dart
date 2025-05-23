@@ -76,8 +76,8 @@ class School_Data_DropDown extends StatelessWidget {
                   ? Row(
                       children: [
                         Text(
-                          title.tr,
-                          style: TextStyle(color: Colors.grey),
+                          selectedValue ?? "$title".tr,
+                          style: TextStyle(color: Colors.black),
                         ),
                       ],
                     )

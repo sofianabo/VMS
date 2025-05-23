@@ -57,6 +57,7 @@ String deleteStudentAttendance = "deleteStudentAttendance";
 //..................... Employees ...................//
 
 String addEmpolyee = "addEmployee";
+String getMyEmployeeIll = "getMyEmployeeIll";
 String addFullEmployee = "addFullEmployee";
 String updateEmployee = "updateEmployee";
 String getAllEmployee = "getAllEmployee";

@@ -48,7 +48,13 @@ class _DraweHomeState extends State<DraweHome> {
                           if (Get.find<Add_Data_controller>().roll !=
                               "observer") {
                             WidgetsBinding.instance.addPostFrameCallback((_) {
-                              //Get_My_Profile.Get_My_Profile_Data();
+                              if (Get.find<Add_Data_controller>().isVerified) {
+                                if (Get.find<AdminHomeContentController>()
+                                        .content !=
+                                    "My Profile") {
+                                  Get_My_Profile.Get_My_Profile_Data();
+                                }
+                              }
                               Get.find<AdminHomeContentController>()
                                   .updateContent("My Profile");
                             });

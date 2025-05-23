@@ -6,7 +6,6 @@ import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AddTeacherController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
-import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/Admin/Admin_Teachers/DropDownAllTeacher.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
@@ -23,9 +22,9 @@ class EditTeacherDialog extends StatefulWidget {
   State<EditTeacherDialog> createState() => _EditTeacherDialogState();
 }
 
-bool notReadOnly = Get.find<Add_Data_controller>().roll != "observer";
-
 class _EditTeacherDialogState extends State<EditTeacherDialog> {
+  bool notReadOnly = Get.find<Add_Data_controller>().roll != "observer" &&
+      Get.find<Add_Data_controller>().roll != "subAdmin";
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -361,8 +360,11 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                           runAlignment: WrapAlignment.center,
                           children: [
                             Textfildwithupper(
+                                isRequired: true,
+                                isError: control.ISemailError,
+                                fieldType: "email",
                                 enabled: notReadOnly,
-                                readOnly: true,
+                                readOnly: !notReadOnly,
                                 width: screenWidth >= 600
                                     ? 250
                                     : (screenWidth) - 70,
@@ -432,7 +434,7 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                         ),
                         Wrap(
                           spacing: 10.0,
-                          crossAxisAlignment: WrapCrossAlignment.center,
+                          crossAxisAlignment: WrapCrossAlignment.start,
                           runSpacing: 2.0,
                           runAlignment: WrapAlignment.center,
                           children: [
@@ -442,6 +444,117 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                               type: "ContractTypeDialog",
                               width:
                                   screenWidth >= 600 ? 250 : (screenWidth) - 70,
+                            ),
+                            Container(
+                              width:
+                                  screenWidth >= 600 ? 250 : (screenWidth) - 70,
+                              child: Obx(() => ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5))),
+                                        backgroundColor:
+                                            control.isPendAccount.value
+                                                ? Get.theme.primaryColor
+                                                : Get.theme.disabledColor),
+                                    onPressed: () {
+                                      if (notReadOnly) {
+                                        if (!control.isPendAccount.value) {
+                                          Get.defaultDialog(
+                                            radius: 5,
+                                            contentPadding:
+                                                EdgeInsets.all(20.0),
+                                            title: "Pend Account".tr,
+                                            middleText:
+                                                "Do You Want To Pend Account"
+                                                        .tr +
+                                                    "  (${control.oTeacher?.firstName} ${control.oTeacher?.lastName})",
+                                            confirm: ElevatedButton(
+                                              onPressed: () {
+                                                control.togglePindTeacher(true);
+                                                Get.back();
+                                              },
+                                              child: Text("Yes".tr),
+                                              style: ElevatedButton.styleFrom(
+                                                  backgroundColor:
+                                                      Color(0xffB03D3D),
+                                                  foregroundColor:
+                                                      Colors.white),
+                                            ),
+                                            cancel: ElevatedButton(
+                                              onPressed: () {
+                                                Get.back();
+                                              },
+                                              child: Text("No".tr),
+                                              style: ElevatedButton.styleFrom(
+                                                  backgroundColor:
+                                                      Get.theme.primaryColor,
+                                                  foregroundColor:
+                                                      Colors.white),
+                                            ),
+                                          );
+                                        } else {
+                                          Get.defaultDialog(
+                                            title: "UnPend Account".tr,
+                                            radius: 5,
+                                            contentPadding:
+                                                EdgeInsets.all(20.0),
+                                            middleText:
+                                                "Do You Want To UnPend Account"
+                                                        .tr +
+                                                    "  ( ${control.oTeacher?.firstName} ${control.oTeacher?.lastName} )",
+                                            confirm: ElevatedButton(
+                                              onPressed: () {
+                                                control
+                                                    .togglePindTeacher(false);
+                                                Get.back();
+                                              },
+                                              child: Text("Yes".tr),
+                                              style: ElevatedButton.styleFrom(
+                                                  backgroundColor:
+                                                      Color(0xffB03D3D),
+                                                  foregroundColor:
+                                                      Colors.white),
+                                            ),
+                                            cancel: ElevatedButton(
+                                              onPressed: () {
+                                                Get.back();
+                                              },
+                                              child: Text("No".tr),
+                                              style: ElevatedButton.styleFrom(
+                                                  backgroundColor:
+                                                      Get.theme.primaryColor,
+                                                  foregroundColor:
+                                                      Colors.white),
+                                            ),
+                                          );
+                                        }
+                                      }
+                                    },
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                            color: Colors.white,
+                                            control.isPendAccount.value
+                                                ? Icons.lock_open_outlined
+                                                : Icons.lock),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8.0,
+                                              right: 8.0,
+                                              top: 10,
+                                              bottom: 10),
+                                          child: Text(
+                                            control.isPendAccount.value
+                                                ? "UnPend This Account".tr
+                                                : "Pend Account".tr,
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )),
                             ),
                           ],
                         ),
@@ -689,7 +802,14 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                             currentAddress.text.trim().isEmpty;
                         bool isQualEmpty = qualification.text.trim().isEmpty;
                         bool isExpEmpty = experience.text.trim().isEmpty;
+                        bool isEmailEmpty = email.text.trim().isEmpty;
 
+                        RegExp emailRegex = RegExp(
+                            r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+                        bool isEmailValid = emailRegex.hasMatch(email.text);
+
+                        control.updateFieldError(
+                            "email", isEmailEmpty || !isEmailValid);
                         control.updateFieldError("first", isfirstEmpty);
                         control.updateFieldError("last", islastnameEmpty);
                         control.updateFieldError("father", isfatherEmpty);
@@ -756,6 +876,8 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                             Qualification: qualification.text,
                             Experience: experience.text,
                             Note: note.text,
+                            email: email.text,
+                            pend: control.isPendAccount.value,
                           );
                         }
                       },

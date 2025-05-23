@@ -13,14 +13,15 @@ import 'package:vms_school/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class Edit_Employee extends StatefulWidget {
-  Edit_Employee({required this.idx, required this.employeeID, super.key});
-  int idx;
+  Edit_Employee({required this.employeeID, super.key});
+
   String employeeID;
   @override
   State<Edit_Employee> createState() => _Edit_EmployeeState();
 }
 
-bool notReadOnly = Get.find<Add_Data_controller>().roll != "observer";
+bool notReadOnly = Get.find<Add_Data_controller>().roll != "observer" &&
+    Get.find<Add_Data_controller>().roll != "subAdmin";
 
 class _Edit_EmployeeState extends State<Edit_Employee> {
   @override
@@ -91,8 +92,7 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
               ButtonDialog(
                   text: "Edit Employee".tr,
                   onPressed: () async {
-                    bool isJopEmpty = controller.dialogjobTitleIndex.isEmpty ||
-                        controller.dialogjobTitleIndex == "";
+                    bool isEmailEmpty = Email.text.trim().isEmpty;
                     bool isGenderEmpty = controller.GenderListIndex.isEmpty ||
                         controller.GenderListIndex == "";
                     bool isFamilyEmpty =
@@ -113,6 +113,10 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                         currentAddress.text.trim().isEmpty;
                     bool isQualEmpty = Qualification.text.trim().isEmpty;
                     bool isExpEmpty = Experience.text.trim().isEmpty;
+
+                    RegExp emailRegex = RegExp(
+                        r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+                    bool isEmailValid = emailRegex.hasMatch(Email.text);
                     final cont = Get.find<AddFullEmployeeController>();
                     cont.updateFieldError("first", isfirstEmpty);
                     cont.updateFieldError("last", islastnameEmpty);
@@ -124,14 +128,14 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                     cont.updateFieldError("join", isjoinEmpty);
                     cont.updateFieldError("address", isaddressEmpty);
                     cont.updateFieldError("caddress", isCurrentAdressEmpty);
-                    cont.updateFieldError("jop", isJopEmpty);
                     cont.updateFieldError("gender", isGenderEmpty);
                     cont.updateFieldError("family", isFamilyEmpty);
                     cont.updateFieldError("qua", isQualEmpty);
+                    cont.updateFieldError(
+                        "email", isEmailEmpty || !isEmailValid);
                     cont.updateFieldError("exp", isExpEmpty);
 
-                    if (!(isJopEmpty ||
-                        isGenderEmpty ||
+                    if (!(isGenderEmpty ||
                         isFamilyEmpty ||
                         isjoinEmpty ||
                         isBirthEmpty ||
@@ -147,6 +151,7 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                         isExpEmpty)) if (Get.find<Add_Data_controller>()
                             .roll !=
                         "subAdmin") {
+                      print(controller.isPendAccount.value);
                       await EditEmployeeApi.EditEmployee(
                         employeeId: widget.employeeID,
                         First_Name: firstName.text,
@@ -178,6 +183,8 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                         Qualification: Qualification.text,
                         Experience: Experience.text,
                         Note: Note.text,
+                        email: Email.text,
+                        pend: controller.isPendAccount.value,
                       );
                     }
                   },
@@ -228,19 +235,15 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                                         ? MemoryImage(
                                             controller.selectedImage.value!)
                                         : empolyeecontroller
-                                                    .filteredreemployees[
-                                                        widget.idx]
-                                                    .imageId !=
+                                                    .employee!.imageId !=
                                                 null
                                             ? NetworkImage(getimage +
-                                                "${empolyeecontroller.filteredreemployees[widget.idx].imageId}")
+                                                "${empolyeecontroller.employee!.imageId}")
                                             : null,
                                     child: controller.selectedImage.value ==
                                                 null &&
                                             empolyeecontroller
-                                                    .filteredreemployees[
-                                                        widget.idx]
-                                                    .imageId ==
+                                                    .employee!.imageId ==
                                                 null
                                         ? const Icon(
                                             Icons.image_outlined,
@@ -431,7 +434,7 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                       children: [
                         Textfildwithupper(
                             enabled: notReadOnly,
-                            readOnly: true,
+                            readOnly: !notReadOnly,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
                             controller: Email,
@@ -458,7 +461,6 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                             readOnly: true,
                             width:
                                 screenWidth >= 600 ? 250 : (screenWidth) - 70,
-                            isError: controller.IsJopError,
                             controller: Joptitle,
                             Uptext: "Job Title".tr,
                             hinttext: "Job Title".tr),
@@ -512,6 +514,120 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                             controller: Salary,
                             Uptext: "Salary".tr,
                             hinttext: "Salary".tr),
+                        if (empolyeecontroller.employee!.ispend != null)
+                          Container(
+                            padding: EdgeInsets.only(top: 5),
+                            width:
+                                screenWidth >= 600 ? 250 : (screenWidth) - 70,
+                            child: Obx(() => ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))),
+                                      backgroundColor:
+                                          Get.find<Allempolyeecontroller>()
+                                                  .isPendAccount
+                                                  .value
+                                              ? Get.theme.primaryColor
+                                              : Get.theme.disabledColor),
+                                  onPressed: () {
+                                    if (notReadOnly) {
+                                      if (!Get.find<Allempolyeecontroller>()
+                                          .isPendAccount
+                                          .value) {
+                                        Get.defaultDialog(
+                                          radius: 5,
+                                          contentPadding: EdgeInsets.all(20.0),
+                                          title: "Pend Account".tr,
+                                          middleText: "Do You Want To Pend Account"
+                                                  .tr +
+                                              "  (${empolyeecontroller.employee?.firstName} ${empolyeecontroller.employee?.lastName})",
+                                          confirm: ElevatedButton(
+                                            onPressed: () {
+                                              Get.find<Allempolyeecontroller>()
+                                                  .togglePindTeacher(true);
+                                              Get.back();
+                                            },
+                                            child: Text("Yes".tr),
+                                            style: ElevatedButton.styleFrom(
+                                                backgroundColor:
+                                                    Color(0xffB03D3D),
+                                                foregroundColor: Colors.white),
+                                          ),
+                                          cancel: ElevatedButton(
+                                            onPressed: () {
+                                              Get.back();
+                                            },
+                                            child: Text("No".tr),
+                                            style: ElevatedButton.styleFrom(
+                                                backgroundColor:
+                                                    Get.theme.primaryColor,
+                                                foregroundColor: Colors.white),
+                                          ),
+                                        );
+                                      } else {
+                                        Get.defaultDialog(
+                                          title: "UnPend Account".tr,
+                                          radius: 5,
+                                          contentPadding: EdgeInsets.all(20.0),
+                                          middleText:
+                                              "Do You Want To UnPend Account"
+                                                      .tr +
+                                                  "  ( ${empolyeecontroller.employee!.firstName} ${empolyeecontroller.employee!.lastName} )",
+                                          confirm: ElevatedButton(
+                                            onPressed: () {
+                                              Get.find<Allempolyeecontroller>()
+                                                  .togglePindTeacher(false);
+                                              Get.back();
+                                            },
+                                            child: Text("Yes".tr),
+                                            style: ElevatedButton.styleFrom(
+                                                backgroundColor:
+                                                    Color(0xffB03D3D),
+                                                foregroundColor: Colors.white),
+                                          ),
+                                          cancel: ElevatedButton(
+                                            onPressed: () {
+                                              Get.back();
+                                            },
+                                            child: Text("No".tr),
+                                            style: ElevatedButton.styleFrom(
+                                                backgroundColor:
+                                                    Get.theme.primaryColor,
+                                                foregroundColor: Colors.white),
+                                          ),
+                                        );
+                                      }
+                                    }
+                                  },
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                          color: Colors.white,
+                                          Get.find<Allempolyeecontroller>()
+                                                  .isPendAccount
+                                                  .value
+                                              ? Icons.lock_open_outlined
+                                              : Icons.lock),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 8.0,
+                                            right: 8.0,
+                                            top: 10,
+                                            bottom: 10),
+                                        child: Text(
+                                          Get.find<Allempolyeecontroller>()
+                                                  .isPendAccount
+                                                  .value
+                                              ? "UnPend This Account".tr
+                                              : "Pend Account".tr,
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )),
+                          ),
                       ],
                     ),
                     Row(

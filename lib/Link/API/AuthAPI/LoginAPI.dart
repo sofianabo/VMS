@@ -49,7 +49,12 @@ class LoginAPI {
       if (e.toString().contains("status code of 401")) {
         ErrorMessage("اسم المستخدم أو كلمة المرور غير صحيحة");
         return;
-      } else if (e is Exception) {
+      } else if (e.toString().contains("status code of 403")) {
+        ErrorMessage(
+            "تم تعليق حسابك لسبب ما. يرجى التواصل مع المدير لمعرفة السبب وحل المشكلة.");
+        return;
+      }
+      if (e is Exception) {
         ErrorHandler.handleException(e);
       } else {
         ErrorHandler.handleException(Exception(e.toString()));

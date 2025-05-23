@@ -171,7 +171,8 @@ class BirthDate extends StatelessWidget {
                 ),
                 readOnly: true,
                 onTap: () {
-                  if (Get.find<Add_Data_controller>().roll != "observer") {
+                  if (Get.find<Add_Data_controller>().roll != "observer" &&
+                      Get.find<Add_Data_controller>().roll != "subAdmin") {
                     controller.selectBirthDate(context);
                   }
                 },
@@ -209,7 +210,8 @@ class BirthDate extends StatelessWidget {
                       size: 16,
                     ),
                     onPressed: () {
-                      if (Get.find<Add_Data_controller>().roll != "observer") {
+                      if (Get.find<Add_Data_controller>().roll != "observer" &&
+                          Get.find<Add_Data_controller>().roll != "subAdmin") {
                         controller.selectBirthDate(context);
                       }
                     },
@@ -236,6 +238,7 @@ class JoinDate extends StatelessWidget {
   final double? height;
   final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
   final bool isError; // ✅ إضافة متغير للتحقق من الخطأ
+  final bool enabled; // ✅ إضافة متغير للتحقق من الخطأ
 
   const JoinDate({
     super.key,
@@ -243,7 +246,8 @@ class JoinDate extends StatelessWidget {
     required this.Uptext,
     this.height,
     this.isRequired = false, // افتراضي الحقل غير مطلوب.
-    this.isError = false, // ✅ افتراضي لا يوجد خطأ
+    this.isError = false,
+    this.enabled = true, // ✅ افتراضي لا يوجد خطأ
   });
 
   @override
@@ -291,7 +295,8 @@ class JoinDate extends StatelessWidget {
                 ),
                 readOnly: true,
                 onTap: () {
-                  if (Get.find<Add_Data_controller>().roll != "observer") {
+                  if (Get.find<Add_Data_controller>().roll != "observer" &&
+                      Get.find<Add_Data_controller>().roll != "subAdmin") {
                     controller.selectJoinDate(context);
                   }
                 },
@@ -329,7 +334,8 @@ class JoinDate extends StatelessWidget {
                       size: 16,
                     ),
                     onPressed: () {
-                      if (Get.find<Add_Data_controller>().roll != "observer") {
+                      if (Get.find<Add_Data_controller>().roll != "observer" &&
+                          Get.find<Add_Data_controller>().roll != "subAdmin") {
                         controller.selectJoinDate(context);
                       }
                     },
@@ -682,8 +688,7 @@ class selectStudentsDateAttendence extends StatelessWidget {
                                 if (controller.AttendencetDate.value!.day !=
                                     DateTime.now().day) {
                                   controller.removeAttendence();
-                                  Studentattendenceapi()
-                                      .Studentattendence();
+                                  Studentattendenceapi().Studentattendence();
                                 }
                                 controller.removeAttendence();
                               })),
@@ -1185,7 +1190,8 @@ class EditJoinDateTeacher extends StatelessWidget {
                 ),
                 readOnly: true,
                 onTap: () {
-                  if (Get.find<Add_Data_controller>().roll != "observer") {
+                  if (Get.find<Add_Data_controller>().roll != "observer" &&
+                      Get.find<Add_Data_controller>().roll != "subAdmin") {
                     controller.selectJoinDate(context);
                   }
                 },
@@ -1221,7 +1227,8 @@ class EditJoinDateTeacher extends StatelessWidget {
                       size: 16,
                     ),
                     onPressed: () {
-                      if (Get.find<Add_Data_controller>().roll != "observer") {
+                      if (Get.find<Add_Data_controller>().roll != "observer" &&
+                          Get.find<Add_Data_controller>().roll != "subAdmin") {
                         controller.selectJoinDate(context);
                       }
                     },
@@ -1303,7 +1310,8 @@ class EditBirthDateTeacher extends StatelessWidget {
                 ),
                 readOnly: true,
                 onTap: () {
-                  if (Get.find<Add_Data_controller>().roll != "observer") {
+                  if (Get.find<Add_Data_controller>().roll != "observer" &&
+                      Get.find<Add_Data_controller>().roll != "subAdmin") {
                     controller.selectBirthDate(context);
                   }
                 },
@@ -1339,7 +1347,8 @@ class EditBirthDateTeacher extends StatelessWidget {
                       size: 16,
                     ),
                     onPressed: () {
-                      if (Get.find<Add_Data_controller>().roll != "observer") {
+                      if (Get.find<Add_Data_controller>().roll != "observer" &&
+                          Get.find<Add_Data_controller>().roll != "subAdmin") {
                         controller.selectBirthDate(context);
                       }
                     },

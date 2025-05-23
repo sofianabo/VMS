@@ -39,6 +39,8 @@ class EditEmployeeApi {
     String? Qualification,
     String? Experience,
     String? Note,
+    String? email,
+    bool? pend,
   }) async {
     CancelToken cancelToken = CancelToken();
     String myURI = "$hostPort$updateEmployee";
@@ -72,6 +74,8 @@ class EditEmployeeApi {
         "lenkedinUrl": Linkedin_URL,
         "instagramUrl": Instagram_URL,
         "careerHistory": Career_History,
+        "email": email,
+        "pend": pend == true ? "1" : "0",
         'ownData': true
       });
 

@@ -38,7 +38,7 @@ class GetEmployeeByIdApi {
         controller.setOneEmployee(oneEmployeeModel);
         Get.back();
         Get.dialog(
-          Edit_Employee(idx: index, employeeID: employeeID),
+          Edit_Employee(employeeID: employeeID),
           barrierDismissible: false,
         );
 

@@ -247,6 +247,11 @@ class Allempolyeecontroller extends GetxController {
     employee = onEmployee.employee;
     GenderListIndex = employee?.gender ?? "";
     Family_StatusIndex = employee?.familystatus ?? "";
+    isPendAccount.value = onEmployee.employee?.ispend != null
+        ? onEmployee.employee!.ispend == 0
+            ? false
+            : true
+        : false;
     update();
   }
 
@@ -311,6 +316,12 @@ class Allempolyeecontroller extends GetxController {
   bool IsContractError = false;
   bool IsRollError = false;
   bool IsJopError = false;
+
+  var isPendAccount = false.obs;
+
+  void togglePindTeacher(bool value) {
+    isPendAccount.value = value;
+  }
 
   void updateFieldError(String type, bool newValue) {
     switch (type) {

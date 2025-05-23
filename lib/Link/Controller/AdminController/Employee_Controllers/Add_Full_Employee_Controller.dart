@@ -33,6 +33,7 @@ class AddFullEmployeeController extends GetxController {
   bool IsFamilyError = false;
   bool IsQualfError = false;
   bool IsExpError = false;
+  bool IsemailError = false;
 
   void updateFieldError(String type, bool newValue) {
     switch (type) {
@@ -80,6 +81,9 @@ class AddFullEmployeeController extends GetxController {
         break;
       case 'exp':
         IsExpError = newValue;
+        break;
+      case 'email':
+        IsemailError = newValue;
         break;
 
       default:
