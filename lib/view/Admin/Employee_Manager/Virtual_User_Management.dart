@@ -202,36 +202,24 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                                           Row(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.end,
+                                                spacing: 20,
                                             children: [
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                    right: prefs!.getString(
-                                                                languageKey) ==
-                                                            "ar"
-                                                        ? 0
-                                                        : 20.0,
-                                                    left: prefs!.getString(
-                                                                languageKey) ==
-                                                            "ar"
-                                                        ? 20
-                                                        : 0),
-                                                child: Textfildwithupper(
-                                                    onChanged: (value) {
-                                                      if (value.isNotEmpty) {
-                                                        Virtual_controller
-                                                            .updateFieldError(
-                                                                "username",
-                                                                false);
-                                                      }
-                                                    },
-                                                    isRequired: true,
-                                                    isError: Virtual_controller
-                                                        .IsusernameError,
-                                                    Uptext: "Username".tr,
-                                                    width: 250,
-                                                    controller: username,
-                                                    hinttext: "Username".tr),
-                                              ),
+                                              Textfildwithupper(
+                                                  onChanged: (value) {
+                                                    if (value.isNotEmpty) {
+                                                      Virtual_controller
+                                                          .updateFieldError(
+                                                              "username",
+                                                              false);
+                                                    }
+                                                  },
+                                                  isRequired: true,
+                                                  isError: Virtual_controller
+                                                      .IsusernameError,
+                                                  Uptext: "Username".tr,
+                                                  width: 250,
+                                                  controller: username,
+                                                  hinttext: "Username".tr),
                                               Dropdownallemployee(
                                                   isError: Virtual_controller
                                                       .IsJoptitleError,
@@ -244,61 +232,49 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                                             padding: const EdgeInsets.only(
                                                 top: 15.0),
                                             child: Row(
+                                              spacing: 20,
                                               children: [
-                                                Padding(
-                                                  padding: EdgeInsets.only(
-                                                      right: prefs!.getString(
-                                                                  languageKey) ==
-                                                              "ar"
-                                                          ? 0
-                                                          : 20.0,
-                                                      left: prefs!.getString(
-                                                                  languageKey) ==
-                                                              "ar"
-                                                          ? 20
-                                                          : 0),
-                                                  child: Textfildwithupper(
-                                                      onChanged: (value) {
-                                                        if (value.isNotEmpty) {
+                                                Textfildwithupper(
+                                                    onChanged: (value) {
+                                                      if (value.isNotEmpty) {
+                                                        Virtual_controller
+                                                            .updateFieldError(
+                                                                "password",
+                                                                false);
+                                                      }
+                                                    },
+                                                    isError:
+                                                        Virtual_controller
+                                                            .IsPasswordError,
+                                                    fieldType: "password",
+                                                    IconButton: IconButton(
+                                                        onPressed: () {
                                                           Virtual_controller
-                                                              .updateFieldError(
-                                                                  "password",
-                                                                  false);
-                                                        }
-                                                      },
-                                                      isError:
+                                                              .ChangeShowPassword(
+                                                                  !Virtual_controller
+                                                                      .ShowPassword);
+                                                        },
+                                                        icon: Icon(
                                                           Virtual_controller
-                                                              .IsPasswordError,
-                                                      fieldType: "password",
-                                                      IconButton: IconButton(
-                                                          onPressed: () {
-                                                            Virtual_controller
-                                                                .ChangeShowPassword(
-                                                                    !Virtual_controller
-                                                                        .ShowPassword);
-                                                          },
-                                                          icon: Icon(
-                                                            Virtual_controller
-                                                                    .ShowPassword
-                                                                ? Icons
-                                                                    .visibility_off
-                                                                : Icons
-                                                                    .remove_red_eye_outlined,
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .bodySmall!
-                                                                .color,
-                                                          )),
-                                                      hidePassword:
-                                                          Virtual_controller
-                                                              .ShowPassword,
-                                                      isRequired: true,
-                                                      Uptext: "Password".tr,
-                                                      width: 250,
-                                                      controller: password,
-                                                      hinttext: "Password".tr),
-                                                ),
+                                                                  .ShowPassword
+                                                              ? Icons
+                                                                  .visibility_off
+                                                              : Icons
+                                                                  .remove_red_eye_outlined,
+                                                          color: Theme.of(
+                                                                  context)
+                                                              .textTheme
+                                                              .bodySmall!
+                                                              .color,
+                                                        )),
+                                                    hidePassword:
+                                                        Virtual_controller
+                                                            .ShowPassword,
+                                                    isRequired: true,
+                                                    Uptext: "Password".tr,
+                                                    width: 250,
+                                                    controller: password,
+                                                    hinttext: "Password".tr),
                                                 Textfildwithupper(
                                                     customErrorMessage: cPassword
                                                                     .text

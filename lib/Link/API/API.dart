@@ -52,6 +52,7 @@ String getStudentPrize = "getStudentPrize";
 String deleteStudentPrize = "deleteStudentPrize";
 
 String addMarks = "addMarks";
+String deleteStudentAttendance = "deleteStudentAttendance";
 
 //..................... Employees ...................//
 

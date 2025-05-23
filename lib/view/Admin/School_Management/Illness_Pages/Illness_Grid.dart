@@ -172,10 +172,8 @@ class Illness_Grid extends StatelessWidget {
                                                         .chronic ==
                                                     1
                                                 ? Text(
-                                                    textDirection: prefs!
-                                                                .getString(
-                                                                    languageKey) ==
-                                                            "ar"
+                                                    textDirection: Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                                         ? TextDirection.rtl
                                                         : TextDirection.ltr,
                                                     textAlign: TextAlign.center,
@@ -186,10 +184,8 @@ class Illness_Grid extends StatelessWidget {
                                                             Color(0xffB03D3D)),
                                                   )
                                                 : Text(
-                                                    textDirection: prefs!
-                                                                .getString(
-                                                                    languageKey) ==
-                                                            "ar"
+                                                    textDirection: Get.find<LocalizationController>().currentLocale.value.languageCode ==
+                  'ar'
                                                         ? TextDirection.rtl
                                                         : TextDirection.ltr,
                                                     textAlign: TextAlign.center,

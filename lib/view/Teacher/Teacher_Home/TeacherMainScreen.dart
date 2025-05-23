@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Teacher_API/GetTeacherClassAPI.dart';
+import 'package:vms_school/Link/API/Teacher_API/GetTeacherClassMarksAPI.dart';
 import 'package:vms_school/Link/API/Teacher_API/Get_My_Student.dart';
 import 'package:vms_school/Link/Controller/Teacher_Controller/My_Students_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
@@ -80,7 +81,7 @@ class _GuardianMainScreenState extends State<TeacherMainScreen> {
                       ),
                       color: Colors.white,
                       onPressed: () {
-                        Getteacherclassapi.Getteacherclass();
+                        Getteacherclassmarksapi.Getteacherclassmarks();
 
                         Get.dialog(Studentmarksteacher());
                       },
@@ -165,7 +166,7 @@ class _GuardianMainScreenState extends State<TeacherMainScreen> {
                         ),
                         color: Colors.white,
                         onPressed: () {
-                          Getteacherclassapi.Getteacherclass();
+                          Getteacherclassmarksapi.Getteacherclassmarks();
 
                           Get.dialog(Studentmarksteacher());
                         },

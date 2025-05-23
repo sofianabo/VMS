@@ -39,10 +39,11 @@ class AllGuardianGrid extends StatelessWidget {
     }
 
     return Directionality(
-      textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
+      textDirection:
+          Get.find<LocalizationController>().currentLocale.value.languageCode ==
                   'ar'
-          ? TextDirection.rtl
-          : TextDirection.ltr,
+              ? TextDirection.rtl
+              : TextDirection.ltr,
       child: GetBuilder<Allgaurdiancontroller>(builder: (control) {
         return control.isLoading == true
             ? GridView.builder(
@@ -322,6 +323,7 @@ class AllGuardianGrid extends StatelessWidget {
                                     children: [
                                       Expanded(
                                         child: Text(
+                                            overflow: TextOverflow.ellipsis,
                                             "${control.filteredregaurdians![index].name}",
                                             style: Theme.of(context)
                                                 .textTheme
@@ -332,6 +334,7 @@ class AllGuardianGrid extends StatelessWidget {
                                                         FontWeight.bold)),
                                       ),
                                       Text(
+                                          overflow: TextOverflow.ellipsis,
                                           "${control.filteredregaurdians![index].userName}",
                                           style: Theme.of(context)
                                               .textTheme
@@ -339,12 +342,14 @@ class AllGuardianGrid extends StatelessWidget {
                                     ],
                                   ),
                                   Text(
+                                      overflow: TextOverflow.ellipsis,
                                       "Email:".tr +
                                           " ${control.filteredregaurdians![index].email}",
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium!),
                                   Text(
+                                      overflow: TextOverflow.ellipsis,
                                       "Mobile Number :".tr +
                                           " ${control.filteredregaurdians![index].phone}",
                                       style: Theme.of(context)

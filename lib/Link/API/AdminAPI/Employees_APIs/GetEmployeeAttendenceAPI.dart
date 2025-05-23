@@ -17,9 +17,7 @@ import 'package:vms_school/Link/API/DioOption.dart';
 class Getemployeeattendenceapi {
   final Employeeattendencecontroller c =
       Get.find<Employeeattendencecontroller>();
-  BuildContext context;
 
-  Getemployeeattendenceapi(this.context);
 
   Dio dio = Dio();
 

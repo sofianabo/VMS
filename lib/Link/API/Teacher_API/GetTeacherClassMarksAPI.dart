@@ -10,20 +10,20 @@ import 'package:vms_school/Link/Model/AdminModel/School_Models/AllClassesModel.d
 import '../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';
 
-class Getteacherclassapi {
+class Getteacherclassmarksapi {
   BuildContext context;
-  Getteacherclassapi(this.context);
-  static Getteacherclass({int? sessionID}) async {
+  Getteacherclassmarksapi(this.context);
+  static Getteacherclassmarks({int? sessionID}) async {
     try {
       Dio dio = Dio();
 
       Dropdownclassescontroller ClassController =
           Get.find<Dropdownclassescontroller>();
 
-      final My_Student = Get.find<My_Students_Controller>();
+      final StudentmarksTeacher = Get.find<StudentmarksTeachercontroller>();
 
       ClassController.setIsLoading(true);
-      My_Student.setClassLoading(true);
+      StudentmarksTeacher.SetisClassLoading(true);
 
       final controller = Get.find<Divisions_Controller>();
       controller.SetIsloading(true);
@@ -40,7 +40,7 @@ class Getteacherclassapi {
         ClassController.setClasses(classes);
         controller.setClass(classes);
 
-        My_Student.setClassList(classes);
+        StudentmarksTeacher.SetClass(classes);
         return classes;
       } else {
         ErrorHandler.handleDioError(DioException(

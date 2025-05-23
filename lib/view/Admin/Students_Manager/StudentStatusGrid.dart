@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
+import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/DeleteStudentAttendenceAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/StudentAttendenceByIdAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/oneStudentAttendenceController.dart';
@@ -367,72 +368,84 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                                                 .copyWith(
                                                   fontSize: 16,
                                                 )),
-                                        IconButton(
-                                          style: ButtonStyle(
-                                              maximumSize:
-                                                  WidgetStateProperty.all(
-                                                      const Size(35, 35)),
-                                              minimumSize:
-                                                  WidgetStateProperty.all(
-                                                      const Size(35, 35)),
-                                              iconSize:
-                                                  WidgetStateProperty.all(14),
-                                              shape: WidgetStateProperty.all(
-                                                  RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                              )),
-                                              backgroundColor:
-                                                  WidgetStateProperty.all(
-                                                      const Color(0xffB03D3D))),
-                                          onPressed: () {
-                                            Get.dialog(VMSAlertDialog(
-                                                action: [
-                                                  ButtonDialog(
-                                                    width: 100,
-                                                    text: "Delete".tr,
-                                                    onPressed: () async {
-                                                      // await Delete_Student_API(
-                                                      //         context)
-                                                      //     .Delete_Student(
-                                                      //         id: control
-                                                      //             .filteredStudents[
-                                                      //                 index]
-                                                      //             .id
-                                                      //             .toString());
-                                                    },
-                                                    color:
-                                                        const Color(0xffB03D3D),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  ButtonDialog(
-                                                      width: 100,
-                                                      text: "Cancel".tr,
-                                                      onPressed: () {
-                                                        Get.back();
-                                                      },
-                                                      color: Theme.of(context)
-                                                          .primaryColor)
-                                                ],
-                                                contents: Container(
-                                                  width: 300,
-                                                  child: Text(
-                                                      style: TextStyle(
-                                                          color: Colors.black),
-                                                      maxLines: 3,
-                                                      "Do You Want To DeleteeAtt"
-                                                              .tr +
-                                                          " ${control.filteredStudents[index].fullName}" +
-                                                          "Attendenceatt".tr),
-                                                ),
-                                                apptitle: "Delete Attendence".tr,
-                                                subtitle: "none"));
-                                          },
-                                          icon: const Icon(VMS_Icons.bin),
-                                          color: Colors.white,
-                                        ),
+                                        control.CheckAttendence() == true
+                                            ? IconButton(
+                                                style: ButtonStyle(
+                                                    maximumSize:
+                                                        WidgetStateProperty.all(
+                                                            const Size(35, 35)),
+                                                    minimumSize:
+                                                        WidgetStateProperty.all(
+                                                            const Size(35, 35)),
+                                                    iconSize:
+                                                        WidgetStateProperty.all(
+                                                            14),
+                                                    shape: WidgetStateProperty.all(
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                    )),
+                                                    backgroundColor:
+                                                        WidgetStateProperty.all(
+                                                            const Color(
+                                                                0xffB03D3D))),
+                                                onPressed: () {
+                                                  Get.dialog(VMSAlertDialog(
+                                                      action: [
+                                                        ButtonDialog(
+                                                          width: 100,
+                                                          text: "Delete".tr,
+                                                          onPressed: () async {
+                                                            await Deletestudentattendenceapi.Deletestudentattendence(
+                                                                ID: control
+                                                                    .filteredStudents[
+                                                                        index]
+                                                                    .id
+                                                                    .toString(),
+                                                                date: control
+                                                                    .AttendencetDate
+                                                                    .value
+                                                                    .toString());
+                                                          },
+                                                          color: const Color(
+                                                              0xffB03D3D),
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        ButtonDialog(
+                                                            width: 100,
+                                                            text: "Cancel".tr,
+                                                            onPressed: () {
+                                                              Get.back();
+                                                            },
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .primaryColor)
+                                                      ],
+                                                      contents: Container(
+                                                        width: 300,
+                                                        child: Text(
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .black),
+                                                            maxLines: 3,
+                                                            "Do You Want To DeleteeAtt"
+                                                                    .tr +
+                                                                " ${control.filteredStudents[index].fullName}" +
+                                                                "Attendenceatt"
+                                                                    .tr),
+                                                      ),
+                                                      apptitle:
+                                                          "Delete Attendence"
+                                                              .tr,
+                                                      subtitle: "none"));
+                                                },
+                                                icon: const Icon(VMS_Icons.bin),
+                                                color: Colors.white,
+                                              )
+                                            : Text("")
                                       ],
                                     ),
                                   )

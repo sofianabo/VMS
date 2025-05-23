@@ -9,9 +9,6 @@ import 'package:vms_school/Link/API/DioOption.dart';
 
 class Studentattendenceapi {
   final StudentAttendencController c = Get.find<StudentAttendencController>();
-  BuildContext context;
-
-  Studentattendenceapi(this.context);
 
   Dio dio = Dio();
 
@@ -30,7 +27,7 @@ class Studentattendenceapi {
         AllStudentAttendenceModel student =
             AllStudentAttendenceModel.fromJson(response.data);
         c.setAllStudents(student);
-        c.initialData();
+        // c.initialData();
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

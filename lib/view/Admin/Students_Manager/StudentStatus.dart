@@ -30,8 +30,9 @@ class _StudentStatusState extends State<StudentStatus> {
 
     Get.find<StudentAttendencController>().AttendencetDate.value =
         DateTime.now();
-    Studentattendenceapi(context).Studentattendence();
+    Studentattendenceapi().Studentattendence();
     Getallgradeapi.Getallgrade();
+    Get.find<StudentAttendencController>().initialData();
     super.initState();
   }
 

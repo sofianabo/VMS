@@ -155,6 +155,24 @@ class Allteacheratendencecontroller extends GetxController {
     update();
   }
 
+  CheckAttendence() {
+    DateTime today = DateTime.now();
+    DateTime yesterday = today.subtract(const Duration(days: 1));
+
+    DateFormat format = DateFormat("yyyy-MM-dd");
+
+    String todayFormatted = format.format(today); // "2025-05-21"
+    String yesterdayFormatted = format.format(yesterday); // "2025-05-20"
+
+    String? storedDate = AttendencetDate.value != null
+        ? format.format(AttendencetDate.value!)
+        : null;
+    print(todayFormatted);
+    print("ssssssssssssss");
+    print(storedDate);
+    return storedDate == todayFormatted || storedDate == yesterdayFormatted;
+  }
+
   void selectDate(BuildContext context) async {
     try {
       String rawStartDate =
@@ -181,7 +199,7 @@ class Allteacheratendencecontroller extends GetxController {
 
       if (picked != null) {
         AttendencetDate.value = picked;
-        Getteacherattendenceapi(context).Getteacherattendence(
+        Getteacherattendenceapi().Getteacherattendence(
           date: picked.toString(),
           sessionID: Get.find<All_Screen_Sessions_Controller>().sessionId,
         );

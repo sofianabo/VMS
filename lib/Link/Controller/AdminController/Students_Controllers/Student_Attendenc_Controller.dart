@@ -199,6 +199,22 @@ class StudentAttendencController extends GetxController {
 
   Rx<DateTime?> AttendencetDate = Rx<DateTime?>(null);
 
+ CheckAttendence() {
+    DateTime today = DateTime.now();
+    DateTime yesterday = today.subtract(const Duration(days: 1));
+
+    DateFormat format = DateFormat("yyyy-MM-dd");
+
+    String todayFormatted = format.format(today); // "2025-05-21"
+    String yesterdayFormatted = format.format(yesterday); // "2025-05-20"
+
+    String? storedDate = AttendencetDate.value != null
+        ? format.format(AttendencetDate.value!)
+        : null;
+   
+    return storedDate == todayFormatted || storedDate == yesterdayFormatted;
+  }
+
   Future<bool> selectDate({required BuildContext context}) async {
     String rawStartDate =
         Get.find<All_Screen_Sessions_Controller>().startSessionDate;
@@ -224,7 +240,7 @@ class StudentAttendencController extends GetxController {
 
     if (picked != null) {
       AttendencetDate.value = picked;
-      Studentattendenceapi(context).Studentattendence(
+      Studentattendenceapi().Studentattendence(
         date: picked.toString(),
       );
       return true;

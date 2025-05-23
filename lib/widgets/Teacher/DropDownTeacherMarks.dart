@@ -5,7 +5,7 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Curriculm
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/Get_Quiz_Marks.dart';
 import 'package:vms_school/Link/API/Teacher_API/GetCurriculumTeacherAPI.dart';
 import 'package:vms_school/Link/API/Teacher_API/GetStudentMarks_TeacherAPI.dart';
-import 'package:vms_school/Link/API/Teacher_API/GetTeacherDivisionAPI.dart';
+import 'package:vms_school/Link/API/Teacher_API/GetTeacherDivisionMarksAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Location_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Students_Marks_Controller.dart';
 import 'package:vms_school/Link/Controller/Teacher_Controller/StudentMarks_TeacherController.dart';
@@ -88,14 +88,14 @@ class Dropdownteachermarks extends StatelessWidget {
                 : Row(
                     children: [
                       Expanded(
-                        child: DropdownButton<String>(
+                        child: DropdownButton<String>( 
                           onChanged: (newValue) {
                             if (newValue != null) {
                               cont.selectIndex(type, newValue);
 
                               if (type == 'Class') {
                                 cont.resetinClass();
-                                Getteacherdivisionapi(context).Getteacherdivision(
+                                Getteacherdivisionmarksapi(context).Getteacherdivisionmarks(
                                     cont.Classlist.indexOf(newValue), 0);
                               }
                               if (type == 'Division') {

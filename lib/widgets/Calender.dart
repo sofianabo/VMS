@@ -501,11 +501,10 @@ class selectTeacherDateAttendence extends StatelessWidget {
                                 if (controller.AttendencetDate.value!.day !=
                                     DateTime.now().day) {
                                   controller.removeAttendence();
-                                  Getteacherattendenceapi(context)
-                                      .Getteacherattendence(
-                                          sessionID: Get.find<
-                                                  All_Screen_Sessions_Controller>()
-                                              .sessionId);
+                                  Getteacherattendenceapi().Getteacherattendence(
+                                      sessionID: Get.find<
+                                              All_Screen_Sessions_Controller>()
+                                          .sessionId);
                                 }
                                 controller.removeAttendence();
                               },
@@ -594,7 +593,7 @@ class selectEmployeeDateAttendence extends StatelessWidget {
                                 if (controller.AttendencetDate.value!.day !=
                                     DateTime.now().day) {
                                   controller.removeAttendence();
-                                  Getemployeeattendenceapi(context)
+                                  Getemployeeattendenceapi()
                                       .Getemployeeattendence();
                                 }
                                 controller.removeAttendence();
@@ -683,7 +682,7 @@ class selectStudentsDateAttendence extends StatelessWidget {
                                 if (controller.AttendencetDate.value!.day !=
                                     DateTime.now().day) {
                                   controller.removeAttendence();
-                                  Studentattendenceapi(context)
+                                  Studentattendenceapi()
                                       .Studentattendence();
                                 }
                                 controller.removeAttendence();
