@@ -39,6 +39,7 @@ class Update_Employee_Information {
     String? Qualification,
     String? Experience,
     String? Note,
+    bool? deletedImg,
   }) async {
     String myURI = "$hostPort$updateEmployee";
     CancelToken cancelToken = CancelToken();
@@ -78,7 +79,9 @@ class Update_Employee_Information {
           MultipartFile.fromBytes(selectedImage, filename: "profile.jpg"),
         ));
       } else {
-        formData.fields.add(MapEntry("deletedImg", "true"));
+        if (deletedImg == true) {
+          formData.fields.add(MapEntry("deletedImg", "true"));
+        }
       }
 
       var response = await dio.post(

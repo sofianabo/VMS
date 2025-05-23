@@ -69,7 +69,7 @@ class Add_Employee_Information {
         "lenkedinUrl": Linkedin_URL,
         "instagramUrl": Instagram_URL,
         "careerHistory": Career_History,
-        "Password": Password,
+        "password": Password,
       });
 
       if (selectedImage != null) {

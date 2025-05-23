@@ -126,7 +126,6 @@ class _ProfileState extends State<Account_And_Password> {
 
                                       return;
                                     }
-
                                     Re_Email_API().Re_Email(
                                         email: newemail.text,
                                         password: password.text,

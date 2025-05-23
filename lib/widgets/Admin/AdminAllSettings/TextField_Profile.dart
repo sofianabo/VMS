@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 
@@ -19,9 +20,12 @@ class TextField_Profile extends StatefulWidget {
     this.isError = false,
     this.customErrorMessage, // رسالة الخطأ المخصصة
     this.defaultErrorMessage, // رسالة الخطأ الافتراضية لنوع الحقل
-    this.textDirection, // اتجاه النص (اختياري)
-  });
+    this.textDirection,
+    this.isRequired = false,
 
+    // اتجاه النص (اختياري)
+  });
+  final bool isRequired;
   final TextEditingController controller;
   final String Uptext;
   final double? width;
@@ -55,8 +59,9 @@ class _TextField_ProfileState extends State<TextField_Profile> {
 
   void validateInput(String value) {
     bool isValid = true;
-    String error =
-        widget.customErrorMessage ?? widget.defaultErrorMessage ?? "";
+    String error = widget.customErrorMessage ??
+        widget.defaultErrorMessage ??
+        "لا يسمح بترك الحقل فارغ";
 
     if (widget.fieldType == "email") {
       RegExp emailRegex =
@@ -73,7 +78,23 @@ class _TextField_ProfileState extends State<TextField_Profile> {
       if (!isValid) {
         error = widget.customErrorMessage ??
             widget.defaultErrorMessage ??
-            "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل، وأن تكون باللغة الإنجليزية فقط.";
+            "يجب أن لا تقل كلمة المرور عن 8 أحرف";
+      }
+    } else if (widget.fieldType == "phone") {
+      RegExp phoneRegex = RegExp(r"^[0-9+]+$");
+      isValid = phoneRegex.hasMatch(value);
+      if (!isValid) {
+        error = widget.customErrorMessage ??
+            widget.defaultErrorMessage ??
+            "يُسمح بإدخال أرقام وعلامة + فقط";
+      }
+    } else if (widget.fieldType == "number") {
+      RegExp numberRegex = RegExp(r"^[0-9]+$");
+      isValid = numberRegex.hasMatch(value);
+      if (!isValid) {
+        error = widget.customErrorMessage ??
+            widget.defaultErrorMessage ??
+            "يُسمح بإدخال الأرقام فقط";
       }
     }
 
@@ -107,6 +128,19 @@ class _TextField_ProfileState extends State<TextField_Profile> {
 
   @override
   Widget build(BuildContext context) {
+    TextInputType keyboardType;
+    List<TextInputFormatter>? inputFormatters;
+    if (widget.fieldType == "email") {
+      keyboardType = TextInputType.emailAddress;
+    } else if (widget.fieldType == "phone") {
+      keyboardType = TextInputType.phone;
+      inputFormatters = [FilteringTextInputFormatter.allow(RegExp(r'[0-9+]'))];
+    } else if (widget.fieldType == "number") {
+      keyboardType = TextInputType.number;
+      inputFormatters = [FilteringTextInputFormatter.digitsOnly];
+    } else {
+      keyboardType = TextInputType.text;
+    }
     bool showError = widget.isError || localError;
     final textDirection = _getTextDirection();
     final textAlign = _getTextAlign();
@@ -131,16 +165,35 @@ class _TextField_ProfileState extends State<TextField_Profile> {
                     ),
                     child: widget.upicon!,
                   ),
-                Text(
-                  widget.Uptext,
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
+                Row(
+                  spacing: 5.0,
+                  textDirection: textDirection,
+                  children: [
+                    Text(
+                      widget.Uptext,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall
+                          ?.copyWith(fontSize: 14),
+                    ),
+                    if (widget.isRequired)
+                      Text(
+                        ' *',
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 14,
+                        ),
+                      )
+                  ],
+                )
               ],
             ),
           ),
           SizedBox(
             height: 40,
             child: TextFormField(
+              inputFormatters: inputFormatters,
+              keyboardType: keyboardType,
               textAlign: textAlign,
               textDirection: textDirection,
               obscureText: widget.hidePassword,
@@ -151,7 +204,13 @@ class _TextField_ProfileState extends State<TextField_Profile> {
                   ?.copyWith(fontSize: 14, fontWeight: FontWeight.bold),
               readOnly: widget.readOnly,
               controller: widget.controller,
-              onChanged: validateInput,
+              onChanged: (value) {
+                validateInput(value);
+
+                if (widget.onChanged != null) {
+                  widget.onChanged!(widget.controller.text);
+                }
+              },
               decoration: InputDecoration(
                 errorBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.redAccent),

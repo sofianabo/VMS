@@ -35,11 +35,12 @@ class Re_Password_API {
       return response.statusCode;
     } catch (e) {
       if (e is DioException) {
-        ErrorHandler.handleDioError(e);
-      } else if (e is Exception) {
-        ErrorHandler.handleException(e);
-      } else {
-        ErrorHandler.handleException(Exception(e.toString()));
+        if (e.response!.data['message'] == "wrong password") {
+          Get.back();
+          ErrorMessage(
+              "Your password is not true , Please cheek your password and try again later"
+                  .tr);
+        }
       }
     }
   }

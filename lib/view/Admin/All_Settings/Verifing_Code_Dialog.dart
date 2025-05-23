@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/Get_My_Profile.dart';
 import 'package:vms_school/Link/API/AdminAPI/Users/Resend_Verifying_Code.dart';
 import 'package:vms_school/Link/API/AdminAPI/Users/Verify.dart';
 import 'package:vms_school/Link/API/AuthAPI/LogoutAPI.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 
@@ -70,11 +72,14 @@ class _VerifingCodeDialogState extends State<VerifingCodeDialog> {
         isLoading = LoadingStatus.loading;
       });
       String code = controllers.map((controller) => controller.text).join();
+
       if (await Verify_Account_API().Verify_Account(code: code) == 200) {
         setState(() {
           isLoading = LoadingStatus.done;
-          Get.back();
         });
+        Get.find<Add_Data_controller>().setisVerified(true);
+        Get.back();
+        await Get_My_Profile.Get_My_Profile_Data();
       } else {
         setState(() {
           isLoading = LoadingStatus.normal;

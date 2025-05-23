@@ -15,7 +15,9 @@ class RoleBasedMiddleware extends GetMiddleware {
   RouteSettings? redirect(String? route) {
     bool isLoggedIn = prefs?.getBool("isLogin") ?? false;
     String? role = prefs?.getString("role");
-
+    if (isLoggedIn && role != "guardian" && role != "observer") {
+      print("objectksdajkdasjlksajdlkjsadlkjsadlkjskaldj");
+    }
     if (!isLoggedIn &&
         route != '/home' &&
         route != '/login' &&
@@ -25,7 +27,7 @@ class RoleBasedMiddleware extends GetMiddleware {
 
     if (isLoggedIn &&
         (role == "admin" || role == "subAdmin" || role == "observer")) {
-      CheeckHasData();
+      Get.find<Add_Data_controller>().CheeckHasData();
       if (route != '/admin') {
         return const RouteSettings(name: '/admin');
       }
@@ -38,7 +40,7 @@ class RoleBasedMiddleware extends GetMiddleware {
       }
     }
     if (isLoggedIn && (role == "teacher")) {
-      CheeckGuaIsVeri();
+      Get.find<Add_Data_controller>().CheeckHasData();
       if (route != '/teacher') {
         return const RouteSettings(name: '/teacher');
       }
@@ -54,55 +56,8 @@ class RoleBasedMiddleware extends GetMiddleware {
         return const RouteSettings(name: '/home');
       }
     }
-
     return null;
   }
-}
-
-Future<void> CheeckHasData() async {
-  try {
-    final con = Get.put(Add_Data_controller());
-    final con2 = Get.put(Admin_Profile_Content());
-    final prefs = await SharedPreferences.getInstance();
-    final hasData = prefs.getBool("hasData") ?? false;
-    final isVerified = prefs.getBool("isVerified") ?? false;
-    final email = prefs.getString("email") ?? "";
-    final role = prefs.getString("role") ?? "";
-
-    con.setisVerified(isVerified);
-    con.sethasData(hasData);
-    con.setEmail(email);
-    con.setroll(role);
-
-    if (!isVerified) {
-      await showVerificationDialog();
-    }
-
-    if (!hasData) {
-      await handleDataLoading(con2);
-    }
-
-    if (role == "observer") {
-      Get.find<AdminHomeContentController>()
-          .updateContent("School Data Management");
-    }
-  } catch (e) {
-    print('Error in CheeckHasData: $e');
-    rethrow;
-  }
-}
-
-Future<void> showVerificationDialog() async {
-  await Get.dialog(
-    VerifingCodeDialog(),
-    barrierDismissible: false,
-  );
-}
-
-Future<void> handleDataLoading(Admin_Profile_Content con2) async {
-  await Get_My_Profile.Get_My_Profile_Data();
-  Get.find<AdminHomeContentController>().updateContent("My Profile");
-  con2.ChangeCurruntValue("addData");
 }
 
 CheeckGuaIsVeri() async {

@@ -47,6 +47,11 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                     GestureDetector(
                       onTap: () {
                         WidgetsBinding.instance.addPostFrameCallback((_) {
+                          if (Get.find<Add_Data_controller>().isVerified) {
+                            if (cont.content != "My Profile") {
+                              Get_My_Profile.Get_My_Profile_Data();
+                            }
+                          }
                           cont.updateContent("My Profile");
                         });
                       },
@@ -83,8 +88,11 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                                 radius: 20,
                                 backgroundColor: Theme.of(context).primaryColor,
                                 child: prefs!.getString("imageId") != "null"
-                                    ? ClipOval(
-                                        child: Image.network(
+                                    ? CircleAvatar(
+                                        radius: 20,
+                                        backgroundColor:
+                                            Theme.of(context).primaryColor,
+                                        backgroundImage: NetworkImage(
                                           headers: {
                                             "ngrok-skip-browser-warning":
                                                 "true",
@@ -94,32 +102,6 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                                                 'Bearer ${prefs!.getString("token")}',
                                           },
                                           "$getimage${prefs!.getString("imageId")}",
-                                          fit: BoxFit.cover,
-                                          loadingBuilder: (context, child,
-                                              loadingProgress) {
-                                            if (loadingProgress == null) {
-                                              // الصورة تم تحميلها بنجاح
-                                              return child;
-                                            } else {
-                                              // الصورة قيد التحميل، عرض شريط تحميل أبيض
-                                              return Center(
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  value: loadingProgress
-                                                              .expectedTotalBytes !=
-                                                          null
-                                                      ? loadingProgress
-                                                              .cumulativeBytesLoaded /
-                                                          (loadingProgress
-                                                                  .expectedTotalBytes ??
-                                                              1)
-                                                      : null,
-                                                  color: Colors
-                                                      .white, // شريط التحميل باللون الأبيض
-                                                ),
-                                              );
-                                            }
-                                          },
                                         ),
                                       )
                                     : Text(
@@ -209,6 +191,11 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                 GestureDetector(
                   onTap: () {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
+                      if (Get.find<Add_Data_controller>().isVerified) {
+                        if (cont.content != "My Profile") {
+                          Get_My_Profile.Get_My_Profile_Data();
+                        }
+                      }
                       cont.updateContent("My Profile");
                     });
                   },
@@ -245,8 +232,11 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                             radius: 20,
                             backgroundColor: Theme.of(context).primaryColor,
                             child: prefs!.getString("imageId") != "null"
-                                ? ClipOval(
-                                    child: Image.network(
+                                ? CircleAvatar(
+                                    radius: 20,
+                                    backgroundColor:
+                                        Theme.of(context).primaryColor,
+                                    backgroundImage: NetworkImage(
                                       headers: {
                                         "ngrok-skip-browser-warning": "true",
                                         'User-Agent': 'Custom User-Agent',
@@ -255,31 +245,6 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                                             'Bearer ${prefs!.getString("token")}',
                                       },
                                       "$getimage${prefs!.getString("imageId")}",
-                                      fit: BoxFit.cover,
-                                      loadingBuilder:
-                                          (context, child, loadingProgress) {
-                                        if (loadingProgress == null) {
-                                          // الصورة تم تحميلها بنجاح
-                                          return child;
-                                        } else {
-                                          // الصورة قيد التحميل، عرض شريط تحميل أبيض
-                                          return Center(
-                                            child: CircularProgressIndicator(
-                                              value: loadingProgress
-                                                          .expectedTotalBytes !=
-                                                      null
-                                                  ? loadingProgress
-                                                          .cumulativeBytesLoaded /
-                                                      (loadingProgress
-                                                              .expectedTotalBytes ??
-                                                          1)
-                                                  : null,
-                                              color: Colors
-                                                  .white, // شريط التحميل باللون الأبيض
-                                            ),
-                                          );
-                                        }
-                                      },
                                     ),
                                   )
                                 : Text(
@@ -289,6 +254,7 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                                             .toUpperCase() ??
                                         '',
                                     style: Get.textTheme.titleLarge?.copyWith(
+                                      color: Colors.white,
                                       fontSize: 12,
                                     ),
                                   ),

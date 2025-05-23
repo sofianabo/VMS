@@ -79,50 +79,70 @@ class Section7 extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Row(
-                                children: [
-                                  GetBuilder<Homescreencontroller>(
-                                      builder: (controller) {
-                                    return Text(
-                                        "${_formatTime(controller.morningShiftStartHours)} -----> ${_formatTime(controller.morningClosingHours)}",
-                                        style: Get.theme.textTheme.bodyMedium!
-                                            .copyWith(
-                                                fontSize: 16,
-                                                color: Colors.white));
-                                  }),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Image.asset(
-                                    "assets/images/time-icon.png",
-                                    height: 20,
-                                    width: 20,
-                                  ),
-                                ],
+                              Directionality(
+                                textDirection:
+                                    Get.find<LocalizationController>()
+                                                .currentLocale
+                                                .value
+                                                .languageCode ==
+                                            'ar'
+                                        ? TextDirection.rtl
+                                        : TextDirection.ltr,
+                                child: Row(
+                                  children: [
+                                    GetBuilder<Homescreencontroller>(
+                                        builder: (controller) {
+                                      return Text(
+                                          "${_formatTime(controller.morningShiftStartHours)} -----> ${_formatTime(controller.morningClosingHours)}",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                                  fontSize: 16,
+                                                  color: Colors.white));
+                                    }),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Image.asset(
+                                      "assets/images/time-icon.png",
+                                      height: 20,
+                                      width: 20,
+                                    ),
+                                  ],
+                                ),
                               ),
                               const SizedBox(
                                 height: 20,
                               ),
-                              Row(
-                                children: [
-                                  GetBuilder<Homescreencontroller>(
-                                      builder: (controller) {
-                                    return Text(
-                                        "${_formatTime(controller.eveningShiftStartHours)} -----> ${_formatTime(controller.eveningClosingHours)}",
-                                        style: Get.theme.textTheme.bodyMedium!
-                                            .copyWith(
-                                                fontSize: 16,
-                                                color: Colors.white));
-                                  }),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Image.asset(
-                                    "assets/images/time-icon.png",
-                                    height: 20,
-                                    width: 20,
-                                  ),
-                                ],
+                              Directionality(
+                                textDirection:
+                                    Get.find<LocalizationController>()
+                                                .currentLocale
+                                                .value
+                                                .languageCode ==
+                                            'ar'
+                                        ? TextDirection.rtl
+                                        : TextDirection.ltr,
+                                child: Row(
+                                  children: [
+                                    GetBuilder<Homescreencontroller>(
+                                        builder: (controller) {
+                                      return Text(
+                                          "${_formatTime(controller.eveningShiftStartHours)} -----> ${_formatTime(controller.eveningClosingHours)}",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                                  fontSize: 16,
+                                                  color: Colors.white));
+                                    }),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Image.asset(
+                                      "assets/images/time-icon.png",
+                                      height: 20,
+                                      width: 20,
+                                    ),
+                                  ],
+                                ),
                               )
                             ],
                           ),
@@ -398,50 +418,70 @@ class Section7 extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Row(
-                                children: [
-                                  GetBuilder<Homescreencontroller>(
-                                      builder: (controller) {
-                                    return Text(
-                                        "${_formatTime(controller.morningShiftStartHours)} -----> ${_formatTime(controller.morningClosingHours)}",
-                                        style: Get.theme.textTheme.bodyMedium!
-                                            .copyWith(
-                                                fontSize: 16,
-                                                color: Colors.white));
-                                  }),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Image.asset(
-                                    "assets/images/time-icon.png",
-                                    height: 20,
-                                    width: 20,
-                                  ),
-                                ],
+                              Directionality(
+                                textDirection:
+                                    Get.find<LocalizationController>()
+                                                .currentLocale
+                                                .value
+                                                .languageCode ==
+                                            'ar'
+                                        ? TextDirection.rtl
+                                        : TextDirection.ltr,
+                                child: Row(
+                                  children: [
+                                    GetBuilder<Homescreencontroller>(
+                                        builder: (controller) {
+                                      return Text(
+                                          "${_formatTime(controller.morningShiftStartHours)} -----> ${_formatTime(controller.morningClosingHours)}",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                                  fontSize: 16,
+                                                  color: Colors.white));
+                                    }),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Image.asset(
+                                      "assets/images/time-icon.png",
+                                      height: 20,
+                                      width: 20,
+                                    ),
+                                  ],
+                                ),
                               ),
                               const SizedBox(
                                 height: 20,
                               ),
-                              Row(
-                                children: [
-                                  GetBuilder<Homescreencontroller>(
-                                      builder: (controller) {
-                                    return Text(
-                                        "${_formatTime(controller.eveningShiftStartHours)} -----> ${_formatTime(controller.eveningClosingHours)}",
-                                        style: Get.theme.textTheme.bodyMedium!
-                                            .copyWith(
-                                                fontSize: 16,
-                                                color: Colors.white));
-                                  }),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Image.asset(
-                                    "assets/images/time-icon.png",
-                                    height: 20,
-                                    width: 20,
-                                  ),
-                                ],
+                              Directionality(
+                                textDirection:
+                                    Get.find<LocalizationController>()
+                                                .currentLocale
+                                                .value
+                                                .languageCode ==
+                                            'ar'
+                                        ? TextDirection.rtl
+                                        : TextDirection.ltr,
+                                child: Row(
+                                  children: [
+                                    GetBuilder<Homescreencontroller>(
+                                        builder: (controller) {
+                                      return Text(
+                                          "${_formatTime(controller.eveningShiftStartHours)} -----> ${_formatTime(controller.eveningClosingHours)}",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                                  fontSize: 16,
+                                                  color: Colors.white));
+                                    }),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Image.asset(
+                                      "assets/images/time-icon.png",
+                                      height: 20,
+                                      width: 20,
+                                    ),
+                                  ],
+                                ),
                               )
                             ],
                           ),
@@ -719,54 +759,74 @@ class Section7 extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  GetBuilder<Homescreencontroller>(
-                                      builder: (controller) {
-                                    return Text(
-                                        "${_formatTime(controller.morningShiftStartHours)} -----> ${_formatTime(controller.morningClosingHours)}",
-                                        style: Get.theme.textTheme.bodyMedium!
-                                            .copyWith(
-                                                fontSize: 16,
-                                                color: Colors.white));
-                                  }),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Image.asset(
-                                    "assets/images/time-icon.png",
-                                    height: 20,
-                                    width: 20,
-                                  ),
-                                ],
+                              Directionality(
+                                textDirection:
+                                    Get.find<LocalizationController>()
+                                                .currentLocale
+                                                .value
+                                                .languageCode ==
+                                            'ar'
+                                        ? TextDirection.rtl
+                                        : TextDirection.ltr,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    GetBuilder<Homescreencontroller>(
+                                        builder: (controller) {
+                                      return Text(
+                                          "${_formatTime(controller.morningShiftStartHours)} -----> ${_formatTime(controller.morningClosingHours)}",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                                  fontSize: 16,
+                                                  color: Colors.white));
+                                    }),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Image.asset(
+                                      "assets/images/time-icon.png",
+                                      height: 20,
+                                      width: 20,
+                                    ),
+                                  ],
+                                ),
                               ),
                               const SizedBox(
                                 height: 20,
                               ),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  GetBuilder<Homescreencontroller>(
-                                      builder: (controller) {
-                                    return Text(
-                                        "${_formatTime(controller.eveningShiftStartHours)} -----> ${_formatTime(controller.eveningClosingHours)}",
-                                        style: Get.theme.textTheme.bodyMedium!
-                                            .copyWith(
-                                                fontSize: 16,
-                                                color: Colors.white));
-                                  }),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Image.asset(
-                                    "assets/images/time-icon.png",
-                                    height: 20,
-                                    width: 20,
-                                  ),
-                                ],
+                              Directionality(
+                                textDirection:
+                                    Get.find<LocalizationController>()
+                                                .currentLocale
+                                                .value
+                                                .languageCode ==
+                                            'ar'
+                                        ? TextDirection.rtl
+                                        : TextDirection.ltr,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    GetBuilder<Homescreencontroller>(
+                                        builder: (controller) {
+                                      return Text(
+                                          "${_formatTime(controller.eveningShiftStartHours)} -----> ${_formatTime(controller.eveningClosingHours)}",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                                  fontSize: 16,
+                                                  color: Colors.white));
+                                    }),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Image.asset(
+                                      "assets/images/time-icon.png",
+                                      height: 20,
+                                      width: 20,
+                                    ),
+                                  ],
+                                ),
                               )
                             ],
                           ),

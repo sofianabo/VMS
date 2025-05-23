@@ -5,6 +5,7 @@ class Languages {
       'Have A Nice Day At Work': 'أتمنى لك يوم جيد في العمل',
       'Illness and Vaccines': 'الأمراض و اللقحات',
       'Illness': 'الأمراض',
+      'My Profile': 'الملف الشخصي',
       'No Phone Number yet': 'لا يوجد رقم هاتف بعد',
       'No Email yet': 'لا يوجد بريد بعد',
 
@@ -27,6 +28,8 @@ class Languages {
       'No Attendance': 'لا يوجد حظور بعد',
       'Vaccines': 'اللقحات',
       'AM': 'صباحاً',
+      'You have not confirmed your account yet.': 'لم تقم بتأكيد حسابك بعد',
+      'Verified Now': 'التحقق الان',
       'PM': 'مساءً',
       'Rewards and Penalties': 'المكافئات و العقوبات',
       'Rewards': 'المكافئات',
@@ -261,6 +264,8 @@ class Languages {
       'Select Garduans To Add Students': 'اختر ولي الأمر لإضافة طلاب',
       'Place Of Birth': 'مكان الولادة',
       'Religion': 'الدين',
+      'Your password is not true , Please cheek your password and try again later':
+          'كلمة المرور غير صحيحة , الرجاء التحقق منها و المعاودة مرة اخرى لاحقاً',
       'Main Page': 'الصفحة الرئيسية',
       'Blood Type': 'زمرة الدم',
       'Location': 'الموقع',
@@ -840,6 +845,7 @@ class Languages {
       'School Data': 'School Data',
       'Electronic Library': 'Electronic Library',
       'Transaction': 'Transaction',
+      'My Profile': 'My Profile',
       'No Email yet': 'No Email yet',
       'No Phone Number yet': 'No Phone Number yet',
       'My Email': 'My Email',
@@ -1032,6 +1038,11 @@ class Languages {
       'Place Of Birth': 'Place Of Birth',
       'Main Page': 'Main Page',
       'Religion': 'Religion',
+      'Your password is not true , Please cheek your password and try again later':
+          'Your password is not true , Please cheek your password and try again later',
+      'You have not confirmed your account yet.':
+          'You have not confirmed your account yet.',
+      'Verified Now': 'Verified Now',
       'Blood Type': 'Blood Type',
       'Location': 'Location',
       'Mobile Number': 'Mobile Number',

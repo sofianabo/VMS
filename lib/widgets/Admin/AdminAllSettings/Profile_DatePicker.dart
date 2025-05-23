@@ -11,6 +11,7 @@ class Profile_BirthDate extends StatelessWidget {
   final double? height;
   final bool enabled;
   final Widget? upicon;
+  final bool isError; // ✅ إضافة متغير للتحقق من الخطأ
 
   Profile_BirthDate({
     super.key,
@@ -18,6 +19,8 @@ class Profile_BirthDate extends StatelessWidget {
     required this.Uptext,
     required this.enabled,
     this.upicon,
+    this.isError = false, // ✅ افتراضي لا يوجد خطأ
+
     this.height,
   });
 
@@ -26,6 +29,7 @@ class Profile_BirthDate extends StatelessWidget {
     final Add_Data_controller controller = Get.find<Add_Data_controller>();
     return Obx(
       () => Container(
+        height: 82,
         width: width,
         alignment: Alignment.center,
         child: Column(
@@ -46,6 +50,12 @@ class Profile_BirthDate extends StatelessWidget {
                 children: [
                   if (upicon != null) upicon!,
                   Text("$Uptext", style: Theme.of(context).textTheme.bodySmall),
+                  Text(
+                    " *", // مسافة ثم نجمة
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Colors.red,
+                        ),
+                  ),
                 ],
               ),
             ),
@@ -81,12 +91,38 @@ class Profile_BirthDate extends StatelessWidget {
                   hintStyle: TextStyle(
                     color: Colors.grey,
                   ),
-                  focusedBorder: UnderlineInputBorder(),
-                  enabledBorder: InputBorder.none,
-                  border: InputBorder.none,
+                  focusedBorder: isError
+                      ? OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5),
+                          borderSide: BorderSide(
+                            color: Colors.red,
+                          ),
+                        )
+                      : UnderlineInputBorder(),
+                  enabledBorder: isError
+                      ? OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5),
+                          borderSide: BorderSide(
+                            color: Colors.red,
+                          ),
+                        )
+                      : InputBorder.none,
+                  border: isError
+                      ? OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5),
+                          borderSide: BorderSide(
+                            color: Colors.red,
+                          ),
+                        )
+                      : InputBorder.none,
                 ),
               ),
             ),
+            if (isError)
+              Text(
+                "يجب إدخال تاريخ صحيح",
+                style: TextStyle(color: Colors.red, fontSize: 12),
+              ),
           ],
         ),
       ),
@@ -112,7 +148,7 @@ class Profile_JoinDate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Allempolyeecontroller controller = Get.put(Allempolyeecontroller());
+    final Add_Data_controller controller = Get.find<Add_Data_controller>();
     return Obx(
       () => Container(
         width: width,

@@ -4,6 +4,7 @@ import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Full_Employee_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/AllEmpolyeeController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/All_Virtual_Employee_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/DataController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/EmployeeAttendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Employeeecontroller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Virtual_Employee_Controller.dart';
@@ -132,8 +133,9 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => LocalizationController(), fenix: true);
     Get.lazyPut(() => Profile_DropDown_Controller(), fenix: true);
     Get.lazyPut(() => RewardsController(20.0, true));
-    Get.lazyPut(() => Add_Data_controller(), fenix: true);
+    Get.put(Add_Data_controller(), permanent: true);
     Get.lazyPut(() => Students_Marks_Controller(), fenix: true);
+    Get.lazyPut(() => errorHandel(), fenix: true);
     Get.lazyPut(() => SidebarController(), fenix: true);
     Get.lazyPut(() => School_Content_Controller(), fenix: true);
     Get.lazyPut(() => DraweController(), fenix: true);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_DropDown_Profile_Controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 
 class Profile_DropDown extends StatefulWidget {
@@ -10,7 +11,9 @@ class Profile_DropDown extends StatefulWidget {
   final Color? color;
   final Widget? upicon;
   final bool enabled;
-  final String labelText; // النص الذي يظهر فوق الـ DropdownButton
+  final String labelText;
+  final bool isRequired;
+  final bool isError;
 
   const Profile_DropDown({
     super.key,
@@ -20,6 +23,8 @@ class Profile_DropDown extends StatefulWidget {
     required this.width,
     required this.type,
     required this.enabled,
+    this.isRequired = false,
+    this.isError = false,
     this.labelText = "", // نص افتراضي فارغ
   });
 
@@ -99,6 +104,14 @@ class _Profile_DropDownState extends State<Profile_DropDown> {
                         widget.labelText,
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
+                      if (widget.isRequired) // أضف هذا الشرط
+                        Text(
+                          '*',
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    color: Colors.red,
+                                  ),
+                        ),
                     ],
                   ),
                 ),
@@ -109,16 +122,19 @@ class _Profile_DropDownState extends State<Profile_DropDown> {
                 height: 40,
                 decoration: BoxDecoration(
                   border: Border(
-                    top: BorderSide.none,
-                    left: BorderSide.none,
-                    right: BorderSide.none,
-                    bottom: _focusNode.hasFocus && widget.enabled
-                        ? BorderSide(
-                            color: widget.color ?? Colors.black,
-                            width: 2,
-                          )
-                        : BorderSide.none,
-                  ),
+                      top: BorderSide.none,
+                      left: BorderSide.none,
+                      right: BorderSide.none,
+                      bottom: _focusNode.hasFocus && widget.enabled
+                          ? widget.isError
+                              ? BorderSide(color: Colors.red)
+                              : BorderSide(
+                                  color: widget.color ?? Colors.black,
+                                  width: 2,
+                                )
+                          : widget.isError
+                              ? BorderSide(color: Colors.red)
+                              : BorderSide.none),
                 ),
                 child: Row(
                   children: [
@@ -142,6 +158,10 @@ class _Profile_DropDownState extends State<Profile_DropDown> {
                             ? (newValue) {
                                 if (newValue != null) {
                                   cont.selectIndex(widget.type, newValue);
+                                  if (widget.type == 'Family_Status') {
+                                    Get.find<Admin_Profile_Content>()
+                                        .updateFieldError("family", false);
+                                  }
                                 }
                               }
                             : null,
@@ -165,6 +185,11 @@ class _Profile_DropDownState extends State<Profile_DropDown> {
                   ],
                 ),
               ),
+              if (widget.isError)
+                Text(
+                  "يجب إدخال تاريخ صحيح",
+                  style: TextStyle(color: Colors.red, fontSize: 12),
+                ),
             ],
           ),
         ),
@@ -197,7 +222,7 @@ class _Profile_DropDownState extends State<Profile_DropDown> {
           return DropdownMenuItem<String>(
             value: value,
             enabled: enabled,
-            child: Text(  
+            child: Text(
               value.tr,
               style: Get.theme.textTheme.bodyMedium!.copyWith(
                 fontSize: 14,

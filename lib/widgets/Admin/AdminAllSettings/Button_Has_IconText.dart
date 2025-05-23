@@ -17,7 +17,7 @@ class Button_Has_IconText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width ?? 120,
+      width: 162,
       child: TextButton(
           style: ButtonStyle(
               foregroundColor:
@@ -29,6 +29,9 @@ class Button_Has_IconText extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               textDirection: Get.find<LocalizationController>()
                           .currentLocale
                           .value

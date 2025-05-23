@@ -4,8 +4,14 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Update_Employee_Info.dart';
+import 'package:vms_school/Link/API/AdminAPI/Get_My_Profile.dart';
+import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
+import 'package:vms_school/Link/Controller/GuardianController/MyChildren_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/My_Data_Model.dart';
 import 'package:vms_school/Link/middleware/auth_middleware.dart';
+import 'package:vms_school/main.dart';
+import 'package:vms_school/view/Admin/All_Settings/Verifing_Code_Dialog.dart';
 
 class Add_Data_controller extends GetxController {
   bool isLoading = true;
@@ -16,6 +22,7 @@ class Add_Data_controller extends GetxController {
   @override
   void onInit() {
     CheeckHasData();
+    print("Hello");
     super.onInit();
   }
 
@@ -43,6 +50,8 @@ class Add_Data_controller extends GetxController {
       lastDate: DateTime(2100),
     );
     if (picked != null) {
+      Get.find<Admin_Profile_Content>().updateFieldError("birth", false);
+
       Birthdate.value = picked;
     }
   }
@@ -84,6 +93,7 @@ class Add_Data_controller extends GetxController {
 
   void sethasData(bool value) {
     hasData = value;
+    Get.find<AdminHomeContentController>().updateContent("My Profile");
     update();
   }
 
@@ -99,6 +109,7 @@ class Add_Data_controller extends GetxController {
 
   void setisVerified(bool value) {
     isVerified = value;
+    prefs!.setBool("isVerified", value);
     update();
   }
 
@@ -106,6 +117,7 @@ class Add_Data_controller extends GetxController {
     try {
       final prefs = await SharedPreferences.getInstance();
       final hasData = prefs.getBool("hasData") ?? false;
+      final hasDatas = prefs.getBool("hasData");
       final isVerified = prefs.getBool("isVerified") ?? false;
       final email = prefs.getString("email") ?? "";
       final role = prefs.getString("role") ?? "";
@@ -114,18 +126,31 @@ class Add_Data_controller extends GetxController {
       sethasData(hasData);
       setEmail(email);
       setroll(role);
-
-      if (!isVerified) {
-        await showVerificationDialog();
+      if (hasDatas != null && hasDatas == false) {
+        await Get_My_Profile.Get_My_Profile_Data();
+        Get.find<AdminHomeContentController>().updateContent("My Profile");
+        Get.find<Admin_Profile_Content>().ChangeCurruntValue("addData");
       }
-
-      if (!hasData) {
-        // await handleDataLoading(); // هذه الدالة تحتاج إلى تعريف
+      if (role == "admin" || role == "subAdmin" || role == "teacher") {
+        if (!isVerified) {
+          if (!Get.isDialogOpen!) {
+            await showVerificationDialog();
+          }
+        }
+        if (hasData) {
+          if (role == "admin" || role == "subAdmin") {
+            Get.find<AdminHomeContentController>().updateContent("Dashboard");
+          }
+        } else {
+          Get.find<Admin_Profile_Content>().ChangeCurruntValue("addData");
+        }
       }
-
       if (role == "observer") {
-        // Get.find<AdminHomeContentController>()
-        //     .updateContent("School Data Management");
+        Get.find<AdminHomeContentController>()
+            .updateContent("School Data Management");
+      }
+      if (role == "guardian") {
+        CheeckGuaIsVeri();
       }
     } catch (e) {
       print('Error in CheeckHasData: $e');
@@ -133,5 +158,10 @@ class Add_Data_controller extends GetxController {
     }
   }
 
-  Future<void> showVerificationDialog() async {}
+  Future<void> showVerificationDialog() async {
+    await Get.dialog(
+      VerifingCodeDialog(),
+      barrierDismissible: false,
+    );
+  }
 }

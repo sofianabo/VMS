@@ -43,6 +43,15 @@ class Re_Email_API {
         ));
       }
       return response.statusCode;
-    } catch (e) {}
+    } catch (e) {
+      if (e is DioException) {
+        if (e.response!.data['message'] == "wrong password") {
+          Get.back();
+          ErrorMessage(
+              "Your password is not true , Please cheek your password and try again later"
+                  .tr);
+        }
+      }
+    }
   }
 }

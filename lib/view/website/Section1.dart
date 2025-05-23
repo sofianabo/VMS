@@ -102,7 +102,7 @@ class _Section1State extends State<Section1>
                                           .copyWith(fontSize: 16)),
                                 ),
                                 onTap: () {
-                                  Get.toNamed("/enroll");
+                                  Get.offAllNamed("/enroll");
                                 },
                               ),
                               GestureDetector(
@@ -116,7 +116,7 @@ class _Section1State extends State<Section1>
                                 ),
                                 onTap: () {
                                   // Get.to(GuardianMainScreen());
-                                  Get.toNamed("/login");
+                                  Get.offAllNamed("/login");
                                 },
                               ),
                             ],
@@ -213,7 +213,7 @@ class _Section1State extends State<Section1>
                                           .copyWith(fontSize: 16)),
                                 ),
                                 onTap: () {
-                                  Get.toNamed("/enroll");
+                                  Get.offAllNamed("/enroll");
                                 },
                               ),
                               GestureDetector(
@@ -226,7 +226,7 @@ class _Section1State extends State<Section1>
                                           .copyWith(fontSize: 16)),
                                 ),
                                 onTap: () {
-                                  Get.toNamed("/login");
+                                  Get.offAllNamed("/login");
                                 },
                               ),
                             ],
@@ -325,7 +325,7 @@ class _Section1State extends State<Section1>
                                       .copyWith(fontSize: 12)),
                             ),
                             onTap: () {
-                              Get.toNamed("/enroll");
+                              Get.offAllNamed("/enroll");
                             },
                           ),
                           GestureDetector(
@@ -338,7 +338,7 @@ class _Section1State extends State<Section1>
                                       .copyWith(fontSize: 12)),
                             ),
                             onTap: () {
-                              Get.toNamed("/login");
+                              Get.offAllNamed("/login");
                             },
                           ),
                         ],

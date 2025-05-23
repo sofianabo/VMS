@@ -79,7 +79,6 @@ class _ProfileState extends State<Add_Data_account> {
         add_Data_controller.myData?.joinDate != null
             ? DateTime.parse("${add_Data_controller.myData?.joinDate}")
             : null;
-
     Get.find<Profile_DropDown_Controller>().Family_StatusIndex =
         add_Data_controller.myData!.familystatus != null
             ? "${add_Data_controller.myData?.familystatus}"
@@ -93,6 +92,8 @@ class _ProfileState extends State<Add_Data_account> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return add_Data_controller.isLoading
         ? Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -138,39 +139,126 @@ class _ProfileState extends State<Add_Data_account> {
                         ),
                         Button_Has_IconText(
                           onPressed: () async {
-                            await Add_Employee_Information.Add_Employee_Info(
-                              First_Name: Firstname.text,
-                              Last_Name: Lastname.text,
-                              Father_Name: Fathername.text,
-                              Mother_Name: Mothername.text,
-                              Phone_Numper: phoneNumper.text,
-                              Emergency_Number: emergencyNumber.text,
-                              Address: Address.text,
-                              Current_Address: currentAddress.text,
-                              Birth_Date: add_Data_controller.Birthdate.value
-                                  .toString(),
-                              Gender: Get.find<Profile_DropDown_Controller>()
-                                  .selecteGenderIndex,
-                              Family_State:
-                                  Get.find<Profile_DropDown_Controller>()
-                                      .selecteFamily_StatusIndex,
-                              Facebook_URL: facebookUrl.text,
-                              X_Platform_URL: xPlatformUrl.text,
-                              Linkedin_URL: linkedinUrl.text,
-                              Instagram_URL: instagramUrl.text,
-                              Bank_Account_Title: bankName.text,
-                              Bank_Name: bankBranchName.text,
-                              Bank_Branch_Name: bankAccountNumber.text,
-                              Bank_Account_Number: bankAccountNumber.text,
-                              IFSC_Code: ifscCode.text,
-                              Career_History: careerHistory.text,
-                              Qualification: Qualification.text,
-                              Experience: Experience.text,
-                              Note: Note.text,
-                              Password: newpassword.text,
-                              selectedImage:
-                                  add_Data_controller.selectedImage.value,
-                            );
+                            bool isFamilyEmpty =
+                                Get.find<Profile_DropDown_Controller>()
+                                        .selecteFamily_StatusIndex
+                                        .isEmpty ||
+                                    Get.find<Profile_DropDown_Controller>()
+                                            .selecteFamily_StatusIndex ==
+                                        "";
+
+                            bool isBirthEmpty =
+                                add_Data_controller.Birthdate.value == null ||
+                                    add_Data_controller.Birthdate.value
+                                            .toString() ==
+                                        "";
+                            bool isfirstEmpty = Firstname.text.trim().isEmpty;
+                            bool islastnameEmpty = Lastname.text.trim().isEmpty;
+                            bool isfatherEmpty = Fathername.text.trim().isEmpty;
+                            bool ismotherEmpty = Mothername.text.trim().isEmpty;
+                            bool isphoneEmpty = phoneNumper.text.trim().isEmpty;
+                            bool isaddressEmpty = Address.text.trim().isEmpty;
+                            bool isemgEmpty =
+                                emergencyNumber.text.trim().isEmpty;
+                            bool isCurrentAdressEmpty =
+                                currentAddress.text.trim().isEmpty;
+                            bool isQualEmpty =
+                                Qualification.text.trim().isEmpty;
+                            bool isExpEmpty = Experience.text.trim().isEmpty;
+                            String password = newpassword.text.trim();
+                            String confirmPassword =
+                                confnewpassword.text.trim();
+
+                            bool isAnyPasswordEntered = password.isNotEmpty ||
+                                confirmPassword.isNotEmpty;
+
+                            bool isPasswordValid = true;
+                            bool isConfirmPasswordValid = true;
+
+                            if (isAnyPasswordEntered) {
+                              isPasswordValid = password.length >= 8;
+                              isConfirmPasswordValid =
+                                  confirmPassword == password &&
+                                      confirmPassword.isNotEmpty;
+                            }
+
+                            controller.updateFieldError("password",
+                                isAnyPasswordEntered && !isPasswordValid);
+                            controller.updateFieldError(
+                                "confirmPassword",
+                                isAnyPasswordEntered &&
+                                    !isConfirmPasswordValid);
+
+                            controller.updateFieldError(
+                                "password", !isPasswordValid);
+                            controller.updateFieldError(
+                                "confirmPassword", !isConfirmPasswordValid);
+
+                            controller.updateFieldError("first", isfirstEmpty);
+                            controller.updateFieldError(
+                                "last", islastnameEmpty);
+                            controller.updateFieldError(
+                                "father", isfatherEmpty);
+                            controller.updateFieldError(
+                                "mother", ismotherEmpty);
+                            controller.updateFieldError("birth", isBirthEmpty);
+                            controller.updateFieldError("phone", isphoneEmpty);
+                            controller.updateFieldError(
+                                "address", isaddressEmpty);
+                            controller.updateFieldError(
+                                "caddress", isCurrentAdressEmpty);
+                            controller.updateFieldError(
+                                "family", isFamilyEmpty);
+                            controller.updateFieldError("qua", isQualEmpty);
+                            controller.updateFieldError("exp", isExpEmpty);
+                            controller.updateFieldError("emg", isemgEmpty);
+
+                            if (!(isFamilyEmpty ||
+                                isBirthEmpty ||
+                                isfirstEmpty ||
+                                isemgEmpty ||
+                                islastnameEmpty ||
+                                isfatherEmpty ||
+                                ismotherEmpty ||
+                                isphoneEmpty ||
+                                isaddressEmpty ||
+                                isCurrentAdressEmpty ||
+                                isQualEmpty ||
+                                isExpEmpty)) {
+                              await Add_Employee_Information.Add_Employee_Info(
+                                First_Name: Firstname.text,
+                                Last_Name: Lastname.text,
+                                Father_Name: Fathername.text,
+                                Mother_Name: Mothername.text,
+                                Phone_Numper: phoneNumper.text,
+                                Emergency_Number: emergencyNumber.text,
+                                Address: Address.text,
+                                Current_Address: currentAddress.text,
+                                Birth_Date: add_Data_controller.Birthdate.value
+                                    .toString(),
+                                Gender: Get.find<Profile_DropDown_Controller>()
+                                    .selecteGenderIndex,
+                                Family_State:
+                                    Get.find<Profile_DropDown_Controller>()
+                                        .selecteFamily_StatusIndex,
+                                Facebook_URL: facebookUrl.text,
+                                X_Platform_URL: xPlatformUrl.text,
+                                Linkedin_URL: linkedinUrl.text,
+                                Instagram_URL: instagramUrl.text,
+                                Bank_Account_Title: bankName.text,
+                                Bank_Name: bankBranchName.text,
+                                Bank_Branch_Name: bankAccountNumber.text,
+                                Bank_Account_Number: bankAccountNumber.text,
+                                IFSC_Code: ifscCode.text,
+                                Career_History: careerHistory.text,
+                                Qualification: Qualification.text,
+                                Experience: Experience.text,
+                                Note: Note.text,
+                                Password: newpassword.text,
+                                selectedImage:
+                                    add_Data_controller.selectedImage.value,
+                              );
+                            }
                           },
                           text: "Save".tr,
                           icon: Icon(
@@ -187,64 +275,94 @@ class _ProfileState extends State<Add_Data_account> {
                           border:
                               Border.all(color: Color(0xffF6F6F6), width: 1.5)),
                       child: GetBuilder<Add_Data_controller>(
-                          init: Add_Data_controller(),
                           builder: (picController) {
-                            return Row(
-                              textDirection: Get.find<LocalizationController>()
-                                          .currentLocale
-                                          .value
-                                          .languageCode ==
-                                      'ar'
-                                  ? TextDirection.rtl
-                                  : TextDirection.ltr,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  textDirection:
-                                      Get.find<LocalizationController>()
-                                                  .currentLocale
-                                                  .value
-                                                  .languageCode ==
-                                              'ar'
-                                          ? TextDirection.rtl
-                                          : TextDirection.ltr,
-                                  children: [
-                                    CircleAvatar(
-                                      maxRadius: 60,
-                                      backgroundColor: const Color(0xffC4C4C4),
-                                      child: picController
-                                                      .selectedImage.value !=
-                                                  null &&
-                                              picController.selectedImage.value!
-                                                  .isNotEmpty
-                                          ? ClipRRect(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(600)),
-                                              child: Image.memory(
-                                                width: 120,
-                                                height: 120,
-                                                picController
-                                                    .selectedImage.value!,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            )
-                                          : Text(
-                                              picController.myData?.firstName
-                                                      ?.substring(0, 1)
-                                                      .toUpperCase() ??
-                                                  'N',
-                                              style: Get.textTheme.titleLarge
-                                                  ?.copyWith(
-                                                color: Get.theme.primaryColor,
-                                                fontSize: 26,
-                                                fontWeight: FontWeight.bold,
-                                              ),
+                        return Container(
+                          width: screenWidth,
+                          child: Wrap(
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            runAlignment: WrapAlignment.center,
+                            alignment: screenWidth >= 535
+                                ? WrapAlignment.spaceBetween
+                                : WrapAlignment.center,
+                            spacing: 10.0,
+                            runSpacing: 10.0,
+                            textDirection: Get.find<LocalizationController>()
+                                        .currentLocale
+                                        .value
+                                        .languageCode ==
+                                    'ar'
+                                ? TextDirection.rtl
+                                : TextDirection.ltr,
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                textDirection:
+                                    Get.find<LocalizationController>()
+                                                .currentLocale
+                                                .value
+                                                .languageCode ==
+                                            'ar'
+                                        ? TextDirection.rtl
+                                        : TextDirection.ltr,
+                                spacing: 25.0,
+                                children: [
+                                  CircleAvatar(
+                                    maxRadius: 60,
+                                    backgroundColor: const Color(0xffC4C4C4),
+                                    child: picController.selectedImage.value !=
+                                                null &&
+                                            picController
+                                                .selectedImage.value!.isNotEmpty
+                                        ? ClipRRect(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(600)),
+                                            child: Image.memory(
+                                              width: 120,
+                                              height: 120,
+                                              picController
+                                                  .selectedImage.value!,
+                                              fit: BoxFit.cover,
                                             ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10.0, right: 10.0),
-                                      child: Column(
+                                          )
+                                        : Text(
+                                            picController.myData?.firstName
+                                                    ?.substring(0, 1)
+                                                    .toUpperCase() ??
+                                                'N',
+                                            style: Get.textTheme.titleLarge
+                                                ?.copyWith(
+                                              color: Get.theme.primaryColor,
+                                              fontSize: 26,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                  ),
+                                  Column(
+                                    textDirection:
+                                        Get.find<LocalizationController>()
+                                                    .currentLocale
+                                                    .value
+                                                    .languageCode ==
+                                                'ar'
+                                            ? TextDirection.rtl
+                                            : TextDirection.ltr,
+                                    spacing: 5.0,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "${add_Data_controller.myData?.firstName} ${add_Data_controller.myData?.lastName}",
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                          "${add_Data_controller.myData?.userName}",
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                          )),
+                                      Row(
                                         textDirection:
                                             Get.find<LocalizationController>()
                                                         .currentLocale
@@ -254,107 +372,81 @@ class _ProfileState extends State<Add_Data_account> {
                                                 ? TextDirection.rtl
                                                 : TextDirection.ltr,
                                         spacing: 5.0,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            "${add_Data_controller.myData?.firstName} ${add_Data_controller.myData?.lastName}",
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold),
+                                          Icon(
+                                            Icons.add,
+                                            size: 14,
                                           ),
                                           Text(
-                                              "${add_Data_controller.myData?.userName}",
+                                              "${add_Data_controller.myData?.jobTitle}"
+                                                  .tr,
                                               style: TextStyle(
                                                 fontSize: 12,
                                               )),
-                                          Row(
-                                            textDirection:
-                                                Get.find<LocalizationController>()
-                                                            .currentLocale
-                                                            .value
-                                                            .languageCode ==
-                                                        'ar'
-                                                    ? TextDirection.rtl
-                                                    : TextDirection.ltr,
-                                            spacing: 5.0,
-                                            children: [
-                                              Icon(
-                                                Icons.add,
-                                                size: 14,
-                                              ),
-                                              Text(
-                                                  "${add_Data_controller.myData?.jobTitle}"
-                                                      .tr,
-                                                  style: TextStyle(
-                                                    fontSize: 12,
-                                                  )),
-                                            ],
-                                          ),
-                                          Row(
-                                            textDirection:
-                                                Get.find<LocalizationController>()
-                                                            .currentLocale
-                                                            .value
-                                                            .languageCode ==
-                                                        'ar'
-                                                    ? TextDirection.rtl
-                                                    : TextDirection.ltr,
-                                            spacing: 5.0,
-                                            children: [
-                                              Icon(
-                                                Icons.timer,
-                                                size: 14,
-                                              ),
-                                              Text(
-                                                  "${add_Data_controller.myData?.contractType}"
-                                                      .tr,
-                                                  style: TextStyle(
-                                                    fontSize: 12,
-                                                  )),
-                                            ],
-                                          ),
                                         ],
                                       ),
+                                      Row(
+                                        textDirection:
+                                            Get.find<LocalizationController>()
+                                                        .currentLocale
+                                                        .value
+                                                        .languageCode ==
+                                                    'ar'
+                                                ? TextDirection.rtl
+                                                : TextDirection.ltr,
+                                        spacing: 5.0,
+                                        children: [
+                                          Icon(
+                                            Icons.timer,
+                                            size: 14,
+                                          ),
+                                          Text(
+                                              "${add_Data_controller.myData?.contractType}"
+                                                  .tr,
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                              )),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                mainAxisSize: MainAxisSize.min,
+                                spacing: 8.0,
+                                children: [
+                                  Button_Has_IconText(
+                                    onPressed: () {
+                                      add_Data_controller.pickImage(
+                                          context, false);
+                                    },
+                                    text: picController.selectedImage.value ==
+                                            null
+                                        ? "Add Picture".tr
+                                        : "Edit Picture".tr,
+                                    icon: Icon(
+                                      Icons.edit,
+                                      color: Get.theme.secondaryHeaderColor,
                                     ),
-                                  ],
-                                ),
-                                Column(
-                                  spacing: 8.0,
-                                  children: [
+                                  ),
+                                  if (picController.selectedImage.value != null)
                                     Button_Has_IconText(
                                       onPressed: () {
-                                        add_Data_controller.pickImage(
-                                            context, false);
+                                        picController.removeimage();
                                       },
-                                      text: picController.selectedImage.value ==
-                                              null
-                                          ? "Add Picture".tr
-                                          : "Edit Picture".tr,
+                                      text: "Delete Picture".tr,
                                       icon: Icon(
-                                        Icons.edit,
-                                        color: Get.theme.secondaryHeaderColor,
+                                        Icons.delete_outline_outlined,
+                                        color: Color(0xffB03D3D),
                                       ),
-                                    ),
-                                    if (picController.selectedImage.value !=
-                                        null)
-                                      Button_Has_IconText(
-                                        onPressed: () {
-                                          picController.removeimage();
-                                        },
-                                        text: "Delete Picture".tr,
-                                        icon: Icon(
-                                          Icons.delete_outline_outlined,
-                                          color: Color(0xffB03D3D),
-                                        ),
-                                      )
-                                  ],
-                                )
-                              ],
-                            );
-                          }),
+                                    )
+                                ],
+                              )
+                            ],
+                          ),
+                        );
+                      }),
                     ),
                     Container(
                       margin: EdgeInsets.only(top: 15.0, bottom: 15.0),
@@ -398,6 +490,14 @@ class _ProfileState extends State<Add_Data_account> {
                                   : TextDirection.ltr,
                               children: [
                                 TextField_Profile(
+                                  isRequired: true,
+                                  isError: controller.IsFirstError,
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      controller.updateFieldError(
+                                          "first", false);
+                                    }
+                                  },
                                   upicon: Icon(
                                     Icons.personal_injury_rounded,
                                     color: Theme.of(context)
@@ -411,6 +511,14 @@ class _ProfileState extends State<Add_Data_account> {
                                   enabled: true,
                                 ),
                                 TextField_Profile(
+                                  isRequired: true,
+                                  isError: controller.IsLastError,
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      controller.updateFieldError(
+                                          "last", false);
+                                    }
+                                  },
                                   upicon: Icon(
                                     Icons.personal_injury_rounded,
                                     color: Theme.of(context)
@@ -424,6 +532,14 @@ class _ProfileState extends State<Add_Data_account> {
                                   enabled: true,
                                 ),
                                 TextField_Profile(
+                                  isRequired: true,
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      controller.updateFieldError(
+                                          "father", false);
+                                    }
+                                  },
+                                  isError: controller.IsFatherError,
                                   upicon: Icon(
                                     Icons.boy,
                                     color: Theme.of(context)
@@ -437,6 +553,14 @@ class _ProfileState extends State<Add_Data_account> {
                                   enabled: true,
                                 ),
                                 TextField_Profile(
+                                  isRequired: true,
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      controller.updateFieldError(
+                                          "mother", false);
+                                    }
+                                  },
+                                  isError: controller.IsMotherError,
                                   upicon: Icon(
                                     Icons.girl,
                                     color: Theme.of(context)
@@ -450,6 +574,15 @@ class _ProfileState extends State<Add_Data_account> {
                                   enabled: true,
                                 ),
                                 TextField_Profile(
+                                  isRequired: true,
+                                  fieldType: "phone",
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      controller.updateFieldError(
+                                          "phone", false);
+                                    }
+                                  },
+                                  isError: controller.IsPhoneError,
                                   upicon: Icon(
                                     Icons.phone_enabled_outlined,
                                     color: Theme.of(context)
@@ -463,6 +596,13 @@ class _ProfileState extends State<Add_Data_account> {
                                   enabled: true,
                                 ),
                                 TextField_Profile(
+                                  isError: controller.IsemgError,
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      controller.updateFieldError("emg", false);
+                                    }
+                                  },
+                                  fieldType: "phone",
                                   upicon: Icon(
                                     Icons.sos,
                                     color: Theme.of(context)
@@ -489,6 +629,7 @@ class _ProfileState extends State<Add_Data_account> {
                                   width: 220,
                                 ),
                                 Profile_BirthDate(
+                                  isError: controller.IsBirthError,
                                   upicon: Icon(
                                     Icons.date_range_rounded,
                                     color: Theme.of(context)
@@ -502,6 +643,14 @@ class _ProfileState extends State<Add_Data_account> {
                                   width: 220,
                                 ),
                                 TextField_Profile(
+                                  isRequired: true,
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      controller.updateFieldError(
+                                          "address", false);
+                                    }
+                                  },
+                                  isError: controller.IsAddressError,
                                   upicon: Icon(
                                     Icons.location_on_outlined,
                                     color: Theme.of(context)
@@ -515,6 +664,14 @@ class _ProfileState extends State<Add_Data_account> {
                                   Uptext: "Address".tr,
                                 ),
                                 TextField_Profile(
+                                  isRequired: true,
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      controller.updateFieldError(
+                                          "caddress", false);
+                                    }
+                                  },
+                                  isError: controller.IsCAddressError,
                                   upicon: Icon(
                                     Icons.my_location_outlined,
                                     color: Theme.of(context)
@@ -542,6 +699,8 @@ class _ProfileState extends State<Add_Data_account> {
                                     width: 220,
                                     type: "Gender"),
                                 Profile_DropDown(
+                                    isError: controller.IsFamilyError,
+                                    isRequired: true,
                                     upicon: Icon(
                                       Icons.family_restroom_outlined,
                                       color: Theme.of(context)
@@ -616,6 +775,13 @@ class _ProfileState extends State<Add_Data_account> {
                                   Uptext: "Career History".tr,
                                 ),
                                 Long_TextField_Profile(
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      controller.updateFieldError("qua", false);
+                                    }
+                                  },
+                                  isError: controller.IsQualfError,
+                                  isRequired: true,
                                   upicon: Icon(
                                     Icons.comment_bank,
                                     color: Theme.of(context)
@@ -629,6 +795,13 @@ class _ProfileState extends State<Add_Data_account> {
                                   enabled: true,
                                 ),
                                 Long_TextField_Profile(
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      controller.updateFieldError("exp", false);
+                                    }
+                                  },
+                                  isError: controller.IsExpError,
+                                  isRequired: true,
                                   upicon: Icon(
                                     Icons.branding_watermark_sharp,
                                     color: Theme.of(context)
@@ -930,6 +1103,7 @@ class _ProfileState extends State<Add_Data_account> {
                                           : TextDirection.ltr,
                                   children: [
                                     TextField_Profile(
+                                      isError: controller.IspasswordError,
                                       upicon: Icon(
                                         Icons.password,
                                         color: Theme.of(context)
@@ -956,6 +1130,7 @@ class _ProfileState extends State<Add_Data_account> {
                                         : TextDirection.ltr,
                                 children: [
                                   TextField_Profile(
+                                    isError: controller.IsconfirmPasswordError,
                                     upicon: Icon(
                                       Icons.password_outlined,
                                       color: Theme.of(context)

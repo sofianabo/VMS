@@ -10,6 +10,7 @@ import 'package:vms_school/view/Admin/All_Settings/Add_Data_My_Account.dart';
 import 'package:vms_school/view/Admin/All_Settings/Apperance.dart';
 import 'package:vms_school/view/Admin/All_Settings/Prof_Section.dart';
 import 'package:vms_school/view/Admin/All_Settings/Personal_Section.dart';
+import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class ProfileSettings extends StatefulWidget {
   ProfileSettings({super.key});
@@ -20,15 +21,8 @@ class ProfileSettings extends StatefulWidget {
 
 class _ProfileSettingsState extends State<ProfileSettings> {
   @override
-  void initState() {
-    Get_My_Profile.Get_My_Profile_Data();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    print(screenWidth);
     var _isDarkMode = Get.isDarkMode.obs;
     return GetBuilder<Admin_Profile_Content>(builder: (controller) {
       return GetBuilder<Add_Data_controller>(builder: (add_Data_Controller) {
@@ -49,15 +43,475 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   ? CrossAxisAlignment.end
                   : CrossAxisAlignment.start,
               children: [
-                add_Data_Controller.hasData
-                    ? Text(
-                        "Application and Profile Settings".tr,
-                        style: TextStyle(fontSize: 20),
-                      )
-                    : Text(
-                        "Complete the registration details before starting".tr,
-                        style: TextStyle(fontSize: 20),
-                      ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  textDirection: Get.find<LocalizationController>()
+                              .currentLocale
+                              .value
+                              .languageCode ==
+                          'ar'
+                      ? TextDirection.rtl
+                      : TextDirection.ltr,
+                  children: [
+                    add_Data_Controller.hasData
+                        ? Container(
+                            width: screenWidth < 768
+                                ? screenWidth - 140
+                                : screenWidth - 180,
+                            child: Text(
+                              textAlign: TextAlign.end,
+                              maxLines: 2,
+                              overflow: TextOverflow.fade,
+                              "Application and Profile Settings".tr,
+                              style: TextStyle(
+                                  fontSize: screenWidth >= 500 ? 20 : 16),
+                            ),
+                          )
+                        : Container(
+                            width: screenWidth < 768
+                                ? screenWidth - 140
+                                : screenWidth - 180,
+                            child: Text(
+                              textAlign: TextAlign.end,
+                              maxLines: 2,
+                              overflow: TextOverflow.fade,
+                              "Complete the registration details before starting"
+                                  .tr,
+                              style: TextStyle(
+                                  fontSize: screenWidth >= 500 ? 20 : 16),
+                            ),
+                          ),
+                    if (screenWidth < 900) // زر لفتح الدالوغ
+                      IconButton(
+                          onPressed: () {
+                            Get.dialog(
+                                VMSAlertDialog(
+                                    action: [],
+                                    contents: SingleChildScrollView(
+                                      child: Container(
+                                        width: 260,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 10.0, right: 10.0),
+                                          child: Column(
+                                            textDirection:
+                                                Get.find<LocalizationController>()
+                                                            .currentLocale
+                                                            .value
+                                                            .languageCode ==
+                                                        'ar'
+                                                    ? TextDirection.rtl
+                                                    : TextDirection.ltr,
+                                            mainAxisSize: MainAxisSize.min,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            spacing: 25.0,
+                                            children: [
+                                              add_Data_Controller.hasData
+                                                  ? Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      spacing: 25.0,
+                                                      textDirection: Get.find<
+                                                                      LocalizationController>()
+                                                                  .currentLocale
+                                                                  .value
+                                                                  .languageCode ==
+                                                              'ar'
+                                                          ? TextDirection.rtl
+                                                          : TextDirection.ltr,
+                                                      children: [
+                                                        GestureDetector(
+                                                          onTap: () {
+                                                            controller
+                                                                .ChangeCurruntValue(
+                                                                    "Profile");
+                                                            Get.back();
+                                                          },
+                                                          child: Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                                    color: controller.curruntValue ==
+                                                                            "Profile"
+                                                                        ? _isDarkMode
+                                                                                .value
+                                                                            ? Theme.of(context)
+                                                                                .indicatorColor
+                                                                            : Color(
+                                                                                0xffEBEBEB)
+                                                                        : Colors
+                                                                            .transparent,
+                                                                    borderRadius:
+                                                                        BorderRadius.all(
+                                                                            Radius.circular(20))),
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    5.0),
+                                                            child: Row(
+                                                              textDirection: Get.find<
+                                                                              LocalizationController>()
+                                                                          .currentLocale
+                                                                          .value
+                                                                          .languageCode ==
+                                                                      'ar'
+                                                                  ? TextDirection
+                                                                      .rtl
+                                                                  : TextDirection
+                                                                      .ltr,
+                                                              children: [
+                                                                Icon(Icons
+                                                                    .dataset_linked_outlined),
+                                                                Text("  " +
+                                                                    "Profile"
+                                                                        .tr +
+                                                                    "  ")
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        GestureDetector(
+                                                          onTap: () {
+                                                            controller
+                                                                .ChangeCurruntValue(
+                                                                    "Personal");
+                                                            Get.back();
+                                                          },
+                                                          child: Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                                    color: controller.curruntValue ==
+                                                                            "Personal"
+                                                                        ? _isDarkMode
+                                                                                .value
+                                                                            ? Theme.of(context)
+                                                                                .indicatorColor
+                                                                            : Color(
+                                                                                0xffEBEBEB)
+                                                                        : Colors
+                                                                            .transparent,
+                                                                    borderRadius:
+                                                                        BorderRadius.all(
+                                                                            Radius.circular(20))),
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    5.0),
+                                                            child: Row(
+                                                              textDirection: Get.find<
+                                                                              LocalizationController>()
+                                                                          .currentLocale
+                                                                          .value
+                                                                          .languageCode ==
+                                                                      'ar'
+                                                                  ? TextDirection
+                                                                      .rtl
+                                                                  : TextDirection
+                                                                      .ltr,
+                                                              children: [
+                                                                Icon(Icons
+                                                                    .person_2_outlined),
+                                                                Text("  " +
+                                                                    "Personal"
+                                                                        .tr +
+                                                                    "  ")
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        GestureDetector(
+                                                          onTap: () {
+                                                            controller
+                                                                .ChangeCurruntValue(
+                                                                    "Password");
+                                                            Get.back();
+                                                          },
+                                                          child: Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                                    color: controller.curruntValue ==
+                                                                            "Password"
+                                                                        ? _isDarkMode
+                                                                                .value
+                                                                            ? Theme.of(context)
+                                                                                .indicatorColor
+                                                                            : Color(
+                                                                                0xffEBEBEB)
+                                                                        : Colors
+                                                                            .transparent,
+                                                                    borderRadius:
+                                                                        BorderRadius.all(
+                                                                            Radius.circular(20))),
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    5.0),
+                                                            child: Row(
+                                                              textDirection: Get.find<
+                                                                              LocalizationController>()
+                                                                          .currentLocale
+                                                                          .value
+                                                                          .languageCode ==
+                                                                      'ar'
+                                                                  ? TextDirection
+                                                                      .rtl
+                                                                  : TextDirection
+                                                                      .ltr,
+                                                              children: [
+                                                                Icon(Icons
+                                                                    .password_outlined),
+                                                                Text("  " +
+                                                                    "Account And Password"
+                                                                        .tr +
+                                                                    "  ")
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    )
+                                                  : Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      spacing: 25.0,
+                                                      textDirection: Get.find<
+                                                                      LocalizationController>()
+                                                                  .currentLocale
+                                                                  .value
+                                                                  .languageCode ==
+                                                              'ar'
+                                                          ? TextDirection.rtl
+                                                          : TextDirection.ltr,
+                                                      children: [
+                                                        GestureDetector(
+                                                          onTap: () {
+                                                            controller
+                                                                .ChangeCurruntValue(
+                                                                    "addData");
+                                                            Get.back();
+                                                          },
+                                                          child: Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                                    color: controller.curruntValue ==
+                                                                            "addData"
+                                                                        ? _isDarkMode
+                                                                                .value
+                                                                            ? Theme.of(context)
+                                                                                .indicatorColor
+                                                                            : Color(
+                                                                                0xffEBEBEB)
+                                                                        : Colors
+                                                                            .transparent,
+                                                                    borderRadius:
+                                                                        BorderRadius.all(
+                                                                            Radius.circular(20))),
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    5.0),
+                                                            child: Row(
+                                                              textDirection: Get.find<
+                                                                              LocalizationController>()
+                                                                          .currentLocale
+                                                                          .value
+                                                                          .languageCode ==
+                                                                      'ar'
+                                                                  ? TextDirection
+                                                                      .rtl
+                                                                  : TextDirection
+                                                                      .ltr,
+                                                              children: [
+                                                                Icon(Icons
+                                                                    .account_circle_outlined),
+                                                                Text("  " +
+                                                                    "My Account"
+                                                                        .tr +
+                                                                    "  ")
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  controller.ChangeCurruntValue(
+                                                      "Appearance");
+                                                  Get.back();
+                                                },
+                                                child: AnimatedContainer(
+                                                  duration: Duration(
+                                                      milliseconds: 150),
+                                                  decoration: BoxDecoration(
+                                                      color: controller
+                                                                  .curruntValue ==
+                                                              "Appearance"
+                                                          ? _isDarkMode.value
+                                                              ? Theme.of(
+                                                                      context)
+                                                                  .indicatorColor
+                                                              : Color(
+                                                                  0xffEBEBEB)
+                                                          : Theme.of(context)
+                                                              .cardColor,
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  20))),
+                                                  padding: EdgeInsets.all(5.0),
+                                                  child: Row(
+                                                    textDirection: Get.find<
+                                                                    LocalizationController>()
+                                                                .currentLocale
+                                                                .value
+                                                                .languageCode ==
+                                                            'ar'
+                                                        ? TextDirection.rtl
+                                                        : TextDirection.ltr,
+                                                    children: [
+                                                      Icon(Icons
+                                                          .settings_applications_outlined),
+                                                      Text(
+                                                        "  " +
+                                                            "Appearance".tr +
+                                                            "  ",
+                                                        maxLines: 2,
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                              GestureDetector(
+                                                onTap: () {},
+                                                child: PopupMenuButton<int>(
+                                                  tooltip: "",
+                                                  onSelected: (value) async {
+                                                    if (value == 1) {
+                                                      await Logoutapi(context)
+                                                          .Logout(Type: "now");
+                                                    } else if (value == 2) {
+                                                      await Logoutapi(context)
+                                                          .Logout(Type: "all");
+                                                    }
+                                                  },
+                                                  itemBuilder: (context) => [
+                                                    PopupMenuItem(
+                                                      value: 1,
+                                                      child: Row(
+                                                        children: [
+                                                          Icon(Icons.logout,
+                                                              size: 18,
+                                                              color: _isDarkMode
+                                                                      .value
+                                                                  ? Colors
+                                                                      .redAccent
+                                                                  : Color(
+                                                                      0xffB03D3D)),
+                                                          SizedBox(width: 8),
+                                                          Text(
+                                                              style: TextStyle(
+                                                                  color: _isDarkMode
+                                                                          .value
+                                                                      ? Colors
+                                                                          .redAccent
+                                                                      : Color(
+                                                                          0xffB03D3D)),
+                                                              "Logout from Current Session"
+                                                                  .tr),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    PopupMenuItem(
+                                                      value: 2,
+                                                      child: Row(
+                                                        children: [
+                                                          Icon(Icons.mobile_off,
+                                                              size: 18,
+                                                              color: _isDarkMode
+                                                                      .value
+                                                                  ? Colors
+                                                                      .redAccent
+                                                                  : Color(
+                                                                      0xffB03D3D)),
+                                                          SizedBox(width: 8),
+                                                          Text(
+                                                              style: TextStyle(
+                                                                  color: _isDarkMode
+                                                                          .value
+                                                                      ? Colors
+                                                                          .redAccent
+                                                                      : Color(
+                                                                          0xffB03D3D)),
+                                                              "Logout from All Sessions"
+                                                                  .tr),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.transparent,
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  20)),
+                                                    ),
+                                                    padding:
+                                                        EdgeInsets.all(5.0),
+                                                    child: Row(
+                                                      textDirection: Get.find<
+                                                                      LocalizationController>()
+                                                                  .currentLocale
+                                                                  .value
+                                                                  .languageCode ==
+                                                              'ar'
+                                                          ? TextDirection.rtl
+                                                          : TextDirection.ltr,
+                                                      children: [
+                                                        Icon(
+                                                          Icons.login_outlined,
+                                                          color: _isDarkMode
+                                                                  .value
+                                                              ? Colors.redAccent
+                                                              : Color(
+                                                                  0xffB03D3D),
+                                                        ),
+                                                        Text(
+                                                          "  " +
+                                                              "Logout".tr +
+                                                              "  ",
+                                                          maxLines: 2,
+                                                          style: TextStyle(
+                                                            color: _isDarkMode
+                                                                    .value
+                                                                ? Colors
+                                                                    .redAccent
+                                                                : Color(
+                                                                    0xffB03D3D),
+                                                          ),
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    apptitle: "Settings".tr,
+                                    subtitle: "none"),
+                                barrierDismissible: false);
+                          },
+                          icon: Icon(Icons.drag_indicator)),
+                  ],
+                ),
                 Expanded(
                   child: Container(
                     margin: EdgeInsets.only(top: 15.0),
@@ -65,6 +519,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         color: Theme.of(context).cardColor),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       textDirection: Get.find<LocalizationController>()
                                   .currentLocale
                                   .value
@@ -90,7 +545,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                               'ar'
                                           ? TextDirection.rtl
                                           : TextDirection.ltr,
-                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   spacing: 25.0,
                                   children: [
                                     Padding(
@@ -103,6 +559,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                     // if(add_Data_Controller.hasData)
                                     add_Data_Controller.hasData
                                         ? Column(
+                                            mainAxisSize: MainAxisSize.min,
                                             spacing: 25.0,
                                             textDirection:
                                                 Get.find<LocalizationController>()
@@ -240,6 +697,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                             ],
                                           )
                                         : Column(
+                                            mainAxisSize: MainAxisSize.min,
                                             spacing: 25.0,
                                             textDirection:
                                                 Get.find<LocalizationController>()

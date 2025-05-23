@@ -30,11 +30,8 @@ class Logoutapi {
             'authorization': 'Bearer ${prefs!.getString("token")}'
           }));
       if (response.statusCode == 200) {
-        await prefs!.clear();
-        Get.find<AdminHomeContentController>().updateContent("Dashboard");
-        Get.off(
-          () => Home(),
-        );
+        prefs!.clear();
+        Get.offAllNamed("/home");
       } else {
         return throw Exception("Failed");
       }
