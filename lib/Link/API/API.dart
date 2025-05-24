@@ -92,6 +92,8 @@ String getSCDTeacherById = "getSCDTeacherById";
 String getSession = "getAllSession";
 String addSession = "addSession";
 String updateSession = "updateSession";
+String closeSession = "closeSession";
+
 String destroy = "destroy";
 String getCountry = "getCountry";
 

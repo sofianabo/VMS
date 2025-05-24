@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Sessions/CloseSessionAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Sessions/Delete_Session_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Sessions/Edit_Session_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
@@ -210,34 +211,39 @@ class SessionManagementGrid extends StatelessWidget {
                                       .toString()
                                       .tr !=
                                   "Closed".tr) {
-                                Get.dialog(VMSAlertDialog(
-                                    action: [
-                                      ButtonDialog(
-                                          text: "Yes Close".tr,
-                                          onPressed: () {
-                                            control.updateStatus(
-                                                index, "Closed".tr);
-                                            Get.back();
-                                          },
-                                          color: const Color(0xff134B70),
-                                          width: 120),
-                                      ButtonDialog(
-                                          text: "Cancel".tr,
-                                          onPressed: () {
-                                            Get.back();
-                                          },
-                                          color: const Color(0xffB03D3D),
-                                          width: 120),
-                                    ],
-                                    contents: SizedBox(
-                                        width: 400,
-                                        child: Text(
-                                          "Close".tr +
-                                              " ${control.Sessionss[index]['name']}",
-                                          style: const TextStyle(fontSize: 16),
-                                        )),
-                                    apptitle: "Close Session".tr,
-                                    subtitle: "none"));
+                                if (Get.find<Add_Data_controller>().roll ==
+                                    "admin") {
+                                  Get.dialog(VMSAlertDialog(
+                                      action: [
+                                        ButtonDialog(
+                                            text: "Yes Close".tr,
+                                            onPressed: () async{
+                                            await  Closesessionapi(context).Closesession(sessionId: control.sessionsss![index].id);
+                                              control.updateStatus(
+                                                  index, "Closed".tr);
+                                              Get.back();
+                                            },
+                                            color: const Color(0xff134B70),
+                                            width: 120),
+                                        ButtonDialog(
+                                            text: "Cancel".tr,
+                                            onPressed: () {
+                                              Get.back();
+                                            },
+                                            color: const Color(0xffB03D3D),
+                                            width: 120),
+                                      ],
+                                      contents: SizedBox(
+                                          width: 400,
+                                          child: Text(
+                                            "Close".tr +
+                                                " ${control.Sessionss[index]['name']}",
+                                            style:
+                                                const TextStyle(fontSize: 16),
+                                          )),
+                                      apptitle: "Close Session".tr,
+                                      subtitle: "none"));
+                                }
                               }
                             }
                           },

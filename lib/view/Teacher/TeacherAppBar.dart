@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/Get_My_Profile.dart';
 import 'package:vms_school/Link/API/Guardians_API/Get_My_Data_API.dart';
 import 'package:vms_school/Link/API/Teacher_API/GetMyAttendenceAPI.dart';
 import 'package:vms_school/Link/API/Teacher_API/GetMyQuizAPI.dart';
@@ -16,6 +17,7 @@ import 'package:vms_school/Link/Model/AdminModel/Students_Models/OneStudentAtten
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Guardian/Profile_Screens/My_Profile.dart';
 import 'package:vms_school/view/Teacher/Functions/StudyshareTeacher.dart';
+import 'package:vms_school/view/Teacher/Teacher_Home/TeacherProfile.dart';
 import 'package:vms_school/widgets/Responsive.dart';
 import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
@@ -47,8 +49,8 @@ class _TeacherappbarState extends State<Teacherappbar> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Get_My_Data_API().Get_My_Data();
-                          Get.dialog(ProfileDialog());
+                          Get_My_Profile.Get_My_Profile_Data();
+                          Get.dialog(Teacherprofile());
                         },
                         child: Container(
                           height: 40,
@@ -298,8 +300,8 @@ class _TeacherappbarState extends State<Teacherappbar> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Get_My_Data_API().Get_My_Data();
-                          Get.dialog(ProfileDialog());
+                          Get_My_Profile.Get_My_Profile_Data();
+                          Get.dialog(Teacherprofile());
                         },
                         child: Container(
                           height: 40,
@@ -564,8 +566,8 @@ class _TeacherappbarState extends State<Teacherappbar> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Get_My_Data_API().Get_My_Data();
-                            Get.dialog(ProfileDialog());
+                            Get_My_Profile.Get_My_Profile_Data();
+                            Get.dialog(Teacherprofile());
                           },
                           child: Container(
                             height: 40,
