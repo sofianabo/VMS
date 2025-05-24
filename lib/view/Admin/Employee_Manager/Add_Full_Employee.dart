@@ -369,12 +369,15 @@ class _Add_Full_EmployeeState extends State<Add_Full_Employee> {
                             controller: Salary,
                             Uptext: "Salary".tr,
                             hinttext: "Salary".tr),
-                        Dropdownallemployee(
-                            title: "Job Title".tr,
-                            isError: controller.IsJopError,
-                            width:
-                                screenWidth >= 600 ? 250 : (screenWidth) - 70,
-                            type: "dialogjobTitle")
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 17.0),
+                          child: Dropdownallemployee(
+                              title: "Job Title".tr,
+                              isError: controller.IsJopError,
+                              width:
+                                  screenWidth >= 600 ? 250 : (screenWidth) - 70,
+                              type: "dialogjobTitle"),
+                        )
                       ],
                     ),
                     Wrap(
