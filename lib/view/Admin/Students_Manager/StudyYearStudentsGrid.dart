@@ -272,26 +272,26 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                       ),
                                     ],
                                   ),
-                                  Text(
-                                      "${controller.filteredStudents![index].state}"
-                                          .tr,
-                                      style: Get.theme.textTheme.bodyMedium!
-                                          .copyWith(
-                                              fontSize: 16,
-                                              color: controller
-                                                          .filteredStudents![
-                                                              index]
-                                                          .state ==
-                                                      "Passing".tr
-                                                  ? const Color(0xff2F9742)
-                                                  : controller
-                                                              .filteredStudents![
-                                                                  index]
-                                                              .state ==
-                                                          "Failed".tr
-                                                      ? const Color(0xff972F2F)
-                                                      : const Color.fromARGB(
-                                                          255, 44, 134, 194))),
+                                  // Text(
+                                  //     "${controller.filteredStudents![index].state}"
+                                  //         .tr,
+                                  //     style: Get.theme.textTheme.bodyMedium!
+                                  //         .copyWith(
+                                  //             fontSize: 16,
+                                  //             color: controller
+                                  //                         .filteredStudents![
+                                  //                             index]
+                                  //                         .state ==
+                                  //                     "Passing".tr
+                                  //                 ? const Color(0xff2F9742)
+                                  //                 : controller
+                                  //                             .filteredStudents![
+                                  //                                 index]
+                                  //                             .state ==
+                                  //                         "Failed".tr
+                                  //                     ? const Color(0xff972F2F)
+                                  //                     : const Color.fromARGB(
+                                  //                         255, 44, 134, 194))),
                                   Text(
                                       "${"Grade Level:".tr} ${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? controller.filteredStudents![index].grade!.name : controller.filteredStudents![index].grade!.enName}",
                                       style: Get.theme.textTheme.bodyMedium),

@@ -51,7 +51,8 @@ class _TeacherappbarState extends State<Teacherappbar> {
                       GestureDetector(
                         onTap: () {
                           Get_My_Profile.Get_My_Profile_Data();
-                          Get.dialog(Teacherprofile());
+                          Get.dialog(Teacherprofile(),
+                              barrierDismissible: false);
                         },
                         child: Container(
                           height: 40,
@@ -302,7 +303,8 @@ class _TeacherappbarState extends State<Teacherappbar> {
                       GestureDetector(
                         onTap: () {
                           Get_My_Profile.Get_My_Profile_Data();
-                          Get.dialog(Teacherprofile());
+                          Get.dialog(Teacherprofile(),
+                              barrierDismissible: false);
                         },
                         child: Container(
                           height: 40,
@@ -568,7 +570,8 @@ class _TeacherappbarState extends State<Teacherappbar> {
                         GestureDetector(
                           onTap: () {
                             Get_My_Profile.Get_My_Profile_Data();
-                            Get.dialog(Teacherprofile());
+                            Get.dialog(Teacherprofile(),
+                                barrierDismissible: false);
                           },
                           child: Container(
                             height: 40,

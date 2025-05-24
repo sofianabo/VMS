@@ -11,6 +11,7 @@ import 'package:vms_school/Link/Controller/GuardianController/MyChildren_Control
 import 'package:vms_school/Link/Model/AdminModel/School_Models/My_Data_Model.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Admin/All_Settings/Verifing_Code_Dialog.dart';
+import 'package:vms_school/view/Teacher/Teacher_Home/TeacherProfile.dart';
 
 class Add_Data_controller extends GetxController {
   bool isLoading = true;
@@ -112,6 +113,8 @@ class Add_Data_controller extends GetxController {
     update();
   }
 
+  bool ischeeck = false;
+
   Future<void> CheeckHasData() async {
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -125,10 +128,18 @@ class Add_Data_controller extends GetxController {
       sethasData(hasData);
       setEmail(email);
       setroll(role);
+
       if (hasDatas != null && hasDatas == false) {
-        await Get_My_Profile.Get_My_Profile_Data();
-        Get.find<AdminHomeContentController>().updateContent("My Profile");
-        Get.find<Admin_Profile_Content>().ChangeCurruntValue("addData");
+        Get_My_Profile.Get_My_Profile_Data();
+        if (role == "teacher") {
+          if (ischeeck == false) {
+            Get.dialog(Teacherprofile(), barrierDismissible: false);
+          }
+          ischeeck = true;
+        } else {
+          Get.find<AdminHomeContentController>().updateContent("My Profile");
+          Get.find<Admin_Profile_Content>().ChangeCurruntValue("addData");
+        }
       }
       if (role == "admin" || role == "subAdmin" || role == "teacher") {
         if (!isVerified) {

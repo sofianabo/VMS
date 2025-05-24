@@ -612,6 +612,7 @@ class _ProfileState extends State<Add_Data_account> {
                                     size: 20,
                                   ),
                                   enabled: true,
+                                  isRequired: true,
                                   controller: emergencyNumber,
                                   Uptext: "Emergency Number".tr,
                                 ),

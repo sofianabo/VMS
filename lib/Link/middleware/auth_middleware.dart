@@ -15,9 +15,6 @@ class RoleBasedMiddleware extends GetMiddleware {
   RouteSettings? redirect(String? route) {
     bool isLoggedIn = prefs?.getBool("isLogin") ?? false;
     String? role = prefs?.getString("role");
-    if (isLoggedIn && role != "guardian" && role != "observer") {
-      print("objectksdajkdasjlksajdlkjsadlkjsadlkjskaldj");
-    }
     if (!isLoggedIn &&
         route != '/home' &&
         route != '/login' &&

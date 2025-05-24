@@ -54,6 +54,13 @@ class _ProfileState extends State<My_Illness> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
+              textDirection: Get.find<LocalizationController>()
+                          .currentLocale
+                          .value
+                          .languageCode ==
+                      'ar'
+                  ? TextDirection.ltr
+                  : TextDirection.rtl,
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,

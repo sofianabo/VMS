@@ -151,7 +151,7 @@ class _StudyYearStudentsState extends State<StudyYearStudents> {
                                                 'ar'
                                             ? reg.division?.name
                                             : reg.division?.enName ?? "",
-                                    "State".tr: (reg) => reg.state!.tr ?? "",
+                                    // "State".tr: (reg) => reg.states!.tr ?? "",
                                   },
                                   fileName:
                                       'Students_${DateTime.now().toIso8601String()}',
@@ -208,7 +208,7 @@ class _StudyYearStudentsState extends State<StudyYearStudents> {
                                                 'ar'
                                             ? reg.division?.name
                                             : reg.division?.enName ?? "",
-                                    "State".tr: (reg) => reg.state!.tr ?? "",
+                                    // "State".tr: (reg) => reg.state!.tr ?? "",
                                   },
                                   fileName:
                                       'Students_${DateTime.now().toIso8601String()}',
@@ -336,8 +336,8 @@ class _StudyYearStudentsState extends State<StudyYearStudents> {
                                                       'ar'
                                                   ? reg.division?.name
                                                   : reg.division?.enName ?? "",
-                                          "State".tr: (reg) =>
-                                              reg.state!.tr ?? "",
+                                          // "State".tr: (reg) =>
+                                          //     reg.state!.tr ?? "",
                                         },
                                         fileName:
                                             'Students_${DateTime.now().toIso8601String()}',
@@ -396,8 +396,8 @@ class _StudyYearStudentsState extends State<StudyYearStudents> {
                                                       'ar'
                                                   ? reg.division?.name
                                                   : reg.division?.enName ?? "",
-                                          "State".tr: (reg) =>
-                                              reg.state!.tr ?? "",
+                                          // "State".tr: (reg) =>
+                                          //     reg.state!.tr ?? "",
                                         },
                                         fileName:
                                             'Students_${DateTime.now().toIso8601String()}',

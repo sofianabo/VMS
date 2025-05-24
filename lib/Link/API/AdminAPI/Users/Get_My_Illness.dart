@@ -31,7 +31,6 @@ class Get_My_Illness_API {
         options: getDioOptions(),
       );
 
-      Get.back();
       if (response.statusCode == 200) {
         await Get_Illness_API(context).Get_Illness();
         Students_Illness studentsIllness =
