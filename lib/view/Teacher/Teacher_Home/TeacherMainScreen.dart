@@ -72,7 +72,7 @@ class _GuardianMainScreenState extends State<TeacherMainScreen> {
                           ),
                         ),
                         backgroundColor: WidgetStateProperty.all(
-                          Theme.of(context).primaryColorLight,
+                          Theme.of(context).primaryColor,
                         ),
                       ),
                       icon: FaIcon(
@@ -157,7 +157,7 @@ class _GuardianMainScreenState extends State<TeacherMainScreen> {
                             ),
                           ),
                           backgroundColor: WidgetStateProperty.all(
-                            Theme.of(context).primaryColorLight,
+                            Theme.of(context).primaryColor,
                           ),
                         ),
                         icon: FaIcon(

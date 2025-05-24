@@ -15,6 +15,7 @@ import 'package:vms_school/Link/Controller/Teacher_Controller/QuizTableTeacherCo
 import 'package:vms_school/Link/Model/AdminModel/EmployeeModels/oneEmployeeAttendenceModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/OneStudentAttendenceModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Guardian/Profile_Screens/My_Profile.dart';
 import 'package:vms_school/view/Teacher/Functions/StudyshareTeacher.dart';
 import 'package:vms_school/view/Teacher/Teacher_Home/TeacherProfile.dart';
@@ -70,7 +71,7 @@ class _TeacherappbarState extends State<Teacherappbar> {
                                     textAlign: TextAlign.center,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
-                                    "${controller.guaName}",
+                                    "${prefs!.getString("fullname")}",
                                     style: Get.theme.textTheme.bodyMedium!
                                         .copyWith(fontSize: 12),
                                   ),
@@ -94,7 +95,7 @@ class _TeacherappbarState extends State<Teacherappbar> {
                               ),
                             ),
                             backgroundColor: WidgetStateProperty.all(
-                              Theme.of(context).primaryColorLight,
+                              Theme.of(context).primaryColor,
                             ),
                           ),
                           icon: Icon(

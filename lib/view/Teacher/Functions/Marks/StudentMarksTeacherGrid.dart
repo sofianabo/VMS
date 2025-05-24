@@ -13,7 +13,8 @@ class Studentmarksteachergrid extends StatefulWidget {
   const Studentmarksteachergrid({super.key});
 
   @override
-  State<Studentmarksteachergrid> createState() => _StudentmarksteachergridState();
+  State<Studentmarksteachergrid> createState() =>
+      _StudentmarksteachergridState();
 }
 
 class _StudentmarksteachergridState extends State<Studentmarksteachergrid> {
@@ -307,7 +308,7 @@ class _StudentmarksteachergridState extends State<Studentmarksteachergrid> {
       child: Text(
         name,
         textAlign: TextAlign.center,
-        style: const TextStyle(color: Colors.black),
+        style: Get.theme.textTheme.bodyMedium,
       ),
     );
   }
@@ -323,8 +324,9 @@ class _StudentmarksteachergridState extends State<Studentmarksteachergrid> {
 
         final numericValue = double.tryParse(displayValue) ?? 0;
 
-        final textColor =
-            numericValue < passingMark ? Colors.red : Colors.black;
+        final textColor = numericValue < passingMark
+            ? Colors.red
+            : Get.theme.secondaryHeaderColor;
 
         return Container(
           height: 45,
@@ -391,8 +393,9 @@ class _StudentmarksteachergridState extends State<Studentmarksteachergrid> {
       id: 'mark_color_${student.id}_${item?.id ?? quizType.id}',
       builder: (ctrl) {
         final currentValue = double.tryParse(controller.text) ?? 0;
-        final textColor =
-            currentValue < passingMark ? Colors.red : Colors.black;
+        final textColor = currentValue < passingMark
+            ? Colors.red
+            : Get.theme.secondaryHeaderColor;
 
         return TextField(
           controller: controller,

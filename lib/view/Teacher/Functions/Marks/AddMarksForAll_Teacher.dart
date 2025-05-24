@@ -98,7 +98,7 @@ void showAddMarkForAllDialog_Teacher() {
                           double.tryParse(markController.text) ?? 0;
                       markColor = currentValue < passingMark
                           ? Colors.red
-                          : Colors.black;
+                          : Get.theme.secondaryHeaderColor;
                     }
                   });
                 },
@@ -142,8 +142,9 @@ void showAddMarkForAllDialog_Teacher() {
                         TextPosition(offset: markController.text.length),
                       );
                     }
-                    markColor =
-                        markValue < passingMark ? Colors.red : Colors.black;
+                    markColor = markValue < passingMark
+                        ? Colors.red
+                        : Get.theme.secondaryHeaderColor;
                   });
                 },
               ),
