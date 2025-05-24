@@ -34,7 +34,7 @@ class RoleBasedMiddleware extends GetMiddleware {
     }
 
     if (isLoggedIn && (role == "guardian")) {
-      CheeckGuaIsVeri();
+      Get.find<Add_Data_controller>().CheeckHasData();
       if (route != '/guardian') {
         return const RouteSettings(name: '/guardian');
       }
@@ -57,23 +57,5 @@ class RoleBasedMiddleware extends GetMiddleware {
       }
     }
     return null;
-  }
-}
-
-CheeckGuaIsVeri() async {
-  final con = Get.find<Add_Data_controller>();
-  final myChildren_Controller = Get.put(MyChildren_Controller());
-  bool? isVerified = prefs!.getBool("isVerified");
-  String? name = prefs!.getString("fullname");
-  myChildren_Controller.Setname(name ?? "");
-  con.setisVerified(isVerified ?? false);
-  con.setroll(prefs!.getString("role") ?? "");
-  if (con.isVerified == false) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Get.dialog(
-        VerifingCodeDialog(),
-        barrierDismissible: false,
-      );
-    });
   }
 }

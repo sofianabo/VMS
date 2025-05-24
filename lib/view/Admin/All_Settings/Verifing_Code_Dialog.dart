@@ -79,7 +79,9 @@ class _VerifingCodeDialogState extends State<VerifingCodeDialog> {
         });
         Get.find<Add_Data_controller>().setisVerified(true);
         Get.back();
-        await Get_My_Profile.Get_My_Profile_Data();
+        if (prefs!.getString("role") != "guardian") {
+          await Get_My_Profile.Get_My_Profile_Data();
+        }
       } else {
         setState(() {
           isLoading = LoadingStatus.normal;
