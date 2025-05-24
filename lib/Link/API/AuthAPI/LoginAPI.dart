@@ -37,7 +37,7 @@ class LoginAPI {
         prefs!.setString("email", user.email ?? "");
         prefs!.setString("imageId", user.imageId.toString());
         prefs!.setString("fullname", user.fullName.toString());
-        Get.offAllNamed('/admin'); // يحذف كل صفحات الستاك
+        Get.offAllNamed('/admin');
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
