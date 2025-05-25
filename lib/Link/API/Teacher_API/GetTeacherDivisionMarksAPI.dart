@@ -11,7 +11,7 @@ import 'package:vms_school/Link/Model/AdminModel/School_Models/AllDivisionModel.
 import 'package:vms_school/Link/API/DioOption.dart';
 
 class Getteacherdivisionmarksapi {
-  Dropdowndivisioncontroller c = Get.find<Dropdowndivisioncontroller>();
+  // Dropdowndivisioncontroller c = Get.find<Dropdowndivisioncontroller>();
 
   final StudentmarksTeacher = Get.find<StudentmarksTeachercontroller>();
 
@@ -23,7 +23,7 @@ class Getteacherdivisionmarksapi {
 
   Getteacherdivisionmarks(int idx, int idx2) async {
     try {
-      c.setIsLoading(true);
+      // c.setIsLoading(true);
 
       StudentmarksTeacher.SetisDivisionLoading(true);
 
@@ -33,8 +33,8 @@ class Getteacherdivisionmarksapi {
           data: {"classId": id}, options: getDioOptions());
       if (response.statusCode == 200) {
         AllDivisionModel division = AllDivisionModel.fromJson(response.data);
-      
-        c.setDivision(division);
+
+        StudentmarksTeacher.SetDivisionList(division);
 
         return division;
       } else {

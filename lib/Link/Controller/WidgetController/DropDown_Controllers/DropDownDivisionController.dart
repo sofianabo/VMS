@@ -49,7 +49,7 @@ class Dropdowndivisioncontroller extends GetxController {
     Get.find<Add_Students_Controller>().SetDivisionlist(newList);
     Get.find<Add_Students_Controller>().SetDivisionlist(newList);
     Get.find<Students_Marks_Controller>().SetDivisionList(newList);
-    Get.find<StudentmarksTeachercontroller>().SetDivisionList(newList);
+    // Get.find<StudentmarksTeachercontroller>().SetDivisionList(newList);
     Get.find<My_Students_Controller>().setDivisionList(newList);
     setIsLoading(false);
     update();

@@ -26,7 +26,7 @@ class Dropdownsemsesterapi {
         AllSemesterModel sem = AllSemesterModel.fromJson(response.data);
         c.setsemester(sem);
         ExamController.setAllSeason(sem);
-
+           
         ExamController.setisSemesterLoading(false);
         return sem;
       } else {

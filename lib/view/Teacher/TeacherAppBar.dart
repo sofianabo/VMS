@@ -298,6 +298,7 @@ class _TeacherappbarState extends State<Teacherappbar> {
               child: Row(
                 children: [
                   Row(
+                    spacing: 10,
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       GestureDetector(
@@ -315,6 +316,7 @@ class _TeacherappbarState extends State<Teacherappbar> {
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: Row(
+                            spacing: 10,
                             children: [
                               Expanded(
                                 child: Padding(
@@ -324,7 +326,7 @@ class _TeacherappbarState extends State<Teacherappbar> {
                                     textAlign: TextAlign.center,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
-                                    "${controller.guaName}",
+                                    "${prefs!.getString("fullname")}",
                                     style: Get.theme.textTheme.bodyMedium!
                                         .copyWith(fontSize: 12),
                                   ),
@@ -582,6 +584,7 @@ class _TeacherappbarState extends State<Teacherappbar> {
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: Row(
+                              spacing: 10,
                               children: [
                                 Expanded(
                                   child: Padding(
@@ -591,7 +594,7 @@ class _TeacherappbarState extends State<Teacherappbar> {
                                       textAlign: TextAlign.center,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
-                                      "${controller.guaName}",
+                                      "${prefs!.getString("fullname")}",
                                       style: Get.theme.textTheme.bodyMedium!
                                           .copyWith(fontSize: 12),
                                     ),

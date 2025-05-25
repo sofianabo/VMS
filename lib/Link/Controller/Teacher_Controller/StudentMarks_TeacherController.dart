@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllClassesModel.dart';
+import 'package:vms_school/Link/Model/AdminModel/School_Models/AllDivisionModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Curriculum_Model.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/Students_Marks_Model.dart';
 import 'package:vms_school/Translate/local_controller.dart';
@@ -113,6 +114,7 @@ class StudentmarksTeachercontroller extends GetxController {
   int semesterId = 1;
   List<String> Classlist = [];
   List<String> Divisionlist = [];
+  List<Division> alldivision = [];
   List<String> Semesterlist = [
     "The First Semester",
     "The Second Semester",
@@ -155,8 +157,11 @@ class StudentmarksTeachercontroller extends GetxController {
     List<String> classess = [];
     if (ClassModel.classes != null) {
       for (var g in ClassModel.classes!) {
-        if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar')
+        if (Get.find<LocalizationController>()
+                .currentLocale
+                .value
+                .languageCode ==
+            'ar')
           classess.add(g.name.toString());
         else
           classess.add(g.enName.toString());
@@ -170,10 +175,24 @@ class StudentmarksTeachercontroller extends GetxController {
     update();
   }
 
-  SetDivisionList(List<String> value) {
+  SetDivisionList(AllDivisionModel value) {
+    List<String> divisions = [];
+    if (value.division != null) {
+      for (var g in value.division!) {
+        if (Get.find<LocalizationController>()
+                .currentLocale
+                .value
+                .languageCode ==
+            'ar')
+          divisions.add(g.name.toString());
+        else
+          divisions.add(g.enName.toString());
+      }
+    }
     DivisionIndex = "";
+    alldivision = value.division!;
     Divisionlist = [];
-    Divisionlist = value;
+    Divisionlist = divisions;
     isDivisionLoading = false;
     update();
   }
@@ -188,8 +207,11 @@ class StudentmarksTeachercontroller extends GetxController {
     List<String> curr = [];
     if (curriculumModel.curriculum != null) {
       for (var g in curriculumModel.curriculum!) {
-        if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar')
+        if (Get.find<LocalizationController>()
+                .currentLocale
+                .value
+                .languageCode ==
+            'ar')
           curr.add(g.name.toString());
         else
           curr.add(g.enName.toString());
