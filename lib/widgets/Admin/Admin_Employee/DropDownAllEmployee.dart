@@ -75,7 +75,7 @@ class Dropdownallemployee extends StatelessWidget {
       }
 
       return Container(
-        height: 40,
+        height: 60,
         child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,

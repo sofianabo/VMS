@@ -248,7 +248,7 @@ class _SearchWithSuggestionsState extends State<SearchWithSuggestions> {
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
               borderSide: BorderSide(
-                color: Theme.of(context).highlightColor,
+                color: Theme.of(context).textTheme.titleMedium!.color!,
                 width: 1,
               ),
             ),

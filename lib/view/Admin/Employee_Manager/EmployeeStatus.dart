@@ -126,7 +126,10 @@ class _EmployeeStatusState extends State<EmployeeStatus> {
                             },
                             icon: Icon(VMS_Icons.pdf,
                                 size: 18,
-                                color: Theme.of(context).highlightColor)),
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .color!)),
                       ),
                       Container(
                         width: 40,
@@ -163,7 +166,10 @@ class _EmployeeStatusState extends State<EmployeeStatus> {
                             },
                             icon: Icon(VMS_Icons.xl,
                                 size: 18,
-                                color: Theme.of(context).highlightColor)),
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .color!)),
                       ),
                     ],
                   )
@@ -252,7 +258,10 @@ class _EmployeeStatusState extends State<EmployeeStatus> {
                               },
                               icon: Icon(VMS_Icons.xl,
                                   size: 18,
-                                  color: Theme.of(context).highlightColor)),
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .color!)),
                         ),
                         Padding(
                           padding:
@@ -293,7 +302,10 @@ class _EmployeeStatusState extends State<EmployeeStatus> {
                                 },
                                 icon: Icon(VMS_Icons.pdf,
                                     size: 18,
-                                    color: Theme.of(context).highlightColor)),
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .color!)),
                           ),
                         ),
                       ],

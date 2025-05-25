@@ -260,7 +260,10 @@ class _DivisionManagementState extends State<DivisionManagement> {
                             },
                             icon: Icon(Icons.add,
                                 size: 18,
-                                color: Theme.of(context).highlightColor)),
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .color!)),
                       ),
                       Container(
                         width: 40,
@@ -316,7 +319,10 @@ class _DivisionManagementState extends State<DivisionManagement> {
                             },
                             icon: Icon(VMS_Icons.pdf,
                                 size: 18,
-                                color: Theme.of(context).highlightColor)),
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .color!)),
                       ),
                       Container(
                         width: 40,
@@ -372,7 +378,10 @@ class _DivisionManagementState extends State<DivisionManagement> {
                             },
                             icon: Icon(VMS_Icons.xl,
                                 size: 18,
-                                color: Theme.of(context).highlightColor)),
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .color!)),
                       ),
                     ],
                   )
@@ -442,7 +451,10 @@ class _DivisionManagementState extends State<DivisionManagement> {
                           },
                           icon: Icon(Icons.add,
                               size: 18,
-                              color: Theme.of(context).highlightColor)),
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .color!)),
                     ),
                     Container(
                       width: 40,
@@ -498,7 +510,10 @@ class _DivisionManagementState extends State<DivisionManagement> {
                           },
                           icon: Icon(VMS_Icons.pdf,
                               size: 18,
-                              color: Theme.of(context).highlightColor)),
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .color!)),
                     ),
                     Container(
                       width: 40,
@@ -554,7 +569,10 @@ class _DivisionManagementState extends State<DivisionManagement> {
                           },
                           icon: Icon(VMS_Icons.xl,
                               size: 18,
-                              color: Theme.of(context).highlightColor)),
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .color!)),
                     ),
                   ],
                 ),

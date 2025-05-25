@@ -137,7 +137,10 @@ class _RequestsState extends State<Requests> {
                             },
                             icon: Icon(VMS_Icons.xl,
                                 size: 18,
-                                color: Theme.of(context).highlightColor)),
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .color!)),
                       ),
                       Container(
                         width: 40,
@@ -197,7 +200,10 @@ class _RequestsState extends State<Requests> {
                             },
                             icon: Icon(VMS_Icons.pdf,
                                 size: 18,
-                                color: Theme.of(context).highlightColor)),
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .color!)),
                       ),
                     ],
                   )
@@ -301,7 +307,10 @@ class _RequestsState extends State<Requests> {
                             },
                             icon: Icon(VMS_Icons.xl,
                                 size: 18,
-                                color: Theme.of(context).highlightColor)),
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .color!)),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 10.0, left: 10.0),
@@ -364,7 +373,10 @@ class _RequestsState extends State<Requests> {
                               },
                               icon: Icon(VMS_Icons.pdf,
                                   size: 18,
-                                  color: Theme.of(context).highlightColor)),
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .color!)),
                         ),
                       ),
                     ],

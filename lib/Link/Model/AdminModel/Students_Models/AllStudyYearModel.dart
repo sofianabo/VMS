@@ -11,14 +11,6 @@ class AllStudyYearModel {
       });
     }
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.students != null) {
-      data['students'] = this.students!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
 }
 
 class Students {
@@ -63,31 +55,6 @@ class Students {
         : null;
     userName = json['userName'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['fileId'] = this.fileId;
-    if (this.states != null) {
-      data['states'] = this.states!.toJson();
-    }
-    data['fullName'] = this.fullName;
-    data['email'] = this.email;
-    if (this.division != null) {
-      data['division'] = this.division!.toJson();
-    }
-    if (this.classes != null) {
-      data['classes'] = this.classes!.toJson();
-    }
-    if (this.grade != null) {
-      data['grade'] = this.grade!.toJson();
-    }
-    if (this.guardians != null) {
-      data['guardians'] = this.guardians!.toJson();
-    }
-    data['userName'] = this.userName;
-    return data;
-  }
 }
 
 class States {
@@ -102,14 +69,6 @@ class States {
     secondSemester = json['secondSemester'];
     thirdSemester = json['thirdSemester'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['firstSemester'] = this.firstSemester;
-    data['secondSemester'] = this.secondSemester;
-    data['thirdSemester'] = this.thirdSemester;
-    return data;
-  }
 }
 
 class Division {
@@ -121,13 +80,6 @@ class Division {
   Division.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     enName = json['EnName'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['EnName'] = this.enName;
-    return data;
   }
 }
 
@@ -154,16 +106,5 @@ class Guardians {
     nationalId = json['nationalId'];
     email = json['email'];
     userName = json['userName'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['phone'] = this.phone;
-    data['nationalId'] = this.nationalId;
-    data['email'] = this.email;
-    data['userName'] = this.userName;
-    return data;
   }
 }

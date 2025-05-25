@@ -202,7 +202,7 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                                           Row(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.end,
-                                                spacing: 20,
+                                            spacing: 20,
                                             children: [
                                               Textfildwithupper(
                                                   onChanged: (value) {
@@ -243,9 +243,8 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                                                                 false);
                                                       }
                                                     },
-                                                    isError:
-                                                        Virtual_controller
-                                                            .IsPasswordError,
+                                                    isError: Virtual_controller
+                                                        .IsPasswordError,
                                                     fieldType: "password",
                                                     IconButton: IconButton(
                                                         onPressed: () {
@@ -261,11 +260,11 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                                                                   .visibility_off
                                                               : Icons
                                                                   .remove_red_eye_outlined,
-                                                          color: Theme.of(
-                                                                  context)
-                                                              .textTheme
-                                                              .bodySmall!
-                                                              .color,
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodySmall!
+                                                                  .color,
                                                         )),
                                                     hidePassword:
                                                         Virtual_controller
@@ -336,7 +335,10 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                               },
                               icon: Icon(Icons.add,
                                   size: 18,
-                                  color: Theme.of(context).highlightColor)),
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .color!)),
                         ),
                         Padding(
                           padding:
@@ -381,7 +383,10 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                                 },
                                 icon: Icon(VMS_Icons.pdf,
                                     size: 18,
-                                    color: Theme.of(context).highlightColor)),
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .color!)),
                           ),
                         ),
                         Container(
@@ -423,7 +428,10 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                               },
                               icon: Icon(VMS_Icons.xl,
                                   size: 18,
-                                  color: Theme.of(context).highlightColor)),
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .color!)),
                         ),
                       ],
                     )

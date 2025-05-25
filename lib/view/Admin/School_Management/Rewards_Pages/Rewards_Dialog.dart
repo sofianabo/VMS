@@ -184,17 +184,17 @@ Widget _buildToolButton({
           backgroundColor: const WidgetStatePropertyAll(Colors.transparent),
           shape: WidgetStatePropertyAll(RoundedRectangleBorder(
             borderRadius: const BorderRadius.all(Radius.circular(3)),
-            side: BorderSide(color: Get.theme.highlightColor),
+            side: BorderSide(color: Get.theme.textTheme.titleMedium!.color!),
           ))),
       onPressed: onPressed,
       child: Row(
         children: [
-          Icon(icon, color: Get.theme.highlightColor),
+          Icon(icon, color: Get.theme.textTheme.titleMedium!.color!),
           const SizedBox(width: 6.0),
           Text(
             label,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(color: Get.theme.highlightColor),
+            style: TextStyle(color: Get.theme.textTheme.titleMedium!.color!),
           ),
         ],
       ),

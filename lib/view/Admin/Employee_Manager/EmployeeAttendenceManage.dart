@@ -148,7 +148,9 @@ class _EmployeeAttendanceManagmentState
                         }
                       },
                       icon: Icon(Icons.file_upload_outlined,
-                          size: 22, color: Theme.of(context).highlightColor)),
+                          size: 22,
+                          color:
+                              Theme.of(context).textTheme.titleMedium!.color!)),
                 ),
               ],
             );

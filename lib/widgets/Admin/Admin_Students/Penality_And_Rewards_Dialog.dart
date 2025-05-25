@@ -329,8 +329,12 @@ class _Re_Pe_PageState extends State<Re_Pe_Page>
                                                           const EdgeInsets.only(
                                                               top: 8.0,
                                                               bottom: 8.0),
-                                                      child: Text(Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
+                                                      child: Text(Get.find<
+                                                                      LocalizationController>()
+                                                                  .currentLocale
+                                                                  .value
+                                                                  .languageCode ==
+                                                              'ar'
                                                           ? "( ${PAR_Controller.penaltiesModel!.penaltyStudent![index].penalty![0].name} )"
                                                           : "( ${PAR_Controller.penaltiesModel!.penaltyStudent![index].penalty![0].enName} )"),
                                                     ),
@@ -347,7 +351,7 @@ class _Re_Pe_PageState extends State<Re_Pe_Page>
                                                         Text("End Date".tr +
                                                             ": "),
                                                         Text(
-                                                            "${PAR_Controller.penaltiesModel!.penaltyStudent![index].endDate}"),
+                                                            "${PAR_Controller.penaltiesModel!.penaltyStudent![index].endDate ?? "Not Selected".tr}"),
                                                       ],
                                                     ),
                                                     Row(

@@ -85,7 +85,7 @@ class DatePicker extends StatelessWidget {
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
                     borderSide: BorderSide(
-                        color: Theme.of(context).colorScheme.primary, width: 2),
+                        color: Theme.of(context).primaryColor, width: 2),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),

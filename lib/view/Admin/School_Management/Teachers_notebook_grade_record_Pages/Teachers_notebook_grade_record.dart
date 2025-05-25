@@ -117,7 +117,7 @@ class _Teachers_notebook_grade_recordState
                                 color: controller.isClassLoading == true ||
                                         controller.ClassIndex.trim().toString() == ""
                                     ? Colors.white
-                                    : Theme.of(context).highlightColor)),
+                                    : Theme.of(context).textTheme.titleMedium!.color!)),
                       ),
                       GetBuilder<TeachernoteAndGradeReco>(builder: (Con) {
                         return Container(
@@ -176,7 +176,7 @@ class _Teachers_notebook_grade_recordState
                                           controller.ClassIndex.trim().isEmpty ||
                                           (controller.Qt_Model?.type?.isEmpty ?? true)
                                       ? Colors.white
-                                      : Theme.of(context).highlightColor)),
+                                      : Theme.of(context).textTheme.titleMedium!.color!)),
                         );
                       }),
                       Container(
@@ -234,7 +234,7 @@ class _Teachers_notebook_grade_recordState
                                 color: controller.isClassLoading == true ||
                                         controller.ClassIndex.trim().toString() == ""
                                     ? Colors.white
-                                    : Theme.of(context).highlightColor)),
+                                    : Theme.of(context).textTheme.titleMedium!.color!)),
                       ),
                     ],
                   )
@@ -316,8 +316,11 @@ SelectedClass() {
                                 : null,
                           ),
                           child: Text(
-                             Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
+                            Get.find<LocalizationController>()
+                                        .currentLocale
+                                        .value
+                                        .languageCode ==
+                                    'ar'
                                 ? "${classItem.name}"
                                 : "${classItem.enName}",
                             style: TextStyle(color: Colors.white, fontSize: 16),
