@@ -108,8 +108,11 @@ class _StudentsAttendanceManagmentState
                                         if (value == true) {
                                           Get.dialog(Directionality(
                                             textDirection:
-                                                Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
+                                                Get.find<LocalizationController>()
+                                                            .currentLocale
+                                                            .value
+                                                            .languageCode ==
+                                                        'ar'
                                                     ? TextDirection.rtl
                                                     : TextDirection.ltr,
                                             child: VMSAlertDialog(
@@ -192,7 +195,11 @@ class _StudentsAttendanceManagmentState
                           }
                         },
                         icon: Icon(Icons.file_upload_outlined,
-                            size: 22, color: Theme.of(context).highlightColor)),
+                            size: 22,
+                            color: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .color!)),
                   ),
                 ],
               ),
@@ -251,8 +258,11 @@ class _StudentsAttendanceManagmentState
                                       if (value == true) {
                                         Get.dialog(Directionality(
                                           textDirection:
-                                              Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
+                                              Get.find<LocalizationController>()
+                                                          .currentLocale
+                                                          .value
+                                                          .languageCode ==
+                                                      'ar'
                                                   ? TextDirection.rtl
                                                   : TextDirection.ltr,
                                           child: VMSAlertDialog(
@@ -335,7 +345,10 @@ class _StudentsAttendanceManagmentState
                           },
                           icon: Icon(Icons.file_upload_outlined,
                               size: 22,
-                              color: Theme.of(context).highlightColor)),
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .color!)),
                     ),
                   ],
                 ),

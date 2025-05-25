@@ -705,6 +705,10 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                             onPressed: () {
                                               Get_Students_Marks_API_Gua()
                                                   .Get_Students_Marks(
+                                                      name: control
+                                                          .filteredStudents[
+                                                              index]
+                                                          .fullName,
                                                       StudentsID: control
                                                           .filteredStudents[
                                                               index]

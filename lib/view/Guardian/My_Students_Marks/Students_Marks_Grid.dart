@@ -31,10 +31,9 @@ class _GradesScreenState extends State<GradesScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('سجل الدرجات'),
-        bottom: TabBar(
+    return Column(
+      children: [
+        TabBar(
           controller: _tabController,
           tabs: [
             Tab(text: 'The First Semester'.tr),
@@ -42,23 +41,25 @@ class _GradesScreenState extends State<GradesScreen>
             Tab(text: 'The Third Semester'.tr),
           ],
         ),
-      ),
-      body: GetBuilder<Students_Marks_Gua_Controller>(
-        builder: (controller) {
-          if (controller.isLoading) {
-            return Center(child: CircularProgressIndicator());
-          }
+        Expanded(
+          child: GetBuilder<Students_Marks_Gua_Controller>(
+            builder: (controller) {
+              if (controller.isLoading) {
+                return Center(child: CircularProgressIndicator());
+              }
 
-          return TabBarView(
-            controller: _tabController,
-            children: [
-              _buildSemesterTab(controller.data?.theFirstSemester),
-              _buildSemesterTab(controller.data?.theSecondSemester),
-              _buildSemesterTab(controller.data?.theThirdSemester),
-            ],
-          );
-        },
-      ),
+              return TabBarView(
+                controller: _tabController,
+                children: [
+                  _buildSemesterTab(controller.data?.theFirstSemester),
+                  _buildSemesterTab(controller.data?.theSecondSemester),
+                  _buildSemesterTab(controller.data?.theThirdSemester),
+                ],
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 

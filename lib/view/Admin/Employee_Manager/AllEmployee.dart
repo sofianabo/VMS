@@ -117,7 +117,10 @@ class _AllEmployeeState extends State<AllEmployee> {
                               color: Get.find<Add_Data_controller>().roll ==
                                       "subAdmin"
                                   ? Get.theme.disabledColor
-                                  : Theme.of(context).highlightColor),
+                                  : Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .color!),
                           onSelected: (value) async {
                             if (value == "Add Employee".tr) {
                               Get.find<Allempolyeecontroller>().resertError();
@@ -193,7 +196,10 @@ class _AllEmployeeState extends State<AllEmployee> {
                             },
                             icon: Icon(VMS_Icons.pdf,
                                 size: 18,
-                                color: Theme.of(context).highlightColor)),
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .color!)),
                       ),
                       Container(
                         width: 40,
@@ -240,7 +246,10 @@ class _AllEmployeeState extends State<AllEmployee> {
                             },
                             icon: Icon(VMS_Icons.xl,
                                 size: 18,
-                                color: Theme.of(context).highlightColor)),
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .color!)),
                       ),
                     ],
                   )
@@ -329,7 +338,10 @@ class _AllEmployeeState extends State<AllEmployee> {
                                 color: Get.find<Add_Data_controller>().roll ==
                                         "subAdmin"
                                     ? Get.theme.disabledColor
-                                    : Theme.of(context).highlightColor),
+                                    : Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .color!),
                             onSelected: (value) async {
                               if (value == "Add Employee".tr) {
                                 Get.find<Allempolyeecontroller>().resertError();
@@ -409,7 +421,10 @@ class _AllEmployeeState extends State<AllEmployee> {
                                 },
                                 icon: Icon(VMS_Icons.pdf,
                                     size: 18,
-                                    color: Theme.of(context).highlightColor)),
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .color!)),
                           ),
                         ),
                         Container(
@@ -457,7 +472,10 @@ class _AllEmployeeState extends State<AllEmployee> {
                               },
                               icon: Icon(VMS_Icons.xl,
                                   size: 18,
-                                  color: Theme.of(context).highlightColor)),
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .color!)),
                         ),
                       ],
                     )

@@ -114,9 +114,7 @@ class _StudentmarksteacherState extends State<Studentmarksteacher> {
                               width: 40,
                               height: 40,
                               decoration: BoxDecoration(
-                                  color: validate
-                                      ? Get.theme.disabledColor
-                                      : Theme.of(context).cardColor,
+                                  color: validate ? Get.theme.disabledColor : Theme.of(context).cardColor,
                                   borderRadius: BorderRadius.circular(5),
                                   boxShadow: const [
                                     BoxShadow(
@@ -132,9 +130,10 @@ class _StudentmarksteacherState extends State<Studentmarksteacher> {
                                       backgroundColor: WidgetStatePropertyAll(validate
                                           ? Get.theme.disabledColor
                                           : Theme.of(context).cardColor),
-                                      shape: const WidgetStatePropertyAll(RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))))),
+                                      shape: const WidgetStatePropertyAll(
+                                          RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(5))))),
                                   onPressed: () {
                                     if (!validate) {
                                       showAddMarkForAllDialog_Teacher();
@@ -144,14 +143,15 @@ class _StudentmarksteacherState extends State<Studentmarksteacher> {
                                       size: 18,
                                       color: validate
                                           ? Colors.white
-                                          : Theme.of(context).highlightColor))),
+                                          : Theme.of(context)
+                                              .textTheme
+                                              .titleMedium!
+                                              .color!))),
                           Container(
                               width: 40,
                               height: 40,
                               decoration: BoxDecoration(
-                                  color: validate
-                                      ? Get.theme.disabledColor
-                                      : Theme.of(context).cardColor,
+                                  color: validate ? Get.theme.disabledColor : Theme.of(context).cardColor,
                                   borderRadius: BorderRadius.circular(5),
                                   boxShadow: const [
                                     BoxShadow(
@@ -167,9 +167,10 @@ class _StudentmarksteacherState extends State<Studentmarksteacher> {
                                       backgroundColor: WidgetStatePropertyAll(validate
                                           ? Get.theme.disabledColor
                                           : Theme.of(context).cardColor),
-                                      shape: const WidgetStatePropertyAll(RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))))),
+                                      shape: const WidgetStatePropertyAll(
+                                          RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(5))))),
                                   onPressed: () {
                                     if (!validate) {
                                       for (var student in controller
@@ -198,7 +199,10 @@ class _StudentmarksteacherState extends State<Studentmarksteacher> {
                                       size: 18,
                                       color: validate
                                           ? Colors.white
-                                          : Theme.of(context).highlightColor))),
+                                          : Theme.of(context)
+                                              .textTheme
+                                              .titleMedium!
+                                              .color!))),
                         ],
                       ),
                     )
@@ -276,9 +280,7 @@ class _StudentmarksteacherState extends State<Studentmarksteacher> {
                               width: 40,
                               height: 40,
                               decoration: BoxDecoration(
-                                  color: validate
-                                      ? Get.theme.disabledColor
-                                      : Theme.of(context).cardColor,
+                                  color: validate ? Get.theme.disabledColor : Theme.of(context).cardColor,
                                   borderRadius: BorderRadius.circular(5),
                                   boxShadow: const [
                                     BoxShadow(
@@ -294,9 +296,10 @@ class _StudentmarksteacherState extends State<Studentmarksteacher> {
                                       backgroundColor: WidgetStatePropertyAll(validate
                                           ? Get.theme.disabledColor
                                           : Theme.of(context).cardColor),
-                                      shape: const WidgetStatePropertyAll(RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))))),
+                                      shape: const WidgetStatePropertyAll(
+                                          RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(5))))),
                                   onPressed: () {
                                     if (!validate) {
                                       showAddMarkForAllDialog_Teacher();
@@ -306,14 +309,15 @@ class _StudentmarksteacherState extends State<Studentmarksteacher> {
                                       size: 18,
                                       color: validate
                                           ? Colors.white
-                                          : Theme.of(context).highlightColor))),
+                                          : Theme.of(context)
+                                              .textTheme
+                                              .titleMedium!
+                                              .color!))),
                           Container(
                               width: 40,
                               height: 40,
                               decoration: BoxDecoration(
-                                  color: validate
-                                      ? Get.theme.disabledColor
-                                      : Theme.of(context).cardColor,
+                                  color: validate ? Get.theme.disabledColor : Theme.of(context).cardColor,
                                   borderRadius: BorderRadius.circular(5),
                                   boxShadow: const [
                                     BoxShadow(
@@ -329,9 +333,10 @@ class _StudentmarksteacherState extends State<Studentmarksteacher> {
                                       backgroundColor: WidgetStatePropertyAll(validate
                                           ? Get.theme.disabledColor
                                           : Theme.of(context).cardColor),
-                                      shape: const WidgetStatePropertyAll(RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))))),
+                                      shape: const WidgetStatePropertyAll(
+                                          RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(5))))),
                                   onPressed: () {
                                     if (!validate) {
                                       for (var student in controller
@@ -360,7 +365,10 @@ class _StudentmarksteacherState extends State<Studentmarksteacher> {
                                       size: 18,
                                       color: validate
                                           ? Colors.white
-                                          : Theme.of(context).highlightColor))),
+                                          : Theme.of(context)
+                                              .textTheme
+                                              .titleMedium!
+                                              .color!))),
                         ],
                       ),
                     )

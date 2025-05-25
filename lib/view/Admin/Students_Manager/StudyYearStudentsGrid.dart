@@ -6,6 +6,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/Students_APIs/StudentPunishAPI.dart';
+import 'package:vms_school/Link/API/Guardians_API/Get_Students_Marks_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Rewards_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/PenaltiesAndRewardsController.dart';
@@ -158,27 +159,15 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () async {
-                          final controllers =
-                              Get.put(Penaltiesandrewardscontroller());
-
-                          controllers.fetchPenalties(int.parse(controller
-                              .filteredStudents![index].id
-                              .toString()));
-
-                          controllers.fetchRewards(int.parse(controller
-                              .filteredStudents![index].id
-                              .toString()));
-
-                          Get.dialog(
-                            barrierDismissible: false,
-                            Re_Pe_Page(
-                                isTeacher: false,
-                                Id: controller.filteredStudents![index].id
-                                    .toString(),
+                          if (Get.find<Add_Data_controller>().roll == "admin" ||
+                              Get.find<Add_Data_controller>().roll ==
+                                  "subAdmin") {
+                            Get_Students_Marks_API_Gua().Get_Students_Marks(
                                 name: controller
-                                    .filteredStudents![index].fullName
-                                    .toString()),
-                          );
+                                    .filteredStudents![index].fullName,
+                                StudentsID:
+                                    controller.filteredStudents![index].id);
+                          }
                         },
                         child: HoverScaleCard(
                           child: Container(
@@ -313,19 +302,20 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                                                 .roll !=
                                                             "observer"
                                                         ? Colors.transparent
-                                                        : Theme.of(context)
+                                                        : Theme.of(
+                                                                context)
                                                             .disabledColor,
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(3)),
+                                                borderRadius:
+                                                    BorderRadius.all(
+                                                        Radius.circular(3)),
                                                 border: Border.all(
-                                                    color:
-                                                        Get.find<Add_Data_controller>()
-                                                                    .roll !=
-                                                                "observer"
-                                                            ? Get.theme
-                                                                .highlightColor
-                                                            : Theme.of(context)
-                                                                .disabledColor)),
+                                                    color: Get.find<Add_Data_controller>()
+                                                                .roll !=
+                                                            "observer"
+                                                        ? Get.theme.textTheme
+                                                            .titleMedium!.color!
+                                                        : Theme.of(context)
+                                                            .disabledColor)),
                                             child: Row(
                                               children: [
                                                 Icon(
@@ -334,8 +324,11 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                                       Get.find<Add_Data_controller>()
                                                                   .roll !=
                                                               "observer"
-                                                          ? Get.theme
-                                                              .highlightColor
+                                                          ? Get
+                                                              .theme
+                                                              .textTheme
+                                                              .titleMedium!
+                                                              .color!
                                                           : Colors.white,
                                                   size: 14,
                                                 ),
@@ -374,16 +367,19 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                                         BorderRadius.all(
                                                             Radius.circular(3)),
                                                     side: BorderSide(
-                                                        color: Get.theme
-                                                            .highlightColor),
+                                                        color: Get
+                                                            .theme
+                                                            .textTheme
+                                                            .titleMedium!
+                                                            .color!),
                                                   ))),
                                               onPressed: () {},
                                               child: Row(
                                                 children: [
                                                   Icon(
                                                     VMS_Icons.vcard,
-                                                    color: Get
-                                                        .theme.highlightColor,
+                                                    color: Get.textTheme
+                                                        .titleMedium!.color!,
                                                     size: 14,
                                                   ),
                                                   Padding(
@@ -415,19 +411,20 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                                                 .roll !=
                                                             "observer"
                                                         ? Colors.transparent
-                                                        : Theme.of(context)
+                                                        : Theme.of(
+                                                                context)
                                                             .disabledColor,
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(3)),
+                                                borderRadius:
+                                                    BorderRadius.all(
+                                                        Radius.circular(3)),
                                                 border: Border.all(
-                                                    color:
-                                                        Get.find<Add_Data_controller>()
-                                                                    .roll !=
-                                                                "observer"
-                                                            ? Get.theme
-                                                                .highlightColor
-                                                            : Theme.of(context)
-                                                                .disabledColor)),
+                                                    color: Get.find<Add_Data_controller>()
+                                                                .roll !=
+                                                            "observer"
+                                                        ? Get.theme.textTheme
+                                                            .titleMedium!.color!
+                                                        : Theme.of(context)
+                                                            .disabledColor)),
                                             child: Row(
                                               children: [
                                                 Icon(
@@ -436,8 +433,11 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                                       Get.find<Add_Data_controller>()
                                                                   .roll !=
                                                               "observer"
-                                                          ? Get.theme
-                                                              .highlightColor
+                                                          ? Get
+                                                              .theme
+                                                              .textTheme
+                                                              .titleMedium!
+                                                              .color!
                                                           : Colors.white,
                                                   size: 14,
                                                 ),
@@ -626,6 +626,38 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                                   apptitle:
                                                       "Punishing Student".tr,
                                                   subtitle: ""));
+                                            } else if (value ==
+                                                "Rewards & Penalties".tr) {
+                                              final controllers = Get.put(
+                                                  Penaltiesandrewardscontroller());
+
+                                              controllers.fetchPenalties(
+                                                  int.parse(controller
+                                                      .filteredStudents![index]
+                                                      .id
+                                                      .toString()));
+
+                                              controllers.fetchRewards(
+                                                  int.parse(controller
+                                                      .filteredStudents![index]
+                                                      .id
+                                                      .toString()));
+
+                                              Get.dialog(
+                                                barrierDismissible: false,
+                                                Re_Pe_Page(
+                                                    isTeacher: false,
+                                                    Id: controller
+                                                        .filteredStudents![
+                                                            index]
+                                                        .id
+                                                        .toString(),
+                                                    name: controller
+                                                        .filteredStudents![
+                                                            index]
+                                                        .fullName
+                                                        .toString()),
+                                              );
                                             } else {
                                               Get.find<RewardsController>()
                                                   .setRewards();
@@ -641,7 +673,8 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                                       .filteredStudents![index]
                                                       .fullName!
                                                       .toString(),
-                                                  FileType: "امتياز",
+                                                  FileType: "Rewards".tr +
+                                                      " ( ${DateTime.now().toIso8601String().split('T').first} )",
                                                   id: controller
                                                       .filteredStudents![index]
                                                       .id!
@@ -660,6 +693,11 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                             PopupMenuItem<String>(
                                               value: 'Rewards'.tr,
                                               child: Text('Rewards'.tr),
+                                            ),
+                                            PopupMenuItem<String>(
+                                              value: 'Rewards & Penalties'.tr,
+                                              child: Text(
+                                                  'Rewards & Penalties'.tr),
                                             ),
                                           ],
                                         )

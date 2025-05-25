@@ -370,7 +370,10 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                             },
                             icon: Icon(VMS_Icons.pdf,
                                 size: 18,
-                                color: Theme.of(context).highlightColor)),
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .color!)),
                       ),
                     ),
                     Padding(
@@ -588,7 +591,10 @@ class _SchoolDataMgmtState extends State<SchoolDataMgmt> {
                             },
                             icon: Icon(VMS_Icons.xl,
                                 size: 18,
-                                color: Theme.of(context).highlightColor)),
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .color!)),
                       ),
                     ),
                   ],

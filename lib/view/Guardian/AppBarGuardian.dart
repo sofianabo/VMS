@@ -74,7 +74,10 @@ class _AppbarguardianState extends State<Appbarguardian> {
                         style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
-                            color: Theme.of(context).highlightColor),
+                            color: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .color!),
                       ),
                     ),
                   ),
@@ -144,7 +147,10 @@ class _AppbarguardianState extends State<Appbarguardian> {
                         style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
-                            color: Theme.of(context).highlightColor),
+                            color: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .color!),
                       ),
                     ),
                   ),
@@ -225,7 +231,10 @@ class _AppbarguardianState extends State<Appbarguardian> {
                           style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
-                              color: Theme.of(context).highlightColor),
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .color!),
                         ),
                       ),
                     ],

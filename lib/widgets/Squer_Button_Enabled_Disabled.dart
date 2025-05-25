@@ -46,6 +46,6 @@ class _Squer_Button_Enabled_DisabledState
                 size: 18,
                 color: widget.validate
                     ? Colors.white
-                    : Theme.of(context).highlightColor)));
+                    : Theme.of(context).textTheme.titleMedium!.color!)));
   }
 }

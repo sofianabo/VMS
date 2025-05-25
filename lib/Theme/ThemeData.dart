@@ -13,7 +13,7 @@ class theme {
       ? "Cairo"
       : "Sansation";
   static ThemeData Light_Theme = ThemeData(
-    fontFamily: IsAr, 
+    fontFamily: IsAr,
     cardColor: const Color(0xffFBFBFB),
     primaryColorLight: const Color(0xff19478d), // card button
     primaryColor: const Color(0xff19478d),
@@ -22,7 +22,7 @@ class theme {
     primaryColorDark: Color(0xffF6F6F6),
     dialogBackgroundColor: Colors.white,
     secondaryHeaderColor: Colors.black,
-    highlightColor: const Color(0xff19478d),
+
     canvasColor: const Color(0xff134B70),
     disabledColor: Color(0xffBABDC6),
     textTheme: TextTheme(
@@ -79,7 +79,6 @@ class theme {
     primaryColorDark: Color(0xff252525),
     primaryColorLight: const Color.fromARGB(255, 29, 28, 28),
     cardColor: const Color(0xff464646),
-    highlightColor: Colors.white,
     indicatorColor: Color.fromARGB(255, 57, 60, 61),
     popupMenuTheme: PopupMenuThemeData(
         color: Color(0xff464646),

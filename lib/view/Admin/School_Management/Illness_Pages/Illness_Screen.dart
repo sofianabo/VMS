@@ -104,7 +104,10 @@ class _Ilness_ScreenState extends State<Ilness_Screen> {
                           },
                           icon: Icon(Icons.add,
                               size: 18,
-                              color: Theme.of(context).highlightColor)),
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .color!)),
                     ),
                     Container(
                       width: 40,
@@ -144,7 +147,10 @@ class _Ilness_ScreenState extends State<Ilness_Screen> {
                           },
                           icon: Icon(VMS_Icons.pdf,
                               size: 18,
-                              color: Theme.of(context).highlightColor)),
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .color!)),
                     ),
                     Container(
                       width: 40,
@@ -184,7 +190,10 @@ class _Ilness_ScreenState extends State<Ilness_Screen> {
                           },
                           icon: Icon(VMS_Icons.xl,
                               size: 18,
-                              color: Theme.of(context).highlightColor)),
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .color!)),
                     ),
                   ],
                 )

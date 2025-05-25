@@ -52,7 +52,7 @@ class TextFormSearch extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(radius),
             borderSide: BorderSide(
-              color: Theme.of(context).highlightColor,
+              color: Theme.of(context).textTheme.titleMedium!.color!,
               width: 1,
             ),
           ),
@@ -119,7 +119,7 @@ class TextpageSearch extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(radius),
             borderSide: BorderSide(
-              color: Theme.of(context).highlightColor,
+              color: Theme.of(context).textTheme.titleMedium!.color!,
               width: 1,
             ),
           ),

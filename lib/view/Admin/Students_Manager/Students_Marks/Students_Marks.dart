@@ -145,7 +145,7 @@ class _AllGuardiansState extends State<Students_Marks> {
                                     size: 18,
                                     color: validate
                                         ? Colors.white
-                                        : Theme.of(context).highlightColor))),
+                                        : Theme.of(context).textTheme.titleMedium!.color!))),
                         Container(
                             width: 40,
                             height: 40,
@@ -199,7 +199,7 @@ class _AllGuardiansState extends State<Students_Marks> {
                                     size: 18,
                                     color: validate
                                         ? Colors.white
-                                        : Theme.of(context).highlightColor))),
+                                        : Theme.of(context).textTheme.titleMedium!.color!))),
                         Container(
                           width: 40,
                           height: 40,
@@ -231,7 +231,10 @@ class _AllGuardiansState extends State<Students_Marks> {
                               },
                               icon: Icon(VMS_Icons.pdf,
                                   size: 18,
-                                  color: Theme.of(context).highlightColor)),
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .color!)),
                         ),
                         Container(
                           width: 40,
@@ -262,7 +265,10 @@ class _AllGuardiansState extends State<Students_Marks> {
                               },
                               icon: Icon(VMS_Icons.xl,
                                   size: 18,
-                                  color: Theme.of(context).highlightColor)),
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .color!)),
                         ),
                       ],
                     ),
@@ -372,7 +378,7 @@ class _AllGuardiansState extends State<Students_Marks> {
                                     size: 18,
                                     color: validate
                                         ? Colors.white
-                                        : Theme.of(context).highlightColor))),
+                                        : Theme.of(context).textTheme.titleMedium!.color!))),
                         Container(
                             width: 40,
                             height: 40,
@@ -426,7 +432,7 @@ class _AllGuardiansState extends State<Students_Marks> {
                                     size: 18,
                                     color: validate
                                         ? Colors.white
-                                        : Theme.of(context).highlightColor))),
+                                        : Theme.of(context).textTheme.titleMedium!.color!))),
                         Container(
                           width: 40,
                           height: 40,
@@ -458,7 +464,10 @@ class _AllGuardiansState extends State<Students_Marks> {
                               },
                               icon: Icon(VMS_Icons.pdf,
                                   size: 18,
-                                  color: Theme.of(context).highlightColor)),
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .color!)),
                         ),
                         Container(
                           width: 40,
@@ -489,7 +498,10 @@ class _AllGuardiansState extends State<Students_Marks> {
                               },
                               icon: Icon(VMS_Icons.xl,
                                   size: 18,
-                                  color: Theme.of(context).highlightColor)),
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .color!)),
                         ),
                       ],
                     ),

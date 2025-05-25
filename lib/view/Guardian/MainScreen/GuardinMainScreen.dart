@@ -116,7 +116,8 @@ class _GuardianMainScreenState extends State<GuardianMainScreen> {
                         icon: Icon(
                           Icons.add,
                           size: 18,
-                          color: Theme.of(context).highlightColor,
+                          color:
+                              Theme.of(context).textTheme.titleMedium!.color!,
                         ),
                       ),
                     ),
