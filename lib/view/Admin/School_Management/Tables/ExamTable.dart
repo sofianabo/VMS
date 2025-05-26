@@ -16,6 +16,7 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/EditQuizAPI.da
 import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/ExamTableAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/ExamTableController.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/ExamTableDialogController.dart';
 import 'package:vms_school/Link/Functions/Export_Exle_Function.dart';
 import 'package:vms_school/Link/Functions/Export_PDF_Function.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllClassesModel.dart';
@@ -166,13 +167,15 @@ class _ExamTableState extends State<ExamTable> {
                             title: "season".tr,
                             width: 220,
                             type: "semesterDialog"),
-                        DropDownexamTable(
-                            IsError: Econtroller.IstypeError,
-                            isDisabled: Econtroller.semesterDialogIndex == "",
-                            isLoading: Econtroller.isTypeLoading,
-                            title: "Type".tr,
-                            width: 220,
-                            type: "typeDialog"),
+                        GetBuilder<Examtabledialogcontroller>(builder: (c) {
+                          return DropDownexamTable(
+                              IsError: Econtroller.IstypeError,
+                              isDisabled: Econtroller.semesterDialogIndex == "",
+                              isLoading: c.isTypeLoading,
+                              title: "Type".tr,
+                              width: 220,
+                              type: "typeDialog");
+                        }),
                       ],
                     ),
                   ),

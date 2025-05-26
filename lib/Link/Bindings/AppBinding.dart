@@ -18,6 +18,7 @@ import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Ad
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Class_Mgmt_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Divisions_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/ExamTableController.dart';
+import 'package:vms_school/Link/Controller/AdminController/School_Controllers/ExamTableDialogController.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Grade_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Labrary_Controller.dart';
@@ -120,7 +121,8 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => Allteacheratendencecontroller(), fenix: true);
     Get.lazyPut(() => Dropdowncuriculmcontroller(), fenix: true);
     Get.lazyPut(() => Transaction_Controller(), fenix: true);
-    Get.lazyPut(() => Add_Students_Controller(), fenix: true);
+    // Get.lazyPut(() => Add_Students_Controller(), fenix: true);
+    Get.put(Add_Students_Controller(), permanent: true);
     Get.lazyPut(() => Location_controller(), fenix: true);
     Get.lazyPut(() => Illness_Controller(), fenix: true);
     Get.lazyPut(() => Vaccines_Controller(), fenix: true);
@@ -150,5 +152,6 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => Quiztableteachercontroller(), fenix: true);
     Get.lazyPut(() => Students_Marks_Gua_Controller(), fenix: true);
     Get.lazyPut(() => StudentmarksTeachercontroller(), fenix: true);
+    Get.lazyPut(() => Examtabledialogcontroller(), fenix: true);
   }
 }

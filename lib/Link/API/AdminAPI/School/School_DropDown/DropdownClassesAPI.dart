@@ -38,7 +38,7 @@ class Getallclassapi {
       final Allteacheratendencecontrolle =
           Get.find<Allteacheratendencecontroller>();
       final StudentAttendencControlle = Get.find<StudentAttendencController>();
-      final addStudentsControlle = Get.find<Add_Students_Controller>();
+      // final addStudentsControlle = Get.find<Add_Students_Controller>();
       final AdminSchoolTimeControllers = Get.find<AdminSchoolTimeController>();
       final Students_Marks_Controllers = Get.find<Students_Marks_Controller>();
       final quiz = Get.find<TeachernoteAndGradeReco>();
@@ -52,7 +52,7 @@ class Getallclassapi {
       Allteachercontrolle.setClassLoading(true);
       Allteacheratendencecontrolle.setClassLoading(true);
       StudentAttendencControlle.setClassLoading(true);
-      addStudentsControlle.SetIsLoadingClass(true);
+      // addStudentsControlle.SetIsLoadingClass(true);
       AdminSchoolTimeControllers.setIsLoadingClass(true);
       Students_Marks_Controllers.SetisClassLoading(true);
       ExamController.setisClassLoading(true);

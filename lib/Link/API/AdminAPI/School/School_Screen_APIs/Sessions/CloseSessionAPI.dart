@@ -20,9 +20,10 @@ class Closesessionapi {
     try {
       String myurl = "$hostPort$closeSession";
       var response = await dio.post(
-          cancelToken: cancelToken, myurl, options: getDioOptions(),data: {
-            "sessionId":sessionId
-          });
+          cancelToken: cancelToken,
+          myurl,
+          options: getDioOptions(),
+          data: {"sessionId": sessionId});
       if (response.statusCode == 200) {
         Get.back();
         Get_Session_Screen_API(context).Getsession();
@@ -33,6 +34,7 @@ class Closesessionapi {
           type: DioExceptionType.badResponse,
         ));
       }
+      return response.statusCode;
     } catch (e) {
       if (e is DioException) {
         ErrorHandler.handleDioError(e);

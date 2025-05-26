@@ -217,11 +217,19 @@ class SessionManagementGrid extends StatelessWidget {
                                       action: [
                                         ButtonDialog(
                                             text: "Yes Close".tr,
-                                            onPressed: () async{
-                                            await  Closesessionapi(context).Closesession(sessionId: control.sessionsss![index].id);
-                                              control.updateStatus(
-                                                  index, "Closed".tr);
-                                              Get.back();
+                                            onPressed: () async {
+                                              var res = await Closesessionapi(
+                                                      context)
+                                                  .Closesession(
+                                                      sessionId: control
+                                                          .sessionsss![index]
+                                                          .id);
+                                              if (res == 200) {
+                                                control.updateStatus(
+                                                    index, "Closed".tr);
+                                                Get.back();
+                                              } else if (res == 250) {
+                                              } else {}
                                             },
                                             color: const Color(0xff134B70),
                                             width: 120),
