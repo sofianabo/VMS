@@ -144,6 +144,7 @@ class Add_Data_controller extends GetxController {
       if (role == "admin" ||
           role == "subAdmin" ||
           role == "teacher" ||
+          role == "supervisor" ||
           role == "registration") {
         if (!isVerified) {
           if (!Get.isDialogOpen!) {
@@ -151,7 +152,7 @@ class Add_Data_controller extends GetxController {
           }
         }
         if (hasData) {
-          if (role == "admin" || role == "subAdmin") {
+          if (role == "admin" || role == "subAdmin" || role == "supervisor") {
             Get.find<AdminHomeContentController>().updateContent("Dashboard");
           } else if (role == "registration") {
             Get.find<AdminHomeContentController>()

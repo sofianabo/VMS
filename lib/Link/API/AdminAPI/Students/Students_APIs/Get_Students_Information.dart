@@ -28,7 +28,8 @@ class Get_Students_Information_API {
             Student_Info_model.fromJson(response.data);
         controller.Set_Selected_Student(student_info_model);
         Get.back();
-        if (Get.find<Add_Data_controller>().roll != "observer") {
+        if (Get.find<Add_Data_controller>().roll != "observer" &&
+            Get.find<Add_Data_controller>().roll != "supervisor") {
           EditStudentDialog(index, context);
         } else {
           EditStudentDialogForGua(context, false, false);

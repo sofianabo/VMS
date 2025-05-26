@@ -18,7 +18,7 @@ class IncreaseTeacherAttendenceModel {
 class Teacher {
   int? id;
   String? fullName;
-  String? imageId;
+  int? imageId;
 
   Teacher({this.id, this.fullName, this.imageId});
 

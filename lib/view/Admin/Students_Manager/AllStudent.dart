@@ -111,38 +111,40 @@ class _AllStudentState extends State<AllStudent> {
                       mainAxisSize: MainAxisSize.min,
                       spacing: 8.0,
                       children: [
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: Theme.of(context).cardColor,
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    offset: Offset(0, 2),
-                                    blurRadius: 1)
-                              ]),
-                          child: IconButton(
-                              style: ButtonStyle(
-                                  shape: WidgetStatePropertyAll(
-                                      RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))))),
-                              onPressed: () {
-                                if (controller.isLoading == false) {
-                                  Get.find<Add_Students_Controller>()
-                                      .resetError();
-                                  Add_Students_Dialog_Functions();
-                                }
-                              },
-                              icon: Icon(Icons.add,
-                                  size: 18,
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .titleMedium!
-                                      .color!)),
-                        ),
+                        if (Get.find<Add_Data_controller>().roll !=
+                            "supervisor")
+                          Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                color: Theme.of(context).cardColor,
+                                borderRadius: BorderRadius.circular(5),
+                                boxShadow: const [
+                                  BoxShadow(
+                                      color: Colors.black12,
+                                      offset: Offset(0, 2),
+                                      blurRadius: 1)
+                                ]),
+                            child: IconButton(
+                                style: ButtonStyle(
+                                    shape: WidgetStatePropertyAll(
+                                        RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5))))),
+                                onPressed: () {
+                                  if (controller.isLoading == false) {
+                                    Get.find<Add_Students_Controller>()
+                                        .resetError();
+                                    Add_Students_Dialog_Functions();
+                                  }
+                                },
+                                icon: Icon(Icons.add,
+                                    size: 18,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .color!)),
+                          ),
                         Container(
                           width: 40,
                           height: 40,
@@ -332,38 +334,40 @@ class _AllStudentState extends State<AllStudent> {
                         mainAxisSize: MainAxisSize.min,
                         spacing: 8.0,
                         children: [
-                          Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                color: Theme.of(context).cardColor,
-                                borderRadius: BorderRadius.circular(5),
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Colors.black12,
-                                      offset: Offset(0, 2),
-                                      blurRadius: 1)
-                                ]),
-                            child: IconButton(
-                                style: ButtonStyle(
-                                    shape: WidgetStatePropertyAll(
-                                        RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(5))))),
-                                onPressed: () {
-                                  if (controller.isLoading == false) {
-                                    Get.find<Add_Students_Controller>()
-                                        .resetError();
-                                    Add_Students_Dialog_Functions();
-                                  }
-                                },
-                                icon: Icon(Icons.add,
-                                    size: 18,
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium!
-                                        .color!)),
-                          ),
+                          if (Get.find<Add_Data_controller>().roll !=
+                              "supervisor")
+                            Container(
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                  color: Theme.of(context).cardColor,
+                                  borderRadius: BorderRadius.circular(5),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                        color: Colors.black12,
+                                        offset: Offset(0, 2),
+                                        blurRadius: 1)
+                                  ]),
+                              child: IconButton(
+                                  style: ButtonStyle(
+                                      shape: WidgetStatePropertyAll(
+                                          RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(5))))),
+                                  onPressed: () {
+                                    if (controller.isLoading == false) {
+                                      Get.find<Add_Students_Controller>()
+                                          .resetError();
+                                      Add_Students_Dialog_Functions();
+                                    }
+                                  },
+                                  icon: Icon(Icons.add,
+                                      size: 18,
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium!
+                                          .color!)),
+                            ),
                           Container(
                             width: 40,
                             height: 40,

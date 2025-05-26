@@ -90,10 +90,11 @@ class AllEmployeeGrid extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               if (addController.roll != "observer")
-                                SchemaWidget(
-                                  width: 80,
-                                  height: 80,
-                                ),
+                                if (addController.roll != "supervisor")
+                                  SchemaWidget(
+                                    width: 80,
+                                    height: 80,
+                                  ),
                               SchemaWidget(
                                 width: 80,
                                 height: 80,
@@ -272,81 +273,85 @@ class AllEmployeeGrid extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       if (addController.roll != "observer")
-                                        IconButton(
-                                            style: ButtonStyle(
-                                                backgroundColor: addController
-                                                            .roll ==
-                                                        "subAdmin"
-                                                    ? WidgetStatePropertyAll(
-                                                        Get.theme.disabledColor)
-                                                    : WidgetStatePropertyAll(
-                                                        Color(0xffB03D3D)),
-                                                shape: const WidgetStatePropertyAll(
-                                                    RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    5))))),
-                                            onPressed: () {
-                                              if (Get.find<
-                                                          Add_Data_controller>()
-                                                      .roll ==
-                                                  "subAdmin") {
-                                                return;
-                                              }
-                                              Get.dialog(VMSAlertDialog(
-                                                action: [
-                                                  ButtonDialog(
-                                                      text: "Delete".tr,
-                                                      onPressed: () {
-                                                        DeleteEmployee
-                                                            .DeleteEmployeeByID(
-                                                                employeeID: controller
-                                                                    .filteredreemployees[
-                                                                        index]
-                                                                    .id
-                                                                    .toString());
-                                                      },
-                                                      color: const Color(
-                                                          0xffB03D3D),
-                                                      width: 80),
-                                                  ButtonDialog(
-                                                      text: "Cancel".tr,
-                                                      onPressed: () {},
-                                                      color: Theme.of(context)
-                                                          .primaryColor,
-                                                      width: 80)
-                                                ],
-                                                contents: SizedBox(
-                                                    width: 500,
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          "Do You Want To Deletey"
-                                                                  .tr +
-                                                              " (${controller.employees[index].fullName}) " +
-                                                              "Employeey".tr,
-                                                          style: Get
-                                                              .theme
-                                                              .textTheme
-                                                              .bodyMedium!
-                                                              .copyWith(
-                                                                  fontSize: 16,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal),
-                                                        ),
-                                                      ],
-                                                    )),
-                                                apptitle: "Delete Employee".tr,
-                                                subtitle: "none",
-                                              ));
-                                            },
-                                            icon: const Icon(VMS_Icons.bin,
-                                                size: 16, color: Colors.white)),
+                                        if (addController.roll != "supervisor")
+                                          IconButton(
+                                              style: ButtonStyle(
+                                                  backgroundColor: addController
+                                                              .roll ==
+                                                          "subAdmin"
+                                                      ? WidgetStatePropertyAll(
+                                                          Get.theme
+                                                              .disabledColor)
+                                                      : WidgetStatePropertyAll(
+                                                          Color(0xffB03D3D)),
+                                                  shape: const WidgetStatePropertyAll(
+                                                      RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius.circular(
+                                                                      5))))),
+                                              onPressed: () {
+                                                if (Get.find<
+                                                            Add_Data_controller>()
+                                                        .roll ==
+                                                    "subAdmin") {
+                                                  return;
+                                                }
+                                                Get.dialog(VMSAlertDialog(
+                                                  action: [
+                                                    ButtonDialog(
+                                                        text: "Delete".tr,
+                                                        onPressed: () {
+                                                          DeleteEmployee.DeleteEmployeeByID(
+                                                              employeeID: controller
+                                                                  .filteredreemployees[
+                                                                      index]
+                                                                  .id
+                                                                  .toString());
+                                                        },
+                                                        color: const Color(
+                                                            0xffB03D3D),
+                                                        width: 80),
+                                                    ButtonDialog(
+                                                        text: "Cancel".tr,
+                                                        onPressed: () {},
+                                                        color: Theme.of(context)
+                                                            .primaryColor,
+                                                        width: 80)
+                                                  ],
+                                                  contents: SizedBox(
+                                                      width: 500,
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            "Do You Want To Deletey"
+                                                                    .tr +
+                                                                " (${controller.employees[index].fullName}) " +
+                                                                "Employeey".tr,
+                                                            style: Get
+                                                                .theme
+                                                                .textTheme
+                                                                .bodyMedium!
+                                                                .copyWith(
+                                                                    fontSize:
+                                                                        16,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal),
+                                                          ),
+                                                        ],
+                                                      )),
+                                                  apptitle:
+                                                      "Delete Employee".tr,
+                                                  subtitle: "none",
+                                                ));
+                                              },
+                                              icon: const Icon(VMS_Icons.bin,
+                                                  size: 16,
+                                                  color: Colors.white)),
                                       Padding(
                                         padding: const EdgeInsets.only(
                                             left: 10.0, right: 10.0),

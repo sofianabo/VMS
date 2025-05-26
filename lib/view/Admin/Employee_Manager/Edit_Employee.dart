@@ -21,6 +21,7 @@ class Edit_Employee extends StatefulWidget {
 }
 
 bool notReadOnly = Get.find<Add_Data_controller>().roll != "observer" &&
+    Get.find<Add_Data_controller>().roll != "supervisor" &&
     Get.find<Add_Data_controller>().roll != "subAdmin";
 
 class _Edit_EmployeeState extends State<Edit_Employee> {
@@ -88,110 +89,111 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
 
       return VMSAlertDialog(
           action: [
-            if (Get.find<Add_Data_controller>().roll != "observer")
-              ButtonDialog(
-                  text: "Edit Employee".tr,
-                  onPressed: () async {
-                    bool isEmailEmpty = Email.text.trim().isEmpty;
-                    bool isGenderEmpty = controller.GenderListIndex.isEmpty ||
-                        controller.GenderListIndex == "";
-                    bool isFamilyEmpty =
-                        controller.Family_StatusIndex.isEmpty ||
-                            controller.Family_StatusIndex == "";
-                    bool isjoinEmpty = controller.Joindate.value == null ||
-                        controller.Joindate.value.toString() == "";
-                    bool isBirthEmpty = controller.Birthdate.value == null ||
-                        controller.Birthdate.value.toString() == "";
-                    bool isfirstEmpty = firstName.text.trim().isEmpty;
-                    bool islastnameEmpty = lastName.text.trim().isEmpty;
-                    bool isfatherEmpty = fatherName.text.trim().isEmpty;
-                    bool ismotherEmpty = motherName.text.trim().isEmpty;
-                    bool isphoneEmpty = phoneNumper.text.trim().isEmpty;
-                    bool isemgnEmpty = emergencyNumber.text.trim().isEmpty;
-                    bool isaddressEmpty = Address.text.trim().isEmpty;
-                    bool isCurrentAdressEmpty =
-                        currentAddress.text.trim().isEmpty;
-                    bool isQualEmpty = Qualification.text.trim().isEmpty;
-                    bool isExpEmpty = Experience.text.trim().isEmpty;
+            if (Get.find<Add_Data_controller>().roll != "supervisor")
+              if (Get.find<Add_Data_controller>().roll != "observer")
+                ButtonDialog(
+                    text: "Edit Employee".tr,
+                    onPressed: () async {
+                      bool isEmailEmpty = Email.text.trim().isEmpty;
+                      bool isGenderEmpty = controller.GenderListIndex.isEmpty ||
+                          controller.GenderListIndex == "";
+                      bool isFamilyEmpty =
+                          controller.Family_StatusIndex.isEmpty ||
+                              controller.Family_StatusIndex == "";
+                      bool isjoinEmpty = controller.Joindate.value == null ||
+                          controller.Joindate.value.toString() == "";
+                      bool isBirthEmpty = controller.Birthdate.value == null ||
+                          controller.Birthdate.value.toString() == "";
+                      bool isfirstEmpty = firstName.text.trim().isEmpty;
+                      bool islastnameEmpty = lastName.text.trim().isEmpty;
+                      bool isfatherEmpty = fatherName.text.trim().isEmpty;
+                      bool ismotherEmpty = motherName.text.trim().isEmpty;
+                      bool isphoneEmpty = phoneNumper.text.trim().isEmpty;
+                      bool isemgnEmpty = emergencyNumber.text.trim().isEmpty;
+                      bool isaddressEmpty = Address.text.trim().isEmpty;
+                      bool isCurrentAdressEmpty =
+                          currentAddress.text.trim().isEmpty;
+                      bool isQualEmpty = Qualification.text.trim().isEmpty;
+                      bool isExpEmpty = Experience.text.trim().isEmpty;
 
-                    RegExp emailRegex = RegExp(
-                        r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
-                    bool isEmailValid = emailRegex.hasMatch(Email.text);
-                    final cont = Get.find<AddFullEmployeeController>();
-                    cont.updateFieldError("first", isfirstEmpty);
-                    cont.updateFieldError("last", islastnameEmpty);
-                    cont.updateFieldError("father", isfatherEmpty);
-                    cont.updateFieldError("mother", ismotherEmpty);
-                    cont.updateFieldError("birth", isBirthEmpty);
-                    cont.updateFieldError("phone", isphoneEmpty);
-                    cont.updateFieldError("emgn", isemgnEmpty);
-                    cont.updateFieldError("join", isjoinEmpty);
-                    cont.updateFieldError("address", isaddressEmpty);
-                    cont.updateFieldError("caddress", isCurrentAdressEmpty);
-                    cont.updateFieldError("gender", isGenderEmpty);
-                    cont.updateFieldError("family", isFamilyEmpty);
-                    cont.updateFieldError("qua", isQualEmpty);
-                    cont.updateFieldError(
-                        "email", isEmailEmpty || !isEmailValid);
-                    cont.updateFieldError("exp", isExpEmpty);
+                      RegExp emailRegex = RegExp(
+                          r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+                      bool isEmailValid = emailRegex.hasMatch(Email.text);
+                      final cont = Get.find<AddFullEmployeeController>();
+                      cont.updateFieldError("first", isfirstEmpty);
+                      cont.updateFieldError("last", islastnameEmpty);
+                      cont.updateFieldError("father", isfatherEmpty);
+                      cont.updateFieldError("mother", ismotherEmpty);
+                      cont.updateFieldError("birth", isBirthEmpty);
+                      cont.updateFieldError("phone", isphoneEmpty);
+                      cont.updateFieldError("emgn", isemgnEmpty);
+                      cont.updateFieldError("join", isjoinEmpty);
+                      cont.updateFieldError("address", isaddressEmpty);
+                      cont.updateFieldError("caddress", isCurrentAdressEmpty);
+                      cont.updateFieldError("gender", isGenderEmpty);
+                      cont.updateFieldError("family", isFamilyEmpty);
+                      cont.updateFieldError("qua", isQualEmpty);
+                      cont.updateFieldError(
+                          "email", isEmailEmpty || !isEmailValid);
+                      cont.updateFieldError("exp", isExpEmpty);
 
-                    if (!(isGenderEmpty ||
-                        isFamilyEmpty ||
-                        isjoinEmpty ||
-                        isBirthEmpty ||
-                        isfirstEmpty ||
-                        islastnameEmpty ||
-                        isfatherEmpty ||
-                        ismotherEmpty ||
-                        isphoneEmpty ||
-                        isemgnEmpty ||
-                        isaddressEmpty ||
-                        isCurrentAdressEmpty ||
-                        isQualEmpty ||
-                        isExpEmpty)) if (Get.find<Add_Data_controller>()
-                            .roll !=
-                        "subAdmin") {
-                      print(controller.isPendAccount.value);
-                      await EditEmployeeApi.EditEmployee(
-                        employeeId: widget.employeeID,
-                        First_Name: firstName.text,
-                        Last_Name: lastName.text,
-                        Father_Name: fatherName.text,
-                        Mother_Name: motherName.text,
-                        Phone_Numper: phoneNumper.text,
-                        Emergency_Number: emergencyNumber.text,
-                        Address: Address.text,
-                        Current_Address: currentAddress.text,
-                        Birth_Date: controller.Birthdate.value.toString(),
-                        Join_Date: controller.Joindate.value.toString(),
-                        Gender: controller.GenderListIndex,
-                        Family_State: controller.Family_StatusIndex,
-                        Salary: Salary.text,
-                        selectedImage: Get.find<AddFullEmployeeController>()
-                            .selectedImage
-                            .value,
-                        Facebook_URL: facebookUrl.text,
-                        X_Platform_URL: xPlatformUrl.text,
-                        Linkedin_URL: linkedinUrl.text,
-                        Instagram_URL: instagramUrl.text,
-                        Bank_Account_Title: bankAccountTitle.text,
-                        Bank_Name: bankName.text,
-                        Bank_Branch_Name: bankBranchName.text,
-                        Bank_Account_Number: bankAccountNumber.text,
-                        IFSC_Code: ifscCode.text,
-                        Career_History: careerHistory.text,
-                        Qualification: Qualification.text,
-                        Experience: Experience.text,
-                        Note: Note.text,
-                        email: Email.text,
-                        pend: controller.isPendAccount.value,
-                      );
-                    }
-                  },
-                  color: Get.find<Add_Data_controller>().roll == "subAdmin"
-                      ? Get.theme.disabledColor
-                      : Get.theme.primaryColor,
-                  width: 140)
+                      if (!(isGenderEmpty ||
+                          isFamilyEmpty ||
+                          isjoinEmpty ||
+                          isBirthEmpty ||
+                          isfirstEmpty ||
+                          islastnameEmpty ||
+                          isfatherEmpty ||
+                          ismotherEmpty ||
+                          isphoneEmpty ||
+                          isemgnEmpty ||
+                          isaddressEmpty ||
+                          isCurrentAdressEmpty ||
+                          isQualEmpty ||
+                          isExpEmpty)) if (Get.find<Add_Data_controller>()
+                              .roll !=
+                          "subAdmin") {
+                        print(controller.isPendAccount.value);
+                        await EditEmployeeApi.EditEmployee(
+                          employeeId: widget.employeeID,
+                          First_Name: firstName.text,
+                          Last_Name: lastName.text,
+                          Father_Name: fatherName.text,
+                          Mother_Name: motherName.text,
+                          Phone_Numper: phoneNumper.text,
+                          Emergency_Number: emergencyNumber.text,
+                          Address: Address.text,
+                          Current_Address: currentAddress.text,
+                          Birth_Date: controller.Birthdate.value.toString(),
+                          Join_Date: controller.Joindate.value.toString(),
+                          Gender: controller.GenderListIndex,
+                          Family_State: controller.Family_StatusIndex,
+                          Salary: Salary.text,
+                          selectedImage: Get.find<AddFullEmployeeController>()
+                              .selectedImage
+                              .value,
+                          Facebook_URL: facebookUrl.text,
+                          X_Platform_URL: xPlatformUrl.text,
+                          Linkedin_URL: linkedinUrl.text,
+                          Instagram_URL: instagramUrl.text,
+                          Bank_Account_Title: bankAccountTitle.text,
+                          Bank_Name: bankName.text,
+                          Bank_Branch_Name: bankBranchName.text,
+                          Bank_Account_Number: bankAccountNumber.text,
+                          IFSC_Code: ifscCode.text,
+                          Career_History: careerHistory.text,
+                          Qualification: Qualification.text,
+                          Experience: Experience.text,
+                          Note: Note.text,
+                          email: Email.text,
+                          pend: controller.isPendAccount.value,
+                        );
+                      }
+                    },
+                    color: Get.find<Add_Data_controller>().roll == "subAdmin"
+                        ? Get.theme.disabledColor
+                        : Get.theme.primaryColor,
+                    width: 140)
           ],
           contents:
               GetBuilder<AddFullEmployeeController>(builder: (controller) {

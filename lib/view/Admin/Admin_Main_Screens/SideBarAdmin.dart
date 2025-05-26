@@ -180,10 +180,12 @@ class _SideBarAdminState extends State<SideBarAdmin> {
                           ),
                           if (Get.find<Add_Data_controller>().roll !=
                               "observer")
-                            PopupMenuItem<String>(
-                              value: 'All Guardians'.tr,
-                              child: Text('All Guardians'.tr),
-                            ),
+                            if (Get.find<Add_Data_controller>().roll !=
+                                "supervisor")
+                              PopupMenuItem<String>(
+                                value: 'All Guardians'.tr,
+                                child: Text('All Guardians'.tr),
+                              ),
                           if (Get.find<Add_Data_controller>().roll !=
                               "observer")
                             PopupMenuItem<String>(
@@ -198,10 +200,12 @@ class _SideBarAdminState extends State<SideBarAdmin> {
                             ),
                           if (Get.find<Add_Data_controller>().roll !=
                               "observer")
-                            PopupMenuItem<String>(
-                              value: 'Students Marks'.tr,
-                              child: Text('Students Marks'.tr),
-                            ),
+                            if (Get.find<Add_Data_controller>().roll !=
+                                "supervisor")
+                              PopupMenuItem<String>(
+                                value: 'Students Marks'.tr,
+                                child: Text('Students Marks'.tr),
+                              ),
                         ],
                       ),
                     ),
@@ -305,10 +309,12 @@ class _SideBarAdminState extends State<SideBarAdmin> {
                             ),
                           if (Get.find<Add_Data_controller>().roll !=
                               "observer")
-                            PopupMenuItem<String>(
-                              value: 'Virtual User Management'.tr,
-                              child: Text('Virtual User Management'.tr),
-                            ),
+                            if (Get.find<Add_Data_controller>().roll !=
+                                "supervisor")
+                              PopupMenuItem<String>(
+                                value: 'Virtual User Management'.tr,
+                                child: Text('Virtual User Management'.tr),
+                              ),
                         ],
                       ),
                     ),
@@ -420,26 +426,32 @@ class _SideBarAdminState extends State<SideBarAdmin> {
                         },
                         itemBuilder: (BuildContext context) =>
                             <PopupMenuEntry<String>>[
-                          PopupMenuItem<String>(
-                            value: 'School Data Management'.tr,
-                            child: Text('School Data Management'.tr),
-                          ),
+                          if (Get.find<Add_Data_controller>().roll !=
+                              "supervisor")
+                            PopupMenuItem<String>(
+                              value: 'School Data Management'.tr,
+                              child: Text('School Data Management'.tr),
+                            ),
                           if (Get.find<Add_Data_controller>().roll !=
                               "observer")
-                            PopupMenuItem<String>(
-                              value: 'School Content'.tr,
-                              child: Text('School Content'.tr),
-                            ),
+                            if (Get.find<Add_Data_controller>().roll !=
+                                "supervisor")
+                              PopupMenuItem<String>(
+                                value: 'School Content'.tr,
+                                child: Text('School Content'.tr),
+                              ),
                           PopupMenuItem<String>(
                             value: 'Electronic Library'.tr,
                             child: Text('Electronic Library'.tr),
                           ),
                           if (Get.find<Add_Data_controller>().roll !=
                               "observer")
-                            PopupMenuItem<String>(
-                              value: 'Transaction'.tr,
-                              child: Text('Transaction'.tr),
-                            ),
+                            if (Get.find<Add_Data_controller>().roll !=
+                                "supervisor")
+                              PopupMenuItem<String>(
+                                value: 'Transaction'.tr,
+                                child: Text('Transaction'.tr),
+                              ),
                           PopupMenuItem<String>(
                             value: 'Illness Screen'.tr,
                             child: Text('Illness Screen'.tr),

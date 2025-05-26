@@ -24,7 +24,8 @@ class EditTeacherDialog extends StatefulWidget {
 
 class _EditTeacherDialogState extends State<EditTeacherDialog> {
   bool notReadOnly = Get.find<Add_Data_controller>().roll != "observer" &&
-      Get.find<Add_Data_controller>().roll != "subAdmin";
+      Get.find<Add_Data_controller>().roll != "subAdmin" &&
+      Get.find<Add_Data_controller>().roll != "supervisor";
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;

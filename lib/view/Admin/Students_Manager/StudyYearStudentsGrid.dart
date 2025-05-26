@@ -161,7 +161,9 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                         onTap: () async {
                           if (Get.find<Add_Data_controller>().roll == "admin" ||
                               Get.find<Add_Data_controller>().roll ==
-                                  "subAdmin") {
+                                  "subAdmin" ||
+                              Get.find<Add_Data_controller>().roll ==
+                                  "supervisor") {
                             Get_Students_Marks_API_Gua().Get_Students_Marks(
                                 name: controller
                                     .filteredStudents![index].fullName,

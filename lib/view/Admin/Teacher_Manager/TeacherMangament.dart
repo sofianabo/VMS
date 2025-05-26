@@ -420,14 +420,15 @@ class _TeacherManagementState extends State<TeacherManagement> {
                     mainAxisSize: MainAxisSize.min,
                     spacing: 8.0,
                     children: [
-                      Squer_Button_Enabled_Disabled(
-                        onTap: () {
-                          Add_Dialog();
-                        },
-                        icon: Icons.add,
-                        validate:
-                            Get.find<Add_Data_controller>().roll == "subAdmin",
-                      ),
+                      if (Get.find<Add_Data_controller>().roll != "supervisor")
+                        Squer_Button_Enabled_Disabled(
+                          onTap: () {
+                            Add_Dialog();
+                          },
+                          icon: Icons.add,
+                          validate: Get.find<Add_Data_controller>().roll ==
+                              "subAdmin",
+                        ),
                       Container(
                         width: 40,
                         height: 40,
@@ -588,14 +589,16 @@ class _TeacherManagementState extends State<TeacherManagement> {
                         mainAxisSize: MainAxisSize.min,
                         spacing: 8.0,
                         children: [
-                          Squer_Button_Enabled_Disabled(
-                            onTap: () {
-                              Add_Dialog();
-                            },
-                            icon: Icons.add,
-                            validate: Get.find<Add_Data_controller>().roll ==
-                                "subAdmin",
-                          ),
+                          if (Get.find<Add_Data_controller>().roll !=
+                              "supervisor")
+                            Squer_Button_Enabled_Disabled(
+                              onTap: () {
+                                Add_Dialog();
+                              },
+                              icon: Icons.add,
+                              validate: Get.find<Add_Data_controller>().roll ==
+                                  "subAdmin",
+                            ),
                           Container(
                             width: 40,
                             height: 40,

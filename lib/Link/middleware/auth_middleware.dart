@@ -23,7 +23,10 @@ class RoleBasedMiddleware extends GetMiddleware {
     }
 
     if (isLoggedIn &&
-        (role == "admin" || role == "subAdmin" || role == "observer")) {
+        (role == "admin" ||
+            role == "subAdmin" ||
+            role == "observer" ||
+            role == "supervisor")) {
       Get.find<Add_Data_controller>().CheeckHasData();
       if (route != '/admin') {
         return const RouteSettings(name: '/admin');
@@ -53,6 +56,7 @@ class RoleBasedMiddleware extends GetMiddleware {
         role != "admin" &&
         role != "teacher" &&
         role != "subAdmin" &&
+        role != "supervisor" &&
         role != "observer" &&
         role != "registration" &&
         role != "guardian") {

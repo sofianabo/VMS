@@ -172,6 +172,7 @@ class BirthDate extends StatelessWidget {
                 readOnly: true,
                 onTap: () {
                   if (Get.find<Add_Data_controller>().roll != "observer" &&
+                      Get.find<Add_Data_controller>().roll != "supervisor" &&
                       Get.find<Add_Data_controller>().roll != "subAdmin") {
                     controller.selectBirthDate(context);
                   }
@@ -211,6 +212,8 @@ class BirthDate extends StatelessWidget {
                     ),
                     onPressed: () {
                       if (Get.find<Add_Data_controller>().roll != "observer" &&
+                          Get.find<Add_Data_controller>().roll !=
+                              "supervisor" &&
                           Get.find<Add_Data_controller>().roll != "subAdmin") {
                         controller.selectBirthDate(context);
                       }
@@ -296,6 +299,7 @@ class JoinDate extends StatelessWidget {
                 readOnly: true,
                 onTap: () {
                   if (Get.find<Add_Data_controller>().roll != "observer" &&
+                      Get.find<Add_Data_controller>().roll != "supervisor" &&
                       Get.find<Add_Data_controller>().roll != "subAdmin") {
                     controller.selectJoinDate(context);
                   }
@@ -335,6 +339,8 @@ class JoinDate extends StatelessWidget {
                     ),
                     onPressed: () {
                       if (Get.find<Add_Data_controller>().roll != "observer" &&
+                          Get.find<Add_Data_controller>().roll !=
+                              "supervisor" &&
                           Get.find<Add_Data_controller>().roll != "subAdmin") {
                         controller.selectJoinDate(context);
                       }
@@ -1191,6 +1197,7 @@ class EditJoinDateTeacher extends StatelessWidget {
                 readOnly: true,
                 onTap: () {
                   if (Get.find<Add_Data_controller>().roll != "observer" &&
+                      Get.find<Add_Data_controller>().roll != "supervisor" &&
                       Get.find<Add_Data_controller>().roll != "subAdmin") {
                     controller.selectJoinDate(context);
                   }
@@ -1228,6 +1235,8 @@ class EditJoinDateTeacher extends StatelessWidget {
                     ),
                     onPressed: () {
                       if (Get.find<Add_Data_controller>().roll != "observer" &&
+                          Get.find<Add_Data_controller>().roll !=
+                              "supervisor" &&
                           Get.find<Add_Data_controller>().roll != "subAdmin") {
                         controller.selectJoinDate(context);
                       }
@@ -1311,6 +1320,7 @@ class EditBirthDateTeacher extends StatelessWidget {
                 readOnly: true,
                 onTap: () {
                   if (Get.find<Add_Data_controller>().roll != "observer" &&
+                      Get.find<Add_Data_controller>().roll != "supervisor" &&
                       Get.find<Add_Data_controller>().roll != "subAdmin") {
                     controller.selectBirthDate(context);
                   }
@@ -1348,6 +1358,8 @@ class EditBirthDateTeacher extends StatelessWidget {
                     ),
                     onPressed: () {
                       if (Get.find<Add_Data_controller>().roll != "observer" &&
+                          Get.find<Add_Data_controller>().roll !=
+                              "supervisor" &&
                           Get.find<Add_Data_controller>().roll != "subAdmin") {
                         controller.selectBirthDate(context);
                       }

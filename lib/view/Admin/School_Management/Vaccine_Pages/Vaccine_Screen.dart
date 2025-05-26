@@ -75,129 +75,131 @@ class _Vaccine_ScreenState extends State<Vaccine_Screen> {
                 );
               }),
               if (Get.find<Add_Data_controller>().roll != "observer")
-                Row(
-                  spacing: 10,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black12,
-                                offset: Offset(0, 2),
-                                blurRadius: 1)
-                          ]),
-                      child: IconButton(
-                          style: ButtonStyle(
-                              shape: WidgetStatePropertyAll(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(5))))),
-                          onPressed: () {
-                            var controller = Get.find<Vaccines_Controller>();
-                            controller.updateFieldError("arname", false);
-                            controller.updateFieldError("enname", false);
-                            controller.LocationIndex = "Syria".tr;
-                            name.clear();
-                            enName.clear();
-                            Get.dialog(
-                                barrierDismissible: false, addVaccineDialog());
-                          },
-                          icon: Icon(Icons.add,
-                              size: 18,
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .color!)),
-                    ),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black12,
-                                offset: Offset(0, 2),
-                                blurRadius: 1)
-                          ]),
-                      child: IconButton(
-                          style: ButtonStyle(
-                              shape: WidgetStatePropertyAll(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(5))))),
-                          onPressed: () {
-                            exportDataToPdf<Vaccine>(
-                              items: Get.find<Vaccines_Controller>()
-                                  .filteredvaccine!,
-                              headers: [
-                                "Name".tr,
-                                "English Name".tr,
-                              ],
-                              fieldMappings: {
-                                "Name".tr: (reg) => reg.name ?? "",
-                                "English Name".tr: (reg) => reg.enName ?? "",
-                              },
-                              fileName: "Vaccine".tr +
-                                  '${DateTime.now().toIso8601String()}',
-                            );
-                          },
-                          icon: Icon(VMS_Icons.pdf,
-                              size: 18,
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .color!)),
-                    ),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black12,
-                                offset: Offset(0, 2),
-                                blurRadius: 1)
-                          ]),
-                      child: IconButton(
-                          style: ButtonStyle(
-                              shape: WidgetStatePropertyAll(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(5))))),
-                          onPressed: () {
-                            exportDataToExcel<Vaccine>(
-                              items: Get.find<Vaccines_Controller>()
-                                  .filteredvaccine!,
-                              headers: [
-                                "Name".tr,
-                                "English Name".tr,
-                              ],
-                              fieldMappings: {
-                                "Name".tr: (reg) => reg.name ?? "",
-                                "English Name".tr: (reg) => reg.enName ?? "",
-                              },
-                              fileName: "Vaccine".tr +
-                                  '${DateTime.now().toIso8601String()}',
-                            );
-                          },
-                          icon: Icon(VMS_Icons.xl,
-                              size: 18,
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .color!)),
-                    ),
-                  ],
-                )
+                if (Get.find<Add_Data_controller>().roll != "supervisor")
+                  Row(
+                    spacing: 10,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {
+                              var controller = Get.find<Vaccines_Controller>();
+                              controller.updateFieldError("arname", false);
+                              controller.updateFieldError("enname", false);
+                              controller.LocationIndex = "Syria".tr;
+                              name.clear();
+                              enName.clear();
+                              Get.dialog(
+                                  barrierDismissible: false,
+                                  addVaccineDialog());
+                            },
+                            icon: Icon(Icons.add,
+                                size: 18,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .color!)),
+                      ),
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {
+                              exportDataToPdf<Vaccine>(
+                                items: Get.find<Vaccines_Controller>()
+                                    .filteredvaccine!,
+                                headers: [
+                                  "Name".tr,
+                                  "English Name".tr,
+                                ],
+                                fieldMappings: {
+                                  "Name".tr: (reg) => reg.name ?? "",
+                                  "English Name".tr: (reg) => reg.enName ?? "",
+                                },
+                                fileName: "Vaccine".tr +
+                                    '${DateTime.now().toIso8601String()}',
+                              );
+                            },
+                            icon: Icon(VMS_Icons.pdf,
+                                size: 18,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .color!)),
+                      ),
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {
+                              exportDataToExcel<Vaccine>(
+                                items: Get.find<Vaccines_Controller>()
+                                    .filteredvaccine!,
+                                headers: [
+                                  "Name".tr,
+                                  "English Name".tr,
+                                ],
+                                fieldMappings: {
+                                  "Name".tr: (reg) => reg.name ?? "",
+                                  "English Name".tr: (reg) => reg.enName ?? "",
+                                },
+                                fileName: "Vaccine".tr +
+                                    '${DateTime.now().toIso8601String()}',
+                              );
+                            },
+                            icon: Icon(VMS_Icons.xl,
+                                size: 18,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .color!)),
+                      ),
+                    ],
+                  )
             ],
           ),
         ),
