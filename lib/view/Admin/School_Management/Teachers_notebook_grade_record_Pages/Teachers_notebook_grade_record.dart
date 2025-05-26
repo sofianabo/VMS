@@ -29,6 +29,7 @@ class _Teachers_notebook_grade_recordState
     extends State<Teachers_notebook_grade_record> {
   @override
   void initState() {
+    Get.find<TeachernoteAndGradeReco>().ClassIndex = "";
     Getallclassapi.getAllClasses();
     super.initState();
   }

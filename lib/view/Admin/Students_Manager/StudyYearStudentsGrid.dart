@@ -261,29 +261,41 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                       ),
                                     ],
                                   ),
-                                  // Text(
-                                  //     "${controller.filteredStudents![index].state}"
-                                  //         .tr,
-                                  //     style: Get.theme.textTheme.bodyMedium!
-                                  //         .copyWith(
-                                  //             fontSize: 16,
-                                  //             color: controller
-                                  //                         .filteredStudents![
-                                  //                             index]
-                                  //                         .state ==
-                                  //                     "Passing".tr
-                                  //                 ? const Color(0xff2F9742)
-                                  //                 : controller
-                                  //                             .filteredStudents![
-                                  //                                 index]
-                                  //                             .state ==
-                                  //                         "Failed".tr
-                                  //                     ? const Color(0xff972F2F)
-                                  //                     : const Color.fromARGB(
-                                  //                         255, 44, 134, 194))),
                                   Text(
-                                      "${"Grade Level:".tr} ${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? controller.filteredStudents![index].grade!.name : controller.filteredStudents![index].grade!.enName}",
-                                      style: Get.theme.textTheme.bodyMedium),
+                                    "${controller.filteredStudents![index].states}"
+                                        .tr,
+                                    style: Get.theme.textTheme.bodyMedium!
+                                        .copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                      color: controller.filteredStudents![index]
+                                                  .states ==
+                                              "Passing"
+                                          ? const Color(0xff2F9742) // أخضر
+                                          : controller.filteredStudents![index]
+                                                      .states ==
+                                                  "Failed"
+                                              ? const Color(0xff972F2F) // أحمر
+                                              : controller
+                                                          .filteredStudents![
+                                                              index]
+                                                          .states ==
+                                                      "No Result"
+                                                  ? const Color(
+                                                      0xFF488593) // بنفسجي جميل
+                                                  : const Color.fromARGB(
+                                                      255,
+                                                      44,
+                                                      134,
+                                                      194), // أزرق (للحالات الأخرى)
+                                    ),
+                                  ),
+                                  Text(
+                                      "${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? controller.filteredStudents![index].classes!.name : controller.filteredStudents![index].classes!.enName} / ${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? controller.filteredStudents![index].division!.name : controller.filteredStudents![index].division!.enName}",
+                                      style: Get.theme.textTheme.bodyMedium!
+                                          .copyWith(
+                                        fontWeight: FontWeight.bold,
+                                      )),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 8.0),
                                     child: Column(
