@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/DropDownExamCuriculmAPI.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/DropDownExamTypeAPI.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/DropDownTypeDialogAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/ExamTableController.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/DropDownCuriculmModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/ExamTypeModel.dart';
@@ -257,8 +258,9 @@ class DropDownexamTable extends StatelessWidget {
             child: Text(value, style: Theme.of(context).textTheme.bodyMedium),
             onTap: () async {
               seasonindex = value;
-              AllExamTypeModel types = await Dropdownexamtypeapi(context)
-                  .Dropdownexamtype(cont.examSeason.indexOf(seasonindex));
+              cont.initType();
+              AllExamTypeModel types = await Dropdowntypedialogapi(context)
+                  .Dropdowntypedialog(cont.examSeason.indexOf(seasonindex));
               cont.setAllTypesDialog(types);
             },
           );
