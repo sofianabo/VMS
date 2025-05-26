@@ -42,12 +42,19 @@ class RoleBasedMiddleware extends GetMiddleware {
         return const RouteSettings(name: '/teacher');
       }
     }
+    if (isLoggedIn && (role == "registration")) {
+      Get.find<Add_Data_controller>().CheeckHasData();
+      if (route != '/registration') {
+        return const RouteSettings(name: '/registration');
+      }
+    }
 
     if (isLoggedIn &&
         role != "admin" &&
         role != "teacher" &&
         role != "subAdmin" &&
         role != "observer" &&
+        role != "registration" &&
         role != "guardian") {
       if (route == '/admin' || route == '/guardian') {
         return const RouteSettings(name: '/home');

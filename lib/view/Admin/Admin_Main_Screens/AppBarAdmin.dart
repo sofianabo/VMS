@@ -46,14 +46,12 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          if (Get.find<Add_Data_controller>().isVerified) {
-                            if (cont.content != "My Profile") {
-                              Get_My_Profile.Get_My_Profile_Data();
-                            }
+                        if (Get.find<Add_Data_controller>().isVerified) {
+                          if (cont.content != "My Profile") {
+                            Get_My_Profile.Get_My_Profile_Data();
                           }
-                          cont.updateContent("My Profile");
-                        });
+                        }
+                        cont.updateContent("My Profile");
                       },
                       child: Container(
                         height: 40,
@@ -191,14 +189,12 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                 )),
                 GestureDetector(
                   onTap: () {
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      if (Get.find<Add_Data_controller>().isVerified) {
-                        if (cont.content != "My Profile") {
-                          Get_My_Profile.Get_My_Profile_Data();
-                        }
+                    if (Get.find<Add_Data_controller>().isVerified) {
+                      if (cont.content != "My Profile") {
+                        Get_My_Profile.Get_My_Profile_Data();
                       }
-                      cont.updateContent("My Profile");
-                    });
+                    }
+                    cont.updateContent("My Profile");
                   },
                   child: Container(
                     height: 40,

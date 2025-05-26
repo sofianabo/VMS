@@ -4,6 +4,7 @@ import 'package:vms_school/view/Admin/Admin_Main_Screens/AdminHome.dart';
 import 'package:vms_school/view/Auth/Enroll_Screen.dart';
 import 'package:vms_school/view/Auth/LoginScreen.dart';
 import 'package:vms_school/view/Guardian/MainScreen/GuardinMainScreen.dart';
+import 'package:vms_school/view/Registeration/Registeration_Home_Screens/Registeration_Home.dart';
 import 'package:vms_school/view/Teacher/Teacher_Home/TeacherMainScreen.dart';
 import 'package:vms_school/view/website/Home.dart';
 
@@ -42,6 +43,11 @@ class AppRoutes {
     GetPage(
       name: '/teacher',
       page: () => TeacherMainScreen(),
+      middlewares: [RoleBasedMiddleware()],
+    ),
+    GetPage(
+      name: '/registration',
+      page: () => RegisterationHome(),
       middlewares: [RoleBasedMiddleware()],
     ),
   ];

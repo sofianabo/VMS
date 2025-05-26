@@ -141,7 +141,10 @@ class Add_Data_controller extends GetxController {
           Get.find<Admin_Profile_Content>().ChangeCurruntValue("addData");
         }
       }
-      if (role == "admin" || role == "subAdmin" || role == "teacher") {
+      if (role == "admin" ||
+          role == "subAdmin" ||
+          role == "teacher" ||
+          role == "registration") {
         if (!isVerified) {
           if (!Get.isDialogOpen!) {
             await showVerificationDialog();
@@ -150,6 +153,9 @@ class Add_Data_controller extends GetxController {
         if (hasData) {
           if (role == "admin" || role == "subAdmin") {
             Get.find<AdminHomeContentController>().updateContent("Dashboard");
+          } else if (role == "registration") {
+            Get.find<AdminHomeContentController>()
+                .updateContent("Enroll Requests");
           }
         } else {
           Get.find<Admin_Profile_Content>().ChangeCurruntValue("addData");

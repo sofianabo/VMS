@@ -129,7 +129,8 @@ class _RequestsState extends State<Requests> {
                                       "",
                                   "Request Date".tr: (reg) =>
                                       reg.date?.toString() ?? "",
-                                  "Request State".tr: (reg) => reg.type ?? "",
+                                  "Request State".tr: (reg) =>
+                                      reg.type!.tr ?? "",
                                 },
                                 fileName:
                                     'registrations_export_${DateTime.now().toIso8601String()}',
@@ -192,7 +193,8 @@ class _RequestsState extends State<Requests> {
                                       "",
                                   "Request Date".tr: (reg) =>
                                       reg.date?.toString() ?? "",
-                                  "Request State".tr: (reg) => reg.type ?? "",
+                                  "Request State".tr: (reg) =>
+                                      reg.type!.tr ?? "",
                                 },
                                 fileName:
                                     'registrations_export_${DateTime.now().toIso8601String()}',
@@ -299,7 +301,8 @@ class _RequestsState extends State<Requests> {
                                       "",
                                   "Request Date".tr: (reg) =>
                                       reg.date?.toString() ?? "",
-                                  "Request State".tr: (reg) => reg.type ?? "",
+                                  "Request State".tr: (reg) =>
+                                      reg.type!.tr ?? "",
                                 },
                                 fileName:
                                     'registrations_export_${DateTime.now().toIso8601String()}',
@@ -365,7 +368,8 @@ class _RequestsState extends State<Requests> {
                                         "",
                                     "Request Date".tr: (reg) =>
                                         reg.date?.toString() ?? "",
-                                    "Request State".tr: (reg) => reg.type ?? "",
+                                    "Request State".tr: (reg) =>
+                                        reg.type!.tr ?? "",
                                   },
                                   fileName:
                                       'registrations_export_${DateTime.now().toIso8601String()}',

@@ -19,26 +19,39 @@ class Approverequestapi {
       Get.find<Dropdowndivisioncontroller>();
   BuildContext context;
   Dio dio = Dio();
+
   Approverequest(
     int requestId,
     int studentId,
-    int classid,
-    int divisionId,
+    int? classid,
+    int? divisionId,
   ) async {
     try {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
-      int? cID = classControl.Allclass[classid].id;
-      int? dID = divisionControl.allDivision[divisionId].id;
+
       String myurl = "$hostPort$acceptARequest";
+
+      // إنشاء بيانات الطلب الأساسية
+      Map<String, dynamic> requestData = {
+        "studentId": studentId,
+        "id": requestId
+      };
+
+      // إضافة classId و divisionId فقط إذا تم توفيرهم
+      if (classid != null) {
+        int? cID = classControl.Allclass[classid].id;
+        requestData["classId"] = cID;
+      }
+
+      if (divisionId != null) {
+        int? dID = divisionControl.allDivision[divisionId].id;
+        requestData["divisionId"] = dID;
+      }
+
       var response = await dio.post(myurl,
           cancelToken: cancelToken,
-          data: {
-            "classId": cID,
-            "divisionId": dID,
-            "studentId": studentId,
-            "id": requestId
-          },
+          data: requestData,
           options: getDioOptions());
 
       if (response.statusCode == 200) {

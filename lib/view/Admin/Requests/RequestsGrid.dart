@@ -51,7 +51,7 @@ class RequestsGrid extends StatelessWidget {
     return GetBuilder<Requestscontroller>(builder: (controller) {
       if (controller.isLoading == true) {
         return Container(
-          padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+          padding: const EdgeInsets.only(left: 20.0, right: 20.0),
           child: GridView.builder(
             shrinkWrap: true,
             itemCount: 6,
@@ -196,13 +196,16 @@ class RequestsGrid extends StatelessWidget {
                       .copyWith(fontSize: 22, fontWeight: FontWeight.normal)));
         } else {
           return Directionality(
-            textDirection:  Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
+            textDirection: Get.find<LocalizationController>()
+                        .currentLocale
+                        .value
+                        .languageCode ==
+                    'ar'
                 ? TextDirection.rtl
                 : TextDirection.ltr,
             child: LayoutBuilder(builder: (context, constraints) {
               return Container(
-                padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+                padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                 child: GridView.builder(
                   shrinkWrap: true,
                   itemCount: controller.filteredregistration.length,
@@ -359,19 +362,17 @@ class RequestsGrid extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  ButtonsGrid(
-                                    color: Get.find<Add_Data_controller>()
-                                                .roll ==
-                                            "subAdmin"
-                                        ? Get.theme.disabledColor
-                                        : Theme.of(context).primaryColorLight,
-                                    width: 150,
-                                    height: 40,
-                                    text: "Manage".tr,
-                                    onPressed: () async {
-                                      if (Get.find<Add_Data_controller>()
-                                              .roll !=
-                                          "subAdmin") {
+                                  if (Get.find<Add_Data_controller>().roll ==
+                                          "registration" ||
+                                      Get.find<Add_Data_controller>().roll ==
+                                          "accountant")
+                                    ButtonsGrid(
+                                      color:
+                                          Theme.of(context).primaryColorLight,
+                                      width: 150,
+                                      height: 40,
+                                      text: "Manage".tr,
+                                      onPressed: () async {
                                         Get.find<Dropdowndivisioncontroller>()
                                             .setIsDisiabled(true);
                                         controller.classIndex = "";
@@ -395,79 +396,168 @@ class RequestsGrid extends StatelessWidget {
                                               ButtonDialog(
                                                 text: 'Approve'.tr,
                                                 onPressed: () async {
-                                                  await Approverequestapi(context).Approverequest(
-                                                      controller
-                                                          .filteredregistration[
-                                                              index]
-                                                          .acceptanceNumber!,
-                                                      controller
-                                                          .filteredregistration[
-                                                              index]
-                                                          .student!
-                                                          .id!,
-                                                      controller.classlist
-                                                          .indexOf(controller
-                                                              .selectedClassIndex),
-                                                      controller.divisionlist
-                                                          .indexOf(controller
-                                                              .selectedDivisionIndex));
+                                                  await Approverequestapi(
+                                                          context)
+                                                      .Approverequest(
+                                                          controller
+                                                              .filteredregistration[
+                                                                  index]
+                                                              .acceptanceNumber!,
+                                                          controller
+                                                              .filteredregistration[
+                                                                  index]
+                                                              .student!
+                                                              .id!,
+                                                          null,
+                                                          null);
                                                 },
                                                 width: 80,
                                                 color: Theme.of(context)
                                                     .primaryColor,
                                               )
                                             ],
-                                            contents: SingleChildScrollView(
-                                              child: Column(
-                                                spacing: 10.0,
-                                                children: [
-                                                  GetBuilder<
-                                                          Dropdownclassescontroller>(
-                                                      builder: (controller) {
-                                                    return Dropdownrequestenroll(
-                                                      isLoading:
-                                                          controller.Isloading,
-                                                      width: 300,
-                                                      type: "class",
-                                                      title: 'Class'.tr,
-                                                    );
-                                                  }),
-                                                  GetBuilder<
-                                                          Dropdowndivisioncontroller>(
-                                                      builder: (controller) {
-                                                    return Dropdownrequestenroll(
-                                                      isDisabled: controller
-                                                          .isDisiabled,
-                                                      isLoading:
-                                                          controller.isLoading,
-                                                      width: 300,
-                                                      type: "division",
-                                                      title: 'Division'.tr,
-                                                    );
-                                                  }),
-                                                  TextButton(
-                                                      onPressed: () {
-                                                        for (int i = 0;
-                                                            i <
-                                                                controller
-                                                                    .filteredregistration
-                                                                    .length;
-                                                            i++) {
-                                                          openFileInNewTab(
-                                                              filePath:
-                                                                  '$getpdf${controller.filteredregistration[index].fileId![i]}');
-                                                        }
-                                                      },
-                                                      child: Text("Show Files"))
-                                                ],
-                                              ),
+                                            contents: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              spacing: 10.0,
+                                              children: [
+                                                TextButton(
+                                                    onPressed: () {
+                                                      for (int i = 0;
+                                                          i <
+                                                              controller
+                                                                  .filteredregistration
+                                                                  .length;
+                                                          i++) {
+                                                        openFileInNewTab(
+                                                            filePath:
+                                                                '$getpdf${controller.filteredregistration[index].fileId![i]}');
+                                                      }
+                                                    },
+                                                    child: Text(
+                                                        "Show Approve Files"
+                                                            .tr))
+                                              ],
                                             ),
                                             apptitle: 'Manage Student'.tr,
                                             subtitle:
                                                 '${controller.filteredregistration[index].student?.name}'));
-                                      }
-                                    },
-                                  ),
+                                      },
+                                    ),
+                                  if (Get.find<Add_Data_controller>().roll !=
+                                          "registration" &&
+                                      Get.find<Add_Data_controller>().roll !=
+                                          "accountant")
+                                    ButtonsGrid(
+                                      color: Get.find<Add_Data_controller>()
+                                                  .roll ==
+                                              "subAdmin"
+                                          ? Get.theme.disabledColor
+                                          : Theme.of(context).primaryColorLight,
+                                      width: 150,
+                                      height: 40,
+                                      text: "Manage".tr,
+                                      onPressed: () async {
+                                        if (Get.find<Add_Data_controller>()
+                                                .roll !=
+                                            "subAdmin") {
+                                          Get.find<Dropdowndivisioncontroller>()
+                                              .setIsDisiabled(true);
+                                          controller.classIndex = "";
+                                          controller.divisionIndex = "";
+                                          Get.dialog(VMSAlertDialog(
+                                              action: [
+                                                ButtonDialog(
+                                                  text: 'Reject'.tr,
+                                                  onPressed: () async {
+                                                    await Rejectenrollrequestapi(
+                                                            context)
+                                                        .Rejectenrollrequest(controller
+                                                            .filteredregistration[
+                                                                index]
+                                                            .acceptanceNumber!);
+                                                    Get.back();
+                                                  },
+                                                  width: 80,
+                                                  color:
+                                                      const Color(0xffB03D3D),
+                                                ),
+                                                ButtonDialog(
+                                                  text: 'Approve'.tr,
+                                                  onPressed: () async {
+                                                    await Approverequestapi(context).Approverequest(
+                                                        controller
+                                                            .filteredregistration[
+                                                                index]
+                                                            .acceptanceNumber!,
+                                                        controller
+                                                            .filteredregistration[
+                                                                index]
+                                                            .student!
+                                                            .id!,
+                                                        controller.classlist
+                                                            .indexOf(controller
+                                                                .selectedClassIndex),
+                                                        controller.divisionlist
+                                                            .indexOf(controller
+                                                                .selectedDivisionIndex));
+                                                  },
+                                                  width: 80,
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                )
+                                              ],
+                                              contents: SingleChildScrollView(
+                                                child: Column(
+                                                  spacing: 10.0,
+                                                  children: [
+                                                    GetBuilder<
+                                                            Dropdownclassescontroller>(
+                                                        builder: (controller) {
+                                                      return Dropdownrequestenroll(
+                                                        isLoading: controller
+                                                            .Isloading,
+                                                        width: 300,
+                                                        type: "class",
+                                                        title: 'Class'.tr,
+                                                      );
+                                                    }),
+                                                    GetBuilder<
+                                                            Dropdowndivisioncontroller>(
+                                                        builder: (controller) {
+                                                      return Dropdownrequestenroll(
+                                                        isDisabled: controller
+                                                            .isDisiabled,
+                                                        isLoading: controller
+                                                            .isLoading,
+                                                        width: 300,
+                                                        type: "division",
+                                                        title: 'Division'.tr,
+                                                      );
+                                                    }),
+                                                    TextButton(
+                                                        onPressed: () {
+                                                          for (int i = 0;
+                                                              i <
+                                                                  controller
+                                                                      .filteredregistration
+                                                                      .length;
+                                                              i++) {
+                                                            openFileInNewTab(
+                                                                filePath:
+                                                                    '$getpdf${controller.filteredregistration[index].fileId![i]}');
+                                                          }
+                                                        },
+                                                        child:
+                                                            Text("Show Files"))
+                                                  ],
+                                                ),
+                                              ),
+                                              apptitle: 'Manage Student'.tr,
+                                              subtitle:
+                                                  '${controller.filteredregistration[index].student?.name}'));
+                                        }
+                                      },
+                                    ),
                                   Padding(
                                     padding: const EdgeInsets.only(right: 8.0),
                                     child: Row(

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/API/AdminAPI/Get_My_Profile.dart';
 import 'package:vms_school/Link/API/AuthAPI/LogoutAPI.dart';
+import 'package:vms_school/Link/API/Teacher_API/GetMyAttendenceAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Admin/All_Settings/Account_And_Password.dart';
 import 'package:vms_school/view/Admin/All_Settings/Add_Data_My_Account.dart';
 import 'package:vms_school/view/Admin/All_Settings/Apperance.dart';
+import 'package:vms_school/view/Admin/All_Settings/My_Attendance.dart';
 import 'package:vms_school/view/Admin/All_Settings/My_Illness.dart';
 import 'package:vms_school/view/Admin/All_Settings/Prof_Section.dart';
 import 'package:vms_school/view/Admin/All_Settings/Personal_Section.dart';
@@ -316,6 +317,74 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                                                 Text(
                                                                   "  " +
                                                                       "My Illness"
+                                                                          .tr +
+                                                                      "  ",
+                                                                  maxLines: 2,
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                  overflow:
+                                                                      TextOverflow
+                                                                          .ellipsis,
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        GestureDetector(
+                                                          onTap: () {
+                                                            Getmyattendenceapi(
+                                                                    context)
+                                                                .Getmyattendence(
+                                                                    isProfile:
+                                                                        true);
+                                                            controller
+                                                                .ChangeCurruntValue(
+                                                                    "My Attendance");
+                                                            Get.back();
+                                                          },
+                                                          child:
+                                                              AnimatedContainer(
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    150),
+                                                            decoration:
+                                                                BoxDecoration(
+                                                                    color: controller.curruntValue ==
+                                                                            "My Attendance"
+                                                                        ? _isDarkMode
+                                                                                .value
+                                                                            ? Theme.of(context)
+                                                                                .indicatorColor
+                                                                            : Color(
+                                                                                0xffEBEBEB)
+                                                                        : Theme.of(context)
+                                                                            .cardColor,
+                                                                    borderRadius:
+                                                                        BorderRadius.all(
+                                                                            Radius.circular(20))),
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    5.0),
+                                                            child: Row(
+                                                              textDirection: Get.find<
+                                                                              LocalizationController>()
+                                                                          .currentLocale
+                                                                          .value
+                                                                          .languageCode ==
+                                                                      'ar'
+                                                                  ? TextDirection
+                                                                      .rtl
+                                                                  : TextDirection
+                                                                      .ltr,
+                                                              children: [
+                                                                FaIcon(
+                                                                  FontAwesomeIcons
+                                                                      .chartArea,
+                                                                ),
+                                                                Text(
+                                                                  "  " +
+                                                                      "My Attendance"
                                                                           .tr +
                                                                       "  ",
                                                                   maxLines: 2,
@@ -761,6 +830,52 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                               ),
                                               GestureDetector(
                                                 onTap: () {
+                                                  Getmyattendenceapi(context)
+                                                      .Getmyattendence(
+                                                          isProfile: true);
+                                                  controller.ChangeCurruntValue(
+                                                      "My Attendance");
+                                                },
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                      color: controller
+                                                                  .curruntValue ==
+                                                              "My Attendance"
+                                                          ? _isDarkMode.value
+                                                              ? Theme.of(
+                                                                      context)
+                                                                  .indicatorColor
+                                                              : Color(
+                                                                  0xffEBEBEB)
+                                                          : Colors.transparent,
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  20))),
+                                                  padding: EdgeInsets.all(5.0),
+                                                  child: Row(
+                                                    textDirection: Get.find<
+                                                                    LocalizationController>()
+                                                                .currentLocale
+                                                                .value
+                                                                .languageCode ==
+                                                            'ar'
+                                                        ? TextDirection.rtl
+                                                        : TextDirection.ltr,
+                                                    children: [
+                                                      FaIcon(
+                                                        FontAwesomeIcons
+                                                            .chartArea,
+                                                      ),
+                                                      Text("  " +
+                                                          "My Attendance".tr +
+                                                          "  ")
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                              GestureDetector(
+                                                onTap: () {
                                                   controller.ChangeCurruntValue(
                                                       "My Illness");
                                                   Get.back();
@@ -1054,7 +1169,10 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                           : controller.curruntValue ==
                                                   "My Illness"
                                               ? My_Illness()
-                                              : Account_And_Password(),
+                                              : controller.curruntValue ==
+                                                      "My Attendance"
+                                                  ? My_Attandens()
+                                                  : Account_And_Password(),
                         ))
                       ],
                     ),

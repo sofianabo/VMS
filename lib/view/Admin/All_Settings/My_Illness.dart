@@ -24,10 +24,10 @@ class My_Illness extends StatefulWidget {
   const My_Illness({super.key});
 
   @override
-  State<My_Illness> createState() => _ProfileState();
+  State<My_Illness> createState() => _IllnessState();
 }
 
-class _ProfileState extends State<My_Illness> {
+class _IllnessState extends State<My_Illness> {
   @override
   void initState() {
     Get_My_Illness_API(context).Get_My_Illness();

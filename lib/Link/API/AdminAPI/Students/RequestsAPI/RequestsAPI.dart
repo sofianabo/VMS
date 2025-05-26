@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownClassesAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/RequestsController.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllClassesModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/RequestsModel.dart';
@@ -23,9 +24,12 @@ class GetAllRequestsapi {
 
       if (response.statusCode == 200) {
         AllRequestsModel requests = AllRequestsModel.fromJson(response.data);
-        AllClassModel classesModel = await Getallclassapi.getAllClasses();
-        c.setAllClassDialog(classesModel);
         c.setAllRequests(requests);
+        if (Get.find<Add_Data_controller>().roll != "registration" &&
+            Get.find<Add_Data_controller>().roll != "accountant") {
+          AllClassModel classesModel = await Getallclassapi.getAllClasses();
+          c.setAllClassDialog(classesModel);
+        }
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

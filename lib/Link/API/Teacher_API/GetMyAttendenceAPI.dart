@@ -17,14 +17,22 @@ class Getmyattendenceapi {
   Getmyattendenceapi(this.context);
   Dio dio = Dio();
 
-  Getmyattendence() async {
+  Getmyattendence({bool isProfile = false}) async {
     try {
       CancelToken cancelToken = CancelToken();
-      Loading_Dialog(cancelToken: cancelToken);
+      if (!isProfile) {
+        Loading_Dialog(cancelToken: cancelToken);
+      }
+      c.setIsLoading(true);
+
       String myurl = "${global.hostPort}${global.getMyAttendence}";
       var response = await dio.post(myurl, options: getDioOptions());
-      Get.back();
+
       if (response.statusCode == 200) {
+        if (!isProfile) {
+          Get.back();
+        }
+
         oneEmployeeAttendenceModel st =
             oneEmployeeAttendenceModel.fromJson(response.data);
         c.setEmployeeAttendence(st);
@@ -44,8 +52,9 @@ class Getmyattendenceapi {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    } finally {
-      Get.back();
     }
+    // finally {
+    //   Get.back();
+    // }
   }
 }
