@@ -8,7 +8,6 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Sessions/
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Session_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
-import 'package:vms_school/main.dart';
 import 'package:vms_school/widgets/ButtonsDialog.dart';
 import 'package:vms_school/widgets/Calender.dart';
 import 'package:vms_school/widgets/GridAnimation.dart';
@@ -208,9 +207,8 @@ class SessionManagementGrid extends StatelessWidget {
                               // }
                             } else {
                               if (control.Sessionss[index]['status']
-                                      .toString()
-                                      .tr !=
-                                  "Closed".tr) {
+                                      .toString() !=
+                                  "Closed") {
                                 if (Get.find<Add_Data_controller>().roll ==
                                     "admin") {
                                   Get.dialog(VMSAlertDialog(
@@ -218,18 +216,12 @@ class SessionManagementGrid extends StatelessWidget {
                                         ButtonDialog(
                                             text: "Yes Close".tr,
                                             onPressed: () async {
-                                              var res = await Closesessionapi(
-                                                      context)
+                                              await Closesessionapi(context)
                                                   .Closesession(
+                                                      index: index,
                                                       sessionId: control
                                                           .sessionsss![index]
                                                           .id);
-                                              if (res == 200) {
-                                                control.updateStatus(
-                                                    index, "Closed".tr);
-                                                Get.back();
-                                              } else if (res == 250) {
-                                              } else {}
                                             },
                                             color: const Color(0xff134B70),
                                             width: 120),
