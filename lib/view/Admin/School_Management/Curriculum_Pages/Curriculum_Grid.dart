@@ -174,8 +174,11 @@ class CurriculumGrid extends StatelessWidget {
                                             child: Text(
                                                 maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,
-                                               Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
+                                                Get.find<LocalizationController>()
+                                                            .currentLocale
+                                                            .value
+                                                            .languageCode ==
+                                                        'ar'
                                                     ? "${control.filteredCurriculum[index].name}"
                                                     : "${control.filteredCurriculum[index].enName}",
                                                 style: Get
@@ -206,7 +209,7 @@ class CurriculumGrid extends StatelessWidget {
                                           ),
                                           Text(
                                               "Is Failure Agent :".tr +
-                                                  " ${control.filteredCurriculum[index].type == 1 ? "Yes" : "No"}",
+                                                  " ${control.filteredCurriculum[index].type == 1 ? "Yes".tr : "No".tr}",
                                               style: TextStyle(
                                                 color: control
                                                             .filteredCurriculum[

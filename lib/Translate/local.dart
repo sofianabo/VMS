@@ -612,8 +612,8 @@ class Languages {
       'Delete Class': 'حذف الصف',
       'No Classes': 'لا يوجد صفوف',
       'Curriculum English Name': 'الاسم الإنكليزي للمنهاج',
-      'Failed subject': 'مادة مرسبة',
-      'Is Failed subject': 'هل هي مادة مرسبة',
+      'Failed subject': 'منهاج مرسب',
+      'Is Failed subject': 'هل  المنهاج مرسب',
       'Add Curriculum': 'إضافة منهاج',
 
       'Please select true value': 'يرجى اختيار قيمة صحيحة',
@@ -627,7 +627,7 @@ class Languages {
       "The Third Semester": "الفصل الثالث",
       'Max Mark :': 'العلامة العظمى :',
       'Passing Mark :': 'علامة النجاح :',
-      'Is Failure Agent :': 'هل المادة مرسبة :',
+      'Is Failure Agent :': 'هل المنهاج مرسب:',
       'Do You Want To Deletecur': 'هل تريد حذف المادة',
       'Curriculumm': '',
       'Delete Curriculum': 'حذف المادة',
@@ -699,7 +699,7 @@ class Languages {
       'Add Session': 'إضافة سنة دراسية',
       'Yes Close': 'نعم أغلق',
       'Closed': 'مغلق',
-      'Close Session': 'أغلاق السنة الدراسية',
+      'Close Session': 'إغلاق السنة الدراسية',
       'Close': 'إغلاق',
       'Start Date :': 'تاريخ البداية : ',
       'End Date :': 'تاريخ النهاية : ',
@@ -803,6 +803,7 @@ class Languages {
       'Do You Want To DeleteeAtt': 'هل تريد حذف حضور',
       'Attendenceatt': '',
       'Delete Attendence': 'حذف حضور',
+      'you can not close this session': 'لا يمكنك إغلاق هذه السنة الدراسية'
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -1372,8 +1373,8 @@ class Languages {
       'No Classes': 'No Classes',
 
       'Curriculum English Name': 'Curriculum English Name',
-      'Failed subject': 'Failed subject',
-      'Is Failed subject': 'Is Failed subject',
+      'Failed subject': 'Failed Curriculum',
+      'Is Failed subject': 'Is Curriculum Failing',
       'Add Curriculum': 'Add Curriculum',
       'Please select true value': 'Please select true value',
       'Click To Add File\nOr\nDrag And Drop File Here':
@@ -1386,7 +1387,7 @@ class Languages {
       "The Third Semester": "The Third Semester",
       'Max Mark :': 'Max Mark :',
       'Passing Mark :': 'Passing Mark :',
-      'Is Failure Agent :': 'Is Failure Agent :',
+      'Is Failure Agent :': 'Is Failure Curriculum :',
       'Do You Want To Deletecur': 'Do You Want To Delete',
       'Curriculumm': 'Curriculum',
       'Delete Curriculum': 'Delete Curriculum',
@@ -1598,7 +1599,7 @@ class Languages {
       'You have has data in your account yet.':
           'You have has data in your account yet.',
       'Add Data Now': 'Add Data Now',
-      '': '',
+      'you can not close this session': 'you can not close this session',
       '': '',
       '': '',
       '': '',

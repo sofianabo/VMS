@@ -74,8 +74,8 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   "${prefs!.getString("fullname")}",
-                                  style: TextStyle(
-                                      fontSize: 12, color: Colors.black),
+                                  style: Get.theme.textTheme.bodyMedium!
+                                      .copyWith(fontSize: 12),
                                 ),
                               ),
                             ),
@@ -84,7 +84,8 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                                   left: 5.0, right: 5.0, top: 3.0, bottom: 3.0),
                               child: CircleAvatar(
                                 radius: 20,
-                                backgroundColor: Theme.of(context).primaryColor,
+                                backgroundColor:
+                                    Theme.of(context).primaryColorLight,
                                 child: prefs!.getString("imageId") != "null"
                                     ? CircleAvatar(
                                         radius: 20,
@@ -227,7 +228,8 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                               left: 5.0, right: 5.0, top: 3.0, bottom: 3.0),
                           child: CircleAvatar(
                             radius: 20,
-                            backgroundColor: Theme.of(context).primaryColor,
+                            backgroundColor:
+                                Theme.of(context).primaryColorLight,
                             child: prefs!.getString("imageId") != "null"
                                 ? CircleAvatar(
                                     radius: 20,
