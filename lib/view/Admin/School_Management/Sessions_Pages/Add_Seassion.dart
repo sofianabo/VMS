@@ -40,9 +40,15 @@ class _Add_SessionState extends State<Add_Session> {
 
                   if (!(isNameEmpty || isStartEmpty || isEndEmpty)) {
                     await Add_Session_API(context).Add_Session(
-                        "${yearController.text}-${controller.currentYear.value}",
-                        controller.startDate.value.toString(),
-                        controller.endDate.value.toString());
+                      "${yearController.text}-${controller.currentYear.value}",
+                      controller.startDate.value.toString(),
+                      controller.endDate.value.toString(),
+                      controller.selectedDropdownValue.value,
+                      controller.checkbox1.value,
+                      controller.checkbox2.value,
+                      controller.checkbox3.value,
+                      controller.checkbox4.value,
+                    );
                   }
                 },
                 color: Theme.of(context).primaryColor,
@@ -55,46 +61,65 @@ class _Add_SessionState extends State<Add_Session> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                GetBuilder<SessionController>(builder: (controllers) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      SizedBox(
-                        width: screenWidth >= 690 ? 270 : (screenWidth) - 108,
-                        child: Textfildwithupper_num(
-                          onChanged: (value) {
-                            controller.updateYear(value);
-                            if (value.isNotEmpty) {
-                              controller.updateFieldError("name", false);
-                            }
-                          },
-                          isRequired: true,
-                          isError: controller.IsnameError,
-                          Uptext: "Study Year".tr,
-                          hinttext: "Enter Year".tr,
-                          sessionController: yearController,
-                          borderColor: controllers.borderColor,
-                        ),
-                      ),
-                      Obx(() {
-                        return Padding(
-                          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                          child: Container(
-                            height: 40,
-                            alignment: Alignment.center,
-                            child: Text(
-                              "/${controllers.currentYear.value}",
-                              style: Get.theme.textTheme.titleLarge!.copyWith(
-                                fontSize: 22,
-                              ),
+                Wrap(
+                  runSpacing: 20.0,
+                  spacing: 20.0,
+                  crossAxisAlignment: WrapCrossAlignment.end,
+                  runAlignment: WrapAlignment.spaceBetween,
+                  alignment: WrapAlignment.spaceBetween,
+                  children: [
+                    GetBuilder<SessionController>(builder: (controllers) {
+                      return Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          SizedBox(
+                            width:
+                                screenWidth >= 690 ? 270 : (screenWidth) - 108,
+                            child: Textfildwithupper_num(
+                              onChanged: (value) {
+                                controller.updateYear(value);
+                                if (value.isNotEmpty) {
+                                  controller.updateFieldError("name", false);
+                                }
+                              },
+                              isRequired: true,
+                              isError: controller.IsnameError,
+                              Uptext: "Study Year".tr,
+                              hinttext: "Enter Year".tr,
+                              sessionController: yearController,
+                              borderColor: controllers.borderColor,
                             ),
                           ),
-                        );
-                      }),
-                    ],
-                  );
-                }),
+                          Obx(() {
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 8.0, right: 8.0),
+                              child: Container(
+                                height: 40,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "/${controllers.currentYear.value}",
+                                  style:
+                                      Get.theme.textTheme.titleLarge!.copyWith(
+                                    fontSize: 22,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }),
+                        ],
+                      );
+                    }),
+                    ButtonDialog(
+                      text: "Move".tr,
+                      onPressed: controller.showDialog,
+                      color: Theme.of(context).primaryColor,
+                      width: screenWidth >= 690 ? 290 : (screenWidth) - 70,
+                    )
+                  ],
+                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 15.0),
                   child: Wrap(

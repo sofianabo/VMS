@@ -32,7 +32,10 @@ class ButtonDialog extends StatelessWidget {
               side: BorderSide(color: bordercolor ?? Colors.transparent)),
           onPressed: onPressed,
           color: color,
-          child: Text(text,
+          child: Text(
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              text,
               style: Get.theme.textTheme.displayMedium!.copyWith(
                   fontFamily: "Cairo", color: textcolor ?? Colors.white))),
     );

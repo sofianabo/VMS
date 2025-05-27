@@ -4,19 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllSessionModel.dart';
+import 'package:vms_school/widgets/VMSAlertDialog.dart';
 
 class SessionController extends GetxController {
   var Sessionss = <Map<String, dynamic>>[].obs;
 
   List<Sessions>? sessionsss;
-
+  List<String> seassionList = [];
   bool isLoading = true;
 
   setData(AllSessionModel sessions) {
+    selectedDropdownValue.value = "";
+    seassionList.clear();
     Sessionss.clear();
     sessionsss = sessions.sessions;
     setIsLoading(false);
     for (var stu in sessions.sessions!) {
+      seassionList.add("${stu.year}");
       Sessionss.add({
         'id': stu.id,
         'name': stu.year,
@@ -26,6 +30,7 @@ class SessionController extends GetxController {
         'hasStudents': stu.hasStudent == 1 ? true : false,
       });
     }
+
     final sessionCont = Get.find<All_Screen_Sessions_Controller>();
     sessionCont.setAllSession(sessions);
     update();
@@ -137,6 +142,123 @@ class SessionController extends GetxController {
   void initialData() {
     startDate.value = null;
     endDate.value = null;
+    checkbox1.value = false;
+    checkbox2.value = false;
+    checkbox3.value = false;
+    checkbox4.value = false;
+    selectedDropdownValue.value = "";
+    IsnameError = false;
+    IsstartError = false;
+    IsEndError = false;
+    currentYear = 0.obs;
     update();
+  }
+
+  // حالة القائمة المنسدلة
+  RxString selectedDropdownValue = "".obs;
+
+  // حالات خانات الاختيار
+  var checkbox1 = false.obs;
+  var checkbox2 = false.obs;
+  var checkbox3 = false.obs;
+  var checkbox4 = false.obs;
+
+  // دالة لتغيير حالة الخانة الأولى
+  void toggleCheckbox1(bool value) {
+    checkbox1.value = value;
+    if (!value) {
+      checkbox2.value = false;
+      checkbox3.value = false;
+      checkbox4.value = false;
+    }
+  }
+
+  // دالة للحصول على النص المعروض على الزر
+  String get buttonText {
+    List<String> selected = [];
+    if (checkbox1.value) selected.add("Classes".tr);
+    if (checkbox2.value) selected.add("Divisions".tr);
+    if (checkbox3.value) selected.add("Quiz Types".tr);
+    if (checkbox4.value) selected.add("Report Card Settings".tr);
+
+    return selected.isEmpty ? "Move".tr : selected.join("، ");
+  }
+
+  void showDialog() {
+    Get.dialog(VMSAlertDialog(
+        action: [],
+        contents: SingleChildScrollView(
+          child: Obx(() => Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // القائمة المنسدلة
+                  DropdownButton<String>(
+                    dropdownColor: Get.theme.cardColor,
+                    iconDisabledColor: Colors.grey,
+                    borderRadius: BorderRadius.all(Radius.circular(3)),
+                    isExpanded: true,
+                    style:
+                        Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+                    value: selectedDropdownValue.value.isEmpty
+                        ? null
+                        : selectedDropdownValue.value,
+                    hint: Text("Select Seassion".tr),
+                    items: seassionList.map((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          style: Get.theme.textTheme.bodyMedium!
+                              .copyWith(fontSize: 14),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (newValue) {
+                      selectedDropdownValue.value = newValue ?? '';
+                    },
+                  ),
+                  SizedBox(height: 20),
+
+                  CheckboxListTile(
+                    title: Text("Classes".tr),
+                    value: checkbox1.value,
+                    onChanged: selectedDropdownValue.value != ""
+                        ? (bool? value) {
+                            toggleCheckbox1(value ?? false);
+                          }
+                        : null,
+                  ),
+                  CheckboxListTile(
+                    title: Text("Divisions".tr),
+                    value: checkbox2.value,
+                    onChanged: checkbox1.value
+                        ? (bool? value) {
+                            checkbox2.value = value ?? false;
+                          }
+                        : null,
+                  ),
+                  CheckboxListTile(
+                    title: Text("Quiz Types".tr),
+                    value: checkbox3.value,
+                    onChanged: checkbox1.value
+                        ? (bool? value) {
+                            checkbox3.value = value ?? false;
+                          }
+                        : null,
+                  ),
+                  CheckboxListTile(
+                    title: Text("Report Card Settings".tr),
+                    value: checkbox4.value,
+                    onChanged: checkbox1.value
+                        ? (bool? value) {
+                            checkbox4.value = value ?? false;
+                          }
+                        : null,
+                  ),
+                ],
+              )),
+        ),
+        apptitle: "Move From Session".tr,
+        subtitle: "none"));
   }
 }
