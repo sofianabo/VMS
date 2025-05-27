@@ -99,9 +99,15 @@ void showErrorMessagesDialog(List<dynamic> messages) {
         height: 370,
         child: SingleChildScrollView(
           child: Column(
+            spacing: 20,
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(
+                "you can not close this session".tr,
+                style: Get.theme.textTheme.bodyMedium!
+                    .copyWith(color: const Color(0xffB03D3D)),
+              ),
               for (var msg in uniqueMessages)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
