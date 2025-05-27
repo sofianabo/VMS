@@ -15,6 +15,7 @@ import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Student_Attendenc_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/StudyYearStudentsController.dart';
+import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeacherAtendenceController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
 
 class DropDownAllSessions extends StatelessWidget {
@@ -89,9 +90,35 @@ class DropDownAllSessions extends StatelessWidget {
                   Getallclassapi.getAllClasses(sessionID: cont.sessionId);
                   break;
                 case 'Teachersts':
-                  Getteacherattendenceapi()
-                      .Getteacherattendence(sessionID: cont.sessionId);
-                  Getallclassapi.getAllClasses(sessionID: cont.sessionId);
+                  if (cont.sessions!.sessions!
+                          .firstWhere((session) => session.year == newValue)
+                          .id ==
+                      cont.sessions!.current!.id) {
+                    Get.find<Allteacheratendencecontroller>()
+                        .selectDateindex
+                        .value = DateTime.now();
+                    Getteacherattendenceapi()
+                        .Getteacherattendence(sessionID: cont.sessionId);
+
+                    Getallclassapi.getAllClasses(sessionID: cont.sessionId);
+                  } else {
+                    if (await Get.find<Allteacheratendencecontroller>()
+                            .selectDate(
+                          context,
+                        ) ==
+                        true) {
+                      Getteacherattendenceapi().Getteacherattendence(
+                          date: Get.find<Employeeattendencecontroller>()
+                              .selectDateindex
+                              .value
+                              .toString()
+                              .replaceAll("00:00:00.000", "")
+                              .trim());
+                    } else {
+                      cont.setSessionDefult();
+                      return;
+                    }
+                  }
                   break;
                 case 'AllEmployee':
                   cont.selectIndex(type, newValue);
@@ -166,7 +193,7 @@ class DropDownAllSessions extends StatelessWidget {
                       cont.sessions!.current!.id) {
                     Get.find<Employeeattendencecontroller>()
                         .selectDateindex
-                        .value = null;
+                        .value = DateTime.now();
                     Getemployeeattendenceapi().Getemployeeattendence();
                   } else {
                     if (await Get.find<Employeeattendencecontroller>()

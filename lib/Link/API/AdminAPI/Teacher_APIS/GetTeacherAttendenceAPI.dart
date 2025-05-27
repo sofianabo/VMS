@@ -11,26 +11,23 @@ class Getteacherattendenceapi {
   final Allteacheratendencecontroller c =
       Get.find<Allteacheratendencecontroller>();
 
-
   Dio dio = Dio();
 
-  Getteacherattendence({sessionID , String? date}) async {
+  Getteacherattendence({sessionID, String? date}) async {
     try {
       c.setIsLoading(true);
       String myurl = "${global.hostPort}${global.getTeacherAttendance}";
-      var response = await dio.post(
-          data: {
-            "sessionId":sessionID,
-            "date":date,
-          },
-          myurl, options: getDioOptions());
+      var response = await dio.post(data: {
+        "sessionId": sessionID,
+        "date": date,
+      }, myurl, options: getDioOptions());
       if (response.statusCode == 200) {
         AllTeacherAttendenceModel teacher =
             AllTeacherAttendenceModel.fromJson(response.data);
         c.setAllteachers(teacher);
-       if(date == null){
-         c.removeAttendence();
-       }
+        if (date == null) {
+          c.removeAttendence();
+        }
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

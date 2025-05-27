@@ -173,7 +173,7 @@ class Allteacheratendencecontroller extends GetxController {
     return storedDate == todayFormatted || storedDate == yesterdayFormatted;
   }
 
-  void selectDate(BuildContext context) async {
+  selectDate(BuildContext context) async {
     try {
       String rawStartDate =
           Get.find<All_Screen_Sessions_Controller>().startSessionDate;

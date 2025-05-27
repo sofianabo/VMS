@@ -26,10 +26,10 @@ class Deleteattendenceteacherapi {
       );
 
       if (response.statusCode == 200) {
+        final cont = Get.find<Allteacheratendencecontroller>();
         Getteacherattendenceapi().Getteacherattendence(
-            date: Get.find<Allteacheratendencecontroller>()
-                .selectDateindex
-                .toString());
+            date:
+                "${cont.selectDateindex.value!.year}-${cont.selectDateindex.value!.month}-${cont.selectDateindex.value!.day}");
 
         return response.statusCode;
       } else {
