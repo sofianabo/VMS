@@ -98,6 +98,7 @@ class _AllGuardiansDialogState extends State<AllGuardiansDialog> {
   late TextEditingController _localIdController;
   late TextEditingController _noteController;
   late TextEditingController _feeDiscountController;
+  late TextEditingController _idHistController;
 
   // Other variables
   final _addStudentsController = Get.put(Add_Students_Controller());
@@ -135,6 +136,7 @@ class _AllGuardiansDialogState extends State<AllGuardiansDialog> {
     _localIdController = TextEditingController();
     _noteController = TextEditingController();
     _feeDiscountController = TextEditingController();
+    _idHistController = TextEditingController();
 
     _classController = Get.find<Dropdownclassescontroller>();
     _guardianController = Get.find<Allgaurdiancontroller>();
@@ -169,6 +171,7 @@ class _AllGuardiansDialogState extends State<AllGuardiansDialog> {
     _localIdController.dispose();
     _noteController.dispose();
     _feeDiscountController.dispose();
+    _idHistController.dispose();
     super.dispose();
   }
 
@@ -323,6 +326,7 @@ class _AllGuardiansDialogState extends State<AllGuardiansDialog> {
         FamilyNotbook: _addStudentsController.selectedFamilyBook.value,
         illness: _illnessController.files,
         vaccine: _vaccinesController.files,
+        idHist: _idHistController.text,
         file: _addStudentsController.selectedImage.value,
       );
     }
@@ -508,6 +512,7 @@ class _AllGuardiansDialogState extends State<AllGuardiansDialog> {
                 Note: _noteController,
                 LocalID: _localIdController,
                 Fee_Discount: _feeDiscountController,
+                idHist: _idHistController,
               ),
             ],
           ),
@@ -539,6 +544,7 @@ class Add_Students_page extends StatefulWidget {
     required this.Last_School_Detail,
     required this.Note,
     required this.Fee_Discount,
+    required this.idHist,
   });
 
   TextEditingController First_Name;
@@ -558,6 +564,7 @@ class Add_Students_page extends StatefulWidget {
   TextEditingController Last_School_Detail;
   TextEditingController Note;
   TextEditingController Fee_Discount;
+  TextEditingController idHist;
 
   @override
   State<Add_Students_page> createState() => _Add_Students_pageState();
@@ -979,6 +986,26 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
                           Textfildwithupper(
+                              isRequired: false,
+                              width: 300,
+                              controller: widget.Fee_Discount,
+                              Uptext: "Fee Discount".tr,
+                              hinttext: "Fee Discount".tr),
+                          Textfildwithupper(
+                              fieldType: "number",
+                              isRequired: false,
+                              width: 300,
+                              controller: widget.idHist,
+                              Uptext: "Public Register Number".tr,
+                              hinttext: "Public Register Number".tr)
+                        ],
+                      ),
+                      Wrap(
+                        spacing: 20.0,
+                        runSpacing: 2.0,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        children: [
+                          Textfildwithupper(
                             isRequired: true,
                             width: 300,
                             isError: controller.ISusernameError,
@@ -1020,19 +1047,6 @@ class _Add_Students_pageState extends State<Add_Students_page> {
                               controller: widget.Password,
                               Uptext: "Password".tr,
                               hinttext: "Password".tr)
-                        ],
-                      ),
-                      Wrap(
-                        spacing: 20.0,
-                        runSpacing: 2.0,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: [
-                          Textfildwithupper(
-                              isRequired: false,
-                              width: 300,
-                              controller: widget.Fee_Discount,
-                              Uptext: "Fee Discount".tr,
-                              hinttext: "Fee Discount".tr)
                         ],
                       ),
                       Row(

@@ -5,6 +5,7 @@ class Languages {
       'Have A Nice Day At Work': 'أتمنى لك يوم جيد في العمل',
       'Illness and Vaccines': 'الأمراض و اللقحات',
       'Illness': 'الأمراض',
+      'Public Register Number': 'رقم السجل العام',
       'UnPend Account': 'الغاء تعطيل الحساب',
       'UnPend This Account': 'الغاء تعطيل الحساب',
       'Do You Want To UnPend Account': 'هل تود الغاء تعطيل هذا الحساب',
@@ -1588,6 +1589,7 @@ class Languages {
       'End Time (Morning)': 'Morning End Time',
 
       'As-Suwayda': 'As-Suwayda',
+      'Public Register Number': 'Public Register Number',
       'Add Rewards': 'Add Reward',
       'Do You Want To DeleteeAtt': 'Do You Want To Delete',
       'Attendenceatt': 'Attendence',

@@ -56,6 +56,7 @@ class Update_Student_API {
     file,
     Fee_Discount,
     Ispend,
+    PublicRegisterNumber,
   }) async {
     Dio dio = Dio();
     String myURI = "${hostPort}${updateStudent}";
@@ -91,6 +92,7 @@ class Update_Student_API {
         MapEntry("localID", localID),
         MapEntry("lastSchoolDetail", lastSchoolDetail),
         MapEntry("note", note),
+        MapEntry("PublicRegisterNumber", PublicRegisterNumber),
         MapEntry("specialNeeds", specialNeeds == true ? "1" : "0"),
         MapEntry("martyrSon", martyrSon == true ? "1" : "0"),
         MapEntry("pend", Ispend == true ? "1" : "0"),

@@ -71,8 +71,11 @@ class GradeTable extends StatelessWidget {
                                         _dataColumn(
                                             row.value['feeCount'], context),
                                         _dataColumn(
-                                        Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
+                                            Get.find<LocalizationController>()
+                                                        .currentLocale
+                                                        .value
+                                                        .languageCode ==
+                                                    'ar'
                                                 ? row.value['name']
                                                 : row.value['enName'],
                                             context),
@@ -123,8 +126,11 @@ class GradeTable extends StatelessWidget {
                                             _dataColumn(
                                                 row.value['feeCount'], context),
                                             _dataColumn(
-                                               Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
+                                                Get.find<LocalizationController>()
+                                                            .currentLocale
+                                                            .value
+                                                            .languageCode ==
+                                                        'ar'
                                                     ? row.value['name']
                                                     : row.value['enName'],
                                                 context),
@@ -161,47 +167,51 @@ class GradeTable extends StatelessWidget {
         children: [
           _iconButton(
             iconData: VMS_Icons.bin,
-            color: const Color(0xffB03D3D),
+            color: controller.grades![index].hasStudent == 0
+                ? Color(0xffB03D3D)
+                : Get.theme.disabledColor,
             onPressed: () {
-              Get.dialog(
-                VMSAlertDialog(
-                  action: [
-                    ButtonDialog(
-                        text: "Delete".tr,
-                        onPressed: () {
-                          Delete_Grade_API(context).Delete_Grade(
-                            gradeId: controller.Grades[index]['id'],
-                            index: index,
-                          );
-                        },
-                        color: const Color(0xffB03D3D),
-                        width: 120),
-                    ButtonDialog(
-                        text: "Cancel".tr,
-                        onPressed: () {
-                          Get.back();
-                        },
-                        color: Theme.of(context).primaryColor,
-                        width: 120)
-                  ],
-                  contents: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(
-                        width: 400,
-                        child: Text(
-                          "Do You Want To Deletegarde".tr +
-                              " ( ${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? "${row['name']}" : "${row['enName']}"} ) " +
-                              "Gradee".tr,
-                          style: const TextStyle(fontSize: 16),
-                        ),
-                      ),
+              if (controller.grades![index].hasStudent == 0) {
+                Get.dialog(
+                  VMSAlertDialog(
+                    action: [
+                      ButtonDialog(
+                          text: "Delete".tr,
+                          onPressed: () {
+                            Delete_Grade_API(context).Delete_Grade(
+                              gradeId: controller.Grades[index]['id'],
+                              index: index,
+                            );
+                          },
+                          color: const Color(0xffB03D3D),
+                          width: 120),
+                      ButtonDialog(
+                          text: "Cancel".tr,
+                          onPressed: () {
+                            Get.back();
+                          },
+                          color: Theme.of(context).primaryColor,
+                          width: 120)
                     ],
+                    contents: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(
+                          width: 400,
+                          child: Text(
+                            "Do You Want To Deletegarde".tr +
+                                " ( ${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? "${row['name']}" : "${row['enName']}"} ) " +
+                                "Gradee".tr,
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                        ),
+                      ],
+                    ),
+                    apptitle: "Delete Grade".tr,
+                    subtitle: "none",
                   ),
-                  apptitle: "Delete Grade".tr,
-                  subtitle: "none",
-                ),
-              );
+                );
+              }
             },
           ),
           _iconButton(

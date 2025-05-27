@@ -46,6 +46,8 @@ EditStudentDialog(int idx, BuildContext context) async {
   TextEditingController Password = TextEditingController();
   TextEditingController Father_Name =
       TextEditingController(text: Controller.student!.fatherName);
+  TextEditingController PublicRegisterNumber = TextEditingController(
+      text: "${Controller.student!.PublicRegisterNumber ?? ""}");
   TextEditingController Mother_Name =
       TextEditingController(text: Controller.student!.motherName);
   TextEditingController Father_Phone =
@@ -223,6 +225,7 @@ EditStudentDialog(int idx, BuildContext context) async {
                     mobileNumber: Mobile_Number.text,
                     bloodType: add_controller.BloodTypeIndex,
                     fatherName: Father_Name.text,
+                    PublicRegisterNumber: PublicRegisterNumber.text,
                     fatherPhone: Father_Phone.text,
                     motherName: Mother_Name.text,
                     currentAdress: Current_Address.text,
@@ -266,6 +269,7 @@ EditStudentDialog(int idx, BuildContext context) async {
         National_ID: National_ID,
         Password: Password,
         Father_Name: Father_Name,
+        PublicRegisterNumber: PublicRegisterNumber,
         Mother_Name: Mother_Name,
         Father_Phone: Father_Phone,
         Father_Work: Father_Work,
@@ -317,6 +321,7 @@ class Edite_Students_page extends StatefulWidget {
     required this.Last_School_Detail,
     required this.Note,
     required this.Fee_Discount,
+    required this.PublicRegisterNumber,
     required this.username,
   });
 
@@ -338,6 +343,7 @@ class Edite_Students_page extends StatefulWidget {
   TextEditingController Note;
   TextEditingController Fee_Discount;
   TextEditingController username;
+  TextEditingController PublicRegisterNumber;
 
   @override
   State<Edite_Students_page> createState() => _Edite_Students_pageState();
@@ -356,6 +362,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
               width: width.clamp(width * 0.3, 620),
               child: SingleChildScrollView(
                 child: Column(
+                  spacing: 5.0,
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
@@ -424,7 +431,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                             ],
                           ),
                           Column(
-                            spacing: 22.0,
+                            spacing: 5.0,
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Textfildwithupper(
@@ -440,6 +447,7 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                                 },
                               ),
                               Textfildwithupper(
+                                isError: controller.ISlastNameError,
                                 isRequired: true,
                                 width: smallwidth,
                                 controller: widget.Last_Name,
@@ -455,411 +463,382 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Wrap(
-                        spacing: 20.0,
-                        runSpacing: 20.0,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: [
-                          Textfildwithupper(
-                              isRequired: true,
-                              width: smallwidth,
-                              controller: widget.Place_Of_Birth,
-                              isError: controller.IsPlaceOfBirthError,
-                              onChanged: (value) {
-                                if (value.isNotEmpty) {
-                                  controller.updateFieldError(
-                                      "placeofbirth", false);
-                                }
-                              },
-                              Uptext: "Place Of Birth".tr,
-                              hinttext: "Place Of Birth".tr),
-                          BirthDate(
+                    Wrap(
+                      spacing: 20.0,
+                      runSpacing: 20.0,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        Textfildwithupper(
                             isRequired: true,
-                            isError: controller.IsBirthdateError,
-                            Uptext: "Birthdate".tr,
                             width: smallwidth,
-                          )
-                        ],
-                      ),
+                            controller: widget.Place_Of_Birth,
+                            isError: controller.IsPlaceOfBirthError,
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError(
+                                    "placeofbirth", false);
+                              }
+                            },
+                            Uptext: "Place Of Birth".tr,
+                            hinttext: "Place Of Birth".tr),
+                        BirthDate(
+                          isRequired: true,
+                          isError: controller.IsBirthdateError,
+                          Uptext: "Birthdate".tr,
+                          width: smallwidth,
+                        )
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Wrap(
-                        spacing: 20.0,
-                        runSpacing: 20.0,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: [
-                          DropdownAddStudents(
-                              isLoading: false,
-                              isError: controller.IsGenderError,
-                              title: "Gender".tr,
-                              width: smallwidth,
-                              type: "Gender"),
-                          DropdownAddStudents(
-                              isLoading: false,
-                              isError: controller.IsReligionError,
-                              title: "Realagon".tr,
-                              width: smallwidth,
-                              type: "Realagon")
-                        ],
-                      ),
+                    Wrap(
+                      spacing: 20.0,
+                      runSpacing: 20.0,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        DropdownAddStudents(
+                            isLoading: false,
+                            isError: controller.IsGenderError,
+                            title: "Gender".tr,
+                            width: smallwidth,
+                            type: "Gender"),
+                        DropdownAddStudents(
+                            isLoading: false,
+                            isError: controller.IsReligionError,
+                            title: "Realagon".tr,
+                            width: smallwidth,
+                            type: "Realagon")
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Wrap(
-                        spacing: 20.0,
-                        runSpacing: 20.0,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: [
-                          DropdownAddStudents(
-                              isLoading: false,
-                              isError: controller.IsBloodError,
-                              title: "Blood Type".tr,
-                              width: smallwidth,
-                              type: "BloodType"),
-                          DropdownAddStudents(
-                              isLoading: controller.isLoadingLocation,
-                              title: "Location".tr,
-                              isError: controller.IsCountryError,
-                              width: smallwidth,
-                              type: "Location")
-                        ],
-                      ),
+                    Wrap(
+                      spacing: 20.0,
+                      runSpacing: 20.0,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        DropdownAddStudents(
+                            isLoading: false,
+                            isError: controller.IsBloodError,
+                            title: "Blood Type".tr,
+                            width: smallwidth,
+                            type: "BloodType"),
+                        DropdownAddStudents(
+                            isLoading: controller.isLoadingLocation,
+                            title: "Location".tr,
+                            isError: controller.IsCountryError,
+                            width: smallwidth,
+                            type: "Location")
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Wrap(
-                        spacing: 20.0,
-                        runSpacing: 20.0,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: [
-                          Textfildwithupper(
-                              isRequired: true,
-                              width: smallwidth,
-                              fieldType: "phone",
-                              isError: controller.ISphoneError,
-                              onChanged: (value) {
-                                if (value.isNotEmpty) {
-                                  controller.updateFieldError("phone", false);
-                                }
-                              },
-                              controller: widget.Mobile_Number,
-                              Uptext: "Mobile Number".tr,
-                              hinttext: "Mobile Number".tr),
-                          Textfildwithupper(
-                              isRequired: true,
-                              width: smallwidth,
-                              isError: controller.ISLocalNationalIDError,
-                              onChanged: (value) {
-                                if (value.isNotEmpty) {
-                                  controller.updateFieldError(
-                                      "localnational", false);
-                                }
-                              },
-                              controller: widget.LocalID,
-                              Uptext: "Local ID".tr,
-                              hinttext: "Local ID".tr)
-                        ],
-                      ),
+                    Wrap(
+                      spacing: 20.0,
+                      runSpacing: 20.0,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        Textfildwithupper(
+                            isRequired: true,
+                            width: smallwidth,
+                            fieldType: "phone",
+                            isError: controller.ISphoneError,
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError("phone", false);
+                              }
+                            },
+                            controller: widget.Mobile_Number,
+                            Uptext: "Mobile Number".tr,
+                            hinttext: "Mobile Number".tr),
+                        Textfildwithupper(
+                            isRequired: true,
+                            width: smallwidth,
+                            isError: controller.ISLocalNationalIDError,
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError(
+                                    "localnational", false);
+                              }
+                            },
+                            controller: widget.LocalID,
+                            Uptext: "Local ID".tr,
+                            hinttext: "Local ID".tr)
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Wrap(
-                        spacing: 20.0,
-                        runSpacing: 20.0,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: [
-                          DropdownAddStudents(
-                              isLoading: false,
-                              title: "Family State".tr,
-                              width: width <= 690 ? smallwidth : 620,
-                              type: "FamilyState"),
-                        ],
-                      ),
+                    Wrap(
+                      spacing: 20.0,
+                      runSpacing: 20.0,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        DropdownAddStudents(
+                            isLoading: false,
+                            title: "Family State".tr,
+                            width: width <= 690 ? smallwidth : 620,
+                            type: "FamilyState"),
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Wrap(
-                        spacing: 20.0,
-                        runSpacing: 20.0,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: [
-                          Textfildwithupper(
-                              isRequired: false,
-                              width: smallwidth,
-                              controller: widget.National_ID,
-                              Uptext: "National Id".tr,
-                              hinttext: "National Id".tr),
-                          Textfildwithupper(
-                              isRequired: true,
-                              width: smallwidth,
-                              isError: controller.ISLocalAddressError,
-                              onChanged: (value) {
-                                if (value.isNotEmpty) {
-                                  controller.updateFieldError(
-                                      "localaddress", false);
-                                }
-                              },
-                              controller: widget.Current_Address,
-                              Uptext: "Current Address".tr,
-                              hinttext: "Current Address".tr)
-                        ],
-                      ),
+                    Wrap(
+                      spacing: 20.0,
+                      runSpacing: 20.0,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        Textfildwithupper(
+                            isRequired: false,
+                            width: smallwidth,
+                            controller: widget.National_ID,
+                            Uptext: "National Id".tr,
+                            hinttext: "National Id".tr),
+                        Textfildwithupper(
+                            isRequired: true,
+                            width: smallwidth,
+                            isError: controller.ISLocalAddressError,
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError(
+                                    "localaddress", false);
+                              }
+                            },
+                            controller: widget.Current_Address,
+                            Uptext: "Current Address".tr,
+                            hinttext: "Current Address".tr)
+                      ],
                     ),
-                    Padding(
-                        padding: const EdgeInsets.only(top: 22.0),
-                        child: Wrap(
-                          spacing: 20.0,
-                          runSpacing: 20.0,
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          alignment: WrapAlignment.spaceBetween,
-                          runAlignment: WrapAlignment.spaceBetween,
-                          children: [
-                            Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                    Wrap(
+                      spacing: 20.0,
+                      runSpacing: 20.0,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      alignment: WrapAlignment.spaceBetween,
+                      runAlignment: WrapAlignment.spaceBetween,
+                      children: [
+                        Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
                                 children: [
-                                  Row(
-                                    children: [
-                                      Obx(() => Checkbox(
-                                            value:
-                                                controller.isSpecialNeed.value,
-                                            onChanged: (value) {
-                                              controller
-                                                  .toggleSpecialNeed(value!);
-                                            },
-                                          )),
-                                      Text("Special need".tr,
-                                          style: Get.theme.textTheme.bodyMedium!
-                                              .copyWith(fontSize: 16)),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Obx(() => Checkbox(
-                                            value: controller.isMartySon.value,
-                                            onChanged: (value) {
-                                              controller.toggleMartySon(value!);
-                                            },
-                                          )),
-                                      Text("Marty son".tr,
-                                          style: Get.theme.textTheme.bodyMedium!
-                                              .copyWith(fontSize: 16)),
-                                    ],
-                                  ),
-                                ]),
-                          ],
-                        )),
-                    Padding(
-                        padding: const EdgeInsets.only(top: 22.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Obx(() => ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))),
-                                      backgroundColor:
-                                          controller.isPendStudent.value
-                                              ? Get.theme.primaryColor
-                                              : Get.theme.disabledColor),
-                                  onPressed: () {
-                                    if (!controller.isPendStudent.value) {
-                                      Get.defaultDialog(
-                                        radius: 5,
-                                        contentPadding: EdgeInsets.all(20.0),
-                                        title: "Pend Student".tr,
-                                        middleText: "Do You Want To Pend ".tr +
-                                            "(${widget.First_Name.text} ${widget.Last_Name.text})" +
-                                            "Student?".tr,
-                                        confirm: ElevatedButton(
-                                          onPressed: () {
-                                            controller.togglePindStudent(true);
-                                            Get.back();
-                                          },
-                                          child: Text("Yes".tr),
-                                          style: ElevatedButton.styleFrom(
-                                              backgroundColor:
-                                                  Color(0xffB03D3D),
-                                              foregroundColor: Colors.white),
-                                        ),
-                                        cancel: ElevatedButton(
-                                          onPressed: () {
-                                            Get.back();
-                                          },
-                                          child: Text("No".tr),
-                                          style: ElevatedButton.styleFrom(
-                                              backgroundColor:
-                                                  Get.theme.primaryColor,
-                                              foregroundColor: Colors.white),
-                                        ),
-                                      );
-                                    } else {
-                                      Get.defaultDialog(
-                                        title: "UnPend Student".tr,
-                                        radius: 5,
-                                        contentPadding: EdgeInsets.all(20.0),
-                                        middleText: "Do You Want To UnPend".tr +
-                                            " ( ${widget.First_Name.text} ${widget.Last_Name.text} )" +
-                                            "Student?",
-                                        confirm: ElevatedButton(
-                                          onPressed: () {
-                                            controller.togglePindStudent(false);
-                                            Get.back();
-                                          },
-                                          child: Text("Yes".tr),
-                                          style: ElevatedButton.styleFrom(
-                                              backgroundColor:
-                                                  Color(0xffB03D3D),
-                                              foregroundColor: Colors.white),
-                                        ),
-                                        cancel: ElevatedButton(
-                                          onPressed: () {
-                                            Get.back();
-                                          },
-                                          child: Text("No".tr),
-                                          style: ElevatedButton.styleFrom(
-                                              backgroundColor:
-                                                  Get.theme.primaryColor,
-                                              foregroundColor: Colors.white),
-                                        ),
-                                      );
-                                    }
-                                  },
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                          color: Colors.white,
-                                          controller.isPendStudent.value
-                                              ? Icons.lock_open_outlined
-                                              : Icons.lock),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 8.0, right: 8.0),
-                                        child: Text(
-                                          controller.isPendStudent.value
-                                              ? "UnPend This Student".tr
-                                              : "Pend Student".tr,
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )),
-                          ],
-                        )),
-                    Padding(
-                        padding: const EdgeInsets.only(top: 22.0),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Divider(
-                                color: Get.theme.primaryColor,
-                                height: 1,
+                                  Obx(() => Checkbox(
+                                        value: controller.isSpecialNeed.value,
+                                        onChanged: (value) {
+                                          controller.toggleSpecialNeed(value!);
+                                        },
+                                      )),
+                                  Text("Special need".tr,
+                                      style: Get.theme.textTheme.bodyMedium!
+                                          .copyWith(fontSize: 16)),
+                                ],
                               ),
-                            ),
-                            Text(
-                              "   Student School Info   ".tr,
-                              style: Get.theme.textTheme.titleMedium!
-                                  .copyWith(fontSize: 18),
-                            ),
-                            Expanded(
-                              child: Divider(
-                                color: Get.theme.primaryColor,
-                                height: 1,
+                              Row(
+                                children: [
+                                  Obx(() => Checkbox(
+                                        value: controller.isMartySon.value,
+                                        onChanged: (value) {
+                                          controller.toggleMartySon(value!);
+                                        },
+                                      )),
+                                  Text("Marty son".tr,
+                                      style: Get.theme.textTheme.bodyMedium!
+                                          .copyWith(fontSize: 16)),
+                                ],
                               ),
-                            ),
-                          ],
-                        )),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Wrap(
-                        spacing: 20.0,
-                        runSpacing: 20.0,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: [
-                          DropdownAddStudents(
-                              isLoading: controller.isLoadingClass,
-                              isError: controller.ISclassError,
-                              title: "Class".tr,
-                              width: smallwidth,
-                              type: "Class"),
-                          DropdownAddStudents(
-                              isLoading: controller.isLoadingDivision,
-                              isDisabled:
-                                  controller.ClassIndex == "" ? true : false,
-                              isError: controller.ISDivisionError,
-                              title: "Division".tr,
-                              width: smallwidth,
-                              type: "Division")
-                        ],
-                      ),
+                            ]),
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Wrap(
-                        spacing: 20.0,
-                        runSpacing: 20.0,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: [
-                          Textfildwithupper(
-                            readOnly: true,
-                            isRequired: true,
-                            width: smallwidth,
-                            controller: widget.username,
-                            Uptext: "Username".tr,
-                            hinttext: "Username".tr,
-                          ),
-                          Textfildwithupper(
-                              isRequired: false,
-                              width: smallwidth,
-                              fieldType: "password",
-                              IconButton: IconButton(
-                                  onPressed: () {
-                                    controller.ChangeShowPassword(
-                                        !controller.ShowPassword);
-                                  },
-                                  icon: Icon(
-                                    controller.ShowPassword
-                                        ? Icons.visibility_off
-                                        : Icons.remove_red_eye_outlined,
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall!
-                                        .color,
-                                  )),
-                              hidePassword: controller.ShowPassword,
-                              onChanged: (value) {
-                                if (value.isNotEmpty) {
-                                  controller.updateFieldError(
-                                      "password", false);
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Obx(() => ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5))),
+                                  backgroundColor:
+                                      controller.isPendStudent.value
+                                          ? Get.theme.primaryColor
+                                          : Get.theme.disabledColor),
+                              onPressed: () {
+                                if (!controller.isPendStudent.value) {
+                                  Get.defaultDialog(
+                                    radius: 5,
+                                    contentPadding: EdgeInsets.all(20.0),
+                                    title: "Pend Student".tr,
+                                    middleText: "Do You Want To Pend ".tr +
+                                        "(${widget.First_Name.text} ${widget.Last_Name.text})" +
+                                        "Student?".tr,
+                                    confirm: ElevatedButton(
+                                      onPressed: () {
+                                        controller.togglePindStudent(true);
+                                        Get.back();
+                                      },
+                                      child: Text("Yes".tr),
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: Color(0xffB03D3D),
+                                          foregroundColor: Colors.white),
+                                    ),
+                                    cancel: ElevatedButton(
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                      child: Text("No".tr),
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor:
+                                              Get.theme.primaryColor,
+                                          foregroundColor: Colors.white),
+                                    ),
+                                  );
+                                } else {
+                                  Get.defaultDialog(
+                                    title: "UnPend Student".tr,
+                                    radius: 5,
+                                    contentPadding: EdgeInsets.all(20.0),
+                                    middleText: "Do You Want To UnPend".tr +
+                                        " ( ${widget.First_Name.text} ${widget.Last_Name.text} )" +
+                                        "Student?",
+                                    confirm: ElevatedButton(
+                                      onPressed: () {
+                                        controller.togglePindStudent(false);
+                                        Get.back();
+                                      },
+                                      child: Text("Yes".tr),
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: Color(0xffB03D3D),
+                                          foregroundColor: Colors.white),
+                                    ),
+                                    cancel: ElevatedButton(
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                      child: Text("No".tr),
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor:
+                                              Get.theme.primaryColor,
+                                          foregroundColor: Colors.white),
+                                    ),
+                                  );
                                 }
                               },
-                              controller: widget.Password,
-                              Uptext: "Password".tr,
-                              hinttext: "Password".tr)
-                        ],
-                      ),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                      color: Colors.white,
+                                      controller.isPendStudent.value
+                                          ? Icons.lock_open_outlined
+                                          : Icons.lock),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 8.0, right: 8.0),
+                                    child: Text(
+                                      controller.isPendStudent.value
+                                          ? "UnPend This Student".tr
+                                          : "Pend Student".tr,
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )),
+                      ],
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 22.0),
-                      child: Wrap(
-                        spacing: 20.0,
-                        runSpacing: 20.0,
-                        crossAxisAlignment: WrapCrossAlignment.center,
+                      child: Row(
                         children: [
-                          Textfildwithupper(
-                              isRequired: false,
-                              width: smallwidth,
-                              controller: widget.Fee_Discount,
-                              Uptext: "Fee Discount".tr,
-                              hinttext: "Fee Discount".tr)
+                          Expanded(
+                            child: Divider(
+                              color: Get.theme.primaryColor,
+                              height: 1,
+                            ),
+                          ),
+                          Text(
+                            "   Student School Info   ".tr,
+                            style: Get.theme.textTheme.titleMedium!
+                                .copyWith(fontSize: 18),
+                          ),
+                          Expanded(
+                            child: Divider(
+                              color: Get.theme.primaryColor,
+                              height: 1,
+                            ),
+                          ),
                         ],
                       ),
+                    ),
+                    Wrap(
+                      spacing: 20.0,
+                      runSpacing: 20.0,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        DropdownAddStudents(
+                            isLoading: controller.isLoadingClass,
+                            isError: controller.ISclassError,
+                            title: "Class".tr,
+                            width: smallwidth,
+                            type: "Class"),
+                        DropdownAddStudents(
+                            isLoading: controller.isLoadingDivision,
+                            isDisabled:
+                                controller.ClassIndex == "" ? true : false,
+                            isError: controller.ISDivisionError,
+                            title: "Division".tr,
+                            width: smallwidth,
+                            type: "Division")
+                      ],
+                    ),
+                    Wrap(
+                      spacing: 20.0,
+                      runSpacing: 20.0,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        Textfildwithupper(
+                            isRequired: false,
+                            width: smallwidth,
+                            controller: widget.Fee_Discount,
+                            Uptext: "Fee Discount".tr,
+                            hinttext: "Fee Discount".tr),
+                        Textfildwithupper(
+                            isRequired: false,
+                            width: smallwidth,
+                            controller: widget.PublicRegisterNumber,
+                            Uptext: "Public Register Number".tr,
+                            hinttext: "Public Register Number".tr)
+                      ],
+                    ),
+                    Wrap(
+                      spacing: 20.0,
+                      runSpacing: 20.0,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        Textfildwithupper(
+                          readOnly: true,
+                          isRequired: true,
+                          width: smallwidth,
+                          controller: widget.username,
+                          Uptext: "Username".tr,
+                          hinttext: "Username".tr,
+                        ),
+                        Textfildwithupper(
+                            isRequired: false,
+                            width: smallwidth,
+                            fieldType: "password",
+                            IconButton: IconButton(
+                                onPressed: () {
+                                  controller.ChangeShowPassword(
+                                      !controller.ShowPassword);
+                                },
+                                icon: Icon(
+                                  controller.ShowPassword
+                                      ? Icons.visibility_off
+                                      : Icons.remove_red_eye_outlined,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall!
+                                      .color,
+                                )),
+                            hidePassword: controller.ShowPassword,
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError("password", false);
+                              }
+                            },
+                            controller: widget.Password,
+                            Uptext: "Password".tr,
+                            hinttext: "Password".tr)
+                      ],
                     ),
                     Padding(
                         padding: const EdgeInsets.only(top: 22.0),
@@ -884,57 +863,51 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                             ),
                           ],
                         )),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: Wrap(
-                        spacing: 20.0,
-                        runSpacing: 20.0,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: [
-                          Textfildwithupper(
-                              isRequired: true,
-                              width: smallwidth,
-                              isError: controller.ISFatherNameError,
-                              onChanged: (value) {
-                                if (value.isNotEmpty) {
-                                  controller.updateFieldError(
-                                      "fathername", false);
-                                }
-                              },
-                              controller: widget.Father_Name,
-                              Uptext: "Father Name".tr,
-                              hinttext: "Father Name".tr),
-                          Textfildwithupper(
-                              isRequired: true,
-                              width: smallwidth,
-                              isError: controller.ISFatherphoneError,
-                              onChanged: (value) {
-                                if (value.isNotEmpty) {
-                                  controller.updateFieldError(
-                                      "fatherphone", false);
-                                }
-                              },
-                              fieldType: "phone",
-                              controller: widget.Father_Phone,
-                              Uptext: "Father Phone".tr,
-                              hinttext: "Father Phone".tr)
-                        ],
-                      ),
+                    Wrap(
+                      spacing: 20.0,
+                      runSpacing: 20.0,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        Textfildwithupper(
+                            isRequired: true,
+                            width: smallwidth,
+                            isError: controller.ISFatherNameError,
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError(
+                                    "fathername", false);
+                              }
+                            },
+                            controller: widget.Father_Name,
+                            Uptext: "Father Name".tr,
+                            hinttext: "Father Name".tr),
+                        Textfildwithupper(
+                            isRequired: true,
+                            width: smallwidth,
+                            isError: controller.ISFatherphoneError,
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError(
+                                    "fatherphone", false);
+                              }
+                            },
+                            fieldType: "phone",
+                            controller: widget.Father_Phone,
+                            Uptext: "Father Phone".tr,
+                            hinttext: "Father Phone".tr)
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Wrap(
-                        spacing: 20.0,
-                        runSpacing: 20.0,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: [
-                          Textfildwithupper(
-                              width: smallwidth,
-                              controller: widget.Father_Work,
-                              Uptext: "Father Work".tr,
-                              hinttext: "Father Work".tr),
-                        ],
-                      ),
+                    Wrap(
+                      spacing: 20.0,
+                      runSpacing: 20.0,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        Textfildwithupper(
+                            width: smallwidth,
+                            controller: widget.Father_Work,
+                            Uptext: "Father Work".tr,
+                            hinttext: "Father Work".tr),
+                      ],
                     ),
                     Padding(
                         padding: const EdgeInsets.only(top: 22.0),
@@ -959,57 +932,51 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                             ),
                           ],
                         )),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: Wrap(
-                        spacing: 20.0,
-                        runSpacing: 20.0,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: [
-                          Textfildwithupper(
-                              isRequired: true,
-                              width: smallwidth,
-                              controller: widget.Mother_Name,
-                              isError: controller.ISMotherNameError,
-                              onChanged: (value) {
-                                if (value.isNotEmpty) {
-                                  controller.updateFieldError(
-                                      "mothername", false);
-                                }
-                              },
-                              Uptext: "Mother Name".tr,
-                              hinttext: "Mother Name".tr),
-                          Textfildwithupper(
-                              isRequired: false,
-                              width: smallwidth,
-                              fieldType: "phone",
-                              isError: controller.ISMotherPhoneError,
-                              onChanged: (value) {
-                                if (value.isNotEmpty) {
-                                  controller.updateFieldError(
-                                      "motherphone", false);
-                                }
-                              },
-                              controller: widget.Mother_Phone,
-                              Uptext: "Mother Phone".tr,
-                              hinttext: "Mother Phone".tr)
-                        ],
-                      ),
+                    Wrap(
+                      spacing: 20.0,
+                      runSpacing: 20.0,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        Textfildwithupper(
+                            isRequired: true,
+                            width: smallwidth,
+                            controller: widget.Mother_Name,
+                            isError: controller.ISMotherNameError,
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError(
+                                    "mothername", false);
+                              }
+                            },
+                            Uptext: "Mother Name".tr,
+                            hinttext: "Mother Name".tr),
+                        Textfildwithupper(
+                            isRequired: false,
+                            width: smallwidth,
+                            fieldType: "phone",
+                            isError: controller.ISMotherPhoneError,
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                controller.updateFieldError(
+                                    "motherphone", false);
+                              }
+                            },
+                            controller: widget.Mother_Phone,
+                            Uptext: "Mother Phone".tr,
+                            hinttext: "Mother Phone".tr)
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Wrap(
-                        spacing: 20.0,
-                        runSpacing: 20.0,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: [
-                          Textfildwithupper(
-                              width: smallwidth,
-                              controller: widget.Mother_Work,
-                              Uptext: "Mother Work".tr,
-                              hinttext: "Mother Work".tr),
-                        ],
-                      ),
+                    Wrap(
+                      spacing: 20.0,
+                      runSpacing: 20.0,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        Textfildwithupper(
+                            width: smallwidth,
+                            controller: widget.Mother_Work,
+                            Uptext: "Mother Work".tr,
+                            hinttext: "Mother Work".tr),
+                      ],
                     ),
                     Padding(
                         padding: const EdgeInsets.only(top: 22.0),
@@ -1034,29 +1001,23 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                             ),
                           ],
                         )),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          LargeTextField(
-                              width: width >= 720 ? 620 : (width) - 70,
-                              controller: widget.Last_School_Detail,
-                              hinttext: "Last School Detail".tr),
-                        ],
-                      ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        LargeTextField(
+                            width: width >= 720 ? 620 : (width) - 70,
+                            controller: widget.Last_School_Detail,
+                            hinttext: "Last School Detail".tr),
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          LargeTextField(
-                              width: width >= 720 ? 620 : (width) - 70,
-                              controller: widget.Note,
-                              hinttext: "Note".tr),
-                        ],
-                      ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        LargeTextField(
+                            width: width >= 720 ? 620 : (width) - 70,
+                            controller: widget.Note,
+                            hinttext: "Note".tr),
+                      ],
                     ),
                     Padding(
                         padding: const EdgeInsets.only(top: 22.0),

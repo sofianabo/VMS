@@ -19,6 +19,7 @@ class Student_Info_model {
 
 class Student {
   int? id;
+  String? PublicRegisterNumber;
   int? acceptanceNumber;
   int? currentSession;
   String? firstName;
@@ -58,6 +59,7 @@ class Student {
   Student(
       {this.id,
       this.acceptanceNumber,
+      this.PublicRegisterNumber,
       this.currentSession,
       this.firstName,
       this.lastName,
@@ -96,6 +98,7 @@ class Student {
   Student.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     acceptanceNumber = json['acceptanceNumber'];
+    PublicRegisterNumber = json['PublicRegisterNumber'];
     currentSession = json['currentSession'];
     firstName = json['firstName'];
     lastName = json['lastName'];
@@ -145,6 +148,7 @@ class Student {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['acceptanceNumber'] = this.acceptanceNumber;
+    data['PublicRegisterNumber'] = this.PublicRegisterNumber;
     data['currentSession'] = this.currentSession;
     data['firstName'] = this.firstName;
     data['lastName'] = this.lastName;

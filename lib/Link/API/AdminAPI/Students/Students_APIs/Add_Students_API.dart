@@ -13,48 +13,48 @@ class Add_Student_API {
   Add_Student_API(this.context);
   BuildContext context;
 
-  static Add_Student({
-    locationId,
-    firstName,
-    lastName,
-    gender,
-    birthDate,
-    placeOfBirth,
-    religion,
-    mobileNumber,
-    bloodType,
-    fatherName,
-    fatherPhone,
-    motherName,
-    currentAdress,
-    familystatus,
-    guardianId,
-    userName,
-    password,
-    classid,
-    divisionId,
-    fatherWork,
-    motherPhone,
-    motherWork,
-    nationalNumber,
-    localID,
-    lastSchoolDetail,
-    note,
-    specialNeeds,
-    martyrSon,
-    FatherPassport,
-    MotherPassport,
-    SonPassport,
-    UserID,
-    Certefecate,
-    Academic_sequence,
-    FamilyNotbook,
-    file,
-    illness,
-    vaccine,
-    Fee_Discount,
-    previousClass,
-  }) async {
+  static Add_Student(
+      {locationId,
+      firstName,
+      lastName,
+      gender,
+      birthDate,
+      placeOfBirth,
+      religion,
+      mobileNumber,
+      bloodType,
+      fatherName,
+      fatherPhone,
+      motherName,
+      currentAdress,
+      familystatus,
+      guardianId,
+      userName,
+      password,
+      classid,
+      divisionId,
+      fatherWork,
+      motherPhone,
+      motherWork,
+      nationalNumber,
+      localID,
+      lastSchoolDetail,
+      note,
+      specialNeeds,
+      martyrSon,
+      FatherPassport,
+      MotherPassport,
+      SonPassport,
+      UserID,
+      Certefecate,
+      Academic_sequence,
+      FamilyNotbook,
+      file,
+      illness,
+      vaccine,
+      Fee_Discount,
+      idHist,
+      previousClass}) async {
     Dio dio = Dio();
     String myURI = "${hostPort}${addStudentInfo}";
 
@@ -118,6 +118,11 @@ class Add_Student_API {
       if (Fee_Discount != null) {
         formDataMap.addAll({
           "feeDiscount": Fee_Discount,
+        });
+      }
+      if (idHist != null) {
+        formDataMap.addAll({
+          "PublicRegisterNumber": idHist,
         });
       }
       if (previousClass != null) {
