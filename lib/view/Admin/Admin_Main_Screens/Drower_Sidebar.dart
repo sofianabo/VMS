@@ -360,13 +360,10 @@ class _DraweHomeState extends State<DraweHome> {
                                       if (Get.find<Add_Data_controller>()
                                               .roll !=
                                           "observer")
-                                        if (Get.find<Add_Data_controller>()
-                                                .roll !=
-                                            "supervisor")
-                                          PopupMenuItem<String>(
-                                            value: 'Students Marks'.tr,
-                                            child: Text('Students Marks'.tr),
-                                          ),
+                                        PopupMenuItem<String>(
+                                          value: 'Students Marks'.tr,
+                                          child: Text('Students Marks'.tr),
+                                        ),
                                     ],
                                   ),
                                 ),

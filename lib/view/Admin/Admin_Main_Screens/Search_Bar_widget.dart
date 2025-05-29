@@ -36,85 +36,184 @@ class _SearchWithSuggestionsState extends State<SearchWithSuggestions> {
       _hideOverlay();
       return;
     }
-    items = Get.find<Add_Data_controller>().roll != "observer"
-        ? [
-            // من Dashboard و Enroll Requests
-            "Dashboard",
-            "Enroll Requests",
+    String? roll = Get.find<Add_Data_controller>().roll;
+    List<String> items;
 
-            // من Schedules -> PopupMenuButton
-            "Exam Table",
-            "School Time Table",
-            "Quiz Type",
+    switch (roll) {
+      case "observer":
+        items = [
+          // من Schedules -> PopupMenuButton
+          "Exam Table",
+          "School Time Table",
+          "Quiz Type",
 
-            // من Students -> PopupMenuButton
-            "All Students",
-            "Study Year Students",
-            "All Guardians",
-            "Student Attendance",
-            "Students Attendance Managment",
-            "Students Marks",
+          // من Students -> PopupMenuButton
+          "All Students",
+          "Study Year Students",
 
-            // من Teachers -> PopupMenuButton
-            "Teacher Management",
-            "Teacher Status",
-            "Teacher Attendance Managment",
+          // من Teachers -> PopupMenuButton
+          "Teacher Management",
 
-            // من Employees -> PopupMenuButton
-            "Employee Management",
-            "Employee Attendance",
-            "Employee Attendance Manage",
-            "Virtual User Management",
+          // من Employees -> PopupMenuButton
+          "Employee Management",
 
-            // من Management -> PopupMenuButton
-            "Session Management",
-            "Grade Management",
-            "Subject Management",
-            "Class Management",
-            "Division Management",
-            "Curriculum Management",
+          // من Management -> PopupMenuButton
+          "Session Management",
+          "Grade Management",
+          "Subject Management",
+          "Class Management",
+          "Division Management",
+          "Curriculum Management",
 
-            // من General -> PopupMenuButton
-            "School Data Management",
-            "Electronic Library",
-            "Transaction",
-            "Illness Screen",
-            "Vaccine Screen",
-            "School Content",
-            "Penalties"
-          ]
-        : [
-            // من Schedules -> PopupMenuButton
-            "Exam Table",
-            "School Time Table",
-            "Quiz Type",
+          // من General -> PopupMenuButton
+          "School Data Management",
+          "Electronic Library",
+          "Illness Screen",
+          "Vaccine Screen",
+          "School Content",
+          "Penalties"
+        ];
+        break;
+      case "subAdmin":
+        items = [
+          // من Dashboard و Enroll Requests
+          "Dashboard",
+          "Enroll Requests",
 
-            // من Students -> PopupMenuButton
-            "All Students",
-            "Study Year Students",
+          // من Schedules -> PopupMenuButton
+          "Exam Table",
+          "School Time Table",
+          "Quiz Type",
 
-            // من Teachers -> PopupMenuButton
-            "Teacher Management",
+          // من Students -> PopupMenuButton
+          "All Students",
+          "Study Year Students",
+          "All Guardians",
+          "Student Attendance",
+          "Students Attendance Managment",
+          "Students Marks",
 
-            // من Employees -> PopupMenuButton
-            "Employee Management",
+          // من Teachers -> PopupMenuButton
+          "Teacher Management",
+          "Teacher Status",
+          "Teacher Attendance Managment",
 
-            // من Management -> PopupMenuButton
-            "Session Management",
-            "Grade Management",
-            "Subject Management",
-            "Class Management",
-            "Division Management",
-            "Curriculum Management",
+          // من Employees -> PopupMenuButton
+          "Employee Management",
+          "Employee Attendance",
+          "Employee Attendance Manage",
+          "Virtual User Management",
 
-            // من General -> PopupMenuButton
-            "School Data Management",
-            "Electronic Library",
-            "Illness Screen",
-            "Vaccine Screen",
-            "School Content",
-            "Penalties"
-          ];
+          // من Management -> PopupMenuButton
+          "Session Management",
+          "Grade Management",
+          "Subject Management",
+          "Class Management",
+          "Division Management",
+          "Curriculum Management",
+
+          // من General -> PopupMenuButton
+          "School Data Management",
+          "Electronic Library",
+          "Transaction",
+          "Illness Screen",
+          "Vaccine Screen",
+          "School Content",
+          "Penalties"
+        ];
+        break;
+      case "supervisor":
+        items = [
+          // من Dashboard و Enroll Requests
+          "Dashboard",
+          "Enroll Requests",
+
+          // من Schedules -> PopupMenuButton
+          "Exam Table",
+          "School Time Table",
+          "Quiz Type",
+
+          // من Students -> PopupMenuButton
+          "All Students",
+          "Study Year Students",
+          "Student Attendance",
+          "Students Attendance Managment",
+          "Students Marks",
+          // من Teachers -> PopupMenuButton
+          "Teacher Management",
+          "Teacher Status",
+          "Teacher Attendance Managment",
+
+          // من Employees -> PopupMenuButton
+          "Employee Management",
+          "Employee Attendance",
+          "Employee Attendance Manage",
+
+          // من Management -> PopupMenuButton
+          "Session Management",
+          "Grade Management",
+          "Subject Management",
+          "Class Management",
+          "Division Management",
+          "Curriculum Management",
+
+          // من General -> PopupMenuButton
+          "Electronic Library",
+          "Illness Screen",
+          "Vaccine Screen",
+          "Penalties"
+        ];
+        break;
+
+      default:
+        items = [
+          // من Dashboard و Enroll Requests
+          "Dashboard",
+          "Enroll Requests",
+
+          // من Schedules -> PopupMenuButton
+          "Exam Table",
+          "School Time Table",
+          "Quiz Type",
+
+          // من Students -> PopupMenuButton
+          "All Students",
+          "Study Year Students",
+          "All Guardians",
+          "Student Attendance",
+          "Students Attendance Managment",
+          "Students Marks",
+
+          // من Teachers -> PopupMenuButton
+          "Teacher Management",
+          "Teacher Status",
+          "Teacher Attendance Managment",
+
+          // من Employees -> PopupMenuButton
+          "Employee Management",
+          "Employee Attendance",
+          "Employee Attendance Manage",
+          "Virtual User Management",
+
+          // من Management -> PopupMenuButton
+          "Session Management",
+          "Grade Management",
+          "Subject Management",
+          "Class Management",
+          "Division Management",
+          "Curriculum Management",
+
+          // من General -> PopupMenuButton
+          "School Data Management",
+          "Electronic Library",
+          "Transaction",
+          "Illness Screen",
+          "Vaccine Screen",
+          "School Content",
+          "Penalties"
+        ];
+        break;
+    }
     _filteredItems = items.where((item) {
       final localized = item.tr.toLowerCase();
       return item.toLowerCase().contains(query.toLowerCase()) ||
