@@ -264,7 +264,6 @@ class ClassMgmtController extends GetxController {
   bool IsEnnameError = false;
   bool IsGradeError = false;
   bool IsAccountError = false;
-  bool IsDriveError = false;
   bool IscurrError = false;
 
   void updateFieldError(String type, bool newValue) {
@@ -278,9 +277,7 @@ class ClassMgmtController extends GetxController {
       case 'grade':
         IsGradeError = newValue;
         break;
-      case 'drive':
-        IsDriveError = newValue;
-        break;
+     
       case 'account':
         IsAccountError = newValue;
         break;

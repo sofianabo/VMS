@@ -142,7 +142,7 @@ class _TextfildwithupperState extends State<Textfildwithupper> {
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium
-                    ?.copyWith(fontSize: 14),
+                    ?.copyWith(fontSize: 14, color: Colors.black),
                 children: widget.isRequired
                     ? [
                         const TextSpan(
@@ -161,7 +161,7 @@ class _TextfildwithupperState extends State<Textfildwithupper> {
               style: Theme.of(context)
                   .textTheme
                   .bodyMedium
-                  ?.copyWith(fontSize: 14),
+                  ?.copyWith(fontSize: 14, color: Colors.black),
               textAlign: Get.find<LocalizationController>()
                           .currentLocale
                           .value
@@ -201,9 +201,7 @@ class _TextfildwithupperState extends State<Textfildwithupper> {
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5),
                   borderSide: BorderSide(
-                      color: showError
-                          ? Colors.red
-                          : Theme.of(context).canvasColor,
+                      color: showError ? Colors.red : const Color(0xff19478d),
                       width: 2),
                 ),
                 enabledBorder: OutlineInputBorder(

@@ -121,8 +121,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => Allteacheratendencecontroller(), fenix: true);
     Get.lazyPut(() => Dropdowncuriculmcontroller(), fenix: true);
     Get.lazyPut(() => Transaction_Controller(), fenix: true);
-    // Get.lazyPut(() => Add_Students_Controller(), fenix: true);
-    Get.put(Add_Students_Controller(), permanent: true);
+    Get.lazyPut(() => Add_Students_Controller(), fenix: true);
     Get.lazyPut(() => Location_controller(), fenix: true);
     Get.lazyPut(() => Illness_Controller(), fenix: true);
     Get.lazyPut(() => Vaccines_Controller(), fenix: true);

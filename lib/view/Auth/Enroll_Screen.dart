@@ -68,9 +68,7 @@ class _EnrollScreenState extends State<EnrollScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SvgPicture.asset(
-                        Theme.of(context).brightness == Brightness.dark
-                            ? "assets/images/logodark.svg"
-                            : "assets/images/logolight.svg",
+                        "assets/images/logolight.svg",
                         width: 310,
                       )
                           .animate(onPlay: (controller) => controller.repeat())
@@ -265,7 +263,7 @@ class _EnrollScreenState extends State<EnrollScreen> {
                                   ),
                                 ),
                                 backgroundColor: WidgetStatePropertyAll(
-                                    Get.theme.primaryColor),
+                                    const Color(0xff19478d)),
                                 maximumSize:
                                     const WidgetStatePropertyAll(Size(250, 50)),
                                 minimumSize:
@@ -364,7 +362,10 @@ class _EnrollScreenState extends State<EnrollScreen> {
                         spacing: 10.0,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("You Have Account ?".tr),
+                          Text(
+                            "You Have Account ?".tr,
+                            style: TextStyle(color: Colors.black),
+                          ),
                           GestureDetector(
                             onTap: () {
                               Get.offAllNamed("/login");

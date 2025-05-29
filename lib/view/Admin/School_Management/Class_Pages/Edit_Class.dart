@@ -16,11 +16,11 @@ class Edit_Class extends StatefulWidget {
       required this.year,
       required this.arName,
       required this.enName,
-      required this.driveUrl,
+      this.driveUrl,
       super.key});
   String arName;
   String enName;
-  String driveUrl;
+  String? driveUrl;
   String username;
   String year;
   int id;
@@ -31,12 +31,12 @@ class Edit_Class extends StatefulWidget {
 class _Edit_ClassState extends State<Edit_Class> {
   TextEditingController arName = TextEditingController();
   TextEditingController enName = TextEditingController();
-  TextEditingController driveUrl = TextEditingController();
+  TextEditingController? driveUrl = TextEditingController();
   @override
   void initState() {
     arName.text = widget.arName;
     enName.text = widget.enName;
-    driveUrl.text = widget.driveUrl;
+    driveUrl!.text = widget.driveUrl!;
     super.initState();
   }
 
@@ -54,17 +54,15 @@ class _Edit_ClassState extends State<Edit_Class> {
               onPressed: () async {
                 bool isArNameEmpty = arName.text.trim().isEmpty;
                 bool isEnNameEmpty = enName.text.isEmpty;
-                bool isDriveEmpty = driveUrl.text.trim().isEmpty;
 
                 controllers.updateFieldError("arname", isArNameEmpty);
                 controllers.updateFieldError("enname", isEnNameEmpty);
-                controllers.updateFieldError("drive", isDriveEmpty);
 
-                if (!(isArNameEmpty || isEnNameEmpty || isDriveEmpty)) {
+                if (!(isArNameEmpty || isEnNameEmpty)) {
                   await Edit_Class_API(context).Edit_Class(
                     name: arName.text,
                     enName: enName.text,
-                    driveUrl: driveUrl.text,
+                    driveUrl: driveUrl!.text,
                     classId: widget.id,
                     curriculum: controllers.selectedCurriculums,
                   );
@@ -233,15 +231,9 @@ class _Edit_ClassState extends State<Edit_Class> {
                   children: [
                     Textfildwithupper(
                       enabled: isNotReadOnly,
-                      isError: controllers.IsDriveError,
-                      isRequired: true,
-                      onChanged: (value) {
-                        if (value.isNotEmpty) {
-                          controllers.updateFieldError("drive", false);
-                        }
-                      },
+                      isRequired: false,
                       width: screenWidth >= 574 ? 480 : screenWidth * 0.70,
-                      controller: driveUrl,
+                      controller: driveUrl!,
                       Uptext: "Drive URL".tr,
                       hinttext: "Drive URL".tr,
                     ),

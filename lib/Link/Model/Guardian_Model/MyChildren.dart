@@ -28,6 +28,7 @@ class Students {
   Division? division;
   Division? classes;
   String? type;
+  bool? stute;
 
   Students(
       {this.id,
@@ -35,7 +36,8 @@ class Students {
       this.fileId,
       this.division,
       this.classes,
-      this.type});
+      this.type,
+      this.stute});
 
   Students.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -47,6 +49,7 @@ class Students {
     classes =
         json['classes'] != null ? new Division.fromJson(json['classes']) : null;
     type = json['Type'];
+    stute = json['stute'];
   }
 
   Map<String, dynamic> toJson() {
@@ -61,6 +64,7 @@ class Students {
       data['classes'] = this.classes!.toJson();
     }
     data['Type'] = this.type;
+    data['stute'] = this.stute;
     return data;
   }
 }

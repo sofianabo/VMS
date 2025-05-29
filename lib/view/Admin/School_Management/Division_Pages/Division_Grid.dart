@@ -20,7 +20,7 @@ class DivisionGrid extends StatelessWidget {
 
   TextEditingController arName = TextEditingController();
   TextEditingController enName = TextEditingController();
-  TextEditingController meetUrl = TextEditingController();
+  TextEditingController? meetUrl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -53,18 +53,16 @@ class DivisionGrid extends StatelessWidget {
                 onPressed: () async {
                   bool isArNameEmpty = arName.text.isEmpty;
                   bool isEnNameEmpty = enName.text.isEmpty;
-                  bool isDriveEmpty = meetUrl.text.isEmpty;
 
                   controller.updateFieldError("ename", isEnNameEmpty);
                   controller.updateFieldError("arname", isArNameEmpty);
-                  controller.updateFieldError("meet", isDriveEmpty);
 
-                  if (!(isArNameEmpty || isEnNameEmpty || isDriveEmpty)) {
+                  if (!(isArNameEmpty || isEnNameEmpty)) {
                     await Edit_Division_API(context).Edit_Division(
                       name: arName.text,
                       enName: enName.text,
                       gradeId: gradeid,
-                      meeturl: meetUrl.text,
+                      meeturl: meetUrl!.text,
                     );
                     Get.back();
                   }
@@ -147,15 +145,11 @@ class DivisionGrid extends StatelessWidget {
                           Textfildwithupper(
                             enabled: Get.find<Add_Data_controller>().roll !=
                                 "observer",
-                            isError: controller.IsmeetError,
-                            isRequired: true,
-                            onChanged: (value) {
-                              if (value.isNotEmpty) {
-                                controller.updateFieldError("meet", false);
-                              }
-                            },
+                            isRequired: false,
                             width: 215,
-                            controller: meetUrl,
+                            controller: meetUrl!.text.isEmpty
+                                ? meetUrl!
+                                : TextEditingController(text: ""),
                             Uptext: "Meet URL".tr,
                             hinttext: "Meet URL".tr,
                           ),
@@ -257,12 +251,11 @@ class DivisionGrid extends StatelessWidget {
                           onTap: () {
                             control.updateFieldError("ename", false);
                             control.updateFieldError("arname", false);
-                            control.updateFieldError("meet", false);
                             arName.text =
                                 "${control.filteredDivision![index].name}";
                             enName.text =
                                 "${control.filteredDivision![index].enName}";
-                            meetUrl.text =
+                            meetUrl!.text =
                                 "${control.filteredDivision![index].meetUrl}";
                             Get.dialog(
                               Edit_Division(

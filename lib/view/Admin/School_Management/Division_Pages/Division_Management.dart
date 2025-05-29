@@ -53,18 +53,15 @@ class _DivisionManagementState extends State<DivisionManagement> {
                   onPressed: () async {
                     bool isArNameEmpty = arName.text.isEmpty;
                     bool isEnNameEmpty = enName.text.isEmpty;
-                    bool isDriveEmpty = driveUrl.text.isEmpty;
                     bool isclassEmpty = controller.ClassDiagIndex.isEmpty ||
                         controller.ClassDiagIndex.isEmpty == "";
 
                     controller.updateFieldError("ename", isEnNameEmpty);
                     controller.updateFieldError("arname", isArNameEmpty);
-                    controller.updateFieldError("meet", isDriveEmpty);
                     controller.updateFieldError("class", isclassEmpty);
 
                     if (!(isArNameEmpty ||
                         isEnNameEmpty ||
-                        isDriveEmpty ||
                         isclassEmpty)) {
                       await Add_Division_API(context).Add_Division(
                         classId: controller.dropDiagClasses,
@@ -150,13 +147,8 @@ class _DivisionManagementState extends State<DivisionManagement> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Textfildwithupper(
-                                isError: controller.IsmeetError,
-                                isRequired: true,
-                                onChanged: (value) {
-                                  if (value.isNotEmpty) {
-                                    controller.updateFieldError("meet", false);
-                                  }
-                                },
+                                isRequired: false,
+                               
                                 width: 215,
                                 controller: driveUrl,
                                 Uptext: "Meet URL".tr,
@@ -249,8 +241,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                   .updateFieldError("ename", false);
                               Get.find<Divisions_Controller>()
                                   .updateFieldError("arname", false);
-                              Get.find<Divisions_Controller>()
-                                  .updateFieldError("meet", false);
+                            
                               Get.find<Divisions_Controller>()
                                   .updateFieldError("class", false);
                               Get.dialog(
@@ -440,8 +431,7 @@ class _DivisionManagementState extends State<DivisionManagement> {
                                 .updateFieldError("ename", false);
                             Get.find<Divisions_Controller>()
                                 .updateFieldError("arname", false);
-                            Get.find<Divisions_Controller>()
-                                .updateFieldError("meet", false);
+                         
                             Get.find<Divisions_Controller>()
                                 .updateFieldError("class", false);
                             Get.dialog(

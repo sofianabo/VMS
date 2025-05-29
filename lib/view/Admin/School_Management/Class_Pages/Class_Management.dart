@@ -128,7 +128,6 @@ class _ClassManagementState extends State<ClassManagement> {
                               controllers.updateFieldError("enname", false);
                               controllers.updateFieldError("grade", false);
                               controllers.updateFieldError("curr", false);
-                              controllers.updateFieldError("drive", false);
                               controllers.updateFieldError("account", false);
 
                               Get.dialog(barrierDismissible: false,
@@ -148,8 +147,7 @@ class _ClassManagementState extends State<ClassManagement> {
                                                 controller.gradeDiagIndex == "";
                                             bool isCurrEmpty = controller
                                                 .selectedCurriculums.isEmpty;
-                                            bool isDriveEmpty =
-                                                driveUrl.text.isEmpty;
+
                                             bool isAccountEmpty = controller
                                                     .selectedAdminDiagIndex
                                                     .isEmpty ||
@@ -165,8 +163,7 @@ class _ClassManagementState extends State<ClassManagement> {
                                                 "grade", isGradeEmpty);
                                             controller.updateFieldError(
                                                 "curr", isCurrEmpty);
-                                            controller.updateFieldError(
-                                                "drive", isDriveEmpty);
+
                                             controller.updateFieldError(
                                                 "account", isAccountEmpty);
 
@@ -174,7 +171,6 @@ class _ClassManagementState extends State<ClassManagement> {
                                                 isEnNameEmpty ||
                                                 isGradeEmpty ||
                                                 isCurrEmpty ||
-                                                isDriveEmpty ||
                                                 isAccountEmpty)) {
                                               await Add_Class_API(context).Add_Class(
                                                   gradeId: controller.grades,
@@ -387,15 +383,7 @@ class _ClassManagementState extends State<ClassManagement> {
                                               MainAxisAlignment.start,
                                           children: [
                                             Textfildwithupper(
-                                                isError:
-                                                    controller.IsDriveError,
-                                                isRequired: true,
-                                                onChanged: (value) {
-                                                  if (value.isNotEmpty) {
-                                                    controller.updateFieldError(
-                                                        "drive", false);
-                                                  }
-                                                },
+                                                isRequired: false,
                                                 width: 480,
                                                 controller: driveUrl,
                                                 Uptext: "Drive URL".tr,
@@ -631,8 +619,7 @@ class _ClassManagementState extends State<ClassManagement> {
                                               controller.gradeDiagIndex == "";
                                           bool isCurrEmpty = controller
                                               .selectedCurriculums.isEmpty;
-                                          bool isDriveEmpty =
-                                              driveUrl.text.isEmpty;
+
                                           bool isAccountEmpty = controller
                                                   .selectedAdminDiagIndex
                                                   .isEmpty ||
@@ -648,16 +635,14 @@ class _ClassManagementState extends State<ClassManagement> {
                                               "grade", isGradeEmpty);
                                           controller.updateFieldError(
                                               "curr", isCurrEmpty);
-                                          controller.updateFieldError(
-                                              "drive", isDriveEmpty);
+
                                           controller.updateFieldError(
                                               "account", isAccountEmpty);
 
                                           if (!(isArNameEmpty ||
                                               isEnNameEmpty ||
                                               isGradeEmpty ||
-                                              isCurrEmpty ||
-                                              isDriveEmpty)) {
+                                              isCurrEmpty)) {
                                             await Add_Class_API(context).Add_Class(
                                                 gradeId: controller.grades,
                                                 driveUrl: driveUrl.text,
@@ -861,14 +846,7 @@ class _ClassManagementState extends State<ClassManagement> {
                                             MainAxisAlignment.start,
                                         children: [
                                           Textfildwithupper(
-                                              isError: controller.IsDriveError,
-                                              isRequired: true,
-                                              onChanged: (value) {
-                                                if (value.isNotEmpty) {
-                                                  controller.updateFieldError(
-                                                      "drive", false);
-                                                }
-                                              },
+                                              isRequired: false,
                                               width: 480,
                                               controller: driveUrl,
                                               Uptext: "Drive URL".tr,
