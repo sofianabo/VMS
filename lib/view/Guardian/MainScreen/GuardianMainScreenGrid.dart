@@ -17,6 +17,7 @@ import 'package:vms_school/Link/API/Guardians_API/GetChildExamTableAPI.dart';
 import 'package:vms_school/Link/API/Guardians_API/GetChildStudyShareAPI.dart';
 import 'package:vms_school/Link/API/Guardians_API/Get_Students_Information_API.dart';
 import 'package:vms_school/Link/API/Guardians_API/Get_Students_Marks_API.dart';
+import 'package:vms_school/Link/API/Guardians_API/ReorderStudentAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
@@ -945,17 +946,34 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                     Padding(
                                       padding:
                                           const EdgeInsets.only(bottom: 20.0),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          TextButton(
-                                            child: Text(
-                                                "Please Submited Request".tr),
-                                            onPressed: () {},
-                                          )
-                                        ],
-                                      ),
+                                      child: TextButton(
+                                          onPressed: () {
+                                            Reorderstudentapi(context)
+                                                .Reorderstudent(
+                                                    id: control
+                                                        .filteredStudents[index]
+                                                        .id
+                                                        .toString());
+                                          },
+                                          child: Container(
+                                            width: 100,
+                                            height: 35,
+                                            decoration: BoxDecoration(
+                                                color:
+                                                    Get.theme.primaryColorLight,
+                                                borderRadius:
+                                                    BorderRadius.circular(5)),
+                                            child: Center(
+                                              child: Text(
+                                                "Re-order".tr,
+                                                style: Get
+                                                    .theme.textTheme.bodyMedium!
+                                                    .copyWith(
+                                                        color: Colors.white,
+                                                        fontSize: 14),
+                                              ),
+                                            ),
+                                          )),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(top: 8.0),
@@ -1899,11 +1917,19 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                         Row(
                                           children: [
                                             IconButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  Reorderstudentapi(context)
+                                                      .Reorderstudent(
+                                                          id: control
+                                                              .filteredStudents[
+                                                                  index]
+                                                              .id
+                                                              .toString());
+                                                },
                                                 icon: Icon(
                                                   Icons.replay_outlined,
-                                                  color:
-                                                      const Color(0xff19478d),
+                                                  color: Get.theme.textTheme
+                                                      .titleMedium!.color,
                                                 ))
                                           ],
                                         ),

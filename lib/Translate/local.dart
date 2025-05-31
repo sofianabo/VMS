@@ -726,7 +726,6 @@ class Languages {
       'Employees': 'الموظفين',
       'Management': 'إدارية',
       'General': 'عامة',
-      'Action': 'الفعل',
       'SubAdmin': 'مساعد مدير',
       'Guardian': 'وليّ أمر',
       'Student': 'طالب',
@@ -808,7 +807,9 @@ class Languages {
       'Do You Want To DeleteeAtt': 'هل تريد حذف حضور',
       'Attendenceatt': '',
       'Delete Attendence': 'حذف حضور',
-      'you can not close this session': 'لا يمكنك إغلاق هذه السنة الدراسية'
+      'you can not close this session': 'لا يمكنك إغلاق هذه السنة الدراسية',
+      'Re-order': 'إعادة الطلب',
+      'Import': 'استيراد'
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -1610,8 +1611,8 @@ class Languages {
           'You have has data in your account yet.',
       'Add Data Now': 'Add Data Now',
       'you can not close this session': 'you can not close this session',
-      '': '',
-      '': '',
+      'Re-order': 'Re-order',
+      'Import': 'Import',
       '': '',
       '': '',
       '': '',

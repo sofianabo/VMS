@@ -141,7 +141,7 @@ class _GuardianMainScreenState extends State<TeacherMainScreen> {
                         GetBuilder<My_Students_Controller>(
                             builder: (controller) {
                           return TextFormSearch(
-                            width: screenWidth - 550,
+                            width: screenWidth - 600,
                             click: () {
                               controller.clearFilter();
                             },

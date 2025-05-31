@@ -10,6 +10,7 @@ String getStudentQuiz = 'getStudentQuiz';
 String getMyData = 'getMyData';
 String updateGuardian = 'updateGuardian';
 String getStudentMarksById = 'getStudentMarksById';
+String resendRegister = "resendRegister";
 //..................... Guardians API End ...................//
 
 //..................... Teacher API Start ...................//

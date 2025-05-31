@@ -56,21 +56,21 @@ class _MyAccountState extends State<MyAccount> {
                         Expanded(
                           child: Divider(
                             thickness: 1,
-                            color: Get.theme.textTheme.bodyMedium!.color,
+                            color: const Color(0xff19478d),
                             endIndent: 10, // المسافة بين الخط والنص
                           ),
                         ),
                         Text(
                           "Password".tr,
                           style: TextStyle(
-                            color: Get.theme.textTheme.bodyMedium!.color,
+                            color: const Color(0xff19478d),
                             fontSize: 16,
                           ),
                         ),
                         Expanded(
                           child: Divider(
                             thickness: 1,
-                            color: Get.theme.textTheme.bodyMedium!.color,
+                            color: const Color(0xff19478d),
                             indent: 10, // المسافة بين الخط والنص
                           ),
                         ),

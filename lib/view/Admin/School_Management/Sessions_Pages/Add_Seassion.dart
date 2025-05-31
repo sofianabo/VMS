@@ -113,7 +113,7 @@ class _Add_SessionState extends State<Add_Session> {
                       );
                     }),
                     ButtonDialog(
-                      text: "Move".tr,
+                      text: "Import".tr,
                       onPressed: controller.showDialog,
                       color: Theme.of(context).primaryColor,
                       width: screenWidth >= 690 ? 290 : (screenWidth) - 70,

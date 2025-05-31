@@ -353,7 +353,7 @@ class _TeacherappbarState extends State<Teacherappbar> {
                               ),
                             ),
                             backgroundColor: WidgetStateProperty.all(
-                              Theme.of(context).primaryColorLight,
+                              Theme.of(context).primaryColor,
                             ),
                           ),
                           icon: Icon(
@@ -641,7 +641,7 @@ class _TeacherappbarState extends State<Teacherappbar> {
                                 ),
                               ),
                               backgroundColor: WidgetStateProperty.all(
-                                Theme.of(context).primaryColorLight,
+                                Theme.of(context).primaryColor,
                               ),
                             ),
                             icon: Icon(

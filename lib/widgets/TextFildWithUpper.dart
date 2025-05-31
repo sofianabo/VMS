@@ -142,7 +142,7 @@ class _TextfildwithupperState extends State<Textfildwithupper> {
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium
-                    ?.copyWith(fontSize: 14, color: Colors.black),
+                    ?.copyWith(fontSize: 14),
                 children: widget.isRequired
                     ? [
                         const TextSpan(
@@ -158,10 +158,9 @@ class _TextfildwithupperState extends State<Textfildwithupper> {
             height: 40,
             child: TextFormField(
               obscureText: widget.hidePassword,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(fontSize: 14, color: Colors.black),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontSize: 14,
+                  ),
               textAlign: Get.find<LocalizationController>()
                           .currentLocale
                           .value

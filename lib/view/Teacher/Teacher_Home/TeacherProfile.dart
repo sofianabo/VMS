@@ -75,14 +75,16 @@ class _TeacherprofileState extends State<Teacherprofile> {
                                     width: screenWidth < 768
                                         ? screenWidth - 180
                                         : screenWidth * 0.7,
-                                    child: Text(
-                                      textAlign: TextAlign.end,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.fade,
-                                      "Application and Profile Settings".tr,
-                                      style: TextStyle(
-                                          fontSize:
-                                              screenWidth >= 500 ? 20 : 16),
+                                    child: Expanded(
+                                      child: Text(
+                                        textAlign: TextAlign.end,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.visible,
+                                        "Application and Profile Settings".tr,
+                                        style: TextStyle(
+                                            fontSize:
+                                                screenWidth >= 500 ? 20 : 16),
+                                      ),
                                     ),
                                   )
                                 : Container(
