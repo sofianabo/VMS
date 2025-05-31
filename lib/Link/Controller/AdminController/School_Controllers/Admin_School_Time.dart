@@ -6,7 +6,7 @@ import 'package:vms_school/Link/Model/AdminModel/School_Models/DropDownCuriculmM
 import 'package:vms_school/Link/Model/AdminModel/School_Models/SchoolTimeModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
-import 'package:vms_school/view/Admin/School_Management/Tables/SchoolTimeTable.dart';
+import 'package:vms_school/view/SMS_Platform/Admin/School_Management/Tables/SchoolTimeTable.dart';
 
 class AdminSchoolTimeController extends GetxController {
   String examClassIndex = "";
@@ -31,8 +31,7 @@ class AdminSchoolTimeController extends GetxController {
   bool isLoadingClass = true;
   bool isLoadingDivision = true;
 
-  set_Edite_Data(String teacherdialog,String curriculmdialog) {
-  
+  set_Edite_Data(String teacherdialog, String curriculmdialog) {
     teacherDialogIndex = teacherdialog;
     subjectDialogIndex = curriculmdialog;
     update(['dialog_data']);
@@ -94,8 +93,8 @@ class AdminSchoolTimeController extends GetxController {
   void setAllClasses(AllClassModel clas) {
     examClass.clear();
     for (int j = 0; j < clas.classes!.length; j++) {
-      if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar')
+      if (Get.find<LocalizationController>().currentLocale.value.languageCode ==
+          'ar')
         examClass.add(clas.classes![j].name.toString());
       else
         examClass.add(clas.classes![j].enName.toString());
@@ -109,8 +108,8 @@ class AdminSchoolTimeController extends GetxController {
     setIsLoadingDivision(false);
     allDivision = division.division;
     for (int j = 0; j < division.division!.length; j++) {
-      if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar')
+      if (Get.find<LocalizationController>().currentLocale.value.languageCode ==
+          'ar')
         examDivision.add(division.division![j].name.toString());
       else
         examDivision.add(division.division![j].enName.toString());
@@ -146,8 +145,8 @@ class AdminSchoolTimeController extends GetxController {
     subjectDialogList.clear();
     allsubjectDialogList = curr.curriculum!;
     for (int j = 0; j < curr.curriculum!.length; j++) {
-      if ( Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar')
+      if (Get.find<LocalizationController>().currentLocale.value.languageCode ==
+          'ar')
         subjectDialogList.add(curr.curriculum![j].name.toString());
       else
         subjectDialogList.add(curr.curriculum![j].enName.toString());

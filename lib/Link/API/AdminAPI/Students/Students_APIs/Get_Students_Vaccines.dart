@@ -8,7 +8,7 @@ import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Functions/Show_Vaccines_By_Id.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/Students_Vaccines_Model.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 
 class Get_Students_Vacciness_API {
   final BuildContext context;

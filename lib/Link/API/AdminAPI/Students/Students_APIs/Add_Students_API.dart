@@ -7,7 +7,7 @@ import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/API/Guardians_API/Get_My_Children_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Add_Students_Controller.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 
 class Add_Student_API {
   Add_Student_API(this.context);

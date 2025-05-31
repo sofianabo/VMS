@@ -4,9 +4,9 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Quiz_Type
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Quiz_Type/Get_Quiz_Type_For_Opiration.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Teachernote_and_GradeReco.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Quiz_Type_For_Operation_Model.dart';
-import 'package:vms_school/widgets/Admin/Admin_Table/QuizType_DropDown.dart';
-import 'package:vms_school/widgets/ButtonsDialog.dart';
-import 'package:vms_school/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Admin/Admin_Table/QuizType_DropDown.dart';
+import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
 
 Add_Oparation_Dialog({
   required int? Class_Id,
@@ -209,7 +209,7 @@ class _TypeSelectionContainerState extends State<_TypeSelectionContainer> {
           }).toList(),
           const SizedBox(height: 10),
           Text(
-            'Selected:'.tr+' ${selectedIds.length}/${availableTypes.length}',
+            'Selected:'.tr + ' ${selectedIds.length}/${availableTypes.length}',
             style: TextStyle(fontStyle: FontStyle.normal),
           ),
         ],

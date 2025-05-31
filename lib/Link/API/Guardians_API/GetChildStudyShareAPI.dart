@@ -5,9 +5,9 @@ import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/SchoolTimeModel.dart';
-import 'package:vms_school/view/Admin/School_Management/Tables/SchoolTimeTable.dart';
-import 'package:vms_school/view/Guardian/Functions/StudyShareForChild.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
+import 'package:vms_school/view/SMS_Platform/Admin/School_Management/Tables/SchoolTimeTable.dart';
+import 'package:vms_school/view/SMS_Platform/Guardian/Functions/StudyShareForChild.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 import '../API.dart' as global;
 
 class Getchildstudyshareapi {
@@ -26,8 +26,9 @@ class Getchildstudyshareapi {
       String myurl = "${global.hostPort}${global.getDivisionStudyShare}";
 
       var response = await dio.post(myurl,
-      cancelToken: cancelToken,
-          data: {"studentId": id}, options: getDioOptions());
+          cancelToken: cancelToken,
+          data: {"studentId": id},
+          options: getDioOptions());
       if (response.statusCode == 200) {
         SchoolTimeModel model = SchoolTimeModel.fromJson(response.data);
 

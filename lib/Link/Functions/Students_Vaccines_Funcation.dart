@@ -4,11 +4,11 @@ import 'package:dio/dio.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Vaccines_APIs/Get_All_Vaccines_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/main.dart';
-import 'package:vms_school/widgets/ButtonsDialog.dart';
-import 'package:vms_school/widgets/GridAnimation.dart';
-import 'package:vms_school/widgets/TextFormSearch.dart';
-import 'package:vms_school/widgets/VMSAlertDialog.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/GridAnimation.dart';
+import 'package:vms_school/view/Both_Platform/widgets/TextFormSearch.dart';
+import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 
 class StudentsVaccinesDialog extends StatefulWidget {
   const StudentsVaccinesDialog({Key? key}) : super(key: key);

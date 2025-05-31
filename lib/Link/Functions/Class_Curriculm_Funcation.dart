@@ -5,11 +5,11 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Curriculm
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Class_Mgmt_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
-import 'package:vms_school/widgets/ButtonsDialog.dart';
-import 'package:vms_school/widgets/GridAnimation.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
-import 'package:vms_school/widgets/TextFormSearch.dart';
-import 'package:vms_school/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/GridAnimation.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/TextFormSearch.dart';
+import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
 
 Class_Curriculm_Funcation(BuildContext context) async {
   TextEditingController search = TextEditingController();
@@ -117,8 +117,11 @@ Class_Curriculm_Funcation(BuildContext context) async {
                                       child: Text(
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
-                                         Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
+                                        Get.find<LocalizationController>()
+                                                    .currentLocale
+                                                    .value
+                                                    .languageCode ==
+                                                'ar'
                                             ? "${curriculum.name}"
                                             : "${curriculum.enName}",
                                         textAlign: TextAlign.center,

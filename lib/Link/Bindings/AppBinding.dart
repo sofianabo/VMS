@@ -72,7 +72,7 @@ import 'package:vms_school/Link/Controller/WidgetController/OtherWidget/DropDown
 import 'package:vms_school/Link/Controller/WidgetController/OtherWidget/PasswordHintController.dart';
 import 'package:vms_school/Theme/themeController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
-import 'package:vms_school/widgets/SidbarAnimation.dart';
+import 'package:vms_school/view/Both_Platform/widgets/SidbarAnimation.dart';
 
 class AppBindings extends Bindings {
   @override

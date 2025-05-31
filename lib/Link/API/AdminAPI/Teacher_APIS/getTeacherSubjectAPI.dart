@@ -11,9 +11,8 @@ import 'package:vms_school/Link/Model/AdminModel/Students_Models/OneStudentAtten
 import 'package:vms_school/Link/Model/AdminModel/TeacherModels/TeacherSubjectModel.dart';
 import 'package:vms_school/Link/Model/AdminModel/EmployeeModels/oneEmployeeAttendenceModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
-import 'package:vms_school/main.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
-import 'package:vms_school/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
 import '../../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';
 
@@ -80,8 +79,12 @@ class Getteachersubjectapi {
                                 cells: [
                                   DataCell(
                                     Text(
- Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'                                          ? emp.subjects.name
+                                      Get.find<LocalizationController>()
+                                                  .currentLocale
+                                                  .value
+                                                  .languageCode ==
+                                              'ar'
+                                          ? emp.subjects.name
                                           : emp.subjects.enName ?? 'N/A',
                                       style: Get.theme.textTheme.bodyMedium,
                                     ),
@@ -89,16 +92,24 @@ class Getteachersubjectapi {
                                   //status
                                   DataCell(
                                     Text(
- Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'                                          ? emp.classes.name
+                                      Get.find<LocalizationController>()
+                                                  .currentLocale
+                                                  .value
+                                                  .languageCode ==
+                                              'ar'
+                                          ? emp.classes.name
                                           : emp.classes.enName ?? 'N/A',
                                       style: Get.theme.textTheme.bodyMedium,
                                     ),
                                   ),
                                   DataCell(
                                     Text(
- Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'                                          ? emp.division.name
+                                      Get.find<LocalizationController>()
+                                                  .currentLocale
+                                                  .value
+                                                  .languageCode ==
+                                              'ar'
+                                          ? emp.division.name
                                           : emp.division.enName ?? 'N/A',
                                       style: Get.theme.textTheme.bodyMedium,
                                     ),

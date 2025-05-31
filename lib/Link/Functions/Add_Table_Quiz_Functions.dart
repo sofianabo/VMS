@@ -8,9 +8,9 @@ import 'package:reorderables/reorderables.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Teachernote_and_GradeReco.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/ValidateTeacherNoteAndGradeReco.dart';
-import 'package:vms_school/widgets/ButtonsDialog.dart';
-import 'package:vms_school/widgets/TextFildWithUpper.dart';
-import 'package:vms_school/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/TextFildWithUpper.dart';
+import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
 
 Add_Group() {
   TextEditingController groupname = TextEditingController();

@@ -6,9 +6,9 @@ import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/Controller/GuardianController/Students_Marks_Gua_Controller.dart';
 import 'package:vms_school/Link/Model/Guardian_Model/Students_Marks_Gua_Model.dart';
-import 'package:vms_school/view/Guardian/My_Students_Marks/Students_Marks_Grid.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
-import 'package:vms_school/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/view/SMS_Platform/Guardian/My_Students_Marks/Students_Marks_Grid.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
 
 class Get_Students_Marks_API_Gua {
   Dio dio = Dio();

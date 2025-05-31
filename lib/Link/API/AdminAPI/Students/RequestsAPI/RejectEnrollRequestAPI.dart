@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Students/RequestsAPI/RequestsAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 import '../../../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';
 

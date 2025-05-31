@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllSessionModel.dart';
-import 'package:vms_school/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
 
 class SessionController extends GetxController {
   var Sessionss = <Map<String, dynamic>>[].obs;

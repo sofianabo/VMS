@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Session_Controller.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 
 class Add_Session_API {
   BuildContext context;

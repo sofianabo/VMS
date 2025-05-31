@@ -10,8 +10,8 @@ import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller
 import 'package:vms_school/Link/Controller/GuardianController/MyChildren_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/My_Data_Model.dart';
 import 'package:vms_school/main.dart';
-import 'package:vms_school/view/Admin/All_Settings/Verifing_Code_Dialog.dart';
-import 'package:vms_school/view/Teacher/Teacher_Home/TeacherProfile.dart';
+import 'package:vms_school/view/SMS_Platform/Admin/All_Settings/Verifing_Code_Dialog.dart';
+import 'package:vms_school/view/SMS_Platform/Teacher/Teacher_Home/TeacherProfile.dart';
 
 class Add_Data_controller extends GetxController {
   bool isLoading = true;

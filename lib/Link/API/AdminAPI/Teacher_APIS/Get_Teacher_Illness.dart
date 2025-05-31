@@ -7,9 +7,8 @@ import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Link/Functions/Show_Emp_Illnes_By_Id.dart';
-import 'package:vms_school/Link/Functions/Show_Illnes_By_Id.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/Students_Illness.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 
 class Get_Teacher_Illness_API {
   final BuildContext context;

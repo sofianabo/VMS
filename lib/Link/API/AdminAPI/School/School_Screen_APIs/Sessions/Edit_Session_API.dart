@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 
 class Edit_Session_API {
   BuildContext context;
@@ -14,23 +14,22 @@ class Edit_Session_API {
 
   Edit_Session({
     year,
-     startDate,
-     endDate,
-     sessionId,
-      }
-      ) async {
+    startDate,
+    endDate,
+    sessionId,
+  }) async {
     CancelToken cancelToken = CancelToken();
     Loading_Dialog(cancelToken: cancelToken);
     try {
       String myurl = "$hostPort$updateSession";
       var response = await dio.post(
-        cancelToken: cancelToken,
+          cancelToken: cancelToken,
           myurl,
           data: {
-            'year':'$year',
-            'sessionId':'$sessionId',
-            'startDate':'$startDate',
-            'endDate':'$endDate',
+            'year': '$year',
+            'sessionId': '$sessionId',
+            'startDate': '$startDate',
+            'endDate': '$endDate',
           },
           options: getDioOptions());
       if (response.statusCode == 200) {
@@ -51,8 +50,8 @@ class Edit_Session_API {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    }finally{
-     Get.back();
+    } finally {
+      Get.back();
     }
   }
 }

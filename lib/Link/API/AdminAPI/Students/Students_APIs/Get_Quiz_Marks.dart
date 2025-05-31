@@ -3,11 +3,9 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
-import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Teachernote_and_GradeReco.dart';
+
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Students_Marks_Controller.dart';
-import 'package:vms_school/Link/Model/AdminModel/School_Models/QuizType_Model.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/Students_Marks_Model.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
 
 class Get_Quiz_Marks_API {
   Get_Quiz_Marks_API();

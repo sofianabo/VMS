@@ -10,7 +10,7 @@ import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/A
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCuriculmController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownExamTypeController.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import '../../../API.dart' as global;
 

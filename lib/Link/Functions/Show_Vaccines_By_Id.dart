@@ -6,11 +6,11 @@ import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Vaccines_Model.dart';
 import 'package:vms_school/main.dart';
-import 'package:vms_school/widgets/ButtonsDialog.dart';
-import 'package:vms_school/widgets/GridAnimation.dart';
-import 'package:vms_school/widgets/PDF_View.dart';
-import 'package:vms_school/widgets/TextFormSearch.dart';
-import 'package:vms_school/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/GridAnimation.dart';
+import 'package:vms_school/view/Both_Platform/widgets/PDF_View.dart';
+import 'package:vms_school/view/Both_Platform/widgets/TextFormSearch.dart';
+import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
 
 class StudentVaccinesDialog extends StatefulWidget {
   final String id;

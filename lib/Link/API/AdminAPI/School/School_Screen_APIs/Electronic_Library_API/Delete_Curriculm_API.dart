@@ -6,36 +6,30 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 
 class Delete_E_Book_API {
   BuildContext context;
   Delete_E_Book_API(this.context);
   Dio dio = Dio();
 
-  Delete_E_Book(
-      {
-        required Eid,
-      }
-      ) async {
-
+  Delete_E_Book({
+    required Eid,
+  }) async {
     try {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
       String myurl = "$hostPort$deleteBook";
 
       var response = await dio.post(
-        cancelToken: cancelToken,
+          cancelToken: cancelToken,
           myurl,
-          data: {
-          "id":Eid
-          },
+          data: {"id": Eid},
           options: getDioOptions());
       if (response.statusCode == 200) {
         Get.back();
-      Get.back();
+        Get.back();
         await Get_All_E_Book_API(context).Get_All_E_Book();
-
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

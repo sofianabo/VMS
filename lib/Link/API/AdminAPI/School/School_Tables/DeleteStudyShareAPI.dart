@@ -9,8 +9,8 @@ import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/ExamTableAPI.d
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
-import 'package:vms_school/view/Admin/School_Management/Tables/SchoolTimeTable.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
+import 'package:vms_school/view/SMS_Platform/Admin/School_Management/Tables/SchoolTimeTable.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 
 class Deletestudyshareapi {
   BuildContext context;
@@ -34,8 +34,8 @@ class Deletestudyshareapi {
       );
 
       if (response.statusCode == 200) {
-        m = await Schooltimetableapi(context)
-            .Schooltimetable(u.examDivision.indexOf(u.selectedExamDivision),u.timeLessonIndex);
+        m = await Schooltimetableapi(context).Schooltimetable(
+            u.examDivision.indexOf(u.selectedExamDivision), u.timeLessonIndex);
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

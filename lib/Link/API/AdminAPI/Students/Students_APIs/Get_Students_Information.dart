@@ -7,9 +7,9 @@ import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/AllStudentsController.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/Student_Info_model.dart';
-import 'package:vms_school/view/Admin/Students_Manager/EditStudentInfo.dart';
-import 'package:vms_school/view/Guardian/Functions/Edit_Students_Information.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
+import 'package:vms_school/view/SMS_Platform/Admin/Students_Manager/EditStudentInfo.dart';
+import 'package:vms_school/view/SMS_Platform/Guardian/Functions/Edit_Students_Information.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 
 class Get_Students_Information_API {
   Get_Students_Information_API(this.context);

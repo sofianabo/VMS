@@ -5,36 +5,30 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 
 class Delete_Curriculm_API {
   BuildContext context;
   Delete_Curriculm_API(this.context);
   Dio dio = Dio();
 
-  Delete_Curriculm(
-      {
-        required cid,
-      }
-      ) async {
-
+  Delete_Curriculm({
+    required cid,
+  }) async {
     try {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
       String myurl = "$hostPort$deleteCurriculum";
 
       var response = await dio.post(
-        cancelToken: cancelToken,
+          cancelToken: cancelToken,
           myurl,
-          data: {
-          "id":cid
-          },
+          data: {"id": cid},
           options: getDioOptions());
       if (response.statusCode == 200) {
         Get.back();
-      Get.back();
+        Get.back();
         await Get_All_Curriculm_API(context).Get_All_Curriculm();
-
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

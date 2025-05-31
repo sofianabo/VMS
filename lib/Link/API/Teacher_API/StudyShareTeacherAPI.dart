@@ -3,14 +3,11 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
-import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
 import 'package:vms_school/Link/Controller/Teacher_Controller/StudyShareTeacherController.dart';
-import 'package:vms_school/Link/Model/AdminModel/School_Models/SchoolTimeModel.dart';
 import 'package:vms_school/Link/Model/Teacher_Model/StudyShareTeacherModel.dart';
-import 'package:vms_school/view/Admin/School_Management/Tables/SchoolTimeTable.dart';
-import 'package:vms_school/view/Guardian/Functions/StudyShareForChild.dart';
-import 'package:vms_school/view/Teacher/Functions/StudyshareTeacher.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
+
+import 'package:vms_school/view/SMS_Platform/Teacher/Functions/StudyshareTeacher.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 import '../API.dart' as global;
 
 class Studyshareteacherapi {

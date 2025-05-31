@@ -2,7 +2,7 @@ import 'dart:html' as html;
 
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 
 Future<void> downloadFile(String url, String fileName) async {
   Dio dio = Dio();

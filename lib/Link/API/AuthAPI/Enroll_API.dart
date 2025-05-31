@@ -4,7 +4,7 @@ import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AuthController/Enroll_Controller.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
-import 'package:vms_school/view/Guardian/Functions/VirifingCode.dart';
+import 'package:vms_school/view/SMS_Platform/Guardian/Functions/VirifingCode.dart';
 
 class Enroll_API {
   Dio dio = Dio();

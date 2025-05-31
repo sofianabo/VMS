@@ -7,20 +7,17 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Divisions_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
-import 'package:vms_school/widgets/Admin/Admin_School/All_Screen_Sessions.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 
 class Delete_Division_API {
   BuildContext context;
   Delete_Division_API(this.context);
   Dio dio = Dio();
 
-  Delete_Division(
-      {
-        index,
-        Id,
-      }
-      ) async {
+  Delete_Division({
+    index,
+    Id,
+  }) async {
     CancelToken cancelToken = CancelToken();
     try {
       Loading_Dialog(cancelToken: cancelToken);
@@ -28,14 +25,13 @@ class Delete_Division_API {
       String myurl = "$hostPort$deleteDivision";
 
       var response = await dio.post(
-        data: {
-          'id':Id
-        },
-        cancelToken: cancelToken,
+          data: {'id': Id},
+          cancelToken: cancelToken,
           myurl,
           options: getDioOptions());
       if (response.statusCode == 200) {
-        Get_All_Division_API(context).Get_All_Division(sessionId: Get.find<All_Screen_Sessions_Controller>().sessionId);
+        Get_All_Division_API(context).Get_All_Division(
+            sessionId: Get.find<All_Screen_Sessions_Controller>().sessionId);
         Get.back();
       } else {
         ErrorHandler.handleDioError(DioException(
@@ -52,8 +48,8 @@ class Delete_Division_API {
       } else {
         ErrorHandler.handleException(Exception(e.toString()));
       }
-    }finally{
-     Get.back();
+    } finally {
+      Get.back();
     }
   }
 }

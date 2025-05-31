@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_Virtual_Employee.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 import '../../API.dart' as global;
 import 'package:vms_school/Link/API/DioOption.dart';
 
@@ -17,8 +17,7 @@ class Delete_Virtual_User_API {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
       var response = await dio.delete(myurl,
-          cancelToken: cancelToken,
-     options: getDioOptions());
+          cancelToken: cancelToken, options: getDioOptions());
       if (response.statusCode == 200) {
         Get.back();
         Get.back();

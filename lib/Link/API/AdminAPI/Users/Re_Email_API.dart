@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
-import 'package:vms_school/view/Admin/All_Settings/Re_Verifing_Code_Dialog.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
+import 'package:vms_school/view/SMS_Platform/Admin/All_Settings/Re_Verifing_Code_Dialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 
 class Re_Email_API {
   Re_Email_API();

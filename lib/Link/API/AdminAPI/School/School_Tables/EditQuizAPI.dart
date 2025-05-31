@@ -1,15 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Get_All_Employee_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Tables/ExamTableAPI.dart';
-import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/GetAllTeachersAPI.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/ExamTableController.dart';
-import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
-import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownClassesController.dart';
-import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCuriculmController.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
+
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import '../../../API.dart' as global;
 
@@ -32,7 +28,7 @@ class Editquizapi {
       Loading_Dialog(cancelToken: cancelToken);
       var response = await dio.post(myurl,
           data: {
-            "id":id,
+            "id": id,
             "startDate": startDate,
             "period": period,
             "maxMark": maxMark,

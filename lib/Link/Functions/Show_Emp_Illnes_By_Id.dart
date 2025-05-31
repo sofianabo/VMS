@@ -5,11 +5,11 @@ import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/UpdateEmployeeIllnes
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
-import 'package:vms_school/widgets/ButtonsDialog.dart';
-import 'package:vms_school/widgets/GridAnimation.dart';
-import 'package:vms_school/widgets/PDF_View.dart';
-import 'package:vms_school/widgets/TextFormSearch.dart';
-import 'package:vms_school/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/GridAnimation.dart';
+import 'package:vms_school/view/Both_Platform/widgets/PDF_View.dart';
+import 'package:vms_school/view/Both_Platform/widgets/TextFormSearch.dart';
+import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
 import '../Model/AdminModel/School_Models/Illness_Model.dart';
 
 class Show_Teacher_Illnes_By_Id extends StatefulWidget {

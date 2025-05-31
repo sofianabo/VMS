@@ -5,9 +5,7 @@ import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/SchoolContentAPI/School_Content_API.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
-import 'package:vms_school/Link/Controller/AdminController/School_Controllers/School_Info_Controller.dart';
-import 'package:vms_school/Link/Model/AdminModel/School_Models/School_Data_Model.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 
 class Add_Content_Screen_API {
   Add_Content_Screen_API(this.context);

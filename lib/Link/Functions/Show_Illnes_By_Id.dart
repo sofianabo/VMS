@@ -6,11 +6,11 @@ import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Illness_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
-import 'package:vms_school/widgets/ButtonsDialog.dart';
-import 'package:vms_school/widgets/GridAnimation.dart';
-import 'package:vms_school/widgets/PDF_View.dart';
-import 'package:vms_school/widgets/TextFormSearch.dart';
-import 'package:vms_school/widgets/VMSAlertDialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
+import 'package:vms_school/view/Both_Platform/widgets/GridAnimation.dart';
+import 'package:vms_school/view/Both_Platform/widgets/PDF_View.dart';
+import 'package:vms_school/view/Both_Platform/widgets/TextFormSearch.dart';
+import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
 import '../Model/AdminModel/School_Models/Illness_Model.dart';
 
 class StudentsIllnessDialog extends StatefulWidget {
@@ -165,8 +165,11 @@ class _StudentsIllnessDialogState extends State<StudentsIllnessDialog> {
                                         child: Center(
                                           child: Text(
                                             textAlign: TextAlign.center,
-                                          Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
+                                            Get.find<LocalizationController>()
+                                                        .currentLocale
+                                                        .value
+                                                        .languageCode ==
+                                                    'ar'
                                                 ? "${illness.name}"
                                                 : "${illness.enName}",
                                             style: Get

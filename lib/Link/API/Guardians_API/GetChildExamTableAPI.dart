@@ -2,17 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Vaccines_APIs/Get_All_Vaccines_API.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
-import 'package:vms_school/Link/Controller/AdminController/School_Controllers/ExamTableController.dart';
-import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Vaccines_Controller.dart';
 import 'package:vms_school/Link/Controller/GuardianController/ChildExamTableController.dart';
-import 'package:vms_school/Link/Functions/Show_Vaccines_By_Id.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/ExamTableModel.dart';
-import 'package:vms_school/Link/Model/AdminModel/Students_Models/Students_Vaccines_Model.dart';
-import 'package:vms_school/view/Guardian/Functions/ExamTableForChild.dart';
-import 'package:vms_school/widgets/Loading_Dialog.dart';
+import 'package:vms_school/view/SMS_Platform/Guardian/Functions/ExamTableForChild.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 
 class Getchildexamtableapi {
   final BuildContext context;

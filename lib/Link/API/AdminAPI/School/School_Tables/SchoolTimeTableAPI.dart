@@ -1,13 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownClassesAPI.dart';
 import 'package:vms_school/Link/API/DioOption.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Admin_School_Time.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownDivisionController.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/SchoolTimeModel.dart';
-import 'package:vms_school/view/Admin/School_Management/Tables/SchoolTimeTable.dart';
+import 'package:vms_school/view/SMS_Platform/Admin/School_Management/Tables/SchoolTimeTable.dart';
 import '../../../API.dart' as global;
 
 class Schooltimetableapi {
@@ -36,7 +35,7 @@ class Schooltimetableapi {
         SchoolTimeModel model = SchoolTimeModel.fromJson(response.data);
 
         c.setStudyShare(model);
-        for (int i = 0; i < 5; i++) 
+        for (int i = 0; i < 5; i++)
           for (int j = 1; j < 8; j++) {
             String s = "No Lesson";
             for (int k = 0; k < j; k++) s += " ";
