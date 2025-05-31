@@ -205,3 +205,6 @@ String verify = "verify";
 String resendCode = "resendCode";
 String updateEmail = "updateEmail";
 String updatePassword = "updatePassword";
+
+// ..................... LMS Users ...................//
+String getClassesLms = "getClassesLms";

@@ -7,6 +7,7 @@ class RoleBasedMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
     bool isLoggedIn = prefs?.getBool("isLogin") ?? false;
+    bool isLMS = prefs?.getBool("isLMS") ?? false;
     String? role = prefs?.getString("role");
     if (!isLoggedIn &&
         route != '/home' &&
@@ -21,8 +22,12 @@ class RoleBasedMiddleware extends GetMiddleware {
             role == "observer" ||
             role == "supervisor")) {
       Get.find<Add_Data_controller>().CheeckHasData();
-      if (route != '/admin') {
-        return const RouteSettings(name: '/admin');
+      if (route != '/admin' && route != '/adminLMS') {
+        if (isLMS == true) {
+          return const RouteSettings(name: '/adminLMS');
+        } else {
+          return const RouteSettings(name: '/admin');
+        }
       }
     }
 

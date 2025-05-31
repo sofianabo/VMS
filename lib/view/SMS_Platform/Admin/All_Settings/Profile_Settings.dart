@@ -6,6 +6,7 @@ import 'package:vms_school/Link/API/Teacher_API/GetMyAttendenceAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
 import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/main.dart';
 import 'package:vms_school/view/SMS_Platform/Admin/All_Settings/Account_And_Password.dart';
 import 'package:vms_school/view/SMS_Platform/Admin/All_Settings/Add_Data_My_Account.dart';
 import 'package:vms_school/view/SMS_Platform/Admin/All_Settings/Apperance.dart';
@@ -517,7 +518,10 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                                 ),
                                               ),
                                               GestureDetector(
-                                                onTap: () {},
+                                                onTap: () async {
+                                                  prefs!.setBool("isLMS", true);
+                                                  Get.offAllNamed("/adminLMS");
+                                                },
                                                 child: Container(
                                                   padding: EdgeInsets.all(5.0),
                                                   child: Row(
@@ -1055,7 +1059,10 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                       ),
                                     ),
                                     GestureDetector(
-                                      onTap: () {},
+                                      onTap: () {
+                                        prefs!.setBool("isLMS", true);
+                                        Get.offAllNamed("/adminLMS");
+                                      },
                                       child: Container(
                                         padding: EdgeInsets.all(5.0),
                                         child: Row(
