@@ -42,56 +42,16 @@ class _PenaltygridState extends State<Penaltygrid> {
                   color: Theme.of(context).primaryColor,
                   size: 60,
                 )
-              : Get.width >= 600
-                  ? SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Table(
-                            border: TableBorder.all(
-                                color: Theme.of(context).primaryColor),
-                            children: [
-                              TableRow(
-                                decoration: BoxDecoration(
-                                    color: Theme.of(context).indicatorColor),
-                                children: [
-                                  _tableHeader('Penalty Name'.tr),
-                                  _tableHeader('Details'.tr),
-                                  if (Get.find<Add_Data_controller>().roll !=
-                                      "observer")
-                                    _tableHeader('Operation'.tr),
-                                ],
-                              ),
-                              for (var row
-                                  in controller.Penalties.asMap().entries)
-                                TableRow(
-                                  children: [
-                                    _dataColumn(
-                                        Get.find<LocalizationController>()
-                                                    .currentLocale
-                                                    .value
-                                                    .languageCode ==
-                                                'ar'
-                                            ? row.value['name']
-                                            : row.value['enName']),
-                                    _dataColumn(row.value['description']),
-                                    if (Get.find<Add_Data_controller>().roll !=
-                                        "observer")
-                                      _operationColumn(row.value, controller,
-                                          row.key, context),
-                                  ],
-                                ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    )
-                  : SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.vertical,
-                        child: Container(
-                          width: 600,
+              : controller.penalt!.isEmpty
+                  ? Center(
+                      child: Text("No Penalties".tr,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(
+                                  fontSize: 22, fontWeight: FontWeight.normal)))
+                  : Get.width >= 600
+                      ? SingleChildScrollView(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -136,9 +96,62 @@ class _PenaltygridState extends State<Penaltygrid> {
                               ),
                             ],
                           ),
+                        )
+                      : SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
+                            child: Container(
+                              width: 600,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Table(
+                                    border: TableBorder.all(
+                                        color: Theme.of(context).primaryColor),
+                                    children: [
+                                      TableRow(
+                                        decoration: BoxDecoration(
+                                            color: Theme.of(context)
+                                                .indicatorColor),
+                                        children: [
+                                          _tableHeader('Penalty Name'.tr),
+                                          _tableHeader('Details'.tr),
+                                          if (Get.find<Add_Data_controller>()
+                                                  .roll !=
+                                              "observer")
+                                            _tableHeader('Operation'.tr),
+                                        ],
+                                      ),
+                                      for (var row
+                                          in controller.Penalties.asMap()
+                                              .entries)
+                                        TableRow(
+                                          children: [
+                                            _dataColumn(
+                                                Get.find<LocalizationController>()
+                                                            .currentLocale
+                                                            .value
+                                                            .languageCode ==
+                                                        'ar'
+                                                    ? row.value['name']
+                                                    : row.value['enName']),
+                                            _dataColumn(
+                                                row.value['description']),
+                                            if (Get.find<Add_Data_controller>()
+                                                    .roll !=
+                                                "observer")
+                                              _operationColumn(row.value,
+                                                  controller, row.key, context),
+                                          ],
+                                        ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
         );
       },
     );

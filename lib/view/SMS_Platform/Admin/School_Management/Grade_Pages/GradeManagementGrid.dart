@@ -36,61 +36,9 @@ class GradeTable extends StatelessWidget {
                       color: Theme.of(context).primaryColor,
                       size: 60,
                     )
-                  : Get.width >= 769
-                      ? SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Table(
-                                border: TableBorder.all(
-                                    color: Theme.of(context).primaryColor),
-                                children: [
-                                  TableRow(
-                                    decoration: BoxDecoration(
-                                        color:
-                                            Theme.of(context).indicatorColor),
-                                    children: [
-                                      if (Get.find<Add_Data_controller>()
-                                              .roll !=
-                                          "observer")
-                                        _tableHeader('Operation'.tr, context),
-                                      _tableHeader('Fee Count'.tr, context),
-                                      _tableHeader('Grade Name'.tr, context),
-                                    ],
-                                  ),
-                                  for (var row
-                                      in controller.Grades.asMap().entries)
-                                    TableRow(
-                                      children: [
-                                        if (Get.find<Add_Data_controller>()
-                                                .roll !=
-                                            "observer")
-                                          _operationColumn(row.value,
-                                              controller, row.key, context),
-                                        _dataColumn(
-                                            row.value['feeCount'], context),
-                                        _dataColumn(
-                                            Get.find<LocalizationController>()
-                                                        .currentLocale
-                                                        .value
-                                                        .languageCode ==
-                                                    'ar'
-                                                ? row.value['name']
-                                                : row.value['enName'],
-                                            context),
-                                      ],
-                                    ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        )
-                      : SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.vertical,
-                            child: Container(
-                              width: 769,
+                  : controller.Grades.isNotEmpty
+                      ? Get.width >= 769
+                          ? SingleChildScrollView(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -139,9 +87,82 @@ class GradeTable extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                            ),
-                          ),
-                        ));
+                            )
+                          : SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.vertical,
+                                child: Container(
+                                  width: 769,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Table(
+                                        border: TableBorder.all(
+                                            color:
+                                                Theme.of(context).primaryColor),
+                                        children: [
+                                          TableRow(
+                                            decoration: BoxDecoration(
+                                                color: Theme.of(context)
+                                                    .indicatorColor),
+                                            children: [
+                                              if (Get.find<
+                                                          Add_Data_controller>()
+                                                      .roll !=
+                                                  "observer")
+                                                _tableHeader(
+                                                    'Operation'.tr, context),
+                                              _tableHeader(
+                                                  'Fee Count'.tr, context),
+                                              _tableHeader(
+                                                  'Grade Name'.tr, context),
+                                            ],
+                                          ),
+                                          for (var row
+                                              in controller.Grades.asMap()
+                                                  .entries)
+                                            TableRow(
+                                              children: [
+                                                if (Get.find<
+                                                            Add_Data_controller>()
+                                                        .roll !=
+                                                    "observer")
+                                                  _operationColumn(
+                                                      row.value,
+                                                      controller,
+                                                      row.key,
+                                                      context),
+                                                _dataColumn(
+                                                    row.value['feeCount'],
+                                                    context),
+                                                _dataColumn(
+                                                    Get.find<LocalizationController>()
+                                                                .currentLocale
+                                                                .value
+                                                                .languageCode ==
+                                                            'ar'
+                                                        ? row.value['name']
+                                                        : row.value['enName'],
+                                                    context),
+                                              ],
+                                            ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            )
+                      : Center(
+                          child: Text("No Grade".tr,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge!
+                                  .copyWith(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.normal))));
         },
       ),
     );

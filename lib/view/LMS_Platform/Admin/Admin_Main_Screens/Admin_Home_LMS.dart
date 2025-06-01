@@ -12,7 +12,7 @@ import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
 import 'package:vms_school/view/Both_Platform/widgets/GridAnimation.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Schema_Widget.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/Admin_Main_Screens/Appbar_Admin_LMS.dart';
-import 'package:vms_school/view/LMS_Platform/Admin/Selected_Class_Screen.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Main_Selection.dart';
 
 class Admin_Home_LMS extends StatefulWidget {
   const Admin_Home_LMS({super.key});

@@ -33,46 +33,57 @@ class School_Content_Grid extends StatelessWidget {
                     color: Theme.of(context).primaryColor,
                     size: 60,
                   )
-                : SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Table(
-                          columnWidths: {
-                            0: Get.width >= 1048
-                                ? FixedColumnWidth(300)
-                                : FixedColumnWidth(120),
-                          },
-                          border: TableBorder.all(
-                              color: Theme.of(context).primaryColor),
+                : controller.Contents.isEmpty
+                    ? Center(
+                        child: Text("No Content".tr,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.normal)))
+                    : SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            TableRow(
-                              decoration:
-                                  const BoxDecoration(color: Color(0xffD4DFE5)),
+                            Table(
+                              columnWidths: {
+                                0: Get.width >= 1048
+                                    ? FixedColumnWidth(300)
+                                    : FixedColumnWidth(120),
+                              },
+                              border: TableBorder.all(
+                                  color: Theme.of(context).primaryColor),
                               children: [
-                                _tableHeader('Operation'.tr, context),
-                                _tableHeader('Content Name'.tr, context),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                      color: Color(0xffD4DFE5)),
+                                  children: [
+                                    _tableHeader('Operation'.tr, context),
+                                    _tableHeader('Content Name'.tr, context),
+                                  ],
+                                ),
+                                for (var row
+                                    in controller.Contents.asMap().entries)
+                                  TableRow(
+                                    children: [
+                                      _operationColumn(row.value, controller,
+                                          row.key, context),
+                                      _dataColumn(
+                                          Get.find<LocalizationController>()
+                                                      .currentLocale
+                                                      .value
+                                                      .languageCode ==
+                                                  'ar'
+                                              ? row.value['name']
+                                              : row.value['enName']),
+                                    ],
+                                  ),
                               ],
                             ),
-                            for (var row in controller.Contents.asMap().entries)
-                              TableRow(
-                                children: [
-                                  _operationColumn(
-                                      row.value, controller, row.key, context),
-                                  _dataColumn(Get.find<LocalizationController>()
-                                              .currentLocale
-                                              .value
-                                              .languageCode ==
-                                          'ar'
-                                      ? row.value['name']
-                                      : row.value['enName']),
-                                ],
-                              ),
                           ],
                         ),
-                      ],
-                    ),
-                  ));
+                      ));
       },
     );
   }

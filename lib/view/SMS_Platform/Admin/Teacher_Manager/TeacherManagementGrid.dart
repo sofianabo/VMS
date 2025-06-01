@@ -172,397 +172,435 @@ class TeacherManagementGrid extends StatelessWidget {
                 color: Colors.grey.withOpacity(0.2),
                 duration: const Duration(seconds: 1),
                 delay: const Duration(seconds: 1))
-            : GridView.builder(
-                padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: getCrossAxisCount(),
-                    crossAxisSpacing: 20.0,
-                    mainAxisSpacing: 20.0,
-                    childAspectRatio: getChildAspectRatio()),
-                itemCount: control.filteredTeacher!.length,
-                itemBuilder: (context, index) {
-                  return HoverScaleCard(
-                    child: GestureDetector(
-                      onTap: () async {
-                        if (control.filteredTeacher![index].hasEmployee ==
-                            true) {
-                          await GetteacherbyidAPI.Getteacherbyid(
-                              TeacherId:
-                                  control.filteredTeacher![index].id.toString(),
-                              context: context,
-                              index: index);
-                        } else {
-                          Get.dialog(BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
-                            child: AlertDialog(
-                              title: Row(
+            : control.filteredTeacher!.isNotEmpty
+                ? GridView.builder(
+                    padding:
+                        const EdgeInsets.only(top: 10, left: 40, right: 40),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: getCrossAxisCount(),
+                        crossAxisSpacing: 20.0,
+                        mainAxisSpacing: 20.0,
+                        childAspectRatio: getChildAspectRatio()),
+                    itemCount: control.filteredTeacher!.length,
+                    itemBuilder: (context, index) {
+                      return HoverScaleCard(
+                        child: GestureDetector(
+                          onTap: () async {
+                            if (control.filteredTeacher![index].hasEmployee ==
+                                true) {
+                              await GetteacherbyidAPI.Getteacherbyid(
+                                  TeacherId: control.filteredTeacher![index].id
+                                      .toString(),
+                                  context: context,
+                                  index: index);
+                            } else {
+                              Get.dialog(BackdropFilter(
+                                filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+                                child: AlertDialog(
+                                  title: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Text(""),
+                                      Padding(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: IconButton(
+                                          onPressed: () {
+                                            Get.back();
+                                          },
+                                          icon: const Icon(Icons.close_rounded,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  surfaceTintColor: Colors.transparent,
+                                  insetPadding: EdgeInsets.zero,
+                                  titlePadding: EdgeInsets.zero,
+                                  contentPadding: const EdgeInsets.only(
+                                      top: 0,
+                                      left: 20.0,
+                                      right: 20.0,
+                                      bottom: 20.0),
+                                  actionsPadding: const EdgeInsets.all(15.0),
+                                  content: Container(
+                                    width: 400,
+                                    height: 400,
+                                    child: Column(
+                                      children: [
+                                        SvgPicture.asset(
+                                          "assets/images/nodata.svg",
+                                          width: 350,
+                                          height: 350,
+                                        ),
+                                        Text(
+                                          "This Teacher Does Not Contain Any Data"
+                                              .tr,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleLarge!
+                                              .copyWith(fontSize: 16),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ));
+                            }
+                          },
+                          child: Container(
+                              padding: const EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(
+                                      color: Colors.grey, width: 0.5),
+                                  color: Theme.of(context).cardColor,
+                                  boxShadow: const [
+                                    BoxShadow(
+                                        color: Colors.black26,
+                                        offset: Offset(0, 2),
+                                        blurRadius: 1)
+                                  ]),
+                              child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text(""),
-                                  Padding(
-                                    padding: const EdgeInsets.all(5.0),
-                                    child: IconButton(
-                                      onPressed: () {
-                                        Get.back();
-                                      },
-                                      icon: const Icon(Icons.close_rounded,
-                                          color: Colors.black),
-                                    ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 15.0),
+                                          child: Text(
+                                              maxLines: 3,
+                                              overflow: TextOverflow.ellipsis,
+                                              "${control.filteredTeacher![index].fullName}",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                      fontSize: 25,
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                        ),
+                                      ),
+                                      FutureBuilder(
+                                        future: precacheImage(
+                                            NetworkImage(
+                                                "$getimage${control.filteredTeacher![index].imageId}"),
+                                            context),
+                                        builder: (context, snapshot) {
+                                          if (snapshot.connectionState ==
+                                              ConnectionState.done) {
+                                            return CircleAvatar(
+                                              maxRadius: 60,
+                                              backgroundColor:
+                                                  const Color(0xffC4C4C4),
+                                              backgroundImage: control
+                                                          .filteredTeacher![
+                                                              index]
+                                                          .imageId !=
+                                                      null
+                                                  ? NetworkImage(
+                                                      "$getimage${control.filteredTeacher![index].imageId}")
+                                                  : null,
+                                              child: control
+                                                          .filteredTeacher![
+                                                              index]
+                                                          .imageId ==
+                                                      null
+                                                  ? Text(
+                                                      control
+                                                          .filteredTeacher![
+                                                              index]
+                                                          .fullName!
+                                                          .substring(0, 1)
+                                                          .toUpperCase(),
+                                                      style: Get
+                                                          .textTheme.titleLarge!
+                                                          .copyWith(
+                                                              fontSize: 26,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                    )
+                                                  : null,
+                                            );
+                                          } else {
+                                            return CircleAvatar(
+                                              maxRadius: 60,
+                                              backgroundColor:
+                                                  const Color(0xffC4C4C4),
+                                              child: LoadingAnimationWidget
+                                                  .inkDrop(
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                                size: 30,
+                                              ),
+                                            );
+                                          }
+                                        },
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              surfaceTintColor: Colors.transparent,
-                              insetPadding: EdgeInsets.zero,
-                              titlePadding: EdgeInsets.zero,
-                              contentPadding: const EdgeInsets.only(
-                                  top: 0,
-                                  left: 20.0,
-                                  right: 20.0,
-                                  bottom: 20.0),
-                              actionsPadding: const EdgeInsets.all(15.0),
-                              content: Container(
-                                width: 400,
-                                height: 400,
-                                child: Column(
-                                  children: [
-                                    SvgPicture.asset(
-                                      "assets/images/nodata.svg",
-                                      width: 350,
-                                      height: 350,
-                                    ),
-                                    Text(
-                                      "This Teacher Does Not Contain Any Data"
-                                          .tr,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleLarge!
-                                          .copyWith(fontSize: 16),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ));
-                        }
-                      },
-                      child: Container(
-                          padding: const EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              border:
-                                  Border.all(color: Colors.grey, width: 0.5),
-                              color: Theme.of(context).cardColor,
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black26,
-                                    offset: Offset(0, 2),
-                                    blurRadius: 1)
-                              ]),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 15.0),
-                                      child: Text(
-                                          maxLines: 3,
-                                          overflow: TextOverflow.ellipsis,
-                                          "${control.filteredTeacher![index].fullName}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(
-                                                  fontSize: 25,
-                                                  fontWeight: FontWeight.bold)),
-                                    ),
-                                  ),
-                                  FutureBuilder(
-                                    future: precacheImage(
-                                        NetworkImage(
-                                            "$getimage${control.filteredTeacher![index].imageId}"),
-                                        context),
-                                    builder: (context, snapshot) {
-                                      if (snapshot.connectionState ==
-                                          ConnectionState.done) {
-                                        return CircleAvatar(
-                                          maxRadius: 60,
-                                          backgroundColor:
-                                              const Color(0xffC4C4C4),
-                                          backgroundImage: control
-                                                      .filteredTeacher![index]
-                                                      .imageId !=
-                                                  null
-                                              ? NetworkImage(
-                                                  "$getimage${control.filteredTeacher![index].imageId}")
-                                              : null,
-                                          child: control.filteredTeacher![index]
-                                                      .imageId ==
-                                                  null
-                                              ? Text(
-                                                  control
-                                                      .filteredTeacher![index]
-                                                      .fullName!
-                                                      .substring(0, 1)
-                                                      .toUpperCase(),
-                                                  style: Get
-                                                      .textTheme.titleLarge!
-                                                      .copyWith(
-                                                          fontSize: 26,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                )
-                                              : null,
-                                        );
-                                      } else {
-                                        return CircleAvatar(
-                                          maxRadius: 60,
-                                          backgroundColor:
-                                              const Color(0xffC4C4C4),
-                                          child: LoadingAnimationWidget.inkDrop(
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                            size: 30,
-                                          ),
-                                        );
-                                      }
-                                    },
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
-                                    child: Text(
-                                        "${control.filteredTeacher![index].contractType}"
-                                            .tr,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium!
-                                            .copyWith(
-                                                fontSize: 16,
-                                                color: control
-                                                            .filteredTeacher![
-                                                                index]
-                                                            .contractType!
-                                                            .tr ==
-                                                        "Full Time".tr
-                                                    ? const Color(0xff2F9742)
-                                                    : const Color.fromARGB(
-                                                        255, 64, 165, 224))),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 5.0),
+                                        child: Text(
+                                            "${control.filteredTeacher![index].contractType}"
+                                                .tr,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
+                                                    fontSize: 16,
+                                                    color: control
+                                                                .filteredTeacher![
+                                                                    index]
+                                                                .contractType!
+                                                                .tr ==
+                                                            "Full Time".tr
+                                                        ? const Color(
+                                                            0xff2F9742)
+                                                        : const Color.fromARGB(
+                                                            255,
+                                                            64,
+                                                            165,
+                                                            224))),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 5.0),
+                                        child: Text(
+                                            "${control.filteredTeacher![index].gender}"
+                                                .tr,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
+                                                    fontSize: 16,
+                                                    color: const Color.fromARGB(
+                                                        255, 59, 118, 206))),
+                                      ),
+                                    ],
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 5.0),
                                     child: Text(
-                                        "${control.filteredTeacher![index].gender}"
-                                            .tr,
+                                        "Mobile: ".tr +
+                                            "${control.filteredTeacher![index].phone}",
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyMedium!
                                             .copyWith(
-                                                fontSize: 16,
-                                                color: const Color.fromARGB(
-                                                    255, 59, 118, 206))),
+                                              fontSize: 16,
+                                            )),
                                   ),
-                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5.0),
-                                child: Text(
-                                    "Mobile: ".tr +
-                                        "${control.filteredTeacher![index].phone}",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .copyWith(
-                                          fontSize: 16,
-                                        )),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          "Email: ".tr +
-                                              "${control.filteredTeacher![index].email}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(
-                                                fontSize: 14,
-                                              )),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              "Email: ".tr +
+                                                  "${control.filteredTeacher![index].email}",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                    fontSize: 14,
+                                                  )),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  if (Get.find<Add_Data_controller>().roll !=
-                                      "observer")
-                                    if (Get.find<Add_Data_controller>().roll !=
-                                        "supervisor")
-                                      IconButton(
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      if (Get.find<Add_Data_controller>().roll !=
+                                          "observer")
+                                        if (Get.find<Add_Data_controller>().roll !=
+                                            "supervisor")
+                                          IconButton(
+                                              style: ButtonStyle(
+                                                  maximumSize:
+                                                      WidgetStateProperty.all(
+                                                          const Size(35, 35)),
+                                                  minimumSize:
+                                                      WidgetStateProperty.all(
+                                                          const Size(35, 35)),
+                                                  backgroundColor: Get.find<Add_Data_controller>().roll ==
+                                                          "subAdmin"
+                                                      ? WidgetStatePropertyAll(
+                                                          Get.theme
+                                                              .disabledColor)
+                                                      : WidgetStatePropertyAll(
+                                                          Color(0xffB03D3D)),
+                                                  shape: WidgetStatePropertyAll(
+                                                      RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))))),
+                                              onPressed: () {
+                                                if (Get.find<
+                                                            Add_Data_controller>()
+                                                        .roll !=
+                                                    "subAdmin") {
+                                                  Get.dialog(VMSAlertDialog(
+                                                    action: [
+                                                      ButtonDialog(
+                                                          text: "Delete".tr,
+                                                          onPressed: () async {
+                                                            await Deleteteacherapi(
+                                                                    context)
+                                                                .Deleteteacher(control
+                                                                    .filteredTeacher![
+                                                                        index]
+                                                                    .id!);
+                                                          },
+                                                          color:
+                                                              Color(0xffB03D3D),
+                                                          width: 80),
+                                                      ButtonDialog(
+                                                          text: "Cancel".tr,
+                                                          onPressed: () {
+                                                            Get.back();
+                                                          },
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .primaryColor,
+                                                          width: 80)
+                                                    ],
+                                                    contents: SizedBox(
+                                                        width: 500,
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                              "Do You Want To Deletet"
+                                                                      .tr +
+                                                                  "( ${control.filteredTeacher![index].fullName} )" +
+                                                                  "Teacherr".tr,
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                      fontSize:
+                                                                          16,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .normal),
+                                                            ),
+                                                          ],
+                                                        )),
+                                                    apptitle:
+                                                        "Delete Teacher".tr,
+                                                    subtitle: "none",
+                                                  ));
+                                                }
+                                              },
+                                              icon: const Icon(VMS_Icons.bin, size: 16, color: Colors.white)),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 10.0, bottom: 10.0),
+                                        child: IconButton(
                                           style: ButtonStyle(
-                                              maximumSize: WidgetStateProperty.all(
-                                                  const Size(35, 35)),
+                                              maximumSize:
+                                                  WidgetStateProperty.all(
+                                                      const Size(35, 35)),
                                               minimumSize:
                                                   WidgetStateProperty.all(
                                                       const Size(35, 35)),
-                                              backgroundColor: Get.find<Add_Data_controller>().roll ==
-                                                      "subAdmin"
-                                                  ? WidgetStatePropertyAll(
-                                                      Get.theme.disabledColor)
-                                                  : WidgetStatePropertyAll(
-                                                      Color(0xffB03D3D)),
-                                              shape: WidgetStatePropertyAll(
+                                              iconSize:
+                                                  WidgetStateProperty.all(14),
+                                              shape: WidgetStateProperty.all(
                                                   RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.all(Radius.circular(5))))),
-                                          onPressed: () {
-                                            if (Get.find<Add_Data_controller>()
-                                                    .roll !=
-                                                "subAdmin") {
-                                              Get.dialog(VMSAlertDialog(
-                                                action: [
-                                                  ButtonDialog(
-                                                      text: "Delete".tr,
-                                                      onPressed: () async {
-                                                        await Deleteteacherapi(
-                                                                context)
-                                                            .Deleteteacher(control
-                                                                .filteredTeacher![
-                                                                    index]
-                                                                .id!);
-                                                      },
-                                                      color: Color(0xffB03D3D),
-                                                      width: 80),
-                                                  ButtonDialog(
-                                                      text: "Cancel".tr,
-                                                      onPressed: () {
-                                                        Get.back();
-                                                      },
-                                                      color: Theme.of(context)
-                                                          .primaryColor,
-                                                      width: 80)
-                                                ],
-                                                contents: SizedBox(
-                                                    width: 500,
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          "Do You Want To Deletet"
-                                                                  .tr +
-                                                              "( ${control.filteredTeacher![index].fullName} )" +
-                                                              "Teacherr".tr,
-                                                          style: Theme.of(
-                                                                  context)
-                                                              .textTheme
-                                                              .bodyMedium!
-                                                              .copyWith(
-                                                                  fontSize: 16,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal),
-                                                        ),
-                                                      ],
-                                                    )),
-                                                apptitle: "Delete Teacher".tr,
-                                                subtitle: "none",
-                                              ));
-                                            }
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                              )),
+                                              backgroundColor:
+                                                  WidgetStateProperty.all(
+                                                      Theme.of(context)
+                                                          .primaryColorLight)),
+                                          onPressed: () async {
+                                            await Get_Teacher_Illness_API(
+                                                    context)
+                                                .Get_Teacher_Illness(
+                                                    teachId: int.parse(control
+                                                        .filteredTeacher![index]
+                                                        .id
+                                                        .toString()),
+                                                    index_of_Emp: index,
+                                                    IsTeacher: true);
                                           },
-                                          icon: const Icon(VMS_Icons.bin, size: 16, color: Colors.white)),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 10.0, bottom: 10.0),
-                                    child: IconButton(
-                                      style: ButtonStyle(
-                                          maximumSize: WidgetStateProperty.all(
-                                              const Size(35, 35)),
-                                          minimumSize: WidgetStateProperty.all(
-                                              const Size(35, 35)),
-                                          iconSize: WidgetStateProperty.all(14),
-                                          shape: WidgetStateProperty.all(
-                                              RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          )),
-                                          backgroundColor:
-                                              WidgetStateProperty.all(
-                                                  Theme.of(context)
-                                                      .primaryColorLight)),
-                                      onPressed: () async {
-                                        await Get_Teacher_Illness_API(context)
-                                            .Get_Teacher_Illness(
-                                                teachId: int.parse(control
-                                                    .filteredTeacher![index].id
-                                                    .toString()),
-                                                index_of_Emp: index,
-                                                IsTeacher: true);
-                                      },
-                                      icon: const Icon(VMS_Icons.vir),
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  IconButton(
-                                    style: ButtonStyle(
-                                        maximumSize: WidgetStateProperty.all(
-                                            const Size(35, 35)),
-                                        minimumSize: WidgetStateProperty.all(
-                                            const Size(35, 35)),
-                                        iconSize: WidgetStateProperty.all(14),
-                                        shape: WidgetStateProperty.all(
-                                            RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        )),
-                                        backgroundColor:
-                                            WidgetStateProperty.all(
-                                                Theme.of(context)
-                                                    .primaryColorLight)),
-                                    onPressed: () async {
-                                      await Getteachersubjectapi(context)
-                                          .Getteachersubject(
-                                              control
-                                                  .filteredTeacher![index].id!,
-                                              index);
-                                    },
-                                    icon: const Icon(Icons.subject),
-                                    color: Colors.white,
-                                  ),
+                                          icon: const Icon(VMS_Icons.vir),
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      IconButton(
+                                        style: ButtonStyle(
+                                            maximumSize:
+                                                WidgetStateProperty.all(
+                                                    const Size(35, 35)),
+                                            minimumSize:
+                                                WidgetStateProperty.all(
+                                                    const Size(35, 35)),
+                                            iconSize:
+                                                WidgetStateProperty.all(14),
+                                            shape: WidgetStateProperty.all(
+                                                RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                            )),
+                                            backgroundColor:
+                                                WidgetStateProperty.all(
+                                                    Theme.of(context)
+                                                        .primaryColorLight)),
+                                        onPressed: () async {
+                                          await Getteachersubjectapi(context)
+                                              .Getteachersubject(
+                                                  control
+                                                      .filteredTeacher![index]
+                                                      .id!,
+                                                  index);
+                                        },
+                                        icon: const Icon(Icons.subject),
+                                        color: Colors.white,
+                                      ),
+                                    ],
+                                  )
                                 ],
-                              )
-                            ],
-                          )),
-                    ),
-                  );
-                },
-              );
+                              )),
+                        ),
+                      );
+                    },
+                  )
+                : Center(
+                    child: Text("No Teachers".tr,
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            fontSize: 22, fontWeight: FontWeight.normal)));
       }),
     );
   }

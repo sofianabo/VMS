@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_LMS_Students.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Students_LMS_Controller.dart';
-import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Students_LMS/LMS_StudentsGrid.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Files_LMS/Files_LMS_Grid.dart';
 import 'package:vms_school/view/Both_Platform/widgets/TextFormSearch.dart';
 
-class LMS_Students extends StatefulWidget {
-  const LMS_Students({super.key});
+class Files_LMS extends StatefulWidget {
+  const Files_LMS({super.key});
 
   @override
-  State<LMS_Students> createState() => _StudyYearStudentsState();
+  State<Files_LMS> createState() => _StudyYearStudentsState();
 }
 
-class _StudyYearStudentsState extends State<LMS_Students> {
+class _StudyYearStudentsState extends State<Files_LMS> {
   @override
   initState() {
     Get_LMS_Students_API().Get_LMS_Students();
@@ -46,7 +46,7 @@ class _StudyYearStudentsState extends State<LMS_Students> {
         Expanded(
             child: Padding(
           padding: const EdgeInsets.only(top: 15.0),
-          child: LMS_StudentsGrid(),
+          child: Files_LMS_Grid(),
         )),
       ],
     ));
