@@ -1,10 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Sessions/SessionAPI.dart';
 import 'package:vms_school/Link/API/Guardians_API/Get_My_Children_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/GuardianController/AddGurdianChildController.dart';
 import 'package:vms_school/Link/Controller/GuardianController/MyChildren_Controller.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Admin/Admin_School/All_Screen_Sessions.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Guardian/DropdownGurdianSession.dart';
 import 'package:vms_school/view/SMS_Platform/Guardian/AppBarGuardian.dart';
 import 'package:vms_school/view/SMS_Platform/Guardian/Functions/Add_Student_For_Guardian.dart';
 import 'package:vms_school/view/SMS_Platform/Guardian/MainScreen/GuardianMainScreenGrid.dart';
@@ -56,81 +59,89 @@ class _GuardianMainScreenState extends State<GuardianMainScreen> {
             ),
           );
         } else {
-          return Expanded(
-              child: Column(
-            children: [
-              Appbarguardian(),
-              Container(
-                width: double.infinity,
-                margin: const EdgeInsets.symmetric(
-                    horizontal: 30.0, vertical: 10.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: GetBuilder<MyChildren_Controller>(
-                          builder: (controller) {
-                        return TextFormSearch(
-                          click: () {
-                            controller.clearFilter();
-                          },
-                          onchange: (value) {
-                            controller.searchByName(value);
-                          },
-                          radius: 5,
-                          controller: search,
-                          suffixIcon: search.text.isNotEmpty
-                              ? Icons.close
-                              : Icons.search,
-                        );
-                      }),
-                    ),
-                    const SizedBox(width: 20),
-                    Container(
-                      width: 41,
-                      height: 41,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor,
-                        borderRadius: BorderRadius.circular(5),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.black12,
-                            offset: Offset(0, 2),
-                            blurRadius: 1,
-                          ),
-                        ],
+          return GetBuilder<MyChildren_Controller>(builder: (control) {
+            return Expanded(
+                child: Column(
+              children: [
+                Appbarguardian(),
+                Container(
+                  width: double.infinity,
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: 30.0, vertical: 10.0),
+                  child: Row(
+                    children: [
+                      Dropdowngurdiansession(
+                        title: "Session".tr,
+                        type: "session",
+                        width: 200,
+                        isLoading: false,
                       ),
-                      child: IconButton(
-                        style: const ButtonStyle(
-                          shape: WidgetStatePropertyAll(
-                            RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5)),
+                      Expanded(
+                        child: GetBuilder<MyChildren_Controller>(
+                            builder: (controller) {
+                          return TextFormSearch(
+                            click: () {
+                              controller.clearFilter();
+                            },
+                            onchange: (value) {
+                              controller.searchByName(value);
+                            },
+                            radius: 5,
+                            controller: search,
+                            suffixIcon: search.text.isNotEmpty
+                                ? Icons.close
+                                : Icons.search,
+                          );
+                        }),
+                      ),
+                      const SizedBox(width: 20),
+                      Container(
+                        width: 41,
+                        height: 41,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(0, 2),
+                              blurRadius: 1,
+                            ),
+                          ],
+                        ),
+                        child: IconButton(
+                          style: const ButtonStyle(
+                            shape: WidgetStatePropertyAll(
+                              RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5)),
+                              ),
                             ),
                           ),
-                        ),
-                        onPressed: () {
-                          Get.find<Addgurdianchildcontroller>().resetError();
+                          onPressed: () {
+                            Get.find<Addgurdianchildcontroller>().resetError();
 
-                          Add_Students_Guardian_Functions();
-                        },
-                        icon: Icon(
-                          Icons.add,
-                          size: 18,
-                          color:
-                              Theme.of(context).textTheme.titleMedium!.color!,
+                            Add_Students_Guardian_Functions();
+                          },
+                          icon: Icon(
+                            Icons.add,
+                            size: 18,
+                            color:
+                                Theme.of(context).textTheme.titleMedium!.color!,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Expanded(
-                  child: Padding(
-                padding: const EdgeInsets.only(top: 15.0),
-                child: GuardianMainScreenGrid(),
-              )),
-            ],
-          ));
+                Expanded(
+                    child: Padding(
+                  padding: const EdgeInsets.only(top: 15.0),
+                  child: GuardianMainScreenGrid(),
+                )),
+              ],
+            ));
+          });
         }
       }),
     );

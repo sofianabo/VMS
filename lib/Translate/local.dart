@@ -816,7 +816,9 @@ class Languages {
       'Delete Attendence': 'حذف حضور',
       'you can not close this session': 'لا يمكنك إغلاق هذه السنة الدراسية',
       'Re-order': 'إعادة الطلب',
-      'Import': 'استيراد'
+      'Import': 'استيراد',
+      'Marks': 'العلامات',
+      'Show Files': 'عرض الملفات',
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -1625,8 +1627,8 @@ class Languages {
       'you can not close this session': 'you can not close this session',
       'Re-order': 'Re-order',
       'Import': 'Import',
-      '': '',
-      '': '',
+      'Marks': 'Marks',
+      'Show Files': 'Show Files',
       '': '',
       '': '',
       '': '',

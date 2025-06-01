@@ -34,7 +34,7 @@ class Edit_Session_API {
           options: getDioOptions());
       if (response.statusCode == 200) {
         Get.back();
-        Get_Session_Screen_API(context).Getsession();
+        Get_Session_Screen_API().Getsession();
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

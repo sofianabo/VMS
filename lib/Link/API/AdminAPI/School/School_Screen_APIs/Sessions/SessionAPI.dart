@@ -9,8 +9,7 @@ import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Se
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllSessionModel.dart';
 
 class Get_Session_Screen_API {
-  BuildContext context;
-  Get_Session_Screen_API(this.context);
+
   Dio dio = Dio();
 
   Getsession() async {

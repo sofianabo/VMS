@@ -30,7 +30,7 @@ Add_Group() {
             onPressed: () {
               bool isgroupnameError = groupname.text.trim().isEmpty;
               bool isratioError = ratio.text.trim().isEmpty ||
-                  int.parse(ratio.text.trim().toString()) == 0;
+                  int.parse(ratio.text.trim().toString()) < 0;
               validateTeacherNote.updateFieldError(
                   "groupName", isgroupnameError);
               validateTeacherNote.updateFieldError("ratio", isratioError);
@@ -81,16 +81,17 @@ Add_Group() {
                       hinttext: "Group Name".tr,
                     ),
                     Textfildwithupper(
-                      readOnly: controller.items.isEmpty ? false : true,
                       width: 60,
+                      isRequired: true,
+                      readOnly: controller.items.isEmpty ? false : true,
                       onChanged: (value) async {
-                        if (value.isNotEmpty || int.parse(value) < 0) {
+                        if (value.isNotEmpty || int.parse(value) > 0) {
                           validateTeacherNote.updateFieldError("ratio", false);
                         }
                       },
+                      isError: validateTeacherNote.isRatioError,
                       fieldType: "number",
                       controller: ratio,
-                      isError: validateTeacherNote.isRatioError,
                       Uptext: "ratio".tr,
                       hinttext: "ratio".tr,
                     ),
@@ -306,99 +307,104 @@ Add_Items_Group() {
   TextEditingController itemName = TextEditingController();
   TextEditingController ratio = TextEditingController();
   var isQuizable = false.obs;
-  final validateTeacherNote = Get.find<Validateteachernoteandgradereco>();
+  final validateTeacherNotee = Get.find<Validateteachernoteandgradereco>();
   // متغير لتحديد إذا كان العنصر كويزابل
-  validateTeacherNote.resetError();
-  return GetBuilder<TeachernoteAndGradeReco>(builder: (controller) {
-    return VMSAlertDialog(
-      action: [
-        ButtonDialog(
-          text: "Add".tr,
-          onPressed: () {
-            bool isitemNameError = itemName.text.trim().isEmpty;
-            bool isratioError = ratio.text.trim().isEmpty ||
-                int.parse(ratio.text.trim().toString()) == 0;
-            validateTeacherNote.updateFieldError("item", isitemNameError);
-            validateTeacherNote.updateFieldError("itemratio", isratioError);
+  validateTeacherNotee.resetError();
+  return GetBuilder<Validateteachernoteandgradereco>(
+      builder: (validateTeacherNote) {
+    return GetBuilder<TeachernoteAndGradeReco>(builder: (controller) {
+      return VMSAlertDialog(
+        action: [
+          ButtonDialog(
+            text: "Add".tr,
+            onPressed: () {
+              bool isitemNameError = itemName.text.trim().isEmpty;
+              bool isratioError = ratio.text.trim().isEmpty ||
+                  int.parse(ratio.text.trim().toString()) < 0;
+              validateTeacherNote.updateFieldError("item", isitemNameError);
+              validateTeacherNote.updateFieldError("itemratio", isratioError);
 
-            if (!(isitemNameError || isratioError)) {
-              double? ratioValue = double.tryParse(ratio.text);
-              if (ratioValue != null && ratioValue > 0) {
-                Get.find<TeachernoteAndGradeReco>().Add_Items(
-                  name: itemName.text,
-                  ratio: ratioValue.toString(),
-                  IsQuizable: isQuizable.value,
-                );
-                Get.back();
-              } else {
-                Get.snackbar("Error", "Invalid ratio value");
+              if (!(isitemNameError || isratioError)) {
+                double? ratioValue = double.tryParse(ratio.text);
+                if (ratioValue != null && ratioValue >= 0) {
+                  Get.find<TeachernoteAndGradeReco>().Add_Items(
+                    name: itemName.text,
+                    ratio: ratioValue.toString(),
+                    IsQuizable: isQuizable.value,
+                  );
+                  Get.back();
+                } else {
+                  Get.snackbar("Error", "Invalid ratio value");
+                }
               }
-            }
-          },
-          color: Get.theme.primaryColor,
-          width: 100,
-        ),
-      ],
-      contents: Container(
-        width: 420,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                children: [
-                  Obx(() => Checkbox(
-                        value: isQuizable.value,
-                        onChanged: (value) {
-                          isQuizable.value = value!;
-                        },
-                      )),
-                  Text("Is Quizable".tr),
-                ],
-              ),
-              Wrap(
-                crossAxisAlignment: WrapCrossAlignment.center,
-                runAlignment: WrapAlignment.spaceBetween,
-                alignment: WrapAlignment.spaceBetween,
-                runSpacing: 8.0,
-                spacing: 15.0,
-                children: [
-                  Textfildwithupper(
-                    width: 350,
-                    controller: itemName,
-                    isError: validateTeacherNote.isitemError,
-                    onChanged: (val) {
-                      if (val.isNotEmpty)
-                        validateTeacherNote.updateFieldError("item", false);
-                    },
-                    Uptext: "Item Name".tr,
-                    hinttext: "Item Name".tr,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: Textfildwithupper(
-                      width: 60,
-                      isError: validateTeacherNote.isitemRatioError,
+            },
+            color: Get.theme.primaryColor,
+            width: 100,
+          ),
+        ],
+        contents: Container(
+          width: 420,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  children: [
+                    Obx(() => Checkbox(
+                          value: isQuizable.value,
+                          onChanged: (value) {
+                            isQuizable.value = value!;
+                          },
+                        )),
+                    Text("Is Quizable".tr),
+                  ],
+                ),
+                Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  runAlignment: WrapAlignment.spaceBetween,
+                  alignment: WrapAlignment.spaceBetween,
+                  runSpacing: 8.0,
+                  spacing: 15.0,
+                  children: [
+                    Textfildwithupper(
+                      width: 350,
+                      controller: itemName,
+                      isError: validateTeacherNote.isitemError,
+                      isRequired: true,
                       onChanged: (val) {
                         if (val.isNotEmpty)
-                          validateTeacherNote.updateFieldError(
-                              "itemratio", false);
+                          validateTeacherNote.updateFieldError("item", false);
                       },
-                      controller: ratio,
-                      fieldType: "number",
-                      Uptext: "Ratio".tr,
-                      hinttext: "Ratio".tr,
+                      Uptext: "Item Name".tr,
+                      hinttext: "Item Name".tr,
                     ),
-                  ),
-                ],
-              ),
-            ],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: Textfildwithupper(
+                        width: 60,
+                        isRequired: true,
+                        isError: validateTeacherNote.isitemRatioError,
+                        onChanged: (val) {
+                          if (val.isNotEmpty)
+                            validateTeacherNote.updateFieldError(
+                                "itemratio", false);
+                        },
+                        controller: ratio,
+                        fieldType: "number",
+                        Uptext: "Ratio".tr,
+                        hinttext: "Ratio".tr,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-      apptitle: "Add Item".tr,
-      subtitle: "Add Group Item".tr,
-    );
+        apptitle: "Add Item".tr,
+        subtitle: "Add Group Item".tr,
+      );
+    });
   });
 }
 
@@ -407,99 +413,103 @@ Edit_Items_Group(
   TextEditingController itemName = TextEditingController(text: name);
   TextEditingController ratio = TextEditingController(text: rat.toString());
   var isQuizable = (isQuizables ?? false).obs;
-  final validateTeacherNote = Get.find<Validateteachernoteandgradereco>();
+  final validateTeacherNotee = Get.find<Validateteachernoteandgradereco>();
 
-  validateTeacherNote.resetError();
-  return GetBuilder<TeachernoteAndGradeReco>(builder: (controller) {
-    return VMSAlertDialog(
-      action: [
-        ButtonDialog(
-          text: "Edit".tr,
-          onPressed: () {
-            bool isitemNameError = itemName.text.trim().isEmpty;
-            bool isratioError = ratio.text.trim().isEmpty ||
-                int.parse(ratio.text.trim().toString()) == 0;
-            validateTeacherNote.updateFieldError("item", isitemNameError);
-            validateTeacherNote.updateFieldError("itemratio", isratioError);
-            double? ratioValue = double.tryParse(ratio.text);
+  validateTeacherNotee.resetError();
+  return GetBuilder<Validateteachernoteandgradereco>(
+      builder: (validateTeacherNote) {
+    return GetBuilder<TeachernoteAndGradeReco>(builder: (controller) {
+      return VMSAlertDialog(
+        action: [
+          ButtonDialog(
+            text: "Edit".tr,
+            onPressed: () {
+              bool isitemNameError = itemName.text.trim().isEmpty;
+              bool isratioError = ratio.text.trim().isEmpty ||
+                  int.parse(ratio.text.trim().toString()) < 0;
+              validateTeacherNote.updateFieldError("item", isitemNameError);
+              validateTeacherNote.updateFieldError("itemratio", isratioError);
+              double? ratioValue = double.tryParse(ratio.text);
 
-            if (!(isitemNameError || isratioError)) {
-              if (ratioValue != null && ratioValue > 0) {
-                Get.find<TeachernoteAndGradeReco>().EditItem(
-                  idx: idx,
-                  name: itemName.text,
-                  ratio: ratioValue.toString(),
-                  IsQuizable: isQuizable.value,
-                );
-                Get.back();
-              } else {
-                ErrorMessage("Invalid ratio value");
+              if (!(isitemNameError || isratioError)) {
+                if (ratioValue != null && ratioValue >= 0) {
+                  Get.find<TeachernoteAndGradeReco>().EditItem(
+                    idx: idx,
+                    name: itemName.text,
+                    ratio: ratioValue.toString(),
+                    IsQuizable: isQuizable.value,
+                  );
+                  Get.back();
+                } else {
+                  ErrorMessage("Invalid ratio value");
+                }
               }
-            }
-          },
-          color: Get.theme.primaryColor,
-          width: 100,
-        ),
-      ],
-      contents: Container(
-        width: 420,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                children: [
-                  Obx(() => Checkbox(
-                        value: isQuizable.value,
-                        onChanged: (value) {
-                          isQuizable.value = value!;
+            },
+            color: Get.theme.primaryColor,
+            width: 100,
+          ),
+        ],
+        contents: Container(
+          width: 420,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  children: [
+                    Obx(() => Checkbox(
+                          value: isQuizable.value,
+                          onChanged: (value) {
+                            isQuizable.value = value!;
+                          },
+                        )),
+                    Text("Is Quizable".tr),
+                  ],
+                ),
+                Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  runAlignment: WrapAlignment.spaceBetween,
+                  alignment: WrapAlignment.spaceBetween,
+                  runSpacing: 8.0,
+                  spacing: 15.0,
+                  children: [
+                    Textfildwithupper(
+                        width: 350,
+                        controller: itemName,
+                        Uptext: "Item Name".tr,
+                        hinttext: "Item Name".tr,
+                        isError: validateTeacherNote.isitemError,
+                        onChanged: (val) {
+                          if (val.isNotEmpty)
+                            validateTeacherNote.updateFieldError("item", false);
+                        }),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: Textfildwithupper(
+                        width: 60,
+                        controller: ratio,
+                        fieldType: "number",
+                        isRequired: true,
+                        isError: validateTeacherNote.isitemRatioError,
+                        onChanged: (val) {
+                          if (val.isNotEmpty)
+                            validateTeacherNote.updateFieldError(
+                                "itemratio", false);
                         },
-                      )),
-                  Text("Is Quizable".tr),
-                ],
-              ),
-              Wrap(
-                crossAxisAlignment: WrapCrossAlignment.center,
-                runAlignment: WrapAlignment.spaceBetween,
-                alignment: WrapAlignment.spaceBetween,
-                runSpacing: 8.0,
-                spacing: 15.0,
-                children: [
-                  Textfildwithupper(
-                      width: 350,
-                      controller: itemName,
-                      Uptext: "Item Name".tr,
-                      hinttext: "Item Name".tr,
-                      isError: validateTeacherNote.isitemError,
-                      onChanged: (val) {
-                        if (val.isNotEmpty)
-                          validateTeacherNote.updateFieldError("item", false);
-                      }),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: Textfildwithupper(
-                      width: 60,
-                      controller: ratio,
-                      fieldType: "number",
-                      isError: validateTeacherNote.isitemRatioError,
-                      onChanged: (val) {
-                        if (val.isNotEmpty)
-                          validateTeacherNote.updateFieldError(
-                              "itemratio", false);
-                      },
-                      Uptext: "Ratio".tr,
-                      hinttext: "Ratio".tr,
+                        Uptext: "Ratio".tr,
+                        hinttext: "Ratio".tr,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-      apptitle: "Edit Item".tr,
-      subtitle: "Edit Group Item".tr,
-    );
+        apptitle: "Edit Item".tr,
+        subtitle: "Edit Group Item".tr,
+      );
+    });
   });
 }
 
@@ -654,281 +664,312 @@ Edit_Group(int idx) {
   // ضبط العناصر للمجموعة
   Get.find<TeachernoteAndGradeReco>().SetItems(group['items']);
 
-  return GetBuilder<TeachernoteAndGradeReco>(builder: (controller) {
-    // حساب الـ ratio من الـ items
-    double totalRatio = controller.items.isNotEmpty
-        ? controller.items.fold(0, (sum, item) => sum + (item['ratio'] as num))
-        : 0;
+  return GetBuilder<Validateteachernoteandgradereco>(
+      builder: (validateTeacherNote) {
+    return GetBuilder<TeachernoteAndGradeReco>(builder: (controller) {
+      // حساب الـ ratio من الـ items
+      double totalRatio = controller.items.isNotEmpty
+          ? controller.items
+              .fold(0, (sum, item) => sum + (item['ratio'] as num))
+          : 0;
 
-    // إذا كانت العناصر فارغة، إعادة تعيين الـ ratio إلى صفر
-    if (controller.items.isEmpty) {
-      ratio.text =
-          group['ratio'].toString(); // إرسال قيمة الـ ratio الخاصة بالجروب
-    } else {
-      ratio.text =
-          totalRatio.toString(); // تحديث قيمة الـ ratio استنادًا إلى العناصر
-    }
+      // إذا كانت العناصر فارغة، إعادة تعيين الـ ratio إلى صفر
+      if (controller.items.isEmpty) {
+        ratio.text =
+            group['ratio'].toString(); // إرسال قيمة الـ ratio الخاصة بالجروب
+      } else {
+        ratio.text =
+            totalRatio.toString(); // تحديث قيمة الـ ratio استنادًا إلى العناصر
+      }
 
-    return VMSAlertDialog(
-      action: [
-        ButtonDialog(
-          text: "Edit".tr,
-          onPressed: () {
-            double? ratioValue = double.tryParse(ratio.text);
-            if (ratioValue != null) {
-              controller.UpdateGroupItems(
-                id: group['id'],
-                size: group['size'],
-                idx: idx,
-                groupName: groupname.text,
-                ratioValue: ratioValue,
-                items: controller.items.toList().cast<Map<String, dynamic>>(),
-              );
-              Get.back();
-            } else {
-              Get.snackbar("Error", "Invalid ratio value");
-            }
-          },
-          color: Get.theme.primaryColor,
-          width: 100,
-        ),
-      ],
-      contents: Container(
-        width: 500,
-        height: 500,
-        child: Column(
-          children: [
-            Wrap(
-              crossAxisAlignment: WrapCrossAlignment.center,
-              runAlignment: WrapAlignment.spaceBetween,
-              alignment: WrapAlignment.spaceBetween,
-              runSpacing: 8.0,
-              spacing: 15.0,
-              children: [
-                Textfildwithupper(
-                  width: 350,
-                  controller: groupname,
-                  Uptext: "Group Name".tr,
-                  hinttext: "Group Name".tr,
-                ),
-                Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: Textfildwithupper(
-                      // عدم السماح بتعديل الـ ratio إذا كان هناك عناصر
-                      readOnly: controller.items.isNotEmpty,
-                      width: 60,
-                      fieldType: "number",
+      return VMSAlertDialog(
+        action: [
+          ButtonDialog(
+            text: "Edit".tr,
+            onPressed: () {
+              bool isgroupnameError = groupname.text.trim().isEmpty;
+              bool isratioError = ratio.text.trim().isEmpty ||
+                  int.parse(ratio.text.trim().toString()) < 0;
+              validateTeacherNote.updateFieldError(
+                  "groupName", isgroupnameError);
+              validateTeacherNote.updateFieldError("ratio", isratioError);
+              double? ratioValue = double.tryParse(ratio.text);
+              if (!(isratioError || isgroupnameError)) {
+                if (ratioValue != null) {
+                  controller.UpdateGroupItems(
+                    id: group['id'],
+                    size: group['size'],
+                    idx: idx,
+                    groupName: groupname.text,
+                    ratioValue: ratioValue!,
+                    items:
+                        controller.items.toList().cast<Map<String, dynamic>>(),
+                  );
+                }
+                Get.back();
+              } else {
+                Get.snackbar("Error", "Invalid ratio value");
+              }
+            },
+            color: Get.theme.primaryColor,
+            width: 100,
+          ),
+        ],
+        contents: Container(
+          width: 500,
+          height: 500,
+          child: Column(
+            children: [
+              Wrap(
+                crossAxisAlignment: WrapCrossAlignment.center,
+                runAlignment: WrapAlignment.spaceBetween,
+                alignment: WrapAlignment.spaceBetween,
+                runSpacing: 8.0,
+                spacing: 15.0,
+                children: [
+                  Textfildwithupper(
+                    width: 350,
+                    isError: validateTeacherNote.isGroupNameError,
+                    isRequired: true,
+                    onChanged: (value) {
+                      if (value.isNotEmpty) {
+                        validateTeacherNote.updateFieldError(
+                            "groupName", false);
+                      }
+                    },
+                    controller: groupname,
+                    Uptext: "Group Name".tr,
+                    hinttext: "Group Name".tr,
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: Textfildwithupper(
+                        // عدم السماح بتعديل الـ ratio إذا كان هناك عناصر
+                        // readOnly: controller.items.isNotEmpty,
+                        width: 60,
+                        isRequired: true,
+                        fieldType: "number",
+                        readOnly: controller.items.isEmpty ? false : true,
 
-                      controller: ratio,
-                      Uptext: "Ratio".tr,
-                      hinttext: "Ratio".tr,
-                    )),
-              ],
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 15.0),
-                child: Column(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Get.theme.primaryColor,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(5),
-                          topRight: Radius.circular(5),
+                        onChanged: (value) async {
+                          if (value.isNotEmpty || int.parse(value) > 0) {
+                            validateTeacherNote.updateFieldError(
+                                "ratio", false);
+                          }
+                        },
+                        isError: validateTeacherNote.isRatioError,
+                        controller: ratio,
+                        Uptext: "Ratio".tr,
+                        hinttext: "Ratio".tr,
+                      )),
+                ],
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 15.0),
+                  child: Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Get.theme.primaryColor,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(5),
+                            topRight: Radius.circular(5),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Group Items".tr,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              Container(
+                                width: 30,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(5),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      color: Colors.black12,
+                                      offset: Offset(0, 2),
+                                      blurRadius: 1,
+                                    ),
+                                  ],
+                                ),
+                                child: IconButton(
+                                  onPressed: () {
+                                    Get.dialog(
+                                        barrierDismissible: false,
+                                        Add_Items_Group());
+                                  },
+                                  icon: Icon(
+                                    Icons.add,
+                                    size: 14,
+                                    color: Get.theme.primaryColor,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Group Items".tr,
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            Container(
-                              width: 30,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(5),
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Colors.black12,
-                                    offset: Offset(0, 2),
-                                    blurRadius: 1,
-                                  ),
-                                ],
+                      Table(
+                        border: TableBorder(
+                          left: BorderSide(width: 1, color: Colors.black),
+                          right: BorderSide(width: 1, color: Colors.black),
+                          bottom: BorderSide(width: 1, color: Colors.black),
+                          horizontalInside: BorderSide.none,
+                          verticalInside: BorderSide.none,
+                        ),
+                        columnWidths: {
+                          0: FlexColumnWidth(),
+                          1: FlexColumnWidth(),
+                          2: FlexColumnWidth(),
+                        },
+                        children: [
+                          TableRow(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Center(child: Text("Item Name".tr)),
                               ),
-                              child: IconButton(
-                                onPressed: () {
-                                  Get.dialog(
-                                      barrierDismissible: false,
-                                      Add_Items_Group());
-                                },
-                                icon: Icon(
-                                  Icons.add,
-                                  size: 14,
-                                  color: Get.theme.primaryColor,
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Center(child: Text("Item ratio".tr)),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Center(child: Text("Operations".tr)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Expanded(
+                        child: Obx(() {
+                          var items = Get.find<TeachernoteAndGradeReco>().items;
+
+                          return SingleChildScrollView(
+                            child: Table(
+                              border: TableBorder.all(
+                                  color: Colors.black, width: 1),
+                              columnWidths: {
+                                0: FlexColumnWidth(),
+                                1: FlexColumnWidth(),
+                                2: FlexColumnWidth(),
+                              },
+                              children: List.generate(
+                                items.length,
+                                (index) => TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Center(
+                                        child: Text(
+                                            items[index]['name'] as String),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Center(
+                                          child: Text(items[index]['ratio']
+                                              .toString())),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            width: 30,
+                                            height: 30,
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              boxShadow: const [
+                                                BoxShadow(
+                                                  color: Colors.black12,
+                                                  offset: Offset(0, 2),
+                                                  blurRadius: 1,
+                                                ),
+                                              ],
+                                            ),
+                                            child: IconButton(
+                                              onPressed: () {
+                                                Get.dialog(
+                                                    barrierDismissible: false,
+                                                    Edit_Items_Group(
+                                                        idx: index,
+                                                        name: controller
+                                                                .items[index]
+                                                            ['name'],
+                                                        isQuizables: controller
+                                                                .items[index]
+                                                            ['isQuizable'],
+                                                        rat: controller
+                                                                .items[index]
+                                                            ['ratio']));
+                                              },
+                                              icon: Icon(
+                                                Icons.edit,
+                                                size: 14,
+                                                color: Get.theme.primaryColor,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: 10),
+                                          Container(
+                                            width: 30,
+                                            height: 30,
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              boxShadow: const [
+                                                BoxShadow(
+                                                  color: Colors.black12,
+                                                  offset: Offset(0, 2),
+                                                  blurRadius: 1,
+                                                ),
+                                              ],
+                                            ),
+                                            child: IconButton(
+                                              onPressed: () {
+                                                controller.RemoveItem(index);
+                                              },
+                                              icon: Icon(
+                                                Icons.delete,
+                                                size: 14,
+                                                color: Get.theme.primaryColor,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Table(
-                      border: TableBorder(
-                        left: BorderSide(width: 1, color: Colors.black),
-                        right: BorderSide(width: 1, color: Colors.black),
-                        bottom: BorderSide(width: 1, color: Colors.black),
-                        horizontalInside: BorderSide.none,
-                        verticalInside: BorderSide.none,
-                      ),
-                      columnWidths: {
-                        0: FlexColumnWidth(),
-                        1: FlexColumnWidth(),
-                        2: FlexColumnWidth(),
-                      },
-                      children: [
-                        TableRow(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(child: Text("Item Name".tr)),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(child: Text("Item ratio".tr)),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(child: Text("Operations".tr)),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Expanded(
-                      child: Obx(() {
-                        var items = Get.find<TeachernoteAndGradeReco>().items;
-
-                        return SingleChildScrollView(
-                          child: Table(
-                            border:
-                                TableBorder.all(color: Colors.black, width: 1),
-                            columnWidths: {
-                              0: FlexColumnWidth(),
-                              1: FlexColumnWidth(),
-                              2: FlexColumnWidth(),
-                            },
-                            children: List.generate(
-                              items.length,
-                              (index) => TableRow(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Center(
-                                      child:
-                                          Text(items[index]['name'] as String),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Center(
-                                        child: Text(
-                                            items[index]['ratio'].toString())),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          width: 30,
-                                          height: 30,
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            boxShadow: const [
-                                              BoxShadow(
-                                                color: Colors.black12,
-                                                offset: Offset(0, 2),
-                                                blurRadius: 1,
-                                              ),
-                                            ],
-                                          ),
-                                          child: IconButton(
-                                            onPressed: () {
-                                              Get.dialog(
-                                                  barrierDismissible: false,
-                                                  Edit_Items_Group(
-                                                      idx: index,
-                                                      name: controller
-                                                          .items[index]['name'],
-                                                      isQuizables: controller
-                                                              .items[index]
-                                                          ['isQuizable'],
-                                                      rat: controller
-                                                              .items[index]
-                                                          ['ratio']));
-                                            },
-                                            icon: Icon(
-                                              Icons.edit,
-                                              size: 14,
-                                              color: Get.theme.primaryColor,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 10),
-                                        Container(
-                                          width: 30,
-                                          height: 30,
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            boxShadow: const [
-                                              BoxShadow(
-                                                color: Colors.black12,
-                                                offset: Offset(0, 2),
-                                                blurRadius: 1,
-                                              ),
-                                            ],
-                                          ),
-                                          child: IconButton(
-                                            onPressed: () {
-                                              controller.RemoveItem(index);
-                                            },
-                                            icon: Icon(
-                                              Icons.delete,
-                                              size: 14,
-                                              color: Get.theme.primaryColor,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      }),
-                    )
-                  ],
+                          );
+                        }),
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-      apptitle: "Edit Group".tr,
-      subtitle: "Editgroup".tr + " ${group['name']} " + "Groupp".tr,
-    );
+        apptitle: "Edit Group".tr,
+        subtitle: "Editgroup".tr + " ${group['name']} " + "Groupp".tr,
+      );
+    });
   });
 }
