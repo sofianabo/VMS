@@ -75,7 +75,7 @@ class _ProfileState extends State<My_Curr> {
                   child: SingleChildScrollView(
                     child: DataTable(
                       border: TableBorder.all(
-                        color: Get.theme.primaryColor,
+                        color: Get.theme.textTheme.headlineMedium!.color!,
                         width: 1.0,
                       ),
                       columns: [

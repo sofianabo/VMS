@@ -56,10 +56,10 @@ class Dropdownrequestenroll extends StatelessWidget {
           border: Border.all(color: color ?? const Color(0xffD9D9D9)),
         ),
         child: isDisabled == true
-            ? const Row(
+            ?  Row(
                 children: [
                   Text(
-                    "Division",
+                    "Division".tr,
                     style: TextStyle(color: Colors.grey),
                   ),
                 ],

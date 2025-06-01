@@ -545,7 +545,7 @@ class RequestsGrid extends StatelessWidget {
                                                           }
                                                         },
                                                         child:
-                                                            Text("Show Files"))
+                                                            Text("Show Files".tr))
                                                   ],
                                                 ),
                                               ),

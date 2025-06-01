@@ -362,8 +362,8 @@ class TeacherManagementGrid extends StatelessWidget {
                                                             .tr ==
                                                         "Full Time".tr
                                                     ? const Color(0xff2F9742)
-                                                    : Theme.of(context)
-                                                        .primaryColor)),
+                                                    : const Color.fromARGB(
+                                                        255, 64, 165, 224))),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 5.0),

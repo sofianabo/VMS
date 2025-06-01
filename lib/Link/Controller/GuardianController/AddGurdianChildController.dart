@@ -16,7 +16,7 @@ class Addgurdianchildcontroller extends GetxController {
     "AB+",
     "AB-",
     "O+",
-    "O-"
+    "O-" 
   ];
   List<String> FamilyStatelist = ["Widow", "Single", "Married", "Divorced"];
 

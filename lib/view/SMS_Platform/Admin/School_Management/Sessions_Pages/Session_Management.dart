@@ -22,7 +22,7 @@ class _SessionManagementState extends State<SessionManagement> {
 
   @override
   void initState() {
-    Get_Session_Screen_API(context).Getsession();
+    Get_Session_Screen_API().Getsession();
     super.initState();
   }
 
