@@ -54,7 +54,12 @@ import 'package:vms_school/Link/Controller/GuardianController/Guardian_My_Data_C
 import 'package:vms_school/Link/Controller/GuardianController/MyChildren_Controller.dart';
 import 'package:vms_school/Link/Controller/GuardianController/Students_Marks_Gua_Controller.dart';
 import 'package:vms_school/Link/Controller/HomeController/HomeScreenController.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Curr_LMS_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Home_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LMS_Divisions_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Students_LMS_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Subject_LMS_Controller.dart';
 import 'package:vms_school/Link/Controller/Teacher_Controller/My_Students_Controller.dart';
 import 'package:vms_school/Link/Controller/Teacher_Controller/QuizTableTeacherController.dart';
 import 'package:vms_school/Link/Controller/Teacher_Controller/StudentMarks_TeacherController.dart';
@@ -155,5 +160,10 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => Examtabledialogcontroller(), fenix: true);
     //...................................LMS Bindings.......................................................//
     Get.lazyPut(() => Selected_Class_Controller(), fenix: true);
+    Get.lazyPut(() => Home_Controller_LMS(), fenix: true);
+    Get.lazyPut(() => Curriculumn_LMS_Controller(), fenix: true);
+    Get.lazyPut(() => Subject_LMS_Controller(), fenix: true);
+    Get.lazyPut(() => LMS_Divisions_Controller(), fenix: true);
+    Get.lazyPut(() => Students_LMS_Controller(), fenix: true);
   }
 }

@@ -10,8 +10,8 @@ import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Responsive.dart';
 
 class AppbarAdmin_LMS extends StatefulWidget {
-  AppbarAdmin_LMS({super.key});
-
+  AppbarAdmin_LMS({super.key, required this.name});
+  String name;
   @override
   State<AppbarAdmin_LMS> createState() => _AppbarAdminState();
 }
@@ -111,7 +111,7 @@ class _AppbarAdminState extends State<AppbarAdmin_LMS> {
                 Expanded(
                   child: Center(
                     child: Text(
-                      "All Classes".tr,
+                      widget.name,
                       style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -145,7 +145,7 @@ class _AppbarAdminState extends State<AppbarAdmin_LMS> {
                   child: Text(
                     maxLines: 2,
                     textAlign: TextAlign.center,
-                    "All Classes".tr,
+                    widget.name,
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -245,7 +245,7 @@ class _AppbarAdminState extends State<AppbarAdmin_LMS> {
                             child: Expanded(
                               child: Center(
                                 child: Text(
-                                  "All Classes".tr,
+                                  widget.name,
                                   style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,

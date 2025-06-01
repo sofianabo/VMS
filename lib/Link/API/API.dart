@@ -208,3 +208,7 @@ String updatePassword = "updatePassword";
 
 // ..................... LMS Users ...................//
 String getClassesLms = "getClassesLms";
+String getLMSCurriculum = "getLMSCurriculum";
+String LmsSubject = "LmsSubject";
+String getLmsDivision = "getLmsDivision";
+String getLmsStudent = "getLmsStudent";

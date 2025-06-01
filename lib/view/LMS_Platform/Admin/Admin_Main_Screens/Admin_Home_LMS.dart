@@ -3,8 +3,10 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/Gat_ClassLMS.dart';
+import 'package:vms_school/Link/API/OpenURLs.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
-import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Class_Mgmt_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Home_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
 import 'package:vms_school/view/Both_Platform/widgets/GridAnimation.dart';
@@ -22,7 +24,9 @@ class Admin_Home_LMS extends StatefulWidget {
 class _Admin_Home_LMSState extends State<Admin_Home_LMS> {
   @override
   void initState() {
-    Get_Classes_LMS_API().Get_Classes_LMS();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get_Classes_LMS_API().Get_Classes_LMS();
+    });
     super.initState();
   }
 
@@ -42,8 +46,9 @@ class _Admin_Home_LMSState extends State<Admin_Home_LMS> {
       if (screenWidth >= 950) return 1.1;
       if (screenWidth >= 838) return 1.6;
       if (screenWidth >= 769) return 1.5;
-      if (screenWidth >= 539) return 2.2;
-      return 1.7;
+      if (screenWidth >= 613) return 2.2;
+      if (screenWidth >= 486) return 1.7;
+      return 1.2;
     }
 
     return Scaffold(
@@ -75,7 +80,9 @@ class _Admin_Home_LMSState extends State<Admin_Home_LMS> {
           return Column(
             spacing: 15.0,
             children: [
-              AppbarAdmin_LMS(),
+              AppbarAdmin_LMS(
+                name: "All Classes".tr,
+              ),
               Expanded(
                 child: Directionality(
                   textDirection: Get.find<LocalizationController>()
@@ -85,7 +92,7 @@ class _Admin_Home_LMSState extends State<Admin_Home_LMS> {
                           'ar'
                       ? TextDirection.rtl
                       : TextDirection.ltr,
-                  child: GetBuilder<ClassMgmtController>(builder: (control) {
+                  child: GetBuilder<Home_Controller_LMS>(builder: (control) {
                     return control.isLoading == true
                         ? GridView.builder(
                             padding: const EdgeInsets.only(
@@ -167,6 +174,14 @@ class _Admin_Home_LMSState extends State<Admin_Home_LMS> {
                                   return HoverScaleCard(
                                     child: GestureDetector(
                                       onTap: () {
+                                        Get.find<Selected_Class_Controller>()
+                                            .initialinClass(
+                                                control
+                                                    .filteredreclasses![index]
+                                                    .name!,
+                                                control
+                                                    .filteredreclasses![index]
+                                                    .id!);
                                         Get.to(Selected_Class_Screen());
                                       },
                                       child: Container(
@@ -175,7 +190,10 @@ class _Admin_Home_LMSState extends State<Admin_Home_LMS> {
                                               borderRadius:
                                                   BorderRadius.circular(5),
                                               border: Border.all(
-                                                  color: Colors.grey,
+                                                  color: Theme.of(context)
+                                                      .textTheme
+                                                      .titleMedium!
+                                                      .color!,
                                                   width: 0.5),
                                               color:
                                                   Theme.of(context).cardColor,
@@ -191,27 +209,37 @@ class _Admin_Home_LMSState extends State<Admin_Home_LMS> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
+                                              SizedBox(
+                                                height: 10,
+                                              ),
                                               Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.center,
                                                 children: [
-                                                  Text(
-                                                      Get.find<LocalizationController>()
-                                                                  .currentLocale
-                                                                  .value
-                                                                  .languageCode ==
-                                                              'ar'
-                                                          ? "${control.filteredreclasses![index].name}"
-                                                          : "${control.filteredreclasses![index].enName}",
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .bodyMedium!
-                                                          .copyWith(
-                                                            fontSize: 20,
-                                                          )),
+                                                  Container(
+                                                    alignment: Alignment.center,
+                                                    width: 180,
+                                                    child: Text(
+                                                        Get.find<LocalizationController>()
+                                                                    .currentLocale
+                                                                    .value
+                                                                    .languageCode ==
+                                                                'ar'
+                                                            ? "${control.filteredreclasses![index].name}"
+                                                            : "${control.filteredreclasses![index].enName}",
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .titleMedium!
+                                                            .copyWith(
+                                                              fontSize: 20,
+                                                            )),
+                                                  ),
                                                 ],
+                                              ),
+                                              SizedBox(
+                                                height: 25,
                                               ),
                                               Text(
                                                   Get.find<LocalizationController>()
@@ -223,29 +251,98 @@ class _Admin_Home_LMSState extends State<Admin_Home_LMS> {
                                                       : "${control.filteredreclasses![index].grade!.enName}",
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .bodyMedium!),
+                                                      .titleMedium!
+                                                      .copyWith(
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          fontSize: 18)),
+                                              SizedBox(
+                                                height: 15,
+                                              ),
                                               Text(
                                                   "${control.filteredreclasses![index].session!.year}",
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .bodyMedium!),
+                                                      .titleMedium!
+                                                      .copyWith(
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          fontSize: 18)),
                                               Expanded(
-                                                child: Row(
+                                                child: Column(
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
+                                                      MainAxisAlignment.end,
                                                   children: [
-                                                    Text("Drive URL".tr,
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyMedium!
-                                                            .copyWith(
-                                                              fontSize: 16,
-                                                            )),
-                                                    SvgPicture.asset(
-                                                      "assets/images/drive.svg",
-                                                      width: 20,
-                                                    )
+                                                    TextButton(
+                                                        style: ButtonStyle(
+                                                            backgroundColor:
+                                                                WidgetStatePropertyAll(
+                                                                    Colors
+                                                                        .transparent),
+                                                            shape: WidgetStatePropertyAll(
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .all(Radius
+                                                                          .circular(
+                                                                              3)),
+                                                              side: BorderSide(
+                                                                  color: Get
+                                                                      .theme
+                                                                      .textTheme
+                                                                      .titleMedium!
+                                                                      .color!),
+                                                            ))),
+                                                        onPressed: () async {
+                                                          if (control
+                                                                      .filteredreclasses![
+                                                                          index]
+                                                                      .driveUrl !=
+                                                                  null &&
+                                                              control
+                                                                  .filteredreclasses![
+                                                                      index]
+                                                                  .driveUrl!
+                                                                  .isNotEmpty) {
+                                                            launchLink(
+                                                              url:
+                                                                  "${control.filteredreclasses![index].driveUrl!}",
+                                                              type: LinkType
+                                                                  .website,
+                                                              context: context,
+                                                            );
+                                                          }
+                                                        },
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          spacing: 10.0,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 5.0,
+                                                                      right:
+                                                                          5.0),
+                                                              child: Text(
+                                                                'Drive URL'.tr,
+                                                                style: Get
+                                                                    .theme
+                                                                    .textTheme
+                                                                    .headlineMedium!
+                                                                    .copyWith(
+                                                                        color: Color(
+                                                                            0xff134B70)),
+                                                              ),
+                                                            ),
+                                                            SvgPicture.asset(
+                                                              "assets/images/drive.svg",
+                                                              width: 20,
+                                                            )
+                                                          ],
+                                                        )),
                                                   ],
                                                 ),
                                               )
@@ -259,7 +356,7 @@ class _Admin_Home_LMSState extends State<Admin_Home_LMS> {
                                 child: Text("No Classes".tr,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .titleLarge!
+                                        .titleMedium!
                                         .copyWith(
                                             fontSize: 22,
                                             fontWeight: FontWeight.normal)));
