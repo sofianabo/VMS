@@ -88,9 +88,7 @@ class AppbarCustom extends StatelessWidget {
                   SizedBox(
                     height: 70,
                     child: Image.asset(
-                      Theme.of(context) == theme.Dark_Theme
-                          ? "assets/images/Logo.png"
-                          : "assets/images/Logo2.png",
+                      "assets/images/Logo2.png",
                       fit: BoxFit.contain,
                     ),
                   )
@@ -99,9 +97,7 @@ class AppbarCustom extends StatelessWidget {
                     height: 70,
                     child: Image.asset(
                       width: 100,
-                      Theme.of(context) == theme.Dark_Theme
-                          ? "assets/images/Logo.png"
-                          : "assets/images/Logo2.png",
+                      "assets/images/Logo2.png",
                       fit: BoxFit.contain,
                     ),
                   )

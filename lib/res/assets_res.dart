@@ -8,5 +8,4 @@ class AssetsRes {
 
   static const String PROJECT_NAME = 'vms_school';
   static const String PROJECT_VERSION = '1.0.0+1';
-  static const String HOME_BACKGROUND2 = 'assets/images/Home-Background2.png';
 }
