@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:vms_school/Link/Controller/GuardianController/MyChildren_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/AllSessionModel.dart';
 import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
@@ -30,7 +31,7 @@ class SessionController extends GetxController {
         'hasStudents': stu.hasStudent == 1 ? true : false,
       });
     }
-
+    Get.find<MyChildren_Controller>().setAllSession(sessions);
     final sessionCont = Get.find<All_Screen_Sessions_Controller>();
     sessionCont.setAllSession(sessions);
     update();
@@ -192,7 +193,7 @@ class SessionController extends GetxController {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // القائمة المنسدلة
-                  DropdownButton<String>(
+                  DropdownButton<String>( 
                     dropdownColor: Get.theme.cardColor,
                     iconDisabledColor: Colors.grey,
                     borderRadius: BorderRadius.all(Radius.circular(3)),
@@ -202,7 +203,7 @@ class SessionController extends GetxController {
                     value: selectedDropdownValue.value.isEmpty
                         ? null
                         : selectedDropdownValue.value,
-                    hint: Text("Select Seassion".tr),
+                    hint: Text("Select Session".tr),
                     items: seassionList.map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,

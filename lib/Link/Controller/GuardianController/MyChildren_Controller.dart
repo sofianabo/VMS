@@ -68,12 +68,13 @@ class MyChildren_Controller extends GetxController {
 
   void setAllSession(AllSessionModel session) async {
     sessions = session;
-   
+
     SessionList.clear();
     sessionId = sessions!.current!.id;
     for (int i = 0; i < session.sessions!.length; i++) {
       SessionList.add(session.sessions![i].year.toString());
     }
+    SetIsLoadingSession(false);
     update();
     updateList("session", SessionList);
     setSessionDefult();
