@@ -61,7 +61,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         ? Container(
                             width: screenWidth < 768
                                 ? screenWidth - 140
-                                : screenWidth - 180,
+                                : screenWidth - 183,
                             child: Text(
                               textAlign: TextAlign.end,
                               maxLines: 2,

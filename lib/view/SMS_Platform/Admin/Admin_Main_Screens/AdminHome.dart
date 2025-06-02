@@ -60,6 +60,9 @@ class _AdminHomeState extends State<AdminHome> {
         child: Scaffold(
           body: GetBuilder<AdminHomeContentController>(builder: (controller) {
             return GetBuilder<DraweController>(builder: (cont) {
+              if (MediaQuery.of(context).size.width >= 769) {
+                cont.opendrawer(false);
+              }
               return GetBuilder<Add_Data_controller>(builder: (conts) {
                 if (!conts.isVerified) {
                   return Center(

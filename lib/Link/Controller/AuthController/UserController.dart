@@ -7,7 +7,7 @@ class UserController extends GetxController {
   String? roll;
   bool? verified;
   bool? hasData;
-
+  var isEducationalPlatform = false.obs;
   bool Isloading = false;
 
   SetIsloading(bool value) {

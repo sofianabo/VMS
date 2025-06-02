@@ -368,7 +368,7 @@ class _EnrollScreenState extends State<EnrollScreen> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Get.offAllNamed("/login");
+                              Get.offNamed("/login");
                             },
                             child: MouseRegion(
                               cursor: SystemMouseCursors.click,

@@ -291,6 +291,93 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                               ),
                             ),
                           ),
+                          if (screenSize >= 769)
+                            GestureDetector(
+                              onTap: () {
+                                if (Get.find<Add_Data_controller>()
+                                    .isVerified) {
+                                  if (cont.content != "My Profile") {
+                                    Get_My_Profile.Get_My_Profile_Data();
+                                  }
+                                }
+                                cont.updateContent("My Profile");
+                              },
+                              child: Container(
+                                height: 40,
+                                width: 200,
+                                decoration: BoxDecoration(
+                                  color: controller.hasData
+                                      ? Theme.of(context).cardColor
+                                      : Theme.of(context).disabledColor,
+                                  border: Border.all(color: Color(0xffDAD0D0)),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 5.0),
+                                        child: Text(
+                                          textDirection: TextDirection.ltr,
+                                          textAlign: TextAlign.center,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          "${prefs!.getString("fullname")}",
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(fontSize: 12),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 5.0,
+                                          right: 5.0,
+                                          top: 3.0,
+                                          bottom: 3.0),
+                                      child: CircleAvatar(
+                                        radius: 20,
+                                        backgroundColor:
+                                            Theme.of(context).primaryColorLight,
+                                        child: prefs!.getString("imageId") !=
+                                                "null"
+                                            ? CircleAvatar(
+                                                radius: 20,
+                                                backgroundColor:
+                                                    Theme.of(context)
+                                                        .primaryColor,
+                                                backgroundImage: NetworkImage(
+                                                  headers: {
+                                                    "ngrok-skip-browser-warning":
+                                                        "true",
+                                                    'User-Agent':
+                                                        'Custom User-Agent',
+                                                    'accept':
+                                                        'application/json',
+                                                    'authorization':
+                                                        'Bearer ${prefs!.getString("token")}',
+                                                  },
+                                                  "$getimage${prefs!.getString("imageId")}",
+                                                ),
+                                              )
+                                            : Text(
+                                                prefs!
+                                                        .getString("fullname")
+                                                        ?.substring(0, 1)
+                                                        .toUpperCase() ??
+                                                    '',
+                                                style: Get.textTheme.titleLarge
+                                                    ?.copyWith(
+                                                  color: Colors.white,
+                                                  fontSize: 12,
+                                                ),
+                                              ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           if (screenSize <= 769)
                             GetBuilder<DraweController>(builder: (cont) {
                               return IconButton(

@@ -120,8 +120,11 @@ class SessionController extends GetxController {
 
     final DateTime minEndDate = startDate.value!
         .add(Duration(days: 1)); // بعد البدء بيوم واحد على الأقل
-    final DateTime maxEndDate =
-        DateTime(DateTime.now().year + 2); // حتى سنتين بعد السنة الحالية
+    final DateTime maxEndDate = DateTime(
+      startDate.value!.year + 2, // نفس اليوم والشهر بعد سنتين
+      startDate.value!.month,
+      startDate.value!.day,
+    ); // حتى سنتين بعد السنة الحالية
 
     final DateTime? picked = await showDatePicker(
       context: context,

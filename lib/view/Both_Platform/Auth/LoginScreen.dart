@@ -78,6 +78,7 @@ class LoginScreen extends StatelessWidget {
                         child: Form(
                           child: AutofillGroup(
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisSize: MainAxisSize.min,
                               spacing: 10.0,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -100,30 +101,47 @@ class LoginScreen extends StatelessWidget {
                                   controller: username,
                                   hinttext: "Username".tr,
                                 ),
-                                TextFormPassword(
-                                  width:
-                                      width >= 883 ? width * 0.5 : width - 80,
-                                  onChanged: (value) {
-                                    if (value.isNotEmpty) {
-                                      controller.updateFieldError(
-                                          "password", false);
-                                    }
-                                  },
-                                  textInputAction: TextInputAction
-                                      .done, // لتنفيذ الإجراء عند الضغط على Enter
-                                  onSubmitted: (_) {
-                                    // تنفيذ الإجراء فقط إذا كانت الحقول غير فارغة
-                                    if (username.text.trim().isNotEmpty &&
-                                        password.text.trim().isNotEmpty) {
-                                      _performLogin(context);
-                                    }
-                                  },
-                                  isError: controller.IsPasswordError,
-                                  Uptext: "Password".tr,
-                                  autofill: const [AutofillHints.password],
-                                  controller: password,
-                                  hinttext: "Password".tr,
-                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    TextFormPassword(
+                                      width: width >= 883
+                                          ? width * 0.5
+                                          : width - 80,
+                                      onChanged: (value) {
+                                        if (value.isNotEmpty) {
+                                          controller.updateFieldError(
+                                              "password", false);
+                                        }
+                                      },
+                                      textInputAction: TextInputAction
+                                          .done, // لتنفيذ الإجراء عند الضغط على Enter
+                                      onSubmitted: (_) {
+                                        // تنفيذ الإجراء فقط إذا كانت الحقول غير فارغة
+                                        if (username.text.trim().isNotEmpty &&
+                                            password.text.trim().isNotEmpty) {
+                                          _performLogin(context);
+                                        }
+                                      },
+                                      isError: controller.IsPasswordError,
+                                      Uptext: "Password".tr,
+                                      autofill: const [AutofillHints.password],
+                                      controller: password,
+                                      hinttext: "Password".tr,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 8.0, right: 8.0),
+                                      child: Text(
+                                        "هل نسيت كلمة السر  ؟",
+                                        style: Get.theme.textTheme.titleMedium!
+                                            .copyWith(
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.normal),
+                                      ),
+                                    )
+                                  ],
+                                )
                               ],
                             )
                                 .animate()
@@ -172,7 +190,32 @@ class LoginScreen extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                      )
+                      ),
+                      Row(
+                        spacing: 10.0,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "You Don`t Have Account ?".tr,
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Get.offNamed("/enroll");
+                            },
+                            child: MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: Text(
+                                "Enroll Now".tr,
+                                style: TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ],
                   ),
                 ),

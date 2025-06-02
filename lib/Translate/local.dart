@@ -9,6 +9,7 @@ class Languages {
       'Links': 'الروابط',
       'Pages': 'الصفحات',
       'Quiz': 'الاختبارات',
+      'You Don`t Have Account ?': 'لا تملك حساب ؟',
       'Question Bank': 'بنك الاسئلة',
       'Trivia': 'السبور',
       'There is no open academic year available to add classes to. Please add an open academic year and try again.':
@@ -279,7 +280,6 @@ class Languages {
 
       'AboutUs': 'حول',
       'Stop Completion and Verification': 'ايقاف الاكمال والتحقق',
-      'You Don`t Have Account ?': 'ليس لديك حساب ؟',
       'WhyUs': 'لماذا نحن',
       'Programs': 'البرنامج',
       'Enrollment': 'التسجيل',
@@ -1293,7 +1293,6 @@ class Languages {
       'No Subjects': 'No Subjects',
       'No Grade': 'No Grade',
       'No Sessions': 'No Sessions',
-      'You Don`t Have Account ?': 'You Don`t Have Account ?',
       'Enroll Now': 'Enroll Now',
       'You Have Account ?': 'You Have Account ?',
       'Enter The Reason For Absence': 'Enter The Reason For Absence',
@@ -1341,6 +1340,7 @@ class Languages {
       "att": "",
       "sub": "",
       "Year": "Year",
+      "You Don`t Have Account ?": "You Don`t Have Account ?",
       'Subjects': 'Subjects',
       'Subjectssss': 'Subjects',
       'My Account': 'My Account',
