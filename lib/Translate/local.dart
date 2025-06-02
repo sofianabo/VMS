@@ -11,6 +11,8 @@ class Languages {
       'Quiz': 'الاختبارات',
       'Question Bank': 'بنك الاسئلة',
       'Trivia': 'السبور',
+      'There is no open academic year available to add classes to. Please add an open academic year and try again.':
+          'لا توجد سنة دراسية مفتوحة بعد لاضافة صفوف اليها الرجاء اضافة سنة دراسية مفتوحة و قم بالمحاولة مجدداً',
       'No Penalties': 'لا يوجد عقوبات',
       'No Teachers': 'لا يوجد معلمين',
 
@@ -1301,6 +1303,8 @@ class Languages {
       'Truant': 'Truant',
       'No Teachers': 'No Teachers',
       'Late': 'Late',
+      'There is no open academic year available to add classes to. Please add an open academic year and try again.':
+          'There is no open academic year available to add classes to. Please add an open academic year and try again.',
       'Holiday': 'Holiday',
       'The reason for the absence of the student':
           'The reason for the absence of the student',

@@ -58,7 +58,7 @@ class _StudentStatusState extends State<StudentStatus> {
                 children: [
                   DropDownAllSessions(
                       API: "StudentState",
-                      title: "session".tr,
+                      title: "Session".tr,
                       width: 200,
                       type: "session"),
                   DropDownStudentsAttendens(

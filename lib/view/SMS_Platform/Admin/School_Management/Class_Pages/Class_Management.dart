@@ -130,278 +130,322 @@ class _ClassManagementState extends State<ClassManagement> {
                               controllers.updateFieldError("curr", false);
                               controllers.updateFieldError("account", false);
 
-                              Get.dialog(barrierDismissible: false,
-                                  GetBuilder<ClassMgmtController>(
-                                      builder: (controller) {
-                                return VMSAlertDialog(
-                                    action: [
-                                      ButtonDialog(
-                                          text: "Add".tr,
-                                          onPressed: () async {
-                                            bool isArNameEmpty =
-                                                arName.text.isEmpty;
-                                            bool isEnNameEmpty =
-                                                enName.text.isEmpty;
-                                            bool isGradeEmpty = controller
-                                                    .gradeDiagIndex.isEmpty ||
-                                                controller.gradeDiagIndex == "";
-                                            bool isCurrEmpty = controller
-                                                .selectedCurriculums.isEmpty;
+                              if (Get.find<All_Screen_Sessions_Controller>()
+                                      .sessions!
+                                      .current!
+                                      .year !=
+                                  null) {
+                                Get.dialog(barrierDismissible: false,
+                                    GetBuilder<ClassMgmtController>(
+                                        builder: (controller) {
+                                  return VMSAlertDialog(
+                                      action: [
+                                        ButtonDialog(
+                                            text: "Add".tr,
+                                            onPressed: () async {
+                                              bool isArNameEmpty =
+                                                  arName.text.isEmpty;
 
-                                            bool isAccountEmpty = controller
-                                                    .selectedAdminDiagIndex
-                                                    .isEmpty ||
-                                                controller
-                                                        .selectedAdminDiagIndex ==
-                                                    "";
+                                              bool isEnNameEmpty =
+                                                  enName.text.isEmpty;
+                                              bool isGradeEmpty = controller
+                                                      .gradeDiagIndex.isEmpty ||
+                                                  controller.gradeDiagIndex ==
+                                                      "";
+                                              bool isCurrEmpty = controller
+                                                  .selectedCurriculums.isEmpty;
 
-                                            controller.updateFieldError(
-                                                "arname", isArNameEmpty);
-                                            controller.updateFieldError(
-                                                "enname", isEnNameEmpty);
-                                            controller.updateFieldError(
-                                                "grade", isGradeEmpty);
-                                            controller.updateFieldError(
-                                                "curr", isCurrEmpty);
+                                              bool isAccountEmpty = controller
+                                                      .selectedAdminDiagIndex
+                                                      .isEmpty ||
+                                                  controller
+                                                          .selectedAdminDiagIndex ==
+                                                      "";
 
-                                            controller.updateFieldError(
-                                                "account", isAccountEmpty);
+                                              controller.updateFieldError(
+                                                  "arname", isArNameEmpty);
+                                              controller.updateFieldError(
+                                                  "enname", isEnNameEmpty);
+                                              controller.updateFieldError(
+                                                  "grade", isGradeEmpty);
+                                              controller.updateFieldError(
+                                                  "curr", isCurrEmpty);
 
-                                            if (!(isArNameEmpty ||
-                                                isEnNameEmpty ||
-                                                isGradeEmpty ||
-                                                isCurrEmpty ||
-                                                isAccountEmpty)) {
-                                              await Add_Class_API(context).Add_Class(
-                                                  gradeId: controller.grades,
-                                                  driveUrl: driveUrl.text,
-                                                  enName: enName.text,
-                                                  name: arName.text,
-                                                  sessionId: Get.find<
-                                                          All_Screen_Sessions_Controller>()
-                                                      .sessions!
-                                                      .current!
-                                                      .id,
-                                                  userId: Get.find<
-                                                          Virtual_Employee_Controller>()
-                                                      .vecUserID,
-                                                  curriculum: Get.find<
-                                                          ClassMgmtController>()
-                                                      .selectedCurriculums);
-                                              Get.back();
-                                            }
-                                          },
-                                          color: Theme.of(context).primaryColor,
-                                          width: 120),
-                                    ],
-                                    contents: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Textfildwithupper(
-                                                isRequired: true,
-                                                isError:
-                                                    controller.IsEnnameError,
-                                                onChanged: (value) {
-                                                  if (value.isNotEmpty) {
-                                                    controller.updateFieldError(
-                                                        "enname", false);
-                                                  }
-                                                },
-                                                width: 250,
-                                                controller: enName,
-                                                Uptext: "Class En - Name".tr,
-                                                hinttext: "Class En - Name".tr),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 15.0,
-                                                  right: 15.0,
-                                                  bottom: 15.0),
-                                              child: Textfildwithupper(
+                                              controller.updateFieldError(
+                                                  "account", isAccountEmpty);
+
+                                              if (!(isArNameEmpty ||
+                                                  isEnNameEmpty ||
+                                                  isGradeEmpty ||
+                                                  isCurrEmpty ||
+                                                  isAccountEmpty)) {
+                                                await Add_Class_API(context).Add_Class(
+                                                    gradeId: controller.grades,
+                                                    driveUrl: driveUrl.text,
+                                                    enName: enName.text,
+                                                    name: arName.text,
+                                                    sessionId: Get.find<
+                                                                All_Screen_Sessions_Controller>()
+                                                            .sessions!
+                                                            .current!
+                                                            .id ??
+                                                        "",
+                                                    userId: Get.find<
+                                                            Virtual_Employee_Controller>()
+                                                        .vecUserID,
+                                                    curriculum: Get.find<
+                                                            ClassMgmtController>()
+                                                        .selectedCurriculums);
+                                                Get.back();
+                                              }
+                                            },
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                            width: 120),
+                                      ],
+                                      contents: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Textfildwithupper(
                                                   isRequired: true,
                                                   isError:
-                                                      controller.IsArnameError,
+                                                      controller.IsEnnameError,
                                                   onChanged: (value) {
                                                     if (value.isNotEmpty) {
                                                       controller
                                                           .updateFieldError(
-                                                              "arname", false);
+                                                              "enname", false);
                                                     }
                                                   },
                                                   width: 250,
-                                                  controller: arName,
-                                                  Uptext: "Class Ar - Name".tr,
+                                                  controller: enName,
+                                                  Uptext: "Class En - Name".tr,
                                                   hinttext:
-                                                      "Class Ar - Name".tr),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            DropDownClassMgmt(
-                                                isLoading: controller.isLoading,
-                                                isError:
-                                                    controller.IsGradeError,
-                                                title: "Grade".tr,
-                                                width: 250,
-                                                type: "gradediag"),
-                                            Padding(
+                                                      "Class En - Name".tr),
+                                              Padding(
                                                 padding: const EdgeInsets.only(
-                                                    left: 15.0, right: 15.0),
-                                                child: TextFieldDialog(
-                                                    readonly: true,
-                                                    width: 250,
-                                                    controller:
-                                                        TextEditingController(
-                                                            text: Get.find<
-                                                                    All_Screen_Sessions_Controller>()
-                                                                .sessions!
-                                                                .current!
-                                                                .year),
-                                                    hinttext: "Session".tr)),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 15.0, bottom: 15.0),
-                                              child: GetBuilder<
-                                                      Virtual_Employee_Controller>(
-                                                  builder: (VECcontroller) {
-                                                return DropDownClassMgmt(
+                                                    left: 15.0,
+                                                    right: 15.0,
+                                                    bottom: 15.0),
+                                                child: Textfildwithupper(
+                                                    isRequired: true,
                                                     isError: controller
-                                                        .IsAccountError,
-                                                    isLoading:
-                                                        VECcontroller.isLoading,
-                                                    title: "Admin Account".tr,
+                                                        .IsArnameError,
+                                                    onChanged: (value) {
+                                                      if (value.isNotEmpty) {
+                                                        controller
+                                                            .updateFieldError(
+                                                                "arname",
+                                                                false);
+                                                      }
+                                                    },
                                                     width: 250,
-                                                    type: "admin");
-                                              }),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                top: 15.0,
-                                                bottom: 15.0,
-                                                left: 15.0,
-                                                right: 15.0,
+                                                    controller: arName,
+                                                    Uptext:
+                                                        "Class Ar - Name".tr,
+                                                    hinttext:
+                                                        "Class Ar - Name".tr),
                                               ),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  GestureDetector(
-                                                    onTap: () =>
-                                                        Class_Curriculm_Funcation(
-                                                            context),
-                                                    child: Container(
-                                                      padding: EdgeInsets.only(
-                                                          left: 5.0,
-                                                          right: 5.0),
-                                                      margin: EdgeInsets.only(
-                                                          left: 15.0),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              DropDownClassMgmt(
+                                                  isLoading:
+                                                      controller.isLoading,
+                                                  isError:
+                                                      controller.IsGradeError,
+                                                  title: "Grade".tr,
+                                                  width: 250,
+                                                  type: "gradediag"),
+                                              Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 15.0,
+                                                          right: 15.0),
+                                                  child: TextFieldDialog(
+                                                      readonly: true,
                                                       width: 250,
-                                                      height: 40,
-                                                      decoration: controller
-                                                              .IscurrError
-                                                          ? BoxDecoration(
-                                                              border:
-                                                                  Border.all(
-                                                                color: Colors
-                                                                    .red, // تغيير لون الحدود حسب حالة الخطأ
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5),
-                                                            )
-                                                          : BoxDecoration(
-                                                              border:
-                                                                  Border.all(
-                                                                color: Color(
-                                                                    0xffB3B3B3), // تغيير لون الحدود حسب حالة الخطأ
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5),
-                                                            ),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          GetBuilder<
-                                                              ClassMgmtController>(
-                                                            builder:
-                                                                (controller) {
-                                                              return Expanded(
-                                                                child: Text(
-                                                                  maxLines: 1,
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .ellipsis,
-                                                                  style: Theme.of(
-                                                                          context)
-                                                                      .textTheme
-                                                                      .bodyMedium,
-                                                                  controller
-                                                                          .selectedCurriculumNames
-                                                                          .isNotEmpty
-                                                                      ? controller
-                                                                          .selectedCurriculumNames
-                                                                          .join(
-                                                                              ', ')
-                                                                      : 'No selected curriculum'
-                                                                          .tr, // عرض رسالة عند عدم وجود مناهج مختارة
+                                                      controller:
+                                                          TextEditingController(
+                                                              text: Get.find<
+                                                                          All_Screen_Sessions_Controller>()
+                                                                      .sessions!
+                                                                      .current!
+                                                                      .year ??
+                                                                  ""),
+                                                      hinttext: "Session".tr)),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 15.0, bottom: 15.0),
+                                                child: GetBuilder<
+                                                        Virtual_Employee_Controller>(
+                                                    builder: (VECcontroller) {
+                                                  return DropDownClassMgmt(
+                                                      isError: controller
+                                                          .IsAccountError,
+                                                      isLoading: VECcontroller
+                                                          .isLoading,
+                                                      title: "Admin Account".tr,
+                                                      width: 250,
+                                                      type: "admin");
+                                                }),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                  top: 15.0,
+                                                  bottom: 15.0,
+                                                  left: 15.0,
+                                                  right: 15.0,
+                                                ),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    GestureDetector(
+                                                      onTap: () =>
+                                                          Class_Curriculm_Funcation(
+                                                              context),
+                                                      child: Container(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 5.0,
+                                                                right: 5.0),
+                                                        margin: EdgeInsets.only(
+                                                            left: 15.0),
+                                                        width: 250,
+                                                        height: 40,
+                                                        decoration: controller
+                                                                .IscurrError
+                                                            ? BoxDecoration(
+                                                                border:
+                                                                    Border.all(
+                                                                  color: Colors
+                                                                      .red, // تغيير لون الحدود حسب حالة الخطأ
                                                                 ),
-                                                              );
-                                                            },
-                                                          ),
-                                                          const Icon(Icons
-                                                              .arrow_drop_down),
-                                                        ],
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5),
+                                                              )
+                                                            : BoxDecoration(
+                                                                border:
+                                                                    Border.all(
+                                                                  color: Color(
+                                                                      0xffB3B3B3), // تغيير لون الحدود حسب حالة الخطأ
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5),
+                                                              ),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            GetBuilder<
+                                                                ClassMgmtController>(
+                                                              builder:
+                                                                  (controller) {
+                                                                return Expanded(
+                                                                  child: Text(
+                                                                    maxLines: 1,
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis,
+                                                                    style: Theme.of(
+                                                                            context)
+                                                                        .textTheme
+                                                                        .bodyMedium,
+                                                                    controller
+                                                                            .selectedCurriculumNames
+                                                                            .isNotEmpty
+                                                                        ? controller
+                                                                            .selectedCurriculumNames
+                                                                            .join(
+                                                                                ', ')
+                                                                        : 'No selected curriculum'
+                                                                            .tr, // عرض رسالة عند عدم وجود مناهج مختارة
+                                                                  ),
+                                                                );
+                                                              },
+                                                            ),
+                                                            const Icon(Icons
+                                                                .arrow_drop_down),
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                ],
+                                                  ],
+                                                ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Textfildwithupper(
-                                                isRequired: false,
-                                                width: 480,
-                                                controller: driveUrl,
-                                                Uptext: "Drive URL".tr,
-                                                hinttext: "Drive URL".tr),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 5.0, top: 36.0),
-                                              child: SvgPicture.asset(
-                                                  "assets/images/drive.svg",
-                                                  width: 25),
-                                            )
-                                          ],
-                                        ),
-                                      ],
+                                            ],
+                                          ),
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Textfildwithupper(
+                                                  isRequired: false,
+                                                  width: 480,
+                                                  controller: driveUrl,
+                                                  Uptext: "Drive URL".tr,
+                                                  hinttext: "Drive URL".tr),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 5.0, top: 36.0),
+                                                child: SvgPicture.asset(
+                                                    "assets/images/drive.svg",
+                                                    width: 25),
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      apptitle: "Add Class".tr,
+                                      subtitle: "none");
+                                }));
+                              } else {
+                                Get.dialog(VMSAlertDialog(
+                                    action: [],
+                                    contents: Container(
+                                      width: 200,
+                                      height: 200,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                              style:
+                                                  Get.theme.textTheme.bodyLarge,
+                                              textAlign: TextAlign.center,
+                                              maxLines: 5,
+                                              "There is no open academic year available to add classes to. Please add an open academic year and try again."
+                                                  .tr)
+                                        ],
+                                      ),
                                     ),
-                                    apptitle: "Add Class".tr,
-                                    subtitle: "none");
-                              }));
+                                    apptitle: "No Sessions".tr,
+                                    subtitle: "none"));
+                              }
                             },
                             icon: Icon(Icons.add,
                                 size: 18,
@@ -649,10 +693,11 @@ class _ClassManagementState extends State<ClassManagement> {
                                                 enName: enName.text,
                                                 name: arName.text,
                                                 sessionId: Get.find<
-                                                        All_Screen_Sessions_Controller>()
-                                                    .sessions!
-                                                    .current!
-                                                    .id,
+                                                            All_Screen_Sessions_Controller>()
+                                                        .sessions!
+                                                        .current!
+                                                        .id ??
+                                                    "",
                                                 userId: Get.find<
                                                         Virtual_Employee_Controller>()
                                                     .vecUserID,
@@ -727,10 +772,11 @@ class _ClassManagementState extends State<ClassManagement> {
                                                   width: 250,
                                                   controller: TextEditingController(
                                                       text: Get.find<
-                                                              All_Screen_Sessions_Controller>()
-                                                          .sessions!
-                                                          .current!
-                                                          .year),
+                                                                  All_Screen_Sessions_Controller>()
+                                                              .sessions!
+                                                              .current!
+                                                              .year ??
+                                                          ""),
                                                   hinttext: "Session".tr)),
                                         ],
                                       ),

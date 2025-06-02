@@ -291,7 +291,7 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                               ),
                             ),
                           ),
-                          if (screenSize < 768)
+                          if (screenSize <= 769)
                             GetBuilder<DraweController>(builder: (cont) {
                               return IconButton(
                                   onPressed: () {

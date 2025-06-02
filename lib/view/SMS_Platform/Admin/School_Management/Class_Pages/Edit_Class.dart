@@ -16,11 +16,11 @@ class Edit_Class extends StatefulWidget {
       required this.year,
       required this.arName,
       required this.enName,
-      this.driveUrl,
+      required this.driveUrl,
       super.key});
   String arName;
   String enName;
-  String? driveUrl;
+  String driveUrl;
   String username;
   String year;
   int id;
@@ -31,12 +31,12 @@ class Edit_Class extends StatefulWidget {
 class _Edit_ClassState extends State<Edit_Class> {
   TextEditingController arName = TextEditingController();
   TextEditingController enName = TextEditingController();
-  TextEditingController? driveUrl = TextEditingController();
+  TextEditingController driveUrl = TextEditingController();
   @override
   void initState() {
     arName.text = widget.arName;
     enName.text = widget.enName;
-    driveUrl!.text = widget.driveUrl!;
+    driveUrl.text = widget.driveUrl ?? "";
     super.initState();
   }
 

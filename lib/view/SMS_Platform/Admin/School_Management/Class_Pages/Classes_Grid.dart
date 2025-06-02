@@ -119,8 +119,9 @@ class ClassGrid extends StatelessWidget {
                                 arName: control.filteredreclasses![index].name!,
                                 enName:
                                     control.filteredreclasses![index].enName!,
-                                driveUrl:
-                                    control.filteredreclasses![index].driveUrl!,
+                                driveUrl: control
+                                        .filteredreclasses![index].driveUrl ??
+                                    "",
                                 username: control
                                     .filteredreclasses![index].admin!.userName!,
                                 year: control
