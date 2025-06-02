@@ -41,49 +41,423 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
-    return Expanded(
-        child: Column(
-      children: [
-        GetBuilder<All_Virtual_Employee_Controller>(builder: (controller) {
-          return Container(
-            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
-            alignment: Alignment.center,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+    return GetBuilder<All_Virtual_Employee_Controller>(builder: (controller) {
+      return Expanded(
+          child: Column(
+        children: [
+          if (w > 769)
+            Container(
+              margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+              alignment: Alignment.center,
+              child: Wrap(
+                spacing: 8.0,
+                runSpacing: 8.0,
+                alignment: WrapAlignment.spaceBetween,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                runAlignment: WrapAlignment.spaceBetween,
+                children: [
+                  Wrap(
+                    spacing: 8.0,
+                    runSpacing: 8.0,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 17.0),
+                        child: Dropdownallemployee(
+                            title: "Job Title".tr, width: 200, type: "roll"),
+                      ),
+                      TextFormSearch(
+                        onchange: (value) {
+                          controller.searchRequestByName(value,
+                              Get.find<Allempolyeecontroller>().rollIndex);
+                        },
+                        click: () {
+                          controller.clearFilter();
+                        },
+                        width: w - 500,
+                        radius: 5,
+                        controller: search,
+                        suffixIcon:
+                            search.text.isNotEmpty ? Icons.close : Icons.search,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                backgroundColor: WidgetStatePropertyAll(
+                                    Theme.of(context).cardColor),
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {
+                              username.clear();
+                              password.clear();
+                              cPassword.clear();
+                              Get.find<Allempolyeecontroller>()
+                                  .rolldialogIndex = "";
+                              Get.dialog(barrierDismissible: false,
+                                  GetBuilder<All_Virtual_Employee_Controller>(
+                                      builder: (Virtual_controller) {
+                                return VMSAlertDialog(
+                                    action: [
+                                      ButtonDialog(
+                                          text: "Add Virtual User".tr,
+                                          onPressed: () {
+                                            {
+                                              bool isUsernameEmpty =
+                                                  username.text.trim().isEmpty;
+                                              bool isJoptitleEmpty = Get.find<
+                                                          Allempolyeecontroller>()
+                                                      .rolldialogIndex
+                                                      .isEmpty ||
+                                                  Get.find<Allempolyeecontroller>()
+                                                          .rolldialogIndex ==
+                                                      "";
+
+                                              bool isPasswordEmpty =
+                                                  password.text.trim().isEmpty;
+                                              bool isConfirmPasswordEmpty =
+                                                  cPassword.text.trim().isEmpty;
+
+                                              RegExp passwordRegex =
+                                                  RegExp(r"^[a-zA-Z0-9]{8,}$");
+                                              bool isPasswordValid =
+                                                  passwordRegex
+                                                      .hasMatch(password.text);
+
+                                              bool isConfirmPasswordValid =
+                                                  passwordRegex
+                                                      .hasMatch(cPassword.text);
+
+                                              Virtual_controller
+                                                  .updateFieldError("username",
+                                                      isUsernameEmpty);
+                                              Virtual_controller
+                                                  .updateFieldError(
+                                                      "jop", isJoptitleEmpty);
+
+                                              Virtual_controller
+                                                  .updateFieldError(
+                                                      "password",
+                                                      isPasswordEmpty ||
+                                                          !isPasswordValid);
+                                              Virtual_controller.updateFieldError(
+                                                  "cpassword",
+                                                  isConfirmPasswordEmpty ||
+                                                      !isConfirmPasswordValid ||
+                                                      cPassword.text !=
+                                                          cPassword.text);
+
+                                              // إذا لم يكن هناك أي أخطاء، قم بإضافة ولي الأمر
+                                              if (!(isUsernameEmpty ||
+                                                  isJoptitleEmpty ||
+                                                  isPasswordEmpty ||
+                                                  !isPasswordValid ||
+                                                  isConfirmPasswordEmpty ||
+                                                  !isConfirmPasswordValid ||
+                                                  password.text !=
+                                                      cPassword.text)) {
+                                                Add_Virtual_Employee_API
+                                                    .Add_Virtual_Employee(
+                                                        userName: username.text,
+                                                        password: password.text,
+                                                        roll: Get.find<
+                                                                Allempolyeecontroller>()
+                                                            .rolldialogIndex);
+                                              }
+                                            }
+                                          },
+                                          color: Theme.of(context).primaryColor,
+                                          width: 150)
+                                    ],
+                                    contents: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          spacing: 20,
+                                          children: [
+                                            Textfildwithupper(
+                                                onChanged: (value) {
+                                                  if (value.isNotEmpty) {
+                                                    Virtual_controller
+                                                        .updateFieldError(
+                                                            "username", false);
+                                                  }
+                                                },
+                                                isRequired: true,
+                                                isError: Virtual_controller
+                                                    .IsusernameError,
+                                                Uptext: "Username".tr,
+                                                width: 250,
+                                                controller: username,
+                                                hinttext: "Username".tr),
+                                            Dropdownallemployee(
+                                                isError: Virtual_controller
+                                                    .IsJoptitleError,
+                                                title: "Job Title".tr,
+                                                width: 250,
+                                                type: "rolldialog"),
+                                          ],
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 15.0),
+                                          child: Row(
+                                            spacing: 20,
+                                            children: [
+                                              Textfildwithupper(
+                                                  onChanged: (value) {
+                                                    if (value.isNotEmpty) {
+                                                      Virtual_controller
+                                                          .updateFieldError(
+                                                              "password",
+                                                              false);
+                                                    }
+                                                  },
+                                                  isError: Virtual_controller
+                                                      .IsPasswordError,
+                                                  fieldType: "password",
+                                                  IconButton: IconButton(
+                                                      onPressed: () {
+                                                        Virtual_controller
+                                                            .ChangeShowPassword(
+                                                                !Virtual_controller
+                                                                    .ShowPassword);
+                                                      },
+                                                      icon: Icon(
+                                                        Virtual_controller
+                                                                .ShowPassword
+                                                            ? Icons
+                                                                .visibility_off
+                                                            : Icons
+                                                                .remove_red_eye_outlined,
+                                                        color: Theme.of(context)
+                                                            .textTheme
+                                                            .bodySmall!
+                                                            .color,
+                                                      )),
+                                                  hidePassword:
+                                                      Virtual_controller
+                                                          .ShowPassword,
+                                                  isRequired: true,
+                                                  Uptext: "Password".tr,
+                                                  width: 250,
+                                                  controller: password,
+                                                  hinttext: "Password".tr),
+                                              Textfildwithupper(
+                                                  customErrorMessage: cPassword
+                                                                  .text
+                                                                  .trim() !=
+                                                              "" &&
+                                                          cPassword
+                                                              .text.isNotEmpty
+                                                      ? "كلمات المرور غير متطابقة"
+                                                      : "لا يمكن ترك الحقل فارغ",
+                                                  onChanged: (value) {
+                                                    if (value.isNotEmpty) {
+                                                      Virtual_controller
+                                                          .updateFieldError(
+                                                              "cpassword",
+                                                              false);
+                                                    }
+                                                  },
+                                                  isError: Virtual_controller
+                                                      .IsConfirmPasswordError,
+                                                  fieldType: "password",
+                                                  IconButton: IconButton(
+                                                      onPressed: () {
+                                                        Virtual_controller
+                                                            .ChangeShowConfirmPassword(
+                                                                !Virtual_controller
+                                                                    .ShowConfirmPassword);
+                                                      },
+                                                      icon: Icon(
+                                                        Virtual_controller
+                                                                .ShowConfirmPassword
+                                                            ? Icons
+                                                                .visibility_off
+                                                            : Icons
+                                                                .remove_red_eye_outlined,
+                                                        color: Theme.of(context)
+                                                            .textTheme
+                                                            .bodySmall!
+                                                            .color,
+                                                      )),
+                                                  hidePassword:
+                                                      Virtual_controller
+                                                          .ShowConfirmPassword,
+                                                  isRequired: true,
+                                                  Uptext: "Confirm Password".tr,
+                                                  width: 250,
+                                                  controller: cPassword,
+                                                  hinttext:
+                                                      "Confirm Password".tr)
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    apptitle: "Add Virtual User".tr,
+                                    subtitle: "none");
+                              }));
+                            },
+                            icon: Icon(Icons.add,
+                                size: 18,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .color!)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    offset: Offset(0, 2),
+                                    blurRadius: 1)
+                              ]),
+                          child: IconButton(
+                              style: ButtonStyle(
+                                  backgroundColor: WidgetStatePropertyAll(
+                                      Theme.of(context).cardColor),
+                                  shape: WidgetStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))))),
+                              onPressed: () {
+                                exportDataToPdf<ViraulUser>(
+                                  items: Get.find<
+                                          All_Virtual_Employee_Controller>()
+                                      .filteredviraulUser!,
+                                  headers: [
+                                    "Username".tr,
+                                    "Roll".tr,
+                                  ],
+                                  fieldMappings: {
+                                    "Username".tr: (reg) => reg.userName ?? "",
+                                    "Roll".tr: (reg) => reg.roll!.tr ?? "",
+                                  },
+                                  fileName: "Virtual Employee".tr +
+                                      ' ${DateTime.now().toIso8601String()}',
+                                );
+                              },
+                              icon: Icon(VMS_Icons.pdf,
+                                  size: 18,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .color!)),
+                        ),
+                      ),
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1)
+                            ]),
+                        child: IconButton(
+                            style: ButtonStyle(
+                                backgroundColor: WidgetStatePropertyAll(
+                                    Theme.of(context).cardColor),
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))))),
+                            onPressed: () {
+                              exportDataToExcel<ViraulUser>(
+                                items:
+                                    Get.find<All_Virtual_Employee_Controller>()
+                                        .filteredviraulUser!,
+                                headers: [
+                                  "Username".tr,
+                                  "Roll".tr,
+                                ],
+                                fieldMappings: {
+                                  "Username".tr: (reg) => reg.userName ?? "",
+                                  "Roll".tr: (reg) => reg.roll!.tr ?? "",
+                                },
+                                fileName: "Virtual Employee".tr +
+                                    ' ${DateTime.now().toIso8601String()}',
+                              );
+                            },
+                            icon: Icon(VMS_Icons.xl,
+                                size: 18,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .color!)),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          if (w <= 769)
+            Container(
+              margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+              alignment: Alignment.center,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  spacing: 8.0,
                   children: [
                     Row(
+                      spacing: 5,
                       children: [
                         Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: Dropdownallemployee(
-                                title: "Job Title".tr,
-                                width: w / 5,
-                                type: "roll")),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: TextFormSearch(
-                            onchange: (value) {
-                              controller.searchRequestByName(value,
-                                  Get.find<Allempolyeecontroller>().rollIndex);
-                            },
-                            click: () {
-                              controller.clearFilter();
-                            },
-                            width: w / 2,
-                            radius: 5,
-                            controller: search,
-                            suffixIcon: search.text.isNotEmpty
-                                ? Icons.close
-                                : Icons.search,
-                          ),
+                          padding: const EdgeInsets.only(top: 17.0),
+                          child: Dropdownallemployee(
+                              title: "Job Title".tr, width: 200, type: "roll"),
+                        ),
+                        TextFormSearch(
+                          onchange: (value) {
+                            controller.searchRequestByName(value,
+                                Get.find<Allempolyeecontroller>().rollIndex);
+                          },
+                          click: () {
+                            controller.clearFilter();
+                          },
+                          width: 250,
+                          radius: 5,
+                          controller: search,
+                          suffixIcon: search.text.isNotEmpty
+                              ? Icons.close
+                              : Icons.search,
                         ),
                       ],
                     ),
-                    const Spacer(),
                     Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Container(
                           width: 40,
@@ -437,16 +811,15 @@ class _Virtual_User_ManagementState extends State<Virtual_User_Management> {
                     )
                   ],
                 ),
-              ],
+              ),
             ),
-          );
-        }),
-        Expanded(
-            child: Padding(
-          padding: const EdgeInsets.only(top: 15.0),
-          child: Virtual_User_Management_Grid(),
-        )),
-      ],
-    ));
+          Expanded(
+              child: Padding(
+            padding: const EdgeInsets.only(top: 15.0),
+            child: Virtual_User_Management_Grid(),
+          )),
+        ],
+      ));
+    });
   }
 }

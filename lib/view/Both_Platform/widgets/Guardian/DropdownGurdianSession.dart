@@ -64,26 +64,21 @@ class Dropdowngurdiansession extends StatelessWidget {
                       children: [
                         Expanded(
                           child: DropdownButton<String>(
-                            icon: selectedValue != title
-                                ? GestureDetector(
-                                    onTap: () {
-                                      cont.selectIndex(type, "");
-                                    },
-                                    child: Icon(
-                                      Icons.arrow_drop_down_outlined,
-                                      color: Get.theme.secondaryHeaderColor,
-                                    ),
-                                  )
-                                : Icon(Icons.close,
-                                    color: Get.theme.secondaryHeaderColor),
-                            onChanged: (newValue) {
+                            icon: GestureDetector(
+                              onTap: () {},
+                              child: Icon(
+                                Icons.arrow_drop_down_outlined,
+                                color: Get.theme.secondaryHeaderColor,
+                              ),
+                            ),
+                            onChanged: (newValue) async {
                               if (newValue != null) {
                                 cont.selectIndex(type, newValue);
                                 cont.setsessionid(cont.sessions!.sessions!
                                     .firstWhere(
                                         (session) => session.year == newValue)
                                     .id);
-                                Get_My_Children_API()
+                                await Get_My_Children_API()
                                     .Get_My_Children(id: cont.sessionId);
                               }
                             },

@@ -391,17 +391,21 @@ class DivisionGrid extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      Text(
-                                          "${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? control.filteredDivision![index].name : control.filteredDivision![index].enName}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(
-                                                fontSize: 20,
-                                              )),
+                                      Expanded(
+                                        child: Text(
+                                            overflow: TextOverflow.ellipsis,
+                                            "${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? control.filteredDivision![index].name : control.filteredDivision![index].enName}",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
+                                                  fontSize: 20,
+                                                )),
+                                      ),
                                     ],
                                   ),
                                   Text(
+                                      overflow: TextOverflow.ellipsis,
                                       "${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? control.filteredDivision![index].classes!.name : control.filteredDivision![index].classes!.enName}",
                                       style: Theme.of(context)
                                           .textTheme

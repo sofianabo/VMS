@@ -12,7 +12,6 @@ import 'package:vms_school/Link/Model/Guardian_Model/MyChildren.dart';
 
 class Get_My_Children_API {
   Dio dio = Dio();
-  final controller = Get.find<SessionController>();
 
   Get_My_Children({int? id}) async {
     String myURI = "$hostPort$getMyChildren";
@@ -25,8 +24,6 @@ class Get_My_Children_API {
         MyChildren myChildren = MyChildren.fromJson(response.data);
         controller.setMyChildren(myChildren);
         controller.setIsloading(false);
-        AllSessionModel ss = Get_Session_Screen_API().Getsession();
-        controller.setAllSession(ss);
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
