@@ -5,6 +5,7 @@ import 'package:vms_school/Link/API/Teacher_API/GetTeacherClassAPI.dart';
 import 'package:vms_school/Link/API/Teacher_API/GetTeacherClassMarksAPI.dart';
 import 'package:vms_school/Link/API/Teacher_API/Get_My_Student.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
+import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/Admin_Profile_Content.dart';
 import 'package:vms_school/Link/Controller/Teacher_Controller/My_Students_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/SMS_Platform/Teacher/Functions/Marks/StudentMarksTeacher.dart';
@@ -39,31 +40,7 @@ class _GuardianMainScreenState extends State<TeacherMainScreen> {
 
     return Scaffold(
       body: GetBuilder<Add_Data_controller>(builder: (conts) {
-        if (!conts.hasData) {
-          return Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              spacing: 10.0,
-              children: [
-                Text("You have has data in your account yet.".tr),
-                ButtonDialog(
-                    text: "Add Data Now".tr,
-                    onPressed: () async {
-                      if (!conts.hasData) {
-                        if (!Get.isDialogOpen!) {
-                          Get.dialog(Teacherprofile(),
-                              barrierDismissible: false);
-                        }
-                      }
-                    },
-                    color: Theme.of(context).primaryColor,
-                    width: 250),
-              ],
-            ),
-          );
-        } else if (!conts.isVerified) {
+        if (!conts.isVerified) {
           return Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -78,6 +55,32 @@ class _GuardianMainScreenState extends State<TeacherMainScreen> {
                       if (!conts.isVerified) {
                         if (!Get.isDialogOpen!) {
                           await conts.showVerificationDialog();
+                        }
+                      }
+                    },
+                    color: Theme.of(context).primaryColor,
+                    width: 250),
+              ],
+            ),
+          );
+        } else if (!conts.hasData) {
+          return Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              spacing: 10.0,
+              children: [
+                Text("You have has data in your account yet.".tr),
+                ButtonDialog(
+                    text: "Add Data Now".tr,
+                    onPressed: () async {
+                      if (!conts.hasData) {
+                        if (!Get.isDialogOpen!) {
+                          Get.find<Admin_Profile_Content>()
+                              .ChangeCurruntValue("addData");
+                          Get.dialog(Teacherprofile(),
+                              barrierDismissible: false);
                         }
                       }
                     },

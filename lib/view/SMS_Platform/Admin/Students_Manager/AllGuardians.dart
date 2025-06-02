@@ -107,8 +107,8 @@ class _AllGuardiansState extends State<AllGuardians> {
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           Wrap(
-                                            spacing: 20.0,
-                                            runSpacing: 20.0,
+                                            spacing: 15.0,
+                                            runSpacing: 2.0,
                                             crossAxisAlignment:
                                                 WrapCrossAlignment.center,
                                             children: [
@@ -146,188 +146,169 @@ class _AllGuardiansState extends State<AllGuardians> {
                                                       "Guardian Username".tr)
                                             ],
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 20.0),
-                                            child: Wrap(
-                                              spacing: 20.0,
-                                              runSpacing: 20.0,
-                                              crossAxisAlignment:
-                                                  WrapCrossAlignment.center,
-                                              children: [
-                                                Textfildwithupper(
-                                                    onChanged: (value) {
-                                                      if (value.isNotEmpty) {
-                                                        controller
-                                                            .updateFieldError(
-                                                                "name", false);
-                                                      }
-                                                    },
-                                                    isRequired: true,
-                                                    isError:
-                                                        controller.IsnameError,
-                                                    controller: name,
-                                                    Uptext: "First Name".tr,
-                                                    hinttext: "First Name".tr),
-                                                Textfildwithupper(
-                                                    onChanged: (value) {
-                                                      if (value.isNotEmpty) {
-                                                        controller
-                                                            .updateFieldError(
-                                                                "last", false);
-                                                      }
-                                                    },
-                                                    isRequired: true,
-                                                    isError: controller
-                                                        .IsLastnameError,
-                                                    controller: lastName,
-                                                    Uptext: "Last Name".tr,
-                                                    hinttext: "Last Name".tr),
-                                              ],
-                                            ),
+                                          Wrap(
+                                            spacing: 15.0,
+                                            runSpacing: 2.0,
+                                            crossAxisAlignment:
+                                                WrapCrossAlignment.center,
+                                            children: [
+                                              Textfildwithupper(
+                                                  onChanged: (value) {
+                                                    if (value.isNotEmpty) {
+                                                      controller
+                                                          .updateFieldError(
+                                                              "name", false);
+                                                    }
+                                                  },
+                                                  isRequired: true,
+                                                  isError:
+                                                      controller.IsnameError,
+                                                  controller: name,
+                                                  Uptext: "First Name".tr,
+                                                  hinttext: "First Name".tr),
+                                              Textfildwithupper(
+                                                  onChanged: (value) {
+                                                    if (value.isNotEmpty) {
+                                                      controller
+                                                          .updateFieldError(
+                                                              "last", false);
+                                                    }
+                                                  },
+                                                  isRequired: true,
+                                                  isError: controller
+                                                      .IsLastnameError,
+                                                  controller: lastName,
+                                                  Uptext: "Last Name".tr,
+                                                  hinttext: "Last Name".tr),
+                                            ],
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 20.0),
-                                            child: Wrap(
-                                              spacing: 20.0,
-                                              runSpacing: 20.0,
-                                              crossAxisAlignment:
-                                                  WrapCrossAlignment.center,
-                                              children: [
-                                                Textfildwithupper(
-                                                    fieldType: "number",
-                                                    onChanged: (value) {
-                                                      if (value.isNotEmpty) {
-                                                        controller
-                                                            .updateFieldError(
-                                                                "nid", false);
-                                                      }
-                                                    },
-                                                    isError:
-                                                        controller.IsnidError,
-                                                    isRequired: true,
-                                                    controller: nationalId,
-                                                    hinttext: "National ID".tr,
-                                                    Uptext: "National ID".tr),
-                                                Textfildwithupper(
-                                                    fieldType: "phone",
-                                                    onChanged: (value) {
-                                                      if (value.isNotEmpty) {
-                                                        controller
-                                                            .updateFieldError(
-                                                                "phone", false);
-                                                      }
-                                                    },
-                                                    isRequired: true,
-                                                    isError:
-                                                        controller.IsphoneError,
-                                                    controller: phone,
-                                                    Uptext: "Phone Number".tr,
-                                                    hinttext:
-                                                        "Phone Number".tr),
-                                              ],
-                                            ),
+                                          Wrap(
+                                            spacing: 15.0,
+                                            runSpacing: 2.0,
+                                            crossAxisAlignment:
+                                                WrapCrossAlignment.center,
+                                            children: [
+                                              Textfildwithupper(
+                                                  fieldType: "number",
+                                                  onChanged: (value) {
+                                                    if (value.isNotEmpty) {
+                                                      controller
+                                                          .updateFieldError(
+                                                              "nid", false);
+                                                    }
+                                                  },
+                                                  isError:
+                                                      controller.IsnidError,
+                                                  isRequired: true,
+                                                  controller: nationalId,
+                                                  hinttext: "National ID".tr,
+                                                  Uptext: "National ID".tr),
+                                              Textfildwithupper(
+                                                  fieldType: "phone",
+                                                  onChanged: (value) {
+                                                    if (value.isNotEmpty) {
+                                                      controller
+                                                          .updateFieldError(
+                                                              "phone", false);
+                                                    }
+                                                  },
+                                                  isRequired: true,
+                                                  isError:
+                                                      controller.IsphoneError,
+                                                  controller: phone,
+                                                  Uptext: "Phone Number".tr,
+                                                  hinttext: "Phone Number".tr),
+                                            ],
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 20.0),
-                                            child: Wrap(
-                                              spacing: 20.0,
-                                              runSpacing: 20.0,
-                                              crossAxisAlignment:
-                                                  WrapCrossAlignment.start,
-                                              runAlignment: WrapAlignment.start,
-                                              alignment: WrapAlignment.start,
-                                              children: [
-                                                Textfildwithupper(
-                                                    onChanged: (value) {
-                                                      if (value.isNotEmpty) {
+                                          Wrap(
+                                            spacing: 15.0,
+                                            runSpacing: 2.0,
+                                            crossAxisAlignment:
+                                                WrapCrossAlignment.start,
+                                            runAlignment: WrapAlignment.start,
+                                            alignment: WrapAlignment.start,
+                                            children: [
+                                              Textfildwithupper(
+                                                  onChanged: (value) {
+                                                    if (value.isNotEmpty) {
+                                                      controller
+                                                          .updateFieldError(
+                                                              "password",
+                                                              false);
+                                                    }
+                                                  },
+                                                  isError: controller
+                                                      .IsPasswordError,
+                                                  fieldType: "password",
+                                                  IconButton: IconButton(
+                                                      onPressed: () {
                                                         controller
-                                                            .updateFieldError(
-                                                                "password",
-                                                                false);
-                                                      }
-                                                    },
-                                                    isError: controller
-                                                        .IsPasswordError,
-                                                    fieldType: "password",
-                                                    IconButton: IconButton(
-                                                        onPressed: () {
-                                                          controller
-                                                              .ChangeShowPassword(
-                                                                  !controller
-                                                                      .ShowPassword);
-                                                        },
-                                                        icon: Icon(
-                                                          controller
-                                                                  .ShowPassword
-                                                              ? Icons
-                                                                  .visibility_off
-                                                              : Icons
-                                                                  .remove_red_eye_outlined,
-                                                          color:
-                                                              Theme.of(context)
-                                                                  .textTheme
-                                                                  .bodySmall!
-                                                                  .color,
-                                                        )),
-                                                    hidePassword:
-                                                        controller.ShowPassword,
-                                                    isRequired: true,
-                                                    controller: pass,
-                                                    hinttext: "Password".tr,
-                                                    Uptext: "Password".tr),
-                                                Textfildwithupper(
-                                                    customErrorMessage: cpass
-                                                                    .text
-                                                                    .trim() !=
-                                                                "" &&
-                                                            cpass
-                                                                .text.isNotEmpty
-                                                        ? "كلمات المرور غير متطابقة"
-                                                        : "لا يمكن ترك الحقل فارغ",
-                                                    onChanged: (value) {
-                                                      if (value.isNotEmpty) {
+                                                            .ChangeShowPassword(
+                                                                !controller
+                                                                    .ShowPassword);
+                                                      },
+                                                      icon: Icon(
+                                                        controller.ShowPassword
+                                                            ? Icons
+                                                                .visibility_off
+                                                            : Icons
+                                                                .remove_red_eye_outlined,
+                                                        color: Theme.of(context)
+                                                            .textTheme
+                                                            .bodySmall!
+                                                            .color,
+                                                      )),
+                                                  hidePassword:
+                                                      controller.ShowPassword,
+                                                  isRequired: true,
+                                                  controller: pass,
+                                                  hinttext: "Password".tr,
+                                                  Uptext: "Password".tr),
+                                              Textfildwithupper(
+                                                  customErrorMessage: cpass.text
+                                                                  .trim() !=
+                                                              "" &&
+                                                          cpass.text.isNotEmpty
+                                                      ? "كلمات المرور غير متطابقة"
+                                                      : "لا يمكن ترك الحقل فارغ",
+                                                  onChanged: (value) {
+                                                    if (value.isNotEmpty) {
+                                                      controller
+                                                          .updateFieldError(
+                                                              "cpassword",
+                                                              false);
+                                                    }
+                                                  },
+                                                  isError: controller
+                                                      .IsConfirmPasswordError,
+                                                  fieldType: "password",
+                                                  IconButton: IconButton(
+                                                      onPressed: () {
                                                         controller
-                                                            .updateFieldError(
-                                                                "cpassword",
-                                                                false);
-                                                      }
-                                                    },
-                                                    isError: controller
-                                                        .IsConfirmPasswordError,
-                                                    fieldType: "password",
-                                                    IconButton: IconButton(
-                                                        onPressed: () {
-                                                          controller
-                                                              .ChangeShowConfirmPassword(
-                                                                  !controller
-                                                                      .ShowConfirmPassword);
-                                                        },
-                                                        icon: Icon(
-                                                          controller
-                                                                  .ShowConfirmPassword
-                                                              ? Icons
-                                                                  .visibility_off
-                                                              : Icons
-                                                                  .remove_red_eye_outlined,
-                                                          color:
-                                                              Theme.of(context)
-                                                                  .textTheme
-                                                                  .bodySmall!
-                                                                  .color,
-                                                        )),
-                                                    hidePassword: controller
-                                                        .ShowConfirmPassword,
-                                                    isRequired: true,
-                                                    controller: cpass,
-                                                    hinttext:
-                                                        "Confirm Password".tr,
-                                                    Uptext:
-                                                        "Confirm Password".tr),
-                                              ],
-                                            ),
+                                                            .ChangeShowConfirmPassword(
+                                                                !controller
+                                                                    .ShowConfirmPassword);
+                                                      },
+                                                      icon: Icon(
+                                                        controller.ShowConfirmPassword
+                                                            ? Icons
+                                                                .visibility_off
+                                                            : Icons
+                                                                .remove_red_eye_outlined,
+                                                        color: Theme.of(context)
+                                                            .textTheme
+                                                            .bodySmall!
+                                                            .color,
+                                                      )),
+                                                  hidePassword: controller
+                                                      .ShowConfirmPassword,
+                                                  isRequired: true,
+                                                  controller: cpass,
+                                                  hinttext:
+                                                      "Confirm Password".tr,
+                                                  Uptext:
+                                                      "Confirm Password".tr),
+                                            ],
                                           ),
                                         ],
                                       ),

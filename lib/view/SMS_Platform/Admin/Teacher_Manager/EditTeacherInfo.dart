@@ -299,6 +299,7 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                                 },
                                 isError: control.IsEmergencyError,
                                 isRequired: true,
+                                fieldType: "phone",
                                 controller: emergency,
                                 Uptext: "Emergency Number".tr,
                                 hinttext: "Emergency Number".tr),

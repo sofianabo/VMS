@@ -129,18 +129,6 @@ class Add_Data_controller extends GetxController {
       setEmail(email);
       setroll(role);
 
-      if (hasDatas != null && hasDatas == false) {
-        Get_My_Profile.Get_My_Profile_Data();
-        if (role == "teacher") {
-          if (ischeeck == false) {
-            Get.dialog(Teacherprofile(), barrierDismissible: false);
-          }
-          ischeeck = true;
-        } else {
-          Get.find<AdminHomeContentController>().updateContent("My Profile");
-          Get.find<Admin_Profile_Content>().ChangeCurruntValue("addData");
-        }
-      }
       if (role == "admin" ||
           role == "subAdmin" ||
           role == "teacher" ||
@@ -150,8 +138,24 @@ class Add_Data_controller extends GetxController {
           if (!Get.isDialogOpen!) {
             await showVerificationDialog();
           }
+          return;
         }
+
+        if (hasDatas != null && hasDatas == false) {
+          Get_My_Profile.Get_My_Profile_Data();
+          if (role == "teacher") {
+            if (ischeeck == false) {
+              Get.dialog(Teacherprofile(), barrierDismissible: false);
+            }
+            ischeeck = true;
+          } else {
+            Get.find<AdminHomeContentController>().updateContent("My Profile");
+            Get.find<Admin_Profile_Content>().ChangeCurruntValue("addData");
+          }
+        }
+
         if (hasData) {
+          Get.find<Admin_Profile_Content>().ChangeCurruntValue("Profile");
           if (role == "admin" || role == "subAdmin" || role == "supervisor") {
             Get.find<AdminHomeContentController>().updateContent("Dashboard");
           } else if (role == "registration") {
