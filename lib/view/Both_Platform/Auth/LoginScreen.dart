@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Link/API/AuthAPI/LoginAPI.dart';
 import 'package:vms_school/Link/Controller/AuthController/UserController.dart';
+import 'package:vms_school/view/Both_Platform/Auth/ForgetPassword_Dialog.dart';
 import 'package:vms_school/view/Both_Platform/widgets/TextFieldAuth.dart';
 import 'package:vms_school/view/Both_Platform/widgets/TextFieldPassword.dart';
 
@@ -132,12 +133,19 @@ class LoginScreen extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(
                                           left: 8.0, right: 8.0),
-                                      child: Text(
-                                        "هل نسيت كلمة السر  ؟",
-                                        style: Get.theme.textTheme.titleMedium!
-                                            .copyWith(
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.normal),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Get.dialog(ForgetPassword());
+                                        },
+                                        child: Text(
+                                          "هل نسيت كلمة السر  ؟",
+                                          style: Get
+                                              .theme.textTheme.titleMedium!
+                                              .copyWith(
+                                                  fontSize: 13,
+                                                  fontWeight:
+                                                      FontWeight.normal),
+                                        ),
                                       ),
                                     )
                                   ],

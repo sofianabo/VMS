@@ -5,6 +5,7 @@ import 'package:vms_school/Link/API/AdminAPI/Users/Resend_Verifying_Code.dart';
 import 'package:vms_school/Link/API/AdminAPI/Users/Verify.dart';
 import 'package:vms_school/Link/API/AuthAPI/LogoutAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
+import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
 
@@ -108,52 +109,59 @@ class _VerifingCodeDialogState extends State<VerifingCodeDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.ltr,
-      child: AlertDialog(
-        insetPadding: EdgeInsets.zero,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10))),
-        content: Container(
-          width: 400,
-          height: 150,
-          child: Column(
-            children: [
-              Row(
+    return AlertDialog(
+      insetPadding: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10))),
+      content: Container(
+        width: 400,
+        height: 150,
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Text("Enter Verification Code Sent to:".tr),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 15.0, bottom: 30.0),
+              child: Row(
+                textDirection: Get.find<LocalizationController>()
+                            .currentLocale
+                            .value
+                            .languageCode ==
+                        'ar'
+                    ? TextDirection.ltr
+                    : TextDirection.rtl,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text("Enter Verification Code Sent to:"),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15.0, bottom: 30.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("${prefs!.getString("email")}"),
-                    if (isEmailLoading == LoadingStatus.normal)
-                      GestureDetector(
-                        onTap: () {
-                          SendEmailCode();
-                        },
-                        child: Text(
-                          "Resend!",
-                          style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            color: Get.theme.primaryColor,
-                          ),
+                  Text("${prefs!.getString("email")}"),
+                  if (isEmailLoading == LoadingStatus.normal)
+                    GestureDetector(
+                      onTap: () {
+                        SendEmailCode();
+                      },
+                      child: Text(
+                        "Resend!".tr,
+                        style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: Get.theme.primaryColor,
                         ),
                       ),
-                    if (isEmailLoading == LoadingStatus.loading)
-                      Container(
-                        width: 20,
-                        height: 20,
-                        child: CircularProgressIndicator(),
-                      ),
-                  ],
-                ),
+                    ),
+                  if (isEmailLoading == LoadingStatus.loading)
+                    Container(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(),
+                    ),
+                ],
               ),
-              Row(
+            ),
+            Directionality(
+              textDirection: TextDirection.ltr,
+              child: Row(
                 spacing: 10.0,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -165,70 +173,70 @@ class _VerifingCodeDialogState extends State<VerifingCodeDialog> {
                   buildTextFormField(controller6, focusNode6, 5, null),
                 ],
               ),
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        isLoading == LoadingStatus.normal
+            ? ButtonDialog(
+                width: 120,
+                color: Get.theme.primaryColor,
+                text: "Verify".tr,
+                onPressed: () {
+                  validateCode();
+                },
+              )
+            : isLoading == LoadingStatus.loading
+                ? Container(
+                    width: 120,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: Get.theme.primaryColor,
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 20, // تحديد العرض
+                          height: 20, // تحديد الارتفاع
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                            strokeWidth: 2, // لتقليل سمك الحلقة
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                : Container(
+                    width: 120,
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: Get.theme.primaryColor,
+                        borderRadius: BorderRadius.all(Radius.circular(5))),
+                    child: Icon(
+                      Icons.done,
+                      color: Colors.white,
+                    ),
+                  ),
+        GestureDetector(
+          onTap: () async {
+            await Logoutapi(context).Logout(Type: "now");
+          },
+          child: Row(
+            children: [
+              Icon(Icons.logout, size: 14, color: Color(0xffB03D3D)),
+              SizedBox(width: 8),
+              Text(
+                style: TextStyle(fontSize: 12, color: Color(0xffB03D3D)),
+                "Logout from Current Session".tr,
+              ),
             ],
           ),
-        ),
-        actions: [
-          isLoading == LoadingStatus.normal
-              ? ButtonDialog(
-                  width: 120,
-                  color: Get.theme.primaryColor,
-                  text: "Verify",
-                  onPressed: () {
-                    validateCode();
-                  },
-                )
-              : isLoading == LoadingStatus.loading
-                  ? Container(
-                      width: 120,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: Get.theme.primaryColor,
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 20, // تحديد العرض
-                            height: 20, // تحديد الارتفاع
-                            child: CircularProgressIndicator(
-                              color: Colors.white,
-                              strokeWidth: 2, // لتقليل سمك الحلقة
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  : Container(
-                      width: 120,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Get.theme.primaryColor,
-                          borderRadius: BorderRadius.all(Radius.circular(5))),
-                      child: Icon(
-                        Icons.done,
-                        color: Colors.white,
-                      ),
-                    ),
-          GestureDetector(
-            onTap: () async {
-              await Logoutapi(context).Logout(Type: "now");
-            },
-            child: Row(
-              children: [
-                Icon(Icons.logout, size: 14, color: Color(0xffB03D3D)),
-                SizedBox(width: 8),
-                Text(
-                  style: TextStyle(fontSize: 12, color: Color(0xffB03D3D)),
-                  "Logout from Current Session".tr,
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
+        )
+      ],
     );
   }
 

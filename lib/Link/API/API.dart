@@ -198,6 +198,8 @@ String Home = "homeScreen";
 
 String LOGIN = "login";
 String logout = "logout";
+String forgetPassword = "forgetPassword";
+String verifyPassword = "verifyPassword";
 
 // ..................... All Users ...................//
 

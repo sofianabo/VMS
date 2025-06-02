@@ -27,6 +27,7 @@ class UserController extends GetxController {
 
   bool IsusernameError = false;
   bool IsPasswordError = false;
+  bool IsCPasswordError = false;
 
   void updateFieldError(String type, bool newValue) {
     switch (type) {
@@ -36,8 +37,26 @@ class UserController extends GetxController {
       case 'password':
         IsPasswordError = newValue;
         break;
+      case 'cpassword':
+        IsCPasswordError = newValue;
+        break;
       default:
     }
+    update();
+  }
+
+  bool ShowConfirmPassword = true;
+  bool ShowPassword = true;
+
+  ChangeShowConfirmPassword(bool value) {
+    ShowConfirmPassword = value;
+    print(value);
+    update();
+  }
+
+  ChangeShowPassword(bool value) {
+    ShowPassword = value;
+    print(value);
     update();
   }
 }

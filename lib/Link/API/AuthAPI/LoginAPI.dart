@@ -13,10 +13,13 @@ class LoginAPI {
   LoginAPI(this.context);
   BuildContext context;
   Dio dio = Dio();
-  login(String username, String password) async {
+  login(String username, String password, {bool isrepass = false}) async {
     String myurl = "${global.hostPort}${global.LOGIN}";
     try {
-      u.SetIsloading(true);
+      if (!isrepass) {
+        u.SetIsloading(true);
+      }
+
       var response = await dio.post(myurl,
           data: {
             "userName": username,
