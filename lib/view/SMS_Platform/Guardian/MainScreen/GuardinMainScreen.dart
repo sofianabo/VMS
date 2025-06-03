@@ -27,10 +27,8 @@ class _GuardianMainScreenState extends State<GuardianMainScreen> {
 
   @override
   void initState() {
-    Get_Session_Screen_API().Getsession();
-
     Get_My_Children_API().Get_My_Children();
-
+    Get_Session_Screen_API().Getsession();
     super.initState();
   }
 
@@ -61,7 +59,7 @@ class _GuardianMainScreenState extends State<GuardianMainScreen> {
                     color: Theme.of(context).primaryColor,
                     width: 250),
               ],
-            ), 
+            ),
           );
         } else {
           return GetBuilder<MyChildren_Controller>(builder: (control) {

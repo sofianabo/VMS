@@ -26,7 +26,9 @@ class Verify_Gua_API {
 
       if (response.statusCode == 200) {
         prefs!.setBool("isLogin", true);
+        prefs!.setBool("isLogin", true);
         prefs!.setString("role", response.data['roll']);
+        prefs!.setString("token", response.data['token']);
         prefs!.setBool("isVerified", response.data['verified']);
         prefs!.setString("fullname", response.data['fullName']);
         prefs!.setString("email", email);

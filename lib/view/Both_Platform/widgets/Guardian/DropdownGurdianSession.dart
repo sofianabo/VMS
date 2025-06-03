@@ -28,8 +28,6 @@ class Dropdowngurdiansession extends StatelessWidget {
       List<String> itemList = _getListByType(cont);
 
       String? selectedValue;
-
-      // ✅ تحديد القيمة المختارة بعد تعبئة القائمة
       if (itemList.isNotEmpty) {
         selectedValue = cont.getSelectedIndex(type).isNotEmpty
             ? cont.getSelectedIndex(type)
@@ -60,54 +58,66 @@ class Dropdowngurdiansession extends StatelessWidget {
                         child: CircularProgressIndicator(strokeWidth: 3),
                       ),
                     )
-                  : Row(
-                      children: [
-                        Expanded(
-                          child: DropdownButton<String>(
-                            icon: GestureDetector(
-                              onTap: () {},
-                              child: Icon(
-                                Icons.arrow_drop_down_outlined,
-                                color: Get.theme.secondaryHeaderColor,
+                  : cont.sessions?.current?.id != null
+                      ? Row(
+                          children: [
+                            Expanded(
+                              child: DropdownButton<String>(
+                                icon: GestureDetector(
+                                  onTap: () {},
+                                  child: Icon(
+                                    Icons.arrow_drop_down_outlined,
+                                    color: Get.theme.secondaryHeaderColor,
+                                  ),
+                                ),
+                                onChanged: (newValue) async {
+                                  if (newValue != null) {
+                                    cont.selectIndex(type, newValue);
+                                    cont.setsessionid(cont.sessions!.sessions!
+                                        .firstWhere((session) =>
+                                            session.year == newValue)
+                                        .id);
+                                    await Get_My_Children_API()
+                                        .Get_My_Children(id: cont.sessionId);
+                                  }
+                                },
+                                dropdownColor: Get.theme.cardColor,
+                                iconDisabledColor: Colors.grey,
+                                iconEnabledColor: Get.theme.cardColor,
+                                value: selectedValue,
+                                isExpanded: true,
+                                underline: const SizedBox(),
+                                style: Get.theme.textTheme.bodyMedium!
+                                    .copyWith(fontSize: 14),
+                                items: [
+                                  DropdownMenuItem<String>(
+                                    value: null,
+                                    child: Text(
+                                      title
+                                          .tr, // يظهر العنوان عند عدم اختيار أي قيمة
+                                      style: Get.theme.textTheme.bodyMedium!
+                                          .copyWith(
+                                              fontSize: 14, color: Colors.grey),
+                                    ),
+                                  ),
+                                  ..._getDropdownItems(cont),
+                                ],
+                                borderRadius: BorderRadius.circular(3),
                               ),
                             ),
-                            onChanged: (newValue) async {
-                              if (newValue != null) {
-                                cont.selectIndex(type, newValue);
-                                cont.setsessionid(cont.sessions!.sessions!
-                                    .firstWhere(
-                                        (session) => session.year == newValue)
-                                    .id);
-                                await Get_My_Children_API()
-                                    .Get_My_Children(id: cont.sessionId);
-                              }
-                            },
-                            dropdownColor: Get.theme.cardColor,
-                            iconDisabledColor: Colors.grey,
-                            iconEnabledColor: Get.theme.cardColor,
-                            value: selectedValue,
-                            isExpanded: true,
-                            underline: const SizedBox(),
-                            style: Get.theme.textTheme.bodyMedium!
-                                .copyWith(fontSize: 14),
-                            items: [
-                              DropdownMenuItem<String>(
-                                value: null,
-                                child: Text(
-                                  title
-                                      .tr, // يظهر العنوان عند عدم اختيار أي قيمة
-                                  style: Get.theme.textTheme.bodyMedium!
-                                      .copyWith(
-                                          fontSize: 14, color: Colors.grey),
-                                ),
+                          ],
+                        )
+                      : Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                title.tr, // يظهر العنوان عند عدم اختيار أي قيمة
+                                style: Get.theme.textTheme.bodyMedium!
+                                    .copyWith(fontSize: 14, color: Colors.grey),
                               ),
-                              ..._getDropdownItems(cont),
-                            ],
-                            borderRadius: BorderRadius.circular(3),
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
             ),
           ],
         ),

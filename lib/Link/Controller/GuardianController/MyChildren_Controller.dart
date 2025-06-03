@@ -70,7 +70,8 @@ class MyChildren_Controller extends GetxController {
     sessions = session;
 
     SessionList.clear();
-    sessionId = sessions!.current!.id;
+
+    sessionId = sessions?.current?.id;
     for (int i = 0; i < session.sessions!.length; i++) {
       SessionList.add(session.sessions![i].year.toString());
     }
