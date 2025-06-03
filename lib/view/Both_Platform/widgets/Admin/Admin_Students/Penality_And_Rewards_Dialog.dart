@@ -71,7 +71,8 @@ class _Re_Pe_PageState extends State<Re_Pe_Page>
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
                     'Details'.tr,
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style:
+                        TextStyle(fontSize: 24, fontWeight: FontWeight.normal),
                   ),
                 ),
                 TabBar(

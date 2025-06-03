@@ -70,7 +70,7 @@ class DashboardThirdRow extends StatelessWidget {
               {
                 'name': 'Total Division',
                 'color': const Color(0xffE7E6FB),
-                'upIcon': 'divi.svg',
+                'upIcon': 'divisions.svg',
                 'avg': '${controller.dsh?.divisin ?? 0}',
               },
             ];
