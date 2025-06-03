@@ -190,18 +190,16 @@ class _AppbarAdminState extends State<AppbarObserver> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(bottom: 8.0),
-                            child: Expanded(
-                              child: Center(
-                                child: Text(
-                                  cont.content.tr,
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium!
-                                          .color!),
-                                ),
+                            child: Center(
+                              child: Text(
+                                cont.content.tr,
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .color!),
                               ),
                             ),
                           ),

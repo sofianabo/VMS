@@ -213,7 +213,14 @@ class _AdminHomeState extends State<AdminHome> {
                               padding: const EdgeInsets.only(top: 70.0),
                               child: SizedBox(
                                 width: 70,
-                                child: SideBarAdmin(),
+                                child: constraints.maxHeight >= 420
+                                    ? SideBarAdmin()
+                                    : Container(
+                                        height: 500,
+                                        child: SingleChildScrollView(
+                                          child: SideBarAdmin(),
+                                        ),
+                                      ),
                               ),
                             );
                           } else {

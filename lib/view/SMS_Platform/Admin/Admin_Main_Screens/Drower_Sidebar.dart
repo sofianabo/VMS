@@ -61,6 +61,7 @@ class _DraweHomeState extends State<DraweHome> {
                           } else {
                             Get.dialog(ProfileDialog());
                           }
+                          Get.find<DraweController>().opendrawer(false);
                         },
                         child: Column(
                           children: [
@@ -163,6 +164,8 @@ class _DraweHomeState extends State<DraweHome> {
                                     onTap: () {
                                       if (controller.hasData == true) {
                                         cont.updateContent("Dashboard");
+                                        Get.find<DraweController>()
+                                            .opendrawer(false);
                                       }
                                     },
                                     child: Row(
@@ -192,6 +195,8 @@ class _DraweHomeState extends State<DraweHome> {
                                       onTap: () {
                                         if (controller.hasData == true) {
                                           cont.updateContent("Enroll Requests");
+                                          Get.find<DraweController>()
+                                              .opendrawer(false);
                                         }
                                       },
                                       child: Row(
@@ -247,6 +252,8 @@ class _DraweHomeState extends State<DraweHome> {
                                       if (value == "Quiz Type".tr) {
                                         cont.updateContent("Quiz Type");
                                       }
+                                      Get.find<DraweController>()
+                                          .opendrawer(false);
                                     },
                                     itemBuilder: (BuildContext context) =>
                                         <PopupMenuEntry<String>>[
@@ -319,6 +326,8 @@ class _DraweHomeState extends State<DraweHome> {
                                         Get.find<Students_Marks_Controller>()
                                             .resetinSemester();
                                       }
+                                      Get.find<DraweController>()
+                                          .opendrawer(false);
                                     },
                                     itemBuilder: (BuildContext context) =>
                                         <PopupMenuEntry<String>>[
@@ -403,6 +412,8 @@ class _DraweHomeState extends State<DraweHome> {
                                         cont.updateContent(
                                             "Teacher Attendance Managment");
                                       }
+                                      Get.find<DraweController>()
+                                          .opendrawer(false);
                                     },
                                     itemBuilder: (BuildContext context) =>
                                         <PopupMenuEntry<String>>[
@@ -472,6 +483,8 @@ class _DraweHomeState extends State<DraweHome> {
                                         cont.updateContent(
                                             "Virtual User Management");
                                       }
+                                      Get.find<DraweController>()
+                                          .opendrawer(false);
                                     },
                                     itemBuilder: (BuildContext context) =>
                                         <PopupMenuEntry<String>>[
@@ -555,6 +568,8 @@ class _DraweHomeState extends State<DraweHome> {
                                         cont.updateContent(
                                             "Curriculum Management");
                                       }
+                                      Get.find<DraweController>()
+                                          .opendrawer(false);
                                     },
                                     itemBuilder: (BuildContext context) =>
                                         <PopupMenuEntry<String>>[
@@ -633,6 +648,8 @@ class _DraweHomeState extends State<DraweHome> {
                                       if (value == "Penalties".tr) {
                                         cont.updateContent("Penalties");
                                       }
+                                      Get.find<DraweController>()
+                                          .opendrawer(false);
                                     },
                                     itemBuilder: (BuildContext context) =>
                                         <PopupMenuEntry<String>>[

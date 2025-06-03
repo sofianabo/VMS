@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Routs/AppRouts.dart';
 import 'package:vms_school/Theme/ThemeData.dart';
@@ -16,6 +17,10 @@ void main() async {
   prefs = await SharedPreferences.getInstance();
   final localizationController = LocalizationController();
   await localizationController.loadLanguageFromCache();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(VMS_Main(localizationController: localizationController));
 }
 

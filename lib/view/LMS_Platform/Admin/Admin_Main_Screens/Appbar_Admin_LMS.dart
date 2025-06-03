@@ -242,18 +242,16 @@ class _AppbarAdminState extends State<AppbarAdmin_LMS> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(bottom: 8.0),
-                            child: Expanded(
-                              child: Center(
-                                child: Text(
-                                  widget.name,
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium!
-                                          .color!),
-                                ),
+                            child: Center(
+                              child: Text(
+                                widget.name,
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .color!),
                               ),
                             ),
                           ),

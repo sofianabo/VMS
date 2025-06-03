@@ -121,6 +121,7 @@
         document.getElementById("splash")?.remove();
         document.body.style.background = "transparent";
     }
+
   </script>
 
   <!-- cropperjs -->
@@ -144,7 +145,15 @@
     document.querySelector('.loader').classList.add('show');
   }, 500);
 </script>
-
+<script>
+  // حاول قفل الاتجاه عند تحميل الصفحة
+  window.addEventListener('load', function() {
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('portrait')
+        .catch(error => console.log('لا يمكن قفل التدوير:', error));
+    }
+  });
+</script>
 <script src="flutter_bootstrap.js" async=""></script>
 
 </body>
