@@ -110,6 +110,7 @@ class Section5 extends StatelessWidget {
                           ),
                           Image.asset(
                             "assets/images/section5-image4.png",
+                            width: 110,
                           ),
                         ],
                       ),
@@ -151,6 +152,7 @@ class Section5 extends StatelessWidget {
                         style: Get.theme.textTheme.bodyMedium!,
                       ),
                       Column(
+                        spacing: 5.0,
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -215,6 +217,7 @@ class Section5 extends StatelessWidget {
                           ),
                           Image.asset(
                             "assets/images/section5-image4.png",
+                            width: 110,
                           ),
                         ],
                       ),

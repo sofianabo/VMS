@@ -22,17 +22,17 @@ class Homescreencontroller extends GetxController {
     teacher = home.teacher!;
     student = home.student!;
     visitor = home.visitors!;
-    address = home.address!;
-    enAddress = home.enAddress!;
-    phonNumber = home.phonNumber!;
-    whatsAppNumber = home.whatsAppNumber!;
-    urlYoutube = home.urlYoutube!;
-    urlFaceBook = home.urlFaceBook!;
-    email = home.email!;
-    morningShiftStartHours = home.morningShiftStartHours!;
-    morningClosingHours = home.morningClosingHours!;
-    eveningShiftStartHours = home.eveningShiftStartHours!;
-    eveningClosingHours = home.eveningClosingHours!;
+    address = home.address ?? "";
+    enAddress = home.enAddress ?? "";
+    phonNumber = home.phonNumber ?? "";
+    whatsAppNumber = home.whatsAppNumber ?? "";
+    urlYoutube = home.urlYoutube ?? "";
+    urlFaceBook = home.urlFaceBook ?? "";
+    email = home.email ?? "";
+    morningShiftStartHours = home.morningShiftStartHours ?? "";
+    morningClosingHours = home.morningClosingHours ?? "";
+    eveningShiftStartHours = home.eveningShiftStartHours ?? "";
+    eveningClosingHours = home.eveningClosingHours ?? "";
     update();
   }
 }

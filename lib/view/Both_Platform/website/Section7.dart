@@ -153,7 +153,8 @@ class Section7 extends StatelessWidget {
                               GetBuilder<Homescreencontroller>(
                                   builder: (controller) {
                                 return GestureDetector(
-                                  onTap: () => controller.urlYoutube != null
+                                  onTap: () => controller.urlYoutube != null ||
+                                          controller.urlYoutube!.isNotEmpty
                                       ? launchLink(
                                           url: "${controller.urlYoutube}",
                                           type: LinkType.youtube,
@@ -173,7 +174,8 @@ class Section7 extends StatelessWidget {
                               GetBuilder<Homescreencontroller>(
                                   builder: (controller) {
                                 return GestureDetector(
-                                  onTap: () => controller.urlFaceBook != null
+                                  onTap: () => controller.urlFaceBook != null ||
+                                          controller.urlFaceBook!.isNotEmpty
                                       ? launchLink(
                                           url: "${controller.urlFaceBook}",
                                           type: LinkType.facebook,
@@ -217,7 +219,9 @@ class Section7 extends StatelessWidget {
                                   GetBuilder<Homescreencontroller>(
                                       builder: (controller) {
                                     return GestureDetector(
-                                      onTap: () => controller.phonNumber != null
+                                      onTap: () => controller.phonNumber !=
+                                                  null ||
+                                              controller.phonNumber!.isNotEmpty
                                           ? launchLink(
                                               url: "${controller.phonNumber}",
                                               type: LinkType.phone,
@@ -225,7 +229,7 @@ class Section7 extends StatelessWidget {
                                             )
                                           : null,
                                       child: Text(
-                                          "${controller.phonNumber ?? "No Phone Number yet".tr}",
+                                          "${controller.phonNumber != null || controller.phonNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.phonNumber}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
@@ -258,7 +262,9 @@ class Section7 extends StatelessWidget {
                                       builder: (controller) {
                                     return GestureDetector(
                                       onTap: () =>
-                                          controller.whatsAppNumber != null
+                                          controller.whatsAppNumber != null ||
+                                                  controller.whatsAppNumber!
+                                                      .isNotEmpty
                                               ? launchLink(
                                                   url:
                                                       "${controller.whatsAppNumber}",
@@ -267,7 +273,7 @@ class Section7 extends StatelessWidget {
                                                 )
                                               : null,
                                       child: Text(
-                                          "${controller.whatsAppNumber ?? "No Phone Number yet".tr}",
+                                          "${controller.whatsAppNumber != null || controller.whatsAppNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.whatsAppNumber}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
@@ -299,7 +305,8 @@ class Section7 extends StatelessWidget {
                                   GetBuilder<Homescreencontroller>(
                                       builder: (controller) {
                                     return GestureDetector(
-                                      onTap: () => controller.email != null
+                                      onTap: () => controller.email != null ||
+                                              controller.email!.isNotEmpty
                                           ? launchLink(
                                               url: "${controller.email}",
                                               type: LinkType.email,
@@ -307,7 +314,7 @@ class Section7 extends StatelessWidget {
                                             )
                                           : null,
                                       child: Text(
-                                          "${controller.email ?? "No Email yet".tr}",
+                                          "${controller.email != null || controller.email!.isNotEmpty ? "No Email yet".tr : controller.email}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
@@ -322,12 +329,12 @@ class Section7 extends StatelessWidget {
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(50)),
                                           color: Colors.white),
-                                      height: 20,
-                                      width: 20,
+                                      height: 30,
+                                      width: 30,
                                       child: Icon(
                                         Icons.mail,
                                         color: Get.theme.primaryColor,
-                                        size: 14,
+                                        size: 18,
                                       )),
                                 ],
                               ),
@@ -362,7 +369,7 @@ class Section7 extends StatelessWidget {
                       ),
                       GetBuilder<Homescreencontroller>(builder: (controller) {
                         return Text(
-                            "${controller.address != null && controller.address != "" ? IsArabic ? controller.address : controller.enAddress : "No Address yet".tr}",
+                            "${controller.address != null && controller.address != "" || controller.address!.isNotEmpty ? IsArabic ? controller.address : controller.enAddress : "No Address yet".tr}",
                             style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(fontSize: 16, color: Colors.white));
                       }),
@@ -377,24 +384,23 @@ class Section7 extends StatelessWidget {
                           'ar'
                       ? TextDirection.rtl
                       : TextDirection.ltr,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.copyright_outlined,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                      const SizedBox(
-                        width: 3,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 10.0),
-                        child: Text("All Rights reserved. Copyright".tr,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Row(
+                      spacing: 8.0,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.copyright_outlined,
+                          color: Colors.white,
+                          size: 18,
+                        ),
+                        Text("All Rights reserved. Copyright".tr,
                             style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(fontSize: 16, color: Colors.white)),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -492,7 +498,8 @@ class Section7 extends StatelessWidget {
                               GetBuilder<Homescreencontroller>(
                                   builder: (controller) {
                                 return GestureDetector(
-                                  onTap: () => controller.urlYoutube != null
+                                  onTap: () => controller.urlYoutube != null ||
+                                          controller.urlYoutube!.isNotEmpty
                                       ? launchLink(
                                           url: "${controller.urlYoutube}",
                                           type: LinkType.youtube,
@@ -512,7 +519,8 @@ class Section7 extends StatelessWidget {
                               GetBuilder<Homescreencontroller>(
                                   builder: (controller) {
                                 return GestureDetector(
-                                  onTap: () => controller.urlFaceBook != null
+                                  onTap: () => controller.urlFaceBook != null ||
+                                          controller.urlFaceBook!.isNotEmpty
                                       ? launchLink(
                                           url: "${controller.urlFaceBook}",
                                           type: LinkType.facebook,
@@ -556,7 +564,9 @@ class Section7 extends StatelessWidget {
                                   GetBuilder<Homescreencontroller>(
                                       builder: (controller) {
                                     return GestureDetector(
-                                      onTap: () => controller.urlYoutube != null
+                                      onTap: () => controller.phonNumber !=
+                                                  null ||
+                                              controller.phonNumber!.isNotEmpty
                                           ? launchLink(
                                               url: "${controller.phonNumber}",
                                               type: LinkType.phone,
@@ -564,7 +574,7 @@ class Section7 extends StatelessWidget {
                                             )
                                           : null,
                                       child: Text(
-                                          "${controller.phonNumber ?? "No Phone Number yet".tr}",
+                                          "${controller.phonNumber != null || controller.phonNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.phonNumber}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
@@ -597,7 +607,9 @@ class Section7 extends StatelessWidget {
                                       builder: (controller) {
                                     return GestureDetector(
                                       onTap: () =>
-                                          controller.whatsAppNumber != null
+                                          controller.whatsAppNumber != null ||
+                                                  controller.whatsAppNumber!
+                                                      .isNotEmpty
                                               ? launchLink(
                                                   url:
                                                       "${controller.whatsAppNumber}",
@@ -606,7 +618,7 @@ class Section7 extends StatelessWidget {
                                                 )
                                               : null,
                                       child: Text(
-                                          "${controller.whatsAppNumber ?? "No Phone Number yet".tr}",
+                                          "${controller.whatsAppNumber != null || controller.whatsAppNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.whatsAppNumber}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
@@ -638,7 +650,8 @@ class Section7 extends StatelessWidget {
                                   GetBuilder<Homescreencontroller>(
                                       builder: (controller) {
                                     return GestureDetector(
-                                      onTap: () => controller.email != null
+                                      onTap: () => controller.email != null ||
+                                              controller.email!.isNotEmpty
                                           ? launchLink(
                                               url: "${controller.email}",
                                               type: LinkType.email,
@@ -646,7 +659,7 @@ class Section7 extends StatelessWidget {
                                             )
                                           : null,
                                       child: Text(
-                                          "${controller.email ?? "No Email yet".tr}",
+                                          "${controller.email != null || controller.email!.isNotEmpty ? "No Email yet".tr : controller.email}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 16,
@@ -666,7 +679,7 @@ class Section7 extends StatelessWidget {
                                       child: Icon(
                                         Icons.mail,
                                         color: Get.theme.primaryColor,
-                                        size: 16,
+                                        size: 18,
                                       )),
                                 ],
                               ),
@@ -701,7 +714,7 @@ class Section7 extends StatelessWidget {
                       ),
                       GetBuilder<Homescreencontroller>(builder: (controller) {
                         return Text(
-                            "${controller.address != null && controller.address != "" ? IsArabic ? controller.address : controller.enAddress : "No Address yet".tr}",
+                            "${controller.address != null && controller.address != "" || controller.address!.isNotEmpty ? IsArabic ? controller.address : controller.enAddress : "No Address yet".tr}",
                             style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(fontSize: 16, color: Colors.white));
                       }),
@@ -716,24 +729,23 @@ class Section7 extends StatelessWidget {
                           'ar'
                       ? TextDirection.rtl
                       : TextDirection.ltr,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.copyright_outlined,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                      const SizedBox(
-                        width: 3,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 10.0),
-                        child: Text("All Rights reserved. Copyright".tr,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Row(
+                      spacing: 8.0,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.copyright_outlined,
+                          color: Colors.white,
+                          size: 18,
+                        ),
+                        Text("All Rights reserved. Copyright".tr,
                             style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(fontSize: 16, color: Colors.white)),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -870,7 +882,7 @@ class Section7 extends StatelessWidget {
                                             )
                                           : null,
                                       child: Text(
-                                          "${controller.phonNumber ?? "No Phone Number yet".tr}",
+                                          "${controller.phonNumber != null || controller.phonNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.phonNumber}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
@@ -914,7 +926,7 @@ class Section7 extends StatelessWidget {
                                                 )
                                               : null,
                                       child: Text(
-                                          "${controller.whatsAppNumber ?? "No Phone Number yet".tr}",
+                                          "${controller.whatsAppNumber != null || controller.whatsAppNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.whatsAppNumber}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
@@ -956,7 +968,7 @@ class Section7 extends StatelessWidget {
                                             )
                                           : null,
                                       child: Text(
-                                          "${controller.email ?? "No Email yet".tr}",
+                                          "${controller.email != null || controller.email!.isNotEmpty ? "No Email yet".tr : controller.email}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 16,
@@ -1075,25 +1087,23 @@ class Section7 extends StatelessWidget {
                           'ar'
                       ? TextDirection.rtl
                       : TextDirection.ltr,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.copyright_outlined,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                      const SizedBox(
-                        width: 3,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 10.0),
-                        child: Text("All Rights reserved. Copyright".tr,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Row(
+                      spacing: 8.0,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.copyright_outlined,
+                          color: Colors.white,
+                          size: 18,
+                        ),
+                        Text("All Rights reserved. Copyright".tr,
                             style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(fontSize: 16, color: Colors.white)),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -1106,7 +1116,7 @@ class Section7 extends StatelessWidget {
 }
 
 String _formatTime(String? time) {
-  if (time == null) return "No Time yet".tr;
+  if (time == null || time.isEmpty) return "No Time yet".tr;
 
   final upperTime = time.toUpperCase();
   final isAm = upperTime.contains("AM");

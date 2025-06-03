@@ -1,5 +1,5 @@
 // String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
-String hostPort = "https://api.vmssyria.com/api";
+String hostPort = "https://api.vmssyria.com/api/";
 
 //..................... Guardians API Start ...................//
 String enroll = "Enroll";

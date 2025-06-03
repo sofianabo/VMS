@@ -83,12 +83,12 @@ import 'package:vms_school/view/Both_Platform/widgets/SidbarAnimation.dart';
 class AppBindings extends Bindings {
   @override
   void dependencies() {
+    Get.lazyPut(() => Homescreencontroller(), fenix: true);
     Get.lazyPut(() => ThemeController(), fenix: true);
     Get.lazyPut(() => UserController(), fenix: true);
     Get.lazyPut(() => PasswordHintController(), fenix: true);
     Get.lazyPut(() => ThemeController(), fenix: true);
     Get.lazyPut(() => AdminHomeContentController(), fenix: true);
-    Get.lazyPut(() => Homescreencontroller(), fenix: true);
     Get.lazyPut(() => ExamTableController(), fenix: true);
     Get.lazyPut(() => Requestscontroller(), fenix: true);
     Get.lazyPut(() => DropDownController(), fenix: true);
