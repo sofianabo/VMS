@@ -83,13 +83,13 @@ class _Section1State extends State<Section1>
                             borderRadius: BorderRadius.circular(12),
                           ),
                           height: 45,
-                          width: 352,
+                          width: 382,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               GestureDetector(
                                 child: Container(
-                                  width: 175,
+                                  width: 190,
                                   height: 45,
                                   decoration: BoxDecoration(
                                       color: Get.theme.primaryColor,
@@ -107,7 +107,8 @@ class _Section1State extends State<Section1>
                               ),
                               GestureDetector(
                                 child: Container(
-                                  width: 175,
+                                  color: Colors.transparent,
+                                  width: 190,
                                   height: 40,
                                   alignment: Alignment.center,
                                   child: Text('Sign In'.tr,
@@ -127,7 +128,7 @@ class _Section1State extends State<Section1>
                           return Padding(
                             padding: const EdgeInsets.only(top: 22.0),
                             child: SizedBox(
-                              width: 350,
+                              width: 380,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -194,13 +195,13 @@ class _Section1State extends State<Section1>
                             borderRadius: BorderRadius.circular(12),
                           ),
                           height: 45,
-                          width: 352,
+                          width: 382,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               GestureDetector(
                                 child: Container(
-                                  width: 175,
+                                  width: 190,
                                   height: 45,
                                   decoration: BoxDecoration(
                                       color: Get.theme.primaryColor,
@@ -218,7 +219,8 @@ class _Section1State extends State<Section1>
                               ),
                               GestureDetector(
                                 child: Container(
-                                  width: 175,
+                                  color: Colors.transparent,
+                                  width: 190,
                                   height: 40,
                                   alignment: Alignment.center,
                                   child: Text('Sign In'.tr,
@@ -236,8 +238,8 @@ class _Section1State extends State<Section1>
                         GetBuilder<Homescreencontroller>(builder: (control) {
                           return Padding(
                             padding: const EdgeInsets.only(top: 22.0),
-                            child: SizedBox(
-                              width: 350,
+                            child: Container(
+                              width: 380,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -306,13 +308,13 @@ class _Section1State extends State<Section1>
                         borderRadius: BorderRadius.circular(6),
                       ),
                       height: 40,
-                      width: 202,
+                      width: 300,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           GestureDetector(
                             child: Container(
-                              width: 100,
+                              width: 149,
                               height: 40,
                               decoration: BoxDecoration(
                                   color: Get.theme.primaryColor,
@@ -330,7 +332,8 @@ class _Section1State extends State<Section1>
                           ),
                           GestureDetector(
                             child: Container(
-                              width: 100,
+                              color: Colors.transparent,
+                              width: 149,
                               height: 30,
                               alignment: Alignment.center,
                               child: Text('Sign In'.tr,
@@ -348,25 +351,25 @@ class _Section1State extends State<Section1>
                       return Padding(
                         padding: const EdgeInsets.only(top: 22.0),
                         child: SizedBox(
-                          width: 250,
+                          width: 300,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               _buildInfoCardPhone(
-                                  80,
-                                  120,
+                                  95,
+                                  95,
                                   formatNumber(control.teacher),
                                   "Teachers",
                                   "assets/images/avatar1.png"),
                               _buildInfoCardPhone(
-                                  80,
-                                  120,
+                                  95,
+                                  95,
                                   formatNumber(control.student),
                                   "Students",
                                   "assets/images/avatar2.png"),
                               _buildInfoCardPhone(
-                                  80,
-                                  120,
+                                  95,
+                                  95,
                                   formatNumber(control.visitor),
                                   "Visitors",
                                   "assets/images/avatar3.png"),
@@ -386,35 +389,28 @@ class _Section1State extends State<Section1>
   }
 
   Widget _buildInfoCard(String title, String subtitle, String imagePath) {
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
     return Container(
       height: 120,
-      width: 107,
+      width: 120,
       decoration: BoxDecoration(
         color: Get.theme.cardColor,
         borderRadius: BorderRadius.circular(21),
         border: Border.all(color: Colors.grey, width: 2.0),
       ),
       child: Column(
+        spacing: 5.0,
         children: [
           Container(
-            padding: EdgeInsets.only(top: h / 68.4),
-            height: h / 17.1,
-            width: w / 32,
+            padding: EdgeInsets.only(top: 10.0),
+            height: 55,
+            width: 55,
             decoration: BoxDecoration(
                 color: Get.theme.cardColor,
                 borderRadius: BorderRadius.circular(100)),
             child: Image.asset(imagePath),
           ),
-          Padding(
-            padding: EdgeInsets.only(top: h / 68.4),
-            child: Text(title, style: Get.theme.textTheme.bodyMedium!),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: h / 68.4),
-            child: Text(subtitle.tr, style: Get.theme.textTheme.bodyMedium!),
-          ),
+          Text(title, style: Get.theme.textTheme.bodyMedium!),
+          Text(subtitle.tr, style: Get.theme.textTheme.bodyMedium!),
         ],
       ),
     );
@@ -431,11 +427,12 @@ class _Section1State extends State<Section1>
         border: Border.all(color: Colors.grey, width: 2.0),
       ),
       child: Column(
+        spacing: 5.0,
         children: [
           Container(
             padding: EdgeInsets.only(top: 10.0),
-            height: 30,
-            width: 30,
+            height: 40,
+            width: 40,
             decoration: BoxDecoration(
                 color: Get.theme.cardColor,
                 borderRadius: BorderRadius.circular(100)),
@@ -443,16 +440,10 @@ class _Section1State extends State<Section1>
               imagePath,
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(top: 10.0),
-            child: Text(title,
-                style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 13)),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 10.0),
-            child: Text(subtitle.tr,
-                style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 13)),
-          ),
+          Text(title,
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 12)),
+          Text(subtitle.tr,
+              style: Get.theme.textTheme.bodyMedium!.copyWith(fontSize: 12)),
         ],
       ),
     );
