@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_All_Curr_LMS.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_LMS_Division.dart';
 import 'package:vms_school/Link/API/OpenURLs.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LMS_Divisions_Controller.dart';
@@ -253,7 +254,16 @@ class _DivisionGridState extends State<DivisionGrid> {
                                                             .titleMedium!
                                                             .color!),
                                                   ))),
-                                              onPressed: () {},
+                                              onPressed: () async{
+                                            
+                                                Get.find<Selected_Class_Controller>()
+                                                        .divisionid =
+                                                    control.division![index].id;
+                                                Get.find<
+                                                        Selected_Class_Controller>()
+                                                    .addToPath("Homework".tr);
+                                             
+                                              },
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment

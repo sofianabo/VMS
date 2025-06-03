@@ -2,6 +2,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/HomeworkController.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Curriculum_Model.dart';
 
 class Curriculumn_LMS_Controller extends GetxController {
@@ -177,6 +178,8 @@ class Curriculumn_LMS_Controller extends GetxController {
     }
 
     SetIsLoading(false);
+    Get.find<Homeworkcontroller>().setcurr(curriculumModel);
+    Get.find<Homeworkcontroller>().setDialogCurr(curriculumModel);
     update();
   }
 
