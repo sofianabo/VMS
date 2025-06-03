@@ -98,7 +98,6 @@ class _StudyYearStudentsState extends State<StudyYearStudents> {
                       ),
                     ],
                   ),
-                  Spacer(),
                   if (Get.find<Add_Data_controller>().roll != "observer")
                     Row(
                       mainAxisSize: MainAxisSize.min,

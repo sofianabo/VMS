@@ -216,10 +216,14 @@ class _EmpolyeeStatusGridState extends State<EmpolyeeStatusGrid> {
                                                         FontWeight.bold)),
                                       ),
                                       FutureBuilder(
-                                        future: precacheImage(
-                                            NetworkImage(
-                                                "$getimage${controller.employee[index].imageId}"),
-                                            context),
+                                        future: controller
+                                                    .employee[index].imageId !=
+                                                null
+                                            ? precacheImage(
+                                                NetworkImage(
+                                                    "$getimage${controller.employee[index].imageId}"),
+                                                context)
+                                            : Future.value(null),
                                         builder: (context, snapshot) {
                                           if (snapshot.connectionState ==
                                               ConnectionState.done) {

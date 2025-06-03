@@ -168,10 +168,15 @@ class _LmsStudentsgridState extends State<Files_LMS_Grid> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         FutureBuilder(
-                                          future: precacheImage(
-                                              NetworkImage(
-                                                  "$getimage${controller.filteredStudents![index].fileId}"),
-                                              context),
+                                          future: controller
+                                                      .filteredStudents![index]
+                                                      .fileId !=
+                                                  null
+                                              ? precacheImage(
+                                                  NetworkImage(
+                                                      "$getimage${controller.filteredStudents![index].fileId}"),
+                                                  context)
+                                              : Future.value(null),
                                           builder: (context, snapshot) {
                                             if (snapshot.connectionState ==
                                                 ConnectionState.done) {
@@ -248,10 +253,15 @@ class _LmsStudentsgridState extends State<Files_LMS_Grid> {
                                           CrossAxisAlignment.center,
                                       children: [
                                         FutureBuilder(
-                                          future: precacheImage(
-                                              NetworkImage(
-                                                  "$getimage${controller.filteredStudents![index].fileId}"),
-                                              context),
+                                          future: controller
+                                                      .filteredStudents![index]
+                                                      .fileId !=
+                                                  null
+                                              ? precacheImage(
+                                                  NetworkImage(
+                                                      "$getimage${controller.filteredStudents![index].fileId}"),
+                                                  context)
+                                              : Future.value(null),
                                           builder: (context, snapshot) {
                                             if (snapshot.connectionState ==
                                                 ConnectionState.done) {

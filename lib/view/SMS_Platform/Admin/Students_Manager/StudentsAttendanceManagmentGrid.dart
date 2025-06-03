@@ -48,10 +48,15 @@ class StudentsAttendanceManagmentGrid extends StatelessWidget {
                                                 child: Row(
                                                   children: [
                                                     FutureBuilder(
-                                                      future: precacheImage(
-                                                          NetworkImage(
-                                                              "$getimage${controller.students[index]["imgid"]}"),
-                                                          context),
+                                                      future: controller.students[
+                                                                      index]
+                                                                  ["imgid"] !=
+                                                              null
+                                                          ? precacheImage(
+                                                              NetworkImage(
+                                                                  "$getimage${controller.students[index]["imgid"]}"),
+                                                              context)
+                                                          : Future.value(null),
                                                       builder:
                                                           (context, snapshot) {
                                                         if (snapshot
@@ -255,10 +260,15 @@ class StudentsAttendanceManagmentGrid extends StatelessWidget {
                                               child: Row(
                                                 children: [
                                                   FutureBuilder(
-                                                    future: precacheImage(
-                                                        NetworkImage(
-                                                            "$getimage${controller.students[index]["imgid"]}"),
-                                                        context),
+                                                    future: controller.students[
+                                                                    index]
+                                                                ["imgid"] !=
+                                                            null
+                                                        ? precacheImage(
+                                                            NetworkImage(
+                                                                "$getimage${controller.students[index]["imgid"]}"),
+                                                            context)
+                                                        : Future.value(null),
                                                     builder:
                                                         (context, snapshot) {
                                                       if (snapshot

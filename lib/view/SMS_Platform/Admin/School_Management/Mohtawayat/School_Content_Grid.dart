@@ -230,7 +230,6 @@ class School_Content_Grid extends StatelessWidget {
       height: 50,
       child: Text(
         data ?? '',
-        style: const TextStyle(color: Colors.black),
       ),
     );
   }

@@ -295,10 +295,14 @@ class TeacherManagementGrid extends StatelessWidget {
                                         ),
                                       ),
                                       FutureBuilder(
-                                        future: precacheImage(
-                                            NetworkImage(
-                                                "$getimage${control.filteredTeacher![index].imageId}"),
-                                            context),
+                                        future: control.filteredTeacher![index]
+                                                    .imageId !=
+                                                null
+                                            ? precacheImage(
+                                                NetworkImage(
+                                                    "$getimage${control.filteredTeacher![index].imageId}"),
+                                                context)
+                                            : Future.value(null),
                                         builder: (context, snapshot) {
                                           if (snapshot.connectionState ==
                                               ConnectionState.done) {

@@ -673,7 +673,7 @@ class Languages {
       'Delete Electronic Book': 'حذف الكتاب الإلكتروني',
       'No Electronic Book': 'لا يوجد كتب إلكترونية',
 
-      'Fee Count': 'نسبة الخصم',
+      'Fee Count': 'الاشتراك السنوي',
       'Add Grade': 'إضافة مرحلة دراسية',
       'Grade Name': 'اسم المرحلة الدراسية',
       'Do You Want To Deletegarde': 'هل تريد حذف المرحلة الدراسية',

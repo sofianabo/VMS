@@ -38,7 +38,7 @@ class _EmployeeAttendanceManagmentState
       children: [
         Container(
           width: MediaQuery.of(context).size.width,
-          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
+          margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 25.0),
           child: GetBuilder<EmployeeController>(builder: (controller) {
             return Wrap(
               alignment: WrapAlignment.spaceBetween,

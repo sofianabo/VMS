@@ -55,10 +55,23 @@ class _EmployeesAttendanceManagmentGridState
                                                 child: Row(
                                                   children: [
                                                     FutureBuilder(
-                                                      future: precacheImage(
-                                                          NetworkImage(
-                                                              "$getimage${controller.Employees[index]["imgid"]}"),
-                                                          context),
+                                                      future: controller.Employees[
+                                                                          index]
+                                                                      [
+                                                                      "imgid"] !=
+                                                                  null ||
+                                                              controller
+                                                                      .Employees[
+                                                                          index]
+                                                                          [
+                                                                          "imgid"]
+                                                                      .toString() !=
+                                                                  ""
+                                                          ? precacheImage(
+                                                              NetworkImage(
+                                                                  "$getimage${controller.Employees[index]["imgid"]}"),
+                                                              context)
+                                                          : Future.value(null),
                                                       builder:
                                                           (context, snapshot) {
                                                         if (snapshot
@@ -278,10 +291,24 @@ class _EmployeesAttendanceManagmentGridState
                                                   child: Row(
                                                     children: [
                                                       FutureBuilder(
-                                                        future: precacheImage(
-                                                            NetworkImage(
-                                                                "$getimage${controller.Employees[index]["imgid"]}"),
-                                                            context),
+                                                        future: controller.Employees[
+                                                                            index]
+                                                                        [
+                                                                        "imgid"] !=
+                                                                    null ||
+                                                                controller
+                                                                        .Employees[
+                                                                            index]
+                                                                            [
+                                                                            "imgid"]
+                                                                        .toString() !=
+                                                                    ""
+                                                            ? precacheImage(
+                                                                NetworkImage(
+                                                                    "$getimage${controller.Employees[index]["imgid"]}"),
+                                                                context)
+                                                            : Future.value(
+                                                                null),
                                                         builder: (context,
                                                             snapshot) {
                                                           if (snapshot
@@ -477,52 +504,55 @@ class _EmployeesAttendanceManagmentGridState
                       child: ListView.builder(
                         itemCount: 10,
                         itemBuilder: (context, index) {
-                          return Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  SizedBox(
-                                    width: Get.width / 3.5,
-                                    child: Row(
-                                      children: [
-                                        SchemaWidget(
-                                          width: 50,
-                                          height: 50,
-                                          radius: 50,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 8.0, right: 8.0),
-                                          child: SchemaWidget(
-                                              width: 70, height: 15),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  ...[
-                                    'Present',
-                                    'Truant',
-                                    'Late',
-                                    'Vacation',
-                                    'Holiday'
-                                  ].map((status) => Row(
+                          return SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      width: 200,
+                                      child: Row(
                                         children: [
                                           SchemaWidget(
-                                            width: 15,
-                                            height: 15,
+                                            width: 50,
+                                            height: 50,
                                             radius: 50,
                                           ),
-                                          SchemaWidget(width: 50, height: 15),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 8.0, right: 8.0),
+                                            child: SchemaWidget(
+                                                width: 70, height: 15),
+                                          ),
                                         ],
-                                      )),
-                                ],
-                              ),
-                              Divider(
-                                color: Theme.of(context).primaryColor,
-                              ),
-                            ],
+                                      ),
+                                    ),
+                                    ...[
+                                      'Present',
+                                      'Truant',
+                                      'Late',
+                                      'Vacation',
+                                      'Holiday'
+                                    ].map((status) => Row(
+                                          children: [
+                                            SchemaWidget(
+                                              width: 15,
+                                              height: 15,
+                                              radius: 50,
+                                            ),
+                                            SchemaWidget(width: 50, height: 15),
+                                          ],
+                                        )),
+                                  ],
+                                ),
+                                Divider(
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                              ],
+                            ),
                           );
                         },
                       ),

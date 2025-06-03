@@ -564,10 +564,15 @@ class AllEmployeeGrid extends StatelessWidget {
                                         ],
                                       ),
                                       FutureBuilder(
-                                        future: precacheImage(
-                                            NetworkImage(
-                                                "$getimage${controller.filteredreemployees[index].imageId}"),
-                                            context),
+                                        future: controller
+                                                    .filteredreemployees[index]
+                                                    .imageId !=
+                                                null
+                                            ? precacheImage(
+                                                NetworkImage(
+                                                    "$getimage${controller.filteredreemployees[index].imageId}"),
+                                                context)
+                                            : Future.value(null),
                                         builder: (context, snapshot) {
                                           if (snapshot.connectionState ==
                                               ConnectionState.done) {

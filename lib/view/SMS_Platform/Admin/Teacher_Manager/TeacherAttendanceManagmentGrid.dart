@@ -54,10 +54,15 @@ class _TeacherAttendanceManagmentGridState
                                                 child: Row(
                                                   children: [
                                                     FutureBuilder(
-                                                      future: precacheImage(
-                                                          NetworkImage(
-                                                              "$getimage${controller.Employees[index]["imgid"]}"),
-                                                          context),
+                                                      future: controller.Employees[
+                                                                      index]
+                                                                  ["imgid"] !=
+                                                              null
+                                                          ? precacheImage(
+                                                              NetworkImage(
+                                                                  "$getimage${controller.Employees[index]["imgid"]}"),
+                                                              context)
+                                                          : Future.value(null),
                                                       builder:
                                                           (context, snapshot) {
                                                         if (snapshot
@@ -272,10 +277,16 @@ class _TeacherAttendanceManagmentGridState
                                                   child: Row(
                                                     children: [
                                                       FutureBuilder(
-                                                        future: precacheImage(
-                                                            NetworkImage(
-                                                                "$getimage${controller.Employees[index]["imgid"]}"),
-                                                            context),
+                                                        future: controller.Employees[
+                                                                        index]
+                                                                    ["imgid"] !=
+                                                                null
+                                                            ? precacheImage(
+                                                                NetworkImage(
+                                                                    "$getimage${controller.Employees[index]["imgid"]}"),
+                                                                context)
+                                                            : Future.value(
+                                                                null),
                                                         builder: (context,
                                                             snapshot) {
                                                           if (snapshot

@@ -9,6 +9,7 @@ import 'package:vms_school/Theme/themeController.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Link/Bindings/AppBinding.dart';
 import 'Translate/local.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 SharedPreferences? prefs;
 
@@ -17,10 +18,12 @@ void main() async {
   prefs = await SharedPreferences.getInstance();
   final localizationController = LocalizationController();
   await localizationController.loadLanguageFromCache();
+
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+  setUrlStrategy(PathUrlStrategy()); // إزالة # من الروابط
   runApp(VMS_Main(localizationController: localizationController));
 }
 

@@ -179,7 +179,6 @@ class _SchoolTimeTableState extends State<SchoolTimeTable> {
                     ),
                   ],
                 ),
-                Spacer(),
                 if (Get.find<Add_Data_controller>().roll != "observer")
                   Row(
                     mainAxisSize: MainAxisSize.min,

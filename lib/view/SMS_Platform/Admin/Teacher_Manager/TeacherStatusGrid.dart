@@ -254,10 +254,14 @@ class _TeacherStatusGridState extends State<TeacherStatusGrid> {
                                                         FontWeight.bold)),
                                       ),
                                       FutureBuilder(
-                                        future: precacheImage(
-                                            NetworkImage(
-                                                "$getimage${controller.teacher[index].imageId}"),
-                                            context),
+                                        future: controller
+                                                    .teacher[index].imageId !=
+                                                null
+                                            ? precacheImage(
+                                                NetworkImage(
+                                                    "$getimage${controller.teacher[index].imageId}"),
+                                                context)
+                                            : Future.value(null),
                                         builder: (context, snapshot) {
                                           if (snapshot.connectionState ==
                                               ConnectionState.done) {
