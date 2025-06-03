@@ -16,7 +16,6 @@ Future<void> launchLink({
   required BuildContext context, // لإظهار الرسائل
 }) async {
   if (url == null || url.isEmpty) {
-    ErrorMessage("الرابط غير متوفر");
     return;
   }
 
@@ -33,7 +32,6 @@ Future<void> launchLink({
       case LinkType.youtube:
       case LinkType.facebook:
       case LinkType.website:
-        // تأكد أن الرابط يبدأ بـ http/https
         uri = Uri.parse(url.startsWith('http') ? url : 'https://$url');
         break;
     }
@@ -43,9 +41,5 @@ Future<void> launchLink({
     } else {
       throw 'تعذر فتح الرابط';
     }
-  } catch (e) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('حدث خطأ: ${e.toString()}')),
-    );
-  }
+  } catch (e) {}
 }

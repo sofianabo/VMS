@@ -153,8 +153,9 @@ class Section7 extends StatelessWidget {
                               GetBuilder<Homescreencontroller>(
                                   builder: (controller) {
                                 return GestureDetector(
-                                  onTap: () => controller.urlYoutube != null ||
-                                          controller.urlYoutube!.isNotEmpty
+                                  onTap: () => controller.urlYoutube != null &&
+                                          controller.urlYoutube!.isNotEmpty &&
+                                          !controller.Isloading
                                       ? launchLink(
                                           url: "${controller.urlYoutube}",
                                           type: LinkType.youtube,
@@ -174,8 +175,9 @@ class Section7 extends StatelessWidget {
                               GetBuilder<Homescreencontroller>(
                                   builder: (controller) {
                                 return GestureDetector(
-                                  onTap: () => controller.urlFaceBook != null ||
-                                          controller.urlFaceBook!.isNotEmpty
+                                  onTap: () => controller.urlFaceBook != null &&
+                                          controller.urlFaceBook!.isNotEmpty &&
+                                          !controller.Isloading
                                       ? launchLink(
                                           url: "${controller.urlFaceBook}",
                                           type: LinkType.facebook,
@@ -220,7 +222,8 @@ class Section7 extends StatelessWidget {
                                       builder: (controller) {
                                     return GestureDetector(
                                       onTap: () => controller.phonNumber !=
-                                                  null ||
+                                                  null &&
+                                              !controller.Isloading &&
                                               controller.phonNumber!.isNotEmpty
                                           ? launchLink(
                                               url: "${controller.phonNumber}",
@@ -229,7 +232,7 @@ class Section7 extends StatelessWidget {
                                             )
                                           : null,
                                       child: Text(
-                                          "${controller.phonNumber != null || controller.phonNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.phonNumber}",
+                                          "${!controller.Isloading ? controller.phonNumber != null || controller.phonNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.phonNumber : "No Phone Number yet".tr}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
@@ -262,7 +265,8 @@ class Section7 extends StatelessWidget {
                                       builder: (controller) {
                                     return GestureDetector(
                                       onTap: () =>
-                                          controller.whatsAppNumber != null ||
+                                          controller.whatsAppNumber != null &&
+                                                  !controller.Isloading &&
                                                   controller.whatsAppNumber!
                                                       .isNotEmpty
                                               ? launchLink(
@@ -273,7 +277,7 @@ class Section7 extends StatelessWidget {
                                                 )
                                               : null,
                                       child: Text(
-                                          "${controller.whatsAppNumber != null || controller.whatsAppNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.whatsAppNumber}",
+                                          "${!controller.Isloading ? controller.whatsAppNumber != null || controller.whatsAppNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.whatsAppNumber : "No Phone Number yet".tr}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
@@ -305,7 +309,8 @@ class Section7 extends StatelessWidget {
                                   GetBuilder<Homescreencontroller>(
                                       builder: (controller) {
                                     return GestureDetector(
-                                      onTap: () => controller.email != null ||
+                                      onTap: () => controller.email != null &&
+                                              !controller.Isloading &&
                                               controller.email!.isNotEmpty
                                           ? launchLink(
                                               url: "${controller.email}",
@@ -314,7 +319,7 @@ class Section7 extends StatelessWidget {
                                             )
                                           : null,
                                       child: Text(
-                                          "${controller.email != null || controller.email!.isNotEmpty ? "No Email yet".tr : controller.email}",
+                                          "${!controller.Isloading ? controller.email != null || controller.email!.isNotEmpty ? "No Email yet".tr : controller.email : "No Email yet".tr}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
@@ -369,7 +374,7 @@ class Section7 extends StatelessWidget {
                       ),
                       GetBuilder<Homescreencontroller>(builder: (controller) {
                         return Text(
-                            "${controller.address != null && controller.address != "" || controller.address!.isNotEmpty ? IsArabic ? controller.address : controller.enAddress : "No Address yet".tr}",
+                            "${!controller.Isloading ? controller.address != null && controller.address != "" || controller.address!.isNotEmpty ? IsArabic ? controller.address : controller.enAddress : "No Address yet".tr : "No Address yet".tr}",
                             style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(fontSize: 16, color: Colors.white));
                       }),
@@ -498,7 +503,8 @@ class Section7 extends StatelessWidget {
                               GetBuilder<Homescreencontroller>(
                                   builder: (controller) {
                                 return GestureDetector(
-                                  onTap: () => controller.urlYoutube != null ||
+                                  onTap: () => controller.urlYoutube != null &&
+                                          !controller.Isloading &&
                                           controller.urlYoutube!.isNotEmpty
                                       ? launchLink(
                                           url: "${controller.urlYoutube}",
@@ -519,7 +525,8 @@ class Section7 extends StatelessWidget {
                               GetBuilder<Homescreencontroller>(
                                   builder: (controller) {
                                 return GestureDetector(
-                                  onTap: () => controller.urlFaceBook != null ||
+                                  onTap: () => controller.urlFaceBook != null &&
+                                          !controller.Isloading &&
                                           controller.urlFaceBook!.isNotEmpty
                                       ? launchLink(
                                           url: "${controller.urlFaceBook}",
@@ -565,7 +572,8 @@ class Section7 extends StatelessWidget {
                                       builder: (controller) {
                                     return GestureDetector(
                                       onTap: () => controller.phonNumber !=
-                                                  null ||
+                                                  null &&
+                                              !controller.Isloading &&
                                               controller.phonNumber!.isNotEmpty
                                           ? launchLink(
                                               url: "${controller.phonNumber}",
@@ -574,7 +582,7 @@ class Section7 extends StatelessWidget {
                                             )
                                           : null,
                                       child: Text(
-                                          "${controller.phonNumber != null || controller.phonNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.phonNumber}",
+                                          "${!controller.Isloading ? controller.phonNumber != null || controller.phonNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.phonNumber : "No Phone Number yet".tr}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
@@ -607,7 +615,8 @@ class Section7 extends StatelessWidget {
                                       builder: (controller) {
                                     return GestureDetector(
                                       onTap: () =>
-                                          controller.whatsAppNumber != null ||
+                                          controller.whatsAppNumber != null &&
+                                                  !controller.Isloading &&
                                                   controller.whatsAppNumber!
                                                       .isNotEmpty
                                               ? launchLink(
@@ -618,7 +627,7 @@ class Section7 extends StatelessWidget {
                                                 )
                                               : null,
                                       child: Text(
-                                          "${controller.whatsAppNumber != null || controller.whatsAppNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.whatsAppNumber}",
+                                          "${!controller.Isloading ? controller.whatsAppNumber != null || controller.whatsAppNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.whatsAppNumber : "No Phone Number yet".tr}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
@@ -650,7 +659,8 @@ class Section7 extends StatelessWidget {
                                   GetBuilder<Homescreencontroller>(
                                       builder: (controller) {
                                     return GestureDetector(
-                                      onTap: () => controller.email != null ||
+                                      onTap: () => controller.email != null &&
+                                              !controller.Isloading &&
                                               controller.email!.isNotEmpty
                                           ? launchLink(
                                               url: "${controller.email}",
@@ -659,7 +669,7 @@ class Section7 extends StatelessWidget {
                                             )
                                           : null,
                                       child: Text(
-                                          "${controller.email != null || controller.email!.isNotEmpty ? "No Email yet".tr : controller.email}",
+                                          "${!controller.Isloading ? controller.email != null || controller.email!.isNotEmpty ? "No Email yet".tr : controller.email : "No Email yet".tr}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 16,
@@ -714,7 +724,7 @@ class Section7 extends StatelessWidget {
                       ),
                       GetBuilder<Homescreencontroller>(builder: (controller) {
                         return Text(
-                            "${controller.address != null && controller.address != "" || controller.address!.isNotEmpty ? IsArabic ? controller.address : controller.enAddress : "No Address yet".tr}",
+                            "${!controller.Isloading ? controller.address != null && controller.address != "" || controller.address!.isNotEmpty ? IsArabic ? controller.address : controller.enAddress : "No Address yet".tr : "No Address yet".tr}",
                             style: Get.theme.textTheme.bodyMedium!
                                 .copyWith(fontSize: 16, color: Colors.white));
                       }),
@@ -874,7 +884,10 @@ class Section7 extends StatelessWidget {
                                   GetBuilder<Homescreencontroller>(
                                       builder: (controller) {
                                     return GestureDetector(
-                                      onTap: () => controller.phonNumber != null
+                                      onTap: () => controller.phonNumber !=
+                                                  null &&
+                                              !controller.Isloading &&
+                                              controller.phonNumber!.isNotEmpty
                                           ? launchLink(
                                               url: "${controller.phonNumber}",
                                               type: LinkType.phone,
@@ -882,7 +895,7 @@ class Section7 extends StatelessWidget {
                                             )
                                           : null,
                                       child: Text(
-                                          "${controller.phonNumber != null || controller.phonNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.phonNumber}",
+                                          "${!controller.Isloading ? controller.phonNumber != null || controller.phonNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.phonNumber : "No Phone Number yet".tr}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
@@ -917,7 +930,10 @@ class Section7 extends StatelessWidget {
                                       builder: (controller) {
                                     return GestureDetector(
                                       onTap: () =>
-                                          controller.whatsAppNumber != null
+                                          controller.whatsAppNumber != null &&
+                                                  !controller.Isloading &&
+                                                  controller.whatsAppNumber!
+                                                      .isNotEmpty
                                               ? launchLink(
                                                   url:
                                                       "${controller.whatsAppNumber}",
@@ -926,7 +942,7 @@ class Section7 extends StatelessWidget {
                                                 )
                                               : null,
                                       child: Text(
-                                          "${controller.whatsAppNumber != null || controller.whatsAppNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.whatsAppNumber}",
+                                          "${!controller.Isloading ? controller.whatsAppNumber != null || controller.whatsAppNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.whatsAppNumber : "No Phone Number yet".tr}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
@@ -960,7 +976,9 @@ class Section7 extends StatelessWidget {
                                   GetBuilder<Homescreencontroller>(
                                       builder: (controller) {
                                     return GestureDetector(
-                                      onTap: () => controller.email != null
+                                      onTap: () => controller.email != null &&
+                                              !controller.Isloading &&
+                                              controller.email!.isNotEmpty
                                           ? launchLink(
                                               url: "${controller.email}",
                                               type: LinkType.email,
@@ -968,7 +986,7 @@ class Section7 extends StatelessWidget {
                                             )
                                           : null,
                                       child: Text(
-                                          "${controller.email != null || controller.email!.isNotEmpty ? "No Email yet".tr : controller.email}",
+                                          "${!controller.Isloading ? controller.email != null || controller.email!.isNotEmpty ? "No Email yet".tr : controller.email : "No Email yet".tr}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 16,
@@ -1028,7 +1046,7 @@ class Section7 extends StatelessWidget {
                             return Text(
                                 textAlign: TextAlign.center,
                                 maxLines: 3,
-                                "${controller.address != null && controller.address != "" ? IsArabic ? controller.address : controller.enAddress : "No Address yet".tr}",
+                                "${!controller.Isloading ? controller.address != null && controller.address != "" || controller.address!.isNotEmpty ? IsArabic ? controller.address : controller.enAddress : "No Address yet".tr : "No Address yet".tr}",
                                 style: Get.theme.textTheme.bodyMedium!.copyWith(
                                     fontSize: 16, color: Colors.white));
                           }),
@@ -1045,7 +1063,9 @@ class Section7 extends StatelessWidget {
                     children: [
                       GetBuilder<Homescreencontroller>(builder: (controller) {
                         return GestureDetector(
-                          onTap: () => controller.urlYoutube != null
+                          onTap: () => controller.urlYoutube != null &&
+                                  !controller.Isloading &&
+                                  controller.urlYoutube!.isNotEmpty
                               ? launchLink(
                                   url: "${controller.urlYoutube}",
                                   type: LinkType.youtube,
@@ -1064,11 +1084,15 @@ class Section7 extends StatelessWidget {
                       ),
                       GetBuilder<Homescreencontroller>(builder: (controller) {
                         return GestureDetector(
-                          onTap: () => launchLink(
-                            url: "${controller.urlFaceBook}",
-                            type: LinkType.facebook,
-                            context: context,
-                          ),
+                          onTap: () => controller.urlFaceBook != null &&
+                                  !controller.Isloading &&
+                                  controller.urlFaceBook!.isNotEmpty
+                              ? launchLink(
+                                  url: "${controller.urlFaceBook}",
+                                  type: LinkType.facebook,
+                                  context: context,
+                                )
+                              : null,
                           child: Image.asset(
                             "assets/images/facebook-icon.png",
                             width: 40,

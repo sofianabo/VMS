@@ -5,6 +5,7 @@ class Homescreencontroller extends GetxController {
   int teacher = 0;
   int student = 0;
   int visitor = 0;
+  bool Isloading = true;
 
   String? enAddress;
   String? address;
@@ -33,6 +34,12 @@ class Homescreencontroller extends GetxController {
     morningClosingHours = home.morningClosingHours ?? "";
     eveningShiftStartHours = home.eveningShiftStartHours ?? "";
     eveningClosingHours = home.eveningClosingHours ?? "";
+    Setisloading(false);
+    update();
+  }
+
+  Setisloading(bool value) {
+    Isloading = value;
     update();
   }
 }
