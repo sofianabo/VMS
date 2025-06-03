@@ -10,6 +10,7 @@ import 'package:vms_school/view/Both_Platform/website/Section4.dart';
 import 'package:vms_school/view/Both_Platform/website/Section5.dart';
 import 'package:vms_school/view/Both_Platform/website/Section6.dart';
 import 'package:vms_school/view/Both_Platform/website/Section7.dart';
+import 'package:vms_school/view/Both_Platform/widgets/Switcher.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -121,53 +122,17 @@ class _HomeState extends State<Home> {
               },
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 20.0, left: 40.0, right: 10),
-              child: Container(
-                width: 100,
-                height: 35,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Color(0xffD9D9D9)),
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-                child: DropdownButtonHideUnderline(child:
-                    GetBuilder<LocalizationController>(builder: (controller) {
-                  // استخدام اللغة الحالية مباشرة من controller
-                  String currentLanguage =
-                      controller.currentLocale.value.languageCode;
-
-                  String initialValue =
-                      currentLanguage == 'ar' ? 'Arabicc'.tr : 'English'.tr;
-
-                  return DropdownButton<String>(
-                    style: TextStyle(color: Colors.white),
-                    value: initialValue,
-                    isDense: true,
-                    dropdownColor: Theme.of(context).cardColor,
-                    alignment:
-                        AlignmentDirectional.centerStart, // النص في اليسار
-                    icon: Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
-                      child: Icon(Icons.arrow_drop_down, size: 16),
-                    ), // السهم في اليمين افتراضيًا
-                    items: ['English'.tr, 'Arabicc'.tr].map((String language) {
-                      return DropdownMenuItem<String>(
-                        value: language,
-                        child: Text(language,
-                            style: Theme.of(context).textTheme.bodyMedium),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      // عند تغيير اللغة، سيتم التبديل بين اللغتين بناءً على القيمة المحددة
-                      if (newValue == "Arabicc".tr) {
-                        Get.find<LocalizationController>()
-                            .changeLanguage(const Locale('ar'));
-                      } else {
-                        Get.find<LocalizationController>()
-                            .changeLanguage(const Locale('en'));
-                      }
-                    },
-                  );
-                })),
+              padding: Get.find<LocalizationController>()
+                          .currentLocale
+                          .value
+                          .languageCode ==
+                      'ar'
+                  ? EdgeInsets.only(top: 20.0, left: 120.0, right: 10)
+                  : EdgeInsets.only(top: 20.0, right: 120.0, left: 10),
+              child: LanguageSwitcherDrawer(
+                onLanguageToggle: (isArabic) {
+                  print('Language switched to Arabic: $isArabic');
+                },
               ),
             ),
           ],

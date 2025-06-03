@@ -109,3 +109,100 @@ class _LanguageSwitcherState extends State<LanguageSwitcher>
     });
   }
 }
+
+class LanguageSwitcherDrawer extends StatefulWidget {
+  final Function(bool) onLanguageToggle; // دالة للتعامل مع تغيير اللغة
+
+  const LanguageSwitcherDrawer({super.key, required this.onLanguageToggle});
+
+  @override
+  _LanguageSwitcherDrawerState createState() => _LanguageSwitcherDrawerState();
+}
+
+class _LanguageSwitcherDrawerState extends State<LanguageSwitcherDrawer>
+    with SingleTickerProviderStateMixin {
+  bool isArabic = false; // الحالة الأولية: الإنجليزية
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 300),
+      vsync: this,
+    );
+
+    _animation = Tween<double>(begin: 3, end: 45).animate(_controller);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<LocalizationController>(builder: (controller) {
+      return GestureDetector(
+        onTap: () {
+          if (controller.currentLocale.value.languageCode == 'ar') {
+            controller.changeLanguage(const Locale('en'));
+          } else {
+            controller.changeLanguage(const Locale('ar'));
+          }
+        },
+        child: Container(
+          width: 70,
+          height: 30,
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.white),
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(35),
+          ),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              AnimatedBuilder(
+                animation: _animation,
+                builder: (context, child) {
+                  return Positioned(
+                    left: controller.currentLocale.value.languageCode == 'ar'
+                        ? _animation.value
+                        : null,
+                    right: controller.currentLocale.value.languageCode == 'en'
+                        ? _animation.value
+                        : null, // موضع الكرة
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        color: Get.theme.primaryColor,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                  );
+                },
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      controller.currentLocale.value.languageCode == 'ar'
+                          ? 'العربية'
+                          : 'English',
+                      style: TextStyle(
+                        fontFamily: "Cairo",
+                        color: Get.theme.primaryColor,
+                        fontSize: 10,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+    });
+  }
+}

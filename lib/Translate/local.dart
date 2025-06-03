@@ -7,6 +7,7 @@ class Languages {
       'Illness': 'الأمراض',
       'Files': 'الملفات',
       'Links': 'الروابط',
+      'Forgot your password  ?': 'هل نسيت كلمة السر  ؟',
       'Pages': 'الصفحات',
       'Quiz': 'الاختبارات',
       'You Don`t Have Account ?': 'لا تملك حساب ؟',
@@ -837,8 +838,8 @@ class Languages {
       'Select Session': 'اختر الفصل',
       'Move From Session': 'استيراد من فصل',
       'LMS Platform': 'المنصة التعليمية',
-      'Homework':'الوظائف',
-       'File Homework': 'وظيفة ملف',
+      'Homework': 'الوظائف',
+      'File Homework': 'وظيفة ملف',
       'Questions Homework': 'وظيفة أسئلة',
     },
     'en': {
@@ -1072,6 +1073,7 @@ class Languages {
       'AboutUs': 'AboutUs',
       'WhyUs': 'WhyUs',
       'Programs': 'Programs',
+      'Forgot your password  ?': 'Forgot your password  ?',
       'Enrollment': 'Enrollment',
       'Eligibility': 'Eligibility',
       'Who Can We Register At Virtual Modern School':

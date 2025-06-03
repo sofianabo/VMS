@@ -138,7 +138,7 @@ class LoginScreen extends StatelessWidget {
                                           Get.dialog(ForgetPassword());
                                         },
                                         child: Text(
-                                          "هل نسيت كلمة السر  ؟",
+                                          "Forgot your password  ?".tr,
                                           style: Get
                                               .theme.textTheme.titleMedium!
                                               .copyWith(
