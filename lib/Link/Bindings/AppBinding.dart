@@ -56,6 +56,7 @@ import 'package:vms_school/Link/Controller/GuardianController/Students_Marks_Gua
 import 'package:vms_school/Link/Controller/HomeController/HomeScreenController.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Curr_LMS_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Home_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/HomeworkController.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LMS_Divisions_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Students_LMS_Controller.dart';
@@ -165,5 +166,6 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => Subject_LMS_Controller(), fenix: true);
     Get.lazyPut(() => LMS_Divisions_Controller(), fenix: true);
     Get.lazyPut(() => Students_LMS_Controller(), fenix: true);
+    Get.lazyPut(() => Homeworkcontroller(), fenix: true);
   }
 }

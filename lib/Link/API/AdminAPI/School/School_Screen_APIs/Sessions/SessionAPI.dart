@@ -17,7 +17,7 @@ class Get_Session_Screen_API {
     // final child = Get.find<MyChildren_Controller>();
     // controller.setIsLoading(true);
     try {
-      String myurl = "$hostPort$getSession";
+      String myurl = "$hostPort$getSession"; 
       // child.setIsloading(true);
       var response = await dio.get(myurl, options: getDioOptions());
       if (response.statusCode == 200) {

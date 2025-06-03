@@ -21,6 +21,7 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeacherAtendenceController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Teacher_Controllers/AllTeachersController.dart';
 import 'package:intl/intl.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/HomeworkController.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/Sessions_DropDown_Controller.dart';
 import 'package:vms_school/Link/Controller/WidgetController/OtherWidget/DateControler.dart';
 
@@ -1645,6 +1646,121 @@ class SetTeacherDateAttendence extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+
+class HomeWorkSubmissionDate extends StatelessWidget {
+  final double width;
+  final String Uptext;
+  final double? height;
+  final bool isRequired; // متغير لتحديد إذا كان الحقل مطلوبًا.
+  final bool isError; // ✅ إضافة متغير للتحقق من الخطأ
+
+  const HomeWorkSubmissionDate({
+    super.key,
+    required this.width,
+    required this.Uptext,
+    this.height,
+    this.isError = false, // ✅ افتراضي لا يوجد خطأ
+
+    this.isRequired = false, // افتراضي الحقل غير مطلوب.
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final Homeworkcontroller controller = Get.put(Homeworkcontroller());
+    return Obx(
+      () => Container(
+        height: 80,
+        width: width,
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 3.0),
+              child: RichText(
+                text: TextSpan(
+                  text: Uptext,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  children: isRequired
+                      ? [
+                          const TextSpan(
+                            text: " *",
+                            style: TextStyle(color: Colors.red, fontSize: 14),
+                          ),
+                        ]
+                      : [],
+                ),
+              ),
+            ),
+
+            SizedBox(
+              height: height ?? 40,
+              child: TextFormField(
+                style: const TextStyle(fontSize: 14),
+                controller: TextEditingController(
+                  text: controller.homeworkDate.value != null
+                      ? DateFormat('yyyy-MM-dd')
+                          .format(controller.homeworkDate.value!)
+                      : '',
+                ),
+                readOnly: true,
+                onTap: () {
+                 
+                    controller.selectBirthDate(context);
+                  
+                },
+                decoration: InputDecoration(
+                  hintText: "yyyy-MM-dd",
+                  hintStyle: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 14, color: const Color(0xffD9D9D9)),
+
+                  // ✅ تغيير لون الحدود بناءً على قيمة isError
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                      width: 2,
+                    ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : const Color(0xffD9D9D9),
+                    ),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide(
+                      color: isError ? Colors.red : Colors.grey,
+                    ),
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      VMS_Icons.calender,
+                      color: Theme.of(context).primaryColor,
+                      size: 16,
+                    ),
+                    onPressed: () {
+                    
+                        controller.selectBirthDate(context);
+                      
+                    },
+                  ),
+                ),
+              ),
+            ),
+            // ✅ عرض رسالة خطأ إذا كان هناك خطأ
+         
+          ],
+        ),
+      ),
     );
   }
 }
