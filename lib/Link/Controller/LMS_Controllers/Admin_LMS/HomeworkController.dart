@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Curriculum_Model.dart';
+import 'package:vms_school/Link/Model/LMS_Model/HomeWorkLMSModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 
 class Homeworkcontroller extends GetxController {
-  List<Curriculum>? curriculum; // homework
-  List<Curriculum> filteredCurriculum = [];
+  List<Homeworke>? homework;
+  List<Homeworke> filteredhomework = [];
 
   String? filterName = '';
   List<String> currList = [];
@@ -21,23 +22,22 @@ class Homeworkcontroller extends GetxController {
 
   void searchByName(String? nameQuery, String? cur) {
     filterName = nameQuery;
-    List<Curriculum> tempFilteredList = List.from(curriculum!);
+    List<Homeworke> tempFilteredList = List.from(homework!);
     if (nameQuery != null && nameQuery.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((cur) {
         final curName = cur.name?.toLowerCase() ?? '';
-        final curenName = cur.enName?.toLowerCase() ?? '';
-        return curName.contains(nameQuery.toLowerCase()) ||
-            curenName.contains(nameQuery.toLowerCase());
+        return curName.contains(nameQuery.toLowerCase());
       }).toList();
     }
 
     if (cur != null && cur.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((cur) {
-        return cur.semester!.enName == cur || cur.semester!.name == cur;
+        return cur.homeworkeCurriculum!.enName == cur ||
+            cur.homeworkeCurriculum!.name == cur;
       }).toList();
     }
 
-    filteredCurriculum = tempFilteredList;
+    filteredhomework = tempFilteredList;
     update();
   }
 
@@ -103,6 +103,7 @@ class Homeworkcontroller extends GetxController {
   }
 
   setcurr(Curriculum_Model currmodel) {
+    currList.clear();
     for (int i = 0; i < currmodel.curriculum!.length; i++) {
       currList.add(
           Get.find<LocalizationController>().currentLocale.value.languageCode ==
@@ -116,6 +117,7 @@ class Homeworkcontroller extends GetxController {
   }
 
   setDialogCurr(Curriculum_Model currdialog) {
+    dialogCurrList.clear();
     for (int i = 0; i < currdialog.curriculum!.length; i++) {
       dialogCurrList.add(
           Get.find<LocalizationController>().currentLocale.value.languageCode ==
@@ -123,36 +125,31 @@ class Homeworkcontroller extends GetxController {
               ? currdialog.curriculum![i].name!
               : currdialog.curriculum![i].enName!);
     }
-    updateList("currDialog", currList);
+    updateList("currDialog", dialogCurrList);
     setisCurriculmDialogLoading(false);
 
     update();
   }
-  // void SetCurriculum(Curriculum_Model curriculumModel) {
-  //   curriculum = curriculumModel.curriculum;
 
-  //   filteredCurriculum = List.from(curriculum!);
+  void SetHomework(HomeworkLMSModel homeworlmodel) {
+    homework = homeworlmodel.homeworke;
 
-  //   if (filterName != null && filterName!.isNotEmpty) {
-  //     searchByName(filterName.toString(), semesterIndex, subjectIndex);
-  //   }
+    filteredhomework = List.from(homework!);
 
-  //   if (semesterIndex.isNotEmpty) {
-  //     filteredCurriculum = filteredCurriculum.where((emp) {
-  //       return emp.semester!.name == semesterIndex ||
-  //           emp.semester!.enName == semesterIndex;
-  //     }).toList();
-  //   }
-  //   if (subjectIndex.isNotEmpty) {
-  //     filteredCurriculum = filteredCurriculum.where((emp) {
-  //       return emp.subject!.name == subjectIndex ||
-  //           emp.subject!.enName == subjectIndex;
-  //     }).toList();
-  //   }
+    // if (filterName != null && filterName!.isNotEmpty) {
+    //   searchByName(filterName.toString(), semesterIndex, subjectIndex);
+    // }
 
-  //   SetIsLoading(false);
-  //   update();
-  // }
+    if (currindex.isNotEmpty) {
+      filteredhomework = filteredhomework.where((emp) {
+        return emp.homeworkeCurriculum!.name == currindex ||
+            emp.homeworkeCurriculum!.enName == currindex;
+      }).toList();
+    }
+
+    SetIsLoading(false);
+    update();
+  }
 
   void updateList(String type, List<String> options) {
     switch (type) {
@@ -169,6 +166,7 @@ class Homeworkcontroller extends GetxController {
   String get selectCurrIndex => currindex;
 
   String get selectdialog_CurrIndex => dialog_currIndex;
+  Rx<DateTime?> get selectDate => homeworkDate;
 
   void SetIsLoading(bool value) {
     isLoading = value;
@@ -176,13 +174,20 @@ class Homeworkcontroller extends GetxController {
   }
 
   bool IsAnameError = false;
-
+  bool isDateError = false;
   bool IsFileError = false;
+  bool iscurrError = false;
 
   void updateFieldError(String type, bool newValue) {
     switch (type) {
       case 'aname':
         IsAnameError = newValue;
+        break;
+      case 'birth':
+        isDateError = newValue;
+        break;
+      case 'curr':
+        iscurrError = newValue;
         break;
 
       case 'file':
@@ -222,6 +227,11 @@ class Homeworkcontroller extends GetxController {
     selectedFile.value = null;
     dialog_currIndex = "";
 
+    update();
+  }
+
+  void resetError() {
+    IsAnameError = false;
     update();
   }
 }

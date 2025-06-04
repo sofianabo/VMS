@@ -214,3 +214,5 @@ String getLMSCurriculum = "getLMSCurriculum";
 String LmsSubject = "LmsSubject";
 String getLmsDivision = "getLmsDivision";
 String getLmsStudent = "getLmsStudent";
+String addHomework = "addHomework";
+String getHomework = "getHomework";

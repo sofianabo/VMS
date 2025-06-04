@@ -9,7 +9,7 @@ class DropdownAddStudents extends StatelessWidget {
   final String title;
   final String type;
   final Color? color;
-  final bool isLoading;
+  final bool isLoading; 
   final bool isDisabled;
   final bool isError;
 
