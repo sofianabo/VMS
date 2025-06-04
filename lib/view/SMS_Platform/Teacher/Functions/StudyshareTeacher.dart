@@ -225,8 +225,7 @@ class _StudyshareteacherState extends State<Studyshareteacher> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -428,6 +427,6 @@ class _StudyshareteacherState extends State<Studyshareteacher> {
           ));
         }),
       ],
-    ));
+    );
   }
 }
