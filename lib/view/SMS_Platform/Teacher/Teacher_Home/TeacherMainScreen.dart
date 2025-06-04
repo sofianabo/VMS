@@ -76,9 +76,9 @@ class _GuardianMainScreenState extends State<TeacherMainScreen> {
                     text: "Add Data Now".tr,
                     onPressed: () async {
                       if (!conts.hasData) {
+                        Get.find<Admin_Profile_Content>()
+                            .ChangeCurruntValue("addData");
                         if (!Get.isDialogOpen!) {
-                          Get.find<Admin_Profile_Content>()
-                              .ChangeCurruntValue("addData");
                           Get.dialog(Teacherprofile(),
                               barrierDismissible: false);
                         }

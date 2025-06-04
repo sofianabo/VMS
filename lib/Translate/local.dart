@@ -409,7 +409,7 @@ class Languages {
       'illness': 'كل الأمراض',
 
 /////////////////////////////////////section 2///////////////////////////////
-      'Who Can We Register At Virtual Modern School':
+      'Who Can Register At Virtual Modern School':
           'من يمكنهم التسجيل في المدرسة الافتراضية الحديثة',
       'Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary':
           'يمكن لأي شخص يقيم خارج سوريا ويرغب في دراسة المناهج التعليمية السورية من المرحلة  ',
@@ -1077,7 +1077,7 @@ class Languages {
       'Enrollment': 'Enrollment',
       'Eligibility': 'Eligibility',
       'Who Can We Register At Virtual Modern School':
-          'Who Can We Register At Virtual Modern School',
+          'Who Can Register At Virtual Modern School',
       'Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary':
           'Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary',
       'to Middle and High schools can enroll and graduate to be awarded the High school Diploma granted':

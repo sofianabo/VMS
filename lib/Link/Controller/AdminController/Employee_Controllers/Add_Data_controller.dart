@@ -119,7 +119,6 @@ class Add_Data_controller extends GetxController {
     try {
       final prefs = await SharedPreferences.getInstance();
       final hasData = prefs.getBool("hasData") ?? false;
-      final hasDatas = prefs.getBool("hasData");
       final isVerified = prefs.getBool("isVerified") ?? false;
       final email = prefs.getString("email") ?? "";
       final role = prefs.getString("role") ?? "";
@@ -140,8 +139,8 @@ class Add_Data_controller extends GetxController {
           }
           return;
         }
-
-        if (hasDatas != null && hasDatas == false) {
+        if (hasData == false) {
+          Get.find<Admin_Profile_Content>().ChangeCurruntValue("addData");
           Get_My_Profile.Get_My_Profile_Data();
           if (role == "teacher") {
             if (ischeeck == false) {
@@ -152,16 +151,17 @@ class Add_Data_controller extends GetxController {
             Get.find<AdminHomeContentController>().updateContent("My Profile");
             Get.find<Admin_Profile_Content>().ChangeCurruntValue("addData");
           }
+          Get.find<Admin_Profile_Content>().ChangeCurruntValue("addData");
         }
 
         if (hasData) {
-          Get.find<Admin_Profile_Content>().ChangeCurruntValue("Profile");
           if (role == "admin" || role == "subAdmin" || role == "supervisor") {
             Get.find<AdminHomeContentController>().updateContent("Dashboard");
           } else if (role == "registration") {
             Get.find<AdminHomeContentController>()
                 .updateContent("Enroll Requests");
           }
+          Get.find<Admin_Profile_Content>().ChangeCurruntValue("Profile");
         } else {
           Get.find<Admin_Profile_Content>().ChangeCurruntValue("addData");
         }

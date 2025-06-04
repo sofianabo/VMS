@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/AdminAPI/School/School_Screen_APIs/Sessions/SessionAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/DrowerController.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/Main_Admin_Controller/AdminHomeContentController.dart';
@@ -18,6 +19,12 @@ class AppbarObserver extends StatefulWidget {
 }
 
 class _AppbarAdminState extends State<AppbarObserver> {
+  @override
+  void initState() {
+    Get_Session_Screen_API().Getsession();
+    super.initState();
+  }
+
   var controller = Get.find<Add_Data_controller>();
 
   Widget build(BuildContext context) {

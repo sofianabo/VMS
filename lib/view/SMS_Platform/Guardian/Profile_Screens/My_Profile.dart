@@ -76,7 +76,6 @@ class _ProfileDialogState extends State<ProfileDialog> {
                   Expanded(
                     child: TabBarView(
                       children: [
-                        // المحتوى الأول
                         SingleChildScrollView(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -153,7 +152,6 @@ class _ProfileDialogState extends State<ProfileDialog> {
                             ],
                           ),
                         ),
-
                         if (Get.find<Add_Data_controller>().roll != "observer")
                           Center(
                               child: controller.isLoading

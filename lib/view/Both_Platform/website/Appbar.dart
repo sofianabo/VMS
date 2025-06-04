@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vms_school/Theme/ThemeData.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Switcher.dart';
 
 class AppbarCustom extends StatelessWidget {
@@ -80,29 +79,30 @@ class AppbarCustom extends StatelessWidget {
             ),
 
           // Right side (Logo)
-          Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                if (isDesktop || isTablet)
-                  SizedBox(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              if (isDesktop || isTablet)
+                SizedBox(
+                  height: 70,
+                  child: Image.asset(
+                    "assets/images/Logo2.png",
+                    fit: BoxFit.contain,
+                  ),
+                )
+              else
+                Padding(
+                  padding: const EdgeInsets.only(top: 5.0),
+                  child: SizedBox(
                     height: 70,
                     child: Image.asset(
+                      width: 150,
                       "assets/images/Logo2.png",
                       fit: BoxFit.contain,
                     ),
-                  )
-                else
-                  SizedBox(
-                    height: 70,
-                    child: Image.asset(
-                      width: 100,
-                      "assets/images/Logo2.png",
-                      fit: BoxFit.contain,
-                    ),
-                  )
-              ],
-            ),
+                  ),
+                )
+            ],
           ),
         ],
       ),
