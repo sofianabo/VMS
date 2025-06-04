@@ -75,6 +75,22 @@ class Divisionscreendropdown extends StatelessWidget {
                         onChanged: (newValue) {
                           if (newValue != null && newValue != title) {
                             cont.selectIndex(type, newValue);
+                            final errorMap = {
+                              "currDialog": ["curr"],
+                            };
+
+                            WidgetsBinding.instance.addPostFrameCallback((_) {
+                              errorMap[type]?.forEach((field) {
+                                if ([
+                                  "currDialog",
+                                ].contains(type)) {
+                                  Get.find<Homeworkcontroller>()
+                                      .updateFieldError(field, false);
+                                }
+
+                                cont.updateFieldError(field, false);
+                              });
+                            });
                           }
                         },
                         dropdownColor: Get.theme.cardColor,
@@ -87,13 +103,21 @@ class Divisionscreendropdown extends StatelessWidget {
                             ? GestureDetector(
                                 onTap: () {
                                   cont.selectIndex(type, "");
+                                  final errorMap = {
+                                    "currdialog": ["curr"],
+                                  };
+
                                   WidgetsBinding.instance
                                       .addPostFrameCallback((_) {
-                                    if (type == "currDialog") {
-                                      // cont.updateFieldError("subject", true);
-                                    }
+                                    errorMap[type]?.forEach((field) {
+                                      if (type == "currdialog") {
+                                        Get.find<Homeworkcontroller>()
+                                            .updateFieldError(field, true);
+                                      }
+                                      cont.updateFieldError(field, true);
+                                    });
                                   });
-                                  cont.update();
+                                  // cont.update();
                                 },
                                 child: Icon(
                                   Icons.close,

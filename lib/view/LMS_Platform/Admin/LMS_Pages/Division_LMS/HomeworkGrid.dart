@@ -109,7 +109,7 @@ class Homeworkgrid extends StatelessWidget {
                 color: Colors.grey.withOpacity(0.2),
                 duration: const Duration(seconds: 1),
                 delay: const Duration(seconds: 1))
-            : control.filteredCurriculum.isNotEmpty
+            : control.filteredhomework.isNotEmpty
                 ? GridView.builder(
                     padding:
                         const EdgeInsets.only(top: 10, left: 40, right: 40),
@@ -118,14 +118,14 @@ class Homeworkgrid extends StatelessWidget {
                         crossAxisSpacing: 20.0,
                         mainAxisSpacing: 20.0,
                         childAspectRatio: getChildAspectRatio()),
-                    itemCount: control.filteredCurriculum.length,
+                    itemCount: control.filteredhomework.length,
                     itemBuilder: (context, index) {
                       return HoverScaleCard(
                         child: GestureDetector(
                           onTap: () async {
                             openFileInNewTab(
                                 filePath:
-                                    '$getpdf${control.filteredCurriculum[index].fileId}');
+                                    '$getpdf${control.filteredhomework[index].fileId}');
                           },
                           child: Container(
                               padding: const EdgeInsets.all(20),
@@ -149,7 +149,7 @@ class Homeworkgrid extends StatelessWidget {
                                       child: SizedBox(
                                           width: 500,
                                           child: Image.network(
-                                            "$getimage${control.filteredCurriculum[index].imageId}",
+                                            "$getimage${control.filteredhomework[index].fileId}",
                                             fit: BoxFit.fitWidth,
                                           ))),
                                   Row(
@@ -165,13 +165,7 @@ class Homeworkgrid extends StatelessWidget {
                                             child: Text(
                                                 maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,
-                                                Get.find<LocalizationController>()
-                                                            .currentLocale
-                                                            .value
-                                                            .languageCode ==
-                                                        'ar'
-                                                    ? "${control.filteredCurriculum[index].name}"
-                                                    : "${control.filteredCurriculum[index].enName}",
+                                                "${control.filteredhomework[index].name}",
                                                 style: Get
                                                     .theme.textTheme.titleLarge!
                                                     .copyWith(fontSize: 18)),
@@ -183,37 +177,7 @@ class Homeworkgrid extends StatelessWidget {
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Text("Max Mark :".tr +
-                                              " ${control.filteredCurriculum[index].maxMark}"),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 5.0, bottom: 5.0),
-                                            child: Text("Passing Mark :".tr +
-                                                " ${control.filteredCurriculum[index].passingMark}"),
-                                          ),
-                                          Text(
-                                              "Is Failure Agent :".tr +
-                                                  " ${control.filteredCurriculum[index].type == 1 ? "Yes".tr : "No".tr}",
-                                              style: TextStyle(
-                                                color: control
-                                                            .filteredCurriculum[
-                                                                index]
-                                                            .type ==
-                                                        1
-                                                    ? const Color(0xffB03D3D)
-                                                    : Color.fromARGB(
-                                                        255, 49, 108, 197),
-                                              )),
-                                        ],
-                                      ),
-                                    ],
+                                    children: [],
                                   )
                                 ],
                               )),

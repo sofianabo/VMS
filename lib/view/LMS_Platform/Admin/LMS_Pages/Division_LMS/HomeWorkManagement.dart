@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/LMS_APIs/Admin/AddFileHomeWorkAPI.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_All_Curr_LMS.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_Subject_LMS.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/AdminController/School_Controllers/Subject_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Curr_LMS_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/HomeworkController.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Subject_LMS_Controller.dart';
 import 'package:vms_school/view/Both_Platform/website/Home.dart';
 import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
@@ -109,9 +111,12 @@ class _HomeworkmanagementState extends State<Homeworkmanagement> {
                           if (value == "File Homework".tr) {
                             name.text = "";
                             Get.find<Homeworkcontroller>().reset();
+                            Get.find<Homeworkcontroller>().resetError();
 
                             controller.updateFieldError("arname", false);
                             controller.updateFieldError("file", false);
+                            controller.updateFieldError("birth", false);
+                            controller.updateFieldError("curr", false);
 
                             Get.dialog(AddFileHomeworkDialog(),
                                 barrierDismissible: false);
@@ -209,9 +214,12 @@ class _HomeworkmanagementState extends State<Homeworkmanagement> {
                                 if (value == "File Homework".tr) {
                                   name.text = "";
                                   Get.find<Homeworkcontroller>().reset();
+                                  Get.find<Homeworkcontroller>().resetError();
 
                                   controller.updateFieldError("arname", false);
                                   controller.updateFieldError("file", false);
+                                  controller.updateFieldError("birth", false);
+                                  controller.updateFieldError("curr", false);
 
                                   Get.dialog(AddFileHomeworkDialog(),
                                       barrierDismissible: false);
@@ -275,6 +283,7 @@ class _HomeworkmanagementState extends State<Homeworkmanagement> {
                             }
                           },
                           width: 350,
+                          isError: controller.IsAnameError,
                           controller: name,
                           Uptext: "Name".tr,
                           hinttext: "Name".tr),
@@ -283,11 +292,13 @@ class _HomeworkmanagementState extends State<Homeworkmanagement> {
                         title: "Curriculum".tr,
                         width: 350,
                         type: "currDialog",
+                        isError: controller.iscurrError,
                       ),
                       HomeWorkSubmissionDate(
                         Uptext: "HomeWork Submission Date".tr,
                         width: 350,
                         isRequired: true,
+                        isError: controller.isDateError,
                       )
                     ],
                   ),
@@ -409,18 +420,31 @@ class _HomeworkmanagementState extends State<Homeworkmanagement> {
                     text: "Add Homework".tr,
                     onPressed: () async {
                       bool isArNameEmpty = name.text.isEmpty;
+                      bool iscurrEmpty = controller.selectCurrIndex.isEmpty ||
+                          controller.selectCurrIndex == '';
+                      bool isdateEmpty = controller.homeworkDate.value == null;
                       bool isfileEmpty = controller.selectedFile.value == null;
 
                       controller.updateFieldError("file", isfileEmpty);
+                      controller.updateFieldError("curr", iscurrEmpty);
+                      controller.updateFieldError("birth", isdateEmpty);
+                      controller.updateFieldError("aname", isArNameEmpty);
 
-                      if (!(isArNameEmpty || isfileEmpty)) {
-                        // await Add_E_Book_API(context).Add_E_Book(
-                        //   file: controller.selectedFile.value,
-                        //   name: name.text,
-                        //   enName: enName.text,
-                        // );
-                        controller.selectedFile.value!.clear();
-                        name.clear();
+                      if (!(isArNameEmpty ||
+                          isfileEmpty ||
+                          iscurrEmpty ||
+                          isdateEmpty)) {
+                        await Addfilehomeworkapi(context).Addfilehomework(
+                            file: controller.selectedFile.value,
+                            name: name.text,
+                            curriculumId: controller.dialogCurrList
+                                .indexOf(controller.selectdialog_CurrIndex),
+                            divisionId: Get.find<Selected_Class_Controller>()
+                                .divisionid,
+                            endDate: controller.selectDate,
+                            mark: 10);
+                        // controller.selectedFile.value!.clear();
+                        // name.clear();
                       }
                     },
                     color: Theme.of(context).primaryColor)

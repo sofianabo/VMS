@@ -180,6 +180,8 @@ class Curriculumn_LMS_Controller extends GetxController {
     SetIsLoading(false);
     Get.find<Homeworkcontroller>().setcurr(curriculumModel);
     Get.find<Homeworkcontroller>().setDialogCurr(curriculumModel);
+    Get.find<Homeworkcontroller>().setisCurriculmLoading(false);
+    Get.find<Homeworkcontroller>().setisCurriculmDialogLoading(false);
     update();
   }
 
