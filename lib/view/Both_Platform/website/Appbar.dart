@@ -86,7 +86,7 @@ class AppbarCustom extends StatelessWidget {
                 SizedBox(
                   height: 70,
                   child: Image.asset(
-                    "assets/images/Logo2.png",
+                    "assets/images/logo2.png",
                     fit: BoxFit.contain,
                   ),
                 )
@@ -97,7 +97,7 @@ class AppbarCustom extends StatelessWidget {
                     height: 70,
                     child: Image.asset(
                       width: 150,
-                      "assets/images/Logo2.png",
+                      "assets/images/logo2.png",
                       fit: BoxFit.contain,
                     ),
                   ),

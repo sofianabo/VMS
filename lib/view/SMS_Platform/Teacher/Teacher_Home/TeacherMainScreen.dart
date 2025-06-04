@@ -91,8 +91,7 @@ class _GuardianMainScreenState extends State<TeacherMainScreen> {
           );
         } else {
           return GetBuilder<My_Students_Controller>(builder: (control) {
-            return Expanded(
-                child: Column(
+            return Column(
               children: [
                 Teacherappbar(),
                 if (screenWidth > 769)
@@ -275,7 +274,7 @@ class _GuardianMainScreenState extends State<TeacherMainScreen> {
                   child: TeacherMainScreenGrid(),
                 )),
               ],
-            ));
+            );
           });
         }
       }),

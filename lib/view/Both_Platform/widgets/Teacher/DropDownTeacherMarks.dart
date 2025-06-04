@@ -88,15 +88,16 @@ class Dropdownteachermarks extends StatelessWidget {
                 : Row(
                     children: [
                       Expanded(
-                        child: DropdownButton<String>( 
+                        child: DropdownButton<String>(
                           onChanged: (newValue) {
                             if (newValue != null) {
                               cont.selectIndex(type, newValue);
 
                               if (type == 'Class') {
                                 cont.resetinClass();
-                                Getteacherdivisionmarksapi(context).Getteacherdivisionmarks(
-                                    cont.Classlist.indexOf(newValue), 0);
+                                Getteacherdivisionmarksapi(context)
+                                    .Getteacherdivisionmarks(
+                                        cont.Classlist.indexOf(newValue), 0);
                               }
                               if (type == 'Division') {
                                 Getcurriculumteacherapi(context)
@@ -123,12 +124,11 @@ class Dropdownteachermarks extends StatelessWidget {
                                             cont.Curriculumlist.indexOf(
                                                 cont.CurriculumIndex)]
                                         .id!,
-                                    DivisionId:
-                                        Get.find<Dropdowndivisioncontroller>()
-                                            .allDivision[
-                                                cont.Divisionlist.indexOf(
-                                                    cont.DivisionIndex)]
-                                            .id!);
+                                    DivisionId: Get.find<
+                                            StudentmarksTeachercontroller>()
+                                        .alldivision[cont.Divisionlist.indexOf(
+                                            cont.DivisionIndex)]
+                                        .id!);
                               }
                               switch (type) {
                                 case 'Semester':
