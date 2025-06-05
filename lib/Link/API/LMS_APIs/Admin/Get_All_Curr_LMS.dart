@@ -27,6 +27,7 @@ class Get_LMS_Curriculm_API {
             Curriculum_Model.fromJson(response.data);
         controller.SetCurriculum(curriculumModel);
       } else {
+        
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,

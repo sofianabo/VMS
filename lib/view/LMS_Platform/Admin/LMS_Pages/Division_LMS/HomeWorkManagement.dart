@@ -255,7 +255,7 @@ class _HomeworkmanagementState extends State<Homeworkmanagement> {
         Expanded(
             child: Padding(
           padding: const EdgeInsets.only(top: 15.0),
-          child: Text("data"),
+          child: Homeworkgrid(),
         )),
       ],
     ));
