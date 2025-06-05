@@ -19,9 +19,7 @@ class Section5 extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(bottom: h / 25),
                 child: Text("Who Are We".tr,
-                    style: Get.theme.textTheme.titleMedium!.copyWith(
-                      fontWeight: FontWeight.normal,
-                    )),
+                    style: Get.theme.textTheme.titleMedium!.copyWith()),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -130,9 +128,7 @@ class Section5 extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(bottom: h / 25),
                 child: Text("Who Are We".tr,
-                    style: Get.theme.textTheme.titleMedium!.copyWith(
-                      fontWeight: FontWeight.normal,
-                    )),
+                    style: Get.theme.textTheme.titleMedium!.copyWith()),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -242,9 +238,7 @@ class Section5 extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(bottom: h / 25),
                 child: Text("Who Are We".tr,
-                    style: Get.theme.textTheme.titleMedium!.copyWith(
-                      fontWeight: FontWeight.normal,
-                    )),
+                    style: Get.theme.textTheme.titleMedium!.copyWith()),
               ),
               Column(
                 children: [

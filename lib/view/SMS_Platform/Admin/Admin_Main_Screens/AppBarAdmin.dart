@@ -165,7 +165,7 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                       cont.content.tr,
                       style: TextStyle(
                           fontSize: 24,
-                          fontWeight: FontWeight.normal,
+                          fontWeight: FontWeight.bold,
                           color:
                               Theme.of(context).textTheme.titleMedium!.color!),
                     ),
@@ -212,7 +212,7 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                     cont.content.tr,
                     style: TextStyle(
                         fontSize: 20,
-                        fontWeight: FontWeight.normal,
+                        fontWeight: FontWeight.bold,
                         color: Theme.of(context).textTheme.titleMedium!.color!),
                   ),
                 )),
@@ -350,7 +350,7 @@ class _AppbarAdminState extends State<AppbarAdmin> {
                                 cont.content.tr,
                                 style: TextStyle(
                                     fontSize: 20,
-                                    fontWeight: FontWeight.normal,
+                                    fontWeight: FontWeight.bold,
                                     color: Theme.of(context)
                                         .textTheme
                                         .titleMedium!

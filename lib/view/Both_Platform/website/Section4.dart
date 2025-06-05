@@ -30,9 +30,7 @@ class Section4 extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(top: h / 38),
                   child: Text("Why Us?".tr,
-                      style: Get.theme.textTheme.titleMedium!.copyWith(
-                        fontWeight: FontWeight.normal,
-                      )),
+                      style: Get.theme.textTheme.titleMedium!.copyWith()),
                 )),
             SizedBox(
               height: h / 27.36,
@@ -330,9 +328,7 @@ class Section4 extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(top: h / 38, bottom: 15.0),
                   child: Text("Why Us?".tr,
-                      style: Get.theme.textTheme.titleMedium!.copyWith(
-                        fontWeight: FontWeight.normal,
-                      )),
+                      style: Get.theme.textTheme.titleMedium!.copyWith()),
                 )),
             Padding(
               padding: const EdgeInsets.only(left: 8.0, right: 8.0),

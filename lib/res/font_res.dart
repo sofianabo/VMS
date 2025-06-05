@@ -8,6 +8,7 @@ class FontRes {
 
   static const String PROJECT_NAME = 'vms_school';
   static const String PROJECT_VERSION = '1.0.0+1';
+  static const String CAIRO_BOLD = 'Cairo-Bold';
   static const String CAIRO_REGULAR = 'Cairo-Regular';
   static const String FICONS = 'Ficons';
   static const String SANSATION_REGULAR = 'Sansation_Regular';

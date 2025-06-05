@@ -18,7 +18,6 @@ class Section2 extends StatelessWidget {
             Text("Who Can Register At Virtual Modern School".tr,
                 textAlign: TextAlign.center,
                 style: Get.theme.textTheme.titleMedium!.copyWith(
-                  fontWeight: FontWeight.normal,
                   fontSize: 24,
                 )),
             Row(
@@ -285,7 +284,6 @@ class Section2 extends StatelessWidget {
             Text("Who Can Register At Virtual Modern School".tr,
                 textAlign: TextAlign.center,
                 style: Get.theme.textTheme.titleMedium!.copyWith(
-                  fontWeight: FontWeight.normal,
                   fontSize: 16,
                 )),
             Padding(
