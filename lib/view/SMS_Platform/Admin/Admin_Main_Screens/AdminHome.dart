@@ -147,11 +147,11 @@ class _AdminHomeState extends State<AdminHome> {
                                                   return AllEmployee();
                                                 case "Employee Attendance":
                                                   return EmployeeStatus();
-                                                case "Employee Attendance Manage":
+                                                case "Manage Employee Attendance":
                                                   return EmployeeAttendanceManagment();
-                                                case "Teacher Attendance Managment":
+                                                case "Manage Teacher Attendance":
                                                   return TeacherAttendanceManagment();
-                                                case "Students Attendance Managment":
+                                                case "Manage Students Attendance":
                                                   return StudentsAttendanceManagment();
                                                 case "Grade Management":
                                                   return GradeManagement();

@@ -15,9 +15,10 @@ class Section2 extends StatelessWidget {
       child: ResponsiveUI(
         desktopScreen: Column(
           children: [
-            Text("Who Can We Register At Virtual Modern School".tr,
+            Text("Who Can Register At Virtual Modern School".tr,
                 textAlign: TextAlign.center,
                 style: Get.theme.textTheme.titleMedium!.copyWith(
+                  fontWeight: FontWeight.normal,
                   fontSize: 24,
                 )),
             Row(
@@ -141,9 +142,10 @@ class Section2 extends StatelessWidget {
         tabletScreen: Column(
           spacing: 25.0,
           children: [
-            Text("Who Can We Register At Virtual Modern School".tr,
+            Text("Who Can Register At Virtual Modern School".tr,
                 textAlign: TextAlign.center,
                 style: Get.theme.textTheme.titleMedium!.copyWith(
+                  fontWeight: FontWeight.normal,
                   fontSize: 20,
                 )),
             Padding(
@@ -280,9 +282,10 @@ class Section2 extends StatelessWidget {
         mobileScreen: Column(
           spacing: 25.0,
           children: [
-            Text("Who Can We Register At Virtual Modern School".tr,
+            Text("Who Can Register At Virtual Modern School".tr,
                 textAlign: TextAlign.center,
                 style: Get.theme.textTheme.titleMedium!.copyWith(
+                  fontWeight: FontWeight.normal,
                   fontSize: 16,
                 )),
             Padding(

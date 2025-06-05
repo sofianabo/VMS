@@ -19,7 +19,9 @@ class Section5 extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(bottom: h / 25),
                 child: Text("Who Are We".tr,
-                    style: Get.theme.textTheme.titleMedium!),
+                    style: Get.theme.textTheme.titleMedium!.copyWith(
+                      fontWeight: FontWeight.normal,
+                    )),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -93,8 +95,11 @@ class Section5 extends StatelessWidget {
                                       height: h / 34.2,
                                     ),
                                     Text("Virtual Modern School".tr,
-                                        style:
-                                            Get.theme.textTheme.headlineLarge!)
+                                        style: Get
+                                            .theme.textTheme.headlineLarge!
+                                            .copyWith(
+                                          fontWeight: FontWeight.normal,
+                                        ))
                                   ],
                                 ),
                               ),
@@ -125,7 +130,9 @@ class Section5 extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(bottom: h / 25),
                 child: Text("Who Are We".tr,
-                    style: Get.theme.textTheme.titleMedium!),
+                    style: Get.theme.textTheme.titleMedium!.copyWith(
+                      fontWeight: FontWeight.normal,
+                    )),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -200,8 +207,11 @@ class Section5 extends StatelessWidget {
                                       height: h / 34.2,
                                     ),
                                     Text("Virtual Modern School".tr,
-                                        style:
-                                            Get.theme.textTheme.headlineLarge!)
+                                        style: Get
+                                            .theme.textTheme.headlineLarge!
+                                            .copyWith(
+                                          fontWeight: FontWeight.normal,
+                                        ))
                                   ],
                                 ),
                               ),
@@ -232,7 +242,9 @@ class Section5 extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(bottom: h / 25),
                 child: Text("Who Are We".tr,
-                    style: Get.theme.textTheme.titleMedium!),
+                    style: Get.theme.textTheme.titleMedium!.copyWith(
+                      fontWeight: FontWeight.normal,
+                    )),
               ),
               Column(
                 children: [
@@ -320,7 +332,10 @@ class Section5 extends StatelessWidget {
                                 ),
                               ),
                               Text("Virtual Modern School".tr,
-                                  style: Get.theme.textTheme.headlineLarge!)
+                                  style: Get.theme.textTheme.headlineLarge!
+                                      .copyWith(
+                                    fontWeight: FontWeight.normal,
+                                  ))
                             ],
                           ),
                         ),

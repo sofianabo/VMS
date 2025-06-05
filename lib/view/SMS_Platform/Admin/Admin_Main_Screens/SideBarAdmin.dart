@@ -141,8 +141,8 @@ class _SideBarAdminState extends State<SideBarAdmin> {
                         if (value == "Student Attendance".tr) {
                           cont.updateContent("Student Attendance");
                         }
-                        if (value == "Students Attendance Managment".tr) {
-                          cont.updateContent("Students Attendance Managment");
+                        if (value == "Manage Students Attendance".tr) {
+                          cont.updateContent("Manage Students Attendance");
                         }
                         if (value == "Students Marks".tr) {
                           cont.updateContent("Students Marks");
@@ -178,8 +178,8 @@ class _SideBarAdminState extends State<SideBarAdmin> {
                           ),
                         if (Get.find<Add_Data_controller>().roll != "observer")
                           PopupMenuItem<String>(
-                            value: 'Students Attendance Managment'.tr,
-                            child: Text('Students Attendance Managment'.tr),
+                            value: 'Manage Students Attendance'.tr,
+                            child: Text('Manage Students Attendance'.tr),
                           ),
                         if (Get.find<Add_Data_controller>().roll != "observer")
                           PopupMenuItem<String>(
@@ -210,8 +210,8 @@ class _SideBarAdminState extends State<SideBarAdmin> {
                         if (value == "Teacher Status".tr) {
                           cont.updateContent("Teacher Status");
                         }
-                        if (value == "Teacher Attendance Managment".tr) {
-                          cont.updateContent("Teacher Attendance Managment");
+                        if (value == "Manage Teacher Attendance".tr) {
+                          cont.updateContent("Manage Teacher Attendance");
                         }
                       },
                       itemBuilder: (BuildContext context) =>
@@ -227,8 +227,8 @@ class _SideBarAdminState extends State<SideBarAdmin> {
                           ),
                         if (Get.find<Add_Data_controller>().roll != "observer")
                           PopupMenuItem<String>(
-                            value: 'Teacher Attendance Managment'.tr,
-                            child: Text('Teacher Attendance Managment'.tr),
+                            value: 'Manage Teacher Attendance'.tr,
+                            child: Text('Manage Teacher Attendance'.tr),
                           ),
                       ],
                     ),
@@ -254,8 +254,8 @@ class _SideBarAdminState extends State<SideBarAdmin> {
                         if (value == "Employee Attendance".tr) {
                           cont.updateContent("Employee Attendance");
                         }
-                        if (value == "Employee Attendance Manage".tr) {
-                          cont.updateContent("Employee Attendance Manage");
+                        if (value == "Manage Employee Attendance".tr) {
+                          cont.updateContent("Manage Employee Attendance");
                         }
                         if (value == "Virtual User Management".tr) {
                           cont.updateContent("Virtual User Management");
@@ -274,8 +274,8 @@ class _SideBarAdminState extends State<SideBarAdmin> {
                           ),
                         if (Get.find<Add_Data_controller>().roll != "observer")
                           PopupMenuItem<String>(
-                            value: 'Employee Attendance Manage'.tr,
-                            child: Text('Employee Attendance Manage'.tr),
+                            value: 'Manage Employee Attendance'.tr,
+                            child: Text('Manage Employee Attendance'.tr),
                           ),
                         if (Get.find<Add_Data_controller>().roll != "observer")
                           if (Get.find<Add_Data_controller>().roll !=

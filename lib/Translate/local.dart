@@ -86,13 +86,13 @@ class Languages {
       'All Guardians': 'أولياء الأمور',
       'Student Attendance': 'حضور الطلاب',
       'Teacher Attendance': 'حضور المعلمين',
-      'Students Attendance Managment': 'إدارة حضور الطلاب',
+      'Manage Students Attendance': 'إدارة حضور الطلاب',
       'Teacher Management': 'إدارة المعلمين',
       'Teacher Status': 'حضور المعلمين',
-      'Teacher Attendance Managment': 'إدارة حضور المعلمين',
+      'Manage Teacher Attendance': 'إدارة حضور المعلمين',
       'Employee Management': 'إدارة الموظفين',
       'Employee Attendance': 'حضور الموظفين',
-      'Employee Attendance Manage': 'إدارة حضور الموظفين',
+      'Manage Employee Attendance': 'إدارة حضور الموظفين',
       'Virtual User Management': 'إدارة الموظفين الافتراضيين',
       'Session Management': 'إدارة السنوات',
       'Grade Management': 'إدارة المراحل الدراسية',
@@ -287,7 +287,7 @@ class Languages {
       'AboutUs': 'حول',
       'Stop Completion and Verification': 'ايقاف الاكمال والتحقق',
       'WhyUs': 'لماذا نحن',
-      'Programs': 'البرنامج',
+      'Programs': 'دورنا',
       'Enrollment': 'التسجيل',
       'Eligibility': 'المؤهلون',
 
@@ -430,7 +430,7 @@ class Languages {
       'How I Can Enroll At Virtual Modern School':
           'كيف يمكنني التسجيل في المدرسة الافتراضية الحديثة',
       'Parents of our students can register their children in the Virtual Modern School':
-          'يمكن لأولياء أمور طلابنا تسجيل أبنائهم في المدرسة الحديثة الافتراضية',
+          'يمكن لأولياء أمور طلابنا تسجيل أبنائهم في المدرسة الافتراضية الحديثة',
       'by the following steps:': 'بالخطوات التالية:',
       '1. Enter the first and last name of the guardian':
           '1. أدخل الاسم الأول والأخير لوَليّ الأمر',
@@ -443,7 +443,7 @@ class Languages {
       ////////////////////////////////////section 4////////////////////////////////
       'Why Us?': 'لماذا نحن',
       'Virtual Modern School is an online learning platform that helps students to learn the':
-          'المدرسة الحديثة الافتراضية هي منصة تعليمية عبر الإنترنت تساعد الطلاب على  ',
+          'المدرسة الافتراضية الحديثة هي منصة تعليمية عبر الإنترنت تساعد الطلاب على  ',
       'Syrian Education Curriculum from home. The courses of this platform are designed':
           'تعلم المنهج التعليمي السوري من المنزل. تم تصميم الدورات في هذه المنصة للمدرسة الابتدائية،',
       'for elementary school, middle school, and high school all in one place.':
@@ -464,7 +464,7 @@ class Languages {
 
       'Who Are We': 'من نحن',
       'is a community of learners, including students, parents, and staff, dedicated to creating a rigorous and':
-          'المدرسة الحديثة الافتراضية هي مجتمع من المتعلمين ، بما في ذلك الطلاب وأولياء الأمور والموظفين ، مكرسين لإنشاء بيئة صارمة',
+          'المدرسة الافتراضية الحديثة هي مجتمع من المتعلمين ، بما في ذلك الطلاب وأولياء الأمور والموظفين ، مكرسين لإنشاء بيئة صارمة',
       'VIRTUAL MODERN SCHOOL (VMS)': '',
       'inclusive educational environment. VMS students are goal-oriented, critical thinkers, and community leaders':
           ' و بيئة تعليمية شاملة. طلاب المدرسة هادفون ومفكرين نقديين وقادة مجتمع ملتزمون ',
@@ -472,7 +472,7 @@ class Languages {
           'بتحقيق مستويات عالية من النزاهة والنجاح الأكاديمي.',
 
       'VIRTUAL MODERN SCHOOL (VMS) staff aim to create a supportive':
-          'يهدف موظفو المدرسة الحديثة الافتراضية إلى خلق بيئة داعمة وتحديّة',
+          'يهدف موظفو المدرسة الافتراضية الحديثة إلى خلق بيئة داعمة وتحديّة',
       'and challenging environment for all students to reach their potential,':
           'لجميع الطلاب للوصول إلى إمكاناتهم، والانخراط في ',
       'engaging in continuous improvement through goal setting and':
@@ -482,15 +482,15 @@ class Languages {
 
       ////////////////////////section 6//////////////////////////
 
-      'What Do We': 'ماذا نفعل',
+      'What Do We Do': 'ماذا نفعل',
       'We develop a culture of excellence that includes a robust instructional program aligned to the':
           'نحن نطور ثقافة التميز التي تشمل برنامجًا تعليميًا قويًا يتوافق مع أعلى المعايير،',
       'highest standards with a focus on implementing balanced literacy through reading and writing':
-          'مع التركيز على تطبيق محو الأمية المتوازن من خلال ورش عمل القراءة والكتابة،',
+          'مع التركيز على تطبيق التعليم المميز من خلال ورش عمل القراءة والكتابة،',
       'workshops, while cultivating competency across all subject areas.':
-          'مع تعزيز الكفاءة في جميع المواد الدراسية.',
+          'من خلال تعزيز الكفاءة في جميع المواد الدراسية.',
       'We are committed to developing well-rounded students who embody our core values: Be Safe, Be Respectful, Be Responsible, and Be Mindful. Our vibrant learning environment encourages discovery and creative expression, making every student feel valued.\n\nWe provide our educators with robust professional development to enhance teaching practices and boost student success. Through collaboration and a community schools model, we align resources to ensure every student thrives. Join us in our journey towards excellence!':
-          'نحن ملتزمون بتطوير طلاب متوازنين يجسدون قيمنا الأساسية: كن آمناً، وكن محترماً، وكن مسؤولا، وكن واعياً. تشجع بيئة التعلم الحيوية لدينا على الاكتشاف والتعبير الإبداعي، مما يجعل كل طالب يشعر بالتقدير.\n\n نحن نقدم لمعلمينا تطويراً مهنياً قوياً لتعزيز ممارسات التدريس وزيادة نجاح الطلاب. من خلال التعاون ونموذج المدارس المجتمعية، نقوم بتنسيق الموارد لضمان ازدهار كل طالب. انضم إلينا في رحلتنا نحو التميز!',
+          'نحن ملتزمون بتطوير طلاب متوازنين يجسدون قيمنا الأساسية: كن آمناً، وكن محترماً، وكن مسؤولا، وكن واعياً. تشجع بيئة التعلم الحيوية لدينا على الاكتشاف والتعبير الإبداعي، مما يجعل كل طالب يشعر بالتقدير.\n\n نحن نقدم لمعلمينا تطويراً مهنياً قوياً لتعزيز ممارسات التدريس وزيادة نجاح الطلاب. من خلال التعاون ونموذج المدارس المجتمعية، نقوم بتنسيق الموارد لضمان ازدهار كل طالب.\n\n انضم إلينا في رحلتنا نحو التميز!',
       //////////////////////////////////section 7////////////////////////////////////////
       'Openning Hours': 'ساعات العمل',
       '8 AM -----> 1 PM': '8 صباحاً---------> 1 ظهراً',
@@ -883,13 +883,13 @@ class Languages {
       'All Guardians': 'All Guardians',
       'Student Attendance': 'Student Attendance',
       'Teacher Attendance': 'Teacher Attendance',
-      'Students Attendance Managment': 'Students Attendance Managment',
+      'Manage Students Attendance': 'Manage Students Attendance',
       'Teacher Management': 'Teacher Management',
       'Teacher Status': 'Teacher Status',
-      'Teacher Attendance Managment': 'Teacher Attendance Managment',
+      'Manage Teacher Attendance': 'Manage Teacher Attendance',
       'Employee Management': 'Employee Management',
       'Employee Attendance': 'Employee Attendance',
-      'Employee Attendance Manage': 'Employee Attendance Manage',
+      'Manage Employee Attendance': 'Manage Employee Attendance',
       'Virtual User Management': 'Virtual User Management',
       'Session Management': 'Session Management',
       'Grade Management': 'Grade Management',
@@ -1073,11 +1073,11 @@ class Languages {
       'Contact Us': 'Contact Us',
       'AboutUs': 'AboutUs',
       'WhyUs': 'WhyUs',
-      'Programs': 'Programs',
+      'Programs': 'Our Role',
       'Forgot your password  ?': 'Forgot your password  ?',
       'Enrollment': 'Enrollment',
       'Eligibility': 'Eligibility',
-      'Who Can We Register At Virtual Modern School':
+      'Who Can Register At Virtual Modern School':
           'Who Can Register At Virtual Modern School',
       'Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary':
           'Anyone who resides outside Syria desires to learn the Syrian Educational Curriculums from Elementary',
@@ -1240,7 +1240,7 @@ class Languages {
 
       /////////////////////section 6///////////////////////////
 
-      'What Do We': 'What Do We',
+      'What Do We Do': 'What Do We Do',
       'We develop a culture of excellence that includes a robust instructional program aligned to the':
           'We develop a culture of excellence that includes a robust instructional program aligned to the',
       'highest standards with a focus on implementing balanced literacy through reading and writing':
@@ -1500,7 +1500,7 @@ class Languages {
       'Clinic Name': 'Clinic Name',
       'Congregation number': 'Congregation Number',
       'Previous name': 'Previous Name',
-      'Town Chip': 'Townchip',
+      'Town Chip': 'TownShip',
       'Outstanding School': 'Outstanding School',
       'Taken Over School': 'Taken Over School',
       'Reassignment Teachers': 'Reassignment Teachers',

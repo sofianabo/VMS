@@ -311,9 +311,9 @@ class _DraweHomeState extends State<DraweHome> {
                                             "Student Attendance");
                                       }
                                       if (value ==
-                                          "Students Attendance Managment".tr) {
+                                          "Manage Students Attendance".tr) {
                                         cont.updateContent(
-                                            "Students Attendance Managment");
+                                            "Manage Students Attendance");
                                       }
                                       if (value == "Students Marks".tr) {
                                         cont.updateContent("Students Marks");
@@ -360,11 +360,10 @@ class _DraweHomeState extends State<DraweHome> {
                                               .roll !=
                                           "observer")
                                         PopupMenuItem<String>(
-                                          value: 'Students Attendance Managment'
-                                              .tr,
+                                          value:
+                                              'Manage Students Attendance'.tr,
                                           child: Text(
-                                              'Students Attendance Managment'
-                                                  .tr),
+                                              'Manage Students Attendance'.tr),
                                         ),
                                       if (Get.find<Add_Data_controller>()
                                               .roll !=
@@ -408,9 +407,9 @@ class _DraweHomeState extends State<DraweHome> {
                                         cont.updateContent("Teacher Status");
                                       }
                                       if (value ==
-                                          "Teacher Attendance Managment".tr) {
+                                          "Manage Teacher Attendance".tr) {
                                         cont.updateContent(
-                                            "Teacher Attendance Managment");
+                                            "Manage Teacher Attendance");
                                       }
                                       Get.find<DraweController>()
                                           .opendrawer(false);
@@ -432,11 +431,9 @@ class _DraweHomeState extends State<DraweHome> {
                                               .roll !=
                                           "observer")
                                         PopupMenuItem<String>(
-                                          value:
-                                              'Teacher Attendance Managment'.tr,
+                                          value: 'Manage Teacher Attendance'.tr,
                                           child: Text(
-                                              'Teacher Attendance Managment'
-                                                  .tr),
+                                              'Manage Teacher Attendance'.tr),
                                         ),
                                     ],
                                   ),
@@ -474,9 +471,9 @@ class _DraweHomeState extends State<DraweHome> {
                                             "Employee Attendance");
                                       }
                                       if (value ==
-                                          "Employee Attendance Manage".tr) {
+                                          "Manage Employee Attendance".tr) {
                                         cont.updateContent(
-                                            "Employee Attendance Manage");
+                                            "Manage Employee Attendance");
                                       }
                                       if (value ==
                                           "Virtual User Management".tr) {
@@ -504,9 +501,9 @@ class _DraweHomeState extends State<DraweHome> {
                                           "observer")
                                         PopupMenuItem<String>(
                                           value:
-                                              'Employee Attendance Manage'.tr,
+                                              'Manage Employee Attendance'.tr,
                                           child: Text(
-                                              'Employee Attendance Manage'.tr),
+                                              'Manage Employee Attendance'.tr),
                                         ),
                                       if (Get.find<Add_Data_controller>()
                                               .roll !=

@@ -17,8 +17,10 @@ class Section6 extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.only(bottom: h / 34.2),
-            child:
-                Text("What Do We".tr, style: Get.theme.textTheme.titleMedium!),
+            child: Text("What Do We Do".tr,
+                style: Get.theme.textTheme.titleMedium!.copyWith(
+                  fontWeight: FontWeight.normal,
+                )),
           ),
           ResponsiveUI(
             desktopScreen: Row(

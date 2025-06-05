@@ -19,6 +19,7 @@ class Section3 extends StatelessWidget {
             children: [
               Text("How I Can Enroll At Virtual Modern School".tr,
                   style: Get.theme.textTheme.titleMedium!.copyWith(
+                    fontWeight: FontWeight.normal,
                     fontSize: 24,
                   )),
               Row(
@@ -91,6 +92,7 @@ class Section3 extends StatelessWidget {
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   style: Get.theme.textTheme.titleMedium!.copyWith(
+                    fontWeight: FontWeight.normal,
                     fontSize: 18,
                   )),
               Container(
@@ -160,6 +162,7 @@ class Section3 extends StatelessWidget {
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   style: Get.theme.textTheme.titleMedium!.copyWith(
+                    fontWeight: FontWeight.normal,
                     fontSize: 16,
                   )),
               Container(

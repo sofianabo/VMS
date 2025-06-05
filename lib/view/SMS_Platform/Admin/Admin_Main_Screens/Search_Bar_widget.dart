@@ -90,18 +90,18 @@ class _SearchWithSuggestionsState extends State<SearchWithSuggestions> {
           "Study Year Students",
           "All Guardians",
           "Student Attendance",
-          "Students Attendance Managment",
+          "Manage Students Attendance",
           "Students Marks",
 
           // من Teachers -> PopupMenuButton
           "Teacher Management",
           "Teacher Status",
-          "Teacher Attendance Managment",
+          "Manage Teacher Attendance",
 
           // من Employees -> PopupMenuButton
           "Employee Management",
           "Employee Attendance",
-          "Employee Attendance Manage",
+          "Manage Employee Attendance",
           "Virtual User Management",
 
           // من Management -> PopupMenuButton
@@ -137,17 +137,17 @@ class _SearchWithSuggestionsState extends State<SearchWithSuggestions> {
           "All Students",
           "Study Year Students",
           "Student Attendance",
-          "Students Attendance Managment",
+          "Manage Students Attendance",
           "Students Marks",
           // من Teachers -> PopupMenuButton
           "Teacher Management",
           "Teacher Status",
-          "Teacher Attendance Managment",
+          "Manage Teacher Attendance",
 
           // من Employees -> PopupMenuButton
           "Employee Management",
           "Employee Attendance",
-          "Employee Attendance Manage",
+          "Manage Employee Attendance",
 
           // من Management -> PopupMenuButton
           "Session Management",
@@ -181,18 +181,18 @@ class _SearchWithSuggestionsState extends State<SearchWithSuggestions> {
           "Study Year Students",
           "All Guardians",
           "Student Attendance",
-          "Students Attendance Managment",
+          "Manage Students Attendance",
           "Students Marks",
 
           // من Teachers -> PopupMenuButton
           "Teacher Management",
           "Teacher Status",
-          "Teacher Attendance Managment",
+          "Manage Teacher Attendance",
 
           // من Employees -> PopupMenuButton
           "Employee Management",
           "Employee Attendance",
-          "Employee Attendance Manage",
+          "Manage Employee Attendance",
           "Virtual User Management",
 
           // من Management -> PopupMenuButton
