@@ -158,91 +158,76 @@ class _GuardianMainScreenState extends State<GuardianMainScreen> {
                     width: double.infinity,
                     margin: const EdgeInsets.symmetric(
                         horizontal: 30.0, vertical: 10.0),
-                    child: Wrap(
-                      spacing: 8.0,
-                      runSpacing: 8.0,
-                      alignment: WrapAlignment.spaceBetween,
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      runAlignment: WrapAlignment.spaceBetween,
-                      children: [
-                        Wrap(
-                          spacing: 8.0,
-                          runSpacing: 8.0,
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 17.0),
-                              child: Dropdowngurdiansession(
-                                title: "Session".tr,
-                                type: "session",
-                                width: 200,
-                                isLoading: control.isLoadingSession,
-                              ),
-                            ),
-                            Row(
-                              spacing: 10,
-                              children: [
-                                GetBuilder<MyChildren_Controller>(
-                                    builder: (controller) {
-                                  return TextFormSearch(
-                                    width: screenWidth - 150,
-                                    click: () {
-                                      controller.clearFilter();
-                                    },
-                                    onchange: (value) {
-                                      controller.searchByName(value);
-                                    },
-                                    radius: 5,
-                                    controller: search,
-                                    suffixIcon: search.text.isNotEmpty
-                                        ? Icons.close
-                                        : Icons.search,
-                                  );
-                                }),
-                                Container(
-                                  width: 41,
-                                  height: 41,
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context).cardColor,
-                                    borderRadius: BorderRadius.circular(5),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        color: Colors.black12,
-                                        offset: Offset(0, 2),
-                                        blurRadius: 1,
-                                      ),
-                                    ],
-                                  ),
-                                  child: IconButton(
-                                    style: const ButtonStyle(
-                                      shape: WidgetStatePropertyAll(
-                                        RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5)),
-                                        ),
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      Get.find<Addgurdianchildcontroller>()
-                                          .resetError();
-
-                                      Add_Students_Guardian_Functions();
-                                    },
-                                    icon: Icon(
-                                      Icons.add,
-                                      size: 18,
-                                      color: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium!
-                                          .color!,
-                                    ),
-                                  ),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        spacing: 8.0,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Dropdowngurdiansession(
+                            title: "Session".tr,
+                            type: "session",
+                            width: 200,
+                            isLoading: control.isLoadingSession,
+                          ),
+                          GetBuilder<MyChildren_Controller>(
+                              builder: (controller) {
+                            return TextFormSearch(
+                              width: screenWidth - 150,
+                              click: () {
+                                controller.clearFilter();
+                              },
+                              onchange: (value) {
+                                controller.searchByName(value);
+                              },
+                              radius: 5,
+                              controller: search,
+                              suffixIcon: search.text.isNotEmpty
+                                  ? Icons.close
+                                  : Icons.search,
+                            );
+                          }),
+                          Container(
+                            width: 41,
+                            height: 41,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 1,
                                 ),
                               ],
                             ),
-                          ],
-                        ),
-                      ],
+                            child: IconButton(
+                              style: const ButtonStyle(
+                                shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5)),
+                                  ),
+                                ),
+                              ),
+                              onPressed: () {
+                                Get.find<Addgurdianchildcontroller>()
+                                    .resetError();
+
+                                Add_Students_Guardian_Functions();
+                              },
+                              icon: Icon(
+                                Icons.add,
+                                size: 18,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .color!,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 Expanded(

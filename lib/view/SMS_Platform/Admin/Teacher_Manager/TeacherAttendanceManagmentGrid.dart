@@ -57,7 +57,7 @@ class _TeacherAttendanceManagmentGridState
                                                       future: controller.Employees[
                                                                       index]
                                                                   ["imgid"] !=
-                                                              null
+                                                              ""
                                                           ? precacheImage(
                                                               NetworkImage(
                                                                   "$getimage${controller.Employees[index]["imgid"]}"),
@@ -78,7 +78,7 @@ class _TeacherAttendanceManagmentGridState
                                                                             .Employees[index]
                                                                         [
                                                                         "imgid"] !=
-                                                                    null
+                                                                    ""
                                                                 ? NetworkImage(
                                                                     "$getimage${controller.Employees[index]["imgid"]}")
                                                                 : null,
@@ -86,13 +86,27 @@ class _TeacherAttendanceManagmentGridState
                                                                             index]
                                                                         [
                                                                         "imgid"] ==
-                                                                    null
-                                                                ? const Icon(
-                                                                    Icons
-                                                                        .image_outlined,
-                                                                    color: Colors
-                                                                        .white,
-                                                                    size: 15,
+                                                                    ""
+                                                                ? Text(
+                                                                    controller
+                                                                        .Employees[
+                                                                            index]
+                                                                            [
+                                                                            "name"]!
+                                                                        .substring(
+                                                                            0,
+                                                                            1)
+                                                                        .toUpperCase(),
+                                                                    style: Get
+                                                                        .textTheme
+                                                                        .titleLarge!
+                                                                        .copyWith(
+                                                                      fontSize:
+                                                                          16,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
                                                                   )
                                                                 : null,
                                                           );
@@ -253,218 +267,219 @@ class _TeacherAttendanceManagmentGridState
                     : Obx(() {
                         return Column(
                           children: [
-                            SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Container(
-                                width: 769,
-                                height:
-                                    MediaQuery.of(context).size.height - 225,
-                                child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 10, left: 40, right: 40),
-                                    child: ListView.builder(
-                                      itemCount: controller.Employees.length,
-                                      itemBuilder: (context, index) {
-                                        return Column(
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                SizedBox(
-                                                  width: 200,
-                                                  child: Row(
-                                                    children: [
-                                                      FutureBuilder(
-                                                        future: controller.Employees[
-                                                                        index]
-                                                                    ["imgid"] !=
-                                                                null
-                                                            ? precacheImage(
-                                                                NetworkImage(
-                                                                    "$getimage${controller.Employees[index]["imgid"]}"),
-                                                                context)
-                                                            : Future.value(
-                                                                null),
-                                                        builder: (context,
-                                                            snapshot) {
-                                                          if (snapshot
-                                                                  .connectionState ==
-                                                              ConnectionState
-                                                                  .done) {
-                                                            return CircleAvatar(
-                                                              maxRadius: 25,
-                                                              backgroundColor:
-                                                                  const Color(
-                                                                      0xffC4C4C4),
-                                                              backgroundImage: controller
-                                                                              .Employees[index]
-                                                                          [
-                                                                          "imgid"] !=
-                                                                      null
-                                                                  ? NetworkImage(
-                                                                      "$getimage${controller.Employees[index]["imgid"]}")
-                                                                  : null,
-                                                              child: controller.Employees[
-                                                                              index]
-                                                                          [
-                                                                          "imgid"] ==
-                                                                      null
-                                                                  ? const Icon(
-                                                                      Icons
-                                                                          .image_outlined,
-                                                                      color: Colors
-                                                                          .white,
-                                                                      size: 15,
-                                                                    )
-                                                                  : null,
-                                                            );
-                                                          } else {
-                                                            return CircleAvatar(
-                                                              maxRadius: 25,
-                                                              backgroundColor:
-                                                                  const Color(
-                                                                      0xffC4C4C4),
-                                                              child:
-                                                                  LoadingAnimationWidget
-                                                                      .inkDrop(
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .primaryColor,
-                                                                size: 15,
-                                                              ),
-                                                            );
-                                                          }
-                                                        },
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                                left: 8.0,
-                                                                right: 8.0),
-                                                        child: Container(
-                                                          width: 130,
-                                                          child: Text(
-                                                              maxLines: 1,
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
-                                                              "${controller.Employees[index]['name']}"),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                ...[
-                                                  'Present',
-                                                  'Truant',
-                                                  'Late',
-                                                  'Vacation',
-                                                  'Holiday'
-                                                ].map((status) => Row(
+                            Expanded(
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Container(
+                                  width: 769,
+                                  height:
+                                      MediaQuery.of(context).size.height - 225,
+                                  child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 10, left: 40, right: 40),
+                                      child: ListView.builder(
+                                        itemCount: controller.Employees.length,
+                                        itemBuilder: (context, index) {
+                                          return Column(
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  SizedBox(
+                                                    width: 200,
+                                                    child: Row(
                                                       children: [
-                                                        Radio(
-                                                          value: status,
-                                                          groupValue: controller
-                                                                  .Employees[
-                                                              index]['status'],
-                                                          activeColor:
-                                                              const Color(
-                                                                  0xff134B70),
-                                                          onChanged: (value) {
-                                                            if (value ==
-                                                                "Holiday") {
-                                                            } else {
-                                                              if (value ==
-                                                                      "Truant" ||
-                                                                  value ==
-                                                                      "Late" ||
-                                                                  value ==
-                                                                      "Vacation") {
-                                                                Get.dialog(
-                                                                    VMSAlertDialog(
-                                                                        action: [
-                                                                      ButtonDialog(
-                                                                          text: "Done"
-                                                                              .tr,
-                                                                          onPressed:
-                                                                              () {
-                                                                            controller.updateStatus(
-                                                                                index,
-                                                                                value.toString(),
-                                                                                cuse.text);
-                                                                            Get.back();
-                                                                          },
-                                                                          color: Get
-                                                                              .theme
-                                                                              .primaryColor,
-                                                                          width:
-                                                                              65)
-                                                                    ],
-                                                                        contents:
-                                                                            SizedBox(
-                                                                          width:
-                                                                              500,
-                                                                          child:
-                                                                              Column(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.min,
-                                                                            children: [
-                                                                              Textfildwithupper(width: 250, controller: cuse, Uptext: "Cause".tr, hinttext: "Cause".tr)
-                                                                            ],
-                                                                          ),
+                                                        FutureBuilder(
+                                                          future: controller.Employees[
+                                                                          index]
+                                                                      [
+                                                                      "imgid"] !=
+                                                                  ""
+                                                              ? precacheImage(
+                                                                  NetworkImage(
+                                                                      "$getimage${controller.Employees[index]["imgid"]}"),
+                                                                  context)
+                                                              : Future.value(
+                                                                  null),
+                                                          builder: (context,
+                                                              snapshot) {
+                                                            if (snapshot
+                                                                    .connectionState ==
+                                                                ConnectionState
+                                                                    .done) {
+                                                              return CircleAvatar(
+                                                                maxRadius: 25,
+                                                                backgroundColor:
+                                                                    const Color(
+                                                                        0xffC4C4C4),
+                                                                backgroundImage:
+                                                                    controller.Employees[index]["imgid"] !=
+                                                                            ""
+                                                                        ? NetworkImage(
+                                                                            "$getimage${controller.Employees[index]["imgid"]}")
+                                                                        : null,
+                                                                child: controller.Employees[index]
+                                                                            [
+                                                                            "imgid"] ==
+                                                                        ""
+                                                                    ? Text(
+                                                                        controller
+                                                                            .Employees[index][
+                                                                                "name"]!
+                                                                            .substring(0,
+                                                                                1)
+                                                                            .toUpperCase(),
+                                                                        style: Get
+                                                                            .textTheme
+                                                                            .titleLarge!
+                                                                            .copyWith(
+                                                                          fontSize:
+                                                                              16,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
                                                                         ),
-                                                                        apptitle:
-                                                                            "Enter The Reason For Absence"
-                                                                                .tr,
-                                                                        subtitle:
-                                                                            "The reason for the absence of the student".tr +
-                                                                                "${controller.Employees[index]['name']}"));
-                                                              } else {
-                                                                controller
-                                                                    .updateStatus(
-                                                                        index,
-                                                                        value
-                                                                            .toString(),
-                                                                        null);
-                                                              }
+                                                                      )
+                                                                    : null,
+                                                              );
+                                                            } else {
+                                                              return CircleAvatar(
+                                                                maxRadius: 25,
+                                                                backgroundColor:
+                                                                    const Color(
+                                                                        0xffC4C4C4),
+                                                                child:
+                                                                    LoadingAnimationWidget
+                                                                        .inkDrop(
+                                                                  color: Theme.of(
+                                                                          context)
+                                                                      .primaryColor,
+                                                                  size: 15,
+                                                                ),
+                                                              );
                                                             }
                                                           },
                                                         ),
-                                                        Text(
-                                                          status.tr,
-                                                          style: TextStyle(
-                                                            color: status ==
-                                                                    'Present'
-                                                                ? const Color(
-                                                                    0xff2F9742)
-                                                                : status ==
-                                                                        'Truant'
-                                                                    ? const Color(
-                                                                        0xff972F2F)
-                                                                    : status ==
-                                                                            'Late'
-                                                                        ? const Color(
-                                                                            0xff349393)
-                                                                        : status ==
-                                                                                'Vacation'
-                                                                            ? const Color(0xffB27671)
-                                                                            : const Color(0xff134B70),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                                  left: 8.0,
+                                                                  right: 8.0),
+                                                          child: Container(
+                                                            width: 130,
+                                                            child: Text(
+                                                                maxLines: 1,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                                "${controller.Employees[index]['name']}"),
                                                           ),
                                                         ),
                                                       ],
-                                                    )),
-                                              ],
-                                            ),
-                                            Divider(
-                                              color: Get.theme.primaryColor,
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    )),
+                                                    ),
+                                                  ),
+                                                  ...[
+                                                    'Present',
+                                                    'Truant',
+                                                    'Late',
+                                                    'Vacation',
+                                                    'Holiday'
+                                                  ].map((status) => Row(
+                                                        children: [
+                                                          Radio(
+                                                            value: status,
+                                                            groupValue: controller
+                                                                    .Employees[
+                                                                index]['status'],
+                                                            activeColor:
+                                                                const Color(
+                                                                    0xff134B70),
+                                                            onChanged: (value) {
+                                                              if (value ==
+                                                                  "Holiday") {
+                                                              } else {
+                                                                if (value == "Truant" ||
+                                                                    value ==
+                                                                        "Late" ||
+                                                                    value ==
+                                                                        "Vacation") {
+                                                                  Get.dialog(VMSAlertDialog(
+                                                                      action: [
+                                                                        ButtonDialog(
+                                                                            text: "Done"
+                                                                                .tr,
+                                                                            onPressed:
+                                                                                () {
+                                                                              controller.updateStatus(index, value.toString(), cuse.text);
+                                                                              Get.back();
+                                                                            },
+                                                                            color:
+                                                                                Get.theme.primaryColor,
+                                                                            width: 65)
+                                                                      ],
+                                                                      contents: SizedBox(
+                                                                        width:
+                                                                            500,
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.min,
+                                                                          children: [
+                                                                            Textfildwithupper(
+                                                                                width: 250,
+                                                                                controller: cuse,
+                                                                                Uptext: "Cause".tr,
+                                                                                hinttext: "Cause".tr)
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                      apptitle: "Enter The Reason For Absence".tr,
+                                                                      subtitle: "The reason for the absence of the student".tr + "${controller.Employees[index]['name']}"));
+                                                                } else {
+                                                                  controller
+                                                                      .updateStatus(
+                                                                          index,
+                                                                          value
+                                                                              .toString(),
+                                                                          null);
+                                                                }
+                                                              }
+                                                            },
+                                                          ),
+                                                          Text(
+                                                            status.tr,
+                                                            style: TextStyle(
+                                                              color: status ==
+                                                                      'Present'
+                                                                  ? const Color(
+                                                                      0xff2F9742)
+                                                                  : status ==
+                                                                          'Truant'
+                                                                      ? const Color(
+                                                                          0xff972F2F)
+                                                                      : status ==
+                                                                              'Late'
+                                                                          ? const Color(
+                                                                              0xff349393)
+                                                                          : status == 'Vacation'
+                                                                              ? const Color(0xffB27671)
+                                                                              : const Color(0xff134B70),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      )),
+                                                ],
+                                              ),
+                                              Divider(
+                                                color: Get.theme.primaryColor,
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      )),
+                                ),
                               ),
                             ),
                           ],

@@ -232,7 +232,7 @@ class Section7 extends StatelessWidget {
                                             )
                                           : null,
                                       child: Text(
-                                          "${!controller.Isloading ? controller.phonNumber != null || controller.phonNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.phonNumber : "No Phone Number yet".tr}",
+                                          "${controller.Isloading ? "No Phone Number yet".tr : controller.phonNumber != null && controller.phonNumber!.isNotEmpty ? controller.phonNumber : "No Phone Number yet".tr}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
@@ -277,7 +277,7 @@ class Section7 extends StatelessWidget {
                                                 )
                                               : null,
                                       child: Text(
-                                          "${!controller.Isloading ? controller.whatsAppNumber != null || controller.whatsAppNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.whatsAppNumber : "No Phone Number yet".tr}",
+                                          "${controller.Isloading ? "No Phone Number yet".tr : controller.whatsAppNumber != null && controller.whatsAppNumber!.isNotEmpty ? controller.whatsAppNumber : "No Phone Number yet".tr}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
@@ -319,7 +319,7 @@ class Section7 extends StatelessWidget {
                                             )
                                           : null,
                                       child: Text(
-                                          "${!controller.Isloading ? controller.email != null || controller.email!.isNotEmpty ? "No Email yet".tr : controller.email : "No Email yet".tr}",
+                                          "${controller.Isloading ? "No Email yet".tr : controller.email != null && controller.email!.isNotEmpty ? controller.email : "No Email yet".tr}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
@@ -582,7 +582,7 @@ class Section7 extends StatelessWidget {
                                             )
                                           : null,
                                       child: Text(
-                                          "${!controller.Isloading ? controller.phonNumber != null || controller.phonNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.phonNumber : "No Phone Number yet".tr}",
+                                          "${controller.Isloading ? "No Phone Number yet".tr : controller.phonNumber != null && controller.phonNumber!.isNotEmpty ? controller.phonNumber : "No Phone Number yet".tr}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
@@ -627,7 +627,7 @@ class Section7 extends StatelessWidget {
                                                 )
                                               : null,
                                       child: Text(
-                                          "${!controller.Isloading ? controller.whatsAppNumber != null || controller.whatsAppNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.whatsAppNumber : "No Phone Number yet".tr}",
+                                          "${controller.Isloading ? "No Phone Number yet".tr : controller.whatsAppNumber != null && controller.whatsAppNumber!.isNotEmpty ? controller.whatsAppNumber : "No Phone Number yet".tr}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
@@ -669,7 +669,7 @@ class Section7 extends StatelessWidget {
                                             )
                                           : null,
                                       child: Text(
-                                          "${!controller.Isloading ? controller.email != null || controller.email!.isNotEmpty ? "No Email yet".tr : controller.email : "No Email yet".tr}",
+                                          "${controller.Isloading ? "No Email yet".tr : controller.email != null && controller.email!.isNotEmpty ? controller.email : "No Email yet".tr}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 16,
@@ -895,7 +895,7 @@ class Section7 extends StatelessWidget {
                                             )
                                           : null,
                                       child: Text(
-                                          "${!controller.Isloading ? controller.phonNumber != null || controller.phonNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.phonNumber : "No Phone Number yet".tr}",
+                                          "${controller.Isloading ? "No Phone Number yet".tr : controller.phonNumber != null && controller.phonNumber!.isNotEmpty ? controller.phonNumber : "No Phone Number yet".tr}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
@@ -942,7 +942,7 @@ class Section7 extends StatelessWidget {
                                                 )
                                               : null,
                                       child: Text(
-                                          "${!controller.Isloading ? controller.whatsAppNumber != null || controller.whatsAppNumber!.isNotEmpty ? "No Phone Number yet".tr : controller.whatsAppNumber : "No Phone Number yet".tr}",
+                                          "${controller.Isloading ? "No Phone Number yet".tr : controller.whatsAppNumber != null && controller.whatsAppNumber!.isNotEmpty ? controller.whatsAppNumber : "No Phone Number yet".tr}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 14,
@@ -986,7 +986,7 @@ class Section7 extends StatelessWidget {
                                             )
                                           : null,
                                       child: Text(
-                                          "${!controller.Isloading ? controller.email != null || controller.email!.isNotEmpty ? "No Email yet".tr : controller.email : "No Email yet".tr}",
+                                          "${controller.Isloading ? "No Email yet".tr : controller.email != null && controller.email!.isNotEmpty ? controller.email : "No Email yet".tr}",
                                           style: Get.theme.textTheme.bodyMedium!
                                               .copyWith(
                                                   fontSize: 16,

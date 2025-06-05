@@ -8,7 +8,7 @@ class Section2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
+    double h = 640;
     double w = MediaQuery.of(context).size.width;
     return Container(
       margin: EdgeInsets.only(top: h / 8.55),

@@ -89,12 +89,12 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => UserController(), fenix: true);
     Get.lazyPut(() => PasswordHintController(), fenix: true);
     Get.lazyPut(() => ThemeController(), fenix: true);
-    Get.lazyPut(() => AdminHomeContentController(), fenix: true);
     Get.lazyPut(() => ExamTableController(), fenix: true);
     Get.lazyPut(() => Requestscontroller(), fenix: true);
     Get.lazyPut(() => DropDownController(), fenix: true);
     Get.lazyPut(() => Allgaurdiancontroller(), fenix: true);
     Get.put(Allteachercontroller(), permanent: true);
+    Get.put(AdminHomeContentController(), permanent: true);
     Get.lazyPut(() => Allstudentscontroller(), fenix: true);
     Get.lazyPut(() => Student_attendence_controller(), fenix: true);
     Get.lazyPut(() => EmployeeController(), fenix: true);

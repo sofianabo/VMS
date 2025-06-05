@@ -56,17 +56,9 @@ class _EmployeesAttendanceManagmentGridState
                                                   children: [
                                                     FutureBuilder(
                                                       future: controller.Employees[
-                                                                          index]
-                                                                      [
-                                                                      "imgid"] !=
-                                                                  null ||
-                                                              controller
-                                                                      .Employees[
-                                                                          index]
-                                                                          [
-                                                                          "imgid"]
-                                                                      .toString() !=
-                                                                  ""
+                                                                      index]
+                                                                  ["imgid"] !=
+                                                              ""
                                                           ? precacheImage(
                                                               NetworkImage(
                                                                   "$getimage${controller.Employees[index]["imgid"]}"),
@@ -87,7 +79,7 @@ class _EmployeesAttendanceManagmentGridState
                                                                             .Employees[index]
                                                                         [
                                                                         "imgid"] !=
-                                                                    null
+                                                                    ""
                                                                 ? NetworkImage(
                                                                     "$getimage${controller.Employees[index]["imgid"]}")
                                                                 : null,
@@ -95,7 +87,7 @@ class _EmployeesAttendanceManagmentGridState
                                                                             index]
                                                                         [
                                                                         "imgid"] ==
-                                                                    null
+                                                                    ""
                                                                 ? Text(
                                                                     "${controller.Employees[index]['name']!.substring(0, 1).toUpperCase()}",
                                                                     style: Get
@@ -103,7 +95,7 @@ class _EmployeesAttendanceManagmentGridState
                                                                         .titleLarge!
                                                                         .copyWith(
                                                                             fontSize:
-                                                                                26,
+                                                                                16,
                                                                             fontWeight:
                                                                                 FontWeight.bold),
                                                                   )
@@ -292,17 +284,9 @@ class _EmployeesAttendanceManagmentGridState
                                                     children: [
                                                       FutureBuilder(
                                                         future: controller.Employees[
-                                                                            index]
-                                                                        [
-                                                                        "imgid"] !=
-                                                                    null ||
-                                                                controller
-                                                                        .Employees[
-                                                                            index]
-                                                                            [
-                                                                            "imgid"]
-                                                                        .toString() !=
-                                                                    ""
+                                                                        index]
+                                                                    ["imgid"] !=
+                                                                ""
                                                             ? precacheImage(
                                                                 NetworkImage(
                                                                     "$getimage${controller.Employees[index]["imgid"]}"),
@@ -324,7 +308,7 @@ class _EmployeesAttendanceManagmentGridState
                                                                               .Employees[index]
                                                                           [
                                                                           "imgid"] !=
-                                                                      null
+                                                                      ""
                                                                   ? NetworkImage(
                                                                       "$getimage${controller.Employees[index]["imgid"]}")
                                                                   : null,
@@ -332,14 +316,14 @@ class _EmployeesAttendanceManagmentGridState
                                                                               index]
                                                                           [
                                                                           "imgid"] ==
-                                                                      null
+                                                                      ""
                                                                   ? Text(
                                                                       "${controller.Employees[index]['name']!.substring(0, 1).toUpperCase()}",
                                                                       style: Get
                                                                           .textTheme
                                                                           .titleLarge!
                                                                           .copyWith(
-                                                                              fontSize: 26,
+                                                                              fontSize: 16,
                                                                               fontWeight: FontWeight.bold),
                                                                     )
                                                                   : null,
