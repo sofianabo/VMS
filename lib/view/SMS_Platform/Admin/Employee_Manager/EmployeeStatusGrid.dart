@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable, file_names
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
@@ -33,26 +34,31 @@ class _EmpolyeeStatusGridState extends State<EmpolyeeStatusGrid> {
     int getCrossAxisCount() {
       if (screenWidth >= 1800) return 5;
       if (screenWidth >= 1400) return 4;
-      if (screenWidth >= 1000) return 3;
+      if (screenWidth >= 1022) return 3;
       if (screenWidth >= 700) return 2;
       return 1;
     }
 
     double getChildAspectRatio() {
       if (screenWidth >= 1800) return 1.0;
-      if (screenWidth >= 1400) return 1.45;
-      if (screenWidth >= 1260) return 1.75;
-      if (screenWidth >= 1000) return 1.30;
-      if (screenWidth >= 930) return 1.85;
-      if (screenWidth >= 850) return 1.65;
-      if (screenWidth >= 750) return 1.45;
-      if (screenWidth >= 700) return 1.35;
-      if (screenWidth >= 584) return 2.45;
-      if (screenWidth >= 584) return 1.95;
-      if (screenWidth >= 492) return 1.90;
-      if (screenWidth >= 417) return 1.65;
+      if (screenWidth >= 1498) return 1.45;
+      if (screenWidth >= 1400) return 1.27;
+      if (screenWidth >= 1376) return 1.60;
+      if (screenWidth >= 1295) return 1.40;
+      if (screenWidth >= 1245) return 1.30;
+      if (screenWidth >= 1150) return 1.35;
+      if (screenWidth >= 1108) return 1.30;
+      if (screenWidth >= 1022) return 1.15;
+      if (screenWidth >= 930) return 1.65;
+      if (screenWidth >= 850) return 1.45;
+      if (screenWidth >= 750) return 1.25;
+      if (screenWidth >= 700) return 1.15;
+      if (screenWidth >= 584) return 2.25;
+      if (screenWidth >= 584) return 1.75;
+      if (screenWidth >= 492) return 1.70;
+      if (screenWidth >= 430) return 1.45;
 
-      return 1.25;
+      return 1.05;
     }
 
     return Directionality(
@@ -215,62 +221,90 @@ class _EmpolyeeStatusGridState extends State<EmpolyeeStatusGrid> {
                                                     fontWeight:
                                                         FontWeight.bold)),
                                       ),
-                                      FutureBuilder(
-                                        future: controller
-                                                    .employee[index].imageId !=
-                                                null
-                                            ? precacheImage(
-                                                NetworkImage(
-                                                    "$getimage${controller.employee[index].imageId}"),
-                                                context)
-                                            : Future.value(null),
-                                        builder: (context, snapshot) {
-                                          if (snapshot.connectionState ==
-                                              ConnectionState.done) {
-                                            return CircleAvatar(
-                                              maxRadius: 60,
-                                              backgroundColor:
-                                                  const Color(0xffC4C4C4),
-                                              backgroundImage: controller
-                                                          .employee[index]
-                                                          .imageId !=
-                                                      null
-                                                  ? NetworkImage(
-                                                      "$getimage${controller.employee[index].imageId}")
-                                                  : null,
-                                              child: controller.employee[index]
-                                                          .imageId ==
-                                                      null
-                                                  ? Text(
-                                                      controller.employee[index]
+                                      controller.filteredreemployees[index]
+                                                  .imageId !=
+                                              null
+                                          ? CachedNetworkImage(
+                                              imageUrl:
+                                                  "$getimage${controller.filteredreemployees[index].imageId}",
+                                              imageBuilder:
+                                                  (context, imageProvider) =>
+                                                      CircleAvatar(
+                                                maxRadius: 60,
+                                                backgroundColor:
+                                                    const Color(0xffC4C4C4),
+                                                backgroundImage: imageProvider,
+                                              ),
+                                              placeholder: (context, url) =>
+                                                  CircleAvatar(
+                                                maxRadius: 60,
+                                                backgroundColor:
+                                                    const Color(0xffC4C4C4),
+                                                child: LoadingAnimationWidget
+                                                    .inkDrop(
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                  size: 30,
+                                                ),
+                                              ),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      CircleAvatar(
+                                                maxRadius: 60,
+                                                backgroundColor:
+                                                    const Color(0xffC4C4C4),
+                                                child: Text(
+                                                  controller
+                                                              .filteredreemployees[
+                                                                  index]
+                                                              .fullName
+                                                              ?.isNotEmpty ==
+                                                          true
+                                                      ? controller
+                                                          .filteredreemployees[
+                                                              index]
                                                           .fullName!
                                                           .substring(0, 1)
-                                                          .toUpperCase(),
-                                                      style: Get
-                                                          .textTheme.titleLarge!
-                                                          .copyWith(
-                                                        fontSize: 26,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    )
-                                                  : null,
-                                            );
-                                          } else {
-                                            return CircleAvatar(
+                                                          .toUpperCase()
+                                                      : '?',
+                                                  style: Get
+                                                      .textTheme.titleLarge!
+                                                      .copyWith(
+                                                    fontSize: 26,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          : CircleAvatar(
                                               maxRadius: 60,
                                               backgroundColor:
                                                   const Color(0xffC4C4C4),
-                                              child: LoadingAnimationWidget
-                                                  .inkDrop(
-                                                color: Theme.of(context)
-                                                    .primaryColor,
-                                                size: 15,
+                                              child: Text(
+                                                controller
+                                                            .filteredreemployees[
+                                                                index]
+                                                            .fullName
+                                                            ?.isNotEmpty ==
+                                                        true
+                                                    ? controller
+                                                        .filteredreemployees[
+                                                            index]
+                                                        .fullName!
+                                                        .substring(0, 1)
+                                                        .toUpperCase()
+                                                    : '?',
+                                                style: Get.textTheme.titleLarge!
+                                                    .copyWith(
+                                                  fontSize: 26,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                ),
                                               ),
-                                            );
-                                          }
-                                        },
-                                      ),
+                                            )
                                     ],
                                   ),
                                   Text(

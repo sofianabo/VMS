@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -53,81 +54,52 @@ class _TeacherAttendanceManagmentGridState
                                                 width: 200,
                                                 child: Row(
                                                   children: [
-                                                    FutureBuilder(
-                                                      future: controller.Employees[
-                                                                      index]
-                                                                  ["imgid"] !=
-                                                              ""
-                                                          ? precacheImage(
-                                                              NetworkImage(
-                                                                  "$getimage${controller.Employees[index]["imgid"]}"),
-                                                              context)
-                                                          : Future.value(null),
-                                                      builder:
-                                                          (context, snapshot) {
-                                                        if (snapshot
-                                                                .connectionState ==
-                                                            ConnectionState
-                                                                .done) {
-                                                          return CircleAvatar(
-                                                            maxRadius: 25,
-                                                            backgroundColor:
-                                                                const Color(
-                                                                    0xffC4C4C4),
-                                                            backgroundImage: controller
-                                                                            .Employees[index]
-                                                                        [
-                                                                        "imgid"] !=
-                                                                    ""
-                                                                ? NetworkImage(
-                                                                    "$getimage${controller.Employees[index]["imgid"]}")
-                                                                : null,
-                                                            child: controller.Employees[
-                                                                            index]
-                                                                        [
-                                                                        "imgid"] ==
-                                                                    ""
-                                                                ? Text(
-                                                                    controller
-                                                                        .Employees[
-                                                                            index]
-                                                                            [
-                                                                            "name"]!
-                                                                        .substring(
-                                                                            0,
-                                                                            1)
-                                                                        .toUpperCase(),
-                                                                    style: Get
-                                                                        .textTheme
-                                                                        .titleLarge!
-                                                                        .copyWith(
-                                                                      fontSize:
-                                                                          16,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                    ),
-                                                                  )
-                                                                : null,
-                                                          );
-                                                        } else {
-                                                          return CircleAvatar(
-                                                            maxRadius: 25,
-                                                            backgroundColor:
-                                                                const Color(
-                                                                    0xffC4C4C4),
-                                                            child:
-                                                                LoadingAnimationWidget
-                                                                    .inkDrop(
-                                                              color: Theme.of(
-                                                                      context)
-                                                                  .primaryColor,
-                                                              size: 15,
+                                                    controller.Employees[index]
+                                                                ["imgid"] !=
+                                                            ""
+                                                        ? CachedNetworkImage(
+                                                            imageUrl:
+                                                                "$getimage${controller.Employees[index]["imgid"]}",
+                                                            imageBuilder: (context,
+                                                                    imageProvider) =>
+                                                                CircleAvatar(
+                                                              maxRadius: 25,
+                                                              backgroundColor:
+                                                                  const Color(
+                                                                      0xffC4C4C4),
+                                                              backgroundImage:
+                                                                  imageProvider,
                                                             ),
-                                                          );
-                                                        }
-                                                      },
-                                                    ),
+                                                            placeholder:
+                                                                (context,
+                                                                        url) =>
+                                                                    CircleAvatar(
+                                                              maxRadius: 25,
+                                                              backgroundColor:
+                                                                  const Color(
+                                                                      0xffC4C4C4),
+                                                              child:
+                                                                  LoadingAnimationWidget
+                                                                      .inkDrop(
+                                                                color: Theme.of(
+                                                                        context)
+                                                                    .primaryColor,
+                                                                size: 15,
+                                                              ),
+                                                            ),
+                                                            errorWidget: (context,
+                                                                    url,
+                                                                    error) =>
+                                                                _buildEmployeeInitial(
+                                                                    controller.Employees[
+                                                                            index]
+                                                                        [
+                                                                        "name"]),
+                                                          )
+                                                        : _buildEmployeeInitial(
+                                                            controller
+                                                                    .Employees[
+                                                                index]["name"]),
                                                     Padding(
                                                       padding:
                                                           const EdgeInsets.only(
@@ -291,76 +263,50 @@ class _TeacherAttendanceManagmentGridState
                                                     width: 200,
                                                     child: Row(
                                                       children: [
-                                                        FutureBuilder(
-                                                          future: controller.Employees[
-                                                                          index]
-                                                                      [
-                                                                      "imgid"] !=
-                                                                  ""
-                                                              ? precacheImage(
-                                                                  NetworkImage(
-                                                                      "$getimage${controller.Employees[index]["imgid"]}"),
-                                                                  context)
-                                                              : Future.value(
-                                                                  null),
-                                                          builder: (context,
-                                                              snapshot) {
-                                                            if (snapshot
-                                                                    .connectionState ==
-                                                                ConnectionState
-                                                                    .done) {
-                                                              return CircleAvatar(
-                                                                maxRadius: 25,
-                                                                backgroundColor:
-                                                                    const Color(
-                                                                        0xffC4C4C4),
-                                                                backgroundImage:
-                                                                    controller.Employees[index]["imgid"] !=
-                                                                            ""
-                                                                        ? NetworkImage(
-                                                                            "$getimage${controller.Employees[index]["imgid"]}")
-                                                                        : null,
-                                                                child: controller.Employees[index]
-                                                                            [
-                                                                            "imgid"] ==
-                                                                        ""
-                                                                    ? Text(
-                                                                        controller
-                                                                            .Employees[index][
-                                                                                "name"]!
-                                                                            .substring(0,
-                                                                                1)
-                                                                            .toUpperCase(),
-                                                                        style: Get
-                                                                            .textTheme
-                                                                            .titleLarge!
-                                                                            .copyWith(
-                                                                          fontSize:
-                                                                              16,
-                                                                          fontWeight:
-                                                                              FontWeight.bold,
-                                                                        ),
-                                                                      )
-                                                                    : null,
-                                                              );
-                                                            } else {
-                                                              return CircleAvatar(
-                                                                maxRadius: 25,
-                                                                backgroundColor:
-                                                                    const Color(
-                                                                        0xffC4C4C4),
-                                                                child:
-                                                                    LoadingAnimationWidget
-                                                                        .inkDrop(
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColor,
-                                                                  size: 15,
+                                                        controller.Employees[
+                                                                        index]
+                                                                    ["imgid"] !=
+                                                                ""
+                                                            ? CachedNetworkImage(
+                                                                imageUrl:
+                                                                    "$getimage${controller.Employees[index]["imgid"]}",
+                                                                imageBuilder: (context,
+                                                                        imageProvider) =>
+                                                                    CircleAvatar(
+                                                                  maxRadius: 25,
+                                                                  backgroundColor:
+                                                                      const Color(
+                                                                          0xffC4C4C4),
+                                                                  backgroundImage:
+                                                                      imageProvider,
                                                                 ),
-                                                              );
-                                                            }
-                                                          },
-                                                        ),
+                                                                placeholder: (context,
+                                                                        url) =>
+                                                                    CircleAvatar(
+                                                                  maxRadius: 25,
+                                                                  backgroundColor:
+                                                                      const Color(
+                                                                          0xffC4C4C4),
+                                                                  child: LoadingAnimationWidget
+                                                                      .inkDrop(
+                                                                    color: Theme.of(
+                                                                            context)
+                                                                        .primaryColor,
+                                                                    size: 15,
+                                                                  ),
+                                                                ),
+                                                                errorWidget: (context,
+                                                                        url,
+                                                                        error) =>
+                                                                    _buildEmployeeInitial(
+                                                                        controller.Employees[index]
+                                                                            [
+                                                                            "name"]),
+                                                              )
+                                                            : _buildEmployeeInitial(
+                                                                controller.Employees[
+                                                                        index]
+                                                                    ["name"]),
                                                         Padding(
                                                           padding:
                                                               const EdgeInsets
@@ -553,4 +499,19 @@ class _TeacherAttendanceManagmentGridState
       }),
     );
   }
+}
+
+CircleAvatar _buildEmployeeInitial(String name) {
+  return CircleAvatar(
+    maxRadius: 25,
+    backgroundColor: const Color(0xffC4C4C4),
+    child: Text(
+      name.isNotEmpty ? name.substring(0, 1).toUpperCase() : '?',
+      style: Get.textTheme.titleLarge!.copyWith(
+        fontSize: 14,
+        fontWeight: FontWeight.bold,
+        color: Get.theme.primaryColor,
+      ),
+    ),
+  );
 }

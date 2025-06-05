@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
@@ -10,7 +11,6 @@ import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/oneStudentAttendenceController.dart';
 import 'package:vms_school/Link/Model/AdminModel/Students_Models/OneStudentAttendenceModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
-import 'package:vms_school/main.dart';
 import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
 import 'package:vms_school/view/Both_Platform/widgets/GridAnimation.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Schema_Widget.dart';
@@ -32,26 +32,31 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
     int getCrossAxisCount() {
       if (screenWidth >= 1800) return 5;
       if (screenWidth >= 1400) return 4;
-      if (screenWidth >= 1000) return 3;
+      if (screenWidth >= 1022) return 3;
       if (screenWidth >= 700) return 2;
       return 1;
     }
 
     double getChildAspectRatio() {
       if (screenWidth >= 1800) return 1.0;
-      if (screenWidth >= 1400) return 1.45;
-      if (screenWidth >= 1260) return 1.8;
-      if (screenWidth >= 1000) return 1.35;
-      if (screenWidth >= 930) return 1.9;
-      if (screenWidth >= 850) return 1.7;
-      if (screenWidth >= 750) return 1.5;
-      if (screenWidth >= 700) return 1.4;
-      if (screenWidth >= 584) return 2.5;
-      if (screenWidth >= 584) return 2.0;
-      if (screenWidth >= 492) return 1.95;
-      if (screenWidth >= 400) return 1.7;
+      if (screenWidth >= 1498) return 1.45;
+      if (screenWidth >= 1400) return 1.27;
+      if (screenWidth >= 1376) return 1.60;
+      if (screenWidth >= 1295) return 1.40;
+      if (screenWidth >= 1245) return 1.30;
+      if (screenWidth >= 1150) return 1.35;
+      if (screenWidth >= 1108) return 1.30;
+      if (screenWidth >= 1022) return 1.15;
+      if (screenWidth >= 930) return 1.65;
+      if (screenWidth >= 850) return 1.45;
+      if (screenWidth >= 750) return 1.25;
+      if (screenWidth >= 700) return 1.15;
+      if (screenWidth >= 584) return 2.25;
+      if (screenWidth >= 584) return 1.75;
+      if (screenWidth >= 492) return 1.70;
+      if (screenWidth >= 430) return 1.45;
 
-      return 1.3;
+      return 1.05;
     }
 
     return Directionality(
@@ -260,68 +265,73 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                                                         fontSize: 20,
                                                         fontWeight:
                                                             FontWeight.bold))),
-                                        FutureBuilder(
-                                          future: control
-                                                      .filteredStudents[index]
-                                                      .fileId !=
-                                                  null
-                                              ? precacheImage(
-                                                  NetworkImage(
-                                                      "$getimage${control.filteredStudents[index].fileId}"),
-                                                  context)
-                                              : Future.value(null),
-                                          builder: (context, snapshot) {
-                                            if (snapshot.connectionState ==
-                                                ConnectionState.done) {
-                                              return CircleAvatar(
-                                                maxRadius: 55,
-                                                backgroundColor:
-                                                    const Color(0xffC4C4C4),
-                                                backgroundImage: control
-                                                            .filteredStudents[
-                                                                index]
-                                                            .fileId !=
-                                                        null
-                                                    ? NetworkImage(
-                                                        "$getimage${control.filteredStudents[index].fileId}")
-                                                    : null,
-                                                child: control
-                                                            .filteredStudents[
-                                                                index]
-                                                            .fileId ==
-                                                        null
-                                                    ? Text(
-                                                        control
-                                                            .filteredStudents[
-                                                                index]
-                                                            .fullName!
-                                                            .substring(0, 1)
-                                                            .toUpperCase(),
-                                                        style: Get.textTheme
-                                                            .titleLarge!
-                                                            .copyWith(
-                                                                fontSize: 26,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                      )
-                                                    : null,
-                                              );
-                                            } else {
-                                              return CircleAvatar(
-                                                maxRadius: 55,
-                                                backgroundColor:
-                                                    const Color(0xffC4C4C4),
-                                                child: LoadingAnimationWidget
-                                                    .inkDrop(
-                                                  color: Theme.of(context)
-                                                      .primaryColor,
-                                                  size: 25,
+                                        control.filteredStudents[index]
+                                                    .fileId !=
+                                                null
+                                            ? CachedNetworkImage(
+                                                imageUrl:
+                                                    "$getimage${control.filteredStudents[index].fileId}",
+                                                imageBuilder:
+                                                    (context, imageProvider) =>
+                                                        CircleAvatar(
+                                                  maxRadius: 55,
+                                                  backgroundColor:
+                                                      const Color(0xffC4C4C4),
+                                                  backgroundImage:
+                                                      imageProvider,
                                                 ),
-                                              );
-                                            }
-                                          },
-                                        ),
+                                                placeholder: (context, url) =>
+                                                    CircleAvatar(
+                                                  maxRadius: 55,
+                                                  backgroundColor:
+                                                      const Color(0xffC4C4C4),
+                                                  child: LoadingAnimationWidget
+                                                      .inkDrop(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    size: 30,
+                                                  ),
+                                                ),
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        CircleAvatar(
+                                                  maxRadius: 55,
+                                                  backgroundColor:
+                                                      const Color(0xffC4C4C4),
+                                                  child: Text(
+                                                    control
+                                                        .filteredStudents[index]
+                                                        .fullName!
+                                                        .substring(0, 1)
+                                                        .toUpperCase(),
+                                                    style: Get
+                                                        .textTheme.titleLarge!
+                                                        .copyWith(
+                                                      fontSize: 26,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            : CircleAvatar(
+                                                maxRadius: 55,
+                                                backgroundColor:
+                                                    const Color(0xffC4C4C4),
+                                                child: Text(
+                                                  control
+                                                      .filteredStudents[index]
+                                                      .fullName!
+                                                      .substring(0, 1)
+                                                      .toUpperCase(),
+                                                  style: Get
+                                                      .textTheme.titleLarge!
+                                                      .copyWith(
+                                                    fontSize: 26,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              )
                                       ]),
                                   Text(
                                       "${control.filteredStudents[index].status}"
@@ -359,100 +369,100 @@ class _StudentStatusGridState extends State<StudentStatusGrid> {
                                                                   0xff349393)
                                                               : const Color(
                                                                   0xff134B70))),
-                                  Expanded(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
                                             "Grade Level:".tr +
                                                 "${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? control.filteredStudents[index].grade!.name : control.filteredStudents[index].grade!.enName}",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyMedium!
                                                 .copyWith(
-                                                  fontSize: 16,
+                                                  fontSize: 14,
                                                 )),
-                                        control.CheckAttendence() == true
-                                            ? IconButton(
-                                                style: ButtonStyle(
-                                                    maximumSize:
-                                                        WidgetStateProperty.all(
-                                                            const Size(35, 35)),
-                                                    minimumSize:
-                                                        WidgetStateProperty.all(
-                                                            const Size(35, 35)),
-                                                    iconSize:
-                                                        WidgetStateProperty.all(
-                                                            14),
-                                                    shape: WidgetStateProperty.all(
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                    )),
-                                                    backgroundColor:
-                                                        WidgetStateProperty.all(
-                                                            const Color(
-                                                                0xffB03D3D))),
-                                                onPressed: () {
-                                                  Get.dialog(VMSAlertDialog(
-                                                      action: [
-                                                        ButtonDialog(
-                                                          width: 100,
-                                                          text: "Delete".tr,
-                                                          onPressed: () async {
-                                                            await Deletestudentattendenceapi.Deletestudentattendence(
-                                                                ID: control
-                                                                    .filteredStudents[
-                                                                        index]
-                                                                    .id
-                                                                    .toString(),
-                                                                date: control
-                                                                    .AttendencetDate
-                                                                    .value
-                                                                    .toString());
-                                                          },
-                                                          color: const Color(
-                                                              0xffB03D3D),
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 10,
-                                                        ),
-                                                        ButtonDialog(
-                                                            width: 100,
-                                                            text: "Cancel".tr,
-                                                            onPressed: () {
-                                                              Get.back();
-                                                            },
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .primaryColor)
-                                                      ],
-                                                      contents: Container(
-                                                        width: 300,
-                                                        child: Text(
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black),
-                                                            maxLines: 3,
-                                                            "Do You Want To DeleteeAtt"
-                                                                    .tr +
-                                                                " ${control.filteredStudents[index].fullName}" +
-                                                                "Attendenceatt"
-                                                                    .tr),
+                                      ),
+                                      control.CheckAttendence() == true
+                                          ? IconButton(
+                                              style: ButtonStyle(
+                                                  maximumSize:
+                                                      WidgetStateProperty.all(
+                                                          const Size(35, 35)),
+                                                  minimumSize:
+                                                      WidgetStateProperty.all(
+                                                          const Size(35, 35)),
+                                                  iconSize:
+                                                      WidgetStateProperty.all(
+                                                          14),
+                                                  shape: WidgetStateProperty.all(
+                                                      RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  )),
+                                                  backgroundColor:
+                                                      WidgetStateProperty.all(
+                                                          const Color(
+                                                              0xffB03D3D))),
+                                              onPressed: () {
+                                                Get.dialog(VMSAlertDialog(
+                                                    action: [
+                                                      ButtonDialog(
+                                                        width: 100,
+                                                        text: "Delete".tr,
+                                                        onPressed: () async {
+                                                          await Deletestudentattendenceapi
+                                                              .Deletestudentattendence(
+                                                                  ID: control
+                                                                      .filteredStudents[
+                                                                          index]
+                                                                      .id
+                                                                      .toString(),
+                                                                  date: control
+                                                                      .AttendencetDate
+                                                                      .value
+                                                                      .toString());
+                                                        },
+                                                        color: const Color(
+                                                            0xffB03D3D),
                                                       ),
-                                                      apptitle:
-                                                          "Delete Attendence"
-                                                              .tr,
-                                                      subtitle: "none"));
-                                                },
-                                                icon: const Icon(VMS_Icons.bin),
-                                                color: Colors.white,
-                                              )
-                                            : Text("")
-                                      ],
-                                    ),
+                                                      const SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      ButtonDialog(
+                                                          width: 100,
+                                                          text: "Cancel".tr,
+                                                          onPressed: () {
+                                                            Get.back();
+                                                          },
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .primaryColor)
+                                                    ],
+                                                    contents: Container(
+                                                      width: 300,
+                                                      child: Text(
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.black),
+                                                          maxLines: 3,
+                                                          "Do You Want To DeleteeAtt"
+                                                                  .tr +
+                                                              " ${control.filteredStudents[index].fullName}" +
+                                                              "Attendenceatt"
+                                                                  .tr),
+                                                    ),
+                                                    apptitle:
+                                                        "Delete Attendence".tr,
+                                                    subtitle: "none"));
+                                              },
+                                              icon: const Icon(VMS_Icons.bin),
+                                              color: Colors.white,
+                                            )
+                                          : Text("")
+                                    ],
                                   )
                                 ],
                               ),

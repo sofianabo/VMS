@@ -138,6 +138,7 @@ class Student_attendence_controller extends GetxController {
         'status': 'Present',
         'cause': null,
         'name': stu.fullName,
+        'imgid': stu.fileId,
       });
     }
     setIsLoading(false);

@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Teacher_APIS/EditTeacherAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
@@ -135,37 +137,69 @@ class _EditTeacherDialogState extends State<EditTeacherDialog> {
                                           }
                                         }
                                       },
-                                      child: CircleAvatar(
-                                        maxRadius: 100,
-                                        backgroundColor:
-                                            const Color(0xffC4C4C4),
-                                        backgroundImage: addcontrol
-                                                    .selectedImage.value !=
-                                                null
-                                            ? MemoryImage(
-                                                addcontrol.selectedImage.value!)
-                                            : teacherControler
-                                                        .filteredTeacher![
-                                                            widget.idx]
-                                                        .imageId !=
-                                                    null
-                                                ? NetworkImage(getimage +
-                                                    "${teacherControler.filteredTeacher![widget.idx].imageId}")
-                                                : null,
-                                        child: addcontrol.selectedImage.value ==
-                                                    null &&
-                                                teacherControler
-                                                        .filteredTeacher![
-                                                            widget.idx]
-                                                        .imageId ==
-                                                    null
-                                            ? const Icon(
-                                                Icons.image_outlined,
-                                                color: Colors.white,
-                                                size: 40,
-                                              )
-                                            : null,
-                                      ),
+                                      child: addcontrol.selectedImage.value !=
+                                              null
+                                          ? CircleAvatar(
+                                              maxRadius: 100,
+                                              backgroundColor:
+                                                  const Color(0xffC4C4C4),
+                                              backgroundImage: MemoryImage(
+                                                  addcontrol
+                                                      .selectedImage.value!),
+                                            )
+                                          : teacherControler
+                                                      .filteredTeacher![
+                                                          widget.idx]
+                                                      .imageId !=
+                                                  null
+                                              ? CachedNetworkImage(
+                                                  imageUrl: getimage +
+                                                      "${teacherControler.filteredTeacher![widget.idx].imageId!}",
+                                                  imageBuilder: (context,
+                                                          imageProvider) =>
+                                                      CircleAvatar(
+                                                    maxRadius: 100,
+                                                    backgroundColor:
+                                                        const Color(0xffC4C4C4),
+                                                    backgroundImage:
+                                                        imageProvider,
+                                                  ),
+                                                  placeholder: (context, url) =>
+                                                      CircleAvatar(
+                                                    maxRadius: 100,
+                                                    backgroundColor:
+                                                        const Color(0xffC4C4C4),
+                                                    child:
+                                                        LoadingAnimationWidget
+                                                            .inkDrop(
+                                                      color: Theme.of(context)
+                                                          .primaryColor,
+                                                      size: 30,
+                                                    ),
+                                                  ),
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          CircleAvatar(
+                                                    maxRadius: 100,
+                                                    backgroundColor:
+                                                        const Color(0xffC4C4C4),
+                                                    child: const Icon(
+                                                      Icons.image_outlined,
+                                                      color: Colors.white,
+                                                      size: 40,
+                                                    ),
+                                                  ),
+                                                )
+                                              : CircleAvatar(
+                                                  maxRadius: 100,
+                                                  backgroundColor:
+                                                      const Color(0xffC4C4C4),
+                                                  child: const Icon(
+                                                    Icons.image_outlined,
+                                                    color: Colors.white,
+                                                    size: 40,
+                                                  ),
+                                                ),
                                     ),
                                   )
                                 ],

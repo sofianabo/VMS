@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
@@ -203,69 +204,70 @@ class _StudyYearStudentGridState extends State<StudyYearStudentGrid>
                                                     fontWeight:
                                                         FontWeight.bold)),
                                       ),
-                                      FutureBuilder(
-                                        future: controller
-                                                    .filteredStudents![index]
-                                                    .fileId !=
-                                                null
-                                            ? precacheImage(
-                                                NetworkImage(
-                                                    "$getimage${controller.filteredStudents![index].fileId}"),
-                                                context,
-                                              )
-                                            : Future.value(null),
-                                        builder: (context, snapshot) {
-                                          if (snapshot.connectionState ==
-                                              ConnectionState.done) {
-                                            return CircleAvatar(
-                                              maxRadius: 60,
-                                              backgroundColor:
-                                                  const Color(0xffC4C4C4),
-                                              backgroundImage: controller
-                                                          .filteredStudents![
-                                                              index]
-                                                          .fileId !=
-                                                      null
-                                                  ? NetworkImage(
-                                                      "$getimage${controller.filteredStudents![index].fileId}")
-                                                  : null,
-                                              child: controller
-                                                          .filteredStudents![
-                                                              index]
-                                                          .fileId ==
-                                                      null
-                                                  ? Text(
-                                                      controller
-                                                          .filteredStudents![
-                                                              index]
-                                                          .fullName!
-                                                          .substring(0, 1)
-                                                          .toUpperCase(),
-                                                      style: Get
-                                                          .textTheme.titleLarge!
-                                                          .copyWith(
-                                                              fontSize: 26,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                    )
-                                                  : null,
-                                            );
-                                          } else {
-                                            return CircleAvatar(
-                                              maxRadius: 60,
-                                              backgroundColor:
-                                                  const Color(0xffC4C4C4),
-                                              child: LoadingAnimationWidget
-                                                  .inkDrop(
-                                                color: Theme.of(context)
-                                                    .primaryColor,
-                                                size: 30,
+                                      controller.filteredStudents![index]
+                                                  .fileId !=
+                                              null
+                                          ? CachedNetworkImage(
+                                              imageUrl:
+                                                  "$getimage${controller.filteredStudents![index].fileId}",
+                                              imageBuilder:
+                                                  (context, imageProvider) =>
+                                                      CircleAvatar(
+                                                maxRadius: 60,
+                                                backgroundColor:
+                                                    const Color(0xffC4C4C4),
+                                                backgroundImage: imageProvider,
                                               ),
-                                            );
-                                          }
-                                        },
-                                      ),
+                                              placeholder: (context, url) =>
+                                                  CircleAvatar(
+                                                maxRadius: 60,
+                                                backgroundColor:
+                                                    const Color(0xffC4C4C4),
+                                                child: LoadingAnimationWidget
+                                                    .inkDrop(
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                  size: 30,
+                                                ),
+                                              ),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      CircleAvatar(
+                                                maxRadius: 60,
+                                                backgroundColor:
+                                                    const Color(0xffC4C4C4),
+                                                child: Text(
+                                                  controller
+                                                      .filteredStudents![index]
+                                                      .fullName!
+                                                      .substring(0, 1)
+                                                      .toUpperCase(),
+                                                  style: Get
+                                                      .textTheme.titleLarge!
+                                                      .copyWith(
+                                                    fontSize: 26,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          : CircleAvatar(
+                                              maxRadius: 60,
+                                              backgroundColor:
+                                                  const Color(0xffC4C4C4),
+                                              child: Text(
+                                                controller
+                                                    .filteredStudents![index]
+                                                    .fullName!
+                                                    .substring(0, 1)
+                                                    .toUpperCase(),
+                                                style: Get.textTheme.titleLarge!
+                                                    .copyWith(
+                                                  fontSize: 26,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            )
                                     ],
                                   ),
                                   Text(

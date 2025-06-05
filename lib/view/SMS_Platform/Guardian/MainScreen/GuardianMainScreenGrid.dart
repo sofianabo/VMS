@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -222,40 +223,51 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                         control.filteredStudents[index]
                                                     .fileId !=
                                                 null
-                                            ? FutureBuilder(
-                                                future: precacheImage(
-                                                  NetworkImage(
-                                                      "$getimage${control.filteredStudents[index].fileId}"),
-                                                  context,
+                                            ? CachedNetworkImage(
+                                                imageUrl:
+                                                    "$getimage${control.filteredStudents[index].fileId}",
+                                                imageBuilder:
+                                                    (context, imageProvider) =>
+                                                        CircleAvatar(
+                                                  maxRadius: 60,
+                                                  backgroundColor:
+                                                      const Color(0xffC4C4C4),
+                                                  backgroundImage:
+                                                      imageProvider,
                                                 ),
-                                                builder: (context, snapshot) {
-                                                  if (snapshot
-                                                          .connectionState ==
-                                                      ConnectionState.done) {
-                                                    return CircleAvatar(
-                                                      maxRadius: 60,
-                                                      backgroundColor:
-                                                          const Color(
-                                                              0xffC4C4C4),
-                                                      backgroundImage: NetworkImage(
-                                                          "$getimage${control.filteredStudents[index].fileId}"),
-                                                    );
-                                                  } else {
-                                                    return CircleAvatar(
-                                                      maxRadius: 60,
-                                                      backgroundColor:
-                                                          const Color(
-                                                              0xffC4C4C4),
-                                                      child:
-                                                          LoadingAnimationWidget
-                                                              .inkDrop(
-                                                        color: Theme.of(context)
-                                                            .primaryColor,
-                                                        size: 30,
-                                                      ),
-                                                    );
-                                                  }
-                                                },
+                                                placeholder: (context, url) =>
+                                                    CircleAvatar(
+                                                  maxRadius: 60,
+                                                  backgroundColor:
+                                                      const Color(0xffC4C4C4),
+                                                  child: LoadingAnimationWidget
+                                                      .inkDrop(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    size: 30,
+                                                  ),
+                                                ),
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        CircleAvatar(
+                                                  maxRadius: 60,
+                                                  backgroundColor:
+                                                      const Color(0xffC4C4C4),
+                                                  child: Text(
+                                                    control
+                                                        .filteredStudents[index]
+                                                        .fullName!
+                                                        .substring(0, 1)
+                                                        .toUpperCase(),
+                                                    style: Get
+                                                        .textTheme.titleLarge!
+                                                        .copyWith(
+                                                      fontSize: 26,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ),
                                               )
                                             : CircleAvatar(
                                                 maxRadius: 60,
@@ -274,7 +286,7 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
-                                              ),
+                                              )
                                       ],
                                     ),
                                     Text(
@@ -878,40 +890,51 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                         control.filteredStudents[index]
                                                     .fileId !=
                                                 null
-                                            ? FutureBuilder(
-                                                future: precacheImage(
-                                                  NetworkImage(
-                                                      "$getimage${control.filteredStudents[index].fileId}"),
-                                                  context,
+                                            ? CachedNetworkImage(
+                                                imageUrl:
+                                                    "$getimage${control.filteredStudents[index].fileId}",
+                                                imageBuilder:
+                                                    (context, imageProvider) =>
+                                                        CircleAvatar(
+                                                  maxRadius: 60,
+                                                  backgroundColor:
+                                                      const Color(0xffC4C4C4),
+                                                  backgroundImage:
+                                                      imageProvider,
                                                 ),
-                                                builder: (context, snapshot) {
-                                                  if (snapshot
-                                                          .connectionState ==
-                                                      ConnectionState.done) {
-                                                    return CircleAvatar(
-                                                      maxRadius: 60,
-                                                      backgroundColor:
-                                                          const Color(
-                                                              0xffC4C4C4),
-                                                      backgroundImage: NetworkImage(
-                                                          "$getimage${control.filteredStudents[index].fileId}"),
-                                                    );
-                                                  } else {
-                                                    return CircleAvatar(
-                                                      maxRadius: 60,
-                                                      backgroundColor:
-                                                          const Color(
-                                                              0xffC4C4C4),
-                                                      child:
-                                                          LoadingAnimationWidget
-                                                              .inkDrop(
-                                                        color: Theme.of(context)
-                                                            .primaryColor,
-                                                        size: 30,
-                                                      ),
-                                                    );
-                                                  }
-                                                },
+                                                placeholder: (context, url) =>
+                                                    CircleAvatar(
+                                                  maxRadius: 60,
+                                                  backgroundColor:
+                                                      const Color(0xffC4C4C4),
+                                                  child: LoadingAnimationWidget
+                                                      .inkDrop(
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    size: 30,
+                                                  ),
+                                                ),
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        CircleAvatar(
+                                                  maxRadius: 60,
+                                                  backgroundColor:
+                                                      const Color(0xffC4C4C4),
+                                                  child: Text(
+                                                    control
+                                                        .filteredStudents[index]
+                                                        .fullName!
+                                                        .substring(0, 1)
+                                                        .toUpperCase(),
+                                                    style: Get
+                                                        .textTheme.titleLarge!
+                                                        .copyWith(
+                                                      fontSize: 26,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ),
                                               )
                                             : CircleAvatar(
                                                 maxRadius: 60,
@@ -930,7 +953,7 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
-                                              ),
+                                              )
                                       ],
                                     ),
                                     Text(
@@ -1535,44 +1558,57 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                             control.filteredStudents[index]
                                                         .fileId !=
                                                     null
-                                                ? FutureBuilder(
-                                                    future: precacheImage(
-                                                      NetworkImage(
-                                                          "$getimage${control.filteredStudents[index].fileId}"),
-                                                      context,
+                                                ? CachedNetworkImage(
+                                                    imageUrl:
+                                                        "$getimage${control.filteredStudents[index].fileId}",
+                                                    imageBuilder: (context,
+                                                            imageProvider) =>
+                                                        CircleAvatar(
+                                                      maxRadius: 60,
+                                                      backgroundColor:
+                                                          const Color(
+                                                              0xffC4C4C4),
+                                                      backgroundImage:
+                                                          imageProvider,
                                                     ),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      if (snapshot
-                                                              .connectionState ==
-                                                          ConnectionState
-                                                              .done) {
-                                                        return CircleAvatar(
-                                                          maxRadius: 60,
-                                                          backgroundColor:
-                                                              const Color(
-                                                                  0xffC4C4C4),
-                                                          backgroundImage:
-                                                              NetworkImage(
-                                                                  "$getimage${control.filteredStudents[index].fileId}"),
-                                                        );
-                                                      } else {
-                                                        return CircleAvatar(
-                                                          maxRadius: 60,
-                                                          backgroundColor:
-                                                              const Color(
-                                                                  0xffC4C4C4),
-                                                          child:
-                                                              LoadingAnimationWidget
-                                                                  .inkDrop(
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .primaryColor,
-                                                            size: 30,
-                                                          ),
-                                                        );
-                                                      }
-                                                    },
+                                                    placeholder:
+                                                        (context, url) =>
+                                                            CircleAvatar(
+                                                      maxRadius: 60,
+                                                      backgroundColor:
+                                                          const Color(
+                                                              0xffC4C4C4),
+                                                      child:
+                                                          LoadingAnimationWidget
+                                                              .inkDrop(
+                                                        color: Theme.of(context)
+                                                            .primaryColor,
+                                                        size: 30,
+                                                      ),
+                                                    ),
+                                                    errorWidget:
+                                                        (context, url, error) =>
+                                                            CircleAvatar(
+                                                      maxRadius: 60,
+                                                      backgroundColor:
+                                                          const Color(
+                                                              0xffC4C4C4),
+                                                      child: Text(
+                                                        control
+                                                            .filteredStudents[
+                                                                index]
+                                                            .fullName!
+                                                            .substring(0, 1)
+                                                            .toUpperCase(),
+                                                        style: Get.textTheme
+                                                            .titleLarge!
+                                                            .copyWith(
+                                                          fontSize: 26,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                    ),
                                                   )
                                                 : CircleAvatar(
                                                     maxRadius: 60,
@@ -1593,7 +1629,7 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                                             FontWeight.bold,
                                                       ),
                                                     ),
-                                                  ),
+                                                  )
                                           ],
                                         ),
                                         Text(
@@ -1940,44 +1976,57 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                             control.filteredStudents[index]
                                                         .fileId !=
                                                     null
-                                                ? FutureBuilder(
-                                                    future: precacheImage(
-                                                      NetworkImage(
-                                                          "$getimage${control.filteredStudents[index].fileId}"),
-                                                      context,
+                                                ? CachedNetworkImage(
+                                                    imageUrl:
+                                                        "$getimage${control.filteredStudents[index].fileId}",
+                                                    imageBuilder: (context,
+                                                            imageProvider) =>
+                                                        CircleAvatar(
+                                                      maxRadius: 60,
+                                                      backgroundColor:
+                                                          const Color(
+                                                              0xffC4C4C4),
+                                                      backgroundImage:
+                                                          imageProvider,
                                                     ),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      if (snapshot
-                                                              .connectionState ==
-                                                          ConnectionState
-                                                              .done) {
-                                                        return CircleAvatar(
-                                                          maxRadius: 60,
-                                                          backgroundColor:
-                                                              const Color(
-                                                                  0xffC4C4C4),
-                                                          backgroundImage:
-                                                              NetworkImage(
-                                                                  "$getimage${control.filteredStudents[index].fileId}"),
-                                                        );
-                                                      } else {
-                                                        return CircleAvatar(
-                                                          maxRadius: 60,
-                                                          backgroundColor:
-                                                              const Color(
-                                                                  0xffC4C4C4),
-                                                          child:
-                                                              LoadingAnimationWidget
-                                                                  .inkDrop(
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .primaryColor,
-                                                            size: 30,
-                                                          ),
-                                                        );
-                                                      }
-                                                    },
+                                                    placeholder:
+                                                        (context, url) =>
+                                                            CircleAvatar(
+                                                      maxRadius: 60,
+                                                      backgroundColor:
+                                                          const Color(
+                                                              0xffC4C4C4),
+                                                      child:
+                                                          LoadingAnimationWidget
+                                                              .inkDrop(
+                                                        color: Theme.of(context)
+                                                            .primaryColor,
+                                                        size: 30,
+                                                      ),
+                                                    ),
+                                                    errorWidget:
+                                                        (context, url, error) =>
+                                                            CircleAvatar(
+                                                      maxRadius: 60,
+                                                      backgroundColor:
+                                                          const Color(
+                                                              0xffC4C4C4),
+                                                      child: Text(
+                                                        control
+                                                            .filteredStudents[
+                                                                index]
+                                                            .fullName!
+                                                            .substring(0, 1)
+                                                            .toUpperCase(),
+                                                        style: Get.textTheme
+                                                            .titleLarge!
+                                                            .copyWith(
+                                                          fontSize: 26,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                    ),
                                                   )
                                                 : CircleAvatar(
                                                     maxRadius: 60,
@@ -1998,7 +2047,7 @@ class GuardianMainScreenGrid extends StatelessWidget {
                                                             FontWeight.bold,
                                                       ),
                                                     ),
-                                                  ),
+                                                  )
                                           ],
                                         ),
                                         Text(

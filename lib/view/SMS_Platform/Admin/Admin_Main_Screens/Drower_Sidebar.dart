@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Get_My_Profile.dart';
@@ -66,69 +68,70 @@ class _DraweHomeState extends State<DraweHome> {
                         child: Column(
                           children: [
                             Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 5.0,
-                                    right: 5.0,
-                                    top: 3.0,
-                                    bottom: 10.0),
-                                child: CircleAvatar(
-                                  radius: 60,
-                                  backgroundColor:
-                                      Theme.of(context).primaryColor,
-                                  child: prefs!.getString("imageId") != "null"
-                                      ? SizedBox(
-                                          width:
-                                              120, // يجب أن يكون ضعف الـ radius
-                                          height:
-                                              120, // يجب أن يكون ضعف الـ radius
-                                          child: ClipOval(
-                                            child: Image.network(
-                                              "$getimage${prefs!.getString("imageId")}",
-                                              fit: BoxFit.cover,
-                                              width:
-                                                  120, // نفس أبعاد الـ SizedBox
-                                              height:
-                                                  120, // نفس أبعاد الـ SizedBox
-                                              loadingBuilder: (context, child,
-                                                  loadingProgress) {
-                                                if (loadingProgress == null) {
-                                                  return child;
-                                                } else {
-                                                  return Center(
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                      value: loadingProgress
-                                                                  .expectedTotalBytes !=
-                                                              null
-                                                          ? loadingProgress
-                                                                  .cumulativeBytesLoaded /
-                                                              (loadingProgress
-                                                                      .expectedTotalBytes ??
-                                                                  1)
-                                                          : null,
-                                                      color: Colors.white,
-                                                    ),
-                                                  );
-                                                }
-                                              },
-                                            ),
-                                          ),
-                                        )
-                                      : Center(
-                                          child: Text(
-                                            prefs!
-                                                    .getString("fullname")
-                                                    ?.substring(0, 1)
-                                                    .toUpperCase() ??
-                                                '',
-                                            style: Get.textTheme.titleLarge
-                                                ?.copyWith(
-                                              color: Colors.white,
-                                              fontSize: 40, // حجم أكبر للنص
-                                            ),
-                                          ),
+                              padding: const EdgeInsets.only(
+                                  left: 5.0,
+                                  right: 5.0,
+                                  top: 3.0,
+                                  bottom: 10.0),
+                              child: prefs!.getString("imageId") != "null"
+                                  ? CachedNetworkImage(
+                                      imageUrl:
+                                          "$getimage${prefs!.getString("imageId")}",
+                                      imageBuilder: (context, imageProvider) =>
+                                          CircleAvatar(
+                                        radius: 60,
+                                        backgroundColor:
+                                            Theme.of(context).primaryColor,
+                                        backgroundImage: imageProvider,
+                                        child: prefs!.getString("imageId") ==
+                                                "null"
+                                            ? Text(
+                                                '${prefs!.getString("userName")?.substring(0, 1).toUpperCase() ?? "?"}',
+                                                style: Get.textTheme.titleLarge!
+                                                    .copyWith(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.white,
+                                                ),
+                                              )
+                                            : null,
+                                      ),
+                                      placeholder: (context, url) =>
+                                          CircleAvatar(
+                                        radius: 60,
+                                        backgroundColor:
+                                            const Color(0xffC4C4C4),
+                                        child: LoadingAnimationWidget.inkDrop(
+                                          color: Theme.of(context).primaryColor,
+                                          size: 10,
                                         ),
-                                )),
+                                      ),
+                                      errorWidget: (context, url, error) =>
+                                          Text(
+                                        prefs!
+                                                .getString("fullname")
+                                                ?.substring(0, 1)
+                                                .toUpperCase() ??
+                                            '',
+                                        style:
+                                            Get.textTheme.titleLarge?.copyWith(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    )
+                                  : Text(
+                                      prefs!
+                                              .getString("fullname")
+                                              ?.substring(0, 1)
+                                              .toUpperCase() ??
+                                          '',
+                                      style: Get.textTheme.titleLarge?.copyWith(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                            ),
                             Text(
                               textDirection: TextDirection.ltr,
                               textAlign: TextAlign.center,

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -294,67 +295,68 @@ class TeacherManagementGrid extends StatelessWidget {
                                                           FontWeight.bold)),
                                         ),
                                       ),
-                                      FutureBuilder(
-                                        future: control.filteredTeacher![index]
-                                                    .imageId !=
-                                                null
-                                            ? precacheImage(
-                                                NetworkImage(
-                                                    "$getimage${control.filteredTeacher![index].imageId}"),
-                                                context)
-                                            : Future.value(null),
-                                        builder: (context, snapshot) {
-                                          if (snapshot.connectionState ==
-                                              ConnectionState.done) {
-                                            return CircleAvatar(
-                                              maxRadius: 60,
-                                              backgroundColor:
-                                                  const Color(0xffC4C4C4),
-                                              backgroundImage: control
-                                                          .filteredTeacher![
-                                                              index]
-                                                          .imageId !=
-                                                      null
-                                                  ? NetworkImage(
-                                                      "$getimage${control.filteredTeacher![index].imageId}")
-                                                  : null,
-                                              child: control
-                                                          .filteredTeacher![
-                                                              index]
-                                                          .imageId ==
-                                                      null
-                                                  ? Text(
-                                                      control
-                                                          .filteredTeacher![
-                                                              index]
-                                                          .fullName!
-                                                          .substring(0, 1)
-                                                          .toUpperCase(),
-                                                      style: Get
-                                                          .textTheme.titleLarge!
-                                                          .copyWith(
-                                                              fontSize: 26,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                    )
-                                                  : null,
-                                            );
-                                          } else {
-                                            return CircleAvatar(
-                                              maxRadius: 60,
-                                              backgroundColor:
-                                                  const Color(0xffC4C4C4),
-                                              child: LoadingAnimationWidget
-                                                  .inkDrop(
-                                                color: Theme.of(context)
-                                                    .primaryColor,
-                                                size: 30,
+                                      control.filteredTeacher![index].imageId !=
+                                              null
+                                          ? CachedNetworkImage(
+                                              imageUrl:
+                                                  "$getimage${control.filteredTeacher![index].imageId}",
+                                              imageBuilder:
+                                                  (context, imageProvider) =>
+                                                      CircleAvatar(
+                                                maxRadius: 60,
+                                                backgroundColor:
+                                                    const Color(0xffC4C4C4),
+                                                backgroundImage: imageProvider,
                                               ),
-                                            );
-                                          }
-                                        },
-                                      ),
+                                              placeholder: (context, url) =>
+                                                  CircleAvatar(
+                                                maxRadius: 60,
+                                                backgroundColor:
+                                                    const Color(0xffC4C4C4),
+                                                child: LoadingAnimationWidget
+                                                    .inkDrop(
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                  size: 30,
+                                                ),
+                                              ),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      CircleAvatar(
+                                                maxRadius: 60,
+                                                backgroundColor:
+                                                    const Color(0xffC4C4C4),
+                                                child: Text(
+                                                  control
+                                                      .filteredTeacher![index]
+                                                      .fullName!
+                                                      .substring(0, 1)
+                                                      .toUpperCase(),
+                                                  style: Get
+                                                      .textTheme.titleLarge!
+                                                      .copyWith(
+                                                    fontSize: 26,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          : CircleAvatar(
+                                              maxRadius: 60,
+                                              backgroundColor:
+                                                  const Color(0xffC4C4C4),
+                                              child: Text(
+                                                control.filteredTeacher![index]
+                                                    .fullName!
+                                                    .substring(0, 1)
+                                                    .toUpperCase(),
+                                                style: Get.textTheme.titleLarge!
+                                                    .copyWith(
+                                                  fontSize: 26,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            )
                                     ],
                                   ),
                                   Row(

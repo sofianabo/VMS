@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Edit_Employee_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
@@ -228,32 +230,62 @@ class _Edit_EmployeeState extends State<Edit_Employee> {
                                       }
                                     }
                                   },
-                                  child: CircleAvatar(
-                                    maxRadius: 100,
-                                    backgroundColor: const Color(0xffC4C4C4),
-                                    backgroundImage: controller
-                                                .selectedImage.value !=
-                                            null
-                                        ? MemoryImage(
-                                            controller.selectedImage.value!)
-                                        : empolyeecontroller
-                                                    .employee!.imageId !=
-                                                null
-                                            ? NetworkImage(getimage +
-                                                "${empolyeecontroller.employee!.imageId}")
-                                            : null,
-                                    child: controller.selectedImage.value ==
-                                                null &&
-                                            empolyeecontroller
-                                                    .employee!.imageId ==
-                                                null
-                                        ? const Icon(
-                                            Icons.image_outlined,
-                                            color: Colors.white,
-                                            size: 40,
-                                          )
-                                        : null,
-                                  ),
+                                  child: controller.selectedImage.value != null
+                                      ? CircleAvatar(
+                                          maxRadius: 100,
+                                          backgroundColor:
+                                              const Color(0xffC4C4C4),
+                                          backgroundImage: MemoryImage(
+                                              controller.selectedImage.value!),
+                                        )
+                                      : empolyeecontroller.employee?.imageId !=
+                                              null
+                                          ? CachedNetworkImage(
+                                              imageUrl: getimage +
+                                                  "${empolyeecontroller.employee!.imageId!}",
+                                              imageBuilder:
+                                                  (context, imageProvider) =>
+                                                      CircleAvatar(
+                                                maxRadius: 100,
+                                                backgroundColor:
+                                                    const Color(0xffC4C4C4),
+                                                backgroundImage: imageProvider,
+                                              ),
+                                              placeholder: (context, url) =>
+                                                  CircleAvatar(
+                                                maxRadius: 100,
+                                                backgroundColor:
+                                                    const Color(0xffC4C4C4),
+                                                child: LoadingAnimationWidget
+                                                    .inkDrop(
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                  size: 30,
+                                                ),
+                                              ),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      CircleAvatar(
+                                                maxRadius: 100,
+                                                backgroundColor:
+                                                    const Color(0xffC4C4C4),
+                                                child: const Icon(
+                                                  Icons.image_outlined,
+                                                  color: Colors.white,
+                                                  size: 40,
+                                                ),
+                                              ),
+                                            )
+                                          : CircleAvatar(
+                                              maxRadius: 100,
+                                              backgroundColor:
+                                                  const Color(0xffC4C4C4),
+                                              child: const Icon(
+                                                Icons.image_outlined,
+                                                color: Colors.white,
+                                                size: 40,
+                                              ),
+                                            ),
                                 ),
                               )
                             ],

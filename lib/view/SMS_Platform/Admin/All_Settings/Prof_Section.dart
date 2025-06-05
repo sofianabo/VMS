@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Employees_APIs/Update_Employee_Info.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
@@ -145,55 +147,70 @@ class _ProfileState extends State<Profile> {
                                 maxRadius: 80,
                                 child: GestureDetector(
                                   onTap: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) => Dialog(
-                                        backgroundColor: Colors.transparent,
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            Get.back();
-                                          },
-                                          child: Material(
-                                            color: Colors.transparent,
-                                            child: Center(
-                                              child: AnimatedContainer(
-                                                duration: const Duration(
-                                                    milliseconds: 500),
-                                                curve: Curves.fastOutSlowIn,
-                                                decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                      color: Colors.black
-                                                          .withOpacity(0.5),
-                                                      blurRadius: 20,
-                                                      offset:
-                                                          const Offset(0, 10),
-                                                    ),
-                                                  ],
-                                                ),
-                                                child: ClipOval(
-                                                  child: add_Data_controller
-                                                              .myData
-                                                              ?.imageId !=
-                                                          null
-                                                      ? Image.network(
-                                                          headers: {
-                                                            "ngrok-skip-browser-warning":
-                                                                "true",
-                                                            'User-Agent':
-                                                                'Custom User-Agent',
-                                                            'accept':
-                                                                'application/json',
-                                                            'authorization':
-                                                                'Bearer ${prefs!.getString("token")}',
-                                                          },
+                                    if (add_Data_controller.myData?.imageId !=
+                                        null) {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) => Dialog(
+                                          backgroundColor: Colors.transparent,
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              Get.back();
+                                            },
+                                            child: Material(
+                                              color: Colors.transparent,
+                                              child: Center(
+                                                child: AnimatedContainer(
+                                                  duration: const Duration(
+                                                      milliseconds: 500),
+                                                  curve: Curves.fastOutSlowIn,
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors.black
+                                                            .withOpacity(0.5),
+                                                        blurRadius: 20,
+                                                        offset:
+                                                            const Offset(0, 10),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  child: ClipOval(
+                                                    child: CachedNetworkImage(
+                                                      imageUrl:
                                                           "$getimage${add_Data_controller.myData?.imageId}",
-                                                          fit: BoxFit.cover,
-                                                          width: 400,
-                                                          height: 400,
-                                                        )
-                                                      : Text(
+                                                      httpHeaders: {
+                                                        "ngrok-skip-browser-warning":
+                                                            "true",
+                                                        'User-Agent':
+                                                            'Custom User-Agent',
+                                                        'accept':
+                                                            'application/json',
+                                                        'authorization':
+                                                            'Bearer ${prefs!.getString("token")}',
+                                                      },
+                                                      fit: BoxFit.cover,
+                                                      width: 400,
+                                                      height: 400,
+                                                      placeholder:
+                                                          (context, url) =>
+                                                              Container(
+                                                        width: 400,
+                                                        height: 400,
+                                                        alignment:
+                                                            Alignment.center,
+                                                        child:
+                                                            LoadingAnimationWidget
+                                                                .inkDrop(
+                                                          color: Colors.white,
+                                                          size: 40,
+                                                        ),
+                                                      ),
+                                                      errorWidget: (context,
+                                                              url, error) =>
+                                                          Center(
+                                                        child: Text(
                                                           picController.myData
                                                                   ?.firstName
                                                                   ?.substring(
@@ -209,20 +226,25 @@ class _ProfileState extends State<Profile> {
                                                                 FontWeight.bold,
                                                           ),
                                                         ),
+                                                      ),
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    );
+                                      );
+                                    }
                                   },
                                   child: ClipOval(
                                     child: add_Data_controller
                                                 .myData?.imageId !=
                                             null
-                                        ? Image.network(
-                                            headers: {
+                                        ? CachedNetworkImage(
+                                            imageUrl:
+                                                "$getimage${add_Data_controller.myData?.imageId}",
+                                            httpHeaders: {
                                               "ngrok-skip-browser-warning":
                                                   "true",
                                               'User-Agent': 'Custom User-Agent',
@@ -230,21 +252,46 @@ class _ProfileState extends State<Profile> {
                                               'authorization':
                                                   'Bearer ${prefs!.getString("token")}',
                                             },
-                                            "$getimage${add_Data_controller.myData?.imageId}",
                                             fit: BoxFit.cover,
-                                            width: 400,
-                                            height: 400,
+                                            width:
+                                                160, // نفس القطر = maxRadius * 2
+                                            height: 160,
+                                            placeholder: (context, url) =>
+                                                Center(
+                                              child: LoadingAnimationWidget
+                                                  .inkDrop(
+                                                color: Colors.white,
+                                                size: 30,
+                                              ),
+                                            ),
+                                            errorWidget:
+                                                (context, url, error) => Center(
+                                              child: Text(
+                                                picController.myData?.firstName
+                                                        ?.substring(0, 1)
+                                                        .toUpperCase() ??
+                                                    '',
+                                                style: Get.textTheme.titleLarge
+                                                    ?.copyWith(
+                                                  color: Colors.white,
+                                                  fontSize: 26,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
                                           )
-                                        : Text(
-                                            picController.myData?.firstName
-                                                    ?.substring(0, 1)
-                                                    .toUpperCase() ??
-                                                '',
-                                            style: Get.textTheme.titleLarge
-                                                ?.copyWith(
-                                              color: Colors.white,
-                                              fontSize: 26,
-                                              fontWeight: FontWeight.bold,
+                                        : Center(
+                                            child: Text(
+                                              picController.myData?.firstName
+                                                      ?.substring(0, 1)
+                                                      .toUpperCase() ??
+                                                  '',
+                                              style: Get.textTheme.titleLarge
+                                                  ?.copyWith(
+                                                color: Colors.white,
+                                                fontSize: 26,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
                                           ),
                                   ),

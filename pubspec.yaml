@@ -57,7 +57,7 @@ dependencies:
   duration_picker: ^1.2.0
   font_awesome_flutter: ^10.8.0
   printing: ^5.14.2
-
+  cached_network_image: ^3.4.1
 
 
 dev_dependencies:

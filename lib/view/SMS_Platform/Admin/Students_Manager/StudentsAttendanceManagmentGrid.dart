@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -47,67 +48,108 @@ class StudentsAttendanceManagmentGrid extends StatelessWidget {
                                                 width: 288,
                                                 child: Row(
                                                   children: [
-                                                    FutureBuilder(
-                                                      future: controller.students[
-                                                                      index]
-                                                                  ["imgid"] !=
-                                                              null
-                                                          ? precacheImage(
-                                                              NetworkImage(
-                                                                  "$getimage${controller.students[index]["imgid"]}"),
-                                                              context)
-                                                          : Future.value(null),
-                                                      builder:
-                                                          (context, snapshot) {
-                                                        if (snapshot
-                                                                .connectionState ==
-                                                            ConnectionState
-                                                                .done) {
-                                                          return CircleAvatar(
-                                                            maxRadius: 25,
-                                                            backgroundColor:
-                                                                const Color(
-                                                                    0xffC4C4C4),
-                                                            backgroundImage: controller
-                                                                            .students[index]
-                                                                        [
-                                                                        "imgid"] !=
-                                                                    null
-                                                                ? NetworkImage(
-                                                                    "$getimage${controller.students[index]["imgid"]}")
-                                                                : null,
-                                                            child: controller.students[
-                                                                            index]
-                                                                        [
-                                                                        "imgid"] ==
-                                                                    null
-                                                                ? const Icon(
-                                                                    Icons
-                                                                        .image_outlined,
-                                                                    color: Colors
-                                                                        .white,
-                                                                    size: 15,
-                                                                  )
-                                                                : null,
-                                                          );
-                                                        } else {
-                                                          return CircleAvatar(
-                                                            maxRadius: 25,
-                                                            backgroundColor:
-                                                                const Color(
-                                                                    0xffC4C4C4),
-                                                            child:
-                                                                LoadingAnimationWidget
-                                                                    .inkDrop(
-                                                              color: Theme.of(
-                                                                      context)
-                                                                  .primaryColor,
-                                                              size: 15,
+                                                    controller.students[index]
+                                                                ["imgid"] !=
+                                                            null
+                                                        ? CachedNetworkImage(
+                                                            imageUrl:
+                                                                "$getimage${controller.students[index]["imgid"]}",
+                                                            imageBuilder: (context,
+                                                                    imageProvider) =>
+                                                                CircleAvatar(
+                                                              maxRadius: 25,
+                                                              backgroundColor:
+                                                                  const Color(
+                                                                      0xffC4C4C4),
+                                                              backgroundImage:
+                                                                  imageProvider,
                                                             ),
-                                                          );
-                                                        }
-                                                      },
-                                                    ),
+                                                            placeholder:
+                                                                (context,
+                                                                        url) =>
+                                                                    CircleAvatar(
+                                                              maxRadius: 25,
+                                                              backgroundColor:
+                                                                  const Color(
+                                                                      0xffC4C4C4),
+                                                              child:
+                                                                  LoadingAnimationWidget
+                                                                      .inkDrop(
+                                                                color: Theme.of(
+                                                                        context)
+                                                                    .primaryColor,
+                                                                size: 15,
+                                                              ),
+                                                            ),
+                                                            errorWidget: (context,
+                                                                    url,
+                                                                    error) =>
+                                                                CircleAvatar(
+                                                              maxRadius: 25,
+                                                              backgroundColor:
+                                                                  const Color(
+                                                                      0xffC4C4C4),
+                                                              child: Text(
+                                                                controller
+                                                                        .students[
+                                                                            index]
+                                                                            [
+                                                                            "name"]
+                                                                        .isNotEmpty
+                                                                    ? controller
+                                                                        .students[
+                                                                            index]
+                                                                            [
+                                                                            "name"]
+                                                                        .substring(
+                                                                            0,
+                                                                            1)
+                                                                        .toUpperCase()
+                                                                    : '?',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: Get
+                                                                      .theme
+                                                                      .primaryColor,
+                                                                  fontSize: 16,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          )
+                                                        : CircleAvatar(
+                                                            maxRadius: 25,
+                                                            backgroundColor:
+                                                                const Color(
+                                                                    0xffC4C4C4),
+                                                            child: Text(
+                                                              controller
+                                                                      .students[
+                                                                          index]
+                                                                          [
+                                                                          "name"]
+                                                                      .isNotEmpty
+                                                                  ? controller
+                                                                      .students[
+                                                                          index]
+                                                                          [
+                                                                          "name"]
+                                                                      .substring(
+                                                                          0, 1)
+                                                                      .toUpperCase()
+                                                                  : '?',
+                                                              style: TextStyle(
+                                                                color: Get.theme
+                                                                    .primaryColor,
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                            ),
+                                                          ),
                                                     Padding(
                                                       padding:
                                                           const EdgeInsets.only(
@@ -259,68 +301,101 @@ class StudentsAttendanceManagmentGrid extends StatelessWidget {
                                               width: 288,
                                               child: Row(
                                                 children: [
-                                                  FutureBuilder(
-                                                    future: controller.students[
-                                                                    index]
-                                                                ["imgid"] !=
-                                                            null
-                                                        ? precacheImage(
-                                                            NetworkImage(
-                                                                "$getimage${controller.students[index]["imgid"]}"),
-                                                            context)
-                                                        : Future.value(null),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      if (snapshot
-                                                              .connectionState ==
-                                                          ConnectionState
-                                                              .done) {
-                                                        return CircleAvatar(
-                                                          maxRadius: 25,
-                                                          backgroundColor:
-                                                              const Color(
-                                                                  0xffC4C4C4),
-                                                          backgroundImage: controller
-                                                                              .students[
-                                                                          index]
-                                                                      [
-                                                                      "imgid"] !=
-                                                                  null
-                                                              ? NetworkImage(
-                                                                  "$getimage${controller.students[index]["imgid"]}")
-                                                              : null,
-                                                          child: controller.students[
-                                                                          index]
-                                                                      [
-                                                                      "imgid"] ==
-                                                                  null
-                                                              ? const Icon(
-                                                                  Icons
-                                                                      .image_outlined,
-                                                                  color: Colors
-                                                                      .white,
-                                                                  size: 15,
-                                                                )
-                                                              : null,
-                                                        );
-                                                      } else {
-                                                        return CircleAvatar(
-                                                          maxRadius: 25,
-                                                          backgroundColor:
-                                                              const Color(
-                                                                  0xffC4C4C4),
-                                                          child:
-                                                              LoadingAnimationWidget
-                                                                  .inkDrop(
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .primaryColor,
-                                                            size: 15,
+                                                  controller.students[index]
+                                                              ["imgid"] !=
+                                                          null
+                                                      ? CachedNetworkImage(
+                                                          imageUrl:
+                                                              "$getimage${controller.students[index]["imgid"]}",
+                                                          imageBuilder: (context,
+                                                                  imageProvider) =>
+                                                              CircleAvatar(
+                                                            maxRadius: 25,
+                                                            backgroundColor:
+                                                                const Color(
+                                                                    0xffC4C4C4),
+                                                            backgroundImage:
+                                                                imageProvider,
                                                           ),
-                                                        );
-                                                      }
-                                                    },
-                                                  ),
+                                                          placeholder:
+                                                              (context, url) =>
+                                                                  CircleAvatar(
+                                                            maxRadius: 25,
+                                                            backgroundColor:
+                                                                const Color(
+                                                                    0xffC4C4C4),
+                                                            child:
+                                                                LoadingAnimationWidget
+                                                                    .inkDrop(
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .primaryColor,
+                                                              size: 15,
+                                                            ),
+                                                          ),
+                                                          errorWidget: (context,
+                                                                  url, error) =>
+                                                              CircleAvatar(
+                                                            maxRadius: 25,
+                                                            backgroundColor:
+                                                                const Color(
+                                                                    0xffC4C4C4),
+                                                            child: Text(
+                                                              controller
+                                                                      .students[
+                                                                          index]
+                                                                          [
+                                                                          "name"]
+                                                                      .isNotEmpty
+                                                                  ? controller
+                                                                      .students[
+                                                                          index]
+                                                                          [
+                                                                          "name"]
+                                                                      .substring(
+                                                                          0, 1)
+                                                                      .toUpperCase()
+                                                                  : '?',
+                                                              style: TextStyle(
+                                                                color: Get.theme
+                                                                    .primaryColor,
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )
+                                                      : CircleAvatar(
+                                                          maxRadius: 25,
+                                                          backgroundColor:
+                                                              const Color(
+                                                                  0xffC4C4C4),
+                                                          child: Text(
+                                                            controller
+                                                                    .students[
+                                                                        index]
+                                                                        ["name"]
+                                                                    .isNotEmpty
+                                                                ? controller
+                                                                    .students[
+                                                                        index]
+                                                                        ["name"]
+                                                                    .substring(
+                                                                        0, 1)
+                                                                    .toUpperCase()
+                                                                : '?',
+                                                            style: TextStyle(
+                                                              color: Get.theme
+                                                                  .primaryColor,
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          ),
+                                                        ),
                                                   Padding(
                                                     padding:
                                                         const EdgeInsets.only(

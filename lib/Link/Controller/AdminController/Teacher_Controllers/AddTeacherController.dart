@@ -16,8 +16,6 @@ class Addteachercontroller extends GetxController {
       Uint8List fileBytes = await pickedFile.readAsBytes();
 
       selectedImage.value = fileBytes;
-    } else {
-      ErrorMessage("Please select a valid image.");
-    }
+    } else {}
   }
 }

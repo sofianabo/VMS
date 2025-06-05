@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/API/AdminAPI/Location_API/Locations_API.dart';
 import 'package:vms_school/Link/API/AdminAPI/School/School_DropDown/DropdownClassesAPI.dart';
@@ -383,47 +385,85 @@ class _Edite_Students_pageState extends State<Edite_Students_page> {
                                   onTap: () async {
                                     await controller.pickImage(context);
                                   },
-                                  child: CircleAvatar(
-                                    maxRadius: 100,
-                                    backgroundColor: const Color(0xffC4C4C4),
-                                    backgroundImage: controller
-                                                .selectedImage.value !=
-                                            null
-                                        ? MemoryImage(
-                                            controller.selectedImage.value!)
-                                        : Get.find<Allstudentscontroller>()
-                                                    .filteredStudents[Get.find<
-                                                            Allstudentscontroller>()
-                                                        .idx]
-                                                    .fileId !=
-                                                null
-                                            ? NetworkImage(getimage +
-                                                "${Get.find<Allstudentscontroller>().filteredStudents[Get.find<Allstudentscontroller>().idx].fileId}")
-                                            : null,
-                                    child: controller.selectedImage.value ==
-                                                null &&
-                                            Get.find<Allstudentscontroller>()
-                                                    .filteredStudents[Get.find<
-                                                            Allstudentscontroller>()
-                                                        .idx]
-                                                    .fileId ==
-                                                null
-                                        ? Text(
-                                            Get.find<Allstudentscontroller>()
-                                                .filteredStudents[Get.find<
-                                                        Allstudentscontroller>()
-                                                    .idx]
-                                                .fullName!
-                                                .substring(0, 1)
-                                                .toUpperCase(),
-                                            style: Get.textTheme.titleLarge!
-                                                .copyWith(
-                                              fontSize: 42,
-                                              fontWeight: FontWeight.bold,
+                                  child: controller.selectedImage.value != null
+                                      ? CircleAvatar(
+                                          maxRadius: 100,
+                                          backgroundColor:
+                                              const Color(0xffC4C4C4),
+                                          backgroundImage: MemoryImage(
+                                              controller.selectedImage.value!),
+                                        )
+                                      : Get.find<Allstudentscontroller>()
+                                                  .student
+                                                  ?.fileId !=
+                                              null
+                                          ? CachedNetworkImage(
+                                              imageUrl: getimage +
+                                                  "${Get.find<Allstudentscontroller>().student!.fileId!}",
+                                              imageBuilder:
+                                                  (context, imageProvider) =>
+                                                      CircleAvatar(
+                                                maxRadius: 100,
+                                                backgroundColor:
+                                                    const Color(0xffC4C4C4),
+                                                backgroundImage: imageProvider,
+                                              ),
+                                              placeholder: (context, url) =>
+                                                  CircleAvatar(
+                                                maxRadius: 100,
+                                                backgroundColor:
+                                                    const Color(0xffC4C4C4),
+                                                child: LoadingAnimationWidget
+                                                    .inkDrop(
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                  size: 30,
+                                                ),
+                                              ),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      CircleAvatar(
+                                                maxRadius: 100,
+                                                backgroundColor:
+                                                    const Color(0xffC4C4C4),
+                                                child: Text(
+                                                  Get.find<Allstudentscontroller>()
+                                                          .student
+                                                          ?.firstName
+                                                          ?.substring(0, 1)
+                                                          .toUpperCase() ??
+                                                      '?',
+                                                  style: Get
+                                                      .textTheme.titleLarge!
+                                                      .copyWith(
+                                                    fontSize: 42,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          : CircleAvatar(
+                                              maxRadius: 100,
+                                              backgroundColor:
+                                                  const Color(0xffC4C4C4),
+                                              child: Text(
+                                                Get.find<Allstudentscontroller>()
+                                                        .student
+                                                        ?.firstName
+                                                        ?.substring(0, 1)
+                                                        .toUpperCase() ??
+                                                    '?',
+                                                style: Get.textTheme.titleLarge!
+                                                    .copyWith(
+                                                  fontSize: 42,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                ),
+                                              ),
                                             ),
-                                          )
-                                        : null,
-                                  ),
                                 ),
                               ),
                             ],
