@@ -136,9 +136,9 @@ class Homeworkcontroller extends GetxController {
 
     filteredhomework = List.from(homework!);
 
-    // if (filterName != null && filterName!.isNotEmpty) {
-    //   searchByName(filterName.toString(), semesterIndex, subjectIndex);
-    // }
+    if (filterName != null && filterName!.isNotEmpty) {
+      searchByName(filterName.toString(), currindex);
+    }
 
     if (currindex.isNotEmpty) {
       filteredhomework = filteredhomework.where((emp) {

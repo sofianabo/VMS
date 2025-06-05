@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Curr_LMS_Controller.dart';
@@ -17,20 +18,21 @@ class Homeworkgrid extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
 
     int getCrossAxisCount() {
-      if (screenWidth >= 1132) return 4;
+      if (screenWidth >= 1278) return 5;
+      if (screenWidth >= 1070) return 4;
       if (screenWidth >= 950) return 3;
-      if (screenWidth >= 620) return 2;
+      if (screenWidth >= 769) return 2;
       return 1;
     }
 
     double getChildAspectRatio() {
-      if (screenWidth >= 1070) return 0.9;
-      if (screenWidth >= 950) return 0.9;
-      if (screenWidth >= 838) return 1.4;
-      if (screenWidth >= 769) return 1.3;
-      if (screenWidth >= 620) return 1.0;
-      if (screenWidth >= 539) return 1.5;
-      return 1.3;
+      if (screenWidth >= 1070) return 1.1;
+      if (screenWidth >= 950) return 1.1;
+      if (screenWidth >= 838) return 1.6;
+      if (screenWidth >= 769) return 1.5;
+      if (screenWidth >= 613) return 2.2;
+      if (screenWidth >= 486) return 1.7;
+      return 1.2;
     }
 
     return Directionality(
@@ -48,7 +50,7 @@ class Homeworkgrid extends StatelessWidget {
                     crossAxisSpacing: 20.0,
                     mainAxisSpacing: 20.0,
                     childAspectRatio: getChildAspectRatio()),
-                itemCount: 8,
+                itemCount: 10,
                 itemBuilder: (context, index) {
                   return HoverScaleCard(
                     child: Container(
@@ -67,48 +69,34 @@ class Homeworkgrid extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Expanded(
-                                child: SchemaWidget(width: 500, height: 150)),
+                            SchemaWidget(width: 35, height: 35),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 5.0, bottom: 5.0),
-                                    child:
-                                        SchemaWidget(width: 145, height: 20)),
+                                SchemaWidget(width: 20, height: 15),
                               ],
                             ),
+                            SchemaWidget(width: 25, height: 15),
+                            SchemaWidget(width: 25, height: 15),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    SchemaWidget(width: 145, height: 20),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 5.0, bottom: 5.0),
-                                      child:
-                                          SchemaWidget(width: 145, height: 20),
-                                    ),
-                                    SchemaWidget(width: 145, height: 20),
-                                  ],
-                                ),
-                                SchemaWidget(width: 40, height: 40)
+                                SchemaWidget(width: 25, height: 15),
+                                SchemaWidget(width: 20, height: 20),
                               ],
                             )
                           ],
                         )),
-                  );
+                  )
+                      .animate(onPlay: (controller) => controller.repeat())
+                      .shimmer(
+                          angle: 1,
+                          color: Colors.grey.withOpacity(0.2),
+                          duration: const Duration(seconds: 1),
+                          delay: const Duration(seconds: 1));
                 },
-              ).animate(onPlay: (controller) => controller.repeat()).shimmer(
-                angle: 1,
-                color: Colors.grey.withOpacity(0.2),
-                duration: const Duration(seconds: 1),
-                delay: const Duration(seconds: 1))
+              )
             : control.filteredhomework.isNotEmpty
                 ? GridView.builder(
                     padding:
@@ -132,7 +120,11 @@ class Homeworkgrid extends StatelessWidget {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   border: Border.all(
-                                      color: Colors.grey, width: 0.5),
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium!
+                                          .color!,
+                                      width: 0.5),
                                   color: Theme.of(context).cardColor,
                                   boxShadow: const [
                                     BoxShadow(
@@ -145,39 +137,103 @@ class Homeworkgrid extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Expanded(
-                                      child: SizedBox(
-                                          width: 500,
-                                          child: Image.network(
-                                            "$getimage${control.filteredhomework[index].fileId}",
-                                            fit: BoxFit.fitWidth,
-                                          ))),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      Expanded(
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 5.0, bottom: 5.0),
-                                          child: Center(
-                                            child: Text(
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                                "${control.filteredhomework[index].name}",
-                                                style: Get
-                                                    .theme.textTheme.titleLarge!
-                                                    .copyWith(fontSize: 18)),
-                                          ),
-                                        ),
+                                      Container(
+                                        alignment: Alignment.center,
+                                        width: 180,
+                                        child: Text(
+                                            "${control.filteredhomework[index].name}",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium!
+                                                .copyWith(
+                                                  fontSize: 20,
+                                                )),
                                       ),
                                     ],
                                   ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [],
+                                  SizedBox(
+                                    height: 25,
+                                  ),
+                                  Text(
+                                      Get.find<LocalizationController>()
+                                                  .currentLocale
+                                                  .value
+                                                  .languageCode ==
+                                              'ar'
+                                          ? "${control.filteredhomework[index].homeworkeCurriculum!.name}"
+                                          : "${control.filteredhomework[index].homeworkeCurriculum!.enName}",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium!
+                                          .copyWith(
+                                              fontWeight: FontWeight.normal,
+                                              fontSize: 18)),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Text(
+                                      "Mark: ".tr +
+                                          "${control.filteredhomework![index].mark}",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium!
+                                          .copyWith(
+                                              fontWeight: FontWeight.normal,
+                                              fontSize: 18)),
+                                  Expanded(
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        TextButton(
+                                            style: ButtonStyle(
+                                                backgroundColor:
+                                                    WidgetStatePropertyAll(
+                                                        Colors.transparent),
+                                                shape: WidgetStatePropertyAll(
+                                                    RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(3)),
+                                                  side: BorderSide(
+                                                      color: Color(0xffB03D3D)),
+                                                ))),
+                                            onPressed: () async {},
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              spacing: 10.0,
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 5.0,
+                                                          right: 5.0),
+                                                  child: Text(
+                                                    'Delete'.tr,
+                                                    style: Get.theme.textTheme
+                                                        .headlineMedium!
+                                                        .copyWith(
+                                                            color: Color(
+                                                                0xffB03D3D)),
+                                                  ),
+                                                ),
+                                                Icon(
+                                                  Icons.delete,
+                                                  color: Color(0xffB03D3D),
+                                                )
+                                              ],
+                                            )),
+                                      ],
+                                    ),
                                   )
                                 ],
                               )),
@@ -186,7 +242,7 @@ class Homeworkgrid extends StatelessWidget {
                     },
                   )
                 : Center(
-                    child: Text("No Curriculum".tr,
+                    child: Text("No Homework".tr,
                         style: Theme.of(context).textTheme.titleLarge!.copyWith(
                             fontSize: 22, fontWeight: FontWeight.normal)));
       }),
