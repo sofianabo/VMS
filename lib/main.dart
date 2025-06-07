@@ -34,6 +34,7 @@ class VMS_Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    prefs!.setBool("isLMS", true);
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialBinding: AppBindings(),

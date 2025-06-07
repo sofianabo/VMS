@@ -3,18 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Curriculum_Model.dart';
-import 'package:vms_school/Link/Model/LMS_Model/HomeWorkLMSModel.dart';
+import 'package:vms_school/Link/Model/LMS_Model/Files_Model.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 
-class Homeworkcontroller extends GetxController {
-  List<Homeworke>? homework;
-  List<Homeworke> filteredhomework = [];
+class Files_Controller extends GetxController {
+  List<LmsCurriculmFiles>? files_LMS;
+  List<LmsCurriculmFiles> filtered_files_LMS = [];
 
   String? filterName = '';
   List<String> currList = [];
   String currindex = "";
   String dialog_currIndex = "";
   List<String> dialogCurrList = [];
+
   void clearFilter() {
     searchByName("", currindex);
     update();
@@ -22,7 +23,7 @@ class Homeworkcontroller extends GetxController {
 
   void searchByName(String? nameQuery, String? curiculumName) {
     filterName = nameQuery;
-    List<Homeworke> tempFilteredList = List.from(homework!);
+    List<LmsCurriculmFiles> tempFilteredList = List.from(files_LMS!);
 
     if (nameQuery != null && nameQuery.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((cur) {
@@ -33,12 +34,12 @@ class Homeworkcontroller extends GetxController {
 
     if (curiculumName != null && curiculumName.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((cur) {
-        return cur.homeworkeCurriculum!.enName == curiculumName ||
-            cur.homeworkeCurriculum!.name == curiculumName;
+        return cur.curriculmFile!.enName == curiculumName ||
+            cur.curriculmFile!.name == curiculumName;
       }).toList();
     }
 
-    filteredhomework = tempFilteredList;
+    filtered_files_LMS = tempFilteredList;
     update();
   }
 
@@ -52,7 +53,7 @@ class Homeworkcontroller extends GetxController {
   Future<void> pickPDFFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      allowedExtensions: ['pdf', 'jpeg', 'jpg'],
+      allowedExtensions: ['pdf'],
     );
 
     if (result != null && result.files.single.bytes != null) {
@@ -103,48 +104,42 @@ class Homeworkcontroller extends GetxController {
     update();
   }
 
-  setcurr(Curriculum_Model currmodel) {
+  setCurriculum(Curriculum_Model curruculum) {
     currList.clear();
-    for (int i = 0; i < currmodel.curriculum!.length; i++) {
+    dialogCurrList.clear();
+    for (int i = 0; i < curruculum.curriculum!.length; i++) {
       currList.add(
           Get.find<LocalizationController>().currentLocale.value.languageCode ==
                   'ar'
-              ? currmodel.curriculum![i].name!
-              : currmodel.curriculum![i].enName!);
-    }
-    updateList("curriculum", currList);
-    setisCurriculmLoading(false);
-    update();
-  }
-
-  setDialogCurr(Curriculum_Model currdialog) {
-    dialogCurrList.clear();
-    for (int i = 0; i < currdialog.curriculum!.length; i++) {
+              ? curruculum.curriculum![i].name!
+              : curruculum.curriculum![i].enName!);
       dialogCurrList.add(
           Get.find<LocalizationController>().currentLocale.value.languageCode ==
                   'ar'
-              ? currdialog.curriculum![i].name!
-              : currdialog.curriculum![i].enName!);
+              ? curruculum.curriculum![i].name!
+              : curruculum.curriculum![i].enName!);
     }
     updateList("currDialog", dialogCurrList);
+    updateList("curriculum", currList);
+    setisCurriculmLoading(false);
     setisCurriculmDialogLoading(false);
 
     update();
   }
 
-  void SetHomework(HomeworkLMSModel homeworlmodel) {
-    homework = homeworlmodel.homeworke;
+  void SetFiles(LMS_Files_Model files) {
+    files_LMS = files.lmsCurriculmFiles;
 
-    filteredhomework = List.from(homework!);
+    filtered_files_LMS = List.from(files_LMS!);
 
     if (filterName != null && filterName!.isNotEmpty) {
       searchByName(filterName.toString(), currindex);
     }
 
     if (currindex.isNotEmpty) {
-      filteredhomework = filteredhomework.where((emp) {
-        return emp.homeworkeCurriculum!.name == currindex ||
-            emp.homeworkeCurriculum!.enName == currindex;
+      filtered_files_LMS = filtered_files_LMS.where((emp) {
+        return emp.curriculmFile!.name == currindex ||
+            emp.curriculmFile!.enName == currindex;
       }).toList();
     }
 
@@ -167,7 +162,6 @@ class Homeworkcontroller extends GetxController {
   String get selectCurrIndex => currindex;
 
   String get selectdialog_CurrIndex => dialog_currIndex;
-  Rx<DateTime?> get selectDate => homeworkDate;
 
   void SetIsLoading(bool value) {
     isLoading = value;
@@ -175,24 +169,16 @@ class Homeworkcontroller extends GetxController {
   }
 
   bool IsAnameError = false;
-  bool isDateError = false;
   bool IsFileError = false;
   bool iscurrError = false;
-  bool IsMarkError = false;
 
   void updateFieldError(String type, bool newValue) {
     switch (type) {
       case 'aname':
         IsAnameError = newValue;
         break;
-      case 'birth':
-        isDateError = newValue;
-        break;
       case 'curr':
         iscurrError = newValue;
-        break;
-      case 'mark':
-        IsMarkError = newValue;
         break;
 
       case 'file':
@@ -213,21 +199,15 @@ class Homeworkcontroller extends GetxController {
   }
 
   Rx<DateTime?> homeworkDate = Rx<DateTime?>(null);
-  void selectBirthDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: homeworkDate.value ?? DateTime.now(),
-      firstDate: DateTime(1950),
-      lastDate: DateTime(
-          DateTime.now().year + 1, DateTime.now().month, DateTime.now().day),
-    );
-    if (picked != null) {
-      homeworkDate.value = picked;
-      updateFieldError("birth", false);
-    }
+
+  bool Hidden = false;
+  updateHid(bool value) {
+    Hidden = value;
+    update();
   }
 
   void reset() {
+    Hidden = false;
     homeworkDate.value = null;
     selectedFile.value = null;
     dialog_currIndex = "";
@@ -238,7 +218,6 @@ class Homeworkcontroller extends GetxController {
 
   void resetError() {
     IsAnameError = false;
-    isDateError = false;
     iscurrError = false;
     IsFileError = false;
     update();

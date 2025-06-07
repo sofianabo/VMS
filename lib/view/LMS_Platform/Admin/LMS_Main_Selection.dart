@@ -6,6 +6,7 @@ import 'package:vms_school/view/LMS_Platform/Admin/Admin_Main_Screens/AppBarTran
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Curriculum_LMS/Curriculum_Management.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Division_LMS/Division_Grid.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Division_LMS/HomeWorkManagement.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Files_LMS/Files_LMS.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Selected_Class_Screen.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Students_LMS/LMS_Student.dart';
 
@@ -40,7 +41,7 @@ class Selected_Class_Screen extends StatelessWidget {
                   } else if (current == "Divisions".tr) {
                     return DivisionGrid();
                   } else if (current == "Files".tr) {
-                    return Text("Files");
+                    return Files_LMS();
                   } else if (current == "Links".tr) {
                     return Text("Links");
                   } else if (current == "Pages".tr) {

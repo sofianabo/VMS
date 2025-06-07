@@ -18,15 +18,15 @@ class Homeworkgrid extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
 
     int getCrossAxisCount() {
-      if (screenWidth >= 1278) return 5;
-      if (screenWidth >= 1070) return 4;
+      if (screenWidth >= 1400) return 5;
+      if (screenWidth >= 1150) return 4;
       if (screenWidth >= 950) return 3;
       if (screenWidth >= 769) return 2;
       return 1;
     }
 
     double getChildAspectRatio() {
-      if (screenWidth >= 1070) return 1.1;
+      if (screenWidth >= 1150) return 1.1;
       if (screenWidth >= 950) return 1.1;
       if (screenWidth >= 838) return 1.6;
       if (screenWidth >= 769) return 1.5;
@@ -160,34 +160,50 @@ class Homeworkgrid extends StatelessWidget {
                                     ],
                                   ),
                                   SizedBox(
-                                    height: 25,
+                                    height: 22,
                                   ),
-                                  Text(
-                                      Get.find<LocalizationController>()
-                                                  .currentLocale
-                                                  .value
-                                                  .languageCode ==
-                                              'ar'
-                                          ? "${control.filteredhomework[index].homeworkeCurriculum!.name}"
-                                          : "${control.filteredhomework[index].homeworkeCurriculum!.enName}",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium!
-                                          .copyWith(
-                                              fontWeight: FontWeight.normal,
-                                              fontSize: 18)),
-                                  SizedBox(
-                                    height: 15,
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    spacing: 5.0,
+                                    children: [
+                                      Text(
+                                          Get.find<LocalizationController>()
+                                                      .currentLocale
+                                                      .value
+                                                      .languageCode ==
+                                                  'ar'
+                                              ? "${control.filteredhomework[index].homeworkeCurriculum!.name}"
+                                              : "${control.filteredhomework[index].homeworkeCurriculum!.enName}",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleMedium!
+                                              .copyWith(
+                                                  fontWeight: FontWeight.normal,
+                                                  fontSize: 14)),
+                                      Text(
+                                          "Mark".tr +
+                                              ": " +
+                                              "${control.filteredhomework[index].mark}",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleMedium!
+                                              .copyWith(
+                                                  fontWeight: FontWeight.normal,
+                                                  fontSize: 14)),
+                                      Text(
+                                          "HomeWork Submission Date".tr +
+                                              ": " +
+                                              "${control.filteredhomework[index].lastDate}",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleMedium!
+                                              .copyWith(
+                                                  fontWeight: FontWeight.normal,
+                                                  fontSize: 14)),
+                                    ],
                                   ),
-                                  Text(
-                                      "Mark: ".tr +
-                                          "${control.filteredhomework![index].mark}",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium!
-                                          .copyWith(
-                                              fontWeight: FontWeight.normal,
-                                              fontSize: 18)),
                                   Expanded(
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.end,

@@ -24,8 +24,7 @@ class _StudyYearStudentsState extends State<LMS_Students> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    return Expanded(
-        child: Column(
+    return Column(
       children: [
         GetBuilder<Students_LMS_Controller>(builder: (controller) {
           return TextFormSearch(
@@ -49,6 +48,6 @@ class _StudyYearStudentsState extends State<LMS_Students> {
           child: LMS_StudentsGrid(),
         )),
       ],
-    ));
+    );
   }
 }

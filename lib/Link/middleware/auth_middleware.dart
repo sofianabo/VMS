@@ -9,6 +9,7 @@ class RoleBasedMiddleware extends GetMiddleware {
     bool isLoggedIn = prefs?.getBool("isLogin") ?? false;
     bool isLMS = prefs?.getBool("isLMS") ?? false;
     String? role = prefs?.getString("role");
+    print('isLoggedIn: $isLoggedIn, role: $role, isLMS: $isLMS');
     if (!isLoggedIn &&
         route != '/home' &&
         route != '/login' &&
@@ -16,18 +17,27 @@ class RoleBasedMiddleware extends GetMiddleware {
       return const RouteSettings(name: '/home');
     }
 
-    if (isLoggedIn &&
+    if (isLMS == false &&
+        isLoggedIn &&
         (role == "admin" ||
             role == "subAdmin" ||
             role == "observer" ||
             role == "supervisor")) {
       Get.find<Add_Data_controller>().CheeckHasData();
-      if (route != '/admin' && route != '/adminLMS') {
-        if (isLMS == true) {
-          return const RouteSettings(name: '/adminLMS');
-        } else {
-          return const RouteSettings(name: '/admin');
-        }
+      if (route != '/admin') {
+        return RouteSettings(name: '/admin');
+      }
+    }
+
+    if (isLMS &&
+        isLoggedIn &&
+        (role == "admin" ||
+            role == "subAdmin" ||
+            role == "observer" ||
+            role == "supervisor")) {
+      Get.find<Add_Data_controller>().CheeckHasData();
+      if (route != '/adminLMS') {
+        return RouteSettings(name: '/adminLMS');
       }
     }
 

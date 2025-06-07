@@ -1650,7 +1650,6 @@ class SetTeacherDateAttendence extends StatelessWidget {
   }
 }
 
-
 class HomeWorkSubmissionDate extends StatelessWidget {
   final double width;
   final String Uptext;
@@ -1697,7 +1696,6 @@ class HomeWorkSubmissionDate extends StatelessWidget {
                 ),
               ),
             ),
-
             SizedBox(
               height: height ?? 40,
               child: TextFormField(
@@ -1710,9 +1708,7 @@ class HomeWorkSubmissionDate extends StatelessWidget {
                 ),
                 readOnly: true,
                 onTap: () {
-                 
-                    controller.selectBirthDate(context);
-                  
+                  controller.selectBirthDate(context);
                 },
                 decoration: InputDecoration(
                   hintText: "yyyy-MM-dd",
@@ -1748,16 +1744,21 @@ class HomeWorkSubmissionDate extends StatelessWidget {
                       size: 16,
                     ),
                     onPressed: () {
-                    
-                        controller.selectBirthDate(context);
-                      
+                      controller.selectBirthDate(context);
                     },
                   ),
                 ),
               ),
             ),
-            // ✅ عرض رسالة خطأ إذا كان هناك خطأ
-         
+            if (isError)
+              Text(
+                "Please select true value".tr,
+                style: const TextStyle(color: Colors.red, fontSize: 12),
+              ),
+            if (!isError)
+              SizedBox(
+                height: 17,
+              )
           ],
         ),
       ),

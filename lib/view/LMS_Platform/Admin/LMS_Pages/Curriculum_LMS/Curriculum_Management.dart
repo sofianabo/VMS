@@ -32,8 +32,7 @@ class _Curriculum_ManagementState extends State<Curriculum_ManagementLMS> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    return Expanded(
-        child: Column(
+    return Column(
       children: [
         if (Get.find<Add_Data_controller>().roll != "observer")
           if (screenWidth > 769)
@@ -136,6 +135,6 @@ class _Curriculum_ManagementState extends State<Curriculum_ManagementLMS> {
           child: CurriculumGridLMS(),
         )),
       ],
-    ));
+    );
   }
 }

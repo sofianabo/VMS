@@ -2,14 +2,13 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Files_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/HomeworkController.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Curriculum_Model.dart';
 
 class Curriculumn_LMS_Controller extends GetxController {
   List<Curriculum>? curriculum;
   String? filterName = '';
-  String? filterSemester = '';
-  String? filterSubject = '';
   List<Curriculum> filteredCurriculum = [];
   int? semesterId;
   int? subjectId;
@@ -180,8 +179,7 @@ class Curriculumn_LMS_Controller extends GetxController {
     SetIsLoading(false);
     Get.find<Homeworkcontroller>().setcurr(curriculumModel);
     Get.find<Homeworkcontroller>().setDialogCurr(curriculumModel);
-    Get.find<Homeworkcontroller>().setisCurriculmLoading(false);
-    Get.find<Homeworkcontroller>().setisCurriculmDialogLoading(false);
+    Get.find<Files_Controller>().setCurriculum(curriculumModel);
     update();
   }
 

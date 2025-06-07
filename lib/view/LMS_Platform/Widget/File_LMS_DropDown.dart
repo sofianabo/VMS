@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Curr_LMS_Controller.dart';
-import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/HomeworkController.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Files_Controller.dart';
 
-class Divisionscreendropdown extends StatelessWidget {
+class File_LMS_DropDown extends StatelessWidget {
   final double width;
   final String title;
   final String type;
@@ -12,7 +12,7 @@ class Divisionscreendropdown extends StatelessWidget {
   final bool? Isloading;
   final bool isError;
 
-  const Divisionscreendropdown({
+  const File_LMS_DropDown({
     super.key,
     required this.title,
     this.color,
@@ -25,12 +25,12 @@ class Divisionscreendropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<Homeworkcontroller>(builder: (cont) {
+    return GetBuilder<Files_Controller>(builder: (cont) {
       return _buildNormalDropdown(cont, context);
     });
   }
 
-  Widget _buildNormalDropdown(Homeworkcontroller cont, BuildContext context) {
+  Widget _buildNormalDropdown(Files_Controller cont, BuildContext context) {
     String currentValue = selectedValue ?? title;
 
     switch (type) {
@@ -84,7 +84,7 @@ class Divisionscreendropdown extends StatelessWidget {
                                 if ([
                                   "currDialog",
                                 ].contains(type)) {
-                                  Get.find<Homeworkcontroller>()
+                                  Get.find<Files_Controller>()
                                       .updateFieldError(field, false);
                                 }
 
@@ -111,7 +111,7 @@ class Divisionscreendropdown extends StatelessWidget {
                                       .addPostFrameCallback((_) {
                                     errorMap[type]?.forEach((field) {
                                       if (type == "currdialog") {
-                                        Get.find<Homeworkcontroller>()
+                                        Get.find<Files_Controller>()
                                             .updateFieldError(field, true);
                                       }
                                       cont.updateFieldError(field, true);
@@ -162,7 +162,7 @@ class Divisionscreendropdown extends StatelessWidget {
     );
   }
 
-  List<DropdownMenuItem<String>> _getDropdownItems(Homeworkcontroller cont) {
+  List<DropdownMenuItem<String>> _getDropdownItems(Files_Controller cont) {
     List<DropdownMenuItem<String>> items = [];
 
     switch (type) {
