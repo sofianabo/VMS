@@ -2,44 +2,49 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:vms_school/Link/API/LMS_APIs/Admin/AddLinkLMSAPI.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/Add_File_LMS_API.dart';
+import 'package:vms_school/Link/API/LMS_APIs/Admin/GetAllLinksLMSAPI.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_All_Curr_LMS.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_LMS_Files.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Files_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LinksLMS_Controller.dart';
 import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Squer_Button_Enabled_Disabled.dart';
 import 'package:vms_school/view/Both_Platform/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Files_LMS/Files_LMS_Grid.dart';
 import 'package:vms_school/view/Both_Platform/widgets/TextFormSearch.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/LinksLMS/LinksLMSGrid.dart';
 import 'package:vms_school/view/LMS_Platform/Widget/File_LMS_DropDown.dart';
+import 'package:vms_school/view/LMS_Platform/Widget/LinksLMSDropdown.dart';
 
-class Files_LMS extends StatefulWidget {
-  const Files_LMS({super.key});
+class Linklmsmangamnt extends StatefulWidget {
+  const Linklmsmangamnt({super.key});
 
   @override
-  State<Files_LMS> createState() => _StudyYearStudentsState();
+  State<Linklmsmangamnt> createState() => _LinklmsmangamntState();
 }
 
-class _StudyYearStudentsState extends State<Files_LMS> {
+class _LinklmsmangamntState extends State<Linklmsmangamnt> {
   @override
   initState() {
-    Get_LMS_Files_API().Get_LMS_Files();
+    Getalllinkslmsapi().Getalllinkslms();
     Get_LMS_Curriculm_API().Get_LMS_Curriculm();
     super.initState();
   }
 
   TextEditingController search = TextEditingController();
   TextEditingController name = TextEditingController();
-  DropzoneViewController? ctrl;
+  TextEditingController linkurl = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     return Column(
       children: [
         if (screenWidth > 769)
-          GetBuilder<Files_Controller>(builder: (controller) {
+          GetBuilder<LinkslmsController>(builder: (controller) {
             return Container(
               width: screenWidth,
               margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 0.0),
@@ -63,7 +68,7 @@ class _StudyYearStudentsState extends State<Files_LMS> {
                     controller: search,
                     suffixIcon: search.text != "" ? Icons.clear : Icons.search,
                   ),
-                  File_LMS_DropDown(
+                  Linkslmsdropdown(
                     Isloading: controller.isCuriculmLoading,
                     title: "Curriculum".tr,
                     width: 250,
@@ -75,21 +80,23 @@ class _StudyYearStudentsState extends State<Files_LMS> {
                       icon: Icons.add,
                       onTap: () {
                         name.clear();
-                        Get.find<Files_Controller>().reset();
-                        Get.find<Files_Controller>().resetError();
+                        linkurl.clear();
+                        Get.find<LinkslmsController>().reset();
+                        Get.find<LinkslmsController>().resetError();
 
                         controller.updateFieldError("arname", false);
-                        controller.updateFieldError("file", false);
+                        controller.updateFieldError("linkurl", false);
+
                         controller.updateFieldError("curr", false);
 
-                        Get.dialog(AddFileDialog(), barrierDismissible: false);
+                        Get.dialog(AddLinkDialog(), barrierDismissible: false);
                       })
                 ],
               ),
             );
           }),
         if (screenWidth <= 769)
-          GetBuilder<Files_Controller>(builder: (controller) {
+          GetBuilder<LinkslmsController>(builder: (controller) {
             return Container(
               width: screenWidth,
               margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 10.0),
@@ -122,14 +129,15 @@ class _StudyYearStudentsState extends State<Files_LMS> {
                         icon: Icons.add,
                         onTap: () {
                           name.clear();
-                          Get.find<Files_Controller>().reset();
-                          Get.find<Files_Controller>().resetError();
+                          linkurl.clear();
+                          Get.find<LinkslmsController>().reset();
+                          Get.find<LinkslmsController>().resetError();
 
                           controller.updateFieldError("arname", false);
-                          controller.updateFieldError("file", false);
+                          controller.updateFieldError("linkurl", false);
                           controller.updateFieldError("curr", false);
 
-                          Get.dialog(AddFileDialog(),
+                          Get.dialog(AddLinkDialog(),
                               barrierDismissible: false);
                         })
                   ],
@@ -137,7 +145,7 @@ class _StudyYearStudentsState extends State<Files_LMS> {
               ),
             );
           }),
-        GetBuilder<Files_Controller>(builder: (controller) {
+        GetBuilder<LinkslmsController>(builder: (controller) {
           if (controller.isLoading == true) {
             return Expanded(
               child: Center(
@@ -147,22 +155,22 @@ class _StudyYearStudentsState extends State<Files_LMS> {
               )),
             );
           }
-          if (controller.filtered_files_LMS.isEmpty) {
+          if (controller.filtered_Links_LMS.isEmpty) {
             return Expanded(
               child: Center(
-                  child: Text("No Files".tr,
+                  child: Text("No Links".tr,
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontSize: 22, fontWeight: FontWeight.normal))),
             );
           }
-          return Files_LMS_Grid();
+          return Linkslmsgrid();
         }),
       ],
     );
   }
 
-  AddFileDialog() {
-    return GetBuilder<Files_Controller>(builder: (controller) {
+  AddLinkDialog() {
+    return GetBuilder<LinkslmsController>(builder: (controller) {
       return VMSAlertDialog(
           contents: SizedBox(
             width: 400,
@@ -186,102 +194,24 @@ class _StudyYearStudentsState extends State<Files_LMS> {
                           controller: name,
                           Uptext: "Name".tr,
                           hinttext: "Name".tr),
-                      File_LMS_DropDown(
+                      Textfildwithupper(
+                          isRequired: true,
+                          onChanged: (value) {
+                            if (value.isNotEmpty) {
+                              controller.updateFieldError("linkurl", false);
+                            }
+                          },
+                          width: 350,
+                          isError: controller.isLinkError,
+                          controller: linkurl,
+                          Uptext: "Link URL".tr,
+                          hinttext: "Link URL".tr),
+                      Linkslmsdropdown(
                         Isloading: controller.isCuriculmDialogLoading,
                         title: "Curriculum".tr,
                         width: 350,
                         type: "currDialog",
                         isError: controller.iscurrError,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          controller.pickPDFFile();
-                        },
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 500),
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(5)),
-                            border: controller.IsFileError
-                                ? Border.all(color: Colors.redAccent)
-                                : Border.all(color: const Color(0xffD9D9D9)),
-                            color: controller.isHoveringFile
-                                ? Theme.of(context).primaryColor
-                                : Get.theme.cardColor,
-                          ),
-                          alignment: Alignment.center,
-                          width: 350,
-                          height: 100,
-                          child: Stack(
-                            children: [
-                              DropzoneView(
-                                operation: DragOperation.copy,
-                                cursor: CursorType.Default,
-                                onCreated: (DropzoneViewController controller) {
-                                  ctrl = controller;
-                                },
-                                onHover: () {
-                                  controller.updateHoverFile(true);
-                                },
-                                onLeave: () {
-                                  controller.updateHoverFile(false);
-                                },
-                                onDropFiles:
-                                    (List<DropzoneFileInterface>? files) async {
-                                  if (files != null && files.length == 1) {
-                                    final file = files.first;
-                                    final mimeType =
-                                        await ctrl?.getFileMIME(file);
-                                    final fileName =
-                                        await ctrl?.getFilename(file);
-                                    final fileBytes =
-                                        await ctrl?.getFileData(file);
-
-                                    if (mimeType == 'application/pdf' ||
-                                        fileName!
-                                            .toLowerCase()
-                                            .endsWith('.pdf')) {
-                                      controller.selectedFile.value = fileBytes;
-                                      controller.fileName.value = fileName!;
-                                      controller.updateTextFile(
-                                          "File Successfully Dropped!".tr);
-                                      controller.updateFieldError(
-                                          "file", false);
-                                    } else {
-                                      controller.updateTextFile(
-                                          "Error: Unsupported File Type.".tr);
-                                      controller.updateFieldError("file", true);
-                                    }
-                                  } else {
-                                    controller.updateTextFile(
-                                        "Error: Only One File Is Allowed.".tr);
-                                    controller.updateFieldError("file", true);
-                                  }
-                                },
-                              ),
-                              Center(
-                                child: controller.selectedFile.value != null
-                                    ? IconButton(
-                                        onPressed: () {
-                                          controller.Clearfile();
-                                        },
-                                        icon: Icon(
-                                          Icons.delete_outline_outlined,
-                                          color: Colors.redAccent,
-                                        ))
-                                    : Text(
-                                        textAlign: TextAlign.center,
-                                        controller.fileStatus,
-                                        style: TextStyle(
-                                          color: controller.isHoveringFile
-                                              ? Colors.white
-                                              : const Color(0xffCBBFBF),
-                                        ),
-                                      ),
-                              ),
-                            ],
-                          ),
-                        ),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.min,
@@ -296,7 +226,7 @@ class _StudyYearStudentsState extends State<Files_LMS> {
                               }
                             },
                           ),
-                          Text("Is Hidden File".tr),
+                          Text("Is Hidden Link".tr),
                         ],
                       ),
                     ],
@@ -311,22 +241,22 @@ class _StudyYearStudentsState extends State<Files_LMS> {
               children: [
                 ButtonDialog(
                     width: 150,
-                    text: "Add File".tr,
+                    text: "Add Link".tr,
                     onPressed: () async {
                       bool isArNameEmpty = name.text.isEmpty;
+                      bool isLinkEmpty = linkurl.text.isEmpty;
                       bool iscurrEmpty =
                           controller.selectdialog_CurrIndex.isEmpty ||
                               controller.selectdialog_CurrIndex == '';
-                      bool isfileEmpty = controller.selectedFile.value == null;
 
-                      controller.updateFieldError("file", isfileEmpty);
                       controller.updateFieldError("curr", iscurrEmpty);
                       controller.updateFieldError("aname", isArNameEmpty);
+                      controller.updateFieldError("linkurl", isLinkEmpty);
 
-                      if (!(isArNameEmpty || isfileEmpty || iscurrEmpty)) {
-                        await Add_File_API().Add_File(
+                      if (!(isArNameEmpty || iscurrEmpty || isLinkEmpty)) {
+                        await Addlinklmsapi(context).Addlinklms(
                           hidden: controller.Hidden,
-                          file: controller.selectedFile.value,
+                          link: linkurl.text,
                           name: name.text,
                           curriculumId: controller.dialogCurrList
                               .indexOf(controller.selectdialog_CurrIndex),
@@ -337,7 +267,7 @@ class _StudyYearStudentsState extends State<Files_LMS> {
               ],
             )
           ],
-          apptitle: "Add File".tr,
+          apptitle: "Add Link".tr,
           subtitle: "none");
     });
   }

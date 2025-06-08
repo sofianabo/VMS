@@ -22,6 +22,7 @@ class HomeworkLMSModel {
 }
 
 class Homeworke {
+  int? id;
   int? divisionId;
   int? fileId;
   String? name;
@@ -30,7 +31,8 @@ class Homeworke {
   HomeworkeCurriculum? homeworkeCurriculum;
 
   Homeworke(
-      {this.divisionId,
+      {this.id,
+      this.divisionId,
       this.fileId,
       this.name,
       this.mark,
@@ -38,6 +40,7 @@ class Homeworke {
       this.homeworkeCurriculum});
 
   Homeworke.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     divisionId = json['divisionId'];
     fileId = json['fileId'];
     name = json['name'];
@@ -50,6 +53,7 @@ class Homeworke {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
     data['divisionId'] = this.divisionId;
     data['fileId'] = this.fileId;
     data['name'] = this.name;

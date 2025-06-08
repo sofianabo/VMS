@@ -1,84 +1,84 @@
-class LMS_Files_Model {
-  List<LmsCurriculmFiles>? lmsCurriculmFiles;
+class LinksLMSModel {
+  List<LmsCurriculmUrl>? lmsCurriculmUrl;
 
-  LMS_Files_Model({this.lmsCurriculmFiles});
+  LinksLMSModel({this.lmsCurriculmUrl});
 
-  LMS_Files_Model.fromJson(Map<String, dynamic> json) {
-    if (json['LmsCurriculmFiles'] != null) {
-      lmsCurriculmFiles = <LmsCurriculmFiles>[];
-      json['LmsCurriculmFiles'].forEach((v) {
-        lmsCurriculmFiles!.add(new LmsCurriculmFiles.fromJson(v));
+  LinksLMSModel.fromJson(Map<String, dynamic> json) {
+    if (json['LmsCurriculmUrl'] != null) {
+      lmsCurriculmUrl = <LmsCurriculmUrl>[];
+      json['LmsCurriculmUrl'].forEach((v) {
+        lmsCurriculmUrl!.add(new LmsCurriculmUrl.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.lmsCurriculmFiles != null) {
-      data['LmsCurriculmFiles'] =
-          this.lmsCurriculmFiles!.map((v) => v.toJson()).toList();
+    if (this.lmsCurriculmUrl != null) {
+      data['LmsCurriculmUrl'] =
+          this.lmsCurriculmUrl!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
-class LmsCurriculmFiles {
+class LmsCurriculmUrl {
   int? id;
-  int? fileId;
+  String? url;
   int? classId;
   String? name;
   int? hidden;
   String? createdAt;
   String? updatedAt;
-  CurriculmFile? curriculmFile;
+  CurriculmUrl? curriculmUrl;
 
-  LmsCurriculmFiles(
+  LmsCurriculmUrl(
       {this.id,
-      this.fileId,
+      this.url,
       this.classId,
       this.name,
       this.hidden,
       this.createdAt,
       this.updatedAt,
-      this.curriculmFile});
+      this.curriculmUrl});
 
-  LmsCurriculmFiles.fromJson(Map<String, dynamic> json) {
+  LmsCurriculmUrl.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    fileId = json['fileId'];
+    url = json['url'];
     classId = json['classId'];
     name = json['name'];
     hidden = json['hidden'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    curriculmFile = json['CurriculmFile'] != null
-        ? new CurriculmFile.fromJson(json['CurriculmFile'])
+    curriculmUrl = json['CurriculmUrl'] != null
+        ? new CurriculmUrl.fromJson(json['CurriculmUrl'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['fileId'] = this.fileId;
+    data['url'] = this.url;
     data['classId'] = this.classId;
     data['name'] = this.name;
     data['hidden'] = this.hidden;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
-    if (this.curriculmFile != null) {
-      data['CurriculmFile'] = this.curriculmFile!.toJson();
+    if (this.curriculmUrl != null) {
+      data['CurriculmUrl'] = this.curriculmUrl!.toJson();
     }
     return data;
   }
 }
 
-class CurriculmFile {
+class CurriculmUrl {
   int? id;
   String? name;
   String? enName;
 
-  CurriculmFile({this.id, this.name, this.enName});
+  CurriculmUrl({this.id, this.name, this.enName});
 
-  CurriculmFile.fromJson(Map<String, dynamic> json) {
+  CurriculmUrl.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     enName = json['enName'];

@@ -3,12 +3,15 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/API.dart';
+import 'package:vms_school/Link/API/LMS_APIs/Admin/DeleteHomeworlLMSAPI.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Curr_LMS_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/HomeworkController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
 import 'package:vms_school/view/Both_Platform/widgets/GridAnimation.dart';
 import 'package:vms_school/view/Both_Platform/widgets/PDF_View.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Schema_Widget.dart';
+import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
 
 class Homeworkgrid extends StatelessWidget {
   const Homeworkgrid({super.key});
@@ -221,7 +224,66 @@ class Homeworkgrid extends StatelessWidget {
                                                   side: BorderSide(
                                                       color: Color(0xffB03D3D)),
                                                 ))),
-                                            onPressed: () async {},
+                                            onPressed: () async {
+                                             Get.dialog(VMSAlertDialog(
+                                                    action: [
+                                                      ButtonDialog(
+                                                          text: "Delete".tr,
+                                                          onPressed: () async {
+                                                            Deletehomeworllmsapi(
+                                                                    context)
+                                                                .Deletehomeworllms(
+                                                                    id: control
+                                                                        .filteredhomework![
+                                                                            index]
+                                                                        .id,
+                                                                   );
+                                                          },
+                                                          color: const Color(
+                                                              0xffB03D3D),
+                                                          width: 80),
+                                                      ButtonDialog(
+                                                          text: "Cancel".tr,
+                                                          onPressed: () {
+                                                            Get.back();
+                                                          },
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .primaryColor,
+                                                          width: 80)
+                                                    ],
+                                                    contents: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      children: [
+                                                        Container(
+                                                          width: 400,
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            Text(
+                                                              "Do You Want To deletehomework"
+                                                                      .tr +
+                                                                  " (${ control.filteredhomework![index].name }) " +
+                                                                  "Homeworkk".tr,
+                                                              style: Get
+                                                                  .theme
+                                                                  .textTheme
+                                                                  .bodyMedium!
+                                                                  .copyWith(
+                                                                      fontSize:
+                                                                          16,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .normal),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    apptitle: "Delete Homework".tr,
+                                                    subtitle: "none"));
+                                            },
                                             child: Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment

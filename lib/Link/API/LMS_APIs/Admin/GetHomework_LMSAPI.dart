@@ -30,8 +30,7 @@ class GethomeworkLmsapi {
         HomeworkLMSModel homeworkLMSModel =
             HomeworkLMSModel.fromJson(response.data);
         controller.SetHomework(homeworkLMSModel);
-        
-        Get_LMS_Curriculm_API().Get_LMS_Curriculm();
+
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

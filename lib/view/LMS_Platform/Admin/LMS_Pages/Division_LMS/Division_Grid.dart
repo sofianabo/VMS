@@ -172,14 +172,18 @@ class _DivisionGridState extends State<DivisionGrid> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
-                                            Text(
-                                                "${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? control.division![index].name : control.division![index].enName}",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .titleMedium!
-                                                    .copyWith(
-                                                      fontSize: 20,
-                                                    )),
+                                            Expanded(
+                                              child: Text(
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  "${Get.find<LocalizationController>().currentLocale.value.languageCode == 'ar' ? control.division![index].name : control.division![index].enName}",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .titleMedium!
+                                                      .copyWith(
+                                                        fontSize: 20,
+                                                      )),
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -228,8 +232,12 @@ class _DivisionGridState extends State<DivisionGrid> {
                                                       style: Get.theme.textTheme
                                                           .headlineMedium!
                                                           .copyWith(
-                                                              color: Color(
-                                                                  0xff134B70)),
+                                                              color: Color
+                                                                  .fromARGB(
+                                                                      255,
+                                                                      44,
+                                                                      128,
+                                                                      184)),
                                                     ),
                                                   ),
                                                   Icon(
@@ -284,8 +292,12 @@ class _DivisionGridState extends State<DivisionGrid> {
                                                       style: Get.theme.textTheme
                                                           .headlineMedium!
                                                           .copyWith(
-                                                              color: Color(
-                                                                  0xff134B70)),
+                                                              color: Color
+                                                                  .fromARGB(
+                                                                      255,
+                                                                      44,
+                                                                      128,
+                                                                      184)),
                                                     ),
                                                   ),
                                                   Icon(
@@ -342,8 +354,12 @@ class _DivisionGridState extends State<DivisionGrid> {
                                                       style: Get.theme.textTheme
                                                           .headlineMedium!
                                                           .copyWith(
-                                                              color: Color(
-                                                                  0xff134B70)),
+                                                              color: Color
+                                                                  .fromARGB(
+                                                                      255,
+                                                                      44,
+                                                                      128,
+                                                                      184)),
                                                     ),
                                                   ),
                                                   SvgPicture.asset(

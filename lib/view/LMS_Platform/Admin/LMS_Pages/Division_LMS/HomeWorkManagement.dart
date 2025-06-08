@@ -465,7 +465,7 @@ class _HomeworkmanagementState extends State<Homeworkmanagement> {
               ],
             )
           ],
-          apptitle: "Add File HomeWork".tr,
+          apptitle: "Add File Homework".tr,
           subtitle: "none");
     });
   }

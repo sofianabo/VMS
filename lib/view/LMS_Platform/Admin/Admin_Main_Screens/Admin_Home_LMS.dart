@@ -333,8 +333,11 @@ class _Admin_Home_LMSState extends State<Admin_Home_LMS> {
                                                                     .textTheme
                                                                     .headlineMedium!
                                                                     .copyWith(
-                                                                        color: Color(
-                                                                            0xff134B70)),
+                                                                        color: Color.fromARGB(
+                                                                            255,
+                                                                            44,
+                                                                            128,
+                                                                            184)),
                                                               ),
                                                             ),
                                                             SvgPicture.asset(
