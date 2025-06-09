@@ -223,3 +223,5 @@ String getLmsCurriculmUrl = "getLmsCurriculmUrl";
 String addLmsCurriculmUrl = "addLmsCurriculmUrl";
 String deleteLmsCurriculumFile = "deleteLmsCurriculumFile";
 String deleteLmsCurriculumUrl = "deleteLmsCurriculumUrl";
+String updateLmsFile = "updateLmsFile";
+String updateLmsUrl = "updateLmsUrl";

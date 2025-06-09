@@ -116,9 +116,15 @@ class _StudyYearStudentsState extends State<Files_LMS> {
                       suffixIcon:
                           search.text != "" ? Icons.clear : Icons.search,
                     ),
+                    File_LMS_DropDown(
+                      Isloading: controller.isCuriculmLoading,
+                      title: "Curriculum".tr,
+                      width: 250,
+                      type: "curriculum",
+                    ),
                     Squer_Button_Enabled_Disabled(
-                        validate:
-                            Get.find<Add_Data_controller>().roll != "observer",
+                        validate: !(Get.find<Add_Data_controller>().roll !=
+                            "observer"),
                         icon: Icons.add,
                         onTap: () {
                           name.clear();

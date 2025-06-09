@@ -42,7 +42,7 @@ class _Admin_Home_LMSState extends State<Admin_Home_LMS> {
     }
 
     double getChildAspectRatio() {
-      if (screenWidth >= 1070) return 1.1;
+      if (screenWidth >= 1070) return 1;
       if (screenWidth >= 950) return 1.1;
       if (screenWidth >= 838) return 1.6;
       if (screenWidth >= 769) return 1.5;
