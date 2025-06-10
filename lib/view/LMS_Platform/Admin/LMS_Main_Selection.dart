@@ -8,6 +8,7 @@ import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Division_LMS/Divisi
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Division_LMS/HomeWorkManagement.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Files_LMS/Files_LMS.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/LinksLMS/LinkLMSMangamnt.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Pages_LmsScreen/PagesLmsMangament.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/Question_Bank_Page.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Selected_Class_Screen.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Students_LMS/LMS_Student.dart';
@@ -47,7 +48,7 @@ class Selected_Class_Screen extends StatelessWidget {
                   } else if (current == "Links".tr) {
                     return Linklmsmangamnt();
                   } else if (current == "Pages".tr) {
-                    return Text("Pages");
+                    return Pageslmsmangament();
                   } else if (current == "Quiz".tr) {
                     return Text("Quiz");
                   } else if (current == "Question Bank".tr) {
