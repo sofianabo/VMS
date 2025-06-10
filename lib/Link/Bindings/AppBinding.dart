@@ -60,6 +60,7 @@ import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Home_Contro
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/HomeworkController.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LMS_Divisions_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LinksLMS_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Qustions_Bank_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Students_LMS_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Subject_LMS_Controller.dart';
@@ -171,5 +172,6 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => Homeworkcontroller(), fenix: true);
     Get.lazyPut(() => Files_Controller(), fenix: true);
     Get.lazyPut(() => LinkslmsController(), fenix: true);
+    Get.lazyPut(() => Qustions_Bank_Controller(), fenix: true);
   }
 }

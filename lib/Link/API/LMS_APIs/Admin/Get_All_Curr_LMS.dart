@@ -8,6 +8,7 @@ import 'package:dio/dio.dart';
 import 'package:vms_school/Link/Controller/AdminController/Students_Controllers/Students_Marks_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Curr_LMS_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/HomeworkController.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Qustions_Bank_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
 import 'package:vms_school/Link/Controller/WidgetController/DropDown_Controllers/DropDownCurriculumn_Controller.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Curriculum_Model.dart';
@@ -16,8 +17,10 @@ class Get_LMS_Curriculm_API {
   Dio dio = Dio();
   Get_LMS_Curriculm() async {
     final controller = Get.find<Curriculumn_LMS_Controller>();
+    final Q_controller = Get.find<Qustions_Bank_Controller>();
     try {
       controller.SetIsLoading(true);
+      Q_controller.SetIsLoading(true);
       String myurl = "$hostPort$getLMSCurriculum";
       var response = await dio.post(data: {
         "classId": Get.find<Selected_Class_Controller>().classid,
@@ -27,7 +30,6 @@ class Get_LMS_Curriculm_API {
             Curriculum_Model.fromJson(response.data);
         controller.SetCurriculum(curriculumModel);
       } else {
-        
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
           response: response,

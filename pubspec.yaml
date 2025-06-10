@@ -120,6 +120,10 @@ flutter:
         - asset: fonts/Cairo-Regular.ttf
         - asset: fonts/Cairo-Bold.ttf
           weight: 700
+
+    - family: LMS_Icons
+      fonts:
+        - asset: fonts/LMS_Icons.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:

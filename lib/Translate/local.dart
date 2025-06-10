@@ -5,6 +5,13 @@ class Languages {
       'Have A Nice Day At Work': 'أتمنى لك يوم جيد في العمل',
       'Illness and Vaccines': 'الأمراض و اللقحات',
       'Illness': 'الأمراض',
+      'True Or False': 'صح أو خطأ',
+      'Choose the correct': 'اختر الإجابة الصحيحة',
+      'Fill in the blanks': 'تعبئة الفراغات',
+      'Drag and drop texts and images': 'السحب و الافلات',
+      'Essay questions': 'الاسئلة التحريرية',
+      'Multiple-choice question with multiple answers': 'اختيار اجابات متعددة',
+      'Matching questions': 'مطابقة الاختيارات',
       'Files': 'الملفات',
       'Homeworks': 'الوظائف',
       'Links': 'الروابط',
@@ -289,6 +296,20 @@ class Languages {
       'Punishing': 'معاقبة',
       'Contact Us': 'التواصل معنا',
       'Next': 'التالي',
+      'Simple questions requiring a true or false selection.':
+          'أسئلة بسيطة تتطلب اختيارًا صح أو خطأً.',
+      'Choose the correct answer from several options':
+          'اختر الإجابة الصحيحة من بين عدة خيارات.',
+      'Complete the sentences with appropriate words and phrases.':
+          'أكمل الجمل بالكلمات والعبارات المناسبة.',
+      'Match images and texts by dragging and dropping them onto their appropriate places.':
+          'المطابقة بين الصور والنصوص بسحبها وإفلاتها في أماكنها المناسبة.',
+      'Questions consisting of large blanks suitable for topics and articles.':
+          'أسئلة تتكون من فراغات كبيرة مناسبة للمواضيع والمقالات.',
+      'A multiple-choice question with a list of options that allows you to select multiple choices instead of one.':
+          'قائمة خيارات تتيح لك اختيار خيارات متعددة بدلًا من خيار واحد.',
+      'A question similar to traditional matching, in that it is a text that must be matched with a text from the added elements.':
+          'سؤال مشابه للمطابقة التقليدية، حيث يتطلب مطابقة نص مع نص من العناصر اللتي تمت اضافتها.',
 
       'AboutUs': 'حول',
       'Stop Completion and Verification': 'ايقاف الاكمال والتحقق',
@@ -863,7 +884,7 @@ class Languages {
       'Do You Want To deletefiles': 'هل تريد حذف الملف',
       'filee': '',
       'Delete File': 'حذف ملف',
-       'Delete Link': 'حذف رابط',
+      'Delete Link': 'حذف رابط',
       'linkk': '',
       'Do You Want To deletelink': 'هل تريد حذف الرابط',
     },
@@ -1325,7 +1346,31 @@ class Languages {
       'Edit Guardian': 'Edit Guardian',
       'Confirm Password': 'Confirm Password',
       'Add Guardian': 'Add Guardian',
+
       'Email': 'Email',
+      'Simple questions requiring a true or false selection.':
+          'Simple questions requiring a true or false selection.',
+      'Choose the correct answer from several options':
+          'Choose the correct answer from several options',
+      'Complete the sentences with appropriate words and phrases.':
+          'Complete the sentences with appropriate words and phrases.',
+      'Match images and texts by dragging and dropping them onto their appropriate places.':
+          'Match images and texts by dragging and dropping them onto their appropriate places.',
+      'Questions consisting of large blanks suitable for topics and articles.':
+          'Questions consisting of large blanks suitable for topics and articles.',
+      'A multiple-choice question with a list of options that allows you to select multiple choices instead of one.':
+          'A multiple-choice question with a list of options that allows you to select multiple choices instead of one.',
+      'A question similar to traditional matching, in that it is a text that must be matched with a text from the added elements.':
+          'A question similar to traditional matching, in that it is a text that must be matched with a text from the added elements.',
+
+      'True Or False': 'True Or False',
+      'Choose the correct': 'Choose the correct',
+      'Fill in the blanks': 'Fill in the blanks',
+      'Drag and drop texts and images': 'Drag and drop texts and images',
+      'Essay questions': 'Essay questions',
+      'Multiple-choice question with multiple answers':
+          'Multiple-choice question with multiple answers',
+      'Matching questions': 'Matching questions',
       'First Lesson': 'First Lesson',
       'second Lesson': 'second Lesson',
       'Third Lesson': 'Third Lesson',

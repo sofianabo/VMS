@@ -11,6 +11,7 @@ class FontRes {
   static const String CAIRO_BOLD = 'Cairo-Bold';
   static const String CAIRO_REGULAR = 'Cairo-Regular';
   static const String FICONS = 'Ficons';
+  static const String LMS_ICONS = 'LMS_Icons';
   static const String SANSATION_REGULAR = 'Sansation_Regular';
   static const String VMS_ICONS = 'VMS_Icons';
 }
