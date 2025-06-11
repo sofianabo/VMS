@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Icons_File/LMS_Icons/l_m_s__icons_icons.dart';
 
 class Selected_Class_Controller extends GetxController {
   List<String> moveMenu = [];
@@ -31,36 +32,60 @@ class Selected_Class_Controller extends GetxController {
 
   List<Map<String, dynamic>> dataList = [
     {
-      "name": "Curriculum".tr,
-      "icon": Icons.menu_book,
+      "name": "Curriculums".tr,
+      "subtitle":
+          "The section contains the study materials for the specified Class level."
+              .tr,
+      "icon": LMS_Icons.curr_lms,
     },
     {
       "name": "Divisions".tr,
-      "icon": Icons.class_outlined,
+      "subtitle":
+          "This section contains the Divisionس within the specified Class level."
+              .tr,
+      "icon": LMS_Icons.divisions_lms,
     },
     {
       "name": "Files".tr,
-      "icon": Icons.file_copy_outlined,
+      "subtitle":
+          "This section contains files from previous lessons, as well as reviews, summaries, and facilities for the student"
+              .tr,
+      "icon": LMS_Icons.files_lms,
     },
     {
       "name": "Links".tr,
-      "icon": Icons.link,
+      "subtitle":
+          "This section contains hyperlinks to files, images, activities, etc."
+              .tr,
+      "icon": LMS_Icons.links_lms,
     },
     {
       "name": "Pages".tr,
-      "icon": Icons.web,
+      "subtitle":
+          "This section contains the electronic page that is uploaded to external sites to facilitate opening it for all users"
+              .tr,
+      "icon": LMS_Icons.pages_lms,
     },
     {
       "name": "Quiz".tr,
-      "icon": Icons.question_mark_rounded,
+      "subtitle":
+          "This section contains a short test aimed at assessing students and includes a variety of short questions."
+              .tr,
+      "icon": LMS_Icons.quiz_lms,
     },
     {
       "name": "Question Bank".tr,
-      "icon": Icons.comment_bank_outlined,
+      "subtitle":
+          "This section contains a set of questions that are organized and stored electronically in advance and are used in preparing tests and assessments."
+              .tr,
+      "icon": LMS_Icons.qustion_bank_lms,
     },
     {
       "name": "Trivia".tr,
-      "icon": Icons.workspaces_sharp,
+      "subtitle":
+          "This section contains activities that include various questions about general information about all curricula within the class."
+              .tr,
+      "icon": LMS_Icons.sopor_lms,
     },
   ];
 

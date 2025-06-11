@@ -11,8 +11,8 @@ class SelectedClassLMs extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     int getCrossAxisCount() {
-      if (screenWidth >= 1278) return 5;
-      if (screenWidth >= 1070) return 4;
+      if (screenWidth >= 1432) return 5;
+      if (screenWidth >= 1154) return 4;
       if (screenWidth >= 950) return 3;
       if (screenWidth >= 769) return 2;
       return 1;
@@ -43,8 +43,13 @@ class SelectedClassLMs extends StatelessWidget {
                   child: Container(
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(color: Colors.grey, width: 0.5),
+                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                          border: Border.all(
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .color!,
+                              width: 0.5),
                           color: Theme.of(context).cardColor,
                           boxShadow: const [
                             BoxShadow(
@@ -82,8 +87,13 @@ class SelectedClassLMs extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(color: Colors.grey, width: 0.5),
+                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                          border: Border.all(
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .color!,
+                              width: 0.5),
                           color: Theme.of(context).cardColor,
                           boxShadow: const [
                             BoxShadow(
@@ -92,28 +102,44 @@ class SelectedClassLMs extends StatelessWidget {
                                 blurRadius: 1)
                           ]),
                       child: Column(
-                        spacing: 15.0,
+                        spacing: 16.0,
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Icon(
                             control.dataList[index]['icon'],
                             color: Color(0xff134B70),
-                            size: 35.0,
+                            size: 50.0,
                           ),
                           Text(control.dataList[index]['name'],
                               style: Theme.of(context)
                                   .textTheme
                                   .titleMedium!
                                   .copyWith(
-                                    fontSize: 20,
+                                    fontSize: 19,
                                   )),
-                          Text("( 2 )",
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                  maxLines: 4,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.center,
+                                  control.dataList[index]['subtitle'],
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .copyWith(
+                                        fontWeight: FontWeight.normal,
+                                        fontSize: 10,
+                                      )),
+                            ),
+                          ),
+                          Text("( ${(index * 2) + 2} )",
                               style: Theme.of(context)
                                   .textTheme
                                   .titleMedium!
                                   .copyWith(
-                                    fontSize: 20,
+                                    fontSize: 14,
                                   )),
                         ],
                       ),

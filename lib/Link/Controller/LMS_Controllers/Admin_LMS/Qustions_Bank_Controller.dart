@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:vms_school/Icons_File/LMS_Icons/l_m_s__icons_icons.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Curriculum_Model.dart';
@@ -9,7 +10,7 @@ class Qustions_Bank_Controller extends GetxController {
 
   List<Map<String, dynamic>> qustions_Bank = [
     {
-      "icon": VMS_Icons.paper,
+      "icon": LMS_Icons.tf,
       "text": "True Or False".tr,
       "subTitle": "Simple questions requiring a true or false selection.".tr,
       "onTap": () {
@@ -17,20 +18,20 @@ class Qustions_Bank_Controller extends GetxController {
       }
     },
     {
-      "icon": VMS_Icons.tf,
+      "icon": LMS_Icons.checkone,
       "text": "Choose the correct".tr,
       "subTitle": "Choose the correct answer from several options".tr,
       "onTap": () {}
     },
     {
-      "icon": VMS_Icons.checkone,
+      "icon": LMS_Icons.fill,
       "text": "Fill in the blanks".tr,
       "subTitle":
           "Complete the sentences with appropriate words and phrases.".tr,
       "onTap": () {}
     },
     {
-      "icon": VMS_Icons.dragdrop,
+      "icon": LMS_Icons.dragdrop,
       "text": "Drag and drop texts and images".tr,
       "subTitle":
           "Match images and texts by dragging and dropping them onto their appropriate places."
@@ -38,7 +39,7 @@ class Qustions_Bank_Controller extends GetxController {
       "onTap": () {}
     },
     {
-      "icon": VMS_Icons.same,
+      "icon": LMS_Icons.paper,
       "text": "Essay questions".tr,
       "subTitle":
           "Questions consisting of large blanks suitable for topics and articles."
@@ -46,7 +47,7 @@ class Qustions_Bank_Controller extends GetxController {
       "onTap": () {}
     },
     {
-      "icon": VMS_Icons.fill,
+      "icon": LMS_Icons.multiselect,
       "text": "Multiple-choice question with multiple answers".tr,
       "subTitle":
           "A multiple-choice question with a list of options that allows you to select multiple choices instead of one."
@@ -54,7 +55,7 @@ class Qustions_Bank_Controller extends GetxController {
       "onTap": () {}
     },
     {
-      "icon": VMS_Icons.multiselect,
+      "icon": LMS_Icons.same,
       "text": "Matching questions".tr,
       "subTitle":
           "A question similar to traditional matching, in that it is a text that must be matched with a text from the added elements."

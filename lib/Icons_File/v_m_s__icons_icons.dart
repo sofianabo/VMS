@@ -121,18 +121,4 @@ class VMS_Icons {
       IconData(0xe80c, fontFamily: "Ficons", fontPackage: _kFontPkg);
   static const IconData safari =
       IconData(0xe80d, fontFamily: "Ficons", fontPackage: _kFontPkg);
-  static const IconData checkone =
-      IconData(0xe800, fontFamily: "LMS_Icons", fontPackage: _kFontPkg);
-  static const IconData paper =
-      IconData(0xe801, fontFamily: "LMS_Icons", fontPackage: _kFontPkg);
-  static const IconData multiselect =
-      IconData(0xe802, fontFamily: "LMS_Icons", fontPackage: _kFontPkg);
-  static const IconData fill =
-      IconData(0xe803, fontFamily: "LMS_Icons", fontPackage: _kFontPkg);
-  static const IconData dragdrop =
-      IconData(0xe804, fontFamily: "LMS_Icons", fontPackage: _kFontPkg);
-  static const IconData same =
-      IconData(0xe805, fontFamily: "LMS_Icons", fontPackage: _kFontPkg);
-  static const IconData tf =
-      IconData(0xe806, fontFamily: "LMS_Icons", fontPackage: _kFontPkg);
 }

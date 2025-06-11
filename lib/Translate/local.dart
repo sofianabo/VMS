@@ -233,6 +233,22 @@ class Languages {
       'Qualification': 'المؤهلات',
       'Experience': 'الخبرات',
       'Note': 'ملاحظات',
+      'The section contains the study materials for the specified Class level.':
+          'يحتوي هذا القسم على المواد الدراسية للصف الدراسي المحدد.',
+      'This section contains the Divisionس within the specified Class level.':
+          'يحتوي هذا القسم على الشعب الدراسية ضمن الصف الدراسي المحدد.',
+      'This section contains files from previous lessons, as well as reviews, summaries, and facilities for the student':
+          'يحتوي هذا القسم على ملفات من الدروس السابقة، بالإضافة إلى مراجعات وملخصات وتسهيلات للطالب.',
+      'This section contains hyperlinks to files, images, activities, etc.':
+          'يحتوي هذا القسم على روابط لملفات وصور وأنشطة وغيرها.',
+      'This section contains the electronic page that is uploaded to external sites to facilitate opening it for all users':
+          'يحتوي هذا القسم على الصفحات الإلكترونية التي تُرفع على مواقع خارجية لتسهيل فتحها عند جميع المستخدمين.',
+      'This section contains a short test aimed at assessing students and includes a variety of short questions.':
+          'يحتوي هذا القسم على اختبارات لتقييم الطلاب ضمن السنة الدراسية، ويتضمن مجموعة متنوعة من الأسئلة القصيرة.',
+      'This section contains a set of questions that are organized and stored electronically in advance and are used in preparing tests and assessments.':
+          'يحتوي هذا القسم على مجموعة من الأسئلة المنظمة والمخزنة إلكترونيًا بشكل مسبق.',
+      'This section contains activities that include various questions about general information about all curricula within the class.':
+          'يحتوي هذا القسم على أنشطة تتضمن أسئلة متنوعة و معلومات عامة حول جميع المناهج الدراسية ضمن الصف.',
       'Facebook URL': 'رابط حساب الفيسبوك ',
       'Instagram URL': 'رابط حساب الانستغرام ',
       'X Platform URL': 'رابط حساب على منصة X',
@@ -1172,6 +1188,22 @@ class Languages {
       'Student Vaccines': 'Student Vaccines',
       '   Student School Info   ': '   Student School Info   ',
       'Username': 'Username',
+      'The section contains the study materials for the specified Class level.':
+          'The section contains the study materials for the specified Class level.',
+      'This section contains the Divisionس within the specified Class level.':
+          'This section contains the Divisionس within the specified Class level.',
+      'This section contains files from previous lessons, as well as reviews, summaries, and facilities for the student':
+          'This section contains files from previous lessons, as well as reviews, summaries, and facilities for the student',
+      'This section contains hyperlinks to files, images, activities, etc.':
+          'This section contains hyperlinks to files, images, activities, etc.',
+      'This section contains the electronic page that is uploaded to external sites to facilitate opening it for all users':
+          'This section contains the electronic page that is uploaded to external sites to facilitate opening it for all users',
+      'This section contains a short test aimed at assessing students and includes a variety of short questions.':
+          'This section contains tests to assess students throughout the academic year, and includes a variety of short questions.',
+      'This section contains a set of questions that are organized and stored electronically in advance and are used in preparing tests and assessments.':
+          'This section contains a set of questions that are organized and stored electronically in advance.',
+      'This section contains activities that include various questions about general information about all curricula within the class.':
+          'This section contains activities that include various questions about general information about all curricula within the class.',
       'Full Name': 'Full Name',
       'Fee Discount': 'Fee Discount',
       '   Father Info   ': '   Father Info   ',

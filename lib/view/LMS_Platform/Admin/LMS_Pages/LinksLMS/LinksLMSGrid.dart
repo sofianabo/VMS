@@ -97,10 +97,8 @@ class _LinkslmsgriddState extends State<Linkslmsgrid> {
                                               1
                                           ? "Show File".tr
                                           : "Hide File".tr,
-                                      style: Get.theme.textTheme.bodyMedium!
-                                          .copyWith(
-                                              color: Color.fromARGB(
-                                                  255, 44, 128, 184)))),
+                                      style: Get.theme.textTheme.titleMedium!
+                                          .copyWith(fontSize: 14))),
                               Squer_Button_Enabled_Disabled(
                                   validate:
                                       !(Get.find<Add_Data_controller>().roll !=
@@ -177,7 +175,7 @@ class _LinkslmsgriddState extends State<Linkslmsgrid> {
                         ),
                         Divider(
                           height: 2,
-                          color: Color.fromARGB(255, 44, 128, 184),
+                          color: Get.theme.textTheme.titleMedium!.color,
                         )
                       ],
                     );
