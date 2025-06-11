@@ -224,7 +224,7 @@ class _TrueorfalsequestionmanagmenttState
                               }
                             },
                           ),
-                          Text("Is English".tr),
+                          Text("Is It English".tr),
                         ],
                       ),
                     ],
