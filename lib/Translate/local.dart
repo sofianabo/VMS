@@ -896,6 +896,7 @@ class Languages {
       'Delete Page': 'حذف الصفحة',
       'Show Page': 'إظهار',
       'Hide Page': 'إخفاء',
+      'True or False': 'صح أو خطأ',
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -1785,7 +1786,7 @@ class Languages {
       'Delete Page': 'Delete Page',
       'Show Page': 'Unhide',
       'Hide Page': 'Hide',
-      '': '',
+      'True or False': 'True or False',
       '': '',
       '': '',
       '': '',

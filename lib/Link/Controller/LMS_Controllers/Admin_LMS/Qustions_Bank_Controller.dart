@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:vms_school/Icons_File/v_m_s__icons_icons.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Screen.dart';
 import 'package:vms_school/Link/Model/AdminModel/School_Models/Curriculum_Model.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/TrueOrFalse/TrueOrFalseQuestionManagment.dart';
 
 class Qustions_Bank_Controller extends GetxController {
   List<Curriculum>? curriculum;
@@ -10,7 +12,9 @@ class Qustions_Bank_Controller extends GetxController {
       "icon": VMS_Icons.paper,
       "text": "True Or False".tr,
       "subTitle": "Simple questions requiring a true or false selection.".tr,
-      "onTap": () {}
+      "onTap": () {
+        Get.find<Selected_Class_Controller>().addToPath("True or False".tr);
+      }
     },
     {
       "icon": VMS_Icons.tf,
