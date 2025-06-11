@@ -21,7 +21,10 @@ class Qustions_Bank_Controller extends GetxController {
       "icon": LMS_Icons.checkone,
       "text": "Choose the correct".tr,
       "subTitle": "Choose the correct answer from several options".tr,
-      "onTap": () {}
+      "onTap": () {
+        Get.find<Selected_Class_Controller>()
+            .addToPath("Choose the correct answer".tr);
+      }
     },
     {
       "icon": LMS_Icons.fill,

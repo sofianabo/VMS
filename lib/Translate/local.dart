@@ -913,6 +913,7 @@ class Languages {
       'Show Page': 'إظهار',
       'Hide Page': 'إخفاء',
       'True or False': 'صح أو خطأ',
+      'Choose the correct answer': 'اختر الإجابة الصحيحة',
     },
     'en': {
       'Welcome Laith Haitham Azzam': 'Welcome Laith Haitham Azzam',
@@ -1638,6 +1639,7 @@ class Languages {
       'Delete Session': 'Delete Session',
       'Edit Session': 'Edit Session',
       'Opened': 'Opened',
+      'Choose the correct answer': 'Choose the correct answer',
       'Subject En - Name': 'Subject En - Name',
       'Subject Ar - Name': 'Subject Ar - Name',
       'Add Subject': 'Add Subject',

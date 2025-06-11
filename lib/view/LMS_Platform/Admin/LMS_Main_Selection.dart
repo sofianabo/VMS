@@ -9,6 +9,7 @@ import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Division_LMS/HomeWo
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Files_LMS/Files_LMS.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/LinksLMS/LinkLMSMangamnt.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Pages_LmsScreen/PagesLmsMangament.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/Choose_The_Correct_Answer/Choose_the_correct_answer.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/Question_Bank_Page.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/TrueOrFalse/TrueOrFalseQuestionManagment.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Selected_Class_Screen.dart';
@@ -56,6 +57,8 @@ class Selected_Class_Screen extends StatelessWidget {
                     return QuestionBankPage();
                   } else if (current == "True or False".tr) {
                     return Trueorfalsequestionmanagment();
+                  } else if (current == "Choose the correct answer".tr) {
+                    return Choose_the_correct_answer();
                   } else if (current == "Trivia".tr) {
                     return Text("Trivia");
                   } else if (current == "All Students".tr) {

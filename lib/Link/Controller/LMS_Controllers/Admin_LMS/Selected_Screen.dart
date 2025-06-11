@@ -32,7 +32,7 @@ class Selected_Class_Controller extends GetxController {
 
   List<Map<String, dynamic>> dataList = [
     {
-      "name": "Curriculums".tr,
+      "name": "Curriculum".tr,
       "subtitle":
           "The section contains the study materials for the specified Class level."
               .tr,

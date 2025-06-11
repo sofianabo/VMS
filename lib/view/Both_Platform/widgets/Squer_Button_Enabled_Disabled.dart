@@ -6,8 +6,10 @@ class Squer_Button_Enabled_Disabled extends StatefulWidget {
       {required this.validate,
       required this.icon,
       required this.onTap,
+      this.isDelete = false,
       super.key});
   bool validate;
+  bool isDelete;
   IconData icon;
   VoidCallback onTap;
   @override
@@ -25,7 +27,9 @@ class _Squer_Button_Enabled_DisabledState
         decoration: BoxDecoration(
             color: widget.validate
                 ? Get.theme.disabledColor
-                : Theme.of(context).cardColor,
+                : widget.isDelete
+                    ? Color(0xffB03D3D)
+                    : Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(5),
             boxShadow: const [
               BoxShadow(
@@ -34,11 +38,15 @@ class _Squer_Button_Enabled_DisabledState
         child: IconButton(
             splashColor: widget.validate
                 ? Get.theme.disabledColor
-                : Theme.of(context).cardColor,
+                : widget.isDelete
+                    ? Color(0xffB03D3D)
+                    : Theme.of(context).cardColor,
             style: ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll(widget.validate
                     ? Get.theme.disabledColor
-                    : Theme.of(context).cardColor),
+                    : widget.isDelete
+                        ? Color(0xffB03D3D)
+                        : Theme.of(context).cardColor),
                 shape: const WidgetStatePropertyAll(RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5))))),
             onPressed: !widget.validate ? widget.onTap : () {},
@@ -46,6 +54,8 @@ class _Squer_Button_Enabled_DisabledState
                 size: 18,
                 color: widget.validate
                     ? Colors.white
-                    : Theme.of(context).textTheme.titleMedium!.color!)));
+                    : widget.isDelete
+                        ? Colors.white
+                        : Theme.of(context).textTheme.titleMedium!.color!)));
   }
 }
