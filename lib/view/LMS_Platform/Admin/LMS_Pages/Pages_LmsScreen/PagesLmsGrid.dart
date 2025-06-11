@@ -96,10 +96,8 @@ class _PageslmsgridState extends State<Pageslmsgrid> {
                                               1
                                           ? "Show Page".tr
                                           : "Hide Page".tr,
-                                      style: Get.theme.textTheme.bodyMedium!
-                                          .copyWith(
-                                              color: Color.fromARGB(
-                                                  255, 44, 128, 184)))),
+                                      style: Get.theme.textTheme.titleMedium!
+                                          .copyWith(fontSize: 14))),
                               Squer_Button_Enabled_Disabled(
                                   validate:
                                       !(Get.find<Add_Data_controller>().roll !=
@@ -180,7 +178,7 @@ class _PageslmsgridState extends State<Pageslmsgrid> {
                         ),
                         Divider(
                           height: 2,
-                          color: Color.fromARGB(255, 44, 128, 184),
+                          color: Get.theme.textTheme.titleMedium!.color,
                         )
                       ],
                     );
