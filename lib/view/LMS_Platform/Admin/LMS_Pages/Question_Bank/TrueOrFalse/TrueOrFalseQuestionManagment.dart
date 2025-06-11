@@ -10,6 +10,7 @@ import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_LMS_Files.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Files_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LinksLMS_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/TrueOrFalseController.dart';
 import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Squer_Button_Enabled_Disabled.dart';
 import 'package:vms_school/view/Both_Platform/widgets/TextFildWithUpper.dart';
@@ -39,15 +40,15 @@ class _TrueorfalsequestionmanagmenttState
   }
 
   TextEditingController search = TextEditingController();
-  TextEditingController name = TextEditingController();
-  TextEditingController linkurl = TextEditingController();
+  TextEditingController qeustion = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     return Column(
       children: [
         if (screenWidth > 769)
-          GetBuilder<LinkslmsController>(builder: (controller) {
+          GetBuilder<Trueorfalsecontroller>(builder: (controller) {
             return Container(
               width: screenWidth,
               margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 0.0),
@@ -76,17 +77,14 @@ class _TrueorfalsequestionmanagmenttState
                           !(Get.find<Add_Data_controller>().roll != "observer"),
                       icon: Icons.add,
                       onTap: () {
-                        // name.clear();
-                        // linkurl.clear();
-                        // Get.find<LinkslmsController>().reset();
-                        // Get.find<LinkslmsController>().resetError();
+                        qeustion.clear();
+                        Get.find<LinkslmsController>().reset();
+                        Get.find<LinkslmsController>().resetError();
 
-                        // controller.updateFieldError("arname", false);
-                        // controller.updateFieldError("linkurl", false);
+                        controller.updateFieldError("question", false);
 
-                        // controller.updateFieldError("curr", false);
-
-                        // Get.dialog(AddLinkDialog(), barrierDismissible: false);
+                        Get.dialog(AddQuestionDialog(),
+                            barrierDismissible: false);
                       })
                 ],
               ),
@@ -125,17 +123,14 @@ class _TrueorfalsequestionmanagmenttState
                             "observer"),
                         icon: Icons.add,
                         onTap: () {
-                          // name.clear();
-                          // linkurl.clear();
-                          // Get.find<LinkslmsController>().reset();
-                          // Get.find<LinkslmsController>().resetError();
+                          qeustion.clear();
+                          Get.find<LinkslmsController>().reset();
+                          Get.find<LinkslmsController>().resetError();
 
-                          // controller.updateFieldError("arname", false);
-                          // controller.updateFieldError("linkurl", false);
-                          // controller.updateFieldError("curr", false);
+                          controller.updateFieldError("question", false);
 
-                          // Get.dialog(AddLinkDialog(),
-                          //     barrierDismissible: false);
+                          Get.dialog(AddQuestionDialog(),
+                              barrierDismissible: false);
                         })
                   ],
                 ),
@@ -166,8 +161,8 @@ class _TrueorfalsequestionmanagmenttState
     );
   }
 
-  AddLinkDialog() {
-    return GetBuilder<LinkslmsController>(builder: (controller) {
+  AddQuestionDialog() {
+    return GetBuilder<Trueorfalsecontroller>(builder: (controller) {
       return VMSAlertDialog(
           contents: SizedBox(
             width: 400,
@@ -183,26 +178,39 @@ class _TrueorfalsequestionmanagmenttState
                           isRequired: true,
                           onChanged: (value) {
                             if (value.isNotEmpty) {
-                              controller.updateFieldError("aname", false);
+                              controller.updateFieldError("question", false);
                             }
                           },
                           width: 350,
-                          isError: controller.IsAnameError,
-                          controller: name,
-                          Uptext: "Name".tr,
-                          hinttext: "Name".tr),
-                      Textfildwithupper(
-                          isRequired: true,
-                          onChanged: (value) {
-                            if (value.isNotEmpty) {
-                              controller.updateFieldError("linkurl", false);
-                            }
-                          },
-                          width: 350,
-                          isError: controller.isLinkError,
-                          controller: linkurl,
-                          Uptext: "Link URL".tr,
-                          hinttext: "Link URL".tr),
+                          isError: controller.IsQuestionError,
+                          controller: qeustion,
+                          Uptext: "Question".tr,
+                          hinttext: "Question".tr),
+                      Row(
+                        spacing: 20,
+                        children: [
+                          Radio<bool>(
+                            activeColor: Get.theme.primaryColor,
+                            value: true,
+                            groupValue: controller.selectedOption,
+                            // يمكنك استبدالها بمتغير لحفظ القيمة المحددة
+                            onChanged: (value) {
+                              controller.selectOption(value!);
+                            },
+                          ),
+                          Text("${controller.chooseTrue}"),
+                          Radio<bool>(
+                            activeColor: Get.theme.primaryColor,
+                            value: false,
+                            groupValue: controller.selectedOption,
+                            // يمكنك استبدالها بمتغير لحفظ القيمة المحددة
+                            onChanged: (value) {
+                              controller.selectOption(value!);
+                            },
+                          ),
+                          Text("${controller.chooseFalse}"),
+                        ],
+                      ),
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -216,7 +224,7 @@ class _TrueorfalsequestionmanagmenttState
                               }
                             },
                           ),
-                          Text("Is Hidden Link".tr),
+                          Text("Is English".tr),
                         ],
                       ),
                     ],
@@ -231,33 +239,27 @@ class _TrueorfalsequestionmanagmenttState
               children: [
                 ButtonDialog(
                     width: 150,
-                    text: "Add Link".tr,
+                    text: "Add Question".tr,
                     onPressed: () async {
-                      bool isArNameEmpty = name.text.isEmpty;
-                      bool isLinkEmpty = linkurl.text.isEmpty;
-                      bool iscurrEmpty =
-                          controller.selectdialog_CurrIndex.isEmpty ||
-                              controller.selectdialog_CurrIndex == '';
+                      bool isQuestionEmpty = qeustion.text.isEmpty;
 
-                      controller.updateFieldError("curr", iscurrEmpty);
-                      controller.updateFieldError("aname", isArNameEmpty);
-                      controller.updateFieldError("linkurl", isLinkEmpty);
+                      controller.updateFieldError("question", isQuestionEmpty);
 
-                      if (!(isArNameEmpty || iscurrEmpty || isLinkEmpty)) {
-                        await Addlinklmsapi(context).Addlinklms(
-                          hidden: controller.Hidden,
-                          link: linkurl.text,
-                          name: name.text,
-                          curriculumId: controller.dialogCurrList
-                              .indexOf(controller.selectdialog_CurrIndex),
-                        );
+                      if (!(isQuestionEmpty)) {
+                        // await Addlinklmsapi(context).Addlinklms(
+                        //   hidden: controller.Hidden,
+                        //   link: linkurl.text,
+                        //   name: name.text,
+                        //   curriculumId: controller.dialogCurrList
+                        //       .indexOf(controller.selectdialog_CurrIndex),
+                        // );
                       }
                     },
                     color: Theme.of(context).primaryColor)
               ],
             )
           ],
-          apptitle: "Add Link".tr,
+          apptitle: "Add Question".tr,
           subtitle: "none");
     });
   }

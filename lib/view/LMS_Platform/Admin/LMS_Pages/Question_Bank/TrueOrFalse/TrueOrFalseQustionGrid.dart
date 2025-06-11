@@ -6,6 +6,7 @@ import 'package:vms_school/Link/API/LMS_APIs/Admin/ShowAnHiddenLinkLmsAPI.dart';
 import 'package:vms_school/Link/API/OpenURLs.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LinksLMS_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/TrueOrFalseController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Squer_Button_Enabled_Disabled.dart';
@@ -33,7 +34,7 @@ class _TrueorfalsequstiongridState extends State<Trueorfalsequstiongrid> {
                   'ar'
               ? TextDirection.rtl
               : TextDirection.ltr,
-          child: GetBuilder<LinkslmsController>(builder: (controller) {
+          child: GetBuilder<Trueorfalsecontroller>(builder: (controller) {
             return SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Container(
@@ -161,7 +162,7 @@ class _TrueorfalsequstiongridState extends State<Trueorfalsequstiongrid> {
                                         groupValue:
                                             true, // يمكنك استبدالها بمتغير لحفظ القيمة المحددة
                                         onChanged: (bool? value) {}),
-                                    Text("صح".tr),
+                                    Text("صح"),
                                     Radio<bool>(
                                         overlayColor: WidgetStatePropertyAll(
                                             Colors.transparent),
@@ -170,7 +171,7 @@ class _TrueorfalsequstiongridState extends State<Trueorfalsequstiongrid> {
                                         groupValue:
                                             true, // يمكنك استبدالها بمتغير لحفظ القيمة المحددة
                                         onChanged: (bool? value) {}),
-                                    Text("خطأ".tr),
+                                    Text("خطأ"),
                                   ],
                                 )
                               ],
