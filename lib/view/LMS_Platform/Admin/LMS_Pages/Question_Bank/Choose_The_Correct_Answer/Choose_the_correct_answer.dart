@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/Choose_The_Correct_API.dart/Get_Choose_The_Correct_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/Choose_The_Correct_Answer_Controller.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Squer_Button_Enabled_Disabled.dart';
@@ -19,7 +20,7 @@ class Choose_the_correct_answer extends StatefulWidget {
 class _Choose_the_correct_answerState extends State<Choose_the_correct_answer> {
   @override
   initState() {
-    // Getalllinkslmsapi().Getalllinkslms();
+    Get_Choose_The_Correct_API().Get_Choose_The_Correct();
     super.initState();
   }
 
@@ -111,14 +112,14 @@ class _Choose_the_correct_answerState extends State<Choose_the_correct_answer> {
               )),
             );
           }
-          // if (controller.filtered_Links_LMS.isEmpty) {
-          //   return Expanded(
-          //     child: Center(
-          //         child: Text("No Questions".tr,
-          //             style: Theme.of(context).textTheme.titleLarge!.copyWith(
-          //                 fontSize: 22, fontWeight: FontWeight.normal))),
-          //   );
-          // }
+          if (controller.filterdQuestions!.isEmpty) {
+            return Expanded(
+              child: Center(
+                  child: Text("No Questions".tr,
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          fontSize: 22, fontWeight: FontWeight.normal))),
+            );
+          }
           return Choose_the_correct_answer_gride();
         }),
       ],

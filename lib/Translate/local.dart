@@ -258,6 +258,8 @@ class Languages {
       'Bank Branch Name': 'اسم الفرع البنكي',
       'Bank Account Number': 'رقم الحساب البنكي',
       'Save': 'حفظ',
+      'Are you sure you want to delete this question ?':
+          'هل انت متأكد من حذف هذا السؤال ؟',
       'Degrees': 'درجة',
       'Username not found': 'اسم المستخدم غير موجود',
       'Find Your Account': 'العثور على حسابي',
@@ -1438,6 +1440,8 @@ class Languages {
       'National ID': 'National ID',
       'Set All As a Holiday': 'Set All As a Holiday',
       'Cause': 'Cause',
+      'Are you sure you want to delete this question ?':
+          'Are you sure you want to delete this question ?',
       'No Subjects': 'No Subjects',
       'No Grade': 'No Grade',
       'No Sessions': 'No Sessions',

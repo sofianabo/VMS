@@ -1,18 +1,16 @@
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/Link/Model/LMS_Model/Questions_Models/Choose_The_Correct_Model.dart';
 
 class Choose_The_Correct_Answer extends GetxController {
   String? filterName = '';
+  List<Question>? questions;
+  List<Question>? filterdQuestions;
 
   void clearFilter() {
-    // searchByName("", currindex);
+    searchByName("");
     update();
   }
-
-  // إدارة حالة السؤال
-  final RxString _question = ''.obs;
-  String get question => _question.value;
-  set question(String value) => _question.value = value;
 
   // إدارة حالة الخطأ في السؤال
   final RxBool _isQuestionError = false.obs;
@@ -51,11 +49,9 @@ class Choose_The_Correct_Answer extends GetxController {
 
   // تنظيف البيانات بعد الإضافة
   void clearData() {
-    _question.value = '';
     _options.clear();
     _correctAnswerIndex.value = -1;
-    _isQuestionError.value = false;
-    update();
+    IsAnameError = false;
   }
 
   void removeOption(int index) {
@@ -129,34 +125,51 @@ class Choose_The_Correct_Answer extends GetxController {
 
   void searchByName(String? nameQuery) {
     filterName = nameQuery;
-    // List<LmsCurriculmUrl> tempFilteredList = List.from(Link_lms!);
+    List<Question> tempFilteredList = List.from(questions!);
 
-    // if (nameQuery != null && nameQuery.isNotEmpty) {
-    //   tempFilteredList = tempFilteredList.where((cur) {
-    //     final curName = cur.name?.toLowerCase() ?? '';
-    //     return curName.contains(nameQuery.toLowerCase());
-    //   }).toList();
-    // }
-    //
-    //
-    //
-    // filtered_Links_LMS = tempFilteredList;
+    if (nameQuery != null && nameQuery.isNotEmpty) {
+      tempFilteredList = tempFilteredList.where((cur) {
+        final curName = cur.description?.toLowerCase() ?? '';
+        return curName.contains(nameQuery.toLowerCase());
+      }).toList();
+    }
+
+    filterdQuestions = tempFilteredList;
     update();
   }
 
-  bool isLoading = false;
+  bool isLoading = true;
 
-  void SetLinks() {
-    // Link_lms = links.lmsCurriculmUrl;
-    //
-    // filtered_Links_LMS = List.from(Link_lms!);
-    //
-    // if (filterName != null && filterName!.isNotEmpty) {
-    //   searchByName(filterName.toString(), currindex);
-    // }
-    //
+  void Set_Question(Chooes_The_Correct_Model cthc) {
+    questions = cthc.question;
+
+    filterdQuestions = List.from(questions!);
+
+    if (filterName != null && filterName!.isNotEmpty) {
+      searchByName(filterName.toString());
+    }
 
     SetIsLoading(false);
+    update();
+  }
+
+  void Add_Question(Question cthc) {
+    questions!.insert(0, cthc);
+    filterdQuestions = List.from(questions!);
+
+    if (filterName != null && filterName!.isNotEmpty) {
+      searchByName(filterName.toString());
+    }
+    clearData();
+    update();
+  }
+
+  void Delete_Question(Question cthc) {
+    questions!.remove(cthc);
+    filterdQuestions = List.from(questions!);
+    if (filterName != null && filterName!.isNotEmpty) {
+      searchByName(filterName.toString());
+    }
     update();
   }
 

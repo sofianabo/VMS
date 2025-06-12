@@ -29,6 +29,21 @@ class _ArticlequstiongridState extends State<Articlequstiongrid> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    int getCrossAxisCount() {
+      if (screenWidth >= 950) return 3;
+      if (screenWidth >= 769) return 2;
+      return 1;
+    }
+
+    double getChildAspectRatio() {
+      if (screenWidth >= 1070) return 2.2;
+      if (screenWidth >= 950) return 1.1;
+      if (screenWidth >= 838) return 1.6;
+      if (screenWidth >= 769) return 1.5;
+      if (screenWidth >= 613) return 2.2;
+      if (screenWidth >= 486) return 1.7;
+      return 1.2;
+    }
 
     return Expanded(
       child: SingleChildScrollView(
@@ -42,7 +57,6 @@ class _ArticlequstiongridState extends State<Articlequstiongrid> {
               : TextDirection.ltr,
           child: GetBuilder<Articlequestioncontroller>(builder: (controller) {
             return SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
               child: Container(
                 width: screenWidth >= 768 ? screenWidth - 70 : 800,
                 padding: EdgeInsets.only(left: 20, right: 20.0, bottom: 20.0),
@@ -51,138 +65,105 @@ class _ArticlequstiongridState extends State<Articlequstiongrid> {
                   borderRadius: BorderRadius.all(Radius.circular(5)),
                   color: Colors.white,
                 ),
-                child: ListView.builder(
-                  reverse: true,
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: getCrossAxisCount(),
+                      crossAxisSpacing: 20.0,
+                      mainAxisSpacing: 20.0,
+                      childAspectRatio: getChildAspectRatio()),
+
                   shrinkWrap: true,
                   itemCount: 5, //controller.filtered_Links_LMS.length
                   itemBuilder: (context, index) {
-                    return Column(
-                      spacing: 10,
-                      children: [
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                          child: Container(
-                            padding: EdgeInsets.all(15),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                border: Border.all(
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium!
-                                        .color!,
-                                    width: 0.5),
-                                color: Theme.of(context).cardColor,
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Colors.black26,
-                                      offset: Offset(0, 2),
-                                      blurRadius: 1)
-                                ]),
-                            child: Column(
-                              spacing: 10,
-                              children: [
-                                Row(
-                                  spacing: 15.0,
-                                  children: [
-                                    Expanded(
-                                        child: Text("What is your name" +
-                                            "  ( 50 ${"Degrees".tr} )  ")),
-                                    Squer_Button_Enabled_Disabled(
-                                        validate:
-                                            !(Get.find<Add_Data_controller>()
-                                                    .roll !=
-                                                "observer"),
-                                        icon: Icons.edit_note_outlined,
-                                        onTap: () {
-                                             controller.updateFieldError(
-                                              "question", false);
-                                          controller.updateFieldError(
-                                              "mark", false);
-                                          ques.text =
-                                              "question"; //${controller.filtered_Links_LMS![index].name}
-                                          mark.text =
-                                              "mark"; //${controller.filtered_Links_LMS![index].id}
-
-                                          Get.dialog(
-                                            EditArticleDialog(),
-                                            barrierDismissible: false,
-                                          );
-                                        }),
-                                    Squer_Button_Enabled_Disabled(
-                                        validate:
-                                            !(Get.find<Add_Data_controller>()
-                                                    .roll !=
-                                                "observer"),
-                                        icon: Icons.delete_outline_outlined,
-                                        isDelete: true,
-                                        onTap: () {
-                                          Get.dialog(VMSAlertDialog(
-                                              action: [
-                                                ButtonDialog(
-                                                    text: "Delete".tr,
-                                                    onPressed: () async {
-                                                      Deletearticleapi(context)
-                                                          .Deletearticle(
-                                                        id: controller
-                                                            .filtered_Links_LMS![
-                                                                index]
-                                                            .id,
-                                                      );
-                                                    },
-                                                    color:
-                                                        const Color(0xffB03D3D),
-                                                    width: 80),
-                                                ButtonDialog(
-                                                    text: "Cancel".tr,
-                                                    onPressed: () {
-                                                      Get.back();
-                                                    },
-                                                    color: Theme.of(context)
-                                                        .primaryColor,
-                                                    width: 80)
-                                              ],
-                                              contents: Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  Container(
-                                                    width: 400,
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Text(
-                                                        "Do You Want To deletequestion"
-                                                                .tr +
-                                                            " (${controller.filtered_Links_LMS![index].name}) " +
-                                                            "qustionn".tr,
-                                                        style: Get
-                                                            .theme
-                                                            .textTheme
-                                                            .bodyMedium!
-                                                            .copyWith(
-                                                                fontSize: 16,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                              apptitle: "Delete Question".tr,
-                                              subtitle: "none"));
-                                        }),
-                                  ],
-                                ),
-                              ],
+                    return Container(
+                      padding: EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .color!,
+                              width: 0.5),
+                          color: Theme.of(context).cardColor,
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black26,
+                                offset: Offset(0, 2),
+                                blurRadius: 1)
+                          ]),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        spacing: 15.0,
+                        children: [
+                          Expanded(
+                              child: Center(
+                            child: SingleChildScrollView(
+                              child: Text(
+                                "nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhnameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhnameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhnameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhnameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhnameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your name",
+                                textAlign: TextAlign.center,
+                              ),
                             ),
-                          ),
-                        ),
-                        Divider(
-                          height: 2,
-                          color: Color.fromARGB(255, 44, 128, 184),
-                        )
-                      ],
+                          )),
+                          Squer_Button_Enabled_Disabled(
+                              validate:
+                                  !(Get.find<Add_Data_controller>().roll !=
+                                      "observer"),
+                              icon: Icons.delete_outline_outlined,
+                              isDelete: true,
+                              onTap: () {
+                                Get.dialog(VMSAlertDialog(
+                                    action: [
+                                      ButtonDialog(
+                                          text: "Delete".tr,
+                                          onPressed: () async {
+                                            Deletearticleapi(context)
+                                                .Deletearticle(
+                                              id: controller
+                                                  .filtered_Links_LMS![index]
+                                                  .id,
+                                            );
+                                          },
+                                          color: const Color(0xffB03D3D),
+                                          width: 80),
+                                      ButtonDialog(
+                                          text: "Cancel".tr,
+                                          onPressed: () {
+                                            Get.back();
+                                          },
+                                          color: Theme.of(context).primaryColor,
+                                          width: 80)
+                                    ],
+                                    contents: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Container(
+                                          width: 400,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "Do You Want To deletequestion"
+                                                      .tr +
+                                                  " (${controller.filtered_Links_LMS![index].name}) " +
+                                                  "qustionn".tr,
+                                              style: Get
+                                                  .theme.textTheme.bodyMedium!
+                                                  .copyWith(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.normal),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    apptitle: "Delete Question".tr,
+                                    subtitle: "none"));
+                              }),
+                        ],
+                      ),
                     );
                   },
                 ),
@@ -192,84 +173,5 @@ class _ArticlequstiongridState extends State<Articlequstiongrid> {
         ),
       ),
     );
-  }
-   EditArticleDialog() {
-    return GetBuilder<Articlequestioncontroller>(builder: (controller) {
-      return VMSAlertDialog(
-        action: [
-          if (Get.find<Add_Data_controller>().roll != "observer")
-            ButtonDialog(
-              text: "Edit".tr,
-              onPressed: () async {
-                bool isQuesEmpty = ques.text.isEmpty;
-                bool isMarkEmpty = mark.text.isEmpty;
-
-                controller.updateFieldError("question", isQuesEmpty);
-                controller.updateFieldError("mark", isMarkEmpty);
-
-                if (!(isQuesEmpty || isMarkEmpty)) {
-                  await Updatearticleapi(context)
-                      .Updatearticle(
-                        
-                          mark: mark.text,
-                          question: ques.text);
-                  Get.back();
-                }
-              },
-              color: Theme.of(context).primaryColor,
-              width: 120,
-            ),
-        ],
-        contents: Container(
-          width: 400,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Column(
-                  spacing: 10.0,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Textfildwithupper(
-                      enabled:
-                          Get.find<Add_Data_controller>().roll != "observer",
-                      isError: controller.IsQuestionError,
-                      isRequired: true,
-                      onChanged: (value) {
-                        if (value.isNotEmpty) {
-                          controller.updateFieldError("question", false);
-                        }
-                      },
-                      width: 350,
-                      controller: ques,
-                      Uptext: "Question".tr,
-                      hinttext: "Question".tr,
-                    ),
-                    Textfildwithupper(
-                      enabled:
-                          Get.find<Add_Data_controller>().roll != "observer",
-                      isError: controller.IsMarkError,
-                      isRequired: true,
-                      onChanged: (value) {
-                        if (value.isNotEmpty) {
-                          controller.updateFieldError("mark", false);
-                        }
-                      },
-                      width: 350,
-                      controller: mark,
-                      Uptext: "Mark".tr,
-                      hinttext: "Mark".tr,
-                    ),
-                
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-        apptitle: "Edit Article".tr,
-        subtitle: "none",
-      );
-    });
   }
 }

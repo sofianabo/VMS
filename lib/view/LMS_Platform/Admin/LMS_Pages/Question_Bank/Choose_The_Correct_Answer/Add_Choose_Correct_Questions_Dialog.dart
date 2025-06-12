@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/Error_API.dart';
+import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/Choose_The_Correct_API.dart/Add_Choose_The_Correct_API.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/Choose_The_Correct_Answer_Controller.dart';
 import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Squer_Button_Enabled_Disabled.dart';
@@ -19,9 +20,10 @@ class Add_Choose_Correct_Questions_Dialog extends StatefulWidget {
 
 class _Add_Choose_Correct_Questions_DialogState
     extends State<Add_Choose_Correct_Questions_Dialog> {
+  final TextEditingController Question = TextEditingController();
   final TextEditingController _optionController = TextEditingController();
   final FocusNode _optionFocusNode = FocusNode();
-
+  var cont = Get.find<Choose_The_Correct_Answer>();
   @override
   void dispose() {
     _optionController.dispose();
@@ -31,41 +33,43 @@ class _Add_Choose_Correct_Questions_DialogState
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<Choose_The_Correct_Answer>(builder: (controller) {
-      return VMSAlertDialog(
-        action: [
-          ButtonDialog(
-            color: Get.theme.primaryColor,
-            onPressed: () {
-              bool isquestion = controller.question.isEmpty;
-              controller.updateFieldError("aname", isquestion);
+    return VMSAlertDialog(
+      action: [
+        ButtonDialog(
+          color: Get.theme.primaryColor,
+          onPressed: () async {
+            bool isquestion = Question.text.isEmpty;
+            cont.updateFieldError("aname", isquestion);
 
-              if (!isquestion) {
-                controller.validateAndCleanOptions();
-                if (controller.validateBeforeSave()) {
-                  // تنفيذ عملية الحفظ هنا
-                }
+            if (!isquestion) {
+              cont.validateAndCleanOptions();
+              if (cont.validateBeforeSave()) {
+                await Add_Choose_The_Correct_API().Choose_The_Correct_API(
+                    Question: Question.text,
+                    answer: cont.options,
+                    trueIndex: cont.correctAnswerIndex);
               }
-            },
-            width: 150,
-            text: "Add".tr,
-          )
-        ],
-        contents: Container(
-          width: 600,
-          constraints: BoxConstraints(maxHeight: 500),
-          child: SingleChildScrollView(
-            child: Column(
+            }
+          },
+          width: 150,
+          text: "Add".tr,
+        )
+      ],
+      contents: Container(
+        width: 600,
+        constraints: BoxConstraints(maxHeight: 500),
+        child: SingleChildScrollView(
+          child: GetBuilder<Choose_The_Correct_Answer>(builder: (controller) {
+            return Column(
               children: [
                 Textfildwithupper(
                   width: 600,
                   isError: controller.IsAnameError,
                   onChanged: (value) {
-                    controller.question = value;
                     controller.updateFieldError("aname", value.isEmpty);
                   },
                   isRequired: true,
-                  controller: TextEditingController(text: controller.question),
+                  controller: Question,
                   Uptext: "Add Choose Correct Questions".tr,
                   hinttext: "Add Choose Correct Questions".tr,
                 ),
@@ -159,12 +163,12 @@ class _Add_Choose_Correct_Questions_DialogState
                   ),
                 ),
               ],
-            ),
-          ),
+            );
+          }),
         ),
-        apptitle: "Add Question".tr,
-        subtitle: "none".tr,
-      );
-    });
+      ),
+      apptitle: "Add Question".tr,
+      subtitle: "none".tr,
+    );
   }
 }

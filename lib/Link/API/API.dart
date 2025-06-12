@@ -1,6 +1,6 @@
 // String hostPort = "https://lion-secure-strongly.ngrok-free.app/api/";
 // String hostPort = "https://api.vmssyria.com/api/";
-String hostPort = "http://192.168.1.12:8000/api/";
+String hostPort = "http://192.168.1.18:8000/api/";
 //..................... Guardians API Start ...................//
 String enroll = "Enroll";
 String resendCodeGurdian = "resendCodeGurdian";
@@ -230,3 +230,6 @@ String deleteLmsCurriculumPage = "deleteLmsCurriculumPage";
 String updateLmsPage = "updateLmsPage";
 String addLmsCurriculmPage = "addLmsCurriculmPage";
 String showPage = "showPage";
+String addQuestion = "addQuestion";
+String getQuestion = "getQuestion";
+String deleteQuestion = "deleteQuestion";

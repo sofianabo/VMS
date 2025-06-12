@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/Choose_The_Correct_API.dart/Delete_Choose_The_Correct_API.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/Choose_The_Correct_Answer_Controller.dart';
 import 'package:vms_school/Translate/local_controller.dart';
@@ -23,205 +24,233 @@ class _Choose_the_correct_answer_grideState
 
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.only(top: 15.0),
-        child: SingleChildScrollView(
-          child: Directionality(
-            textDirection: Get.find<LocalizationController>()
-                        .currentLocale
-                        .value
-                        .languageCode ==
-                    'ar'
-                ? TextDirection.rtl
-                : TextDirection.ltr,
+        padding: const EdgeInsets.only(top: 22.0),
+        child: Directionality(
+          textDirection: Get.find<LocalizationController>()
+                      .currentLocale
+                      .value
+                      .languageCode ==
+                  'ar'
+              ? TextDirection.rtl
+              : TextDirection.ltr,
+          child: SingleChildScrollView(
             child: GetBuilder<Choose_The_Correct_Answer>(builder: (controller) {
-              return Container(
-                width: screenWidth,
-                padding: EdgeInsets.only(left: 20, right: 20.0, bottom: 20.0),
-                margin: EdgeInsets.only(left: 20, right: 20.0),
-                child: ListView.builder(
+              // حساب عدد العناصر
+              int itemCount = controller.filterdQuestions!.length;
+              if (screenWidth <= 800) {
+                return ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: 5,
+                  itemCount: itemCount,
                   itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        Container(
-                          width: screenWidth,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              border: Border.all(
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .titleMedium!
-                                      .color!,
-                                  width: 0.5),
-                              color: Theme.of(context).cardColor,
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black26,
-                                    offset: Offset(0, 2),
-                                    blurRadius: 1)
-                              ]),
-                          padding: const EdgeInsets.all(20),
-                          child: Column(
-                            spacing: 20.0,
-                            crossAxisAlignment:
-                                Get.find<LocalizationController>()
-                                            .currentLocale
-                                            .value
-                                            .languageCode ==
-                                        'ar'
-                                    ? CrossAxisAlignment.start
-                                    : CrossAxisAlignment.end,
-                            mainAxisAlignment:
-                                Get.find<LocalizationController>()
-                                            .currentLocale
-                                            .value
-                                            .languageCode ==
-                                        'ar'
-                                    ? MainAxisAlignment.start
-                                    : MainAxisAlignment.end,
-                            children: [
-                              Row(
-                                spacing: 30.0,
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                        maxLines: 10,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium!
-                                            .copyWith(fontSize: 16),
-                                        "${index + 1})- " +
-                                            "هل الاجابة المختارة هي الصحيحة : "),
-                                  ),
-                                  Row(
-                                    spacing: 10.0,
-                                    children: [
-                                      Squer_Button_Enabled_Disabled(
-                                          isDelete: true,
-                                          validate:
-                                              !(Get.find<Add_Data_controller>()
-                                                      .roll !=
-                                                  "observer"),
-                                          icon: Icons.delete_outline_outlined,
-                                          onTap: () {
-                                            Get.dialog(VMSAlertDialog(
-                                                action: [
-                                                  ButtonDialog(
-                                                      text: "Delete".tr,
-                                                      onPressed: () async {},
-                                                      color: const Color(
-                                                          0xffB03D3D),
-                                                      width: 80),
-                                                  ButtonDialog(
-                                                      text: "Cancel".tr,
-                                                      onPressed: () {
-                                                        Get.back();
-                                                      },
-                                                      color: Theme.of(context)
-                                                          .primaryColor,
-                                                      width: 80)
-                                                ],
-                                                contents: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  children: [
-                                                    Container(
-                                                      width: 400,
-                                                    ),
-                                                    Row(
-                                                      children: [
-                                                        Text(
-                                                          "Do You Want To delete"
-                                                                  .tr +
-                                                              " ({controller.filtered_Links_LMS![index].name}) " +
-                                                              "Question".tr,
-                                                          style: Get
-                                                              .theme
-                                                              .textTheme
-                                                              .bodyMedium!
-                                                              .copyWith(
-                                                                  fontSize: 16,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                                apptitle: "Delete Question".tr,
-                                                subtitle: "none"));
-                                          }),
-                                    ],
-                                  )
-                                ],
-                              ),
-                              ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: 3,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                      width: screenWidth,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          border: Border.all(
-                                              color: index == 0
-                                                  ? Color(0xff498160)
-                                                  : Theme.of(context)
-                                                      .textTheme
-                                                      .titleMedium!
-                                                      .color!,
-                                              width: 0.5),
-                                          color: index == 0
-                                              ? Color(0xff498160)
-                                              : Theme.of(context).cardColor,
-                                          boxShadow: const [
-                                            BoxShadow(
-                                                color: Colors.black26,
-                                                offset: Offset(0, 2),
-                                                blurRadius: 1)
-                                          ]),
-                                      padding: const EdgeInsets.all(10),
-                                      margin: const EdgeInsets.only(
-                                          top: 5.0, bottom: 5.0),
-                                      child: Expanded(
-                                        child: Text(
-                                            maxLines: 10,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                              color: index == 0
-                                                  ? Colors.white
-                                                  : Theme.of(context)
-                                                      .textTheme
-                                                      .titleMedium!
-                                                      .color,
-                                            ),
-                                            "انا الاجابة الاكثر صحة"),
-                                      ));
-                                },
-                              )
-                            ],
-                          ),
-                        ),
-                        if (index <= 3)
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 30, top: 30),
-                            child: Divider(
-                              height: 3,
-                              color: Get.theme.textTheme.titleMedium!.color,
-                            ),
-                          )
-                      ],
-                    );
+                    return _buildQuestionItem(
+                        context, controller, index, screenWidth - 40);
                   },
-                ),
-              );
+                );
+              } else {
+                return Container(
+                  width: screenWidth,
+                  padding: EdgeInsets.only(left: 20, right: 20.0, bottom: 20.0),
+                  margin: EdgeInsets.only(left: 20, right: 20.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // العمود الأول للأسئلة الفردية (1, 3, 5, ...)
+                      Expanded(
+                        child: ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: (itemCount + 1) ~/ 2,
+                          itemBuilder: (context, index) {
+                            int questionIndex = index * 2;
+                            if (questionIndex >= itemCount) return SizedBox();
+                            return _buildQuestionItem(context, controller,
+                                questionIndex, screenWidth / 2 - 30);
+                          },
+                        ),
+                      ),
+                      SizedBox(width: 20), // مسافة بين العمودين
+                      // العمود الثاني للأسئلة الزوجية (2, 4, 6, ...)
+                      Expanded(
+                        child: ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: itemCount ~/ 2,
+                          itemBuilder: (context, index) {
+                            int questionIndex = index * 2 + 1;
+                            if (questionIndex >= itemCount) return SizedBox();
+                            return _buildQuestionItem(context, controller,
+                                questionIndex, screenWidth / 2 - 30);
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }
             }),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildQuestionItem(BuildContext context,
+      Choose_The_Correct_Answer controller, int index, double screenWidth) {
+    return Column(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Theme.of(context).textTheme.titleMedium!.color!,
+              width: 0.5,
+            ),
+          ),
+          width: screenWidth,
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            spacing: 20.0,
+            crossAxisAlignment: Get.find<LocalizationController>()
+                        .currentLocale
+                        .value
+                        .languageCode ==
+                    'ar'
+                ? CrossAxisAlignment.start
+                : CrossAxisAlignment.end,
+            mainAxisAlignment: Get.find<LocalizationController>()
+                        .currentLocale
+                        .value
+                        .languageCode ==
+                    'ar'
+                ? MainAxisAlignment.start
+                : MainAxisAlignment.end,
+            children: [
+              Row(
+                spacing: 30.0,
+                children: [
+                  Expanded(
+                    child: Text(
+                        maxLines: 10,
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium!
+                            .copyWith(fontSize: 16),
+                        "${index + 1})- ${controller.filterdQuestions![index].description}"),
+                  ),
+                  Row(
+                    spacing: 10.0,
+                    children: [
+                      Squer_Button_Enabled_Disabled(
+                          isDelete: true,
+                          validate: !(Get.find<Add_Data_controller>().roll !=
+                              "observer"),
+                          icon: Icons.delete_outline_outlined,
+                          onTap: () {
+                            Get.dialog(VMSAlertDialog(
+                                action: [
+                                  ButtonDialog(
+                                      text: "Delete".tr,
+                                      onPressed: () async {
+                                        await Delete_Choose_The_Correct_API()
+                                            .Delete_Choose_The_Correct(
+                                                question: controller
+                                                    .filterdQuestions![index]);
+                                      },
+                                      color: const Color(0xffB03D3D),
+                                      width: 80),
+                                  ButtonDialog(
+                                      text: "Cancel".tr,
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                      color: Theme.of(context).primaryColor,
+                                      width: 80)
+                                ],
+                                contents: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Container(width: 400),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "Are you sure you want to delete this question ?"
+                                              .tr,
+                                          style: Get.theme.textTheme.bodyMedium!
+                                              .copyWith(
+                                                  fontSize: 16,
+                                                  fontWeight:
+                                                      FontWeight.normal),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                apptitle: "Delete Question".tr,
+                                subtitle: "none"));
+                          }),
+                    ],
+                  )
+                ],
+              ),
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: controller.filterdQuestions![index].answer!.length,
+                itemBuilder: (context, Question_Index) {
+                  final answer = controller
+                      .filterdQuestions![index].answer![Question_Index];
+                  final isCorrect = answer.trueAns == 1;
+                  final color = isCorrect
+                      ? const Color(0xff498160)
+                      : Theme.of(context).cardColor;
+
+                  return Container(
+                    width: screenWidth,
+                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.symmetric(vertical: 5.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: isCorrect
+                            ? const Color(0xff498160)
+                            : Theme.of(context).textTheme.titleMedium!.color!,
+                        width: 0.5,
+                      ),
+                      color: color,
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(0, 2),
+                          blurRadius: 1,
+                        ),
+                      ],
+                    ),
+                    child: Text(
+                      answer.choice ?? '',
+                      maxLines: 10,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: isCorrect
+                            ? Colors.white
+                            : Theme.of(context).textTheme.titleMedium!.color,
+                      ),
+                    ),
+                  );
+                },
+              )
+            ],
+          ),
+        ),
+        if (index < controller.filterdQuestions!.length - 1)
+          Padding(
+            padding: MediaQuery.of(context).size.width >= 800
+                ? EdgeInsets.only(bottom: 20, top: 20)
+                : EdgeInsets.all(20),
+            child: Divider(
+              height: 3,
+              color: Get.theme.textTheme.titleMedium!.color,
+            ),
+          )
+      ],
     );
   }
 }
