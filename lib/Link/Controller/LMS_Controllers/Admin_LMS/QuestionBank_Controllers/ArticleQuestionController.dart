@@ -7,16 +7,10 @@ import 'package:vms_school/Link/Model/LMS_Model/Files_Model.dart';
 import 'package:vms_school/Link/Model/LMS_Model/LinksLMSModel.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 
-class Trueorfalsecontroller extends GetxController {
-  bool? selectedOption = true;
-  String? chooseTrue = "صح";
-  String? chooseFalse = "خطأ";
-  // يمكن أن تكون null في البداية
+class Articlequestioncontroller extends GetxController {
+ 
 
-  void selectOption(bool option) {
-    selectedOption = option;
-    update(); // لإعادة بناء الواجهة
-  }
+ 
 
   List<LmsCurriculmUrl>? Link_lms;
   List<LmsCurriculmUrl> filtered_Links_LMS = [];
@@ -153,13 +147,14 @@ class Trueorfalsecontroller extends GetxController {
 
   bool IsQuestionError = false;
   bool IsMarkError = false;
+ 
 
   void updateFieldError(String type, bool newValue) {
     switch (type) {
       case 'question':
         IsQuestionError = newValue;
         break;
-      case 'mark':
+       case 'mark':
         IsMarkError = newValue;
         break;
 
@@ -172,13 +167,7 @@ class Trueorfalsecontroller extends GetxController {
   bool Hidden = false;
   updateHid(bool value) {
     Hidden = value;
-    if (value == true) {
-      chooseTrue = "True";
-      chooseFalse = "False";
-    } else {
-      chooseTrue = "صح";
-      chooseFalse = "خطأ";
-    }
+ 
     update();
   }
 
@@ -191,6 +180,7 @@ class Trueorfalsecontroller extends GetxController {
   void resetError() {
     IsQuestionError = false;
     IsMarkError = false;
+ 
     update();
   }
 }

@@ -47,7 +47,10 @@ class Qustions_Bank_Controller extends GetxController {
       "subTitle":
           "Questions consisting of large blanks suitable for topics and articles."
               .tr,
-      "onTap": () {}
+      "onTap": () {
+                Get.find<Selected_Class_Controller>().addToPath("article".tr);
+
+      }
     },
     {
       "icon": LMS_Icons.multiselect,

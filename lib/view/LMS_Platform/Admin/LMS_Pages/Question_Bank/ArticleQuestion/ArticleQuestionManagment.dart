@@ -7,10 +7,11 @@ import 'package:vms_school/Link/API/LMS_APIs/Admin/Add_File_LMS_API.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/GetAllLinksLMSAPI.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_All_Curr_LMS.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_LMS_Files.dart';
-import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/TrueOrFalseAPI.dart/AddTrueOrFalseAPI.dart';
+import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/ArticleAPI/AddArticleAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Files_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LinksLMS_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/ArticleQuestionController.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/TrueOrFalseController.dart';
 import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Squer_Button_Enabled_Disabled.dart';
@@ -19,24 +20,24 @@ import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Files_LMS/Files_LMS_Grid.dart';
 import 'package:vms_school/view/Both_Platform/widgets/TextFormSearch.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/LinksLMS/LinksLMSGrid.dart';
+import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/ArticleQuestion/ArticleQustionGrid.dart';
 import 'package:vms_school/view/LMS_Platform/Admin/LMS_Pages/Question_Bank/TrueOrFalse/TrueOrFalseQustionGrid.dart';
 import 'package:vms_school/view/LMS_Platform/Widget/File_LMS_DropDown.dart';
 import 'package:vms_school/view/LMS_Platform/Widget/LinksLMSDropdown.dart';
 
-class Trueorfalsequestionmanagment extends StatefulWidget {
-  const Trueorfalsequestionmanagment({super.key});
+class Articlequestionmanagment extends StatefulWidget {
+  const Articlequestionmanagment({super.key});
 
   @override
-  State<Trueorfalsequestionmanagment> createState() =>
-      _TrueorfalsequestionmanagmenttState();
+  State<Articlequestionmanagment> createState() =>
+      _ArticlequestionmanagmentState();
 }
 
-class _TrueorfalsequestionmanagmenttState
-    extends State<Trueorfalsequestionmanagment> {
+class _ArticlequestionmanagmentState extends State<Articlequestionmanagment> {
   @override
   initState() {
     // Getalllinkslmsapi().Getalllinkslms();
-  
+    // Get_LMS_Curriculm_API().Get_LMS_Curriculm();
     super.initState();
   }
 
@@ -50,7 +51,7 @@ class _TrueorfalsequestionmanagmenttState
     return Column(
       children: [
         if (screenWidth > 769)
-          GetBuilder<Trueorfalsecontroller>(builder: (controller) {
+          GetBuilder<Articlequestioncontroller>(builder: (controller) {
             return Container(
               width: screenWidth,
               margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 0.0),
@@ -80,12 +81,14 @@ class _TrueorfalsequestionmanagmenttState
                       icon: Icons.add,
                       onTap: () {
                         qeustion.clear();
-                        Get.find<Trueorfalsecontroller>().reset();
-                        Get.find<Trueorfalsecontroller>().resetError();
+                        mark.clear();
+                        Get.find<Articlequestioncontroller>().reset();
+                        Get.find<Articlequestioncontroller>().resetError();
 
                         controller.updateFieldError("question", false);
+                        controller.updateFieldError("mark", false);
 
-                        Get.dialog(AddQuestionDialog(),
+                        Get.dialog(AddArticleDialog(),
                             barrierDismissible: false);
                       })
                 ],
@@ -93,7 +96,7 @@ class _TrueorfalsequestionmanagmenttState
             );
           }),
         if (screenWidth <= 769)
-          GetBuilder<LinkslmsController>(builder: (controller) {
+          GetBuilder<Articlequestioncontroller>(builder: (controller) {
             return Container(
               width: screenWidth,
               margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 10.0),
@@ -127,13 +130,13 @@ class _TrueorfalsequestionmanagmenttState
                         onTap: () {
                           qeustion.clear();
                           mark.clear();
-                          Get.find<Trueorfalsecontroller>().reset();
-                          Get.find<Trueorfalsecontroller>().resetError();
+                          Get.find<Articlequestioncontroller>().reset();
+                          Get.find<Articlequestioncontroller>().resetError();
 
                           controller.updateFieldError("question", false);
                           controller.updateFieldError("mark", false);
 
-                          Get.dialog(AddQuestionDialog(),
+                          Get.dialog(AddArticleDialog(),
                               barrierDismissible: false);
                         })
                   ],
@@ -141,7 +144,7 @@ class _TrueorfalsequestionmanagmenttState
               ),
             );
           }),
-        GetBuilder<Trueorfalsecontroller>(builder: (controller) {
+        GetBuilder<Articlequestioncontroller>(builder: (controller) {
           // if (controller.isLoading == true) {
           //   return Expanded(
           //     child: Center(
@@ -159,14 +162,14 @@ class _TrueorfalsequestionmanagmenttState
           //                 fontSize: 22, fontWeight: FontWeight.normal))),
           //   );
           // }
-          return Trueorfalsequstiongrid();
+          return Articlequstiongrid();
         }),
       ],
     );
   }
 
-  AddQuestionDialog() {
-    return GetBuilder<Trueorfalsecontroller>(builder: (controller) {
+  AddArticleDialog() {
+    return GetBuilder<Articlequestioncontroller>(builder: (controller) {
       return VMSAlertDialog(
           contents: SizedBox(
             width: 400,
@@ -198,52 +201,11 @@ class _TrueorfalsequestionmanagmenttState
                             }
                           },
                           width: 350,
+                          fieldType: "number",
                           isError: controller.IsMarkError,
                           controller: mark,
-                          fieldType: "number",
                           Uptext: "Mark".tr,
                           hinttext: "Mark".tr),
-                      Row(
-                        spacing: 20,
-                        children: [
-                          Radio<bool>(
-                            activeColor: Get.theme.primaryColor,
-                            value: true,
-                            groupValue: controller.selectedOption,
-                            // يمكنك استبدالها بمتغير لحفظ القيمة المحددة
-                            onChanged: (value) {
-                              controller.selectOption(value!);
-                            },
-                          ),
-                          Text("${controller.chooseTrue}"),
-                          Radio<bool>(
-                            activeColor: Get.theme.primaryColor,
-                            value: false,
-                            groupValue: controller.selectedOption,
-                            // يمكنك استبدالها بمتغير لحفظ القيمة المحددة
-                            onChanged: (value) {
-                              controller.selectOption(value!);
-                            },
-                          ),
-                          Text("${controller.chooseFalse}"),
-                        ],
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Checkbox(
-                            checkColor: Colors.white,
-                            value: controller.Hidden,
-                            onChanged: (value) {
-                              if (Get.find<Add_Data_controller>().roll !=
-                                  "subAdmin") {
-                                controller.updateHid(value!);
-                              }
-                            },
-                          ),
-                          Text("Is It English".tr),
-                        ],
-                      ),
                     ],
                   ),
                 ],
@@ -261,16 +223,12 @@ class _TrueorfalsequestionmanagmenttState
                       bool isQuestionEmpty = qeustion.text.isEmpty;
                       bool isMarkEmpty = mark.text.isEmpty;
 
-                      controller.updateFieldError("mark", isMarkEmpty);
                       controller.updateFieldError("question", isQuestionEmpty);
+                      controller.updateFieldError("mark", isMarkEmpty);
 
                       if (!(isQuestionEmpty || isMarkEmpty)) {
-                        await Addtrueorfalseapi(context).Addtrueorfalse(
-                          answer:controller.selectedOption! ,
-                          isEnglish: controller.Hidden,
-                          mark: mark.text,
-                          question: qeustion.text
-                        );
+                        await Addarticleapi(context).Addarticle(
+                            mark: mark.text, question: qeustion.text);
                       }
                     },
                     color: Theme.of(context).primaryColor)
