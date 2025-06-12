@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/DeleteLinkLmsAPI.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/ShowAnHiddenLinkLmsAPI.dart';
-import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/TrueOrFalseAPI.dart/DeleteTrueOrFlaseAPI.dart';
-import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/TrueOrFalseAPI.dart/UpdateTrueOrFlaseQustionAPI.dart';
+import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/ArticleAPI/DeleteArticleAPI.dart';
+import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/ArticleAPI/UpdateArticleAPI.dart';
 import 'package:vms_school/Link/API/OpenURLs.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LinksLMS_Controller.dart';
+import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/QuestionBank_Controllers/ArticleQuestionController.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/TrueOrFalseController.dart';
 import 'package:vms_school/Translate/local_controller.dart';
 import 'package:vms_school/view/Both_Platform/widgets/ButtonsDialog.dart';
@@ -15,14 +16,14 @@ import 'package:vms_school/view/Both_Platform/widgets/Squer_Button_Enabled_Disab
 import 'package:vms_school/view/Both_Platform/widgets/TextFildWithUpper.dart';
 import 'package:vms_school/view/Both_Platform/widgets/VMSAlertDialog.dart';
 
-class Trueorfalsequstiongrid extends StatefulWidget {
-  const Trueorfalsequstiongrid({super.key});
+class Articlequstiongrid extends StatefulWidget {
+  const Articlequstiongrid({super.key});
 
   @override
-  State<Trueorfalsequstiongrid> createState() => _TrueorfalsequstiongridState();
+  State<Articlequstiongrid> createState() => _ArticlequstiongridState();
 }
 
-class _TrueorfalsequstiongridState extends State<Trueorfalsequstiongrid> {
+class _ArticlequstiongridState extends State<Articlequstiongrid> {
   TextEditingController ques = TextEditingController();
   TextEditingController mark = TextEditingController();
   @override
@@ -39,7 +40,7 @@ class _TrueorfalsequstiongridState extends State<Trueorfalsequstiongrid> {
                   'ar'
               ? TextDirection.rtl
               : TextDirection.ltr,
-          child: GetBuilder<Trueorfalsecontroller>(builder: (controller) {
+          child: GetBuilder<Articlequestioncontroller>(builder: (controller) {
             return SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Container(
@@ -94,7 +95,7 @@ class _TrueorfalsequstiongridState extends State<Trueorfalsequstiongrid> {
                                                 "observer"),
                                         icon: Icons.edit_note_outlined,
                                         onTap: () {
-                                          controller.updateFieldError(
+                                             controller.updateFieldError(
                                               "question", false);
                                           controller.updateFieldError(
                                               "mark", false);
@@ -104,7 +105,7 @@ class _TrueorfalsequstiongridState extends State<Trueorfalsequstiongrid> {
                                               "mark"; //${controller.filtered_Links_LMS![index].id}
 
                                           Get.dialog(
-                                            EditQuestionDialog(),
+                                            EditArticleDialog(),
                                             barrierDismissible: false,
                                           );
                                         }),
@@ -121,9 +122,8 @@ class _TrueorfalsequstiongridState extends State<Trueorfalsequstiongrid> {
                                                 ButtonDialog(
                                                     text: "Delete".tr,
                                                     onPressed: () async {
-                                                      Deletetrueorflaseapi(
-                                                              context)
-                                                          .Deletetrueorflase(
+                                                      Deletearticleapi(context)
+                                                          .Deletearticle(
                                                         id: controller
                                                             .filtered_Links_LMS![
                                                                 index]
@@ -174,29 +174,6 @@ class _TrueorfalsequstiongridState extends State<Trueorfalsequstiongrid> {
                                         }),
                                   ],
                                 ),
-                                Row(
-                                  spacing: 20,
-                                  children: [
-                                    Radio<bool>(
-                                        overlayColor: WidgetStatePropertyAll(
-                                            Colors.transparent),
-                                        activeColor: Get.theme.primaryColor,
-                                        value: true,
-                                        groupValue:
-                                            true, // يمكنك استبدالها بمتغير لحفظ القيمة المحددة
-                                        onChanged: (bool? value) {}),
-                                    Text("صح"),
-                                    Radio<bool>(
-                                        overlayColor: WidgetStatePropertyAll(
-                                            Colors.transparent),
-                                        activeColor: Get.theme.primaryColor,
-                                        value: false,
-                                        groupValue:
-                                            true, // يمكنك استبدالها بمتغير لحفظ القيمة المحددة
-                                        onChanged: (bool? value) {}),
-                                    Text("خطأ"),
-                                  ],
-                                )
                               ],
                             ),
                           ),
@@ -216,9 +193,8 @@ class _TrueorfalsequstiongridState extends State<Trueorfalsequstiongrid> {
       ),
     );
   }
-
-  EditQuestionDialog() {
-    return GetBuilder<Trueorfalsecontroller>(builder: (controller) {
+   EditArticleDialog() {
+    return GetBuilder<Articlequestioncontroller>(builder: (controller) {
       return VMSAlertDialog(
         action: [
           if (Get.find<Add_Data_controller>().roll != "observer")
@@ -232,10 +208,9 @@ class _TrueorfalsequstiongridState extends State<Trueorfalsequstiongrid> {
                 controller.updateFieldError("mark", isMarkEmpty);
 
                 if (!(isQuesEmpty || isMarkEmpty)) {
-                  await Updatetrueorflasequstionapi(context)
-                      .Updatetrueorflasequstion(
-                          answer: controller.selectedOption!,
-                          isEnglish: controller.Hidden,
+                  await Updatearticleapi(context)
+                      .Updatearticle(
+                        
                           mark: mark.text,
                           question: ques.text);
                   Get.back();
@@ -285,54 +260,14 @@ class _TrueorfalsequstiongridState extends State<Trueorfalsequstiongrid> {
                       Uptext: "Mark".tr,
                       hinttext: "Mark".tr,
                     ),
-                    Row(
-                      spacing: 20,
-                      children: [
-                        Radio<bool>(
-                          activeColor: Get.theme.primaryColor,
-                          value: true,
-                          groupValue: controller.selectedOption,
-                          // يمكنك استبدالها بمتغير لحفظ القيمة المحددة
-                          onChanged: (value) {
-                            controller.selectOption(value!);
-                          },
-                        ),
-                        Text("${controller.chooseTrue}"),
-                        Radio<bool>(
-                          activeColor: Get.theme.primaryColor,
-                          value: false,
-                          groupValue: controller.selectedOption,
-                          // يمكنك استبدالها بمتغير لحفظ القيمة المحددة
-                          onChanged: (value) {
-                            controller.selectOption(value!);
-                          },
-                        ),
-                        Text("${controller.chooseFalse}"),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Checkbox(
-                          checkColor: Colors.white,
-                          value: controller.Hidden,
-                          onChanged: (value) {
-                            if (Get.find<Add_Data_controller>().roll !=
-                                "subAdmin") {
-                              controller.updateHid(value!);
-                            }
-                          },
-                        ),
-                        Text("Is It English".tr),
-                      ],
-                    ),
+                
                   ],
                 ),
               ],
             ),
           ),
         ),
-        apptitle: "Edit Question".tr,
+        apptitle: "Edit Article".tr,
         subtitle: "none",
       );
     });
