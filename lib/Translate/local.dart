@@ -258,6 +258,7 @@ class Languages {
       'Bank Branch Name': 'اسم الفرع البنكي',
       'Bank Account Number': 'رقم الحساب البنكي',
       'Save': 'حفظ',
+      'Degrees': 'درجة',
       'Username not found': 'اسم المستخدم غير موجود',
       'Find Your Account': 'العثور على حسابي',
       'Select Class First': 'اختر الصف أولاً',
@@ -1440,6 +1441,7 @@ class Languages {
           'The reason for the absence of the all student',
       'Present': 'Present',
       'Truant': 'Truant',
+      'Degrees': 'Degree',
       'No Teachers': 'No Teachers',
       'Late': 'Late',
       'There is no open academic year available to add classes to. Please add an open academic year and try again.':

@@ -41,7 +41,7 @@ class _TextfildwithupperState extends State<Textfild_Question> {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
-              color: widget.isSelected ? Color(0xff147C3E) : Colors.transparent,
+              color: widget.isSelected ? Color(0xff498160) : Colors.transparent,
             ),
             height: 40,
             child: TextFormField(
@@ -75,7 +75,7 @@ class _TextfildwithupperState extends State<Textfild_Question> {
                   borderRadius: BorderRadius.circular(5),
                   borderSide: BorderSide(
                       color: widget.isSelected
-                          ? Color(0xff147C3E)
+                          ? Color(0xff498160)
                           : Theme.of(context).textTheme.titleMedium!.color!,
                       width: 2),
                 ),
@@ -83,7 +83,7 @@ class _TextfildwithupperState extends State<Textfild_Question> {
                   borderRadius: BorderRadius.circular(5),
                   borderSide: BorderSide(
                       color: widget.isSelected
-                          ? Color(0xff147C3E)
+                          ? Color(0xff498160)
                           : Theme.of(context).textTheme.titleMedium!.color!),
                 ),
                 border: OutlineInputBorder(
