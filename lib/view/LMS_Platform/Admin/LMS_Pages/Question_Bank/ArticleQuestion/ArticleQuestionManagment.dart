@@ -8,6 +8,7 @@ import 'package:vms_school/Link/API/LMS_APIs/Admin/GetAllLinksLMSAPI.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_All_Curr_LMS.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_LMS_Files.dart';
 import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/ArticleAPI/AddArticleAPI.dart';
+import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/ArticleAPI/GetAllArticleAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Files_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LinksLMS_Controller.dart';
@@ -36,14 +37,12 @@ class Articlequestionmanagment extends StatefulWidget {
 class _ArticlequestionmanagmentState extends State<Articlequestionmanagment> {
   @override
   initState() {
-    // Getalllinkslmsapi().Getalllinkslms();
-    // Get_LMS_Curriculm_API().Get_LMS_Curriculm();
+    Getallarticleapi().Getallarticle();
     super.initState();
   }
 
   TextEditingController search = TextEditingController();
   TextEditingController qeustion = TextEditingController();
-  TextEditingController mark = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +66,6 @@ class _ArticlequestionmanagmentState extends State<Articlequestionmanagment> {
                     onchange: (value) {
                       controller.searchByName(
                         value,
-                        controller.currindex,
                       );
                     },
                     width: screenWidth - 200,
@@ -81,12 +79,10 @@ class _ArticlequestionmanagmentState extends State<Articlequestionmanagment> {
                       icon: Icons.add,
                       onTap: () {
                         qeustion.clear();
-                        mark.clear();
-                        Get.find<Articlequestioncontroller>().reset();
+                      
                         Get.find<Articlequestioncontroller>().resetError();
 
                         controller.updateFieldError("question", false);
-                        controller.updateFieldError("mark", false);
 
                         Get.dialog(AddArticleDialog(),
                             barrierDismissible: false);
@@ -114,7 +110,6 @@ class _ArticlequestionmanagmentState extends State<Articlequestionmanagment> {
                       onchange: (value) {
                         controller.searchByName(
                           value,
-                          controller.currindex,
                         );
                       },
                       width: 250,
@@ -129,12 +124,10 @@ class _ArticlequestionmanagmentState extends State<Articlequestionmanagment> {
                         icon: Icons.add,
                         onTap: () {
                           qeustion.clear();
-                          mark.clear();
-                          Get.find<Articlequestioncontroller>().reset();
+                      
                           Get.find<Articlequestioncontroller>().resetError();
 
                           controller.updateFieldError("question", false);
-                          controller.updateFieldError("mark", false);
 
                           Get.dialog(AddArticleDialog(),
                               barrierDismissible: false);
@@ -145,23 +138,23 @@ class _ArticlequestionmanagmentState extends State<Articlequestionmanagment> {
             );
           }),
         GetBuilder<Articlequestioncontroller>(builder: (controller) {
-          // if (controller.isLoading == true) {
-          //   return Expanded(
-          //     child: Center(
-          //         child: LoadingAnimationWidget.inkDrop(
-          //       color: Theme.of(context).primaryColor,
-          //       size: 60,
-          //     )),
-          //   );
-          // }
-          // if (controller.filtered_Links_LMS.isEmpty) {
-          //   return Expanded(
-          //     child: Center(
-          //         child: Text("No Questions".tr,
-          //             style: Theme.of(context).textTheme.titleLarge!.copyWith(
-          //                 fontSize: 22, fontWeight: FontWeight.normal))),
-          //   );
-          // }
+          if (controller.isLoading == true) {
+            return Expanded(
+              child: Center(
+                  child: LoadingAnimationWidget.inkDrop(
+                color: Theme.of(context).primaryColor,
+                size: 60,
+              )),
+            );
+          }
+          if (controller.filtered_articleQuestion.isEmpty) {
+            return Expanded(
+              child: Center(
+                  child: Text("No Questions".tr,
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          fontSize: 22, fontWeight: FontWeight.normal))),
+            );
+          }
           return Articlequstiongrid();
         }),
       ],
@@ -193,19 +186,7 @@ class _ArticlequestionmanagmentState extends State<Articlequestionmanagment> {
                           controller: qeustion,
                           Uptext: "Question".tr,
                           hinttext: "Question".tr),
-                      Textfildwithupper(
-                          isRequired: true,
-                          onChanged: (value) {
-                            if (value.isNotEmpty) {
-                              controller.updateFieldError("mark", false);
-                            }
-                          },
-                          width: 350,
-                          fieldType: "number",
-                          isError: controller.IsMarkError,
-                          controller: mark,
-                          Uptext: "Mark".tr,
-                          hinttext: "Mark".tr),
+                     
                     ],
                   ),
                 ],
@@ -221,14 +202,12 @@ class _ArticlequestionmanagmentState extends State<Articlequestionmanagment> {
                     text: "Add Question".tr,
                     onPressed: () async {
                       bool isQuestionEmpty = qeustion.text.isEmpty;
-                      bool isMarkEmpty = mark.text.isEmpty;
 
                       controller.updateFieldError("question", isQuestionEmpty);
-                      controller.updateFieldError("mark", isMarkEmpty);
 
-                      if (!(isQuestionEmpty || isMarkEmpty)) {
-                        await Addarticleapi(context).Addarticle(
-                            mark: mark.text, question: qeustion.text);
+                      if (!(isQuestionEmpty )) {
+                        await Addarticleapi(context)
+                            .Addarticle(question: qeustion.text);
                       }
                     },
                     color: Theme.of(context).primaryColor)

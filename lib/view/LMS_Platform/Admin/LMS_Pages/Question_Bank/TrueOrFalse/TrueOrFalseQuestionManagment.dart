@@ -8,6 +8,7 @@ import 'package:vms_school/Link/API/LMS_APIs/Admin/GetAllLinksLMSAPI.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_All_Curr_LMS.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/Get_LMS_Files.dart';
 import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/TrueOrFalseAPI.dart/AddTrueOrFalseAPI.dart';
+import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/TrueOrFalseAPI.dart/GetAllTrueOrFalseAPI.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Files_Controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LinksLMS_Controller.dart';
@@ -35,14 +36,13 @@ class _TrueorfalsequestionmanagmenttState
     extends State<Trueorfalsequestionmanagment> {
   @override
   initState() {
-    // Getalllinkslmsapi().Getalllinkslms();
-  
+    Getalltrueorfalseapi().Getalltrueorfalse();
+
     super.initState();
   }
 
   TextEditingController search = TextEditingController();
   TextEditingController qeustion = TextEditingController();
-  TextEditingController mark = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,6 @@ class _TrueorfalsequestionmanagmenttState
                     onchange: (value) {
                       controller.searchByName(
                         value,
-                        controller.currindex,
                       );
                     },
                     width: screenWidth - 200,
@@ -126,12 +125,11 @@ class _TrueorfalsequestionmanagmenttState
                         icon: Icons.add,
                         onTap: () {
                           qeustion.clear();
-                          mark.clear();
+
                           Get.find<Trueorfalsecontroller>().reset();
                           Get.find<Trueorfalsecontroller>().resetError();
 
                           controller.updateFieldError("question", false);
-                          controller.updateFieldError("mark", false);
 
                           Get.dialog(AddQuestionDialog(),
                               barrierDismissible: false);
@@ -142,23 +140,23 @@ class _TrueorfalsequestionmanagmenttState
             );
           }),
         GetBuilder<Trueorfalsecontroller>(builder: (controller) {
-          // if (controller.isLoading == true) {
-          //   return Expanded(
-          //     child: Center(
-          //         child: LoadingAnimationWidget.inkDrop(
-          //       color: Theme.of(context).primaryColor,
-          //       size: 60,
-          //     )),
-          //   );
-          // }
-          // if (controller.filtered_Links_LMS.isEmpty) {
-          //   return Expanded(
-          //     child: Center(
-          //         child: Text("No Questions".tr,
-          //             style: Theme.of(context).textTheme.titleLarge!.copyWith(
-          //                 fontSize: 22, fontWeight: FontWeight.normal))),
-          //   );
-          // }
+          if (controller.isLoading == true) {
+            return Expanded(
+              child: Center(
+                  child: LoadingAnimationWidget.inkDrop(
+                color: Theme.of(context).primaryColor,
+                size: 60,
+              )),
+            );
+          }
+          if (controller.filtered_questions.isEmpty) {
+            return Expanded(
+              child: Center(
+                  child: Text("No Questions".tr,
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          fontSize: 22, fontWeight: FontWeight.normal))),
+            );
+          }
           return Trueorfalsequstiongrid();
         }),
       ],
@@ -190,19 +188,6 @@ class _TrueorfalsequestionmanagmenttState
                           controller: qeustion,
                           Uptext: "Question".tr,
                           hinttext: "Question".tr),
-                      Textfildwithupper(
-                          isRequired: true,
-                          onChanged: (value) {
-                            if (value.isNotEmpty) {
-                              controller.updateFieldError("mark", false);
-                            }
-                          },
-                          width: 350,
-                          isError: controller.IsMarkError,
-                          controller: mark,
-                          fieldType: "number",
-                          Uptext: "Mark".tr,
-                          hinttext: "Mark".tr),
                       Row(
                         spacing: 20,
                         children: [
@@ -259,18 +244,14 @@ class _TrueorfalsequestionmanagmenttState
                     text: "Add Question".tr,
                     onPressed: () async {
                       bool isQuestionEmpty = qeustion.text.isEmpty;
-                      bool isMarkEmpty = mark.text.isEmpty;
 
-                      controller.updateFieldError("mark", isMarkEmpty);
                       controller.updateFieldError("question", isQuestionEmpty);
 
-                      if (!(isQuestionEmpty || isMarkEmpty)) {
+                      if (!(isQuestionEmpty)) {
                         await Addtrueorfalseapi(context).Addtrueorfalse(
-                          answer:controller.selectedOption! ,
-                          isEnglish: controller.Hidden,
-                          mark: mark.text,
-                          question: qeustion.text
-                        );
+                            answer: controller.selectedOption!,
+                            isEnglish: controller.Hidden,
+                            question: qeustion.text);
                       }
                     },
                     color: Theme.of(context).primaryColor)

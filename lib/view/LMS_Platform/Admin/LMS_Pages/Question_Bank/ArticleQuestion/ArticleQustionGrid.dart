@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/DeleteLinkLmsAPI.dart';
 import 'package:vms_school/Link/API/LMS_APIs/Admin/ShowAnHiddenLinkLmsAPI.dart';
 import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/ArticleAPI/DeleteArticleAPI.dart';
-import 'package:vms_school/Link/API/LMS_APIs/QuestionAPI/ArticleAPI/UpdateArticleAPI.dart';
 import 'package:vms_school/Link/API/OpenURLs.dart';
 import 'package:vms_school/Link/Controller/AdminController/Employee_Controllers/Add_Data_controller.dart';
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/LinksLMS_Controller.dart';
@@ -71,9 +70,8 @@ class _ArticlequstiongridState extends State<Articlequstiongrid> {
                       crossAxisSpacing: 20.0,
                       mainAxisSpacing: 20.0,
                       childAspectRatio: getChildAspectRatio()),
-
                   shrinkWrap: true,
-                  itemCount: 5, //controller.filtered_Links_LMS.length
+                  itemCount: controller.filtered_articleQuestion.length,
                   itemBuilder: (context, index) {
                     return Container(
                       padding: EdgeInsets.all(15),
@@ -101,7 +99,7 @@ class _ArticlequstiongridState extends State<Articlequstiongrid> {
                               child: Center(
                             child: SingleChildScrollView(
                               child: Text(
-                                "nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhnameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhnameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhnameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhnameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhnameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your nameWhat is your name",
+                                "${controller.filtered_articleQuestion[index].description}",
                                 textAlign: TextAlign.center,
                               ),
                             ),
@@ -120,9 +118,9 @@ class _ArticlequstiongridState extends State<Articlequstiongrid> {
                                           onPressed: () async {
                                             Deletearticleapi(context)
                                                 .Deletearticle(
-                                              id: controller
-                                                  .filtered_Links_LMS![index]
-                                                  .id,
+                                              question: controller
+                                                      .filtered_articleQuestion![
+                                                  index],
                                             );
                                           },
                                           color: const Color(0xffB03D3D),
@@ -146,7 +144,6 @@ class _ArticlequstiongridState extends State<Articlequstiongrid> {
                                             Text(
                                               "Do You Want To deletequestion"
                                                       .tr +
-                                                  " (${controller.filtered_Links_LMS![index].name}) " +
                                                   "qustionn".tr,
                                               style: Get
                                                   .theme.textTheme.bodyMedium!
