@@ -16,6 +16,7 @@ import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/TrueOrFalse
 import 'package:vms_school/Link/Model/LMS_Model/Files_Model.dart';
 import 'package:vms_school/Link/Model/LMS_Model/LinksLMSModel.dart';
 import 'package:vms_school/Link/Model/LMS_Model/PagesLmsModel.dart';
+import 'package:vms_school/Link/Model/LMS_Model/Questions_Models/TrueOrFalseModel.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 
 class Deletetrueorflaseapi {
@@ -25,18 +26,18 @@ class Deletetrueorflaseapi {
   Trueorfalsecontroller controller = Get.find<Trueorfalsecontroller>();
 
   Deletetrueorflase({
-    required id,
+    required Question question
   }) async {
     try {
       CancelToken cancelToken = CancelToken();
       Loading_Dialog(cancelToken: cancelToken);
-      String myurl = "$hostPort$deleteLmsCurriculumPage";
+      String myurl = "$hostPort$deleteQuestion";
 
       var response = await dio.post(
           cancelToken: cancelToken,
           myurl,
           data: {
-            "id": id,
+            "id": question.id,
             'classId': Get.find<Selected_Class_Controller>().classid,
             'currId':Get.find<Qustions_Bank_Controller>().id 
           },
@@ -44,9 +45,8 @@ class Deletetrueorflaseapi {
       if (response.statusCode == 200) {
         Get.back();
         Get.back();
-        // PagesLmsModel lms_files_model =
-        //     PagesLmsModel.fromJson(response.data);
-        // controller.SetPages(lms_files_model);
+               controller.Delete_Question(question);
+
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

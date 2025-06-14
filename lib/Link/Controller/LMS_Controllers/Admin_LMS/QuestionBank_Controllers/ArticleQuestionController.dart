@@ -1,50 +1,30 @@
-import 'package:file_picker/file_picker.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:get/get.dart';
-import 'package:vms_school/Link/Model/AdminModel/School_Models/Curriculum_Model.dart';
-import 'package:vms_school/Link/Model/LMS_Model/Files_Model.dart';
-import 'package:vms_school/Link/Model/LMS_Model/LinksLMSModel.dart';
-import 'package:vms_school/Translate/local_controller.dart';
+import 'package:vms_school/Link/Model/LMS_Model/Questions_Models/ArticleModel.dart';
 
 class Articlequestioncontroller extends GetxController {
  
-
- 
-
-  List<LmsCurriculmUrl>? Link_lms;
-  List<LmsCurriculmUrl> filtered_Links_LMS = [];
-
+  List<Question>? articleQuestion;
+  List<Question> filtered_articleQuestion = [];
   String? filterName = '';
-  List<String> currList = [];
-  String currindex = "";
-  String dialog_currIndex = "";
-  List<String> dialogCurrList = [];
 
   void clearFilter() {
-    searchByName("", currindex);
+    searchByName("");
     update();
   }
 
-  void searchByName(String? nameQuery, String? curiculumName) {
+  void searchByName(String? nameQuery) {
     filterName = nameQuery;
-    List<LmsCurriculmUrl> tempFilteredList = List.from(Link_lms!);
+    List<Question> tempFilteredList = List.from(articleQuestion!);
 
     if (nameQuery != null && nameQuery.isNotEmpty) {
       tempFilteredList = tempFilteredList.where((cur) {
-        final curName = cur.name?.toLowerCase() ?? '';
+        final curName = cur.description?.toLowerCase() ?? '';
         return curName.contains(nameQuery.toLowerCase());
       }).toList();
     }
 
-    if (curiculumName != null && curiculumName.isNotEmpty) {
-      tempFilteredList = tempFilteredList.where((cur) {
-        return cur.curriculmUrl!.enName == curiculumName ||
-            cur.curriculmUrl!.name == curiculumName;
-      }).toList();
-    }
-
-    filtered_Links_LMS = tempFilteredList;
+    filtered_articleQuestion = tempFilteredList;
     update();
   }
 
@@ -52,111 +32,53 @@ class Articlequestioncontroller extends GetxController {
 
   RxString fileName = "".obs;
 
-  void selectIndex(String type, String? index) {
-    switch (type) {
-      case 'curriculum':
-        currindex = index ?? "";
-        break;
-      case 'currDialog':
-        dialog_currIndex = index ?? "";
-        break;
-    }
-    searchByName(
-      filterName,
-      currindex,
-    );
-    update();
-  }
 
-  bool isCuriculmLoading = false;
-  bool isCuriculmDialogLoading = false;
+  void SetArticle(ArticleModel links) {
+    articleQuestion = links.question;
 
-  void setisCurriculmLoading(bool bool) {
-    isCuriculmLoading = bool;
-    update();
-  }
-
-  void setisCurriculmDialogLoading(bool bool) {
-    isCuriculmDialogLoading = bool;
-    update();
-  }
-
-  setCurriculum(Curriculum_Model curruculum) {
-    currList.clear();
-    dialogCurrList.clear();
-    for (int i = 0; i < curruculum.curriculum!.length; i++) {
-      currList.add(
-          Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
-              ? curruculum.curriculum![i].name!
-              : curruculum.curriculum![i].enName!);
-      dialogCurrList.add(
-          Get.find<LocalizationController>().currentLocale.value.languageCode ==
-                  'ar'
-              ? curruculum.curriculum![i].name!
-              : curruculum.curriculum![i].enName!);
-    }
-    updateList("currDialog", dialogCurrList);
-    updateList("curriculum", currList);
-    setisCurriculmLoading(false);
-    setisCurriculmDialogLoading(false);
-
-    update();
-  }
-
-  void SetLinks(LinksLMSModel links) {
-    Link_lms = links.lmsCurriculmUrl;
-
-    filtered_Links_LMS = List.from(Link_lms!);
+    filtered_articleQuestion = List.from(articleQuestion!);
 
     if (filterName != null && filterName!.isNotEmpty) {
-      searchByName(filterName.toString(), currindex);
+      searchByName(filterName.toString());
     }
 
-    if (currindex.isNotEmpty) {
-      filtered_Links_LMS = filtered_Links_LMS.where((emp) {
-        return emp.curriculmUrl!.name == currindex ||
-            emp.curriculmUrl!.enName == currindex;
-      }).toList();
-    }
+
 
     SetIsLoading(false);
     update();
   }
+   void Add_Question(Question cthc) {
+    articleQuestion!.insert(0, cthc);
+    filtered_articleQuestion = List.from(articleQuestion!);
 
-  void updateList(String type, List<String> options) {
-    switch (type) {
-      case 'curriculum':
-        currList = options;
-        break;
-      case 'currDialog':
-        dialogCurrList = options;
-        break;
+    if (filterName != null && filterName!.isNotEmpty) {
+      searchByName(filterName.toString());
     }
+
     update();
   }
 
-  String get selectCurrIndex => currindex;
-
-  String get selectdialog_CurrIndex => dialog_currIndex;
+  void Delete_Question(Question cthc) {
+    articleQuestion!.remove(cthc);
+    filtered_articleQuestion = List.from(articleQuestion!);
+    if (filterName != null && filterName!.isNotEmpty) {
+      searchByName(filterName.toString());
+    }
+    update();
+  }
 
   void SetIsLoading(bool value) {
     isLoading = value;
     update();
   }
-
   bool IsQuestionError = false;
-  bool IsMarkError = false;
  
-
   void updateFieldError(String type, bool newValue) {
     switch (type) {
       case 'question':
         IsQuestionError = newValue;
         break;
-       case 'mark':
-        IsMarkError = newValue;
-        break;
+  
 
       default:
         print("Error: Invalid type");
@@ -164,23 +86,9 @@ class Articlequestioncontroller extends GetxController {
     update();
   }
 
-  bool Hidden = false;
-  updateHid(bool value) {
-    Hidden = value;
- 
-    update();
-  }
-
-  void reset() {
-    Hidden = false;
-    dialog_currIndex = "";
-    update();
-  }
 
   void resetError() {
     IsQuestionError = false;
-    IsMarkError = false;
- 
     update();
   }
 }

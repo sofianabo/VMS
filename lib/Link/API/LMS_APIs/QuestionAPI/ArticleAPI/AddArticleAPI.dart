@@ -18,6 +18,7 @@ import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/Selected_Sc
 import 'package:vms_school/Link/Controller/LMS_Controllers/Admin_LMS/TrueOrFalseController.dart';
 import 'package:vms_school/Link/Model/LMS_Model/LinksLMSModel.dart';
 import 'package:vms_school/Link/Model/LMS_Model/PagesLmsModel.dart';
+import 'package:vms_school/Link/Model/LMS_Model/Questions_Models/ArticleModel.dart';
 import 'package:vms_school/view/Both_Platform/widgets/Loading_Dialog.dart';
 
 class Addarticleapi {
@@ -27,26 +28,24 @@ class Addarticleapi {
 
   Articlequestioncontroller controller = Get.find<Articlequestioncontroller>();
 
-  Addarticle({ question, mark}) async {
+  Addarticle({question}) async {
     CancelToken cancelToken = CancelToken();
     Loading_Dialog(cancelToken: cancelToken);
     try {
-
-      String myurl = "$hostPort$addLmsCurriculmPage";
+      String myurl = "$hostPort$addQuestion";
 
       var response = await dio.post(data: {
-        'name': '$question',
-        'page': '$mark',
+        'description': '$question',
+        'type': 'Text',
         'classId': Get.find<Selected_Class_Controller>().classid,
-        'curriculumId': Get.find<Qustions_Bank_Controller>().id ,
-       
+        'currId': Get.find<Qustions_Bank_Controller>().id,
       }, cancelToken: cancelToken, myurl, options: getDioOptions());
 
       if (response.statusCode == 200) {
         gets.Get.back();
         gets.Get.back();
-        // PagesLmsModel lms_files_model = PagesLmsModel.fromJson(response.data);
-        // linkcontrol.SetPages(lms_files_model);
+        ArticleModel quesModel = ArticleModel.fromJson(response.data);
+        controller.Add_Question(quesModel.question![0]);
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,

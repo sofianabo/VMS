@@ -16,6 +16,7 @@ import 'package:vms_school/Link/Model/AdminModel/School_Models/Division_Model.da
 import 'package:vms_school/Link/Model/LMS_Model/Division_LMS_Model.dart';
 import 'package:vms_school/Link/Model/LMS_Model/Files_Model.dart';
 import 'package:vms_school/Link/Model/LMS_Model/LinksLMSModel.dart';
+import 'package:vms_school/Link/Model/LMS_Model/Questions_Models/ArticleModel.dart';
 
 class Getallarticleapi {
   Dio dio = Dio();
@@ -23,17 +24,18 @@ class Getallarticleapi {
     final controller = Get.find<Articlequestioncontroller>();
     controller.SetIsLoading(true);
     try {
-      String myurl = "$hostPort$getLmsCurriculmUrl";
+      String myurl = "$hostPort$getQuestion";
     
       var response = await dio.post(myurl,
           data: {'classId': Get.find<Selected_Class_Controller>().classid,
-                   'currId':Get.find<Qustions_Bank_Controller>().id          
+                   'currId':Get.find<Qustions_Bank_Controller>().id    ,
+                      'type': 'Text',      
           }
           ,
           options: getDioOptions());
       if (response.statusCode == 200) {
-        // LinksLMSModel lms_links_model = LinksLMSModel.fromJson(response.data);
-        // controller.SetLinks(lms_links_model);
+        ArticleModel art = ArticleModel.fromJson(response.data);
+        controller.SetArticle(art);
       } else {
         ErrorHandler.handleDioError(DioException(
           requestOptions: response.requestOptions,
